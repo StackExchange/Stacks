@@ -1,15 +1,13 @@
 import { runVisualTests } from "../../test/visual-test-utils";
-// import { Icons } from "@stackoverflow/stacks-icons";
+import { IconEyeSm } from "@stackoverflow/stacks-icons/icons";
 import "../../index";
 import { html } from "@open-wc/testing";
 
 const variants = {
     blings: ["gold", "silver", "bronze"],
     numbers: ["answered", "bounty", "important", "rep", "rep-down", "votes"],
-    states: {
-        filled: ["danger", "muted"],
-        other: ["info", "warning"],
-    },
+    filled: ["danger", "muted"],
+    states: ["danger", "muted", "info", "new", "warning"],
     users: ["admin", "moderator", "staff"],
 };
 
@@ -46,7 +44,6 @@ describe("badge", () => {
             },
             options: {
                 includeNullVariant: false,
-                includeNullModifier: false,
             },
             tag: "span",
             template,
@@ -62,41 +59,72 @@ describe("badge", () => {
         },
         options: {
             includeNullVariant: false,
+        },
+        tag: "span",
+        template,
+    });
+
+    // State badges
+    runVisualTests({
+        baseClass: "s-badge",
+        variants: variants.states,
+        children: {
+            default: `state badge`,
+        },
+        tag: "span",
+        options: {
+            includeNullVariant: false,
+        },
+        template,
+    });
+
+    // State badges w/ filled modifier
+    runVisualTests({
+        baseClass: "s-badge",
+        variants: variants.filled,
+        modifiers: {
+            primary: ["filled"],
+        },
+        children: {
+            default: `filled badge`,
+        },
+        options: {
             includeNullModifier: false,
         },
         tag: "span",
         template,
     });
 
-    // Icon badges
+    // State badges w/ filled modifier and icon
     runVisualTests({
         baseClass: "s-badge",
-        variants: [...variants.states.filled, ...variants.states.other],
+        variants: variants.filled,
+        modifiers: {
+            primary: ["filled"],
+            secondary: ["icon"],
+        },
+        children: {
+            default: `${IconEyeSm} icon badge`,
+        },
+        options: {
+            includeNullModifier: false,
+        },
+        tag: "span",
+        template,
+    });
+
+    // State badges w/ icon
+    runVisualTests({
+        baseClass: "s-badge",
+        variants: variants.states.filter((state) => state !== "new"),
         modifiers: {
             primary: ["icon"],
         },
         children: {
-            default: "with icon",
-            //     icon: Icons.IconEyeSm,  // TODO fix the icon imports
+            default: `${IconEyeSm} icon badge`,
         },
         options: {
             includeNullModifier: false,
-        },
-        tag: "span",
-        template,
-    });
-
-    // Filled badges
-    runVisualTests({
-        baseClass: "s-badge",
-        variants: variants.states.filled,
-        children: {
-            default: "filled",
-            //     icon: Icons.IconEyeOffSm,  // TODO fix the icon imports
-        },
-        options: {
-            includeNullModifier: false,
-            includeNullVariant: false,
         },
         tag: "span",
         template,
