@@ -201,16 +201,10 @@ describe("topbar", () => {
                         --theme-topbar-background-color: green;
                         --theme-topbar-bottom-border: blue;
                         --theme-topbar-height: 80px;
-                        /* --theme-topbar-item-background-hover */
                         --theme-topbar-item-color: yellow;
-                        /* --theme-topbar-item-color-current */
-                        /* --theme-topbar-item-color-hover */
                         --theme-topbar-search-background: pink;
                         --theme-topbar-search-border: purple;
-                        /* --theme-topbar-search-border-focus */
-                        /* --theme-topbar-search-color */
                         --theme-topbar-search-placeholder: white;
-                        /* --theme-topbar-search-shadow-focus */
                         --theme-topbar-select-background: lightblue;
                         --theme-topbar-select-color: magenta;
                     }
