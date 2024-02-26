@@ -191,7 +191,7 @@ describe("topbar", () => {
     runVisualTests({
         baseClass: "s-topbar",
         children: {
-            themed: topbars.default
+            themed: topbars.default,
         },
         template: ({ component, testid }) => html`
             <div data-testid="${testid}">
