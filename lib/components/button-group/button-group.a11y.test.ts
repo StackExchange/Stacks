@@ -43,7 +43,7 @@ describe("button group", () => {
         baseClass: "s-btn-group",
         children: {
             default: btns.map((btn) => getBtn({ ...btn })).join(""),
-        }
+        },
     });
 
     // s-btn-group--radio
@@ -59,6 +59,6 @@ describe("button group", () => {
         },
         options: {
             includeNullModifier: false,
-        }
+        },
     });
 });
