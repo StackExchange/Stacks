@@ -2,82 +2,76 @@
     // CONTEXTUAL STYLES
     #stacks-internals #screen-sm({
         .s-btn {
+            --_bu-px: 0.4em;
+
             &.s-btn__dropdown {
                 padding-right: 1.2em;
 
                 &:after {
-                    right: 0.4em;
+                    right: var(--_bu-px);
                 }
             }
-
-            padding-left: 0.4em;
-            padding-right: 0.4em;
         }
     }, @force-selector: true);
 
-    // VARIANTS
-    &:not(&--radio) .s-btn:not(:first-child):not(:last-child),
-    &&--radio .s-btn:not(:first-of-type):not(:last-of-type) {
-        border-radius: 0;
-    }
-
-    &:not(&--radio) .s-btn:first-child:not(:only-child),
-    &&--radio .s-btn:first-of-type:not(:last-of-type) {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-
-    &:not(&--radio) .s-btn:last-child:not(:only-child),
-    &&--radio .s-btn:last-of-type:not(:first-of-type) {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-    }
-
-    &:not(&--radio) .s-btn:not(:last-child),
-    &&--radio .s-btn:not(:last-of-type) {
-        margin-right: calc(var(--su-static1) * -1);
-    }
-
     // CHILD ELEMENTS
     form {
-        &:not(:first-child):not(:last-child) {
-            .s-btn {
-                border-radius: 0;
-            }
-        }
-
-        &:last-child:not(:only-child) {
-            .s-btn:not(:last-child) {
-                border-radius: 0;
-            }
-        }
-
-        &:first-child:not(:only-child) {
-            .s-btn:not(:first-child) {
-                border-radius: 0;
-            }
-        }
-
         display: flex;
         margin-right: calc(var(--su-static1) * -1); // -1px
     }
 
     .s-btn {
-        &:active {
-            z-index: var(--zi-active);
+        --_bu-br: var(--br-sm);
+        --_bu-bc-hover: transparent;
+
+        &,
+        &.s-btn__md {
+            --_bu-px: var(--su12);
+            --_bu-py: var(--su8);
+        }
+
+        &.s-btn___xs {
+            --_bu-px: var(--su8);
+            --_bu-py: var(--su4);
+        }
+
+        &.s-btn___sm {
+            --_bu-px: calc(var(--su8) + var(--su2));
+            --_bu-py: var(--su6);
         }
 
         &.is-selected,
         &--radio:checked + .s-btn {
-            z-index: var(--zi-selected); // When the button is active or selected, it should pop above its siblings
+            font-weight: bold;
         }
 
-        margin-bottom: calc(var(--su-static1) * -1); // When wrapping we need to account for the border
+        .s-btn--badge {
+            font-weight: normal;
+        }
+
+        & .s-btn--text {
+            &:before {
+                content: attr(data-text);
+                content: attr(data-text) / "";
+                font-weight: bold;
+                height: 0;
+                pointer-events: none;
+                user-select: none;
+                visibility: hidden;
+            }
+
+            display: inline-flex;
+            flex-direction: column;
+        }
+
         white-space: nowrap; // When the buttons wrap, they get super tall and mess up the whole layout
     }
 
     // STATIC COMPONENT STYLES
-    display: flex;
+    border: var(--su-static1) solid var(--black-300);
+    border-radius: var(--br-md);
+    display: inline-flex; // TODO investigate if changing from flex to inline-flex will be an issue
     flex-wrap: wrap;
     margin-bottom: var(--su-static1); // Compensate for buttons having a margin bottom of -1px to account for row wrapping
+    padding: calc(var(--su-static4) - var(--su-static1));
 }
