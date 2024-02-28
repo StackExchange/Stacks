@@ -25,7 +25,7 @@ const getBtn = ({
     isRadio?: boolean;
     isSelected?: boolean;
 }): string => {
-    const baseClasses = "s-btn s-btn__muted s-btn__outlined";
+    const baseClasses = "s-btn s-btn__muted";
 
     return isRadio
         ? `<input
@@ -35,13 +35,13 @@ const getBtn = ({
             id="btn-${name}"
             ${isSelected ? "checked" : ""}/>
             <label class="${baseClasses}" for="btn-${name}">
-                ${name}
+                <span class="s-btn--text" data-text="${name}">${name}</span>
             </label>`
         : `<button
             class="${baseClasses}${isSelected ? " is-selected" : ""}"
             ${isSelected ? `aria-current="true"` : ""}
-            role="button">
-                ${name}
+            type="button">
+                <span class="s-btn--text" data-text="${name}">${name}</span>
             </button>`;
 };
 

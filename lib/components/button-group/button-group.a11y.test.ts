@@ -28,13 +28,13 @@ const getBtn = ({
             id="btn-${name}"
             ${isSelected ? "checked" : ""}/>
             <label class="${baseClasses}" for="btn-${name}">
-                ${name}
+                <span class="s-btn--text" data-text="${name}">${name}</span>
             </label>`
         : `<button
             class="${baseClasses}${isSelected ? " is-selected" : ""}"
             ${isSelected ? `aria-current="true"` : ""}
-            role="button">
-                ${name}
+            type="button">
+                <span class="s-btn--text" data-text="${name}">${name}</span>
             </button>`;
 };
 
@@ -43,8 +43,7 @@ describe("button group", () => {
         baseClass: "s-btn-group",
         children: {
             default: btns.map((btn) => getBtn({ ...btn })).join(""),
-        },
-        skippedTestids: ["s-btn-group-dark"],
+        }
     });
 
     // s-btn-group--radio
@@ -60,7 +59,6 @@ describe("button group", () => {
         },
         options: {
             includeNullModifier: false,
-        },
-        skippedTestids: ["s-btn-group-dark-radio"],
+        }
     });
 });
