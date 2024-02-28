@@ -215,10 +215,14 @@ const generatePrimitiveVariations = ({
                         : modifiers.primary
                     : [""];
                 const secondaryModifiers = modifiers?.secondary
-                    ? ["", ...(<[]>modifiers.secondary)]
+                    ? opts.includeNullModifier
+                        ? ["", ...(<[]>modifiers.secondary)]
+                        : modifiers.secondary
                     : [""];
                 const globalModifiers = modifiers?.global
-                    ? ["", ...(<[]>modifiers.global)]
+                    ? opts.includeNullModifier
+                        ? ["", ...(<[]>modifiers.global)]
+                        : modifiers.global
                     : [""];
 
                 primaryModifiers.forEach((primaryModifier) => {

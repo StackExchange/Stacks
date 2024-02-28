@@ -333,3 +333,42 @@ description: Input elements are used to gather information from users.
         </div>
     </div>
 </section>
+
+<section class="stacks-section">
+
+    {% header "h2", "Nested inputs" %}
+    <p class="stacks-copy">An input can be nested within a container that has the <code class="stacks-code">.s-input</code> class applied to display styled elements as if they're within an input.</p>
+
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-flex fd-column g4">
+    <label class="s-label" for="tag-selector">Tags</label>
+    <div class="s-input d-flex fw-wrap g8">
+        <span>
+            <span class="s-tag">
+                svelte
+                <button class="s-tag--dismiss" type="button" title="Remove tag">@Svg.ClearSm</button>
+            </span>
+        </span>
+        <input
+            id="tag-selector"
+            class="s-input bc-transparent bs-none p0 wmn1"
+            type="text"
+            …>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d-flex fd-column g4">
+            <label class="s-label" for="tag-selector">Tags</label>
+            <div class="s-input d-flex fw-wrap g8">
+                <span>
+                    <span class="s-tag">
+                        svelte
+                        <button class="s-tag--dismiss" type="button" title="Remove tag">{% icon "ClearSm" %}</button>
+                    </span>
+                </span>
+                <input id="tag-selector" class="s-input bc-transparent bg-transparent bs-none fl-grow1 p0 w-auto" type="text" role="presentation" placeholder="enter up to 5 tags">
+            </div>
+        </div>
+    </div>
+</section>
