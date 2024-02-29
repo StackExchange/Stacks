@@ -6,7 +6,6 @@ const btns = [
     { name: "Frequent" },
     { name: "Active" },
     { name: "Bountied" },
-    { name: "Unanswered" },
 ];
 
 const getBtn = ({
