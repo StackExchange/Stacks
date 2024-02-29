@@ -5,7 +5,8 @@ import "../../index";
 describe("button group", () => {
     runA11yTests({
         ...testArgs,
-        // TODO resolve btn badge contrast issues
+        // TODO remove skipped tests once btn badge contrast issues are resolved
+        // see also https://github.com/StackExchange/Stacks/pull/1663
         skippedTestids: [/s-btn-group-(light|dark|highcontrast-light)-badge/],
     });
 });
