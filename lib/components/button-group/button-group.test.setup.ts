@@ -5,19 +5,28 @@ const btns = [
     { name: "Newest", isSelected: true },
     { name: "Frequent" },
     { name: "Active" },
-    { name: "Bountied" },
 ];
 
 const getBtn = ({
     name = "",
     isRadio,
     isSelected,
+    hasBadge,
 }: {
     name: string;
     isRadio?: boolean;
     isSelected?: boolean;
+    hasBadge?: boolean;
 }): string => {
     const baseClasses = "s-btn s-btn__muted";
+    const btnChildren = `
+        <span class="s-btn--text" data-text="${name}">${name}</span>
+        ${
+            hasBadge
+                ? `<span class="s-btn--badge"><span class="s-btn--number">123</span></span>`
+                : ""
+        }
+    `;
 
     return isRadio
         ? `<input
@@ -27,13 +36,13 @@ const getBtn = ({
             id="btn-${name}"
             ${isSelected ? "checked" : ""}/>
             <label class="${baseClasses}" for="btn-${name}">
-                <span class="s-btn--text" data-text="${name}">${name}</span>
+                ${btnChildren}
             </label>`
         : `<button
             class="${baseClasses}${isSelected ? " is-selected" : ""}"
             ${isSelected ? `aria-current="true"` : ""}
             type="button">
-                <span class="s-btn--text" data-text="${name}">${name}</span>
+                ${btnChildren}
             </button>`;
 };
 
@@ -44,16 +53,22 @@ const getBtns = (ids: number[]): string => {
 const testArgs: TestVariationArgs = {
     baseClass: "s-btn-group",
     children: {
+        "default": getBtns([0, 1, 2]),
         "single": getBtns([0]),
-        "many": getBtns([0, 1, 2, 3]),
-        "many-with-form": `
+        "form": `
             ${getBtns([0])}
             <form class="mb0 p0">
                 ${getBtn(btns[1])}
             </form>
-            ${getBtns([2, 3])}
+            ${getBtns([2])}
         `,
+        "badge": btns
+            .map((btn) => getBtn({ ...btn, hasBadge: true }))
+            .join(""),
         "radio": btns.map((btn) => getBtn({ ...btn, isRadio: true })).join(""),
+        "radio-with-badge": btns
+            .map((btn) => getBtn({ ...btn, isRadio: true, hasBadge: true }))
+            .join(""),
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     template: ({ component, testid }: any) =>
