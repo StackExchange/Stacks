@@ -18,7 +18,7 @@ const getBtn = ({
     isRadio?: boolean;
     isSelected?: boolean;
 }): string => {
-    const baseClasses = "s-btn s-btn__muted s-btn__outlined";
+    const baseClasses = "s-btn s-btn__muted";
 
     return isRadio
         ? `<input
@@ -43,22 +43,9 @@ describe("button group", () => {
         baseClass: "s-btn-group",
         children: {
             default: btns.map((btn) => getBtn({ ...btn })).join(""),
-        },
-    });
-
-    // s-btn-group--radio
-    runA11yTests({
-        baseClass: "s-btn-group",
-        modifiers: {
-            primary: ["radio"],
-        },
-        children: {
-            default: btns
+            radio: btns
                 .map((btn) => getBtn({ ...btn, isRadio: true }))
                 .join(""),
-        },
-        options: {
-            includeNullModifier: false,
         },
     });
 });

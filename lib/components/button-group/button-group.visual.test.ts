@@ -10,12 +10,6 @@ const btns = [
     { name: "Unanswered" },
 ];
 
-const form = (children: number[]) => `
-    <form class="mb0 p0">
-        ${children.map((child) => getBtn(btns[child])).join("")}
-    </form>
-`;
-
 const getBtn = ({
     name = "",
     isRadio,
@@ -55,40 +49,25 @@ const groups: { id: string; children: string }[] = [
         children: getBtns([0]),
     },
     {
-        id: "1-form",
-        children: `${form([0])}`,
-    },
-    {
         id: "2",
         children: getBtns([0, 1]),
-    },
-    {
-        id: "2-form-first",
-        children: `${form([0])}${getBtns([1])}`,
     },
     {
         id: "3",
         children: getBtns([0, 1, 2]),
     },
     {
-        id: "3-form-first",
-        children: `${form([0])}${getBtns([1, 2])}`,
+        id: "4",
+        children: getBtns([0, 1, 2, 3]),
     },
     {
-        id: "3-form-middle",
-        children: `${getBtns([0])}${form([1])}${getBtns([2])}`,
-    },
-    {
-        id: "3-form-last",
-        children: `${getBtns([0, 1])}${form([2])}`,
-    },
-    {
-        id: "4-form-first-multi",
-        children: `${form([0, 1, 2])}${getBtns([3])}`,
-    },
-    {
-        id: "4-form-last-multi",
-        children: `${getBtns([0])}${form([1, 2, 3])}`,
+        id: "4-with-form",
+        children: `
+            ${getBtns([0])}
+            <form class="mb0 p0">
+                ${getBtn(btns[1])}
+            </form>
+            ${getBtns([2, 3])}`,
     },
 ];
 
@@ -110,28 +89,14 @@ describe("button group", () => {
             },
             children: {
                 default: group.children,
+                radio: btns
+                    .map((btn) => getBtn({ ...btn, isRadio: true }))
+                    .join(""),
             },
             template: btnGroupTemplate,
             options: {
                 includeNullModifier: false,
             },
         });
-    });
-
-    // s-btn-group--radio
-    runVisualTests({
-        baseClass: "s-btn-group",
-        modifiers: {
-            primary: ["radio"],
-        },
-        children: {
-            default: btns
-                .map((btn) => getBtn({ ...btn, isRadio: true }))
-                .join(""),
-        },
-        template: btnGroupTemplate,
-        options: {
-            includeNullModifier: false,
-        },
     });
 });
