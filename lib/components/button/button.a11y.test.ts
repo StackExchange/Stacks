@@ -10,7 +10,7 @@ describe("button", () => {
         ],
         skippedTestids: [
             // TODO resolve btn badge contrast issues
-            // matches tests with a badge in light, dark, and highcontrast-light modes
+            // matches tests with a badge in light and dark modes
             /s-btn-(light|dark).*?badge/,
             // matches tests with a badge in highcontrast-light modes, excluding filled, danger, github, facebook, sm, or xs
             /s-btn-highcontrast-light-(?!.*(filled|danger|github|facebook|sm|xs)).*?badge/,
