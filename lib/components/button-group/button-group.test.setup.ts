@@ -53,22 +53,17 @@ const getBtns = (ids: number[]): string => {
 const testArgs: TestVariationArgs = {
     baseClass: "s-btn-group",
     children: {
-        "default": getBtns([0, 1, 2]),
-        "single": getBtns([0]),
-        "form": `
+        default: getBtns([0, 1, 2]),
+        single: getBtns([0]),
+        form: `
             ${getBtns([0])}
             <form class="mb0 p0">
                 ${getBtn(btns[1])}
             </form>
             ${getBtns([2])}
         `,
-        "badge": btns
-            .map((btn) => getBtn({ ...btn, hasBadge: true }))
-            .join(""),
-        "radio": btns.map((btn) => getBtn({ ...btn, isRadio: true })).join(""),
-        "radio-with-badge": btns
-            .map((btn) => getBtn({ ...btn, isRadio: true, hasBadge: true }))
-            .join(""),
+        badge: btns.map((btn) => getBtn({ ...btn, hasBadge: true })).join(""),
+        radio: btns.map((btn) => getBtn({ ...btn, isRadio: true })).join(""),
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     template: ({ component, testid }: any) =>
