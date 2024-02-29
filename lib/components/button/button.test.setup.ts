@@ -21,10 +21,7 @@ const testArgs: TestVariationArgs = {
         primary: ["filled", "outlined"],
         secondary: [...["xs", "sm", "md"], ...["dropdown", "icon"]],
         global: ["is-loading"],
-        standalone: [
-            ...["link", "unset"],
-            ...["facebook", "github", "google"],
-        ],
+        standalone: [...["link", "unset"], ...["facebook", "github", "google"]],
     },
     attributes: {
         type: "button",

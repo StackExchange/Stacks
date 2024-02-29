@@ -13,6 +13,6 @@ describe("button", () => {
             >
                 ${component}
             </div>
-        `
+        `,
     });
 });
