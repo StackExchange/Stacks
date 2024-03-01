@@ -65,8 +65,7 @@ const testArgs: TestVariationArgs = {
         badge: btns.map((btn) => getBtn({ ...btn, hasBadge: true })).join(""),
         radio: btns.map((btn) => getBtn({ ...btn, isRadio: true })).join(""),
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    template: ({ component, testid }: any) =>
+    template: ({ component, testid }) =>
         html`<div
             class="d-inline-flex ai-center jc-center p8"
             data-testid="${testid}"
