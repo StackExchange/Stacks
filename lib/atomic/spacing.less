@@ -1,23 +1,10 @@
 @import (reference) "../base/internal.less";
+@import (reference) "../exports/spacing-mixins.less";
 
-//
-//  STACK OVERFLOW
-//  SPACING
-//
-//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
-//  Stack Overflow. For documentation of all these classes and how to contribute,
-//  visit https://stackoverflow.design/
-//
-//  • SPACING UNIT CSS VARIABLES
-//  • MARGIN
-//  • PADDING
-//  • POSITIONING
-//
-//  ============================================================================
-//  $   SPACING UNITS CSS VARIABLES
-//  ----------------------------------------------------------------------------
+// SPACING UNITS CSS CUSTOM PROPERTIES
 body {
     --su-base: 1;
+    --su-static0: 0px;
     --su-static1: 1px;
     --su-static2: 2px;
     --su-static4: 4px;
@@ -32,6 +19,7 @@ body {
     --su-static96: 96px;
     --su-static128: 128px;
 
+    --su0: var(--su-static0);
     // This ensures `--su1` never drops below 1px by setting the clamp MIN value to `--su-static1` (1px).
     --su1: clamp(var(--su-static1), calc(var(--su-static1) * var(--su-base)), calc(var(--su-static1) * var(--su-base)));
     --su2: calc(var(--su-static2) * var(--su-base));
@@ -48,297 +36,63 @@ body {
     --su128: calc(var(--su-static128) * var(--su-base));
 }
 
-//  ============================================================================
-//  $   MARGIN
-//  ----------------------------------------------------------------------------
-//  $$ 0 margin
-.m0 { margin: 0 !important; }
-.mt0 { margin-top: 0 !important; }
-.mr0 { margin-right: 0 !important; }
-.mb0 { margin-bottom: 0 !important; }
-.ml0 { margin-left: 0 !important; }
-.mx0 { margin-left: 0 !important; margin-right: 0 !important; }
-.my0 { margin-top: 0 !important; margin-bottom: 0 !important; }
-
-//  $$ auto margin
+// MARGIN
+//  Margin
 .m-auto { margin: auto !important; }
+.generate-spacing('.m', margin, true);
+.generate-spacing('.m', margin, true, percent);
+
+//  Margin top
 .mt-auto { margin-top: auto !important; }
+.generate-spacing('.mt', margin-top, true);
+.generate-spacing('.mt', margin-top, true, percent);
+
+//  Margin right
 .mr-auto { margin-right: auto !important; }
+.generate-spacing('.mr', margin-right, true);
+.generate-spacing('.mr', margin-right, true, percent);
+
+//  Margin bottom
 .mb-auto { margin-bottom: auto !important; }
+.generate-spacing('.mb', margin-bottom, true);
+.generate-spacing('.mb', margin-bottom, true, percent);
+
+//  Margin left
 .ml-auto { margin-left: auto !important; }
+.generate-spacing('.ml', margin-left, true);
+.generate-spacing('.ml', margin-left, true, percent);
+
+//  Margin x-axis, y-axis
 .mx-auto { margin-left: auto !important; margin-right: auto !important; }
 .my-auto { margin-top: auto !important; margin-bottom: auto !important; }
+.generate-spacing('.mx'; margin-left, margin-right; true);
+.generate-spacing('.my'; margin-top, margin-bottom; true);
 
-// $$ Margin
-#stacks-internals #build-classes(
-    responsive,
-    '.m',
-    { .template(@value) { margin: var(~"--su@{value}") !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
+// PADDING
+.generate-spacing('.p', padding);
+.generate-spacing('.pt', padding-top);
+.generate-spacing('.pr', padding-right);
+.generate-spacing('.pb', padding-bottom);
+.generate-spacing('.pl', padding-left);
+.generate-spacing('.px'; padding-left, padding-right);
+.generate-spacing('.py'; padding-top, padding-bottom);
 
-#stacks-internals #responsify('.m0', { margin: 0 !important; });
+// POSITIONING
+// Inset
+.generate-spacing('.i', inset);
 
-// $$ Margin negative
-#stacks-internals #build-classes(
-    responsive,
-    '.mn',
-    { .template(@value) { margin: calc(var(~"--su@{value}") * -1) !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
+//  Top
+.generate-spacing('.t', top, true);
+.generate-spacing('.t', top, true, percent);
 
-// $$ Top margin
-#stacks-internals #build-classes(
-    responsive,
-    '.mt',
-    { .template(@value) { margin-top: var(~"--su@{value}") !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
+// Right
+.generate-spacing('.r', right, true);
+.generate-spacing('.r', right, true, percent);
 
-#stacks-internals #responsify('.mt0', { margin-top: 0 !important; });
+// Bottom
+.generate-spacing('.b', bottom, true);
+.generate-spacing('.b', bottom, true, percent);
 
-// $$ Top margin negative
-#stacks-internals #build-classes(
-    responsive,
-    '.mtn',
-    { .template(@value) { margin-top: calc(var(~"--su@{value}") * -1) !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-// $$ Right margin
-#stacks-internals #build-classes(
-    responsive,
-    '.mr',
-    { .template(@value) { margin-right: var(~"--su@{value}") !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-#stacks-internals #responsify('.mr0', { margin-right: 0 !important; });
-
-// $$ Right margin negative
-#stacks-internals #build-classes(
-    responsive,
-    '.mrn',
-    { .template(@value) { margin-right: calc(var(~"--su@{value}") * -1) !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-// $$ Bottom margin
-#stacks-internals #build-classes(
-    responsive,
-    '.mb',
-    { .template(@value) { margin-bottom: var(~"--su@{value}") !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-#stacks-internals #responsify('.mb0', { margin-bottom: 0 !important; });
-
-// $$ Bottom margin negative
-#stacks-internals #build-classes(
-    responsive,
-    '.mbn',
-    { .template(@value) { margin-bottom: calc(var(~"--su@{value}") * -1) !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-// $$ Left margin
-#stacks-internals #build-classes(
-    responsive,
-    '.ml',
-    { .template(@value) { margin-left: var(~"--su@{value}") !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-#stacks-internals #responsify('.ml0', { margin-left: 0 !important; });
-
-// $$ Left margin negative
-#stacks-internals #build-classes(
-    responsive,
-    '.mln',
-    { .template(@value) { margin-left: calc(var(~"--su@{value}") * -1) !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-#stacks-internals #build-classes(
-    '.mx', { .template(@value) { margin-left: var(~"--su@{value}") !important; margin-right: var(~"--su@{value}") !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-#stacks-internals #build-classes(
-    '.mxn', { .template(@value) { margin-left: calc(var(~"--su@{value}") * -1) !important; margin-right: calc(var(~"--su@{value}") * -1) !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-#stacks-internals #build-classes(
-    '.my', { .template(@value) { margin-top: var(~"--su@{value}") !important; margin-bottom: var(~"--su@{value}") !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-#stacks-internals #build-classes(
-    '.myn', { .template(@value) { margin-top: calc(var(~"--su@{value}") * -1) !important; margin-bottom: calc(var(~"--su@{value}") * -1) !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-//  ============================================================================
-//  $   PADDING
-//  ----------------------------------------------------------------------------
-
-//  $$ 0 padding
-.p0 { padding: 0 !important; }
-.pt0 { padding-top: 0 !important; }
-.pr0 { padding-right: 0 !important; }
-.pb0 { padding-bottom: 0 !important; }
-.pl0 { padding-left: 0 !important; }
-.px0 { padding-left: 0 !important; padding-right: 0 !important; }
-.py0 { padding-top: 0 !important; padding-bottom: 0 !important; }
-
-#stacks-internals #build-classes(
-    responsive,
-    '.p', { .template(@value) { padding: var(~"--su@{value}") !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-#stacks-internals #responsify('.p0', { padding: 0 !important; });
-
-//  $$  Top Padding
-#stacks-internals #build-classes(
-    responsive,
-    '.pt', { .template(@value) { padding-top: var(~"--su@{value}") !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-#stacks-internals #responsify('.pt0', { padding-top: 0 !important; });
-
-//  $$  Right Padding
-#stacks-internals #build-classes(
-    responsive,
-    '.pr', { .template(@value) { padding-right: var(~"--su@{value}") !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-//  $$  Bottom Padding
-#stacks-internals #build-classes(
-    responsive,
-    '.pb', { .template(@value) { padding-bottom: var(~"--su@{value}") !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-#stacks-internals #responsify('.pr0', { padding-right: 0 !important; });
-
-//  $$  Left Padding
-#stacks-internals #build-classes(
-    responsive,
-    '.pl', { .template(@value) { padding-left: var(~"--su@{value}") !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-#stacks-internals #responsify('.pl0', { padding-left: 0 !important; });
-
-//  $$  X-Axis Padding
-#stacks-internals #build-classes(
-    '.px', { .template(@value) { padding-left: var(~"--su@{value}") !important; padding-right: var(~"--su@{value}") !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-//  $$  Y-Axis Padding
-#stacks-internals #build-classes(
-    '.py', { .template(@value) { padding-top: var(~"--su@{value}") !important; padding-bottom: var(~"--su@{value}") !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-//  ============================================================================
-//  $   POSITIONING
-//  ----------------------------------------------------------------------------
-
-//  $$ Top
-#stacks-internals #build-classes(
-    responsive,
-    '.t', { .template(@value) { top: var(~"--su@{value}") !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-//  $$ Top 0, percent
-#stacks-internals #build-classes(
-    '.t', { .template(@value) { top: @value !important; } },
-    0 50% -50% 100% -100%
-);
-
-//  $$ Top negative
-#stacks-internals #build-classes(
-    responsive,
-    '.tn', { .template(@value) { top: calc(var(~"--su@{value}") * -1) !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-//  $$ Right
-#stacks-internals #build-classes(
-    responsive,
-    '.r', { .template(@value) { right: var(~"--su@{value}") !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-//  $$ Right 0, percent
-#stacks-internals #build-classes(
-    '.r', { .template(@value) { right: @value !important; } },
-    0 50% -50% 100% -100%
-);
-
-//  $$ Right negative
-#stacks-internals #build-classes(
-    responsive,
-    '.rn', { .template(@value) { right: calc(var(~"--su@{value}") * -1) !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-//  $$ Bottom
-#stacks-internals #build-classes(
-    responsive,
-    '.b', { .template(@value) { bottom: var(~"--su@{value}") !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-//  $$ Bottom 0, percent
-#stacks-internals #build-classes(
-    '.b', { .template(@value) { bottom: @value !important; } },
-    0 50% -50% 100% -100%
-);
-
-//  $$ Bottom negative
-#stacks-internals #build-classes(
-    responsive,
-    '.bn', { .template(@value) { bottom: calc(var(~"--su@{value}") * -1) !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-//  $$ Left
-#stacks-internals #build-classes(
-    responsive,
-    '.l', { .template(@value) { left: var(~"--su@{value}") !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-//  $$ Left 0, percent
-#stacks-internals #build-classes(
-    '.l', { .template(@value) { left: @value !important; } },
-    0 50% -50% 100% -100%
-);
-
-//  $$ Left negative
-#stacks-internals #build-classes(
-    responsive,
-    '.ln', { .template(@value) { left: calc(var(~"--su@{value}") * -1) !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-//  $$ Inset
-#stacks-internals #build-classes(
-    responsive,
-    '.i', { .template(@value) { inset: var(~"--su@{value}") !important; } },
-    1 2 4 6 8 12 16 24 32 48 64 96 128
-);
-
-//  $$ Inset 0
-#stacks-internals #build-classes(
-    '.i', { .template(@value) { inset: @value !important; } },
-    0
-);
+// Left
+.generate-spacing('.l', left, true);
+.generate-spacing('.l', left, true, percent);

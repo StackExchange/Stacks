@@ -19,7 +19,7 @@ description: Stacks provides atomic classes to override margin and padding.
                 </tr>
             </thead>
             <tbody>
-                {% for space in spacing.margin-definitions %}
+                {% for space in spacing.margin.definitions %}
                     <tr>
                         <th scope="row">{{ space.term }}</th>
                         <td>{{ space.define }}</td>
@@ -34,8 +34,11 @@ description: Stacks provides atomic classes to override margin and padding.
         </table>
     </div>
 
-    {% header "h3", "Margin classes" %}
-    <div class="stacks-preview">
+{% header "h3", "Margin classes" %}
+{% assign margin-properties = spacing.margin.properties | split: ", " %}
+{% assign margin-values = spacing.margin.values | split: ", " %}
+{% assign margin-values-negative = spacing.margin.values | replace: "0, ", "" | split: ", " %}
+<div class="stacks-preview">
 {% highlight html %}
 <div class="mt8 mr4 mb32 ml64">
     …
@@ -52,36 +55,26 @@ description: Stacks provides atomic classes to override margin and padding.
             <thead>
                 <tr>
                     <th scope="col"></th>
-                    <th scope="col" class="ta-center ff-mono">0</th>
-                    <th scope="col" class="ta-center ff-mono">1px</th>
-                    <th scope="col" class="ta-center ff-mono">2px</th>
-                    <th scope="col" class="ta-center ff-mono">4px</th>
-                    <th scope="col" class="ta-center ff-mono">6px</th>
-                    <th scope="col" class="ta-center ff-mono">8px</th>
-                    <th scope="col" class="ta-center ff-mono">12px</th>
-                    <th scope="col" class="ta-center ff-mono">16px</th>
-                    <th scope="col" class="ta-center ff-mono">24px</th>
-                    <th scope="col" class="ta-center ff-mono">32px</th>
-                    <th scope="col" class="ta-center ff-mono">48px</th>
-                    <th scope="col" class="ta-center ff-mono">64px</th>
-                    <th scope="col" class="ta-center ff-mono">96px</th>
-                    <th scope="col" class="ta-center ff-mono">128px</th>
-                    <th scrop="col" class="ta-center">Responsive?</th>
+                    {% for value in margin-values %}
+                        <th scope="col" class="ta-center ff-mono">{{ value }}</th>
+                    {% endfor %}
                 </tr>
             </thead>
             <tbody>
-              {% for class in spacing.margin %}
-              {% assign prefix-value = class.values | split: ", " %}
+                {% for className in margin-properties %}
                     <tr>
-                        <th scope="row" class="-cell1">{{ class.prefix }}</th>
-                        {% for values in prefix-value %}
-                        <td class="ta-center"><code>.{{ class.prefix }}{{ values }}</code></td>
-                        {% endfor %}
-                        <td class="ta-center">
-                            {% if class.responsive %}
-                                {% icon "Checkmark", "fc-green-400" %}
+                        <th scope="row">{{ className }}</th>
+                        {% for value in margin-values %}
+                            {% if className == "mx" or className == "my" %}
+                                {% if value == "0" or value == "50%" or value == "100%" %}
+                                    <td>-</td>
+                                {% else %}
+                                    <td><code>.{{ className }}{{ value | replace: "px", "" }}</code></td>
+                                {% endif %}
+                            {% else %}
+                                <td><code>.{{ className }}{{ value | replace: "px", "" | replace: "%", "" }}</code></td>
                             {% endif %}
-                        </td>
+                        {% endfor %}
                     </tr>
                 {% endfor %}
             </tbody>
@@ -94,30 +87,27 @@ description: Stacks provides atomic classes to override margin and padding.
             <thead>
                 <tr>
                     <th scope="col"></th>
-                    <th scope="col" class="ta-center ff-mono">-1px</th>
-                    <th scope="col" class="ta-center ff-mono">-2px</th>
-                    <th scope="col" class="ta-center ff-mono">-4px</th>
-                    <th scope="col" class="ta-center ff-mono">-6px</th>
-                    <th scope="col" class="ta-center ff-mono">-8px</th>
-                    <th scope="col" class="ta-center ff-mono">-12px</th>
-                    <th scope="col" class="ta-center ff-mono">-16px</th>
-                    <th scope="col" class="ta-center ff-mono">-24px</th>
-                    <th scope="col" class="ta-center ff-mono">-32px</th>
-                    <th scope="col" class="ta-center ff-mono">-48px</th>
-                    <th scope="col" class="ta-center ff-mono">-64px</th>
-                    <th scope="col" class="ta-center ff-mono">-96px</th>
-                    <th scope="col" class="ta-center ff-mono">-128px</th>
+                    {% for value in margin-values-negative %}
+                        <th scope="col" class="ta-center ff-mono">-{{ value }}</th>
+                    {% endfor %}
                 </tr>
             </thead>
             <tbody>
-              {% for class in spacing.negative-margin %}
-              {% assign prefix-value = class.values | split: ", " %}
-                  <tr>
-                      <th scope="row" class="-cell1">{{ class.prefix }}</th>
-                      {% for values in prefix-value %}
-                      <td class="ta-center"><code>.{{ class.prefix }}{{ values }}</code></td>
-                      {% endfor %}
-                  </tr>
+                {% for className in margin-properties %}
+                    <tr>
+                        <th scope="row">{{ className }}n</th>
+                        {% for value in margin-values-negative %}
+                            {% if className == "mx" or className == "my" %}
+                                {% if value == "0" or value == "50%" or value == "100%" %}
+                                    <td>-</td>
+                                {% else %}
+                                    <td><code>.{{ className }}n{{ value | replace: "px", "" }}</code></td>
+                                {% endif %}
+                            {% else %}
+                                <td><code>.{{ className }}n{{ value | replace: "px", "" | replace: "%", "" }}</code></td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
@@ -192,7 +182,7 @@ description: Stacks provides atomic classes to override margin and padding.
                 </tr>
             </thead>
             <tbody>
-                {% for space in spacing.padding-definitions %}
+                {% for space in spacing.padding.definitions %}
                     <tr>
                         <th scope="row">{{ space.term }}</th>
                         <td>{{ space.define }}</td>
@@ -207,8 +197,11 @@ description: Stacks provides atomic classes to override margin and padding.
         </table>
     </div>
 
-    {% header "h3", "Padding classes" %}
-    <div class="stacks-preview">
+{% header "h3", "Padding classes" %}
+{% assign padding-properties = spacing.padding.properties | split: ", " %}
+{% assign padding-values = spacing.padding.values | split: ", " %}
+
+<div class="stacks-preview">
 {% highlight html %}
 <div class="pt4 pr64 pb64 pl64">
     …
@@ -224,37 +217,27 @@ description: Stacks provides atomic classes to override margin and padding.
         <table class="wmn5 s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th scope="col">Prefix</th>
-                    <th scope="col" class="ta-center">0</th>
-                    <th scope="col" class="ta-center">1px</th>
-                    <th scope="col" class="ta-center">2px</th>
-                    <th scope="col" class="ta-center">4px</th>
-                    <th scope="col" class="ta-center">6px</th>
-                    <th scope="col" class="ta-center">8px</th>
-                    <th scope="col" class="ta-center">12px</th>
-                    <th scope="col" class="ta-center">16px</th>
-                    <th scope="col" class="ta-center">24px</th>
-                    <th scope="col" class="ta-center">32px</th>
-                    <th scope="col" class="ta-center">48px</th>
-                    <th scope="col" class="ta-center">64px</th>
-                    <th scope="col" class="ta-center">96px</th>
-                    <th scope="col" class="ta-center">128px</th>
-                    <th scope="col" class="ta-center">Responsive?</th>
+                    <th scope="col"></th>
+                    {% for value in padding-values %}
+                        <th scope="col" class="ta-center ff-mono">{{ value }}</th>
+                    {% endfor %}
                 </tr>
             </thead>
             <tbody>
-                {% for class in spacing.padding %}
-                {% assign prefix-value = class.values | split: ", " %}
+                {% for className in padding-properties %}
                     <tr>
-                        <th scope="row" class="-cell1">{{ class.prefix }}</th>
-                        {% for values in prefix-value %}
-                            <td class="ta-center"><code>.{{ class.prefix }}{{ values }}</code></td>
-                        {% endfor %}
-                        <td class="ta-center">
-                            {% if class.responsive %}
-                                {% icon "Checkmark", "fc-green-400" %}
+                        <th scope="row">{{ className }}</th>
+                        {% for value in padding-values %}
+                            {% if className == "px" or className == "py" %}
+                                {% if value == "0" or value == "50%" or value == "100%" %}
+                                    <td>-</td>
+                                {% else %}
+                                    <td><code>.{{ className }}{{ value | replace: "px", "" }}</code></td>
+                                {% endif %}
+                            {% else %}
+                                <td><code>.{{ className }}{{ value | replace: "px", "" | replace: "%", "" }}</code></td>
                             {% endif %}
-                        </td>
+                        {% endfor %}
                     </tr>
                 {% endfor %}
             </tbody>

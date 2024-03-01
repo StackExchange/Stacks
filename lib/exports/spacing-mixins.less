@@ -1,0 +1,67 @@
+/**
+ * Generate base and responsive atomic spacing classes.
+ *
+ * Usage example:
+ * .generate-spacing('.m', margin, true);
+ * .generate-spacing('.ml', margin-left, true, percent);
+ * .generate-spacing('.mx'; margin-left, margin-right; true);
+ * .generate-spacing('.pr', padding-right);
+ *
+ * @prefix - (required) What prefix to generate (e.g. `.m`, `.pr`, etc).
+ * @properties - (required) What CSS properties to generate (e.g. `margin`, `margin-right, margin-left`, etc).
+ * @includeNegative: bool - Boolean to include generation of negative value classes.
+ * @type: px | percent - What set of value to generate.
+ */
+.generate-spacing(@prefix, @properties, @includeNegative: false, @type: px) {
+  & when (@type = px) {
+      #stacks-internals #build-classes(
+          responsive,
+          @prefix,
+          { .template(@value) {
+            each(@properties, #(@prop) {
+                @{prop}: var(~"--su@{value}") !important;
+            })
+          } },
+          0 1 2 4 6 8 12 16 24 32 48 64 96 128
+      );
+
+      & when (@includeNegative = true) {
+        #stacks-internals #build-classes(
+            responsive,
+            ~"@{prefix}n",
+            { .template(@value) {
+              each(@properties, #(@prop) {
+                  @{prop}: calc(var(~"--su@{value}") * -1) !important;
+              })
+            } },
+            1 2 4 6 8 12 16 24 32 48 64 96 128
+        );
+    }
+  }
+
+  & when (@type = percent) {
+      #stacks-internals #build-classes(
+          responsive,
+          @prefix,
+          { .template(@value) {
+            each(@properties, #(@prop) {
+                @{prop}: @value !important;
+            })
+          } },
+          50% 100%
+      );
+
+      & when (@includeNegative = true) {
+        #stacks-internals #build-classes(
+            responsive,
+            ~"@{prefix}n",
+            { .template(@value) {
+              each(@properties, #(@prop) {
+                  @{prop}: -@value !important;
+              })
+            } },
+            50% 100%
+        );
+    }
+  }
+}
