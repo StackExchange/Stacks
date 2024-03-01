@@ -4,119 +4,64 @@
  * Usage example:
  * .generate-spacing('.m', margin, true);
  * .generate-spacing('.ml', margin-left, true, percent);
+ * .generate-spacing('.mx'; margin-left, margin-right; true);
  * .generate-spacing('.pr', padding-right);
  *
  * @prefix - (required) What prefix to generate (e.g. `.m`, `.pr`, etc).
- * @property - (required) What CSS property to generate (e.g. `margin`, `padding-right`, etc).
+ * @properties - (required) What CSS properties to generate (e.g. `margin`, `margin-right, margin-left`, etc).
  * @includeNegative: bool - Boolean to include generation of negative value classes.
  * @type: px | percent - What set of value to generate.
  */
-.generate-spacing(@prefix, @property, @includeNegative: false, @type: px) {
+.generate-spacing(@prefix, @properties, @includeNegative: false, @type: px) {
   & when (@type = px) {
       #stacks-internals #build-classes(
           responsive,
           @prefix,
-          { .template(@value) { @{property}: var(~"--su@{value}") !important; } },
+          { .template(@value) {
+            each(@properties, #(@prop) {
+                @{prop}: var(~"--su@{value}") !important;
+            })
+          } },
           0 1 2 4 6 8 12 16 24 32 48 64 96 128
       );
 
       & when (@includeNegative = true) {
-          #stacks-internals #build-classes(
-              responsive,
-              ~"@{prefix}n",
-              { .template(@value) { @{property}: calc(var(~"--su@{value}") * -1) !important; } },
-              1 2 4 6 8 12 16 24 32 48 64 96 128
-          );
-      }
-  }
-  & when (@type = percent) {
-      #stacks-internals #build-classes(
-          responsive,
-          @prefix,
-          { .template(@value) { @{property}: @value !important; } },
-          50% 100%
-      );
-  }
-  & when (@includeNegative = true) {
-      #stacks-internals #build-classes(
-          responsive,
-          ~"@{prefix}n",
-          { .template(@value) { @{property}: -@value !important; } },
-          50% 100%
-      );
-  }
-}
-
-/**
- * Generate base and responsive atomic axis-specific spacing classes.
- *
- * Usage example:
- * .generate-xy-spacing('.m', margin, true);
- * .generate-xy-spacing('.p', padding);
- *
- * @prefix - (required) What prefix to generate (e.g. `.m`, `.p`, etc).
- * @property - (required) What CSS property to generate (e.g. `margin`, `padding`, etc).
- * @includeNegative: bool - Boolean to include generation of negative value classes.
- * @type: px | percent - What set of value to generate.
- */
- .generate-xy-spacing(@prefix, @property, @includeNegative: false, @type: px) {
-    & when (@type = px) {
-        #stacks-internals #build-classes(
-            ~"@{prefix}x",
-            { .template(@value) {
-                @{property}-left: var(~"--su@{value}") !important;
-                @{property}-right: var(~"--su@{value}") !important;
-            } },
-            0 1 2 4 6 8 12 16 24 32 48 64 96 128
-        );
-        #stacks-internals #build-classes(
-            ~"@{prefix}y",
-            { .template(@value) {
-                @{property}-top: var(~"--su@{value}") !important;
-                @{property}-bottom: var(~"--su@{value}") !important;
-            } },
-            0 1 2 4 6 8 12 16 24 32 48 64 96 128
-        );
-
-        & when (@includeNegative = true) {
-            #stacks-internals #build-classes(
-                ~"@{prefix}xn",
-                { .template(@value) {
-                    @{property}-left: calc(var(~"--su@{value}") * -1) !important;
-                    @{property}-right: calc(var(~"--su@{value}") * -1) !important;
-                } },
-                1 2 4 6 8 12 16 24 32 48 64 96 128
-            );
-            #stacks-internals #build-classes(
-                ~"@{prefix}yn",
-                { .template(@value) {
-                    @{property}-top: calc(var(~"--su@{value}") * -1) !important;
-                    @{property}-bottom: calc(var(~"--su@{value}") * -1) !important; } },
-                1 2 4 6 8 12 16 24 32 48 64 96 128
-            );
-        }
-    }
-
-    & when (@type = percent) {
-        #stacks-internals #build-classes(
-            responsive,
-            @prefix,
-            { .template(@value) {
-                @{property}-top: @value !important;
-                @{property}-bottom: @value !important;
-            } },
-            50% 100%
-        );
-    }
-    & when (@includeNegative = true) {
         #stacks-internals #build-classes(
             responsive,
             ~"@{prefix}n",
             { .template(@value) {
-                @{property}-top: -@value !important;
-                @{property}-bottom: -@value !important;
+              each(@properties, #(@prop) {
+                  @{prop}: calc(var(~"--su@{value}") * -1) !important;
+              })
+            } },
+            1 2 4 6 8 12 16 24 32 48 64 96 128
+        );
+    }
+  }
+
+  & when (@type = percent) {
+      #stacks-internals #build-classes(
+          responsive,
+          @prefix,
+          { .template(@value) {
+            each(@properties, #(@prop) {
+                @{prop}: @value !important;
+            })
+          } },
+          50% 100%
+      );
+
+      & when (@includeNegative = true) {
+        #stacks-internals #build-classes(
+            responsive,
+            ~"@{prefix}n",
+            { .template(@value) {
+              each(@properties, #(@prop) {
+                  @{prop}: -@value !important;
+              })
             } },
             50% 100%
         );
     }
+  }
 }
