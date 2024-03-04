@@ -338,6 +338,13 @@ const getStatsChildren = ({
         },
     });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const template = ({ component, testid }: any) => html`
+    <div class="d-flex ai-center jc-center p8 ws6" data-testid="${testid}">
+        ${component}
+    </div>
+`;
+
 const testArgs: {
     [key: string]: TestVariationArgs;
 } = {
@@ -421,15 +428,7 @@ const testArgs: {
             "stats-views-hot": getStatsChildren({ views: 10001 }),
             "stats-views-supernova": getStatsChildren({ views: 100001 }),
         },
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        template: ({ component, testid }: any) => html`
-            <div
-                class="d-flex ai-center jc-center p8 ws6"
-                data-testid="${testid}"
-            >
-                ${component}
-            </div>
-        `,
+        template,
     },
 };
 
