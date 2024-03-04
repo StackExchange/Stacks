@@ -4,15 +4,7 @@ import "../../index";
 
 describe("post-summary", () => {
     // Base, sparce
-    runVisualTests({
-        ...testArgs.base,
-        // TODO resolve test failures
-        skippedTestids: [
-            /-deleted/,
-            /-ignored/,
-            /-highcontrast-(light|dark)-watched/,
-        ],
-    });
+    runVisualTests(testArgs.base);
 
     // Truncated description sizes
     runVisualTests(testArgs.sizes);
