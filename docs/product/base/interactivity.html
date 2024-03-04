@@ -42,6 +42,65 @@ description: Atomic interactivity classes allow you to quickly change an element
         </div>
     </div>
 </section>
+
+<section class="stacks-section">
+    {% header "h2", "Focus" %}
+    <p class="stacks-copy">The focus utility classes allow you to apply custom focus styles to an element. Add the conditional prefix <code class="stacks-code">f:</code> to only apply the style when the element is focused.</p>
+    {% header "h3", "Focus classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th scope="col">Definition</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for atomic in atomics.focus %}
+                <tr class="fs-caption">
+                    <th scope="row"><code class="stacks-code">.{{ atomic.class }}</code></th>
+                    <td>{{ atomic.define }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Focus examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="focus">…</div>
+<div class="focus-inset">…</div>
+<div class="focus-bordered">…</div>
+<div class="focus-inset-bordered">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example fs-caption ff-mono">
+            <div class="d-flex g16 fw-wrap">
+                {% for atomic in atomics.focus %}
+                    <div class="{{ atomic.class }} bg-black-200 ba bc-black-400 bar-sm px8 py4">.{{ atomic.class }}</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Conditional focus examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="focus" role="button" tabindex="0">…</div>
+<div class="focus-inset" role="button" tabindex="0">…</div>
+<div class="focus-bordered" role="button" tabindex="0">…</div>
+<div class="focus-inset-bordered" role="button" tabindex="0">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example fs-caption ff-mono">
+            <div class="d-flex g16 fw-wrap">
+                {% for atomic in atomics.focus %}
+                    <div role="button" tabindex="0" class="f:{{ atomic.class }} bg-black-200 ba bc-black-400 bar-sm px8 py4">.f:{{ atomic.class }}</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="stacks-section">
     {% header "h2", "User select" %}
     <p class="stacks-copy">The user-select CSS property controls whether the user can select text.</p>
