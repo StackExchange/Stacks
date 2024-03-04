@@ -229,11 +229,14 @@ const getChildren = ({
     tags?: Tags;
     title?: string;
 }) => {
-    const titleEl = show.title || title ? `
+    const titleEl =
+        show.title || title
+            ? `
         <h3 class="s-post-summary--content-title">
             ${title ? title : "How to generate the JPA entity Metamodel?"}
         </h3>
-    ` : "";
+    `
+            : "";
     const descriptionEl =
         show.description || description.truncation || description.text
             ? description
@@ -242,12 +245,14 @@ const getChildren = ({
             : "";
     const tagsEl = show.tags || tags ? getTags(tags) : "";
     const userEl = show.user ? getUser() : "";
-    const menuBtnEl = show.menuBtn ? `
+    const menuBtnEl = show.menuBtn
+        ? `
         <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
             ${IconEllipsisVertical}
             <span class="v-visible-sr">menu</span>
         </a>
-    ` : "";
+    `
+        : "";
 
     return `
     ${
@@ -317,20 +322,21 @@ const getStatsChildren = ({
     answers = 1,
     views = 20,
 }: {
-    accepted?: boolean,
-    answers?: number,
-    views?: number,
-}) => getChildren({
-    show: {
-        stats: true,
-    },
-    stats: {
-        votes: 1,
-        answers,
-        accepted,
-        views,
-    },
-});
+    accepted?: boolean;
+    answers?: number;
+    views?: number;
+}) =>
+    getChildren({
+        show: {
+            stats: true,
+        },
+        stats: {
+            votes: 1,
+            answers,
+            accepted,
+            views,
+        },
+    });
 
 const testArgs: {
     [key: string]: TestVariationArgs;
@@ -406,7 +412,10 @@ const testArgs: {
         children: {
             "stats-unanswered": getStatsChildren({ answers: 0 }),
             "stats-answered": getStatsChildren({ answers: 1 }),
-            "stats-answered-accepted": getStatsChildren({ answers: 10, accepted: true }),
+            "stats-answered-accepted": getStatsChildren({
+                answers: 10,
+                accepted: true,
+            }),
             "stats-views": getStatsChildren({ views: 1 }),
             "stats-views-warm": getStatsChildren({ views: 1001 }),
             "stats-views-hot": getStatsChildren({ views: 10001 }),
@@ -414,7 +423,10 @@ const testArgs: {
         },
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         template: ({ component, testid }: any) => html`
-            <div class="d-flex ai-center jc-center p8 ws6" data-testid="${testid}">
+            <div
+                class="d-flex ai-center jc-center p8 ws6"
+                data-testid="${testid}"
+            >
                 ${component}
             </div>
         `,
