@@ -1,0 +1,150 @@
+---
+layout: page
+title: Accessibility
+---
+
+
+<section class="stacks-section">
+{% stacks-markdown %}
+## Target
+
+All Stack Overflow product UIs must conform to the AA conformance level of the Web Content Accessibility Guidelines (WCAG) 2.2 with a few exceptions around color contrast documented below.
+
+{% endstacks-markdown %}
+</section>
+
+<section class="stacks-section">
+{% stacks-markdown %}
+
+### High contrast modes
+
+When high contrast mode is enabled, Stack Overflow product UIs must meet or exceed the [Success Criterion 1.4.3 Contrast (Enhanced)](https://www.w3.org/TR/WCAG22/#contrast-enhanced) of the [Web Content Accessibility Guidelines (WCAG) 2.2](https://www.w3.org/TR/WCAG22/) and should conform to the remaining [AAA conformance level rules](https://www.w3.org/TR/WCAG22/#cc1) when reasonably achievable. This only applies to the subset of Stack Overflow products that provide high contrast modes. *Note: not all Stack Overflow products are expected to support high contrast modes*.
+
+{% endstacks-markdown %}
+</section>
+
+<section class="stacks-section">
+{% stacks-markdown %}
+## Visual accessibility
+
+Stack Overflow product UIs MUST conform to a custom conformance level of the Accessible Perceptual Contrast Algorithm (APCA). This custom conformance level replaces the [AA conformance level](https://www.w3.org/TR/WCAG22/#cc1) of the [Web Content Accessibility Guidelines (WCAG) 2.2](https://www.w3.org/TR/WCAG22/) for color contrast.
+
+### Color & contrast
+
+Stacks aims to equip you with an accessible color palette and has been tested against WCAG AA, WCAG AAA and the newer APCA color standards. Most of our color combinations meet WCAG AA and APCA levels defined below. We also offer high contrast mode which offers a greater level of contrast. 
+{% endstacks-markdown %}
+
+{% for section in colors[0].accessibility %}
+<section class="stacks-section">
+    {% if section.heading == "Contrast" %}
+{% stacks-markdown %}
+#### Contrast ratios
+
+Contrast is the difference in luminance or color between any two elements. All visual readers require ample luminance contrast for fluent readability. Stack Overflow products must conform to a custom conformance level of the Accessible Perceptual Contrast Algorithm (APCA). Based on our custom conformance level, all text must have a Lightness contrast (Lc) value of 60, body copy must have a Lc value of 75, icons must have a Lc value of 45, and placeholder and disabled text must have a Lc of 30. These numbers will be negative when calculating for dark mode. 
+{% endstacks-markdown %}
+    {% endif %}
+
+    {% if section.heading == "Visual cues" %}
+{% stacks-markdown %}
+#### Visual cues
+
+Visual readers with color vision deficiency (CVD) have problems differentiating some hues and therefore these users need help discerning differences between items. This means that color (hue) should never be the sole means of communicating information and should always be paired with a non-color dependent indicator to accommodate all visual users.
+{% endstacks-markdown %}
+    {% endif %}
+
+
+    <div class="d-grid grid__2 sm: grid__1 g32">
+        {% for group in section.groups %}
+            {% assign bgColor = "bg-red-100" %}
+            {% if group.correct %}
+                {% assign bgColor = "bg-green-100" %}
+            {% endif %}
+            <div class="bg-black-100 bar-lg overflow-hidden w100">
+                <div class="d-flex fd-column ai-center g16 p24">
+                    {% for example in group.examples %}
+                        {% if example.type == "button" %}
+                            <button class="{{example.class}}" role="presentation">{{example.children}}</button>
+                        {% elsif example.type == "input" %}
+                            <div class="d-flex ps-relative w100 {{example.stateClass}}">
+                                <input class="s-input" placeholder="placeholder" role="presentation"/>
+                                {% if example.stateClass == "has-error" and group.correct %}
+                                    {% icon "AlertCircle", "s-input-icon" %}
+                                {% endif %}
+                            </div>
+                        {% else %}
+                            <div class="{{example.class}}">{{example.children}}</div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="d-flex fd-column fs-body2 g16 {{bgColor}} h100 p24">
+                    <div class="d-flex ai-center g8 fs-subheading fw-bold">
+                        {% if group.correct %}
+                            {% icon "CheckmarkSm", "fc-green-500" %}
+                            Do
+                        {% else %}
+                            {% icon "ClearSm", "fc-red-500" %}
+                            Don't
+                        {% endif %}
+                    </div>
+                    {{group.text}}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% endfor %}
+
+{% stacks-markdown %}
+
+### Focus states
+
+Some people navigate through a website by using a keyboard or other device (instead of a mouse). A focus state should clearly let users know which item they’re on and is ready to interact with. Stack’s has taken a hybrid approach in using both the browser’s default styles (smaller interactive components like text links) and a custom focus ring.
+
+#### Foundation for custom approach
+
+{% endstacks-markdown %}
+
+<p class="stacks-copy">
+The custom approach adds two different outline rings on the inside of the component.  The outer ring color uses secondary-theme-400 {% color-swatch "theme-secondary-400", "16" %} (matching the primary button color) and the inner ring color uses white {% color-swatch "white", "16", "ba bc-black-200 bs-sm" %} (matching the background).
+</p>
+
+// TODO default filled button focus and non-focus
+
+{% stacks-markdown %}
+The outer ring color will always display as the theme color even when applied to a `muted` or **danger** styled button. This ensures the focus ring maintains a 3:1 color contrast ratio for any adjacent colors (WCAG level AA) within any theme (assuming the **secondary-theme** color already passes the 3:1 contrast ratio).
+
+// TODO muted and danger buttons with focus
+
+#### Meeting level AAA
+
+Both focus rings are always 2px thick. This allows the focus state to meet [WCAG 2.4.13 Focus Appearance (AAA)](https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html) standards for High Contrast mode. Whenever possible, the rings should be added to the inside of the component so we can better ensure that the rings don't get accidentally cut off by the surrounding layout (which helps us to meet [WCAG 2.4.11 Focus Not Obscured AA](https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html)). However, this does result in a padding reduction within the element, surrounding the text. When choosing to set the focus rings on the inside (inset), the component must have at least 4px of padding at the smallest size. This has been applied to buttons, button groups, navigation, pagination and topbar.
+
+When the padding amount is not sufficient enough to support a double ring on the inside of the component, the rings are placed on the outside. The components included are tags, toggles, form elements (input fields, selects, radio/checkboxes…), block links and the editor.
+
+// TODO add tag (and input?) examples
+
+#### Consistent style patterns
+
+##### Filled
+
+Any component that already has an existing background color that fills the shape will maintain its original fill color. 
+
+// TODO add nav + pagination active with/without focus examples
+
+##### Bordered
+
+For components that have an existing border around the component when not in focus, a background fill color is added in addition to the focus rings. This ensures there’s a strong enough visual difference between the non-focus and focus state, especially in the case of the `.s-btn__outlined` (which already displays a theme colored ring as default state). These patterns are maintained across all components for consistency.
+
+
+##### Floating
+
+##### Exceptions
+
+#### Browser default
+
+#### Known issues
+
+##### Button group
+
+{% endstacks-markdown %}
+</section>
