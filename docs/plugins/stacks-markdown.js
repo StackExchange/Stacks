@@ -5,7 +5,7 @@ module.exports = function(eleventyConfig) {
     const markdownIt = new MarkdownIt();
 
     // Add paired shortcode for stacks-section
-    eleventyConfig.addPairedShortcode("stacks-markdown", function(content) {
+    eleventyConfig.addPairedShortcode("stacks-markdown", function(content, layout = "block") {
         // Convert markdown content to HTML
         let htmlContent = markdownIt.render(content);
 
@@ -14,8 +14,12 @@ module.exports = function(eleventyConfig) {
             return generateHeaderHTML(`h${tag}`, text); // Generate HTML header using the tag and text
         });
 
-        // Add .stacks-copy to paragraph elements
-        htmlContent = htmlContent.replace(/<p>(.+?)<\/p>/g, "<p class=\"stacks-copy\">$1</p>");
+        if (layout === "inline") {
+            htmlContent = htmlContent.replace(/<p>(.+?)<\/p>/g, "<span>$1</span>");
+        } else {
+            htmlContent = htmlContent.replace(/<p>(.+?)<\/p>/g, "<p class=\"stacks-copy\">$1</p>");
+        }
+
         // Add .stacks-code to code element
         htmlContent = htmlContent.replace(/<code>(.+?)<\/code>/g, "<code class=\"stacks-code\">$1</code>");
 
