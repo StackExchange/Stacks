@@ -7,7 +7,6 @@ const iconPlugin = require("./plugins/icons");
 const bannerExamplePlugin = require("./plugins/banner-example");
 const tipPlugin = require("./plugins/tip");
 const markdownPlugin = require("./plugins/markdown");
-const colorSwatchPlugin = require("./plugins/color-swatch");
 const stacksMarkdownPlugin = require("./plugins/stacks-markdown");
 
 module.exports = function(eleventyConfig) {
@@ -19,7 +18,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(iconPlugin);
   eleventyConfig.addPlugin(headerPlugin);
   eleventyConfig.addPlugin(tipPlugin);
-  eleventyConfig.addPlugin(colorSwatchPlugin);
   eleventyConfig.addPlugin(stacksMarkdownPlugin);
 
   // Version shortcode

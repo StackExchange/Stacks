@@ -260,39 +260,48 @@ hide-menu: true
                     </tr>
                 </thead>
                 <tbody>
+                    {% assign borderClasses = " ba bc-black-200" %}
+                    {% assign lightSwatchClasses = "theme-light__forced" | append: borderClasses %}
                     {% for layer in colors[0].layers %}
                         <tr class="fs-body1 s-table--cell3">
                             <th scope="row">{{ layer.name | capitalize }}</th>
                             <td class="s-table--cell5">
                                 {% if layer.teamsLight != null or layer.soLight != null %}
                                     <div class="d-flex md:fd-column g16">
-                                        {% assign swatchNameTeams = layer.teamsLight | append: " (Teams)" %}
-                                        {% assign swatchClassTeams = "theme-light__forced bg-" | append: layer.teamsLight %}
-                                        {% render 'color-swatch.html',
-                                            text: swatchNameTeams,
-                                            classes: swatchClassTeams
-                                        %}
-                                        {% assign swatchNameSO = layer.teamsLight | append: " (SO)" %}
-                                        {% assign swatchClassSO = "theme-light__forced bg-" | append: layer.soLight %}
-                                        {% render 'color-swatch.html',
-                                            text: swatchNameSO,
-                                            classes: swatchClassSO
-                                        %}
+                                        <div class="d-flex ai-center g12">
+                                            {% render 'color-swatch.html',
+                                                classes: lightSwatchClasses,
+                                                color: layer.teamsLight
+                                            %}
+                                            {{layer.teamsLight}} (Teams)
+                                        </div>
+                                        <div class="d-flex ai-center g12">
+                                            {% render 'color-swatch.html',
+                                                classes: lightSwatchClasses,
+                                                color: layer.soLight
+                                            %}
+                                            {{layer.teamsLight}} (SO)
+                                        </div>
                                     </div>
                                 {% else %}
-                                    {% assign lightClass = "theme-light__forced bg-" | append: layer.color %}
-                                    {% render 'color-swatch.html',
-                                        text: layer.color,
-                                        classes: lightClass
-                                    %}
+                                    <div class="d-flex ai-center g12">
+                                        {% render 'color-swatch.html',
+                                            classes: lightSwatchClasses,
+                                            color: layer.color
+                                        %}
+                                        {{layer.color}}
+                                    </div>
                                 {% endif %}
                             </td>
                             <td class="s-table--cell5">
-                                {% assign darkClass = "theme-dark__forced bg-" | append: layer.color %}
-                                {% render 'color-swatch.html',
-                                    text: layer.color,
-                                    classes: darkClass
-                                %}
+                                <div class="d-flex ai-center g12">
+                                    {% assign darkSwatchClasses = "theme-dark__forced" | append: borderClasses %}
+                                    {% render 'color-swatch.html',
+                                        classes: darkSwatchClasses,
+                                        color: layer.color
+                                    %}
+                                    {{layer.color}}
+                                </div>
                             </td>
                         </tr>
                     {% endfor %}

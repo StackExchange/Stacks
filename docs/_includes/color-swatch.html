@@ -1,4 +1,8 @@
-<div class="d-flex ai-center g12">
-  <div class="stacks-swatch ba bc-black-200 bar-sm {{classes}}"></div>
-  {{text}}
-</div>
+{% if size == 0 %}
+  {% assign size = 32 %}
+{% endif %}
+
+<span
+  class="bg-{{color}} h{{size}} w{{size}} d-inline-block bar-sm {{classes}}">
+  <span class="v-visible-sr">{{color}}</span>
+</span>
