@@ -13,11 +13,11 @@ describe("notice", () => {
             ariaHidden: "false",
         },
         children: {
-            default: `Test notice`,
+            default: `Test notice <code>some code</code> <a class="s-link s-link__inherit s-link__underlined" href="#">Link</a>`,
         },
         tag: "aside",
         template: ({ component, testid }) => html`
-            <div class="d-inline-block p8" data-testid="${testid}">
+            <div class="d-inline-block p8 wmx5" data-testid="${testid}">
                 ${component}
             </div>
         `,
