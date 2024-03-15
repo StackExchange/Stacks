@@ -44,6 +44,7 @@ Contrast is the difference in luminance or color between any two elements. All v
         <button class="s-btn s-btn__filled" role="presentation">Button</button>
         <div class="bar-pill ta-center px8 py2 bg-green-400 fc-white">Robotics</div>
     {% endcapture %}
+
     {% capture incorrectElement %}
         <button class="s-btn s-btn__filled bg-theme-secondary-200" role="presentation">Button</button>
         <div class="bar-pill ta-center px8 py2 bg-green-400 fc-green-300">Robotics</div>
@@ -62,12 +63,14 @@ Contrast is the difference in luminance or color between any two elements. All v
 
 Visual readers with color vision deficiency (CVD) have problems differentiating some hues and therefore these users need help discerning differences between items. This means that color (hue) should never be the sole means of communicating information and should always be paired with a non-color dependent indicator to accommodate all visual users.
 {% endstacks-markdown %}
+
     {% capture correctElement %}
         <div class="d-flex ps-relative w100 has-error">
             <input class="s-input" type="text" placeholder="placeholder" role="presentation">
             {% icon "AlertCircle", "s-input-icon" %}
         </div>
     {% endcapture %}
+
     {% capture incorrectElement %}
         <div class="d-flex ps-relative w100 has-error">
             <input class="s-input" type="text" placeholder="placeholder" role="presentation">
@@ -276,6 +279,7 @@ Components without an existing fill or border will only display the double rings
                         </a>
                     </div>
                 {% endif %}
+
                 {% if group.type == "editor-icon-buttons" %}
                     <div class="d-flex ai-center jc-center h32">
                         <style>
@@ -301,9 +305,9 @@ Components without an existing fill or border will only display the double rings
                                 <span class="v-visible-sr">{{button}}</span>
                             </button>
                         {% endfor %}
-
                     </div>
                 {% endif %}
+
                 {% render 'example-row-detail.html',
                     text: group.description,
                     style: "margin-left: 50%;",
