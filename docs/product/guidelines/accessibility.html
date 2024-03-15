@@ -98,11 +98,14 @@ Some people navigate through a website by using a keyboard or other device (inst
 {% endstacks-markdown %}
 
     <p class="stacks-copy">
-        {% stacks-markdown "inline" %}The custom approach adds two different outline rings on the inside of the component. The outer ring color uses `secondary-theme-400`{% endstacks-markdown %} {%
+        {% stacks-markdown "inline" %}The custom approach adds two different outline rings on the inside of the component. The outer ring color uses `secondary-theme-400`{% endstacks-markdown %}
+        {%
             render 'color-swatch.html',
             color: "theme-secondary-400",
             size: "16"
-        %} (matching the primary button color) and the inner ring color uses white {%
+        %}
+        {% stacks-markdown "inline" %}(matching the primary button color) and the inner ring color uses `white`{% endstacks-markdown %}
+        {%
             render 'color-swatch.html',
             color: "white",
             size: "16",
@@ -128,11 +131,13 @@ Some people navigate through a website by using a keyboard or other device (inst
     </div>
 
     <p class="stacks-copy">
-        {% stacks-markdown "inline" %}The outer ring color will always display as the theme color even when applied to a `muted` or `danger` styled button. This ensures the focus ring maintains a 3:1 color contrast ratio for any adjacent colors (WCAG level AA) within any theme (assuming the `secondary-theme`{% endstacks-markdown %} {%
+        {% stacks-markdown "inline" %}The outer ring color will always display as the theme color even when applied to a `muted` or `danger` styled button. This ensures the focus ring maintains a 3:1 color contrast ratio for any adjacent colors (WCAG level AA) within any theme (assuming the `secondary-theme` color {% endstacks-markdown %}
+        {%
             render 'color-swatch.html',
             color: "theme-secondary-400",
             size: "16"
-        %} color already passes the 3:1 contrast ratio).
+        %}
+        already passes the 3:1 contrast ratio).
     </p>
 
     <div class="{{exampleWrapperClasses}}">
