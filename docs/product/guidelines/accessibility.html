@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Accessibility
+description: A non-comprehensive guide to accessibility best practices when using Stacks.
 ---
 
 <section class="stacks-section">
@@ -133,7 +134,7 @@ Some people navigate through a website by using a keyboard or other device (inst
             <div class="ta-center w100">
                 <button class="s-btn s-btn__dropdown s-btn__icon {{group.classes}}" role="presentation">
                     {% icon "Pencil" %}
-                    Button?
+                    Button
                 </button>
                 {% render 'example-row-detail.html',
                     text: group.description,
@@ -217,7 +218,7 @@ For components that have an existing border around the component when not in foc
 {% endstacks-markdown %}
 
     <div class="d-flex js-space-between g16 bg-black-100 bar-lg p32 my16">
-        {% for group in accessibility.consistent-style-patterns.bordered %}
+        {% for group in accessibility.consistent-style-patterns.exceptions %}
             <div class="ta-center w100">
                 {% if group.type == "button" %}
                     <button
@@ -250,30 +251,49 @@ Components without an existing fill or border will only display the double rings
 
 {% endstacks-markdown %}
 
-    <!-- TODO add example -->
     <div class="d-flex js-space-between g16 bg-black-100 bar-lg p32 my16">
-        <div class="ta-center w100">
-            <a class="s-block-link bar-sm mx-auto wmx1" href="#" role="presentation">
-                {% icon "Home" %}
-                Home
-            </a>
-            {% render 'example-row-detail.html',
-                text: "Navigation default",
-                style: "margin-left: 50%;"
-            %}
-        </div>
-        <div class="ta-center w100">
-            <a class="s-block-link bar-sm mx-auto wmx1 focus-inset" href="#" role="presentation">
-                {% icon "Home" %}
-                Home
-            </a>
-            {% render 'example-row-detail.html',
-                text: "Navigation focus",
-                style: "margin-left: 50%;"
-            %}
-        </div>
-        <div class="ta-center w100">…</div>
-        <div class="ta-center w100">…</div>
+        {% for group in accessibility.consistent-style-patterns.floating %}
+            <div class="ta-center w100">
+                {% if group.type == "block-link" %}
+                    <a class="s-block-link bar-sm mx-auto wmx1 {{ group.classes | default: ""}}" href="#" role="presentation">
+                        {% icon "Home" %}
+                        Home
+                    </a>
+                {% endif %}
+                {% if group.type == "editor-icon-buttons" %}
+                    <div class="d-flex jc-center">
+                        <style>
+                            .s-btn.s-btn__example,
+                            .s-btn.s-btn__example:hover {
+                                border: var(--su-static2) solid transparent;
+                                color: var(--black-500) !important;
+                            }
+                            .s-btn.s-btn__example:focus,
+                            .s-btn.s-btn__example:focus-visible,
+                            .s-btn.s-btn__example.focus-inset-bordered {
+                                color: var(--black-600) !important;
+                            }
+                            .s-btn.s-btn__dropdown.s-btn__example:after {
+                                right: var(--su-static2);
+                            }
+                        </style>
+                        {% for button in group.items %}
+                            <button
+                                class="s-btn s-btn__example bar-sm bg-transparent p1 {{button.classes}}"
+                                role="presentation">
+                                {% icon button.icon %}
+                                <span class="v-visible-sr">{{button}}</span>
+                            </button>
+                        {% endfor %}
+
+                    </div>
+                {% endif %}
+                {% render 'example-row-detail.html',
+                    text: group.description,
+                    style: "margin-left: 50%;"
+                %}
+            </div>
+        {% endfor %}
     </div>
 
 {% stacks-markdown %}
@@ -284,11 +304,15 @@ The exceptions to this pattern are the `Clear` button variations. To avoid these
 
 {% endstacks-markdown %}
 
-    <!-- TODO add example -->
     <div class="d-flex js-space-between g16 bg-black-100 bar-lg p32 my16">
-        {% for group in accessibility.foundation-for-custom-approach.base %}
+        {% for group in accessibility.consistent-style-patterns.exceptions %}
             <div class="ta-center w100">
-                🤷‍♂️
+                {% if group.type == "button" %}
+                    <button class="s-btn s-btn__dropdown s-btn__icon {{group.classes}}" role="presentation">
+                        {% icon "Pencil" %} Button
+                    </button>
+                {% endif %}
+
                 {% render 'example-row-detail.html',
                     text: group.description,
                     style: "margin-left: 50%;"
@@ -303,25 +327,6 @@ The exceptions to this pattern are the `Clear` button variations. To avoid these
 
 Some focusable elements and Stacks components currently do not include custom focus styling. These elements will instead render the browser-default focus indicators.
 
-### Known issues
-
-#### Button group
-
-Currently, focus indicators on a button within the [button group component](https://stackoverflow.design/product/components/button-groups/) are sometimes partially obscured by a sibling element border. This issue will be resolved in an upcoming redesign of the button group component.
-
 {% endstacks-markdown %}
-
-    <!-- TODO add example -->
-    <div class="d-flex js-space-between g16 bg-black-100 bar-lg p32 my16">
-        {% for group in accessibility.foundation-for-custom-approach.base %}
-            <div class="ta-center w100">
-                🤷‍♂️
-                {% render 'example-row-detail.html',
-                    text: group.description,
-                    style: "margin-left: 50%;"
-                %}
-            </div>
-        {% endfor %}
-    </div>
 
 </section>
