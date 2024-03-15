@@ -25,7 +25,7 @@ a.s-block-link,
     &&__left,
     &&__right {
         &.is-selected {
-            &:not(:focus-visible) {
+            &:not(:focus-visible):not(.focus-inset) {
                 box-shadow: inset var(--_li-block-bs-offset-x, 3px) 0 0 var(--_bl-bs-color);
             }
         }
@@ -57,9 +57,13 @@ a.s-block-link,
     }
 
     &:focus-visible {
-        border-radius: var(--br-sm);
         .focus-styles(true);
     }
+
+    &:focus-visible,
+    &.focus-inset {
+        border-radius: var(--br-sm);
+    }    
 
     background-color: var(--_bl-bg); // [1]
     color: var(--_bl-fc);
