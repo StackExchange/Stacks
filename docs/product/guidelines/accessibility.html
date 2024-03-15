@@ -270,13 +270,14 @@ Components without an existing fill or border will only display the double rings
         {% for group in accessibility.consistent-style-patterns.floating %}
             <div class="ta-center">
                 {% if group.type == "block-link" %}
-                    <a class="s-block-link bar-sm mx-auto wmx1 {{ group.classes | default: ""}}" href="#" role="presentation">
-                        {% icon "Home" %}
-                        Home
-                    </a>
+                    <div class="d-flex ai-center jc-center h32">
+                        <a class="s-block-link bar-sm mx-auto wmx1 {{ group.classes | default: ""}}" href="#" role="presentation">
+                            {% icon "Home" %} Home
+                        </a>
+                    </div>
                 {% endif %}
                 {% if group.type == "editor-icon-buttons" %}
-                    <div class="d-flex jc-center">
+                    <div class="d-flex ai-center jc-center h32">
                         <style>
                             .s-btn.s-btn__example,
                             .s-btn.s-btn__example:hover {
