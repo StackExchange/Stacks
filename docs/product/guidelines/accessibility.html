@@ -4,6 +4,8 @@ title: Accessibility
 description: A non-comprehensive guide to accessibility best practices when using Stacks.
 ---
 
+{% assign exampleWrapperClasses = "d-flex fw-wrap gy12 gx24 jc-space-evenly bg-black-100 bar-lg mb16 mt32 py32 px8" %}
+
 <section class="stacks-section">
 {% stacks-markdown %}
 ## Target
@@ -105,9 +107,9 @@ Some people navigate through a website by using a keyboard or other device (inst
         %} (matching the background).
     </p>
 
-    <div class="d-flex js-space-between g16 bg-black-100 bar-lg p32 my16">
+    <div class="{{exampleWrapperClasses}} mb32">
         {% for group in accessibility.foundation-for-custom-approach.base %}
-            <div class="ta-center w100">
+            <div class="ta-center">
                 <button
                     class="s-btn s-btn__filled s-btn__dropdown s-btn__icon {{group.classes | default: ""}}"
                     role="presentation">
@@ -115,7 +117,8 @@ Some people navigate through a website by using a keyboard or other device (inst
                 </button>
                 {% render 'example-row-detail.html',
                     text: group.description,
-                    style: "margin-left: 50%;"
+                    style: "margin-left: 50%;",
+                    customHeight: 16
                 %}
             </div>
         {% endfor %}
@@ -129,16 +132,17 @@ Some people navigate through a website by using a keyboard or other device (inst
         %} color already passes the 3:1 contrast ratio).
     </p>
 
-    <div class="d-flex js-space-between g16 bg-black-100 bar-lg p32 my16">
+    <div class="{{exampleWrapperClasses}}">
         {% for group in accessibility.foundation-for-custom-approach.variants %}
-            <div class="ta-center w100">
+            <div class="ta-center">
                 <button class="s-btn s-btn__dropdown s-btn__icon {{group.classes}}" role="presentation">
                     {% icon "Pencil" %}
                     Button
                 </button>
                 {% render 'example-row-detail.html',
                     text: group.description,
-                    style: "margin-left: 50%;"
+                    style: "margin-left: 50%;",
+                    customHeight: 16
                 %}
             </div>
         {% endfor %}
@@ -153,9 +157,9 @@ When the padding amount is not sufficient enough to support a double ring on the
 
 {% endstacks-markdown %}
 
-    <div class="d-flex js-space-between g16 bg-black-100 bar-lg p32 my16">
+    <div class="{{exampleWrapperClasses}}">
         {% for group in accessibility.meeting-level-aaa %}
-            <div class="ta-center w100">
+            <div class="ta-center">
                 {% if group.type == "tag" %}
                     <span class="s-tag {{group.classes | default: ""}}" role="presentation">javascript</span>
                 {% else %}
@@ -164,7 +168,8 @@ When the padding amount is not sufficient enough to support a double ring on the
 
                 {% render 'example-row-detail.html',
                     text: group.description,
-                    style: "margin-left: 50%;"
+                    style: "margin-left: 50%;",
+                    customHeight: 16
                 %}
             </div>
         {% endfor %}
@@ -180,30 +185,35 @@ Any component that already has an existing background color that fills the shape
 
 {% endstacks-markdown %}
 
-    <div class="d-flex js-space-between g16 bg-black-100 bar-lg p32 my16">
+    <div class="{{exampleWrapperClasses}}">
         {% for group in accessibility.consistent-style-patterns.filled %}
-            <div class="ta-center w100">
+            <div class="ta-center">
                 {% if group.type == "navigation" %}
-                    <ul class="s-navigation" role="presentation">
-                        <li class="m-auto">
-                            <a href="#" class="s-navigation--item is-selected {{group.classes | default: ""}}">Product</a>
-                        </li>
-                    </ul>
+                    <div class="d-flex ai-center jc-center h32">
+                        <ul class="s-navigation" role="presentation">
+                            <li class="m-auto">
+                                <a href="#" class="s-navigation--item is-selected {{group.classes | default: ""}}">Product</a>
+                            </li>
+                        </ul>
+                    </div>
                 {% else %}
                     {% assign name = group.description | replace: " ", "-" | downcase %}
-                    <div class="d-flex jc-space-around">
-                        <div class="s-toggle-switch s-toggle-switch__multiple">
-                            <input type="radio" name="{{name}}" id="{{name}}-four" checked>
-                            <label for="four" class="s-toggle-switch--label-off {{group.classes | default: ""}}">Off</label>
-                            <input type="radio" name="{{name}}" id="{{name}}-one">
-                            <label for="one">Weekly</label>
+                    <div class="d-flex ai-center jc-center h32">
+                        <div class="d-flex jc-space-around">
+                            <div class="s-toggle-switch s-toggle-switch__multiple">
+                                <input type="radio" name="{{name}}" id="{{name}}-four" checked>
+                                <label for="four" class="s-toggle-switch--label-off {{group.classes | default: ""}}">Off</label>
+                                <input type="radio" name="{{name}}" id="{{name}}-one">
+                                <label for="one">Weekly</label>
+                            </div>
                         </div>
                     </div>
                 {% endif %}
 
                 {% render 'example-row-detail.html',
                     text: group.description,
-                    style: "margin-left: 50%;"
+                    style: "margin-left: 50%;",
+                    customHeight: 16
                 %}
             </div>
         {% endfor %}
@@ -217,27 +227,32 @@ For components that have an existing border around the component when not in foc
 
 {% endstacks-markdown %}
 
-    <div class="d-flex js-space-between g16 bg-black-100 bar-lg p32 my16">
-        {% for group in accessibility.consistent-style-patterns.exceptions %}
-            <div class="ta-center w100">
+    <div class="{{exampleWrapperClasses}}">
+        {% for group in accessibility.consistent-style-patterns.bordered %}
+            <div class="ta-center">
                 {% if group.type == "button" %}
-                    <button
-                        class="s-btn s-btn__outlined {{group.classes | default: ""}}"
-                        role="presentation">
-                        Button
-                    </button>
+                    <div class="d-flex ai-center jc-center h32">
+                        <button
+                            class="s-btn s-btn__outlined {{group.classes | default: ""}}"
+                            role="presentation">
+                            Button
+                        </button>
+                    </div>
                 {% else %}
-                    <div class="s-pagination">
-                        <span class="s-pagination--item m-auto {{ group.classes | default: ""}}" role="presentation">
-                            <span class="v-visible-sr">page</span>
-                            2
-                        </span>
+                    <div class="d-flex ai-center jc-center h32">
+                        <div class="s-pagination">
+                            <span class="s-pagination--item m-auto {{ group.classes | default: ""}}" role="presentation">
+                                <span class="v-visible-sr">page</span>
+                                2
+                            </span>
+                        </div>
                     </div>
                 {% endif %}
 
                 {% render 'example-row-detail.html',
                     text: group.description,
-                    style: "margin-left: 50%;"
+                    style: "margin-left: 50%;",
+                    customHeight: 16
                 %}
             </div>
         {% endfor %}
@@ -251,9 +266,9 @@ Components without an existing fill or border will only display the double rings
 
 {% endstacks-markdown %}
 
-    <div class="d-flex js-space-between g16 bg-black-100 bar-lg p32 my16">
+    <div class="{{exampleWrapperClasses}}">
         {% for group in accessibility.consistent-style-patterns.floating %}
-            <div class="ta-center w100">
+            <div class="ta-center">
                 {% if group.type == "block-link" %}
                     <a class="s-block-link bar-sm mx-auto wmx1 {{ group.classes | default: ""}}" href="#" role="presentation">
                         {% icon "Home" %}
@@ -290,7 +305,8 @@ Components without an existing fill or border will only display the double rings
                 {% endif %}
                 {% render 'example-row-detail.html',
                     text: group.description,
-                    style: "margin-left: 50%;"
+                    style: "margin-left: 50%;",
+                    customHeight: 16
                 %}
             </div>
         {% endfor %}
@@ -304,9 +320,9 @@ The exceptions to this pattern are the `Clear` button variations. To avoid these
 
 {% endstacks-markdown %}
 
-    <div class="d-flex js-space-between g16 bg-black-100 bar-lg p32 my16">
+    <div class="{{exampleWrapperClasses}}">
         {% for group in accessibility.consistent-style-patterns.exceptions %}
-            <div class="ta-center w100">
+            <div class="ta-center">
                 {% if group.type == "button" %}
                     <button class="s-btn s-btn__dropdown s-btn__icon {{group.classes}}" role="presentation">
                         {% icon "Pencil" %} Button
@@ -315,7 +331,8 @@ The exceptions to this pattern are the `Clear` button variations. To avoid these
 
                 {% render 'example-row-detail.html',
                     text: group.description,
-                    style: "margin-left: 50%;"
+                    style: "margin-left: 50%;",
+                    customHeight: 16
                 %}
             </div>
         {% endfor %}

@@ -3,7 +3,7 @@
 {% assign height = 12 %}
 
 {% if range != true %}
-  {% assign computedClasses = "w0" %}
+  {% assign computedClasses = "mx-auto" %}
 {% endif %}
 {% if position == "top" %}
   {% assign positionClasses = "mb8 fd-column-reverse" %}
@@ -14,8 +14,8 @@
 
 <div class="d-flex ai-center fc-light fs-caption fs-italic sm:d-none overflow-visible {{computedClasses}} {{positionClasses}}" style="{{style}}" role="presentation">
     {% if range %}
-        <div class="ba btw0 bc-black-250 h{{height}} w100"></div>
+        <div class="ba btw0 bc-black-250 h{{customHeight | default: height}} w100"></div>
     {% endif %}
-    <div class="bl bc-black-250 h{{height}}"></div>
-    <div class="ws-nowrap">{{text}}</div>
+    <div class="bl bc-black-250 h{{customHeight | default: height}} mb2"></div>
+    <div class="w100">{{text}}</div>
 </div>
