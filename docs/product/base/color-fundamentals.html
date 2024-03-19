@@ -132,7 +132,8 @@ hide-menu: true
             {% render 'example-row-detail.html',
                 text: "Default background color",
                 style: "margin-left: calc((1.5/11) * 100%)",
-                position: "top"
+                classes: "sm:d-none",
+                position: "top",
             %}
             {% render 'color-row.html',
                 color: "black",
@@ -142,6 +143,7 @@ hide-menu: true
             {% render 'example-row-detail.html',
                 text: "Background layers",
                 style: "width: calc((4/11) * 100%)",
+                classes: "sm:d-none",
                 range: true
             %}
         </div>
@@ -162,10 +164,12 @@ hide-menu: true
                 {% render 'example-row-detail.html',
                     text: "Decorative borders",
                     style: "margin-left: calc((3/11) * 100%); width: calc((2/11) * 100%)",
+                    classes: "sm:d-none",
                     range: true
                 %}
                 {% render 'example-row-detail.html',
                     text: "Input borders",
+                    classes: "sm:d-none",
                     style: "margin-left: calc((1.5/11) * 100%);"
                 %}
             </div>
@@ -187,11 +191,13 @@ hide-menu: true
                 {% render 'example-row-detail.html',
                     text: "Text",
                     style: "margin-left: calc((8/11) * 100%); width: calc((2/11) * 100%)",
+                    classes: "sm:d-none",
                     range: true
                 %}
                 {% render 'example-row-detail.html',
                     text: "Heading",
-                    style: "margin-left: calc((.5/11) * 100%);"
+                    style: "margin-left: calc((.5/11) * 100%);",
+                    classes: "sm:d-none"
                 %}
             </div>
         </div>
@@ -207,11 +213,13 @@ hide-menu: true
             <div class="d-flex w100">
                 {% render 'example-row-detail.html',
                     text: "Illustrations",
-                    style: "margin-left: calc((7.5/11) * 100%)"
+                    style: "margin-left: calc((7.5/11) * 100%)",
+                    classes: "sm:d-none"
                 %}
                 {% render 'example-row-detail.html',
                     text: "Icons",
-                    style: "margin-left: calc((.5/11) * 100%); width: calc((2/11) * 100%)"
+                    style: "margin-left: calc((.5/11) * 100%); width: calc((2/11) * 100%)",
+                    classes: "sm:d-none",
                     range: true
                 %}
             </div>
@@ -316,7 +324,7 @@ hide-menu: true
             Emphasis determines the amount of contrast a color has against the default surface. Emphasis has a range from subtle to bold. Bold emphasis has more contrast against the background, which adds more attention than using UI with the subtle or default emphasis level.
         </p>
         <div class="d-flex fd-column g16">
-            <div class="d-grid grid__3 md:grid__2 sm:grid__1 md:fd-column g16 jc-space-between bg-black-100 bar-lg p32">
+            <div class="d-grid grid__3 md:grid__2 sm:grid__1 md:fd-column gx16 gy32 jc-space-between bg-black-100 bar-lg p32">
                 {% for group in colors[0].emphasis %}
                     <div>
                         <div class="d-grid grid__3 g12 fs-caption">
@@ -331,7 +339,7 @@ hide-menu: true
                     </div>
                 {% endfor %}
             </div>
-            <div class="d-grid grid__3 md:grid__2 sm:grid__1 g16 jc-space-between bg-black-100 bar-lg p32">
+            <div class="d-grid grid__3 gx16 gy32 jc-space-between bg-black-100 bar-lg p32">
                 {% for group in colors[0].emphasis %}
                     <div class="ta-center">
                         <div class="fs-title {{group.textClasses}}">Text</div>
@@ -350,7 +358,7 @@ hide-menu: true
         <p class="stacks-copy">
             In Stacks, a component will get darker (or lighter in dark mode) as they interact with it. These progresses happen by adding 100 to the color before the interaction happens. Example: Blue-400 on hover becomes Blue-500. For a disabled button state, subtract 100 from the default color.
         </p>
-        <div class="d-flex js-space-between g16 bg-black-100 bar-lg p32">
+        <div class="d-flex js-space-between gx16 gy32 bg-black-100 bar-lg p32">
             {% for group in colors[0].interaction %}
                 <div class="ta-center w100">
                     <button class="s-btn s-btn__filled {{group.classes}}" {{group.attr}} role="presentation">Button</button>

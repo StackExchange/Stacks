@@ -4,7 +4,7 @@ title: Accessibility
 description: A non-comprehensive guide to accessibility best practices when using Stacks.
 ---
 
-{% assign exampleWrapperClasses = "d-flex fw-wrap gy12 gx24 jc-space-evenly bg-black-100 bar-lg mb16 mt32 py32 px8" %}
+{% assign exampleWrapperClasses = "d-grid fw-wrap gx24 gy64 jc-space-evenly bg-black-100 bar-lg mb16 mt32 py32 px8" %}
 
 <section class="stacks-section">
     {% header "h2", "Target" %}
@@ -98,7 +98,7 @@ description: A non-comprehensive guide to accessibility best practices when usin
         %} (matching the background).
     </p>
 
-    <div class="{{exampleWrapperClasses}} mb32">
+    <div class="{{exampleWrapperClasses}} grid__2 mb32">
         {% for group in accessibility.foundation-for-custom-approach.base %}
             <div class="ta-center">
                 <button
@@ -126,7 +126,7 @@ description: A non-comprehensive guide to accessibility best practices when usin
         already passes the 3:1 contrast ratio).
     </p>
 
-    <div class="{{exampleWrapperClasses}}">
+    <div class="{{exampleWrapperClasses}} grid__4 md:grid__2">
         {% for group in accessibility.foundation-for-custom-approach.variants %}
             <div class="ta-center">
                 <button class="s-btn s-btn__dropdown s-btn__icon {{group.classes}}" role="presentation">
@@ -149,7 +149,7 @@ description: A non-comprehensive guide to accessibility best practices when usin
     <p class="stacks-copy">When the padding amount is not sufficient enough to support a double ring on the inside of the component, the rings are placed on the outside. The components included are tags, toggles, form elements (input fields, selects, radio/checkboxes…), block links and the editor.</p>
 
 
-    <div class="{{exampleWrapperClasses}}">
+    <div class="{{exampleWrapperClasses}} grid__4 md:grid__2">
         {% for group in accessibility.meeting-level-aaa %}
             <div class="ta-center">
                 {% if group.type == "tag" %}
@@ -172,7 +172,7 @@ description: A non-comprehensive guide to accessibility best practices when usin
 
     <p class="stacks-copy">Any component that already has an existing background color that fills the shape will maintain its original fill color.</p>
 
-    <div class="{{exampleWrapperClasses}}">
+    <div class="{{exampleWrapperClasses}} grid__4 md:grid__2">
         {% for group in accessibility.consistent-style-patterns.filled %}
             <div class="ta-center">
                 {% if group.type == "navigation" %}
@@ -210,7 +210,7 @@ description: A non-comprehensive guide to accessibility best practices when usin
 
     <p class="stacks-copy">For components that have an existing border around the component when not in focus, a background fill color is added in addition to the focus rings. This ensures there’s a strong enough visual difference between the non-focus and focus state, especially in the case of the <code class="stacks-code">.s-btn__outlined</code> (which already displays a theme colored ring as default state). These patterns are maintained across all components for consistency.</p>
 
-    <div class="{{exampleWrapperClasses}}">
+    <div class="{{exampleWrapperClasses}} grid__4 md:grid__2">
         {% for group in accessibility.consistent-style-patterns.bordered %}
             <div class="ta-center">
                 {% if group.type == "button" %}
@@ -245,7 +245,7 @@ description: A non-comprehensive guide to accessibility best practices when usin
 
     <p class="stacks-copy">Components without an existing fill or border will only display the double rings on focus. Since the inner ring matches the background color in most cases, this will visually appear like a single ring around the perimeter of the component.</p>
 
-    <div class="{{exampleWrapperClasses}}">
+    <div class="{{exampleWrapperClasses}} grid__4 md:grid__2">
         {% for group in accessibility.consistent-style-patterns.floating %}
             <div class="ta-center">
                 {% if group.type == "block-link" %}
@@ -297,7 +297,7 @@ description: A non-comprehensive guide to accessibility best practices when usin
 
     <p class="stacks-copy">The exceptions to this pattern are the <code class="stacks-code">Clear</code> button variations. To avoid these buttons resembling <code class="stacks-code">s-btn__outlined</code> when in focus, the same background fill layer is added as well. All buttons display a background fill layer when in focus. <code class="stacks-code">Clear</code>, <code class="stacks-code">Outline</code> and <code class="stacks-code">Filled</code> styles will all look the same when in focus. The fill color was chosen to match the existing <code class="stacks-code">Filled</code> style. For <code class="stacks-code">Muted</code> variations, since <code class="stacks-code">Muted Filled</code> has been deprecated, the fill color is pulled from the text color used on <code class="stacks-code">Outline</code> before being reversed to white.</p>
 
-    <div class="{{exampleWrapperClasses}}">
+    <div class="{{exampleWrapperClasses}} grid__4 md:grid__2">
         {% for group in accessibility.consistent-style-patterns.exceptions %}
             <div class="ta-center">
                 {% if group.type == "button" %}
