@@ -7,38 +7,27 @@ description: A non-comprehensive guide to accessibility best practices when usin
 {% assign exampleWrapperClasses = "d-flex fw-wrap gy12 gx24 jc-space-evenly bg-black-100 bar-lg mb16 mt32 py32 px8" %}
 
 <section class="stacks-section">
-{% stacks-markdown %}
-## Target
+    {% header "h2", "Target" %}
 
-All Stack Overflow product UIs must conform to the AA conformance level of the Web Content Accessibility Guidelines (WCAG) 2.2 with a few exceptions around color contrast documented below.
+    <p class="stacks-copy">All Stack Overflow product UIs must conform to the AA conformance level of the Web Content Accessibility Guidelines (WCAG) 2.2 with a few exceptions around color contrast documented below.</p>
 
-### High contrast modes
+    {% header "h3", "High contrast modes" %}
 
-When high contrast mode is enabled, Stack Overflow product UIs must meet or exceed the [Success Criterion 1.4.3 Contrast (Enhanced)](https://www.w3.org/TR/WCAG22/#contrast-enhanced) of the [Web Content Accessibility Guidelines (WCAG) 2.2](https://www.w3.org/TR/WCAG22/) and should conform to the remaining [AAA conformance level rules](https://www.w3.org/TR/WCAG22/#cc1) when reasonably achievable. This only applies to the subset of Stack Overflow products that provide high contrast modes. *Note: not all Stack Overflow products are expected to support high contrast modes*.
-
-{% endstacks-markdown %}
-
+    <p class="stacks-copy">When high contrast mode is enabled, Stack Overflow product UIs must meet or exceed the <a href="https://www.w3.org/TR/WCAG22/#contrast-enhanced">Success Criterion 1.4.3 Contrast (Enhanced)</a> of the <a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines (WCAG) 2.2</a> and should conform to the remaining <a href="https://www.w3.org/TR/WCAG22/#cc1">AAA conformance level rules</a> when reasonably achievable. This only applies to the subset of Stack Overflow products that provide high contrast modes. <strong>Note: not all Stack Overflow products are expected to support high contrast modes</strong>.</p>
 </section>
 
 <section class="stacks-section">
-{% stacks-markdown %}
-## Visual accessibility
+    {% header "h2", "Visual accessibility" %}
 
-Stack Overflow product UIs MUST conform to a custom conformance level of the Accessible Perceptual Contrast Algorithm (APCA). This custom conformance level replaces the [AA conformance level](https://www.w3.org/TR/WCAG22/#cc1) of the [Web Content Accessibility Guidelines (WCAG) 2.2](https://www.w3.org/TR/WCAG22/) for color contrast.
+    <p class="stacks-copy">Stack Overflow product UIs MUST conform to a custom conformance level of the Accessible Perceptual Contrast Algorithm (APCA). This custom conformance level replaces the <a href="https://www.w3.org/TR/WCAG22/#cc1">AA conformance level</a> of the <a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines (WCAG) 2.2</a> for color contrast.</p>
 
-{% endstacks-markdown %}
+    {% header "h3", "Color & contrast" %}
 
-{% stacks-markdown %}
-### Color & contrast
+    <p class="stacks-copy">Stacks aims to equip you with an accessible color palette and has been tested against WCAG AA, WCAG AAA and the newer APCA color standards. Most of our color combinations meet WCAG AA and APCA levels defined below. We also offer high contrast mode which offers a greater level of contrast.</p>
 
-Stacks aims to equip you with an accessible color palette and has been tested against WCAG AA, WCAG AAA and the newer APCA color standards. Most of our color combinations meet WCAG AA and APCA levels defined below. We also offer high contrast mode which offers a greater level of contrast. 
-{% endstacks-markdown %}
+    {% header "h4", "Contrast ratios" %}
 
-{% stacks-markdown %}
-#### Contrast ratios
-
-Contrast is the difference in luminance or color between any two elements. All visual readers require ample luminance contrast for fluent readability. Stack Overflow products must conform to a custom conformance level of the Accessible Perceptual Contrast Algorithm (APCA). Based on our custom conformance level, all text must have a Lightness contrast (Lc) value of 60, body copy must have a Lc value of 75, icons must have a Lc value of 45, and placeholder and disabled text must have a Lc of 30. These numbers will be negative when calculating for dark mode.
-{% endstacks-markdown %}
+    <p class="stacks-copy">Contrast is the difference in luminance or color between any two elements. All visual readers require ample luminance contrast for fluent readability. Stack Overflow products must conform to a custom conformance level of the Accessible Perceptual Contrast Algorithm (APCA). Based on our custom conformance level, all text must have a Lightness contrast (Lc) value of 60, body copy must have a Lc value of 75, icons must have a Lc value of 45, and placeholder and disabled text must have a Lc of 30. These numbers will be negative when calculating for dark mode.</p>
 
     {% capture correctElement %}
         <button class="s-btn s-btn__filled" role="presentation">Button</button>
@@ -58,11 +47,9 @@ Contrast is the difference in luminance or color between any two elements. All v
         incorrectDescription: "Use low luminance contrast that fail our standards."
     %}
 
-{% stacks-markdown %}
-#### Visual cues
+    {% header "h4", "Visual cues" %}
 
-Visual readers with color vision deficiency (CVD) have problems differentiating some hues and therefore these users need help discerning differences between items. This means that color (hue) should never be the sole means of communicating information and should always be paired with a non-color dependent indicator to accommodate all visual users.
-{% endstacks-markdown %}
+    <p class="stacks-copy">Visual readers with color vision deficiency (CVD) have problems differentiating some hues and therefore these users need help discerning differences between items. This means that color (hue) should never be the sole means of communicating information and should always be paired with a non-color dependent indicator to accommodate all visual users.</p>
 
     {% capture correctElement %}
         <div class="d-flex ps-relative w100 has-error">
@@ -88,23 +75,20 @@ Visual readers with color vision deficiency (CVD) have problems differentiating 
 </section>
 
 <section class="stacks-section">
-{% stacks-markdown %}
-## Focus states
+    {% header "h2", "Focus states" %}
 
-Some people navigate through a website by using a keyboard or other device (instead of a mouse). A focus state should clearly let users know which item they’re on and is ready to interact with. Stack’s has taken a hybrid approach in using both the browser’s default styles (smaller interactive components like text links) and a custom focus ring.
+    <p class="stacks-copy">Some people navigate through a website by using a keyboard or other device (instead of a mouse). A focus state should clearly let users know which item they’re on and is ready to interact with. Stack’s has taken a hybrid approach in using both the browser’s default styles (smaller interactive components like text links) and a custom focus ring.</p>
 
-### Foundation for custom approach
-
-{% endstacks-markdown %}
+    {% header "h3", "Foundation for custom approach" %}
 
     <p class="stacks-copy">
-        {% stacks-markdown "inline" %}The custom approach adds two different outline rings on the inside of the component. The outer ring color uses `secondary-theme-400`{% endstacks-markdown %}
+        The custom approach adds two different outline rings on the inside of the component. The outer ring color uses <code class="stacks-code">secondary-theme-400</code>
         {%
             render 'color-swatch.html',
             color: "theme-secondary-400",
             size: "16"
         %}
-        {% stacks-markdown "inline" %}(matching the primary button color) and the inner ring color uses `white`{% endstacks-markdown %}
+        (matching the primary button color) and the inner ring color uses <code class="stacks-code">white</code>
         {%
             render 'color-swatch.html',
             color: "white",
@@ -131,7 +115,7 @@ Some people navigate through a website by using a keyboard or other device (inst
     </div>
 
     <p class="stacks-copy">
-        {% stacks-markdown "inline" %}The outer ring color will always display as the theme color even when applied to a `muted` or `danger` styled button. This ensures the focus ring maintains a 3:1 color contrast ratio for any adjacent colors (WCAG level AA) within any theme (assuming the `secondary-theme` color {% endstacks-markdown %}
+        The outer ring color will always display as the theme color even when applied to a <code class="stacks-code">muted</code> or <code class="stacks-code">danger</code> styled button. This ensures the focus ring maintains a 3:1 color contrast ratio for any adjacent colors (WCAG level AA) within any theme (assuming the <code class="stacks-code">secondary-theme</code> color
         {%
             render 'color-swatch.html',
             color: "theme-secondary-400",
@@ -156,14 +140,12 @@ Some people navigate through a website by using a keyboard or other device (inst
         {% endfor %}
     </div>
 
-{% stacks-markdown %}
-### Meeting level AAA
+    {% header "h3", "Meeting level AAA" %}
 
-Both focus rings are always 2px thick. This allows the focus state to meet [WCAG 2.4.13 Focus Appearance (AAA)](https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html) standards for High Contrast mode. Whenever possible, the rings should be added to the inside of the component so we can better ensure that the rings don't get accidentally cut off by the surrounding layout (which helps us to meet [WCAG 2.4.11 Focus Not Obscured AA](https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html)). However, this does result in a padding reduction within the element, surrounding the text. When choosing to set the focus rings on the inside (inset), the component must have at least 4px of padding at the smallest size. This has been applied to buttons, button groups, navigation, pagination and topbar.
+    <p class="stacks-copy">Both focus rings are always 2px thick. This allows the focus state to meet <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html">WCAG 2.4.13 Focus Appearance (AAA)</a> standards for High Contrast mode. Whenever possible, the rings should be added to the inside of the component so we can better ensure that the rings don't get accidentally cut off by the surrounding layout (which helps us to meet <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html">WCAG 2.4.11 Focus Not Obscured AA</a>). However, this does result in a padding reduction within the element, surrounding the text. When choosing to set the focus rings on the inside (inset), the component must have at least 4px of padding at the smallest size. This has been applied to buttons, button groups, navigation, pagination and topbar.</p>
 
-When the padding amount is not sufficient enough to support a double ring on the inside of the component, the rings are placed on the outside. The components included are tags, toggles, form elements (input fields, selects, radio/checkboxes…), block links and the editor.
+    <p class="stacks-copy">When the padding amount is not sufficient enough to support a double ring on the inside of the component, the rings are placed on the outside. The components included are tags, toggles, form elements (input fields, selects, radio/checkboxes…), block links and the editor.</p>
 
-{% endstacks-markdown %}
 
     <div class="{{exampleWrapperClasses}}">
         {% for group in accessibility.meeting-level-aaa %}
@@ -183,15 +165,10 @@ When the padding amount is not sufficient enough to support a double ring on the
         {% endfor %}
     </div>
 
-{% stacks-markdown %}
+    {% header "h3", "Consistent style patterns" %}
+    {% header "h4", "Filled" %}
 
-### Consistent style patterns
-
-#### Filled
-
-Any component that already has an existing background color that fills the shape will maintain its original fill color. 
-
-{% endstacks-markdown %}
+    <p class="stacks-copy">Any component that already has an existing background color that fills the shape will maintain its original fill color.</p>
 
     <div class="{{exampleWrapperClasses}}">
         {% for group in accessibility.consistent-style-patterns.filled %}
@@ -227,13 +204,9 @@ Any component that already has an existing background color that fills the shape
         {% endfor %}
     </div>
 
-{% stacks-markdown %}
+    {% header "h4", "Bordered" %}
 
-#### Bordered
-
-For components that have an existing border around the component when not in focus, a background fill color is added in addition to the focus rings. This ensures there’s a strong enough visual difference between the non-focus and focus state, especially in the case of the `.s-btn__outlined` (which already displays a theme colored ring as default state). These patterns are maintained across all components for consistency.
-
-{% endstacks-markdown %}
+    <p class="stacks-copy">For components that have an existing border around the component when not in focus, a background fill color is added in addition to the focus rings. This ensures there’s a strong enough visual difference between the non-focus and focus state, especially in the case of the <code class="stacks-code">.s-btn__outlined</code> (which already displays a theme colored ring as default state). These patterns are maintained across all components for consistency.</p>
 
     <div class="{{exampleWrapperClasses}}">
         {% for group in accessibility.consistent-style-patterns.bordered %}
@@ -266,13 +239,9 @@ For components that have an existing border around the component when not in foc
         {% endfor %}
     </div>
 
-{% stacks-markdown %}
+    {% header "h4", "Floating" %}
 
-#### Floating
-
-Components without an existing fill or border will only display the double rings on focus. Since the inner ring matches the background color in most cases, this will visually appear like a single ring around the perimeter of the component. 
-
-{% endstacks-markdown %}
+    <p class="stacks-copy">Components without an existing fill or border will only display the double rings on focus. Since the inner ring matches the background color in most cases, this will visually appear like a single ring around the perimeter of the component.</p>
 
     <div class="{{exampleWrapperClasses}}">
         {% for group in accessibility.consistent-style-patterns.floating %}
@@ -322,13 +291,9 @@ Components without an existing fill or border will only display the double rings
         {% endfor %}
     </div>
 
-{% stacks-markdown %}
+    {% header "h4", "Exceptions" %}
 
-#### Exceptions
-
-The exceptions to this pattern are the `Clear` button variations. To avoid these buttons resembling `s- btn__outlined` when in focus, the same background fill layer is added as well. All buttons display a background fill layer when in focus. `Clear`, `Outline` and `Filled` styles will all look the same when in focus. The fill color was chosen to match the existing `Filled` style. For `Muted` variations, since `Muted Filled` has been deprecated, the fill color is pulled from the text color used on `Outline` before being reversed to white.
-
-{% endstacks-markdown %}
+    <p class="stacks-copy">The exceptions to this pattern are the <code class="stacks-code">Clear</code> button variations. To avoid these buttons resembling <code class="stacks-code">s-btn__outlined</code> when in focus, the same background fill layer is added as well. All buttons display a background fill layer when in focus. <code class="stacks-code">Clear</code>, <code class="stacks-code">Outline</code> and <code class="stacks-code">Filled</code> styles will all look the same when in focus. The fill color was chosen to match the existing <code class="stacks-code">Filled</code> style. For <code class="stacks-code">Muted</code> variations, since <code class="stacks-code">Muted Filled</code> has been deprecated, the fill color is pulled from the text color used on <code class="stacks-code">Outline</code> before being reversed to white.</p>
 
     <div class="{{exampleWrapperClasses}}">
         {% for group in accessibility.consistent-style-patterns.exceptions %}
@@ -348,12 +313,7 @@ The exceptions to this pattern are the `Clear` button variations. To avoid these
         {% endfor %}
     </div>
 
-{% stacks-markdown %}
+    {% header "h3", "Browser default" %}
 
-### Browser default
-
-Some focusable elements and Stacks components currently do not include custom focus styling. These elements will instead render the browser-default focus indicators.
-
-{% endstacks-markdown %}
-
+    <p class="stacks-copy">Some focusable elements and Stacks components currently do not include custom focus styling. These elements will instead render the browser-default focus indicators.</p>
 </section>

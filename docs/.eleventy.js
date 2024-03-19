@@ -7,7 +7,6 @@ const iconPlugin = require("./plugins/icons");
 const bannerExamplePlugin = require("./plugins/banner-example");
 const tipPlugin = require("./plugins/tip");
 const markdownPlugin = require("./plugins/markdown");
-const stacksMarkdownPlugin = require("./plugins/stacks-markdown");
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.setQuietMode(true); // Reduce the console output
@@ -18,7 +17,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(iconPlugin);
   eleventyConfig.addPlugin(headerPlugin);
   eleventyConfig.addPlugin(tipPlugin);
-  eleventyConfig.addPlugin(stacksMarkdownPlugin);
 
   // Version shortcode
   eleventyConfig.addLiquidShortcode("version", function() {
