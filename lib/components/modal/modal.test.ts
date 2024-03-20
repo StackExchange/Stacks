@@ -39,7 +39,7 @@ const createModal = ({
                 </p>
 
                 <div class="d-flex gx8 s-modal--footer">
-                    <button class="flex--item s-btn s-btn__primary" type="button">Save changes</button>
+                    <button class="flex--item s-btn s-btn__filled" type="button">Save changes</button>
                     <button class="flex--item s-btn" type="button" data-action="s-modal#hide">Cancel</button>
                 </div>
 
