@@ -20,24 +20,27 @@
         margin-right: calc(var(--su-static1) * -1); // -1px
     }
 
+    //  --_bu-py values set below to ensure btn-group height matches same-sized button height
+    // See https://github.com/StackEng/StackOverflow/pull/18992#pullrequestreview-1947490680
     .s-btn {
         --_bu-br: var(--br-sm);
         --_bu-bc-hover: transparent;
+        --_bu-px: calc(var(--su12) - var(--su1)); // 11px
+        --_bu-py: calc(var(--su6) + calc(var(--su1) / 2)); // 6.5px
 
-        &,
+        &.s-btn__xs {
+            --_bu-px: calc(var(--su8) - var(--su1)); // 7px
+            --_bu-py: calc(var(--su2) + 0.9px); // 2.9px
+        }
+
+        &.s-btn__sm {
+            --_bu-px: calc(var(--su8) + var(--su1)); // 9px
+            --_bu-py: calc(var(--su4) + calc(var(--su2) - 0.15px)); // 5.85px
+        }
+
         &.s-btn__md {
             --_bu-px: var(--su12);
-            --_bu-py: var(--su8);
-        }
-
-        &.s-btn___xs {
-            --_bu-px: var(--su8);
-            --_bu-py: var(--su4);
-        }
-
-        &.s-btn___sm {
-            --_bu-px: calc(var(--su8) + var(--su2));
-            --_bu-py: var(--su6);
+            --_bu-py: calc(var(--su8) + 0.15px); // 8.15px
         }
 
         &.is-selected,
