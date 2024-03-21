@@ -64,6 +64,15 @@
         --_bu-outlined-fc-selected: var(--white);
         --_bu-badge-o: 0.8;
         --_bu-number-fc-selected: var(--theme-button-primary-number-color, var(--theme-secondary-600));
+
+        &.s-btn__vote {
+            --_bu-bc-focus: var(--theme-secondary-400);
+            --_bu-bg-focus: var(--theme-secondary-400);
+            --_bu-fc-focus: var(--white);
+            --_bu-bc-selected: var(--theme-primary-400);
+            --_bu-bg-selected: var(--theme-primary-400);
+            --_bu-fc-selected: var(--white);
+        }
     });
 
     // STATES
@@ -376,6 +385,14 @@
 
     // Vote
     &&__vote {
+        &.is-selected {
+            &:focus-visible,
+            &.focus-inset-bordered {
+                --_bu-bg-selected: var(--theme-primary-400);
+                --_bu-fc-selected: var(--white);
+            }
+        }
+
         // Base
         --_bu-bc: var(--black-225);
         --_bu-bg: transparent;
@@ -388,8 +405,8 @@
         --_bu-fc-active: var(--theme-primary-500);
 
         // Focus
-        --_bu-bg-focus: var(--_bu-bg);
-        --_bu-fc-focus: var(--_bu-fc);
+        --_bu-bg-focus: var(--theme-secondary-400);
+        --_bu-fc-focus: var(--white);
 
         // Hover
         --_bu-bc-hover: var(--black-300);
