@@ -1,4 +1,7 @@
-import testArgs from "./button.test.setup";
+import {
+    testArgs,
+    voteBtnTestArgs,
+} from "./button.test.setup";
 import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 import { html } from "@open-wc/testing";
@@ -15,4 +18,7 @@ describe("button", () => {
             </div>
         `,
     });
+
+    // `vote` variant
+    runVisualTests(voteBtnTestArgs);
 });

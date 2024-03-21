@@ -1,4 +1,7 @@
-import testArgs from "./button.test.setup";
+import {
+    testArgs,
+    voteBtnTestArgs,
+} from "./button.test.setup";
 import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
@@ -18,4 +21,7 @@ describe("button", () => {
             /s-btn-highcontrast-light-(?:muted-outlined-|muted-|outlined-)?(?:sm|xs).*?badge/,
         ],
     });
+
+    // `vote` variant
+    runA11yTests(voteBtnTestArgs);
 });
