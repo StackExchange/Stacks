@@ -66,7 +66,4 @@ const voteBtnTestArgs: TestVariationArgs = {
     `,
 };
 
-export {
-    testArgs,
-    voteBtnTestArgs,
-};
+export { testArgs, voteBtnTestArgs };
