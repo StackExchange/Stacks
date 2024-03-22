@@ -13,7 +13,7 @@ type A11yTestArgs = TestVariationArgs & {
 };
 
 // register Stack APCA conformance threshold function
-// see also https://stackoverflow.design/product/base/color-fundamentals/#accessibility-standards
+// see also https://stackoverflow.design/product/foundation/accessibility/#visual-accessibility
 const customConformanceThresholdFn = (fontSize: string): number | null => {
     // if the font size is 32px or larger, we use a 45Lc threshold
     // otherwise, we use a 60Lc threshold
