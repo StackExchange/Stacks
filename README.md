@@ -32,14 +32,14 @@ Stacks documentation can be found at https://stackoverflow.design/
 - [License](#license)
 
 ## Using Stacks
-Using Stacks is outlined in our [usage guidelines](https://stackoverflow.design/product/guidelines/using-stacks).
+Using Stacks is outlined in our [usage guidelines](https://stackoverflow.design/product/develop/using-stacks).
 
 ## Migrating from v1 to v2
 
 To migrate from Stacks v1 to v2, see our [migration guide](/MIGRATION_GUIDE.md).
 
 ## Building Stacks
-To contribute to Stacks documentation or its CSS library, you’ll need to build Stacks locally. View our [building guidelines](https://stackoverflow.design/product/guidelines/building).
+To contribute to Stacks documentation or its CSS library, you’ll need to build Stacks locally. View our [building guidelines](https://stackoverflow.design/product/develop/building).
 
 Having trouble getting these steps to work? Open [an issue](https://github.com/StackExchange/Stacks/issues/new) with a `setup` label.
 

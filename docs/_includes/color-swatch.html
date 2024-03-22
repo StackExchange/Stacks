@@ -1,4 +1,15 @@
-<div class="d-flex ai-center g12">
-  <div class="stacks-swatch ba bc-black-200 bar-sm {{classes}}"></div>
-  {{text}}
-</div>
+{% comment %}
+    This partial accepts the following arguments:
+    - color (required): The color of the swatch. e.g. red-400
+    - size: The size of the swatch. e.g. 16. Default: 32.
+    - classes: Additional classes to add to the swatch.
+{% endcomment %}
+
+{% if size == 0 %}
+  {% assign size = 32 %}
+{% endif %}
+
+<span
+  class="bg-{{color}} h{{size}} w{{size}} d-inline-block bar-sm {{classes}}">
+  <span class="v-visible-sr">{{color}}</span>
+</span>
