@@ -409,15 +409,14 @@
     }
 
     &:not(&--radio:checked + label):not(&__link):not(&__unset):not(&__facebook):not(&__github):not(&__google):not(.is-selected) {
-        &:focus-visible {
-            &.s-btn__filled {
-                &:not(:hover) .s-btn--number {
-                    color: var(--_bu-number-fc-focus, var(--_bu-number-fc-filled));
-                }
-
-                background-color: var(--_bu-bg-focus, var(--_bu-filled-bg));
-                color: var(--_bu-fc-focus, var(--_bu-filled-fc));
+        &:focus-visible,
+        &.focus-inset-bordered {
+            &:not(:hover) .s-btn--number {
+                color: var(--_bu-number-fc-focus, var(--_bu-number-fc-filled));
             }
+
+            background-color: var(--_bu-bg-focus, var(--_bu-filled-bg));
+            color: var(--_bu-fc-focus, var(--_bu-filled-fc));
         }
 
         &:hover {

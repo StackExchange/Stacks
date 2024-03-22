@@ -1,107 +1,129 @@
+/**
+ * Generate color variables with a given color name
+ *
+ * Usage example:
+ * .generate-variant-variables(purple, important);
+ *
+ * @colorName - The name of the color to use to construct variables values
+ * @modifier - Modifier name to determine variable values for that modifier
+ */
+.generate-variant-variables(@colorName: "", @modifier: "") {
+    & when (@modifier = "") {
+        --_no-bc: ~"var(--@{colorName}-300)";
+        --_no-bg: ~"var(--@{colorName}-100)";
+        --_no-btn-bg-active: ~"var(--@{colorName}-200)";
+        --_no-btn-bg-focus: ~"var(--@{colorName}-200)";
+        --_no-btn-fc: ~"var(--@{colorName}-500)";
+        --_no-code-bc: ~"var(--@{colorName}-300)";
+        --_no-code-bg: ~"var(--@{colorName}-200)";
+    }
+
+    & when (@modifier = important) {
+        --_no-bc: var(--_no-bg);
+        --_no-bg: ~"var(--@{colorName}-400)";
+        --_no-fc: var(--white);
+        --_no-btn-bg-active: ~"var(--@{colorName}-500)";
+        --_no-btn-bg-focus: ~"var(--@{colorName}-500)";
+        --_no-btn-fc: ~"var(--@{colorName}-100)";
+        --_no-code-bc: ~"var(--@{colorName}-300)";
+        --_no-code-bg: ~"var(--@{colorName}-500)";
+
+        .highcontrast-mode({
+            --_no-bg: ~"var(--@{colorName}-500)";
+        });
+    }
+}
+
+/**
+ * Generate styles for a notice-based component
+ *
+ * Usage example:
+ * .construct-notice-component(s-banner);
+ *
+ * @baseClass - The base class name for the notice component
+ */
 .construct-notice-component(@baseClass) {
     --_no-bc: var(--black-225);
     --_no-bg: var(--black-100);
     --_no-fc: var(--black-500);
-    --_no-btn-bg-focus: var(--black-225);
     --_no-btn-bg-active: var(--black-250);
+    --_no-btn-bg-focus: var(--black-225);
     --_no-btn-fc: var(--_no-fc);
+    --_no-code-bc: var(--black-300);
+    --_no-code-bg: var(--black-200);
+    --_no-code-fc: var(--_no-fc);
+
+    // CONTEXTUAL STYLES
+    .dark-mode({
+        --_no-bc: var(--_no-bg);
+    });
+
+    .highcontrast-mode({
+        &,
+        &.@{baseClass}__danger,
+        &.@{baseClass}__info,
+        &.@{baseClass}__success,
+        &.@{baseClass}__warning {
+            --_no-code-bc: var(--black-400);
+            --_no-code-bg: var(--white);
+            --_no-code-fc: var(--black);
+
+            &.@{baseClass}__important {
+                --_no-code-bc: var(--black-200);
+                --_no-code-bg: var(--black);
+                --_no-code-fc: var(--white);
+            }
+        }
+    });
 
     // MODIFIERS
-    &:not(&__important) {
-        .dark-mode({
-            --_no-bc: var(--_no-bg);
-        });
-
-        .highcontrast-mode({
-            --_no-bc: currentColor;
-        });
-
-        .highcontrast-dark-mode({
-            --_no-bc: currentColor;
-        });
-    }
-
-    &__important {
+    &__important:not(.@{baseClass}__danger):not(.@{baseClass}__info):not(.@{baseClass}__success):not(.@{baseClass}__warning) {
         --_no-bc: var(--_no-bg);
         --_no-bg: var(--black-500);
         --_no-fc: var(--white);
         --_no-btn-bg-focus: var(--black-600);
         --_no-btn-bg-active: var(--black-600);
         --_no-btn-fc: var(--_no-fc);
-        --_no-code-bg: var(--black-300);
+        --_no-code-bc: var(--black-300);
+        --_no-code-bg: var(--black-600);
     }
 
     // VARIANTS
     &__danger {
-        --_no-bc: var(--red-300);
-        --_no-bg: var(--red-100);
-        --_no-btn-bg-active: var(--red-200);
-        --_no-btn-bg-focus: var(--red-200);
-        --_no-btn-fc: var(--red-500);
-        --_no-code-bg: var(--red-300);
+        &:not(.@{baseClass}__important) {
+            .generate-variant-variables(red);
+        }
 
         &.@{baseClass}__important {
-            --_no-bc: var(--_no-bg);
-            --_no-bg: var(--red-400);
-            --_no-btn-bg-active: var(--red-500);
-            --_no-btn-bg-focus: var(--red-500);
-            --_no-btn-fc: var(--red-100);
-
-            .highcontrast-mode({
-                --_no-bg: var(--red-500);
-            });
+            .generate-variant-variables(red, important);
         }
     }
 
     &__info {
-        --_no-bc: var(--theme-secondary-300);
-        --_no-bg: var(--theme-secondary-100);
-        --_no-btn-bg-focus: var(--theme-secondary-200);
-        --_no-btn-bg-active: var(--theme-secondary-200);
-        --_no-btn-fc: var(--theme-secondary-500);
-        --_no-code-bg: var(--theme-secondary-300);
+        &:not(.@{baseClass}__important) {
+            .generate-variant-variables(theme-secondary);
+        }
 
         &.@{baseClass}__important {
-            --_no-bc: var(--_no-bg);
-            --_no-bg: var(--theme-secondary-400);
-            --_no-btn-bg-active: var(--theme-secondary-500);
-            --_no-btn-bg-focus: var(--theme-secondary-500);
-            --_no-btn-fc: var(--theme-secondary-100);
-
-            .highcontrast-mode({
-                --_no-bg: var(--theme-secondary-500);
-            });
+            .generate-variant-variables(theme-secondary, important);
         }
     }
 
     &__success {
-        --_no-bc: var(--green-300);
-        --_no-bg: var(--green-100);
-        --_no-btn-bg-active: var(--green-200);
-        --_no-btn-bg-focus: var(--green-200);
-        --_no-btn-fc: var(--green-500);
-        --_no-code-bg: var(--green-300);
+        &:not(.@{baseClass}__important) {
+            .generate-variant-variables(green);
+        }
 
         &.@{baseClass}__important {
-            --_no-bc: var(--_no-bg);
-            --_no-bg: var(--green-400);
-            --_no-btn-bg-active: var(--green-500);
-            --_no-btn-bg-focus: var(--green-500);
-            --_no-btn-fc: var(--green-100);
-
-            .highcontrast-mode({
-                --_no-bg: var(--green-500);
-            });
+            .generate-variant-variables(green, important);
         }
     }
 
     &__warning {
-        --_no-bc: var(--yellow-300);
-        --_no-bg: var(--yellow-100);
-        --_no-btn-bg-active: var(--yellow-200);
-        --_no-btn-bg-focus: var(--yellow-200);
-        --_no-btn-fc: var(--yellow-600);
-        --_no-code-bg: var(--yellow-300);
+        &:not(.@{baseClass}__important) {
+            .generate-variant-variables(yellow);
+            --_no-btn-fc: var(--yellow-600);
+        }
 
         &.@{baseClass}__important {
             --_no-bc: var(--_no-bg);
@@ -110,9 +132,13 @@
             --_no-btn-fc: var(--_no-fc);
             --_no-btn-bg-active: var(--yellow-300);
             --_no-btn-bg-focus: var(--yellow-300);
+            --_no-code-bc: var(--yellow-500);
+            --_no-code-bg: var(--yellow-300);
 
             .dark-mode({
-                --_no-fc: var(--yellow-200);
+                --_no-fc: var(--white);
+                --_no-code-bc: var(--yellow-300);
+                --_no-code-bg: var(--yellow-500);
             });
 
             .highcontrast-mode({
@@ -126,21 +152,24 @@
 
     // CHILD ELEMENTS
     code {
-        background: var(--_no-code-bg, transparent);
+        background-color: var(--_no-code-bg);
+        color: var(--_no-code-fc);
+        outline: var(--su-static1) solid var(--_no-code-bc);
+
+        border-radius: var(--br-sm);
+        padding-left: var(--su2);
+        padding-right: var(--su2);
     }
 
     & &--btn {
         // TODO: decouple .s-notice--btn from .s-btn
-        &:not(:focus) {
-            box-shadow: none; // This will prevent default .s-btn box-shadow from showing
-        }
-
         &:active {
             background-color: var(--_no-btn-bg-active, inherit) !important;
         }
 
-        &:focus,
-        &:hover {
+        &:focus-visible,
+        &:hover,
+        &.focus-inset-bordered {
             background-color: var(--_no-btn-bg-focus, inherit) !important;
         }
 

@@ -334,7 +334,7 @@
                     font-style: normal;
                 }
 
-                &:not(:focus-visible) {
+                &:not(:focus-visible):not(.focus) {
                     box-shadow: var(--theme-topbar-search-shadow);
                 }
 
@@ -355,7 +355,8 @@
 
         .s-select {
             > select {
-                &:focus-visible {
+                &:focus-visible,
+                &.focus {
                     z-index: var(--zi-selected);
                 }
 

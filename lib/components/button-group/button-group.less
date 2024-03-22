@@ -20,24 +20,27 @@
         margin-right: calc(var(--su-static1) * -1); // -1px
     }
 
+    //  --_bu-py values set below to ensure btn-group height matches same-sized button height
+    // See https://github.com/StackEng/StackOverflow/pull/18992#pullrequestreview-1947490680
     .s-btn {
         --_bu-br: var(--br-sm);
         --_bu-bc-hover: transparent;
+        --_bu-px: calc(var(--su12) - var(--su1)); // 11px
+        --_bu-py: calc(var(--su6) + 0.65px); // 6.65px
 
-        &,
+        &.s-btn__xs {
+            --_bu-px: calc(var(--su8) - var(--su1)); // 7px
+            --_bu-py: calc(var(--su2) + 0.9px); // 2.9px
+        }
+
+        &.s-btn__sm {
+            --_bu-px: calc(var(--su8) + var(--su1)); // 9px
+            --_bu-py: calc(var(--su4) + (var(--su2) - 0.15px)); // 5.85px
+        }
+
         &.s-btn__md {
             --_bu-px: var(--su12);
-            --_bu-py: var(--su8);
-        }
-
-        &.s-btn___xs {
-            --_bu-px: var(--su8);
-            --_bu-py: var(--su4);
-        }
-
-        &.s-btn___sm {
-            --_bu-px: calc(var(--su8) + var(--su2));
-            --_bu-py: var(--su6);
+            --_bu-py: calc(var(--su8) + 0.15px); // 8.15px
         }
 
         &.is-selected,
@@ -46,6 +49,9 @@
         }
 
         .s-btn--badge {
+            // set negative margins so button height isn't affect by badge
+            margin-bottom: -100%;
+            margin-top: -100%;
             font-weight: normal;
         }
 
@@ -70,8 +76,7 @@
     // STATIC COMPONENT STYLES
     border: var(--su-static1) solid var(--black-300);
     border-radius: var(--br-md);
-    display: inline-flex; // TODO investigate if changing from flex to inline-flex will be an issue
+    display: inline-flex;
     flex-wrap: wrap;
-    margin-bottom: var(--su-static1); // Compensate for buttons having a margin bottom of -1px to account for row wrapping
     padding: calc(var(--su-static4) - var(--su-static1));
 }
