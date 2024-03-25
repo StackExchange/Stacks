@@ -234,6 +234,92 @@ description: Buttons are user interface elements which allows users to take acti
 </section>
 
 <section class="stacks-section">
+    {% header "h2", "Vote" %}
+    <p class="stacks-copy">TODO describe</p>
+
+    <div class="stacks-preview">
+{% highlight html %}
+<button class="s-btn s-btn__vote" type="button">
+    @Svg.ArrowUp
+    <span class="v-visible-sr">Upvote</span>
+</button>
+<button class="s-btn s-btn__vote" type="button">
+    @Svg.ArrowDown
+    <span class="v-visible-sr">Downvote</span>
+</button>
+<button class="s-btn s-btn__vote is-selected" type="button">
+    @Svg.ArrowUp
+    <span class="v-visible-sr">Upvoted</span>
+</button>
+<button class="s-btn s-btn__vote is-selected" type="button">
+    @Svg.ArrowUp
+    <span class="v-visible-sr">Downvoted</span>
+</button>
+
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="overflow-x-auto">
+                <table class="wmn5 s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col">Type</th>
+                            <th scope="col" class="s-table--cell4">Class</th>
+                            <th scope="col" class="ta-center">Default State</th>
+                            <th scope="col" class="ta-center">Selected State</th>
+                            <th scope="col" class="ta-center">Disabled State</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for btn in buttons.vote %}
+                            {% assign types = btn.classes %}
+                            {% for class in types %}
+                            <tr>
+                                <th scope="row" class="va-middle">{{ class.title }}</th>
+                                <td class="va-middle">
+                                    <div class="d-flex g4 fw-wrap">
+                                        <code class="flex--item stacks-code">.s-btn</code>
+                                        {% if btn.class != nil %}
+                                            <code class="flex--item stacks-code">.{{ btn.class }}</code>
+                                        {% endif %}
+                                        {% if class.class != nil %}
+                                            <code class="flex--item stacks-code">.{{ class.class }}</code>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                                <td class="va-middle ta-center px4">
+                                    <button class="ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button">
+                                        {% icon "ArrowUp" %}
+                                        <span class="v-visible-sr">Upvote</span>
+                                    </button>
+                                </td>
+                                <td class="va-middle ta-center px4">
+                                    <button
+                                        class="ws-nowrap s-btn {{ btn.class }} {{ class.class }} is-selected" 
+                                        type="button">
+                                        {% icon "ArrowUp" %}
+                                        <span class="v-visible-sr">Upvoted</span>
+                                    </button>
+                                </td>
+                                <td class="va-middle ta-center px4">
+                                    <button
+                                        class="ws-nowrap s-btn {{ btn.class }} {{ class.class }}"
+                                        type="button"
+                                        disabled>
+                                        {% icon "ArrowUp" %}
+                                        <span class="v-visible-sr">Upvote</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
     {% header "h2", "Loading" %}
     <p class="stacks-copy">Any button can have a loading state applied by adding the <code class="stacks-code">.is-loading</code> state class.</p>
     <div class="stacks-preview">
