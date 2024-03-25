@@ -154,6 +154,20 @@
         overflow-x: auto;// TODO remove once all topbars include necessary nav.s-topbar--navigation wrapper elements
     }
 
+    & &--skip-link {
+        position:absolute;
+        left: 0;
+        z-index: var(--zi-navigation-fixed);
+        width: calc(100% - var(--su16));
+        margin-left: var(--su8);
+        margin-right: var(--su8);
+        transform: translateY(-200%);
+
+        &:focus {
+            transform: translateY(0%);  
+        }
+    }
+
     & &--item {
         &:not(.s-topbar--item__unset) {
             .svg-icon {
