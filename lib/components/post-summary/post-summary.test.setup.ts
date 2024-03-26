@@ -293,7 +293,7 @@ const getBadgeChildren = (badge: BadgeType) => {
             stats: true,
         },
         stats: {
-            badge: badge as BadgeType,
+            badge: badge,
             answers: 0,
             votes: 1,
             views: 20,
