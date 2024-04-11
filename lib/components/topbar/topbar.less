@@ -1,4 +1,5 @@
 .s-topbar {
+    --_tb-bt: var(--theme-topbar-accent-border, 3px solid var(--theme-primary));
     // CHILD COMPONENT CUSTOM PROPERTIES
     // Item
     --_tb-item-bg: unset;
@@ -121,6 +122,16 @@
     }
 
     // CHILD ELEMENTS
+    &:before {
+        border-top: var(--_tb-bt);
+        content: '';
+        display: block;
+    }
+
+    &:has(> &--skip-link:focus):before {
+        display: none; // Hide `:before` element if .s-topbar--skip-link is focused
+    }
+
     & a&--logo {
         &:focus-visible {
             .focus-styles(true);
@@ -135,7 +146,7 @@
     & &--container {
         align-items: center;
         display: flex;
-        height: 100%;
+        height: var(--theme-topbar-height, calc(var(--su-static48) + var(--su-static8)));
         margin: 0 auto;
         max-width: 100%;
         width: var(--s-full);
@@ -398,6 +409,20 @@
         padding: var(--_tb-searchbar-p);
     }
 
+    & &--skip-link {
+        &:not(:focus) {
+            &:extend(.v-visible-sr);
+        }
+
+        background-color: var(--theme-secondary-100);
+        border-bottom: var(--_tb-bt);
+        display: block;
+        outline: none;
+        padding: var(--su12);
+        text-align: center;
+    }
+
+
     .s-navigation {
         .s-navigation--item {
             &:not(.is-selected) {
@@ -428,9 +453,6 @@
     align-items: center;
     background-color: var(--theme-topbar-background-color, var(--white));
     border-bottom: var(--theme-topbar-bottom-border, var(--su-static1) solid var(--black-225));
-    border-top: var(--theme-topbar-accent-border, 3px solid var(--theme-primary));
-    display: flex;
-    height: var(--theme-topbar-height, calc(var(--su-static48) + var(--su-static8)));
     min-width: auto;
     position: relative;
     width: 100%;
@@ -503,23 +525,4 @@
     --theme-topbar-item-color-current: var(--_black-static);
 
     --scrollbar: hsla(0, 0%, 0%, 0.2);
-}
-
-.s-topbar--skip-link {
-    &:extend(.v-visible-sr);
-    display: block;
-    text-align: center;
-    background-color: var(--theme-secondary-100);
-    z-index: var(--zi-navigation-fixed);
-    outline: none;
-
-    &:focus {
-        position: sticky;
-        height: auto;
-        width: 100%;
-        padding: var(--su12);
-        inset: 0;
-        clip: auto;
-        clip-path: none;
-    }
 }
