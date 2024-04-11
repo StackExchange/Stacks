@@ -122,16 +122,6 @@
     }
 
     // CHILD ELEMENTS
-    &:before {
-        border-top: var(--_tb-bt);
-        content: '';
-        display: block;
-    }
-
-    &:has(> &--skip-link:focus):before {
-        display: none; // Hide `:before` element if .s-topbar--skip-link is focused
-    }
-
     & a&--logo {
         &:focus-visible {
             .focus-styles(true);
@@ -449,10 +439,15 @@
         }
     }
 
+    &:has(> &--skip-link:focus) {
+        border-top: none; // Hide the border-top when the skip link is focused
+    }
+
     // STATIC COMPONENT STYLES
     align-items: center;
     background-color: var(--theme-topbar-background-color, var(--white));
     border-bottom: var(--theme-topbar-bottom-border, var(--su-static1) solid var(--black-225));
+    border-top: var(--_tb-bt);
     min-width: auto;
     position: relative;
     width: 100%;
