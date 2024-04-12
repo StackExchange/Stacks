@@ -35,6 +35,7 @@ description: The topbar component is a navigation bar that is placed at the top 
     <div class="stacks-preview">
 {% highlight html %}
 <header class="s-topbar">
+    <a href="#content" class="s-topbar--skip-link">Skip to main content</a>
     <div class="s-topbar--container">
         <a href="…" class="s-topbar--menu-btn"><span></span></a>
         <a href="…" class="s-topbar--logo">@Svg.LogoGlyph.with("native")</a>
@@ -56,6 +57,26 @@ description: The topbar component is a navigation bar that is placed at the top 
 {% endhighlight %}
         <div class="stacks-preview--example bg-black-100">
             {% render 'topbar.html', hideNavigation: true, hideSearch: true, showMenu: true %}
+        </div>
+    </div>
+
+    {% header "h3", "Skip Link" %}
+    <p class="stacks-copy">All topbars must include a skip link.
+        Usually a skip link should be the first focusable element of a page (with the expection of cookie consent dialogs).
+        Skip links are a mechanism to bypass blocks of content that are repeated on multiple web pages and comply with <a class="s-link" href="https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks">WCAG SC 2.4.1</a>.</p>
+
+        {% tip, "info", "mb24" %}
+        <strong>Note:</strong> Skip links become visible only when focused via keyboard navigation and they are announced by screen readers. In the example below hit <code class="stacks-code">Tab</code> on your keyboard to see it appearing when in focus.
+        {% endtip %}
+        <div class="stacks-preview">
+{% highlight html %}
+<header class="s-topbar">
+    <a href="#content" class="s-topbar--skip-link">Skip to main content</a>
+    <div class="s-topbar--container">…</div>
+</header>
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-100">
+            {% render 'topbar.html', hideNavigation: true, hideSearch: true %}
         </div>
     </div>
 </section>
@@ -90,6 +111,7 @@ description: The topbar component is a navigation bar that is placed at the top 
     <div class="stacks-preview">
 {% highlight html %}
 <header class="s-topbar">
+    <a href="#content" class="s-topbar--skip-link">Skip to main content</a>
     <div class="s-topbar--container">
         <a href="…" class="s-topbar--logo">…</a>
 
@@ -128,6 +150,7 @@ description: The topbar component is a navigation bar that is placed at the top 
     <div class="stacks-preview">
 {% highlight html %}
 <header class="s-topbar">
+    <a href="#content" class="s-topbar--skip-link">Skip to main content</a>
     <div class="s-topbar--container">
         <a href="…" class="s-topbar--menu-btn">…</a>
         <a href="…" class="s-topbar--logo">…</a>
@@ -167,6 +190,7 @@ description: The topbar component is a navigation bar that is placed at the top 
     <div class="stacks-preview">
 {% highlight html %}
 <header class="s-topbar">
+    <a href="#content" class="s-topbar--skip-link">Skip to main content</a>
     <div class="s-topbar--container wmx75">…</div>
 </header>
 {% endhighlight %}
