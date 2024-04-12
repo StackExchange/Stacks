@@ -1,5 +1,6 @@
 .s-topbar {
     --_tb-bt: var(--theme-topbar-accent-border, 3px solid var(--theme-primary));
+    --_tb-h: var(--theme-topbar-height, calc(var(--su-static48) + var(--su-static8)));
     // CHILD COMPONENT CUSTOM PROPERTIES
     // Item
     --_tb-item-bg: unset;
@@ -122,6 +123,21 @@
     }
 
     // CHILD ELEMENTS
+    &:has(> &--skip-link:focus) {
+        .s-topbar {
+            &--container {
+                height: var(--_tb-h);
+            }
+            &--skip-link {
+                border-bottom: var(--_tb-bt);
+            }
+        }
+
+        border-top: none;
+        display: block;
+        height: auto;
+    }
+
     & a&--logo {
         &:focus-visible {
             .focus-styles(true);
@@ -136,7 +152,7 @@
     & &--container {
         align-items: center;
         display: flex;
-        height: var(--theme-topbar-height, calc(var(--su-static48) + var(--su-static8)));
+        height: 100%;
         margin: 0 auto;
         max-width: 100%;
         width: var(--s-full);
@@ -439,15 +455,12 @@
         }
     }
 
-    &:has(> &--skip-link:focus) {
-        border-top: none; // Hide the border-top when the skip link is focused
-    }
-
-    // STATIC COMPONENT STYLES
     align-items: center;
     background-color: var(--theme-topbar-background-color, var(--white));
     border-bottom: var(--theme-topbar-bottom-border, var(--su-static1) solid var(--black-225));
     border-top: var(--_tb-bt);
+    display: flex;
+    height: var(--_tb-h);
     min-width: auto;
     position: relative;
     width: 100%;
