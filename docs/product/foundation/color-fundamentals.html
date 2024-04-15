@@ -7,10 +7,6 @@ hide-menu: true
 ---
 
 <div class="lg:pr24 sm:pr0">
-    {% tip, "warning", "mb0" %}
-        We’ve revamped our colors. The <a href="{{ "/product/v1/base/colors/" | url }}">original colors</a> have been deprecated and will be removed from the library in January 2024.
-    {% endtip %}
-
     <section class="stacks-section">
         {% header "h2", "Palette" %}
         {% header "h3", "Neutral colors" %}
@@ -109,7 +105,10 @@ hide-menu: true
                             {% for role in group.roles %}
                                 <tr class="fs-body1">
                                     <th scope="row">
-                                        <div class="stacks-swatch bar-sm bs-sm bg-{{ role.bg }}"></div>
+                                        {% render 'color-swatch.html',
+                                            classes: lightSwatchClasses,
+                                            color: role.bg
+                                        %}
                                     </th>
                                     <td>
                                         {{ role.name | capitalize }}
@@ -234,22 +233,22 @@ hide-menu: true
         <p class="stacks-copy">
             Colors in the neutral palette are layered on top of each other to foster a sense of hierarchy and create associations.
         </p>
-        <div class="d-flex sm:fd-column bar-lg overflow-hidden">
+        <div class="d-flex sm:fd-column">
             {% assign groups = "light,dark" | split: "," %}
             {% for mode in groups %}
                 {% assign bgColor = "bg-black-100" %}
+                {% assign borderRadius = "blr-lg" %}
                 {% if mode == "dark" %}
-                    {% assign bgColor = "bg-black" %}
+                    {% assign bgColor = "bg-white" %}
+                    {% assign borderRadius = "brr-lg" %}
                 {% endif %}
                 {% assign layers = colors[0].layers %}
-                <div class="{{bgColor}} overflow-hidden p64 md:p16 w100">
-                    <div class="bar-lg fs-body2 overflow-hidden theme-{{mode}}__forced">
-                        <div>{{layers[0].name}}</div>
-                        <div class="bg-{{layers[1].color}} bar-lg p48 md:p16 mt8">
-                            <div>{{layers[1].name}}</div>
-                            <div class="bg-{{layers[2].color}} bar-lg p48 pb96 lg:p32 md:p16 mt8">
-                                <div>{{layers[2].name}}</div>
-                            </div>
+                <div class="theme-{{mode}}__forced {{bgColor}} {{borderRadius}} ba bc-black-200 fc-dark fs-body2 p64 md:p16 w100">
+                    <div>{{layers[0].name}}</div>
+                    <div class="bg-{{layers[1].color}} ba bc-black-200 bar-lg p48 md:p16 mt8">
+                        <div>{{layers[1].name}}</div>
+                        <div class="bg-{{layers[2].color}} ba bc-black-200 bar-lg p48 pb96 lg:p32 md:p16 mt8">
+                            <div>{{layers[2].name}}</div>
                         </div>
                     </div>
                 </div>
