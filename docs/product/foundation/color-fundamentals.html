@@ -105,7 +105,10 @@ hide-menu: true
                             {% for role in group.roles %}
                                 <tr class="fs-body1">
                                     <th scope="row">
-                                        <div class="bar-sm bs-sm h32 w32 bg-{{ role.bg }}"></div>
+                                        {% render 'color-swatch.html',
+                                            classes: lightSwatchClasses,
+                                            color: role.bg
+                                        %}
                                     </th>
                                     <td>
                                         {{ role.name | capitalize }}
