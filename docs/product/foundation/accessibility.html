@@ -1,0 +1,321 @@
+---
+layout: page
+title: Accessibility
+description: A non-comprehensive guide to accessibility best practices when using Stacks.
+---
+
+{% assign exampleWrapperClasses = "d-grid fw-wrap gx24 gy64 jc-space-evenly bg-black-100 bar-lg mb16 mt32 py32 px8" %}
+
+<section class="stacks-section">
+    {% header "h2", "Target" %}
+
+    <p class="stacks-copy">All Stack Overflow product UIs must conform to the AA conformance level of the Web Content Accessibility Guidelines (WCAG) 2.2 with a few exceptions around color contrast documented below.</p>
+
+    {% header "h3", "High contrast modes" %}
+
+    <p class="stacks-copy">When high contrast mode is enabled, Stack Overflow product UIs must meet or exceed the <a href="https://www.w3.org/TR/WCAG22/#contrast-enhanced">Success Criterion 1.4.6 Contrast (Enhanced)</a> of the <a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines (WCAG) 2.2</a> and should conform to the remaining <a href="https://www.w3.org/TR/WCAG22/#cc1">AAA conformance level rules</a> when reasonably achievable. This only applies to the subset of Stack Overflow products that provide high contrast modes. <strong>Note: not all Stack Overflow products are expected to support high contrast modes</strong>.</p>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Visual accessibility" %}
+
+    <p class="stacks-copy">Stack Overflow product UIs MUST conform to a custom conformance level of the Accessible Perceptual Contrast Algorithm (APCA). This custom conformance level replaces the <a href="https://www.w3.org/TR/WCAG22/#cc1">AA conformance level</a> of the <a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines (WCAG) 2.2</a> for color contrast.</p>
+
+    {% header "h3", "Color & contrast" %}
+
+    <p class="stacks-copy">Stacks aims to equip you with an accessible color palette and has been tested against WCAG AA, WCAG AAA and the newer APCA color standards. Most of our color combinations meet WCAG AA and APCA levels defined below. We also offer high contrast mode which offers a greater level of contrast.</p>
+
+    {% header "h4", "Contrast ratios" %}
+
+    <p class="stacks-copy">Contrast is the difference in luminance or color between any two elements. All visual readers require ample luminance contrast for fluent readability. Stack Overflow products must conform to a custom conformance level of the Accessible Perceptual Contrast Algorithm (APCA). Based on our custom conformance level, all text must have a Lightness contrast (Lc) value of 60, body copy must have a Lc value of 75, icons must have a Lc value of 45, and placeholder and disabled text must have a Lc of 30. These numbers will be negative when calculating for dark mode.</p>
+
+    {% capture correctElement %}
+        <button class="s-btn s-btn__filled" role="presentation">Button</button>
+        <div class="bar-pill ta-center px8 py2 bg-green-400 fc-white">Robotics</div>
+    {% endcapture %}
+
+    {% capture incorrectElement %}
+        <button class="s-btn s-btn__filled bg-theme-secondary-200" role="presentation">Button</button>
+        <div class="bar-pill ta-center px8 py2 bg-green-400 fc-green-300">Robotics</div>
+    {% endcapture %}
+
+    {% render 'accessibility/comparison.html',
+        classes: "my16",
+        correctExample: correctElement,
+        correctDescription: "Use luminance contrast that meets our standards as defined above.",
+        incorrectExample: incorrectElement,
+        incorrectDescription: "Use low luminance contrast that fail our standards."
+    %}
+
+    {% header "h4", "Visual cues" %}
+
+    <p class="stacks-copy">Visual readers with color vision deficiency (CVD) have problems differentiating some hues and therefore these users need help discerning differences between items. This means that color (hue) should never be the sole means of communicating information and should always be paired with a non-color dependent indicator to accommodate all visual users.</p>
+
+    {% capture correctElement %}
+        <div class="d-flex ps-relative w100 has-error">
+            <input class="s-input" type="text" placeholder="placeholder" role="presentation">
+            {% icon "AlertCircle", "s-input-icon" %}
+        </div>
+    {% endcapture %}
+
+    {% capture incorrectElement %}
+        <div class="d-flex ps-relative w100 has-error">
+            <input class="s-input" type="text" placeholder="placeholder" role="presentation">
+        </div>
+    {% endcapture %}
+
+    {% render 'accessibility/comparison.html',
+        classes: "my16",
+        correctExample: correctElement,
+        correctDescription: "Use an icon alongside color to convey meaning.",
+        incorrectExample: incorrectElement,
+        incorrectDescription: "Use color alone to convey meaning."
+    %}
+
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Focus states" %}
+
+    <p class="stacks-copy">Some people navigate through a website by using a keyboard or other device (instead of a mouse). A focus state should clearly let users know which item they’re on and is ready to interact with. Stack’s has taken a hybrid approach in using both the browser’s default styles (smaller interactive components like text links) and a custom focus ring.</p>
+
+    {% header "h3", "Foundation for custom approach" %}
+
+    <p class="stacks-copy">
+        The custom approach adds two different outline rings on the inside of the component. The outer ring color uses <code class="stacks-code">secondary-theme-400</code>
+        {%
+            render 'color-swatch.html',
+            color: "theme-secondary-400",
+            size: "16",
+            classes: "mbn2"
+        %}
+        (matching the primary button color) and the inner ring color uses <code class="stacks-code">white</code>
+        {%
+            render 'color-swatch.html',
+            color: "white",
+            size: "16",
+            classes: "ba bc-black-200 bs-sm mbn2"
+        %} (matching the background).
+    </p>
+
+    <div class="{{exampleWrapperClasses}} grid__2 mb32">
+        {% for group in accessibility.foundation-for-custom-approach.base %}
+            <div class="ta-center">
+                <button
+                    class="s-btn s-btn__filled s-btn__dropdown s-btn__icon {{group.classes | default: ""}}"
+                    role="presentation">
+                    {% icon "Pencil" %} Button
+                </button>
+                {% render 'example-row-detail.html',
+                    text: group.description,
+                    style: "margin-left: 50%;",
+                    customHeight: 16
+                %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <p class="stacks-copy">
+        The outer ring color will always display as the theme color even when applied to a <code class="stacks-code">muted</code> or <code class="stacks-code">danger</code> styled button. This ensures the focus ring maintains a 3:1 color contrast ratio for any adjacent colors (WCAG level AA) within any theme (assuming the <code class="stacks-code">secondary-theme</code> color
+        {%
+            render 'color-swatch.html',
+            color: "theme-secondary-400",
+            size: "16",
+            classes: "mbn2"
+        %}
+        already passes the 3:1 contrast ratio).
+    </p>
+
+    <div class="{{exampleWrapperClasses}} grid__4 md:grid__2">
+        {% for group in accessibility.foundation-for-custom-approach.variants %}
+            <div class="ta-center">
+                <button class="s-btn s-btn__dropdown s-btn__icon {{group.classes}}" role="presentation">
+                    {% icon "Pencil" %}
+                    Button
+                </button>
+                {% render 'example-row-detail.html',
+                    text: group.description,
+                    style: "margin-left: 50%;",
+                    customHeight: 16
+                %}
+            </div>
+        {% endfor %}
+    </div>
+
+    {% header "h3", "Meeting level AAA" %}
+
+    <p class="stacks-copy">Both focus rings are always 2px thick. This allows the focus state to meet <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html">WCAG 2.4.13 Focus Appearance (AAA)</a> standards for High Contrast mode. Whenever possible, the rings should be added to the inside of the component so we can better ensure that the rings don't get accidentally cut off by the surrounding layout (which helps us to meet <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html">WCAG 2.4.11 Focus Not Obscured AA</a>). However, this does result in a padding reduction within the element, surrounding the text. When choosing to set the focus rings on the inside (inset), the component must have at least 4px of padding at the smallest size. This has been applied to buttons, button groups, navigation, pagination and topbar.</p>
+
+    <p class="stacks-copy">When the padding amount is not sufficient enough to support a double ring on the inside of the component, the rings are placed on the outside. The components included are tags, toggles, form elements (input fields, selects, radio/checkboxes…), block links and the editor.</p>
+
+
+    <div class="{{exampleWrapperClasses}} grid__4 md:grid__2">
+        {% for group in accessibility.meeting-level-aaa %}
+            <div class="ta-center">
+                {% if group.type == "tag" %}
+                    <span class="s-tag {{group.classes | default: ""}}" role="presentation">javascript</span>
+                {% else %}
+                    <input class="s-toggle-switch {{group.classes | default: ""}}" type="checkbox" role="presentation">
+                {% endif %}
+
+                {% render 'example-row-detail.html',
+                    text: group.description,
+                    style: "margin-left: 50%;",
+                    customHeight: 16
+                %}
+            </div>
+        {% endfor %}
+    </div>
+
+    {% header "h3", "Consistent style patterns" %}
+    {% header "h4", "Filled" %}
+
+    <p class="stacks-copy">Any component that already has an existing background color that fills the shape will maintain its original fill color.</p>
+
+    <div class="{{exampleWrapperClasses}} grid__4 md:grid__2">
+        {% for group in accessibility.consistent-style-patterns.filled %}
+            <div class="ta-center">
+                {% if group.type == "navigation" %}
+                    <div class="d-flex ai-center jc-center h32">
+                        <ul class="s-navigation" role="presentation">
+                            <li class="m-auto">
+                                <a href="#" class="s-navigation--item is-selected {{group.classes | default: ""}}">Product</a>
+                            </li>
+                        </ul>
+                    </div>
+                {% else %}
+                    {% assign name = group.description | replace: " ", "-" | downcase %}
+                    <div class="d-flex ai-center jc-center h32">
+                        <div class="d-flex jc-space-around">
+                            <div class="s-toggle-switch s-toggle-switch__multiple">
+                                <input type="radio" name="{{name}}" id="{{name}}-four" checked>
+                                <label for="four" class="s-toggle-switch--label-off {{group.classes | default: ""}}">Off</label>
+                                <input type="radio" name="{{name}}" id="{{name}}-one">
+                                <label for="one">Weekly</label>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% render 'example-row-detail.html',
+                    text: group.description,
+                    style: "margin-left: 50%;",
+                    customHeight: 16
+                %}
+            </div>
+        {% endfor %}
+    </div>
+
+    {% header "h4", "Bordered" %}
+
+    <p class="stacks-copy">For components that have an existing border around the component when not in focus, a background fill color is added in addition to the focus rings. This ensures there’s a strong enough visual difference between the non-focus and focus state, especially in the case of the <code class="stacks-code">.s-btn__outlined</code> (which already displays a theme colored ring as default state). These patterns are maintained across all components for consistency.</p>
+
+    <div class="{{exampleWrapperClasses}} grid__4 md:grid__2">
+        {% for group in accessibility.consistent-style-patterns.bordered %}
+            <div class="ta-center">
+                {% if group.type == "button" %}
+                    <div class="d-flex ai-center jc-center h32">
+                        <button
+                            class="s-btn s-btn__outlined {{group.classes | default: ""}}"
+                            role="presentation">
+                            Button
+                        </button>
+                    </div>
+                {% else %}
+                    <div class="d-flex ai-center jc-center h32">
+                        <div class="s-pagination">
+                            <span class="s-pagination--item m-auto {{ group.classes | default: ""}}" role="presentation">
+                                <span class="v-visible-sr">page</span>
+                                2
+                            </span>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% render 'example-row-detail.html',
+                    text: group.description,
+                    style: "margin-left: 50%;",
+                    customHeight: 16
+                %}
+            </div>
+        {% endfor %}
+    </div>
+
+    {% header "h4", "Floating" %}
+
+    <p class="stacks-copy">Components without an existing fill or border will only display the double rings on focus. Since the inner ring matches the background color in most cases, this will visually appear like a single ring around the perimeter of the component.</p>
+
+    <div class="{{exampleWrapperClasses}} grid__4 md:grid__2">
+        {% for group in accessibility.consistent-style-patterns.floating %}
+            <div class="ta-center">
+                {% if group.type == "block-link" %}
+                    <div class="d-flex ai-center jc-center h32">
+                        <a class="s-block-link bar-sm mx-auto wmx1 {{ group.classes | default: ""}}" href="#" role="presentation">
+                            {% icon "Home" %} Home
+                        </a>
+                    </div>
+                {% endif %}
+
+                {% if group.type == "editor-icon-buttons" %}
+                    <div class="d-flex ai-center jc-center h32">
+                        <style>
+                            .s-btn.s-btn__example,
+                            .s-btn.s-btn__example:hover {
+                                border: var(--su-static2) solid transparent;
+                                color: var(--black-500) !important;
+                            }
+                            .s-btn.s-btn__example:focus,
+                            .s-btn.s-btn__example:focus-visible,
+                            .s-btn.s-btn__example.focus-inset-bordered {
+                                color: var(--black-600) !important;
+                            }
+                            .s-btn.s-btn__dropdown.s-btn__example:after {
+                                right: var(--su-static2);
+                            }
+                        </style>
+                        {% for button in group.items %}
+                            <button
+                                class="s-btn s-btn__example bar-sm bg-transparent p1 {{button.classes}}"
+                                role="presentation">
+                                {% icon button.icon %}
+                                <span class="v-visible-sr">{{button}}</span>
+                            </button>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% render 'example-row-detail.html',
+                    text: group.description,
+                    style: "margin-left: 50%;",
+                    customHeight: 16
+                %}
+            </div>
+        {% endfor %}
+    </div>
+
+    {% header "h4", "Exceptions" %}
+
+    <p class="stacks-copy">The exceptions to this pattern are the <code class="stacks-code">Clear</code> button variations. To avoid these buttons resembling <code class="stacks-code">s-btn__outlined</code> when in focus, the same background fill layer is added as well. All buttons display a background fill layer when in focus. <code class="stacks-code">Clear</code>, <code class="stacks-code">Outline</code> and <code class="stacks-code">Filled</code> styles will all look the same when in focus. The fill color was chosen to match the existing <code class="stacks-code">Filled</code> style. For <code class="stacks-code">Muted</code> variations, since <code class="stacks-code">Muted Filled</code> has been deprecated, the fill color is pulled from the text color used on <code class="stacks-code">Outline</code> before being reversed to white.</p>
+
+    <div class="{{exampleWrapperClasses}} grid__4 md:grid__2">
+        {% for group in accessibility.consistent-style-patterns.exceptions %}
+            <div class="ta-center">
+                {% if group.type == "button" %}
+                    <button class="s-btn s-btn__dropdown s-btn__icon {{group.classes}}" role="presentation">
+                        {% icon "Pencil" %} Button
+                    </button>
+                {% endif %}
+
+                {% render 'example-row-detail.html',
+                    text: group.description,
+                    style: "margin-left: 50%;",
+                    customHeight: 16
+                %}
+            </div>
+        {% endfor %}
+    </div>
+
+    {% header "h3", "Browser default" %}
+
+    <p class="stacks-copy">Some focusable elements and Stacks components currently do not include custom focus styling. These elements will instead render the browser-default focus indicators.</p>
+</section>

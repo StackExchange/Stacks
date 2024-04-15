@@ -1,0 +1,32 @@
+{% comment %}
+    This partial requires the following arguments:
+    - correctExample: The "correct" example element(s) to display.
+    - correctDescription: The description of the "correct" example.
+    - incorrectExample: The "incorrect" example element(s) to display.
+    - incorrectDescription: The description of the "incorrect" example.
+{% endcomment %}
+
+<div class="d-grid grid__2 sm:grid__1 g32 {{classes}}">
+  {% assign comparison = "correct,incorrect" | split: "," %}
+  {% for group in comparison %}
+      {% assign descriptionBg = "bg-green-100" %}
+      {% if group == "incorrect" %}
+          {% assign descriptionBg = "bg-red-100" %}
+      {% endif %}
+      <div class="bg-black-100 bar-lg overflow-hidden w100">
+          <div class="d-flex fd-column ai-center g16 p24">
+            {% if group == "correct" %}{{correctExample}}{% else %}{{incorrectExample}}{% endif %}
+          </div>
+          <div class="{{descriptionBg}} d-flex fd-column fs-body2 g16 h100 p24">
+              <div class="d-flex ai-center g8 fs-subheading fw-bold">
+                  {% if group == "correct" %}
+                      {% icon "CheckmarkSm", "fc-green-500" %} Do
+                  {% else %}
+                      {% icon "ClearSm", "fc-red-500" %} Don't
+                  {% endif %}
+              </div>
+              {% if group == "correct" %}{{correctDescription}}{% else %}{{incorrectDescription}}{% endif %}
+          </div>
+      </div>
+  {% endfor %}
+</div>

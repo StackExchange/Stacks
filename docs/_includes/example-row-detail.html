@@ -1,0 +1,30 @@
+{% comment %}
+    This partial accepts the following arguments:
+    - text (required): The text to display.
+    - range: Whether to display a range line. Default: false.
+    - position: Where to place the text. Options: "top", "bottom". Default: "bottom".
+    - connectorHeight: provide a custom height for the line from the example to the text.
+    - style: Additional styles to add to the wrapper. Generally used to set position and size of the element.
+{% endcomment %}
+
+{% assign computedClasses = "" %}
+{% assign positionClasses = "mt8 fd-column" %}
+{% assign height = 12 %}
+
+{% if range != true %}
+  {% assign computedClasses = "mx-auto" %}
+{% endif %}
+{% if position == "top" %}
+  {% assign positionClasses = "mb8 fd-column-reverse" %}
+{% endif %}
+{% if range != true and position != "top" %}
+  {% assign height = "24" %}
+{% endif %}
+
+<div class="d-flex ai-center fc-light fs-caption fs-italic overflow-visible {{computedClasses}} {{positionClasses}} {{classes}}" style="{{style}}" role="presentation">
+    {% if range %}
+        <div class="ba btw0 bc-black-250 h{{connectorHeight | default: height}} w100"></div>
+    {% endif %}
+    <div class="bl bc-black-250 h{{connectorHeight | default: height}} mb2"></div>
+    <div class="ta-center w100">{{text}}</div>
+</div>

@@ -1,0 +1,282 @@
+---
+layout: page
+title: Typography
+figma: https://www.figma.com/file/x5Q2TKTuTcFhK1FIeCq9dk/Typography
+description: Stacks provides atomic classes to override default styling of typography. Change typographic weights, styles, and alignment with these atomic styles.
+---
+<section class="stacks-section">
+    {% header "h2", "Basic" %}
+    <p class="stacks-copy">These styles should only be used as overrides. They shouldn’t replace standard semantic uses of <code class="stacks-code">strong</code> or <code class="stacks-code">em</code> tags.</p>
+
+    {% header "h3", "Basic classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn5 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for basic in typography.type-basic %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">.{{ basic.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ basic.output }}</code></td>
+                        <td>{{ basic.define }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Basic examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<p class="fw-normal">…</p>
+<p class="fw-bold">…</p>
+
+<p class="fs-normal">…</p>
+<p class="fs-italic">…</p>
+<p class="fs-unset">…</p>
+
+<p class="tt-capitalize">…</p>
+<p class="tt-lowercase">…</p>
+<p class="tt-uppercase">…</p>
+<p class="tt-none">…</p>
+<p class="tt-unset">…</p>
+
+<a class="td-underline">…</a>
+<a class="td-none">…</a>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex fd-column gy16">
+                <div class="flex--item"><strong>Font Weight:</strong> Normal</div>
+                <div class="flex--item"><strong>Font Weight:</strong> <span class="fw-bold">Bold</span></div>
+                <div class="flex--item"><strong>Font Style:</strong> <span class="fs-normal">Normal</span></div>
+                <div class="flex--item"><strong>Font Style:</strong> <span class="fs-italic">Italic</span></div>
+                <div class="flex--item mb32"><strong>Font Style:</strong> <span class="fs-unset">Unset</span></div>
+                <div class="flex--item"><strong>Text Transform:</strong> <span class="tt-capitalize">Capitalize</span></div>
+                <div class="flex--item"><strong>Text Transform:</strong> <span class="tt-lowercase">Lowercase</span></div>
+                <div class="flex--item"><strong>Text Transform:</strong> <span class="tt-uppercase">Uppercase</span></div>
+                <div class="flex--item"><strong>Text Transform:</strong> <span class="tt-none">None</span></div>
+                <div class="flex--item mb32"><strong>Text Transform:</strong> <span class="tt-unset">Unset</span></div>
+                <div class="flex--item"><strong>Text Decoration:</strong> <a><span class="td-underline">Underline</span></a></div>
+                <div class="flex--item"><strong>Text Decoration:</strong> <a><span class="td-none">None</span></a></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="typography-layout" class="stacks-section">
+    {% header "h2", "Layout" %}
+    {% header "h3", "Layout classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn5 s-table s-table__bx-simple va-middle">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Output</th>
+                    <th scope="col">Definition</th>
+                    <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/develop/conditional-classes#responsive" | url }}">Responsive?</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for layout in typography.type-layout %}
+                    <tr class="fs-caption">
+                        <th scope="row"><code class="stacks-code">.{{ layout.class }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ layout.output }}</code></td>
+                        <td><p class="m0">{{ layout.define }}</p></td>
+                        <td class="ta-center">
+                            {% if layout.responsive %}
+                                {% icon "Checkmark", "fc-green-400" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Layout examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<p class="ta-left">Text align: Left</p>
+<p class="ta-center">Text align: Center</p>
+<p class="ta-right">Text align: Right</p>
+<p class="ta-justify">Justify: …</p>
+<p class="ta-unset">Text align: Unset</p>
+
+<p class="ws-normal">White-space: Normal</p>
+<p class="ws-nowrap">White-space: Nowrap</p>
+<p class="ws-pre">White-space: Pre</p>
+<p class="ws-pre-wrap">White-space: Pre-wrap</p>
+<p class="ws-pre-line">White-space: Pre-line</p>
+<p class="ws-unset">White-space: Unset</p>
+
+<p class="break-word">Break word</p>
+
+<p class="truncate">Truncate: …</p>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <p class="ta-left"><strong>Text Align:</strong> Left</p>
+            <p class="ta-center"><strong>Text Align:</strong> Center</p>
+            <p class="ta-right"><strong>Text Align:</strong> Right</p>
+            <p class="ta-justify"><strong>Text Align:</strong> Justify — Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p class="ta-unset mb32"><strong>Text Align:</strong> Unset</p>
+            <p class="ws-normal"><strong>White-space:</strong> Normal</p>
+            <p class="ws-nowrap"><strong>White-space:</strong> Nowrap</p>
+            <p class="ws-pre"><strong>White-space:</strong> Pre</p>
+            <p class="ws-pre-wrap"><strong>White-space:</strong> Pre-wrap</p>
+            <p class="ws-pre-line"><strong>White-space:</strong> Pre-line</p>
+            <p class="ws-unset mb32"><strong>White-space:</strong> Unset</p>
+            <p class="break-word mb32"><strong>Break word:</strong> MethionylglutaminylarginylhionylglutaminylargintyrosylglutamylmethionylglutaminylarginyltyrlarginyltyrosylglutamylMethionylglutaminylarginyltyrosylglutamylnyltyrosylserinemethionylglutaminylargiglutamylmethionyosylglutamylmethionylglutaminylglutaminylarginyltyrosylglutamylmethionylglutaminylarginyltyrosylglutamylmetyltyrosylglutamylserine</p>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Fonts" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<p class="ff-sans">…</p>
+<p class="ff-serif">…</p>
+<p class="ff-mono">…</p>
+<p class="ff-inherit">…</p>
+{% endhighlight %}
+        <div class="stacks-preview--example d-flex fd-column gy16 my0 fs-subheading">
+            <div class="flex--item">
+                <p class="ff-sans mb0">Sans Serif</p>
+                <p class="ff-mono fs-caption fc-light">-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"</p>
+            </div>
+            <div class="flex--item">
+                <p class="ff-serif mb0">Serif</p>
+                <p class="ff-mono fs-caption fc-light">Georgia, Cambria, "Times New Roman", Times, serif</p>
+            </div>
+            <div class="flex--item">
+                <p class="ff-mono mb0">Monospace</p>
+                <p class="ff-mono fs-caption fc-light mb0">"SF Mono", SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Sizes" %}
+    <p class="stacks-copy">
+        Fonts larger than <code class="stacks-code">.fs-body1</code> are reduced in size at the smallest responsive breakpoint. <code class="stacks-code">.fs-body1</code> or smaller remain fixed at their initial pixel values.
+    </p>
+    {% header "h3", "Size classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Size</th>
+                    <th scope="col">Responsive Size</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for term in typography.fontsize %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">.fs-{{ term.term }}</code></th>
+                        <td><code class="stacks-code bg-white">{{ term.define }}</code></td>
+                        <td><code class="stacks-code bg-white">{{ term.responsive }}</code></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Size examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<p class="fs-fine">…</p>
+<p class="fs-caption">…</p>
+<p class="fs-body1">…</p>
+<p class="fs-body2">…</p>
+<p class="fs-body3">…</p>
+<p class="fs-subheading">…</p>
+<p class="fs-title">…</p>
+<p class="fs-headline1">…</p>
+<p class="fs-headline2">…</p>
+<p class="fs-display1">…</p>
+<p class="fs-display2">…</p>
+<p class="fs-display3">…</p>
+<p class="fs-display4">…</p>
+{% endhighlight %}
+        <div class="stacks-preview--example d-flex fd-column gy16 my0">
+            {% for term in typography.fontsize %}
+            <div class="d-flex">
+                <div class="flex--item3 fc-light fs-caption fw-bold">{{ term.label }}</div>
+                <div class="flex--item fs-{{ term.term }} lh-xs">
+                    <span class="d-block sm:d-none">{{ term.define }}</span>
+                    <span class="d-none sm:d-block">{{ term.responsive }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% header "h2", "Category titles" %}
+    <p class="stacks-copy">Category titles help break content into digestible chunks, but are visually smaller than a traditional headline. They are meta descriptions of a content block. To further visually separate the content block from surrounding items, you can add a <code class="stacks-code">.has-border</code> class.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<p class="fs-category">…</p>
+<p class="fs-category has-border">…</p>
+{% endhighlight %}
+        <div class="stacks-preview--example d-flex fd-column gy16 mt0">
+            <div class="d-flex ai-center">
+                <div class="flex--item4 fc-light fs-caption fw-bold">Category</div>
+                <div class="flex--item fs-category lh-xs w100">Category Title (12px)</div>
+            </div>
+            <div class="d-flex ai-center">
+                <div class="flex--item4 fc-light fs-caption fw-bold">Category (Has Border)</div>
+                <div class="flex--item fs-category has-border lh-xs">Category Title (12px)</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Line height" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<p class="lh-xs">…</p>
+<p class="lh-sm">…</p>
+<p class="lh-md">…</p>
+<p class="lh-lg">…</p>
+<p class="lh-xl">…</p>
+<p class="lh-xxl">…</p>
+<p class="lh-unset">…</p>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <p class="lh-xs"><strong>Line Height XS:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="lh-sm"><strong>Line Height SM:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1.15</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="lh-md"><strong>Line Height MD:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1.3</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="lh-lg"><strong>Line Height LG:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1.6</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="lh-xl"><strong>Line Height XL:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">1.92</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="lh-xxl"><strong>Line Height XXL:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">2</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="lh-unset"><strong>Line Height Unset:</strong> This sets the <code class="stacks-code">line-height</code> value to <code class="stacks-code">initial</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Hyphenation" %}
+    <p class="stacks-copy">Our hyphenation classes determine when text that wraps across multiple lines is hyphenated. You can prevent hyphenation entirely, or allow the browser to automatically hypenate.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<p class="hyphens-none">…</p>
+<p class="hyphens-auto">…</p>
+{% endhighlight %}
+        <div class="stacks-preview--example d-flex">
+            <div class="flex--item bg-black-200 p12 ba bc-black-225 hyphens-none ow-break-word w96 mr16">
+                This text will not be hyphenated when large words break—longer words are broken by <code class="stacks-code bg-black-250">.ow-break-word</code>.
+            </div>
+            <div class="flex--item bg-black-200 p12 ba bc-black-225 hyphens-auto w96">
+                This text will be hyphenated when large words break. <code class="stacks-code bg-black-250">.ow-break-word</code> shouldn’t be necessary since breaks are implied by hyphenation rules.
+            </div>
+        </div>
+    </div>
+</section>
