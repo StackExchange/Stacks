@@ -1,4 +1,6 @@
 .s-topbar {
+    --_tb-bt: var(--theme-topbar-accent-border, 3px solid var(--theme-primary));
+    --_tb-h: var(--theme-topbar-height, calc(var(--su-static48) + var(--su-static8)));
     // CHILD COMPONENT CUSTOM PROPERTIES
     // Item
     --_tb-item-bg: unset;
@@ -109,6 +111,21 @@
     }
 
     // CHILD ELEMENTS
+    &:has(> &--skip-link:focus) {
+        .s-topbar {
+            &--container {
+                height: var(--_tb-h);
+            }
+            &--skip-link {
+                border-bottom: var(--_tb-bt);
+            }
+        }
+
+        border-top: none;
+        display: block;
+        height: auto;
+    }
+
     & a&--logo {
         &:focus-visible {
             .focus-styles(true);
@@ -401,6 +418,20 @@
         padding: var(--_tb-searchbar-p);
     }
 
+    & &--skip-link {
+        &:not(:focus) {
+            &:extend(.v-visible-sr);
+        }
+
+        background-color: var(--theme-secondary-100);
+        border-bottom: var(--_tb-bt);
+        display: block;
+        outline: none;
+        padding: var(--su12);
+        text-align: center;
+    }
+
+
     .s-navigation {
         .s-navigation--item {
             &:not(.is-selected) {
@@ -427,13 +458,12 @@
         }
     }
 
-    // STATIC COMPONENT STYLES
     align-items: center;
     background-color: var(--theme-topbar-background-color, var(--white));
     border-bottom: var(--theme-topbar-bottom-border, var(--su-static1) solid var(--black-225));
-    border-top: var(--theme-topbar-accent-border, 3px solid var(--theme-primary));
+    border-top: var(--_tb-bt);
     display: flex;
-    height: var(--theme-topbar-height, calc(var(--su-static48) + var(--su-static8)));
+    height: var(--_tb-h);
     min-width: auto;
     position: relative;
     width: 100%;

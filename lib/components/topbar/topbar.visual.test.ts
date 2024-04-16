@@ -122,6 +122,7 @@ const topbarChildren = ({
     unsetItem?: boolean;
 }) => {
     return `
+        <a href="#content" class="s-topbar--skip-link">Skip to main content</a>
         <div class="s-topbar--container">
             ${hamburger ? (hamburger === "unselected" ? children.hamburger.unselected : children.hamburger.selected) : ""}
             ${children.logo}
