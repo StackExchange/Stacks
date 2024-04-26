@@ -17,10 +17,7 @@ const template = ({ component, testid }: any) => html`
 describe("tag", () => {
     runVisualTests({
         baseClass: "s-tag",
-        variants: ["ignored", "watched", "moderator", "muted", "required"],
-        modifiers: {
-            global: ["is-selected"],
-        },
+        variants: ["ignored", "watched", "moderator", "required"],
         children,
         template,
     });
@@ -30,7 +27,6 @@ describe("tag", () => {
         baseClass: "s-tag",
         modifiers: {
             primary: ["xs", "sm", "md", "lg"],
-            global: ["is-selected"],
         },
         children: {
             default: `default`,
