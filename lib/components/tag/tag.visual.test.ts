@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { IconClearSm } from "@stackoverflow/stacks-icons";
+import { IconClearSm } from "@stackoverflow/stacks-icons/icons";
 import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
