@@ -42,6 +42,7 @@ describe("label", () => {
             modifiers: {
                 primary: ["sm", "md", "lg", "xl"],
             },
+            // TODO: add abbr s-required-symbol variant
             children: isDisabled
                 ? {
                       "disabled": getChildren(text),
