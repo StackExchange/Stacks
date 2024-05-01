@@ -16,12 +16,6 @@ describe("code block", () => {
             attributes: {
                 tabindex: "0",
             },
-            // TODO revisit these skipped test ids
-            skippedTestids: [
-                /s-code-block-language-(html|css|javascript)-dark/,
-                /s-code-block-language-html-highcontrast-(light|dark)/,
-                "s-code-block-language-javascript-highcontrast-light",
-            ],
         });
     });
 });
