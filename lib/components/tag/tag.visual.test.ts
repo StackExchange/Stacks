@@ -20,7 +20,9 @@ const themeStyles = `
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const template = ({ component, testid, style = "" }: any) => html`
-    <div data-testid="${testid}" class="d-inline-block p4" style="${style}">${component}</div>
+    <div data-testid="${testid}" class="d-inline-block p4" style="${style}">
+        ${component}
+    </div>
 `;
 
 describe("tag", () => {
@@ -56,11 +58,12 @@ describe("tag", () => {
         children: {
             default: children.default,
         },
-        template: ({ component, testid }) => template({
-            component,
-            testid,
-            style: themeStyles,
-        }),
+        template: ({ component, testid }) =>
+            template({
+                component,
+                testid,
+                style: themeStyles,
+            }),
         options: {
             includeNullModifier: false,
         },
