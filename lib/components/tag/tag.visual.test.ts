@@ -23,7 +23,6 @@ const template = ({ component, testid, style = "" }: any) => html`
     <div data-testid="${testid}" class="d-inline-block p4" style="${style}">${component}</div>
 `;
 
-
 describe("tag", () => {
     runVisualTests({
         baseClass: "s-tag",
