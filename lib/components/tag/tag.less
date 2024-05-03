@@ -93,8 +93,12 @@
     }
 
     &&__required:not(&__moderator) {
-        --_ta-bc: var(--black-400);
-        --_ta-bc-hover: var(--black-600);
+        --_ta-bc: var(--theme-tag-required-border-color, var(--theme-tag-border-color, var(--black-400)));
+        --_ta-bg: var(--theme-tag-required-background-color, var(--theme-tag-background-color, var(--black-150)));
+        --_ta-fc: var(--theme-tag-required-color, var(--theme-tag-color, var(--black-500)));
+        --_ta-bc-hover: var(--theme-tag-required-hover-border-color, var(--theme-tag-hover-border-color, var(--black-600)));
+        --_ta-bg-hover: var(--theme-tag-required-hover-background-color, var(--theme-tag-hover-background-color, var(--black-200)));
+        --_ta-fc-hover: var(--theme-tag-required-hover-color, var(--theme-tag-hover-color, var(--black-600)));
     }
 
     &__watched, // TODO: remove all single `&` watched styles once core no longer requires them
@@ -173,6 +177,7 @@
 
     align-items: center;
     display: inline-flex;
+    font-weight: 700;
     justify-content: center;
     min-width: 0;
     text-decoration: none;
