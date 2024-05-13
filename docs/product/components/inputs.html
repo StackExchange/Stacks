@@ -71,6 +71,79 @@ description: Input elements are used to gather information from users.
         <li>If you have a group of related inputs, use the <code class="stacks-code">fieldset</code> and <code class="stacks-code">legend</code> to group them together.</li>
     </ul>
     <p class="stacks-copy">For more information, please read Gov.UK's article, <a href="https://accessibility.blog.gov.uk/2016/07/22/using-the-fieldset-and-legend-elements/" target="_blank"><em>"Using the fieldset and legend elements"</em></a>.</p>
+
+    {% header "h3", "Required input fields" %}
+    <p class="stacks-copy">Labels or instructions must be provided when content requires user input. For any input field within a form that is required for successful data submission, provide the asterisk <code class="stacks-code">*</code> as a symbol and a legend advising the meaning of the symbol before the first use.</p>
+    <p class="stacks-copy">Stacks includes a special <code class="stacks-code">.s-required-symbol</code> class to ensure the symbol (asterisk) is clearly visible.</p>
+
+    <table class="wmn4 s-table s-table__bx-simple mb16">
+        <thead>
+            <tr>
+                <th class="s-table--cell2" scope="col">Class</th>
+                <th class="s-table--cell3" scope="col">Applies</th>
+                <th scope="col">Definition</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row"><code class="stacks-code">.s-required-symbol</code></th>
+                <td><code class="stacks-code">abbr</code> element enclosing the asterisk</td>
+                <td>Used to style the asterisk indicating that a specific field is required.</td>
+            </tr>
+        </tbody>
+    </table>
+{% highlight html %}
+<abbr class="s-required-symbol" title="required">*</abbr>
+{% endhighlight %}
+    <p class="stacks-copy mt16">Required symbols are not necessary for areas where only a single input field is seen on the page (ex: sign up modals). For more information, see <a href="https://www.w3.org/WAI/WCAG22/Techniques/html/H90" target="_blank">WCAG Technique H90</a>.</p>
+
+    {% header "h3", "Required input fields example" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="d-flex w100 jc-space-between ai-center">
+    <h1 class="fs-headline1 fw-normal mb16">
+        Ask a question
+    </h1>
+    <p class="fs-caption fc-black-400">Required fields<abbr class="s-required-symbol" title="required">*</abbr></p>
+</div>
+<form class="d-flex fd-column gy16">
+    <div class="d-flex gy4 fd-column">
+        <label class="s-label" for="example-title-required">Title<abbr class="s-required-symbol" title="required">*</abbr></label>
+        <input class="s-input" id="example-title-required" type="text" placeholder="Type a title" />
+    </div>
+    <div class="d-flex gy4 fd-column">
+        <label class="s-label" for="example-body-required">Body<abbr class="s-required-symbol" title="required">*</abbr></label>
+        <textarea class="s-textarea hmn1" id="example-body-required" placeholder="Type a question"></textarea>
+    </div>
+    <div class="d-flex gy4 fd-column">
+        <label class="s-label" for="example-ask-members">Ask team members</label>
+        <input class="s-input" id="example-ask-members" type="text" placeholder="Type a name" />
+    </div>
+</form>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex w100 jc-space-between ai-center">
+                <h1 class="fs-headline1 fw-normal mb16">
+                    Ask a question
+                </h1>
+                <p class="fs-caption fc-black-400">Required fields<abbr class="s-required-symbol" title="required">*</abbr></p>
+            </div>
+            <form class="d-flex fd-column gy16">
+                <div class="d-flex gy4 fd-column">
+                    <label class="s-label" for="example-title-required">Title<abbr class="s-required-symbol" title="required">*</abbr></label>
+                    <input class="s-input" id="example-title-required" type="text" placeholder="Type a title" />
+                </div>
+                <div class="d-flex gy4 fd-column">
+                    <label class="s-label" for="example-body-required">Body<abbr class="s-required-symbol" title="required">*</abbr></label>
+                    <textarea class="s-textarea hmn1" id="example-body-required" placeholder="Type a question"></textarea>
+                </div>
+                <div class="d-flex gy4 fd-column">
+                    <label class="s-label" for="example-ask-members">Ask team members</label>
+                    <input class="s-input" id="example-ask-members" type="text" placeholder="Type a name" />
+                </div>
+            </form>
+        </div>
+    </div>
 </section>
 
 <section class="stacks-section">
