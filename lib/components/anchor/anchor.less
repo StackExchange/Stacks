@@ -22,7 +22,7 @@
     &&__default {
         --_an-a-fc: var(--theme-link-color, var(--theme-secondary-400));
         --_an-a-fc-hover: var(--theme-link-color-hover, var(--theme-secondary-500));
-        --_an-a-fc-visited: var(--theme-link-color-visited, var(--theme-secondary-600));
+        --_an-a-fc-visited: var(--theme-link-color-visited, var(--purple-500));
     }
 
     &&__grayscale {
@@ -52,15 +52,12 @@
         .s-btn.s-btn__link {
             color: var(--_an-a-fc, inherit);
 
-            &:hover,
-            &:active {
-                &,
-                &:visited {
-                    color: var(--_an-a-fc-hover);
-                }
+            &:active,
+            &:hover {
+                color: var(--_an-a-fc-hover);
             }
 
-            &:visited {
+            &:visited:not(:active):not(:hover) {
                 color: var(--_an-a-fc-visited, inherit);
             }
         }

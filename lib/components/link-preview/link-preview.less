@@ -25,12 +25,10 @@
     & &--details,
     & &--footer {
         a {
-            &:visited {
-                color: var(--black-500);
-            }
             &:hover,
             &:active,
-            &:focus {
+            &:focus,
+            &:visited {
                 color: var(--black-500);
             }
 
@@ -106,11 +104,8 @@
 
     & a&--title {
         &:active,
-        &:hover{
-            &,
-            &.s-link__visited {
-                color: var(--theme-link-color-hover, var(--theme-secondary-500));
-            }
+        &:hover {
+            color: var(--theme-link-color-hover, var(--theme-secondary-500));
         }
 
         &:active,
@@ -125,8 +120,11 @@
             text-decoration: none;
         }
 
-        &.s-link__visited:visited {
-            color: var(--theme-link-color, var(--theme-secondary-600));
+        &:visited,
+        &.s-link__visited {
+            &:not(:active):not(:hover) {
+                color: var(--theme-link-color, var(--purple-500));
+            }
         }
 
         color: var(--theme-link-color, var(--theme-secondary-400));
