@@ -2,7 +2,7 @@
     // CUSTOM PROPERTIED DEFINED WITHIN VARIANTS
     // --_an-a-fc
     // --_an-a-fc-hover
-    --_an-a-fc-visited: var(--_an-a-fc);
+    // --_an-a-fc-visited
 
     // MODIFIERS
     &&__underlined {
@@ -56,10 +56,11 @@
             &:hover {
                 color: var(--_an-a-fc-hover);
             }
+        }
 
-            &:visited:not(:active):not(:hover) {
-                color: var(--_an-a-fc-visited, inherit);
-            }
+        // These `:not`s match the selectors in the `link.less` file to ensure it takes precedence over the styles defined in `link.less`.
+        a:not(.s-link):visited:not(:active):not(:hover):not(.s-badge):not(.s-block-link):not(.s-breadcrumbs--link):not(.s-btn):not(.s-navigation--item):not(.s-pagination--item):not(.s-tag):not(.s-topbar--item):not(.s-topbar--skip-link) {
+            color: var(--_an-a-fc-visited, inherit);
         }
     }
 }
