@@ -5,6 +5,7 @@ a,
     --_li-fc: var(--theme-link-color, var(--theme-secondary-400));
     --_li-fc-hover: var(--theme-link-color-hover, var(--theme-secondary-500));
     --_li-fc-visited: var(--theme-link-color-visited, var(--purple-500));
+    --_li-fc-hover-visited: var(--theme-link-color-visited, var(--purple-400));
 
     // CONTEXTUAL STYLES
     .highcontrast-mode({
@@ -41,9 +42,17 @@ a,
             --_li-fc: var(--theme-link-color-visited, var(--purple-500));
             --_li-fc-hover: var(--theme-link-color-hover, var(--purple-500));
             --_li-fc-visited: var(--theme-link-color-visited, var(--purple-500));
+            --_li-fc-hover-visited: var(--theme-link-color-visited, var(--purple-400));
         }
 
         // VARIANTS
+        &__danger,
+        &__grayscale,
+        &__inherit,
+        &__muted {
+            --_li-fc-hover-visited: var(--_li-fc-hover);
+        }
+
         &__danger {
             --_li-fc: var(--red-400);
             --_li-fc-hover: var(--red-500);
@@ -82,8 +91,14 @@ a,
         color: var(--_li-fc-hover);
     }
 
-    &:visited:not(:active):not(:hover):not(.s-badge):not(.s-block-link):not(.s-breadcrumbs--link):not(.s-btn):not(.s-navigation--item):not(.s-pagination--item):not(.s-tag):not(.s-topbar--item):not(.s-topbar--skip-link) {
-        color: var(--_li-fc-visited);
+    &:visited {
+        .exclude-component-links({
+            &:not(:active):not(:hover) {
+                color: var(--_li-fc-visited);
+            }
+
+            color: var(--_li-fc-hover-visited);
+        });
     }
 
     color: var(--_li-fc);
