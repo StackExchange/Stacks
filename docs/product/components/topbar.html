@@ -97,9 +97,11 @@ description: The topbar component is a navigation bar that is placed at the top 
             {% assign variations = "s-topbar__auto,s-topbar__dark,s-topbar__light" | split: "," %}
             <div class="d-grid g24 grid__1">
                 {% for variation in variations %}
+                    {% assign variationName =  variation | split: "__" | last %}
+                    {% assign popoverID =  "adv-usage-popover-" | append: variationName %}
                     <div class="grid--item">
-                        <h4 class="fs-body2 mb8">{{ variation | split: "__" | last | capitalize }}</h4>
-                        {% render 'topbar.html', additionalClass: variation, isMod: true %}
+                        <h4 class="fs-body2 mb8">{{variationName | capitalize }}</h4>
+                        {% render 'topbar.html', additionalClass: variation, isMod: true, popoverID: popoverID %}
                     </div>
                 {% endfor %}
             </div>
@@ -135,11 +137,11 @@ description: The topbar component is a navigation bar that is placed at the top 
             <div class="d-grid g24 grid__1">
                 <div class="grid--item">
                     <h4 class="fs-body2 mb8">With select</h4>
-                    {% render 'topbar.html', showNavigation: false, hideUserCard: true %}
+                    {% render 'topbar.html', showNavigation: false, hideUserCard: true, popoverID: "search-bar-w-select-popover" %}
                 </div>
                 <div class="grid--item">
                     <h4 class="fs-body2 mb8">Input only</h4>
-                    {% render 'topbar.html', showNavigation: false, hideUserCard: true, hideSelect: true %}
+                    {% render 'topbar.html', showNavigation: false, hideUserCard: true, hideSelect: true, popoverID: "search-bar-input-only-popover" %}
                 </div>
             </div>
         </div>
@@ -195,7 +197,7 @@ description: The topbar component is a navigation bar that is placed at the top 
 </header>
 {% endhighlight %}
         <div class="stacks-preview--example bg-black-100">
-            {% render 'topbar.html', containerClass: "wmx75", hideUserCard: true  %}
+            {% render 'topbar.html', containerClass: "wmx75", hideUserCard: true, popoverID: "variable-content-width-popover" %}
         </div>
     </div>
 </section>

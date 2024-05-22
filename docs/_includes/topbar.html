@@ -64,8 +64,102 @@
                     </div>
                 {% endunless %}
                 <div class="s-topbar--searchbar--input-group">
-                    <input type="text" placeholder="Search…" value="" autocomplete="off" class="s-input s-input__search" />
-                    {% icon "Search", "s-input-icon s-input-icon__search" %}
+                    {% if popoverID == blank %}
+                        <input type="text" placeholder="Search…" value="" autocomplete="off" class="s-input s-input__search"/>
+                        {% icon "Search", "s-input-icon s-input-icon__search" %}
+                    {% else %}
+                        <input
+                            type="text"
+                            placeholder="Search…"
+                            value=""
+                            autocomplete="off"
+                            class="s-input s-input__search"
+                            aria-controls="{{ popoverID }}"
+                            data-controller="s-popover"
+                            data-action="focus->s-popover#show"
+                            data-s-popover-placement="bottom-start"
+                        />
+                        {% icon "Search", "s-input-icon s-input-icon__search" %}
+                        <div id="{{ popoverID }}" class="s-topbar--searchbar--popover s-popover wmn4 sm:wmn-initial" role="menu">
+                            <div class="s-popover--arrow"></div>
+                            <div class="s-topbar--searchbar--popover-content">
+                                <div class="fc-black-500 d-flex fd-column g12 p12">
+                                    <div class="d-flex fd-column g12">
+                                        <div>
+                                            <span class="ff-mono fc-black-600">[tag]</span>
+                                            <span class="fc-black-400">search within a tag</span>
+                                        </div>
+                                        <div>
+                                            <span class="ff-mono fc-black-600">user:1234</span>
+                                            <span class="fc-black-400">search by author</span>
+                                        </div>
+                                        <div>
+                                            <span class="ff-mono fc-black-600">"words here"</span>
+                                            <span class="fc-black-400">exact phrase</span>
+                                        </div>
+                                        <div>
+                                            <span class="ff-mono fc-black-600">collective:"Name"</span>
+                                            <span class="fc-black-400">collective content</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex fd-column g12">
+                                        <div>
+                                            <span class="ff-mono fc-black-600">[tag]</span>
+                                            <span class="fc-black-400">search within a tag</span>
+                                        </div>
+                                        <div>
+                                            <span class="ff-mono fc-black-600">user:1234</span>
+                                            <span class="fc-black-400">search by author</span>
+                                        </div>
+                                        <div>
+                                            <span class="ff-mono fc-black-600">"words here"</span>
+                                            <span class="fc-black-400">exact phrase</span>
+                                        </div>
+                                        <div>
+                                            <span class="ff-mono fc-black-600">collective:"Name"</span>
+                                            <span class="fc-black-400">collective content</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex fd-column g12">
+                                        <div>
+                                            <span class="ff-mono fc-black-600">[tag]</span>
+                                            <span class="fc-black-400">search within a tag</span>
+                                        </div>
+                                        <div>
+                                            <span class="ff-mono fc-black-600">user:1234</span>
+                                            <span class="fc-black-400">search by author</span>
+                                        </div>
+                                        <div>
+                                            <span class="ff-mono fc-black-600">"words here"</span>
+                                            <span class="fc-black-400">exact phrase</span>
+                                        </div>
+                                        <div>
+                                            <span class="ff-mono fc-black-600">collective:"Name"</span>
+                                            <span class="fc-black-400">collective content</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex fd-column g12">
+                                        <div>
+                                            <span class="ff-mono fc-black-600">answers:0</span>
+                                            <span class="fc-black-400">unanswered questions</span>
+                                        </div>
+                                        <div>
+                                            <span class="ff-mono fc-black-600">score:3</span>
+                                            <span class="fc-black-400">posts with a 3+ score</span>
+                                        </div>
+                                        <div>
+                                            <span class="ff-mono fc-black-600">is:question</span>
+                                            <span class="fc-black-400">type of post</span>
+                                        </div>
+                                        <div>
+                                            <span class="ff-mono fc-black-600">isaccepted:yes</span>
+                                            <span class="fc-black-400">search within status</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
             </form>
         {% endunless %}

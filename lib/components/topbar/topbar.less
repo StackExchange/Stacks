@@ -31,6 +31,7 @@
     --_tb-searchbar-p: 0 var(--su8);
     --_tb-searchbar-open-d: unset;
     --_tb-searchbar-open-mxw: 0;
+    --_tb-searchbar-popover-content-mxh: calc(100vh - var(--_tb-h) - var(--su16));
 
     // CONTEXTUAL STYLES
     .dark-mode({
@@ -97,6 +98,7 @@
         --_tb-searchbar-open-d: flex;
         --_tb-searchbar-open-mxw: none;
         --_tb-searchbar-select-w: 25%;
+        --_tb-searchbar-popover-content-mxh: calc(100vh - var(--_tb-h) - var(--su48) - var(--su12));
     });
 
     // VARIANTS
@@ -365,6 +367,16 @@
 
             flex-grow: 1;
             position: relative;
+        }
+
+        .s-topbar--searchbar--popover {
+            max-width: 100%;
+            padding: 0;
+
+            .s-topbar--searchbar--popover-content {
+                max-height: var(--_tb-searchbar-popover-content-mxh);
+                overflow-y: auto;
+            }
         }
 
         .s-select {
