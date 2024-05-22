@@ -319,3 +319,16 @@ description: A non-comprehensive guide to accessibility best practices when usin
 
     <p class="stacks-copy">Some focusable elements and Stacks components currently do not include custom focus styling. These elements will instead render the browser-default focus indicators.</p>
 </section>
+
+<section class="stacks-section">
+    {% header "h2", "Viewport size" %}
+
+    <p class="stacks-copy">
+        All Stack Overflow products must conform to the <a class="s-link" href="https://www.w3.org/WAI/WCAG22/Understanding/reflow.html">WCAG 2.2 <abbr title="Success Criteria">SC</abbr> 1.4.10: Reflow</a>. This requires that our product UIs support viewports as small as <b>320px x 256px</b> without requiring the user scrolling in multiple dimensions (unless an element requires it for usage or meaning). Very few users will ever use a viewport this small, but it's important to support it so users can zoom in up to 400% and still have a usable experience. At 400% zoom, a 320x256 viewport translates to 1280x1024, which is a common resolution for many users. Supporting this small viewport size ensures that users with low vision can still use our products effectively.
+    </p>
+
+    {% header "h3", "Exceptions" %}
+    <p class="stacks-copy">
+        There are some exceptions to this rule. Some elements such as tables and videos may require horizontal scrolling on small viewports. In these cases, it's acceptable to require scrolling in two dimensions. See the <a class="s-link" href="https://www.w3.org/WAI/WCAG22/Understanding/reflow.html#content-exceptions-for-reflow">WCAG 2.2 documentation on Reflow</a> for detailed guidance.
+    </p>
+</section>
