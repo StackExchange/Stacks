@@ -38,8 +38,63 @@
 
         <div class="s-topbar--searchbar w100 wmx3 sm:wmx-initial js-search">
             <div class="s-topbar--searchbar--input-group">
-                <input id="searchbox" type="text" placeholder="Search Stacks…" value="" autocomplete="off" class="s-input s-input__search" />
+                <!-- TODO remove added attributes before merging topbar popover -->
+                <input
+                    id="searchbox"
+                    type="text"
+                    placeholder="Search Stacks…"
+                    value=""
+                    autocomplete="off" class="s-input s-input__search" 
+                    aria-controls="temp-testing-topbar-popover"
+                    data-controller="s-popover"
+                    data-action="focus->s-popover#show"
+                    data-s-popover-placement="bottom-start"
+                />
                 {% icon "Search", "s-input-icon s-input-icon__search" %}
+                <!-- TODO remove this popover before merging topbar popover -->
+                <div id="temp-testing-topbar-popover" class="s-topbar--searchbar--popover s-popover" role="menu">
+                    <div class="s-popover--arrow"></div>
+                    <div class="s-topbar--searchbar--popover-content">
+                        <div class="fc-black-500 d-flex fd-column g12 p12">
+                            <div class="d-flex fd-column g12">
+                                <div>
+                                    <span class="ff-mono fc-black-600">[tag]</span>
+                                    <span class="fc-black-400">search within a tag</span>
+                                </div>
+                                <div>
+                                    <span class="ff-mono fc-black-600">user:1234</span>
+                                    <span class="fc-black-400">search by author</span>
+                                </div>
+                                <div>
+                                    <span class="ff-mono fc-black-600">"words here"</span>
+                                    <span class="fc-black-400">exact phrase</span>
+                                </div>
+                                <div>
+                                    <span class="ff-mono fc-black-600">collective:"Name"</span>
+                                    <span class="fc-black-400">collective content</span>
+                                </div>
+                            </div>
+                            <div class="d-flex fd-column g12">
+                                <div>
+                                    <span class="ff-mono fc-black-600">[tag]</span>
+                                    <span class="fc-black-400">search within a tag</span>
+                                </div>
+                                <div>
+                                    <span class="ff-mono fc-black-600">user:1234</span>
+                                    <span class="fc-black-400">search by author</span>
+                                </div>
+                                <div>
+                                    <span class="ff-mono fc-black-600">"words here"</span>
+                                    <span class="fc-black-400">exact phrase</span>
+                                </div>
+                                <div>
+                                    <span class="ff-mono fc-black-600">collective:"Name"</span>
+                                    <span class="fc-black-400">collective content</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
