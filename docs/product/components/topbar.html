@@ -97,9 +97,8 @@ description: The topbar component is a navigation bar that is placed at the top 
             {% assign variations = "s-topbar__auto,s-topbar__dark,s-topbar__light" | split: "," %}
             <div class="d-grid g24 grid__1">
                 {% for variation in variations %}
-                    {% assign variationName =  variation | split: "__" | last %}
                     <div class="grid--item">
-                        <h4 class="fs-body2 mb8">{{variationName | capitalize }}</h4>
+                        <h4 class="fs-body2 mb8">{{ variation | split: "__" | last | capitalize }}</h4>
                         {% render 'topbar.html', additionalClass: variation, isMod: true %}
                     </div>
                 {% endfor %}
@@ -196,7 +195,7 @@ description: The topbar component is a navigation bar that is placed at the top 
 </header>
 {% endhighlight %}
         <div class="stacks-preview--example bg-black-100">
-            {% render 'topbar.html', containerClass: "wmx75", hideUserCard: true %}
+            {% render 'topbar.html', containerClass: "wmx75", hideUserCard: true  %}
         </div>
     </div>
 </section>
