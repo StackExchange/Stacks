@@ -11,18 +11,7 @@ const children = {
 describe("tag", () => {
     runA11yTests({
         baseClass: "s-tag",
-        variants: ["ignored", "watched", "moderator", "muted", "required"],
-        modifiers: {
-            global: ["is-selected"],
-        },
+        variants: ["ignored", "watched", "moderator", "required"],
         children,
-        // TODO: revisit this after minor tag changes are made
-        skippedTestids: [
-            /s-tag-highcontrast-light-muted/, // 6.33
-            /s-tag-light-is-selected/, // 58.28Lc
-            /s-tag-light-ignored-is-selected/, // 58.28Lc
-            /s-tag-light-moderator-is-selected/, // 49.14Lc
-            /s-tag-light-watched-is-selected/, // 58.28Lc
-        ],
     });
 });

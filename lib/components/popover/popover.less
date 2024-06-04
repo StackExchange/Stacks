@@ -17,6 +17,10 @@
     --_po-arrow-after-r: unset;
     --_po-arrow-after-t: unset;
     --_po-arrow-after-bs: unset;
+    // content
+    // --_po-topbar-height assumes the topbar height based on topbar styles
+    --_po-topbar-height: var(--theme-topbar-height, calc(var(--su-static48) + var(--su-static8)));
+    --_po-content-mxh: calc(100vh - var(--_po-topbar-height) - var(--su48));
 
     // CONTEXTUAL STYLES
     .dark-mode({
@@ -128,6 +132,11 @@
         top: calc(var(--su8) * -1); // Compensate for s-popover's padding
         right: calc(var(--su8) * -1); // Compensate for s-popover's padding
         padding: var(--su8) !important;
+    }
+
+    & &--content {
+        max-height: var(--_po-content-mxh);
+        overflow-y: auto;
     }
 
     background-color: var(--_po-bg);

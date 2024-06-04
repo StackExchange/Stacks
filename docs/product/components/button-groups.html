@@ -27,33 +27,35 @@ description: Button groups are a collection of buttons. This component is used i
             </tbody>
         </table>
     </div>
-</section>
 
+    {% header "h2", "Button attributes" %}
 
-{% header "h2", "Accessibility" %}
-<p class="stacks-copy">
-    When used as navigation or a filter, button groups should include the <code class="stacks-code">aria-current</code> attribute with the <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current#values">appropriate value</a>.
-</p>
+    {% for item in button-groups.button-attributes %}
+        {% header "h3", item.title %}
 
-<section class="stacks-section">
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col" class="s-table--cell3">Item</th>
-                    <th scope="col" class="s-table--cell3">Applied to</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><code class="stacks-code">aria-current="[value]"</code></td>
-                    <td><code class="stacks-code">.s-btn.is-selected</code></td>
-                    <td>When using a button group for navigation or filtering, include the <code class="stacks-code">aria-current</code> attribute with the <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current#values">appropriate value</a> to the selected button. Most commonly used values are <code class="stacks-code">page</code>, <code class="stacks-code">step</code>, and <code class="stacks-code">true</code>.</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        <p class="stacks-copy">{{item.description}}</p>
+
+        <div class="overflow-x-auto mb32" tabindex="0">
+            <table class="wmn4 s-table s-table__bx-simple">
+                <thead>
+                    <tr>
+                        <th scope="col" class="s-table--cell3">Item</th>
+                        <th scope="col" class="s-table--cell3">Applied to</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for attribute in item.attributes %}
+                        <tr>
+                            <th scope="row"><code class="stacks-code">{{ attribute.attribute }}</code></th>
+                            <td><code class="stacks-code">{{ attribute.applies }}</td>
+                            <td class="p8">{{ attribute.description }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endfor %}
 </section>
 
 <section class="stacks-section">

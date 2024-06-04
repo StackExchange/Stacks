@@ -5,5 +5,29 @@
       "applies": "N/A",
       "description": "Base button group style."
     }
+  ],
+  "button-attributes": [
+    {
+      "title": "Accessibility",
+      "description": "When used as navigation or a filter, button groups should include the <code class=\"stacks-code\">aria-current</code> attribute with the <a href=\"https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current#values\">appropriate value</a>.",
+      "attributes": [
+        {
+          "attribute": "aria-current=\"[value]\"",
+          "applies": ".s-btn.is-selected",
+          "description": "When using a button group for navigation or filtering, include the <code class=\"stacks-code\">aria-current</code> attribute with the <a href=\"https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current#values\">appropriate value</a> to the selected button. Most commonly used values are <code class=\"stacks-code\">page</code>, <code class=\"stacks-code\">step</code>, and <code class=\"stacks-code\">true</code>."
+        }
+      ]
+    },
+    {
+      "title": "Preventing layout shift",
+      "description": "Horizontal layout shift may occur when changing which button is selected within a button group. We recommend including the <code class=\"stacks-code\">data-text</code> attribute on each button text element with the value duplicating the text of the button to prevent the layout shift. See below for examples.",
+      "attributes": [
+        {
+          "attribute": "data-text=\"[value]\"",
+          "applies": ".s-btn",
+          "description": "Prevents layout shift when changing selected button. Value should be the text of the button."
+        }
+      ]
+    }
   ]
 }
