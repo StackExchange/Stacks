@@ -8,14 +8,16 @@
         </a>
 
         {% if site-navigation %}
-            <ul class="s-navigation ml8 fw-nowrap sm:d-none">
-                {% assign slug = page.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
+            <nav aria-label="Global" class="sm:d-none">
+                <ul class="s-navigation ml8 fw-nowrap sm:d-none">
+                    {% assign slug = page.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
 
-                {% for section in site-navigation.sections %}
-                    {% assign url = section.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
-                    <li><a class="s-navigation--item{% if url == slug %} is-selected{% endif %}" href="{{ section.url }}">{{ section.title }}</a></li>
-                {% endfor %}
-            </ul>
+                    {% for section in site-navigation.sections %}
+                        {% assign url = section.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
+                        <li><a class="s-navigation--item{% if url == slug %} is-selected{% endif %}" href="{{ section.url }}" {% if url == slug %} aria-current="page"{% endif %}>{{ section.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
         {% endif %}
 
         <ol class="s-topbar--content sm:ml0 overflow-hidden">
@@ -36,7 +38,7 @@
             </li>
         </ol>
 
-        <div class="s-topbar--searchbar w100 wmx3 sm:wmx-initial js-search">
+        <div class="s-topbar--searchbar w100 wmx3 sm:wmx-initial js-search" role="search">
             <div class="s-topbar--searchbar--input-group">
                 <input id="searchbox" type="text" placeholder="Search Stacks…" value="" autocomplete="off" class="s-input s-input__search" />
                 {% icon "Search", "s-input-icon s-input-icon__search" %}
