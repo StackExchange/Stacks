@@ -3,7 +3,7 @@
         <div class="d-none sm:d-block">
             <div class="d-flex fd-column ai-center">
                 {% if site-navigation %}
-                    <nav class="s-navigation s-navigation__wrap mx8 mb12 jc-center" aria-label="Global navigation">
+                    <nav class="s-navigation s-navigation__wrap mx8 mb12 jc-center" aria-label="Global">
                         {% assign slug = page.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
 
                         {% for section in site-navigation.sections %}
@@ -22,14 +22,14 @@
 
                 {% if url == slug %}
                     {% if section.sections %}
-                        <nav id="nav" class="s-navigation s-navigation__vertical mt16" aria-label="Navigation">
+                        <nav id="nav" class="s-navigation s-navigation__vertical mt16" aria-label="Main">
                             {% for section in section.sections %}
                                 <div class="s-navigation--title">
                                     {{ section.title }}
                                 </div>
                                 {% if section.links %}
                                     {% for link in section.links %}
-                                        <a class="s-navigation--item {% if page.url == link.url %}is-selected{% endif %}" href="{{ link.url | url }}">
+                                        <a class="s-navigation--item {% if page.url == link.url %}is-selected{% endif %}" href="{{ link.url | url }}" {% if page.url == link.url %}aria-current="page"{% endif %}>
                                             {{ link.title }}
                                         </a>
                                     {% endfor %}

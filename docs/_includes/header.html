@@ -8,14 +8,16 @@
         </a>
 
         {% if site-navigation %}
-            <ul class="s-navigation ml8 fw-nowrap sm:d-none">
-                {% assign slug = page.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
+            <nav aria-label="Global" class="sm:d-none">
+                <ul class="s-navigation ml8 fw-nowrap sm:d-none">
+                    {% assign slug = page.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
 
-                {% for section in site-navigation.sections %}
-                    {% assign url = section.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
-                    <li><a class="s-navigation--item{% if url == slug %} is-selected{% endif %}" href="{{ section.url }}">{{ section.title }}</a></li>
-                {% endfor %}
-            </ul>
+                    {% for section in site-navigation.sections %}
+                        {% assign url = section.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
+                        <li><a class="s-navigation--item{% if url == slug %} is-selected{% endif %}" href="{{ section.url }}" {% if url == slug %} aria-current="page"{% endif %}>{{ section.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
         {% endif %}
 
         <ol class="s-topbar--content sm:ml0 overflow-hidden">
@@ -36,7 +38,7 @@
             </li>
         </ol>
 
-        <div class="s-topbar--searchbar w100 wmx3 sm:wmx-initial js-search">
+        <div class="s-topbar--searchbar w100 wmx3 sm:wmx-initial js-search" role="search">
             <div class="s-topbar--searchbar--input-group">
                 <input id="searchbox" type="text" placeholder="Search Stacks…" value="" autocomplete="off" class="s-input s-input__search" />
                 {% icon "Search", "s-input-icon s-input-icon__search" %}
@@ -67,18 +69,20 @@
              id="theming-popover"
              role="menu">
             <div class="s-popover--arrow"></div>
-            <div class="d-flex fd-column g12">
-                <div class="d-flex ai-center jc-space-between g8">
-                    <label class="s-label fs-body1 fw-normal" for="toggle-theme-dark">Dark mode</label>
-                    <input class="s-toggle-switch" id="toggle-theme-dark" type="checkbox">
-                </div>
-                <div class="d-flex ai-center jc-space-between g8">
-                    <label class="s-label fs-body1 fw-normal" for="toggle-theme-custom">Custom theme</label>
-                    <input class="s-toggle-switch" id="toggle-theme-custom" type="checkbox">
-                </div>
-                <div class="d-flex ai-center jc-space-between g8">
-                    <label class="s-label fs-body1 fw-normal js-highcontrast-btn" for="toggle-theme-highcontrast">High contrast mode</label>
-                    <input class="s-toggle-switch" id="toggle-theme-highcontrast" type="checkbox">
+            <div class="s-popover--content">
+                <div class="d-flex fd-column g12">
+                    <div class="d-flex ai-center jc-space-between g8">
+                        <label class="s-label fs-body1 fw-normal" for="toggle-theme-dark">Dark mode</label>
+                        <input class="s-toggle-switch" id="toggle-theme-dark" type="checkbox">
+                    </div>
+                    <div class="d-flex ai-center jc-space-between g8">
+                        <label class="s-label fs-body1 fw-normal" for="toggle-theme-custom">Custom theme</label>
+                        <input class="s-toggle-switch" id="toggle-theme-custom" type="checkbox">
+                    </div>
+                    <div class="d-flex ai-center jc-space-between g8">
+                        <label class="s-label fs-body1 fw-normal js-highcontrast-btn" for="toggle-theme-highcontrast">High contrast mode</label>
+                        <input class="s-toggle-switch" id="toggle-theme-highcontrast" type="checkbox">
+                    </div>
                 </div>
             </div>
         </div>
