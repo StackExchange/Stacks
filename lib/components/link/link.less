@@ -2,6 +2,8 @@
 // it's tech debt that'll take some doing in consumer's code to pay down.
 a {
     &:visited {
+        // We're target these specific selectors to avoid affecting the visited state of stacks components
+        // not specified here. See for https://github.com/StackExchange/Stacks/pull/1740#discussion_r1698389312
         &:not([class*="s-"]),
         &.s-link,
         &.s-sidebarwidget--action,
