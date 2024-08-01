@@ -7,7 +7,8 @@
     --_ps-content-excerpt-fc: var(--_ps-state-fc, var(--fc-medium));
     --_ps-content-title-a-fc: var(--_ps-state-fc, var(--theme-post-title-color, var(--theme-link-color, var(--theme-secondary-400))));
     --_ps-content-title-a-fc-hover: var(--_ps-state-fc, var(--theme-post-title-color-hover, var(--theme-link-color-hover, var(--theme-secondary-500))));
-    --_ps-content-title-a-fc-visited: var(--_ps-state-fc, var(--theme-post-title-color-visited, var(--theme-link-color-visited, var(--theme-secondary-600))));
+    --_ps-content-title-a-fc-visited: var(--_ps-state-fc, var(--theme-post-title-color-visited, var(--theme-link-color-visited, var(--purple-500))));
+    --_ps-content-title-a-fc-hover-visited: var(--_ps-state-fc, var(--theme-post-title-color-hover, var(--theme-link-color-hover, var(--purple-600))));
     --_ps-stats-ai: flex-end;
     --_ps-stats-fc: var(--_ps-state-fc, var(--fc-light));
     --_ps-stats-fd: column;
@@ -120,7 +121,8 @@
             --_ps-stats-fc: var(--black-400);
             --_ps-content-title-a-fc: var(--theme-post-title-color, var(--theme-link-color, var(--theme-secondary-400)));
             --_ps-content-title-a-fc-hover: var(--theme-post-title-color-hover, var(--theme-link-color-hover, var(--theme-secondary-500)));
-            --_ps-content-title-a-fc-visited: var(--theme-post-title-color-visited, var(--theme-link-color-visited, var(--theme-secondary-600)));
+            --_ps-content-title-a-fc-visited: var(--theme-post-title-color-visited, var(--theme-link-color-visited, var(--purple-500)));
+            --_ps-content-title-a-fc-hover-visited: var(--theme-post-title-color-hover, var(--theme-link-color-hover, var(--purple-600)));
 
             .s-user-card {
                 a {
@@ -130,6 +132,10 @@
                     }
 
                     &:visited {
+                        &:hover {
+                            color: var(--_ps-content-title-a-fc-hover-visited);
+                        }
+
                         color: var(--_ps-content-title-a-fc-visited);
                     }
 
@@ -231,12 +237,16 @@
 
         &--content-title {
             a {
-                &:visited {
-                    color: var(--_ps-content-title-a-fc-visited);
-                }
                 &:active,
                 &:hover {
                     color: var(--_ps-content-title-a-fc-hover);
+                }
+                &:visited {
+                    &:hover {
+                        color: var(--_ps-content-title-a-fc-hover-visited);
+                    }
+
+                    color: var(--_ps-content-title-a-fc-visited);
                 }
 
                 .break-word;

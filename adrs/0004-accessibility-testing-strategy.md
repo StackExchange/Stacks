@@ -5,7 +5,7 @@
 **Related PR:** [#1217](https://github.com/StackExchange/Stacks/pull/1217)
 
 ## Issue
-We currently rely on manual testing, third-party audits, and user reports to identify and fix accessibility issues. The only semi-automated accessibility testing we do is via Mabl, which is initiated manually and tests instead of individual components. Furthermore, while we've generally aspired to WCAG 2.1 AA compliance, we haven't codified the accessibility success criteria for our components.
+We currently rely on manual testing, third-party audits, and user reports to identify and fix accessibility issues. The only semi-automated accessibility testing we do is via Mabl, which is initiated manually and tests instead of individual components. Furthermore, while we've generally aspired to WCAG 2.2 AA compliance, we haven't codified the accessibility success criteria for our components.
 
 **A defined success criteria and automated accessibility testing will reduce the effort needed to build and maintain accessibile components.**
 
@@ -13,8 +13,8 @@ We currently rely on manual testing, third-party audits, and user reports to ide
 
 Introduce the following success criteria for the accessibility Stacks components:
 
-- All components should meet or exceed [WCAG 2.1](https://www.w3.org/TR/WCAG21/) level AA success criteria
-- Components rendered within high contrast mode should meet or exceed [WCAG 2.1 AAA success criteria for contrast](https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced.html)
+- All components should meet or exceed [WCAG 2.2](https://www.w3.org/TR/WCAG22/) level AA success criteria
+- Components rendered within high contrast mode should meet or exceed [WCAG 2.2 AAA success criteria for contrast](https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced.html)
 
 Introduce the following automated accessibility testing for Stacks:
 
