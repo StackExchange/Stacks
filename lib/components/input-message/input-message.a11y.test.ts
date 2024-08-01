@@ -6,19 +6,22 @@ const states = [
     {
         class: "",
         children:
-            'This is a stateless input message. <a href="">Learn more</a>.',
+            'This is a stateless input message. <a href="/404-unvisited">Learn more</a>.',
     },
     {
         class: "has-error",
-        children: 'This is an error input message. <a href="">Learn more</a>.',
+        children:
+            'This is an error input message. <a href="/404-unvisited">Learn more</a>.',
     },
     {
         class: "has-success",
-        children: 'This is a success input message. <a href="">Learn more</a>.',
+        children:
+            'This is a success input message. <a href="/404-unvisited">Learn more</a>.',
     },
     {
         class: "has-warning",
-        children: 'This is a warning input message. <a href="">Learn more</a>.',
+        children:
+            'This is a warning input message. <a href="/404-unvisited">Learn more</a>.',
     },
     {
         class: "disabled",
