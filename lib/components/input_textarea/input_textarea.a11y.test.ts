@@ -78,7 +78,7 @@ const otherModifiers = ["creditcard", "search"];
                               ...attributes,
                           },
                 children,
-                template
+                template,
             });
         });
 
