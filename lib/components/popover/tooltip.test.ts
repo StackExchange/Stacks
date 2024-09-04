@@ -59,4 +59,41 @@ describe("tooltip", () => {
         await user.hover(svg);
         expect(tooltip).to.be.visible;
     });
+
+    // TODO write this test so it works
+    it.skip("should not hide the tooltip if focus is moved to the tooltip", async () => {
+        const tooltip = await fixture(html`
+            <div
+                class="s-popover s-popover__tooltip"
+                id="tooltip-example"
+                role="tooltip"
+            >
+                <div class="s-popover--arrow"></div>
+                <div class="s-popover--content">
+                    <a href="#">View more</a>
+                </div>
+            </div>
+        `);
+
+        const trigger = await fixture(html`
+            <button
+                class="s-btn s-btn__filled"
+                role="button"
+                aria-describedby="tooltip-example"
+                data-controller="s-tooltip"
+            >
+                Hover tooltip popover
+            </button>
+        `);
+
+        await user.tab();
+        expect(tooltip).to.be.visible;
+        await expect(document.activeElement).to.equal(trigger);
+
+        const link = screen.getByRole("link");
+        await expect(document.activeElement).to.be.equal(link);
+        await user.tab();
+
+        expect(tooltip).not.to.be.visible;
+    });
 });
