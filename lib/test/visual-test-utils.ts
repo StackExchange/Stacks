@@ -28,7 +28,12 @@ const scheduleVisualTest = ({
             await fixture(element);
             const el = screen.getByTestId(testid);
             try {
-                await (visualDiff as (element: HTMLElement, name: string) => Promise<void>)(el, testid);
+                await (
+                    visualDiff as (
+                        element: HTMLElement,
+                        name: string
+                    ) => Promise<void>
+                )(el, testid);
                 return;
             } catch (error) {
                 const e = error as Error;
