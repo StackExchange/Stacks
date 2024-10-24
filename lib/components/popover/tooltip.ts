@@ -30,6 +30,7 @@ export class TooltipController extends BasePopoverController {
             this.bindMouseEvents();
         }
         this.bindKeyboardEvents();
+        this.bindFocusEvents();
     }
 
     /**
@@ -38,6 +39,7 @@ export class TooltipController extends BasePopoverController {
     disconnect() {
         this.unbindKeyboardEvents();
         this.unbindMouseEvents();
+        this.unbindFocusEvents();
         super.disconnect();
     }
 
@@ -175,6 +177,17 @@ export class TooltipController extends BasePopoverController {
         document.removeEventListener("s-popover:shown", this.boundHideIfWithin);
     }
 
+    private unbindFocusEvents() {
+        this.referenceElement.removeEventListener(
+            "focusout",
+            this.handleFocusOut.bind(this)
+        );
+        this.popoverElement.removeEventListener(
+            "focusout",
+            this.handleFocusOut.bind(this)
+        );
+    }
+
     /**
      * Attempts to generate a new tooltip popover from the title attribute if no popover
      * was present when requested, otherwise throws an error.
@@ -193,6 +206,39 @@ export class TooltipController extends BasePopoverController {
         }
     }
 
+    private bindFocusEvents() {
+        this.referenceElement.addEventListener(
+            "focusout",
+            this.handleFocusOut.bind(this)
+        );
+        this.popoverElement.addEventListener(
+            "focusout",
+            this.handleFocusOut.bind(this)
+        );
+    }
+
+    private boundHideIfNotHoveredOrFocused(event: FocusEvent) {
+        if (
+            !this.referenceElement.contains(event.relatedTarget as Node) &&
+            !this.popoverElement.contains(event.relatedTarget as Node)
+        ) {
+            this.scheduleHide();
+        }
+    }
+
+    private handleFocusOut() {
+        // requestAnimationFrame here ensures that the DOM has been fully updated before we check for focus
+        requestAnimationFrame(() => {
+            const newFocusedElement = document.activeElement;
+            if (
+                !this.referenceElement.contains(newFocusedElement) &&
+                !this.popoverElement.contains(newFocusedElement)
+            ) {
+                this.scheduleHide();
+            }
+        });
+    }
+
     private hideOnEscapeKeyEvent(event: KeyboardEvent) {
         if (event.key === "Escape") {
             this.scheduleHide();
@@ -208,9 +254,11 @@ export class TooltipController extends BasePopoverController {
         this.boundHideOnEscapeKeyEvent =
             this.boundHideOnEscapeKeyEvent ||
             this.hideOnEscapeKeyEvent.bind(this);
-
         this.referenceElement.addEventListener("focus", this.boundScheduleShow);
-        this.referenceElement.addEventListener("blur", this.boundHide);
+        this.referenceElement.addEventListener(
+            "blur",
+            this.boundHideIfNotHoveredOrFocused.bind(this)
+        );
         document.addEventListener("keyup", this.boundHideOnEscapeKeyEvent);
     }
     /**
@@ -234,17 +282,22 @@ export class TooltipController extends BasePopoverController {
         this.boundHide = this.boundHide || this.scheduleHide.bind(this);
         this.boundClearActiveTimeout =
             this.boundClearActiveTimeout || this.clearActiveTimeout.bind(this);
-
         this.referenceElement.addEventListener(
             "mouseover",
             this.boundScheduleShow
         );
-        this.referenceElement.addEventListener("mouseout", this.boundHide);
+        this.referenceElement.addEventListener(
+            "mouseout",
+            this.boundHideIfNotHoveredOrFocused.bind(this)
+        );
         this.popoverElement.addEventListener(
             "mouseover",
             this.boundClearActiveTimeout
         );
-        this.popoverElement.addEventListener("mouseout", this.boundHide);
+        this.popoverElement.addEventListener(
+            "mouseout",
+            this.boundHideIfNotHoveredOrFocused.bind(this)
+        );
     }
 
     /**
