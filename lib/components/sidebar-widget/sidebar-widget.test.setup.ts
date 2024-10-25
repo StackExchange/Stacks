@@ -96,16 +96,16 @@ const testArgs: TestVariationArgs = {
         global: ["ws3"],
     },
     children: {
-        default: getChild(),
-        accordions: getChild("accordions"),
-        items: getChild("items"),
-        nav: getChild("nav"),
+        "default": getChild(),
+        "accordions": getChild("accordions"),
+        "items": getChild("items"),
+        "nav": getChild("nav"),
         "small-bold-headers": getChild("small-bold-headers"),
-        table: getChild("table"),
+        "table": getChild("table"),
     },
     options: {
         includeNullModifier: false,
-    }
+    },
 };
 
 export default testArgs;
