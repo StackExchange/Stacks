@@ -83,12 +83,11 @@ describe("tooltip", () => {
             </div>
         `);
 
-        
         const tooltip = screen.getByTestId("tooltip");
         const link = screen.getByTestId("link");
 
         await user.tab();
-        await new Promise(resolve => setTimeout(resolve, 300)); // wait for the tooltip to appear
+        await new Promise((resolve) => setTimeout(resolve, 300)); // wait for the tooltip to appear
         await user.tab(); // tab to nested link within tooltip
         expect(link).to.have.focus; // link within tooltip is focused
         expect(tooltip).to.be.visible; // link within tooltip is focused, tooltip is visible
@@ -117,16 +116,16 @@ describe("tooltip", () => {
             </div>
             <button data-testid="neutral-btn">Another button</button>
         `);
-        
+
         const tooltip = screen.getByTestId("tooltip");
         const neutralBtn = screen.getByTestId("neutral-btn");
 
         await user.tab();
-        await new Promise(resolve => setTimeout(resolve, 300)); // wait for the tooltip to appear
-        await user.tab(); // tab to nested link within tooltip        
+        await new Promise((resolve) => setTimeout(resolve, 300)); // wait for the tooltip to appear
+        await user.tab(); // tab to nested link within tooltip
         await user.tab(); // tab to button after tooltip
         expect(neutralBtn).to.have.focus; // button after tooltip is focused
-        await new Promise(resolve => setTimeout(resolve, 300)); // wait for the tooltip to hide
+        await new Promise((resolve) => setTimeout(resolve, 300)); // wait for the tooltip to hide
         expect(tooltip).not.to.have.class("is-visible"); // check that .is-visible class is removed
     });
 });
