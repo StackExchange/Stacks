@@ -66,7 +66,8 @@ const getChild = (child?: string): string => {
                     <li class="s-sidebarwidget--item"><a href="#">Flair</a></li>
                 </ul>`;
         case "small-bold-headers":
-            return `<h2 class="s-sidebarwidget--header s-sidebarwidget__small-bold-text">Small bold text</h2>`;
+            return `<h2 class="s-sidebarwidget--header s-sidebarwidget__small-bold-text">Small bold text</h2>
+                <div class="s-sidebarwidget--content">Widget content</div>`;
         case "table":
             return `<table class="s-sidebarwidget--content s-sidebarwidget__items">
                     <tbody>
