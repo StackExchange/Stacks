@@ -60,22 +60,8 @@ describe("tooltip", () => {
         expect(tooltip).to.be.visible;
     });
 
-    // TODO write this test so it works
-    it.skip("should not hide the tooltip if focus is moved to the tooltip", async () => {
-        const tooltip = await fixture(html`
-            <div
-                class="s-popover s-popover__tooltip"
-                id="tooltip-example"
-                role="tooltip"
-            >
-                <div class="s-popover--arrow"></div>
-                <div class="s-popover--content">
-                    <a href="#">View more</a>
-                </div>
-            </div>
-        `);
-
-        const trigger = await fixture(html`
+    it("should continue to show the tooltip if focus is moved to an element within the tooltip", async () => {
+        await fixture(html`
             <button
                 class="s-btn s-btn__filled"
                 role="button"
@@ -84,16 +70,63 @@ describe("tooltip", () => {
             >
                 Hover tooltip popover
             </button>
+            <div
+                class="s-popover s-popover__tooltip"
+                id="tooltip-example"
+                role="tooltip"
+                data-testid="tooltip"
+            >
+                <div class="s-popover--arrow"></div>
+                <div class="s-popover--content">
+                    <a href="#" data-testid="link">View more</a>
+                </div>
+            </div>
         `);
 
-        await user.tab();
-        expect(tooltip).to.be.visible;
-        await expect(document.activeElement).to.equal(trigger);
+        
+        const tooltip = screen.getByTestId("tooltip");
+        const link = screen.getByTestId("link");
 
-        const link = screen.getByRole("link");
-        await expect(document.activeElement).to.be.equal(link);
         await user.tab();
+        await new Promise(resolve => setTimeout(resolve, 300)); // wait for the tooltip to appear
+        await user.tab(); // tab to nested link within tooltip
+        expect(link).to.have.focus; // link within tooltip is focused
+        expect(tooltip).to.be.visible; // link within tooltip is focused, tooltip is visible
+    });
 
-        expect(tooltip).not.to.be.visible;
+    it("should hide the tooltip if focus is moved to an element outside the tooltip and trigger", async () => {
+        await fixture(html`
+            <button
+                class="s-btn s-btn__filled"
+                role="button"
+                aria-describedby="tooltip-example"
+                data-controller="s-tooltip"
+            >
+                Hover tooltip popover
+            </button>
+            <div
+                class="s-popover s-popover__tooltip"
+                id="tooltip-example"
+                role="tooltip"
+                data-testid="tooltip"
+            >
+                <div class="s-popover--arrow"></div>
+                <div class="s-popover--content">
+                    <a href="#">View more</a>
+                </div>
+            </div>
+            <button data-testid="neutral-btn">Another button</button>
+        `);
+        
+        const tooltip = screen.getByTestId("tooltip");
+        const neutralBtn = screen.getByTestId("neutral-btn");
+
+        await user.tab();
+        await new Promise(resolve => setTimeout(resolve, 300)); // wait for the tooltip to appear
+        await user.tab(); // tab to nested link within tooltip        
+        await user.tab(); // tab to button after tooltip
+        expect(neutralBtn).to.have.focus; // button after tooltip is focused
+        await new Promise(resolve => setTimeout(resolve, 300)); // wait for the tooltip to hide
+        expect(tooltip).not.to.have.class("is-visible"); // check that .is-visible class is removed
     });
 });
