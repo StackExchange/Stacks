@@ -234,6 +234,7 @@ export class TooltipController extends BasePopoverController {
         );
         document.addEventListener("keyup", this.boundHideOnEscapeKeyEvent);
     }
+
     /**
      * Unbinds all mouse events
      */
@@ -266,18 +267,12 @@ export class TooltipController extends BasePopoverController {
             "mouseover",
             this.boundScheduleShow
         );
-        this.referenceElement.addEventListener(
-            "mouseout",
-            this.boundHide.bind(this)
-        );
+        this.referenceElement.addEventListener("mouseout", this.boundHide);
         this.popoverElement.addEventListener(
             "mouseover",
             this.boundClearActiveTimeout
         );
-        this.popoverElement.addEventListener(
-            "mouseout",
-            this.boundHide.bind(this)
-        );
+        this.popoverElement.addEventListener("mouseout", this.boundHide);
     }
 
     /**
