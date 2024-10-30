@@ -1,5 +1,9 @@
 import { html, fixture, expect } from "@open-wc/testing";
-import { screen, waitForElementToBeRemoved, waitFor } from "@testing-library/dom";
+import {
+    screen,
+    waitForElementToBeRemoved,
+    waitFor,
+} from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 import "../../index";
 
