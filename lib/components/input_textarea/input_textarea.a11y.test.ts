@@ -79,8 +79,6 @@ const otherModifiers = ["creditcard", "search"];
                           },
                 children,
                 template,
-                // TODO revisit these skipped test ids
-                skippedTestids: [/readonly/],
             });
         });
 

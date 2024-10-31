@@ -14,6 +14,7 @@ export class TooltipController extends BasePopoverController {
     private boundHide!: () => void;
     private boundHideIfWithin!: () => void;
     private boundHideOnEscapeKeyEvent!: () => void;
+    private boundHideIfNotFocused!: () => void;
     private boundClearActiveTimeout!: () => void;
     private activeTimeout!: number;
 
@@ -193,6 +194,19 @@ export class TooltipController extends BasePopoverController {
         }
     }
 
+    /**
+     * Hides the tooltip if the focus is not on the popover element.
+     * @param event A focusout event object from the reference or popover element
+     */
+    private hideIfNotFocused(event: FocusEvent) {
+        if (
+            !this.referenceElement.contains(event.relatedTarget as Node) &&
+            !this.popoverElement.contains(event.relatedTarget as Node)
+        ) {
+            this.scheduleHide();
+        }
+    }
+
     private hideOnEscapeKeyEvent(event: KeyboardEvent) {
         if (event.key === "Escape") {
             this.scheduleHide();
@@ -204,15 +218,23 @@ export class TooltipController extends BasePopoverController {
     private bindKeyboardEvents() {
         this.boundScheduleShow =
             this.boundScheduleShow || this.scheduleShow.bind(this);
-        this.boundHide = this.boundHide || this.scheduleHide.bind(this);
         this.boundHideOnEscapeKeyEvent =
             this.boundHideOnEscapeKeyEvent ||
             this.hideOnEscapeKeyEvent.bind(this);
-
+        this.boundHideIfNotFocused =
+            this.boundHideIfNotFocused || this.hideIfNotFocused.bind(this);
         this.referenceElement.addEventListener("focus", this.boundScheduleShow);
-        this.referenceElement.addEventListener("blur", this.boundHide);
+        this.referenceElement.addEventListener(
+            "focusout",
+            this.boundHideIfNotFocused.bind(this)
+        );
+        this.popoverElement.addEventListener(
+            "focusout",
+            this.boundHideIfNotFocused.bind(this)
+        );
         document.addEventListener("keyup", this.boundHideOnEscapeKeyEvent);
     }
+
     /**
      * Unbinds all mouse events
      */
@@ -221,7 +243,14 @@ export class TooltipController extends BasePopoverController {
             "focus",
             this.boundScheduleShow
         );
-        this.referenceElement.removeEventListener("blur", this.boundHide);
+        this.referenceElement.removeEventListener(
+            "focusout",
+            this.boundHideIfNotFocused
+        );
+        this.referenceElement.removeEventListener(
+            "focusout",
+            this.boundHideIfNotFocused
+        );
         document.removeEventListener("keyup", this.boundHideOnEscapeKeyEvent);
     }
 
@@ -234,7 +263,6 @@ export class TooltipController extends BasePopoverController {
         this.boundHide = this.boundHide || this.scheduleHide.bind(this);
         this.boundClearActiveTimeout =
             this.boundClearActiveTimeout || this.clearActiveTimeout.bind(this);
-
         this.referenceElement.addEventListener(
             "mouseover",
             this.boundScheduleShow
@@ -256,11 +284,6 @@ export class TooltipController extends BasePopoverController {
             this.boundScheduleShow
         );
         this.referenceElement.removeEventListener("mouseout", this.boundHide);
-        this.referenceElement.removeEventListener(
-            "focus",
-            this.boundScheduleShow
-        );
-        this.referenceElement.removeEventListener("blur", this.boundHide);
         this.popoverElement.removeEventListener(
             "mouseover",
             this.boundClearActiveTimeout
