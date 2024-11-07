@@ -8,8 +8,7 @@ const variants = {
     numbers: ["answered", "bounty", "important", "rep", "rep-down", "votes"],
     filled: ["danger", "muted"],
     states: ["danger", "muted", "info", "new", "warning"],
-    ai: ["ai"],
-    users: ["admin", "moderator", "staff"],
+    users: ["admin", "moderator", "staff", "ai", "bot"],
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -129,22 +128,6 @@ describe("badge", () => {
         },
         tag: "span",
         template,
-    });
-
-    // AI badges
-    runVisualTests({
-        baseClass: "s-badge",
-        variants: variants.ai,
-        modifiers: {
-            primary: ["sm"],
-        },
-        children: {
-            default: "AI",
-        },
-        options: {
-            includeNullVariant: false,
-        },
-        tag: "span",
     });
 
     // User badges

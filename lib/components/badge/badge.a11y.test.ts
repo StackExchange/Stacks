@@ -7,8 +7,7 @@ const variants = {
     numbers: ["answered", "bounty", "important", "rep", "rep-down", "votes"],
     filled: ["danger", "muted"],
     states: ["danger", "muted", "info", "new", "warning"],
-    ai: ["ai"],
-    users: ["admin", "moderator", "staff"],
+    users: ["admin", "moderator", "staff", "ai", "bot"],
 };
 
 describe("badge", () => {
@@ -107,22 +106,6 @@ describe("badge", () => {
         },
         options: {
             includeNullModifier: false,
-        },
-        tag: "span",
-    });
-
-    // AI badges
-    runA11yTests({
-        baseClass: "s-badge",
-        variants: variants.ai,
-        modifiers: {
-            primary: ["sm"],
-        },
-        children: {
-            default: "AI",
-        },
-        options: {
-            includeNullVariant: false,
         },
         tag: "span",
     });
