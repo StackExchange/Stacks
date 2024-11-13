@@ -7,7 +7,7 @@ const variants = {
     numbers: ["answered", "bounty", "important", "rep", "rep-down", "votes"],
     filled: ["danger", "muted"],
     states: ["danger", "muted", "info", "new", "warning"],
-    users: ["admin", "moderator", "staff"],
+    users: ["admin", "moderator", "staff", "ai", "bot"],
 };
 
 describe("badge", () => {
