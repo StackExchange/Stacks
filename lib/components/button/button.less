@@ -59,7 +59,7 @@
     .highcontrast-mode({
         --_bu-bc: currentColor;
         --_bu-outlined-bc: var(--_bu-bc);
-        --_bu-bc-selected: var(--_bu-bc);
+        --_bu-bc-selected: var(--_bu-bg);
         --_bu-fc-selected: var(--white);
         --_bu-outlined-fc-selected: var(--white);
         --_bu-badge-o: 0.8;
@@ -236,6 +236,7 @@
 
     // VARIANTS
     &&__danger,
+    &&__featured,
     &&__muted {
         .highcontrast-mode({
             --_bu-filled-bc: transparent;
@@ -438,7 +439,7 @@
                 color: var(--_bu-filled-fc-hover);
             }
 
-            &:not(.s-btn__outlined) {
+            &:not(.s-btn__outlined):not(.s-btn__filled) {
                 border-color: var(--_bu-bc-hover);
             }
 
