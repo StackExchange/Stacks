@@ -5,7 +5,7 @@ import { html } from "@open-wc/testing";
 
 describe("button", () => {
     runVisualTests({
-        ...testArgs,
+        ...testArgs(),
         template: ({ component, testid }) => html`
             <div
                 class="bg-black-225 d-inline-flex ai-center jc-center hs1 ws2 p8"

@@ -13,8 +13,10 @@ const getChild = (child?: string): string => {
     }
 };
 
-// TODO test disabled states, interaction pseudo-classes
-const testArgs: TestVariationArgs = {
+// TODO test interaction pseudo-classes
+const testArgs = (
+    attributes: Record<string, string> | undefined = undefined
+): TestVariationArgs => ({
     baseClass: "s-btn",
     variants: ["danger", "muted"],
     modifiers: {
@@ -23,14 +25,12 @@ const testArgs: TestVariationArgs = {
         global: ["is-loading"],
         standalone: [...["link", "unset"], ...["facebook", "github", "google"]],
     },
-    attributes: {
-        type: "button",
-    },
+    attributes: attributes || { type: "button" },
     children: {
         default: getChild(),
         badge: getChild("badge"),
     },
     tag: "button",
-};
+});
 
 export default testArgs;
