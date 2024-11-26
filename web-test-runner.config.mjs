@@ -85,7 +85,11 @@ export default {
         visualRegressionPlugin({
             // https://github.com/StackExchange/Stacks?tab=readme-ov-file#visual-regression-tests
             getFailedName: ({ browser, name }) => {
-                return `${browser}/baseline/${name}.img`;
+                // we are creating screenshots with a .bmp extension instead of .png to
+                // bypass an issue with netlify not honoring the GIT_LFS_FETCH_INCLUDE
+                // env variable and timing out trying to pull all the screenshots on git checkouts
+                // see https://stackoverflow.atlassian.net/browse/STACKS-691
+                return `${browser}/baseline/${name}.bmp`;
             },
         }),
     ],
