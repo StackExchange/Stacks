@@ -85,7 +85,7 @@ export default {
         visualRegressionPlugin({
             // https://github.com/StackExchange/Stacks?tab=readme-ov-file#visual-regression-tests
             getFailedName: ({ browser, name }) => {
-                return `${browser}/baseline/${name}.png`;
+                return `${browser}/baseline/${name}.img`;
             },
         }),
     ],
