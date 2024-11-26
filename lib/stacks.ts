@@ -29,7 +29,7 @@ export class StacksApplication extends Stimulus.Application {
         schema?: Stimulus.Schema
     ): StacksApplication {
         const application = new StacksApplication(element, schema);
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+
         application.start();
         return application;
     }
@@ -64,9 +64,9 @@ export class StacksController extends Stimulus.Controller {
                 cancelable: true,
                 detail: detail,
             });
-        } catch (ex) {
+        } catch {
             // Internet Explorer
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+
             event = document.createEvent("CustomEvent");
             event.initCustomEvent(namespacedName, true, true, detail);
         }
