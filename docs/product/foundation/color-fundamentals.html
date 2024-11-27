@@ -128,7 +128,7 @@ hide-menu: true
     <section class="stacks-section">
         {% header "h3", "Backgrounds" %}
         <div class="d-flex fd-column bg-black-100 bar-lg p32">
-            {% render 'example-row-detail.html',
+            {% render 'annotation.html',
                 text: "Default background color",
                 style: "margin-left: calc((1.5/11) * 100%)",
                 classes: "sm:d-none",
@@ -139,7 +139,7 @@ hide-menu: true
                 colorSets: colors[0].sets,
                 labeledStops: "050,100,150,200" | split: ","
             %}
-            {% render 'example-row-detail.html',
+            {% render 'annotation.html',
                 text: "Background layers",
                 style: "width: calc((4/11) * 100%)",
                 classes: "sm:d-none",
@@ -160,13 +160,13 @@ hide-menu: true
                 labeledStops: "200,225,300" | split: ","
             %}
             <div class="d-flex w100">
-                {% render 'example-row-detail.html',
+                {% render 'annotation.html',
                     text: "Decorative borders",
                     style: "margin-left: calc((3/11) * 100%); width: calc((2/11) * 100%)",
                     classes: "sm:d-none",
                     range: true
                 %}
-                {% render 'example-row-detail.html',
+                {% render 'annotation.html',
                     text: "Input borders",
                     classes: "sm:d-none",
                     style: "margin-left: calc((1.5/11) * 100%);"
@@ -187,13 +187,13 @@ hide-menu: true
                 labeledStops: "400,500,600" | split: ","
             %}
             <div class="d-flex w100">
-                {% render 'example-row-detail.html',
+                {% render 'annotation.html',
                     text: "Text",
                     style: "margin-left: calc((8/11) * 100%); width: calc((2/11) * 100%)",
                     classes: "sm:d-none",
                     range: true
                 %}
-                {% render 'example-row-detail.html',
+                {% render 'annotation.html',
                     text: "Heading",
                     style: "margin-left: calc((.5/11) * 100%);",
                     classes: "sm:d-none"
@@ -210,12 +210,12 @@ hide-menu: true
         <div class="d-flex fd-column bg-black-100 bar-lg p32">
             {% render 'color-row.html', color: "black", colorSets: colors[0].sets, labeledStops: "350,400,500" | split: "," %}
             <div class="d-flex w100">
-                {% render 'example-row-detail.html',
+                {% render 'annotation.html',
                     text: "Illustrations",
                     style: "margin-left: calc((7.5/11) * 100%)",
                     classes: "sm:d-none"
                 %}
-                {% render 'example-row-detail.html',
+                {% render 'annotation.html',
                     text: "Icons",
                     style: "margin-left: calc((.5/11) * 100%); width: calc((2/11) * 100%)",
                     classes: "sm:d-none",
@@ -331,7 +331,7 @@ hide-menu: true
                                 <div class="{{color.classes}} bar-pill ta-center px8 py2">Robotics</div>
                             {% endfor %}
                         </div>
-                        {% render 'example-row-detail.html',
+                        {% render 'annotation.html',
                             text: group.name,
                             range: true
                         %}
@@ -342,7 +342,7 @@ hide-menu: true
                 {% for group in colors[0].emphasis %}
                     <div class="ta-center">
                         <div class="fs-title {{group.textClasses}}">Text</div>
-                        {% render 'example-row-detail.html',
+                        {% render 'annotation.html',
                             text: group.name,
                             style: "margin-left: 50%;"
                         %}
@@ -361,7 +361,7 @@ hide-menu: true
             {% for group in colors[0].interaction %}
                 <div class="ta-center w100">
                     <button class="s-btn s-btn__filled {{group.classes}}" {{group.attr}} role="presentation">Button</button>
-                    {% render 'example-row-detail.html',
+                    {% render 'annotation.html',
                         text: group.name,
                         style: "margin-left: 50%;"
                     %}
