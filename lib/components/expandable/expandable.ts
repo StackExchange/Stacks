@@ -28,7 +28,7 @@ function globalChangeListener(e: UIEvent) {
             let customEvent;
             try {
                 customEvent = new Event(RADIO_OFF_EVENT);
-            } catch (ex) {
+            } catch {
                 // Internet Explorer
                 customEvent = document.createEvent("Event");
                 customEvent.initEvent(RADIO_OFF_EVENT, true, true);
