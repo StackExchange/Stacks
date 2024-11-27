@@ -169,7 +169,7 @@ hide-menu: true
                 {% render 'annotation.html',
                     text: "Input borders",
                     classes: "sm:d-none",
-                    style: "margin-left: calc((1.5/11) * 100%);"
+                    style: "margin-left: calc((1/11) * 100%); min-width: calc((1/11) * 100%)"
                 %}
             </div>
         </div>
@@ -195,8 +195,8 @@ hide-menu: true
                 %}
                 {% render 'annotation.html',
                     text: "Heading",
-                    style: "margin-left: calc((.5/11) * 100%);",
-                    classes: "sm:d-none"
+                    style: "min-width: calc((1/11) * 100%)",
+                    classes: "sm:d-none fl-shrink1"
                 %}
             </div>
         </div>
@@ -212,12 +212,12 @@ hide-menu: true
             <div class="d-flex w100">
                 {% render 'annotation.html',
                     text: "Illustrations",
-                    style: "margin-left: calc((7.5/11) * 100%)",
-                    classes: "sm:d-none"
+                    style: "margin-left: calc((7/11) * 100%); min-width: calc((1/11) * 100%)",
+                    classes: "sm:d-none",
                 %}
                 {% render 'annotation.html',
                     text: "Icons",
-                    style: "margin-left: calc((.5/11) * 100%); width: calc((2/11) * 100%)",
+                    style: "width: calc((2/11) * 100%)",
                     classes: "sm:d-none",
                     range: true
                 %}
@@ -344,6 +344,7 @@ hide-menu: true
                         <div class="fs-title {{group.textClasses}}">Text</div>
                         {% render 'annotation.html',
                             text: group.name,
+                            classes: "mx-auto",
                             style: "margin-left: 50%;"
                         %}
                     </div>
@@ -363,6 +364,7 @@ hide-menu: true
                     <button class="s-btn s-btn__filled {{group.classes}}" {{group.attr}} role="presentation">Button</button>
                     {% render 'annotation.html',
                         text: group.name,
+                        classes: "mx-auto",
                         style: "margin-left: 50%;"
                     %}
                 </div>
