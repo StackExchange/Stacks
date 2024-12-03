@@ -61,7 +61,6 @@ describe("select", () => {
                 default: child(state.attr),
             },
             template: ({ component, testid }) =>
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 template({ component, testid, className: state.class }),
             options: {
                 includeNullModifier: false,

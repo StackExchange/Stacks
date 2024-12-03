@@ -1,20 +1,13 @@
 .s-sidebarwidget {
-    // COMPONENT-SPECIFIC CONSTANTS
-    @sw-content-px: calc(var(--su16) - var(--su1)); // subtract 1px for border
-    @sw-content-spacing-inner: var(--su12); // the spacing between two adjacent simple items
-    @sw-content-spacing-outer: var(--su16); // the spacing at the start/end of a group of simple items, as well as between a complex item and its separator line
     // COMPONENT-SPECIFIC CUSTOM PROPERTIES
     --_sw-bc: var(--bc-medium);
-    --_sw-after-bc: var(--_sw-bc);
-    --_sw-content-bc: var(--bc-light);
-    --_sw-header-bc: var(--_sw-content-bc);
 
     // MODIFIERS
     &:not(.s-anchors) {
-        a:not(.button):not(.post-tag):not(.s-btn):not(.s-sidebarwidget--action):not(.s-user-card--link) {
+        a:not(.button):not(.s-tag):not(.post-tag):not(.s-btn):not(.s-sidebarwidget--action):not(.s-user-card--link) {
             &,
             &:visited {
-                color: var(--black-400);
+                color: var(--black-600);
             }
         }
     }
@@ -27,10 +20,9 @@
     // CHILD ELEMENTS
     & &--action {
         color: var(--blue-400);
-        float: right;
-        font-size: var(--fs-fine);
-        line-height: calc(var(--fs-body1) * 1.5); // 19.5px - line-height should be the same as in the outside element, so the header and action baselines line up
-        margin: 0 0 var(--su4) var(--su8);
+        font-size: var(--fs-body1);
+        font-weight: normal;
+        margin-left: auto;
     }
 
     & &--content {
@@ -41,28 +33,35 @@
             }
         }
 
+        + .s-sidebarwidget--content {
+            border-top: var(--su-static1) solid var(--bc-light);
+        }
+
         &.s-sidebarwidget__items {
             &,
             &.s-sidebarwidget__block-items .s-sidebarwidget--item {
                 display: block;
             }
 
-            padding: calc(@sw-content-spacing-outer - @sw-content-spacing-inner) @sw-content-px; // the items themselves provide part of the spacing, so the content padding needs to account for that
+            padding: var(--su6) var(--su16); // the items themselves provide part of the spacing, so the content padding needs to account for that
         }
 
         &:active {
             outline: none;
         }
+        
 
-        border-top: var(--su-static1) solid var(--_sw-content-bc);
         margin: 0;
-        padding: @sw-content-spacing-outer @sw-content-px;
+        padding: var(--su16);
     }
 
     & &--header {
         &:first-child {
-            border-top-left-radius: var(--br-sm);
-            border-top-right-radius: var(--br-sm);
+            border-top: none;
+        }
+
+        + .s-expandable:not(.is-expanded) {
+            margin-bottom: var(--su16);
         }
 
         &.s-sidebarwidget {
@@ -100,13 +99,16 @@
             outline: none;
         }
 
-        background: var(--black-100);
-        border-top: var(--su-static1) solid var(--_sw-header-bc);
-        color: var(--black-500);
+        align-items: center;
+        border-top: var(--su-static1) solid var(--bc-light);
+        color: var(--black-600);
+        display: flex;
         font-size: var(--fs-body2);
-        font-weight: normal;
+        font-weight: bold;
+        justify-content: flex-start;
+        line-height: var(--lh-xs);
         margin: 0;
-        padding: @sw-content-spacing-inner @sw-content-px;
+        padding: var(--su16) var(--su16) 0;
     }
 
     & &--item {
@@ -119,10 +121,10 @@
                     border-left-style: solid;
                     border-left-width: calc(var(--su-static1) * 3); // 3px
                     content: '';
-                    height: calc(100% + @sw-content-spacing-inner);
+                    height: calc(100% + var(--su16));
                     left: 0;
-                    margin-left: calc(@sw-content-px * -1 - var(--su-static1)); // the orange selection indicator overlaps with the widget border
-                    margin-top: calc(@sw-content-spacing-inner / 2 * -1);
+                    margin-left: calc(var(--su16) * -1 - var(--su-static1)); // the orange selection indicator overlaps with the widget border
+                    margin-top: calc(var(--su16) / 2 * -1);
                     position: absolute;
                 }
 
@@ -139,7 +141,7 @@
             }
         }
 
-        margin: @sw-content-spacing-inner 0;
+        margin: var(--su12) 0;
     }
 
     & &--subnav {
@@ -181,35 +183,14 @@
         }
 
         border-collapse: separate;
-        border-spacing: @sw-content-spacing-inner;
-        padding: calc(@sw-content-spacing-outer - @sw-content-spacing-inner) calc(@sw-content-px - @sw-content-spacing-inner);
-    }
-
-    &:before { // [1]
-        content: '';
-        display: block;
-        margin-top: calc(var(--su-static1) * -1); // -1px
-    }
-
-    &:after { // [2]
-        border: var(--su-static1) solid var(--_sw-after-bc);
-        border-radius: var(--br-sm);
-        clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%); // [3]
-        content: '';
-        // TODO: this makes no sense. revisit.
-        height: calc(var(--su-static2) + var(--br-sm)); // we need 2px border + 2px border radius to have the correct corner shape
-        left: calc(var(--su-static1) * -1); // -1px
-        pointer-events: none; // if the top item is clickable, then we don't want to prevent clicking the top 2 pixels
-        position: absolute;
-        right: calc(var(--su-static1) * -1); // -1px
-        top: calc(var(--su-static1) * -1); // -1px
+        border-spacing: var(--su16) var(--su12);
+        padding: var(--su6) 0 0;
     }
 
     background-color: var(--white);
     border: var(--su-static1) solid var(--_sw-bc);
-    border-radius: var(--br-sm);
+    border-radius: var(--br-md);
     font-size: var(--fs-body1);
-    position: relative; // so that it's the positioning parent for the :after
 }
 
 // COLOR ALTERNATIVES
@@ -222,13 +203,12 @@
         });
 
         &:after,
-        .s-sidebarwidget--content,
+        .s-sidebarwidget--content + .s-sidebarwidget--content,
         .s-sidebarwidget--header {
             border-color: var(--_sw-bc);
         }
 
         .s-sidebarwidget--header {
-            background-color: var(~"--@{name}-200");
             color: var(--fc-medium);
         }
 
@@ -236,22 +216,3 @@
         border-color: var(--_sw-bc);
     }
 }
-
-// [1] We must support things like collapsible (in particular invisble) elements, wrapper elements,
-// etc. Therefore every .-content and .-header must stand on its own; we cannot rely on things
-// like :first-child, because the *first* child may not be the first *visible* child, and it may
-// also be the :first-child of some wrapper. This is why every .-header and .-content has a
-// border-top. But because you shouldn't see the first visible item's or header's top border
-// (the widget itself provides for that border), we shift everything up by one pixel with the following pseudo-element.
-
-// [2] The top item's divider line sits above the .s-sidebarwidget's top border.
-//  We could fix this by using overflow: hidden, but that would constrain users of
-// .s-sidebarwidget to never have things like tooltips, autocompletes or the like that reach
-// outside the widget boundaries.
-// What we do instead is re-create the widget's top border in an absolutely positioned :after,
-// which sits above our item's top border. Technically, a tiny corner of the item's border will
-// still be visible, but at its highest point, this corner has a height of 0.27 pixels. And for
-// this sub-pixel issues, we're talking about different shades of gray. So we can live with that.
-
-// [3] In order to perfectly recreate the inner corner shape, our pseudo-element needs
-// the border on all sides. But we can only do that if we're able to hide the bottom part.
