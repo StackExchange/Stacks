@@ -84,9 +84,16 @@ export default {
         esbuildPlugin({ ts: true }),
         visualRegressionPlugin({
             // https://github.com/StackExchange/Stacks?tab=readme-ov-file#visual-regression-tests
+            // we are creating screenshots with a .ico extension instead of .png to
+            // bypass an issue with netlify not honoring the GIT_LFS_FETCH_INCLUDE
+            // env variable and timing out trying to pull all the screenshots on git checkouts
+            // see https://stackoverflow.atlassian.net/browse/STACKS-691
             getFailedName: ({ browser, name }) => {
-                return `${browser}/baseline/${name}.png`;
+                return `${browser}/baseline/${name}.ico`;
             },
+            getBaselineName: ({ browser, name }) => {
+                return `${browser}/baseline/${name}.ico`;
+            }
         }),
     ],
     filterBrowserLogs: ({ args }) =>

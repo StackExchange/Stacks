@@ -19,7 +19,6 @@ function ciReporter() {
     }
 
     function logResults(logger, results, prefix, browser) {
-        const browserName = browser?.name ? ` ${dim(`[${browser.name}]`)}` : "";
         for (const result of results?.tests.filter((r) => !r.passed) ?? []) {
             log(logger, result.name, result.passed, result.skipped);
         }

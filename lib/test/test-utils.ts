@@ -119,7 +119,7 @@ type Themes = ["light" | "dark" | "highcontrast" | ""];
 
 const attrObjToString = (attrs: Record<string, string>): string => {
     const attrString = Object.keys(attrs).map((key) => {
-        return `${key}="${attrs[key]}"` || "";
+        return `${key}="${attrs[key]}"`;
     });
     return attrString.join(" ") || "";
 };
