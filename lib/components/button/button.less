@@ -59,7 +59,6 @@
     .highcontrast-mode({
         --_bu-bc: currentColor;
         --_bu-outlined-bc: var(--_bu-bc);
-        --_bu-bc-selected: var(--_bu-bc);
         --_bu-fc-selected: var(--white);
         --_bu-outlined-fc-selected: var(--white);
         --_bu-badge-o: 0.8;
@@ -236,6 +235,7 @@
 
     // VARIANTS
     &&__danger,
+    &&__featured,
     &&__muted {
         .highcontrast-mode({
             --_bu-filled-bc: transparent;
@@ -262,6 +262,32 @@
         --_bu-filled-fc-selected: var(--_bu-filled-fc);
         --_bu-outlined-bc: var(--red-400);
         --_bu-outlined-bc-selected: var(--red-500);
+        --_bu-outlined-bg-selected: var(--_bu-bg-selected);
+        --_bu-outlined-fc-selected: var(--_bu-fc-selected);
+        --_bu-number-fc: var(--white);
+        --_bu-number-fc-filled: var(--black);
+    }
+
+    &&__featured {
+        --_bu-bg-active: var(--purple-300);
+        --_bu-bg-hover: var(--purple-200);
+        --_bu-bg-selected: var(--purple-300);
+        --_bu-fc: var(--purple-500);
+        --_bu-fc-active: var(--_bu-fc);
+        --_bu-fc-hover: var(--purple-500);
+        --_bu-fc-selected: var(--purple-600);
+        --_bu-filled-bc: transparent;
+        --_bu-filled-bc-selected: var(--_bu-filled-bc);
+        --_bu-filled-bg: var(--purple-400);
+        --_bu-filled-bg-active: var(--purple-500);
+        --_bu-filled-bg-hover: var(--purple-500);
+        --_bu-filled-bg-selected: var(--purple-600);
+        --_bu-filled-fc: var(--white);
+        --_bu-filled-fc-active: var(--_bu-filled-fc);
+        --_bu-filled-fc-hover: var(--_bu-filled-fc);
+        --_bu-filled-fc-selected: var(--_bu-filled-fc);
+        --_bu-outlined-bc: var(--purple-400);
+        --_bu-outlined-bc-selected: var(--purple-500);
         --_bu-outlined-bg-selected: var(--_bu-bg-selected);
         --_bu-outlined-fc-selected: var(--_bu-fc-selected);
         --_bu-number-fc: var(--white);
@@ -300,6 +326,7 @@
         --_bu-number-fc-focus: var(--black-500);
 
         .highcontrast-mode({
+            --_bu-bc-hover: currentColor;
             --_bu-bg-hover: var(--black-225);
             // // The filled modifier on the muted button is deprecated and is to be
             // // removed in Stacks Classic v2
@@ -309,6 +336,7 @@
             --_bu-filled-bg-selected: var(--black-500);
             --_bu-filled-fc: var(--white);
             --_bu-filled-fc-selected: var(--_bu-filled-fc);
+            --_bu-bc-selected: currentColor;
             --_bu-fc-selected: var(--black);
             --_bu-number-fc: var(--white);
             --_bu-number-fc-filled: var(--black);
@@ -408,7 +436,7 @@
                 color: var(--_bu-filled-fc-hover);
             }
 
-            &:not(.s-btn__outlined) {
+            &:not(.s-btn__outlined):not(.s-btn__filled) {
                 border-color: var(--_bu-bc-hover);
             }
 
