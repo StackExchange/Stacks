@@ -19,6 +19,7 @@ const customConformanceThresholdFn = (fontSize: string): number | null => {
     // otherwise, we use a 60Lc threshold
     return parseFloat(fontSize) >= 32 ? 45 : 60;
 };
+registerAPCACheck("custom", customConformanceThresholdFn);
 
 const scheduleA11yTest = ({
     element,
@@ -44,7 +45,6 @@ const scheduleA11yTest = ({
 
         const highcontrast = theme?.includes("highcontrast");
 
-        // TODO add option to check contrast against disabled elements
         axe.configure({
             rules: [
                 // for non-high contrast, we disable WCAG 2.1 AA (4.5:1)
@@ -74,15 +74,6 @@ const scheduleA11yTest = ({
 };
 
 const runA11yTests = (args: A11yTestArgs) => {
-    const useDisabledAPCAThreshold =
-        args.attributes && "disabled" in args.attributes;
-
-    // For disabled elements in non-high contrast, we use a threshold of Lc30
-    registerAPCACheck(
-        "custom",
-        useDisabledAPCAThreshold ? () => 30 : customConformanceThresholdFn
-    );
-
     const testVariations = generateTestVariations(args);
     testVariations.forEach((variation) => {
         if (variation.skipped) {
