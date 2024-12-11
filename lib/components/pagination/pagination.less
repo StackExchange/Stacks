@@ -1,4 +1,12 @@
 .s-pagination {
+    // reset list styles on ul.s-pagination and .s-pagination ul
+    ul,
+    ul& {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
     & &--item {
         --_pa-item-bg: transparent;
         --_pa-item-bc: var(--bc-darker);
@@ -54,12 +62,16 @@
         color: var(--_pa-item-fc);
 
         border-radius: var(--br-sm);
+        display: inline-block;
         font-size: var(--fs-body1);
         line-height: var(--lh-xl);
         padding: 0 var(--su8);
     }
 
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--su4);
+    &,
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--su4);
+    }
 }
