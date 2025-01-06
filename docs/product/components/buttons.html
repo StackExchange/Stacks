@@ -11,6 +11,7 @@ description: Buttons are user interface elements which allows users to take acti
     <ol class="stacks-list">
         <li><a href="#base">Base</a></li>
         <li><a href="#danger">Danger</a></li>
+        <li><a href="#featured">Featured</a></li>
         <li><a href="#muted">Muted</a></li>
     </ol>
     <p class="stacks-copy">Each style is explained below, detailing how and where to use these styles.</p>
@@ -118,6 +119,61 @@ description: Buttons are user interface elements which allows users to take acti
             </div>
         </div>
     </div>
+
+
+    {% header "h3", "Featured" %}
+    <!-- TODO add featured button description -->
+    <p class="stacks-copy">Featured buttons are a secondary button style, used to visually draw attention to something new or temporary, usually as part of onboarding or to announce a new feature. These should be used sparingly, and permanent placements should be avoided.</p>
+
+    <div class="stacks-preview">
+{% highlight html %}
+<button class="s-btn s-btn__featured" type="button">…</button>
+<button class="s-btn s-btn__outlined s-btn__featured" type="button">…</button>
+<button class="s-btn s-btn__filled s-btn__featured" type="button">…</button>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="overflow-x-auto">
+                <table class="wmn5 s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col">Type</th>
+                            <th scope="col" class="s-table--cell4">Class</th>
+                            <th scope="col" class="ta-center">Default State</th>
+                            <th scope="col" class="ta-center">Selected State</th>
+                            <th scope="col" class="ta-center">Disabled State</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for btn in buttons.featured %}
+                            {% assign types = btn.classes %}
+                            {% for class in types %}
+                            <tr>
+                                <th scope="row" class="va-middle">
+                                    {{ class.title }}
+                                </th>
+                                <td class="va-middle">
+                                    <div class="d-flex g4 fw-wrap">
+                                        <code class="flex--item stacks-code">.s-btn</code>
+                                        {% if btn.class != nil %}
+                                            <code class="flex--item stacks-code">.{{ btn.class }}</code>
+                                        {% endif %}
+                                        {% if class.class != nil %}
+                                            <code class="flex--item stacks-code">.{{ class.class }}</code>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.class }} {{ class.class }} is-selected" type="button" aria-pressed="true">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.class }} {{ class.class }}" type="button" disabled>Ask question</button></td>
+                            </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
 
     {% header "h3", "Muted" %}
     <p class="stacks-copy">Muted buttons are a secondary button style, a grayscale visual treatment. Used in layouts for the least important items or currently inactive actions.</p>

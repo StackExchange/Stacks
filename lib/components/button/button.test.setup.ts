@@ -16,7 +16,7 @@ const getChild = (child?: string): string => {
 // TODO test disabled states, interaction pseudo-classes
 const testArgs: TestVariationArgs = {
     baseClass: "s-btn",
-    variants: ["danger", "muted"],
+    variants: ["danger", "featured", "muted"],
     modifiers: {
         primary: ["filled", "outlined"],
         secondary: [...["xs", "sm", "md"], ...["dropdown", "icon"]],
