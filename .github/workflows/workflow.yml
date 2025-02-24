@@ -5,6 +5,10 @@ on:
     branches: [develop]
   pull_request:
     branches: [develop]
+  # this is to ensure the pipeline runs at least once a day
+  # even when there is no active development in the codebase
+  schedule:
+    - cron: '0 6 * * 1-5' # every weekday at 6am UTC
 
 jobs:
   build-and-test:
@@ -16,23 +20,30 @@ jobs:
         include:
         - command_description: Build
           command: npm run build
+          needs_lfs: false
           needs_playwright: false
         - command_description: Lint
           command: npm run lint
+          needs_lfs: false
           needs_playwright: false
         - command_description: Less Tests
           command: npm run test:less
+          needs_lfs: false
           needs_playwright: false
         - command_description: Unit Tests
           command: npm run test:unit -- --config web-test-runner.config.ci.mjs
+          needs_lfs: false
           needs_playwright: true
         - command_description: A11y Tests
           command: npm run test:a11y -- --config web-test-runner.config.ci.mjs
+          needs_lfs: false
           needs_playwright: true
         - command_description: Visual Regression Tests
           command: npm run test:visual -- --config web-test-runner.config.ci.mjs
-          needs_playwright: true
+          needs_lfs: true
+          needs_playwright: false # we are using playwright docker image to run visual tests
     with:
       command: ${{ matrix.command }}
       command_description: ${{ matrix.command_description }}
       needs_playwright: ${{ matrix.needs_playwright }}
+      needs_lfs: ${{ matrix.needs_lfs }}
