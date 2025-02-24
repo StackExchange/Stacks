@@ -15,7 +15,11 @@ on:
       needs_playwright:
         description: 'Whether or not to install playwright'
         type: boolean
-        required: true
+        default: false
+      needs_lfs:
+          description: 'Whether or not to checkout with LFS'
+          type: boolean
+          default: false
 
 jobs:
   build-and-test:
@@ -23,12 +27,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          lfs: true
+          lfs: ${{ inputs.needs_lfs }}
 
       - name: ⎔ Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
 
