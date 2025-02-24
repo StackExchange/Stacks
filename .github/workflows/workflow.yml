@@ -35,7 +35,7 @@ jobs:
           needs_playwright: true
         - command_description: Visual Regression Tests
           command: npm run test:visual -- --config web-test-runner.config.ci.mjs
-          needs_playwright: true
+          needs_playwright: false # we are using playwright docker image to run visual tests
     with:
       command: ${{ matrix.command }}
       command_description: ${{ matrix.command_description }}
