@@ -48,7 +48,7 @@ function ciReporter() {
     }
 
     function resultsSummary(results) {
-        return results.suites.reduce(
+        return results?.suites.reduce(
             (a, s) => {
                 const sSummary = resultsSummary(s);
                 return sumStats(a, sSummary);
