@@ -5,6 +5,10 @@ on:
     branches: [develop]
   pull_request:
     branches: [develop]
+  # this is to ensure the pipeline runs at least once a day
+  # even when there is no active development in the codebase
+  schedule:
+    - cron: '0 6 * * 1-5' # every weekday at 6am UTC
 
 jobs:
   build-and-test:
