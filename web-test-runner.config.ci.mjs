@@ -41,14 +41,14 @@ function ciReporter() {
 
     function sumStats(a, b) {
         return {
-            passed: a.passed + b.passed,
-            failed: a.failed + b.failed,
-            skipped: a.skipped + b.skipped,
+            passed: (a?.passed ?? 0) + (b?.passed ?? 0),
+            failed: (a?.failed ?? 0) + (b?.failed ?? 0),
+            skipped: (a?.skipped ?? 0) + (b?.skipped ?? 0),
         };
     }
 
     function resultsSummary(results) {
-        return results.suites.reduce(
+        return results?.suites.reduce(
             (a, s) => {
                 const sSummary = resultsSummary(s);
                 return sumStats(a, sSummary);
