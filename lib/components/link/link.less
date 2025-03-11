@@ -1,19 +1,26 @@
 // TODO we *really* shouldn't be apply styles directly onto `<a>` like this, but
 // it's tech debt that'll take some doing in consumer's code to pay down.
 a {
-    &:visited {
-        // We're target these specific selectors to avoid affecting the visited state of stacks components
-        // not specified here. See for https://github.com/StackExchange/Stacks/pull/1740#discussion_r1698389312
-        // TODO remove .post-tag, .badge, .badge-tag reference once core no longer requires them
-        &:not([class*="s-"]):not(.post-tag):not(.badge):not(.badge-tag),
-        &.s-link,
-        &.s-sidebarwidget--action,
-        &.s-user-card--link {
-            &:hover {
-                color: var(--_li-fc-hover-visited);
-            }
+    // We're target these specific selectors to avoid affecting the visited state of stacks components
+    // not specified here. See for https://github.com/StackExchange/Stacks/pull/1740#discussion_r1698389312
+    // TODO remove .post-tag, .badge, .badge-tag reference once core no longer requires them
+    &:not([class*="s-"]):not(.post-tag):not(.badge):not(.badge-tag),
+    &.s-link,
+    &.s-sidebarwidget--action,
+    &.s-user-card--link {
+        // Use --_an-a-* (.s-anchors a) custom properties when they're defined.
+        // Otherwise, use the default link colors.
+        &:active,
+        &:hover {
+            color: var(--_an-a-fc-hover, var(--_li-fc-hover));
+        }    
 
-            color: var(--_li-fc-visited);
+        &:visited {
+            color: var(--_an-a-fc-visited, var(--_li-fc-visited));
+        }
+
+        &:hover:visited {
+            color: var(--_an-a-fc-hover-visited, var(--_li-fc-hover-visited));
         }
     }
 }
@@ -103,12 +110,6 @@ a,
         pointer-events: none;
     }
 
-    // INTERACTION
-    &:active,
-    &:hover {
-        --_li-fc: var(--_li-fc-hover);
-    }
-
     color: var(--_li-fc);
     cursor: pointer;
     text-decoration: none;
@@ -132,5 +133,11 @@ a,
 
     p & {
         text-decoration: underline;
+    }
+
+    // INTERACTION
+    &:active,
+    &:hover {
+        --_li-fc: var(--_li-fc-hover);
     }
 }
