@@ -41,6 +41,13 @@
     }
 
     &&__inherit {
+        a:not(.s-link):not(.s-btn),
+        .s-btn.s-btn__link {
+            // This ensures inherited colors are applied instead of generic link colors targeting `a`
+            // See lib/components/link/link.less
+            color: var(--_an-a-fc) !important;
+        }
+
         --_an-a-fc: inherit;
         --_an-a-fc-hover: inherit;
         --_an-a-fc-visited: inherit;
