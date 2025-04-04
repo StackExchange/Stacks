@@ -9,16 +9,12 @@
 
         {% if site-navigation %}
             <nav aria-label="Global" class="sm:d-none">
-                <ul class="s-navigation ml8 fw-nowrap">
+                <ul class="s-navigation ml8 fw-nowrap sm:d-none">
                     {% assign slug = page.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
 
                     {% for section in site-navigation.sections %}
                         {% assign url = section.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
-                        <li>
-                            <a class="s-navigation--item{% if url == slug %} is-selected{% endif %}" href="{{ section.url }}" {% if url == slug %} aria-current="page"{% endif %}>
-                                <span class="s-navigation--item-text" data-text="{{ section.title }}">{{ section.title }}</span>
-                            </a>
-                        </li>
+                        <li><a class="s-navigation--item{% if url == slug %} is-selected{% endif %}" href="{{ section.url }}" {% if url == slug %} aria-current="page"{% endif %}>{{ section.title }}</a></li>
                     {% endfor %}
                 </ul>
             </nav>
