@@ -63,6 +63,20 @@
             --_na-item-fc-hover: var(--_na-item-fc);
             --_na-item-bg-hover: var(--_na-item-selected-bg-hover);
 
+            display: inline-flex;
+            flex-direction: column;
+            font-weight: bold;
+
+            &:before {
+                content: attr(data-text);
+                content: attr(data-text) / "";
+                font-weight: bold;
+                height: 0;
+                pointer-events: none;
+                user-select: none;
+                visibility: hidden;
+            }
+
             .highcontrast-mode({
                 text-decoration: none;
             });
