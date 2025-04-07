@@ -31,6 +31,7 @@
         "test:less": "vitest run .less.test.ts",
         "test:less:update": "npm run test:less -- -u",
         "prepublishOnly": "npm run build",
+        "release": "npm run build && changeset publish",
         "format": "prettier --write ./lib",
         "lint": "concurrently -n w: npm:lint:*",
         "lint:ts": "eslint ./lib",
@@ -44,6 +45,8 @@
     },
     "devDependencies": {
         "@11ty/eleventy": "^3.0.0",
+        "@changesets/changelog-github": "^0.5.1",
+        "@changesets/cli": "^2.28.1",
         "@eslint/js": "^9.24.0",
         "@highlightjs/cdn-assets": "^11.11.1",
         "@open-wc/testing": "^4.0.0",
