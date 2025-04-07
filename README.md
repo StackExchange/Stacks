@@ -141,13 +141,7 @@ _The release github workflow only run if the CI workflow (running linter, format
 
 _Despite using changesets to communicate the intent of creating releases in a more explicit way, we still follow [conventional commits standards](https://www.conventionalcommits.org/en/v1.0.0/) for keeping our git history easily parseable by the human eye._
 
-### Merge `develop` into `production` and push
-```sh
-git checkout production && git merge develop && git push
-```
-
-### Push the updated docs site
-Head to [Netlify](https://app.netlify.com), navigate to the Stacks overview, click on "Production deploys", and select "Deploy site" from the "Trigger deploy" dropdown.
+Successful releases trigger automatically a new deployment to stackoverflow.design by merging the `develop` branch into the `production` branch.
 
 ## Bugs and feature requests
 Have a bug or feature request? First search existing or closed issues to make sure the issue hasn’t been noted yet. If not, review our [issue guidelines](/CONTRIBUTING.md#open-an-issue) for submitting [a bug report](/CONTRIBUTING.md#reporting-bugs) or [feature request](/CONTRIBUTING.md#feature-requests).
