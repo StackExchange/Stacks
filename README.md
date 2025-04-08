@@ -128,42 +128,20 @@ npm run test:less:update
 ```
 
 ## Releasing a new version of Stacks
-Stacks uses [Semantic Versioning](https://semver.org/), is distributed via [npm](https://www.npmjs.com/package/@stackoverflow/stacks), and publishes [release notes on Github](https://github.com/StackExchange/Stacks/releases). Follow the steps below to release a new version of Stacks.
+Stacks uses [Semantic Versioning](https://semver.org/), is distributed via [npm](https://www.npmjs.com/package/@stackoverflow/stacks), and publishes [release notes on Github](https://github.com/StackExchange/Stacks/releases). 
 
-### Bump the version number
-```sh
-npm version [major | minor | patch]
-```
+We use [changesets](https://github.com/changesets/changesets) to automatize the steps necessary to publish to NPM, create GH releases and a changelog.
 
-### Push the new tag
-```sh
-git push && git push --tags
-```
+- Every time you do work that requires a new release to be published, [add a changesets entry](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) by running `npx chageset` and follow the instrcutions on screen. (changes that do not require a new release - e.g. changing a test file - don't need a changeset).
+    - When opening a PR without a corresponding changeset the [changesets-bot](https://github.com/apps/changeset-bot) will remind you to do so. It generally makes sense to have one changeset for PR (if the PR changes do not require a new release to be published the bot message can be safely ignored)
+- The [release github workflow](.github/workflows/release.yml) continuosly check if there are new pending changesets in the main branch, if there are it creates a GH PR (`chore(release)` [see example](https://github.com/StackExchange/apca-check/pull/2)) and continue updating it as more changesets are potentially pushed/merged to the main branch.
+- When we are ready to cut a release we need to simply merge the `chore(release)` PR back to main and the release github workflow will take care of publishing the changes to NPM and create a GH release for us. The `chore(release)` PR also give us an opportunity to adjust the automatically generated changelog when necessary (the entry in the changelog file is also what will end up in the GH release notes).
 
-### Create release notes [on Github](https://github.com/StackExchange/Stacks/releases/new)
+_The release github workflow only run if the CI workflow (running linter, formatter and tests) is successful: CI is blocking accidental releases_.
 
-1. Visit https://github.com/StackExchange/Stacks/releases/new
-1. Choose your new version from the "Choose a tag" dropdown
-1. Click "Generate release notes"
-1. Cleanup and complete the release notes
-    - Prominently mention any breaking changes, if applicable
-    - Include a "What's Changed" section in the release notes
-    - Mention significant bug fixes
-    - Mention new features
-    - Mention significant under-the-hood changes that could impact consumers
+_Despite using changesets to communicate the intent of creating releases in a more explicit way, we still follow [conventional commits standards](https://www.conventionalcommits.org/en/v1.0.0/) for keeping our git history easily parseable by the human eye._
 
-### Ship your newly created version to [npm](https://www.npmjs.com/package/@stackoverflow/stacks)
-```sh
-npm publish
-```
-
-### Merge `develop` into `production` and push
-```sh
-git checkout production && git merge develop && git push
-```
-
-### Push the updated docs site
-Head to [Netlify](https://app.netlify.com), navigate to the Stacks overview, click on "Production deploys", and select "Deploy site" from the "Trigger deploy" dropdown.
+Successful releases trigger automatically a new deployment to stackoverflow.design by merging the `develop` branch into the `production` branch.
 
 ## Bugs and feature requests
 Have a bug or feature request? First search existing or closed issues to make sure the issue hasn’t been noted yet. If not, review our [issue guidelines](/CONTRIBUTING.md#open-an-issue) for submitting [a bug report](/CONTRIBUTING.md#reporting-bugs) or [feature request](/CONTRIBUTING.md#feature-requests).
