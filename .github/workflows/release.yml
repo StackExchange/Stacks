@@ -50,6 +50,7 @@ jobs:
 
             - name: 🔄 Update stackoverflow.design docs
               # Only run this step if publish succeeded and actually released something
+              if: steps.changesets.outputs.published == 'true'
               run: |
                   git config --global user.name 'github-actions[bot]'
                   git config --global user.email 'github-actions[bot]@users.noreply.github.com'
