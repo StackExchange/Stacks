@@ -45,7 +45,7 @@ jobs:
                   title: "chore(new-release)"
                   commit: "chore(new-release)"
               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.STACKS_TOOLING_GH_RW_PAT }}
                   NPM_TOKEN: ${{ secrets.NPM_API_KEY }}
 
             - name: 🔄 Update stackoverflow.design docs
@@ -59,7 +59,7 @@ jobs:
                   git merge --no-ff --allow-unrelated-histories origin/develop -m "chore: merge develop into production"
                   git push origin production
               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.STACKS_TOOLING_GH_RW_PAT }}
 
 # cancel the jobs if another workflow is kicked off for the same branch
 concurrency:
