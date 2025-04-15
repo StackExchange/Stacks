@@ -45,11 +45,12 @@ jobs:
                   title: "chore(new-release)"
                   commit: "chore(new-release)"
               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.STACKS_TOOLING_GH_RW_PAT }}
                   NPM_TOKEN: ${{ secrets.NPM_API_KEY }}
 
             - name: 🔄 Update stackoverflow.design docs
               # Only run this step if publish succeeded and actually released something
+              if: steps.changesets.outputs.published == 'true'
               run: |
                   git config --global user.name 'github-actions[bot]'
                   git config --global user.email 'github-actions[bot]@users.noreply.github.com'
@@ -58,7 +59,7 @@ jobs:
                   git merge --no-ff --allow-unrelated-histories origin/develop -m "chore: merge develop into production"
                   git push origin production
               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.STACKS_TOOLING_GH_RW_PAT }}
 
 # cancel the jobs if another workflow is kicked off for the same branch
 concurrency:
