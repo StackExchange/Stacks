@@ -1,9 +1,10 @@
 .s-label {
+    --_la-c: unset;
     --_la-fs: var(--fs-body2);
 
     // CONTEXTUAL STYLES
     &[for] {
-        cursor: pointer;
+        --_la-c: pointer;
     }
 
     fieldset[disabled] &,
@@ -12,12 +13,16 @@
             opacity: unset;
         }
 
-        cursor: not-allowed;
+        &,
+        &[for] {
+            --_la-c: not-allowed;
+        }
+
         opacity: var(--_o-disabled-static);
     }
 
     .is-readonly & {
-        cursor: not-allowed;
+        --_la-c: default;
     }
 
     // MODIFIERS
@@ -88,6 +93,7 @@
         padding: 0;
     }
 
+    cursor: var(--_la-c);
     font-size: var(--_la-fs);
 
     color: var(--fc-medium);
