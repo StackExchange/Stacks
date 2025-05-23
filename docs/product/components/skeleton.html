@@ -30,25 +30,39 @@ description: A skeleton component is used to indicate that a large block of cont
 
 <section class="stacks-section">
     {% header "h2", "Examples" %}
-    {% header "h3", "Default skeleton" %}
+    {% header "h3", "Base style" %}
     <p class="stacks-copy">The default skeleton should be used when loading large blocks will render multiple rows of content.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-skeleton" aria-hidden="true"></div>
+<div class="s-skeleton">
+    <div class="v-visible-sr">Loading…</div>
+</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="s-skeleton" aria-hidden="true"></div>
+            <div class="s-skeleton">
+                <div class="v-visible-sr">Loading…</div>
+            </div>
         </div>
     </div>
 
-    {% header "h3", "AI skeleton" %}
+    {% header "h3", "AI" %}
     <p class="stacks-copy">The <code class="stacks-code">ai</code> variant of the skeleton should be used when loading AI responses.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-skeleton s-skeleton__ai" aria-hidden="true"></div>
+<div class="s-skeleton s-skeleton__ai">
+    <div class="v-visible-sr">Loading…</div>
+</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="s-skeleton s-skeleton__ai" aria-hidden="true"></div>
+            <div class="s-skeleton s-skeleton__ai">
+                <div class="v-visible-sr">Loading…</div>
+            </div>
         </div>
     </div>
 </section>
+
+<section class="stacks-section">
+    {% header "h2", "Accessibility" %}
+    <p class="stacks-copy">For accessibility, it’s important to add fallback loading text that is visible to screen readers. Additionally, you should add <code class="stacks-code">aria-busy="true"</code> to the component that triggered the loading state while the skeleton is shown.</p>
+</section>
+
