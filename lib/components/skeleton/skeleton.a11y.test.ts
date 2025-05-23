@@ -4,6 +4,6 @@ import "../../index";
 describe("skeleton", () => {
     runA11yTests({
         baseClass: "s-skeleton",
-        variants: ["ai"]
+        variants: ["ai"],
     });
 });
