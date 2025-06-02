@@ -1,0 +1,73 @@
+.s-skeleton {
+    // BASE COMPONENT-SPECIFIC CUSTOM PROPERTIES
+    // TODO verify colors with design
+    --_sk-bg-1: var(--black-400);
+    --_sk-bg-2: var(--black-350);
+    --_sk-bg-3: var(--black-300);
+    --_sk-o: 0.25;
+
+    // CONTEXTUAL STYLES
+    .highcontrast-mode({
+        --_sk-o: 0.4;
+    });
+
+    @keyframes flow {
+        0% {
+            background-position: 400% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    // VARIANTS
+    &&__ai {
+        --_sk-bg-1: #ac76f0;
+        --_sk-bg-2: #297fff;
+        --_sk-bg-3: #6abcf8;
+    }
+
+    &,
+    &:after,
+    &:before {
+        @media (prefers-reduced-motion: no-preference) {
+            animation: flow 8s linear infinite;
+        }
+
+        background-image: linear-gradient(
+            to right,
+            var(--_sk-bg-1) 8%,
+            var(--_sk-bg-2) 16%,
+            var(--_sk-bg-3) 25%,
+            var(--_sk-bg-1) 42%,
+            var(--_sk-bg-2) 58%,
+            var(--_sk-bg-3) 75%,
+            var(--_sk-bg-1) 83%
+        );
+        background-size: 400% 100%;
+        border-radius: var(--br-lg);
+        display: block;
+        height: var(--su16);
+        position: relative;
+    }
+
+    &:after,
+    &:before {
+        content: '';
+        position: relative;
+    }
+
+    &:after {
+        top: calc(var(--su4));
+        width: calc(2/3 * 100%);
+    }
+
+    &:before {
+        top: calc(var(--su32) + var(--su8));
+        width: calc(1/3 * 100%);
+    }
+
+    margin-bottom: var(--su48);
+    opacity: var(--_sk-o);
+    width: 100%;
+}
