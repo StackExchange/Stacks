@@ -1,5 +1,11 @@
 # @stackoverflow/stacks
 
+## 2.8.0
+
+### Minor Changes
+
+- [#1925](https://github.com/StackExchange/Stacks/pull/1925) [`279502e`](https://github.com/StackExchange/Stacks/commit/279502e8acfc35b560cfbe7250a63e4f5b95e722) Thanks [@dancormier](https://github.com/dancormier)! - Add skeleton component
+
 ## 2.7.5
 
 ### Patch Changes
