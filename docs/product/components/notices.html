@@ -239,13 +239,19 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
         </table>
     </div>
 
+    {% tip, "", "mb24" %}
+        <p><strong>Note:</strong> We recommend including <code class="stacks-code">.s-anchors.s-anchors__inherit.s-anchors__underlined</code> classes for appropriate child link styling for notices containing links.</p>
+    {% endtip %}
+
     {% header "h3", "Filled" %}
     <p class="stacks-copy">Default style used to separate notices from the main content</p>
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-notice" role="status">…</div>
 <div class="s-notice s-notice__info" role="status">…</div>
-<div class="s-notice s-notice__success" role="status">…</div>
+<div class="s-notice s-notice__success s-anchors s-anchors__inherit s-anchors__underlined" role="status">
+    … <a href="…">…</a>
+</div>
 <div class="s-notice s-notice__warning" role="status">…</div>
 <div class="s-notice s-notice__danger" role="status">…</div>
 {% endhighlight %}
@@ -258,10 +264,10 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
                         {% assign variantClass = "" %}
                     {% endif %}
 
-                    <div class="s-notice{{variantClass}}" role="presentation">
+                    <div class="s-notice{{variantClass}} s-anchors s-anchors__inherit s-anchors__underlined" role="presentation">
                         <p class="m0">
                             {{variantCapitalized}} filled message style
-                            <code>and some code</code> notice. <a class="s-link s-link__inherit s-link__underlined" href="#">Link</a>
+                            <code>and some code</code> notice. <a href="#">Link</a>
                         </p>
                     </div>
                 {% endfor %}
@@ -275,7 +281,9 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
 {% highlight html %}
 <div class="s-notice s-notice__important" role="alert">…</div>
 <div class="s-notice s-notice__info s-notice__important" role="alert">…</div>
-<div class="s-notice s-notice__success s-notice__important" role="alert">… <a class="s-link s-link__inherit s-link__underlined" href="…">…</a></div>
+<div class="s-notice s-notice__success s-notice__important s-anchors s-anchors__inherit s-anchors__underlined" role="alert">
+    … <a href="…">…</a>
+</div>
 <div class="s-notice s-notice__warning s-notice__important" role="alert">…</div>
 <div class="s-notice s-notice__danger s-notice__important" role="alert">…</div>
 {% endhighlight %}
@@ -288,10 +296,10 @@ description: Notices deliver <strong>System</strong> and <strong>Engagement</str
                         {% assign variantClass = "" %}
                     {% endif %}
 
-                    <div class="s-notice{{variantClass}} s-notice__important" role="presentation">
+                    <div class="s-notice{{variantClass}} s-notice__important s-anchors s-anchors__inherit s-anchors__underlined" role="presentation">
                         <p class="m0">
                             {{variantCapitalized}} important message style
-                            <code>and some code</code> notice. <a class="s-link s-link__inherit s-link__underlined" href="#">Link</a>
+                            <code>and some code</code> notice. <a href="#">Link</a>
                         </p>
                     </div>
                 {% endfor %}
