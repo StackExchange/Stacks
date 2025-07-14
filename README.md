@@ -38,7 +38,7 @@ Using Stacks is outlined in our [usage guidelines](https://stackoverflow.design/
 
 To migrate from Stacks v1 to v2, see our [migration guide](/MIGRATION_GUIDE.md).
 
-## Local Develompment
+## Local Development
 
 To contribute to Stacks documentation or its CSS library, you’ll need to build Stacks locally:
 ```sh
