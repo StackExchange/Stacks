@@ -22,7 +22,7 @@ Stacks documentation can be found at https://stackoverflow.design/
 
 - [Using Stacks](#using-stacks)
 - [Migrating from v1 to v2](#migrating-from-v1-to-v2)
-- [Building Stacks](#building-stacks)
+- [Local Development](#local-development)
 - [Format Stacks](#format-stacks)
 - [Linting Stacks](#linting-stacks)
 - [Testing Stacks](#testing-stacks)
