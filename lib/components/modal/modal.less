@@ -82,7 +82,6 @@
         transform: translate3d(0, 30%, 0) scale3d(0.6, 0.6, 0.6);
         transition: opacity 200ms var(--te-smooth) 0s, z-index 0s 100ms, visibility 0s 100ms, transform 100ms var(--te-smooth) 0s, transform 100ms var(--te-smooth) 0s; // Transition out
         visibility: hidden;
-        will-change: visibility, z-index, opacity, transform; // Not supported by Edge
         z-index: var(--zi-hide); // Make sure it's also below everything so we can't interact with it.
     }
 
@@ -113,6 +112,5 @@
     position: fixed;
     transition: opacity 100ms var(--te-smooth) 0s, z-index 0s 100ms, visibility 0s 100ms; // Transition out
     visibility: hidden;
-    will-change: visibility, z-index, opacity; // Not supported in Edge
     z-index: var(--zi-hide); // Make sure it's also below everything so we can't interact with it.
 }

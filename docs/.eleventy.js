@@ -1,4 +1,5 @@
 const pluginTOC = require("eleventy-plugin-nesting-toc");
+const llmsTxtPlugin = require("eleventy-plugin-llms-txt");
 const { version } = require("../package.json");
 
 const headerPlugin = require("./plugins/header");
@@ -17,6 +18,12 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(iconPlugin);
   eleventyConfig.addPlugin(headerPlugin);
   eleventyConfig.addPlugin(tipPlugin);
+  eleventyConfig.addPlugin(llmsTxtPlugin, {
+    siteUrl: 'https://stackoverflow.design',
+    collections: ['base', 'components', 'develop', 'foundation'],
+    additionalMetadata: ['description'],
+    normalizeWhitespace: true,
+  });
 
   // Version shortcode
   eleventyConfig.addLiquidShortcode("version", function() {
