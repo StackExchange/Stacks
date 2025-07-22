@@ -1,5 +1,11 @@
 # @stackoverflow/stacks
 
+## 2.8.1
+
+### Patch Changes
+
+- [#1958](https://github.com/StackExchange/Stacks/pull/1958) [`4f0b3aa`](https://github.com/StackExchange/Stacks/commit/4f0b3aa6ae0ee0cdbfe1df03f1cfdb15728879c2) Thanks [@dancormier](https://github.com/dancormier)! - Remove unneeded will-change CSS property on modal
+
 ## 2.8.0
 
 ### Minor Changes
