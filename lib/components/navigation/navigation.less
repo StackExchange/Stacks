@@ -14,6 +14,7 @@
     --_na-item-selected-bg: var(--theme-primary);
     --_na-item-selected-fc: var(--white);
     --_na-item-selected-bg-hover: var(--theme-primary-500);
+    --_na-item-text-ta: center;
     --_na-title-mt: var(--su16);
 
     // CONTEXTUAL STYLES
@@ -39,6 +40,7 @@
         --_na-fd: column;
         --_na-gap: 0;
         --_na-p: 0;
+        --_na-item-text-ta: unset;
         --_na-item-ws: normal;
     }
 
@@ -66,6 +68,8 @@
             .highcontrast-mode({
                 text-decoration: none;
             });
+
+            font-weight: bold;
         }
 
         // TODO: include child component class (without variant) on selector
@@ -110,6 +114,21 @@
         display: flex;
         position: relative;
         user-select: auto;
+    }
+
+    & &--item-text {
+        &:before {
+            content: attr(data-text);
+            font-weight: bold;
+            height: 0;
+            pointer-events: none;
+            user-select: none;
+            visibility: hidden;
+        }
+
+        display: inline-flex;
+        flex-direction: column;
+        text-align: var(--_na-item-text-ta);
     }
 
     & &--title {
