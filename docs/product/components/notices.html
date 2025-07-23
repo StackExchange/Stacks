@@ -240,13 +240,16 @@ tags: components
         </table>
     </div>
 
+
     {% header "h3", "Filled" %}
     <p class="stacks-copy">Default style used to separate notices from the main content</p>
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-notice" role="status">…</div>
 <div class="s-notice s-notice__info" role="status">…</div>
-<div class="s-notice s-notice__success" role="status">…</div>
+<div class="s-notice s-notice__success s-anchors s-anchors__inherit s-anchors__underlined" role="status">
+    … <a href="…">…</a>
+</div>
 <div class="s-notice s-notice__warning" role="status">…</div>
 <div class="s-notice s-notice__danger" role="status">…</div>
 {% endhighlight %}
@@ -259,10 +262,10 @@ tags: components
                         {% assign variantClass = "" %}
                     {% endif %}
 
-                    <div class="s-notice{{variantClass}}" role="presentation">
+                    <div class="s-notice{{variantClass}} s-anchors s-anchors__inherit s-anchors__underlined" role="presentation">
                         <p class="m0">
                             {{variantCapitalized}} filled message style
-                            <code>and some code</code> notice. <a class="s-link s-link__inherit s-link__underlined" href="#">Link</a>
+                            <code>and some code</code> notice. <a href="#">Link</a>
                         </p>
                     </div>
                 {% endfor %}
@@ -276,7 +279,9 @@ tags: components
 {% highlight html %}
 <div class="s-notice s-notice__important" role="alert">…</div>
 <div class="s-notice s-notice__info s-notice__important" role="alert">…</div>
-<div class="s-notice s-notice__success s-notice__important" role="alert">… <a class="s-link s-link__inherit s-link__underlined" href="…">…</a></div>
+<div class="s-notice s-notice__success s-notice__important s-anchors s-anchors__inherit s-anchors__underlined" role="alert">
+    … <a href="…">…</a>
+</div>
 <div class="s-notice s-notice__warning s-notice__important" role="alert">…</div>
 <div class="s-notice s-notice__danger s-notice__important" role="alert">…</div>
 {% endhighlight %}
@@ -289,13 +294,44 @@ tags: components
                         {% assign variantClass = "" %}
                     {% endif %}
 
-                    <div class="s-notice{{variantClass}} s-notice__important" role="presentation">
+                    <div class="s-notice{{variantClass}} s-notice__important s-anchors s-anchors__inherit s-anchors__underlined" role="presentation">
                         <p class="m0">
                             {{variantCapitalized}} important message style
-                            <code>and some code</code> notice. <a class="s-link s-link__inherit s-link__underlined" href="#">Link</a>
+                            <code>and some code</code> notice. <a href="#">Link</a>
                         </p>
                     </div>
                 {% endfor %}
+            </div>
+        </div>
+    </div>
+
+        {% header "h3", "Styling child links" %}
+    <p class="stacks-copy">We recommend using <a href="{{ "/product/components/links/#descendent-anchors" | url }}"><b>descendent anchor</b> classes</a>, typically <code class="stacks-code">.s-anchors.s-anchors__inherit.s-anchors__underlined</code> for notices containing links generated from markdown when you cannot manually generate the inner html.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-notice s-notice__info" role="presentation">
+    Notice with <a href="#" class="s-link">default link style</a>
+</div>  
+<div class="s-notice s-notice__info s-anchors s-anchors__inherit s-anchors__underlined" role="presentation">
+    Notice with <a href="#">custom link style</a>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex fd-column g8">
+
+                <div class="s-notice s-notice__info" role="presentation">
+                    <p class="m0">
+                        Notice with <a href="#" class="s-link">default link style</a>
+                    </p>
+                </div>   
+                
+                <div class="s-notice s-notice__info s-anchors s-anchors__inherit s-anchors__underlined" role="presentation">
+                    <p class="m0">
+                        Notice with 
+                        <code>.s-anchors</code> <code>.s-anchors__inherit</code> <code>.s-anchors__underlined</code> and <a href="#">custom link style</a>
+                    </p>
+                </div>   
+
             </div>
         </div>
     </div>

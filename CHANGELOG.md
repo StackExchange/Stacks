@@ -1,5 +1,11 @@
 # @stackoverflow/stacks
 
+## 2.8.2
+
+### Patch Changes
+
+- [#1894](https://github.com/StackExchange/Stacks/pull/1894) [`ed521b9`](https://github.com/StackExchange/Stacks/commit/ed521b964e4d587ccfe1cc0c539c012a91ee8015) Thanks [@qheaden-stack](https://github.com/qheaden-stack)! - Set selected navigation items to bold
+
 ## 2.8.1
 
 ### Patch Changes
