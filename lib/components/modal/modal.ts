@@ -261,7 +261,7 @@ export class ModalController extends Stacks.StacksController {
             if (focusTarget) {
                 e.preventDefault();
                 focusTarget.focus();
-            } 
+            }
 
             return;
         }
