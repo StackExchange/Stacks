@@ -242,7 +242,9 @@ export class ModalController extends Stacks.StacksController {
      * Returns keyboard focus to the modal if it has left or is about to leave.
      */
     private keepFocusWithinModal(e: KeyboardEvent) {
-        // If somehow the user has tabbed out of the modal or if focus started outside the modal, push them to the first item.
+        if (e.key !== "Tab") {
+            return;
+        }
         if (!this.modalTarget.contains(<Element>e.target)) {
             const focusTarget = this.firstVisible(this.getAllTabbables());
             if (focusTarget) {
