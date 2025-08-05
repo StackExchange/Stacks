@@ -247,27 +247,23 @@ export class ModalController extends Stacks.StacksController {
             return;
         }
 
-        // If somehow the user has tabbed out of the modal, push them to the first item.
-        if (!this.modalTarget.contains(<Element>e.target)) {
-            const focusTarget = this.firstVisible(this.getAllTabbables());
-            if (focusTarget) {
-                e.preventDefault();
-                focusTarget.focus();
-            } else {
-                //There's nothing tabbable inside the modal, which is weird,
-                //let's prevent the tabbing from going outside the modal
-                e.preventDefault();
-            }
-
+        //Tab key was pressed, figure out what to focus next
+        const tabbables = this.getAllTabbables();
+        if (tabbables.length === 0) {
+            // Nothing focusable found in the modal. Stop the user from tabbing to something outside the modal
+            e.preventDefault();
             return;
         }
 
-        //Figure out what to focus next
-        const tabbables = this.getAllTabbables();
+        // If somehow the user has tabbed out of the modal, push them to the first item.
+        if (!this.modalTarget.contains(<Element>e.target)) {
+            const focusTarget = this.firstVisible(tabbables);
+            if (focusTarget) {
+                e.preventDefault();
+                focusTarget.focus();
+            } 
 
-        if (tabbables.length === 0) {
-            // Nothing focusable found in the modal. So stop the user from tabbing to something outside the modal
-            e.preventDefault();
+            return;
         }
 
         // Keep focusable cycling within the modal by looping through elements within the modal
