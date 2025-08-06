@@ -225,13 +225,13 @@ export class ModalController extends Stacks.StacksController {
         this.modalTarget.addEventListener(
             "s-modal:shown",
             () => {
-                const initialFocus =
-                    this.firstVisible(this.initialFocusTargets) ??
-                    this.firstVisible(this.getAllTabbables()) ??
-                    this.modalTarget; //If there's nothing else, focus the modal itself
-
                 // Only set focus if focus is not already set on an element within the modal
                 if (!this.modalTarget.contains(document.activeElement)) {
+                    const initialFocus =
+                        this.firstVisible(this.initialFocusTargets) ??
+                        this.firstVisible(this.getAllTabbables()) ??
+                        this.modalTarget; //If there's nothing else, focus the modal itself
+
                     initialFocus.focus();
                 }
             },
