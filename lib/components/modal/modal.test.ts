@@ -9,12 +9,12 @@ const createModal = ({
     hidden = true,
     initialFocusEl,
     renderFocusables = true,
-    excludeTabIndex = false
-}: { 
-    hidden?: boolean; 
-    initialFocusEl?: ReturnType<typeof html>; 
-    renderFocusables?: boolean; 
-    excludeTabIndex?: boolean
+    excludeTabIndex = false,
+}: {
+    hidden?: boolean;
+    initialFocusEl?: ReturnType<typeof html>;
+    renderFocusables?: boolean;
+    excludeTabIndex?: boolean;
 } = {}) => html`
     <div data-controller="s-modal" data-testid="controller">
         <button
@@ -40,26 +40,50 @@ const createModal = ({
                 <p class="s-modal--body">
                     <span id="modal-base-description" data-testid="modal-text-body">Description</span>
                     <form>
-                        ${ renderFocusables ? html`
-                        <input type="text" data-testid="first-focusable-element" />
-                        ${initialFocusEl}
-                        ` : null }
+                        ${
+                            renderFocusables
+                                ? html`
+                                      <input
+                                          type="text"
+                                          data-testid="first-focusable-element"
+                                      />
+                                      ${initialFocusEl}
+                                  `
+                                : null
+                        }
                     </form>
                 </p>
-                ${ renderFocusables ? html`
-                <div class="d-flex gx8 s-modal--footer">
-                    <button class="flex--item s-btn s-btn__filled" type="button" data-testid="save-btn">Save changes</button>
-                    <button class="flex--item s-btn" type="button" data-action="s-modal#hide" data-testid="cancel-btn">Cancel</button>
-                </div>
+                ${
+                    renderFocusables
+                        ? html` <div class="d-flex gx8 s-modal--footer">
+                                  <button
+                                      class="flex--item s-btn s-btn__filled"
+                                      type="button"
+                                      data-testid="save-btn"
+                                  >
+                                      Save changes
+                                  </button>
+                                  <button
+                                      class="flex--item s-btn"
+                                      type="button"
+                                      data-action="s-modal#hide"
+                                      data-testid="cancel-btn"
+                                  >
+                                      Cancel
+                                  </button>
+                              </div>
 
-                <button
-                    class="s-btn s-btn__muted s-modal--close"
-                    type="button"
-                    aria-label="Close"
-                    data-action="s-modal#hide"
-                    data-testid="close-btn">
-                    Close
-                </button>` : null }
+                              <button
+                                  class="s-btn s-btn__muted s-modal--close"
+                                  type="button"
+                                  aria-label="Close"
+                                  data-action="s-modal#hide"
+                                  data-testid="close-btn"
+                              >
+                                  Close
+                              </button>`
+                        : null
+                }
             </div>
         </aside>
     </div>
@@ -137,7 +161,7 @@ describe("modal", () => {
         await waitFor(() => expect(focusableEl).to.have.focus);
     });
 
-   it("should not change set focus when an element within the modal is already focused", async () => {
+    it("should not change set focus when an element within the modal is already focused", async () => {
         await fixture(createModal());
 
         const modal = await screen.findByTestId("modal");
@@ -177,13 +201,14 @@ describe("modal", () => {
         // test without `tabindex="-1"`
         await testFocusChange(false);
 
-        async function testFocusChange(withTabIndex: boolean): Promise<void>
-        {
-            await fixture(createModal({ 
-                renderFocusables: false, 
-                excludeTabIndex: !withTabIndex
-            }));
-        
+        async function testFocusChange(withTabIndex: boolean): Promise<void> {
+            await fixture(
+                createModal({
+                    renderFocusables: false,
+                    excludeTabIndex: !withTabIndex,
+                })
+            );
+
             const modal = await screen.findByTestId("modal");
             const trigger = await screen.findByTestId("trigger");
 
@@ -196,7 +221,7 @@ describe("modal", () => {
                 modal.addEventListener("s-modal:shown", resolve)
             );
 
-            // since there's nothing else to focus, the modal itself or the triggering element 
+            // since there's nothing else to focus, the modal itself or the triggering element
             // should be focused. depends on whether the modal has a `tabindex` attribute or not.
             const expectedFocusElement = withTabIndex ? modal : trigger;
             expect(expectedFocusElement).to.have.focus;
@@ -209,7 +234,7 @@ describe("modal", () => {
     });
 
     it("should not deselect highlighted text when a keypress is detected", async () => {
-        await fixture(createModal({ excludeTabIndex: true })); 
+        await fixture(createModal({ excludeTabIndex: true }));
 
         const modal = await screen.findByTestId("modal");
         const trigger = await screen.findByTestId("trigger");
@@ -220,14 +245,13 @@ describe("modal", () => {
 
         // highlight some text with the cursor
         const description = await screen.findByTestId("modal-text-body");
-        await user.pointer(
-        [
+        await user.pointer([
             // left click and hold at char 0
-            { target: description, offset: 0, keys: '[MouseLeft>]' }, 
+            { target: description, offset: 0, keys: "[MouseLeft>]" },
             // drag the mouse to the right 5 characters
             { offset: 5 },
             // release the left mouse button
-            { keys: '[/MouseLeft]' }
+            { keys: "[/MouseLeft]" },
         ]);
 
         // confirm highlight
@@ -235,14 +259,16 @@ describe("modal", () => {
         expect(selection).to.be.equal("Descr");
 
         // simulate a few non-Tab keypresses
-        await user.keyboard("{s}{t}{a}{c}{k}{Shift}{Control}{ArrowUp}{ArrowRight}");
-        
+        await user.keyboard(
+            "{s}{t}{a}{c}{k}{Shift}{Control}{ArrowUp}{ArrowRight}"
+        );
+
         // highlight should remain intact
         expect(selection).to.be.equal("Descr");
     });
 
     it("should cycle through focusable modal elements when tab is pressed", async () => {
-        await fixture(createModal()); 
+        await fixture(createModal());
 
         const modal = await screen.findByTestId("modal");
         const trigger = await screen.findByTestId("trigger");
@@ -256,7 +282,9 @@ describe("modal", () => {
             modal.addEventListener("s-modal:shown", resolve)
         );
 
-        const firstFocusableElement = await screen.findByTestId("first-focusable-element");
+        const firstFocusableElement = await screen.findByTestId(
+            "first-focusable-element"
+        );
         const secondFocusableElement = await screen.findByTestId("save-btn");
         const thirdFocusableElement = await screen.findByTestId("cancel-btn");
         const lastFocusableElement = await screen.findByTestId("close-btn");
