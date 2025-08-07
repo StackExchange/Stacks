@@ -225,13 +225,14 @@ export class ModalController extends Stacks.StacksController {
         this.modalTarget.addEventListener(
             "s-modal:shown",
             () => {
-                const initialFocus =
-                    this.firstVisible(this.initialFocusTargets) ??
-                    this.firstVisible(this.getAllTabbables());
-
                 // Only set focus if focus is not already set on an element within the modal
                 if (!this.modalTarget.contains(document.activeElement)) {
-                    initialFocus?.focus();
+                    const initialFocus =
+                        this.firstVisible(this.initialFocusTargets) ??
+                        this.firstVisible(this.getAllTabbables()) ??
+                        this.modalTarget; //If there's nothing else, focus the modal itself
+
+                    initialFocus.focus();
                 }
             },
             { once: true }
@@ -242,9 +243,21 @@ export class ModalController extends Stacks.StacksController {
      * Returns keyboard focus to the modal if it has left or is about to leave.
      */
     private keepFocusWithinModal(e: KeyboardEvent) {
-        // If somehow the user has tabbed out of the modal or if focus started outside the modal, push them to the first item.
+        if (e.key !== "Tab") {
+            return;
+        }
+
+        //Tab key was pressed, figure out what to focus next
+        const tabbables = this.getAllTabbables();
+        if (tabbables.length === 0) {
+            // Nothing focusable found in the modal. Stop the user from tabbing to something outside the modal
+            e.preventDefault();
+            return;
+        }
+
+        // If somehow the user has tabbed out of the modal, push them to the first item.
         if (!this.modalTarget.contains(<Element>e.target)) {
-            const focusTarget = this.firstVisible(this.getAllTabbables());
+            const focusTarget = this.firstVisible(tabbables);
             if (focusTarget) {
                 e.preventDefault();
                 focusTarget.focus();
@@ -253,24 +266,20 @@ export class ModalController extends Stacks.StacksController {
             return;
         }
 
-        // If we observe a tab keydown and we're on an edge, cycle the focus to the other side.
-        if (e.key === "Tab") {
-            const tabbables = this.getAllTabbables();
+        // Keep focusable cycling within the modal by looping through elements within the modal
+        const firstTabbable = this.firstVisible(tabbables);
+        const lastTabbable = this.lastVisible(tabbables);
 
-            const firstTabbable = this.firstVisible(tabbables);
-            const lastTabbable = this.lastVisible(tabbables);
-
-            if (firstTabbable && lastTabbable) {
-                if (firstTabbable === lastTabbable) {
-                    e.preventDefault();
-                    firstTabbable.focus();
-                } else if (e.shiftKey && e.target === firstTabbable) {
-                    e.preventDefault();
-                    lastTabbable.focus();
-                } else if (!e.shiftKey && e.target === lastTabbable) {
-                    e.preventDefault();
-                    firstTabbable.focus();
-                }
+        if (firstTabbable && lastTabbable) {
+            if (firstTabbable === lastTabbable) {
+                e.preventDefault();
+                firstTabbable.focus();
+            } else if (e.shiftKey && e.target === firstTabbable) {
+                e.preventDefault();
+                lastTabbable.focus();
+            } else if (!e.shiftKey && e.target === lastTabbable) {
+                e.preventDefault();
+                firstTabbable.focus();
             }
         }
     }
