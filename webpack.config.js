@@ -37,7 +37,8 @@ const baseConfig = (isProd, minify) => ({
             {
                 test: /\.less$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    // Below changes stems from this issue https://github.com/webpack/webpack-dev-server/issues/3168
+                    isProd ? MiniCssExtractPlugin.loader : "",
                     {
                         loader: "css-loader",
                         options: {
