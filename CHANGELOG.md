@@ -1,5 +1,11 @@
 # @stackoverflow/stacks
 
+## 2.8.3
+
+### Patch Changes
+
+- [#1963](https://github.com/StackExchange/Stacks/pull/1963) [`9c08388`](https://github.com/StackExchange/Stacks/commit/9c083886cb57ee343e455f2d36c584aa6f021022) Thanks [@mukunku](https://github.com/mukunku)! - SPARK-8: Fix Modal text selection issue when using keyboard
+
 ## 2.8.2
 
 ### Patch Changes
