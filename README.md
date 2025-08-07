@@ -42,9 +42,10 @@ To migrate from Stacks v1 to v2, see our [migration guide](/MIGRATION_GUIDE.md).
 
 To contribute to Stacks documentation or its CSS library, you’ll need to build Stacks locally:
 ```sh
+npm i
 npm start
 ```
-This command will pull up the local dev server at http://localhost:8000. You can also view our [building guidelines](https://stackoverflow.design/product/develop/building).
+This command will pull up the local dev server at http://localhost:8080. You can also view our [building guidelines](https://stackoverflow.design/product/develop/building).
 
 Having trouble getting these steps to work? Open [an issue](https://github.com/StackExchange/Stacks/issues/new) with a `setup` label.
 
