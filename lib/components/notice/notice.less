@@ -7,7 +7,7 @@
  * @colorName - The name of the color to use to construct variables values
  * @modifier - Modifier name to determine variable values for that modifier
  */
-.generate-variant-variables(@colorName: "", @modifier: "", @darkMode: "", @highContrast: "") {
+.generate-variant-variables(@colorName: "", @modifier: "") {
     & when (@modifier = "") {
         --_no-bc: ~"var(--@{colorName}-300)";
         --_no-bg: ~"var(--@{colorName}-100)";
@@ -17,15 +17,9 @@
         --_no-code-bc: ~"var(--@{colorName}-300)";
         --_no-code-bg: ~"var(--@{colorName}-200)";
 
-        .dark-mode({
-            --_no-bc: ~"@{darkMode}";
+        .highcontrast-mode({
+            --_no-bc: ~"var(--@{colorName}-400)";
         });
-
-        .highcontrast-dark-mode({
-                --_no-bc: ~"@{highContrast}"
-        });
-
-        
     }
 
     & when (@modifier = important) {
@@ -64,13 +58,6 @@
     --_no-code-fc: var(--_no-fc);
 
     // CONTEXTUAL STYLES
-    .dark-mode({
-        --_no-bc: var(--black-225);
-    });
-    .highcontrast-dark-mode({
-             --_no-bc: var(--black-400);
-        });
-
     .highcontrast-mode({
         &,
         &.@{baseClass}__danger,
@@ -87,6 +74,8 @@
                 --_no-code-fc: var(--white);
             }
         }
+
+        --_no-bc: var(--black-400);
     });
 
     // MODIFIERS
@@ -104,7 +93,7 @@
     // VARIANTS
     &__danger {
         &:not(.@{baseClass}__important) {
-            .generate-variant-variables(red, "", var(--red-300), var(--red-400));
+            .generate-variant-variables(red);
         }
 
         &.@{baseClass}__important {
@@ -114,7 +103,7 @@
 
     &__info {
         &:not(.@{baseClass}__important) {
-            .generate-variant-variables(theme-secondary, "", var(--blue-300), var(--blue-400));
+            .generate-variant-variables(theme-secondary);
         }
 
         &.@{baseClass}__important {
@@ -124,7 +113,7 @@
 
     &__success {
         &:not(.@{baseClass}__important) {
-            .generate-variant-variables(green, "", var(--green-300), var(--green-400));
+            .generate-variant-variables(green);
         }
 
         &.@{baseClass}__important {
@@ -134,7 +123,7 @@
 
     &__warning {
         &:not(.@{baseClass}__important) {
-            .generate-variant-variables(yellow, "", var(--yellow-300), var(--yellow-400));
+            .generate-variant-variables(yellow);
             --_no-btn-fc: var(--yellow-600);
         }
 
