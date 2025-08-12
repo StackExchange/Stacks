@@ -16,6 +16,10 @@
         --_no-btn-fc: ~"var(--@{colorName}-500)";
         --_no-code-bc: ~"var(--@{colorName}-300)";
         --_no-code-bg: ~"var(--@{colorName}-200)";
+
+        .highcontrast-mode({
+            --_no-bc: ~"var(--@{colorName}-400)";
+        });
     }
 
     & when (@modifier = important) {
@@ -54,10 +58,6 @@
     --_no-code-fc: var(--_no-fc);
 
     // CONTEXTUAL STYLES
-    .dark-mode({
-        --_no-bc: var(--_no-bg);
-    });
-
     .highcontrast-mode({
         &,
         &.@{baseClass}__danger,
@@ -74,6 +74,8 @@
                 --_no-code-fc: var(--white);
             }
         }
+
+        --_no-bc: var(--black-400);
     });
 
     // MODIFIERS
