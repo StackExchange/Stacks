@@ -1,5 +1,11 @@
 # @stackoverflow/stacks
 
+## 2.8.4
+
+### Patch Changes
+
+- [#1965](https://github.com/StackExchange/Stacks/pull/1965) [`236f4a5`](https://github.com/StackExchange/Stacks/commit/236f4a56b9785f6487e58a7647b30dd296ab37b5) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - [SPARK-6] - update the notice border color for dark mode and high contrast dark mode
+
 ## 2.8.3
 
 ### Patch Changes
