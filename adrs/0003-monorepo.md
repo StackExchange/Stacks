@@ -2,6 +2,8 @@
 
 **Date:** 2022-11-28
 
+**Updated:** 2025-08-26
+
 **Related PR:** #1191
 
 ## Issue
@@ -32,3 +34,7 @@ On the technical front, we could manage the monorepo with [npm workspaces](https
 In regards to changelog / release notes generation, we'd continue using Conventional Commits, but moving to use [release-please](https://github.com/googleapis/release-please) which [does support monorepos](https://github.com/googleapis/release-please/blob/main/docs/manifest-releaser.md).
 
 For backwards compatibility, we can trivially create a `@stackoverflow/stacks` "meta-package" that simply imports, then re-exports the dependency packages.
+
+## Timing
+
+With project SHINE on the horizon, we will be making drastic changes to the Stacks framework to accommodate the new design language we are adopting. So we will take the time as part of project SHINE to start moving Stacks into a monorepo setup for all the reasons outlined above.
