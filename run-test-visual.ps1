@@ -4,7 +4,7 @@ $dockerfile = @"
 # syntax=docker/dockerfile:1.7-labs
 # https://stackoverflow.com/a/78393564/1458738
 
-FROM mcr.microsoft.com/playwright:v1.55.0-jammy
+FROM mcr.microsoft.com/playwright:v1.50.1-jammy
 WORKDIR /app
 COPY package*.json ./
 COPY --parents packages/*/package.json ./
