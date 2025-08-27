@@ -13,9 +13,12 @@ RUN npm ci
 
 $dockerfile_path = (New-TemporaryFile).FullName
 $dockerfile | Set-Content $dockerfile_path
+
+Write-Host 'Building docker image...'
 docker build -t stacks/test-visual -q -f $dockerfile_path . > $null
 Remove-Item $dockerfile_path
 
+Write-Host 'Running docker container...'
 docker run --tty --rm -p 8000:8000 `
   -v "${current_dir}/packages/stacks-classic/lib:/app/lib" `
   -v "${current_dir}/screenshots:/app/screenshots" `
@@ -23,4 +26,5 @@ docker run --tty --rm -p 8000:8000 `
   -v "${current_dir}/web-test-runner.config.ci.mjs:/app/web-test-runner.config.ci.mjs" `
   stacks/test-visual @args
 
+Write-Host "Exited with status code $LASTEXITCODE"
 exit $LASTEXITCODE

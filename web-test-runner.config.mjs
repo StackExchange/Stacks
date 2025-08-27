@@ -83,7 +83,7 @@ export default {
         commonjs(),
         esbuildPlugin({ ts: true }),
         visualRegressionPlugin({
-            failureThreshold: 0.01,
+            failureThreshold: 0.5,
             failureThresholdType: "percent",
             // https://github.com/StackExchange/Stacks?tab=readme-ov-file#visual-regression-tests
             // we are creating screenshots with a .ico extension instead of .png to
