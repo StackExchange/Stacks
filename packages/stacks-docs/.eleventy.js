@@ -1,6 +1,6 @@
 const pluginTOC = require("eleventy-plugin-nesting-toc");
 const llmsTxtPlugin = require("eleventy-plugin-llms-txt");
-const { version } = require("../package.json");
+const { version } = require("../stacks-classic/package.json");
 
 const headerPlugin = require("./plugins/header");
 const highlightPlugin = require("./plugins/highlight");

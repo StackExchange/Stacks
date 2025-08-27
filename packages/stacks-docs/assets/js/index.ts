@@ -1,7 +1,7 @@
-import "../../../lib/index";
+import "../../../stacks-classic/lib/index";
 import "../less/stacks-documentation.less";
 import "./controllers/docs-resizer";
-import * as Stacks from "../../../lib/index";
+import * as Stacks from "../../../stacks-classic/lib/index";
 
 // @ts-expect-error
 global.Stacks = Stacks;
