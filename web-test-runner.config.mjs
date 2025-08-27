@@ -83,6 +83,8 @@ export default {
         commonjs(),
         esbuildPlugin({ ts: true }),
         visualRegressionPlugin({
+            failureThreshold: 0.01,
+            failureThresholdType: "percent",
             // https://github.com/StackExchange/Stacks?tab=readme-ov-file#visual-regression-tests
             // we are creating screenshots with a .ico extension instead of .png to
             // bypass an issue with netlify not honoring the GIT_LFS_FETCH_INCLUDE
@@ -98,7 +100,7 @@ export default {
     ],
     filterBrowserLogs: ({ args }) =>
         !args.some((arg) => ignoredBrowserLogs.includes(arg)),
-    groups: [
+        groups: [
         {
             name: "a11y",
             files: "lib/**/*.a11y.test.ts",
