@@ -354,7 +354,7 @@ tags: components
         The recommended pattern, as shown in the example below, is to make the <code class="stacks-code">s-sidebarwidget</code> a <code class="stacks-code">nav</code> element, and for each group of links to create a <code class="stacks-code">ul</code> with the classes <code class="stacks-code">s-sidebarwidget--content s-sidebarwidget__items</code>, within which each <code class="stacks-code">li</code> is of class <code class="stacks-code">s-sidebarwidget--item</code>.
     </p>
     <p class="stacks-copy">
-        The currently active navigation item should have the <code class="stacks-code">aria-current</code> attribute set to <code class="stacks-code">"page"</code> (if it is a direct link to the very page that the user is looking at) or <code class="stacks-code">"true"</code> (in all other cases, e.g. if it is a link to a page that is conceptually a parent or the current page). This <code class="stacks-code">aria-current</code> attribute can be on the <code class="stacks-code">li</code> or on the <code class="stacks-code">a</code>.
+        The currently active navigation item should have the <code class="stacks-code">aria-current</code> attribute set to <code class="stacks-code">"page"</code> (if it is a direct link to the very page that the user is looking at) or <code class="stacks-code">"true"</code> (in all other cases, e.g. if it is a link to a page that is conceptually a parent or the current page). This <code class="stacks-code">aria-current</code> attribute should be placed on the <code class="stacks-code">a</code> element.
     </p>
 
     <div class="stacks-preview">
@@ -369,8 +369,8 @@ tags: components
                 …
             </a>
         </li>
-        <li class="s-sidebarwidget--item" aria-current="page">
-            <a href="…">
+        <li class="s-sidebarwidget--item">
+            <a href="…" aria-current="page">
                 …
             </a>
         </li>
@@ -395,7 +395,7 @@ tags: components
                 </h2>
                 <ul class="s-sidebarwidget--content s-sidebarwidget__items">
                     <li class="s-sidebarwidget--item"><a href="#">Edit Profile</a></li>
-                    <li class="s-sidebarwidget--item" aria-current="page"><a href="#">Developer Story Preferences</a></li>
+                    <li class="s-sidebarwidget--item"><a href="#" aria-current="page">Developer Story Preferences</a></li>
                     <li class="s-sidebarwidget--item"><a href="#">Job Match Preferences</a></li>
                 </ul>
                 <h2 class="s-sidebarwidget--header" role="presentation">
