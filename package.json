@@ -8,32 +8,12 @@
     },
     "license": "MIT",
     "scripts": {
-        "start": "concurrently -n w: npm:start:*",
-        "build": "concurrently -n w: npm:build:*",
-        "build:bundle": "webpack --mode=production --config ./packages/stacks-classic/webpack.config.js",
-        "build:docs": "webpack --mode=production --config ./packages/stacks-docs/webpack.config.js && cd ./packages/stacks-docs && eleventy",
-        "start:webpack": "webpack --watch --config ./packages/stacks-docs/webpack.config.js",
-        "start:eleventy": "cd ./packages/stacks-docs && eleventy --serve",
-        "test": "npm run test:less && npm run test:unit && npm run test:a11y && npm run test:visual",
-        "test:a11y:ci": "cd ./packages/stacks-classic && web-test-runner --group=a11y",
-        "test:a11y": "npm run test:a11y:ci -- --config=../../web-test-runner.config.mjs",
-        "test:unit:ci": "cd ./packages/stacks-classic && web-test-runner --group=unit",
-        "test:unit": "npm run test:unit:ci -- --config=../../web-test-runner.config.mjs",
-        "test:unit:watch": "cd ./packages/stacks-classic && web-test-runner --group=unit --watch",
-        "test:visual": "pwsh run-test-visual.ps1 npx web-test-runner --group=visual",
-        "test:less": "cd ./packages/stacks-classic && vitest run .less.test.ts",
-        "test:less:update": "npm run test:less -- -u",
+        "build": "concurrently \"npm run build -w packages/stacks-classic\" \"npm run build -w packages/stacks-docs\"",
         "prepublishOnly": "npm run build",
         "version": "changeset version && npm install --package-lock-only",
         "release": "npm run build && changeset publish",
-        "format": "prettier --write ./packages/stacks-classic/lib",
-        "lint": "concurrently -n w: npm:lint:*",
-        "lint:ts": "eslint ./packages/stacks-classic/lib",
-        "lint:css": "stylelint ./packages/stacks-classic/lib",
-        "lint:format": "prettier --check ./packages/stacks-classic/lib"
-    },
-    "dependencies": {
-        "@hotwired/stimulus": "^3.2.2"
+        "format": "npm run format -w packages/stacks-classic",
+        "lint": "npm run lint -w packages/stacks-classic"
     },
     "devDependencies": {
         "@11ty/eleventy": "^3.1.0",

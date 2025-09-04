@@ -2,10 +2,14 @@
     "private": true,
     "name": "@stackoverflow/stacks-docs",
     "description": "Stacks Design website. Contains all documentation around using Stacks and its components.",
-    "dependencies": {
-        "@stackoverflow/stacks-classic": "*"
+    "scripts": {
+        "start": "concurrently -n w: npm:start:*",
+        "start:webpack": "webpack --watch",
+        "start:eleventy": "eleventy --serve",
+        "build": "webpack --mode=production"
     },
-    "peerDependencies": {
-        "@hotwired/stimulus": "*"
+    "dependencies": {
+        "@stackoverflow/stacks": "*",
+        "@hotwired/stimulus": "^3.2.2"
     }
 }
