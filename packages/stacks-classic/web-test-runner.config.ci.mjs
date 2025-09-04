@@ -1,7 +1,7 @@
-import { reportTestsErrors } from "./node_modules/@web/test-runner/dist/reporter/reportTestsErrors.js";
-import { reportTestFileErrors } from "./node_modules/@web/test-runner/dist/reporter/reportTestFileErrors.js";
-import { reportBrowserLogs } from "./node_modules/@web/test-runner/dist/reporter/reportBrowserLogs.js";
-import { TestRunnerLogger } from "./node_modules/@web/test-runner/dist/logger/TestRunnerLogger.js";
+import { reportTestsErrors } from "../../node_modules/@web/test-runner/dist/reporter/reportTestsErrors.js";
+import { reportTestFileErrors } from "../../node_modules/@web/test-runner/dist/reporter/reportTestFileErrors.js";
+import { reportBrowserLogs } from "../../node_modules/@web/test-runner/dist/reporter/reportBrowserLogs.js";
+import { TestRunnerLogger } from "../../node_modules/@web/test-runner/dist/logger/TestRunnerLogger.js";
 import { yellow, green, red, dim } from "nanocolors";
 
 import defaultConfig from "./web-test-runner.config.mjs";

@@ -144,8 +144,8 @@ Update the css snapshots via:
 npm run test:less:update -w packages/stacks-classic
 ```
 
-## Releasing a new version of Stacks
-Stacks uses [Semantic Versioning](https://semver.org/), is distributed via [npm](https://www.npmjs.com/package/@stackoverflow/stacks), and publishes [release notes on Github](https://github.com/StackExchange/Stacks/releases). 
+## Releasing a new version of Stacks Docs / Stacks Classic
+This repo uses [Semantic Versioning](https://semver.org/) to distribute Stacks Classic and Stacks Docs via [npm](https://www.npmjs.com/package/@stackoverflow/stacks), and publishes [release notes on Github](https://github.com/StackExchange/Stacks/releases). 
 
 We use [changesets](https://github.com/changesets/changesets) to automatize the steps necessary to publish to NPM, create GH releases and a changelog.
 
