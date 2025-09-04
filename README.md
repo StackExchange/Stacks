@@ -23,9 +23,8 @@ Stacks documentation can be found at https://stackoverflow.design/
 - [Using Stacks](#using-stacks)
 - [Migrating from v1 to v2](#migrating-from-v1-to-v2)
 - [Local Development](#local-development)
-- [Format Stacks](#format-stacks)
-- [Linting Stacks](#linting-stacks)
-- [Testing Stacks](#testing-stacks)
+- [Stacks Docs](#stacks-docs)
+- [Stacks Classic](#stacks-classic)
 - [Releasing Stacks](#releasing-a-new-version-of-stacks)
 - [Bugs and feature requests](#bugs-and-feature-requests)
 - [Contributing](#contributing)
@@ -42,7 +41,7 @@ To migrate from Stacks v1 to v2, see our [migration guide](/MIGRATION_GUIDE.md).
 
 This repo follows a monolithic structure and contains multiple packages split into [npm workspaces](https://docs.npmjs.com/cli/v9/using-npm/workspaces). These can be found under the [packages/](https://github.com/StackExchange/Stacks/tree/develop/packages) folder.
 
-To get any of these Stacks packages working locally start out by installing all required dependencies:
+To get any of these Stacks workspaces working locally start out by installing all required dependencies:
 ```sh
 npm i
 ```
@@ -63,7 +62,7 @@ This command will pull up the local dev server at http://localhost:8080. You can
 
 This workspace contains the css and js sources that define and power the Stacks design system.
 
-Format the source code with prettier via running:
+Format the source code with prettier by running:
 ```sh
 npm run format -w packages/stacks-classic
 ```
