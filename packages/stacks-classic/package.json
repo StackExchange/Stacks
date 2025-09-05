@@ -21,7 +21,7 @@
         "test:visual": "pwsh run-test-visual.ps1 npx web-test-runner --group=visual",
         "test:less": "vitest run .less.test.ts",
         "test:less:update": "npm run test:less -- -u",
-        "format": "prettier --write ./lib",
+        "format": "prettier ./lib --write --config ../../.prettierrc --ignore-path ../../.prettierignore",
         "lint": "concurrently -n w: npm:lint:*",
         "lint:ts": "eslint ./lib",
         "lint:css": "stylelint ./lib --config ../../.stylelintrc --ignore-path ../../.stylelintignore",

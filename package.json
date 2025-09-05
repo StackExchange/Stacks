@@ -8,12 +8,14 @@
     },
     "license": "MIT",
     "scripts": {
-        "build": "concurrently \"npm run build -w packages/stacks-classic\" \"npm run build -w packages/stacks-docs\"",
-        "prepublishOnly": "npm run build",
+        "build": "npm run build -workspaces -if-present",
+        "prepublishOnly": "npm run build -workspaces -if-present", 
         "version": "changeset version && npm install --package-lock-only",
         "release": "npm run build && changeset publish",
-        "format": "npm run format -w packages/stacks-classic",
-        "lint": "npm run lint -w packages/stacks-classic"
+        "format": "npm run format -workspaces -if-present",
+        "lint": "npm run lint -workspaces -if-present",
+        "start": "npm run start -w packages/stacks-docs",
+        "test": "npm run test -workspaces -if-present"
     },
     "devDependencies": {
         "@11ty/eleventy": "^3.1.0",

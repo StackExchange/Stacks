@@ -50,11 +50,11 @@ Below are instructions on how to build and test each individual workspace. If yo
 
 ## Stacks Docs
 
-This workspace contains the Stacks documentation project that's hosted on: https://stackoverflow.design/
+This workspace contains the Stacks documentation project that’s hosted on: https://stackoverflow.design/
 
 To contribute to Stacks documentation you can build locally via:
 ```sh
-npm run start -w packages/stacks-docs
+npm start
 ```
 This command will pull up the local dev server at http://localhost:8080. You can also view our [building guidelines](https://stackoverflow.design/product/develop/building).
 
@@ -95,7 +95,7 @@ npm run test -w packages/stacks-classic
 #### Unit/Component Tests
 
 Unit/Component tests are written with [DOM Testing Library](https://testing-library.com/docs/dom-testing-library/intro).
-Please follow the library's principles and documentation to write tests.
+Please follow the library’s principles and documentation to write tests.
 
 Stacks uses [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/) and [Playwright](https://modern-web.dev/docs/test-runner/browser-launchers/playwright/) to run tests in a real browser context.
 
@@ -148,7 +148,7 @@ This repo uses [Semantic Versioning](https://semver.org/) to distribute Stacks C
 
 We use [changesets](https://github.com/changesets/changesets) to automatize the steps necessary to publish to NPM, create GH releases and a changelog.
 
-- Every time you do work that requires a new release to be published, [add a changesets entry](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) by running `npx chageset` and follow the instructions on screen. (changes that do not require a new release - e.g. changing a test file - don't need a changeset).
+- Every time you do work that requires a new release to be published, [add a changesets entry](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) by running `npx chageset` and follow the instructions on screen. (changes that do not require a new release - e.g. changing a test file - don’t need a changeset).
     - When opening a PR without a corresponding changeset the [changesets-bot](https://github.com/apps/changeset-bot) will remind you to do so. It generally makes sense to have one changeset for PR (if the PR changes do not require a new release to be published the bot message can be safely ignored)
 - The [release github workflow](.github/workflows/release.yml) continuosly check if there are new pending changesets in the main branch, if there are it creates a GH PR (`chore(release)` [see example](https://github.com/StackExchange/apca-check/pull/2)) and continue updating it as more changesets are potentially pushed/merged to the main branch.
 - When we are ready to cut a release we need to simply merge the `chore(release)` PR back to main and the release github workflow will take care of publishing the changes to NPM and create a GH release for us. The `chore(release)` PR also give us an opportunity to adjust the automatically generated changelog when necessary (the entry in the changelog file is also what will end up in the GH release notes).
