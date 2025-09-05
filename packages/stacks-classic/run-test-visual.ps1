@@ -29,8 +29,8 @@ Write-Host 'Running docker container...'
 docker run --tty --rm -p 8000:8000 `
   -v "${current_dir}/packages/stacks-classic/lib:/app/lib" `
   -v "${current_dir}/packages/stacks-classic/screenshots:/app/screenshots" `
-  -v "${current_dir}/packages/stacks-classic/web-test-runner.config.mjs:/app/web-test-runner.config.mjs" `
-  -v "${current_dir}/packages/stacks-classic/web-test-runner.config.ci.mjs:/app/packages/stacks-classic/web-test-runner.config.ci.mjs" `
+  -v "${current_dir}/packages/stacks-classic/web-test-runner.config.mjs:/app/visual-runner/stacks-classic-runner-config/web-test-runner.config.mjs" `
+  -v "${current_dir}/packages/stacks-classic/web-test-runner.config.ci.mjs:/app/visual-runner/stacks-classic-runner-config/web-test-runner.config.ci.mjs" `
   stacks/test-visual @args
 
 Write-Host "Exited with status code $LASTEXITCODE"
