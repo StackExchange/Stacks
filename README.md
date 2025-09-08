@@ -23,9 +23,8 @@ Stacks documentation can be found at https://stackoverflow.design/
 - [Using Stacks](#using-stacks)
 - [Migrating from v1 to v2](#migrating-from-v1-to-v2)
 - [Local Development](#local-development)
-- [Format Stacks](#format-stacks)
-- [Linting Stacks](#linting-stacks)
-- [Testing Stacks](#testing-stacks)
+- [Stacks Docs](#stacks-docs)
+- [Stacks Classic](#stacks-classic)
 - [Releasing Stacks](#releasing-a-new-version-of-stacks)
 - [Bugs and feature requests](#bugs-and-feature-requests)
 - [Contributing](#contributing)
@@ -40,65 +39,76 @@ To migrate from Stacks v1 to v2, see our [migration guide](/MIGRATION_GUIDE.md).
 
 ## Local Development
 
-To contribute to Stacks documentation or its CSS library, you’ll need to build Stacks locally:
+This repo follows a monolithic structure and contains multiple packages split into [npm workspaces](https://docs.npmjs.com/cli/v9/using-npm/workspaces). These can be found under the [packages/](https://github.com/StackExchange/Stacks/tree/develop/packages) folder.
+
+To get any of these Stacks workspaces working locally start out by installing all required dependencies:
 ```sh
 npm i
+```
+
+Below are instructions on how to build and test each individual workspace. If you have trouble getting any of these steps to work, please open [an issue](https://github.com/StackExchange/Stacks/issues/new) with a `setup` label.
+
+## Stacks Docs
+
+This workspace contains the Stacks documentation project that’s hosted on: https://stackoverflow.design/
+
+To contribute to Stacks documentation you can build locally via:
+```sh
 npm start
 ```
 This command will pull up the local dev server at http://localhost:8080. You can also view our [building guidelines](https://stackoverflow.design/product/develop/building).
 
-Having trouble getting these steps to work? Open [an issue](https://github.com/StackExchange/Stacks/issues/new) with a `setup` label.
+## Stacks Classic
 
-## Format Stacks
+This workspace contains the css and js sources that define and power the Stacks design system.
 
-Format the source code with prettier via running:
+Format the source code with prettier by running:
 ```sh
-npm run format
+npm run format -w packages/stacks-classic
 ```
 
-## Linting Stacks
+### Linting
 
 Run all lint suites by running:
 ```sh
-npm run lint
+npm run lint -w packages/stacks-classic
 ```
-
 Lint the styles (stylelint) by running:
 ```sh
-npm run lint:css
+npm run lint:css -w packages/stacks-classic
 ```
 Lint the typescript source code (eslint) via running:
 ```sh
-npm run lint:ts
+npm run lint:ts -w packages/stacks-classic
 ```
 Lint the source code format (prettier) via running:
 ```sh
-npm run lint:format
+npm run lint:format -w packages/stacks-classic
 ```
 
-## Testing Stacks
+### Testing
 
 Run all test suites by running:
 ```sh
-npm test
+npm run test -w packages/stacks-classic
 ```
-### Unit/Component Tests
+#### Unit/Component Tests
 
 Unit/Component tests are written with [DOM Testing Library](https://testing-library.com/docs/dom-testing-library/intro).
-Please follow the library's principles and documentation to write tests.
+Please follow the library’s principles and documentation to write tests.
 
 Stacks uses [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/) and [Playwright](https://modern-web.dev/docs/test-runner/browser-launchers/playwright/) to run tests in a real browser context.
 
 Execute the unit/component tests suite by running:
 ```sh
-npm run test:unit
+npm run test:unit -w packages/stacks-classic
 ```
 or if you prefer watch mode run:
 ```sh
-npm run test:unit:watch
+npm run test:unit:watch -w packages/stacks-classic
 ```
 
-### Visual Regression Tests
+#### Visual Regression Tests
 
 **Prerequisites:** 
 - `git lfs` ([installation docs](https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage))
@@ -111,34 +121,34 @@ Visual regression tests end with this suffix `*.visual.test.ts`.
 
 Execute the visual regression tests suite by running:
 ```sh
-npm run test:visual
+npm run test:visual -w packages/stacks-classic
 ```
 After the first run, if there are failing snapshots, they end up overriding the baseline ones in the filesystem (e.g. `/screenshots/<browser>/baseline/<name>.png`). 
 We do this for easier comparison of the dif directly in vscode and to make sure only the failing snapshots get regenerated (see [this GH discussion](https://github.com/modernweb-dev/web/discussions/427#discussioncomment-3543771) that inspired the approach).
 
 We also recommend to install [this vscode extension](https://marketplace.visualstudio.com/items?itemName=RayWiis.png-image-diff) for getting better diffs.
 
-### Less Tests
+#### Less Tests
 
 This is an experimental suite to test the generation of CSS from Less files. 
 Less tests end with this suffix `*.less.test.ts`.
 
 Execute the less tests suite by running:
 ```sh
-npm run test:less
+npm run test:less -w packages/stacks-classic
 ```
 
 Update the css snapshots via:
 ```sh
-npm run test:less:update
+npm run test:less:update -w packages/stacks-classic
 ```
 
-## Releasing a new version of Stacks
-Stacks uses [Semantic Versioning](https://semver.org/), is distributed via [npm](https://www.npmjs.com/package/@stackoverflow/stacks), and publishes [release notes on Github](https://github.com/StackExchange/Stacks/releases). 
+## Releasing a new version of Stacks Docs / Stacks Classic
+This repo uses [Semantic Versioning](https://semver.org/) to distribute Stacks Classic and Stacks Docs via [npm](https://www.npmjs.com/package/@stackoverflow/stacks), and publishes [release notes on Github](https://github.com/StackExchange/Stacks/releases). 
 
 We use [changesets](https://github.com/changesets/changesets) to automatize the steps necessary to publish to NPM, create GH releases and a changelog.
 
-- Every time you do work that requires a new release to be published, [add a changesets entry](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) by running `npx chageset` and follow the instrcutions on screen. (changes that do not require a new release - e.g. changing a test file - don't need a changeset).
+- Every time you do work that requires a new release to be published, [add a changesets entry](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) by running `npx chageset` and follow the instructions on screen. (changes that do not require a new release - e.g. changing a test file - don’t need a changeset).
     - When opening a PR without a corresponding changeset the [changesets-bot](https://github.com/apps/changeset-bot) will remind you to do so. It generally makes sense to have one changeset for PR (if the PR changes do not require a new release to be published the bot message can be safely ignored)
 - The [release github workflow](.github/workflows/release.yml) continuosly check if there are new pending changesets in the main branch, if there are it creates a GH PR (`chore(release)` [see example](https://github.com/StackExchange/apca-check/pull/2)) and continue updating it as more changesets are potentially pushed/merged to the main branch.
 - When we are ready to cut a release we need to simply merge the `chore(release)` PR back to main and the release github workflow will take care of publishing the changes to NPM and create a GH release for us. The `chore(release)` PR also give us an opportunity to adjust the automatically generated changelog when necessary (the entry in the changelog file is also what will end up in the GH release notes).
