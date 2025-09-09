@@ -118,5 +118,6 @@ export default {
         },
     ],
     testsFinishTimeout: 60 * 1000 * 5, // 5 minutes
+    browserStartTimeout: 60000, // increase from default 30 seconds to reduce flakiness
 };
 
