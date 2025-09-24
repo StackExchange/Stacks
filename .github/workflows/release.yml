@@ -6,6 +6,7 @@ on:
             - CI
         branches:
             - develop
+            - beta
         types:
             - completed
 
@@ -14,9 +15,10 @@ permissions: write-all
 jobs:
     release:
         name: Release
-        # run only if the CI workflow is successful
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        # run only if the CI workflow is successful AND the branch is develop or beta
+        if: github.event.workflow_run.conclusion == 'success' && (github.event.workflow_run.head_branch == 'develop' || github.event.workflow_run.head_branch == 'beta')
         runs-on: ubuntu-latest
+
         steps:
             - name: ⬇️ Checkout
               uses:
@@ -44,14 +46,17 @@ jobs:
                   publish: npm run release
                   title: "chore(new-release)"
                   commit: "chore(new-release)"
-              env:
+                # keep the release PR on beta when CI ran on beta; omit otherwise
+                  branch: ${{ github.event.workflow_run.head_branch == 'beta' && 'beta' || null }}
+                  # only create GitHub Releases for stable (develop)
+                  createGithubReleases: ${{ github.event.workflow_run.head_branch == 'develop' }}
+                env:
                   GITHUB_TOKEN: ${{ secrets.STACKS_TOOLING_GH_RW_PAT }}
                   NPM_TOKEN: ${{ secrets.NPM_API_KEY }}
 
             - name: 🔄 Update stackoverflow.design docs
-              # Only run this step if publish succeeded and actually released something
-              if: steps.changesets.outputs.published == 'true'
-              run: |
+               # Only if publish happened AND this was the develop branch
+               if: steps.changesets.outputs.published == 'true' && github.event.workflow_run.head_branch == 'develop'              run: |
                   git config --global user.name 'github-actions[bot]'
                   git config --global user.email 'github-actions[bot]@users.noreply.github.com'
                   git fetch origin
@@ -63,5 +68,5 @@ jobs:
 
 # cancel the jobs if another workflow is kicked off for the same branch
 concurrency:
-    group: ${{ github.workflow }}-${{ github.ref }}
+    group: ${{ github.workflow }}-${{ github.event.workflow_run.head_branch }}
     cancel-in-progress: true
