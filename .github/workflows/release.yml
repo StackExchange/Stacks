@@ -21,10 +21,9 @@ jobs:
 
         steps:
             - name: ⬇️ Checkout
-              uses:
-                  actions/checkout@v4
-                  # make sure to checkout the commit that triggered the CI workflow
-                  # (which is not necessarily the latest commit)
+              uses: actions/checkout@v4
+              # make sure to checkout the commit that triggered the CI workflow
+              # (which is not necessarily the latest commit)
               with:
                   ref: ${{ github.event.workflow_run.head_commit.id }}
 
@@ -37,6 +36,7 @@ jobs:
               run: |
                   npm ci
                   npm run build
+
             - name: 🚀 Create/Update Release Pull Request or Publish to npm
               id: changesets
               uses: changesets/action@v1
@@ -55,14 +55,15 @@ jobs:
 
             - name: 🔄 Update stackoverflow.design docs
                # Only if publish happened AND this was the develop branch
-               if: steps.changesets.outputs.published == 'true' && github.event.workflow_run.head_branch == 'develop'              run: |
+               if: steps.changesets.outputs.published == 'true' && github.event.workflow_run.head_branch == 'develop'
+               run: |
                   git config --global user.name 'github-actions[bot]'
                   git config --global user.email 'github-actions[bot]@users.noreply.github.com'
                   git fetch origin
                   git checkout production
                   git merge --no-ff --allow-unrelated-histories origin/develop -m "chore: merge develop into production"
                   git push origin production
-              env:
+                env:
                   GITHUB_TOKEN: ${{ secrets.STACKS_TOOLING_GH_RW_PAT }}
 
 # cancel the jobs if another workflow is kicked off for the same branch
