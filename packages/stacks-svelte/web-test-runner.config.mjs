@@ -4,7 +4,7 @@ import { vitePlugin } from "@remcovaes/web-test-runner-vite-plugin";
 import { playwrightLauncher } from "@web/test-runner-playwright";
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __rootdirname = path.dirname(path.dirname(path.dirname(__filename)));
 
 const ignoredBrowserLogs = [
     "[vite] connecting...",
@@ -27,10 +27,10 @@ export default {
             <script type="module">
               // add stacks to the document
               import '${toPosixPath(
-                  __dirname
+                  __rootdirname
               )}/node_modules/@stackoverflow/stacks/dist/css/stacks.css';
               import '${toPosixPath(
-                  __dirname
+                  __rootdirname
               )}/node_modules/@stackoverflow/stacks/dist/js/stacks.js';
     
               // Note: globals expected by @testing-library/svelte
