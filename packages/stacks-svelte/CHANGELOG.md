@@ -1,5 +1,13 @@
 # @stackeng/stacks-svelte
 
+## 0.4.0
+
+### Minor Changes
+
+- [#479](https://github.com/StackEng/Stacks-Svelte/pull/479) [`1dbb27a`](https://github.com/StackEng/Stacks-Svelte/commit/1dbb27a54454970db1cabc275e552c6ac9f2682c) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - [SPARK-32] - add notice component
+
+- [#513](https://github.com/StackEng/Stacks-Svelte/pull/513) [`10ca8d9`](https://github.com/StackEng/Stacks-Svelte/commit/10ca8d9bd57b1ff1a5fb2ad2fc75c0ae3a264288) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Add toast functionalities including a Toaster component and showToast and hideToast functions
+
 ## 0.3.2
 
 ### Patch Changes
