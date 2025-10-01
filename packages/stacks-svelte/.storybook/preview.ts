@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/svelte";
-import "../../stacks-classic/lib/stacks.less";
+import "@stackoverflow/stacks/lib/stacks.less";
 
 const preview: Preview = {
     parameters: {

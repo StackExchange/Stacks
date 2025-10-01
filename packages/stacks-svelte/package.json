@@ -16,12 +16,12 @@
     },
     "scripts": {
         "build": "svelte-package -i src -o lib && rimraf test-utils.d.ts",
-        "build:local": "npm run build && npm run build -w ../stacks-classic",
+        "build:dependencies": "echo 'Building stacks-classic because web-test-runner.config.mjs needs dist/css/stacks.css' && npm run build -w ../stacks-classic",
         "format": "prettier --write .",
         "lint": "svelte-check && eslint .",
         "lint:fix": "eslint . --fix",
-        "test": "npm run build -w @stackoverflow/stacks && web-test-runner",
-        "test:watch": "npm run build -w @stackoverflow/stacks && web-test-runner --watch",
+        "test": "npm run build:dependencies && web-test-runner",
+        "test:watch": "npm run build:dependencies && web-test-runner --watch",
         "storybook": "storybook dev -p 6006",
         "storybook:build": "storybook build"
     },
