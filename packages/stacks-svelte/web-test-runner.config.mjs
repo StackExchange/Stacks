@@ -28,11 +28,8 @@ export default {
               // add stacks to the document
               import '${toPosixPath(
                   __rootdirname
-              )}/node_modules/@stackoverflow/stacks/dist/css/stacks.css';
-              import '${toPosixPath(
-                  __rootdirname
-              )}/node_modules/@stackoverflow/stacks/dist/js/stacks.js';
-    
+              )}/packages/stacks-classic/dist/css/stacks.css';
+
               // Note: globals expected by @testing-library/svelte
               window.process = { env: {} };
             </script>

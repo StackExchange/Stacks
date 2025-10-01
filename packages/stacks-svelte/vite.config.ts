@@ -2,14 +2,14 @@ import { svelte } from "@sveltejs/vite-plugin-svelte";
 import { sveltePreprocess } from "svelte-preprocess";
 import { defineConfig, type Plugin } from "vite";
 import { svelteTesting } from "@testing-library/svelte/vite";
+import svelteConfig from "./svelte.config";
 import path from "path";
 
 export default defineConfig({
-    plugins: [
-        svelte({ preprocess: sveltePreprocess() }),
-        svelteTesting(),
-        svelteInlineComponent(),
-    ],
+    plugins: [svelte(svelteConfig), svelteTesting(), svelteInlineComponent()],
+    optimizeDeps: {
+        exclude: ["svelte-sonner"],
+    },
     resolve: {
         alias: {
             $root: path.resolve(__dirname, "./src"),

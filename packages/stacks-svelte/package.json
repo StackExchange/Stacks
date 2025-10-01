@@ -20,14 +20,14 @@
         "format": "prettier --write .",
         "lint": "svelte-check && eslint .",
         "lint:fix": "eslint . --fix",
-        "test": "web-test-runner",
-        "test:watch": "web-test-runner --watch",
+        "test": "npm run build -w @stackoverflow/stacks && web-test-runner",
+        "test:watch": "npm run build -w @stackoverflow/stacks && web-test-runner --watch",
         "storybook": "storybook dev -p 6006",
         "storybook:build": "storybook build"
     },
     "peerDependencies": {
-        "@stackoverflow/stacks": "*",
-        "svelte": "*"
+        "@stackoverflow/stacks": "^2.8.4",
+        "svelte": "^5.0.0"
     },
     "dependencies": {
         "@floating-ui/core": "^1.7.3",
