@@ -9,7 +9,16 @@ export default defineConfig({
     optimizeDeps: {
         exclude: ["svelte-sonner"],
         //without the following explicit includes, test runs fail on the first run because these dependencies don't get pre-optimized properly
-        include: ["@web/test-runner-commands", "@floating-ui/dom", "svelte-floating-ui", "sinon", "@open-wc/testing", "@testing-library/svelte", "@testing-library/user-event", "@stackoverflow/stacks-icons/icons"]
+        include: [
+            "@web/test-runner-commands", 
+            "@floating-ui/dom", 
+            "svelte-floating-ui", 
+            "sinon", 
+            "@open-wc/testing", 
+            "@testing-library/svelte", 
+            "@testing-library/user-event", 
+            "@stackoverflow/stacks-icons/icons"
+        ]
     },
     resolve: {
         alias: {
