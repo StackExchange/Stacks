@@ -24,7 +24,8 @@ jobs:
             # make sure to checkout the commit that triggered the CI workflow
             # (which is not necessarily the latest commit)
               with:
-                  ref: ${{ github.event.workflow_run.head_commit.id }}
+                  ref: ${{ github.event.workflow_run.head_sha }}
+                  fetch-depth: 0
 
             - name: ⎔ Setup node
               uses: actions/setup-node@v4
