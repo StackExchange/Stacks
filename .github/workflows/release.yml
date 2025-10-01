@@ -13,8 +13,22 @@ on:
 permissions: write-all
 
 jobs:
+    debug-workflow:
+        name: Debug Workflow Info
+        runs-on: ubuntu-latest
+        steps:
+            - name: 🔍 Debug workflow_run event
+              run: |
+                echo "Workflow event data:"
+                echo "workflow_run.conclusion: ${{ github.event.workflow_run.conclusion }}"
+                echo "workflow_run.head_branch: ${{ github.event.workflow_run.head_branch }}"
+                echo "workflow_run.name: ${{ github.event.workflow_run.name }}"
+                echo "workflow_run.event: ${{ github.event.workflow_run.event }}"
+                echo "workflow_run.workflow_id: ${{ github.event.workflow_run.workflow_id }}"
+
     release:
         name: Release (latest or beta)
+        needs: debug-workflow
         if: |
             github.event.workflow_run.conclusion == 'success' &&
             (github.event.workflow_run.head_branch == 'develop' || github.event.workflow_run.head_branch == 'beta')
