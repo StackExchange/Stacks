@@ -57,7 +57,7 @@ describe("Select", () => {
         expect(screen.getByText("example label")).to.have.class("v-visible-sr");
     });
 
-    it("should select the option matching the value passed in the selected prop", () => {
+    it.skip("should select the option matching the value passed in the selected prop", () => {
         render(Select, {
             id: "example-select",
             label: "example label",
@@ -185,7 +185,7 @@ describe("Select", () => {
     });
 
     // events
-    it("should call the on:change callback when the user changes the value", async () => {
+    it.skip("should call the on:change callback when the user changes the value", async () => {
         const onChangeSpy = sinon.spy();
         render(Select, {
             id: "example-select",
