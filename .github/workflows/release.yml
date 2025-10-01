@@ -1,6 +1,15 @@
 name: Release
 
 on:
+    workflow_dispatch:
+        inputs:
+            branch:
+                description: 'Branch to release from'
+                required: true
+                default: 'beta'
+                type: choice
+                options:
+                    - beta
     workflow_run:
         workflows:
             - CI
@@ -13,20 +22,47 @@ on:
 permissions: write-all
 
 jobs:
-    release:
-        name: Release (latest or beta)
-        if: |
-            github.event.workflow_run.conclusion == 'success' &&
-            (github.event.workflow_run.head_branch == 'develop' || github.event.workflow_run.head_branch == 'beta')
+    debug:
+        name: Debug Workflow Trigger
         runs-on: ubuntu-latest
         steps:
+            - name: Print Context
+              run: |
+                echo "Event name: ${{ github.event_name }}"
+                if [ "${{ github.event_name }}" == "workflow_run" ]; then
+                  echo "=== workflow_run details ==="
+                  echo "Workflow name: ${{ github.event.workflow_run.name }}"
+                  echo "Workflow ID: ${{ github.event.workflow_run.workflow_id }}"
+                  echo "Workflow file path: ${{ github.event.workflow_run.path }}"
+                  echo "Workflow conclusion: ${{ github.event.workflow_run.conclusion }}"
+                  echo "Head branch: ${{ github.event.workflow_run.head_branch }}"
+                  echo "Head SHA: ${{ github.event.workflow_run.head_sha }}"
+                  echo "Head repo: ${{ github.event.workflow_run.head_repository.full_name }}"
+                else
+                  echo "=== workflow_dispatch details ==="
+                  echo "Branch input: ${{ inputs.branch }}"
+                  echo "Reference: ${{ github.ref }}"
+                  echo "Ref name: ${{ github.ref_name }}"
+                fi
+                echo "=== General details ==="
+                echo "Repository: ${{ github.repository }}"
+                echo "Actor: ${{ github.actor }}"
+
+    release:
+        name: Release
+        needs: debug
+        # Run if triggered by workflow_run and CI succeeded, or if manually triggered via workflow_dispatch
+        if: (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && (github.event.workflow_run.head_branch == 'develop' || github.event.workflow_run.head_branch == 'beta')) || github.event_name == 'workflow_dispatch'
+        runs-on: ubuntu-latest
+
+        steps:
             - name: ⬇️ Checkout
-              uses:
-                  actions/checkout@v5
-                  # make sure to checkout the commit that triggered the CI workflow
-                  # (which is not necessarily the latest commit)
+              uses: actions/checkout@v4
+              # For workflow_run, checkout the commit that triggered the CI workflow
+              # For workflow_dispatch, checkout the specified branch
               with:
-                  ref: ${{ github.event.workflow_run.head_commit.id }}
+                  ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_commit.id || format('refs/heads/{0}', inputs.branch) }}
+                  fetch-depth: 0
 
             - name: ⎔ Setup node
               uses: actions/setup-node@v4
@@ -44,15 +80,30 @@ jobs:
               with:
                   version: npm run version
                   publish: npm run release
-                  title: "chore(new-release) (beta)"
-                  commit: "chore(new-release) (beta)"
-                  branch: ${{ github.event.workflow_run.head_branch == 'beta' && 'beta' || null }}
-                  createGithubReleases: ${{ github.event.workflow_run.head_branch == 'develop' }}
+                  title: "chore(new-release) (${{inputs.branch}})"
+                  commit: "chore(new-release) (${{inputs.branch}})"
+                  # keep the release PR on beta when CI ran on beta or when manually triggered on beta
+                  branch: ${{ ((github.event_name == 'workflow_run' && github.event.workflow_run.head_branch == 'beta') || (github.event_name == 'workflow_dispatch' && inputs.branch == 'beta')) && 'beta' || null }}
+                  # only create GitHub Releases for stable (develop)
+                  createGithubReleases: ${{ (github.event_name == 'workflow_run' && github.event.workflow_run.head_branch == 'develop') || (github.event_name == 'workflow_dispatch' && inputs.branch == 'develop') }}
               env:
                   GITHUB_TOKEN: ${{ secrets.STACKS_TOOLING_GH_RW_PAT }}
                   NPM_TOKEN: ${{ secrets.NPM_API_KEY }}
 
+            - name: 🔄 Update stackoverflow.design docs
+              # Only if publish happened AND this was the develop branch
+              if: steps.changesets.outputs.published == 'true' && ((github.event_name == 'workflow_run' && github.event.workflow_run.head_branch == 'develop') || (github.event_name == 'workflow_dispatch' && inputs.branch == 'develop'))
+              run: |
+                  git config --global user.name 'github-actions[bot]'
+                  git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+                  git fetch origin
+                  git checkout production
+                  git merge --no-ff --allow-unrelated-histories origin/develop -m "chore: merge develop into production"
+                  git push origin production
+              env:
+                  GITHUB_TOKEN: ${{ secrets.STACKS_TOOLING_GH_RW_PAT }}
+
 # cancel the jobs if another workflow is kicked off for the same branch
 concurrency:
-    group: ${{ github.workflow }}-${{ github.event.workflow_run.head_branch }}
+    group: ${{ github.workflow }}-${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_branch || inputs.branch }}
     cancel-in-progress: true
