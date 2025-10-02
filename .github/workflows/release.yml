@@ -24,7 +24,14 @@ jobs:
             # make sure to checkout the commit that triggered the CI workflow
             # (which is not necessarily the latest commit)
               with:
-                  ref: ${{ github.event.workflow_run.head_commit.id }}
+                  ref: ${{ github.event.workflow_run.head_sha }}
+                  fetch-depth: 0
+                  
+            # Create a local branch with the correct name but at the specific commit
+            - name: 🔄 Create local branch at the triggering commit
+              run: |
+                  git branch -f ${{ github.event.workflow_run.head_branch }} ${{ github.event.workflow_run.head_sha }}
+                  git checkout ${{ github.event.workflow_run.head_branch }}
 
             - name: ⎔ Setup node
               uses: actions/setup-node@v4
