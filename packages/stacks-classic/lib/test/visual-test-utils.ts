@@ -27,6 +27,10 @@ const scheduleVisualTest = ({
         do {
             await fixture(element);
             const el = screen.getByTestId(testid);
+
+            // Add a small delay to ensure rendering stabilizes
+            await new Promise((resolve) => setTimeout(resolve, 50));
+
             try {
                 await (
                     visualDiff as (

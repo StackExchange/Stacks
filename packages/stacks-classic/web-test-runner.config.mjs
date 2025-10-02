@@ -14,7 +14,7 @@ const ignoredBrowserLogs = [
 // taken from https://github.com/microsoft/playwright/issues/7548#issuecomment-881897256
 const testRunnerHtml = (testFramework) =>
 `<!DOCTYPE html><html>
-    <body>
+    <head>
         <style>
             *,
             *::before,
@@ -25,9 +25,24 @@ const testRunnerHtml = (testFramework) =>
                 caret-color: transparent !important;
                 transition: none !important;
             }
+            
+            /* Force consistent font rendering */
+            body {
+                font-display: block;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            }
         </style>
-        <script type="module" src="${testFramework}"></script>
-    </body>
+        <script>
+            // Ensure fonts are loaded before tests run
+            document.fonts.ready.then(() => {
+                const script = document.createElement('script');
+                script.type = 'module';
+                script.src = '${testFramework}';
+                document.body.appendChild(script);
+            });
+        </script>
+    </head>
+    <body></body>
 </html>`;
 
 
@@ -41,7 +56,11 @@ export default {
         playwrightLauncher({
             product: "chromium",
             createBrowserContext({ browser }) {
-                return browser.newContext({ reducedMotion: "reduce" });
+                return browser.newContext({ 
+                    reducedMotion: "reduce",
+                    viewport: { width: 1280, height: 720 },
+                    deviceScaleFactor: 1 // Force consistent pixel ratio
+                });
             },
         }),
         playwrightLauncher({
