@@ -8,34 +8,6 @@ This package is an implementation of the [Stacks Design System](https://stackove
 
 ## Installation
 
-### Prerequisite: Authenticating to Stack Overflow's npm private registry
-
-`@stackeng/stacks-svelte` is published to our internal npm private registry in cloudsmith. In order to install the package you need to make sure you add the following content in a project `.npmrc` file in the same directory where your `package.json` lives:
-
-```
-@stackeng:registry=https://npm.stackoverflow.software/
-```
-
-Also (as a one off) you need to add your private registry credentials to your user `.npmrc` file (UNIX `~/.npmrc` - WINDOWS `%USERPROFILE%\.npmrc`)
-
-```
-//npm.stackoverflow.software/:_authToken=<YOUR-AUTH-TOKEN>
-```
-
-To get `<YOUR-AUTH-TOKEN>` you can [login to cloudsmith](https://cloudsmith.io/~stackoverflow/repos/npm/setup/#formats-npm) and scroll to the "Authentication" section. In there you should see a code block like the one above with your auth token. You don't need to add the `registry=https://npm.stackoverflow.software/` part unless you want all your dependencies to be installed using cloudsmith as a proxy to the actual public npm registry.
-
-**⚠️ Do not add credentials to your project `.npmrc` to avoid risking to check them in.**
-
-### Install the library
-
-After that you should be able to install the library as usual with npm
-
-```bash
-npm install --save @stackeng/stacks-svelte @stackoverflow/stacks
-```
-
-### Peer Dependency
-
 `@stackeng/stacks-svelte` relies on `@stackoverflow/stacks` styles.
 For example in a SvelteKit application you should add the following to your `src/routes/+layout.svelte` file to expose `stacks.css`
 
@@ -80,8 +52,4 @@ You can consult the full catalog of component available together with their resp
 
 ## Contributing
 
-Please consult [the readme in Github](https://github.com/StackEng/Stacks-Svelte) to get information about how to contribute to this project.
-
-## Support
-
-[Stacks Team Slack Channel](https://stackexchange.slack.com/archives/C27RWNQN9)
+Please consult [the readme in Github](https://github.com/StackExchange/Stacks) to get information about how to contribute to this project.
