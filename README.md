@@ -10,7 +10,7 @@ The Stacks website documents:
 - Semantic and accessible component markup
 - Cross-browser compatible Less / CSS
 - An [icon library](https://github.com/StackExchange/Stacks-Icons)
-- Svelte version of our library
+- Svelte implementation of our library
 
 ## Email
 - Email templates & components
