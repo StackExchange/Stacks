@@ -26,11 +26,11 @@ jobs:
           command: npm run lint
           needs_lfs: false
           needs_playwright: false
-        - command_description: Less Tests (stacks-classic)
+        - command_description: Less Tests
           command: npm run test:less -w packages/stacks-classic
           needs_lfs: false
           needs_playwright: false
-        - command_description: Unit Tests (stacks-classic)
+        - command_description: Unit Tests
           command: npm run test:unit -w packages/stacks-classic -- --config web-test-runner.config.ci.mjs
           needs_lfs: false
           needs_playwright: true
@@ -38,7 +38,7 @@ jobs:
           command: npm run test:a11y -w packages/stacks-classic -- --config web-test-runner.config.ci.mjs
           needs_lfs: false
           needs_playwright: true
-        - command_description: Visual Regression Tests (stacks-classic)
+        - command_description: Visual Regression Tests
           command: npm run test:visual:ci -w packages/stacks-classic -- --config ./visual-runner/stacks-classic-runner-config/web-test-runner.config.ci.mjs
           needs_lfs: true
           needs_playwright: false # we are using playwright docker image to run visual tests
