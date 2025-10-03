@@ -151,7 +151,7 @@ This workspace contains a Svelte implementation of the Stacks Classic design sys
 We use [storybook](https://storybook.js.org/) for local development. To start the storybook server run:
 
 ```bash
-npm run storybook
+npm run storybook -w packages/stacks-svelte
 ```
 
 The storybook server will reflect the changes you make to the components stories in real time.
@@ -160,13 +160,13 @@ We use [this addon](https://storybook.js.org/addons/@storybook/addon-svelte-csf)
 ### Formatting
 
 ```bash
-npm run format
+npm run format -w packages/stacks-svelte
 ```
 
 ### Linting
 
 ```bash
-npm run lint
+npm run lint -w packages/stacks-svelte
 ```
 
 ### Testing
@@ -174,13 +174,13 @@ npm run lint
 Stacks Svelte uses [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/) and [Playwright](https://modern-web.dev/docs/test-runner/browser-launchers/playwright/) to run tests in a real browser context.
 
 ```bash
-npm run test
+npm run test -w packages/stacks-svelte
 ```
 
 or to run the tests in watch mode:
 
 ```bash
-npm run test:watch
+npm run test:watch -w packages/stacks-svelte
 ```
 
 # Releasing a new version of Stacks Docs + Stacks Classic or Stacks Svelte
