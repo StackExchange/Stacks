@@ -1,13 +1,15 @@
-[Settings]
+[settings]
   ID = "34ae802e-fb42-4bab-8814-9fac9e119037"
-  GIT_LFS_ENABLED = false
 
-[Build]
+[build]
   base = "/"
   publish = "packages/stacks-docs/_site/"
   command = "npm run build -w packages/stacks-docs"
   # don't build deploy previews on PRs opened by dependabot
   ignore = "git log -1 --pretty=%B | grep dependabot"
+
+[build.environment]
+  GIT_LFS_ENABLED = true
 
 [[redirects]]
   from = "/favicon.ico"

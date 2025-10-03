@@ -1,7 +1,10 @@
-[Build]
+[build]
   base = "/"
   publish = "packages/stacks-svelte/netlify/dist"
   command = "npm run storybook:build -w packages/stacks-svelte"
   functions = "packages/stacks-svelte/netlify/netlify/functions"
   # don't build deploy previews on PRs opened by dependabot
   ignore = "git log -1 --pretty=%B | grep dependabot"
+
+[build.environment]
+  GIT_LFS_ENABLED = true
