@@ -2,4 +2,4 @@
 "@stackoverflow/stacks-svelte": minor
 ---
 
-[SPARK-32] - add notice component
+[SPARK- 48] - publish stacks svelte to npm
