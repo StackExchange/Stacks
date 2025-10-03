@@ -1,4 +1,4 @@
-# @stackeng/stacks-svelte
+# @stackoverflow/stacks-svelte
 
 ## 0.4.0
 
