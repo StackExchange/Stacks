@@ -9,7 +9,10 @@
   ignore = "git log -1 --pretty=%B | grep dependabot"
 
 [build.environment]
-  GIT_LFS_ENABLED = true
+  # IMPORTANT!: Git LFS settings can't be changed in the .toml file. You will need to set this environment 
+  # variable through the Netlify UI otherwise netlify won't be able to clone the repo due to all our images.
+  # https://docs.netlify.com/build/configure-builds/environment-variables/#netlify-configuration-variables
+  GIT_LFS_ENABLED = true # just here as a reminder
 
 [[redirects]]
   from = "/favicon.ico"
