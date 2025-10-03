@@ -1,22 +1,19 @@
 # Stacks
 
-[![ci status][gh-action-badge]][gh-action-url] [![npm version][npm-badge]][npm-url]
-
 Stacks is Stack Overflow’s design system. It includes the resources needed to create consistent, predictable interfaces and workflows that conform to Stack Overflow’s principles, design language, and best practices.
 
 Our documentation is built with Stacks itself, using its [immutable, atomic classes](http://johnpolacek.com/rethinking/) and components.
 
 The Stacks website documents:
 
-### Product
+## Product
 - Semantic and accessible component markup
 - Cross-browser compatible Less / CSS
 - An [icon library](https://github.com/StackExchange/Stacks-Icons)
+- Svelte version of our library
 
-### Email
+## Email
 - Email templates & components
-
-Stacks documentation can be found at https://stackoverflow.design/
 
 ## Table of contents
 
@@ -30,14 +27,14 @@ Stacks documentation can be found at https://stackoverflow.design/
 - [Contributing](#contributing)
 - [License](#license)
 
-## Using Stacks
+# Using Stacks
 Using Stacks is outlined in our [usage guidelines](https://stackoverflow.design/product/develop/using-stacks).
 
 ## Migrating from v1 to v2
 
 To migrate from Stacks v1 to v2, see our [migration guide](/MIGRATION_GUIDE.md).
 
-## Local Development
+# Local Development
 
 This repo follows a monolithic structure and contains multiple packages split into [npm workspaces](https://docs.npmjs.com/cli/v9/using-npm/workspaces). These can be found under the [packages/](https://github.com/StackExchange/Stacks/tree/develop/packages) folder.
 
@@ -58,9 +55,13 @@ npm start
 ```
 This command will pull up the local dev server at http://localhost:8080. You can also view our [building guidelines](https://stackoverflow.design/product/develop/building).
 
-## Stacks Classic
+## Stacks Classic 
+
+[![ci status][gh-action-badge]][gh-action-url] [![npm version][npm-badge]][npm-url]
 
 This workspace contains the css and js sources that define and power the Stacks design system.
+
+### Formatting
 
 Format the source code with prettier by running:
 ```sh
@@ -143,7 +144,46 @@ Update the css snapshots via:
 npm run test:less:update -w packages/stacks-classic
 ```
 
-## Releasing a new version of Stacks Docs / Stacks Classic
+## Stacks Svelte
+
+This workspace contains a Svelte implementation of the Stacks Classic design system. Unlike the Stacks-Classic workspace which has its documentation defined in the separate Stacks-Docs workspace, this one defines its documentation site directly within its own workspace which can be reached via https://svelte.stackoverflow.design
+
+We use [storybook](https://storybook.js.org/) for local development. To start the storybook server run:
+
+```bash
+npm run storybook
+```
+
+The storybook server will reflect the changes you make to the components stories in real time.
+We use [this addon](https://storybook.js.org/addons/@storybook/addon-svelte-csf) to write stories directly in Svelte syntax. Stories need to have the `*.stories.svelte` extension to be picked up.
+
+### Formatting
+
+```bash
+npm run format
+```
+
+### Linting
+
+```bash
+npm run lint
+```
+
+### Testing
+
+Stacks Svelte uses [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/) and [Playwright](https://modern-web.dev/docs/test-runner/browser-launchers/playwright/) to run tests in a real browser context.
+
+```bash
+npm run test
+```
+
+or to run the tests in watch mode:
+
+```bash
+npm run test:watch
+```
+
+# Releasing a new version of Stacks Docs + Stacks Classic or Stacks Svelte
 This repo uses [Semantic Versioning](https://semver.org/) to distribute Stacks Classic and Stacks Docs via [npm](https://www.npmjs.com/package/@stackoverflow/stacks), and publishes [release notes on Github](https://github.com/StackExchange/Stacks/releases). 
 
 We use [changesets](https://github.com/changesets/changesets) to automatize the steps necessary to publish to NPM, create GH releases and a changelog.
