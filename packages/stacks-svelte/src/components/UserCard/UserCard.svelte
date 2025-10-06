@@ -6,6 +6,8 @@
 <script lang="ts">
     import type { Snippet } from "svelte";
     import Avatar, { type Size as AvatarSize } from "../Avatar/Avatar.svelte";
+    import Icon from "../Icon/Icon.svelte";
+    import { IconPerson } from "@stackoverflow/stacks-icons/icons";
 
     interface Props {
         /**
@@ -172,6 +174,7 @@
 
     const classes = $derived(getClasses(className, deleted, highlighted, size));
     const avatarSize = $derived(getAvatarSize(size));
+    const iconSizeClasses = $derived(`w${avatarSize} h${avatarSize}`);
 </script>
 
 <div class={classes}>
@@ -179,15 +182,23 @@
         <time class="s-user-card--time">{timestamp}</time>
     {/if}
 
-    <Avatar
-        class="s-user-card--avatar"
-        {name}
-        href={!deleted && href ? href : undefined}
-        src={avatar}
-        size={avatarSize}
-    />
+    {#if deleted}
+        <Icon
+            src={IconPerson}
+            class="bar-md fc-white bg-black-225 s-user-card--avatar {iconSizeClasses}"
+            title={name}
+        />
+    {:else}
+        <Avatar
+            class="s-user-card--avatar"
+            {name}
+            href={!deleted && href ? href : undefined}
+            src={avatar}
+            size={avatarSize}
+        />
+    {/if}
 
-    <div class="s-user-card--info">
+    <div class="s-user-card--info as-stretch">
         {#if name}
             <svelte:element
                 this={href && !deleted ? "a" : "div"}
@@ -195,21 +206,21 @@
                 href={deleted ? null : href}
             >
                 {name}
-                {#if moderator}
+                {#if !deleted && moderator}
                     <div class="s-badge s-badge__xs s-badge__moderator">
                         Mod
                     </div>
                 {/if}
-                {#if staff}
+                {#if !deleted && staff}
                     <div class="s-badge s-badge__xs s-badge__staff">Staff</div>
                 {/if}
-                {#if admin}
+                {#if !deleted && admin}
                     <div class="s-badge s-badge__xs s-badge__admin">Admin</div>
                 {/if}
             </svelte:element>
         {/if}
 
-        {#if reputation || gold || silver || bronze}
+        {#if !deleted && (reputation || gold || silver || bronze)}
             <ul class="s-user-card--awards">
                 {#if reputation}
                     <li class="s-user-card--rep">{reputation}</li>
@@ -232,11 +243,11 @@
             </ul>
         {/if}
 
-        {#if role}
+        {#if !deleted && role}
             <div class="s-user-card--role">{role}</div>
         {/if}
 
-        {#if location}
+        {#if !deleted && location}
             <div class="s-user-card--location">{location}</div>
         {/if}
 
@@ -244,14 +255,14 @@
             <time class="s-user-card--time">{timestamp}</time>
         {/if}
 
-        {#if tags}
+        {#if !deleted && tags}
             <div class="s-user-card--tags d-flex g4">
                 {@render tags()}
             </div>
         {/if}
     </div>
 
-    {#if type}
+    {#if !deleted && type}
         <div class="s-user-card--type">
             {@render type()}
         </div>
