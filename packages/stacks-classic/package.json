@@ -1,0 +1,35 @@
+{
+    "name": "@stackoverflow/stacks",
+    "description": "Stack Overflow’s CSS and Design Pattern Library. Stacks is an atomic CSS library with classes and components for rapidly building Stack Overflow.",
+    "version": "2.8.6",
+    "files": [
+        "dist",
+        "lib",
+        "!lib/**/*.test.*"
+    ],
+    "main": "./dist/js/stacks.js",
+    "types": "./dist/index.d.ts",
+    "style": "./dist/css/stacks.css",
+    "less": "./lib/stacks.less",
+    "unpkg": "dist/css/stacks.min.css",
+    "scripts": {
+        "build": "webpack --mode=production",
+        "test": "npm run test:less && npm run test:unit && npm run test:a11y && npm run test:visual",
+        "test:a11y": "web-test-runner --group=a11y",
+        "test:unit": "web-test-runner --group=unit",
+        "test:unit:watch": "web-test-runner --group=unit --watch",
+        "test:visual:ci": "pwsh run-test-visual.ps1 npx web-test-runner --group=visual",
+        "test:visual": "npm run test:visual:ci -- --config ./visual-runner/stacks-classic-runner-config/web-test-runner.config.mjs",
+        "test:less": "vitest run .less.test.ts",
+        "test:less:update": "npm run test:less -- -u",
+        "format": "prettier ./lib --write --config ../../.prettierrc --ignore-path ../../.prettierignore",
+        "lint": "concurrently -n w: npm:lint:*",
+        "lint:ts": "eslint ./lib",
+        "lint:css": "stylelint ./lib --config ../../.stylelintrc --ignore-path ../../.stylelintignore",
+        "lint:format": "prettier ./lib --check --config ../../.prettierrc --ignore-path ../../.prettierignore"
+    },
+    "dependencies": {
+        "@popperjs/core": "^2.11.8",
+        "@hotwired/stimulus": "^3.2.2"
+    }
+}

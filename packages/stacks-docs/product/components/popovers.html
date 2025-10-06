@@ -1,0 +1,839 @@
+---
+layout: page
+title: Popovers
+razor: https://razor.stackoverflow.design/components/popover
+js: true
+figma: https://svelte.stackoverflow.design/figma/popovers
+description: Popovers are small content containers that provide a contextual overlay. They can be used as in-context feature explanations, dropdowns, or tooltips.
+tags: components
+---
+<section class="stacks-section">
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell4" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Applies to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in popovers.automatic %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td>{{ item.applies }}</td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Interactive popovers" %}
+
+    <p class="stacks-copy">Stacks provides a Stimulus controller that allows you to interactively display a popover from a source element. Positioning and arrow direction are managed for you by <a href="https://popper.js.org">Popper.js</a>, a powerful popover positioning library we’ve added as a dependency.  These popovers are automatically hidden when user click outside the popover or tap the <kbd>Esc</kbd> key.</kbd></p>
+
+    {% header "h3", "Interactive Attributes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">Attribute</th>
+                    <th class="s-table--cell2" scope="col">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">id="{POPOVER_ID}"</code></th>
+                    <td><code class="stacks-code">.s-popover</code></td>
+                    <td class="p8">A unique id that the popover’s toggling element can target. Matches the value of <code class="stacks-code">[aria-controls]</code> on the toggling element.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-controller="s-popover"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8">Wires up the element to the popover controller. This may be a toggling element or a wrapper element.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-popover-reference-selector="[css selector]"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8"><span class="s-label--status ml0">Optional</span> Designates the element to use as the popover reference. If left unset, the value defaults to the controller element.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">aria-controls="{POPOVER_ID}"</code></th>
+                    <td>Reference element</td>
+                    <td class="p8">Associates the element to the desired popover element.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-action="s-popover#toggle"</code></th>
+                    <td>Toggling element</td>
+                    <td class="p8">Wires up the element to toggle the visibility of a generic popover.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-popover-toggle-class="[class list]"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8">Adds an optional space-delineated list of classes to be toggled on the originating element when the popover is shown or hidden.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-popover-placement="<a href="https://popper.js.org/popper-documentation.html#Popper.placements">[placement]</a>"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8 lh-lg">Dictates where to place the popover in relation to the reference element. By default, the placement value is <code class="stacks-code">bottom</code>. Accepted placements are <code class="stacks-code">auto</code>, <code class="stacks-code">top</code>, <code class="stacks-code">right</code>, <code class="stacks-code">bottom</code>, <code class="stacks-code">left</code>. Each placement can take an additional <code class="stacks-code">-start</code> and <code class="stacks-code">-end</code> variation.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-popover-auto-show="[true|false]"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8 lh-lg"><span class="s-label--status ml0">Optional</span> If <code class="stacks-code">true</code>, the popover will appear immediately when the Stacks controller is first connected.  This should be used in place of <code class="stacks-code">.is-visible</code> for displaying popovers on load as it will prevent the popover from appearing before it has been correctly positioned.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code lh-lg">data-s-popover-hide-on-outside-click="[always|never|if-in-viewport|after-dismissal]"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8 lh-lg"><span class="s-label--status ml0">Optional</span>
+                        <ul>
+                            <li>If <code class="stacks-code">always</code>, the popover will appear disappear when outside clicks occur.</li>
+                            <li>If <code class="stacks-code">if-in-viewport</code>, the popover will appear disappear when outside clicks occur and the popover is currently in the browser's visible viewport.</li>
+                            <li>If <code class="stacks-code">never</code>, the popover will not disappear on outside clicks and will only be dismissed through other means, e.g. <code class="stacks-code">data-target="s-popover#hide"</code>.</li>
+                            <li>If <code class="stacks-code">after-dismissal</code>, the popover will not disappear on outside clicks unless it has been dismissed some other way at least once.</li>
+                        </ul>
+                        <p>If left unset, defaults to <code class="stacks-code">always</code>.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Interactive Events" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">Event</th>
+                    <th class="s-table--cell2" scope="col">Element</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-popover:show</code></th>
+                    <td>Controller element</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before showing and positioning the popover. This fires before the popover is first displayed to the user, and can be used to create or initialize the popover element. Calling <code class="stacks-code">.preventDefault()</code> cancels the display of the popover.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-popover:shown</code></th>
+                    <td>Controller element</td>
+                    <td>Fires immediately after showing the popover.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-popover:hide</code></th>
+                    <td>Controller element</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before hiding the popover.  Calling <code class="stacks-code">.preventDefault()</code> prevents the removal of the popover.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-popover:hidden</code></th>
+                    <td>Controller element</td>
+                    <td>Fires immediately after hiding the popover.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">event.detail</th>
+                    <th class="s-table--cell2" scope="col">Applicable events</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">dispatcher</code></th>
+                    <td><code class="stacks-code">s-popover:*</code></td>
+                    <td>Contains the <code class="stacks-code">Element</code> that initiated the event. For instance, the button clicked to show, the element clicked outside the popover that caused it to hide, etc.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% header "h3", "Examples" %}
+    <div class="stacks-preview bs-none">
+        <div class="stacks-preview--example ba bar-sm bg-black-100">
+            <div class="d-flex ai-center g8 sm:fd-column">
+                <button class="flex--item s-btn s-btn__filled"
+                        data-controller="s-popover"
+                        data-s-popover-placement="top-start"
+                        data-s-popover-toggle-class="is-selected"
+                        data-action="s-popover#toggle"
+                        aria-controls="popover-example-1"
+                        aria-expanded="false">
+                    Show example popover
+                </button>
+                <div id="popover-example-1" class="s-popover ws2" role="menu">
+                    <div class="s-popover--arrow"></div>
+                    <div class="s-popover--content">
+                        <form class="d-flex fd-column g8" role="presentation">
+                            <div class="d-flex gy4 fd-column">
+                                <label class="s-label" for="example-item1">Username</label>
+                                <input class="s-input" id="example-item1" type="text" />
+                            </div>
+                            <div class="d-flex gy4 fd-column">
+                                <label class="s-label" for="example-item2">Password</label>
+                                <input class="s-input" id="example-item2" type="password" />
+                            </div>
+                            <button type="submit" class="s-btn s-btn__filled w100">Sign in</button>
+                            <a href="#" class="s-btn s-btn__outlined w100">Create an account</a>
+                        </form>
+                    </div>
+                </div>
+                <button class="flex--item s-btn s-btn__filled s-btn__dropdown"
+                        data-controller="s-popover"
+                        data-s-popover-toggle-class="is-selected"
+                        data-action="s-popover#toggle"
+                        aria-controls="popover-example-2"
+                        aria-expanded="false">
+                    Show example popover
+                </button>
+                <div id="popover-example-2" class="s-popover p16" role="menu">
+                    <div class="s-popover--arrow"></div>
+                    <div class="s-popover--content">
+                        <div class="s-empty-state wmx2">
+                            {% spot "EmptyLg", "mb12" %}
+                            <p>There’s no data associated with your account yet. Please check back tomorrow.</p>
+                            <button class="s-btn s-btn__filled">Link an account</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="flex--item s-btn s-btn__muted p4"
+                        data-controller="s-popover"
+                        data-s-popover-toggle-class="is-selected"
+                        data-s-popover-placement="top"
+                        data-action="s-popover#toggle"
+                        aria-controls="popover-example-4"
+                        aria-expanded="false">
+                    {% icon "InfoSm" %}
+                    <span class="v-visible-sr">info</span>
+                </button>
+                <div id="popover-example-4" class="s-popover" role="menu">
+                    <div class="s-popover--arrow"></div>
+                    <div class="s-popover--content">
+                        <p>We know you hate spam, and we do too. That’s why we make it easy for you to update your email preferences or unsubscribe at anytime.</p>
+                        <p class="mb0">We never share your email address with third parties for marketing purposes.</p>
+                    </div>
+                </div>
+                <div class="flex--item ml-auto sm:ml0 sm:mt12"
+                    data-controller="s-popover"
+                    data-s-popover-reference-selector="#reference-element"
+                    data-s-popover-placement="auto"
+                    data-s-popover-auto-show="true"
+                    data-s-popover-hide-on-outside-click="never">
+                    <a id="reference-element" class="s-link s-link__inherit"
+                        aria-controls="popover-example-3"
+                        aria-expanded="true">
+                        Follow question
+                    </a>
+                    <div id="popover-example-3" class="s-popover wmx3">
+                        <div class="s-popover--arrow"></div>
+                        <button class="s-popover--close s-btn s-btn__muted"
+                            aria-label="Close"
+                            data-action="s-popover#toggle">
+                            {% icon "ClearSm" %}
+                        </button>
+
+                        <div class="s-popover--content">
+                            <div class="d-flex ai-center">
+                                <div class="flex--item mr12 fc-orange-400">
+                                    {% spot "Bell" %}
+                                </div>
+    
+                                <div class="flex--item">
+                                    Get updates on questions and answers
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h4", "Default interactivity" %}
+    <p class="stacks-copy">To enable interactive popovers, you will need to add the above attributes to the popover’s originating button. Custom positioning can be specified using the <code class="stacks-code">data-s-popover-placement</code>. In the following example, we’ve chosen <code class="stacks-code">bottom-start</code>. No positioning classes need to be added to your markup, only the data attributes.</p>
+    <p class="stacks-copy">To promote being able to tab to an open popover, it’s best to place the popover immediately after the toggling button in the markup as siblings.</p>
+
+    <div class="stacks-preview">
+{% highlight html %}
+<button class="s-btn s-btn__dropdown" role="button"
+        aria-controls="popover-example"
+        aria-expanded="false"
+        data-controller="s-popover"
+        data-action="s-popover#toggle"
+        data-s-popover-placement="bottom-start"
+        data-s-popover-toggle-class="is-selected">
+    …
+</button>
+<div class="s-popover"
+       id="popover-example"
+       role="menu">
+    <div class="s-popover--arrow"></div>
+    <div class="s-popover--content">
+        …
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <button class="s-btn s-btn__filled s-btn__dropdown" role="button"
+                    aria-controls="popover-example"
+                    aria-expanded="false"
+                    data-controller="s-popover"
+                    data-action="s-popover#toggle"
+                    data-s-popover-placement="bottom-start"
+                    data-s-popover-toggle-class="is-selected">
+                Popover button
+            </button>
+            <div class="s-popover wmn-initial w-auto"
+                id="popover-example"
+                role="menu">
+                <div class="s-popover--arrow"></div>
+                <div class="s-popover--content">
+                    Example popover content
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h4", "Dismissible" %}
+    <p class="stacks-copy">In the case of new feature callouts, it may be appropriate to include an explicit dismiss button. You can add one using the styling provided by <code class="stacks-code">.s-popover--close</code>.</p>
+    <p class="stacks-copy">In order for to close the popover with an explicit close button, you’ll need to add the controller to a parent as illustrated in the following example code:</p>
+    <div class="stacks-preview">
+ {% highlight html %}
+<div class="…"
+     data-controller="s-popover"
+     data-s-popover-reference-selector="#reference-element">
+
+    <button id="reference-element" class="s-btn s-btn__filled s-btn__dropdown"
+            aria-controls="popover-example"
+            aria-expanded="true"
+            data-action="s-popover#toggle">
+        …
+    </button>
+
+    <div id="popover-example" class="s-popover is-visible" role="menu">
+        <div class="s-popover--arrow"></div>
+        <button class="s-popover--close s-btn s-btn__muted" aria-label="Close"
+            data-action="s-popover#toggle">
+            @Svg.ClearSm
+        </button>
+        <div class="s-popover--content">
+            …
+        </div>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-100">
+            <div class="s-popover ps-relative is-visible">
+                <button class="s-popover--close s-btn s-btn__muted" aria-label="Close">{% icon "ClearSm" %}</button>
+                <div class="s-popover--arrow s-popover--arrow__bl"></div>
+                <div class="s-popover--content">
+                    <p class="mb0">Dismissible persistent popover presented with a close button</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h4", "JavaScript interaction" %}
+    <p class="stacks-copy">There may be cases where you need to show or hide a popover via JavaScript. For example, if you need to show a popover at a specific time or if you need to hide a popover from an event outside of the controller, Stacks provides convenience methods to achieve this.</p>
+    <div class="stacks-preview">
+{% highlight javascript %}
+Stacks.application.register("section", class extends Stacks.StacksController {
+    static targets = ["help"];
+
+    showHelp(event) {
+         Stacks.showPopover(this.helpTarget);
+         event.stopPropagation();
+    }
+    hideHelp(event) {
+         Stacks.hidePopover(this.helpTarget);
+    }
+});
+{% endhighlight %}
+        <section class="stacks-preview--example bg-black-100">
+            <div data-controller="section">
+                <div class="s-page-title mb16">
+                    <div class="s-page-title--text">
+                        <h1 class="s-page-title--header" role="presentation">Lorem ipsum</h1>
+                    </div>
+                    <div class="s-page-title--actions">
+                        <button type="button" class="s-btn s-btn__muted p0"
+                                data-section-target="help"
+                                data-controller="s-popover"
+                                data-action="s-popover#toggle"
+                                data-s-popover-placement="left"
+                                aria-controls="popover-help-example"
+                                aria-expanded="false">
+                                    {% icon "Help" %}
+                                    <span class="v-visible-sr">help</span>
+                                </button>
+                        <div class="s-popover wmn-initial w-auto"
+                             id="popover-help-example"
+                             role="menu">
+                             <div class="s-popover--arrow"></div>
+                             <div class="s-popover--content">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="fc-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et metus molestie nulla luctus sodales ac luctus justo. Aenean iaculis ac ante sit amet aliquam. Duis dolor velit, imperdiet sed mauris eu, sollicitudin egestas nisl. Ut vitae nulla eu risus iaculis semper sit amet vitae tortor. Sed convallis lacus quis libero placerat finibus. Phasellus pulvinar vel nunc eu tempor. Sed pharetra magna a felis egestas placerat. Sed imperdiet dui a sem fermentum, eget consectetur elit feugiat. Phasellus non condimentum orci. Nam id molestie elit, ut gravida metus. Vivamus vel nunc risus. Maecenas posuere sit amet tellus vel laoreet. Nulla lacus mauris, rhoncus eu laoreet quis, mattis vehicula nisl. Integer efficitur quam et nisi luctus scelerisque. Mauris efficitur lectus ac malesuada congue.</p>
+                <button class="s-btn s-btn__link" data-action="section#showHelp">Click here for help</button>
+            </div>
+        </section>
+    </div>
+
+    {% header "h4", "JavaScript configuration (popovers)" %}
+    <p class="stacks-copy">Situations may also arise where popovers need to be attached to an element after the document is rendered. For example, a button could have a contextual menu that is too expensive to serve up on every page load.</p>
+    <p class="stacks-copy">Popovers can be attached to an element after the fact using <code class="stacks-code">Stacks.attachPopover</code>.</p>
+    <p class="stacks-copy">This method takes three parameters, the element to attach the popover to, the popover either as an element or an HTML string, and optional options for displaying the popover.</p>
+
+    <div class="stacks-preview">
+{% highlight javascript %}
+Stacks.application.register("actions", class extends Stacks.StacksController {
+
+    var loaded = false;
+
+    async load() {
+        if (this.loaded) { return; }
+        Stacks.attachPopover(this.element,
+                             await fetch(`/posts/{postId}/actions`),
+                             { autoShow: true, toggleOnClick: true });
+        this.loaded = true;
+    }
+});
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-100">
+            <button class="s-btn s-btn__outlined s-btn__muted s-btn__dropdown"
+                data-controller="actions"
+                data-action="actions#load"
+                aria-expanded="false">
+                Actions
+            </button>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Hover tooltips" %}
+
+    <p class="stacks-copy">When a popover is intended only for display as an on-hover tooltip and contains no interactive text, the <code class="stacks-code">s-tooltip</code> controller can be used in place of <code class="stacks-code">s-popover</code>. This is a separate controller that can be used alongside <code class="stacks-code">s-popover</code> on a single target element.</p>
+
+    {% header "h3", "Hover attributes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">Attribute</th>
+                    <th class="s-table--cell2" scope="col">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">id="{POPOVER_ID}"</code></th>
+                    <td><code class="stacks-code">.s-popover</code></td>
+                    <td class="p8">A unique id that the popover’s toggling element can target. Matches the value of <code class="stacks-code">[aria-describedby]</code> on the toggling element.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-controller="s-tooltip"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8">Wires up the element to the tooltip controller.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-tooltip-reference-selector="[css selector]"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8"><span class="s-label--status ml0">Optional</span> Designates the element to use as the tooltip reference. If left unset, the value defaults to the controller element.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">aria-describedby="{POPOVER_ID}"</code></th>
+                    <td>Reference element</td>
+                    <td class="p8">Associates the element to the desired popover element.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">title="{TITLE}"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8">If <code class="stacks-code">aria-describedby</code> is not present or valid, and the title attribute exists, the title will be removed from the element and be used to create a popover immediately after the element. All content will be escaped and inserted as text.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-tooltip-html-title="{TITLE}"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8">Acts the exact same as the <code class="stacks-code">title</code> attribute, but inserts the raw text directly as html. If both this and the <code class="stacks-code">title</code> attribute exist on the element, this attribute will be used.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-s-tooltip-placement="<a href="https://popper.js.org/popper-documentation.html#Popper.placements">[placement]</a>"</code></th>
+                    <td>Controller element</td>
+                    <td class="p8 lh-lg">Dictates where to place the popover in relation to the reference element. By default, the placement value is <code class="stacks-code">bottom</code>. Accepted placements are <code class="stacks-code">auto</code>, <code class="stacks-code">top</code>, <code class="stacks-code">right</code>, <code class="stacks-code">bottom</code>, <code class="stacks-code">left</code>. Each placement can take an additional <code class="stacks-code">-start</code> and <code class="stacks-code">-end</code> variation.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% header "h3", "Hover events" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">Event</th>
+                    <th class="s-table--cell2" scope="col">Element</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-tooltip:show</code></th>
+                    <td>Controller element</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before showing and positioning the tooltip. This fires before the tooltip is first displayed to the user, and can be used to create or initialize the tooltip element. Calling <code class="stacks-code">.preventDefault()</code> cancels the display of the popover.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-tooltip:shown</code></th>
+                    <td>Controller element</td>
+                    <td>Fires immediately after showing the tooltip.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-tooltip:hide</code></th>
+                    <td>Controller element</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before hiding the tooltip.  Calling <code class="stacks-code">.preventDefault()</code> prevents the removal of the tooltip.</td>
+                </tr>
+                <tr>
+                    <th scope="row"><code class="stacks-code">s-tooltip:hidden</code></th>
+                    <td>Controller element</td>
+                    <td>Fires immediately after hiding the tooltip.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">event.detail</th>
+                    <th class="s-table--cell2" scope="col">Applicable events</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                <tr>
+                    <th scope="row"><code class="stacks-code">dispatcher</code></th>
+                    <td><code class="stacks-code">s-tooltip:*</code></td>
+                    <td>Contains the <code class="stacks-code">Element</code> that initiated the event. For instance, the element hovered over to show, etc.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% header "h3", "Hover examples" %}
+    <p class="stacks-copy">If the user doesn’t need to interact with the <em>contents</em> of the popover, it may be appropriate to only show it on hover. This will make popovers feel like a tooltip. To do so, we provide an alternative controller, <code class="stacks-code">s-tooltip</code>, that shows the tooltip only on hover.</p>
+
+    {% header "h4", "Title attribute" %}
+    <p class="stacks-copy">In the simple case where no markup is needed in the tooltip, the popover element can be omitted and automatically generated using the <code class="stacks-code">title</code> attribute.</p>
+
+    <div class="stacks-preview">
+{% highlight html %}
+<button class="s-btn" role="button"
+        title="…"
+        data-controller="s-tooltip"
+        data-s-tooltip-placement="bottom-start">
+    …
+</button>
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-100">
+            <button class="s-btn s-btn__filled" role="button"
+                    data-controller="s-tooltip"
+                    title="This popover shows content from the title attribute."
+                    data-s-tooltip-placement="bottom-start">
+                Hover tooltip popover
+            </button>
+        </div>
+    </div>
+
+    {% header "h4", "JavaScript configuration (tooltips)" %}
+    <p class="stacks-copy">In cases where the tooltip needs to display simple text or HTML, the popover can be configured using JavaScript. Plain text tooltips will render characters like &lt;, &gt;, and &amp; as is. HTML tooltips will render the HTML as expected.</p>
+    <div class="stacks-preview">
+{% highlight javascript %}
+Stacks.setTooltipText(el,
+    "Plain text tooltip",
+    {
+        placement: "top-start"
+    });
+
+Stacks.setTooltipHtml(el,
+    "Tooltip <i>with</i> HTML",
+    {
+        placement: "top-end"
+    });
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-100">
+            <button class="s-btn s-btn__filled js-text-tooltip-example" role="button">
+                Hover tooltip popover with plain text
+            </button>
+            <button class="s-btn s-btn__filled js-html-tooltip-example" role="button">
+                Hover tooltip popover with HTML
+            </button>
+        </div>
+    </div>
+
+    {% header "h4", "Rich tooltips" %}
+    <p class="stacks-copy">When a rich tooltip is required, a popover element can be configured in much the same way as an <code class="stacks-code">s-popover</code> controller, with the most notable difference being the use of <code class="stacks-code">aria-describedby</code> instead of <code class="stacks-code">aria-controls</code>.</p>
+
+    <div class="stacks-preview">
+{% highlight html %}
+<button
+    class="s-btn"
+    role="button"
+    aria-describedby="tooltip-example"
+    aria-expanded="false"
+    data-controller="s-tooltip">
+    …
+</button>
+<div
+    class="s-popover s-popover__tooltip"
+    id="tooltip-example"
+    role="tooltip">
+    <div class="s-popover--arrow"></div>
+    <div class="s-popover--content">
+        …
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-100">
+            <button
+                class="s-btn s-btn__filled"
+                role="button"
+                aria-describedby="tooltip-example"
+                aria-expanded="false"
+                data-controller="s-tooltip">
+                Hover tooltip popover
+            </button>
+            <div
+                class="s-popover s-popover__tooltip"
+                id="tooltip-example"
+                role="tooltip">
+                <div class="s-popover--arrow"></div>
+                <div class="s-popover--content">
+                    <div class="s-empty-state wmx2">
+                        {% spot "EmptyLg", "mb12" %}
+                        <p class="mb0">There’s no data associated with your account yet. Please visit our <a href="#" class="s-link">help page</a> for more information.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h4", "Tooltips and interactive popovers" %}
+    <p class="stacks-copy">Hover tooltips can be used alongside interactive popovers. Tooltips will no appear when the interactive popover is visible.</p>
+
+    <div class="stacks-preview">
+{% highlight html %}
+<button class="s-btn s-btn__dropdown" role="button"
+        aria-controls="popover-example"
+        aria-expanded="false"
+        data-controller="s-popover s-tooltip"
+        data-action="s-popover#toggle"
+        data-s-popover-placement="bottom-start"
+        data-s-popover-toggle-class="is-selected"
+        title="…"
+        data-s-tooltip-placement="top-start">
+    …
+</button>
+<div class="s-popover"
+       id="popover-example"
+       role="menu">
+    <div class="s-popover--arrow"></div>
+    <div class="s-popover--content">
+        …
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <button class="s-btn s-btn__filled s-btn__dropdown" role="button"
+                    aria-controls="popover-example-with-tooltip"
+                    aria-expanded="false"
+                    data-controller="s-popover s-tooltip"
+                    data-action="s-popover#toggle"
+                    data-s-popover-placement="bottom-start"
+                    data-s-popover-toggle-class="is-selected"
+                    title="View your saved filters"
+                    data-s-tooltip-placement="top-start">
+                Popover button with tooltip hover
+            </button>
+            <div class="s-popover wmn-initial w-auto"
+                id="popover-example-with-tooltip"
+                role="menu">
+                <div class="s-popover--arrow"></div>
+                <div class="s-popover--content">
+                    <div class="tt-uppercase fs-fine fc-light">
+                        Saved filters
+                    </div>
+                    <div class="fc-black-350 fs-caption ta-center p16">
+                        Save custom sorting & filtering for easy access.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Manual placement" %}
+    {% tip, "warning", "mb32" %}
+        Our Stimulus popover controller handles the positioning of popovers for you. Popovers <em>can</em> be positioned manually for various legacy reasons, but we recommend using the <code class="stacks-code">s-popover</code> controller’s <code class="stacks-code">placement</code> property instead.
+    {% endtip %}
+    {% header "h3", "Manual classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell4" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Applies to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in popovers.manual %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td>{{ item.applies }}</td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Manual examples" %}
+    <p class="stacks-copy">Popovers can also be positioned manually if you aren’t using the built-in JavaScript interactivity. Practically, this might look like adding something like <code class="stacks-code">t8 l8</code> to <code class="stacks-code">.s-popover</code>.</p>
+    <p class="stacks-copy">Manual positioning for arrows is also provided. Arrow direction (top, right, bottom, left) will appear first, followed by the secondary (center, top, right, bottom, left). For example, a popover with an arrow child of <code class="stacks-code">.s-popover--arrow__tc</code> will appear on the top of the <code class="stacks-code">.s-popover</code> and centered horizontally. Though there are sensible defaults applied to the width of popovers, you may need to adjust manually.</p>
+
+    <p class="stacks-copy">By default, popovers are hidden and positioned absolutely. Adding the class <code class="stacks-code">.is-visible</code> will show the popover.</p>
+
+    <p class="stacks-copy">If you want to set the background color to something other than the default, simply add your desired <code class="stacks-code">bg-*</code> class to the <code class="stacks-code">s-popover</code> element and a matching <code class="stacks-code">fc-*</code> class to the <code class="stacks-code">s-popover--arrow</code> element.</p>
+
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-popover">
+    <div class="s-popover--arrow s-popover--arrow__tc"></div>
+    <div class="s-popover--content">
+        …
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example bg-black-100">
+            <div class="d-flex g16 flex__allitems4 fw-wrap">
+                <div class="flex--item">
+                    <div class="s-popover ps-relative z-base is-visible">
+                        <div class="s-popover--arrow s-popover--arrow__tc"></div>
+                        <div class="s-popover--content">
+                            <p class="ff-mono mb8">.s-popover--arrow__tc</p>
+                            <p class="mb0">Popover arrow appears top center</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="s-popover ps-relative z-base is-visible">
+                        <div class="s-popover--arrow s-popover--arrow__tl"></div>
+                        <div class="s-popover--content">
+                            <p class="ff-mono mb8">.s-popover--arrow__tl</p>
+                            <p class="mb0">Popover arrow appears top left</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="s-popover ps-relative z-base is-visible">
+                        <div class="s-popover--arrow s-popover--arrow__tr"></div>
+                        <div class="s-popover--content">
+                            <p class="ff-mono mb8">.s-popover--arrow__tr</p>
+                            <p class="mb0">Popover arrow appears top right</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="s-popover ps-relative z-base is-visible">
+                        <div class="s-popover--arrow s-popover--arrow__bc"></div>
+                        <div class="s-popover--content">
+                            <p class="ff-mono mb8">.s-popover--arrow__bc</p>
+                            <p class="mb0">Popover arrow appears bottom center</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="s-popover ps-relative z-base is-visible">
+                        <div class="s-popover--arrow s-popover--arrow__bl"></div>
+                        <div class="s-popover--content">
+                            <p class="ff-mono mb8">.s-popover--arrow__bl</p>
+                            <p class="mb0">Popover arrow appears bottom left</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="s-popover ps-relative z-base is-visible">
+                        <div class="s-popover--arrow s-popover--arrow__br"></div>
+                        <div class="s-popover--content">
+                            <p class="ff-mono mb8">.s-popover--arrow__br</p>
+                            <p class="mb0">Popover arrow appears bottom right</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="s-popover ps-relative z-base is-visible">
+                        <div class="s-popover--arrow s-popover--arrow__rc"></div>
+                        <div class="s-popover--content">
+                            <p class="ff-mono mb8">.s-popover--arrow__rc</p>
+                            <p class="mb0">Popover arrow appears right center</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="s-popover ps-relative z-base is-visible">
+                        <div class="s-popover--arrow s-popover--arrow__rt"></div>
+                        <div class="s-popover--content">
+                            <p class="ff-mono mb8">.s-popover--arrow__rt</p>
+                            <p class="mb0">Popover arrow appears right top</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="s-popover ps-relative z-base is-visible">
+                        <div class="s-popover--arrow s-popover--arrow__rb"></div>
+                        <div class="s-popover--content">
+                            <p class="ff-mono mb8">.s-popover--arrow__rb</p>
+                            <p class="mb0">Popover arrow appears right bottom</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="s-popover ps-relative z-base is-visible">
+                        <div class="s-popover--arrow s-popover--arrow__lc"></div>
+                        <div class="s-popover--content">
+                            <p class="ff-mono mb8">.s-popover--arrow__lc</p>
+                            <p class="mb0">Popover arrow appears left center</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="s-popover ps-relative z-base is-visible">
+                        <div class="s-popover--arrow s-popover--arrow__lt"></div>
+                        <div class="s-popover--content">
+                            <p class="ff-mono mb8">.s-popover--arrow__lt</p>
+                            <p class="mb0">Popover arrow appears left top</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex--item">
+                    <div class="s-popover ps-relative z-base is-visible">
+                        <div class="s-popover--arrow s-popover--arrow__lb"></div>
+                        <div class="s-popover--content">
+                            <p class="ff-mono mb8">.s-popover--arrow__lb</p>
+                            <p class="mb0">Popover arrow appears left bottom</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Example popover javascript -->
+<script src="{{ "/assets/dist/entry.popovers.js" | url }}" defer></script>
