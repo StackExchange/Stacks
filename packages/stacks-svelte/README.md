@@ -7,6 +7,7 @@ This package is an implementation of the [Stacks Design System](https://stackove
 ## Installation
 
 Stacks Svelte can be installed via npm:
+
 ```
 npm install @stackoverflow/stacks-svelte
 ```
