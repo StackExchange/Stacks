@@ -66,7 +66,11 @@ export default {
         playwrightLauncher({
             product: "firefox",
             createBrowserContext({ browser }) {
-                return browser.newContext({ reducedMotion: "reduce" });
+                return browser.newContext({ 
+                    reducedMotion: "reduce",
+                    viewport: { width: 1280, height: 720 },
+                    deviceScaleFactor: 1 // Force consistent pixel ratio
+                });
             },
             launchOptions: {
                 firefoxUserPrefs: {
@@ -80,7 +84,11 @@ export default {
         playwrightLauncher({
             product: "webkit",
             createBrowserContext({ browser }) {
-                return browser.newContext({ reducedMotion: "reduce" });
+                return browser.newContext({ 
+                    reducedMotion: "reduce",
+                    viewport: { width: 1280, height: 720 },
+                    deviceScaleFactor: 1 // Force consistent pixel ratio
+                });
             },
         }),
     ],
