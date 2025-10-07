@@ -1,0 +1,143 @@
+<!-- NOTE: This component is not currently exposed to the consumer and is only used internally. See also https://github.com/StackEng/Stacks-Svelte/pull/368#pullrequestreview-2637283176 -->
+<!-- TODO This component stays close to the Stacks Classic API but should be modified to provide useful abstractions to consumers before exposing it. -->
+<script module lang="ts">
+    export type Award = "gold" | "silver" | "bronze" | undefined;
+    export type Size = "xs" | "sm" | undefined;
+    export type Variant =
+        | "answered"
+        | "bounty"
+        | "new"
+        | "important"
+        | "rep"
+        | "rep-down"
+        | "votes"
+        | "danger"
+        | "info"
+        | "muted"
+        | "warning"
+        | "ai"
+        | "bot"
+        | "admin"
+        | "moderator"
+        | "staff"
+        | Award;
+</script>
+
+<script lang="ts">
+    import AwardBling from "../AwardBling/AwardBling.svelte";
+    import Icon from "../Icon/Icon.svelte";
+    import type { Snippet } from "svelte";
+    import type { HTMLAnchorAttributes } from "svelte/elements";
+
+    interface Props {
+        /**
+         * The type of the award bling
+         * @type {"gold" | "silver" | "bronze"} Type
+         */
+        award?: Award;
+
+        /**
+         * Applies the filled style to "muted" or "danger" variants
+         */
+        filled?: boolean;
+
+        /**
+         * The icon to display within the badge
+         */
+        icon?: string | undefined;
+
+        /**
+         * The title attribute for the icon
+         */
+        iconTitle?: string | undefined;
+
+        /**
+         * The size of the badge
+         * @type {"xs" | "sm" | undefined} Size
+         */
+        size?: Size;
+
+        /**
+         * The variant of the badge
+         * @type {"answered" | "bounty" | "danger" | "muted" | "new" | "important" | "rep" | "rep-down" | "votes" | "ai" | "bot" | "admin" | "moderator" | "staff" | "gold" | "silver" | "bronze" | undefined} Variant
+         */
+        variant?: Variant;
+
+        /**
+         * Descriptive text for the award bling
+         */
+        i18nAwardName?: string | undefined;
+
+        /**
+         * Additional CSS classes added to the element
+         */
+        class?: string;
+
+        /**
+         * Snippet for the badge content
+         */
+        children: Snippet;
+    }
+
+    const {
+        award,
+        filled = false,
+        icon = undefined,
+        iconTitle = undefined,
+        size = undefined,
+        variant = undefined,
+        i18nAwardName = undefined,
+        class: className = "",
+        children,
+    }: Props & HTMLAnchorAttributes = $props();
+
+    const getClasses = (
+        filled: boolean,
+        icon: string | undefined,
+        size: Size,
+        variant: Variant
+    ) => {
+        const base = "s-badge";
+        let classes = base;
+
+        if (className) {
+            classes += ` ${className}`;
+        }
+
+        if (filled) {
+            classes += ` ${base}__filled`;
+        }
+
+        if (icon) {
+            classes += ` ${base}__icon`;
+        }
+
+        if (size) {
+            classes += ` ${base}__${size}`;
+        }
+
+        if (variant) {
+            classes += ` ${base}__${variant}`;
+        }
+
+        return classes;
+    };
+
+    const classes = $derived(getClasses(filled, icon, size, variant));
+</script>
+
+<span class={classes}>
+    {#if award}
+        <AwardBling type={award} name={i18nAwardName || award}>
+            {#if icon}
+                <Icon src={icon} title={iconTitle} />
+            {/if}
+            {@render children()}
+        </AwardBling>
+    {:else}
+        {#if icon}
+            <Icon src={icon} title={iconTitle} />
+        {/if}
+        {@render children()}
+    {/if}
+</span>

@@ -1,0 +1,43 @@
+{
+    "name": "@stackoverflow/stacks-svelte",
+    "description": "Stacks Components built in Svelte",
+    "type": "module",
+    "version": "0.5.0",
+    "exports": {
+        ".": {
+            "types": "./lib/components/index.d.ts",
+            "svelte": "./lib/components/index.js"
+        },
+        "./actions": {
+            "types": "./lib/actions/index.d.ts",
+            "import": "./lib/actions/index.js"
+        }
+    },
+    "scripts": {
+        "build": "svelte-package -i src -o lib && rimraf test-utils.d.ts",
+        "build:dependencies": "echo 'Building stacks-classic because web-test-runner.config.mjs needs dist/css/stacks.css' && npm run build -w ../stacks-classic",
+        "format": "prettier --write .",
+        "lint": "svelte-check && eslint .",
+        "lint:fix": "eslint . --fix",
+        "test": "npm run build:dependencies && web-test-runner",
+        "test:skipbuild": "web-test-runner",
+        "test:watch": "npm run build:dependencies && web-test-runner --watch",
+        "storybook": "storybook dev -p 6006",
+        "storybook:build": "storybook build -o netlify/dist"
+    },
+    "peerDependencies": {
+        "@stackoverflow/stacks": "^2.8.4",
+        "svelte": "^5.0.0"
+    },
+    "dependencies": {
+        "@floating-ui/core": "^1.7.3",
+        "@stackoverflow/stacks-icons": "^6.6.1",
+        "svelte-floating-ui": "^1.6.2",
+        "svelte-sonner": "^1.0.5"
+    },
+    "files": [
+        "lib",
+        "!lib/**/*.test.*",
+        "!lib/**/*.stories.*"
+    ]
+}
