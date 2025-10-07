@@ -1,5 +1,15 @@
 # @stackoverflow/stacks-svelte
 
+## 0.5.0
+
+### Minor Changes
+
+- [#1991](https://github.com/StackExchange/Stacks/pull/1991) [`b9dba0e`](https://github.com/StackExchange/Stacks/commit/b9dba0e86a9e926f597f4460cb64bef25f1aad71) Thanks [@mukunku](https://github.com/mukunku)! - [SPARK- 48] - publish stacks svelte to npm
+
+### Patch Changes
+
+- [#1991](https://github.com/StackExchange/Stacks/pull/1991) [`b9dba0e`](https://github.com/StackExchange/Stacks/commit/b9dba0e86a9e926f597f4460cb64bef25f1aad71) Thanks [@mukunku](https://github.com/mukunku)! - Updating UserCard to show deleted User without badges, rep, user type, etc.
+
 ## 0.4.0
 
 ### Minor Changes
