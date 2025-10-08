@@ -11,7 +11,7 @@ jobs:
     name: ${{ matrix.command_description }}
     uses: ./.github/workflows/test.yml
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         include:
         - command_description: Build
@@ -38,6 +38,10 @@ jobs:
           command: npm run test:visual:ci -w packages/stacks-classic -- --config ./visual-runner/stacks-classic-runner-config/web-test-runner.config.ci.mjs
           needs_lfs: true
           needs_playwright: false # we are using playwright docker image to run visual tests
+        - command_description: Unit Tests (stacks-svelte)
+          command: npm run test -w packages/stacks-svelte
+          needs_lfs: false
+          needs_playwright: true
     with:
       command: ${{ matrix.command }}
       command_description: ${{ matrix.command_description }}
