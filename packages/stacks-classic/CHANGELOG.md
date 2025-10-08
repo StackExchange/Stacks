@@ -1,5 +1,11 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.0
+
+### Major Changes
+
+- Add prereleases
+
 ## 2.8.6
 
 ### Patch Changes
