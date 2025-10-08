@@ -11,3 +11,45 @@
 ### Patch Changes
 
 - [#1969](https://github.com/StackExchange/Stacks/pull/1969) [`1add86d`](https://github.com/StackExchange/Stacks/commit/1add86d0987e24bb1cc43022620747b717b8059d) Thanks [@mukunku](https://github.com/mukunku)! - SPARK-12: Move to monorepo setup by splitting Stacks Docs and Classic into NPM workspaces
+
+## 2.8.4
+
+### Patch Changes
+
+- [#1965](https://github.com/StackExchange/Stacks/pull/1965) [`236f4a5`](https://github.com/StackExchange/Stacks/commit/236f4a56b9785f6487e58a7647b30dd296ab37b5) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - [SPARK-6] - update the notice border color for dark mode and high contrast dark mode
+
+## 2.8.3
+
+### Patch Changes
+
+- [#1963](https://github.com/StackExchange/Stacks/pull/1963) [`9c08388`](https://github.com/StackExchange/Stacks/commit/9c083886cb57ee343e455f2d36c584aa6f021022) Thanks [@mukunku](https://github.com/mukunku)! - SPARK-8: Fix Modal text selection issue when using keyboard
+
+## 2.8.2
+
+### Patch Changes
+
+- [#1894](https://github.com/StackExchange/Stacks/pull/1894) [`ed521b9`](https://github.com/StackExchange/Stacks/commit/ed521b964e4d587ccfe1cc0c539c012a91ee8015) Thanks [@qheaden-stack](https://github.com/qheaden-stack)! - Set selected navigation items to bold
+
+## 2.8.1
+
+### Patch Changes
+
+- [#1958](https://github.com/StackExchange/Stacks/pull/1958) [`4f0b3aa`](https://github.com/StackExchange/Stacks/commit/4f0b3aa6ae0ee0cdbfe1df03f1cfdb15728879c2) Thanks [@dancormier](https://github.com/dancormier)! - Remove unneeded will-change CSS property on modal
+
+## 2.8.0
+
+### Minor Changes
+
+- [#1925](https://github.com/StackExchange/Stacks/pull/1925) [`279502e`](https://github.com/StackExchange/Stacks/commit/279502e8acfc35b560cfbe7250a63e4f5b95e722) Thanks [@dancormier](https://github.com/dancormier)! - Add skeleton component
+
+## 2.7.5
+
+### Patch Changes
+
+- [#1913](https://github.com/StackExchange/Stacks/pull/1913) [`9ba53d2`](https://github.com/StackExchange/Stacks/commit/9ba53d2d0e1f8333dd38ec3b0aa03c8a8f29db12) Thanks [@dancormier](https://github.com/dancormier)! - Update cursor styles for disabled, readonly inputs
+
+## 2.7.4
+
+### Patch Changes
+
+- [`9309a97`](https://github.com/StackExchange/Stacks/commit/9309a9718be88771a31691823de3ef0b6c8037ec) Thanks [@giamir](https://github.com/giamir)! - upgrade library dependencies
