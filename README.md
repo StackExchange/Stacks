@@ -4,25 +4,14 @@ Stacks is Stack Overflow’s design system. It includes the resources needed to 
 
 Our documentation is built with Stacks itself, using its [immutable, atomic classes](http://johnpolacek.com/rethinking/) and components.
 
-The Stacks website documents:
-
-## Product
-- Semantic and accessible component markup
-- Cross-browser compatible Less / CSS
-- An [icon library](https://github.com/StackExchange/Stacks-Icons)
-- Svelte implementation of our library
-
-## Email
-- Email templates & components
-
 ## Table of contents
 
 - [Using Stacks](#using-stacks)
-- [Migrating from v1 to v2](#migrating-from-v1-to-v2)
 - [Local Development](#local-development)
 - [Stacks Docs](#stacks-docs)
 - [Stacks Classic](#stacks-classic)
-- [Releasing Stacks](#releasing-a-new-version-of-stacks)
+- [Stacks Svelte](#stacks-svelte)
+- [Releasing Stacks](#releasing-stacks)
 - [Bugs and feature requests](#bugs-and-feature-requests)
 - [Contributing](#contributing)
 - [License](#license)
@@ -185,7 +174,7 @@ or to run the tests in watch mode:
 npm run test:watch -w packages/stacks-svelte
 ```
 
-# Releasing a new version of Stacks Docs + Stacks Classic or Stacks Svelte
+# Releasing Stacks
 This repo uses [Semantic Versioning](https://semver.org/) to distribute Stacks Classic and Stacks Docs via [npm](https://www.npmjs.com/package/@stackoverflow/stacks), and publishes [release notes on Github](https://github.com/StackExchange/Stacks/releases). 
 
 We use [changesets](https://github.com/changesets/changesets) to automatize the steps necessary to publish to NPM, create GH releases and a changelog.

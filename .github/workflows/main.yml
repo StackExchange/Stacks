@@ -47,11 +47,14 @@ jobs:
       command_description: ${{ matrix.command_description }}
       needs_playwright: ${{ matrix.needs_playwright }}
       needs_lfs: ${{ matrix.needs_lfs }}
+
   release:
     name: Release (latest or beta)
     if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/beta'
     needs: [build-and-test]
     runs-on: ubuntu-latest
+    outputs:
+      published: ${{ steps.changesets.outputs.published }}
     steps:
       - uses: actions/checkout@v5
       - name: Setup Node.js environment
@@ -76,9 +79,26 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.STACKS_TOOLING_GH_RW_PAT }}
           NPM_TOKEN: ${{ secrets.NPM_API_KEY }}
+      - name: Docs on Release Pull Request
+        # run only if there is a release pull request open
+        if: steps.changesets.outputs.pullRequestNumber
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+            comment-tag: "pr-release-docs"
+            pr-number: ${{ steps.changesets.outputs.pullRequestNumber }}
+            message: |
+                To trigger the build for this PR, **close and re-open it**.
+                This is necessary because the PR is updated by github-actions[bot].
+                This is a technical user which does not trigger actions workflows on push events.
+                See this GH issue for more details: https://github.com/changesets/action/issues/187
+
+  update-docs:
+    name: Update main site stackoverflow.design
+    if: ${{ needs.release.outputs.published == 'true' && github.ref == 'refs/heads/develop' }}
+    needs: [build-and-test, release]
+    runs-on: ubuntu-latest
+    steps:
       - name: 🔄 Update stackoverflow.design docs
-        # Only run this step if publish succeeded and actually released something
-        if: ${{ steps.changesets.outputs.published == 'true' && github.ref_name == 'develop' }}
         run: |
             git config --global user.name 'github-actions[bot]'
             git config --global user.email 'github-actions[bot]@users.noreply.github.com'
