@@ -2,4 +2,4 @@
 "@stackoverflow/stacks": major
 ---
 
-Initial v3 beta release
+enter prerelease mode for project shine
