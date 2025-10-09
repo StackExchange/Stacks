@@ -1,5 +1,16 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.0
+
+### Major Changes
+
+- [#1994](https://github.com/StackExchange/Stacks/pull/1994) [`83db25a`](https://github.com/StackExchange/Stacks/commit/83db25abba127a1ff8ce1e239c644992266b2d44) Thanks [@dancormier](https://github.com/dancormier)! - enter prerelease mode for project shine
+
+### Patch Changes
+
+- Updated dependencies [[`83db25a`](https://github.com/StackExchange/Stacks/commit/83db25abba127a1ff8ce1e239c644992266b2d44)]:
+    - @stackoverflow/stacks@3.0.0-beta.0
+
 ## 0.5.0
 
 ### Minor Changes
