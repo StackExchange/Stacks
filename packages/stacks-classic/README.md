@@ -22,3 +22,8 @@ Using Stacks is outlined in our [usage guidelines](https://stackoverflow.design/
 ## Migrating from v1 to v2
 
 To migrate from Stacks v1 to v2, see our [migration guide](/MIGRATION_GUIDE.md).
+
+[gh-action-url]: https://github.com/StackExchange/Stacks/actions/workflows/main.yml
+[gh-action-badge]: https://github.com/StackExchange/Stacks/actions/workflows/workflow.yml/badge.svg?branch=develop
+[npm-url]: https://npmjs.org/package/@stackoverflow/stacks
+[npm-badge]: https://img.shields.io/npm/v/@stackoverflow/stacks.svg

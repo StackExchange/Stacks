@@ -7,7 +7,6 @@ on:
             - CI
         branches:
             - develop
-            - beta
         types:
             - completed
 
@@ -15,30 +14,23 @@ permissions: write-all
 
 jobs:
     release:
-        name: Release (latest or beta)
+        name: Release
         # run only if the CI workflow is successful
-        if: github.event.workflow_run.conclusion == 'success'
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         runs-on: ubuntu-latest
         steps:
             - name: ⬇️ Checkout
-              uses: actions/checkout@v4
-            # make sure to checkout the commit that triggered the CI workflow
-            # (which is not necessarily the latest commit)
+              uses:
+                  actions/checkout@v4
+                  # make sure to checkout the commit that triggered the CI workflow
+                  # (which is not necessarily the latest commit)
               with:
-                  ref: ${{ github.event.workflow_run.head_sha }}
-                  fetch-depth: 0
-                  
-            # Create a local branch with the correct name but at the specific commit
-            - name: 🔄 Create local branch at the triggering commit
-              run: |
-                  git branch -f ${{ github.event.workflow_run.head_branch }} ${{ github.event.workflow_run.head_sha }}
-                  git checkout ${{ github.event.workflow_run.head_branch }}
+                  ref: ${{ github.event.workflow_run.head_commit.id }}
 
             - name: ⎔ Setup node
               uses: actions/setup-node@v4
               with:
                   node-version: "lts/*"
-                  cache: "npm"
 
             - name: 🏗 Install and Build
               run: |
@@ -53,15 +45,13 @@ jobs:
                   publish: npm run release
                   title: "chore(new-release)"
                   commit: "chore(new-release)"
-                  branch: ${{ github.event.workflow_run.head_branch }}
-                  createGithubReleases: ${{ github.event.workflow_run.head_branch == 'develop' }}
               env:
                   GITHUB_TOKEN: ${{ secrets.STACKS_TOOLING_GH_RW_PAT }}
                   NPM_TOKEN: ${{ secrets.NPM_API_KEY }}
 
             - name: 🔄 Update stackoverflow.design docs
               # Only run this step if publish succeeded and actually released something
-              if: ${{ steps.changesets.outputs.published == 'true' && github.event.workflow_run.head_branch == 'develop' }}
+              if: steps.changesets.outputs.published == 'true'
               run: |
                   git config --global user.name 'github-actions[bot]'
                   git config --global user.email 'github-actions[bot]@users.noreply.github.com'
@@ -74,5 +64,5 @@ jobs:
 
 # cancel the jobs if another workflow is kicked off for the same branch
 concurrency:
-    group: ${{ github.workflow }}-${{ github.event.workflow_run.head_branch }}
+    group: ${{ github.workflow }}-${{ github.ref }}
     cancel-in-progress: true
