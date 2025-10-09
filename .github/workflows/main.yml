@@ -1,0 +1,115 @@
+name: CI
+
+on:
+  push:
+    branches: [develop, beta]
+  pull_request:
+    branches: [develop, beta]
+
+jobs:
+  build-and-test:
+    name: ${{ matrix.command_description }}
+    uses: ./.github/workflows/test.yml
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - command_description: Build
+          command: npm run build
+          needs_lfs: false
+          needs_playwright: false
+        - command_description: Lint
+          command: npm run lint
+          needs_lfs: false
+          needs_playwright: false
+        - command_description: Less Tests
+          command: npm run test:less -w packages/stacks-classic
+          needs_lfs: false
+          needs_playwright: false
+        - command_description: Unit Tests
+          command: npm run test:unit -w packages/stacks-classic -- --config web-test-runner.config.ci.mjs
+          needs_lfs: false
+          needs_playwright: true
+        - command_description: A11y Tests
+          command: npm run test:a11y -w packages/stacks-classic -- --config web-test-runner.config.ci.mjs
+          needs_lfs: false
+          needs_playwright: true
+        - command_description: Visual Regression Tests
+          command: npm run test:visual:ci -w packages/stacks-classic -- --config ./visual-runner/stacks-classic-runner-config/web-test-runner.config.ci.mjs
+          needs_lfs: true
+          needs_playwright: false # we are using playwright docker image to run visual tests
+        - command_description: Unit Tests (stacks-svelte)
+          command: npm run test -w packages/stacks-svelte
+          needs_lfs: false
+          needs_playwright: true
+    with:
+      command: ${{ matrix.command }}
+      command_description: ${{ matrix.command_description }}
+      needs_playwright: ${{ matrix.needs_playwright }}
+      needs_lfs: ${{ matrix.needs_lfs }}
+
+  release:
+    name: Release (latest or beta)
+    if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/beta'
+    needs: [build-and-test]
+    runs-on: ubuntu-latest
+    outputs:
+      published: ${{ steps.changesets.outputs.published }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: "npm"
+      - name: Install dependencies
+        run: |
+          npm ci
+          npm run build
+      - name: 🚀 Create/Update Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: npm run version
+          publish: npm run release
+          title: "chore(new-release)"
+          commit: "chore(new-release)"
+          branch: ${{ github.ref == 'refs/heads/beta' && 'beta' || null }}
+          createGithubReleases: ${{ github.ref == 'refs/heads/develop' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.STACKS_TOOLING_GH_RW_PAT }}
+          NPM_TOKEN: ${{ secrets.NPM_API_KEY }}
+      - name: Docs on Release Pull Request
+        # run only if there is a release pull request open
+        if: steps.changesets.outputs.pullRequestNumber
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+            comment-tag: "pr-release-docs"
+            pr-number: ${{ steps.changesets.outputs.pullRequestNumber }}
+            message: |
+                To trigger the build for this PR, **close and re-open it**.
+                This is necessary because the PR is updated by github-actions[bot].
+                This is a technical user which does not trigger actions workflows on push events.
+                See this GH issue for more details: https://github.com/changesets/action/issues/187
+
+  update-docs:
+    name: Update main site stackoverflow.design
+    if: ${{ needs.release.outputs.published == 'true' && github.ref == 'refs/heads/develop' }}
+    needs: [build-and-test, release]
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔄 Update stackoverflow.design docs
+        run: |
+            git config --global user.name 'github-actions[bot]'
+            git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+            git fetch origin
+            git checkout production
+            git merge --no-ff --allow-unrelated-histories origin/develop -m "chore: merge develop into production"
+            git push origin production
+        env:
+            GITHUB_TOKEN: ${{ secrets.STACKS_TOOLING_GH_RW_PAT }}
+
+# cancel the jobs if another workflow is kicked off for the same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
