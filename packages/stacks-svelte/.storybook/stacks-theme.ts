@@ -6,7 +6,7 @@ export default create({
     fontBase:
         '-apple-system, BlinkMacSystemFont, "Segoe UI Adjusted", "Segoe UI", "Liberation Sans", sans-serif',
 
-    brandTitle: "Stacks Svelte",
+    brandTitle: "Stacks Svelte (beta)",
     // TODO
     // brandImage: "<link to stacks svelte svg>",
     brandTarget: "_self",
