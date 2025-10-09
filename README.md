@@ -201,6 +201,22 @@ _Despite using changesets to communicate the intent of creating releases in a mo
 
 Successful releases trigger automatically a new deployment to stackoverflow.design by merging the `develop` branch into the `production` branch.
 
+## Beta publishing
+We use Changesets in prerelease mode to manage publishing to the beta branch. For more information, please refer to the official [Changesets prerelease documentation](https://github.com/changesets/changesets/blob/main/docs/prereleases.md).
+
+To prepare a beta release, follow these steps:
+
+1. Create a pull request (PR) targeting the beta branch.
+
+2. Ensure your PR includes a changeset.
+
+3. Merging the PR will trigger the release-beta job. This job creates or updates a chore(new-beta-release) PR.
+
+4. To cut a new beta release, merge the chore(new-beta-release) PR and wait for the `Release Beta` job to complete.
+
+Consumers can install the beta package by targeting the beta tag:
+`npm install @stackoverflow/stacks@beta` or `npm install @stackoverflow/stacks-svelte@beta`
+
 ## Bugs and feature requests
 Have a bug or feature request? First search existing or closed issues to make sure the issue hasn’t been noted yet. If not, review our [issue guidelines](/CONTRIBUTING.md#open-an-issue) for submitting [a bug report](/CONTRIBUTING.md#reporting-bugs) or [feature request](/CONTRIBUTING.md#feature-requests).
 
