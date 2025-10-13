@@ -105,17 +105,17 @@
         id="select-with-description-and-message"
         label="With Description and Message"
     >
-        <svelte:fragment slot="description">
+        {#snippet description()}
             Select the sorting order
-        </svelte:fragment>
+        {/snippet}
         <SelectItem value="relevance" text="Relevance" />
         <SelectItem value="newest" text="Newest" />
         <SelectItem value="active" text="Active" />
         <SelectItem value="score" text="Score" />
-        <svelte:fragment slot="message">
+        {#snippet message()}
             The available sorting orders are Relevance, Newest, Active, and
             Score
-        </svelte:fragment>
+        {/snippet}
     </Select>
 </Story>
 
