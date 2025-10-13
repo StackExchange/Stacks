@@ -31,8 +31,9 @@
     } from "@stackoverflow/stacks-icons/icons";
     import { setContext } from "svelte";
     import type { Snippet } from "svelte";
+    import type { HTMLSelectAttributes } from "svelte/elements";
 
-    interface Props {
+    interface Props extends Omit<HTMLSelectAttributes, "size" | "children"> {
         /**
          * `id` attribute of the select element
          */
@@ -79,21 +80,6 @@
         labelPlacement?: LabelPlacement;
 
         /**
-         * Callback fired when the select value changes
-         */
-        onchange?: (event: Event) => void;
-
-        /**
-         * Callback fired when the select receives focus
-         */
-        onfocus?: (event: FocusEvent) => void;
-
-        /**
-         * Callback fired when the select loses focus
-         */
-        onblur?: (event: FocusEvent) => void;
-
-        /**
          * Snippet to render options as SelectItem components
          */
         children?: Snippet;
@@ -119,12 +105,10 @@
         size = "",
         state: vState = "",
         labelPlacement = "top",
-        onchange,
-        onfocus,
-        onblur,
         children,
         description,
         message,
+        ...restProps
     }: Props = $props();
 
     const getClasses = (size: Size, placement: LabelPlacement) => {
@@ -154,19 +138,13 @@
 
     setContext(SELECT_CONTEXT_NAME, internalState);
 
-    const onChangeHandler = (event: Event) => {
+    const onChangeHandler = (
+        event: Event & { currentTarget: EventTarget & HTMLSelectElement }
+    ) => {
         const target = event.target as HTMLSelectElement;
         internalState.selected = target.value;
         selected = target.value;
-        onchange?.(event);
-    };
-
-    const onFocusHandler = (event: FocusEvent) => {
-        onfocus?.(event);
-    };
-
-    const onBlurHandler = (event: FocusEvent) => {
-        onblur?.(event);
+        restProps.onchange?.(event);
     };
 </script>
 
@@ -196,8 +174,7 @@
                   : undefined}
             aria-invalid={vState === "error"}
             onchange={onChangeHandler}
-            onfocus={onFocusHandler}
-            onblur={onBlurHandler}
+            {...restProps}
         >
             {@render children?.()}
         </select>
