@@ -98,6 +98,7 @@ jobs:
     needs: [build-and-test, release]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v5
       - name: 🔄 Update stackoverflow.design docs
         run: |
             git config --global user.name 'github-actions[bot]'
