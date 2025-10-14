@@ -41,9 +41,6 @@ const lessRule = (minify = false) => ({
     ],
 });
 
-const miniCssPlugin = (filename = "css/[name].css") =>
-    new MiniCssExtractPlugin({ filename });
-
 const commonResolve = {
     extensions: [".tsx", ".ts", ".js"],
 };
@@ -56,7 +53,10 @@ const baseConfig = (isProd, minify) => ({
     devtool: isProd ? false : "inline-source-map",
     entry: {
         // add .min to the file names of minified bundles
-        [minify ? "stacks.min" : "stacks"]: path.resolve(__dirname, "lib/index.ts"),
+        [minify ? "stacks.min" : "stacks"]: path.resolve(
+            __dirname,
+            "lib/index.ts"
+        ),
     },
     output: {
         filename: `js/[name].js`,
@@ -68,26 +68,20 @@ const baseConfig = (isProd, minify) => ({
         libraryTarget: "umd",
     },
     module: {
-        rules: [
-            tsRule("tsconfig.build.json"),
-            lessRule(minify),
-        ],
+        rules: [tsRule("tsconfig.build.json"), lessRule(minify)],
     },
     optimization: {
         minimize: minify,
     },
     plugins: [
-        miniCssPlugin(`css/[name].css`),
+        new MiniCssExtractPlugin({
+            filename: `css/[name].css`,
+        }),
     ],
     resolve: commonResolve,
 });
 
-export {
-    tsRule,
-    lessRule,
-    miniCssPlugin,
-    commonResolve,
-}
+export { tsRule, lessRule, commonResolve };
 
 // build the bundle twice - once minified and once not
 export default [

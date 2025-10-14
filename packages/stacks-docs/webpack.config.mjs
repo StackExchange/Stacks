@@ -3,12 +3,12 @@ import fs from "fs";
 import {
     tsRule,
     lessRule,
-    miniCssPlugin,
     commonResolve,
 } from "../stacks-classic/webpack.config.mjs";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
-import { fileURLToPath } from 'node:url';
-import { dirname } from 'node:path';
+import { fileURLToPath } from "node:url";
+import { dirname } from "node:path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -44,7 +44,7 @@ export default (_, argv) => {
                 lessRule(isProd),
             ],
         },
-        plugins: [miniCssPlugin()],
+        plugins: [new MiniCssExtractPlugin()],
         resolve: commonResolve,
         devServer: {
             webSocketURL: {
