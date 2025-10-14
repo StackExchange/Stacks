@@ -33,7 +33,10 @@
     import type { Snippet } from "svelte";
     import type { HTMLSelectAttributes } from "svelte/elements";
 
-    interface Props extends Omit<HTMLSelectAttributes, "size" | "children"> {
+    // @ts-expect-error - HTMLSelectAttributes size is not compatible with our custom Size type.
+    // Ideally we could use Omit<HTMLSelectAttributes, "size"> but doing that
+    // causes Storybook autodocs to document all the select attributes.
+    interface Props extends HTMLSelectAttributes {
         /**
          * `id` attribute of the select element
          */
