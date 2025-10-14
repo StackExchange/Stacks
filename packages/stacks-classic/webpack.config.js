@@ -1,5 +1,5 @@
 const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { tsRule, lessRule, miniCssPlugin, commonResolve } = require("../../webpack-common");
 
 const baseConfig = (isProd, minify) => ({
     name: "stacks" + (minify ? ".min" : ""),
@@ -22,53 +22,17 @@ const baseConfig = (isProd, minify) => ({
     },
     module: {
         rules: [
-            {
-                test: /\.tsx?$/,
-                exclude: /node_modules/,
-                use: [
-                    {
-                        loader: "ts-loader",
-                        options: {
-                            configFile: "tsconfig.build.json",
-                        },
-                    },
-                ],
-            },
-            {
-                test: /\.less$/,
-                use: [
-                    isProd ? MiniCssExtractPlugin.loader : "",
-                    {
-                        loader: "css-loader",
-                        options: {
-                            importLoaders: 1,
-                            url: false,
-                        },
-                    },
-                    {
-                        loader: "postcss-loader",
-                        options: {
-                            postcssOptions: {
-                                plugins: minify ? [require("cssnano")] : [],
-                            },
-                        },
-                    },
-                    "less-loader",
-                ],
-            },
+            tsRule("tsconfig.build.json"),
+            lessRule(minify),
         ],
     },
     optimization: {
         minimize: minify,
     },
     plugins: [
-        new MiniCssExtractPlugin({
-            filename: `css/[name].css`,
-        }),
+        miniCssPlugin(`css/[name].css`),
     ],
-    resolve: {
-        extensions: [".tsx", ".ts", ".js"],
-    },
+    resolve: commonResolve,
 });
 
 // build the bundle twice - once minified and once not

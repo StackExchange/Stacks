@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { tsRule, lessRule, miniCssPlugin, commonResolve, commonDevServer } = require("../../webpack-common");
 
 module.exports = (_, argv) => {
     const isProd = argv.mode === "production"
@@ -28,41 +28,14 @@ module.exports = (_, argv) => {
         },
         module: {
             rules: [
-                {
-                    test: /\.tsx?$/,
-                    exclude: /node_modules/,
-                    use: [
-                        "ts-loader",
-                    ],
-                },
-                {
-                    test: /\.less$/,
-                    use: [
-                        isProd ? MiniCssExtractPlugin.loader : "",
-                        {
-                            loader: "css-loader",
-                            options: {
-                                importLoaders: 1,
-                                url: false,
-                            },
-                        },
-                        "postcss-loader",
-                        "less-loader",
-                    ],
-                },
+                tsRule(), // no special config file here
+                lessRule(isProd),
             ],
         },
         plugins: [
-            new MiniCssExtractPlugin()
+            miniCssPlugin(),
         ],
-        resolve: {
-            extensions: [".tsx", ".ts", ".js"],
-        },
-        devServer: {
-            webSocketURL: {
-                // 11ty/browsersync steal the default port (8080), so set it to something else
-                port: 8081
-            }
-        }
+        resolve: commonResolve,
+        devServer: commonDevServer,
     };
 };
