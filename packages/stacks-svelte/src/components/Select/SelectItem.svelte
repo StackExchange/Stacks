@@ -1,31 +1,30 @@
 <script lang="ts">
     import { useSelectContext } from "./Select.svelte";
 
-    /**
-     * Specify the option value
-     * @type {string | number}
-     */
-    export let value: string | number = "";
+    interface Props {
+        /**
+         * Specify the option value
+         */
+        value?: string | number;
 
-    /** Specify the option text
-     * @type {string}
-     */
-    export let text = "";
+        /**
+         * Specify the option text
+         */
+        text?: string;
 
-    /** Set to `true` to disable the option
-     * @type {boolean}
-     */
-    export let disabled = false;
+        /**
+         * Set to `true` to disable the option
+         */
+        disabled?: boolean;
+    }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    let { value = "", text = "", disabled = false }: Props = $props();
+
     let state = useSelectContext("SelectItem");
+
+    let isSelected = $derived(state.selected === value);
 </script>
 
-<option
-    {value}
-    {disabled}
-    selected={$state.selected === value}
-    data-selected={$state.selected === value}
->
+<option {value} {disabled} selected={isSelected} data-selected={isSelected}>
     {text || value}
 </option>

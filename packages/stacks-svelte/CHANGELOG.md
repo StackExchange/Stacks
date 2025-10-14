@@ -1,5 +1,15 @@
 # @stackoverflow/stacks-svelte
 
+## 0.5.1
+
+### Patch Changes
+
+- [#2005](https://github.com/StackExchange/Stacks/pull/2005) [`b5ca551`](https://github.com/StackExchange/Stacks/commit/b5ca5519aba92fb2bb13ed00746c3f90eb8e0f5d) Thanks [@giamir](https://github.com/giamir)! - Migrate `Select` and `SelectItem` components to use Svelte 5 runes API
+
+    BREAKING CHANGES:
+    - `message` and `description` slotted content are not available anymore. `message` and `description` snippets should be used instead.
+    - `on:change` `on:focus` and `on:blur` are not available anymore. The new callback props should be used instead: `onchange`, `onfocus`, `onblur`.
+
 ## 1.0.0-beta.0
 
 ### Major Changes
