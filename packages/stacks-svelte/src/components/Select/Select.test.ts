@@ -1,5 +1,5 @@
 import { expect } from "@open-wc/testing";
-import { render, screen } from "@testing-library/svelte";
+import { render, screen, waitFor } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import { createRawSnippet, mount, unmount } from "svelte";
 import sinon from "sinon";
@@ -38,10 +38,7 @@ describe("Select", () => {
         render(Select, {
             id: "example-select",
             label: "example label",
-            // @ts-expect-error $$slots is used to pass children while component is still using Svelte 4 syntax
-            $$slots: {
-                default: selectItemsSnippet,
-            },
+            children: selectItemsSnippet,
         });
         expect(screen.getByRole("combobox")).to.have.id("example-select");
         expect(screen.getByText("example label")).to.exist;
@@ -57,17 +54,31 @@ describe("Select", () => {
         expect(screen.getByText("example label")).to.have.class("v-visible-sr");
     });
 
-    it.skip("should select the option matching the value passed in the selected prop", () => {
+    it("should select the option matching the value passed in the selected prop", () => {
         render(Select, {
             id: "example-select",
             label: "example label",
             selected: "2",
-            // @ts-expect-error $$slots is used to pass children while component is still using Svelte 4 syntax
-            $$slots: {
-                default: selectItemsSnippet,
-            },
+            children: selectItemsSnippet,
         });
         expect(screen.getByRole("combobox")).to.have.value("2");
+    });
+
+    it("should sync internal state when selected prop changes externally", async () => {
+        const { rerender } = render(Select, {
+            id: "example-select",
+            label: "example label",
+            selected: "1",
+            children: selectItemsSnippet,
+        });
+
+        const selectElement = screen.getByRole("combobox") as HTMLSelectElement;
+        expect(selectElement).to.have.value("1");
+
+        rerender({ selected: "2" });
+        await waitFor(() => {
+            expect(selectElement).to.have.value("2");
+        });
     });
 
     it("should render the appropriate size class", () => {
@@ -109,8 +120,8 @@ describe("Select", () => {
         expect(screen.getByRole("combobox")).to.have.attribute("disabled");
     });
 
-    // slots
-    it("should render the description slot when the label is not hidden and placed on top", () => {
+    // snippets
+    it("should render the description snippet when the label is not hidden and placed on top", () => {
         const descriptionSnippet = createRawSnippet(() => ({
             render: () => "<span>example description</span>",
         }));
@@ -118,10 +129,7 @@ describe("Select", () => {
         render(Select, {
             id: "example-select",
             label: "example label",
-            // @ts-expect-error $$slots is used to pass children while component is still using Svelte 4 syntax
-            $$slots: {
-                description: descriptionSnippet,
-            },
+            description: descriptionSnippet,
         });
 
         expect(
@@ -129,7 +137,7 @@ describe("Select", () => {
         ).to.have.class("s-description");
     });
 
-    it("should not render the description slot when the label is hidden", () => {
+    it("should not render the description snippet when the label is hidden", () => {
         const descriptionSnippet = createRawSnippet(() => ({
             render: () => "<span>example description</span>",
         }));
@@ -138,16 +146,13 @@ describe("Select", () => {
             id: "example-select",
             label: "example label",
             hideLabel: true,
-            // @ts-expect-error $$slots is used to pass children while component is still using Svelte 4 syntax
-            $$slots: {
-                description: descriptionSnippet,
-            },
+            description: descriptionSnippet,
         });
 
         expect(screen.queryByText("example description")).not.to.exist;
     });
 
-    it("should not render the description slot when the label placement is left", () => {
+    it("should not render the description snippet when the label placement is left", () => {
         const descriptionSnippet = createRawSnippet(() => ({
             render: () => "<span>example description</span>",
         }));
@@ -156,16 +161,13 @@ describe("Select", () => {
             id: "example-select",
             label: "example label",
             labelPlacement: "left",
-            // @ts-expect-error $$slots is used to pass children while component is still using Svelte 4 syntax
-            $$slots: {
-                description: descriptionSnippet,
-            },
+            description: descriptionSnippet,
         });
 
         expect(screen.queryByText("example description")).not.to.exist;
     });
 
-    it("should render the message slot", () => {
+    it("should render the message snippet", () => {
         const messageSnippet = createRawSnippet(() => ({
             render: () => "<span>example message</span>",
         }));
@@ -173,10 +175,7 @@ describe("Select", () => {
         render(Select, {
             id: "example-select",
             label: "example label",
-            // @ts-expect-error $$slots is used to pass children while component is still using Svelte 4 syntax
-            $$slots: {
-                message: messageSnippet,
-            },
+            message: messageSnippet,
         });
 
         expect(screen.getByText("example message").parentElement).to.have.class(
@@ -185,18 +184,13 @@ describe("Select", () => {
     });
 
     // events
-    it.skip("should call the on:change callback when the user changes the value", async () => {
+    it("should call the onchange callback when the user changes the value", async () => {
         const onChangeSpy = sinon.spy();
         render(Select, {
             id: "example-select",
             label: "example label",
-            // @ts-expect-error $$slots is used to pass children while component is still using Svelte 4 syntax
-            $$slots: {
-                default: selectItemsSnippet,
-            },
-            $$events: {
-                change: onChangeSpy,
-            },
+            children: selectItemsSnippet,
+            onchange: onChangeSpy,
         });
         const selectElement = screen.getByRole("combobox");
         await user.selectOptions(selectElement, "2");
@@ -206,35 +200,25 @@ describe("Select", () => {
         });
     });
 
-    it("should call the on:focus callback when the user focus on the select", async () => {
+    it("should call the onfocus callback when the user focus on the select", async () => {
         const onFocusSpy = sinon.spy();
         render(Select, {
             id: "example-select",
             label: "example label",
-            // @ts-expect-error $$slots is used to pass children while component is still using Svelte 4 syntax
-            $$slots: {
-                default: selectItemsSnippet,
-            },
-            $$events: {
-                focus: onFocusSpy,
-            },
+            children: selectItemsSnippet,
+            onfocus: onFocusSpy,
         });
         await user.click(screen.getByRole("combobox"));
         expect(onFocusSpy).to.have.been.calledOnce;
     });
 
-    it("should call the on:blur callback when the user focus away from the select", async () => {
+    it("should call the onblur callback when the user focus away from the select", async () => {
         const onBlurSpy = sinon.spy();
         render(Select, {
             id: "example-select",
             label: "example label",
-            // @ts-expect-error $$slots is used to pass children while component is still using Svelte 4 syntax
-            $$slots: {
-                default: selectItemsSnippet,
-            },
-            $$events: {
-                blur: onBlurSpy,
-            },
+            children: selectItemsSnippet,
+            onblur: onBlurSpy,
         });
         await user.click(screen.getByRole("combobox"));
         await user.tab();
