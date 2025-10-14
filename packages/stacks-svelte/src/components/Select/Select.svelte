@@ -10,8 +10,8 @@
 
     const SELECT_CONTEXT_NAME = "select-context";
 
-    export function useSelectContext(component: string): Writable<SelectState> {
-        const context = getContext<Writable<SelectState>>(SELECT_CONTEXT_NAME);
+    export function useSelectContext(component: string): SelectState {
+        const context = getContext<SelectState>(SELECT_CONTEXT_NAME);
         if (context === undefined) {
             throw new Error(
                 `<${component} /> is missing a parent <Select /> component.`
@@ -30,64 +30,89 @@
         IconCheckmark,
     } from "@stackoverflow/stacks-icons/icons";
     import { setContext } from "svelte";
-    import type { Writable } from "svelte/store";
-    import { writable } from "svelte/store";
+    import type { Snippet } from "svelte";
+    import type { HTMLSelectAttributes } from "svelte/elements";
 
-    /**
-     * `id` attribute of the select element
-     * @type {string}
-     */
-    export let id: string;
+    // @ts-expect-error - HTMLSelectAttributes size is not compatible with our custom Size type.
+    // Ideally we could use Omit<HTMLSelectAttributes, "size"> but doing that
+    // causes Storybook autodocs to document all the select attributes.
+    interface Props extends HTMLSelectAttributes {
+        /**
+         * `id` attribute of the select element
+         */
+        id: string;
 
-    /**
-     * The label associated with the select element
-     * @type {string}
-     */
-    export let label: string;
+        /**
+         * The label associated with the select element
+         */
+        label: string;
 
-    /**
-     * Specify the initial selected item value
-     * @type {string | number}
-     */
-    export let selected: string | number | undefined = undefined;
+        /**
+         * Specify the initial selected item value
+         */
+        selected?: string | number | undefined;
 
-    /**
-     * Sets the disabled state
-     * @type {boolean}
-     */
-    export let disabled: boolean = false;
+        /**
+         * Sets the disabled state
+         */
+        disabled?: boolean;
 
-    /**
-     * The visiblity of the label element
-     * @type {boolean}
-     */
-    export let hideLabel: boolean = false;
+        /**
+         * The visiblity of the label element
+         */
+        hideLabel?: boolean;
 
-    /**
-     * Name attribute of the select element
-     * @type {string | undefined}
-     */
-    export let name: string | undefined = undefined;
+        /**
+         * Name attribute of the select element
+         */
+        name?: string | undefined;
 
-    /**
-     * The size of the select
-     * @type {"" | "sm" | "md" | "lg" | "xl"} Size
-     */
-    export let size: Size = "";
+        /**
+         * The size of the select
+         */
+        size?: Size;
 
-    /**
-     * The state of the select
-     * @type {"" | "error" | "success" | "warning"} State
-     */
-    export let state: State = "";
+        /**
+         * The validation state of the select
+         */
+        state?: State;
 
-    /**
-     * The placement of the label relative to the select
-     * @type {"top" | "left"}
-     */
-    export let labelPlacement: LabelPlacement = "top";
+        /**
+         * The placement of the label relative to the select
+         */
+        labelPlacement?: LabelPlacement;
 
-    $: classes = getClasses(size, labelPlacement);
+        /**
+         * Snippet to render options as SelectItem components
+         */
+        children?: Snippet;
+
+        /**
+         * Snippet to render a description between the label and the select (only when label is visible and placed on top)
+         */
+        description?: Snippet;
+
+        /**
+         * Snippet to render a message after the select element
+         */
+        message?: Snippet;
+    }
+
+    let {
+        id,
+        label,
+        selected = $bindable(undefined),
+        disabled = false,
+        hideLabel = false,
+        name = undefined,
+        size = "",
+        state: vState = "",
+        labelPlacement = "top",
+        children,
+        description,
+        message,
+        ...restProps
+    }: Props = $props();
 
     const getClasses = (size: Size, placement: LabelPlacement) => {
         const base = "s-select";
@@ -104,31 +129,40 @@
         return classes;
     };
 
-    const selectState = writable<SelectState>({
+    let classes = $derived(getClasses(size, labelPlacement));
+
+    let internalState = $state({
         selected,
     });
 
-    setContext(SELECT_CONTEXT_NAME, selectState);
+    $effect(() => {
+        internalState.selected = selected;
+    });
 
-    const onChangeHandler = (event: Event) => {
+    setContext(SELECT_CONTEXT_NAME, internalState);
+
+    const onChangeHandler = (
+        event: Event & { currentTarget: EventTarget & HTMLSelectElement }
+    ) => {
         const target = event.target as HTMLSelectElement;
-        selectState.set({ selected: target.value });
+        internalState.selected = target.value;
+        selected = target.value;
+        restProps.onchange?.(event);
     };
 </script>
 
 <div
     class={`d-flex ${labelPlacement === "top" ? " fd-column gy4" : "ai-center"}`}
-    class:has-error={state === "error"}
-    class:has-success={state === "success"}
-    class:has-warning={state === "warning"}
+    class:has-error={vState === "error"}
+    class:has-success={vState === "success"}
+    class:has-warning={vState === "warning"}
 >
     <Label {id} class={hideLabel ? "v-visible-sr" : ""} {size}>
         {label}
     </Label>
-    {#if $$slots.description && !hideLabel && labelPlacement === "top"}
-        <!-- Renders a description between the label and the select (only when label is visible and placed on top). -->
+    {#if description && !hideLabel && labelPlacement === "top"}
         <p class="s-description mb0 mtn2" id={`${id}-description`}>
-            <slot name="description" />
+            {@render description()}
         </p>
     {/if}
     <div class={classes}>
@@ -136,25 +170,22 @@
             {id}
             {name}
             {disabled}
-            aria-describedby={$$slots.message
+            aria-describedby={message
                 ? `${id}-message`
-                : $$slots.description
+                : description
                   ? `${id}-description`
                   : undefined}
-            aria-invalid={state === "error"}
-            on:change={onChangeHandler}
-            on:change
-            on:focus
-            on:blur
+            aria-invalid={vState === "error"}
+            onchange={onChangeHandler}
+            {...restProps}
         >
-            <!-- Renders the options (SelectItem). -->
-            <slot />
+            {@render children?.()}
         </select>
-        {#if state}
+        {#if vState}
             <div class="s-input-icon">
-                {#if state === "error"}
+                {#if vState === "error"}
                     <Icon src={IconAlertCircle} />
-                {:else if state === "success"}
+                {:else if vState === "success"}
                     <Icon src={IconCheckmark} />
                 {:else}
                     <Icon src={IconAlert} />
@@ -163,10 +194,9 @@
         {/if}
     </div>
 
-    {#if $$slots.message}
-        <!-- Renders a message after the select element. -->
+    {#if message}
         <p class="s-input-message" id={`${id}-message`}>
-            <slot name="message" />
+            {@render message()}
         </p>
     {/if}
 </div>
