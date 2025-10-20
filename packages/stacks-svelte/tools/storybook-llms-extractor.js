@@ -16,6 +16,7 @@ import { readFileSync, writeFileSync, existsSync, readdirSync } from "fs";
 import { join, dirname, basename } from "path";
 import { fileURLToPath } from "url";
 import { execSync } from "child_process";
+import process from "node:process";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -374,7 +375,7 @@ function generateDocs(groups) {
 
     groups.forEach((group, idx) => {
         if (group.docs) {
-            md += `${idx + 1}. [${group.title}](#${group.title.toLowerCase().replace(/[\/\s]/g, "-")})\n`;
+            md += `${idx + 1}. [${group.title}](#${group.title.toLowerCase().replace(/[/\s]/g, "-")})\n`;
         }
     });
 
