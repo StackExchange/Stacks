@@ -5,12 +5,13 @@ import "../../index";
 describe("anchors", () => {
     runVisualTests({
         baseClass: "s-award-bling",
-        variants: ["gold", "silver", "bronze"],
-        children: {
-            default: `100 <div class="v-visible-sr">award</div>`,
+        variants: ["activity", "rep", "gold", "silver", "bronze"],
+        modifiers: {
+            primary: ["filled"],
+            secondary: ["sm", "lg"],
         },
-        options: {
-            includeNullVariant: false,
+        children: {
+            default: `<div class="v-visible-sr">bling</div>`,
         },
         template: ({ component, testid }) => html`
             <div
