@@ -6,7 +6,7 @@ describe("award-bling", () => {
         baseClass: "s-award-bling",
         variants: ["gold", "silver", "bronze"],
         children: {
-            default: `100 <div class="v-visible-sr">award</div>`,
+            default: `<div class="v-visible-sr">bling</div>`,
         },
         options: {
             includeNullVariant: false,
