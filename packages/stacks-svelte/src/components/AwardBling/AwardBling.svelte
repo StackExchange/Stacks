@@ -6,6 +6,11 @@
 <script lang="ts">
     interface Props {
         /**
+         * The accessible text provided for screen readers
+         */
+        name: string;
+
+        /**
          * The type of the award bling
          */
         type?: Type;
@@ -16,14 +21,9 @@
         filled?: boolean;
 
         /**
-         * The size of the award bling
+         * The size of the award bling. Only affects filled badges.
          */
         size?: Size;
-
-        /**
-         * The accessible text provided for screen readers
-         */
-        name: string;
 
         /**
          * Additional CSS classes added to the element
@@ -33,7 +33,12 @@
 
     const { type, filled, size, name, class: className = "" }: Props = $props();
 
-    const getClasses = (className: string, type?: Type, size?: Size, filled?: boolean) => {
+    const getClasses = (
+        className: string,
+        type?: Type,
+        size?: Size,
+        filled?: boolean
+    ) => {
         let classes = "s-award-bling";
 
         if (className) {
@@ -46,10 +51,10 @@
 
         if (filled) {
             classes += " s-award-bling__filled";
-        }
 
-        if (size) {
-            classes += " s-award-bling__" + size;
+            if (size) {
+                classes += " s-award-bling__" + size;
+            }
         }
 
         return classes;

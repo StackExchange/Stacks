@@ -76,7 +76,7 @@
         /**
          * Snippet for the badge content
          */
-        children: Snippet;
+        children?: Snippet;
     }
 
     const {
@@ -128,16 +128,11 @@
 
 <span class={classes}>
     {#if award}
-        <AwardBling type={award} name={i18nAwardName || award}>
-            {#if icon}
-                <Icon src={icon} title={iconTitle} />
-            {/if}
-            {@render children()}
-        </AwardBling>
+        <AwardBling type={award} name={i18nAwardName || award} />
     {:else}
         {#if icon}
             <Icon src={icon} title={iconTitle} />
         {/if}
-        {@render children()}
+        {@render children?.()}
     {/if}
 </span>

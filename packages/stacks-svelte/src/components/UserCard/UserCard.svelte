@@ -6,6 +6,7 @@
 <script lang="ts">
     import type { Snippet } from "svelte";
     import Avatar, { type Size as AvatarSize } from "../Avatar/Avatar.svelte";
+    import AwardBling from "../AwardBling/AwardBling.svelte";
     import Icon from "../Icon/Icon.svelte";
     import { IconPerson } from "@stackoverflow/stacks-icons/icons";
 
@@ -226,19 +227,16 @@
                     <li class="s-user-card--rep">{reputation}</li>
                 {/if}
                 {#if gold}
-                    <li class="s-award-bling s-award-bling__gold">
-                        {gold}
-                    </li>
+                    <AwardBling type="gold" name={`${gold} awards`} />
+                    {gold}
                 {/if}
                 {#if silver}
-                    <li class="s-award-bling s-award-bling__silver">
-                        {silver}
-                    </li>
+                    <AwardBling type="silver" name={`${silver} awards`} />
+                    {silver}
                 {/if}
                 {#if bronze}
-                    <li class="s-award-bling s-award-bling__bronze">
-                        {bronze}
-                    </li>
+                    <AwardBling type="bronze" name={`${bronze} awards`} />
+                    {bronze}
                 {/if}
             </ul>
         {/if}

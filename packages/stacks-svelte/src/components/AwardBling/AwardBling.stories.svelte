@@ -3,11 +3,18 @@
     import { createRawSnippet } from "svelte";
     import AwardBling, { type Type, type Size } from "./AwardBling.svelte";
     const AwardBlingSizes: Size[] = ["sm", "", "lg"];
-    const AwardBlingTypes: Type[] = ["", "activity", "rep", "gold", "silver", "bronze"];
+    const AwardBlingTypes: Type[] = [
+        "",
+        "activity",
+        "rep",
+        "gold",
+        "silver",
+        "bronze",
+    ];
 
     const { Story } = defineMeta({
         title: "Components/AwardBling",
-        component: AwardBling
+        component: AwardBling,
     });
 </script>
 
@@ -19,7 +26,12 @@
     }}
 >
     {#snippet template(args)}
-        <AwardBling type={args.type} name={args.name} size={args.size} filled={args.filled} />
+        <AwardBling
+            type={args.type}
+            name={args.name}
+            size={args.size}
+            filled={args.filled}
+        />
     {/snippet}
 </Story>
 
