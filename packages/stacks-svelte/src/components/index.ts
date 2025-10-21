@@ -1,5 +1,5 @@
-export { default as AwardBling } from "./AwardBling/AwardBling.svelte";
 export { default as Avatar } from "./Avatar/Avatar.svelte";
+export { default as Bling } from "./Bling/Bling.svelte";
 export { default as Button } from "./Button/Button.svelte";
 export { default as Icon } from "./Icon/Icon.svelte";
 export { default as ExpandingInput } from "./ExpandingInput/ExpandingInput.svelte";

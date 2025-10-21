@@ -1,0 +1,98 @@
+// TODO SHINE verify `black` values in this file are intended (the Figma uses `gray`) 🤷‍♂️
+.s-bling {
+    --_bl-bg: unset;
+    --_bl-size: calc(var(--su8) + var(--su2));
+    // Icon
+    --_bl-icon: url("data:image/svg+xml;utf8,<svg viewBox='0 0 8 8' xmlns='http://www.w3.org/2000/svg'><circle cx='4' cy='4' r='4'/></svg>");
+    --_bl-icon-bg: var(--black-500);
+    --_bl-icon-size: var(--su8);
+
+    // VARIANTS
+    &&__gold,
+    &&__silver,
+    &&__bronze {
+        --_bl-icon-size: calc(var(--su8) + var(--su2));
+    }
+
+    &&__activity {
+        --_bl-icon-bg: var(--red-400); // TODO SHINE change to pink when color is added to library
+    }
+    &&__rep {
+        --_bl-icon-bg: var(--black-400);
+    }
+    // Metals
+    &&__gold {
+        --_bl-icon-bg: var(--yellow-400);
+        --_bl-icon: url("data:image/svg+xml;,<svg viewBox='0 0 8 9' xmlns='http://www.w3.org/2000/svg'><path d='M3.89709 0L7.79421 2.25V6.75L3.89709 9L-1.95503e-05 6.75V2.25L3.89709 0Z'/></svg>");
+    }
+
+    &&__silver {
+        --_bl-icon-bg: var(--blue-400);
+        --_bl-icon: url("data:image/svg+xml;,<svg viewBox='0 0 9 9' xmlns='http://www.w3.org/2000/svg'><path d='M4.27979 0L8.55954 3.10942L6.92482 8.14058H1.63475L3.09944e-05 3.10942L4.27979 0Z'/></svg>");
+    }
+
+    &&__bronze {
+        --_bl-icon-bg: var(--orange-400);
+        --_bl-icon: url("data:image/svg+xml;,<svg viewBox='0 0 8 8' xmlns='http://www.w3.org/2000/svg'><rect width='8' height='8'/></svg>");
+    }
+
+    // MODIFIERS
+    // Filled
+    &&__filled {
+        --_bl-bg: var(--black-225);
+        --_bl-icon-bg: var(--black-600);
+        --_bl-size: var(--su24);
+
+        &.s-bling {
+            &__rep {
+                --_bl-bg: var(--black-300);
+            }
+            &__activity {
+                --_bl-bg: var(--red-300); // TODO SHINE change to pink when color is added to library
+                --_bl-icon-bg: var(--red-600); // TODO SHINE change to pink when color is added to library
+            }
+            &__gold {
+                --_bl-bg: var(--yellow-300);
+                --_bl-icon-bg: var(--yellow-600);
+            }
+            &__silver {
+                --_bl-bg: var(--blue-300);
+                --_bl-icon-bg: var(--blue-600);
+            }
+            &__bronze {
+                --_bl-bg: var(--orange-300);
+                --_bl-icon-bg: var(--orange-600);
+            }
+        }
+    }
+
+    // Sizes
+    &&__sm {
+        --_bl-icon-size: var(--su6);
+        --_bl-size: var(--su16);
+    }
+
+    &&__lg {
+        --_bl-size: calc(var(--su24) + var(--su4)); // 28px
+    }
+
+    // CHILD ELEMENTS
+    &:before {
+        -webkit-mask: var(--_bl-icon) no-repeat center;
+        mask: var(--_bl-icon) no-repeat center;
+
+        background-color: var(--_bl-icon-bg);
+        content: "";
+        height: var(--_bl-icon-size);
+        width: var(--_bl-icon-size);
+    }
+
+    background-color: var(--_bl-bg);
+    height: var(--_bl-size);
+    width: var(--_bl-size);
+
+    align-items: center;
+    color: inherit;
+    display: inline-flex;
+    justify-content: center;
+}

@@ -15,10 +15,10 @@ describe("Badge", () => {
         expect(screen.getByText("test badge")).to.exist;
     });
 
-    it("should render the award bling", () => {
+    it("should render the award as a bling component", () => {
         render(Badge, { award: "gold", children });
         const badge = screen.getByText("test badge").closest(".s-badge");
-        const bling = badge?.querySelector(".s-award-bling");
+        const bling = badge?.querySelector(".s-bling");
         expect(bling).to.exist;
     });
 

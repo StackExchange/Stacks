@@ -1,0 +1,157 @@
+---
+layout: page
+title: Bling
+razor: https://razor.stackoverflow.design/components/award-bling
+figma: https://svelte.stackoverflow.design/figma/badges
+description: Bling is used to indicate award type in badges, topbar, and user cards.
+tags: components
+---
+<section class="stacks-section">
+    {% header "h2", "Types" %}
+    <p class="stacks-copy">Use bling to indicate the type of award.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<span class="s-bling s-bling__gold">…</span>
+<span class="s-bling s-bling__silver">…</span>
+<span class="s-bling s-bling__bronze">…</span>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="overflow-x-auto" tabindex="0">
+                <table class="wmn5 s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col">Example</th>
+                            <th scope="col" class="s-table--cell5">Class</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for bling in bling.variants %}
+                            {% assign variantClass = bling %}
+                            {% if bling == "default" %}
+                                {% assign variantClassSuffix = "" %}
+                            {% endif %}
+
+                            <tr>
+                                <td class="va-middle pr8">
+                                    <span class="s-bling s-bling__{{ bling }}">
+                                        <span class="v-visible-sr">{{ bling }} bling</span>
+                                    </span>
+                                </td>
+                                <td class="va-middle">
+                                    <div class="d-flex g4 fw-wrap">
+                                        <code class="stacks-code">.s-bling</code>
+                                        {% if bling != "default" %}
+                                            <code class="stacks-code">.s-bling__{{ bling }}</code>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                                <td class="va-middle">A “{{ bling }}” bling.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Filled" %}
+    <p class="stacks-copy">Use filled version of the bling.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<span class="s-bling s-bling__filled s-bling__gold">…</span>
+<span class="s-bling s-bling__filled s-bling__silver">…</span>
+<span class="s-bling s-bling__filled s-bling__bronze">…</span>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="overflow-x-auto" tabindex="0">
+                <table class="wmn5 s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col">Example</th>
+                            <th scope="col" class="s-table--cell5">Class</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for bling in bling.variants %}
+                            {% assign variantClass = bling %}
+                            {% if bling == "default" %}
+                                {% assign variantClassSuffix = "" %}
+                            {% endif %}
+
+                            <tr>
+                                <td class="va-middle pr8">
+                                    <span class="s-bling s-bling__filled s-bling__{{ bling }}">
+                                        <span class="v-visible-sr">{{ bling }} bling</span>
+                                    </span>
+                                </td>
+                                <td class="va-middle">
+                                    <div class="d-flex g4 fw-wrap">
+                                        <code class="stacks-code">.s-bling</code>
+                                        {% if bling != "default" %}
+                                            <code class="stacks-code">.s-bling__{{ bling }}</code>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                                <td class="va-middle">A “{{ bling }}” bling.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Sizes" %}
+    <p class="stacks-copy">Use different sizes of the bling.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<span class="s-bling s-bling__filled s-bling__gold s-bling__sm">…</span>
+<span class="s-bling s-bling__filled s-bling__gold">…</span>
+<span class="s-bling s-bling__filled s-bling__gold s-bling__lg">…</span>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="overflow-x-auto" tabindex="0">
+                <table class="wmn5 s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col">Example</th>
+                            <th scope="col" class="s-table--cell5">Class</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for size in bling.sizes %}
+                            {% assign variantClass = size %}
+                            {% if size == "default" %}
+                                {% assign variantClassSuffix = "" %}
+                            {% endif %}
+
+                            <tr>
+                                <td class="va-middle pr8">
+                                    <span class="s-bling s-bling__gold s-bling__filled s-bling__{{ size }}">
+                                        <span class="v-visible-sr">{{ size }} bling</span>
+                                    </span>
+                                </td>
+                                <td class="va-middle">
+                                    <div class="d-flex g4 fw-wrap">
+                                        <code class="stacks-code">.s-bling</code>
+                                        {% if size != "default" %}
+                                            <code class="stacks-code">.s-bling__{{ size }}</code>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                                <td class="va-middle">A “{{ size }}” bling.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

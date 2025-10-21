@@ -26,7 +26,7 @@ describe("badge", () => {
             baseClass: "s-badge",
             variants: [bling],
             children: {
-                default: `<span class="s-award-bling s-award-bling__${bling}">
+                default: `<span class="s-bling s-bling__${bling}">
                     with bling
                 </span>`,
             },
