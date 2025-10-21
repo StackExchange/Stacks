@@ -1,12 +1,7 @@
-import { createRawSnippet } from "svelte";
 import { expect } from "@open-wc/testing";
 import { render, screen } from "@testing-library/svelte";
 
 import AwardBling from "./AwardBling.svelte";
-
-const children = createRawSnippet(() => ({
-    render: () => "<span>23</span>",
-}));
 
 describe("AwardBling", () => {
     it("should render the award bling with the required name as screen reader text", () => {
