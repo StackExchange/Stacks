@@ -1,6 +1,5 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
-    import { createRawSnippet } from "svelte";
     import AwardBling, { type Type, type Size } from "./AwardBling.svelte";
     const AwardBlingSizes: Size[] = ["sm", "", "lg"];
     const AwardBlingTypes: Type[] = [

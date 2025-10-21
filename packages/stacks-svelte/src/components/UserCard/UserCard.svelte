@@ -227,16 +227,22 @@
                     <li class="s-user-card--rep">{reputation}</li>
                 {/if}
                 {#if gold}
-                    <AwardBling type="gold" name={`${gold} awards`} />
-                    {gold}
+                    <AwardBling type="gold" name={`${gold} gold awards`} />
+                    <span class="v-hidden">{gold}</span>
                 {/if}
                 {#if silver}
-                    <AwardBling type="silver" name={`${silver} awards`} />
-                    {silver}
+                    <AwardBling
+                        type="silver"
+                        name={`${silver} silver awards`}
+                    />
+                    <span class="v-hidden">{silver}</span>
                 {/if}
                 {#if bronze}
-                    <AwardBling type="bronze" name={`${bronze} awards`} />
-                    {bronze}
+                    <AwardBling
+                        type="bronze"
+                        name={`${bronze} bronze awards`}
+                    />
+                    <span class="v-hidden">{bronze}</span>
                 {/if}
             </ul>
         {/if}

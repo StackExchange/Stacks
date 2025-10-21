@@ -128,11 +128,14 @@
 
 <span class={classes}>
     {#if award}
-        <AwardBling type={award} name={i18nAwardName || award} />
+        <AwardBling type={award} name={i18nAwardName || award} filled />
+        {@render children?.()}
     {:else}
         {#if icon}
             <Icon src={icon} title={iconTitle} />
         {/if}
-        {@render children?.()}
+        {#if !award}
+            {@render children?.()}
+        {/if}
     {/if}
 </span>

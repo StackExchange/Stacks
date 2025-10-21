@@ -51,10 +51,10 @@
 
         if (filled) {
             classes += " s-award-bling__filled";
+        }
 
-            if (size) {
-                classes += " s-award-bling__" + size;
-            }
+        if (size) {
+            classes += " s-award-bling__" + size;
         }
 
         return classes;
