@@ -1,15 +1,24 @@
 <script module lang="ts">
-    export type Type = "gold" | "silver" | "bronze";
+    export type Size = "" | "sm" | "lg";
+    export type Type = "" | "activity" | "rep" | "gold" | "silver" | "bronze";
 </script>
 
 <script lang="ts">
-    import type { Snippet } from "svelte";
-
     interface Props {
         /**
          * The type of the award bling
          */
-        type: Type;
+        type?: Type;
+
+        /**
+         * Apply filled style to the award bling
+         */
+        filled?: boolean;
+
+        /**
+         * The size of the award bling
+         */
+        size?: Size;
 
         /**
          * The accessible text provided for screen readers
@@ -20,16 +29,11 @@
          * Additional CSS classes added to the element
          */
         class?: string;
-
-        /**
-         * Optional snippet of content to display along with the award bling
-         */
-        children?: Snippet;
     }
 
-    const { type, name, class: className = "", children }: Props = $props();
+    const { type, filled, size, name, class: className = "" }: Props = $props();
 
-    const getClasses = (className: string, type: Type) => {
+    const getClasses = (className: string, type?: Type, size?: Size, filled?: boolean) => {
         let classes = "s-award-bling";
 
         if (className) {
@@ -40,13 +44,20 @@
             classes += " s-award-bling__" + type;
         }
 
+        if (filled) {
+            classes += " s-award-bling__filled";
+        }
+
+        if (size) {
+            classes += " s-award-bling__" + size;
+        }
+
         return classes;
     };
 
-    const classes = $derived(getClasses(className, type));
+    const classes = $derived(getClasses(className, type, size, filled));
 </script>
 
 <span class={classes}>
-    {@render children?.()}
     <span class="v-visible-sr">{name}</span>
 </span>
