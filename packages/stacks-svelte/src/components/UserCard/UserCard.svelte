@@ -231,17 +231,11 @@
                     <span class="v-hidden">{gold}</span>
                 {/if}
                 {#if silver}
-                    <Bling
-                        type="silver"
-                        name={`${silver} silver awards`}
-                    />
+                    <Bling type="silver" name={`${silver} silver awards`} />
                     <span class="v-hidden">{silver}</span>
                 {/if}
                 {#if bronze}
-                    <Bling
-                        type="bronze"
-                        name={`${bronze} bronze awards`}
-                    />
+                    <Bling type="bronze" name={`${bronze} bronze awards`} />
                     <span class="v-hidden">{bronze}</span>
                 {/if}
             </ul>

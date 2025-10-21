@@ -36,8 +36,8 @@ describe("Bling", () => {
             name: "test lg bling",
             size: "lg",
         });
-        expect(
-            screen.getByText("test lg bling").parentElement
-        ).to.have.class("s-bling__lg");
+        expect(screen.getByText("test lg bling").parentElement).to.have.class(
+            "s-bling__lg"
+        );
     });
 });
