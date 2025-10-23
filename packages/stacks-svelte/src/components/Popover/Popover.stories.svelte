@@ -47,7 +47,7 @@
 
 <script lang="ts">
     let visible = $state(false);
-    let lastEvent = $state<string>("");
+    let lastEvent = $state("");
 
     const onToggle = (e: Event) => {
         const target = e.target as HTMLInputElement;
