@@ -1,5 +1,14 @@
 {
   "stylelint.validate": [
     "less",
-  ]
+  ],
+  // autodetection of Svelte files doesn't work yet in vscode-eslint
+  // https://github.com/microsoft/vscode-eslint/issues/1468
+  "eslint.validate": ["svelte"],
+  // on save let eslint fix all auto-fixable problems
+  "editor.codeActionsOnSave": {
+      "source.fixAll": "always"
+  },
+  // https://eslint.org/docs/latest/use/configure/configuration-files#experimental-configuration-file-resolution
+  "eslint.options": { "flags": ["unstable_config_lookup_from_file"] }
 }
