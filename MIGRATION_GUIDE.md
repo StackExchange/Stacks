@@ -1,3 +1,11 @@
+# Migrating from Stacks Classic v2 to v3
+
+Coming soon…
+
+# Migrating from Stacks Svelte v0 to v1
+
+Coming soon…
+
 # Migrating from Stacks v1 to v2
 
 With the release of Stacks v2, we've made some breaking changes to the library. The purpose of this guide is to help you prepare your code be compatible with the changes in Stacks v2.
