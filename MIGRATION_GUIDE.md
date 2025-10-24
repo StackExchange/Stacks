@@ -1,6 +1,6 @@
 # Migrating from Stacks Classic v2 to v3
 
-Coming soon…
+<!-- TODO SHINE add details for the bling component -->
 
 # Migrating from Stacks Svelte v0 to v1
 
