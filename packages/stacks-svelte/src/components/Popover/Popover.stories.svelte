@@ -46,8 +46,8 @@
 </script>
 
 <script lang="ts">
-    let visible = false;
-    let lastEvent: string;
+    let visible = $state(false);
+    let lastEvent = $state("");
 
     const onToggle = (e: Event) => {
         const target = e.target as HTMLInputElement;
@@ -152,12 +152,13 @@
     <div class="hmn3 d-flex flex__center">
         <Popover id="inline" placement="top">
             <p class="ws3">
-                This is is a paragraph <PopoverReference
-                    ><span role="button" class="s-link"
+                This is is a paragraph <PopoverReference>
+                    <span role="button" class="s-link"
                         >containing a button styled as a link that wraps across
                         two lines</span
-                    ></PopoverReference
-                >. It shows the benefit of using floating ui inline middleware.
+                    >
+                </PopoverReference>. It shows the benefit of using floating ui
+                inline middleware.
             </p>
             <PopoverContent>Here I am</PopoverContent>
         </Popover>
@@ -170,7 +171,9 @@
             <PopoverReference>
                 <Button weight="filled">Trigger</Button>
             </PopoverReference>
-            <PopoverContent>Here I am<PopoverCloseButton /></PopoverContent>
+            <PopoverContent>
+                Here I am<PopoverCloseButton />
+            </PopoverContent>
         </Popover>
     </div>
 </Story>
@@ -182,27 +185,28 @@
             placement="right"
             dismissible={false}
             trapFocus={true}
-            let:close
         >
-            <PopoverReference>
-                <Button weight="filled">Trigger</Button>
-            </PopoverReference>
-            <PopoverContent>
-                <p class="d-flex fd-column g16">
-                    The focus is now trapped in the popover.
-                    <TextInput size="sm" id="name" label="Name"></TextInput>
-                    <TextInput size="sm" id="surname" label="Surname"
-                    ></TextInput>
-                    <Button
-                        type="submit"
-                        weight="filled"
-                        onclick={() => close()}
-                    >
-                        Submit
-                    </Button>
-                    <PopoverCloseButton />
-                </p>
-            </PopoverContent>
+            {#snippet children({ close })}
+                <PopoverReference>
+                    <Button weight="filled">Trigger</Button>
+                </PopoverReference>
+                <PopoverContent>
+                    <p class="d-flex fd-column g16">
+                        The focus is now trapped in the popover.
+                        <TextInput size="sm" id="name" label="Name"></TextInput>
+                        <TextInput size="sm" id="surname" label="Surname"
+                        ></TextInput>
+                        <Button
+                            type="submit"
+                            weight="filled"
+                            onclick={() => close()}
+                        >
+                            Submit
+                        </Button>
+                        <PopoverCloseButton />
+                    </p>
+                </PopoverContent>
+            {/snippet}
         </Popover>
     </div>
 </Story>
@@ -224,7 +228,7 @@
                 id="popover-visibility-control"
                 type="checkbox"
                 checked={visible}
-                on:click={onToggle}
+                onclick={onToggle}
             />
         </div>
     </div>
@@ -241,7 +245,9 @@
         </button>
         <Popover id="external-reference" placement="bottom">
             <PopoverReference elementId="external-reference-element" />
-            <PopoverContent>Here I am<PopoverCloseButton /></PopoverContent>
+            <PopoverContent>
+                Here I am<PopoverCloseButton />
+            </PopoverContent>
         </Popover>
     </div>
 </Story>
@@ -251,15 +257,16 @@
         <Popover
             id="events"
             placement="right"
-            on:open={() => (lastEvent = "opened")}
-            on:close={() => (lastEvent = "closed")}
-            let:visible
+            onopen={() => (lastEvent = "opened")}
+            onclose={() => (lastEvent = "closed")}
         >
-            <PopoverReference>
-                <Button weight="filled">Trigger</Button>
-            </PopoverReference>
-            <PopoverContent>Here I am</PopoverContent>
-            <p class="mt12">Visible: {visible}</p>
+            {#snippet children({ visible })}
+                <PopoverReference>
+                    <Button weight="filled">Trigger</Button>
+                </PopoverReference>
+                <PopoverContent>Here I am</PopoverContent>
+                <p class="mt12">Visible: {visible}</p>
+            {/snippet}
         </Popover>
         <p>Last Event: {lastEvent}</p>
     </div>
