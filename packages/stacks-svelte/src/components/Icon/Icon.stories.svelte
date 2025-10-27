@@ -20,12 +20,12 @@
     });
 </script>
 
-<Story name="Base" args={{ src: Icons.IconAnswer }} />
-<Story name="Title" args={{ src: Icons.IconAnswer, title: "Hello" }} />
-<Story name="Native" args={{ src: Icons.IconAnswer, native: true }} />
+<Story name="Base" args={{ src: Icons.IconServiceCCPA }} />
+<Story name="Title" args={{ src: Icons.IconServiceCCPA, title: "CCPA" }} />
+<Story name="Native" args={{ src: Icons.IconServiceCCPA, native: true }} />
 <Story
     name="Styles"
-    args={{ src: Icons.IconAnswer, class: "fc-theme-secondary-400" }}
+    args={{ src: Icons.IconServiceCCPA, class: "fc-theme-secondary-400" }}
 />
 
 <Story name="Showcase" asChild>
