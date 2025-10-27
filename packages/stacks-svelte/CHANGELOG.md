@@ -1,5 +1,12 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.1
+
+### Patch Changes
+
+- Incorporate v0.6.0 changes in the beta release tag
+  https://github.com/StackExchange/Stacks/releases/tag/%40stackoverflow%2Fstacks-svelte%400.6.0
+
 ## 0.6.0
 
 ### Minor Changes
