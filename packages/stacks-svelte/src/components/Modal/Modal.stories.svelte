@@ -18,8 +18,8 @@
 </script>
 
 <script lang="ts">
-    let visible = false;
-    let state: State = "";
+    let mstate = $state<State>("");
+    let visible = $state(false);
 </script>
 
 <Story name="Base" args={{ id: "base-modal" }}>
@@ -38,19 +38,24 @@
             visible={visible || args.visible}
             state={args.state}
             class={args.class}
-            on:close={() => (visible = false)}
+            onclose={() => (visible = false)}
             preventCloseOnClickOutside={args.preventCloseOnClickOutside}
             hideCloseButton={args.hideCloseButton}
         >
-            <svelte:fragment slot="header">Modal Header</svelte:fragment>
-            <p slot="body">
-                Nullam ornare lectus vitae lacus sagittis, at sodales leo
-                viverra. Suspendisse nec dignissim elit varius tempus. Cras
-                viverra neque at imperdiet vehicula. Curabitur condimentum id
-                dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo
-                fringilla. Etiam feugiat imperdiet mi, eu blandit arcu cursus a.
-            </p>
-            <svelte:fragment slot="footer">
+            {#snippet header()}
+                Modal Header
+            {/snippet}
+            {#snippet body()}
+                <p>
+                    Nullam ornare lectus vitae lacus sagittis, at sodales leo
+                    viverra. Suspendisse nec dignissim elit varius tempus. Cras
+                    viverra neque at imperdiet vehicula. Curabitur condimentum
+                    id dolor vitae ultrices. Pellentesque scelerisque nunc sit
+                    amet leo fringilla. Etiam feugiat imperdiet mi, eu blandit
+                    arcu cursus a.
+                </p>
+            {/snippet}
+            {#snippet footer()}
                 <Button
                     variant={args.state === "danger" ? "danger" : ""}
                     weight="filled"
@@ -63,7 +68,7 @@
                 >
                     Cancel
                 </Button>
-            </svelte:fragment>
+            {/snippet}
         </Modal>
     {/snippet}
 </Story>
@@ -75,7 +80,7 @@
                 weight="filled"
                 onclick={() => {
                     visible = true;
-                    state = "";
+                    mstate = "";
                 }}
             >
                 Default
@@ -85,7 +90,7 @@
                 weight="filled"
                 onclick={() => {
                     visible = true;
-                    state = "danger";
+                    mstate = "danger";
                 }}
             >
                 Danger
@@ -94,7 +99,7 @@
                 weight="outlined"
                 onclick={() => {
                     visible = true;
-                    state = "celebration";
+                    mstate = "celebration";
                 }}
             >
                 Celebration
@@ -102,28 +107,37 @@
         </div>
     </div>
 
-    <Modal id="states" {visible} {state} on:close={() => (visible = false)}>
-        <svelte:fragment slot="header">Modal Header</svelte:fragment>
-        <p slot="body">
-            Nullam ornare lectus vitae lacus sagittis, at sodales leo viverra.
-            Suspendisse nec dignissim elit varius tempus. Cras viverra neque at
-            imperdiet vehicula. Curabitur condimentum id dolor vitae ultrices.
-            Pellentesque scelerisque nunc sit amet leo fringilla. Etiam feugiat
-            imperdiet mi, eu blandit arcu cursus a.
-        </p>
-        <svelte:fragment slot="footer">
+    <Modal
+        id="states"
+        {visible}
+        state={mstate}
+        onclose={() => (visible = false)}
+    >
+        {#snippet header()}
+            Modal Header
+        {/snippet}
+        {#snippet body()}
+            <p>
+                Nullam ornare lectus vitae lacus sagittis, at sodales leo
+                viverra. Suspendisse nec dignissim elit varius tempus. Cras
+                viverra neque at imperdiet vehicula. Curabitur condimentum id
+                dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo
+                fringilla. Etiam feugiat imperdiet mi, eu blandit arcu cursus a.
+            </p>
+        {/snippet}
+        {#snippet footer()}
             <Button
-                variant={state === "danger" ? "danger" : ""}
+                variant={mstate === "danger" ? "danger" : ""}
                 weight="filled"
             >
                 Save changes
             </Button>
             <Button
-                variant={state === "danger" ? "muted" : ""}
+                variant={mstate === "danger" ? "muted" : ""}
                 onclick={() => (visible = false)}
             >
                 Cancel
             </Button>
-        </svelte:fragment>
+        {/snippet}
     </Modal>
 </Story>
