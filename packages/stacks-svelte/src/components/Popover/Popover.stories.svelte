@@ -8,7 +8,7 @@
     import Button from "../Button/Button.svelte";
     import TextInput from "../TextInput/TextInput.svelte";
     import Icon from "../Icon/Icon.svelte";
-    import { IconAccessibility } from "@stackoverflow/stacks-icons/icons";
+    import { IconAccessibility } from "@stackoverflow/stacks-icons-legacy/icons";
 
     const PopoverPlacements: Placement[] = [
         "top",

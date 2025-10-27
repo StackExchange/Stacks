@@ -1,5 +1,9 @@
-const { Icons, Spots } = require("@stackoverflow/stacks-icons");
+const { Icons: LegacyIcons, Spots: LegacySpots } = require("@stackoverflow/stacks-icons-legacy");
+const { Icons: BetaIcons, Spots: BetaSpots } = require("@stackoverflow/stacks-icons");
 const fs = require("fs/promises");
+
+const Icons = { ...LegacyIcons, ...BetaIcons };
+const Spots = { ...LegacySpots, ...BetaSpots };
 
 function modifySvg(content, type, name, classes, dimension) {
   var defaultClasses = `svg-${type} ${type}${name}`;

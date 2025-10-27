@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { SpotEmptyXL } from "@stackoverflow/stacks-icons";
+import { SpotEmptyXL } from "@stackoverflow/stacks-icons-legacy";
 import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 

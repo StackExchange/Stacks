@@ -9,7 +9,7 @@
         IconPencilSm,
         IconTackSm,
         IconTrashSm,
-    } from "@stackoverflow/stacks-icons/icons";
+    } from "@stackoverflow/stacks-icons-legacy/icons";
 
     type BadgeState = Exclude<State, undefined>;
 

@@ -18,6 +18,7 @@ export default defineConfig({
             "@testing-library/svelte",
             "@testing-library/user-event",
             "@stackoverflow/stacks-icons/icons",
+            "@stackoverflow/stacks-icons-legacy/icons",
         ],
     },
     resolve: {

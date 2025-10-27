@@ -2,7 +2,7 @@
     import type { Snippet } from "svelte";
     import Button from "../Button/Button.svelte";
     import Icon from "../Icon/Icon.svelte";
-    import { IconClear } from "@stackoverflow/stacks-icons/icons";
+    import { IconClear } from "@stackoverflow/stacks-icons-legacy/icons";
     import type { Props as ButtonProps } from "../Button/Button.svelte";
 
     interface Props {

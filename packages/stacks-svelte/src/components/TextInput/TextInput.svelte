@@ -27,7 +27,7 @@
         IconCheckmark,
         IconCreditCard,
         IconSearch,
-    } from "@stackoverflow/stacks-icons/icons";
+    } from "@stackoverflow/stacks-icons-legacy/icons";
 
     /**
      * `id` attribute of the text input

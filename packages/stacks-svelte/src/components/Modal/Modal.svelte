@@ -4,7 +4,7 @@
 
 <script lang="ts">
     import type { Snippet } from "svelte";
-    import { IconClear } from "@stackoverflow/stacks-icons/icons";
+    import { IconClear } from "@stackoverflow/stacks-icons-legacy/icons";
 
     import { Button, Icon } from "../../components";
     import { clickOutside, focusTrap } from "../../actions";

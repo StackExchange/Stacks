@@ -1,6 +1,6 @@
 <script lang="ts">
     import Icon from "../Icon/Icon.svelte";
-    import { IconClear } from "@stackoverflow/stacks-icons/icons";
+    import { IconClear } from "@stackoverflow/stacks-icons-legacy/icons";
     import { usePopoverContext } from "./Popover.svelte";
 
     interface Props {

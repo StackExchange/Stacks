@@ -1,5 +1,5 @@
 import { runA11yTests } from "../../test/a11y-test-utils";
-import { IconEyeSm } from "@stackoverflow/stacks-icons/icons";
+import { IconEyeSm } from "@stackoverflow/stacks-icons-legacy/icons";
 import "../../index";
 
 const variants = {

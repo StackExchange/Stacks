@@ -2,7 +2,7 @@ import { html } from "@open-wc/testing";
 import {
     IconAchievementsSm,
     IconCheckmarkSm,
-} from "@stackoverflow/stacks-icons/icons";
+} from "@stackoverflow/stacks-icons-legacy/icons";
 import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
