@@ -2,47 +2,58 @@
     import Pagination from "./Pagination.svelte";
     import PaginationItem from "./PaginationItem.svelte";
     import PaginationItemClear from "./PaginationItemClear.svelte";
-    import { createEventDispatcher } from "svelte";
     import { generatePagination } from "./pagination-generator";
 
-    /**
-     * The current page number
-     * @type {number}
-     */
-    export let page: number;
-    /**
-     * The total number of pages
-     * @type {number}
-     */
-    export let totalPages: number;
-    /**
-     * Function to generate the URL for a given page number
-     * @type {(page: number) => string}
-     */
-    export let urlGenerator: (page: number) => string;
-    /**
-     * Whether to follow the link natively or rely on the pagechange event
-     * @type {boolean}
-     */
-    export let followLink = true;
-    /**
-     * Localized translation for the visible "Next" page link text
-     */
-    export let i18nNextText = "Next";
-    /**
-     * Localized translation for the visible "Prev" page link text
-     */
-    export let i18nPrevText = "Prev";
-    /**
-     * Localized translation for Next/Prev "page" screen reader text
-     */
-    export let i18nPageText = "page";
-    /**
-     * Localized translation aria-label on nav element wrapping the pagination component
-     */
-    export let i18nNavigationLabel: string = "Pagination";
+    interface Props {
+        /**
+         * The current page number
+         */
+        page: number;
+        /**
+         * The total number of pages
+         */
+        totalPages: number;
+        /**
+         * Function to generate the URL for a given page number
+         */
+        urlGenerator: (page: number) => string;
+        /**
+         * Whether to follow the link natively or rely on the pagechange event
+         */
+        followLink?: boolean;
+        /**
+         * Localized translation for the visible "Next" page link text
+         */
+        i18nNextText?: string;
+        /**
+         * Localized translation for the visible "Prev" page link text
+         */
+        i18nPrevText?: string;
+        /**
+         * Localized translation for Next/Prev "page" screen reader text
+         */
+        i18nPageText?: string;
+        /**
+         * Localized translation aria-label on nav element wrapping the pagination component
+         */
+        i18nNavigationLabel?: string;
+        /**
+         * Callback fired when a page is changed
+         */
+        onpagechange?: (pageNumber: number) => void;
+    }
 
-    const dispatch = createEventDispatcher<{ pagechange: number }>();
+    let {
+        page,
+        totalPages,
+        urlGenerator,
+        followLink = true,
+        i18nNextText = "Next",
+        i18nPrevText = "Prev",
+        i18nPageText = "page",
+        i18nNavigationLabel = "Pagination",
+        onpagechange,
+    }: Props = $props();
 
     /**
      * Handles the click event for a pagination item
@@ -52,7 +63,7 @@
     const onPaginationItemClick = (page: number) => (evt: Event) => {
         if (!followLink) {
             evt.preventDefault();
-            dispatch("pagechange", page);
+            onpagechange?.(page);
         }
     };
 </script>
@@ -61,7 +72,7 @@
     {#if page > 1}
         <PaginationItem
             url={urlGenerator(page - 1)}
-            on:click={onPaginationItemClick(page - 1)}
+            onclick={onPaginationItemClick(page - 1)}
         >
             {i18nPrevText} <span class="v-visible-sr">{i18nPageText}</span>
         </PaginationItem>
@@ -70,7 +81,7 @@
         {#if typeof p === "number"}
             <PaginationItem
                 url={urlGenerator(p)}
-                on:click={onPaginationItemClick(p)}
+                onclick={onPaginationItemClick(p)}
                 selected={p === page}
             >
                 <span class="v-visible-sr">{i18nPageText}</span>
@@ -83,7 +94,7 @@
     {#if page < totalPages}
         <PaginationItem
             url={urlGenerator(page + 1)}
-            on:click={onPaginationItemClick(page + 1)}
+            onclick={onPaginationItemClick(page + 1)}
         >
             {i18nNextText} <span class="v-visible-sr">{i18nPageText}</span>
         </PaginationItem>

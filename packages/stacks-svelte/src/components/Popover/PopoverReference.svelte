@@ -1,14 +1,22 @@
 <script lang="ts">
+    import type { Snippet } from "svelte";
     import { onMount } from "svelte";
     import { usePopoverContext } from "./Popover.svelte";
     import type { PopoverState } from "./Popover.svelte";
 
-    /**
-     * The id of the reference element
-     * (this is an alternative to passing the element as a slot)
-     * @type {string}
-     */
-    export let elementId: string | null = null;
+    interface Props {
+        /**
+         * The id of the reference element
+         * (this is an alternative to passing the element as a slot)
+         */
+        elementId?: string | null;
+        /**
+         * Children snippet
+         */
+        children?: Snippet;
+    }
+
+    let { elementId = null, children }: Props = $props();
 
     let referenceWrapper: HTMLElement;
     let reference: HTMLElement;
@@ -59,26 +67,28 @@
     };
 
     onMount(() => {
-        reference = setupRef(elementId, referenceWrapper, $pstate);
+        reference = setupRef(elementId, referenceWrapper, pstate);
 
         // if the popover is controlled, we delegate all the behavior to the consumer
-        if ($pstate.controlled) return;
+        if (pstate.controlled) return;
 
-        $pstate.tooltip
-            ? setupTooltip(reference, $pstate)
-            : setupPopover(reference, $pstate);
+        pstate.tooltip
+            ? setupTooltip(reference, pstate)
+            : setupPopover(reference, pstate);
     });
 
-    $: if (!$pstate.controlled && !$pstate.tooltip) {
-        reference?.setAttribute(
-            "aria-expanded",
-            Boolean($pstate.visible).toString()
-        );
-    }
+    $effect(() => {
+        if (!pstate.controlled && !pstate.tooltip) {
+            reference?.setAttribute(
+                "aria-expanded",
+                Boolean(pstate.visible).toString()
+            );
+        }
+    });
 </script>
 
 <!-- Hack: there is not easy way in svelte to get the reference element from the slot -->
 <!-- https://stackoverflow.com/questions/56104899/how-do-i-access-the-value-of-a-slot-in-a-svelte-3-component -->
 <span bind:this={referenceWrapper}>
-    <slot />
+    {@render children?.()}
 </span>

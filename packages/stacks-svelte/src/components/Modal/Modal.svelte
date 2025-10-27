@@ -3,53 +3,74 @@
 </script>
 
 <script lang="ts">
-    import { createEventDispatcher } from "svelte";
+    import type { Snippet } from "svelte";
     import { IconClear } from "@stackoverflow/stacks-icons/icons";
 
     import { Button, Icon } from "../../components";
     import { clickOutside, focusTrap } from "../../actions";
 
-    /**
-     * The html id attribute for the modal (required)
-     * @type {string}
-     */
-    export let id: string;
+    interface Props {
+        /**
+         * The html id attribute for the modal (required)
+         */
+        id: string;
+        /**
+         * Boolean controlling the visibility of the modal
+         */
+        visible?: boolean;
+        /**
+         * The state of the modal
+         */
+        state?: State;
+        /**
+         * Additional CSS classes added to the element
+         */
+        class?: string;
+        /**
+         * Localized translation for the close button aria label
+         */
+        i18nCloseButtonLabel?: string;
+        /**
+         * Boolean controlling whether or not the modal should close when the user clicks outside.
+         * This is an escape hatch, please consider whether use of this prop is absolutely necessary!
+         */
+        preventCloseOnClickOutside?: boolean;
+        /**
+         * Boolean controlling display of the modal close button.
+         * This is an escape hatch, please consider whether use of this prop is absolutely necessary!
+         */
+        hideCloseButton?: boolean;
+        /**
+         * Callback fired when the modal is closed
+         */
+        onclose?: () => void;
+        /**
+         * Content rendered in the modal header section
+         */
+        header?: Snippet;
+        /**
+         * Content rendered in the modal body section
+         */
+        body?: Snippet;
+        /**
+         * Content rendered in the modal footer section
+         */
+        footer?: Snippet;
+    }
 
-    /**
-     * Boolean controlling the visibility of the modal
-     */
-    export let visible = false;
-
-    /**
-     * The state of the modal
-     * @type {"" | "danger" | "celebration"}
-     */
-    export let state: State = "";
-
-    /**
-     * Additional CSS classes added to the element
-     */
-    let className = "";
-    export { className as class };
-
-    /**
-     * Localized translation for the close button aria label
-     */
-    export let i18nCloseButtonLabel = "Close";
-
-    /**
-     * Boolean controlling whether or not the modal should close when the user clicks outside.
-     * This is an escape hatch, please consider whether use of this prop is absolutely necessary!
-     */
-    export let preventCloseOnClickOutside = false;
-
-    /**
-     * Boolean controlling display of the modal close button.
-     * This is an escape hatch, please consider whether use of this prop is absolutely necessary!
-     */
-    export let hideCloseButton = false;
-
-    $: modalClasses = getClasses(className);
+    let {
+        id,
+        visible = false,
+        state = "",
+        class: className = "",
+        i18nCloseButtonLabel = "Close",
+        preventCloseOnClickOutside = false,
+        hideCloseButton = false,
+        onclose,
+        header,
+        body,
+        footer,
+    }: Props = $props();
 
     const getClasses = (className: string) => {
         let classes = "s-modal--dialog";
@@ -60,13 +81,12 @@
 
         return classes;
     };
-
-    const dispatch = createEventDispatcher<{ close: void }>();
+    const modalClasses = $derived(getClasses(className));
 
     const close = () => {
         if (visible) {
             visible = false;
-            dispatch("close");
+            onclose?.();
         }
     };
 
@@ -77,7 +97,7 @@
     };
 </script>
 
-<svelte:window on:keydown={keyPress} />
+<svelte:window onkeydown={keyPress} />
 
 <!-- svelte-ignore a11y_no_noninteractive_element_to_interactive_role -->
 <aside
@@ -97,17 +117,14 @@
         onoutclick={() => !preventCloseOnClickOutside && close()}
     >
         <h1 id={`${id}-title`} class="s-modal--header">
-            <!-- Content slotted in the Modal header section -->
-            <slot name="header" />
+            {@render header?.()}
         </h1>
         <div id={`${id}-description`} class="s-modal--body">
-            <!-- Content slotted in the Modal body section -->
-            <slot name="body" />
+            {@render body?.()}
         </div>
-        {#if $$slots.footer}
+        {#if footer}
             <div class="d-flex g8 s-modal--footer">
-                <!-- Content slotted in the Modal footer section -->
-                <slot name="footer" />
+                {@render footer?.()}
             </div>
         {/if}
         {#if !hideCloseButton}

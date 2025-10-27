@@ -22,21 +22,17 @@ const defaultChildren = {
     reference: {
         component: PopoverReference,
         props: {
-            $$slots: {
-                default: createRawSnippet(() => ({
-                    render: () => "<button>Trigger</button>",
-                })),
-            },
+            children: createRawSnippet(() => ({
+                render: () => "<button>Trigger</button>",
+            })),
         },
     },
     content: {
         component: PopoverContent,
         props: {
-            $$slots: {
-                default: createRawSnippet(() => ({
-                    render: () => "<span>Popover Content</span>",
-                })),
-            },
+            children: createRawSnippet(() => ({
+                render: () => "<span>Popover Content</span>",
+            })),
         },
     },
     closeButton: {
@@ -52,12 +48,10 @@ describe("Popover", () => {
         render(Popover, {
             props: {
                 ...defaultProps,
-                $$slots: {
-                    default: createSvelteComponentsSnippet([
-                        defaultChildren.reference,
-                        defaultChildren.content,
-                    ]),
-                },
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    defaultChildren.content,
+                ]),
             },
         });
 
@@ -80,17 +74,15 @@ describe("Popover", () => {
                     target,
                     props: {
                         ...defaultProps,
-                        $$slots: {
-                            default: createSvelteComponentsSnippet([
-                                {
-                                    component: PopoverReference,
-                                    props: {
-                                        elementId: "external-reference",
-                                    },
+                        children: createSvelteComponentsSnippet([
+                            {
+                                component: PopoverReference,
+                                props: {
+                                    elementId: "external-reference",
                                 },
-                                defaultChildren.content,
-                            ]),
-                        },
+                            },
+                            defaultChildren.content,
+                        ]),
                     },
                 });
                 return () => {
@@ -117,12 +109,10 @@ describe("Popover", () => {
             props: {
                 ...defaultProps,
                 autoshow: true,
-                $$slots: {
-                    default: createSvelteComponentsSnippet([
-                        defaultChildren.reference,
-                        defaultChildren.content,
-                    ]),
-                },
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    defaultChildren.content,
+                ]),
             },
         });
 
@@ -134,23 +124,18 @@ describe("Popover", () => {
             props: {
                 ...defaultProps,
                 autoshow: true,
-                $$slots: {
-                    default: createSvelteComponentsSnippet([
-                        defaultChildren.reference,
-                        {
-                            component: PopoverContent,
-                            props: {
-                                role: "menu",
-                                $$slots: {
-                                    default: createRawSnippet(() => ({
-                                        render: () =>
-                                            "<span>Popover Content</span>",
-                                    })),
-                                },
-                            },
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    {
+                        component: PopoverContent,
+                        props: {
+                            role: "menu",
+                            children: createRawSnippet(() => ({
+                                render: () => "<span>Popover Content</span>",
+                            })),
                         },
-                    ]),
-                },
+                    },
+                ]),
             },
         });
 
@@ -162,23 +147,18 @@ describe("Popover", () => {
             props: {
                 ...defaultProps,
                 autoshow: true,
-                $$slots: {
-                    default: createSvelteComponentsSnippet([
-                        defaultChildren.reference,
-                        {
-                            component: PopoverContent,
-                            props: {
-                                class: "custom-class",
-                                $$slots: {
-                                    default: createRawSnippet(() => ({
-                                        render: () =>
-                                            "<span>Popover Content</span>",
-                                    })),
-                                },
-                            },
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    {
+                        component: PopoverContent,
+                        props: {
+                            class: "custom-class",
+                            children: createRawSnippet(() => ({
+                                render: () => "<span>Popover Content</span>",
+                            })),
                         },
-                    ]),
-                },
+                    },
+                ]),
             },
         });
 
@@ -190,27 +170,23 @@ describe("Popover", () => {
             props: {
                 ...defaultProps,
                 autoshow: true,
-                $$slots: {
-                    default: createSvelteComponentsSnippet([
-                        defaultChildren.reference,
-                        {
-                            component: PopoverContent,
-                            props: {
-                                $$slots: {
-                                    default: createSvelteComponentsSnippet([
-                                        {
-                                            component: PopoverCloseButton,
-                                            props: {
-                                                label: "Close",
-                                                class: "custom-class",
-                                            },
-                                        },
-                                    ]),
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    {
+                        component: PopoverContent,
+                        props: {
+                            children: createSvelteComponentsSnippet([
+                                {
+                                    component: PopoverCloseButton,
+                                    props: {
+                                        label: "Close",
+                                        class: "custom-class",
+                                    },
                                 },
-                            },
+                            ]),
                         },
-                    ]),
-                },
+                    },
+                ]),
             },
         });
 
@@ -224,12 +200,10 @@ describe("Popover", () => {
             props: {
                 ...defaultProps,
                 autoshow: true,
-                $$slots: {
-                    default: createSvelteComponentsSnippet([
-                        defaultChildren.reference,
-                        defaultChildren.content,
-                    ]),
-                },
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    defaultChildren.content,
+                ]),
             },
         });
 
@@ -243,21 +217,17 @@ describe("Popover", () => {
         render(Popover, {
             props: {
                 ...defaultProps,
-                $$slots: {
-                    default: createSvelteComponentsSnippet([
-                        defaultChildren.reference,
-                        {
-                            component: PopoverContent,
-                            props: {
-                                $$slots: {
-                                    default: createSvelteComponentsSnippet([
-                                        defaultChildren.closeButton,
-                                    ]),
-                                },
-                            },
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    {
+                        component: PopoverContent,
+                        props: {
+                            children: createSvelteComponentsSnippet([
+                                defaultChildren.closeButton,
+                            ]),
                         },
-                    ]),
-                },
+                    },
+                ]),
             },
         });
 
@@ -274,12 +244,10 @@ describe("Popover", () => {
             props: {
                 ...defaultProps,
                 autoshow: true,
-                $$slots: {
-                    default: createSvelteComponentsSnippet([
-                        defaultChildren.reference,
-                        defaultChildren.content,
-                    ]),
-                },
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    defaultChildren.content,
+                ]),
             },
         });
 
@@ -294,12 +262,10 @@ describe("Popover", () => {
             props: {
                 ...defaultProps,
                 visible: true,
-                $$slots: {
-                    default: createSvelteComponentsSnippet([
-                        defaultChildren.reference,
-                        defaultChildren.content,
-                    ]),
-                },
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    defaultChildren.content,
+                ]),
             },
         });
 
@@ -316,29 +282,23 @@ describe("Popover", () => {
             props: {
                 ...defaultProps,
                 visible: true,
-                $$slots: {
-                    default: createSvelteComponentsSnippet([
-                        defaultChildren.reference,
-                        {
-                            component: PopoverContent,
-                            props: {
-                                $$slots: {
-                                    default: createSvelteComponentsSnippet([
-                                        {
-                                            component: PopoverCloseButton,
-                                            props: {
-                                                label: "Close",
-                                                $$events: {
-                                                    click: onCloseButtonClick,
-                                                },
-                                            },
-                                        },
-                                    ]),
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    {
+                        component: PopoverContent,
+                        props: {
+                            children: createSvelteComponentsSnippet([
+                                {
+                                    component: PopoverCloseButton,
+                                    props: {
+                                        label: "Close",
+                                        onclick: onCloseButtonClick,
+                                    },
                                 },
-                            },
+                            ]),
                         },
-                    ]),
-                },
+                    },
+                ]),
             },
         });
 
@@ -367,16 +327,12 @@ describe("Popover", () => {
         render(Popover, {
             props: {
                 ...defaultProps,
-                $$slots: {
-                    default: createSvelteComponentsSnippet([
-                        defaultChildren.reference,
-                        defaultChildren.content,
-                    ]),
-                },
-                $$events: {
-                    open: onOpenSpy,
-                    close: onCloseSpy,
-                },
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    defaultChildren.content,
+                ]),
+                onopen: onOpenSpy,
+                onclose: onCloseSpy,
             },
         });
 
@@ -393,21 +349,17 @@ describe("Popover", () => {
                 ...defaultProps,
                 autoshow: true,
                 dismissible: false,
-                $$slots: {
-                    default: createSvelteComponentsSnippet([
-                        defaultChildren.reference,
-                        {
-                            component: PopoverContent,
-                            props: {
-                                $$slots: {
-                                    default: createSvelteComponentsSnippet([
-                                        defaultChildren.closeButton,
-                                    ]),
-                                },
-                            },
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    {
+                        component: PopoverContent,
+                        props: {
+                            children: createSvelteComponentsSnippet([
+                                defaultChildren.closeButton,
+                            ]),
                         },
-                    ]),
-                },
+                    },
+                ]),
             },
         });
 
@@ -428,36 +380,32 @@ describe("Popover", () => {
             props: {
                 ...defaultProps,
                 trapFocus: true,
-                $$slots: {
-                    default: createSvelteComponentsSnippet([
-                        defaultChildren.reference,
-                        {
-                            component: PopoverContent,
-                            props: {
-                                $$slots: {
-                                    default: createRawSnippet(() => ({
-                                        render: () =>
-                                            '<span><input type="text" /></span>',
-                                        setup: (target) => {
-                                            const closeButton = mount(
-                                                PopoverCloseButton,
-                                                {
-                                                    target,
-                                                    props: {
-                                                        label: "Close",
-                                                    },
-                                                }
-                                            );
-                                            return () => {
-                                                unmount(closeButton);
-                                            };
-                                        },
-                                    })),
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    {
+                        component: PopoverContent,
+                        props: {
+                            children: createRawSnippet(() => ({
+                                render: () =>
+                                    '<span><input type="text" /></span>',
+                                setup: (target) => {
+                                    const closeButton = mount(
+                                        PopoverCloseButton,
+                                        {
+                                            target,
+                                            props: {
+                                                label: "Close",
+                                            },
+                                        }
+                                    );
+                                    return () => {
+                                        unmount(closeButton);
+                                    };
                                 },
-                            },
+                            })),
                         },
-                    ]),
-                },
+                    },
+                ]),
             },
         });
 
@@ -501,13 +449,10 @@ describe("Popover", () => {
                     props: {
                         ...defaultProps,
                         placement: "top",
-                        $$slots: {
-                            // @ts-expect-error $$slots is used to pass children while component is still using Svelte 4 syntax
-                            default: createSvelteComponentsSnippet([
-                                defaultChildren.reference,
-                                defaultChildren.content,
-                            ]),
-                        },
+                        children: createSvelteComponentsSnippet([
+                            defaultChildren.reference,
+                            defaultChildren.content,
+                        ]),
                     },
                 });
                 return () => {
@@ -531,12 +476,10 @@ describe("Popover", () => {
             props: {
                 ...defaultProps,
                 autoshow: true,
-                $$slots: {
-                    default: createSvelteComponentsSnippet([
-                        defaultChildren.reference,
-                        defaultChildren.content,
-                    ]),
-                },
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    defaultChildren.content,
+                ]),
             },
         });
 
@@ -555,12 +498,10 @@ describe("Popover", () => {
                 props: {
                     ...defaultProps,
                     strategy,
-                    $$slots: {
-                        default: createSvelteComponentsSnippet([
-                            defaultChildren.reference,
-                            defaultChildren.content,
-                        ]),
-                    },
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        defaultChildren.content,
+                    ]),
                 },
             });
 
@@ -579,22 +520,18 @@ describe("Popover", () => {
                 render(Popover, {
                     props: {
                         ...defaultProps,
-                        $$slots: {
-                            default: createSvelteComponentsSnippet([
-                                {
-                                    component: PopoverReference,
-                                    props: {
-                                        $$slots: {
-                                            default: createRawSnippet(() => ({
-                                                render: () =>
-                                                    "<span>non-button-role element</span>",
-                                            })),
-                                        },
-                                    },
+                        children: createSvelteComponentsSnippet([
+                            {
+                                component: PopoverReference,
+                                props: {
+                                    children: createRawSnippet(() => ({
+                                        render: () =>
+                                            "<span>non-button-role element</span>",
+                                    })),
                                 },
-                                defaultChildren.content,
-                            ]),
-                        },
+                            },
+                            defaultChildren.content,
+                        ]),
                     },
                 })
             ).to.throw(
@@ -607,12 +544,10 @@ describe("Popover", () => {
                 props: {
                     ...defaultProps,
                     autoshow: true,
-                    $$slots: {
-                        default: createSvelteComponentsSnippet([
-                            defaultChildren.reference,
-                            defaultChildren.content,
-                        ]),
-                    },
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        defaultChildren.content,
+                    ]),
                 },
             });
 
@@ -632,12 +567,10 @@ describe("Popover", () => {
             render(Popover, {
                 props: {
                     ...defaultProps,
-                    $$slots: {
-                        default: createSvelteComponentsSnippet([
-                            defaultChildren.reference,
-                            defaultChildren.content,
-                        ]),
-                    },
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        defaultChildren.content,
+                    ]),
                 },
             });
 
@@ -659,12 +592,10 @@ describe("Popover", () => {
                     ...defaultProps,
                     autoshow: true,
                     tooltip: true,
-                    $$slots: {
-                        default: createSvelteComponentsSnippet([
-                            defaultChildren.reference,
-                            defaultChildren.content,
-                        ]),
-                    },
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        defaultChildren.content,
+                    ]),
                 },
             });
 
@@ -680,22 +611,18 @@ describe("Popover", () => {
                     props: {
                         ...defaultProps,
                         tooltip: true,
-                        $$slots: {
-                            default: createSvelteComponentsSnippet([
-                                {
-                                    component: PopoverReference,
-                                    props: {
-                                        $$slots: {
-                                            default: createRawSnippet(() => ({
-                                                render: () =>
-                                                    "<span>non-button-role element</span>",
-                                            })),
-                                        },
-                                    },
+                        children: createSvelteComponentsSnippet([
+                            {
+                                component: PopoverReference,
+                                props: {
+                                    children: createRawSnippet(() => ({
+                                        render: () =>
+                                            "<span>non-button-role element</span>",
+                                    })),
                                 },
-                                defaultChildren.content,
-                            ]),
-                        },
+                            },
+                            defaultChildren.content,
+                        ]),
                     },
                 });
             } catch (e) {
@@ -715,12 +642,10 @@ describe("Popover", () => {
                 props: {
                     ...defaultProps,
                     tooltip: true,
-                    $$slots: {
-                        default: createSvelteComponentsSnippet([
-                            defaultChildren.reference,
-                            defaultChildren.content,
-                        ]),
-                    },
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        defaultChildren.content,
+                    ]),
                 },
             });
 
@@ -751,12 +676,10 @@ describe("Popover", () => {
                 props: {
                     ...defaultProps,
                     tooltip: true,
-                    $$slots: {
-                        default: createSvelteComponentsSnippet([
-                            defaultChildren.reference,
-                            defaultChildren.content,
-                        ]),
-                    },
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        defaultChildren.content,
+                    ]),
                 },
             });
 
@@ -784,12 +707,10 @@ describe("Popover", () => {
                 props: {
                     ...defaultProps,
                     tooltip: true,
-                    $$slots: {
-                        default: createSvelteComponentsSnippet([
-                            defaultChildren.reference,
-                            defaultChildren.content,
-                        ]),
-                    },
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        defaultChildren.content,
+                    ]),
                 },
             });
 
@@ -814,12 +735,10 @@ describe("Popover", () => {
                 props: {
                     ...defaultProps,
                     tooltip: true,
-                    $$slots: {
-                        default: createSvelteComponentsSnippet([
-                            defaultChildren.reference,
-                            defaultChildren.content,
-                        ]),
-                    },
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        defaultChildren.content,
+                    ]),
                 },
             });
 
@@ -852,22 +771,18 @@ describe("Popover", () => {
                 props: {
                     ...defaultProps,
                     tooltip: true,
-                    $$slots: {
-                        default: createSvelteComponentsSnippet([
-                            defaultChildren.reference,
-                            {
-                                component: PopoverContent,
-                                props: {
-                                    $$slots: {
-                                        default: createRawSnippet(() => ({
-                                            render: () =>
-                                                '<span><input type="text" /></span>',
-                                        })),
-                                    },
-                                },
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        {
+                            component: PopoverContent,
+                            props: {
+                                children: createRawSnippet(() => ({
+                                    render: () =>
+                                        '<span><input type="text" /></span>',
+                                })),
                             },
-                        ]),
-                    },
+                        },
+                    ]),
                 },
             });
 

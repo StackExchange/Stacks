@@ -24,8 +24,7 @@ describe("Modal", () => {
             render(Modal, {
                 id: "test-modal",
                 visible: true,
-                // @ts-expect-error $$slots is used to pass children while component is still using Svelte 4 syntax
-                $$slots: { header: snippet },
+                header: snippet,
             });
             const dialog = screen.getByRole("dialog", {
                 name: "test snippet", // header content is used as label for the dialog
@@ -38,8 +37,7 @@ describe("Modal", () => {
             render(Modal, {
                 id: "test-modal",
                 visible: true,
-                // @ts-expect-error $$slots is used to pass children while component is still using Svelte 4 syntax
-                $$slots: { body: snippet },
+                body: snippet,
             });
             const dialog = screen.getByRole("dialog", {
                 description: "test snippet", // body content is used as description for the dialog
@@ -52,8 +50,7 @@ describe("Modal", () => {
             render(Modal, {
                 id: "test-modal",
                 visible: true,
-                // @ts-expect-error $$slots is used to pass children while component is still using Svelte 4 syntax
-                $$slots: { footer: snippet },
+                footer: snippet,
             });
             expectModalVisible(true);
             expect(screen.getByText("test snippet")).to.exist;
@@ -154,10 +151,7 @@ describe("Modal", () => {
             render(Modal, {
                 id: "test-modal",
                 visible: true,
-                // @ts-expect-error events are not yet typed in the component
-                $$events: {
-                    close: onClose,
-                },
+                onclose: onClose,
             });
 
             const closeButton = await screen.getByRole("button");
@@ -171,10 +165,7 @@ describe("Modal", () => {
             render(Modal, {
                 id: "test-modal",
                 visible: false,
-                // @ts-expect-error events are not yet typed in the component
-                $$events: {
-                    close: onClose,
-                },
+                onclose: onClose,
             });
 
             const outsideModal = document.body;
@@ -206,17 +197,14 @@ describe("Modal", () => {
             const { rerender } = render(Modal, {
                 id: "test-modal",
                 visible: false,
-                // @ts-expect-error $$slots is used to pass children while component is still using Svelte 4 syntax
-                $$slots: {
-                    body: createRawSnippet(() => ({
-                        render: () => `
-                            <span>
-                                <button>inside modal first</button>
-                                <button>inside modal second</button>
-                            </span>
-                        `,
-                    })),
-                },
+                body: createRawSnippet(() => ({
+                    render: () => `
+                        <span>
+                            <button>inside modal first</button>
+                            <button>inside modal second</button>
+                        </span>
+                    `,
+                })),
             });
 
             expectModalVisible(false);
