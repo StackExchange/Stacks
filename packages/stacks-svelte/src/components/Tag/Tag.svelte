@@ -6,7 +6,7 @@
 <script lang="ts">
     import type { Snippet } from "svelte";
     import Icon from "../Icon/Icon.svelte";
-    import { IconClearSm } from "@stackoverflow/stacks-icons/icons";
+    import { IconClearSm } from "@stackoverflow/stacks-icons-legacy/icons";
     import type {
         HTMLAnchorAttributes,
         HTMLButtonAttributes,

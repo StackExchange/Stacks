@@ -1,4 +1,4 @@
-const { Spots } = require("@stackoverflow/stacks-icons");
+const { Spots } = require("@stackoverflow/stacks-icons-legacy");
 
 module.exports = {
     configFunction(eleventyConfig) {

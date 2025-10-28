@@ -3,7 +3,7 @@
     import Button from "./Button.svelte";
     import type { Brand, Size, Variant, Weight } from "./Button.svelte";
     import Icon from "../Icon/Icon.svelte";
-    import { IconTrash } from "@stackoverflow/stacks-icons/icons";
+    import { IconTrash } from "@stackoverflow/stacks-icons-legacy/icons";
 
     const ButtonBrands: Brand[] = ["", "facebook", "github", "google"];
     const ButtonSizes: Size[] = ["", "xs", "sm", "md"];

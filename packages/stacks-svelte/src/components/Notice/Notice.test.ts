@@ -1,7 +1,7 @@
 import { createRawSnippet } from "svelte";
 import { expect } from "@open-wc/testing";
 import { render, screen } from "@testing-library/svelte";
-import { IconAlert } from "@stackoverflow/stacks-icons/icons";
+import { IconAlert } from "@stackoverflow/stacks-icons-legacy/icons";
 import { createSvelteComponentsSnippet } from "../../../test-utils";
 import sinon from "sinon";
 import userEvent from "@testing-library/user-event";

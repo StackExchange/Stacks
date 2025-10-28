@@ -3,7 +3,10 @@
     import { createRawSnippet, type Snippet } from "svelte";
     import Tag, { type Size, type Variant } from "./Tag.svelte";
     import Icon from "../Icon/Icon.svelte";
-    import { IconMicrosoft, IconWave } from "@stackoverflow/stacks-icons/icons";
+    import {
+        IconMicrosoft,
+        IconWave,
+    } from "@stackoverflow/stacks-icons-legacy/icons";
 
     const TagSizes: Size[] = ["", "xs", "sm", "md", "lg"];
     const TagVariants: Variant[] = ["", "moderator", "required"];

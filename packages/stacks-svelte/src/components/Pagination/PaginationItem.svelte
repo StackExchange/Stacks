@@ -1,6 +1,26 @@
 <script lang="ts">
-    export let url: string;
-    export let selected: boolean = false;
+    import type { Snippet } from "svelte";
+
+    interface Props {
+        /**
+         * The URL for the pagination item link
+         */
+        url: string;
+        /**
+         * Whether this pagination item is currently selected
+         */
+        selected?: boolean;
+        /**
+         * Callback fired when the pagination item is clicked
+         */
+        onclick?: (e: MouseEvent) => void;
+        /**
+         * Content rendered in the pagination item
+         */
+        children?: Snippet;
+    }
+
+    let { url, selected = false, onclick, children }: Props = $props();
 </script>
 
 <li>
@@ -9,8 +29,8 @@
         class:is-selected={selected}
         aria-current={selected ? "page" : undefined}
         href={url}
-        on:click
+        {onclick}
     >
-        <slot />
+        {@render children?.()}
     </a>
 </li>

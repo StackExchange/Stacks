@@ -9,7 +9,7 @@ import {
     IconReviewQueue,
     IconSearch,
     IconStackExchange,
-} from "@stackoverflow/stacks-icons/icons";
+} from "@stackoverflow/stacks-icons-legacy/icons";
 import { html } from "@open-wc/testing";
 
 const base64Image =

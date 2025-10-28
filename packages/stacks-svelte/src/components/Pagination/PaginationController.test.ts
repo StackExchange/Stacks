@@ -104,21 +104,18 @@ describe("PaginationController", () => {
                 totalPages: 5,
                 urlGenerator,
                 followLink: false,
-                // @ts-expect-error events are not yet typed in the component
-                $$events: {
-                    pagechange: mockHandler,
-                },
+                onpagechange: mockHandler,
             },
         });
 
         await userEvent.click(screen.getByText("3"));
-        expect(mockHandler).to.have.been.calledWith(sinon.match({ detail: 3 }));
+        expect(mockHandler).to.have.been.calledWith(3);
 
         await userEvent.click(screen.getByText("Prev"));
-        expect(mockHandler).to.have.been.calledWith(sinon.match({ detail: 1 }));
+        expect(mockHandler).to.have.been.calledWith(1);
 
         await userEvent.click(screen.getByText("Next"));
-        expect(mockHandler).to.have.been.calledWith(sinon.match({ detail: 3 }));
+        expect(mockHandler).to.have.been.calledWith(3);
     });
 
     it("disables previous button on first page", () => {

@@ -1,5 +1,91 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.1
+
+### Patch Changes
+
+- Incorporate v0.6.0 changes in the beta release tag
+  https://github.com/StackExchange/Stacks/releases/tag/%40stackoverflow%2Fstacks-svelte%400.6.0
+
+## 0.6.0
+
+### Minor Changes
+
+- [#2018](https://github.com/StackExchange/Stacks/pull/2018) [`9cfbe19`](https://github.com/StackExchange/Stacks/commit/9cfbe19f066ae1146bf2065e78c2812f89a2df18) Thanks [@giamir](https://github.com/giamir)! - Migrate `Pagination` components to use Svelte 5 runes API.
+
+    BREAKING CHANGES:
+    - `PaginationItem`: `on:click` event forwarding is replaced by `onclick` callback prop.
+    - `PaginationController`: `on:pagechange` event is replaced by `onpagechange` callback prop with simplified signature. Previously the event passed `{ detail: pageNumber }`, now the callback directly receives the page number as the argument: `onpagechange(pageNumber)`.
+
+    Migration example:
+
+    ```svelte
+    <!-- Before (Svelte 4) -->
+    <PaginationController on:pagechange={(e) => handlePageChange(e.detail)} />
+
+    <!-- After (Svelte 5) -->
+    <PaginationController
+        onpagechange={(pageNumber) => handlePageChange(pageNumber)}
+    />
+    ```
+
+- [#2016](https://github.com/StackExchange/Stacks/pull/2016) [`6712bc2`](https://github.com/StackExchange/Stacks/commit/6712bc29f22579ae368f8ec5211a25fc257f0cb9) Thanks [@giamir](https://github.com/giamir)! - Migrate `Popover`, `PopoverReference`, `PopoverContent`, and `PopoverCloseButton` components to use Svelte 5 runes API
+
+    BREAKING CHANGES:
+
+    **Popover component:**
+    - Slot props (`let:visible`, `let:open`, `let:close`) are not available anymore. Snippet parameters should be used instead: `{#snippet children({ visible, open, close })}...{/snippet}`
+    - `on:open` and `on:close` events are not available anymore. The new callback props should be used instead: `onopen`, `onclose`.
+
+    **PopoverCloseButton component:**
+    - `on:click` event forwarding is not available anymore. The new callback prop should be used instead: `onclick`.
+
+    **Migration examples:**
+
+    ```svelte
+    <!-- Before (Svelte 4 API) -->
+    <Popover
+        id="my-popover"
+        on:open={() => console.log("opened")}
+        on:close={() => console.log("closed")}
+        let:visible
+        let:close
+    >
+        <PopoverReference>
+            <button>Trigger</button>
+        </PopoverReference>
+        <PopoverContent>
+            <p>Content here</p>
+            <PopoverCloseButton on:click={handleClick} />
+        </PopoverContent>
+        <p>Visible: {visible}</p>
+    </Popover>
+
+    <!-- After (Svelte 5 API) -->
+    <Popover
+        id="my-popover"
+        onopen={() => console.log("opened")}
+        onclose={() => console.log("closed")}
+    >
+        {#snippet children({ visible, close })}
+            <PopoverReference>
+                <button>Trigger</button>
+            </PopoverReference>
+            <PopoverContent>
+                <p>Content here</p>
+                <PopoverCloseButton onclick={handleClick} />
+            </PopoverContent>
+            <p>Visible: {visible}</p>
+        {/snippet}
+    </Popover>
+    ```
+
+- [#2017](https://github.com/StackExchange/Stacks/pull/2017) [`067d647`](https://github.com/StackExchange/Stacks/commit/067d6476aedab2f683e379bfae37ee54374997d5) Thanks [@giamir](https://github.com/giamir)! - Migrate `Modal` component to use Svelte 5 runes API.
+
+    BREAKING CHANGES:
+    - Named slots (`header`, `body`, `footer`) are replaced by snippet props. Use `{#snippet header()}...{/snippet}` instead of `<svelte:fragment slot="header">...</svelte:fragment>`.
+    - `on:close` event is replaced by `onclose` callback prop.
+
 ## 0.5.1
 
 ### Patch Changes

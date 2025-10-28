@@ -10,7 +10,7 @@
         IconPencilSm,
         IconTackSm,
         IconTrashSm,
-    } from "@stackoverflow/stacks-icons/icons";
+    } from "@stackoverflow/stacks-icons-legacy/icons";
     import Badge, { type Award, type Size, type Variant } from "./Badge.svelte";
 
     const BadgeVariantGroups: {

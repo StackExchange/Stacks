@@ -5,7 +5,7 @@
 
 <script lang="ts">
     import PostSummaryStatsItem from "./PostSummaryStatsItem.svelte";
-    import { IconCheckmarkSm } from "@stackoverflow/stacks-icons/icons";
+    import { IconCheckmarkSm } from "@stackoverflow/stacks-icons-legacy/icons";
     import Badge from "../Badge/Badge.svelte";
     import Link from "../Link/Link.svelte";
     import UserCard from "../UserCard/UserCard.svelte";
