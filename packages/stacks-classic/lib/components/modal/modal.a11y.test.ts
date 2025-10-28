@@ -1,6 +1,6 @@
 import { html } from "@open-wc/testing";
 import { runA11yTests } from "../../test/a11y-test-utils";
-import { IconClearSm } from "@stackoverflow/stacks-icons/icons";
+import { IconClearSm } from "@stackoverflow/stacks-icons-legacy/icons";
 import "../../index";
 
 describe("modal", () => {

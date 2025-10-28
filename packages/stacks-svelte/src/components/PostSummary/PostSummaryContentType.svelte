@@ -2,7 +2,7 @@
     import type { ContentTypeName } from "./PostSummary.svelte";
     import Icon from "../Icon/Icon.svelte";
     import Link from "../Link/Link.svelte";
-    import { IconDocumentAlt } from "@stackoverflow/stacks-icons/icons";
+    import { IconDocumentAlt } from "@stackoverflow/stacks-icons-legacy/icons";
 
     /**
      * The type of content to indicate

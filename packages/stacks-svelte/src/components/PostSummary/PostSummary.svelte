@@ -39,7 +39,7 @@
         IconCheckmarkSm,
         IconEllipsisVertical,
         IconShield,
-    } from "@stackoverflow/stacks-icons/icons";
+    } from "@stackoverflow/stacks-icons-legacy/icons";
 
     /**
      * The URL to navigate to when the post title is clicked

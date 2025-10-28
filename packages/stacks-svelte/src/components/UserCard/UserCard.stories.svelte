@@ -4,7 +4,7 @@
     import Tag from "../Tag/Tag.svelte";
     import UserCard, { type Size } from "./UserCard.svelte";
     import Icon from "../Icon/Icon.svelte";
-    import { IconStarVerifiedSm } from "@stackoverflow/stacks-icons/icons";
+    import { IconStarVerifiedSm } from "@stackoverflow/stacks-icons-legacy/icons";
 
     const createSnippet = (markup = "") =>
         createRawSnippet(() => ({

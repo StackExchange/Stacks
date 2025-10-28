@@ -4,7 +4,7 @@
 
 <script lang="ts">
     import Icon from "../Icon/Icon.svelte";
-    import { IconShieldXSm } from "@stackoverflow/stacks-icons/icons";
+    import { IconShieldXSm } from "@stackoverflow/stacks-icons-legacy/icons";
     import type { HTMLAnchorAttributes } from "svelte/elements";
 
     interface Props {

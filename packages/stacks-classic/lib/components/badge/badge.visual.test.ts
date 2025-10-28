@@ -1,5 +1,5 @@
 import { runVisualTests } from "../../test/visual-test-utils";
-import { IconEyeSm } from "@stackoverflow/stacks-icons/icons";
+import { IconEyeSm } from "@stackoverflow/stacks-icons-legacy/icons";
 import "../../index";
 import { html } from "@open-wc/testing";
 
