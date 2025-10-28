@@ -200,11 +200,11 @@
             transition: opacity 200ms var(--te-smooth); // Animate the transition to .is-loading
 
             &:not(:last-child) {
-                margin-right: var(--_bu-icon-gap, 8px);
+                margin-right: var(--_bu-icon-gap);
             }
             
             &:not(:first-child) {
-                margin-left: var(--_bu-icon-gap, 8px);
+                margin-left: var(--_bu-icon-gap);
             }
         }
     }
@@ -228,6 +228,7 @@
         --_bu-icon-gap: var(--su6); // 6px spacing as per Figma specs
     }
 
+    &&__lg {
     &&__lg {
         .size-styles(md; bu; @styles: br, fs);
         --_bu-br: var(--br-pill); // TODO: figure out why this isn't automatically applied
@@ -439,12 +440,12 @@
                 color: var(--_bu-filled-fc-hover);
             }
 
-            &:not(.s-btn__outlined):not(.s-btn__filled) {
+            &:not(.s-btn__toned):not(.s-btn__filled) {
                 border-color: var(--_bu-bc-hover);
             }
 
             &:visited:not(:active):not(:focus) {
-                &:not(.s-btn__outlined) {
+                &:not(.s-btn__toned) {
                     &.s-btn__filled {
                         background-color: var(--_bu-filled-bg-hover);
                         border-color: var(--_bu-filled-bc-hover);
@@ -485,7 +486,7 @@
     cursor: pointer;
     display: inline-block;
     font-family: inherit;
-    font-weight: normal;
+    font-weight: var(--_bu-fw, 600);
     line-height: var(--lh-sm);
     position: relative;
     outline: none;
