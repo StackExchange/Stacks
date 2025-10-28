@@ -3,10 +3,13 @@
     --_bu-baw: var(--su-static1);
     --_bu-bc: transparent;
     // --_bu-bg: inherit; // [1]
-    --_bu-br: var(--br-md);
+    --_bu-br: var(--br-pill); // TODO: confirm this when we have the correct atomic values - SPARK-91
     --_bu-fc: var(--theme-button-color, var(--theme-secondary-400));
     --_bu-fs: var(--fs-body1);
-    --_bu-p: 0.8em;
+    --_bu-p: var(--su16);
+    --_bu-py: 11.7px; // Adjust to reach 40px height
+    --_bu-fw: 600; // Semibold font weight
+    --_bu-icon-gap: 8px; // Default spacing between icons and text
 
     // Active
     --_bu-bc-active: var(--_bu-bc);
@@ -108,20 +111,6 @@
             background-color: var(--_bu-filled-bg-selected);
             color: var(--_bu-filled-fc-selected);
         }
-        &.s-btn__outlined { // this needs to live here to adapt to radio button-group
-            border-color: var(--_bu-outlined-bc-selected);
-            background-color: var(--_bu-outlined-bg-selected);
-            color: var(--_bu-outlined-fc-selected);
-
-            &.s-btn__muted {
-                .highcontrast-mode({
-                    --_bu-outlined-bc-selected: var(--_bu-filled-bc-selected);
-                    --_bu-outlined-bg-selected: var(--_bu-filled-bg-selected);
-                    --_bu-outlined-fc-selected: var(--_bu-filled-fc-selected);
-                    --_bu-number-fc-selected: var(--_bu-filled-bg-selected);
-                });
-            }
-        }
     }
 
     // MODIFIERS
@@ -133,11 +122,6 @@
         border-color: var(--_bu-filled-bc);
         background-color: var(--_bu-filled-bg);
         color: var(--_bu-filled-fc);
-    }
-
-    &&__outlined {
-        border-color: var(--_bu-outlined-bc);
-        background-color: var(--_bu-outlined-bg, inherit);
     }
 
     // Resets
@@ -214,29 +198,48 @@
             margin-top: -0.3em; // [4]
             margin-bottom: -0.3em; // [4]
             transition: opacity 200ms var(--te-smooth); // Animate the transition to .is-loading
+
+            &:not(:last-child) {
+                margin-right: var(--_bu-icon-gap, 8px);
+            }
+            
+            &:not(:first-child) {
+                margin-left: var(--_bu-icon-gap, 8px);
+            }
         }
     }
 
     // Size
+    // TODO: port the below added styles to the size-styles mixin SPARK-91 and SPARK-102
     &&__xs {
         .size-styles(xs; bu; @styles: fs);
         --_bu-dropdown-bw: calc(var(--su-static4) - var(--su-static1));
-        --_bu-p: 0.6em;
+        --_bu-p: var(--su12);
+        --_bu-py: 6.285px; // Adjust to reach 28px height
+        --_bu-fs: var(--su12); // Override size-styles for custom font size
+        --_bu-icon-gap: var(--su4); // 4px spacing as per Figma specs
     }
 
     &&__sm {
         .size-styles(sm; bu; @styles: fs);
+        --_bu-p: var(--su12);
+        --_bu-py: 7.7px; // Adjust to reach 32px height
+        --_bu-fs: calc(var(--su12) + var(--su1)); // Override size-styles for custom font size
+        --_bu-icon-gap: var(--su6); // 6px spacing as per Figma specs
     }
 
-    &&__md {
+    &&__lg {
         .size-styles(md; bu; @styles: br, fs);
-        --_bu-p: 0.7em;
+        --_bu-br: var(--br-pill); // TODO: figure out why this isn't automatically applied
+        --_bu-p: var(--su24);
+        --_bu-py: 13.98px; // Adjust to reach 48px height
+        --_bu-fs: var(--su16); // Override size-styles for custom font size
     }
 
     // VARIANTS
     &&__danger,
     &&__featured,
-    &&__muted {
+    &&__tonal {
         .highcontrast-mode({
             --_bu-filled-bc: transparent;
         });
@@ -294,7 +297,7 @@
         --_bu-number-fc-filled: var(--black);
     }
 
-    &&__muted {
+    &&__tonal {
         --_bu-bc-hover: var(--black-300);
         --_bu-bg-active: var(--black-150);
         --_bu-bg-hover: var(--black-100);
@@ -353,7 +356,7 @@
     }
 
     &&__facebook {
-        @_fb-brand: #385499;
+        @_fb-brand: #1877F2;
         --_bu-bc: transparent;
         --_bu-bg: @_fb-brand;
         --_bu-bg-active: darken(@_fb-brand, 10%);
@@ -366,7 +369,7 @@
 
     &&__google {
         --_bu-bc: var(--bc-medium);
-        --_bu-bg: var(--white);
+        --_bu-bg: #F0EFED;
         --_bu-bg-active: var(--black-150);
         --_bu-bg-hover: var(--black-100);
         --_bu-fc: var(--fc-medium);

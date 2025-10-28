@@ -13,7 +13,7 @@ tags: components
         <li><a href="#base">Base</a></li>
         <li><a href="#danger">Danger</a></li>
         <li><a href="#featured">Featured</a></li>
-        <li><a href="#muted">Muted</a></li>
+        <li><a href="#tonal">Tonal</a></li>
     </ol>
     <p class="stacks-copy">Each style is explained below, detailing how and where to use these styles.</p>
 
@@ -21,14 +21,12 @@ tags: components
     <p class="stacks-copy">All buttons, by default, are base buttons. There are three, graduating secondary styles:</p>
     <ol class="stacks-list">
         <li>Clear <em>(default)</em></li>
-        <li>Outlined</li>
         <li>Filled</li>
     </ol>
     <p class="stacks-copy">A button’s visual weight should correspond to the importance of the button’s action. The more important the action, the heavier the button’s visual weight.</p>
     <div class="stacks-preview">
 {% highlight html %}
 <button class="s-btn" type="button">…</button>
-<button class="s-btn s-btn__outlined" type="button">…</button>
 <button class="s-btn s-btn__filled" type="button">…</button>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -77,7 +75,6 @@ tags: components
     <div class="stacks-preview">
 {% highlight html %}
 <button class="s-btn s-btn__danger" type="button">…</button>
-<button class="s-btn s-btn__outlined s-btn__danger" type="button">…</button>
 <button class="s-btn s-btn__filled s-btn__danger" type="button">…</button>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -129,7 +126,6 @@ tags: components
     <div class="stacks-preview">
 {% highlight html %}
 <button class="s-btn s-btn__featured" type="button">…</button>
-<button class="s-btn s-btn__outlined s-btn__featured" type="button">…</button>
 <button class="s-btn s-btn__filled s-btn__featured" type="button">…</button>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -176,18 +172,13 @@ tags: components
     </div>
 </section>
 
-    {% header "h3", "Muted" %}
-    <p class="stacks-copy">Muted buttons are a secondary button style, a grayscale visual treatment. Used in layouts for the least important items or currently inactive actions.</p>
-
-    {% tip, "warning", "mb24" %}
-        <strong>Note:</strong> The <code class="stacks-code">.s-btn__filled</code> class has been deprecated on the muted button style. Expect it to be fully removed in the next major release.
-    {% endtip %}
+    {% header "h3", "Tonal" %}
+    <p class="stacks-copy">Tonal buttons are a secondary button style, a grayscale visual treatment. Used in layouts for the least important items or currently inactive actions.</p>
 
     <div class="stacks-preview">
 {% highlight html %}
-<button class="s-btn s-btn__muted" type="button">…</button>
-<button class="s-btn s-btn__outlined s-btn__muted" type="button">…</button>
-<button class="s-btn s-btn__filled s-btn__muted" type="button">…</button>
+<button class="s-btn s-btn__tonal" type="button">…</button>
+<button class="s-btn s-btn__filled s-btn__tonal" type="button">…</button>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="overflow-x-auto">
@@ -202,7 +193,7 @@ tags: components
                         </tr>
                     </thead>
                     <tbody>
-                        {% for btn in buttons.muted %}
+                        {% for btn in buttons.tonal %}
                             {% assign types = btn.classes %}
                             {% for class in types %}
                             <tr>
@@ -674,13 +665,11 @@ tags: components
     <div class="stacks-preview">
 {% highlight html %}
 <button class="s-btn s-btn__filled" type="button">Post answer</button>
-<button class="s-btn s-btn__outlined" type="button">Preview answer</button>
 <button class="s-btn" type="button">Cancel</button>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="d-flex g4 fw-wrap">
                 <button class="flex--item s-btn s-btn__filled" type="button">Post answer</button>
-                <button class="flex--item s-btn s-btn__outlined" type="button">Preview answer</button>
                 <button class="flex--item s-btn" type="button">Cancel</button>
             </div>
         </div>
@@ -692,14 +681,12 @@ tags: components
 {% highlight html %}
 <div class="d-flex g4 fd-column">
     <button class="flex--item s-btn s-btn__filled" type="button">Post answer</button>
-    <button class="flex--item s-btn s-btn__outlined" type="button">Preview answer</button>
     <button class="flex--item s-btn" type="button">Cancel</button>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="d-flex g4 fd-column wmx2">
                 <button class="flex--item s-btn s-btn__filled" type="button">Post answer</button>
-                <button class="flex--item s-btn s-btn__outlined" type="button">Preview answer</button>
                 <button class="flex--item s-btn" type="button">Cancel</button>
             </div>
         </div>
@@ -715,7 +702,6 @@ tags: components
 
         <div class="d-flex g4 sm:fd-row-reverse sm:jc-end">
             <button class="flex--item s-btn" type="button">Cancel</button>
-            <button class="flex--item s-btn s-btn__outlined" type="button">Preview answer</button>
             <button class="flex--item s-btn s-btn__filled" type="button">Post answer</button>
         </div>
     </div>
@@ -727,7 +713,6 @@ tags: components
 
                 <div class="d-flex g4 sm:fd-row-reverse sm:jc-end">
                     <button class="flex--item s-btn" type="button">Cancel</button>
-                    <button class="flex--item s-btn s-btn__outlined" type="button">Preview answer</button>
                     <button class="flex--item s-btn s-btn__filled" type="button">Post answer</button>
                 </div>
             </div>
