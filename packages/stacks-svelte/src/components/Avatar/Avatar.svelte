@@ -4,6 +4,7 @@
 
 <script lang="ts">
     import Icon from "../Icon/Icon.svelte";
+    import ActivityIndicator from "../ActivityIndicator/ActivityIndicator.svelte";
     import { IconShieldXSm } from "@stackoverflow/stacks-icons-legacy/icons";
     import type { HTMLAnchorAttributes } from "svelte/elements";
 
@@ -34,6 +35,11 @@
         letter?: string;
 
         /**
+         * User status
+         */
+        status?: "online";
+
+        /**
          * Boolean to show the shield badge on the avatar
          */
         badge?: boolean;
@@ -50,6 +56,7 @@
         href,
         src,
         letter,
+        status,
         badge = false,
         class: className = "",
         role,
@@ -87,6 +94,14 @@
         <span class="s-avatar--letter" aria-hidden="true">{letter}</span>
     {/if}
     <span class="v-visible-sr">{name}</span>
+    {#if status === "online"}
+        <ActivityIndicator
+            label="Online"
+            variant="success"
+            size={size === 16 ? "sm" : ""}
+            class="s-avatar--indicator"
+        />
+    {/if}
     {#if badge}
         <!-- TODO This badge is not purely decorative, so it should include descriptive text
         (see https://stackoverflow.atlassian.net/browse/A11Y-126) -->

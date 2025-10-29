@@ -2,7 +2,7 @@
 layout: page
 title: Avatars
 svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-avatar--docs
-figma: https://svelte.stackoverflow.design/figma/avatars
+figma: https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=610-18797&p=f&t=c9NSyJWdASb80eVC-0
 description: Avatars are used to quickly identify users or teams.
 tags: components
 ---
@@ -32,7 +32,7 @@ tags: components
 <section class="stacks-section">
     {% header "h2", "Examples" %}
     {% header "h3", "Users" %}
-    <p class="stacks-copy">Including an image with the class <code class="stacks-code">s-avatar--image</code> within <code class="stacks-code">s-avatar</code> will apply the correct size and border radius. Remember, you’ll want to double the size of the avatar image to account for retina screens.</p>
+    <p class="stacks-copy">Including an image with the class <code class="stacks-code">s-avatar--image</code> within <code class="stacks-code">s-avatar</code> will apply the correct size. Remember, you’ll want to double the size of the avatar image to account for retina screens.</p>
     <div class="stacks-preview">
 {% highlight html %}
 <a href="…" class="s-avatar">
@@ -146,11 +146,66 @@ tags: components
             </table>
         </div>
     </div>
+
+    {% header "h3", "Activity" %}
+    <p class="stacks-copy">
+        Avatars can display <a href="/product/components/activity-indicator/">activity indicators</a> to show activities or status changes.
+        Add the <code class="stacks-code">s-avatar--indicator</code> class to a child element of <code class="stacks-code">s-avatar</code> along with <code class="stacks-code">s-activity-indicator</code> and <code class="stacks-code">s-activity-indicator__sm</code> classes.
+        The indicator is positioned at the top-right corner of the avatar.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<a href="…" class="s-avatar">
+    <div class="s-avatar--indicator s-activity-indicator s-activity-indicator__sm s-activity-indicator__success">
+        <div class="v-visible-sr">Online</div>
+    </div>
+    <img class="s-avatar--image" src="https://picsum.photos/32" />
+</a>
+
+<a href="…" class="s-avatar s-avatar__24">
+    <div class="s-avatar--indicator s-activity-indicator s-activity-indicator__success">
+        <div class="v-visible-sr">Online</div>
+    </div>
+    <img class="s-avatar--image" src="https://picsum.photos/48" />
+</a>
+{% endhighlight %}
+        <div class="stacks-preview--example overflow-x-auto">
+            <table class="s-table s-table__b0 s-table__sm">
+                <tr>
+                    <td class="ws2">
+                        <code class="stacks-code">16px</code>
+                        <code class="stacks-code">default</code>
+                    </td>
+                    <td>
+                        <a href="#" class="s-avatar">
+                            <div class="s-avatar--indicator s-activity-indicator s-activity-indicator__sm s-activity-indicator__success">
+                                <div class="v-visible-sr">Online</div>
+                            </div>
+                            <img class="s-avatar--image" alt="demo avatar" src="https://picsum.photos/32" />
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ws2">
+                        <code class="stacks-code">24px</code>
+                        <code class="stacks-code">.s-avatar__24</code>
+                    </td>
+                    <td>
+                        <a href="#" class="s-avatar s-avatar__24">
+                            <div class="s-avatar--indicator s-activity-indicator s-activity-indicator__success">
+                                <div class="v-visible-sr">Online</div>
+                            </div>
+                            <img class="s-avatar--image" alt="demo avatar" src="https://picsum.photos/48" />
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </section>
 
 <section class="stacks-section">
-    {% header "h3", "Teams" %}
-    <p class="stacks-copy">When displaying a team’s identity, we badge the avatar with a shield. We fall back to the first letter of their name and a color we choose at random. As team administrators add more data—choosing a color or uploading an avatar—we progressively enhance the avatar.</p>
+    {% header "h3", "Stack Internal" %}
+    <p class="stacks-copy">When displaying a team’s identity, we badge the avatar with a shield. We fall back to the first letter of their name and a color we choose at random. As Stack Internal administrators add more data—choosing a color or uploading an avatar—we progressively enhance the avatar.</p>
     <p class="stacks-copy">In this example, from left to right, we have a team name of Hum with no avatar or custom color. In the middle we have a team name of Hum with a custom color. In the last example, we have a team name of Hum with a custom avatar applied.</p>
     <div class="stacks-preview">
 {% highlight html %}
