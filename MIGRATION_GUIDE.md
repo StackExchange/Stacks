@@ -1,6 +1,12 @@
 # Migrating from Stacks Classic v2 to v3
 
-Coming soon…
+## Breaking changes
+
+### Atomic styles
+
+#### Typography
+
+- `.fs-category` removed
 
 # Migrating from Stacks Svelte v0 to v1
 
