@@ -1,6 +1,6 @@
 ---
 "@stackoverflow/stacks": patch
-"@stackoverflow/stacks-svelte": patch
+"@stackoverflow/stacks-svelte": minor
 ---
 
 **Activity Indicator Updates:**
