@@ -14,16 +14,16 @@
 // TODO SPARK update default values for white and black sets
 // White
 .set-white() {
-    default: hsl(0, 0%, 100%);
+    default: hsv(0, 0%, 100%);
 }
 .set-white-dark() {
-    default: hsl(210, 3%, 15%);
+    default: hsv(0, 0%, 8%);
 }
 .set-white-hc() {
-    default: hsl(0, 0%, 100%);
+    default: hsv(0, 0%, 100%);
 }
 .set-white-hc-dark() {
-    default: hsl(0, 0%, 0%);
+    default: hsv(0, 0%, 0%);
 }
 
 // Black
@@ -39,7 +39,7 @@
     400: hsv(220, 7%, 45%);
     500: hsv(220, 8%, 30%);
     600: hsv(345, 13%, 13%);
-    default: hsl(0, 0%, 0%);
+    default: hsv(0, 0%, 0%);
 }
 .set-black-dark() {
     050: hsv(0, 0%, 8%);
@@ -53,7 +53,7 @@
     400: hsv(30, 5%, 85%);
     500: hsv(30, 4%, 95%);
     600: hsv(0, 0%, 100%);
-    default: hsl(0, 0%, 100%);
+    default: hsv(0, 0%, 100%);
 }
 .set-black-hc() {
     050: hsv(0, 0%, 100%);
@@ -67,7 +67,7 @@
     400: hsv(204, 6%, 35%);
     500: hsv(220, 8%, 30%);
     600: hsv(345, 13%, 13%);
-    default: hsl(0, 0%, 0%);
+    default: hsv(0, 0%, 0%);
 }
 .set-black-hc-dark() {
     050: hsv(0, 0%, 8%);
@@ -81,7 +81,7 @@
     400: hsv(30, 5%, 85%);
     500: hsv(30, 4%, 95%);
     600: hsv(0, 0%, 100%);
-    default: hsl(0, 0%, 100%);
+    default: hsv(0, 0%, 100%);
 }
 
 // Orange
@@ -465,23 +465,22 @@
 }
 
 // translucent utility colors (HC set represents both light and dark HC modes)
-// TODO SHINE remove once they're no longer used (probably once focus ring is updated -- currently used )
 .set-translucent() {
-    secondary: var(--theme-secondary-custom-translucent, hsla(210, 100%, 40%, 0.15));
+    secondary: var(--theme-secondary-custom-translucent, hsva(0, 0%, 45%, 0.15)); // light mode black-400 at 15% alpha
     success: hsla(140, 40%, 75%, 0.4);
     warning: hsla(47, 79%, 58%, 0.4);
     error: hsla(358, 62%, 47%, 0.15);
     muted: hsla(210, 8%, 15%, 0.1);
 }
 .set-translucent-dark() {
-    secondary: var(--theme-dark-secondary-custom-translucent, hsla(210, 100%, 40%, 0.25));
+    secondary: var(--theme-dark-secondary-custom-translucent, hsva(30, 5%, 85%, 0.25)); // dark mode black-400 at 25% alpha
     success: hsla(140, 40%, 75%, 0.4);
     warning: hsla(47, 79%, 58%, 0.4);
     error: hsla(358, 62%, 47%, 0.15);
     muted: hsla(210, 8%, 15%, 0.1);
 }
 .set-translucent-hc() {
-    secondary: hsla(206, 100%, 40%, 0.9);
+    secondary: hsla(204, 6%, 35%, 0.9); // hc mode black-400 at 90% opacity
     success: hsla(140, 40%, 40%, 0.9);
     warning: hsla(47, 76%, 46%, 0.9);
     error: hsla(358, 62%, 47%, 0.9);
@@ -497,21 +496,21 @@
 // focus ring (sets represents both light and dark mode)
 // TODO SHINE update these focus ring colors to use newly updated color sets
 .set-focus-ring() {
-    default: var(--theme-secondary-custom-focus-ring, hsla(206, 100%, 40%, 0.15));
+    default: var(--theme-secondary-custom-focus-ring, hsva(0, 0%, 45%, 0.15)); // light mode black-400 at 15% alpha
     success: hsla(140, 40%, 75%, 0.4);
     warning: hsla(47, 79%, 58%, 0.4);
     error: hsla(358, 62%, 47%, 0.15);
     muted: hsla(210, 8%, 15%, 0.1);
 }
 .set-focus-ring-dark() {
-    default: var(--theme-dark-secondary-custom-focus-ring, hsla(206, 100%, 40%, 0.25));
+    default: var(--theme-dark-secondary-custom-focus-ring, hsva(30, 5%, 85%, 0.25)); // dark mode black-400 at 25% alpha
     success: hsla(140, 40%, 75%, 0.4);
     warning: hsla(47, 79%, 58%, 0.4);
     error: hsla(358, 62%, 47%, 0.15);
     muted: hsla(210, 8%, 15%, 0.1);
 }
 .set-focus-ring-hc() {
-    default: hsla(206, 100%, 40%, 0.9);
+    default: hsva(0, 0%, 45%, 0.9); // hc mode dark mode black-400 at 25% alpha
     success: hsla(140, 40%, 40%, 0.9);
     warning: hsla(47, 76%, 46%, 0.9);
     error: hsla(358, 62%, 47%, 0.9);
@@ -715,7 +714,6 @@
 }
 
 // Theme values
-// TODO update to use custom theme colors with orange/blue as fallbacks
 .set-theme-primary-default() {
     default: var(--orange-400);
     100: var(--orange-100);
@@ -727,13 +725,13 @@
 }
 
 .set-theme-secondary-default() {
-    default: var(--blue-400);
-    100: var(--blue-100);
-    200: var(--blue-200);
-    300: var(--blue-300);
-    400: var(--blue-400);
-    500: var(--blue-500);
-    600: var(--blue-600);
+    default: var(--black-400);
+    100: var(--black-100);
+    200: var(--black-200);
+    300: var(--black-300);
+    400: var(--black-400);
+    500: var(--black-500);
+    600: var(--black-600);
 }
 
 .sets-theme-default() {
@@ -743,10 +741,10 @@
 
 .theme-light-default() {
     primary: .set-orange()[400];
-    secondary: .set-blue()[400];
+    secondary: .set-black()[400];
 }
 
 .theme-dark-default() {
     primary: .set-orange-dark()[400];
-    secondary: .set-blue-dark()[400];
+    secondary: .set-black-dark()[400];
 }
