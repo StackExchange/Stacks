@@ -178,12 +178,15 @@
                         >
                             <div class="ps-relative">
                                 <Icon src={IconNotification} />
-                                <ActivityIndicator
-                                    label="New notifications"
-                                    variant="danger"
-                                    content="1"
-                                    class="ps-absolute tn8 rn16 ba baw2 bc-white box-content"
-                                />
+                                <div
+                                    class="ps-absolute ba baw2 bc-white bar-pill lh-xs tn8 rn8"
+                                >
+                                    <ActivityIndicator
+                                        label="New notifications"
+                                        variant="danger"
+                                        content="1"
+                                    />
+                                </div>
                             </div>
                         </Button>
                         <Button
@@ -193,12 +196,15 @@
                         >
                             <div class="ps-relative">
                                 <Icon src={IconNotification} />
-                                <ActivityIndicator
-                                    label="New notifications"
-                                    variant="danger"
-                                    content="99"
-                                    class="ps-absolute tn8 rn16 ba baw2 bc-white box-content"
-                                />
+                                <div
+                                    class="ps-absolute ba baw2 bc-white bar-pill lh-xs tn8 rn8"
+                                >
+                                    <ActivityIndicator
+                                        label="New notifications"
+                                        variant="danger"
+                                        content="99"
+                                    />
+                                </div>
                             </div>
                         </Button>
                     </td>
