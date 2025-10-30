@@ -20,6 +20,17 @@ const getChild = (child?: string): string => {
                 aria-hidden="true">
                     S
             </div>${srEl}`;
+        case "indicator":
+            return `<img
+                class="s-avatar--image"
+                src="${base64Image}"
+                alt="team logo"
+            />${srEl}
+            <div
+                class="s-avatar--indicator s-activity-indicator s-activity-indicator__sm s-activity-indicator__success"
+            >
+                <div class="v-visible-sr">Online</div>
+            </div>`;
         default:
             return srEl;
     }
@@ -33,11 +44,15 @@ describe("avatar", () => {
             default: getChild(),
             image: getChild("image"),
             letter: getChild("letter"),
+            indicator: getChild("indicator"),
         },
         attributes: {
             href: "#",
         },
         tag: "a",
+        excludedTestids: [
+            /^s-avatar-(?=.*(32|48|64|96|128)).*-indicator.*$/, // s-avatar with indicator and 32 48 64 96 128 sizes not supported
+        ],
         template: ({ component, testid }) => html`
             <div
                 data-testid="${testid}"
