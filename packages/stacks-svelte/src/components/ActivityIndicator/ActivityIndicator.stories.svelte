@@ -167,21 +167,7 @@
                                     label="New notifications"
                                     variant="danger"
                                     size="sm"
-                                    class="ps-absolute tn2 r0 ba baw2 bc-white box-content"
-                                />
-                            </div>
-                        </Button>
-                        <Button
-                            aria-label="Notifications"
-                            link
-                            class="fc-black-400 h:fc-black-500 f:fc-black-500"
-                        >
-                            <div class="ps-relative">
-                                <Icon src={IconNotification} />
-                                <ActivityIndicator
-                                    label="New notifications"
-                                    variant="danger"
-                                    class="ps-absolute tn4 rn6 ba baw2 bc-white box-content p0"
+                                    class="ps-absolute tn4 rn4 ba baw2 bc-white box-content"
                                 />
                             </div>
                         </Button>
@@ -196,7 +182,7 @@
                                     label="New notifications"
                                     variant="danger"
                                     content="1"
-                                    class="ps-absolute tn4 rn12 ba baw2 bc-white box-content"
+                                    class="ps-absolute tn8 rn16 ba baw2 bc-white box-content"
                                 />
                             </div>
                         </Button>
@@ -211,7 +197,7 @@
                                     label="New notifications"
                                     variant="danger"
                                     content="99"
-                                    class="ps-absolute tn4 rn12 ba baw2 bc-white box-content"
+                                    class="ps-absolute tn8 rn16 ba baw2 bc-white box-content"
                                 />
                             </div>
                         </Button>
