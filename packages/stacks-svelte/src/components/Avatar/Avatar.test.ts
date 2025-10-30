@@ -57,7 +57,7 @@ describe("Avatar", () => {
         expect(badgeElement).to.exist;
     });
 
-    it("should render the online status small indicator when status is online and size is 16", () => {
+    it("should render the online status small indicator when status is online and size is 16 or 24", () => {
         render(Avatar, {
             name: "test avatar",
             status: "online",
@@ -70,11 +70,11 @@ describe("Avatar", () => {
         expect(screen.getByText("Online")).to.exist;
     });
 
-    it("should render the online status large indicator when status is online and size is above 16", () => {
+    it("should render the online status large indicator when status is online and size is above 24", () => {
         render(Avatar, {
             name: "test avatar",
             status: "online",
-            size: 24,
+            size: 32,
         });
         const largeIndicatorEl = screen
             .getByText("test avatar")

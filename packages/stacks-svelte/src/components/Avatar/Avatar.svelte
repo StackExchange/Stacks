@@ -98,7 +98,7 @@
         <ActivityIndicator
             label="Online"
             variant="success"
-            size={size === 16 ? "sm" : ""}
+            size={size <= 24 ? "sm" : ""}
             class="s-avatar--indicator"
         />
     {/if}
