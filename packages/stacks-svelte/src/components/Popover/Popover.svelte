@@ -1,6 +1,5 @@
 <script lang="ts" module>
     import type { Snippet } from "svelte";
-    import type { Writable } from "svelte/store";
     import type { Placement } from "@floating-ui/core";
     import { getContext } from "svelte";
 
@@ -131,7 +130,7 @@
         placement,
         strategy,
         middleware: [offset(10), flip(), inline()],
-        onComputed({ placement: computedPlacement, middlewareData }) {
+        onComputed({ placement: computedPlacement }) {
             pstate.computedPlacement = computedPlacement;
         },
     });
