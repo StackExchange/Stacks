@@ -1,6 +1,20 @@
 # Migrating from Stacks Classic v2 to v3
 
-Coming soon…
+## Breaking changes
+
+### Atomic styles
+
+#### Border radius
+- `.bar-sm` removed
+- `.bar-lg` removed
+- `.btr-sm` removed
+- `.btr-lg` removed
+- `.brr-sm` removed
+- `.brr-lg` removed
+- `.bbr-sm` removed
+- `.bbr-lg` removed
+- `.blr-sm` removed
+- `.blr-lg` removed
 
 # Migrating from Stacks Svelte v0 to v1
 
