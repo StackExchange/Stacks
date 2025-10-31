@@ -4,8 +4,19 @@
 
 ### Atomic styles
 
-#### Typography
+#### Border radius
+- `.bar-sm` removed
+- `.bar-lg` removed
+- `.btr-sm` removed
+- `.btr-lg` removed
+- `.brr-sm` removed
+- `.brr-lg` removed
+- `.bbr-sm` removed
+- `.bbr-lg` removed
+- `.blr-sm` removed
+- `.blr-lg` removed
 
+#### Typography
 - `.fs-category` removed
 
 # Migrating from Stacks Svelte v0 to v1

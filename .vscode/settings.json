@@ -9,6 +9,14 @@
   "editor.codeActionsOnSave": {
       "source.fixAll": "always"
   },
+  // Disable Prettier and auto-formatting for Less files (prettier breaks less files with namespaced mixins)
+  "[less]": {
+    "editor.defaultFormatter": null,
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": "never" // Don't auto-fix stylelint for Less files
+    }
+  },
   // https://eslint.org/docs/latest/use/configure/configuration-files#experimental-configuration-file-resolution
   "eslint.options": { "flags": ["unstable_config_lookup_from_file"] }
 }

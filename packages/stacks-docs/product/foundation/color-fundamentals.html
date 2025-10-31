@@ -27,7 +27,7 @@ hide-menu: true
         <p class="stacks-copy">
             Stacks uses 5 colors with 6 stops per color. Colors are used sparingly and intentionally to convey meaning, draw attention to UI, or create associations.
         </p>
-        <div class="d-flex sm:fd-column bar-lg overflow-hidden">
+        <div class="d-flex sm:fd-column bar-md overflow-hidden">
             {% assign groups = "light,dark" | split: "," %}
             {% for mode in groups %}
                 {% assign bgColor = "bg-black-100" %}
@@ -59,7 +59,7 @@ hide-menu: true
         <p class="stacks-copy">
             Stacks has 3 award colors with 4 stops per color. Colors are used to represent gold, silver, and bronze within gamification aspects of our products.
         </p>
-        <div class="d-flex sm:fd-column bar-lg overflow-hidden">
+        <div class="d-flex sm:fd-column bar-md overflow-hidden">
             {% assign groups = "light,dark" | split: "," %}
             {% for mode in groups %}
                 {% assign bgColor = "bg-black-100" %}
@@ -128,7 +128,7 @@ hide-menu: true
 
     <section class="stacks-section">
         {% header "h3", "Backgrounds" %}
-        <div class="d-flex fd-column bg-black-100 bar-lg p32">
+        <div class="d-flex fd-column bg-black-100 bar-md p32">
             {% render 'annotation.html',
                 text: "Default background color",
                 style: "margin-left: calc((1.5/11) * 100%)",
@@ -154,7 +154,7 @@ hide-menu: true
 
     <section class="stacks-section">
         {% header "h3", "Borders" %}
-        <div class="d-flex fd-column bg-black-100 bar-lg p32">
+        <div class="d-flex fd-column bg-black-100 bar-md p32">
             {% render 'color-row.html',
                 color: "black",
                 colorSets: colors[0].sets,
@@ -181,7 +181,7 @@ hide-menu: true
 
     <section class="stacks-section">
         {% header "h3", "Text" %}
-        <div class="d-flex fd-column bg-black-100 bar-lg p32">
+        <div class="d-flex fd-column bg-black-100 bar-md p32">
             {% render 'color-row.html',
                 color: "black",
                 colorSets: colors[0].sets,
@@ -208,7 +208,7 @@ hide-menu: true
 
     <section class="stacks-section">
         {% header "h3", "Icons and illustrations" %}
-        <div class="d-flex fd-column bg-black-100 bar-lg p32">
+        <div class="d-flex fd-column bg-black-100 bar-md p32">
             {% render 'color-row.html', color: "black", colorSets: colors[0].sets, labeledStops: "350,400,500" | split: "," %}
             <div class="d-flex w100">
                 {% render 'annotation.html',
@@ -238,17 +238,17 @@ hide-menu: true
             {% assign groups = "light,dark" | split: "," %}
             {% for mode in groups %}
                 {% assign bgColor = "bg-black-100" %}
-                {% assign borderRadius = "blr-lg" %}
+                {% assign borderRadius = "blr-md" %}
                 {% if mode == "dark" %}
                     {% assign bgColor = "bg-white" %}
-                    {% assign borderRadius = "brr-lg" %}
+                    {% assign borderRadius = "brr-md" %}
                 {% endif %}
                 {% assign layers = colors[0].layers %}
                 <div class="theme-{{mode}}__forced {{bgColor}} {{borderRadius}} ba bc-black-200 fc-dark fs-body2 p64 md:p16 w100">
                     <div>{{layers[0].name}}</div>
-                    <div class="bg-{{layers[1].color}} ba bc-black-200 bar-lg p48 md:p16 mt8">
+                    <div class="bg-{{layers[1].color}} ba bc-black-200 bar-md p48 md:p16 mt8">
                         <div>{{layers[1].name}}</div>
-                        <div class="bg-{{layers[2].color}} ba bc-black-200 bar-lg p48 pb96 lg:p32 md:p16 mt8">
+                        <div class="bg-{{layers[2].color}} ba bc-black-200 bar-md p48 pb96 lg:p32 md:p16 mt8">
                             <div>{{layers[2].name}}</div>
                         </div>
                     </div>
@@ -324,7 +324,7 @@ hide-menu: true
             Emphasis determines the amount of contrast a color has against the default surface. Emphasis has a range from subtle to bold. Bold emphasis has more contrast against the background, which adds more attention than using UI with the subtle or default emphasis level.
         </p>
         <div class="d-flex fd-column g16">
-            <div class="d-grid grid__3 md:grid__2 sm:grid__1 md:fd-column gx16 gy32 jc-space-between bg-black-100 bar-lg p32">
+            <div class="d-grid grid__3 md:grid__2 sm:grid__1 md:fd-column gx16 gy32 jc-space-between bg-black-100 bar-md p32">
                 {% for group in colors[0].emphasis %}
                     <div>
                         <div class="d-grid grid__3 g12 fs-caption">
@@ -339,7 +339,7 @@ hide-menu: true
                     </div>
                 {% endfor %}
             </div>
-            <div class="d-grid grid__3 gx16 gy32 jc-space-between bg-black-100 bar-lg p32">
+            <div class="d-grid grid__3 gx16 gy32 jc-space-between bg-black-100 bar-md p32">
                 {% for group in colors[0].emphasis %}
                     <div class="ta-center">
                         <div class="fs-title {{group.textClasses}}">Text</div>
@@ -359,7 +359,7 @@ hide-menu: true
         <p class="stacks-copy">
             In Stacks, a component will get darker (or lighter in dark mode) as they interact with it. These progresses happen by adding 100 to the color before the interaction happens. Example: Blue-400 on hover becomes Blue-500. For a disabled button state, subtract 100 from the default color.
         </p>
-        <div class="d-flex js-space-between gx16 gy32 bg-black-100 bar-lg p32">
+        <div class="d-flex js-space-between gx16 gy32 bg-black-100 bar-md p32">
             {% for group in colors[0].interaction %}
                 <div class="ta-center w100">
                     <button class="s-btn s-btn__filled {{group.classes}}" {{group.attr}} role="presentation">Button</button>
