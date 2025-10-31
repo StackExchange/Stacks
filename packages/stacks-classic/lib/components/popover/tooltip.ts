@@ -137,21 +137,9 @@ export class TooltipController extends BasePopoverController {
             }
         }
 
-        const arrow = popover.querySelector(".s-popover--arrow");
-
         // clear and set the content of the popover
         popover.innerHTML = "";
         popover.appendChild(content);
-
-        // create the arrow if necessary
-        if (arrow) {
-            popover.appendChild(arrow);
-        } else {
-            popover.insertAdjacentHTML(
-                "beforeend",
-                `<div class="s-popover--arrow"></div>`
-            );
-        }
 
         this.scheduleUpdate();
 
