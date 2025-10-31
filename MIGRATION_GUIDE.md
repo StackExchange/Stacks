@@ -16,6 +16,14 @@
 - `.blr-sm` removed
 - `.blr-lg` removed
 
+### Components
+
+#### Popover
+- `s-popover--arrow` removed
+
+##### Svelte component
+-  `ArrowEl` removed from Popover svelte component
+
 # Migrating from Stacks Svelte v0 to v1
 
 Coming soon…
