@@ -6,6 +6,7 @@
 
 #### Border radius
 - `.bar-sm` removed
+- `.bar-lg` removed
 - `.btr-sm` removed
 - `.btr-lg` removed
 - `.brr-sm` removed
