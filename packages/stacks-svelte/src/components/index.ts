@@ -1,3 +1,4 @@
+export { default as ActivityIndicator } from "./ActivityIndicator/ActivityIndicator.svelte";
 export { default as AwardBling } from "./AwardBling/AwardBling.svelte";
 export { default as Avatar } from "./Avatar/Avatar.svelte";
 export { default as Button } from "./Button/Button.svelte";
