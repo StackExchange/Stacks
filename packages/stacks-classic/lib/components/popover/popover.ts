@@ -231,12 +231,6 @@ export abstract class BasePopoverController extends Stacks.StacksController {
                         offset: [0, 10], // The entire popover should be 10px away from the element
                     },
                 },
-                {
-                    name: "arrow",
-                    options: {
-                        element: ".s-popover--arrow",
-                    },
-                },
             ],
         });
     }
