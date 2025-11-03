@@ -23,8 +23,6 @@
 
     let pstate = usePopoverContext("PopoverContent");
 
-    const arrowEl = pstate.arrowEl;
-
     let classes = $derived.by(() => {
         let result = "s-popover";
         if (pstate.tooltip) {
@@ -60,7 +58,6 @@
     onfocusout={pstate.closeTooltip}
     data-popper-placement={pstate.computedPlacement}
 >
-    <div class="s-popover--arrow" bind:this={$arrowEl}></div>
     <div class="s-popover--content p12 mn12">
         <div class="ps-relative">
             {@render children?.()}
