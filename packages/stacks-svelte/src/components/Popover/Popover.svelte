@@ -1,6 +1,5 @@
 <script lang="ts" module>
     import type { Snippet } from "svelte";
-    import type { Writable } from "svelte/store";
     import type { Placement } from "@floating-ui/core";
     import { getContext } from "svelte";
 
@@ -14,7 +13,6 @@
         tooltip: boolean;
         floatingRef: (element: HTMLElement) => void;
         floatingContent: (element: HTMLElement) => void;
-        arrowEl: Writable<HTMLElement>;
         onOutclick: (e: CustomEvent<HTMLElement>) => void;
         open: () => void;
         openTooltip: () => void;
@@ -41,9 +39,8 @@
 <script lang="ts">
     import type { Strategy } from "@floating-ui/core";
     import { setContext } from "svelte";
-    import { writable } from "svelte/store";
     import { offset, inline, flip } from "@floating-ui/dom";
-    import { createFloatingActions, arrow } from "svelte-floating-ui";
+    import { createFloatingActions } from "svelte-floating-ui";
 
     interface Props {
         /**
@@ -125,7 +122,6 @@
 
     let reference: HTMLElement;
     let activeTimeout: number;
-    const arrowEl = writable<HTMLElement>();
 
     // if the visible prop is passed, the component is controlled
     const controlled = $derived(visible !== undefined);
@@ -133,18 +129,9 @@
     const [floatingRef, floatingContent, update] = createFloatingActions({
         placement,
         strategy,
-        middleware: [offset(10), flip(), inline(), arrow({ element: arrowEl })],
-        onComputed({ placement: computedPlacement, middlewareData }) {
+        middleware: [offset(10), flip(), inline()],
+        onComputed({ placement: computedPlacement }) {
             pstate.computedPlacement = computedPlacement;
-
-            if (middlewareData.arrow && $arrowEl) {
-                const { x, y } = middlewareData.arrow;
-
-                Object.assign($arrowEl.style, {
-                    left: x != null ? `${x}px` : "",
-                    top: y != null ? `${y}px` : "",
-                });
-            }
         },
     });
 
@@ -216,7 +203,6 @@
             floatingRef(element);
         },
         floatingContent,
-        arrowEl,
         onOutclick,
         open,
         openTooltip,
