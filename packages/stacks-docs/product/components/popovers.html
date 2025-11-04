@@ -1,9 +1,9 @@
 ---
 layout: page
 title: Popovers
-razor: https://razor.stackoverflow.design/components/popover
+svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-popover--docs
 js: true
-figma: https://svelte.stackoverflow.design/figma/popovers
+figma: https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=1617-27089&t=W4QmlFOpYoEpInDB-0
 description: Popovers are small content containers that provide a contextual overlay. They can be used as in-context feature explanations, dropdowns, or tooltips.
 tags: components
 ---
@@ -33,7 +33,7 @@ tags: components
 <section class="stacks-section">
     {% header "h2", "Interactive popovers" %}
 
-    <p class="stacks-copy">Stacks provides a Stimulus controller that allows you to interactively display a popover from a source element. Positioning and arrow direction are managed for you by <a href="https://popper.js.org">Popper.js</a>, a powerful popover positioning library we’ve added as a dependency.  These popovers are automatically hidden when user click outside the popover or tap the <kbd>Esc</kbd> key.</kbd></p>
+    <p class="stacks-copy">Stacks provides a Stimulus controller that allows you to interactively display a popover from a source element. Positioning direction are managed for you by <a href="https://popper.js.org">Popper.js</a>, a powerful popover positioning library we've added as a dependency.  These popovers are automatically hidden when user click outside the popover or tap the <kbd>Esc</kbd> key.</kbd></p>
 
     {% header "h3", "Interactive Attributes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
@@ -157,7 +157,7 @@ tags: components
     </div>
     {% header "h3", "Examples" %}
     <div class="stacks-preview bs-none">
-        <div class="stacks-preview--example ba bar-sm bg-black-100">
+        <div class="stacks-preview--example ba bar-md bg-black-100">
             <div class="d-flex ai-center g8 sm:fd-column">
                 <button class="flex--item s-btn s-btn__filled"
                         data-controller="s-popover"
@@ -169,7 +169,6 @@ tags: components
                     Show example popover
                 </button>
                 <div id="popover-example-1" class="s-popover ws2" role="menu">
-                    <div class="s-popover--arrow"></div>
                     <div class="s-popover--content">
                         <form class="d-flex fd-column g8" role="presentation">
                             <div class="d-flex gy4 fd-column">
@@ -194,7 +193,6 @@ tags: components
                     Show example popover
                 </button>
                 <div id="popover-example-2" class="s-popover p16" role="menu">
-                    <div class="s-popover--arrow"></div>
                     <div class="s-popover--content">
                         <div class="s-empty-state wmx2">
                             {% spot "EmptyLg", "mb12" %}
@@ -214,42 +212,9 @@ tags: components
                     <span class="v-visible-sr">info</span>
                 </button>
                 <div id="popover-example-4" class="s-popover" role="menu">
-                    <div class="s-popover--arrow"></div>
                     <div class="s-popover--content">
                         <p>We know you hate spam, and we do too. That’s why we make it easy for you to update your email preferences or unsubscribe at anytime.</p>
                         <p class="mb0">We never share your email address with third parties for marketing purposes.</p>
-                    </div>
-                </div>
-                <div class="flex--item ml-auto sm:ml0 sm:mt12"
-                    data-controller="s-popover"
-                    data-s-popover-reference-selector="#reference-element"
-                    data-s-popover-placement="auto"
-                    data-s-popover-auto-show="true"
-                    data-s-popover-hide-on-outside-click="never">
-                    <a id="reference-element" class="s-link s-link__inherit"
-                        aria-controls="popover-example-3"
-                        aria-expanded="true">
-                        Follow question
-                    </a>
-                    <div id="popover-example-3" class="s-popover wmx3">
-                        <div class="s-popover--arrow"></div>
-                        <button class="s-popover--close s-btn s-btn__muted"
-                            aria-label="Close"
-                            data-action="s-popover#toggle">
-                            {% icon "ClearSm" %}
-                        </button>
-
-                        <div class="s-popover--content">
-                            <div class="d-flex ai-center">
-                                <div class="flex--item mr12 fc-orange-400">
-                                    {% spot "Bell" %}
-                                </div>
-    
-                                <div class="flex--item">
-                                    Get updates on questions and answers
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -274,7 +239,6 @@ tags: components
 <div class="s-popover"
        id="popover-example"
        role="menu">
-    <div class="s-popover--arrow"></div>
     <div class="s-popover--content">
         …
     </div>
@@ -293,7 +257,6 @@ tags: components
             <div class="s-popover wmn-initial w-auto"
                 id="popover-example"
                 role="menu">
-                <div class="s-popover--arrow"></div>
                 <div class="s-popover--content">
                     Example popover content
                 </div>
@@ -318,7 +281,6 @@ tags: components
     </button>
 
     <div id="popover-example" class="s-popover is-visible" role="menu">
-        <div class="s-popover--arrow"></div>
         <button class="s-popover--close s-btn s-btn__muted" aria-label="Close"
             data-action="s-popover#toggle">
             @Svg.ClearSm
@@ -332,7 +294,6 @@ tags: components
         <div class="stacks-preview--example bg-black-100">
             <div class="s-popover ps-relative is-visible">
                 <button class="s-popover--close s-btn s-btn__muted" aria-label="Close">{% icon "ClearSm" %}</button>
-                <div class="s-popover--arrow s-popover--arrow__bl"></div>
                 <div class="s-popover--content">
                     <p class="mb0">Dismissible persistent popover presented with a close button</p>
                 </div>
@@ -376,7 +337,6 @@ Stacks.application.register("section", class extends Stacks.StacksController {
                         <div class="s-popover wmn-initial w-auto"
                              id="popover-help-example"
                              role="menu">
-                             <div class="s-popover--arrow"></div>
                              <div class="s-popover--content">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                             </div>
@@ -593,7 +553,6 @@ Stacks.setTooltipHtml(el,
     class="s-popover s-popover__tooltip"
     id="tooltip-example"
     role="tooltip">
-    <div class="s-popover--arrow"></div>
     <div class="s-popover--content">
         …
     </div>
@@ -612,7 +571,6 @@ Stacks.setTooltipHtml(el,
                 class="s-popover s-popover__tooltip"
                 id="tooltip-example"
                 role="tooltip">
-                <div class="s-popover--arrow"></div>
                 <div class="s-popover--content">
                     <div class="s-empty-state wmx2">
                         {% spot "EmptyLg", "mb12" %}
@@ -642,7 +600,6 @@ Stacks.setTooltipHtml(el,
 <div class="s-popover"
        id="popover-example"
        role="menu">
-    <div class="s-popover--arrow"></div>
     <div class="s-popover--content">
         …
     </div>
@@ -663,7 +620,6 @@ Stacks.setTooltipHtml(el,
             <div class="s-popover wmn-initial w-auto"
                 id="popover-example-with-tooltip"
                 role="menu">
-                <div class="s-popover--arrow"></div>
                 <div class="s-popover--content">
                     <div class="tt-uppercase fs-fine fc-light">
                         Saved filters
@@ -679,156 +635,24 @@ Stacks.setTooltipHtml(el,
 <section class="stacks-section">
     {% header "h2", "Manual placement" %}
     {% tip, "warning", "mb32" %}
-        Our Stimulus popover controller handles the positioning of popovers for you. Popovers <em>can</em> be positioned manually for various legacy reasons, but we recommend using the <code class="stacks-code">s-popover</code> controller’s <code class="stacks-code">placement</code> property instead.
+        Our Stimulus popover controller handles the positioning of popovers for you. Popovers <em>can</em> be positioned manually for various legacy reasons, but we recommend using the <code class="stacks-code">s-popover</code> controller's <code class="stacks-code">placement</code> property instead.
     {% endtip %}
-    {% header "h3", "Manual classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell4" scope="col">Class</th>
-                    <th class="s-table--cell3" scope="col">Applies to</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                {% for item in popovers.manual %}
-                    <tr>
-                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
-                        <td>{{ item.applies }}</td>
-                        <td class="p8">{{ item.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
     {% header "h3", "Manual examples" %}
     <p class="stacks-copy">Popovers can also be positioned manually if you aren’t using the built-in JavaScript interactivity. Practically, this might look like adding something like <code class="stacks-code">t8 l8</code> to <code class="stacks-code">.s-popover</code>.</p>
-    <p class="stacks-copy">Manual positioning for arrows is also provided. Arrow direction (top, right, bottom, left) will appear first, followed by the secondary (center, top, right, bottom, left). For example, a popover with an arrow child of <code class="stacks-code">.s-popover--arrow__tc</code> will appear on the top of the <code class="stacks-code">.s-popover</code> and centered horizontally. Though there are sensible defaults applied to the width of popovers, you may need to adjust manually.</p>
-
     <p class="stacks-copy">By default, popovers are hidden and positioned absolutely. Adding the class <code class="stacks-code">.is-visible</code> will show the popover.</p>
-
-    <p class="stacks-copy">If you want to set the background color to something other than the default, simply add your desired <code class="stacks-code">bg-*</code> class to the <code class="stacks-code">s-popover</code> element and a matching <code class="stacks-code">fc-*</code> class to the <code class="stacks-code">s-popover--arrow</code> element.</p>
 
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-popover">
-    <div class="s-popover--arrow s-popover--arrow__tc"></div>
     <div class="s-popover--content">
         …
     </div>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example bg-black-100">
-            <div class="d-flex g16 flex__allitems4 fw-wrap">
-                <div class="flex--item">
-                    <div class="s-popover ps-relative z-base is-visible">
-                        <div class="s-popover--arrow s-popover--arrow__tc"></div>
-                        <div class="s-popover--content">
-                            <p class="ff-mono mb8">.s-popover--arrow__tc</p>
-                            <p class="mb0">Popover arrow appears top center</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex--item">
-                    <div class="s-popover ps-relative z-base is-visible">
-                        <div class="s-popover--arrow s-popover--arrow__tl"></div>
-                        <div class="s-popover--content">
-                            <p class="ff-mono mb8">.s-popover--arrow__tl</p>
-                            <p class="mb0">Popover arrow appears top left</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex--item">
-                    <div class="s-popover ps-relative z-base is-visible">
-                        <div class="s-popover--arrow s-popover--arrow__tr"></div>
-                        <div class="s-popover--content">
-                            <p class="ff-mono mb8">.s-popover--arrow__tr</p>
-                            <p class="mb0">Popover arrow appears top right</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex--item">
-                    <div class="s-popover ps-relative z-base is-visible">
-                        <div class="s-popover--arrow s-popover--arrow__bc"></div>
-                        <div class="s-popover--content">
-                            <p class="ff-mono mb8">.s-popover--arrow__bc</p>
-                            <p class="mb0">Popover arrow appears bottom center</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex--item">
-                    <div class="s-popover ps-relative z-base is-visible">
-                        <div class="s-popover--arrow s-popover--arrow__bl"></div>
-                        <div class="s-popover--content">
-                            <p class="ff-mono mb8">.s-popover--arrow__bl</p>
-                            <p class="mb0">Popover arrow appears bottom left</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex--item">
-                    <div class="s-popover ps-relative z-base is-visible">
-                        <div class="s-popover--arrow s-popover--arrow__br"></div>
-                        <div class="s-popover--content">
-                            <p class="ff-mono mb8">.s-popover--arrow__br</p>
-                            <p class="mb0">Popover arrow appears bottom right</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex--item">
-                    <div class="s-popover ps-relative z-base is-visible">
-                        <div class="s-popover--arrow s-popover--arrow__rc"></div>
-                        <div class="s-popover--content">
-                            <p class="ff-mono mb8">.s-popover--arrow__rc</p>
-                            <p class="mb0">Popover arrow appears right center</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex--item">
-                    <div class="s-popover ps-relative z-base is-visible">
-                        <div class="s-popover--arrow s-popover--arrow__rt"></div>
-                        <div class="s-popover--content">
-                            <p class="ff-mono mb8">.s-popover--arrow__rt</p>
-                            <p class="mb0">Popover arrow appears right top</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex--item">
-                    <div class="s-popover ps-relative z-base is-visible">
-                        <div class="s-popover--arrow s-popover--arrow__rb"></div>
-                        <div class="s-popover--content">
-                            <p class="ff-mono mb8">.s-popover--arrow__rb</p>
-                            <p class="mb0">Popover arrow appears right bottom</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex--item">
-                    <div class="s-popover ps-relative z-base is-visible">
-                        <div class="s-popover--arrow s-popover--arrow__lc"></div>
-                        <div class="s-popover--content">
-                            <p class="ff-mono mb8">.s-popover--arrow__lc</p>
-                            <p class="mb0">Popover arrow appears left center</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex--item">
-                    <div class="s-popover ps-relative z-base is-visible">
-                        <div class="s-popover--arrow s-popover--arrow__lt"></div>
-                        <div class="s-popover--content">
-                            <p class="ff-mono mb8">.s-popover--arrow__lt</p>
-                            <p class="mb0">Popover arrow appears left top</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex--item">
-                    <div class="s-popover ps-relative z-base is-visible">
-                        <div class="s-popover--arrow s-popover--arrow__lb"></div>
-                        <div class="s-popover--content">
-                            <p class="ff-mono mb8">.s-popover--arrow__lb</p>
-                            <p class="mb0">Popover arrow appears left bottom</p>
-                        </div>
-                    </div>
+            <div class="s-popover ps-relative z-base is-visible">
+                <div class="s-popover--content">
+                    <p class="mb0">Example popover with manual placement</p>
                 </div>
             </div>
         </div>

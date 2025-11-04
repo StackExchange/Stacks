@@ -1,5 +1,5 @@
 <script lang="ts" module>
-    import { IconAlert } from "@stackoverflow/stacks-icons/icons";
+    import { IconAlert } from "@stackoverflow/stacks-icons-legacy/icons";
 
     import Notice, { type Variant } from "./Notice.svelte";
     import { defineMeta } from "@storybook/addon-svelte-csf";

@@ -8,7 +8,7 @@ import {
     IconPencilSm,
     IconTackSm,
     IconTrashSm,
-} from "@stackoverflow/stacks-icons/icons";
+} from "@stackoverflow/stacks-icons-legacy/icons";
 import type { TestVariationArgs } from "../../test/test-utils";
 import "../../index";
 

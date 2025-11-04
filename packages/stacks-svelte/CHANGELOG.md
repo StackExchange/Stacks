@@ -1,5 +1,108 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.2
+
+### Minor Changes
+
+- [#2027](https://github.com/StackExchange/Stacks/pull/2027) [`4bd5612`](https://github.com/StackExchange/Stacks/commit/4bd561230e43bb411a58f1cf975c0a5f62a205fe) Thanks [@giamir](https://github.com/giamir)! - **Activity Indicator Updates:**
+    - **Stacks Classic**: Updated activity indicator component to the new visual language (default 16x16). Introduced `.s-activity-indicator__sm` variant (10x10).
+    - **Stacks Svelte**: Added new `ActivityIndicator` component.
+
+### Patch Changes
+
+- [#2019](https://github.com/StackExchange/Stacks/pull/2019) [`e9b8885`](https://github.com/StackExchange/Stacks/commit/e9b888585e2d145e4216ea413904bba83a4faa80) Thanks [@giamir](https://github.com/giamir)! - **Avatar Updates:**
+    - **Stacks Classic**: Made avatar border squared. Introduced `.s-avatar--indicator` class for positioning an activity indicator element in relation to the avatar.
+    - **Stacks Svelte**: Introduced a new `status` prop. When set to `online` it will show an activity indicator on the avatar.
+
+- Updated dependencies [[`2a4a741`](https://github.com/StackExchange/Stacks/commit/2a4a74100534b2020aa7e9ebecd956a2aa15a74e), [`e9b8885`](https://github.com/StackExchange/Stacks/commit/e9b888585e2d145e4216ea413904bba83a4faa80), [`4bd5612`](https://github.com/StackExchange/Stacks/commit/4bd561230e43bb411a58f1cf975c0a5f62a205fe), [`da8616a`](https://github.com/StackExchange/Stacks/commit/da8616a618e0d0f36f768a7f6600b5b6e129b314)]:
+    - @stackoverflow/stacks@3.0.0-beta.1
+
+## 1.0.0-beta.1
+
+### Patch Changes
+
+- Incorporate v0.6.0 changes in the beta release tag
+  https://github.com/StackExchange/Stacks/releases/tag/%40stackoverflow%2Fstacks-svelte%400.6.0
+
+## 0.6.0
+
+### Minor Changes
+
+- [#2018](https://github.com/StackExchange/Stacks/pull/2018) [`9cfbe19`](https://github.com/StackExchange/Stacks/commit/9cfbe19f066ae1146bf2065e78c2812f89a2df18) Thanks [@giamir](https://github.com/giamir)! - Migrate `Pagination` components to use Svelte 5 runes API.
+
+    BREAKING CHANGES:
+    - `PaginationItem`: `on:click` event forwarding is replaced by `onclick` callback prop.
+    - `PaginationController`: `on:pagechange` event is replaced by `onpagechange` callback prop with simplified signature. Previously the event passed `{ detail: pageNumber }`, now the callback directly receives the page number as the argument: `onpagechange(pageNumber)`.
+
+    Migration example:
+
+    ```svelte
+    <!-- Before (Svelte 4) -->
+    <PaginationController on:pagechange={(e) => handlePageChange(e.detail)} />
+
+    <!-- After (Svelte 5) -->
+    <PaginationController
+        onpagechange={(pageNumber) => handlePageChange(pageNumber)}
+    />
+    ```
+
+- [#2016](https://github.com/StackExchange/Stacks/pull/2016) [`6712bc2`](https://github.com/StackExchange/Stacks/commit/6712bc29f22579ae368f8ec5211a25fc257f0cb9) Thanks [@giamir](https://github.com/giamir)! - Migrate `Popover`, `PopoverReference`, `PopoverContent`, and `PopoverCloseButton` components to use Svelte 5 runes API
+
+    BREAKING CHANGES:
+
+    **Popover component:**
+    - Slot props (`let:visible`, `let:open`, `let:close`) are not available anymore. Snippet parameters should be used instead: `{#snippet children({ visible, open, close })}...{/snippet}`
+    - `on:open` and `on:close` events are not available anymore. The new callback props should be used instead: `onopen`, `onclose`.
+
+    **PopoverCloseButton component:**
+    - `on:click` event forwarding is not available anymore. The new callback prop should be used instead: `onclick`.
+
+    **Migration examples:**
+
+    ```svelte
+    <!-- Before (Svelte 4 API) -->
+    <Popover
+        id="my-popover"
+        on:open={() => console.log("opened")}
+        on:close={() => console.log("closed")}
+        let:visible
+        let:close
+    >
+        <PopoverReference>
+            <button>Trigger</button>
+        </PopoverReference>
+        <PopoverContent>
+            <p>Content here</p>
+            <PopoverCloseButton on:click={handleClick} />
+        </PopoverContent>
+        <p>Visible: {visible}</p>
+    </Popover>
+
+    <!-- After (Svelte 5 API) -->
+    <Popover
+        id="my-popover"
+        onopen={() => console.log("opened")}
+        onclose={() => console.log("closed")}
+    >
+        {#snippet children({ visible, close })}
+            <PopoverReference>
+                <button>Trigger</button>
+            </PopoverReference>
+            <PopoverContent>
+                <p>Content here</p>
+                <PopoverCloseButton onclick={handleClick} />
+            </PopoverContent>
+            <p>Visible: {visible}</p>
+        {/snippet}
+    </Popover>
+    ```
+
+- [#2017](https://github.com/StackExchange/Stacks/pull/2017) [`067d647`](https://github.com/StackExchange/Stacks/commit/067d6476aedab2f683e379bfae37ee54374997d5) Thanks [@giamir](https://github.com/giamir)! - Migrate `Modal` component to use Svelte 5 runes API.
+
+    BREAKING CHANGES:
+    - Named slots (`header`, `body`, `footer`) are replaced by snippet props. Use `{#snippet header()}...{/snippet}` instead of `<svelte:fragment slot="header">...</svelte:fragment>`.
+    - `on:close` event is replaced by `onclose` callback prop.
+
 ## 0.5.1
 
 ### Patch Changes

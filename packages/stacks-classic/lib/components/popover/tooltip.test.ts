@@ -80,7 +80,6 @@ describe("tooltip", () => {
                 role="tooltip"
                 data-testid="tooltip"
             >
-                <div class="s-popover--arrow"></div>
                 <div class="s-popover--content">
                     <a href="#" data-testid="link">View more</a>
                 </div>
@@ -113,7 +112,6 @@ describe("tooltip", () => {
                 role="tooltip"
                 data-testid="tooltip"
             >
-                <div class="s-popover--arrow"></div>
                 <div class="s-popover--content">
                     <a href="#">View more</a>
                 </div>

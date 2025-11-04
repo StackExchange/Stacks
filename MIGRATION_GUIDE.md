@@ -1,48 +1,57 @@
 # Migrating from Stacks Classic v2 to v3
 
-Coming soon…
+## Breaking changes
+
+### Atomic styles
+
+#### Border radius
+- `.bar-sm` removed
+- `.bar-lg` removed
+- `.btr-sm` removed
+- `.btr-lg` removed
+- `.brr-sm` removed
+- `.brr-lg` removed
+- `.bbr-sm` removed
+- `.bbr-lg` removed
+- `.blr-sm` removed
+- `.blr-lg` removed
+
+### Components
+
+#### Popover
+- The new popovers no longer include an arrow element. The `s-popover--arrow` css class has been removed, and any markup using it (e.g. `<div class="s-popover--arrow"></div>`) should be deleted from the codebases as part of the migration.
 
 # Migrating from Stacks Svelte v0 to v1
 
 Coming soon…
 
-# Migrating from Stacks Classic v1 to v2
+# Migrating from Stacks v1 to v2
 
 With the release of Stacks v2, we've made some breaking changes to the library. The purpose of this guide is to help you prepare your code be compatible with the changes in Stacks v2.
 
 ## Table of contents
 
-- [Migrating from Stacks Classic v2 to v3](#migrating-from-stacks-classic-v2-to-v3)
-- [Migrating from Stacks Svelte v0 to v1](#migrating-from-stacks-svelte-v0-to-v1)
-- [Migrating from Stacks Classic v1 to v2](#migrating-from-stacks-classic-v1-to-v2)
-  - [Table of contents](#table-of-contents)
-  - [Upgrading dependencies](#upgrading-dependencies)
-  - [Using Stacks v2 colors](#using-stacks-v2-colors)
-    - [Color stop mappings](#color-stop-mappings)
-      - [Orange, blue, green, red, yellow, theme-primary, theme-secondary](#orange-blue-green-red-yellow-theme-primary-theme-secondary)
-      - [Black](#black)
-      - [Gold, sliver, bronze](#gold-sliver-bronze)
-      - [Regular expression patterns](#regular-expression-patterns)
-          - [Find](#find)
-          - [Replace](#replace)
-    - [Deprecation of `powder` color set](#deprecation-of-powder-color-set)
-    - [Referencing theme colors without the stop suffix](#referencing-theme-colors-without-the-stop-suffix)
-  - [Deprecation of Less color variables](#deprecation-of-less-color-variables)
-    - [Replacing Less color variables](#replacing-less-color-variables)
-    - [Referencing Less color variables](#referencing-less-color-variables)
-  - [Using legacy colors](#using-legacy-colors)
-    - [Using the `-legacy` suffix](#using-the--legacy-suffix)
-    - [Examples of legacy color references](#examples-of-legacy-color-references)
-    - [Helpful regular expressions](#helpful-regular-expressions)
-      - [Add `-legacy` suffix to colors](#add--legacy-suffix-to-colors)
-        - [Find](#find-1)
-        - [Replace](#replace-1)
-      - [Add `-legacy` to aliased values](#add--legacy-to-aliased-values)
-        - [Find](#find-2)
-        - [Replace](#replace-2)
-  - [Custom theme generation](#custom-theme-generation)
-    - [Replacing `.generate-calculated-themed-variables()`](#replacing-generate-calculated-themed-variables)
-  - [Deprecation of `.s-btn__primary`](#deprecation-of-s-btn__primary)
+- [Upgrading dependencies](#upgrading-dependencies)
+- [Using Stacks v2 colors](#using-stacks-v2-colors)
+  - [Color stop mappings](#color-stop-mappings)
+    - [Orange, blue, green, red, yellow, theme-primary, theme-secondary](#orange-blue-green-red-yellow-theme-primary-theme-secondary)
+    - [Black](#black)
+    - [Gold, sliver, bronze](#gold-sliver-bronze)
+    - [Regular expression patterns](#regular-expression-patterns)
+  - [Deprecation of powder color set](#deprecation-of-powder-color-set)
+  - [Referencing theme colors without stop suffix](#referencing-theme-colors-without-the-stop-suffix)
+- [Deprecation of Less color variables](#deprecation-of-less-color-variables)
+  - [Replacing Less color variables](#replacing-less-color-variables)
+  - [Referencing Less color variables](#referencing-less-color-variables)
+- [Using legacy colors](#using-legacy-colors)
+  - [Using the `-legacy` suffix](#using-the--legacy-suffix)
+  - [Examples of legacy color references](#examples-of-legacy-color-references)
+  - [Helpful regular expressions](#helpful-regular-expressions)
+    - [Add `-legacy` suffix to colors](#add--legacy-suffix-to-colors)
+    - [Add `-legacy` to aliased values](#add--legacy-to-aliased-values)
+- [Custom theme generation](#custom-theme-generation)
+  - [Replacing `.generate-calculated-themed-variables()`](#replacing-generate-calculated-themed-variables)
+- [Deprecation of `.s-btn__primary`](#deprecation-of-s-btn__primary)
 
 ## Upgrading dependencies
 

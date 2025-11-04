@@ -7,7 +7,7 @@
     import type { Snippet } from "svelte";
     import Avatar, { type Size as AvatarSize } from "../Avatar/Avatar.svelte";
     import Icon from "../Icon/Icon.svelte";
-    import { IconPerson } from "@stackoverflow/stacks-icons/icons";
+    import { IconPerson } from "@stackoverflow/stacks-icons-legacy/icons";
 
     interface Props {
         /**

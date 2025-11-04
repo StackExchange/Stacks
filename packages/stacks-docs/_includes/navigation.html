@@ -35,6 +35,7 @@
                                     {% for link in section.links %}
                                         <a class="s-navigation--item {% if page.url == link.url %}is-selected{% endif %}" href="{{ link.url | url }}" {% if page.url == link.url %}aria-current="page"{% endif %}>
                                             <span class="s-navigation--item-text" data-text="{{ link.title }}">{{ link.title }}</span>
+                                            {% if link.new %}<span class="s-badge s-badge__sm s-badge__new ml4">new</span>{% endif %}
                                         </a>
                                     {% endfor %}
                                 {% endif %}

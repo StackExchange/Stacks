@@ -6,10 +6,16 @@ describe("activity-indicator", () => {
     runVisualTests({
         baseClass: "s-activity-indicator",
         variants: ["danger", "success", "warning"],
+        modifiers: {
+            primary: ["sm"],
+        },
         children: {
             default: `<div class="v-visible-sr">New activity</div>`,
             new: `new<div class="v-visible-sr">New activity</div>`,
         },
+        excludedTestids: [
+            /^s-activity-indicator-(?=.*sm).*new$/, // s-activity-indicator with content in sm size not supported
+        ],
         template: ({ component, testid }) => html`
             <div
                 class="d-inline-flex ai-center jc-center hs1 ws1 p8"

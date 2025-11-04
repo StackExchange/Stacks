@@ -28,7 +28,7 @@
         IconAlert,
         IconAlertCircle,
         IconCheckmark,
-    } from "@stackoverflow/stacks-icons/icons";
+    } from "@stackoverflow/stacks-icons-legacy/icons";
     import { setContext } from "svelte";
     import type { Snippet } from "svelte";
     import type { HTMLSelectAttributes } from "svelte/elements";
