@@ -1,5 +1,22 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.2
+
+### Minor Changes
+
+- [#2027](https://github.com/StackExchange/Stacks/pull/2027) [`4bd5612`](https://github.com/StackExchange/Stacks/commit/4bd561230e43bb411a58f1cf975c0a5f62a205fe) Thanks [@giamir](https://github.com/giamir)! - **Activity Indicator Updates:**
+    - **Stacks Classic**: Updated activity indicator component to the new visual language (default 16x16). Introduced `.s-activity-indicator__sm` variant (10x10).
+    - **Stacks Svelte**: Added new `ActivityIndicator` component.
+
+### Patch Changes
+
+- [#2019](https://github.com/StackExchange/Stacks/pull/2019) [`e9b8885`](https://github.com/StackExchange/Stacks/commit/e9b888585e2d145e4216ea413904bba83a4faa80) Thanks [@giamir](https://github.com/giamir)! - **Avatar Updates:**
+    - **Stacks Classic**: Made avatar border squared. Introduced `.s-avatar--indicator` class for positioning an activity indicator element in relation to the avatar.
+    - **Stacks Svelte**: Introduced a new `status` prop. When set to `online` it will show an activity indicator on the avatar.
+
+- Updated dependencies [[`2a4a741`](https://github.com/StackExchange/Stacks/commit/2a4a74100534b2020aa7e9ebecd956a2aa15a74e), [`e9b8885`](https://github.com/StackExchange/Stacks/commit/e9b888585e2d145e4216ea413904bba83a4faa80), [`4bd5612`](https://github.com/StackExchange/Stacks/commit/4bd561230e43bb411a58f1cf975c0a5f62a205fe), [`da8616a`](https://github.com/StackExchange/Stacks/commit/da8616a618e0d0f36f768a7f6600b5b6e129b314)]:
+    - @stackoverflow/stacks@3.0.0-beta.1
+
 ## 1.0.0-beta.1
 
 ### Patch Changes
