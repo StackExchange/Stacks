@@ -184,9 +184,9 @@
     <div class="d-inline-flex">
         <UserCard {...baseArgs}>
             {#snippet tags()}
-                <Tag href="#" size="xs">css</Tag>
-                <Tag href="#" size="xs">reactjs</Tag>
-                <Tag href="#" size="xs">javascript</Tag>
+                <Tag href="#" size="sm">css</Tag>
+                <Tag href="#" size="sm">reactjs</Tag>
+                <Tag href="#" size="sm">javascript</Tag>
             {/snippet}
         </UserCard>
     </div>
