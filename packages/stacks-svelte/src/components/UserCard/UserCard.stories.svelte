@@ -42,7 +42,7 @@
                 options: ["no tags", "tags"],
                 mapping: {
                     "no tags": "",
-                    "tags": '<a href="#" class="s-tag s-tag__xs">javascript</a>',
+                    "tags": '<a href="#" class="s-tag s-tag__sm">javascript</a>',
                 },
             },
             type: {
