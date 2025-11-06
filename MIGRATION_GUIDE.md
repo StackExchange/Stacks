@@ -16,6 +16,9 @@
 - `.blr-sm` removed
 - `.blr-lg` removed
 
+#### Typography
+- `.fs-category` removed
+
 ### Components
 
 #### Popover
