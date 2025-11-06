@@ -16,6 +16,9 @@
 - `.blr-sm` removed
 - `.blr-lg` removed
 
+#### Colors
+- `gold`, `silver`, `bronze` colors removed
+
 #### Typography
 - `.fs-category` removed
 
