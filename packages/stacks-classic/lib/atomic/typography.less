@@ -37,35 +37,21 @@ p {
 .fs-body3 { font-size: var(--fs-body3) !important; }
 .fs-body2 { font-size: var(--fs-body2) !important; }
 .fs-body1 { font-size: var(--fs-body1) !important; }
-
-.fs-caption,
-.fs-category { font-size: var(--fs-caption) !important; }
+.fs-caption { font-size: var(--fs-caption) !important; }
 .fs-fine { font-size: var(--fs-fine) !important; }
 
 #stacks-internals #screen-sm({
-    .fs-display4 { font-size: 3.8rem !important; }
-    .fs-display3 { font-size: 3.3rem !important; }
-    .fs-display2 { font-size: 3rem !important; }
-    .fs-display1 { font-size: 2.6rem !important; }
-    .fs-headline2 { font-size: 2.3rem !important; }
-    .fs-headline1 { font-size: 2rem !important; }
-    .fs-title { font-size: 1.8rem !important; }
-    .fs-subheading { font-size: 1.6rem !important; }
-    .fs-body3 { font-size: 1.4rem !important; }
-    .fs-body2 { font-size: 1.3rem !important; }
+    .fs-display4 { font-size: calc(var(--fs-display4) * .43) !important; } // 43px
+    .fs-display3 { font-size: calc(var(--fs-display3) * .5139) !important; } // ~37px
+    .fs-display2 { font-size: calc(var(--fs-display2) * .5862) !important; } // ~34px
+    .fs-display1 { font-size: calc(var(--fs-display1) * .6304) !important; }  // ~29px
+    .fs-headline2 { font-size: calc(var(--fs-headline2) * .7224) !important; } // ~26px
+    .fs-headline1 { font-size: calc(var(--fs-headline1) * .8215) !important; } // ~23px
+    .fs-title { font-size: calc(var(--fs-title) * .9094) !important; } // ~20px
+    .fs-subheading { font-size: calc(var(--fs-subheading) * .8998) !important; } // ~18px
+    .fs-body3 { font-size: calc(var(--fs-body3) * .8888) !important; } // ~16px
+    .fs-body2 { font-size: calc(var(--fs-body2) * .9374) !important; } // ~15px
 }, @force-selector: true);
-
-.fs-category {
-    font-weight: 700;
-    text-transform: uppercase;
-
-    // If a top border is desired
-    &.has-border {
-        width: 100%;
-        padding: var(--su4) 0;
-        border-top: var(--su-static1) solid var(--bc-medium);
-    }
-}
 
 //  ============================================================================
 //  $   LINE HEIGHTS
@@ -89,7 +75,8 @@ p {
 
 //  --  Font Weight
 .fw-normal { font-weight: 400 !important; }
-.fw-bold { font-weight: 700 !important; }
+.fw-medium { font-weight: 500 !important; }
+.fw-bold { font-weight: 600 !important; }
 
 //  --  Font Styles
 .fs-normal { font-style: normal !important; }
