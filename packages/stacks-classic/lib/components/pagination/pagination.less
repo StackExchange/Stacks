@@ -16,19 +16,67 @@
         --_pa-item-bb: var(--su-static0); 
 
         // CONTEXTUAL STYLES
-        .highcontrast-mode({ text-decoration: none; });
+        .dark-mode({
+            --_pa-item-fc: var(--black-400);
+            --_pa-item-bg-hover: var(--black-250);
+            --_pa-item-fc-hover: var(--black-500);
+        });
+
+        .highcontrast-mode({ 
+            text-decoration: none;
+            --_pa-item-fc: var(--black-600);
+            --_pa-item-bg-hover: var(--black-200);
+            --_pa-item-fc-hover: var(--black);
+        });
+
+        .highcontrast-dark-mode({
+            --_pa-item-fc: var(--black-400);
+            --_pa-item-bg-hover: var(--black-300);
+            --_pa-item-fc-hover: var(--black-500);
+        });
 
         // MODIFIERS
         &.is-selected {
             --_pa-item-bc: #201C1D;
             --_pa-item-fc: #201C1D; // Update to grey-600 when colors are updated
+            --_pa-item-bg: transparent;
             --_pa-item-bg-focus: var(--theme-primary-400);
             --_pa-item-bb: var(--su-static2);
+
+            .dark-mode({
+                --_pa-item-fc: var(--black-600);
+                --_pa-item-bc: var(--black-600);
+                --_pa-item-bg: var(--black-300);
+            });
+
+            .highcontrast-mode({
+                --_pa-item-fc: var(--black);
+                --_pa-item-bc: var(--black);
+                --_pa-item-bg: var(--black-400);
+            });
+
+            .highcontrast-dark-mode({
+                --_pa-item-fc: var(--black-500);
+                --_pa-item-bc: var(--black-500);
+                --_pa-item-bg: var(--black-300);
+            });
         }
         &.s-pagination--item__clear {
             --_pa-item-bg: transparent;
             --_pa-item-bc: transparent;
             --_pa-item-fc: #6B6D73;
+
+            .dark-mode({
+                --_pa-item-fc: var(--black-400);
+            });
+
+            .highcontrast-mode({
+                --_pa-item-fc: var(--black-600);
+            });
+
+            .highcontrast-dark-mode({
+                --_pa-item-fc: var(--black-400);
+            });
         }
         &.is-next {
             background-color: #F0EFED;
@@ -36,6 +84,21 @@
             --_pa-item-fc: #201C1D;
             width: 32px;
             height: 32px;
+
+            .dark-mode({
+                background-color: var(--black-250);
+                --_pa-item-fc: var(--black-500);
+            });
+
+            .highcontrast-mode({
+                background-color: var(--black-200);
+                --_pa-item-fc: var(--black);
+            });
+
+            .highcontrast-dark-mode({
+                background-color: var(--black-300);
+                --_pa-item-fc: var(--black-500);
+            });
         }
         // override hover styles to match base styles
         &.is-selected,
@@ -62,6 +125,24 @@
             border-radius: var(--br-md);
             box-shadow: 0 0 0 2px #0C0D0E;
             outline: none !important;
+
+            .dark-mode({
+                background-color: var(--black-250) !important;
+                border: 2px solid var(--black-500) !important;
+                box-shadow: 0 0 0 2px var(--black-600);
+            });
+
+            .highcontrast-mode({
+                background-color: var(--black-200) !important;
+                border: 2px solid var(--black) !important;
+                box-shadow: 0 0 0 2px var(--black-600);
+            });
+
+            .highcontrast-dark-mode({
+                background-color: var(--black-300) !important;
+                border: 2px solid var(--black-500) !important;
+                box-shadow: 0 0 0 2px var(--black-600);
+            });
         }
 
         background-color: var(--_pa-item-bg);
