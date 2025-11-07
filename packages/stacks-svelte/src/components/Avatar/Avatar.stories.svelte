@@ -55,7 +55,7 @@
 </Story>
 
 <Story
-    name="href"
+    name="As a link"
     args={{
         name: "href example",
         href: "#",
@@ -75,7 +75,7 @@
 />
 
 <Story
-    name="badge"
+    name="Badge"
     args={{
         name: "badge example",
         badge: true,
@@ -83,3 +83,40 @@
         size: 64,
     }}
 />
+
+<Story name="Status" asChild>
+    <div class="d-flex fd-column g64">
+        <table class="s-table s-table__bx-simple wmx7">
+            <thead>
+                <tr>
+                    <th scope="col">Sizes</th>
+                    <th scope="col" class="s-table--cell8">Example</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <th scope="row" class="va-middle">16</th>
+                    <td class="va-middle px4">
+                        <Avatar
+                            name="username"
+                            src="https://picsum.photos/32"
+                            status="online"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row" class="va-middle">24</th>
+                    <td class="va-middle px4">
+                        <Avatar
+                            name="username"
+                            src="https://picsum.photos/48"
+                            status="online"
+                            size={24}
+                        />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</Story>

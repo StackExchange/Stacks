@@ -1,7 +1,8 @@
 ---
 layout: page
 title: Activity indicator
-razor: https://razor.stackoverflow.design/components/activity-indicator
+svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-activityindicator--docs
+figma: https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=610-18796
 description: Stacks provides a small jewel for indicating new activity.
 tags: components
 ---
@@ -62,7 +63,7 @@ tags: components
 
 <a href="#" class="s-link s-link__muted">
     <div class="s-avatar bg-red-400 ps-relative">
-        <div class="s-activity-indicator ps-absolute tn6 ln6">
+        <div class="s-avatar--indicator s-activity-indicator s-activity-indicator__sm">
             <div class="v-visible-sr">…</div>
         </div>
         <div class="s-avatar--letter">…</div>
@@ -72,10 +73,20 @@ tags: components
 </a>
 
 <div class="ps-relative">
-    @Svg.Bell
+    @Svg.Notification
 
-    <div class="s-activity-indicator ps-absolute tn4 rn4">
+    <div class="s-activity-indicator s-activity-indicator__sm ps-absolute tn4 rn4 ba baw2 bc-white box-content">
         <div class="v-visible-sr">…</div>
+    </div>
+</div>
+
+<div class="ps-relative">
+    @Svg.Notification
+
+    <div class="ps-absolute ba baw2 bc-white bar-pill lh-xs tn8 rn8">
+        <div class="s-activity-indicator">
+            3 <div class="v-visible-sr">…</div>
+        </div>
     </div>
 </div>
 {% endhighlight %}
@@ -90,7 +101,7 @@ tags: components
 
                 <a href="#" class="s-link s-link__muted">
                     <div class="s-avatar bg-red-400 d:bg-red-200 ps-relative">
-                        <div class="s-activity-indicator ps-absolute tn6 ln6">
+                        <div class="s-avatar--indicator s-activity-indicator s-activity-indicator__sm">
                             <div class="v-visible-sr">New activity</div>
                         </div>
                         <div class="s-avatar--letter">G</div>
@@ -100,10 +111,20 @@ tags: components
                 </a>
 
                 <div class="fc-medium ps-relative">
-                    {% icon "Bell" %}
+                    {% icon "Notification" %}
 
-                    <div class="s-activity-indicator ps-absolute tn4 rn4">
+                    <div class="s-activity-indicator s-activity-indicator__sm ps-absolute tn4 rn4 ba baw2 bc-white box-content">
                         <div class="v-visible-sr">New activity</div>
+                    </div>
+                </div>
+
+                <div class="fc-medium ps-relative">
+                    {% icon "Notification" %}
+
+                    <div class="ps-absolute ba baw2 bc-white bar-pill lh-xs tn8 rn8">
+                        <div class="s-activity-indicator">
+                            3 <div class="v-visible-sr">…</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -138,7 +159,7 @@ tags: components
 
                         <a href="#" class="s-link s-link__muted">
                             <div class="s-avatar bg-blue-400 d:bg-blue-200 ps-relative">
-                                <div class="s-activity-indicator s-activity-indicator__{{variant}} ps-absolute tn6 ln6">
+                                <div class="s-avatar--indicator s-activity-indicator s-activity-indicator__sm s-activity-indicator__{{variant}}">
                                     <div class="v-visible-sr">New activity</div>
                                 </div>
                                 <div class="s-avatar--letter">G</div>
@@ -148,10 +169,20 @@ tags: components
                         </a>
 
                         <div class="fc-medium ps-relative">
-                            {% icon "Bell" %}
+                            {% icon "Notification" %}
 
-                            <div class="s-activity-indicator s-activity-indicator__{{variant}} ps-absolute tn4 rn4">
+                            <div class="s-activity-indicator s-activity-indicator__{{variant}} s-activity-indicator__sm ps-absolute tn4 rn4 ba baw2 bc-white bar-pill box-content">
                                 <div class="v-visible-sr">New activity</div>
+                            </div>
+                        </div>
+
+                        <div class="fc-medium ps-relative">
+                            {% icon "Notification" %}
+
+                            <div class="ps-absolute ba baw2 bc-white bar-pill lh-xs tn8 rn8">
+                                <div class="s-activity-indicator s-activity-indicator__{{variant}}">
+                                    3 <div class="v-visible-sr">New activities</div>
+                                </div>
                             </div>
                         </div>
                     </div>
