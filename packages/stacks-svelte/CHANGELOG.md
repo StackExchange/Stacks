@@ -1,5 +1,12 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.3
+
+### Patch Changes
+
+- Updated dependencies [[`66bfd40`](https://github.com/StackExchange/Stacks/commit/66bfd409b4643db3970457eb884066aa799c15d9), [`c9bd0f6`](https://github.com/StackExchange/Stacks/commit/c9bd0f6ed0286bd2b1b2935662f96c537445bf12), [`73c8edd`](https://github.com/StackExchange/Stacks/commit/73c8edd05eacee5d26e9267279a1cb5b32923710)]:
+    - @stackoverflow/stacks@3.0.0-beta.2
+
 ## 1.0.0-beta.2
 
 ### Minor Changes
