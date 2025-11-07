@@ -1,41 +1,52 @@
 .s-tag {
     // Base
-    --_ta-bc: var(--theme-tag-border-color, var(--_ta-bg));
+    --_ta-bc: var(--theme-tag-border-color, var(--black-300));
     --_ta-bg: var(--theme-tag-background-color, var(--black-150));
-    --_ta-fc: var(--theme-tag-color, var(--black-500));
+    --_ta-fc: var(--theme-tag-color, var(--black-600));
     // Hover
-    --_ta-bc-hover: var(--theme-tag-hover-border-color, var(--_ta-bg-hover));
+    --_ta-bc-hover: var(--theme-tag-hover-border-color, var(--black-300));
     --_ta-bg-hover: var(--theme-tag-hover-background-color, var(--black-200));
     --_ta-fc-hover: var(--theme-tag-hover-color, var(--black-600));
     // Other
-    --_ta-br: var(--br-md);
-    --_ta-fs: var(--fs-caption);
-    --_ta-lh: 1.846153846;
-    --_ta-pl: var(--_ta-px);
-    --_ta-pr: var(--_ta-px);
-    --_ta-px: var(--su4);
-    --_ta-dismiss-padding: calc(var(--_ta-px) - var(--su-static1));
+    --_ta-fs: var(--fs-caption); //13px
+    --_ta-lh: 126%;
+    --_ta-pl: var(--su8);
+    --_ta-pr: var(--su8);
+    --_ta-pt: var(--su4);
+    --_ta-pb: var(--su4);
+    --_ta-fc-disabled: var(--black-400);
+    --_ta-dismiss-padding-x: var(--su2);
+    --_ta-dismiss-padding-y: var(--su1);
+    --_ta-br: var(--su2);
+    --_ta-before-pl: var(--su8);
+
 
     // CONTEXTUAL STYLES
     .highcontrast-mode({
-        &:not(&__moderator):not(&__required) {
-            --_ta-bc: var(--theme-tag-border-color, var(--black-300));
-            --_ta-bc-hover: var(--theme-tag-hover-border-color, var(--black-300));
-        }
+        border-width: var(--su1);
     });
 
     // MODIFIERS
     // Sizes
     &&__sm {
-        .size-styles(xs; ta; @styles: fs);
-        --_ta-lh: 1.4;
-        --_ta-px: var(--su2);
+        --_ta-fs: var(--fs-fine); //12px        
+        --_ta-pl: var(--su4);
+        --_ta-pr: var(--su4);
+        --_ta-pt: var(--su1);
+        --_ta-pb: var(--su1);
+
+        // Reduce close button padding for a better fit
+        --_ta-dismiss-padding-y: var(--su0);
+        --_ta-before-pl: var(--su4);
     }
+    
+    &&__sm&&__ignored,
+    &&__sm&&__watched {
+        --_ta-pl: calc(var(--su-static24) - var(--su-static2)); //22px
+    }
+
     &&__lg {
-        --_ta-br: calc(var(--br-md) + var(--su-static1));
-        --_ta-fs: var(--fs-subheading);
-        --_ta-lh: 1.684210526;
-        --_ta-px: var(--su6);
+        --_ta-fs: var(--fs-body1); //14px
     }
 
     // VARIANTS
@@ -44,10 +55,10 @@
     &&__ignored,
     &__watched, // TODO: remove all single `&` watched styles once core no longer requires them
     &&__watched {
-        --_ta-pl: calc(var(--su-static24) - var(--su-static2)); // 22px
+        --_ta-pl: calc(var(--su-static24) + var(--su-static2)); //26px
         --_ta-before-size: calc(var(--su-static16) - var(--su-static2)); // 14px
+        
         // --_ta-before-icon defined per variant
-
         &:before {
             height: var(--_ta-before-size);
             width: var(--_ta-before-size);
@@ -57,10 +68,8 @@
             background-color: currentColor;
             content: "";
             display: block;
-            left: var(--su-static4);
-            margin-right: var(--su2);
+            left: var(--_ta-before-pl);
             position: absolute;
-            top: calc(50% - calc(var(--su-static8) - var(--su-static1)));
             -webkit-mask-size: contain;
             mask-size: contain;
         }
@@ -71,25 +80,34 @@
     &__ignored, // TODO: remove all single `&` ignored styles once core no longer requires them
     &&__ignored {
         --_ta-before-icon: url("data:image/svg+xml;,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M3.52 7.38 1.58 9.26A12.38 12.38 0 0 1 0 7s2.63-5.14 7.05-5.14c.66 0 1.28.12 1.86.32L7.44 3.6a3.48 3.48 0 0 0-3.92 3.78ZM5.3 9.99c.5.28 1.1.44 1.71.44 1.94 0 3.5-1.53 3.5-3.43 0-.62-.17-1.21-.47-1.72L8.7 6.6a1.73 1.73 0 0 1-2.08 2.07L5.29 10Zm6.23-6.19A12.7 12.7 0 0 1 14 7s-2.63 5.14-6.95 5.14A6.1 6.1 0 0 1 4 11.3L2.27 13l-1.4-1.36L11.9 1l1.23 1.2-1.6 1.6Z'/%3E%3C/svg%3E");
+        --_ta-fc: var(--theme-tag-color, var(--_ta-fc-disabled));
+        &:hover {
+           --_ta-bg-hover: var(--theme-tag-hover-background-color, var(--_ta-bg));
+           --_ta-fc-hover: var(--theme-tag-hover-color, var(--_ta-fc-disabled));
+        }
     }
 
-    // moderator overrides other required
+    &&__required, 
     &&__moderator {
-        --_ta-bc: var(--orange-300);
+        border-width: var(--su1);
+    }
+
+    &&__moderator:not(&&__ignored) {
         --_ta-bg: var(--orange-100);
+        --_ta-bc: var(--orange-300);
         --_ta-fc: var(--orange-500);
-        --_ta-bc-hover: var(--orange-300);
         --_ta-bg-hover: var(--orange-200);
+        --_ta-bc-hover: var(--orange-300);
         --_ta-fc-hover: var(--orange-600);
     }
 
     &&__required:not(&__moderator) {
-        --_ta-bc: var(--theme-tag-required-border-color, var(--theme-tag-border-color, var(--black-400)));
-        --_ta-bg: var(--theme-tag-required-background-color, var(--theme-tag-background-color, var(--black-150)));
-        --_ta-fc: var(--theme-tag-required-color, var(--theme-tag-color, var(--black-500)));
+        --_ta-bc: var(--theme-tag-required-border-color, var(--theme-tag-border-color, var(--black-500)));
         --_ta-bc-hover: var(--theme-tag-required-hover-border-color, var(--theme-tag-hover-border-color, var(--black-600)));
-        --_ta-bg-hover: var(--theme-tag-required-hover-background-color, var(--theme-tag-hover-background-color, var(--black-200)));
-        --_ta-fc-hover: var(--theme-tag-required-hover-color, var(--theme-tag-hover-color, var(--black-600)));
+    }
+
+    &&__required:not(&__moderator)&__ignored {
+        --_ta-bc-hover: var(--_ta-bc);
     }
 
     &__watched, // TODO: remove all single `&` watched styles once core no longer requires them
@@ -120,13 +138,12 @@
         align-items: center;
         align-self: stretch;
         background-color: transparent;
-        border-radius: var(--br-md);
+        border-radius: var(--_ta-br);
         color: inherit;
         cursor: pointer;
         display: flex;
         justify-content: center;
-        margin: var(--su-static1) calc(var(--_ta-dismiss-padding) * -1) var(--su-static1) var(--_ta-dismiss-padding);
-        padding: var(--_ta-dismiss-padding);
+        margin: var(--_ta-dismiss-padding-y) calc(var(--_ta-dismiss-padding-x) * -1) var(--_ta-dismiss-padding-y) calc(var(--_ta-dismiss-padding-x) * 2);
     }
 
     & &--sponsor { // The small sponsor favicon displayed within a tag
@@ -137,9 +154,9 @@
         }
 
         align-self: center;
-        border-radius: calc(var(--br-md) - var(--su-static1));
+        border-radius: var(--_ta-br);
         display: inline-flex;
-        margin: calc(var(--su1) * -1) var(--su4) calc(var(--su2) * -1) calc(var(--su2) * -1);
+        margin: calc(var(--su1) * -1) var(--su4) calc(var(--su2) * -1) var(--su0);
         max-width: calc(var(--su-static16) + var(--su-static2));
     }
 
@@ -158,17 +175,18 @@
     }
 
     background-color: var(--_ta-bg);
-    border: var(--su-static1) solid var(--_ta-bc);
-    border-radius: var(--_ta-br);
+    border: var(--su0) solid var(--_ta-bc);
     color: var(--_ta-fc);
     font-size: var(--_ta-fs);
     line-height: var(--_ta-lh);
     padding-left: var(--_ta-pl);
     padding-right: var(--_ta-pr);
+    padding-top: var(--_ta-pt);
+    padding-bottom: var(--_ta-pb);
 
     align-items: center;
     display: inline-flex;
-    font-weight: 700;
+    font-weight: 400;
     justify-content: center;
     min-width: 0;
     text-decoration: none;
