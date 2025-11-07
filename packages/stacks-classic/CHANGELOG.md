@@ -1,5 +1,17 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.2
+
+### Minor Changes
+
+- [#2015](https://github.com/StackExchange/Stacks/pull/2015) [`66bfd40`](https://github.com/StackExchange/Stacks/commit/66bfd409b4643db3970457eb884066aa799c15d9) Thanks [@dancormier](https://github.com/dancormier)! - Updated colors for SHINE
+
+- [#2028](https://github.com/StackExchange/Stacks/pull/2028) [`c9bd0f6`](https://github.com/StackExchange/Stacks/commit/c9bd0f6ed0286bd2b1b2935662f96c537445bf12) Thanks [@dancormier](https://github.com/dancormier)! - Update typography for new SHINE design system
+
+### Patch Changes
+
+- [#2037](https://github.com/StackExchange/Stacks/pull/2037) [`73c8edd`](https://github.com/StackExchange/Stacks/commit/73c8edd05eacee5d26e9267279a1cb5b32923710) Thanks [@dancormier](https://github.com/dancormier)! - Add legacy sm, lg border radius custom properties
+
 ## 3.0.0-beta.1
 
 ### Minor Changes
