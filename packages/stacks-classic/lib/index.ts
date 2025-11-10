@@ -1,6 +1,7 @@
 import "./stacks.less";
 import {
     BannerController,
+    CodeBlockController,
     ExpandableController,
     ModalController,
     PopoverController,
@@ -14,6 +15,7 @@ import { application, StacksApplication } from "./stacks";
 
 // register all built-in controllers
 application.register("s-banner", BannerController);
+application.register("s-code-block", CodeBlockController);
 application.register("s-expandable-control", ExpandableController);
 application.register("s-modal", ModalController);
 application.register("s-toast", ToastController);

@@ -35,6 +35,27 @@ tags: components
             </tbody>
         </table>
     </div>
+
+    {% header "h3", "Stimulus controller" %}
+    <p class="stacks-copy">Code blocks support interactive features when the Stimulus controller <code class="stacks-code">s-code-block</code> is attached.</p>
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Attribute</th>
+                    <th scope="col" class="s-table--cell2">Applies to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row"><code class="stacks-code">data-controller="s-code-block"</code></th>
+                    <td class="ff-mono"><code class="stacks-code">pre.s-code-block</code></td>
+                    <td class="ff-mono">Automatically adds a copy-to-clipboard button that appears on hover/focus.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
 
 <section class="stacks-section">
@@ -43,7 +64,7 @@ tags: components
     {% header "h3", "HTML" %}
     <div class="stacks-preview">
 {% highlight html %}
-<pre class="s-code-block language-html">
+<pre class="s-code-block language-html" data-controller="s-code-block">
     …
 </pre>
 {% endhighlight %}
@@ -476,6 +497,34 @@ linenums:23[
     "description": {"text": "...", "sensitive": false}
   }
 ]
+{% endhighlight %}
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Interactive features" %}
+    <p class="stacks-copy">Add <code class="stacks-code">data-controller="s-code-block"</code> to enable interactive features like copy-to-clipboard functionality.</p>
+    
+    {% header "h3", "Copy to clipboard" %}
+    <p class="stacks-copy">When the controller is attached, a copy button automatically appears on hover or focus that allows users to copy the code content to their clipboard.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<pre class="s-code-block language-javascript" data-controller="s-code-block">
+    …
+</pre>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+{% highlight javascript %}
+data-controller="s-code-block"const greeting = "Hello, World!";
+console.log(greeting);
+
+function fibonacci(n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+console.log(fibonacci(10));
 {% endhighlight %}
         </div>
     </div>
