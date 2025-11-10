@@ -4,8 +4,8 @@
 
     export type Brand = "" | "facebook" | "github" | "google";
     export type Size = "" | "xs" | "sm" | "md";
-    export type Variant = "" | "danger" | "featured" | "muted";
-    export type Weight = "" | "outlined" | "filled";
+    export type Variant = "" | "danger" | "featured" | "tonal";
+    export type Weight = "" | "filled";
 
     export interface Props extends HTMLButtonAttributes {
         /**
@@ -23,13 +23,13 @@
 
         /**
          * The weight of the button
-         * @type {"" | "danger" | "featured" | "muted"}
+         * @type {"" | "danger" | "featured" | "tonal"}
          */
         variant?: Variant;
 
         /**
          * The weight of the button
-         * @type {"" | "outlined" | "filled"}
+         * @type {"" | "filled"}
          */
         weight?: Weight;
 

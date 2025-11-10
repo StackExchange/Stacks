@@ -7,8 +7,8 @@
 
     const ButtonBrands: Brand[] = ["", "facebook", "github", "google"];
     const ButtonSizes: Size[] = ["", "xs", "sm", "md"];
-    const ButtonVariants: Variant[] = ["", "danger", "featured", "muted"];
-    const ButtonWeights: Weight[] = ["", "outlined", "filled"];
+    const ButtonVariants: Variant[] = ["", "danger", "featured", "tonal"];
+    const ButtonWeights: Weight[] = ["", "filled"];
 
     const titleCase = (str: string) => {
         return str.toLowerCase().replace(/(?:^|\s)\w/g, (match) => {
