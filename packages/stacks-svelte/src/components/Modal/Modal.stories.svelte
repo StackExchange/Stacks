@@ -63,7 +63,7 @@
                     Save changes
                 </Button>
                 <Button
-                    variant={args.state === "danger" ? "muted" : ""}
+                    variant={args.state === "danger" ? "tonal" : ""}
                     onclick={() => (visible = false)}
                 >
                     Cancel
@@ -96,7 +96,7 @@
                 Danger
             </Button>
             <Button
-                weight="outlined"
+                weight="filled"
                 onclick={() => {
                     visible = true;
                     mstate = "celebration";
@@ -133,7 +133,7 @@
                 Save changes
             </Button>
             <Button
-                variant={mstate === "danger" ? "muted" : ""}
+                variant={mstate === "danger" ? "tonal" : ""}
                 onclick={() => (visible = false)}
             >
                 Cancel

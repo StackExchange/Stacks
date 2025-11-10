@@ -91,10 +91,10 @@ describe("Button", () => {
 
     it("should render the appropriate variant class", () => {
         render(Button, {
-            variant: "muted",
+            variant: "tonal",
             children,
         });
-        expect(screen.getByRole("button")).to.have.class("s-btn__muted");
+        expect(screen.getByRole("button")).to.have.class("s-btn__tonal");
     });
 
     it("should render the appropriate weight class", () => {

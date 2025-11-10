@@ -129,7 +129,7 @@
         {/if}
         {#if !hideCloseButton}
             <Button
-                variant="muted"
+                variant="tonal"
                 icon
                 aria-label={i18nCloseButtonLabel}
                 class="s-modal--close"
