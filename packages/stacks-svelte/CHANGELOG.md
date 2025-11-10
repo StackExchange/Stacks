@@ -1,5 +1,11 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.4
+
+### Patch Changes
+
+- [`b5d8e90`](https://github.com/StackExchange/Stacks/commit/b5d8e901e31b121b32931f16d9605451a0effbfb) Thanks [@giamir](https://github.com/giamir)! - Support both @stackoverflow/stacks v2 and v3 as peer dependencies
+
 ## 1.0.0-beta.3
 
 ### Patch Changes
