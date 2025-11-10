@@ -261,19 +261,29 @@
 
     each(@tiers, .(@tier, @k, @i) {
         @stops: 100, 200, 300, 400, 500, 600;
-        @fallbackColor: if(@tier = primary, orange, blue);
+        @fallbackColor: if(@tier = primary, orange, black);
         @baseThemeVar: ~"--theme-@{tier}";
         @customThemeVar: if(@mode = light, ~"@{baseThemeVar}-custom", ~"--theme-dark-@{tier}-custom");
 
         & when (@mode = light), (@mode = dark) {
-            @{baseThemeVar}: ~"var(@{customThemeVar}, var(--@{fallbackColor}-400))";
+            & when (@tier = primary) {
+                @{baseThemeVar}: ~"var(@{customThemeVar}, var(--@{fallbackColor}-400))";
+            }
+            & when (@tier = secondary) {
+                @{baseThemeVar}: ~"var(@{customThemeVar}, var(--@{fallbackColor}))";
+            }
             each(@stops, .(@stop, @kStop, @iStop) {
                 @{baseThemeVar}-@{stop}: ~"var(@{customThemeVar}-@{stop}, var(--@{fallbackColor}-@{stop}))";
             });
         }
 
         & when (@mode = light-highcontrast), (@mode = dark-highcontrast) {
-            @{baseThemeVar}: ~"var(--@{fallbackColor}-400)";
+            & when (@tier = primary) {
+                @{baseThemeVar}: ~"var(--@{fallbackColor}-400)";
+            }
+            & when (@tier = secondary) {
+            @{baseThemeVar}: ~"var(--@{fallbackColor})";
+            }
 
             each(@stops, .(@stop, @kStop, @iStop) {
                 @{baseThemeVar}-@{stop}: ~"var(--@{fallbackColor}-@{stop})";

@@ -1,52 +1,66 @@
 <script lang="ts">
+    import type { Snippet } from "svelte";
     import { usePopoverContext } from "./Popover.svelte";
     import { clickOutside, focusTrap } from "../../actions";
 
-    /**
-     * The aria role of the popover
-     * (if not specified, it will default to 'dialog' for popovers or 'tooltip' when in tooltip mode)
-     * @type {string}
-     */
-    export let role: string | null = null;
-    /**
-     * Additional CSS classes added to the element
-     */
-    let className = "";
-    export { className as class };
+    interface Props {
+        /**
+         * The aria role of the popover
+         * (if not specified, it will default to 'dialog' for popovers or 'tooltip' when in tooltip mode)
+         */
+        role?: string | null;
+        /**
+         * Additional CSS classes added to the element
+         */
+        class?: string;
+        /**
+         * Children snippet
+         */
+        children?: Snippet;
+    }
+
+    let { role = null, class: className = "", children }: Props = $props();
 
     let pstate = usePopoverContext("PopoverContent");
-    let classes = "s-popover";
 
-    const arrowEl = $pstate.arrowEl;
+    let classes = $derived.by(() => {
+        let result = "s-popover";
+        if (pstate.tooltip) {
+            result += " s-popover__tooltip";
+        }
+        if (className) {
+            result += " " + className;
+        }
+        return result;
+    });
 
-    if ($pstate.tooltip) {
-        classes += " s-popover__tooltip";
-    }
+    let computedClass = $derived(
+        `${classes}${pstate.visible ? " is-visible" : ""}`
+    );
 
-    if (className) {
-        classes += " " + className;
-    }
+    let computedRole = $derived(
+        role || (pstate.tooltip ? "tooltip" : "dialog")
+    );
 </script>
 
 <!-- data-popper-placement is needed for compatibility with stacks classic popover styles -->
 <div
-    id={`${$pstate.id}-popover`}
-    class={`${classes}${$pstate.visible ? " is-visible" : ""}`}
-    role={role || ($pstate.tooltip ? "tooltip" : "dialog")}
-    use:$pstate.floatingContent
-    use:focusTrap={{ active: $pstate.trapFocus && !!$pstate.visible }}
+    id={`${pstate.id}-popover`}
+    class={computedClass}
+    role={computedRole}
+    use:pstate.floatingContent
+    use:focusTrap={{ active: pstate.trapFocus && !!pstate.visible }}
     use:clickOutside
-    onoutclick={$pstate.onOutclick}
-    onmouseenter={$pstate.openTooltip}
-    onmouseleave={$pstate.closeTooltip}
-    onfocusin={$pstate.openTooltip}
-    onfocusout={$pstate.closeTooltip}
-    data-popper-placement={$pstate.computedPlacement}
+    onoutclick={pstate.onOutclick}
+    onmouseenter={pstate.openTooltip}
+    onmouseleave={pstate.closeTooltip}
+    onfocusin={pstate.openTooltip}
+    onfocusout={pstate.closeTooltip}
+    data-popper-placement={pstate.computedPlacement}
 >
-    <div class="s-popover--arrow" bind:this={$arrowEl}></div>
     <div class="s-popover--content p12 mn12">
         <div class="ps-relative">
-            <slot />
+            {@render children?.()}
         </div>
     </div>
 </div>

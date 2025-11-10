@@ -2,13 +2,13 @@
     // COMPONENT-SPECIFIC CONSTANTS
     @pr-circle-circumference: (2 * pi() * 14); // 2πr, r = 14.
     // COMPONENT-SPECIFIC CUSTOM PROPERTIES
-    --_pr-bar: var(--br-sm);
+    --_pr-bar: var(--br-md);
     --_pr-bg: var(--black-300);
     --_pr-h: unset;
     --_pr-size: unset;
     --_pr-w: 100%;
     --_pr-hmn: var(--su-static4);
-    --_pr-bar-bar: var(--br-sm);
+    --_pr-bar-bar: var(--br-md);
     --_pr-bar-bg: var(--green-400);
     --_pr-bar-hmn: var(--su-static4);
     --_pr-label-ai: unset;
@@ -23,14 +23,15 @@
         --_pr-bar-bg: var(--orange-400);
     }
 
+    // TODO SPARK I've changed metallic colors here to use their new non-metallic equivalents
     &&__bronze {
-        --_pr-bar-bg: var(--bronze-100);
-        --_pr-label-bc: var(--bronze-400);
+        --_pr-bar-bg: var(--orange-100);
+        --_pr-label-bc: var(--orange-400);
     }
 
     &&__gold {
-        --_pr-bar-bg: var(--gold-100);
-        --_pr-label-bc: var(--gold-400);
+        --_pr-bar-bg: var(--yellow-100);
+        --_pr-label-bc: var(--yellow-400);
     }
 
     &&__info {
@@ -38,8 +39,8 @@
     }
 
     &&__silver {
-        --_pr-bar-bg: var(--silver-100);
-        --_pr-label-bc: var(--silver-400);
+        --_pr-bar-bg: var(--blue-100);
+        --_pr-label-bc: var(--blue-400);
     }
 
     // VARIANTS
@@ -161,7 +162,7 @@
                 &.is-active {
                     .s-progress {
                         &--bar.s-progress--bar__left {
-                            background: var(--theme-secondary-400);
+                            background: var(--theme-secondary);
                         }
 
                         &--label {
@@ -169,8 +170,8 @@
                         }
 
                         &--stop {
-                            background: var(--theme-secondary-400);
-                            box-shadow: 0 0 0 var(--su-static6) var(--translucent-secondary);
+                            background: var(--theme-secondary);
+                            box-shadow: 0 0 0 var(--su-static6) var(--translucent-secondary);// TODO SHINE revisit this value once theme colors are finalized
                         }
                     }
                 }
@@ -179,7 +180,7 @@
                     .s-progress {
                         &--bar,
                         &--stop {
-                            background: var(--theme-secondary-400);
+                            background: var(--theme-secondary);
                         }
 
                         &--label {

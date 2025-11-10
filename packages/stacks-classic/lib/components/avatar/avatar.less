@@ -1,7 +1,6 @@
 .s-avatar {
     --_av-size: var(--su-static16);
     --_av-bg: var(--_white-static); // Force a white background color for when we have transparent avatars
-    --_av-br: var(--br-sm);
     --_av-fs-letter: calc(var(--su-static12) - var(--su-static1));
     --_av-scale-badge: 1;
 
@@ -18,14 +17,8 @@
 
     // MODIFIERS
     // Sizes
-    &&__32,
-    &&__48 {
-        --_av-br: var(--br-md);
-    }
-
     &&__96,
     &&__128 {
-        --_av-br: calc(var(--br-lg) + var(--br-sm));
         --_av-scale-badge: 3;
     }
 
@@ -49,7 +42,6 @@
 
     &&__64 {
         --_av-size: var(--su-static64);
-        --_av-br: var(--br-lg);
         --_av-fs-letter: calc(var(--su-static48) - var(--su-static4));
         --_av-scale-badge: 2.4;
     }
@@ -74,7 +66,6 @@
     }
 
     & &--image {
-        border-radius: var(--_av-br);
         display: block;
         height: var(--_av-size);
         width: var(--_av-size);
@@ -95,8 +86,15 @@
         user-select: none;
     }
 
-    background-color: var(--_av-bg); 
-    border-radius: var(--_av-br);
+    & &--indicator {
+        box-shadow: 0 0 0 var(--su-static2) var(--white);
+        bottom: 100%;
+        left: 100%;
+        position: absolute;
+        transform: translate(-50%, 60%);
+    }
+
+    background-color: var(--_av-bg);
     height: var(--_av-size);
     width: var(--_av-size);
 

@@ -1,4 +1,4 @@
-import { IconClearSm } from "@stackoverflow/stacks-icons";
+import { IconClearSm } from "@stackoverflow/stacks-icons-legacy";
 import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 

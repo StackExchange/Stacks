@@ -1,4 +1,8 @@
 <script lang="ts" module>
+    import type { Snippet } from "svelte";
+    import type { Placement } from "@floating-ui/core";
+    import { getContext } from "svelte";
+
     export interface PopoverState {
         id: string;
         controlled: boolean;
@@ -9,7 +13,6 @@
         tooltip: boolean;
         floatingRef: (element: HTMLElement) => void;
         floatingContent: (element: HTMLElement) => void;
-        arrowEl: Writable<HTMLElement>;
         onOutclick: (e: CustomEvent<HTMLElement>) => void;
         open: () => void;
         openTooltip: () => void;
@@ -20,11 +23,9 @@
 
     const POPOVER_CONTEXT_NAME = "popover-context";
 
-    export function usePopoverContext(
-        component: string
-    ): Readable<PopoverState> {
+    export function usePopoverContext(component: string): PopoverState {
         let context = getContext(POPOVER_CONTEXT_NAME) as
-            | Writable<PopoverState>
+            | PopoverState
             | undefined;
         if (context === undefined) {
             throw new Error(
@@ -36,54 +37,83 @@
 </script>
 
 <script lang="ts">
-    import type { Placement, Strategy } from "@floating-ui/core";
-    import { createEventDispatcher, setContext, getContext } from "svelte";
-    import type { Writable, Readable } from "svelte/store";
-    import { writable } from "svelte/store";
+    import type { Strategy } from "@floating-ui/core";
+    import { setContext } from "svelte";
     import { offset, inline, flip } from "@floating-ui/dom";
-    import { createFloatingActions, arrow } from "svelte-floating-ui";
+    import { createFloatingActions } from "svelte-floating-ui";
 
-    /**
-     * The html id attribute for the popover (required)
-     * @type {string}
-     */
-    export let id: string;
+    interface Props {
+        /**
+         * The html id attribute for the popover (required)
+         */
+        id: string;
+        /**
+         * Whether or not the popover should be visible on mount
+         */
+        autoshow?: boolean;
+        /**
+         * Boolean describing if the popover panel should be visible or not.
+         * If not specified, the component is uncontrolled and toggling behavior is automatically taken care of.
+         * When specified, the component is controlled by the consumer and the internal open/closed state is ignored.
+         */
+        visible?: boolean | undefined;
+        /**
+         * Dictates where to place the popover in relation to the reference element
+         */
+        placement?: Placement;
+        /**
+         * The type of CSS position property to use for the popover content.
+         * See https://floating-ui.com/docs/computeposition#strategy
+         */
+        strategy?: Strategy;
+        /**
+         * Whether or not the popover should trap focus within itself
+         * When active make sure to include in the popover content a way for the user dismiss the popover (e.g. a cancel button or the PopoverCloseButton component)
+         */
+        trapFocus?: boolean;
+        /**
+         * Whether or not the popover should close when clicking outside of it or in the reference element
+         */
+        dismissible?: boolean;
+        /**
+         * Whether or not the popover should be an on-hover tooltip
+         */
+        tooltip?: boolean;
+        /**
+         * Callback fired when the popover is opened
+         */
+        onopen?: () => void;
+        /**
+         * Callback fired when the popover is closed
+         */
+        onclose?: () => void;
+        /**
+         * Children snippet with visible, open, and close parameters
+         */
+        children?: Snippet<
+            [
+                {
+                    visible: boolean | undefined;
+                    open: () => void;
+                    close: () => void;
+                },
+            ]
+        >;
+    }
 
-    /**
-     * Whether or not the popover should be visible on mount
-     */
-    export let autoshow = false;
-    /**
-     * Boolean describing if the popover panel should be visible or not.
-     * If not specified, the component is uncontrolled and toggling behavior is automatically taken care of.
-     * When specified, the component is controlled by the consumer and the internal open/closed state is ignored.
-     * @type {boolean}
-     */
-    export let visible: boolean | undefined = undefined;
-    /**
-     * Dictates where to place the popover in relation to the reference element
-     * @type {Placement}
-     */
-    export let placement: Placement = "bottom";
-    /**
-     * The type of CSS position property to use for the popover content.
-     * See https://floating-ui.com/docs/computeposition#strategy
-     * @type {Strategy}
-     */
-    export let strategy: Strategy = "absolute";
-    /**
-     * Whether or not the popover should trap focus within itself
-     * When active make sure to include in the popover content a way for the user dismiss the popover (e.g. a cancel button or the PopoverCloseButton component)
-     */
-    export let trapFocus = false;
-    /**
-     * Whether or not the popover should close when clicking outside of it or in the reference element
-     */
-    export let dismissible = true;
-    /**
-     * Whether or not the popover should be an on-hover tooltip
-     */
-    export let tooltip = false;
+    let {
+        id,
+        autoshow = false,
+        visible = undefined,
+        placement = "bottom",
+        strategy = "absolute",
+        trapFocus = false,
+        dismissible = true,
+        tooltip = false,
+        onopen,
+        onclose,
+        children,
+    }: Props = $props();
 
     // These delays preserve the same behavior of Stacks Classic s-tooltip
     // https://github.com/StackExchange/Stacks/blob/develop/lib/components/popover/tooltip.ts
@@ -92,37 +122,27 @@
 
     let reference: HTMLElement;
     let activeTimeout: number;
-    const arrowEl = writable<HTMLElement>();
+
     // if the visible prop is passed, the component is controlled
-    $: controlled = $$props.visible !== undefined;
+    const controlled = $derived(visible !== undefined);
 
     const [floatingRef, floatingContent, update] = createFloatingActions({
         placement,
         strategy,
-        middleware: [offset(10), flip(), inline(), arrow({ element: arrowEl })],
-        onComputed({ placement, middlewareData }) {
-            $pstate.computedPlacement = placement;
-            if (middlewareData.arrow && $arrowEl) {
-                const { x, y } = middlewareData.arrow;
-
-                Object.assign($arrowEl.style, {
-                    left: x != null ? `${x}px` : "",
-                    top: y != null ? `${y}px` : "",
-                });
-            }
+        middleware: [offset(10), flip(), inline()],
+        onComputed({ placement: computedPlacement }) {
+            pstate.computedPlacement = computedPlacement;
         },
     });
-
-    const dispatch = createEventDispatcher<{ close: void; open: void }>();
 
     const open = (delay: number = 0) => {
         window.clearTimeout(activeTimeout);
         if (controlled) return;
-        if (!$pstate.visible) {
+        if (!pstate.visible) {
             activeTimeout = window.setTimeout(() => {
-                $pstate.visible = true;
+                pstate.visible = true;
                 // Fires when the popover is opened
-                dispatch("open");
+                onopen?.();
             }, delay);
         }
     };
@@ -140,20 +160,20 @@
     const close = (delay: number = 0) => {
         window.clearTimeout(activeTimeout);
         if (controlled) return;
-        if ($pstate.visible) {
+        if (pstate.visible) {
             activeTimeout = window.setTimeout(() => {
-                $pstate.visible = false;
+                pstate.visible = false;
                 if (!tooltip) {
                     reference.focus();
                 }
                 // Fires when the popover is closed
-                dispatch("close");
+                onclose?.();
             }, delay);
         }
     };
 
     const toggle = () => {
-        $pstate.visible ? close() : open();
+        pstate.visible ? close() : open();
     };
 
     const onOutclick = (e: CustomEvent<HTMLElement>) => {
@@ -170,9 +190,9 @@
         }
     };
 
-    const pstate = writable<PopoverState>({
+    const pstate = $state<PopoverState>({
         id,
-        controlled: $$props.visible !== undefined,
+        controlled: visible !== undefined,
         visible: autoshow,
         dismissible,
         trapFocus,
@@ -183,7 +203,6 @@
             floatingRef(element);
         },
         floatingContent,
-        arrowEl,
         onOutclick,
         open,
         openTooltip,
@@ -192,18 +211,26 @@
         toggle,
     });
 
-    $: if (controlled) {
-        $pstate.visible = visible;
-    }
+    $effect(() => {
+        pstate.controlled = controlled;
+    });
+
+    $effect(() => {
+        if (controlled) {
+            pstate.visible = visible;
+        }
+    });
 
     setContext(POPOVER_CONTEXT_NAME, pstate);
 
     // this is here for ensuring the storybook interactive playground
     // work as expected despite it is unlikely placement prop will be
     // changed dynamically in regular circumnstances
-    $: update({ placement });
+    $effect(() => {
+        update({ placement });
+    });
 </script>
 
-<svelte:window on:keydown={onKeypress} />
+<svelte:window onkeydown={onKeypress} />
 
-<slot visible={$pstate.visible} {open} {close} />
+{@render children?.({ visible: pstate.visible, open, close })}
