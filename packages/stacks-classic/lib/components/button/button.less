@@ -4,7 +4,7 @@
     --_bu-bc: transparent;
     // --_bu-bg: inherit; // [1]
     --_bu-br: var(--br-pill); // TODO: confirm this when we have the correct atomic values - SPARK-91
-    --_bu-fc: var(--theme-button-color, var(--theme-secondary-400));
+    --_bu-fc: var(--theme-button-color, var(--theme-secondary-600));
     --_bu-fs: var(--fs-body1);
     --_bu-p: var(--su16);
     --_bu-py: 11.7px; // Adjust to reach 40px height
@@ -13,25 +13,29 @@
 
     // Active
     --_bu-bc-active: var(--_bu-bc);
-    --_bu-bg-active: var(--theme-button-active-background-color, var(--theme-secondary-300));
-    --_bu-fc-active: var(--theme-button-hover-color, var(--theme-secondary-500)); // Note: hover color used on purpose
+    --_bu-bg-active: var(--theme-button-active-background-color, var(--theme-secondary-050));
+    --_bu-fc-active: var(--theme-button-hover-color, var(--theme-secondary-600)); // Note: hover color used on purpose
 
     // Hover
     --_bu-bc-hover: var(--_bu-bc);
-    --_bu-bg-hover: var(--theme-button-hover-background-color, var(--theme-secondary-200));
-    --_bu-fc-hover: var(--theme-button-hover-color, var(--theme-secondary-500));
+    --_bu-bg-hover: var(--theme-button-hover-background-color, var(--theme-secondary-100));
+    --_bu-fc-hover: var(--theme-button-hover-color, var(--theme-secondary-600));
+
+    // Focus
+    --_bu-bg-focus: var(--black-150);
+    --_bu-fc-focus: var(--black-600);
 
     // BASE SELECTED MODIFIER
-    --_bu-bg-selected: var(--theme-button-selected-background-color, var(--theme-secondary-300));
+    --_bu-bg-selected: linear-gradient(to bottom, var(--black-100) 0%, var(--black-100) 50%, color-mix(in srgb, var(--black-100) 80%, white 20%) 50%, color-mix(in srgb, var(--black-100) 80%, white 20%) 100%);
     --_bu-fc-selected: var(--theme-button-selected-color, var(--theme-secondary-600));
 
     // FILLED VARIANT
     --_bu-filled-bc: transparent;
-    --_bu-filled-bg: var(--theme-button-primary-background-color, var(--theme-secondary-400));
-    --_bu-filled-fc: var(--theme-button-primary-color, var(--white));
+    --_bu-filled-bg: var(--theme-button-primary-background-color, var(--theme-secondary-600));
+    --_bu-filled-fc: var(--theme-button-primary-color, var(--black-050));
     // Filled + Selected
     --_bu-filled-bc-selected: transparent;
-    --_bu-filled-bg-selected: var(--theme-button-primary-selected-background-color, var(--theme-secondary-500));
+    --_bu-filled-bg-selected: linear-gradient(to bottom, var(--theme-secondary-600) 0%, var(--theme-secondary-600) 50%, color-mix(in srgb, var(--theme-secondary-600) 80%, white 20%) 50%, color-mix(in srgb, var(--theme-secondary-600) 80%, white 20%) 100%);
     --_bu-filled-fc-selected: var(--theme-button-primary-selected-color, var(--white));
     // Filled + Active
     --_bu-filled-bc-active: var(--_bu-filled-bc);
@@ -41,15 +45,9 @@
     --_bu-filled-bc-hover: var(--_bu-filled-bc);
     --_bu-filled-bg-hover: var(--theme-button-primary-hover-background-color, var(--theme-secondary-500));
     --_bu-filled-fc-hover: var(--theme-button-primary-hover-color, var(--white));
-
-    // OUTLINED VARIANT
-    --_bu-outlined-bc: var(--theme-button-outlined-border-color, var(--theme-secondary-400));
-    --_bu-outlined-bg: var(--theme-button-outlined-background-color);
-    --_bg-outlined-fc: var(--theme-button-outlined-color, var(--theme-secondary-400));
-    // Outlined + Selected
-    --_bu-outlined-bc-selected: var(--theme-button-outlined-selected-border-color, var(--theme-secondary-400));
-    --_bu-outlined-bg-selected: var(--theme-button-selected-background-color, var(--theme-secondary-300));
-    --_bu-outlined-fc-selected: var(--theme-button-selected-color, var(--theme-secondary-600));
+    // Filled + Focus
+    --_bu-filled-bg-focus: var(--black-600);
+    --_bu-filled-fc-focus: var(--black-50);
 
     // CHILD COMPONENT CUSTOM PROPERTIES
     --_bu-badge-o: 0.5;
@@ -61,9 +59,7 @@
     // CONTEXTUAL STYLES
     .highcontrast-mode({
         --_bu-bc: currentColor;
-        --_bu-outlined-bc: var(--_bu-bc);
         --_bu-fc-selected: var(--white);
-        --_bu-outlined-fc-selected: var(--white);
         --_bu-badge-o: 0.8;
         --_bu-number-fc-selected: var(--theme-button-primary-number-color, var(--theme-secondary-600));
     });
@@ -99,6 +95,9 @@
     &.is-selected,
     &--radio:checked + & {
         background-color: var(--_bu-bg-selected);
+        background-image: var(--_bu-bg-selected);
+        background-origin: border-box;
+        background-clip: border-box;
         border-color: var(--_bu-bc-selected, transparent);
         color: var(--_bu-fc-selected);
 
@@ -109,6 +108,9 @@
         &.s-btn__filled { // this needs to live here to adapt to radio button-group
             border-color: var(--_bu-filled-bc-selected);
             background-color: var(--_bu-filled-bg-selected);
+            background-image: var(--_bu-filled-bg-selected);
+            background-origin: border-box;
+            background-clip: border-box;
             color: var(--_bu-filled-fc-selected);
         }
     }
@@ -246,29 +248,33 @@
     }
 
     &&__danger {
-        --_bu-bg-active: var(--red-300);
-        --_bu-bg-hover: var(--red-200);
-        --_bu-bg-selected: var(--red-300);
-        --_bu-fc: var(--red-500);
+        --focus-theme: #C91D3F;
+        --_bu-bg-active: var(--black-050);
+        --_bu-bg-hover: var(--red-100);
+        --_bu-bg-selected: linear-gradient(to bottom, var(--red-100) 0%, var(--red-100) 50%, color-mix(in srgb, var(--red-100) 80%, white 20%) 50%, color-mix(in srgb, var(--red-100) 80%, white 20%) 100%);
+        --_bu-bg-focus: var(--black-050);
+        --_bu-fc: var(--red-400);
         --_bu-fc-active: var(--_bu-fc);
         --_bu-fc-hover: var(--red-500);
-        --_bu-fc-selected: var(--red-600);
+        --_bu-fc-selected: var(--red-500);
+        --_bu-fc-focus: var(--red-400);
         --_bu-filled-bc: transparent;
         --_bu-filled-bc-selected: var(--_bu-filled-bc);
         --_bu-filled-bg: var(--red-400);
         --_bu-filled-bg-active: var(--red-500);
         --_bu-filled-bg-hover: var(--red-500);
-        --_bu-filled-bg-selected: var(--red-600);
+        --_bu-filled-bg-selected: linear-gradient(to bottom, var(--red-500) 0%, var(--red-500) 50%, color-mix(in srgb, var(--red-500) 80%, white 20%) 50%, color-mix(in srgb, var(--red-500) 80%, white 20%) 100%);
         --_bu-filled-fc: var(--white);
+        --_bu-filled-bg-focus: var(--red-400);
         --_bu-filled-fc-active: var(--_bu-filled-fc);
         --_bu-filled-fc-hover: var(--_bu-filled-fc);
         --_bu-filled-fc-selected: var(--_bu-filled-fc);
-        --_bu-outlined-bc: var(--red-400);
-        --_bu-outlined-bc-selected: var(--red-500);
-        --_bu-outlined-bg-selected: var(--_bu-bg-selected);
-        --_bu-outlined-fc-selected: var(--_bu-fc-selected);
         --_bu-number-fc: var(--white);
         --_bu-number-fc-filled: var(--black);
+
+        &&__filled {
+            --focus-theme: var(--red-400);
+        }
     }
 
     &&__featured {
@@ -284,49 +290,31 @@
         --_bu-filled-bg: var(--purple-400);
         --_bu-filled-bg-active: var(--purple-500);
         --_bu-filled-bg-hover: var(--purple-500);
-        --_bu-filled-bg-selected: var(--purple-600);
+        --_bu-filled-bg-selected: linear-gradient(to bottom, var(--purple-500) 0%, var(--purple-500) 50%, color-mix(in srgb, var(--purple-500) 80%, white 20%) 50%, color-mix(in srgb, var(--purple-500) 80%, white 20%) 100%);
         --_bu-filled-fc: var(--white);
         --_bu-filled-fc-active: var(--_bu-filled-fc);
         --_bu-filled-fc-hover: var(--_bu-filled-fc);
         --_bu-filled-fc-selected: var(--_bu-filled-fc);
-        --_bu-outlined-bc: var(--purple-400);
-        --_bu-outlined-bc-selected: var(--purple-500);
-        --_bu-outlined-bg-selected: var(--_bu-bg-selected);
-        --_bu-outlined-fc-selected: var(--_bu-fc-selected);
+        --_bu-filled-bg-focus: var(--purple-400);
         --_bu-number-fc: var(--white);
         --_bu-number-fc-filled: var(--black);
+        --focus-theme: var(--purple-400);
     }
 
     &&__tonal {
-        --_bu-bc-hover: var(--black-300);
+        --_bu-bg: var(--black-150);
+        --_bu-bc-hover: transparent;
         --_bu-bg-active: var(--black-150);
-        --_bu-bg-hover: var(--black-100);
-        --_bu-bg-selected: var(--black-200);
-        --_bu-fc: var(--black-500);
+        --_bu-bg-hover: var(--black-200);
+        --_bu-bg-selected: linear-gradient(to bottom, var(--black-200) 0%, var(--black-200) 50%, color-mix(in srgb, var(--black-200) 80%, white 20%) 50%, color-mix(in srgb, var(--black-200) 80%, white 20%) 100%);
+        --_bu-fc: var(--black-600);
         --_bu-fc-active: var(--_bu-fc);
-        --_bu-fc-hover: var(--black-500);
-        --_bu-fc-selected: var(--black-500);
-        // The filled modifier on the muted button is deprecated and is to be
-        // removed in Stacks Classic v2
-        --_bu-filled-bc: transparent;
-        --_bu-filled-bc-selected: var(--_bu-filled-bc);
-        --_bu-filled-bg: var(--black-225);
-        --_bu-filled-bg-active: var(--black-300);
-        --_bu-filled-bg-hover: var(--black-250);
-        --_bu-filled-bg-selected: var(--black-350);
-        --_bu-filled-fc: var(--black-500);
-        --_bu-filled-fc-active: var(--_bu-filled-fc);
-        --_bu-filled-fc-hover: var(--_bu-filled-fc);
-        --_bu-filled-fc-selected: var(--black-600);
-        --_bu-outlined-bc: var(--black-300);
-        --_bu-outlined-bc-selected: var(--black-300);
-        --_bu-outlined-bg-selected: var(--_bu-bg-selected);
-        --_bu-outlined-fc-selected: var(--_bu-fc-selected);
+        --_bu-fc-hover: var(--black-600);
+        --_bu-fc-selected: var(--black-600);
         --_bu-number-fc-filled: var(--white);
         --_bu-number-fc-selected: var(--white);
-        --_bu-bg-focus: var(--black-400);
-        --_bu-fc-focus: var(--white);
-        --_bu-number-fc-focus: var(--black-500);
+        --_bu-bg-focus: var(--black-150);
+        --_bu-number-fc-focus: var(--black-600);
 
         .highcontrast-mode({
             --_bu-bc-hover: currentColor;
@@ -369,7 +357,7 @@
 
     &&__google {
         --_bu-bc: var(--bc-medium);
-        --_bu-bg: #F0EFED;
+        --_bu-bg: var(--black-150);
         --_bu-bg-active: var(--black-150);
         --_bu-bg-hover: var(--black-100);
         --_bu-fc: var(--fc-medium);
@@ -426,6 +414,11 @@
         &.focus-inset-bordered {
             &:not(:hover) .s-btn--number {
                 color: var(--_bu-number-fc-focus, var(--_bu-number-fc-filled));
+            }
+
+            &.s-btn__filled {
+                background-color: var(--_bu-filled-bg-focus, var(--_bu-filled-bg));
+                color: var(--_bu-filled-fc-focus, var(--_bu-filled-fc));
             }
 
             background-color: var(--_bu-bg-focus, var(--_bu-filled-bg));
