@@ -1,4 +1,4 @@
-import { createRawSnippet, tick } from "svelte";
+import { createRawSnippet } from "svelte";
 import { expect } from "@open-wc/testing";
 import { render, screen } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
@@ -123,7 +123,10 @@ describe("Tag", () => {
         const onMouseEnterSpy = sinon.spy((event) => {
             console.log("onmouseenter called at " + Date.now(), JSON.stringify(event));
         });
-        await userEvent.unhover(document.body); // move pointer away
+
+        document.body.innerHTML = `<div data-testid="my-div">Hello world</div>`;
+        await userEvent.hover(screen.getByTestId("my-div"));
+
         render(Tag, {
             href: "#",
             onmouseenter: onMouseEnterSpy,
