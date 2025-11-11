@@ -121,7 +121,7 @@ describe("Tag", () => {
 
     it("should call the onmouseenter callback when the user hovers over it", async () => {
         const onMouseEnterSpy = sinon.spy((event) => {
-            console.log("onmouseenter called", JSON.stringify(event));
+            console.log("onmouseenter called at " + Date.now(), JSON.stringify(event));
         });
         render(Tag, {
             href: "#",
