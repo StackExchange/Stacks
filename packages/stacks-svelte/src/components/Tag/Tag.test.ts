@@ -123,6 +123,7 @@ describe("Tag", () => {
         const onMouseEnterSpy = sinon.spy((event) => {
             console.log("onmouseenter called at " + Date.now(), JSON.stringify(event));
         });
+        await userEvent.unhover(document.body); // move pointer away
         render(Tag, {
             href: "#",
             onmouseenter: onMouseEnterSpy,
