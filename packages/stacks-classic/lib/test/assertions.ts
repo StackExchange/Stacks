@@ -22,37 +22,9 @@ const WCAGNonTextContrast: AdditionalAssertion = {
             selectedNodeStyles.getPropertyValue("background-color")
         );
 
-        // If background is transparent, check box-shadow or border for contrast
-        let contrastColor = bgSelectedNodeColor;
-        if (bgSelectedNodeColor.alpha === 0 || bgSelectedNodeColor.alpha < 0.01) {
-            const boxShadow = selectedNodeStyles.getPropertyValue("box-shadow");
-            const borderColor = selectedNodeStyles.getPropertyValue("border-color");
-            
-            // Extract color from box-shadow (color is always the last value in each shadow)
-            if (boxShadow && boxShadow !== "none") {
-                // Get the last shadow if multiple shadows exist (comma-separated)
-                const lastShadow = boxShadow.split(",").pop()?.trim() || boxShadow.trim();
-                // Match color patterns at the end: rgb/rgba/hsl/hsla functions, hex codes, or color names
-                const colorMatch = lastShadow.match(/(rgba?|hsla?)\([^)]+\)|#[0-9a-f]{3,8}|\b\w+(?:-\w+)*\b(?=\s*$)/i);
-                if (colorMatch) {
-                    try {
-                        contrastColor = new Color(colorMatch[0]);
-                    } catch {
-                        // If parsing fails, fall back to background color
-                    }
-                }
-            } else if (borderColor && borderColor !== "transparent" && borderColor !== "currentColor") {
-                try {
-                    contrastColor = new Color(borderColor);
-                } catch {
-                    // If parsing fails, fall back to background color
-                }
-            }
-        }
-
         // we are specifing WCAG21 because of colorjs.io API
         // WCAG21 and WCAG22 algoirthms are the same
-        const WCAGcontrast = contrastColor.contrast(
+        const WCAGcontrast = bgSelectedNodeColor.contrast(
             bgBodyColor,
             "WCAG21"
         );
