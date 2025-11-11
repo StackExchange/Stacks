@@ -94,9 +94,24 @@ const children = {
                 <div class="s-user-card--info">
                     <ul class="s-user-card--awards">
                         <li class="s-user-card--rep">3,145</li>
-                        <li class="s-bling s-bling__gold">3</li>
-                        <li class="s-bling s-bling__silver">9</li>
-                        <li class="s-bling s-bling__bronze">20</li>
+                        <li>
+                            <span class="s-bling s-bling__gold">
+                                <span class="v-visible-sr">gold bling</span>
+                            </span>
+                            3
+                        </li>
+                        <li>
+                            <span class="s-bling s-bling__silver">
+                                <span class="v-visible-sr">silver bling</span>
+                            </span>
+                            9
+                        </li>
+                        <li>
+                            <span class="s-bling s-bling__bronze">
+                                <span class="v-visible-sr">bronze bling</span>
+                            </span>
+                            20
+                        </li>
                     </ul>
                 </div>
             </a>
