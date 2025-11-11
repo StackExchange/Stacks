@@ -1,4 +1,4 @@
-import { createRawSnippet } from "svelte";
+import { createRawSnippet, tick } from "svelte";
 import { expect } from "@open-wc/testing";
 import { render, screen } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
@@ -128,6 +128,7 @@ describe("Tag", () => {
             onmouseenter: onMouseEnterSpy,
             children: snippet,
         });
+        await tick(); //give render time to complete otherwise this test flakes.
         await userEvent.hover(screen.getByRole("link"));
         expect(onMouseEnterSpy).to.have.been.calledOnce;
     });
