@@ -128,7 +128,7 @@ describe("Tag", () => {
             onmouseenter: onMouseEnterSpy,
             children: snippet,
         });
-        await new Promise(r => setTimeout(r, 500));; //give render time to complete otherwise this test flakes.
+        await new Promise(r => setTimeout(r, 500)); //give render time to complete otherwise this test flakes.
         await userEvent.hover(screen.getByRole("link"));
         expect(onMouseEnterSpy).to.have.been.calledOnce;
     });
