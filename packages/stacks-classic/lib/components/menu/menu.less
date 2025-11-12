@@ -1,41 +1,100 @@
 .s-menu {
-    --_me-divider-bg: var(--bc-light);
-    --_me-label-btc: var(--bc-light);
-    --_me-label-cursor: pointer;
-
-    // CONTEXTUAL STYLES
-    .dark-mode({
-        --_me-divider-bg: var(--bc-light);
-        --_me-label-btc: var(--bc-light);
-    });
+    --_me-link-bg: unset;
+    --_me-item-ai: center;
+    --_me-link-fc: var(--black-500);
+    --_me-item-p: var(--su8);
 
     // CHILD ELEMENTS
     & &--divider {
-        background-color: var(--_me-divider-bg);
+        background-color: var(--black-200);
         height: var(--su-static1);
         margin: var(--su8) 0;
     }
 
-    & &--label {
-        &.is-disabled {
-            --_me-label-cursor: not-allowed;
+    & &--icon {
+        color: inherit;
+        margin-right: var(--su8);
+    }
+
+    & &--item {
+        &:has(> .s-menu--link){
+            --_me-item-p: 0;
         }
 
-        border-top: var(--su-static1) solid var(--_me-label-btc);
-        cursor: var(--_me-label-cursor);
-        padding: var(--su12);
+        &.s-check-control {
+            --_me-item-ai: flex-start;
+            --_me-item-p: var(--su6) var(--su8);
+        }
+
+        .s-radio,
+        .s-checkbox {
+            margin-top: var(--su4);
+        }
+
+        align-items: var(--_me-item-ai);
+        color: var(--_me-link-fc);
+        display: flex;
+        padding: var(--_me-item-p);
+        width: 100%;
+    }
+
+    & &--link {
+        &:focus-visible {
+            .focus-styles(true, false);
+        }
+        
+        &:focus-visible,
+        &:hover {
+            --_me-link-bg: var(--black-150);
+            --_me-link-fc: var(--black-600);
+        }
+
+        &__danger {
+            --_me-link-fc: var(--red-400);
+
+            &:focus-visible,
+            &:hover {
+                --_me-link-fc: var(--red-500);
+            }
+        }
+
+        &.is-selected {
+            &:after {
+                content: '✓'; // TODO SHINE replace with proper svg icon
+                display: inline-block;
+                margin-left: auto;
+            }
+        }
+
+        background-color: var(--_me-link-bg);
+        color: var(--_me-link-fc);
+
+        align-items: center;
+        border-radius: var(--br-md);
+        cursor: pointer;
+        display: flex;
+        padding: var(--su8);
+        width: 100%;
+    }
+
+    & button&--link { // [1]
+        border: none;
+        font-family: inherit;
+        line-height: inherit;
+        text-align: left;
     }
 
     & &--title {
-        color: var(--black-500);
-        font-size: var(--fs-fine);
-        padding: var(--su8) var(--su12);
-        text-transform: uppercase;
+        color: var(--black-600);
+        font-weight: 700;
+        padding: var(--su6) var(--su8);
     }
 
-    & li + &--title {
+    & &--item + &--title {
         margin-top: var(--su12);
     }
 
     .list-reset;
 }
+
+//  [1] Normalize for when applying to a button
