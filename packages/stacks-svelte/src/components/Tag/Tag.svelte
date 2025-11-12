@@ -192,8 +192,8 @@
     {/if}
 
     {#if dismissable && !href}
-        <button class="s-tag--dismiss" type="button" onclick={ondismiss} aria-label="{i18nDismissButtonText}">
-            <Icon
+        <button class="s-tag--dismiss" type="button" onclick={ondismiss}>
+            <span class="v-visible-sr">{i18nDismissButtonText}</span><Icon
                 src={IconClearSm}
             />
         </button>
