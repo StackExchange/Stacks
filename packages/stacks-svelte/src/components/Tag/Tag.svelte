@@ -130,6 +130,7 @@
     class={classes}
     {href}
     role={role || (href && "link")}
+    tabindex={href ? undefined : 0}
     {...restProps}
 >
     {#if sponsor}
@@ -137,9 +138,32 @@
             {@render sponsor()}
         </span>
     {/if}
-    {@render children()}{#if dismissable && !href}
-        <button class="s-tag--dismiss" type="button" onclick={ondismiss}>
-            <span class="v-visible-sr">{i18nDismissButtonText}</span><Icon
+    
+    {@render children()}
+    
+    {#if sponsor}
+        <div class="v-visible-sr">Sponsored tag</div>
+    {/if}
+    
+    {#if watched}
+        <div class="v-visible-sr">Watched tag</div>
+    {/if}
+
+    {#if ignored}
+        <div class="v-visible-sr">Ignored tag</div>
+    {/if}
+
+    {#if variant === "moderator"}
+        <div class="v-visible-sr">Moderator tag</div>
+    {/if}
+
+    {#if variant === "required"}
+        <div class="v-visible-sr">Required tag</div>
+    {/if}
+
+    {#if dismissable && !href}
+        <button class="s-tag--dismiss" type="button" onclick={ondismiss} aria-label="{i18nDismissButtonText}">
+            <Icon
                 src={IconClearSm}
             />
         </button>
