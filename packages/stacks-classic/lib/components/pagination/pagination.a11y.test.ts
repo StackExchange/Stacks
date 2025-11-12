@@ -1,5 +1,5 @@
 import { runA11yTests } from "../../test/a11y-test-utils";
-import { WCAGNonTextContrast } from "../../test/assertions";
+import { WCAGBoxShadowContrast } from "../../test/assertions";
 import "../../index";
 
 describe("pagination", () => {
@@ -33,6 +33,6 @@ describe("pagination", () => {
             `,
         },
         tag: "nav",
-        additionalAssertions: [WCAGNonTextContrast],
+        additionalAssertions: [WCAGBoxShadowContrast],
     });
 });
