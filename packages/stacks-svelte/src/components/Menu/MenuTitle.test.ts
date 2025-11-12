@@ -50,4 +50,3 @@ describe("MenuTitle", () => {
         expect(title).to.have.class("custom-class");
     });
 });
-

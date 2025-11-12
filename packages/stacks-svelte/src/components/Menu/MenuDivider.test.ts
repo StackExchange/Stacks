@@ -37,4 +37,3 @@ describe("MenuDivider", () => {
         expect(divider).to.have.class("custom-class");
     });
 });
-

@@ -109,7 +109,7 @@ describe("MenuItemLink", () => {
 
     it("should pass through additional props to the link/button", () => {
         render(MenuItemLink, {
-            href: "#",
+            "href": "#",
             "data-testid": "menu-item-link",
             children,
         });
@@ -117,4 +117,3 @@ describe("MenuItemLink", () => {
         expect(link).to.have.attr("data-testid", "menu-item-link");
     });
 });
-

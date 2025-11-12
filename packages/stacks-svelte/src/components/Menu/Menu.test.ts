@@ -125,4 +125,3 @@ describe("Menu", () => {
         expect(document.querySelector(".s-menu--divider")).to.exist;
     });
 });
-

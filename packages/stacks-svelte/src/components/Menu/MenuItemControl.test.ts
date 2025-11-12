@@ -192,14 +192,13 @@ describe("MenuItemControl", () => {
 
     it("should pass through additional props to the label element", () => {
         render(MenuItemControl, {
-            type: "radio",
-            id: "test-radio",
-            name: "test-group",
-            label: labelSnippet,
+            "type": "radio",
+            "id": "test-radio",
+            "name": "test-group",
+            "label": labelSnippet,
             "data-testid": "menu-item-control",
         });
         const label = document.querySelector("label");
         expect(label).to.have.attr("data-testid", "menu-item-control");
     });
 });
-
