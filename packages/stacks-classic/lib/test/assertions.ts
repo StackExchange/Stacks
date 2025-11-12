@@ -40,7 +40,7 @@ const WCAGBoxShadowContrast: AdditionalAssertion = {
         const nodeStyles = window.getComputedStyle(selectedNode);
         const bodyStyles = window.getComputedStyle(document.body);
         const boxShadow = nodeStyles.getPropertyValue("box-shadow");
-        
+
         if (!boxShadow || boxShadow === "none") {
             return;
         }
@@ -50,7 +50,7 @@ const WCAGBoxShadowContrast: AdditionalAssertion = {
         const colorMatch = firstShadow.match(
             /(?:rgba?|hsla?)\([^)]+\)|#[0-9a-fA-F]{3,8}$/i
         );
-        
+
         if (!colorMatch) {
             return;
         }
