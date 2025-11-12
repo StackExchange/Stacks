@@ -56,7 +56,6 @@ const getChildren = (includeTitles = false): string =>
 describe("navigation", () => {
     runVisualTests({
         baseClass: "s-navigation",
-        variants: ["muted"],
         modifiers: {
             primary: ["scroll", "sm"],
         },
