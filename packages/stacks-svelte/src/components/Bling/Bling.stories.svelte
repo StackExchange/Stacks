@@ -20,8 +20,7 @@
 <Story
     name="Base"
     args={{
-        type: "gold",
-        name: "Award Bling",
+        name: "Bling",
     }}
 >
     {#snippet template(args)}
