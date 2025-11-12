@@ -52,6 +52,31 @@
         i18nDismissButtonText?: string;
 
         /**
+         * Localized translation for sponsored status text
+         */
+        i18nSponsorTagText?: string;
+
+        /**
+         * Localized translation for watched status text
+         */
+        i18nWatchedTagText?: string;
+
+        /**
+         * Localized translation for ignored status text
+         */
+        i18nIgnoredTagText?: string;
+
+        /**
+         * Localized translation for moderator status text
+         */
+        i18nModeratorTagText?: string;
+
+        /**
+         * Localized translation for required status text
+         */
+        i18nRequiredTagText?: string;
+
+        /**
          * Additional CSS classes added to the element
          */
         class?: string;
@@ -80,6 +105,11 @@
         ignored = false,
         watched = false,
         i18nDismissButtonText = "Dismiss tag",
+        i18nSponsorTagText = "Sponsored tag",
+        i18nWatchedTagText = "Watched tag",
+        i18nIgnoredTagText = "Ignored tag",
+        i18nModeratorTagText = "Moderator tag",
+        i18nRequiredTagText = "Required tag",
         class: className = "",
         ondismiss = () => {},
         children,
@@ -142,23 +172,23 @@
     {@render children()}
     
     {#if sponsor}
-        <div class="v-visible-sr">Sponsored tag</div>
+        <div class="v-visible-sr">{i18nSponsorTagText}</div>
     {/if}
     
     {#if watched}
-        <div class="v-visible-sr">Watched tag</div>
+        <div class="v-visible-sr">{i18nWatchedTagText}</div>
     {/if}
 
     {#if ignored}
-        <div class="v-visible-sr">Ignored tag</div>
+        <div class="v-visible-sr">{i18nIgnoredTagText}</div>
     {/if}
 
     {#if variant === "moderator"}
-        <div class="v-visible-sr">Moderator tag</div>
+        <div class="v-visible-sr">{i18nModeratorTagText}</div>
     {/if}
 
     {#if variant === "required"}
-        <div class="v-visible-sr">Required tag</div>
+        <div class="v-visible-sr">{i18nRequiredTagText}</div>
     {/if}
 
     {#if dismissable && !href}
