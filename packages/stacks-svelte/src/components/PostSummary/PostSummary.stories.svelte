@@ -362,9 +362,9 @@
                         <PostSummary {...baseArgs}>
                             <div slot="actionMenu">
                                 <ul class="s-menu" role="menu">
-                                    <li role="menuitem">
+                                    <li class="s-menu--item" role="menuitem">
                                         <button
-                                            class="s-block-link s-block-link__danger"
+                                            class="s-menu--link s-menu--link__danger"
                                             >Delete</button
                                         >
                                     </li>

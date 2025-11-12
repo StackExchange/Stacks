@@ -13,7 +13,7 @@ $(document).ready(function() {
         load() {
             if (this.loaded) { return; }
             setTimeout(() => {
-                Stacks.attachPopover(this.element, `<div class="s-popover wmx1"><ul class="s-menu mxn12 myn8" role="menu"><li role="menuitem"><button class="s-block-link">Share</button></li><li role="menuitem"><button class="s-block-link">Edit</button></li><li role="menuitem"><button class="s-block-link">Flag</button></li><li class="s-menu--divider" role="separator"></li><li role="menuitem"><button class="s-block-link s-block-link__danger">Delete</button></li></ul></div>`, { autoShow: true, toggleOnClick: true, placement: "bottom" });
+                Stacks.attachPopover(this.element, `<div class="s-popover wmx1 p8"><ul class="s-menu" role="menu"><li class="s-menu--item" role="menuitem"><button class="s-menu--link">Share</button></li><li class="s-menu--item" role="menuitem"><button class="s-menu--link">Edit</button></li><li class="s-menu--item" role="menuitem"><button class="s-menu--link">Flag</button></li><li class="s-menu--divider mxn8" role="separator"></li><li class="s-menu--item" role="menuitem"><button class="s-menu--link s-menu--link__danger">Delete</button></li></ul></div>`, { autoShow: true, toggleOnClick: true, placement: "bottom" });
                 this.loaded = true;
             });
         },
