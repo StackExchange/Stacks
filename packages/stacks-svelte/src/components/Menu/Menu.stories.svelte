@@ -21,6 +21,7 @@
         title: "Components/Menu",
         component: Menu,
         subcomponents: {
+            // @ts-expect-error: MenuItemLink extends HTMLAnchorAttributes & HTMLButtonAttributes which includes index signatures that conflict with Storybook's subcomponents typing
             MenuItemLink,
             // @ts-expect-error: MenuItemControl has required 'type', 'id', 'name', and 'label' props which conflicts with Storybook's subcomponents typing
             MenuItemControl,

@@ -1,8 +1,16 @@
 <script lang="ts">
     import type { Snippet } from "svelte";
+    import type {
+        HTMLAnchorAttributes,
+        HTMLButtonAttributes,
+    } from "svelte/elements";
     import Icon from "../Icon/Icon.svelte";
 
-    interface Props {
+    interface Props
+        extends Omit<
+            HTMLAnchorAttributes & HTMLButtonAttributes,
+            "href" | "class"
+        > {
         /**
          * If provided, renders as an anchor tag with this href
          */

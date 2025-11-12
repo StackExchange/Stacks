@@ -14,6 +14,7 @@ const childrenSnippet = createRawSnippet(() => ({
 
 const menuItemsSnippet = createSvelteComponentsSnippet([
     {
+        // @ts-expect-error - createSvelteComponentsSnippet uses generic Component type which doesn't preserve specific prop types
         component: MenuItemLink,
         props: {
             href: "#",
@@ -23,6 +24,7 @@ const menuItemsSnippet = createSvelteComponentsSnippet([
         },
     },
     {
+        // @ts-expect-error - createSvelteComponentsSnippet uses generic Component type which doesn't preserve specific prop types
         component: MenuItemLink,
         props: {
             href: "#",
@@ -93,6 +95,7 @@ describe("Menu", () => {
     it("should render menu with title and divider", () => {
         const menuWithTitleAndDivider = createSvelteComponentsSnippet([
             {
+                // @ts-expect-error - createSvelteComponentsSnippet uses generic Component type which doesn't preserve specific prop types
                 component: MenuTitle,
                 props: {
                     children: createRawSnippet(() => ({
@@ -101,6 +104,7 @@ describe("Menu", () => {
                 },
             },
             {
+                // @ts-expect-error - createSvelteComponentsSnippet uses generic Component type which doesn't preserve specific prop types
                 component: MenuItemLink,
                 props: {
                     href: "#",

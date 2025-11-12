@@ -4,8 +4,9 @@
 
 <script lang="ts">
     import type { Snippet } from "svelte";
+    import type { HTMLLabelAttributes } from "svelte/elements";
 
-    interface Props {
+    interface Props extends Omit<HTMLLabelAttributes, "for" | "class"> {
         /**
          * The type of control: "radio" or "checkbox"
          */

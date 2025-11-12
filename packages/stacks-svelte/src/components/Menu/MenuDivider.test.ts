@@ -1,5 +1,5 @@
 import { expect } from "@open-wc/testing";
-import { render, screen } from "@testing-library/svelte";
+import { render } from "@testing-library/svelte";
 
 import MenuDivider from "./MenuDivider.svelte";
 
