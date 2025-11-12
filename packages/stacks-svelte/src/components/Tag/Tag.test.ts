@@ -49,9 +49,8 @@ describe("Tag", () => {
         expect(tagElement?.tagName).to.equal("SPAN");
         expect(tagElement).to.have.attribute("tabindex", "0");
 
-        expect(screen.getByRole("button"))
-            .to.have.class("s-tag--dismiss")
-            .and.have.attribute("aria-label", "Dismiss tag");
+        expect(screen.getByRole("button")).to.have.class("s-tag--dismiss");
+        expect(screen.getByText("Dismiss tag")).to.exist.and.have.class("v-visible-sr");
     });
 
     it("should not render the dismiss element if href prop is set", () => {
@@ -170,7 +169,8 @@ describe("Tag", () => {
             i18nDismissButtonText: "Chidui tag",
             children: snippet,
         });
-        expect(screen.getByRole("button")).to.have.attribute("aria-label", "Chidui tag");
+
+        expect(screen.getByText("Chidui tag")).to.exist.and.have.class("v-visible-sr");
         
         rendered.unmount();
         rendered = render(Tag, {
