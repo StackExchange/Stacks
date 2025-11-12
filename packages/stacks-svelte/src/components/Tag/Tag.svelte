@@ -168,13 +168,13 @@
             {@render sponsor()}
         </span>
     {/if}
-    
+
     {@render children()}
-    
+
     {#if sponsor}
         <div class="v-visible-sr">{i18nSponsorTagText}</div>
     {/if}
-    
+
     {#if watched}
         <div class="v-visible-sr">{i18nWatchedTagText}</div>
     {/if}
