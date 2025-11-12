@@ -18,8 +18,8 @@ describe("Tag", () => {
 
     it("should render as an anchor when href is provided", () => {
         render(Tag, { href: "#", children: snippet });
-        // text renders with a leading space in to include storybook slot description
-        expect(screen.getByRole("link")).to.have.text(" test snippet");
+        expect(screen.getByRole("link").textContent?.trim()).to.equal("test snippet");
+        expect(screen.getByRole("link")).not.to.have.attribute("tabindex"); // we only append tabindex when we use spans
     });
 
     it("should render the appropriate size class", () => {
@@ -29,16 +29,29 @@ describe("Tag", () => {
         );
     });
 
-    it("should render the appropriate variant class", () => {
-        render(Tag, { variant: "moderator", children: snippet });
-        expect(screen.getByText("test snippet").parentElement).to.have.class(
-            "s-tag__moderator"
-        );
+    it("should render the all variant class", () => {
+        var rendered = render(Tag, { variant: "moderator", children: snippet });
+        expect(screen.getByText("test snippet").parentElement).to.have.class("s-tag__moderator");
+        expect(screen.getByText("Moderator tag")).to.exist.and.to.have.class("v-visible-sr"); 
+
+        rendered.unmount();
+        rendered = render(Tag, { variant: "required", children: snippet });
+        expect(screen.getByText("test snippet").parentElement).to.have.class("s-tag__required");
+        expect(screen.getByText("Required tag")).to.exist.and.to.have.class("v-visible-sr"); 
     });
 
-    it("should render the dismiss element", () => {
+    it("should render the dismiss element as span", () => {
         render(Tag, { dismissable: true, children: snippet });
-        expect(screen.getByRole("button")).to.have.class("s-tag--dismiss");
+        const childElement = screen.getByText("test snippet");
+        expect(childElement).to.exist;
+
+        const tagElement = childElement.parentElement;
+        expect(tagElement?.tagName).to.equal("SPAN");
+        expect(tagElement).to.have.attribute("tabindex", "0");
+
+        expect(screen.getByRole("button"))
+            .to.have.class("s-tag--dismiss")
+            .and.have.attribute("aria-label", "Dismiss tag");
     });
 
     it("should not render the dismiss element if href prop is set", () => {
@@ -51,6 +64,7 @@ describe("Tag", () => {
         expect(screen.getByText("test snippet").parentElement).to.have.class(
             "s-tag__ignored"
         );
+        expect(screen.getByText("Ignored tag")).to.exist.and.to.have.class("v-visible-sr"); 
     });
 
     it("should render including the watched class", () => {
@@ -58,6 +72,7 @@ describe("Tag", () => {
         expect(screen.getByText("test snippet").parentElement).to.have.class(
             "s-tag__watched"
         );
+        expect(screen.getByText("Watched tag")).to.exist.and.to.have.class("v-visible-sr"); 
     });
 
     it("should render the sponsor element", () => {
@@ -68,9 +83,8 @@ describe("Tag", () => {
             children: snippet,
             sponsor,
         });
-        expect(screen.getByText("sponsor").parentElement).to.have.class(
-            "s-tag--sponsor"
-        );
+        expect(screen.getByText("sponsor").parentElement).to.have.class("s-tag--sponsor");
+        expect(screen.getByText("Sponsored tag")).to.exist.and.to.have.class("v-visible-sr"); 
     });
 
     // events
@@ -150,12 +164,54 @@ describe("Tag", () => {
     });
 
     // i18n
-    it("should localize the dismiss button text when dedicated prop is specified", () => {
-        render(Tag, {
+    it("should localize all text when dedicated prop is specified", () => {
+        var rendered = render(Tag, {
             dismissable: true,
             i18nDismissButtonText: "Chidui tag",
             children: snippet,
         });
-        expect(screen.getByRole("button")).to.have.text("Chidui tag");
+        expect(screen.getByRole("button")).to.have.attribute("aria-label", "Chidui tag");
+        
+        rendered.unmount();
+        rendered = render(Tag, {
+            i18nSponsorTagText: "Sponsoredo tago",
+            sponsor: createRawSnippet(() => ({
+                render: () => `<span>sponsor</span>`,
+            })),
+            children: snippet,
+        });
+        expect(screen.getByText("Sponsoredo tago")).to.exist.and.have.class("v-visible-sr");
+
+        rendered.unmount();
+        rendered = render(Tag, {
+            i18nWatchedTagText: "Vatchita tago",
+            children: snippet,
+            watched: true
+        });
+        expect(screen.getByText("Vatchita tago")).to.exist.and.have.class("v-visible-sr");
+
+        rendered.unmount();
+        rendered = render(Tag, {
+            i18nIgnoredTagText: "Ignorita tago",
+            children: snippet,
+            ignored: true
+        });
+        expect(screen.getByText("Ignorita tago")).to.exist.and.have.class("v-visible-sr");
+
+        rendered.unmount();
+        rendered = render(Tag, {
+            i18nModeratorTagText: "Moderatita tago",
+            children: snippet,
+            variant: "moderator"
+        });
+        expect(screen.getByText("Moderatita tago")).to.exist.and.have.class("v-visible-sr");
+
+        rendered.unmount();
+        rendered = render(Tag, {
+            i18nRequiredTagText: "Requisite tago",
+            children: snippet,
+            variant: "required"
+        });
+        expect(screen.getByText("Requisite tago")).to.exist.and.have.class("v-visible-sr");
     });
 });
