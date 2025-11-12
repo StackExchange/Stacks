@@ -45,14 +45,16 @@
             </thead>
             <tbody>
                 {#each BlingTypes as type (type)}
-                    <tr>
-                        <th scope="row" class="va-middle">
-                            {type || "default"}
-                        </th>
-                        <td class="va-middle px8">
-                            <Bling name="{type} example" {type} />
-                        </td>
-                    </tr>
+                    {#if type !== "rep" && type !== "activity"}
+                        <tr>
+                            <th scope="row" class="va-middle">
+                                {type || "default"}
+                            </th>
+                            <td class="va-middle px8">
+                                <Bling name="{type} example" {type} />
+                            </td>
+                        </tr>
+                    {/if}
                 {/each}
             </tbody>
         </table>
