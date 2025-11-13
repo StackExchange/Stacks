@@ -45,11 +45,13 @@
 
 <Story name="Base">
     {#snippet template(args)}
-        <div class="s-popover is-visible ps-relative ws2 p8">
-            <Menu tag={args.tag}>
-                {@render basicChildren()}
-            </Menu>
-        </div>
+        <Popover id="base-popover" visible>
+            <PopoverContent class="ps-relative is-visible p8 ws2">
+                <Menu tag={args.tag}>
+                    {@render basicChildren()}
+                </Menu>
+            </PopoverContent>
+        </Popover>
     {/snippet}
 </Story>
 
@@ -57,11 +59,13 @@
     <div class="d-flex g32 fw-wrap">
         <div>
             <div class="ff-mono mb16">Within a popover</div>
-            <div class="s-popover is-visible ps-relative ws2 p8">
-                <Menu>
-                    {@render basicChildren()}
-                </Menu>
-            </div>
+            <Popover id="basic-example-popover" visible>
+                <PopoverContent class="ps-relative is-visible p8 ws2">
+                    <Menu>
+                        {@render basicChildren()}
+                    </Menu>
+                </PopoverContent>
+            </Popover>
         </div>
         <div>
             <div class="ff-mono mb16">Within a card</div>
@@ -81,44 +85,50 @@
 </Story>
 
 <Story name="Titles and Dividers" asChild>
-    <div class="s-popover is-visible ps-relative ws2 p8">
-        <Menu>
-            <MenuTitle>Layout</MenuTitle>
-            {@render basicChildren()}
-            <MenuDivider class="mxn8" />
-            <MenuItemLink href="#" danger>Deactivate</MenuItemLink>
-            <MenuItemLink href="#" danger>Delete</MenuItemLink>
-        </Menu>
-    </div>
+    <Popover id="title-and-divider-popover" visible>
+        <PopoverContent class="ps-relative is-visible p8 ws2">
+            <Menu>
+                <MenuTitle>Layout</MenuTitle>
+                {@render basicChildren()}
+                <MenuDivider class="mxn8" />
+                <MenuItemLink href="#" danger>Deactivate</MenuItemLink>
+                <MenuItemLink href="#" danger>Delete</MenuItemLink>
+            </Menu>
+        </PopoverContent>
+    </Popover>
 </Story>
 
 <Story name="Menu Items with Icons" asChild>
-    <div class="s-popover is-visible ps-relative ws1 p8">
-        <Menu>
-            <MenuItemLink href="#" icon={IconHome} iconTitle="Home">
-                Home
-            </MenuItemLink>
-            <MenuItemLink href="#" icon={IconInbox} iconTitle="Inbox">
-                Inbox
-            </MenuItemLink>
-            <MenuItemLink href="#" icon={IconSettings} iconTitle="Settings">
-                Settings
-            </MenuItemLink>
-        </Menu>
-    </div>
+    <Popover id="menu-items-with-icons-popover" visible>
+        <PopoverContent class="ps-relative is-visible p8 ws1">
+            <Menu>
+                <MenuItemLink href="#" icon={IconHome} iconTitle="Home">
+                    Home
+                </MenuItemLink>
+                <MenuItemLink href="#" icon={IconInbox} iconTitle="Inbox">
+                    Inbox
+                </MenuItemLink>
+                <MenuItemLink href="#" icon={IconSettings} iconTitle="Settings">
+                    Settings
+                </MenuItemLink>
+            </Menu>
+        </PopoverContent>
+    </Popover>
 </Story>
 
 <Story name="Selected States" asChild>
-    <div class="s-popover is-visible ps-relative ws2 p8">
-        <Menu>
-            <MenuItemLink href="#">Frequent</MenuItemLink>
-            <MenuItemLink href="#">Votes</MenuItemLink>
-            <MenuItemLink href="#" selected>Unanswered</MenuItemLink>
-            <MenuTitle>Custom filters</MenuTitle>
-            <MenuItemLink href="#">Frontend questions</MenuItemLink>
-            <MenuItemLink href="#">Design systems</MenuItemLink>
-        </Menu>
-    </div>
+    <Popover id="selected-states-popover" visible>
+        <PopoverContent class="ps-relative is-visible p8 ws2">
+            <Menu>
+                <MenuItemLink href="#">Frequent</MenuItemLink>
+                <MenuItemLink href="#">Votes</MenuItemLink>
+                <MenuItemLink href="#" selected>Unanswered</MenuItemLink>
+                <MenuTitle>Custom filters</MenuTitle>
+                <MenuItemLink href="#">Frontend questions</MenuItemLink>
+                <MenuItemLink href="#">Design systems</MenuItemLink>
+            </Menu>
+        </PopoverContent>
+    </Popover>
 </Story>
 
 {#snippet userLabel()}User{/snippet}
@@ -142,35 +152,37 @@
 {/snippet}
 
 <Story name="Radio Groups" asChild>
-    <div class="s-popover is-visible ps-relative ws3">
-        <Menu tag="div">
-            <fieldset>
-                <legend class="s-menu--title">Role</legend>
-                <MenuItemControl
-                    type="radio"
-                    id="choice-user-34"
-                    name="choice-34"
-                    checked
-                    label={userLabel}
-                    description={userDescription}
-                />
-                <MenuItemControl
-                    type="radio"
-                    id="choice-moderator-34"
-                    name="choice-34"
-                    label={moderatorLabel}
-                    description={moderatorDescription}
-                />
-                <MenuItemControl
-                    type="radio"
-                    id="choice-admin-34"
-                    name="choice-34"
-                    label={adminLabel}
-                    description={adminDescription}
-                />
-            </fieldset>
-        </Menu>
-    </div>
+    <Popover id="menu-items-with-icons-popover" visible>
+        <PopoverContent class="ps-relative is-visible p8 ws3">
+            <Menu tag="div">
+                <fieldset>
+                    <legend class="s-menu--title">Role</legend>
+                    <MenuItemControl
+                        type="radio"
+                        id="choice-user-34"
+                        name="choice-34"
+                        checked
+                        label={userLabel}
+                        description={userDescription}
+                    />
+                    <MenuItemControl
+                        type="radio"
+                        id="choice-moderator-34"
+                        name="choice-34"
+                        label={moderatorLabel}
+                        description={moderatorDescription}
+                    />
+                    <MenuItemControl
+                        type="radio"
+                        id="choice-admin-34"
+                        name="choice-34"
+                        label={adminLabel}
+                        description={adminDescription}
+                    />
+                </fieldset>
+            </Menu>
+        </PopoverContent>
+    </Popover>
 </Story>
 
 <Story name="In Popover" asChild>
