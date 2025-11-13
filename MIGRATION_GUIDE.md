@@ -29,6 +29,7 @@
 
 #### Navigation
 - Removed muted variant (`.s-navigation__muted`)
+- Selected page are now highlighted by an underscore (no pill shape background)
 
 # Migrating from Stacks Svelte v0 to v1
 
