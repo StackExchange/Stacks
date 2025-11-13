@@ -30,7 +30,7 @@ describe("MenuItem", () => {
         const link = screen.getByRole("menuitem").querySelector("a");
         expect(link).to.exist;
         expect(link).to.have.attr("href", "#test");
-        expect(link).to.have.class("s-menu--link");
+        expect(link).to.have.class("s-menu--action");
     });
 
     it("should render as a button when href is not provided", () => {
@@ -39,7 +39,7 @@ describe("MenuItem", () => {
         });
         const button = screen.getByRole("menuitem").querySelector("button");
         expect(button).to.exist;
-        expect(button).to.have.class("s-menu--link");
+        expect(button).to.have.class("s-menu--action");
     });
 
     it("should render with danger styling", () => {
@@ -49,7 +49,7 @@ describe("MenuItem", () => {
             children,
         });
         const link = screen.getByRole("menuitem").querySelector("a");
-        expect(link).to.have.class("s-menu--link__danger");
+        expect(link).to.have.class("s-menu--action__danger");
     });
 
     it("should render with selected styling", () => {

@@ -28,8 +28,8 @@
 
 The menu component has been updated to use new class names and structure. The following changes are breaking:
 
-- **Link classes**: Replace `s-block-link` with `s-menu--link` on all menu links and buttons.
-- **Danger state**: Replace `s-block-link__danger` with `s-menu--link__danger`.
+- **Link classes**: Replace `s-block-link` with `s-menu--action` on all menu links and buttons.
+- **Danger state**: Replace `s-block-link__danger` with `s-menu--action__danger`.
 - **Selected state**: The selected state has changed from `s-block-link__left is-selected` to just `is-selected` on the link element. The `is-selected` class should be applied to the `<a>` or `<button>` element, not the `<li>`.
 - **Menu item class**: All menu item `<li>` elements must now include the `s-menu--item` class.
 - **Menu label removed**: The `s-menu--label` class has been removed. Use `s-menu--title` for section titles instead.
@@ -54,14 +54,14 @@ The menu component has been updated to use new class names and structure. The fo
 ```html
 <ul class="s-menu" role="menu">
     <li class="s-menu--item" role="menuitem">
-        <a href="#" class="s-menu--link">Example link</a>
+        <a href="#" class="s-menu--action">Example link</a>
     </li>
     <li class="s-menu--item" role="menuitem">
-        <a href="#" class="s-menu--link is-selected">Selected link</a>
+        <a href="#" class="s-menu--action is-selected">Selected link</a>
     </li>
     <li class="s-menu--title" role="separator">Section Title</li>
     <li class="s-menu--item" role="menuitem">
-        <a href="#" class="s-menu--link s-menu--link__danger">Danger link</a>
+        <a href="#" class="s-menu--action s-menu--action__danger">Danger link</a>
     </li>
 </ul>
 ```

@@ -9,21 +9,21 @@ describe("menu", () => {
             default: `
                 <li class="s-menu--title" role="separator">Title 1</li>
                 <li class="s-menu--item" role="menuitem">
-                    <a href="#" class="s-menu--link">Example link</a>
+                    <a href="#" class="s-menu--action">Example link</a>
                 </li>
                 <li class="s-menu--item" role="menuitem">
-                    <button class="s-menu--link">Example button</button>
+                    <button class="s-menu--action">Example button</button>
                 </li>
                 <li class="s-menu--title" role="separator">Title 2</li>
                 <li class="s-menu--item" role="menuitem">
-                    <a href="#" class="s-menu--link is-selected">Selected link</a>
+                    <a href="#" class="s-menu--action is-selected">Selected link</a>
                 </li>
                 <li class="s-menu--item" role="menuitem">
-                    <a href="#" class="s-menu--link">Example link</a>
+                    <a href="#" class="s-menu--action">Example link</a>
                 </li>
                 <li class="s-menu--divider" role="separator"></li>
                 <li class="s-menu--item" role="menuitem">
-                    <a href="#" class="s-menu--link s-menu--link__danger">Danger link</a>
+                    <a href="#" class="s-menu--action s-menu--action__danger">Danger link</a>
                 </li>
             `,
         },

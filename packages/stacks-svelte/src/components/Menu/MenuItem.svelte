@@ -67,7 +67,7 @@
         danger: boolean,
         selected: boolean
     ) => {
-        const base = "s-menu--link";
+        const base = "s-menu--action";
         let classes = base;
 
         if (danger) {

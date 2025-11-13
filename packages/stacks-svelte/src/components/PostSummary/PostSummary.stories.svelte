@@ -364,7 +364,7 @@
                                 <ul class="s-menu" role="menu">
                                     <li class="s-menu--item" role="menuitem">
                                         <button
-                                            class="s-menu--link s-menu--link__danger"
+                                            class="s-menu--action s-menu--action__danger"
                                             >Delete</button
                                         >
                                     </li>
