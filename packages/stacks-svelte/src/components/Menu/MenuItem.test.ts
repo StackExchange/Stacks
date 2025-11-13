@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import sinon from "sinon";
 import { IconHome } from "@stackoverflow/stacks-icons/icons";
 
-import MenuItemLink from "./MenuItemLink.svelte";
+import MenuItem from "./MenuItem.svelte";
 
 const user = userEvent.setup();
 
@@ -13,9 +13,9 @@ const children = createRawSnippet(() => ({
     render: () => "<span>Menu Item</span>",
 }));
 
-describe("MenuItemLink", () => {
+describe("MenuItem", () => {
     it("should render the menu item link", () => {
-        render(MenuItemLink, {
+        render(MenuItem, {
             children,
         });
         expect(screen.getByRole("menuitem")).to.exist;
@@ -23,7 +23,7 @@ describe("MenuItemLink", () => {
     });
 
     it("should render as an anchor when href is provided", () => {
-        render(MenuItemLink, {
+        render(MenuItem, {
             href: "#test",
             children,
         });
@@ -34,7 +34,7 @@ describe("MenuItemLink", () => {
     });
 
     it("should render as a button when href is not provided", () => {
-        render(MenuItemLink, {
+        render(MenuItem, {
             children,
         });
         const button = screen.getByRole("menuitem").querySelector("button");
@@ -43,7 +43,7 @@ describe("MenuItemLink", () => {
     });
 
     it("should render with danger styling", () => {
-        render(MenuItemLink, {
+        render(MenuItem, {
             href: "#",
             danger: true,
             children,
@@ -53,7 +53,7 @@ describe("MenuItemLink", () => {
     });
 
     it("should render with selected styling", () => {
-        render(MenuItemLink, {
+        render(MenuItem, {
             href: "#",
             selected: true,
             children,
@@ -63,7 +63,7 @@ describe("MenuItemLink", () => {
     });
 
     it("should render with icon", () => {
-        render(MenuItemLink, {
+        render(MenuItem, {
             href: "#",
             icon: IconHome,
             iconTitle: "Home icon",
@@ -75,7 +75,7 @@ describe("MenuItemLink", () => {
     });
 
     it("should render with arbitrary classes", () => {
-        render(MenuItemLink, {
+        render(MenuItem, {
             href: "#",
             class: "custom-class",
             children,
@@ -86,7 +86,7 @@ describe("MenuItemLink", () => {
     });
 
     it("should have role='menuitem' on the li element", () => {
-        render(MenuItemLink, {
+        render(MenuItem, {
             href: "#",
             children,
         });
@@ -97,7 +97,7 @@ describe("MenuItemLink", () => {
 
     it("should call onclick handler when clicked", async () => {
         const onClickSpy = sinon.spy();
-        render(MenuItemLink, {
+        render(MenuItem, {
             href: "#",
             children,
             onclick: onClickSpy,
@@ -108,7 +108,7 @@ describe("MenuItemLink", () => {
     });
 
     it("should pass through additional props to the link/button", () => {
-        render(MenuItemLink, {
+        render(MenuItem, {
             "href": "#",
             "data-testid": "menu-item-link",
             children,

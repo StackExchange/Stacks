@@ -4,7 +4,7 @@ import { render, screen } from "@testing-library/svelte";
 import { createSvelteComponentsSnippet } from "../../../test-utils";
 
 import Menu from "./Menu.svelte";
-import MenuItemLink from "./MenuItemLink.svelte";
+import MenuItem from "./MenuItem.svelte";
 import MenuTitle from "./MenuTitle.svelte";
 import MenuDivider from "./MenuDivider.svelte";
 
@@ -15,7 +15,7 @@ const childrenSnippet = createRawSnippet(() => ({
 const menuItemsSnippet = createSvelteComponentsSnippet([
     {
         // @ts-expect-error - createSvelteComponentsSnippet uses generic Component type which doesn't preserve specific prop types
-        component: MenuItemLink,
+        component: MenuItem,
         props: {
             href: "#",
             children: createRawSnippet(() => ({
@@ -25,7 +25,7 @@ const menuItemsSnippet = createSvelteComponentsSnippet([
     },
     {
         // @ts-expect-error - createSvelteComponentsSnippet uses generic Component type which doesn't preserve specific prop types
-        component: MenuItemLink,
+        component: MenuItem,
         props: {
             href: "#",
             children: createRawSnippet(() => ({
@@ -105,7 +105,7 @@ describe("Menu", () => {
             },
             {
                 // @ts-expect-error - createSvelteComponentsSnippet uses generic Component type which doesn't preserve specific prop types
-                component: MenuItemLink,
+                component: MenuItem,
                 props: {
                     href: "#",
                     children: createRawSnippet(() => ({

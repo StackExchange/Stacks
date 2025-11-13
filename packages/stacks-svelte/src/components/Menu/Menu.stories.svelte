@@ -1,7 +1,7 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import Menu, { type Tag } from "./Menu.svelte";
-    import MenuItemLink from "./MenuItemLink.svelte";
+    import MenuItem from "./MenuItem.svelte";
     import MenuTitle from "./MenuTitle.svelte";
     import MenuDivider from "./MenuDivider.svelte";
     import {
@@ -20,8 +20,8 @@
         title: "Components/Menu",
         component: Menu,
         subcomponents: {
-            // @ts-expect-error: MenuItemLink extends HTMLAnchorAttributes & HTMLButtonAttributes which includes index signatures that conflict with Storybook's subcomponents typing
-            MenuItemLink,
+            // @ts-expect-error: MenuItem extends HTMLAnchorAttributes & HTMLButtonAttributes which includes index signatures that conflict with Storybook's subcomponents typing
+            MenuItem,
             MenuTitle,
             MenuDivider,
         },
@@ -35,9 +35,9 @@
 </script>
 
 {#snippet basicChildren()}
-    <MenuItemLink href="#">Share</MenuItemLink>
-    <MenuItemLink href="#">Edit</MenuItemLink>
-    <MenuItemLink>Follow</MenuItemLink>
+    <MenuItem href="#">Share</MenuItem>
+    <MenuItem href="#">Edit</MenuItem>
+    <MenuItem>Follow</MenuItem>
 {/snippet}
 
 <Story name="Base">
@@ -88,8 +88,8 @@
                 <MenuTitle>Layout</MenuTitle>
                 {@render basicChildren()}
                 <MenuDivider class="mxn8" />
-                <MenuItemLink href="#" danger>Deactivate</MenuItemLink>
-                <MenuItemLink href="#" danger>Delete</MenuItemLink>
+                <MenuItem href="#" danger>Deactivate</MenuItem>
+                <MenuItem href="#" danger>Delete</MenuItem>
             </Menu>
         </PopoverContent>
     </Popover>
@@ -99,15 +99,15 @@
     <Popover id="menu-items-with-icons-popover" visible>
         <PopoverContent class="ps-relative is-visible p8 ws1">
             <Menu>
-                <MenuItemLink href="#" icon={IconHome} iconTitle="Home">
+                <MenuItem href="#" icon={IconHome} iconTitle="Home">
                     Home
-                </MenuItemLink>
-                <MenuItemLink href="#" icon={IconInbox} iconTitle="Inbox">
+                </MenuItem>
+                <MenuItem href="#" icon={IconInbox} iconTitle="Inbox">
                     Inbox
-                </MenuItemLink>
-                <MenuItemLink href="#" icon={IconSettings} iconTitle="Settings">
+                </MenuItem>
+                <MenuItem href="#" icon={IconSettings} iconTitle="Settings">
                     Settings
-                </MenuItemLink>
+                </MenuItem>
             </Menu>
         </PopoverContent>
     </Popover>
@@ -117,12 +117,12 @@
     <Popover id="selected-states-popover" visible>
         <PopoverContent class="ps-relative is-visible p8 ws2">
             <Menu>
-                <MenuItemLink href="#">Frequent</MenuItemLink>
-                <MenuItemLink href="#">Votes</MenuItemLink>
-                <MenuItemLink href="#" selected>Unanswered</MenuItemLink>
+                <MenuItem href="#">Frequent</MenuItem>
+                <MenuItem href="#">Votes</MenuItem>
+                <MenuItem href="#" selected>Unanswered</MenuItem>
                 <MenuTitle>Custom filters</MenuTitle>
-                <MenuItemLink href="#">Frontend questions</MenuItemLink>
-                <MenuItemLink href="#">Design systems</MenuItemLink>
+                <MenuItem href="#">Frontend questions</MenuItem>
+                <MenuItem href="#">Design systems</MenuItem>
             </Menu>
         </PopoverContent>
     </Popover>
