@@ -7,7 +7,6 @@ export { default as ExpandingInput } from "./ExpandingInput/ExpandingInput.svelt
 export { default as Link } from "./Link/Link.svelte";
 export { default as Menu } from "./Menu/Menu.svelte";
 export { default as MenuDivider } from "./Menu/MenuDivider.svelte";
-export { default as MenuItemControl } from "./Menu/MenuItemControl.svelte";
 export { default as MenuItemLink } from "./Menu/MenuItemLink.svelte";
 export { default as MenuTitle } from "./Menu/MenuTitle.svelte";
 export { default as Spinner } from "./Spinner/Spinner.svelte";

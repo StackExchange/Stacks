@@ -2,7 +2,6 @@
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import Menu, { type Tag } from "./Menu.svelte";
     import MenuItemLink from "./MenuItemLink.svelte";
-    import MenuItemControl from "./MenuItemControl.svelte";
     import MenuTitle from "./MenuTitle.svelte";
     import MenuDivider from "./MenuDivider.svelte";
     import {
@@ -23,8 +22,6 @@
         subcomponents: {
             // @ts-expect-error: MenuItemLink extends HTMLAnchorAttributes & HTMLButtonAttributes which includes index signatures that conflict with Storybook's subcomponents typing
             MenuItemLink,
-            // @ts-expect-error: MenuItemControl has required 'type', 'id', 'name', and 'label' props which conflicts with Storybook's subcomponents typing
-            MenuItemControl,
             MenuTitle,
             MenuDivider,
         },
@@ -126,60 +123,6 @@
                 <MenuTitle>Custom filters</MenuTitle>
                 <MenuItemLink href="#">Frontend questions</MenuItemLink>
                 <MenuItemLink href="#">Design systems</MenuItemLink>
-            </Menu>
-        </PopoverContent>
-    </Popover>
-</Story>
-
-{#snippet userLabel()}User{/snippet}
-
-{#snippet userDescription()}
-    Can view, ask, answer, and edit questions. Can also vote on and flag
-    content.
-{/snippet}
-
-{#snippet moderatorLabel()}Moderator{/snippet}
-
-{#snippet moderatorDescription()}
-    Everything a user can do, but can also delete and close questions.
-{/snippet}
-
-{#snippet adminLabel()}Admin{/snippet}
-
-{#snippet adminDescription()}
-    Everything a moderator can do and can also manage users, permissions, and
-    site settings.
-{/snippet}
-
-<Story name="Radio Groups" asChild>
-    <Popover id="menu-items-with-icons-popover" visible>
-        <PopoverContent class="ps-relative is-visible p8 ws3">
-            <Menu tag="div">
-                <fieldset>
-                    <legend class="s-menu--title">Role</legend>
-                    <MenuItemControl
-                        type="radio"
-                        id="choice-user-34"
-                        name="choice-34"
-                        checked
-                        label={userLabel}
-                        description={userDescription}
-                    />
-                    <MenuItemControl
-                        type="radio"
-                        id="choice-moderator-34"
-                        name="choice-34"
-                        label={moderatorLabel}
-                        description={moderatorDescription}
-                    />
-                    <MenuItemControl
-                        type="radio"
-                        id="choice-admin-34"
-                        name="choice-34"
-                        label={adminLabel}
-                        description={adminDescription}
-                    />
-                </fieldset>
             </Menu>
         </PopoverContent>
     </Popover>
