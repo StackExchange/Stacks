@@ -20,7 +20,7 @@
             --_pa-item-fc: var(--black-600);
         }
         &.s-pagination--item__nav {
-            --_pa-item-bg: var(--black-150);
+            --_pa-item-bg: unset;
             --_pa-item-br: var(--br-circle);
             --_pa-item-fc: var(--black-600);
             --_pa-item-p: var(--su-static6);
@@ -45,7 +45,10 @@
             --_pa-item-br: var(--br-md);
         }
 
-        background-color: var(--_pa-item-bg);
+        // Only apply background-color when not a button (button classes handle their own background)
+        &:not(.s-btn) {
+            background-color: var(--_pa-item-bg);
+        }
         border-radius: var(--_pa-item-br);
         box-shadow: var(--_pa-item-bs);
         color: var(--_pa-item-fc);

@@ -142,7 +142,7 @@ describe("PaginationController", () => {
         expect(screen.queryByText("Next")).not.to.exist;
     });
 
-    it("applies is-next class to the Next button", () => {
+    it("applies nav class to navigation buttons", () => {
         render(Pagination, {
             props: {
                 page: 2,
@@ -153,7 +153,7 @@ describe("PaginationController", () => {
 
         // Find the Next button by its role and accessible name
         const nextLink = screen.getByRole("link", { name: /Next/i });
-        expect(nextLink).to.have.class("is-next");
+        expect(nextLink).to.have.class("s-pagination--item__nav");
 
         // Verify the correct icon is rendered with the correct title
         const titleElement = screen.getByTitle("Next");
@@ -163,13 +163,13 @@ describe("PaginationController", () => {
         expect(icon?.tagName).to.equal("svg");
         expect(nextLink).to.contain(icon);
 
-        // Verify Prev button does NOT have is-next class
+        // Verify Prev button also has nav class
         const prevLink = screen.getByRole("link", { name: /Prev/i });
-        expect(prevLink).not.to.have.class("is-next");
+        expect(prevLink).to.have.class("s-pagination--item__nav");
 
-        // Verify regular page number items do NOT have is-next class
+        // Verify regular page number items do NOT have nav class
         const page2Link = screen.getByRole("link", { name: /2/ });
-        expect(page2Link).not.to.have.class("is-next");
+        expect(page2Link).not.to.have.class("s-pagination--item__nav");
     });
 
     it("highlights the correct selected page", () => {
