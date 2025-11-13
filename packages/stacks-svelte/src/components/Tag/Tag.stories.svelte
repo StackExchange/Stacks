@@ -8,7 +8,7 @@
         IconWave,
     } from "@stackoverflow/stacks-icons-legacy/icons";
 
-    const TagSizes: Size[] = ["", "xs", "sm", "md", "lg"];
+    const TagSizes: Size[] = ["", "sm", "lg"];
     const TagVariants: Variant[] = ["", "moderator", "required"];
 
     const createSnippet = (markup = "") =>

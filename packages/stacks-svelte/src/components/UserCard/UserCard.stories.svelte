@@ -42,7 +42,7 @@
                 options: ["no tags", "tags"],
                 mapping: {
                     "no tags": "",
-                    "tags": '<a href="#" class="s-tag s-tag__xs">javascript</a>',
+                    "tags": '<a href="#" class="s-tag s-tag__sm">javascript</a>',
                 },
             },
             type: {
@@ -184,9 +184,9 @@
     <div class="d-inline-flex">
         <UserCard {...baseArgs}>
             {#snippet tags()}
-                <Tag href="#" size="xs">css</Tag>
-                <Tag href="#" size="xs">reactjs</Tag>
-                <Tag href="#" size="xs">javascript</Tag>
+                <Tag href="#" size="sm">css</Tag>
+                <Tag href="#" size="sm">reactjs</Tag>
+                <Tag href="#" size="sm">javascript</Tag>
             {/snippet}
         </UserCard>
     </div>
