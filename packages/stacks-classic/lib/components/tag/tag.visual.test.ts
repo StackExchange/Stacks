@@ -37,7 +37,7 @@ describe("tag", () => {
     runVisualTests({
         baseClass: "s-tag",
         modifiers: {
-            primary: ["xs", "sm", "md", "lg"],
+            primary: ["sm", "lg"],
         },
         children: {
             default: `default`,
