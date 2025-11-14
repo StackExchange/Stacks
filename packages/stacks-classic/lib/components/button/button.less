@@ -51,6 +51,7 @@
 
     // CHILD COMPONENT CUSTOM PROPERTIES
     --_bu-badge-o: 0.5;
+    --_bu-badge-bg: currentColor;
     --_bu-dropdown-bw: var(--su-static4);
     --_bu-number-fc: var(--white);
     --_bu-number-fc-filled: var(--theme-button-primary-number-color, var(--theme-secondary-600));
@@ -128,6 +129,12 @@
         border-color: var(--_bu-filled-bc);
         background-color: var(--_bu-filled-bg);
         color: var(--_bu-filled-fc);
+
+        &.s-btn__danger {
+            .highcontrast-mode({
+                --_bu-badge-bg: currentColor;
+            });
+        }
     }
 
     // Resets
@@ -277,6 +284,7 @@
         .highcontrast-mode({
             --_bu-bc: var(--red-300);
             --_bu-bc-selected: var(--red-300);
+            --_bu-badge-bg: var(--red-500);
         });
         .dark-mode({
             --_bu-filled-bg-selected: linear-gradient(to bottom, var(--red-500) 0%, var(--red-500) 50%, color-mix(in srgb, var(--red-500) 80%, white 40%) 50%, color-mix(in srgb, var(--red-500) 80%, white 40%) 100%);
@@ -390,7 +398,7 @@
         padding: var(--su2) calc(var(--su4) - var(--su1));
         font-size: var(--fs-caption);
         line-height: var(--lh-xs);
-        background-color: currentColor;
+        background-color: var(--_bu-badge-bg);
     }
 
     & &--number {
