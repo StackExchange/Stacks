@@ -8,22 +8,44 @@ tags: components
 <section class="stacks-section">
     {% header "h2", "Styles" %}
     {% header "h3", "Default" %}
-    <p class="stacks-copy">Achievement badges that a user earns within a community.</p>
+    <p class="stacks-copy">Achievement and activity badges that a user receives within a community.</p>
     <div class="stacks-preview">
 {% highlight html %}
 <span class="s-badge">
-    <span class="s-bling s-bling__gold"></span>
+    <span class="s-bling s-bling__filled s-bling__gold">
+        <span class="v-visible-sr">Gold badge</span>
+    </span>
     Great Question
 </span>
 <span class="s-badge">
-    <span class="s-bling s-bling__silver">
-        Favorite Question
+    <span class="s-bling s-bling__filled s-bling__silver">
+        <span class="v-visible-sr">Silver badge</span>
     </span>
+    Favorite Question
 </span>
 <span class="s-badge">
-    <span class="s-bling s-bling__bronze">
-        Altruist
+    <span class="s-bling s-bling__filled s-bling__bronze">
+        <span class="v-visible-sr">Bronze badge</span>
     </span>
+    Altruist
+</span>
+<span class="s-badge">
+    <span class="s-bling s-bling__filled">
+        <span class="v-visible-sr">Badge</span>
+    </span>
+    default
+</span>
+<span class="s-badge">
+    <span class="s-bling s-bling__filled__rep">
+        <span class="v-visible-sr">Rep badge</span>
+    </span>
+    99 rep
+</span>
+<span class="s-badge">
+    <span class="s-bling s-bling__filled__activity">
+        <span class="v-visible-sr">Activity badge</span>
+    </span>
+    new message
 </span>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -43,8 +65,8 @@ tags: components
                                 <tr>
                                     <td class="va-middle pr8">
                                         <span class="{{ type.html }}">
-                                            <span class="s-bling s-bling__{{ type.repType }}">
-                                                <span class="v-visible-sr">{{ type.repType }} bling</span>
+                                            <span class="s-bling s-bling__filled{% if type.repType %} s-bling__{{ type.repType }}{% endif %}">
+                                                <span class="v-visible-sr">{{ type.repType }} badge</span>    
                                             </span>
                                             {{ type.label }}
                                         </span>
@@ -67,27 +89,27 @@ tags: components
         </div>
     </div>
 
-    {% header "h3", "Badge counts" %}
-    <p class="stacks-copy">Badge that displays the total number of badges of a type a user has earned.</p>
+    {% header "h3", "Tag badges" %}
+    <p class="stacks-copy">Achievement badges that a user receives for a specific tag within a community.</p>
     <div class="stacks-preview">
 {% highlight html %}
 <span class="s-badge s-badge__gold">
     <span class="s-bling s-bling__gold">
-        <span class="v-visible-sr">gold bling</span>
+        <span class="v-visible-sr">Gold tag badge</span>
     </span>
-    635
+    python
 </span>
 <span class="s-badge s-badge__silver">
     <span class="s-bling s-bling__silver">
-        <span class="v-visible-sr">silver bling</span>
+        <span class="v-visible-sr">Silver tag badge</span>
     </span>
-    7624
+    css
 </span>
 <span class="s-badge s-badge__bronze">
     <span class="s-bling s-bling__bronze">
-        <span class="v-visible-sr">bronze bling</span>
+        <span class="v-visible-sr">Bronze tag badge</span>
     </span>
-    8234
+    javascript
 </span>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -101,14 +123,14 @@ tags: components
                         </tr>
                     </thead>
                     <tbody>
-                        {% for badge in badges.counts %}
+                        {% for badge in badges.tag %}
                             {% assign types = badge.classes %}
                             {% for type in types %}
                                 <tr>
                                     <td class="va-middle pr8">
                                         <span class="{{ type.html }}">
                                             <span class="s-bling s-bling__{{ type.repType }}">
-                                                <span class="v-visible-sr">{{ type.repType }} bling</span>
+                                                <span class="v-visible-sr">{{ type.repType }} tag badge</span>
                                             </span>
                                             {{ type.label }}
                                         </span>
@@ -356,20 +378,10 @@ tags: components
     <div class="stacks-preview">
 {% highlight html %}
 <span class="s-badge s-badge__admin">Admin</span>
-<span class="s-badge s-badge__admin s-badge__sm">Admin</span>
-<span class="s-badge s-badge__admin s-badge__xs">Admin</span>
 <span class="s-badge s-badge__moderator">Moderator</span>
-<span class="s-badge s-badge__moderator s-badge__sm">Mod</span>
-<span class="s-badge s-badge__moderator s-badge__xs">Mod</span>
 <span class="s-badge s-badge__staff">Staff</span>
-<span class="s-badge s-badge__staff s-badge__sm">Staff</span>
-<span class="s-badge s-badge__staff s-badge__xs">Staff</span>
 <span class="s-badge s-badge__bot">Bot</span>
-<span class="s-badge s-badge__bot s-badge__sm">Bot</span>
-<span class="s-badge s-badge__bot s-badge__xs">Bot</span>
 <span class="s-badge s-badge__ai">AI</span>
-<span class="s-badge s-badge__ai s-badge__sm">AI</span>
-<span class="s-badge s-badge__ai s-badge__xs">AI</span>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="overflow-x-auto" tabindex="0">
@@ -388,8 +400,6 @@ tags: components
                                 <tr>
                                     <td class="va-middle pr8">
                                         <span class="{{ type.html }}">{{ type.label }}</span>
-                                        <span class="{{ type.html }} ml2 s-badge__sm">{{ type.labelSm }}</span>
-                                        <span class="{{ type.html }} ml2 s-badge__xs">{{ type.labelSm }}</span>
                                     </td>
                                     <td class="va-middle">
                                         <div class="d-flex g4 fw-wrap">
@@ -412,9 +422,9 @@ tags: components
     {% header "h3", "Badge sizes" %}
     <div class="stacks-preview">
 {% highlight html %}
-<span class="s-badge">Regular</span>
 <span class="s-badge s-badge__sm">Small</span>
-<span class="s-badge s-badge__xs">Extra small</span>
+<span class="s-badge">Regular</span>
+<span class="s-badge s-badge__xs">Large</span>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="overflow-x-auto" tabindex="0">
