@@ -25,6 +25,13 @@
     --_bu-bg-focus: var(--black-150);
     --_bu-fc-focus: var(--black-600);
 
+    // Disabled
+    --_bu-bg-disabled: var(--black-050);
+    --_bu-fc-disabled: var(--black-300);
+    // Filled + Disabled
+    --_bu-filled-bg-disabled: var(--black-300);
+    --_bu-filled-fc-disabled: var(--black-050);
+
     // BASE SELECTED MODIFIER
     --_bu-bg-selected: linear-gradient(to bottom, var(--theme-secondary-100) 0%, var(--theme-secondary-100) 50%, color-mix(in srgb, var(--theme-secondary-100) 60%, white 40%) 50%, color-mix(in srgb, var(--theme-secondary-100) 60%, white 40%) 100%);
     --_bu-fc-selected: var(--theme-button-selected-color, var(--theme-secondary-600));
@@ -73,9 +80,16 @@
     fieldset[disabled] &,
     &[disabled],
     &[aria-disabled="true"] {
-        opacity: var(--_o-disabled-static);
         pointer-events: none;
         text-decoration: none;
+        
+        background-color: var(--_bu-bg-disabled);
+        color: var(--_bu-fc-disabled);
+        
+        &.s-btn__filled {
+            background-color: var(--_bu-filled-bg-disabled);
+            color: var(--_bu-filled-fc-disabled);
+        }
     }
 
     button &,
@@ -279,6 +293,10 @@
         --_bu-filled-fc-active: var(--_bu-filled-fc);
         --_bu-filled-fc-hover: var(--_bu-filled-fc);
         --_bu-filled-fc-selected: var(--_bu-filled-fc);
+        --_bu-bg-disabled: var(--black-050);
+        --_bu-fc-disabled: var(--red-200);
+        --_bu-filled-bg-disabled: var(--red-200);
+        --_bu-filled-fc-disabled: var(--black-050);
         --_bu-number-fc: var(--white);
         --_bu-number-fc-filled: var(--black);
         .highcontrast-mode({
@@ -310,6 +328,8 @@
         --_bu-filled-fc-hover: var(--_bu-filled-fc);
         --_bu-filled-fc-selected: var(--_bu-filled-fc);
         --_bu-filled-bg-focus: var(--purple-400);
+        --_bu-filled-bg-disabled: var(--purple-200);
+        --_bu-filled-fc-disabled: var(--black-050);
         --_bu-number-fc: var(--white);
         --_bu-number-fc-filled: var(--black);
         .dark-mode({
@@ -327,6 +347,8 @@
         --_bu-fc-active: var(--_bu-fc);
         --_bu-fc-hover: var(--theme-secondary-600);
         --_bu-fc-selected: var(--theme-secondary-600);
+        --_bu-bg-disabled: var(--black-100);
+        --_bu-fc-disabled: var(--black-300);
         --_bu-number-fc-filled: var(--white);
         --_bu-number-fc-selected: var(--white);
         --_bu-number-fc-focus: var(--theme-secondary-600);
