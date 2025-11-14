@@ -32,11 +32,6 @@
         icon?: string | undefined;
 
         /**
-         * The title attribute for the icon
-         */
-        iconTitle?: string | undefined;
-
-        /**
          * Additional CSS classes added to the element
          */
         class?: string;
@@ -52,7 +47,6 @@
         danger = false,
         selected = false,
         icon = undefined,
-        iconTitle = undefined,
         class: className = "",
         children,
         ...restProps
@@ -97,7 +91,7 @@
         {...restProps}
     >
         {#if icon}
-            <Icon src={icon} title={iconTitle} class="s-menu--icon" />
+            <Icon src={icon} class="s-menu--icon" />
         {/if}
         {@render children()}
     </svelte:element>

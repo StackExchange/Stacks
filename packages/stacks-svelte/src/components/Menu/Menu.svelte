@@ -1,17 +1,7 @@
-<script module lang="ts">
-    export type Tag = "ul" | "div";
-</script>
-
 <script lang="ts">
     import type { Snippet } from "svelte";
 
     interface Props {
-        /**
-         * The HTML tag to use for the menu container. Use "ul" for list-based menus, "div" for radio groups.
-         * @type {"ul" | "div"}
-         */
-        tag?: Tag;
-
         /**
          * Additional CSS classes added to the element
          */
@@ -23,7 +13,7 @@
         children: Snippet;
     }
 
-    let { tag = "ul", class: className = "", children }: Props = $props();
+    let { class: className = "", children }: Props = $props();
 
     const getClasses = (className: string) => {
         const base = "s-menu";
@@ -39,10 +29,6 @@
     const classes = $derived(getClasses(className));
 </script>
 
-<svelte:element
-    this={tag}
-    class={classes}
-    role={tag === "ul" ? "menu" : undefined}
->
+<ul class={classes} role="menu">
     {@render children()}
-</svelte:element>
+</ul>

@@ -1,6 +1,6 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
-    import Menu, { type Tag } from "./Menu.svelte";
+    import Menu from "./Menu.svelte";
     import MenuItem from "./MenuItem.svelte";
     import MenuTitle from "./MenuTitle.svelte";
     import MenuDivider from "./MenuDivider.svelte";
@@ -14,8 +14,6 @@
     import PopoverContent from "../Popover/PopoverContent.svelte";
     import Button from "../Button/Button.svelte";
 
-    const MenuTags: Tag[] = ["ul", "div"];
-
     const { Story } = defineMeta({
         title: "Components/Menu",
         component: Menu,
@@ -24,12 +22,6 @@
             MenuItem,
             MenuTitle,
             MenuDivider,
-        },
-        argTypes: {
-            tag: {
-                control: "select",
-                options: MenuTags,
-            },
         },
     });
 </script>
@@ -99,15 +91,9 @@
     <Popover id="menu-items-with-icons-popover" visible>
         <PopoverContent class="ps-relative is-visible p8 ws1">
             <Menu>
-                <MenuItem href="#" icon={IconHome} iconTitle="Home">
-                    Home
-                </MenuItem>
-                <MenuItem href="#" icon={IconInbox} iconTitle="Inbox">
-                    Inbox
-                </MenuItem>
-                <MenuItem href="#" icon={IconSettings} iconTitle="Settings">
-                    Settings
-                </MenuItem>
+                <MenuItem href="#" icon={IconHome}>Home</MenuItem>
+                <MenuItem href="#" icon={IconInbox}>Inbox</MenuItem>
+                <MenuItem href="#" icon={IconSettings}>Settings</MenuItem>
             </Menu>
         </PopoverContent>
     </Popover>
