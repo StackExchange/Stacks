@@ -24,6 +24,11 @@
 
 ### Components
 
+#### Buttons
+- The secondary style `outlined` has been removed i.e. `.s-btn__outlined`
+- The variant `Muted` has been removed, `Tonal` has been added
+- `s-btn__md` has been removed, `s-btn__lg` has been added
+
 #### Popover
 - The new popovers no longer include an arrow element. The `s-popover--arrow` css class has been removed, and any markup using it (e.g. `<div class="s-popover--arrow"></div>`) should be deleted from the codebases as part of the migration.
 
