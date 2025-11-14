@@ -27,6 +27,10 @@
 #### Popover
 - The new popovers no longer include an arrow element. The `s-popover--arrow` css class has been removed, and any markup using it (e.g. `<div class="s-popover--arrow"></div>`) should be deleted from the codebases as part of the migration.
 
+#### Tags
+- `.s-tag__xs` removed
+- `.s-tag__md` removed
+
 # Migrating from Stacks Svelte v0 to v1
 
 Coming soon…

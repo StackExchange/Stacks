@@ -120,6 +120,13 @@ describe("Tag", () => {
     });
 
     it("should call the onmouseenter callback when the user hovers over it", async () => {
+        //HACK: This test is flaky because the tag often times gets rendered under the cursor
+        //causing the onmouseenter event to fire an additional time. We inject another element
+        //into the dom and make sure the mouse if hovering over that instead before rendering
+        //the Tag to address this issue.
+        document.body.innerHTML = `<div data-testid="focus-me">Dummy Element</div>`;
+        await userEvent.hover(screen.getByTestId("focus-me"));
+
         const onMouseEnterSpy = sinon.spy();
         render(Tag, {
             href: "#",
