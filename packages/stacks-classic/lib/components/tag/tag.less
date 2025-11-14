@@ -9,9 +9,10 @@
     --_ta-fc-hover: var(--theme-tag-hover-color, var(--black-600));
     // Other
     --_ta-fs: var(--fs-caption);
+    --_ta-pb: calc(var(--_ta-pt) + var(--su1));
     --_ta-pl: var(--su8);
     --_ta-pr: var(--su8);
-    --_ta-py: calc(var(--su4) - var(--su1));
+    --_ta-pt: var(--su4);
 
     // CONTEXTUAL STYLES
     .highcontrast-mode({
@@ -30,10 +31,11 @@
     &&__sm {
         --_ta-pl: var(--su4);
         --_ta-pr: var(--su4);
-        --_ta-py: var(--su1);
+        --_ta-pt: var(--su1);
     }
     &&__lg {
         --_ta-fs: var(--fs-body1);
+        --_ta-pt: var(--su4);
     }
 
     // VARIANTS
@@ -124,8 +126,8 @@
         cursor: pointer;
         display: flex;
         justify-content: center;
-        margin: calc(var(--_ta-py) * -1) 0 calc(var(--_ta-py) * -1);
-        padding: var(--_ta-dismiss-padding);
+        margin: calc(var(--_ta-pt) * -1) 0 calc(var(--_ta-pb) * -1);
+        padding: var(--su2);
     }
 
     // Sponsor
@@ -140,6 +142,7 @@
         }
 
         max-width: calc(var(--su-static16) + var(--su-static2));
+        margin: calc(var(--_ta-pt) * -1) 0 calc(var(--_ta-pb) * -1) 0;
     }
 
     // INTERACTION
@@ -160,12 +163,13 @@
     border: var(--su-static1) solid var(--_ta-bc);
     color: var(--_ta-fc);
     font-size: var(--_ta-fs);
-    padding: var(--_ta-py) var(--_ta-pr) var(--_ta-py) var(--_ta-pl);
+    padding: var(--_ta-pt) var(--_ta-pr) var(--_ta-pb) var(--_ta-pl);
 
     align-items: center;
     display: inline-flex;
     gap: var(--su4);
     justify-content: center;
+    line-height: var(--lh-xs);
     text-decoration: none;
     white-space: nowrap;
 }
