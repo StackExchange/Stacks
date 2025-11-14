@@ -74,7 +74,7 @@ const createModal = ({
                               </div>
 
                               <button
-                                  class="s-btn s-btn__muted s-modal--close"
+                                  class="s-btn s-btn__tonal s-modal--close"
                                   type="button"
                                   aria-label="Close"
                                   data-action="s-modal#hide"

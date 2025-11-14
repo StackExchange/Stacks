@@ -18,7 +18,7 @@ const getBtn = ({
     isSelected?: boolean;
     hasBadge?: boolean;
 }): string => {
-    const baseClasses = "s-btn s-btn__muted";
+    const baseClasses = "s-btn s-btn__tonal";
     const btnChildren = `
         <span class="s-btn--text" data-text="${name}">${name}</span>
         ${
