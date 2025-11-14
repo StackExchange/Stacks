@@ -28,11 +28,11 @@
 
 The menu component has been updated to use new class names and structure. The following changes are breaking:
 
-- **Link classes**: Replace `s-block-link` with `s-menu--action` on all menu links and buttons.
-- **Danger state**: Replace `s-block-link__danger` with `s-menu--action__danger`.
-- **Selected state**: The selected state has changed from `s-block-link__left is-selected` to just `is-selected` on the link element. The `is-selected` class should be applied to the `<a>` or `<button>` element, not the `<li>`.
-- **Menu item class**: All menu item `<li>` elements must now include the `s-menu--item` class.
-- **Menu label removed**: The `s-menu--label` class has been removed. Use `s-menu--title` for section titles instead.
+- **Link classes**: Replace `.s-block-link` with `.s-menu--action` on all menu links and buttons.
+- **Danger state**: Replace `.s-block-link__danger` with `.s-menu--action__danger`.
+- **Selected state**: The selected state has changed from `.s-block-link__left.is-selected` to just `.is-selected` on the `.s-menu--action` element. The `.is-selected` class should be applied to the `<a>` or `<button>` element, not the `<li>`.
+- **Menu item class**: All menu item `<li>` elements must now include the `.s-menu--item` class.
+- **Menu label removed**: The `.s-menu--label` class has replaced with `.s-menu--title` for section titles instead.
 
 **Before:**
 ```html
@@ -65,7 +65,6 @@ The menu component has been updated to use new class names and structure. The fo
     </li>
 </ul>
 ```
-
 
 #### Popover
 - The new popovers no longer include an arrow element. The `s-popover--arrow` css class has been removed, and any markup using it (e.g. `<div class="s-popover--arrow"></div>`) should be deleted from the codebases as part of the migration.
