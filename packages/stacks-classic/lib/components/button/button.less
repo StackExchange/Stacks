@@ -7,7 +7,7 @@
     --_bu-fc: var(--theme-button-color, var(--theme-secondary-600));
     --_bu-fs: var(--fs-body1);
     --_bu-p: var(--su16);
-    --_bu-py: 11.7px; // Adjust to reach 40px height
+    --_bu-py: 11.2px; // Adjust to reach 40px height
     --_bu-fw: 600; // Semibold font weight
     --_bu-icon-gap: 8px; // Default spacing between icons and text
 
@@ -26,7 +26,7 @@
     --_bu-fc-focus: var(--black-600);
 
     // BASE SELECTED MODIFIER
-    --_bu-bg-selected: linear-gradient(to bottom, var(--black-100) 0%, var(--black-100) 50%, color-mix(in srgb, var(--black-100) 80%, white 20%) 50%, color-mix(in srgb, var(--black-100) 80%, white 20%) 100%);
+    --_bu-bg-selected: linear-gradient(to bottom, var(--theme-secondary-100) 0%, var(--theme-secondary-100) 50%, color-mix(in srgb, var(--theme-secondary-100) 80%, white 40%) 50%, color-mix(in srgb, var(--theme-secondary-100) 80%, white 40%) 100%);
     --_bu-fc-selected: var(--theme-button-selected-color, var(--theme-secondary-600));
 
     // FILLED VARIANT
@@ -58,10 +58,14 @@
 
     // CONTEXTUAL STYLES
     .highcontrast-mode({
-        --_bu-bc: currentColor;
-        --_bu-fc-selected: var(--white);
+        --_bu-bc: var(--black-300);
+        --_bu-bc-selected: var(--black-300);
         --_bu-badge-o: 0.8;
-        --_bu-number-fc-selected: var(--theme-button-primary-number-color, var(--theme-secondary-600));
+        --_bu-number-fc-selected: var(--white);
+    });
+
+    .dark-mode({
+        --_bu-filled-bg-selected: linear-gradient(to bottom, var(--theme-secondary-600) 0%, var(--theme-secondary-600) 50%, color-mix(in srgb, var(--theme-secondary-600) 80%, black 40%) 50%, color-mix(in srgb, var(--theme-secondary-600) 80%, black 40%) 100%);
     });
 
     // STATES
@@ -248,10 +252,9 @@
     }
 
     &&__danger {
-        --focus-theme: #C91D3F;
         --_bu-bg-active: var(--black-050);
         --_bu-bg-hover: var(--red-100);
-        --_bu-bg-selected: linear-gradient(to bottom, var(--red-100) 0%, var(--red-100) 50%, color-mix(in srgb, var(--red-100) 80%, white 20%) 50%, color-mix(in srgb, var(--red-100) 80%, white 20%) 100%);
+        --_bu-bg-selected: linear-gradient(to bottom, var(--red-100) 0%, var(--red-100) 50%, color-mix(in srgb, var(--red-100) 80%, white 40%) 50%, color-mix(in srgb, var(--red-100) 80%, white 40%) 100%);
         --_bu-bg-focus: var(--black-050);
         --_bu-fc: var(--red-400);
         --_bu-fc-active: var(--_bu-fc);
@@ -271,10 +274,13 @@
         --_bu-filled-fc-selected: var(--_bu-filled-fc);
         --_bu-number-fc: var(--white);
         --_bu-number-fc-filled: var(--black);
-
-        &&__filled {
-            --focus-theme: var(--red-400);
-        }
+        .highcontrast-mode({
+            --_bu-bc: var(--red-300);
+            --_bu-bc-selected: var(--red-300);
+        });
+        .dark-mode({
+            --_bu-filled-bg-selected: linear-gradient(to bottom, var(--red-500) 0%, var(--red-500) 50%, color-mix(in srgb, var(--red-500) 80%, white 40%) 50%, color-mix(in srgb, var(--red-500) 80%, white 40%) 100%);
+        });
     }
 
     &&__featured {
@@ -298,7 +304,9 @@
         --_bu-filled-bg-focus: var(--purple-400);
         --_bu-number-fc: var(--white);
         --_bu-number-fc-filled: var(--black);
-        --focus-theme: var(--purple-400);
+        .dark-mode({
+            --_bu-filled-bg-selected: linear-gradient(to bottom, var(--purple-500) 0%, var(--purple-500) 50%, color-mix(in srgb, var(--purple-500) 80%, white 40%) 50%, color-mix(in srgb, var(--purple-500) 80%, white 40%) 100%);
+        });
     }
 
     &&__tonal {
@@ -306,14 +314,13 @@
         --_bu-bc-hover: transparent;
         --_bu-bg-active: var(--theme-secondary-150);
         --_bu-bg-hover: var(--theme-secondary-200);
-        --_bu-bg-selected: linear-gradient(to bottom, var(--theme-secondary-200) 0%, var(--theme-secondary-200) 50%, color-mix(in srgb, var(--theme-secondary-200) 80%, white 20%) 50%, color-mix(in srgb, var(--theme-secondary-200) 80%, white 20%) 100%);
+        --_bu-bg-selected: linear-gradient(to bottom, var(--theme-secondary-200) 0%, var(--theme-secondary-200) 50%, color-mix(in srgb, var(--theme-secondary-200) 80%, white 30%) 50%, color-mix(in srgb, var(--theme-secondary-200) 80%, white 30%) 100%);
         --_bu-fc: var(--theme-secondary-600);
         --_bu-fc-active: var(--_bu-fc);
         --_bu-fc-hover: var(--theme-secondary-600);
         --_bu-fc-selected: var(--theme-secondary-600);
         --_bu-number-fc-filled: var(--white);
         --_bu-number-fc-selected: var(--white);
-        --_bu-bg-focus: var(--theme-secondary-150);
         --_bu-number-fc-focus: var(--theme-secondary-600);
 
         .highcontrast-mode({
