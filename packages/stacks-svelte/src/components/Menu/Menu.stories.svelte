@@ -18,7 +18,6 @@
         title: "Components/Menu",
         component: Menu,
         subcomponents: {
-            // @ts-expect-error: MenuItem extends HTMLAnchorAttributes & HTMLButtonAttributes which includes index signatures that conflict with Storybook's subcomponents typing
             MenuItem,
             MenuTitle,
             MenuDivider,
@@ -33,10 +32,10 @@
 {/snippet}
 
 <Story name="Base">
-    {#snippet template(args)}
+    {#snippet template()}
         <Popover id="base-popover" visible>
             <PopoverContent class="ps-relative is-visible p8 ws2">
-                <Menu tag={args.tag}>
+                <Menu>
                     {@render basicChildren()}
                 </Menu>
             </PopoverContent>

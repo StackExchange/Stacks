@@ -40,6 +40,11 @@
          * Snippet for the menu link content
          */
         children: Snippet;
+
+        /**
+         * Localized translation for the selected label
+         */
+        i18nSelectedLabel?: string;
     }
 
     let {
@@ -49,6 +54,7 @@
         icon = undefined,
         class: className = "",
         children,
+        i18nSelectedLabel = "Selected",
         ...restProps
     }: Props = $props();
 
@@ -94,5 +100,8 @@
             <Icon src={icon} class="s-menu--icon" />
         {/if}
         {@render children()}
+        {#if selected}
+            <span class="v-visible-sr">{i18nSelectedLabel}</span>
+        {/if}
     </svelte:element>
 </li>
