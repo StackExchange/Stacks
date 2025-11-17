@@ -1,5 +1,5 @@
 <script module lang="ts">
-    export type Size = "" | "xs" | "sm" | "md" | "lg";
+    export type Size = "" | "sm" | "lg";
     export type Variant = "" | "moderator" | "required";
 </script>
 
@@ -15,13 +15,13 @@
     interface Props {
         /**
          * The size of the tag
-         * @type {"" | "xs" | "sm" | "md" | "lg"} Size
+         * @type {"" | "sm" | "lg"}
          */
         size?: Size;
 
         /**
          * The variants of the tag
-         * @type {"" | "moderator" | "required"} Variant
+         * @type {"" | "moderator" | "required"}
          */
         variant?: Variant;
 
