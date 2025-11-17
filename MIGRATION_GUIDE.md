@@ -24,6 +24,10 @@
 
 ### Components
 
+#### Badge
+- `.s-badge__xs` removed
+- `.s-award-bling` renamed to `.s-bling` (used in some badge templates)
+
 #### Bling (previously *Award Bling*)
 - The Award Bling component has been renamed to Bling.
 - Bling no longer accepts children elements besides those for screen readers. Please include any visually represented strings (such as counts) as siblings to the bling component.
