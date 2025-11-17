@@ -15,6 +15,7 @@
 
     const BadgeVariantGroups: {
         awards: Award[];
+        tags: Award[];
         counts: Variant[];
         states: Variant[];
         users: Variant[];

@@ -20,7 +20,8 @@
         | "admin"
         | "moderator"
         | "staff"
-        | "tag";
+        | "tag"
+        | undefined;
 </script>
 
 <script lang="ts">
@@ -95,7 +96,7 @@
         filled: boolean,
         icon: string | undefined,
         size: Size,
-        variant: Variant
+        variant: Variant | undefined
     ) => {
         const base = "s-badge";
         let classes = base;
