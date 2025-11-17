@@ -160,10 +160,71 @@ tags: components
         </div>
     </div>
 
-    {% header "h3", "Icon" %}
+    {% header "h3", "Icons" %}
     <p class="stacks-copy">Use the icon variant for a prominent, secondary horizontal navigation bar that directs users to main page sections. Limit use to one per page and do not use it for in-page filtering. Icon styles should change with the state of the item (ex: selected items use a fill icon)</p>
 
-    TODO!!!
+    <div class="stacks-preview">
+    {% highlight html %}
+    <nav aria-label="…">
+        <ul class="s-navigation">
+            <li>
+                <a href="…" class="s-navigation--item is-selected">
+                    @Svg.QandAFill.With("s-navigation--icon")
+                    <span class="s-navigation--item-text" data-text="Content">Content</span>
+                </a>
+            </li>
+            <li>
+                <a href="…" class="s-navigation--item">
+                    @Svg.TagStack.With("s-navigation--icon")
+                    <span class="s-navigation--item-text" data-text="Topics">Topics</span>
+                </a>
+            </li>
+            <li>
+                <a href="…" class="s-navigation--item">
+                    @Svg.UserStack.With("s-navigation--icon")
+                    <span class="s-navigation--item-text" data-text="People">People</span>
+                </a>
+            </li>
+            <li>
+                <a href="…" class="s-navigation--item s-navigation--item__dropdown">
+                    @Svg.Settings.With("s-navigation--icon")
+                    <span class="s-navigation--item-text" data-text="Settings">Settings</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    {% endhighlight %}
+    <div class="stacks-preview--example">
+        <nav aria-label="horizontal full width navigation with icons">
+            <ul class="s-navigation">
+                <li>
+                    <a href="#" class="s-navigation--item is-selected">
+                        {% icon "QandAFill", "s-navigation--icon" %}
+                        <span class="s-navigation--item-text" data-text="Content">Content</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="s-navigation--item">
+                        {% icon "TagStack", "s-navigation--icon" %}
+                        <span class="s-navigation--item-text" data-text="Topics">Topics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="s-navigation--item">
+                        {% icon "UserStack", "s-navigation--icon" %}
+                        <span class="s-navigation--item-text" data-text="People">People</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="s-navigation--item s-navigation--item__dropdown">
+                        {% icon "Settings", "s-navigation--icon" %}
+                        <span class="s-navigation--item-text" data-text="Settings">Settings</span>
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+    </div>
 
     {% header "h3", "Scrolling" %}
     <div class="stacks-preview">
@@ -413,6 +474,72 @@ tags: components
                 </ul>
             </nav>
         </div>
+    </div>
+
+    {% header "h3", "Vertical Icons" %}
+    <p class="stacks-copy">Vertical navigation items with icons have a larger padding.</p>
+
+    <div class="stacks-preview">
+    {% highlight html %}
+    <nav aria-label="…">
+        <ul class="s-navigation s-navigation__vertical">
+            <li>
+                <a href="…" class="s-navigation--item is-selected">
+                    @Svg.HomeFill.With("s-navigation--icon")
+                    <span class="s-navigation--item-text" data-text="Home">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="…" class="s-navigation--item">
+                    @Svg.Jobs.With("s-navigation--icon")
+                    <span class="s-navigation--item-text" data-text="Jobs">Jobs</span>
+                </a>
+            </li>
+            <li>
+                <a href="…" class="s-navigation--item">
+                    @Svg.Bookmark.With("s-navigation--icon")
+                    <span class="s-navigation--item-text" data-text="Saves">Saves</span>
+                </a>
+            </li>
+            <li>
+                <a href="…" class="s-navigation--item">
+                    @Svg.UserStack.With("s-navigation--icon")
+                    <span class="s-navigation--item-text" data-text="Users">Users</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    {% endhighlight %}
+    <div class="stacks-preview--example">
+        <nav class="ws2" aria-label="vertical full width navigation with icons">
+            <ul class="s-navigation s-navigation__vertical">
+                <li>
+                    <a href="#" class="s-navigation--item is-selected">
+                        {% icon "HomeFill", "s-navigation--icon" %}
+                        <span class="s-navigation--item-text" data-text="Home">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="s-navigation--item">
+                        {% icon "Jobs", "s-navigation--icon" %}
+                        <span class="s-navigation--item-text" data-text="Jobs">Jobs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="s-navigation--item">
+                        {% icon "Bookmark", "s-navigation--icon" %}
+                        <span class="s-navigation--item-text" data-text="Saves">Saves</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="s-navigation--item">
+                        {% icon "UserStack", "s-navigation--icon" %}
+                        <span class="s-navigation--item-text" data-text="Users">Users</span>
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </div>
     </div>
 
     {% header "h3", "Titles" %}

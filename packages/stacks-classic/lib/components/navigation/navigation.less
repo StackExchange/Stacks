@@ -44,6 +44,15 @@
         --_na-item-ws: normal;
         --_na-item-selected-h: 0;
         --_na-item-p: var(--su8);
+        & .s-navigation--item {
+            &.is-selected {
+                --_na-item-bg: var(--black-150);
+            }
+
+            &:has(.s-navigation--icon) {
+                --_na-item-p: var(--su12) var(--su8);
+            }
+        }
     }
 
     // CHILD ELEMENTS
@@ -141,6 +150,11 @@
         font-weight: bold;
         padding: var(--su6) var(--su12);
         text-transform: uppercase;
+    }
+
+    & &--icon {
+        color: inherit;
+        margin-right: var(--su4);
     }
 
     flex-direction: var(--_na-fd);
