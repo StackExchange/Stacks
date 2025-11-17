@@ -15,10 +15,11 @@ describe("Badge", () => {
         expect(screen.getByText("test badge")).to.exist;
     });
 
-    it("should render the award bling", () => {
+    it("should render the award as a bling component", () => {
         render(Badge, { award: "gold", children });
-        const badge = screen.getByText("test badge").closest(".s-award-bling");
-        expect(badge).to.have.class("s-award-bling");
+        const badge = screen.getByText("test badge").closest(".s-badge");
+        const bling = badge?.querySelector(".s-bling");
+        expect(bling).to.exist;
     });
 
     it("should apply the filled class when filled is true", () => {
