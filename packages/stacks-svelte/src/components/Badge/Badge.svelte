@@ -117,7 +117,7 @@
         }
 
         if (variant) {
-            if (variant === 'tag') {
+            if (variant === "tag") {
                 classes += ` ${base}__${award}`;
             } else {
                 classes += ` ${base}__${variant}`;
@@ -128,12 +128,16 @@
     };
 
     const classes = $derived(getClasses(filled, icon, size, variant));
-    const isTagVariant = $derived(() => variant === 'tag');
+    const isTagVariant = $derived(() => variant === "tag");
 </script>
 
 <span class={classes}>
     {#if award}
-        <Bling type={award} name={i18nAwardName || award} filled={!isTagVariant()} />
+        <Bling
+            type={award}
+            name={i18nAwardName || award}
+            filled={!isTagVariant()}
+        />
         {@render children?.()}
     {:else}
         {#if icon}

@@ -86,9 +86,7 @@
                                     {award}
                                 </th>
                                 {#if includeVariant}
-                                    <th scope="row" class="va-middle">
-                                        tag
-                                    </th>
+                                    <th scope="row" class="va-middle"> tag </th>
                                 {/if}
                                 <td class="va-middle px8">
                                     <Badge
@@ -98,9 +96,11 @@
                                             : undefined}
                                     >
                                         {#if award === "gold"}
-                                            {#if includeVariant}python{:else}Great Question{/if}
+                                            {#if includeVariant}python{:else}Great
+                                                Question{/if}
                                         {:else if award === "silver"}
-                                            {#if includeVariant}css{:else}Favorite Question{/if}
+                                            {#if includeVariant}css{:else}Favorite
+                                                Question{/if}
                                         {:else if award === "bronze"}
                                             {#if includeVariant}javascript{:else}Altruist{/if}
                                         {/if}
