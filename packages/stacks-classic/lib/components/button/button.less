@@ -1,163 +1,180 @@
 .s-btn {
     // BASE COMPONENT-SPECIFIC CUSTOM PROPERTIES
     --_bu-baw: var(--su-static1);
-    --_bu-bc: transparent;
-    // --_bu-bg: inherit; // [1]
-    --_bu-br: var(--br-pill); // TODO: confirm this when we have the correct atomic values - SPARK-91
-    --_bu-fc: var(--theme-button-color, var(--theme-secondary-600));
+    --_bu-br: var(--br-pill);
     --_bu-fs: var(--fs-body1);
-    --_bu-p: var(--su16);
-    --_bu-py: 11.2px; // Adjust to reach 40px height
-    --_bu-fw: 600; // Semibold font weight
-    --_bu-icon-gap: 8px; // Default spacing between icons and text
-
-    // Active
-    --_bu-bc-active: var(--_bu-bc);
-    --_bu-bg-active: var(--theme-button-active-background-color, var(--theme-secondary-050));
-    --_bu-fc-active: var(--theme-button-hover-color, var(--theme-secondary-600)); // Note: hover color used on purpose
-
-    // Hover
-    --_bu-bc-hover: var(--_bu-bc);
-    --_bu-bg-hover: var(--theme-button-hover-background-color, var(--theme-secondary-100));
-    --_bu-fc-hover: var(--theme-button-hover-color, var(--theme-secondary-600));
-
-    // Focus
-    --_bu-bg-focus: var(--black-150);
-    --_bu-fc-focus: var(--black-600);
-
-    // Disabled
-    --_bu-bg-disabled: var(--black-050);
-    --_bu-fc-disabled: var(--black-300);
-    // Filled + Disabled
-    --_bu-filled-bg-disabled: var(--black-300);
-    --_bu-filled-fc-disabled: var(--black-050);
-
-    // BASE SELECTED MODIFIER
-    --_bu-bg-selected: linear-gradient(to bottom, var(--theme-secondary-100) 0%, var(--theme-secondary-100) 50%, color-mix(in srgb, var(--theme-secondary-100) 60%, var(--black-050) 40%) 50%, color-mix(in srgb, var(--theme-secondary-100) 60%, var(--black-050) 40%) 100%);
-    --_bu-fc-selected: var(--theme-button-selected-color, var(--theme-secondary-600));
-
-    // FILLED VARIANT
-    --_bu-filled-bc: transparent;
-    --_bu-filled-bg: var(--theme-button-primary-background-color, var(--theme-secondary-600));
-    --_bu-filled-fc: var(--theme-button-primary-color, var(--black-050));
-    // Filled + Selected
-    --_bu-filled-bc-selected: transparent;
-    --_bu-filled-bg-selected: linear-gradient(to bottom, var(--theme-secondary-600) 0%, var(--theme-secondary-600) 50%, color-mix(in srgb, var(--theme-secondary-600) 80%, white 20%) 50%, color-mix(in srgb, var(--theme-secondary-600) 80%, white 20%) 100%);
-    --_bu-filled-fc-selected: var(--theme-button-primary-selected-color, var(--white));
-    // Filled + Active
-    --_bu-filled-bc-active: var(--_bu-filled-bc);
-    --_bu-filled-bg-active: var(--theme-button-primary-active-background-color, var(--theme-secondary-600));
-    --_bu-filled-fc-active: var(--theme-button-primary-hover-color, var(--white));
-    // Filled + Hover
-    --_bu-filled-bc-hover: var(--_bu-filled-bc);
-    --_bu-filled-bg-hover: var(--theme-button-primary-hover-background-color, var(--theme-secondary-500));
-    --_bu-filled-fc-hover: var(--theme-button-primary-hover-color, var(--white));
-    // Filled + Focus
-    --_bu-filled-bg-focus: var(--black-600);
-    --_bu-filled-fc-focus: var(--black-50);
-
-    // CHILD COMPONENT CUSTOM PROPERTIES
-    --_bu-badge-o: 0.5;
-    --_bu-badge-bg: currentColor;
+    --_bu-lh: var(--lh-base);
+    --_bu-g: var(--su8);
+    --_bu-px: var(--su16);
+    --_bu-py: calc(var(--su8) + var(--su2)); // 10px
     --_bu-dropdown-bw: var(--su-static4);
-    --_bu-number-fc: var(--white);
-    --_bu-number-fc-filled: var(--theme-button-primary-number-color, var(--theme-secondary-600));
-    --_bu-number-fc-selected: var(--white);
-
+    
     // CONTEXTUAL STYLES
-    .highcontrast-mode({
-        --_bu-bc: var(--black-300);
-        --_bu-bc-selected: var(--black-300);
-        --_bu-badge-o: 0.8;
-        --_bu-number-fc-selected: var(--white);
-    });
+    // TODO add high contrast mode styles
 
-    .dark-mode({
-        --_bu-bg-selected: linear-gradient(to bottom, color-mix(in srgb, var(--theme-secondary-100) 60%, var(--black-050) 40%) 0%, color-mix(in srgb, var(--theme-secondary-100) 60%, var(--black-050) 40%) 50%, var(--theme-secondary-100) 50%, var(--theme-secondary-100) 100%);  
-        --_bu-filled-bg-selected: linear-gradient(to bottom, color-mix(in srgb, var(--theme-secondary-600) 85%, var(--black-050) 15%) 0%, color-mix(in srgb, var(--theme-secondary-600) 85%, var(--black-050) 15%) 50%, var(--theme-secondary-600) 50%, var(--theme-secondary-600) 100%);
-    });
+    // VARIANTS
+    // Base
+    &:not(&__danger):not(&__featured):not(&__tonal):not(&__link):not(&__unset):not(&__facebook):not(&__github):not(&__google) { // Exclude default styles from impacting these variants
+        --_bu-bg: var(--theme-button-color, var(--theme-secondary));
+        --_bu-fc: var(--white);
+        --_bu-bg-disabled: var(--theme-secondary-400); // TODO SHINE do we need a disabled bg theme value?
+        --_bu-bg-hover: var(--theme-button-hover-background-color, var(--theme-secondary-500));
+        --_bu-fc-hover: var(--theme-button-hover-color, var(--white));
+        --_bu-bg-selected:
+            linear-gradient(0deg,
+                var(--_bu-bg) 50%,
+                var(--theme-secondary-500) 50%
+            ) padding-box,
+            linear-gradient(0deg,
+                var(--_bu-bg) 50%,
+                var(--theme-secondary-500) 50%
+            ) border-box;
+        --_bu-badge-bg: var(--theme-secondary-500);
+        --_bu-badge-bg-selected: var(--theme-secondary-500);
+        --_bu-badge-bg-hover: var(--theme-secondary-600);
+        --_bu-badge-bg-disabled: var(--theme-secondary-300);
 
-    // STATES
-    fieldset[disabled] &,
-    &[disabled],
-    &[aria-disabled="true"] {
-        pointer-events: none;
-        text-decoration: none;
-        
-        background-color: var(--_bu-bg-disabled);
-        color: var(--_bu-fc-disabled);
-        
-        &.s-btn__filled {
-            background-color: var(--_bu-filled-bg-disabled);
-            color: var(--_bu-filled-fc-disabled);
+        &.s-btn__clear {
+            --_bu-bg: var(--black-050);
+            --_bu-fc: var(--black-600);
+            --_bu-bg-disabled: var(--_bu-bg);
+            --_bu-bg-hover: var(--black-100);
+            --_bu-fc-hover: var(--_bu-fc);
+            --_bu-bg-selected: // TODO SHINE verify selected colors (see https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ?node-id=126-1248&m=dev#1517970436)
+                linear-gradient(0deg,
+                    var(--black-100) 50%,
+                    var(--black-150) 50%
+                ) padding-box,
+                linear-gradient(0deg,
+                    var(--black-100) 50%,
+                    var(--black-150) 50%
+                ) border-box;
+            --_bu-badge-bg: var(--theme-secondary-100);
+            --_bu-badge-bg-selected: var(--theme-secondary-200);
+            --_bu-badge-bg-hover: var(--theme-secondary-200);
+            --_bu-badge-bg-disabled: var(--theme-secondary-100);
         }
     }
 
-    button &,
-    button[type="submit"] &,
-    button[type="reset"] & {
-        -webkit-appearance: button; // [2]
+    &&__danger {
+        --_bu-bg: var(--red-400);
+        --_bu-fc: var(--white);
+        --_bu-bg-disabled: var(--red-200);
+        --_bu-bg-hover: var(--red-500);
+        --_bu-fc-selected: var(--_bu-fc);
+        --_bu-bg-selected:
+            linear-gradient(0deg,
+                var(--_bu-bg) 50%,
+                var(--red-500) 50%
+            ) padding-box,
+            linear-gradient(0deg,
+                var(--_bu-bg) 50%,
+                var(--red-500) 50%
+            ) border-box;
+        --_bu-badge-bg: var(--red-500);
+        --_bu-badge-bg-selected: var(--red-500);
+        --_bu-badge-bg-hover: var(--red-600);
+        --_bu-badge-bg-disabled: var(--red-200);
+
+        &.s-btn__clear {
+            --_bu-bg: var(--black-050);
+            --_bu-fc: var(--red-400);
+            --_bu-bg-disabled: var(--_bu-bg);
+            --_bu-fc-disabled: var(--_bu-fc);
+            --_bu-bg-hover: var(--red-100);
+            --_bu-fc-hover: var(--red-500);
+            --_bu-fc-selected: var(--red-500);
+            --_bu-bg-selected: // TODO SHINE verify selected colors (see https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ?node-id=126-1248&m=dev#1517965709)
+                linear-gradient(0deg,
+                    var(--red-100) 50%,
+                    var(--red-200) 50%
+                ) padding-box,
+                linear-gradient(0deg,
+                    var(--red-100) 50%,
+                    var(--red-200) 50%
+                ) border-box;
+            --_bu-badge-bg: var(--red-100);
+            --_bu-badge-bg-selected: var(--red-200);
+            --_bu-badge-bg-hover: var(--red-200);
+            --_bu-badge-bg-disabled: var(--red-100);
+        }
     }
 
-    &.grid {
-        display: flex; // Override &&__danger buttons having inline-block by default
+    &&__featured {
+        --_bu-bg: var(--purple-400);
+        --_bu-fc: var(--white);
+        --_bu-bg-disabled: var(--purple-200);
+        --_bu-bg-hover: var(--purple-500);
+        --_bu-fc-selected: var(--_bu-fc);
+        --_bu-bg-selected:
+            linear-gradient(0deg,
+                var(--_bu-bg) 50%,
+                var(--purple-500) 50%
+            ) padding-box,
+            linear-gradient(0deg,
+                var(--_bu-bg) 50%,
+                var(--purple-500) 50%
+            ) border-box;
+
+        --_bu-badge-bg: var(--purple-500);
+        --_bu-badge-bg-selected: var(--purple-500);
+        --_bu-badge-bg-hover: var(--purple-600);
+        --_bu-badge-bg-disabled: var(--purple-300);
     }
 
-    &.is-loading {
-        .svg-icon:first-child {
-            margin-left: calc((var(--su-static24) - var(--su-static1)) * -1); // -23px
-            opacity: 0; // [3]
-        }
+    &&__tonal {
+        --_bu-bg: var(--black-150);
+        --_bu-fc: var(--black);
+        --_bu-bg-disabled: var(--black-100);
+        --_bu-fc-disabled: var(--black-300);
+        --_bu-bg-hover: var(--black-200);
+        --_bu-fc-selected: var(--_bu-fc);
+        --_bu-bg-selected:
+            linear-gradient(0deg,
+                var(--_bu-bg) 50%,
+                var(--black-200) 50%
+            ) padding-box,
+            linear-gradient(0deg,
+                var(--_bu-bg) 50%,
+                var(--black-200) 50%
+            ) border-box;
+        --_bu-badge-bg: var(--black-200);
+        --_bu-badge-bg-selected: var(--black-200);
+        --_bu-badge-bg-hover: var(--black-300);
+        --_bu-badge-bg-disabled: var(--black-200);
 
-        padding-left: 2.2em;
     }
 
-    &.is-selected,
-    &--radio:checked + & {
-        background-color: var(--_bu-bg-selected);
-        background-image: var(--_bu-bg-selected);
-        background-origin: border-box;
-        background-clip: border-box;
-        border-color: var(--_bu-bc-selected, transparent);
-        color: var(--_bu-fc-selected);
+    // Social
+    &&__facebook {
+        @_fb-brand: #1877F2;
+        --_bu-bg: @_fb-brand;
+        --_bu-bg-hover: darken(@_fb-brand, 5%);
+        --_bu-fc: #fff;
+        --_bu-fc-hover: var(--_bu-fc);
+        --_bu-hc-bc: transparent;
+    }
 
-        .s-btn--number {
-            color: var(--_bu-number-fc-selected);
-        }
+    &&__google {
+        --_bu-bg: var(--black-150);
+        --_bu-bg-hover: var(--black-200);
+        --_bu-fc: var(--black-600);
+    }
 
-        &.s-btn__filled { // this needs to live here to adapt to radio button-group
-            border-color: var(--_bu-filled-bc-selected);
-            background-color: var(--_bu-filled-bg-selected);
-            background-image: var(--_bu-filled-bg-selected);
-            background-origin: border-box;
-            background-clip: border-box;
-            color: var(--_bu-filled-fc-selected);
-        }
+    &&__github {
+        --_bu-bg: var(--black-600);
+        --_bu-bg-hover: var(--black-500);
+        --_bu-fc: var(--white);
     }
 
     // MODIFIERS
-    &&__filled {
-        .s-btn--number {
-            color: var(--_bu-number-fc-filled);
-        }
-
-        border-color: var(--_bu-filled-bc);
-        background-color: var(--_bu-filled-bg);
-        color: var(--_bu-filled-fc);
-
-        &.s-btn__danger {
-            .highcontrast-mode({
-                --_bu-badge-bg: currentColor;
-            });
-        }
-    }
-
     // Resets
     &&__link,
     &&__unset {
         --_bu-baw: 0;
         --_bu-br: 0;
-        --_bu-p: 0;
+        --_bu-px: 0;
+        --_bu-py: 0;
 
         &:focus,
         &:focus-visible {
@@ -191,6 +208,11 @@
         &:hover,
         &:active,
         &:focus {
+            --_bu-baw: 0;
+            --_bu-br: unset;
+            --_bu-fs: inherit;
+            --_bu-lh: inherit;
+            --_bu-g: unset;
             --_bu-bg: none;
             --_bu-fc: unset;
 
@@ -202,7 +224,6 @@
         outline: initial;
     }
 
-    // Pseudo-elements and child-based modifiers
     &&__dropdown {
         &:after {
             border-color: currentColor transparent;
@@ -210,229 +231,42 @@
             border-width: var(--_bu-dropdown-bw);
             border-bottom-width: 0;
             content: "";
-            pointer-events: none;
-            position: absolute;
-            right: var(--_bu-px, var(--_bu-p));
-            top: calc(50% - var(--su-static2));
-            z-index: var(--zi-active);
-        }
-
-        padding-right: calc(var(--_bu-px, var(--_bu-p)) * 2.5);
-    }
-
-    &&__icon {
-        .svg-icon {
-            vertical-align: baseline;
-            margin-top: -0.3em; // [4]
-            margin-bottom: -0.3em; // [4]
-            transition: opacity 200ms var(--te-smooth); // Animate the transition to .is-loading
-
-            &:not(:last-child) {
-                margin-right: var(--_bu-icon-gap);
-            }
-            
-            &:not(:first-child) {
-                margin-left: var(--_bu-icon-gap);
-            }
         }
     }
 
-    // Size
-    // TODO: port the below added styles to the size-styles mixin SPARK-91 and SPARK-102
-    &&__xs {
-        .size-styles(xs; bu; @styles: fs);
-        --_bu-dropdown-bw: calc(var(--su-static4) - var(--su-static1));
-        --_bu-p: var(--su12);
-        --_bu-py: 6.285px; // Adjust to reach 28px height
-        --_bu-fs: var(--su12); // Override size-styles for custom font size
-        --_bu-icon-gap: var(--su4); // 4px spacing as per Figma specs
-    }
+    &.is-selected,
+    .s-btn--radio:checked + & {
+        &:not(:hover) {
+            .s-btn--badge {
+                .s-btn--number {
+                    color: var(--_bu-badge-fc-selected, var(--_bu-fc-selected));
+                }
 
-    &&__sm {
-        .size-styles(sm; bu; @styles: fs);
-        --_bu-p: var(--su12);
-        --_bu-py: 7.7px; // Adjust to reach 32px height
-        --_bu-fs: calc(var(--su12) + var(--su1)); // Override size-styles for custom font size
-        --_bu-icon-gap: var(--su6); // 6px spacing as per Figma specs
-    }
+                background-color: var(--_bu-badge-bg-selected, var(--_bu-badge-bg));
+            }
 
-    &&__lg {
-        .size-styles(md; bu; @styles: br, fs);
-        --_bu-br: var(--br-pill); // TODO: figure out why this isn't automatically applied
-        --_bu-p: var(--su24);
-        --_bu-py: 13.98px; // Adjust to reach 48px height
-        --_bu-fs: var(--su16); // Override size-styles for custom font size
-    }
-
-    // VARIANTS
-    &&__danger,
-    &&__featured,
-    &&__tonal {
-        .highcontrast-mode({
-            --_bu-filled-bc: transparent;
-        });
-    }
-
-    &&__danger {
-        --_bu-bg-active: var(--black-050);
-        --_bu-bg-hover: var(--red-100);
-        --_bu-bg-selected: linear-gradient(to bottom, var(--red-100) 0%, var(--red-100) 50%, color-mix(in srgb, var(--red-100) 50%, white 50%) 50%, color-mix(in srgb, var(--red-100) 50%, white 50%) 100%);
-        --_bu-bg-focus: var(--black-050);
-        --_bu-fc: var(--red-400);
-        --_bu-fc-active: var(--_bu-fc);
-        --_bu-fc-hover: var(--red-500);
-        --_bu-fc-selected: var(--red-500);
-        --_bu-fc-focus: var(--red-400);
-        --_bu-filled-bc: transparent;
-        --_bu-filled-bc-selected: var(--_bu-filled-bc);
-        --_bu-filled-bg: var(--red-400);
-        --_bu-filled-bg-active: var(--red-500);
-        --_bu-filled-bg-hover: var(--red-500);
-        --_bu-filled-bg-selected: linear-gradient(to bottom, var(--red-500) 0%, var(--red-500) 50%, color-mix(in srgb, var(--red-500) 80%, white 20%) 50%, color-mix(in srgb, var(--red-500) 80%, white 20%) 100%);
-        --_bu-filled-fc: var(--white);
-        --_bu-filled-bg-focus: var(--red-400);
-        --_bu-filled-fc-active: var(--_bu-filled-fc);
-        --_bu-filled-fc-hover: var(--_bu-filled-fc);
-        --_bu-filled-fc-selected: var(--_bu-filled-fc);
-        --_bu-bg-disabled: var(--black-050);
-        --_bu-fc-disabled: var(--red-200);
-        --_bu-filled-bg-disabled: var(--red-200);
-        --_bu-filled-fc-disabled: var(--black-050);
-        --_bu-number-fc: var(--white);
-        --_bu-number-fc-filled: var(--black);
-        .highcontrast-mode({
-            --_bu-bc: var(--red-300);
-            --_bu-bc-selected: var(--red-300);
-            --_bu-badge-bg: var(--red-500);
-        });
-        .dark-mode({
-            --_bu-bg-selected: linear-gradient(to bottom, color-mix(in srgb, var(--red-100) 50%, var(--black-050) 50%) 0%, color-mix(in srgb, var(--red-100) 50%, var(--black-050) 50%) 50%, var(--red-100) 50%, var(--red-100) 100%);
-            --_bu-filled-bg-selected: linear-gradient(to bottom, color-mix(in srgb, var(--red-500) 85%, var(--black-050) 15%) 0%, color-mix(in srgb, var(--red-500) 85%, var(--black-050) 15%) 50%, var(--red-500) 50%, var(--red-500) 100%);
-        });
-    }
-
-    &&__featured {
-        --_bu-bg-active: var(--purple-300);
-        --_bu-bg-hover: var(--purple-200);
-        --_bu-bg-selected: var(--purple-300);
-        --_bu-fc: var(--purple-500);
-        --_bu-fc-active: var(--_bu-fc);
-        --_bu-fc-hover: var(--purple-500);
-        --_bu-fc-selected: var(--purple-600);
-        --_bu-filled-bc: transparent;
-        --_bu-filled-bc-selected: var(--_bu-filled-bc);
-        --_bu-filled-bg: var(--purple-400);
-        --_bu-filled-bg-active: var(--purple-500);
-        --_bu-filled-bg-hover: var(--purple-500);
-        --_bu-filled-bg-selected: linear-gradient(to bottom, var(--purple-500) 0%, var(--purple-500) 50%, color-mix(in srgb, var(--purple-500) 80%, white 20%) 50%, color-mix(in srgb, var(--purple-500) 80%, white 20%) 100%);
-        --_bu-filled-fc: var(--white);
-        --_bu-filled-fc-active: var(--_bu-filled-fc);
-        --_bu-filled-fc-hover: var(--_bu-filled-fc);
-        --_bu-filled-fc-selected: var(--_bu-filled-fc);
-        --_bu-filled-bg-focus: var(--purple-400);
-        --_bu-filled-bg-disabled: var(--purple-200);
-        --_bu-filled-fc-disabled: var(--black-050);
-        --_bu-number-fc: var(--white);
-        --_bu-number-fc-filled: var(--black);
-        .dark-mode({
-            --_bu-filled-bg-selected: linear-gradient(to bottom, color-mix(in srgb, var(--purple-500) 85%, var(--black-050) 15%) 0%, color-mix(in srgb, var(--purple-500) 85%, var(--black-050) 15%) 50%, var(--purple-500) 50%, var(--purple-500) 100%);
-        });
-    }
-
-    &&__tonal {
-        --_bu-bg: var(--black-150);
-        --_bu-bc-hover: transparent;
-        --_bu-bg-active: var(--black-150);
-        --_bu-bg-hover: var(--black-200);
-        --_bu-bg-selected: linear-gradient(to bottom, var(--black-200) 0%, var(--black-200) 50%, color-mix(in srgb, var(--black-200) 60%, var(--black-050) 40%) 50%, color-mix(in srgb, var(--black-200) 60%, var(--black-050) 40%) 100%);
-        --_bu-fc: var(--black-600);
-        --_bu-fc-active: var(--_bu-fc);
-        --_bu-fc-hover: var(--black-600);
-        --_bu-fc-selected: var(--black-600);
-        --_bu-bg-disabled: var(--black-100);
-        --_bu-fc-disabled: var(--black-300);
-        --_bu-number-fc-filled: var(--white);
-        --_bu-number-fc-selected: var(--white);
-        --_bu-number-fc-focus: var(--black-600);
-
-        .highcontrast-mode({
-            --_bu-bc-hover: currentColor;
-            --_bu-bg-hover: var(--black-225);
-            // // The filled modifier on the muted button is deprecated and is to be
-            // // removed in Stacks Classic v2
-            --_bu-filled-bg: var(--black-400);
-            --_bu-filled-bg-active: var(--black-500);
-            --_bu-filled-bg-hover: var(--black-400);
-            --_bu-filled-bg-selected: var(--black-500);
-            --_bu-filled-fc: var(--white);
-            --_bu-filled-fc-selected: var(--_bu-filled-fc);
-            --_bu-bc-selected: currentColor;
-            --_bu-fc-selected: var(--black);
-            --_bu-number-fc: var(--white);
-            --_bu-number-fc-filled: var(--black);
-            --_bu-number-fc-selected: var(--white);
-        });
-
-        .dark-mode({
-            --_bu-bg-selected: linear-gradient(to bottom, color-mix(in srgb, var(--black-200) 70%, var(--black-050) 30%) 0%, color-mix(in srgb, var(--black-200) 70%, var(--black-050) 30%) 50%, var(--black-200) 50%, var(--black-200) 100%);
-        });
-    }
-
-    // Social
-    &&__facebook,
-    &&__github {
-        .highcontrast-mode({
-            --_bu-bc: transparent;
-        });
-    }
-
-    &&__facebook {
-        @_fb-brand: #1877F2;
-        --_bu-bc: transparent;
-        --_bu-bg: @_fb-brand;
-        --_bu-bg-active: darken(@_fb-brand, 10%);
-        --_bu-bg-hover: darken(@_fb-brand, 5%);
-        --_bu-fc: #fff;
-        --_bu-fc-active: var(--_bu-fc);
-        --_bu-fc-hover: var(--_bu-fc);
-        --_bu-hc-bc: transparent;
-    }
-
-    &&__google {
-        --_bu-bc: var(--bc-medium);
-        --_bu-bg: var(--black-150);
-        --_bu-bg-active: var(--black-150);
-        --_bu-bg-hover: var(--black-100);
-        --_bu-fc: var(--fc-medium);
-        --_bu-fc-active: var(--fc-dark);
-        --_bu-fc-hover: var(--black-600);
-    }
-
-    &&__github {
-        --_bu-bg: var(--black-600);
-        --_bu-bg-active: var(--black);
-        --_bu-bg-hover: var(--black-600);
-        --_bu-fc: var(--white);
-        --_bu-fc-active: var(--white);
-        --_bu-fc-hover: var(--white);
-        --_bu-hc-bc: transparent;
+            background: var(--_bu-bg-selected, var(--_bu-bg));
+            color: var(--_bu-fc-selected, var(--_bu-fc));
+        }
     }
 
     // CHILD ELEMENTS
+    // TODO SHINE fine-tune badge styles
     & &--badge {
-        opacity: var(--_bu-badge-o);
-        display: inline-block;
-        border-radius: var(--br-md);
-        padding: var(--su2) calc(var(--su4) - var(--su1));
-        font-size: var(--fs-caption);
-        line-height: var(--lh-xs);
         background-color: var(--_bu-badge-bg);
+        border-radius: var(--br-pill);
+        display: inline-block;
+        font-size: var(--fs-caption);
+        line-height: inherit;
+        opacity: var(--_bu-badge-o);
+        padding: var(--su2) var(--su4) 0;
     }
 
     & &--number {
-        color: var(--_bu-number-fc);
+        color: var(--_bu-badge-fc, var(--_bu-fc));
     }
 
+    // TODO SHINE do we still need this?
     &--radio { // This lives alongside a .s-btn element. These styles are the equivelent of `.v-visible-sr`
         border: 0;
         clip-path: inset(50%);
@@ -446,98 +280,86 @@
         width: var(--su-static1);
     }
 
+    // Sizes
+    &&__xs,
+    &&__sm {
+        --_bu-lh: var(--lh-sm);
+        --_bu-px: var(--su12);
+    }
+    &&__xs {
+        --_bu-gap: var(--su4);
+        --_bu-fs: var(--fs-fine);
+        --_bu-py: var(--su6);
+    }
+    &&__sm {
+        --_bu-gap: var(--su6);
+        --_bu-fs: var(--fs-caption);
+        --_bu-py: var(--su8);
+    }
+    &&__lg {
+        --_bu-fs: var(--fs-body2);
+        --_bu-px: var(--su24);
+        --_bu-py: calc(var(--su12) + var(--su1)); // 13px
+    }
+
     // INTERACTION
     &:not(&__link):not(&__unset):focus-visible,
     &--radio:focus-visible + & {
-        .focus-styles(true, true);
+        .focus-styles(false, true);
     }
 
-    &:not(&--radio:checked + label):not(&__link):not(&__unset):not(&__facebook):not(&__github):not(&__google):not(.is-selected) {
-        &:focus-visible,
-        &.focus-inset-bordered {
-            &:not(:hover) .s-btn--number {
-                color: var(--_bu-number-fc-focus, var(--_bu-number-fc-filled));
+    &:hover {
+        .s-btn--badge {
+            .s-btn--number {
+                color: var(--_bu-badge-fc-hover, var(--_bu-fc-hover));
             }
 
-            &.s-btn__filled {
-                background-color: var(--_bu-filled-bg-focus, var(--_bu-filled-bg));
-                color: var(--_bu-filled-fc-focus, var(--_bu-filled-fc));
-            }
-
-            background-color: var(--_bu-bg-focus, var(--_bu-filled-bg));
-            color: var(--_bu-fc-focus, var(--_bu-filled-fc));
+            background-color: var(--_bu-badge-bg-hover, var(--_bu-badge-bg));
         }
 
+        background: var(--_bu-bg-hover, var(--_bu-bg));
+        color: var(--_bu-fc-hover, var(--_bu-fc));
+    }
+
+    fieldset[disabled] &,
+    &[disabled],
+    &[aria-disabled="true"] {
+        &,
         &:hover {
-            &.s-btn__filled {
-                background-color: var(--_bu-filled-bg-hover);
-                border-color: var(--_bu-filled-bc-hover);
-                color: var(--_bu-filled-fc-hover);
-            }
-
-            &:not(.s-btn__toned):not(.s-btn__filled) {
-                border-color: var(--_bu-bc-hover);
-            }
-
-            &:visited:not(:active):not(:focus) {
-                &:not(.s-btn__toned) {
-                    &.s-btn__filled {
-                        background-color: var(--_bu-filled-bg-hover);
-                        border-color: var(--_bu-filled-bc-hover);
-                        color: var(--_bu-filled-fc-hover);
-                    }
-
-                    background-color: var(--_bu-bg);
-                    border-color: var(--_bu-bc);
-                    color: var(--_bu-fc);
+            .s-btn--badge {
+                .s-btn--number {
+                    color: var(--_bu-badge-fc-disabled, var(--_bu-fc-disabled));
                 }
+
+                background-color: var(--_bu-badge-bg-disabled, var(--_bu-badge-bg));
             }
 
-            background-color: var(--_bu-bg-hover);
-            color: var(--_bu-fc-hover);
+            background: var(--_bu-bg-disabled, var(--theme-secondary-400));
+            color: var(--_bu-fc-disabled, var(--_bu-fc));
         }
 
-        &:active {
-            &.s-btn__filled {
-                background-color: var(--_bu-filled-bg-active);
-                border-color: var(--_bu-filled-bc-active);
-                color: var(--_bu-filled-fc-active);
-            }
-
-            background-color: var(--_bu-bg-active);
-            border-color: var(--_bu-bc-active);
-            color: var(--_bu-fc-active);
-        }
+        cursor: auto;
+        // TODO SHINE add cursor styles
     }
 
-    background-color: var(--_bu-bg, inherit); // [1]
-    border: var(--_bu-baw) solid var(--_bu-bc);
-    border-radius: var(--_bu-br);
-    box-shadow: none;
+    background: var(--_bu-bg);
+    border-color: transparent;
+    border-width: var(--_bu-baw);
     color: var(--_bu-fc);
     font-size: var(--_bu-fs);
-    padding: var(--_bu-py, var(--_bu-p)) var(--_bu-px, var(--_bu-p));
+    gap: var(--_bu-g);
+    padding: var(--_bu-py) var(--_bu-px);
 
+    align-items: center;
+    border-radius: var(--_bu-br);
+    border-style: solid;
     cursor: pointer;
-    display: inline-block;
-    font-family: inherit;
-    font-weight: var(--_bu-fw, 600);
-    line-height: var(--lh-sm);
+    display: inline-flex;
+    font-weight: 600; // TODO SHINE verify weight
+    justify-content: center;
+    line-height: var(--_bu-lh);
     position: relative;
-    outline: none;
     text-align: center;
     text-decoration: none;
     user-select: none;
 }
-
-//  [1] Passing `inherit` as a custom property value has no effect, instead we
-//      provide it as a fallback value for when --_bu-bg is not defined
-//      For more info, see https://stackoverflow.com/a/53239881/652353
-//  [2] Guard against the difference in configurable resets
-//      Eric Meyer's reset does not include this, while normalize.css does
-//      Correct the inability to style buttons in iOS and Safari.
-//  [3] If the first thing in the button is an icon, let's hide it on loading
-//      We only want to modify the visibility, since we still want it to have shape and keep the same layout.
-//  [4] Most svg icons are 18px tall, but the button's line-height is 1 (13px).
-//      This means we need to off set the margin y-axis so we don't add
-//      additional height to the button.
