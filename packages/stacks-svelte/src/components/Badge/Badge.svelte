@@ -2,7 +2,7 @@
 <!-- TODO This component stays close to the Stacks Classic API but should be modified to provide useful abstractions to consumers before exposing it. -->
 <script module lang="ts">
     export type Award = "gold" | "silver" | "bronze" | undefined;
-    export type Size = "xs" | "sm" | undefined;
+    export type Size = "sm" | "lg" | undefined;
     export type Variant =
         | "answered"
         | "bounty"
@@ -20,7 +20,7 @@
         | "admin"
         | "moderator"
         | "staff"
-        | Award;
+        | "tag";
 </script>
 
 <script lang="ts">
@@ -53,13 +53,13 @@
 
         /**
          * The size of the badge
-         * @type {"xs" | "sm" | undefined} Size
+         * @type {"sm" | "lg" | undefined} Size
          */
         size?: Size;
 
         /**
          * The variant of the badge
-         * @type {"answered" | "bounty" | "danger" | "muted" | "new" | "important" | "rep" | "rep-down" | "votes" | "ai" | "bot" | "admin" | "moderator" | "staff" | "gold" | "silver" | "bronze" | undefined} Variant
+         * @type {"answered" | "bounty" | "danger" | "muted" | "new" | "important" | "rep" | "rep-down" | "votes" | "ai" | "bot" | "admin" | "moderator" | "staff" | "tag" | undefined} Variant
          */
         variant?: Variant;
 
@@ -117,18 +117,23 @@
         }
 
         if (variant) {
-            classes += ` ${base}__${variant}`;
+            if (variant === 'tag') {
+                classes += ` ${base}__${award}`;
+            } else {
+                classes += ` ${base}__${variant}`;
+            }
         }
 
         return classes;
     };
 
     const classes = $derived(getClasses(filled, icon, size, variant));
+    const isTagVariant = $derived(() => variant === 'tag');
 </script>
 
 <span class={classes}>
     {#if award}
-        <Bling type={award} name={i18nAwardName || award} filled />
+        <Bling type={award} name={i18nAwardName || award} filled={!isTagVariant()} />
         {@render children?.()}
     {:else}
         {#if icon}
