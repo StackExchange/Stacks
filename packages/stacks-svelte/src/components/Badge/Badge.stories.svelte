@@ -37,7 +37,7 @@
     const { Story } = defineMeta({
         title: "Components/Badge",
         component: Badge,
-        tags: ["!autodocs", "!dev"], // This hides the stories and link in sidebar
+        // tags: ["!autodocs", "!dev"], // This hides the stories and link in sidebar
         argTypes: {
             award: {
                 control: "select",

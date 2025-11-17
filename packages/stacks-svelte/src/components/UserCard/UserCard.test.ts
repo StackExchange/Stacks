@@ -76,9 +76,9 @@ describe("UserCard", () => {
             silver: 2,
             bronze: 3,
         });
-        expect(screen.getByText("1")).to.exist;
-        expect(screen.getByText("2")).to.exist;
-        expect(screen.getByText("3")).to.exist;
+        expect(screen.getByText("1 gold awards")).to.exist;
+        expect(screen.getByText("2 silver awards")).to.exist;
+        expect(screen.getByText("3 bronze awards")).to.exist;
     });
 
     it("should render the user card with the appropriate size class", () => {

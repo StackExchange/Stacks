@@ -24,6 +24,10 @@
 
 ### Components
 
+#### Bling (previously *Award Bling*)
+- The Award Bling component has been renamed to Bling.
+- Bling no longer accepts children elements besides those for screen readers. Please include any visually represented strings (such as counts) as siblings to the bling component.
+
 #### Popover
 - The new popovers no longer include an arrow element. The `s-popover--arrow` css class has been removed, and any markup using it (e.g. `<div class="s-popover--arrow"></div>`) should be deleted from the codebases as part of the migration.
 
@@ -33,7 +37,11 @@
 
 # Migrating from Stacks Svelte v0 to v1
 
-Coming soon…
+## Breaking changes
+
+### Bling (previously *AwardBling*)
+
+The `AwardBling` component has been renamed to `Bling`.
 
 # Migrating from Stacks v1 to v2
 
