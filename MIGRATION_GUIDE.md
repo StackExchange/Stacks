@@ -24,6 +24,10 @@
 
 ### Components
 
+#### Bling (previously *Award Bling*)
+- The Award Bling component has been renamed to Bling.
+- Bling no longer accepts children elements besides those for screen readers. Please include any visually represented strings (such as counts) as siblings to the bling component.
+
 #### Pagination
 - The next and previous button now uses an `ArrowRight` and `ArrowLeft` icon instead of text. To apply the new styling, use the class `.s-pagination--item__nav`. Since these buttons use icons to represent their behavior, make sure to include descriptive text for screen readers.
 
@@ -36,7 +40,11 @@
 
 # Migrating from Stacks Svelte v0 to v1
 
-Coming soon…
+## Breaking changes
+
+### Bling (previously *AwardBling*)
+
+The `AwardBling` component has been renamed to `Bling`.
 
 # Migrating from Stacks v1 to v2
 
