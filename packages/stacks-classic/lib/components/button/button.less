@@ -8,9 +8,6 @@
     --_bu-px: var(--su16);
     --_bu-py: calc(var(--su8) + var(--su2)); // 10px
     --_bu-dropdown-bw: var(--su-static4);
-    
-    // CONTEXTUAL STYLES
-    // TODO add high contrast mode styles
 
     // VARIANTS
     // Base
@@ -22,12 +19,12 @@
         --_bu-fc-hover: var(--theme-button-hover-color, var(--white));
         --_bu-bg-selected:
             linear-gradient(0deg,
-                var(--_bu-bg) 50%,
-                var(--theme-secondary-500) 50%
+                var(--theme-secondary-500) 50%,
+                var(--_bu-bg) 50%
             ) padding-box,
             linear-gradient(0deg,
-                var(--_bu-bg) 50%,
-                var(--theme-secondary-500) 50%
+                var(--theme-secondary-500) 50%,
+                var(--_bu-bg) 50%
             ) border-box;
         --_bu-badge-bg: var(--theme-secondary-500);
         --_bu-badge-bg-selected: var(--theme-secondary-500);
@@ -35,7 +32,7 @@
         --_bu-badge-bg-disabled: var(--theme-secondary-300);
 
         &.s-btn__clear {
-            --_bu-bg: var(--black-050);
+            --_bu-bg: transparent;
             --_bu-fc: var(--black-600);
             --_bu-bg-disabled: var(--_bu-bg);
             --_bu-bg-hover: var(--black-100);
@@ -53,6 +50,10 @@
             --_bu-badge-bg-selected: var(--theme-secondary-200);
             --_bu-badge-bg-hover: var(--theme-secondary-200);
             --_bu-badge-bg-disabled: var(--theme-secondary-100);
+
+            .highcontrast-mode({
+                --_bu-bc-disabled: var(--theme-secondary-600);
+            });
         }
     }
 
@@ -97,6 +98,10 @@
             --_bu-badge-bg-selected: var(--red-200);
             --_bu-badge-bg-hover: var(--red-200);
             --_bu-badge-bg-disabled: var(--red-100);
+
+            .highcontrast-mode({
+                --_bu-bc-disabled: var(--red-300);
+            });
         }
     }
 
@@ -142,6 +147,10 @@
         --_bu-badge-bg-selected: var(--black-200);
         --_bu-badge-bg-hover: var(--black-300);
         --_bu-badge-bg-disabled: var(--black-200);
+
+        .highcontrast-mode({
+            --_bu-bc: var(--black-300);
+        });
 
     }
 
@@ -335,6 +344,7 @@
             }
 
             background: var(--_bu-bg-disabled, var(--theme-secondary-400));
+            border-color: var(--_bu-bc-disabled, var(--_bu-bc, transparent));
             color: var(--_bu-fc-disabled, var(--_bu-fc));
         }
 
@@ -343,8 +353,7 @@
     }
 
     background: var(--_bu-bg);
-    border-color: transparent;
-    border-width: var(--_bu-baw);
+    border: var(--_bu-baw) solid var(--_bu-bc, transparent);
     color: var(--_bu-fc);
     font-size: var(--_bu-fs);
     gap: var(--_bu-g);
