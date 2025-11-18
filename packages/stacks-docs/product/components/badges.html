@@ -33,7 +33,7 @@ tags: components
     <span class="s-bling s-bling__filled">
         <span class="v-visible-sr">Badge</span>
     </span>
-    default
+    general
 </span>
 <span class="s-badge">
     <span class="s-bling s-bling__filled__rep">
@@ -420,11 +420,50 @@ tags: components
     </div>
 
     {% header "h3", "Badge sizes" %}
+    <p class="stacks-copy">Badges come in three sizes.</p>
     <div class="stacks-preview">
 {% highlight html %}
 <span class="s-badge s-badge__sm">Small</span>
 <span class="s-badge">Regular</span>
-<span class="s-badge s-badge__xs">Large</span>
+<span class="s-badge s-badge__lg">Large</span>
+
+<span class="s-badge s-badge__sm">
+    <span class="s-bling s-bling__sm s-bling__filled">
+        <span class="v-visible-sr">Badge</span>
+    </span>
+    Small
+</span>
+<span class="s-badge">
+    <span class="s-bling s-bling__filled">
+        <span class="v-visible-sr">Badge</span>
+    </span>
+    Regular
+</span>
+<span class="s-badge s-badge__lg">
+    <span class="s-bling s-bling__lg s-bling__filled">
+        <span class="v-visible-sr">Badge</span>
+    </span>
+    Large
+</span>
+
+<span class="s-badge s-badge__sm s-badge__bronze">
+    <span class="s-bling s-bling__sm s-bling__bronze">
+        <span class="v-visible-sr">Bronze badge</span>
+    </span>
+    Small
+</span>
+<span class="s-badge s-badge__silver">
+    <span class="s-bling s-bling__silver">
+        <span class="v-visible-sr">Silver badge</span>
+    </span>
+    Regular
+</span>
+<span class="s-badge s-badge__lg s-badge__gold">
+    <span class="s-bling s-bling__lg s-bling__gold">
+        <span class="v-visible-sr">Gold badge</span>
+    </span>
+    Large
+</span>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="overflow-x-auto" tabindex="0">
@@ -443,6 +482,11 @@ tags: components
                                 <tr>
                                     <td class="va-middle pr8">
                                         <span class="{{ type.html }}">
+                                            {% if type.blingClasses != nil %}
+                                                <span class="s-bling {{type.blingClasses}}">
+                                                    <span class="v-visible-sr">{{ type.label }} badge</span> 
+                                                </span>
+                                            {% endif %}
                                             {% if type.icon != nil %}
                                                 {% icon type.icon %} {{ type.label }}
                                             {% else %}
@@ -454,7 +498,10 @@ tags: components
                                         <div class="d-flex g4 fw-wrap">
                                             <code class="stacks-code">.s-badge</code>
                                             {% if type.class != nil %}
-                                                <code class="stacks-code">.{{ type.class }}</code>
+                                                {% assign classList = type.class | split: ' ' %}
+                                                {% for className in classList %}
+                                                    <code class="stacks-code">.{{ className }}</code>
+                                                {% endfor %}
                                             {% endif %}
                                             {% if badge.class != nil %}
                                                 <code class="flex--item stacks-code">.{{ badge.class }}</code>
