@@ -1,6 +1,5 @@
 <script lang="ts">
     import type { Snippet } from "svelte";
-    import Button from "../Button/Button.svelte";
 
     interface Props {
         /**
