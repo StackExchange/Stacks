@@ -11,28 +11,7 @@
     --_ba-wmn: 0;
     --_ba-bl: 0;
 
-    // CONTEXTUAL STYLES
-    .highcontrast-mode({
-        // Badge counts
-        &__gold,
-        &__silver,
-        &__bronze,
-        // Number counts
-        &__rep,
-        &__rep-down,
-        &__votes:not(.s-badge__answered),
-        // Users
-        &__admin,
-        &__moderator,
-        &__staff {
-            --_ba-bc: currentColor;
-        }
-
-        &__new {
-            --_ba-fc: var(--purple-600);
-        }
-    });
-
+    // SIZES
     &&__sm {
         --_ba-wmn: calc(var(--su-static16) + var(--su-static2));
         --_ba-as: flex-start;
@@ -47,6 +26,7 @@
         --_ba-py: calc(var(--su4) + var(--su1)); //5px
     }
 
+    // We need negative margin to make up for the positive badge padding
     & .s-bling__filled {
         margin: calc(var(--_ba-py) * -1) 0 calc(var(--_ba-py) * -1) calc(var(--_ba-px) * -1);
     }
