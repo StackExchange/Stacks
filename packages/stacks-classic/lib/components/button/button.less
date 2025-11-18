@@ -1,5 +1,4 @@
 .s-btn {
-    // BASE COMPONENT-SPECIFIC CUSTOM PROPERTIES
     --_bu-baw: var(--su-static1);
     --_bu-br: var(--br-pill);
     --_bu-fs: var(--fs-body1);
@@ -13,46 +12,30 @@
     // Base
     &:not(&__danger):not(&__featured):not(&__tonal):not(&__link):not(&__unset):not(&__facebook):not(&__github):not(&__google) { // Exclude default styles from impacting these variants
         --_bu-bg: var(--theme-button-color, var(--theme-secondary));
-        --_bu-fc: var(--white);
-        --_bu-bg-disabled: var(--theme-secondary-400); // TODO SHINE do we need a disabled bg theme value?
+        --_bu-bg-disabled: var(--theme-secondary-300);
         --_bu-bg-hover: var(--theme-button-hover-background-color, var(--theme-secondary-500));
+        --_bu-fc: var(--white);
         --_bu-fc-hover: var(--theme-button-hover-color, var(--white));
-        --_bu-bg-selected:
-            linear-gradient(0deg,
-                var(--theme-secondary-500) 50%,
-                var(--_bu-bg) 50%
-            ) padding-box,
-            linear-gradient(0deg,
-                var(--theme-secondary-500) 50%,
-                var(--_bu-bg) 50%
-            ) border-box;
-        --_bu-badge-bg: var(--theme-secondary-500);
-        --_bu-badge-bg-selected: var(--theme-secondary-500);
-        --_bu-badge-bg-hover: var(--theme-secondary-600);
-        --_bu-badge-bg-disabled: var(--theme-secondary-300);
+        --_bu-badge-bg: var(--theme-secondary-200);
+        --_bu-badge-fc: var(--theme-secondary-600);
+        --_bu-badge-bg-disabled: var(--theme-secondary-200);
+        --_bu-badge-fc-disabled: var(--theme-secondary-300);
 
         &.s-btn__clear {
             --_bu-bg: transparent;
-            --_bu-fc: var(--black-600);
             --_bu-bg-disabled: var(--_bu-bg);
-            --_bu-bg-hover: var(--black-100);
+            --_bu-bg-hover: var(--theme-secondary-100);
+            --_bu-bg-selected: var(--theme-secondary-100);
+            --_bu-fc: var(--theme-secondary-600);
+            --_bu-fc-disabled: var(--theme-secondary-300);
             --_bu-fc-hover: var(--_bu-fc);
-            --_bu-bg-selected: // TODO SHINE verify selected colors (see https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ?node-id=126-1248&m=dev#1517970436)
-                linear-gradient(0deg,
-                    var(--black-100) 50%,
-                    var(--black-150) 50%
-                ) padding-box,
-                linear-gradient(0deg,
-                    var(--black-100) 50%,
-                    var(--black-150) 50%
-                ) border-box;
-            --_bu-badge-bg: var(--theme-secondary-100);
-            --_bu-badge-bg-selected: var(--theme-secondary-200);
-            --_bu-badge-bg-hover: var(--theme-secondary-200);
-            --_bu-badge-bg-disabled: var(--theme-secondary-100);
+            --_bu-badge-bg: var(--theme-secondary-500);
+            --_bu-badge-fc: var(--white);
+            --_bu-badge-bg-disabled: var(--theme-secondary-300);
+            --_bu-badge-fc-disabled: var(--white);
 
             .highcontrast-mode({
-                --_bu-bc-disabled: var(--theme-secondary-600);
+                --_bu-bc: var(--theme-secondary-600);
             });
         }
     }
@@ -62,42 +45,27 @@
         --_bu-fc: var(--white);
         --_bu-bg-disabled: var(--red-200);
         --_bu-bg-hover: var(--red-500);
+        --_bu-bg-selected: var(--red-500);
         --_bu-fc-selected: var(--_bu-fc);
-        --_bu-bg-selected:
-            linear-gradient(0deg,
-                var(--_bu-bg) 50%,
-                var(--red-500) 50%
-            ) padding-box,
-            linear-gradient(0deg,
-                var(--_bu-bg) 50%,
-                var(--red-500) 50%
-            ) border-box;
-        --_bu-badge-bg: var(--red-500);
-        --_bu-badge-bg-selected: var(--red-500);
-        --_bu-badge-bg-hover: var(--red-600);
-        --_bu-badge-bg-disabled: var(--red-200);
+        --_bu-badge-bg: var(--red-100);
+        --_bu-badge-fc: var(--red-400);
+        --_bu-badge-bg-disabled: var(--white);
+        --_bu-badge-fc-disabled: var(--red-200);
 
         &.s-btn__clear {
-            --_bu-bg: var(--black-050);
-            --_bu-fc: var(--red-400);
+            --_bu-bg: transparent;
             --_bu-bg-disabled: var(--_bu-bg);
-            --_bu-fc-disabled: var(--_bu-fc);
             --_bu-bg-hover: var(--red-100);
+            --_bu-bg-selected: var(--red-100);
+            --_bu-fc: var(--red-400);
+            --_bu-fc-disabled: var(--red-200);
             --_bu-fc-hover: var(--red-500);
             --_bu-fc-selected: var(--red-500);
-            --_bu-bg-selected: // TODO SHINE verify selected colors (see https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ?node-id=126-1248&m=dev#1517965709)
-                linear-gradient(0deg,
-                    var(--red-100) 50%,
-                    var(--red-200) 50%
-                ) padding-box,
-                linear-gradient(0deg,
-                    var(--red-100) 50%,
-                    var(--red-200) 50%
-                ) border-box;
-            --_bu-badge-bg: var(--red-100);
-            --_bu-badge-bg-selected: var(--red-200);
-            --_bu-badge-bg-hover: var(--red-200);
-            --_bu-badge-bg-disabled: var(--red-100);
+            --_bu-badge-bg: var(--red-400);
+            --_bu-badge-bg-selected: var(--red-400);
+            --_bu-badge-fc: var(--red-100);
+            --_bu-badge-bg-disabled: var(--red-200);
+            --_bu-badge-fc-disabled: var(--white);
 
             .highcontrast-mode({
                 --_bu-bc-disabled: var(--red-300);
@@ -107,46 +75,28 @@
 
     &&__featured {
         --_bu-bg: var(--purple-400);
-        --_bu-fc: var(--white);
         --_bu-bg-disabled: var(--purple-200);
         --_bu-bg-hover: var(--purple-500);
+        --_bu-bg-selected: var(--purple-500);
+        --_bu-fc: var(--white);
         --_bu-fc-selected: var(--_bu-fc);
-        --_bu-bg-selected:
-            linear-gradient(0deg,
-                var(--_bu-bg) 50%,
-                var(--purple-500) 50%
-            ) padding-box,
-            linear-gradient(0deg,
-                var(--_bu-bg) 50%,
-                var(--purple-500) 50%
-            ) border-box;
-
-        --_bu-badge-bg: var(--purple-500);
-        --_bu-badge-bg-selected: var(--purple-500);
-        --_bu-badge-bg-hover: var(--purple-600);
-        --_bu-badge-bg-disabled: var(--purple-300);
+        --_bu-badge-bg: var(--purple-100);
+        --_bu-badge-fc: var(--purple-400);
+        --_bu-badge-bg-disabled: var(--white);
+        --_bu-badge-fc-disabled: var(--purple-200);
     }
 
     &&__tonal {
         --_bu-bg: var(--black-150);
-        --_bu-fc: var(--black);
         --_bu-bg-disabled: var(--black-100);
-        --_bu-fc-disabled: var(--black-300);
         --_bu-bg-hover: var(--black-200);
+        --_bu-fc: var(--black);
+        --_bu-fc-disabled: var(--black-300);
         --_bu-fc-selected: var(--_bu-fc);
-        --_bu-bg-selected:
-            linear-gradient(0deg,
-                var(--_bu-bg) 50%,
-                var(--black-200) 50%
-            ) padding-box,
-            linear-gradient(0deg,
-                var(--_bu-bg) 50%,
-                var(--black-200) 50%
-            ) border-box;
-        --_bu-badge-bg: var(--black-200);
-        --_bu-badge-bg-selected: var(--black-200);
-        --_bu-badge-bg-hover: var(--black-300);
-        --_bu-badge-bg-disabled: var(--black-200);
+        --_bu-badge-bg: var(--black-500);
+        --_bu-badge-fc: var(--white);
+        --_bu-badge-bg-disabled: var(--black-300);
+        --_bu-badge-fc-disabled: var(--white);
 
         .highcontrast-mode({
             --_bu-bc: var(--black-300);
@@ -161,7 +111,6 @@
         --_bu-bg-hover: darken(@_fb-brand, 5%);
         --_bu-fc: #fff;
         --_bu-fc-hover: var(--_bu-fc);
-        --_bu-hc-bc: transparent;
     }
 
     &&__google {
@@ -218,12 +167,12 @@
         &:active,
         &:focus {
             --_bu-baw: 0;
-            --_bu-br: unset;
-            --_bu-fs: inherit;
-            --_bu-lh: inherit;
-            --_bu-g: unset;
             --_bu-bg: none;
+            --_bu-br: unset;
             --_bu-fc: unset;
+            --_bu-fs: inherit;
+            --_bu-g: unset;
+            --_bu-lh: inherit;
 
             cursor: default;
             font: unset;
@@ -245,18 +194,30 @@
 
     &.is-selected,
     .s-btn--radio:checked + & {
-        &:not(:hover) {
-            .s-btn--badge {
-                .s-btn--number {
-                    color: var(--_bu-badge-fc-selected, var(--_bu-fc-selected));
-                }
+        --_bu-bg-selected-overlay: color-mix(
+            in srgb,
+            var(--_bu-bg-selected, var(--_bu-bg)),
+            var(--white) 25%
+        );
 
-                background-color: var(--_bu-badge-bg-selected, var(--_bu-badge-bg));
+        .s-btn--badge {
+            .s-btn--number {
+                color: var(--_bu-badge-fc, var(--_bu-fc));
             }
 
-            background: var(--_bu-bg-selected, var(--_bu-bg));
-            color: var(--_bu-fc-selected, var(--_bu-fc));
+            background-color: var(--_bu-badge-bg);
         }
+
+        background:
+            linear-gradient(0deg,
+                var(--_bu-bg-selected-overlay, var(--_bu-bg)) 50%,
+                var(--_bu-bg-selected, var(--_bu-bg)) 50%
+            ) padding-box,
+            linear-gradient(0deg,
+                var(--_bu-bg-selected-overlay, var(--_bu-bg)) 50%,
+                var(--_bu-bg-selected, var(--_bu-bg)) 50%
+            ) border-box;
+        color: var(--_bu-fc-selected, var(--_bu-fc));
     }
 
     // CHILD ELEMENTS
@@ -268,7 +229,7 @@
         font-size: var(--fs-caption);
         line-height: inherit;
         opacity: var(--_bu-badge-o);
-        padding: var(--su2) var(--su4) 0;
+        padding: var(--su1) var(--su4) 0;
     }
 
     & &--number {
@@ -296,12 +257,12 @@
         --_bu-px: var(--su12);
     }
     &&__xs {
-        --_bu-gap: var(--su4);
+        --_bu-g: var(--su4);
         --_bu-fs: var(--fs-fine);
         --_bu-py: var(--su6);
     }
     &&__sm {
-        --_bu-gap: var(--su6);
+        --_bu-g: var(--su6);
         --_bu-fs: var(--fs-caption);
         --_bu-py: var(--su8);
     }
@@ -318,15 +279,15 @@
     }
 
     &:hover {
-        .s-btn--badge {
-            .s-btn--number {
-                color: var(--_bu-badge-fc-hover, var(--_bu-fc-hover));
-            }
-
-            background-color: var(--_bu-badge-bg-hover, var(--_bu-badge-bg));
-        }
-
-        background: var(--_bu-bg-hover, var(--_bu-bg));
+        background:
+            linear-gradient(0deg,
+                var(--_bu-bg-selected-overlay, var(--_bu-bg-hover, var(--_bu-bg))) 50%,
+                var(--_bu-bg-hover, var(--_bu-bg-selected, var(--_bu-bg))) 50%
+            ) padding-box,
+            linear-gradient(0deg,
+                var(--_bu-bg-selected-overlay, var(--_bu-bg-hover, var(--_bu-bg))) 50%,
+                var(--_bu-bg-hover, var(--_bu-bg-selected, var(--_bu-bg))) 50%
+            ) border-box;
         color: var(--_bu-fc-hover, var(--_bu-fc));
     }
 
@@ -337,10 +298,10 @@
         &:hover {
             .s-btn--badge {
                 .s-btn--number {
-                    color: var(--_bu-badge-fc-disabled, var(--_bu-fc-disabled));
+                    color: var(--_bu-badge-fc-disabled);
                 }
 
-                background-color: var(--_bu-badge-bg-disabled, var(--_bu-badge-bg));
+                background-color: var(--_bu-badge-bg-disabled);
             }
 
             background: var(--_bu-bg-disabled, var(--theme-secondary-400));
@@ -349,10 +310,17 @@
         }
 
         cursor: auto;
-        // TODO SHINE add cursor styles
     }
 
-    background: var(--_bu-bg);
+    background:
+        linear-gradient(0deg,
+            var(--_bu-bg-selected-overlay, var(--_bu-bg)) 50%,
+            var(--_bu-bg) 50%
+        ) padding-box,
+        linear-gradient(0deg,
+            var(--_bu-bg-selected-overlay, var(--_bu-bg)) 50%,
+            var(--_bu-bg) 50%
+        ) border-box;
     border: var(--_bu-baw) solid var(--_bu-bc, transparent);
     color: var(--_bu-fc);
     font-size: var(--_bu-fs);
@@ -364,6 +332,7 @@
     border-style: solid;
     cursor: pointer;
     display: inline-flex;
+    font-family: inherit;
     font-weight: 600; // TODO SHINE verify weight
     justify-content: center;
     line-height: var(--_bu-lh);
