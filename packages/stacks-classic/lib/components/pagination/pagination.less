@@ -10,14 +10,22 @@
     & &--item {
         --_pa-item-bg: unset;
         --_pa-item-br: unset;
-        --_pa-item-bs: none;
         --_pa-item-fc: var(--black-400);
         --_pa-item-p: var(--su-static4);
 
         // MODIFIERS
         &.is-selected {
-            --_pa-item-bs: 0 var(--su-static2) 0 0 var(--black-600);
             --_pa-item-fc: var(--black-600);
+
+            &:not(:hover):not(:focus-visible):before {
+                background-color: var(--black-600);
+                content: "";
+                height: var(--su-static2);
+                left: 0;
+                position: absolute;
+                right: 0;
+                top: 100%;
+            }
         }
         &.s-pagination--item__nav {
             --_pa-item-bg: var(--black-150);
@@ -35,7 +43,6 @@
         // INTERACTION
         &[href]:hover:not(&__nav) {
             --_pa-item-bg: var(--black-150);
-            --_pa-item-bs: none;
             --_pa-item-br: var(--br-pill);
             --_pa-item-fc: var(--black-600);
         }
@@ -51,7 +58,6 @@
 
         background-color: var(--_pa-item-bg);
         border-radius: var(--_pa-item-br);
-        box-shadow: var(--_pa-item-bs);
         color: var(--_pa-item-fc);
         padding: var(--_pa-item-p);
 
@@ -59,6 +65,7 @@
         align-items: center;
         justify-content: center;
         margin: var(--su-static1);
+        position: relative;
     }
 
     &,
