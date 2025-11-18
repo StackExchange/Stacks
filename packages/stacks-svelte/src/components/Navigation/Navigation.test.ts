@@ -35,7 +35,10 @@ describe("Navigation", () => {
         const nav = screen.getByRole("navigation", { name: "Main navigation" });
         expect(nav).to.exist;
         expect(screen.getByRole("link", { name: "Item 1" })).to.exist;
-        expect(screen.getByRole("link", { name: "Item 1" })).to.have.attribute("aria-current", "true");
+        expect(screen.getByRole("link", { name: "Item 1" })).to.have.attribute(
+            "aria-current",
+            "true"
+        );
         expect(screen.getByRole("link", { name: "Item 2" })).to.exist;
     });
 });

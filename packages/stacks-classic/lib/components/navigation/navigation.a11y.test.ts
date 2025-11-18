@@ -1,6 +1,5 @@
 import { html } from "@open-wc/testing";
 import { runA11yTests } from "../../test/a11y-test-utils";
-import { WCAGNonTextContrast } from "../../test/assertions";
 import "../../index";
 
 const items = [
