@@ -1,5 +1,22 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.5
+
+### Minor Changes
+
+- [#2038](https://github.com/StackExchange/Stacks/pull/2038) [`e0da077`](https://github.com/StackExchange/Stacks/commit/e0da0777c7bf2b3aca8e82e0a8542820c361291b) Thanks [@mukunku](https://github.com/mukunku)! - feat(tags): updates tag component designs for project SHINE
+
+    BREAKING CHANGES
+
+    Tag sizes `xs` and `md` have been removed.
+
+- [#2013](https://github.com/StackExchange/Stacks/pull/2013) [`35fe29b`](https://github.com/StackExchange/Stacks/commit/35fe29b0af58cafe4858e11f1c4061409d1c120b) Thanks [@dancormier](https://github.com/dancormier)! - Update Bling component to match SHINE styles
+
+### Patch Changes
+
+- Updated dependencies [[`e0da077`](https://github.com/StackExchange/Stacks/commit/e0da0777c7bf2b3aca8e82e0a8542820c361291b), [`7233e20`](https://github.com/StackExchange/Stacks/commit/7233e2035ea9c2f034da4249ef3eb7031f86ce1e), [`35fe29b`](https://github.com/StackExchange/Stacks/commit/35fe29b0af58cafe4858e11f1c4061409d1c120b), [`8854903`](https://github.com/StackExchange/Stacks/commit/8854903e12f642e627131bcca99ac0ccb961ba5c)]:
+    - @stackoverflow/stacks@3.0.0-beta.3
+
 ## 1.0.0-beta.4
 
 ### Patch Changes
