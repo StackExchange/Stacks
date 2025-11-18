@@ -152,11 +152,11 @@ describe("PaginationController", () => {
         });
 
         // Find the Next button by its role and accessible name
-        const nextLink = screen.getByRole("link", { name: /Next Page/i });
+        const nextLink = screen.getByRole("link", { name: /Next/i });
         expect(nextLink).to.have.class("s-pagination--item__nav");
 
         // Verify the correct icon is rendered with the correct title
-        const nextTitleElement = screen.getByTitle("Next Page");
+        const nextTitleElement = screen.getByTitle("Next");
         expect(nextTitleElement).to.exist;
         const nextIcon = nextTitleElement.closest("svg");
         expect(nextIcon).to.exist;
@@ -164,11 +164,11 @@ describe("PaginationController", () => {
         expect(nextLink).to.contain(nextIcon);
 
         // Verify Prev button also has nav class
-        const prevLink = screen.getByRole("link", { name: /Previous Page/i });
+        const prevLink = screen.getByRole("link", { name: /Prev/i });
         expect(prevLink).to.have.class("s-pagination--item__nav");
 
         // Verify the correct icon is rendered with the correct title
-        const prevTitleElement = screen.getByTitle("Previous Page");
+        const prevTitleElement = screen.getByTitle("Prev");
         expect(prevTitleElement).to.exist;
         const prevIcon = prevTitleElement.closest("svg");
         expect(prevIcon).to.exist;
@@ -176,10 +176,10 @@ describe("PaginationController", () => {
         expect(prevLink).to.contain(prevIcon);
 
         // Verify regular page number items do NOT have nav class
-        const page1Link = screen.getByRole("link", { name: /^1$/ });
+        const page1Link = screen.getByRole("link", { name: "page 1" });
         expect(page1Link).not.to.have.class("s-pagination--item__nav");
 
-        const page2Link = screen.getByRole("link", { name: /^2$/ });
+        const page2Link = screen.getByRole("link", { name: "page 2" });
         expect(page2Link).not.to.have.class("s-pagination--item__nav");
     });
 
@@ -209,13 +209,13 @@ describe("PaginationController", () => {
             },
         });
 
-        expect(screen.getByRole("link", { name: "Anterior página" })).to.exist;
+        expect(screen.getByRole("link", { name: "Anterior" })).to.exist;
         expect(screen.getByRole("link", { name: "página 1" })).to.exist;
         expect(screen.getByRole("link", { name: "página 2" })).to.exist;
         expect(screen.getByRole("link", { name: "página 3" })).to.exist;
         expect(screen.getByRole("link", { name: "página 4" })).to.exist;
         expect(screen.getByRole("link", { name: "página 5" })).to.exist;
-        expect(screen.getByRole("link", { name: "Siguiente página" })).to.exist;
+        expect(screen.getByRole("link", { name: "Siguiente" })).to.exist;
         expect(screen.getByRole("navigation")).to.have.attribute(
             "aria-label",
             "Paginación"
