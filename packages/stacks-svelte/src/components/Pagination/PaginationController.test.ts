@@ -152,23 +152,34 @@ describe("PaginationController", () => {
         });
 
         // Find the Next button by its role and accessible name
-        const nextLink = screen.getByRole("link", { name: /Next/i });
+        const nextLink = screen.getByRole("link", { name: /Next Page/i });
         expect(nextLink).to.have.class("s-pagination--item__nav");
 
         // Verify the correct icon is rendered with the correct title
-        const titleElement = screen.getByTitle("Next");
-        expect(titleElement).to.exist;
-        const icon = titleElement.closest("svg");
-        expect(icon).to.exist;
-        expect(icon?.tagName).to.equal("svg");
-        expect(nextLink).to.contain(icon);
+        const nextTitleElement = screen.getByTitle("Next Page");
+        expect(nextTitleElement).to.exist;
+        const nextIcon = nextTitleElement.closest("svg");
+        expect(nextIcon).to.exist;
+        expect(nextIcon?.tagName).to.equal("svg");
+        expect(nextLink).to.contain(nextIcon);
 
         // Verify Prev button also has nav class
-        const prevLink = screen.getByRole("link", { name: /Prev/i });
+        const prevLink = screen.getByRole("link", { name: /Previous Page/i });
         expect(prevLink).to.have.class("s-pagination--item__nav");
 
+        // Verify the correct icon is rendered with the correct title
+        const prevTitleElement = screen.getByTitle("Previous Page");
+        expect(prevTitleElement).to.exist;
+        const prevIcon = prevTitleElement.closest("svg");
+        expect(prevIcon).to.exist;
+        expect(prevIcon?.tagName).to.equal("svg");
+        expect(prevLink).to.contain(prevIcon);
+
         // Verify regular page number items do NOT have nav class
-        const page2Link = screen.getByRole("link", { name: /2/ });
+        const page1Link = screen.getByRole("link", { name: /^1$/ });
+        expect(page1Link).not.to.have.class("s-pagination--item__nav");
+
+        const page2Link = screen.getByRole("link", { name: /^2$/ });
         expect(page2Link).not.to.have.class("s-pagination--item__nav");
     });
 

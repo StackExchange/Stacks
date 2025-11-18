@@ -32,45 +32,17 @@
         onclick,
         children,
     }: Props = $props();
-
-    // Only used for the button variant so we're making it generic for now
-    const getClasses = (selected: boolean, itemNav: boolean) => {
-        let classes = "s-pagination--item";
-        const base = classes;
-        if (selected) {
-            classes += ` is-selected`;
-        }
-        if (itemNav) {
-            classes += ` ${base}__nav`;
-        }
-        return classes;
-    };
-
-    const classes = $derived(getClasses(selected, itemNav));
 </script>
 
 <li>
-    {#if itemNav}
-        <!-- Update variant from muted to tonal when button PR goes in-->
-        <Button
-            variant="muted"
-            weight="filled"
-            class={classes}
-            aria-current={selected ? "page" : undefined}
-            href={url}
-            {onclick}
-        >
-            {@render children?.()}
-        </Button>
-    {:else}
-        <a
-            class="s-pagination--item"
-            class:is-selected={selected}
-            aria-current={selected ? "page" : undefined}
-            href={url}
-            {onclick}
-        >
-            {@render children?.()}
-        </a>
-    {/if}
+    <a
+        class="s-pagination--item"
+        class:is-selected={selected}
+        class:s-pagination--item__nav={itemNav}
+        aria-current={selected ? "page" : undefined}
+        href={url}
+        {onclick}
+    >
+        {@render children?.()}
+    </a>
 </li>

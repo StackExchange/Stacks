@@ -53,8 +53,8 @@
         totalPages,
         urlGenerator,
         followLink = true,
-        i18nNextText = "Next",
-        i18nPrevText = "Prev",
+        i18nNextText = "Next Page",
+        i18nPrevText = "Previous Page",
         i18nPageText = "page",
         i18nNavigationLabel = "Pagination",
         onpagechange,
@@ -81,7 +81,6 @@
             itemNav={true}
         >
             <Icon src={IconArrowLeft} title={i18nPrevText} />
-            <span class="v-visible-sr">{i18nPageText}</span>
         </PaginationItem>
     {/if}
     {#each generatePagination(page, totalPages) as p, i (p.toString() + i)}
@@ -105,7 +104,6 @@
             itemNav={true}
         >
             <Icon src={IconArrowRight} title={i18nNextText} />
-            <span class="v-visible-sr">{i18nPageText}</span>
         </PaginationItem>
     {/if}
 </Pagination>

@@ -8,7 +8,7 @@
     }
 
     & &--item {
-        --_pa-item-bg: transparent;
+        --_pa-item-bg: unset;
         --_pa-item-br: unset;
         --_pa-item-bs: none;
         --_pa-item-fc: var(--black-400);
@@ -20,12 +20,16 @@
             --_pa-item-fc: var(--black-600);
         }
         &.s-pagination--item__nav {
-            --_pa-item-bg: unset;
+            --_pa-item-bg: var(--black-150);
             --_pa-item-br: var(--br-circle);
             --_pa-item-fc: var(--black-600);
             --_pa-item-p: var(--su-static6);
 
             aspect-ratio: 1 / 1;
+
+            &:hover {
+                --_pa-item-bg: var(--black-200);
+            }
         }
 
         // INTERACTION
@@ -45,6 +49,7 @@
             --_pa-item-br: var(--br-md);
         }
 
+        background-color: var(--_pa-item-bg);
         border-radius: var(--_pa-item-br);
         box-shadow: var(--_pa-item-bs);
         color: var(--_pa-item-fc);
