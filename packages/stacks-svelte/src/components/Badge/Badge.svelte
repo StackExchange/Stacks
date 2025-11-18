@@ -137,7 +137,7 @@
         <Bling
             type={award}
             name={i18nAwardName || award}
-            size={size}
+            {size}
             filled={!isTagVariant()}
         />
         {@render children?.()}
