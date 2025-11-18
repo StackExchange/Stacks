@@ -1,6 +1,13 @@
 import { html } from "@open-wc/testing";
 import { runVisualTests } from "../../test/visual-test-utils";
+import { IconHome, IconHomeFill } from "@stackoverflow/stacks-icons/icons";
 import "../../index";
+
+const outlineIcon = IconHome.replace('class="', 'class="s-navigation--icon ');
+const filledIcon = IconHomeFill.replace(
+    'class="',
+    'class="s-navigation--icon '
+);
 
 const items = [
     {
@@ -38,7 +45,7 @@ const items = [
     },
 ];
 
-const getChildren = (includeTitles = false): string =>
+const getChildren = (includeTitles = false, includeIcons = false): string =>
     items
         .map((item) => {
             if (item.title) {
@@ -46,10 +53,15 @@ const getChildren = (includeTitles = false): string =>
                     ? `<li class="s-navigation--title">${item.label}</li>`
                     : "";
             }
+            const icon = includeIcons
+                ? item.selected
+                    ? filledIcon
+                    : outlineIcon
+                : "";
             const classes = `s-navigation--item${
                 item.selected ? " is-selected" : ""
             }${item.dropdown ? " s-navigation--item__dropdown" : ""}`;
-            return `<li><a href="#" class="${classes}">${item.label}</a></li>`;
+            return `<li><a href="#" class="${classes}">${icon}${item.label}</a></li>`;
         })
         .join("");
 
@@ -62,6 +74,7 @@ describe("navigation", () => {
         tag: "ul",
         children: {
             default: getChildren(),
+            icon: getChildren(false, true),
         },
         template: ({ component, testid }) => html`
             <nav
@@ -72,14 +85,21 @@ describe("navigation", () => {
                 ${component}
             </nav>
         `,
+        excludedTestids: [
+            /^s-navigation-(?=.*sm).*icon$/, // s-navigation with icon and sm modifier not supported
+        ],
     });
 
     runVisualTests({
         baseClass: "s-navigation",
         variants: ["vertical"],
+        modifiers: {
+            primary: ["sm"],
+        },
         tag: "ul",
         children: {
             default: getChildren(true),
+            icon: getChildren(true, true),
         },
         template: ({ component, testid }) => html`
             <nav
@@ -90,6 +110,9 @@ describe("navigation", () => {
                 ${component}
             </nav>
         `,
+        excludedTestids: [
+            /^s-navigation-(?=.*sm).*icon$/, // s-navigation with icon and sm modifier not supported
+        ],
         options: {
             includeNullVariant: false,
         },

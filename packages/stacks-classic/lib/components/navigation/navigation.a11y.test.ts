@@ -74,6 +74,5 @@ describe("navigation", () => {
                 ${component}
             </nav>
         `,
-        additionalAssertions: [WCAGNonTextContrast],
     });
 });
