@@ -549,7 +549,8 @@ describe("Popover", () => {
                                 component: PopoverReference,
                                 props: {
                                     children: createRawSnippet(() => ({
-                                        render: () => "<li><button>button</button></li>",
+                                        render: () =>
+                                            "<li><button>button</button></li>",
                                     })),
                                 },
                             },
