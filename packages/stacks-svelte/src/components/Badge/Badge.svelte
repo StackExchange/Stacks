@@ -24,14 +24,14 @@
 </script>
 
 <script lang="ts">
-    import AwardBling from "../AwardBling/AwardBling.svelte";
+    import Bling from "../Bling/Bling.svelte";
     import Icon from "../Icon/Icon.svelte";
     import type { Snippet } from "svelte";
     import type { HTMLAnchorAttributes } from "svelte/elements";
 
     interface Props {
         /**
-         * The type of the award bling
+         * The type of award
          * @type {"gold" | "silver" | "bronze"} Type
          */
         award?: Award;
@@ -64,7 +64,7 @@
         variant?: Variant;
 
         /**
-         * Descriptive text for the award bling
+         * Descriptive text for the award
          */
         i18nAwardName?: string | undefined;
 
@@ -76,7 +76,7 @@
         /**
          * Snippet for the badge content
          */
-        children: Snippet;
+        children?: Snippet;
     }
 
     const {
@@ -128,16 +128,14 @@
 
 <span class={classes}>
     {#if award}
-        <AwardBling type={award} name={i18nAwardName || award}>
-            {#if icon}
-                <Icon src={icon} title={iconTitle} />
-            {/if}
-            {@render children()}
-        </AwardBling>
+        <Bling type={award} name={i18nAwardName || award} filled />
+        {@render children?.()}
     {:else}
         {#if icon}
             <Icon src={icon} title={iconTitle} />
         {/if}
-        {@render children()}
+        {#if !award}
+            {@render children?.()}
+        {/if}
     {/if}
 </span>
