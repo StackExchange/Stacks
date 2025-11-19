@@ -23,14 +23,36 @@
 
     let pstate = usePopoverContext("PopoverReference");
 
+    const isButton = (el: Element) =>
+        el.tagName.toLowerCase() === "button" ||
+        el.getAttribute("role") === "button";
+
+    const findButton = (el: HTMLElement): HTMLElement | null => {
+        if (isButton(el)) return el;
+        return el.children.length > 0
+            ? findButton(el.children[0] as HTMLElement)
+            : null;
+    };
+
     const setupRef = (
         elId: string | null,
         refWrapper: HTMLElement,
         state: PopoverState
     ) => {
-        const ref = elId
-            ? (document.getElementById(elId) as HTMLElement)
-            : (refWrapper.firstElementChild as HTMLElement);
+        let ref: HTMLElement | null = null;
+        if (elId) {
+            ref = document.getElementById(elId) as HTMLElement;
+        } else {
+            ref = refWrapper.firstElementChild as HTMLElement;
+            if (!pstate.tooltip && !pstate.controlled) {
+                ref = findButton(ref);
+                if (!ref) {
+                    throw new Error(
+                        "Reference element must have a role of 'button' for uncontrolled popovers."
+                    );
+                }
+            }
+        }
 
         if (!ref) {
             throw new Error("No reference element found.");
@@ -41,11 +63,6 @@
     };
 
     const setupPopover = (ref: HTMLElement, pstate: PopoverState) => {
-        if (ref.tagName.toLowerCase() !== "button" && ref.role !== "button") {
-            throw new Error(
-                "Reference element must have a role of 'button' for uncontrolled popovers."
-            );
-        }
         ref.setAttribute("aria-controls", `${pstate.id}-popover`);
         const toggle = pstate.dismissible ? pstate.toggle : pstate.open;
         ref.addEventListener("click", toggle);
