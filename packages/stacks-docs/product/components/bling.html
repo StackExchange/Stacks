@@ -115,6 +115,8 @@ tags: components
     <p class="stacks-copy">A bling component has a default size. To change the bling’s size, apply one of the following sizing classes along with the base <code class="stacks-code">.s-bling</code> class.</p>
     <div class="stacks-preview">
 {% highlight html %}
+<span class="s-bling s-bling__sm">…</span>
+<span class="s-bling">…</span>
 <span class="s-bling s-bling__filled s-bling__sm">…</span>
 <span class="s-bling s-bling__filled">…</span>
 <span class="s-bling s-bling__filled s-bling__lg">…</span>
@@ -124,7 +126,8 @@ tags: components
                 <table class="wmn5 s-table s-table__bx-simple">
                     <thead>
                         <tr>
-                            <th scope="col">Example</th>
+                            <th scope="col">Base</th>
+                            <th scope="col">Filled</th>
                             <th scope="col" class="s-table--cell5">Class</th>
                             <th scope="col">Description</th>
                         </tr>
@@ -132,8 +135,17 @@ tags: components
                     <tbody>
                         {% for size in bling.sizes %}
                             <tr>
+                            <td class="va-middle pr8">
+                                    {% if size != "lg" %}
+                                        <span class="s-bling s-bling__{{ type.modifier }} s-bling__{{ size }}">
+                                            <span class="v-visible-sr">default bling</span>
+                                        </span>
+                                    {% else %}
+                                        <span>N/A</span>
+                                    {% endif %}
+                                </td>
                                 <td class="va-middle pr8">
-                                    <span class="s-bling s-bling__filled s-bling__{{ size }}">
+                                    <span class="s-bling s-bling__{{ type.modifier }} s-bling__filled s-bling__{{ size }}">
                                         <span class="v-visible-sr">{{ size }} bling</span>
                                     </span>
                                 </td>
