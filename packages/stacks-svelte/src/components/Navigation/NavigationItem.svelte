@@ -66,7 +66,7 @@
         dropdown: boolean
     ) => {
         const base = "s-navigation--item";
-        let classes = "d-flex jc-space-between " + base;
+        let classes = "d-flex jc-space-between w100 " + base;
         if (dropdown) {
             classes += ` ${base}__dropdown`;
         }
