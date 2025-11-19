@@ -99,10 +99,10 @@ describe("Button", () => {
 
     it("should render the appropriate weight class", () => {
         render(Button, {
-            weight: "filled",
+            weight: "clear",
             children,
         });
-        expect(screen.getByRole("button")).to.have.class("s-btn__filled");
+        expect(screen.getByRole("button")).to.have.class("s-btn__clear");
     });
 
     it("should render including the dropdown class", () => {

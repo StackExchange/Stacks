@@ -3,9 +3,9 @@
     import type { Snippet } from "svelte";
 
     export type Brand = "" | "facebook" | "github" | "google";
-    export type Size = "" | "xs" | "sm" | "md";
+    export type Size = "" | "xs" | "sm" | "lg";
     export type Variant = "" | "danger" | "featured" | "tonal";
-    export type Weight = "" | "filled";
+    export type Weight = "" | "clear";
 
     export interface Props extends HTMLButtonAttributes {
         /**
@@ -29,7 +29,7 @@
 
         /**
          * The weight of the button
-         * @type {"" | "filled"}
+         * @type {"" | "clear"}
          */
         weight?: Weight;
 
