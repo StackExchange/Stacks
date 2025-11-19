@@ -28,13 +28,15 @@
 - The Award Bling component has been renamed to Bling.
 - Bling no longer accepts children elements besides those for screen readers. Please include any visually represented strings (such as counts) as siblings to the bling component.
 
-#### Pagination
-- The next and previous button now uses an `ArrowRight` and `ArrowLeft` icon instead of text. To apply the new styling, use the class `.s-pagination--item__nav`. Since these buttons use icons to represent their behavior, make sure to include descriptive text for screen readers.
-
 #### Buttons
 - The secondary style `outlined` has been removed i.e. `.s-btn__outlined`
+- The default button style is `filled`, use `.s-btn__clear` to use a clear style of a button
+- The featured and tonal variant no longer have a clear style
 - The variant `Muted` has been removed, `Tonal` has been added
 - `s-btn__md` has been removed, `s-btn__lg` has been added
+
+#### Pagination
+- The next and previous button now uses an `ArrowRight` and `ArrowLeft` icon instead of text. To apply the new styling, use the class `.s-pagination--item__nav`. Since these buttons use icons to represent their behavior, make sure to include descriptive text for screen readers.
 
 #### Popover
 - The new popovers no longer include an arrow element. The `s-popover--arrow` css class has been removed, and any markup using it (e.g. `<div class="s-popover--arrow"></div>`) should be deleted from the codebases as part of the migration.
