@@ -142,6 +142,47 @@ describe("PaginationController", () => {
         expect(screen.queryByText("Next")).not.to.exist;
     });
 
+    it("applies nav class to navigation buttons", () => {
+        render(Pagination, {
+            props: {
+                page: 2,
+                totalPages: 5,
+                urlGenerator,
+            },
+        });
+
+        // Find the Next button by its role and accessible name
+        const nextLink = screen.getByRole("link", { name: /Next/i });
+        expect(nextLink).to.have.class("s-pagination--item__nav");
+
+        // Verify the correct icon is rendered with the correct title
+        const nextTitleElement = screen.getByTitle("Next");
+        expect(nextTitleElement).to.exist;
+        const nextIcon = nextTitleElement.closest("svg");
+        expect(nextIcon).to.exist;
+        expect(nextIcon?.tagName).to.equal("svg");
+        expect(nextLink).to.contain(nextIcon);
+
+        // Verify Prev button also has nav class
+        const prevLink = screen.getByRole("link", { name: /Prev/i });
+        expect(prevLink).to.have.class("s-pagination--item__nav");
+
+        // Verify the correct icon is rendered with the correct title
+        const prevTitleElement = screen.getByTitle("Prev");
+        expect(prevTitleElement).to.exist;
+        const prevIcon = prevTitleElement.closest("svg");
+        expect(prevIcon).to.exist;
+        expect(prevIcon?.tagName).to.equal("svg");
+        expect(prevLink).to.contain(prevIcon);
+
+        // Verify regular page number items do NOT have nav class
+        const page1Link = screen.getByRole("link", { name: "page 1" });
+        expect(page1Link).not.to.have.class("s-pagination--item__nav");
+
+        const page2Link = screen.getByRole("link", { name: "page 2" });
+        expect(page2Link).not.to.have.class("s-pagination--item__nav");
+    });
+
     it("highlights the correct selected page", () => {
         render(Pagination, {
             props: {
@@ -168,16 +209,23 @@ describe("PaginationController", () => {
             },
         });
 
-        expect(screen.getByRole("link", { name: "Anterior página" })).to.exist;
+        expect(screen.getByRole("link", { name: "Anterior" })).to.exist;
         expect(screen.getByRole("link", { name: "página 1" })).to.exist;
         expect(screen.getByRole("link", { name: "página 2" })).to.exist;
         expect(screen.getByRole("link", { name: "página 3" })).to.exist;
         expect(screen.getByRole("link", { name: "página 4" })).to.exist;
         expect(screen.getByRole("link", { name: "página 5" })).to.exist;
-        expect(screen.getByRole("link", { name: "Siguiente página" })).to.exist;
+        expect(screen.getByRole("link", { name: "Siguiente" })).to.exist;
         expect(screen.getByRole("navigation")).to.have.attribute(
             "aria-label",
             "Paginación"
         );
+
+        // Verify the icon uses the localized title
+        const titleElement = screen.getByTitle("Siguiente");
+        expect(titleElement).to.exist;
+        const icon = titleElement.closest("svg");
+        expect(icon).to.exist;
+        expect(icon?.tagName).to.equal("svg");
     });
 });
