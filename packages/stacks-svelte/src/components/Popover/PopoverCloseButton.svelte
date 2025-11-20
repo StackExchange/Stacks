@@ -1,6 +1,6 @@
 <script lang="ts">
     import Icon from "../Icon/Icon.svelte";
-    import { IconClear } from "@stackoverflow/stacks-icons-legacy/icons";
+    import { IconCross16 } from "@stackoverflow/stacks-icons/icons";
     import { usePopoverContext } from "./Popover.svelte";
 
     interface Props {
@@ -34,5 +34,5 @@
     type="button"
     onclick={handleClick}
 >
-    <Icon src={IconClear} />
+    <Icon src={IconCross16} />
 </button>
