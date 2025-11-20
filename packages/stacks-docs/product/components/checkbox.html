@@ -1,14 +1,11 @@
 ---
 layout: page
-title: Checkbox & Radio
+title: Checkbox, Radio and Checkmark
 figma: https://svelte.stackoverflow.design/figma/form-elements
 description: Checkable inputs that visually allow for multiple options or true/false values.
 tags: components
 ---
 <section class="stacks-section">
-    {% tip, "warning", "mb24" %}
-        <strong>Deprecation:</strong> <a href="https://github.com/StackExchange/Stacks/pull/1077#issue-1349987852">the markup for checkboxes and radios has changed</a>. Please update your markup to match the new structure detailed on this page.
-    {% endtip %}
     {% header "h2", "Base style" %}
     <div class="stacks-preview">
 {% highlight html %}
@@ -24,6 +21,12 @@ tags: components
     <label class="s-label" for="example-item-rad">Radio Label</label>
 </div>
 
+<!-- Checkmark -->
+<div class="s-check-control">
+    <input class="s-checkmark" type="checkbox" name="example-name-checkmark" id="example-item-checkmark" />
+    <label class="s-label" for="example-item-checkmark">Checkmark Label</label>
+</div>
+
 <!-- Disabled -->
 <div class="s-check-control">
     <input class="s-checkbox" type="checkbox" name="example-name" id="example-disabled" disabled />
@@ -33,6 +36,11 @@ tags: components
 <div class="s-check-control">
     <input class="s-checkbox" type="checkbox" name="example-name-rad" id="example-disabled-rad" disabled />
     <label class="s-label" for="example-disabled-rad">Radio Label</label>
+</div>
+
+<div class="s-check-control">
+    <input class="s-checkmark" type="checkbox" name="example-name-checkmark" id="example-disabled-checkmark" disabled />
+    <label class="s-label" for="example-disabled-checkmark">Checkmark Label</label>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -85,6 +93,30 @@ tags: components
                     <div class="s-check-control">
                         <input class="s-radio" type="radio" name="example-name-rad2" id="example-checked-disabled-rad" checked disabled />
                         <label class="s-label" for="example-checked-disabled-rad">Radio Label</label>
+                    </div>
+                </fieldset>
+                <fieldset class="s-check-group g2">
+                    <!-- Base -->
+                    <div class="s-check-control s-check-control__checkmark">
+                        {% icon "ModDashboard" %}
+                        <label class="s-label" for="example-checkmark">Checkmark Label</label>
+                        <input class="s-checkmark" type="radio" name="example-name-checkmark" id="example-checkmark" />
+                    </div>
+                    <!-- Disabled -->
+                    <div class="s-check-control s-check-control__checkmark">
+                        {% icon "ModDashboard" %}
+                        <label class="s-label" for="example-checkmark-disabled">Checkmark Label</label>
+                        <input class="s-checkmark" type="radio" name="example-name-checkmark" id="example-checkmark-disabled" disabled />
+                    </div>
+                    <div class="s-check-control s-check-control__checkmark">
+                        {% icon "ModDashboard" %}
+                        <label class="s-label" for="example-checkmark-2">Checkmark Label</label>
+                        <input class="s-checkmark" type="radio" name="example-name-checkmark" id="example-checkmark-2" />
+                    </div>
+                    <div class="s-check-control s-check-control__checkmark">
+                        {% icon "ModDashboard" %}
+                        <label class="s-label" for="example-checkmark-checked-disabled">Checkmark Label</label>
+                        <input class="s-checkmark" type="radio" name="example-name-checkmark2" id="example-checkmark-checked-disabled" checked disabled />
                     </div>
                 </fieldset>
             </div>
