@@ -28,6 +28,47 @@
 - The Award Bling component has been renamed to Bling.
 - Bling no longer accepts children elements besides those for screen readers. Please include any visually represented strings (such as counts) as siblings to the bling component.
 
+#### Menu
+
+The menu component has been updated to use new class names and structure. The following changes are breaking:
+
+- **Link classes**: Replace `.s-block-link` with `.s-menu--action` on all menu links and buttons.
+- **Danger state**: Replace `.s-block-link__danger` with `.s-menu--action__danger`.
+- **Selected state**: The selected state has changed from `.s-block-link__left.is-selected` to just `.is-selected` on the `.s-menu--action` element. The `.is-selected` class should be applied to the `<a>` or `<button>` element, not the `<li>`.
+- **Menu item class**: All menu item `<li>` elements must now include the `.s-menu--item` class.
+- **Menu label removed**: The `.s-menu--label` class has replaced with `.s-menu--title` for section titles instead.
+
+**Before:**
+```html
+<ul class="s-menu" role="menu">
+    <li role="menuitem">
+        <a href="#" class="s-block-link">Example link</a>
+    </li>
+    <li role="menuitem">
+        <a href="#" class="s-block-link s-block-link__left is-selected">Selected link</a>
+    </li>
+    <li role="menuitem" class="s-menu--label">Example label</li>
+    <li role="menuitem">
+        <a href="#" class="s-block-link s-block-link__danger">Danger link</a>
+    </li>
+</ul>
+```
+
+**After:**
+```html
+<ul class="s-menu" role="menu">
+    <li class="s-menu--item" role="menuitem">
+        <a href="#" class="s-menu--action">Example link</a>
+    </li>
+    <li class="s-menu--item" role="menuitem">
+        <a href="#" class="s-menu--action is-selected">Selected link</a>
+    </li>
+    <li class="s-menu--title" role="separator">Section Title</li>
+    <li class="s-menu--item" role="menuitem">
+        <a href="#" class="s-menu--action s-menu--action__danger">Danger link</a>
+    </li>
+</ul>
+```
 #### Pagination
 - The next and previous button now uses an `ArrowRight` and `ArrowLeft` icon instead of text. To apply the new styling, use the class `.s-pagination--item__nav`. Since these buttons use icons to represent their behavior, make sure to include descriptive text for screen readers.
 
