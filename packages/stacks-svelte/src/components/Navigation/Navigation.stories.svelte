@@ -25,7 +25,6 @@
         IconJobs,
         IconJobsFill,
         IconChevron16Up,
-        IconChevron16Down,
         IconQuestion,
         IconQuestionFill,
         IconChallenge,
@@ -348,13 +347,15 @@
                         icon
                         link
                         onclick={() => (tCollapsed[group] = !tCollapsed[group])}
+                        aria-label={`${isCollapsed ? "Expand" : "Collapse"} ${group} Section`}
                     >
-                        <Icon
-                            src={isCollapsed
-                                ? IconChevron16Down
-                                : IconChevron16Up}
-                            title={`${isCollapsed ? "Expand" : "Collapse"} ${group} Section`}
-                        />
+                        <span
+                            style:display="inline-block"
+                            style:transform="rotate({isCollapsed ? 180 : 0}deg)"
+                            style:transition="transform 0.2s ease"
+                        >
+                            <Icon src={IconChevron16Up} />
+                        </span>
                     </Button>
                 {/snippet}
             </NavigationTitle>
