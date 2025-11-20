@@ -341,6 +341,27 @@ describe("Navigation", () => {
         expect(list).to.have.class("s-navigation__sm");
     });
 
+    it("should render navigation items with avatar", () => {
+        render(Navigation, {
+            props: {
+                label: "Navigation items with avatar",
+                orientation: "vertical",
+                children: createSvelteComponentsSnippet([
+                    {
+                        component: NavigationItem,
+                        props: {
+                            text: "Item 1",
+                            avatar: "https://picsum.photos/32",
+                        },
+                    },
+                ]),
+            },
+        });
+
+        const item = screen.getByRole("button", { name: "Item 1" });
+        expect(item).to.have.class("s-navigation--avatar");
+    });
+
     it("should allow custom classes to be applied", () => {
         render(Navigation, {
             props: {

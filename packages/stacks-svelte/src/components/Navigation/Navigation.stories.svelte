@@ -260,7 +260,7 @@
 </Story>
 
 <Story name="Dropdown" asChild>
-    <Navigation class="hs3" label="Dropdown">
+    <Navigation class="hs1" label="Dropdown">
         {#each ["Label 1", "Label 2", "Label 3"] as label (label)}
             <Popover id={`dropdown-${label}`} placement="bottom-start">
                 <PopoverReference>
@@ -297,6 +297,23 @@
                 onclick={() => (base = label)}
             />
         {/each}
+    </Navigation>
+</Story>
+
+<Story name="Avatar" asChild>
+    <Navigation class="ws2" label="Avatar" orientation="vertical">
+        <NavigationItem
+            text="Label 1"
+            avatar="https://picsum.photos/32"
+            selected={base === "Label 1"}
+            onclick={() => (base = "Label 1")}
+        />
+        <NavigationItem
+            text="Label 2"
+            avatar="https://picsum.photos/32"
+            selected={base === "Label 2"}
+            onclick={() => (base = "Label 2")}
+        />
     </Navigation>
 </Story>
 
