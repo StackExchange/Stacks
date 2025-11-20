@@ -1,7 +1,7 @@
 .s-checkbox,
 .s-radio {
     --_ch-baw: var(--su-static1);
-    --_ch-bc: var(--bc-dark);
+    --_ch-bc: var(--black-350);
     --_ch-bg: var(--white);
     --_ch-bg-image: unset;
 
@@ -10,11 +10,16 @@
     &[disabled] {
         cursor: not-allowed;
         opacity: var(--_o-disabled-static);
+        --_ch-bc: var(--black-300);
     }
 
     .s-check-control & {
         &[disabled] + .s-label {
-            &:extend(.is-disabled .s-label);
+            color: var(--black-300);
+        }
+        &:checked + .s-label,
+        &:indeterminate + .s-label {
+            color: var(--black-600);
         }
     }
 
@@ -89,12 +94,12 @@
         --_ch-bg-image: url("data:image/svg+xml;,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4.5 h7 v2 h-7 z' fill='@{ch-bg-image-fill-esc}'/%3E%3C/svg%3E");
     }
 
-    background-image: var(--_ch-bg-image);
+    background-image: var(--_ch-bg-image); // TODO: Check if this needs updating to the new checkbox icon
 
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
-    border-radius: var(--br-md);
+    border-radius: var(--su-static1);
 }
 
 .s-radio {
@@ -117,6 +122,97 @@
     border-radius: var(--br-circle);
 }
 
+.s-checkmark {
+    // Less variables for check icon fill color
+    @ch-icon-fill: .set-black()[600];
+    @ch-icon-fill-dark: .set-black-dark()[400];
+    @ch-icon-fill-esc: escape("@{ch-icon-fill}"); // color escaped for URL usage
+    @ch-icon-fill-dark-esc: escape("@{ch-icon-fill-dark}"); // color escaped for URL usage
+
+    // Base styles - remove button-like appearance
+    --_ch-baw: 0;
+    --_ch-bc: transparent;
+    --_ch-bg: transparent;
+    --_ch-bg-image: unset;
+
+    // CONTEXTUAL STYLES
+    fieldset[disabled] &,
+    &[disabled] {
+        cursor: not-allowed;
+        opacity: var(--_o-disabled-static);
+    }
+
+    .s-check-control & {
+        &[disabled] {
+            ~ .s-label {
+                color: var(--black-300) !important;
+            }
+        }
+        &:checked {
+            ~ .s-label {
+                color: var(--black-600) !important;
+            }
+        }
+        &:indeterminate {
+            ~ .s-label {
+                color: var(--black-600) !important;
+            }
+        }
+    }
+    
+    // Handle label that comes before input using :has() on parent
+    .s-check-control:has(&:checked) .s-label {
+        color: var(--black-600) !important;
+    }
+    
+    .s-check-control:has(&[disabled]) .s-label {
+        color: var(--black-300) !important;
+    }
+
+    .s-check-group & {
+        margin-top: calc(var(--su2) + var(--su1)); // 3px
+    }
+
+    input& {
+        flex-shrink: 0;
+    }
+
+    // INTERACTION
+    &:focus {
+        outline: 0;
+        box-shadow: none;
+    }
+
+    // Remove all button-like styling
+    appearance: none;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    font-size: inherit;
+    height: 1em; // 16px at base font size
+    margin: 0; // A guard against Core's default margins
+    outline: 0;
+    vertical-align: middle;
+    width: 1em; // 16px at base font size
+
+    // CONTEXTUAL STYLES
+    .dark-mode({
+        &:checked {
+            --_ch-bg-image: url("data:image/svg+xml;,%3Csvg width='16' height='16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15.854 5.146a.5.5 0 0 1 0 .708l-8 8a.5.5 0 0 1-.708 0l-4-4a.5.5 0 1 1 .708-.708L7.5 12.793l7.646-7.647a.5.5 0 0 1 .708 0z' fill='@{ch-icon-fill-dark-esc}'/%3E%3C/svg%3E");
+        }
+    });
+
+    // STATES
+    &:checked {
+        --_ch-bg-image: url("data:image/svg+xml;,%3Csvg width='16' height='16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15.854 5.146a.5.5 0 0 1 0 .708l-8 8a.5.5 0 0 1-.708 0l-4-4a.5.5 0 1 1 .708-.708L7.5 12.793l7.646-7.647a.5.5 0 0 1 .708 0z' fill='@{ch-icon-fill-esc}'/%3E%3C/svg%3E");
+    }
+
+    background-image: var(--_ch-bg-image);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 .s-checkbox,
 .s-radio:not(:checked) {
     .validation-states(ch);
@@ -132,7 +228,18 @@
 
     // CHILD ELEMENTS
     .s-label {
+        color: var(--black-500);
         font-weight: normal;
+    }
+
+
+    &&__checkmark {
+        --_cc-ai: center; // Override to center align for checkmark
+        gap: var(--su-static4);
+        
+        .s-checkmark {
+            align-self: baseline;
+        }
     }
 
     align-items: var(--_cc-ai);
