@@ -3,6 +3,11 @@
     import PaginationItem from "./PaginationItem.svelte";
     import PaginationItemClear from "./PaginationItemClear.svelte";
     import { generatePagination } from "./pagination-generator";
+    import Icon from "../Icon/Icon.svelte";
+    import {
+        IconArrowRight,
+        IconArrowLeft,
+    } from "@stackoverflow/stacks-icons/icons";
 
     interface Props {
         /**
@@ -73,8 +78,9 @@
         <PaginationItem
             url={urlGenerator(page - 1)}
             onclick={onPaginationItemClick(page - 1)}
+            itemNav={true}
         >
-            {i18nPrevText} <span class="v-visible-sr">{i18nPageText}</span>
+            <Icon src={IconArrowLeft} title={i18nPrevText} />
         </PaginationItem>
     {/if}
     {#each generatePagination(page, totalPages) as p, i (p.toString() + i)}
@@ -95,8 +101,9 @@
         <PaginationItem
             url={urlGenerator(page + 1)}
             onclick={onPaginationItemClick(page + 1)}
+            itemNav={true}
         >
-            {i18nNextText} <span class="v-visible-sr">{i18nPageText}</span>
+            <Icon src={IconArrowRight} title={i18nNextText} />
         </PaginationItem>
     {/if}
 </Pagination>
