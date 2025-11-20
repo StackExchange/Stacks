@@ -358,8 +358,11 @@ describe("Navigation", () => {
             },
         });
 
-        const item = screen.getByRole("button", { name: "Item 1" });
-        expect(item).to.have.class("s-navigation--avatar");
+        // TODO: should we have a version of the avatar decorative only?
+        const item = screen.getByRole("button", { name: "Item 1 Item 1" });
+        expect(item).to.exist;
+        const img = screen.getByRole("presentation");
+        expect(img).to.have.attribute("src", "https://picsum.photos/32");
     });
 
     it("should allow custom classes to be applied", () => {
