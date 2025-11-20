@@ -342,7 +342,7 @@
                 (item) => item.group === group
             )}
             {@const isCollapsed = tCollapsed[group]}
-            <NavigationTitle title={group}>
+            <NavigationTitle title={group} class="bc-black-200 bt">
                 {#snippet trailing()}
                     <Button
                         icon
