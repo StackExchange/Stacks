@@ -10,10 +10,6 @@
          */
         label: string;
         /**
-         * The role of the navigation list element
-         */
-        role?: "list" | "tablist";
-        /**
          * The orientation of the navigation
          */
         orientation?: "horizontal" | "vertical";
@@ -36,7 +32,6 @@
     }
     let {
         label,
-        role = "list",
         orientation = "horizontal",
         overflow = "wrap",
         size = "",
@@ -71,7 +66,7 @@
 </script>
 
 <nav aria-label={label}>
-    <ul class={classes} {role}>
+    <ul class={classes}>
         {@render children()}
     </ul>
 </nav>
