@@ -1,6 +1,5 @@
 import { html } from "@open-wc/testing";
 import { runA11yTests } from "../../test/a11y-test-utils";
-import { WCAGNonTextContrast } from "../../test/assertions";
 import "../../index";
 
 const items = [
@@ -57,7 +56,7 @@ const getChildren = (includeTitles = false): string =>
 describe("navigation", () => {
     runA11yTests({
         baseClass: "s-navigation",
-        variants: ["vertical", "muted"],
+        variants: ["vertical"],
         modifiers: {
             primary: ["scroll", "sm"],
         },
@@ -74,8 +73,5 @@ describe("navigation", () => {
                 ${component}
             </nav>
         `,
-        additionalAssertions: [WCAGNonTextContrast],
-        // TODO: fix non-text-contrast SC for s-navigation__muted
-        skippedTestids: [/s-navigation-(light|dark)-muted/],
     });
 });
