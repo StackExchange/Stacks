@@ -7,7 +7,6 @@
     fieldset[disabled] &,
     &[disabled] {
         cursor: not-allowed;
-        opacity: var(--_o-disabled-static);
     }
 
     .s-check-group & {
@@ -157,10 +156,14 @@
     // Less variables for check icon fill color
     @ch-icon-fill: .set-black()[600];
     @ch-icon-fill-dark: .set-black-dark()[400];
+    @ch-icon-fill-disabled: .set-black()[300];
+    @ch-icon-fill-disabled-dark: .set-black-dark()[300];
     @ch-icon-fill-esc: escape("@{ch-icon-fill}"); // color escaped for URL usage
     @ch-icon-fill-dark-esc: escape("@{ch-icon-fill-dark}"); // color escaped for URL usage
+    @ch-icon-fill-disabled-esc: escape("@{ch-icon-fill-disabled}"); // color escaped for URL usage
+    @ch-icon-fill-disabled-dark-esc: escape("@{ch-icon-fill-disabled-dark}"); // color escaped for URL usage
 
-    // Base styles - remove button-like appearance
+    // Base styles
     --_ch-baw: 0;
     --_ch-bc: transparent;
     --_ch-bg: transparent;
@@ -197,7 +200,7 @@
         color: var(--black-300) !important;
     }
 
-    // INTERACTION
+    // No focus style
     &:focus {
         outline: 0;
         box-shadow: none;
@@ -212,6 +215,12 @@
         &:checked {
             --_ch-bg-image: url("data:image/svg+xml;,%3Csvg width='16' height='16' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18.1567 5.00146L17.6265 5.53174L7.54639 15.6128L7.01611 16.1431L1.98584 11.1128L3.04639 10.0522L7.01514 14.021L16.5659 4.47119L17.0962 3.94092L18.1567 5.00146Z' fill='@{ch-icon-fill-dark-esc}'/%3E%3C/svg%3E");
         }
+        fieldset[disabled] &,
+        &[disabled] {
+            &:checked {
+                --_ch-bg-image: url("data:image/svg+xml;,%3Csvg width='16' height='16' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18.1567 5.00146L17.6265 5.53174L7.54639 15.6128L7.01611 16.1431L1.98584 11.1128L3.04639 10.0522L7.01514 14.021L16.5659 4.47119L17.0962 3.94092L18.1567 5.00146Z' fill='@{ch-icon-fill-disabled-dark-esc}'/%3E%3C/svg%3E");
+            }
+        }
     });
 
     // STATES
@@ -219,8 +228,13 @@
         --_ch-bg-image: url("data:image/svg+xml;,%3Csvg width='16' height='16' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18.1567 5.00146L17.6265 5.53174L7.54639 15.6128L7.01611 16.1431L1.98584 11.1128L3.04639 10.0522L7.01514 14.021L16.5659 4.47119L17.0962 3.94092L18.1567 5.00146Z' fill='@{ch-icon-fill-esc}'/%3E%3C/svg%3E");
     }
 
-    // Disabled state - checkmark icon remains visible when disabled and checked
-    // Opacity is handled by parent disabled state (line 10)
+    // Disabled state overrides checked state
+    fieldset[disabled] &,
+    &[disabled] {
+        &:checked {
+            --_ch-bg-image: url("data:image/svg+xml;,%3Csvg width='16' height='16' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18.1567 5.00146L17.6265 5.53174L7.54639 15.6128L7.01611 16.1431L1.98584 11.1128L3.04639 10.0522L7.01514 14.021L16.5659 4.47119L17.0962 3.94092L18.1567 5.00146Z' fill='@{ch-icon-fill-disabled-esc}'/%3E%3C/svg%3E");
+        }
+    }
 
     background-image: var(--_ch-bg-image);
     background-position: center center;
@@ -255,6 +269,12 @@
         
         .s-checkmark {
             align-self: baseline;
+        }
+
+        // Style icon when checkmark is disabled
+        &:has(.s-checkmark[disabled]) svg,
+        &:has(.s-checkmark[disabled]) .svg-icon {
+            color: var(--black-300);
         }
     }
 
