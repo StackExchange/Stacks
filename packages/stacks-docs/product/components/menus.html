@@ -2,6 +2,8 @@
 layout: page
 title: Menus
 description: A menu offers a contextual list of actions or functions.
+svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-menu--docs
+figma: https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=610-18810
 tags: components
 ---
 <section class="stacks-section">
@@ -35,94 +37,94 @@ tags: components
 
     {% header "h3", "Basic" %}
     <p class="stacks-copy">
-        At its most basic, a menu is a simple styled list of contextual actions. Because they’re contextual, it’s strongly recommended that a menu is contained within a <a href="{{ '/product/components/popovers' | url }}">popover</a> or a <a href="{{ '/product/components/cards' | url }}">card</a>. Menu items are either links or buttons styled with the <a href="{{ '/product/components/links/#block-link' | url }}">block link component</a>, that can optionally be selected or have destructive styling. When placed in various containers, you’ll need to either account for the padding on the container, or use negative margins on the menu component itself.
+        At its most basic, a menu is a simple styled list of contextual actions. Because they’re contextual, it’s strongly recommended that a menu is contained within a <a href="{{ '/product/components/popovers' | url }}">popover</a> or a <a href="{{ '/product/components/cards' | url }}">card</a>. When placed in various containers, you’ll need to either account for the padding on the container, or use negative margins on the menu component itself.
     </p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-popover px0 py4">
+<div class="s-popover p8">
     <ul class="s-menu" role="menu">
-        <li role="menuitem">
-            <a href="…" class="s-block-link">…</a>
+        <li class="s-menu--item" role="menuitem">
+            <a class="s-menu--action" href="…">…</a>
         </li>
-        <li role="menuitem">
-            <button class="s-block-link">…</button>
+        <li class="s-menu--item" role="menuitem">
+            <button class="s-menu--action">…</button>
         </li>
     </ul>
 </div>
 
-<div class="s-card px0 py4">
+<div class="s-card p8">
     <ul class="s-menu" role="menu">
         …
     </ul>
 </div>
 
 <ul class="s-menu" role="menu">
-    <li role="menuitem">
-        <a href="…" class="s-block-link px0">…</a>
+    <li class="s-menu--item" role="menuitem">
+        <a class="s-menu--action" href="…">…</a>
     </li>
 </ul>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="d-flex g32 fw-wrap">
-                <div class="flex--item">
+                <div>
                     <div class="ff-mono mb16">Within a popover</div>
-                    <div class="s-popover is-visible ps-relative ws2 px0 py4">
+                    <div class="s-popover is-visible ps-relative ws2 p8">
                         <ul class="s-menu" role="menu">
-                            <li role="menuitem">
-                                <a href="#" class="s-block-link">
+                            <li class="s-menu--item" role="menuitem">
+                                <a class="s-menu--action" href="#">
                                     Share
                                 </a>
                             </li>
-                            <li role="menuitem">
-                                <a href="#" class="s-block-link">
+                            <li class="s-menu--item" role="menuitem">
+                                <a class="s-menu--action" href="#">
                                     Edit
                                 </a>
                             </li>
-                            <li role="menuitem">
-                                <button class="s-block-link">
+                            <li class="s-menu--item" role="menuitem">
+                                <button class="s-menu--action">
                                     Follow
                                 </button>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="flex--item">
+                <div>
                     <div class="ff-mono mb16">Within a card</div>
-                    <div class="s-card px0 py4">
+                    <div class="s-card p8">
                         <ul class="s-menu" role="menu">
-                            <li role="menuitem">
-                                <a href="#" class="s-block-link">
+                            <li class="s-menu--item" role="menuitem">
+                                <a class="s-menu--action" href="#">
                                     Share
                                 </a>
                             </li>
-                            <li role="menuitem">
-                                <a href="#" class="s-block-link">
+                            <li class="s-menu--item" role="menuitem">
+                                <a class="s-menu--action" href="#">
                                     Edit
                                 </a>
                             </li>
-                            <li role="menuitem">
-                                <button class="s-block-link">
+                            <li class="s-menu--item" role="menuitem">
+                                <button class="s-menu--action">
                                     Follow
                                 </button>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="flex--item">
+                <div>
                     <div class="ff-mono mb16">No container</div>
                     <ul class="s-menu" role="menu">
-                        <li role="menuitem">
-                            <a href="#" class="s-block-link px0">
+                        <li class="s-menu--item" role="menuitem">
+                            <a class="s-menu--action" href="#">
                                 Share
                             </a>
                         </li>
-                        <li role="menuitem">
-                            <a href="#" class="s-block-link px0">
+                        <li class="s-menu--item" role="menuitem">
+                            <a class="s-menu--action" href="#">
                                 Edit
                             </a>
                         </li>
-                        <li role="menuitem">
-                            <button class="s-block-link px0">
+                        <li class="s-menu--item" role="menuitem">
+                            <button class="s-menu--action">
                                 Follow
                             </button>
                         </li>
@@ -141,46 +143,99 @@ tags: components
 <div class="s-popover px0 py4">
     <ul class="s-menu" role="menu">
         <li class="s-menu--title" role="separator">…</li>
-        <li role="menuitem">
-            <a href="…" class="s-block-link">…</a>
+        <li class="s-menu--item" role="menuitem">
+            <a class="s-menu--action" href="…">…</a>
         </li>
         <li class="s-menu--divider" role="separator"></li>
-        <li role="menuitem">
-            <a href="…" class="s-block-link s-block-link__danger">…</a>
+        <li class="s-menu--item" role="menuitem">
+            <a class="s-menu--action s-menu--action__danger" href="…">…</a>
         </li>
     </ul>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="s-popover is-visible ps-relative ws2 px0 py4">
+            <div class="s-popover is-visible ps-relative ws2 p8">
                 <ul class="s-menu" role="menu">
                     <li class="s-menu--title" role="separator">
-                        Share via
+                        Layout
                     </li>
-                    <li role="menuitem">
-                        <a href="#" class="s-block-link">
+                    <li class="s-menu--item" role="menuitem">
+                        <a class="s-menu--action" href="#">
                             Email
                         </a>
                     </li>
-                    <li role="menuitem">
-                        <a href="#" class="s-block-link">
+                    <li class="s-menu--item" role="menuitem">
+                        <a class="s-menu--action" href="#">
                             Facebook
                         </a>
                     </li>
-                    <li role="menuitem">
-                        <a href="#" class="s-block-link">
+                    <li class="s-menu--item" role="menuitem">
+                        <a class="s-menu--action" href="#">
                             Twitter
                         </a>
                     </li>
-                    <li class="s-menu--divider" role="separator"></li>
-                    <li role="menuitem">
-                        <a href="#" class="s-block-link s-block-link__danger">
+                    <li class="s-menu--divider mxn8" role="separator"></li>
+                    <li class="s-menu--item" role="menuitem">
+                        <a class="s-menu--action s-menu--action__danger" href="#">
                             Deactivate
                         </a>
                     </li>
-                    <li role="menuitem">
-                        <a href="#" class="s-block-link s-block-link__danger">
+                    <li class="s-menu--item" role="menuitem">
+                        <a class="s-menu--action s-menu--action__danger" href="#">
                             Delete
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Icons" %}
+    <p class="stacks-copy">
+        Icons can be added to menu items to help visually distinguish actions. Include the <code class="stacks-code">s-menu--icon</code> class on the icon to ensure proper spacing and alignment.
+    </p>
+    <div class="stacks-preview">
+{% highlight html %}
+<ul class="s-menu" role="menu">
+    <li class="s-menu--item" role="menuitem">
+        <a class="s-menu--action" href="#">
+            @Svg.Home.With("s-menu--icon")
+            Home
+        </a>
+    </li>
+    <li class="s-menu--item" role="menuitem">
+        <a class="s-menu--action" href="#">
+            @Svg.Inbox.With("s-menu--icon")
+            Inbox
+        </a>
+    </li>
+    <li class="s-menu--item" role="menuitem">
+        <a class="s-menu--action" href="#">
+            @Svg.Settings.With("s-menu--icon")
+            Settings
+        </a>
+    </li>
+</ul>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-popover is-visible ps-relative ws1 p8">
+                <ul class="s-menu" role="menu">
+                    <li class="s-menu--item" role="menuitem">
+                        <a class="s-menu--action" href="#">
+                            {% icon "Home", "s-menu--icon" %}
+                            Home
+                        </a>
+                    </li>
+                    <li class="s-menu--item" role="menuitem">
+                        <a class="s-menu--action" href="#">
+                            {% icon "Inbox", "s-menu--icon" %}
+                            Inbox
+                        </a>
+                    </li>
+                    <li class="s-menu--item" role="menuitem">
+                        <a class="s-menu--action" href="#">
+                            {% icon "Settings", "s-menu--icon" %}
+                            Settings
                         </a>
                     </li>
                 </ul>
@@ -190,50 +245,120 @@ tags: components
 
     {% header "h3", "Selected states" %}
     <p class="stacks-copy">
-        Our menus also offer selected states via the <a href="{{ '/product/components/links/#block-link' | url }}">block link component</a> with its various configurations.
+        Our menus also offer selected states.
     </p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-popover px0 py4">
-    <ul class="s-menu" role="menu">
-        <li role="menuitem">
-            <a href="…" class="s-block-link s-block-link__left is-selected">…</a>
-        </li>
-    </ul>
-</div>
+<ul class="s-menu" role="menu">
+    <li class="s-menu--item" role="menuitem">
+        <button class="s-menu--action is-selected" href="…">
+            Frequent
+        </button>
+    </li>
+    …
+</ul>
+
+<fieldset class="s-menu">
+    <legend class="s-menu--title">…</legend>
+    <div class="s-menu--item">
+        <label class="s-menu--action">
+            <input class="s-radio" type="radio" name="…" value="…">
+            …
+        </label>
+    </div>
+    …
+</fieldset>
+
+<fieldset class="s-menu">
+    <legend class="s-menu--title">…</legend>
+    <div class="s-menu--item">
+        <label class="s-menu--action">
+            <input class="s-checkbox" type="checkbox" name="…" value="…">
+            …
+        </label>
+    </div>
+    …
+</fieldset>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="s-popover is-visible ps-relative ws2 px0 py4">
-                <ul class="s-menu" role="menu">
-                    <li role="menuitem">
-                        <a href="#" class="s-block-link">
-                            Frequent
-                        </a>
-                    </li>
-                    <li role="menuitem">
-                        <a href="#" class="s-block-link">
-                            Votes
-                        </a>
-                    </li>
-                    <li role="menuitem">
-                        <a href="#" class="s-block-link s-block-link__left is-selected">
-                            Unanswered
-                        </a>
-                    </li>
-                    <li class="s-menu--title" role="separator">
-                        Custom filters
-                    </li>
-                    <li role="menuitem">
-                        <a href="#" class="s-block-link">
-                            Frontend questions
-                        </a>
-                    </li>
-                    <li role="menuitem">
-                        <a href="#" class="s-block-link">
-                            Design systems
-                        </a>
-                    </li>
-                </ul>
+            <div class="d-flex g32 fw-wrap">
+                <div>
+                    <div class="ff-mono mb16">Using .is-selected</div>
+                    <div class="s-popover is-visible ps-relative ws2 p8">
+                        <ul class="s-menu" role="menu">
+                            <li class="s-menu--title" role="separator">
+                                Filter by
+                            </li>
+                            <li class="s-menu--item" role="menuitem">
+                                <button class="s-menu--action is-selected">
+                                    Frequent
+                                </button>
+                            </li>
+                            <li class="s-menu--item" role="menuitem">
+                                <button class="s-menu--action">
+                                    Votes
+                                </button>
+                            </li>
+                            <li class="s-menu--item" role="menuitem">
+                                <button class="s-menu--action">
+                                    Unanswered
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="ff-mono mb16">Using .s-radio</div>
+                    <div class="s-popover is-visible ps-relative ws2 p8">
+                        <fieldset class="s-menu">
+                            <legend class="s-menu--title">Select one</legend>
+                            <div class="s-menu--item">
+                                <label class="s-menu--action">
+                                    <input class="s-radio" type="radio" name="menu-radio-filter" value="frequent" checked>
+                                    Frequent
+                                </label>
+                            </div>
+                            <div class="s-menu--item">
+                                <label class="s-menu--action">
+                                    <input class="s-radio" type="radio" name="menu-radio-filter" value="votes">
+                                    Votes
+                                </label>
+                            </div>
+                            <div class="s-menu--item">
+                                <label class="s-menu--action">
+                                    <input class="s-radio" type="radio" name="menu-radio-filter" value="unanswered">
+                                    Unanswered
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div>
+                    <div class="ff-mono mb16">Using .s-checkbox</div>
+                    <div class="s-popover is-visible ps-relative ws2 p8">
+                        <fieldset class="s-menu">
+                            <legend class="s-menu--title">Select multiple</legend>
+                            <div class="s-menu--item">
+                                <label class="s-menu--action">
+                                    <input class="s-checkbox" type="checkbox" name="menu-checkbox-filter" value="frequent" checked>
+                                    Frequent
+                                </label>
+                            </div>
+                            <div class="s-menu--item">
+                                <label class="s-menu--action">
+                                    <input class="s-checkbox" type="checkbox" name="menu-checkbox-filter" value="votes">
+                                    Votes
+                                </label>
+                            </div>
+                            <div class="s-menu--item">
+                                <label class="s-menu--action">
+                                    <input class="s-checkbox" type="checkbox" name="menu-checkbox-filter" value="unanswered" checked>
+                                    Unanswered
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -244,60 +369,48 @@ tags: components
     </p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-popover px0 py4">
-    <div class="s-menu" role="menu">
-        <fieldset>
-            <legend class="s-menu--title">…</legend>
-            <label class="s-menu--label d-flex" for="…">
-                <div class="flex--item mr8">
-                    <input class="s-radio" type="radio" name="…" id="…" role="menuitemradio" checked>
-                </div>
-                <div class="flex--item">
-                    <div class="s-label">…</div>
-                    <div class="s-description mt2">…</div>
-                </div>
-            </label>
-            <label class="s-menu--label d-flex" for="…">
-                <div class="flex--item mr8">
-                    <input class="s-radio" type="radio" name="…" id="…" role="menuitemradio">
-                </div>
-                <div class="flex--item">
-                    <div class="s-label">…</div>
-                    <div class="s-description mt2">…</div>
-                </div>
-            </label>
-        </fieldset>
-    </div>
+<div class="s-menu" role="menu">
+    <fieldset>
+        <legend class="s-menu--title">…</legend>
+        <label class="s-menu--item s-check-control" for="…">
+            <input class="s-radio" type="radio" name="…" id="…" role="menuitemradio" checked>
+            <div>
+                <div class="s-label">…</div>
+                <div class="s-description mt2">…</div>
+            </div>
+        </label>
+        <label class="s-menu--item s-check-control" for="…">
+            <input class="s-radio" type="radio" name="…" id="…" role="menuitemradio">
+            <div>
+                <div class="s-label">…</div>
+                <div class="s-description mt2">…</div>
+            </div>
+        </label>
+    </fieldset>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="s-popover is-visible ps-relative ws3 px0 py4">
+            <div class="s-popover is-visible ps-relative ws3">
                 <div class="s-menu" role="menu">
                     <fieldset>
-                        <legend class="s-menu--title">Roles</legend>
-                        <label class="s-menu--label d-flex" for="choice-user-34">
-                            <div class="flex--item mr8">
-                                <input class="s-radio" type="radio" name="choice-34" id="choice-user-34" role="menuitemradio" checked>
-                            </div>
-                            <div class="flex--item">
+                        <legend class="s-menu--title">Role</legend>
+                        <label class="s-menu--item s-check-control" for="choice-user-34">
+                            <input class="s-radio" type="radio" name="choice-34" id="choice-user-34" role="menuitemradio" checked>
+                            <div>
                                 <div class="s-label">User</div>
                                 <div class="s-description mt2">Can view, ask, answer, and edit questions. Can also vote on and flag content.</div>
                             </div>
                         </label>
-                        <label class="s-menu--label d-flex" for="choice-moderator-34">
-                            <div class="flex--item mr8">
-                                <input class="s-radio" type="radio" name="choice-34" id="choice-moderator-34" role="menuitemradio">
-                            </div>
-                            <div class="flex--item">
-                                <div class="s-label">Moderator</div>
+                        <label class="s-menu--item s-check-control" for="choice-moderator-34">
+                            <input class="s-radio" type="radio" name="choice-34" id="choice-moderator-34" role="menuitemradio">
+                                <div>
+                                    <div class="s-label">Moderator</div>
                                 <div class="s-description mt2">Everything a user can do, but can also delete and close questions.</div>
                             </div>
                         </label>
-                        <label class="s-menu--label d-flex" for="choice-admin-34">
-                            <div class="flex--item mr8">
-                                <input class="s-radio" type="radio" name="choice-34" id="choice-admin-34" role="menuitemradio">
-                            </div>
-                            <div class="flex--item">
+                        <label class="s-menu--item s-check-control" for="choice-admin-34">
+                            <input class="s-radio" type="radio" name="choice-34" id="choice-admin-34" role="menuitemradio">
+                            <div>
                                 <div class="s-label">Admin</div>
                                 <div class="s-description mt2">Everything a moderator can do and can also manage users, permissions, and site settings.</div>
                             </div>
