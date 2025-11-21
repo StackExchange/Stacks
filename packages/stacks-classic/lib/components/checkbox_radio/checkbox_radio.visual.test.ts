@@ -11,7 +11,7 @@ const checkboxTemplate = ({ component, testid }: any) =>
         ${component}
     </div>`;
 
-["checkbox", "radio"].forEach((type) => {
+["checkbox", "radio", "checkmark"].forEach((type) => {
     describe(type, () => {
         // TODO include indeterminate
         ["checked", "unchecked"].forEach((state) => {
