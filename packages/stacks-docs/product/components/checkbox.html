@@ -1,124 +1,276 @@
 ---
 layout: page
-title: Checkbox, Radio and Checkmark
+title: Checkbox, Radio & Checkmark
 figma: https://svelte.stackoverflow.design/figma/form-elements
 description: Checkable inputs that visually allow for multiple options or true/false values.
 tags: components
 ---
 <section class="stacks-section">
     {% header "h2", "Base style" %}
+    {% header "h3", "Radio" %}
+    <p class="stacks-copy">Use radio buttons when users must select exactly one mutually exclusive option from a list (most commonly used in forms).</p>
     <div class="stacks-preview">
 {% highlight html %}
-<!-- Checkbox -->
-<div class="s-check-control">
-    <input class="s-checkbox" type="checkbox" name="example-name" id="example-item" />
-    <label class="s-label" for="example-item">Checkbox Label</label>
-</div>
-
-<!-- Radio -->
 <div class="s-check-control">
     <input class="s-radio" type="radio" name="example-name-rad" id="example-item-rad" />
-    <label class="s-label" for="example-item-rad">Radio Label</label>
+    <label class="s-label" for="example-item-rad">Default</label>
 </div>
 
-<!-- Checkmark -->
+<!-- Focus -->
 <div class="s-check-control">
-    <input class="s-checkmark" type="checkbox" name="example-name-checkmark" id="example-item-checkmark" />
-    <label class="s-label" for="example-item-checkmark">Checkmark Label</label>
+    <input class="s-radio" type="radio" name="example-name-rad" id="example-focus-rad" />
+    <label class="s-label" for="example-focus-rad">Focus</label>
 </div>
 
 <!-- Disabled -->
 <div class="s-check-control">
-    <input class="s-checkbox" type="checkbox" name="example-name" id="example-disabled" disabled />
-    <label class="s-label" for="example-disabled">Checkbox Label</label>
-</div>
-
-<div class="s-check-control">
-    <input class="s-checkbox" type="checkbox" name="example-name-rad" id="example-disabled-rad" disabled />
-    <label class="s-label" for="example-disabled-rad">Radio Label</label>
-</div>
-
-<div class="s-check-control">
-    <input class="s-checkmark" type="checkbox" name="example-name-checkmark" id="example-disabled-checkmark" disabled />
-    <label class="s-label" for="example-disabled-checkmark">Checkmark Label</label>
+    <input class="s-radio" type="radio" name="example-name-rad" id="example-disabled-rad" disabled />
+    <label class="s-label" for="example-disabled-rad">Disabled</label>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="d-flex g16 sm:fd-column">
-                <fieldset class="s-check-group g2">
-                    <!-- Base -->
-                    <div class="s-check-control">
-                        <input class="s-checkbox" type="checkbox" name="example-name" id="example" />
-                        <label class="s-label" for="example">Checkbox Label</label>
-                    </div>
-
-                    <!-- Disabled -->
-                    <div class="s-check-control">
-                        <input class="s-checkbox" type="checkbox" name="example-name" id="example-disabled" disabled />
-                        <label class="s-label" for="example-disabled">Checkbox Label</label>
-                    </div>
-
-                    <!-- Checked -->
-                    <div class="s-check-control">
-                        <input class="s-checkbox" type="checkbox" name="example-name" id="example-checked" checked />
-                        <label class="s-label" for="example-checked">Checkbox Label</label>
-                    </div>
-
-                    <!-- Disabled and checked -->
-                    <div class="s-check-control">
-                        <input class="s-checkbox" type="checkbox" name="example-name" id="example-checked-disabled" checked disabled />
-                        <label class="s-label" for="example-checked-disabled">Checkbox Label</label>
-                    </div>
-                </fieldset>
-                <fieldset class="s-check-group g2">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div style="display: inline-flex; gap: 65px;">
+                    <div class="fs-caption fs-italic" style="width: 100px;">Unchecked</div>
                     <!-- Base -->
                     <div class="s-check-control">
                         <input class="s-radio" type="radio" name="example-name-rad" id="example-rad" />
-                        <label class="s-label" for="example-rad">Radio Label</label>
+                        <label class="s-label" for="example-rad">Default</label>
+                    </div>
+
+                    <!-- Focus -->
+                    <div class="s-check-control">
+                        <input class="s-radio" type="radio" name="example-name-rad" id="example-focus-rad" />
+                        <label class="s-label" for="example-focus-rad">Focus</label>
                     </div>
 
                     <!-- Disabled -->
                     <div class="s-check-control">
                         <input class="s-radio" type="radio" name="example-name-rad" id="example-disabled-rad" disabled />
-                        <label class="s-label" for="example-disabled-rad">Radio Label</label>
+                        <label class="s-label" for="example-disabled-rad">Disabled</label>
                     </div>
-
+                </div>
+                <div style="display: inline-flex; gap: 65px;">
+                    <div class="fs-caption fs-italic" style="width: 100px;">Checked</div>
                     <!-- Checked -->
                     <div class="s-check-control">
-                        <input class="s-radio" type="radio" name="example-name-rad" id="example-checked-rad" checked />
-                        <label class="s-label" for="example-checked-rad">Radio Label</label>
+                        <input class="s-radio" type="radio" name="example-name-rad-checked-1" id="example-rad-checked" checked />
+                        <label class="s-label" for="example-rad-checked">Default</label>
+                    </div>
+
+                    <!-- Focus and checked -->
+                    <div class="s-check-control">
+                        <input class="s-radio" type="radio" name="example-name-rad-checked-3" id="example-focus-rad-checked" checked />
+                        <label class="s-label" for="example-focus-rad-checked">Focus</label>
                     </div>
 
                     <!-- Disabled and checked -->
                     <div class="s-check-control">
-                        <input class="s-radio" type="radio" name="example-name-rad2" id="example-checked-disabled-rad" checked disabled />
-                        <label class="s-label" for="example-checked-disabled-rad">Radio Label</label>
+                        <input class="s-radio" type="radio" name="example-name-rad-checked-2" id="example-disabled-rad-checked" checked disabled />
+                        <label class="s-label" for="example-disabled-rad-checked">Disabled</label>
                     </div>
-                </fieldset>
-                <fieldset class="s-check-group g2">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Checkbox" %}
+    <p class="stacks-copy">Use checkboxes to allow users to select one or more items from a list of options (most commonly used in forms).</p>
+    {% tip, "", "mb32" %}
+        <strong>Note:</strong> The :indeterminate pseudo class can only be set via JavaScript. Use the HTMLInputElement object's indeterminate property to set the state.
+    {% endtip %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-check-control">
+    <input class="s-checkbox" type="checkbox" name="example-name" id="example-item" />
+    <label class="s-label" for="example-item">Default</label>
+</div>
+
+<!-- Focus -->
+<div class="s-check-control">
+    <input class="s-checkbox" type="checkbox" name="example-name" id="example-focus" />
+    <label class="s-label" for="example-focus">Focus</label>
+</div>
+
+<!-- Disabled -->
+<div class="s-check-control">
+    <input class="s-checkbox" type="checkbox" name="example-name" id="example-disabled" disabled />
+    <label class="s-label" for="example-disabled">Disabled</label>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div style="display: inline-flex; gap: 65px;">
+                    <div class="fs-caption fs-italic" style="width: 100px;">Unchecked</div>
                     <!-- Base -->
-                    <div class="s-check-control s-check-control__checkmark">
-                        {% icon "ModDashboard" %}
-                        <label class="s-label" for="example-checkmark">Checkmark Label</label>
-                        <input class="s-checkmark" type="radio" name="example-name-checkmark" id="example-checkmark" />
+                    <div class="s-check-control">
+                        <input class="s-checkbox" type="checkbox" name="example-name" id="example" />
+                        <label class="s-label" for="example">Default</label>
+                    </div>
+
+                    <!-- Focus -->
+                    <div class="s-check-control">
+                        <input class="s-checkbox" type="checkbox" name="example-name" id="example-focus" />
+                        <label class="s-label" for="example-focus">Focus</label>
+                    </div>
+
+                    <!-- Disabled -->
+                    <div class="s-check-control">
+                        <input class="s-checkbox" type="checkbox" name="example-name" id="example-disabled" disabled />
+                        <label class="s-label" for="example-disabled">Disabled</label>
+                    </div>
+                </div>
+                <div style="display: inline-flex; gap: 65px;">
+                    <div class="fs-caption fs-italic" style="width: 100px;">Checked</div>
+                    <!-- Checked -->
+                    <div class="s-check-control">
+                        <input class="s-checkbox" type="checkbox" name="example-name-checked-1" id="example-checked" checked />
+                        <label class="s-label" for="example-checked">Default</label>
+                    </div>
+
+                    <!-- Focus and checked -->
+                    <div class="s-check-control">
+                        <input class="s-checkbox" type="checkbox" name="example-name-checked-3" id="example-focus-checked" checked />
+                        <label class="s-label" for="example-focus-checked">Focus</label>
+                    </div>
+
+                    <!-- Disabled and checked -->
+                    <div class="s-check-control">
+                        <input class="s-checkbox" type="checkbox" name="example-name-checked-2" id="example-disabled-checked" checked disabled />
+                        <label class="s-label" for="example-disabled-checked">Disabled</label>
+                    </div>
+                </div>
+                <div style="display: inline-flex; gap: 65px;">
+                    <div class="fs-caption fs-italic" style="width: 100px;">Indeterminate</div>
+                    <!-- Indeterminate -->
+                    <div class="s-check-control">
+                        <input class="s-checkbox" type="checkbox" name="example-name-indeterminate-1" id="example-indeterminate" />
+                        <label class="s-label" for="example-indeterminate">Default</label>
+                    </div>
+
+                    <!-- Focus and indeterminate -->
+                    <div class="s-check-control">
+                        <input class="s-checkbox" type="checkbox" name="example-name-indeterminate-3" id="example-focus-indeterminate" />
+                        <label class="s-label" for="example-focus-indeterminate">Focus</label>
+                    </div>
+
+                    <!-- Disabled and indeterminate -->
+                    <div class="s-check-control">
+                        <input class="s-checkbox" type="checkbox" name="example-name-indeterminate-2" id="example-disabled-indeterminate" disabled />
+                        <label class="s-label" for="example-disabled-indeterminate">Disabled</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Checkmark" %}
+    <p class="stacks-copy">Use the checkmark variant for selection items within menus and dropdowns (vertical lists only). Its recommended use is for single-selection (like a radio), but it can be configured for multi-select. This variant is stylized for this specific context and should not be used for lists of options in a form (use radio buttons or checkboxes instead).</p>
+    {% tip, "", "mb32" %}
+        <strong>Note on focus:</strong> This variant does not have a dedicated focus state. Focus should be handled at the parent level, such as on the full menu item that contains the checkmark.
+    {% endtip %}
+    <div class="stacks-preview">
+{% highlight html %}
+<!-- Without Icon -->
+<div class="s-check-control s-check-control__checkmark">
+    <label class="s-label" for="example-checkmark-no-icon">Default</label>
+    <input class="s-checkmark" type="radio" name="example-name-checkmark" id="example-checkmark-no-icon" />
+</div>
+
+<!-- Disabled without Icon -->
+<div class="s-check-control s-check-control__checkmark">
+    <label class="s-label" for="example-disabled-checkmark-no-icon">Disabled</label>
+    <input class="s-checkmark" type="radio" name="example-name-checkmark" id="example-disabled-checkmark-no-icon" disabled />
+</div>
+
+<!-- With Icon -->
+<div class="s-check-control s-check-control__checkmark">
+    {% icon "Dashboard" %}
+    <label class="s-label" for="example-item-checkmark">Default</label>
+    <input class="s-checkmark" type="radio" name="example-name-checkmark" id="example-item-checkmark" />
+</div>
+
+<!-- Disabled with Icon -->
+<div class="s-check-control s-check-control__checkmark">
+    {% icon "Dashboard" %}
+    <label class="s-label" for="example-disabled-checkmark">Disabled</label>
+    <input class="s-checkmark" type="radio" name="example-name-checkmark" id="example-disabled-checkmark" disabled />
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div style="display: inline-flex; gap: 65px;">
+                    <div class="fs-caption fs-italic" style="width: 100px;">Unchecked</div>
+                    <!-- Unchecked without icon -->
+                    <div style="width: 120px;">
+                        <div class="s-check-control s-check-control__checkmark">
+                            <label class="s-label" for="example-checkmark-no-icon">Default</label>
+                            <input class="s-checkmark" type="radio" name="example-name-checkmark-no-icon-1" id="example-checkmark-no-icon" />
+                        </div>
+                    </div>
+                    <!-- Unchecked disabled without icon -->
+                    <div style="width: 120px;">
+                        <div class="s-check-control s-check-control__checkmark">
+                            <label class="s-label" for="example-checkmark-disabled-no-icon">Disabled</label>
+                            <input class="s-checkmark" type="radio" name="example-name-checkmark-no-icon-2" id="example-checkmark-disabled-no-icon" disabled />
+                        </div>
+                    </div>
+                </div>
+                <div style="display: inline-flex; gap: 65px;">
+                    <div class="fs-caption fs-italic" style="width: 100px;"></div>
+                    <!-- Base -->
+                    <div style="width: 120px;">
+                        <div class="s-check-control s-check-control__checkmark">
+                            {% icon "Dashboard" %}
+                            <label class="s-label" for="example-checkmark">Default</label>
+                            <input class="s-checkmark" type="radio" name="example-name-checkmark" id="example-checkmark" />
+                        </div>
                     </div>
                     <!-- Disabled -->
-                    <div class="s-check-control s-check-control__checkmark">
-                        {% icon "ModDashboard" %}
-                        <label class="s-label" for="example-checkmark-disabled">Checkmark Label</label>
-                        <input class="s-checkmark" type="radio" name="example-name-checkmark" id="example-checkmark-disabled" disabled />
+                    <div style="width: 120px;">
+                        <div class="s-check-control s-check-control__checkmark">
+                            {% icon "Dashboard" %}
+                            <label class="s-label" for="example-checkmark-disabled">Disabled</label>
+                            <input class="s-checkmark" type="radio" name="example-name-checkmark" id="example-checkmark-disabled" disabled />
+                        </div>
                     </div>
-                    <div class="s-check-control s-check-control__checkmark">
-                        {% icon "ModDashboard" %}
-                        <label class="s-label" for="example-checkmark-2">Checkmark Label</label>
-                        <input class="s-checkmark" type="radio" name="example-name-checkmark" id="example-checkmark-2" />
+                </div>
+                <div style="display: inline-flex; gap: 65px;">
+                    <div class="fs-caption fs-italic" style="width: 100px;">Checked</div>
+                    <!-- Checked without icon -->
+                    <div style="width: 120px;">
+                        <div class="s-check-control s-check-control__checkmark">
+                            <label class="s-label" for="example-checkmark-no-icon-checked">Default</label>
+                            <input class="s-checkmark" type="radio" name="example-name-checkmark-no-icon-3" id="example-checkmark-no-icon-checked" checked />
+                        </div>
                     </div>
-                    <div class="s-check-control s-check-control__checkmark">
-                        {% icon "ModDashboard" %}
-                        <label class="s-label" for="example-checkmark-checked-disabled">Checkmark Label</label>
-                        <input class="s-checkmark" type="radio" name="example-name-checkmark2" id="example-checkmark-checked-disabled" checked disabled />
+                    <!-- Checked disabled without icon -->
+                    <div style="width: 120px;">
+                        <div class="s-check-control s-check-control__checkmark">
+                            <label class="s-label" for="example-checkmark-disabled-checked-no-icon">Disabled</label>
+                            <input class="s-checkmark" type="radio" name="example-name-checkmark-disabled-checked-no-icon" id="example-checkmark-disabled-checked-no-icon" checked disabled />
+                        </div>
                     </div>
-                </fieldset>
+                </div>
+                <div style="display: inline-flex; gap: 65px;">
+                    <div class="fs-caption fs-italic" style="width: 100px;"></div>
+                    <!-- Checked -->
+                    <div style="width: 120px;">
+                        <div class="s-check-control s-check-control__checkmark">
+                            {% icon "Dashboard" %}
+                            <label class="s-label" for="example-checkmark-checked">Default</label>
+                            <input class="s-checkmark" type="radio" name="example-name-checkmark-checked-1" id="example-checkmark-checked" checked />
+                        </div>
+                    </div>
+                    <!-- Disabled and checked -->
+                    <div style="width: 120px;">
+                        <div class="s-check-control s-check-control__checkmark">
+                            {% icon "Dashboard" %}
+                            <label class="s-label" for="example-checkmark-disabled-checked">Disabled</label>
+                            <input class="s-checkmark" type="radio" name="example-name-checkmark-disabled-checked" id="example-checkmark-disabled-checked" checked disabled />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -540,4 +692,12 @@ tags: components
 
 <script>
     document.getElementById("indeterminate-checkbox-1").indeterminate = true;
+    document.getElementById("example-focus-rad")?.focus();
+    document.getElementById("example-focus")?.focus();
+    document.getElementById("example-focus-rad-checked")?.focus();
+    document.getElementById("example-focus-checked")?.focus();
+    document.getElementById("example-indeterminate").indeterminate = true;
+    document.getElementById("example-disabled-indeterminate").indeterminate = true;
+    document.getElementById("example-focus-indeterminate").indeterminate = true;
+    document.getElementById("example-focus-indeterminate")?.focus();
 </script>

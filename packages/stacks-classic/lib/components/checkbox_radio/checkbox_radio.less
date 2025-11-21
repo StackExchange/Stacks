@@ -1,8 +1,6 @@
 .s-checkbox,
-.s-radio {
-    --_ch-baw: var(--su-static1);
-    --_ch-bc: var(--black-350);
-    --_ch-bg: var(--white);
+.s-radio,
+.s-checkmark {
     --_ch-bg-image: unset;
 
     // CONTEXTUAL STYLES
@@ -10,6 +8,35 @@
     &[disabled] {
         cursor: not-allowed;
         opacity: var(--_o-disabled-static);
+    }
+
+    .s-check-group & {
+        margin-top: calc(var(--su2) + var(--su1)); // 3px
+    }
+
+    input& {
+        flex-shrink: 0;
+    }
+
+    appearance: none;
+    cursor: pointer;
+    font-size: inherit;
+    height: 1em;
+    margin: 0; // A guard against Core's default margins
+    outline: 0;
+    vertical-align: middle;
+    width: 1em;
+}
+
+.s-checkbox,
+.s-radio {
+    --_ch-baw: var(--su-static1);
+    --_ch-bc: var(--black-350);
+    --_ch-bg: var(--white);
+
+    // CONTEXTUAL STYLES
+    fieldset[disabled] &,
+    &[disabled] {
         --_ch-bc: var(--black-300);
     }
 
@@ -21,14 +48,10 @@
         &:indeterminate + .s-label {
             color: var(--black-600);
         }
-    }
-
-    .s-check-group & {
-        margin-top: calc(var(--su2) + var(--su1)); // 3px
-    }
-
-    input& {
-        flex-shrink: 0;
+        &[disabled]:checked + .s-label,
+        &[disabled]:indeterminate + .s-label {
+            color: var(--black-300);
+        }
     }
 
     // INTERACTION
@@ -38,15 +61,6 @@
 
     background-color: var(--_ch-bg);
     border: var(--_ch-baw) solid var(--_ch-bc);
-
-    appearance: none;
-    cursor: pointer;
-    font-size: inherit;
-    height: 1em;
-    margin: 0; // A guard against Core's default margins
-    outline: 0;
-    vertical-align: middle;
-    width: 1em;
 }
 
 .s-checkbox {
@@ -94,6 +108,15 @@
         --_ch-bg-image: url("data:image/svg+xml;,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4.5 h7 v2 h-7 z' fill='@{ch-bg-image-fill-esc}'/%3E%3C/svg%3E");
     }
 
+    // Disabled state overrides checked state
+    fieldset[disabled] &,
+    &[disabled] {
+        &:checked, &:indeterminate {
+            --_ch-bc: var(--black-300) !important;
+            --_ch-bg: var(--black-300);
+        }
+    }
+
     background-image: var(--_ch-bg-image); // TODO: Check if this needs updating to the new checkbox icon
 
     background-position: center center;
@@ -119,6 +142,14 @@
         --_ch-bg: var(--white);
     }
 
+    // Disabled state overrides checked state
+    fieldset[disabled] &,
+    &[disabled] {
+        &:checked {
+            --_ch-bc: var(--black-300);
+        }
+    }
+
     border-radius: var(--br-circle);
 }
 
@@ -133,15 +164,8 @@
     --_ch-baw: 0;
     --_ch-bc: transparent;
     --_ch-bg: transparent;
-    --_ch-bg-image: unset;
 
     // CONTEXTUAL STYLES
-    fieldset[disabled] &,
-    &[disabled] {
-        cursor: not-allowed;
-        opacity: var(--_o-disabled-static);
-    }
-
     .s-check-control & {
         &[disabled] {
             ~ .s-label {
@@ -153,9 +177,9 @@
                 color: var(--black-600) !important;
             }
         }
-        &:indeterminate {
+        &[disabled]:checked {
             ~ .s-label {
-                color: var(--black-600) !important;
+                color: var(--black-300) !important;
             }
         }
     }
@@ -168,13 +192,9 @@
     .s-check-control:has(&[disabled]) .s-label {
         color: var(--black-300) !important;
     }
-
-    .s-check-group & {
-        margin-top: calc(var(--su2) + var(--su1)); // 3px
-    }
-
-    input& {
-        flex-shrink: 0;
+    
+    .s-check-control:has(&[disabled]:checked) .s-label {
+        color: var(--black-300) !important;
     }
 
     // INTERACTION
@@ -184,28 +204,23 @@
     }
 
     // Remove all button-like styling
-    appearance: none;
     background-color: transparent;
     border: 0;
-    cursor: pointer;
-    font-size: inherit;
-    height: 1em; // 16px at base font size
-    margin: 0; // A guard against Core's default margins
-    outline: 0;
-    vertical-align: middle;
-    width: 1em; // 16px at base font size
 
     // CONTEXTUAL STYLES
     .dark-mode({
         &:checked {
-            --_ch-bg-image: url("data:image/svg+xml;,%3Csvg width='16' height='16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15.854 5.146a.5.5 0 0 1 0 .708l-8 8a.5.5 0 0 1-.708 0l-4-4a.5.5 0 1 1 .708-.708L7.5 12.793l7.646-7.647a.5.5 0 0 1 .708 0z' fill='@{ch-icon-fill-dark-esc}'/%3E%3C/svg%3E");
+            --_ch-bg-image: url("data:image/svg+xml;,%3Csvg width='16' height='16' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18.1567 5.00146L17.6265 5.53174L7.54639 15.6128L7.01611 16.1431L1.98584 11.1128L3.04639 10.0522L7.01514 14.021L16.5659 4.47119L17.0962 3.94092L18.1567 5.00146Z' fill='@{ch-icon-fill-dark-esc}'/%3E%3C/svg%3E");
         }
     });
 
     // STATES
     &:checked {
-        --_ch-bg-image: url("data:image/svg+xml;,%3Csvg width='16' height='16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15.854 5.146a.5.5 0 0 1 0 .708l-8 8a.5.5 0 0 1-.708 0l-4-4a.5.5 0 1 1 .708-.708L7.5 12.793l7.646-7.647a.5.5 0 0 1 .708 0z' fill='@{ch-icon-fill-esc}'/%3E%3C/svg%3E");
+        --_ch-bg-image: url("data:image/svg+xml;,%3Csvg width='16' height='16' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18.1567 5.00146L17.6265 5.53174L7.54639 15.6128L7.01611 16.1431L1.98584 11.1128L3.04639 10.0522L7.01514 14.021L16.5659 4.47119L17.0962 3.94092L18.1567 5.00146Z' fill='@{ch-icon-fill-esc}'/%3E%3C/svg%3E");
     }
+
+    // Disabled state - checkmark icon remains visible when disabled and checked
+    // Opacity is handled by parent disabled state (line 10)
 
     background-image: var(--_ch-bg-image);
     background-position: center center;
@@ -229,6 +244,7 @@
     // CHILD ELEMENTS
     .s-label {
         color: var(--black-500);
+        font-size: var(--fs-body1);
         font-weight: normal;
     }
 
