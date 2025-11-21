@@ -1,21 +1,12 @@
 .s-bling {
     --_bl-bg: unset;
-    --_bl-size: calc(var(--su8) + var(--su2)); // 10px
+    --_bl-size: calc(var(--su8) + var(--su2));
     // Icon
     --_bl-icon: url("data:image/svg+xml;utf8,<svg viewBox='0 0 8 8' xmlns='http://www.w3.org/2000/svg'><circle cx='4' cy='4' r='4'/></svg>");
     --_bl-icon-bg: var(--black-500);
     --_bl-icon-size: var(--su8);
 
     // VARIANTS
-    &&__gold,
-    &&__silver {
-        --_bl-icon-size: calc(var(--su8) + var(--su1)); // 9px
-
-        &.s-bling__sm {
-            --_bl-icon-size: calc(var(--su6) + var(--su1)); // 7px
-        }
-    }
-
     &&__activity {
         --_bl-icon-bg: var(--pink-400);
     }
@@ -65,20 +56,29 @@
         }
     }
 
-    // Sizes
+    // SIZES
+    // Unfilled Sizes
+    &&__sm:not(&__filled) {
+        --_bl-size: var(--su8);
+    }
+    // Filled Sizes
+    &&__sm&__filled {
+        --_bl-size: var(--su16);
+    }
+    &&__lg&__filled {
+        --_bl-size: calc(var(--su24) + var(--su4)); // 28px
+    }
+    // Icon Sizes
     &&__sm {
         --_bl-icon-size: var(--su6);
-        --_bl-size: var(--su8);   
-
-        &.s-bling__filled {
-            --_bl-size: var(--su16);
-        }
     }
-
-    &&__lg {
-        &.s-bling__filled {
-            --_bl-size: calc(var(--su24) + var(--su4)); // 28px
-        }
+    &&__sm&__gold,
+    &&__sm&__silver {
+        --_bl-icon-size: calc(var(--su6) + var(--su1)); // 7px
+    }
+    &&__gold:not(&__sm),
+    &&__silver:not(&__sm) {
+        --_bl-icon-size: calc(var(--su8) + var(--su1)); // 9px
     }
 
     // CHILD ELEMENTS
