@@ -196,7 +196,7 @@ describe("Popover", () => {
     });
 
     it("override classes to the popover content inner div when the innerContentClassOverride prop is provided", async () => {
-        const {container} = render(Popover, {
+        const { container } = render(Popover, {
             props: {
                 ...defaultProps,
                 autoshow: true,
@@ -215,7 +215,10 @@ describe("Popover", () => {
             },
         });
 
-        const innerContentElement = container.querySelector(".s-popover--content");
+        const innerContentElement = container.querySelector(
+            ".s-popover--content"
+        );
+
         expect(innerContentElement).to.exist;
         expect(innerContentElement).to.have.class("custom-class");
         expect(innerContentElement).not.to.have.class("p12");
@@ -223,7 +226,7 @@ describe("Popover", () => {
     });
 
     it("popover content inner div should contain default classes when innerContentClassOverride prop is not provided", async () => {
-        const {container} = render(Popover, {
+        const { container } = render(Popover, {
             props: {
                 ...defaultProps,
                 autoshow: true,
@@ -234,7 +237,10 @@ describe("Popover", () => {
             },
         });
 
-        const innerContentElement = container.querySelector(".s-popover--content");
+        const innerContentElement = container.querySelector(
+            ".s-popover--content"
+        );
+
         expect(innerContentElement).to.exist;
         expect(innerContentElement).to.have.class("p12");
         expect(innerContentElement).to.have.class("mn12");
