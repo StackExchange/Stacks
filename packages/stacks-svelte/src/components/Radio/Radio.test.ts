@@ -23,9 +23,10 @@ describe("Radio", () => {
             label: "Example radio",
             checked: true,
         });
-        expect(
-            screen.getByRole("radio", { name: "Example radio" })
-        ).to.have.attribute("checked");
+        const radio = screen.getByRole("radio", {
+            name: "Example radio",
+        }) as HTMLInputElement;
+        expect(radio.checked).to.be.true;
     });
 
     it("should render disabled when disabled is true", () => {

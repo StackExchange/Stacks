@@ -1,5 +1,6 @@
 import { expect } from "@open-wc/testing";
 import { render, screen } from "@testing-library/svelte";
+import { IconDashboard } from "@stackoverflow/stacks-icons/icons";
 
 import Checkmark from "./Checkmark.svelte";
 
@@ -45,9 +46,10 @@ describe("Checkmark", () => {
             label: "Example checkmark",
             checked: true,
         });
-        expect(
-            screen.getByRole("radio", { name: "Example checkmark" })
-        ).to.have.attribute("checked");
+        const checkmark = screen.getByRole("radio", {
+            name: "Example checkmark",
+        }) as HTMLInputElement;
+        expect(checkmark.checked).to.be.true;
     });
 
     it("should render disabled when disabled is true", () => {
@@ -102,7 +104,7 @@ describe("Checkmark", () => {
             id: "example-checkmark",
             name: "example-group",
             label: "Example checkmark",
-            icon: "test-icon-src",
+            icon: IconDashboard,
         });
         const icon = container.querySelector("svg");
         expect(icon).to.exist;

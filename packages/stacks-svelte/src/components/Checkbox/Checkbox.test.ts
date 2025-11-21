@@ -22,9 +22,10 @@ describe("Checkbox", () => {
             label: "Example checkbox",
             checked: true,
         });
-        expect(
-            screen.getByRole("checkbox", { name: "Example checkbox" })
-        ).to.have.attribute("checked");
+        const checkbox = screen.getByRole("checkbox", {
+            name: "Example checkbox",
+        }) as HTMLInputElement;
+        expect(checkbox.checked).to.be.true;
     });
 
     it("should render disabled when disabled is true", () => {
