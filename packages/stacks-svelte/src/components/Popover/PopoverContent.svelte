@@ -14,12 +14,21 @@
          */
         class?: string;
         /**
+         * Override the default inner content class
+         */
+        innerContentClassOverride?: string | null;
+        /**
          * Children snippet
          */
         children?: Snippet;
     }
 
-    let { role = null, class: className = "", children }: Props = $props();
+    let {
+        role = null,
+        class: className = "",
+        innerContentClassOverride = null,
+        children,
+    }: Props = $props();
 
     let pstate = usePopoverContext("PopoverContent");
 
@@ -30,6 +39,16 @@
         }
         if (className) {
             result += " " + className;
+        }
+        return result;
+    });
+
+    let innerContentClass = $derived.by(() => {
+        let result = "s-popover--content ";
+        if (innerContentClassOverride != null) {
+            result += innerContentClassOverride;
+        } else {
+            result += "p12 mn12";
         }
         return result;
     });
@@ -58,7 +77,7 @@
     onfocusout={pstate.closeTooltip}
     data-popper-placement={pstate.computedPlacement}
 >
-    <div class="s-popover--content p12 mn12">
+    <div class={innerContentClass}>
         <div class="ps-relative">
             {@render children?.()}
         </div>

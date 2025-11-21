@@ -195,6 +195,51 @@ describe("Popover", () => {
         );
     });
 
+    it("override classes to the popover content inner div when the innerContentClassOverride prop is provided", async () => {
+        const {container} = render(Popover, {
+            props: {
+                ...defaultProps,
+                autoshow: true,
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    {
+                        component: PopoverContent,
+                        props: {
+                            innerContentClassOverride: "custom-class",
+                            children: createRawSnippet(() => ({
+                                render: () => "<span>Popover Content</span>",
+                            })),
+                        },
+                    },
+                ]),
+            },
+        });
+
+        const innerContentElement = container.querySelector(".s-popover--content");
+        expect(innerContentElement).to.exist;
+        expect(innerContentElement).to.have.class("custom-class");
+        expect(innerContentElement).not.to.have.class("p12");
+        expect(innerContentElement).not.to.have.class("mn12");
+    });
+
+    it("popover content inner div should contain default classes when innerContentClassOverride prop is not provided", async () => {
+        const {container} = render(Popover, {
+            props: {
+                ...defaultProps,
+                autoshow: true,
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    defaultChildren.content,
+                ]),
+            },
+        });
+
+        const innerContentElement = container.querySelector(".s-popover--content");
+        expect(innerContentElement).to.exist;
+        expect(innerContentElement).to.have.class("p12");
+        expect(innerContentElement).to.have.class("mn12");
+    });
+
     it("should hide the popover content when the user click outside the popover", async () => {
         render(Popover, {
             props: {
