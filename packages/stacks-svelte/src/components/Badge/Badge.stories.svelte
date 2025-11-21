@@ -1,4 +1,3 @@
-<!-- NOTE: This component is not currently exposed to the consumer and is only used internally. It has been hidden from the Storybook docs with the `tags` meta property. -->
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import {

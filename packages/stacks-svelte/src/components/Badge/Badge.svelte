@@ -1,5 +1,3 @@
-<!-- NOTE: This component is not currently exposed to the consumer and is only used internally. See also https://github.com/StackEng/Stacks-Svelte/pull/368#pullrequestreview-2637283176 -->
-<!-- TODO This component stays close to the Stacks Classic API but should be modified to provide useful abstractions to consumers before exposing it. -->
 <script module lang="ts">
     export type Award = "gold" | "silver" | "bronze" | undefined;
     export type Size = "sm" | "lg" | undefined;
