@@ -1,5 +1,23 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.6
+
+### Minor Changes
+
+- [#2046](https://github.com/StackExchange/Stacks/pull/2046) [`5e49f0b`](https://github.com/StackExchange/Stacks/commit/5e49f0b6b2361058bc941f81ee90fb9a5158e961) Thanks [@dancormier](https://github.com/dancormier)! - Update Menu to SHINE styles; add Svelte component
+
+- [#2035](https://github.com/StackExchange/Stacks/pull/2035) [`0b1841d`](https://github.com/StackExchange/Stacks/commit/0b1841d147ff8e9dc369c4bb758b3a11d1fafc73) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update pagination component to match new SHINE design system
+
+    BREAKING CHANGES
+    The next button now uses an ArrowRight and ArrowLeft icon instead of text. To apply the new styling, add the `item__nav` class to pagination items that represent the "Next" button.
+
+### Patch Changes
+
+- [#2045](https://github.com/StackExchange/Stacks/pull/2045) [`10e108a`](https://github.com/StackExchange/Stacks/commit/10e108a476801015237f7937e7dcd79e268a52a2) Thanks [@mukunku](https://github.com/mukunku)! - accessibility(tags): add screen reader improvements
+
+- Updated dependencies [[`5e49f0b`](https://github.com/StackExchange/Stacks/commit/5e49f0b6b2361058bc941f81ee90fb9a5158e961), [`13b6189`](https://github.com/StackExchange/Stacks/commit/13b6189f3228a506fa6a607ef65cac7a45a912c9), [`0b1841d`](https://github.com/StackExchange/Stacks/commit/0b1841d147ff8e9dc369c4bb758b3a11d1fafc73)]:
+    - @stackoverflow/stacks@3.0.0-beta.4
+
 ## 1.0.0-beta.5
 
 ### Minor Changes
