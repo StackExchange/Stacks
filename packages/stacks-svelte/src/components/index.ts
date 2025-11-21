@@ -1,4 +1,3 @@
-
 export { default as ActivityIndicator } from "./ActivityIndicator/ActivityIndicator.svelte";
 export { default as Avatar } from "./Avatar/Avatar.svelte";
 export { default as Badge } from "./Badge/Badge.svelte";
