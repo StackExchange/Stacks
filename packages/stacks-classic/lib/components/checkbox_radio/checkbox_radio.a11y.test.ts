@@ -9,7 +9,14 @@ const checkboxTemplate = ({ component, testid, id }: any) =>
         <label class="s-label" for="${id}">Label</label>
     </div>`;
 
-["checkbox", "radio", "checkmark"].forEach((type) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const checkmarkTemplate = ({ component, testid, id }: any) =>
+    html` <div class="s-check-control s-check-control__checkmark" data-testid="${testid}">
+        <label class="s-label" for="${id}">Label</label>
+        ${component}
+    </div>`;
+
+["checkbox", "radio"].forEach((type) => {
     describe(type, () => {
         // TODO include indeterminate
         ["checked", "unchecked"].forEach((state) => {
@@ -32,6 +39,30 @@ const checkboxTemplate = ({ component, testid, id }: any) =>
                     testidSuffix: state,
                 },
             });
+        });
+    });
+});
+
+describe("checkmark", () => {
+    ["checked", "unchecked"].forEach((state) => {
+        runA11yTests({
+            tag: "input",
+            baseClass: "s-checkmark",
+            attributes: {
+                name: "test-name",
+                id: "test-id",
+                type: "radio",
+                ...(state === "checked" ? { checked: "checked" } : {}),
+            },
+            template: ({ component, testid }) =>
+                checkmarkTemplate({
+                    component,
+                    testid,
+                    id: "test-id",
+                }),
+            options: {
+                testidSuffix: state,
+            },
         });
     });
 });
