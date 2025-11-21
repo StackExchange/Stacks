@@ -10,6 +10,7 @@
     --_ba-tt: unset;
     --_ba-wmn: 0;
     --_ba-bl: 0;
+    --_ba-fw: unset;
 
     // SIZES
     &&__sm {
@@ -29,6 +30,10 @@
     // We need negative margin to make up for the positive badge padding
     & .s-bling__filled {
         margin: calc(var(--_ba-py) * -1) 0 calc(var(--_ba-py) * -1) calc(var(--_ba-px) * -1);
+    }
+
+    &:has(.s-bling__rep) {
+        --_ba-fw: 600;
     }
 
     // TAG BADGES
@@ -218,6 +223,7 @@
     border-left: var(--_ba-bl) solid var(--_ba-bc);
     color: var(--_ba-fc);
     font-size: var(--_ba-fs);
+    font-weight: var(--_ba-fw);
     gap: var(--_ba-px);
     padding: var(--_ba-py) var(--_ba-px);
     line-height: var(--_ba-lh);
