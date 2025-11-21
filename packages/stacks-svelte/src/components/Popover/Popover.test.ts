@@ -515,7 +515,7 @@ describe("Popover", () => {
     });
 
     describe("when not in tooltip mode", () => {
-        it("should throw an error if the reference element provided is not of role button", () => {
+        it("should throw an error if the reference element provided does not have any children of role button", () => {
             expect(() =>
                 render(Popover, {
                     props: {
@@ -537,6 +537,28 @@ describe("Popover", () => {
             ).to.throw(
                 "Reference element must have a role of 'button' for uncontrolled popovers."
             );
+        });
+
+        it("should not throw an error if the reference element has any children of role button", () => {
+            expect(() =>
+                render(Popover, {
+                    props: {
+                        ...defaultProps,
+                        children: createSvelteComponentsSnippet([
+                            {
+                                component: PopoverReference,
+                                props: {
+                                    children: createRawSnippet(() => ({
+                                        render: () =>
+                                            "<li><button>button</button></li>",
+                                    })),
+                                },
+                            },
+                            defaultChildren.content,
+                        ]),
+                    },
+                })
+            ).not.to.throw();
         });
 
         it("should automatically apply the correct aria attributes to the elements", async () => {

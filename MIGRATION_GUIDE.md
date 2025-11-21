@@ -83,6 +83,12 @@ The menu component has been updated to use new class names and structure. The fo
 - `.s-tag__xs` removed
 - `.s-tag__md` removed
 
+#### Navigation
+- Removed muted variant (`.s-navigation__muted`)
+- Selected page are now highlighted by an underscore (no pill shape background)
+- New `.s-navigation--icon` class to style icons alongside navigation items
+- New `.s-navigation--avatar` class to style avatars alongside navigation items
+
 # Migrating from Stacks Svelte v0 to v1
 
 ## Breaking changes
