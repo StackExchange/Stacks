@@ -28,6 +28,13 @@
 - The Award Bling component has been renamed to Bling.
 - Bling no longer accepts children elements besides those for screen readers. Please include any visually represented strings (such as counts) as siblings to the bling component.
 
+#### Buttons
+- The secondary style `outlined` has been removed i.e. `.s-btn__outlined`
+- The default button style is `filled`, use `.s-btn__clear` to use a clear style of a button
+- The featured and tonal variant no longer have a clear style
+- The variant `Muted` has been removed, `Tonal` has been added
+- `s-btn__md` has been removed, `s-btn__lg` has been added
+
 #### Menu
 
 The menu component has been updated to use new class names and structure. The following changes are breaking:

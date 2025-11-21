@@ -79,7 +79,7 @@ const children = {
         unset: `<li><a href="#" class="s-topbar--item" aria-label="Unset item">${IconAlert}</a></li>`,
         loggedOut: `
             <li>
-                <a href="#" class="s-topbar--item s-topbar--item__unset s-btn s-btn__outlined ws-nowrap">Log in</a>
+                <a href="#" class="s-topbar--item s-topbar--item__unset s-btn ws-nowrap">Log in</a>
             </li>
             <li>
                 <a href="#" class="s-topbar--item s-topbar--item__unset s-btn s-btn__filled ws-nowrap">Sign up</a>
