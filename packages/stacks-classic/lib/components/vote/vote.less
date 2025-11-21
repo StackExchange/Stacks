@@ -1,0 +1,105 @@
+.s-vote {
+    --_vo-fd: column;
+    --_vo-child-bg: var(--black-150);
+    --_vo-child-br: unset;
+    --_vo-child-fd: var(--_vo-fd);
+    --_vo-child-g: calc(var(--su8) + var(--su2)); // 10px
+    --_vo-child-h: unset;
+    --_vo-child-w: calc(var(--su48) + var(--su2)); // 50px
+    --_vo-child-p: unset;
+    
+    // CHILD ELEMENTS
+    &:not(&__horizontal){
+        :first-child {
+            --_vo-child-p: calc(var(--su12) + var(--su2)) 0 calc(var(--su12) - var(--su2)); // 14px 0 10px
+            --_vo-child-br: var(--br-pill) var(--br-pill) 0 0;
+        }
+        
+        :last-child {
+            --_vo-child-p: calc(var(--su12) - var(--su2)) 0 calc(var(--su12) + var(--su2)); // 10px 0 14px
+            --_vo-child-br: 0 0 var(--br-pill) var(--br-pill);
+        }
+
+        :only-child {
+            --_vo-child-br: var(--br-pill);
+            --_vo-child-g: calc(var(--su16) + var(--su4)); // 18px
+            --_vo-child-p: calc(var(--su12) + var(--su2)) 0; // 14px 0
+        }
+    }
+
+    // MODIFIERS
+    &&__horizontal {
+        --_vo-fd: row;
+        --_vo-child-h: var(--su32);
+        --_vo-child-p: 0 var(--su4);
+        --_vo-child-w: unset;
+        
+        :first-child {
+            --_vo-child-p: 0 var(--su6) 0 calc(var(--su8) + var(--su2)); // 0 6px 0 10px
+            --_vo-child-br: var(--br-pill) 0 0 var(--br-pill);
+        }
+
+        :last-child {
+            --_vo-child-p: 0 calc(var(--su8) + var(--su2)) 0 var(--su6); // 0 10px 0 6px
+            --_vo-child-br: 0 var(--br-pill) var(--br-pill) 0;
+        }
+
+        .s-vote--count:last-child:not(:only-child) {
+            --_vo-child-p: 0 calc(var(--su12) + var(--su2)) 0 var(--su4); // 0 14px 0 4px
+        }
+
+        :only-child {
+            --_vo-child-br: var(--br-pill);
+            --_vo-child-g: calc(var(--su8) + var(--su2)); // 10px
+            --_vo-child-p: 0 calc(var(--su12) + var(--su2)) 0 calc(var(--su8) + var(--su2)); // 0 10px
+        }
+    }
+
+    // CHILD ELEMENTS
+    > button {
+        // Reset button styles
+        appearance: none;
+        -webkit-appearance: none;
+        background: none;
+        border: 0;
+        color: inherit;
+        cursor: pointer;
+        font: inherit;
+        margin: 0;
+        padding: 0;
+    }
+
+    & &--btn,
+    & > &--count {
+        background-color: var(--_vo-child-bg);
+        border-radius: var(--_vo-child-br);
+        flex-direction: var(--_vo-child-fd);
+        gap: var(--_vo-child-g);
+        height: var(--_vo-child-h);
+        padding: var(--_vo-child-p);
+        width: var(--_vo-child-w);
+
+        align-items: center;
+        display: inline-flex;
+        justify-content: center;
+        overflow: hidden;
+        font-weight: 600;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    // INTERACTION
+    & &--btn {
+        &:focus-visible {
+            .focus-styles(true, false);
+        }
+
+        &:hover {
+            --_vo-child-bg: var(--black-200);
+        }
+    }
+
+    flex-direction: var(--_vo-fd);
+
+    display: flex;
+}
