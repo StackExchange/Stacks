@@ -23,7 +23,9 @@ describe("Radio", () => {
             label: "Example radio",
             checked: true,
         });
-        expect(screen.getByRole("radio", { name: "Example radio" })).to.have.attribute("checked");
+        expect(
+            screen.getByRole("radio", { name: "Example radio" })
+        ).to.have.attribute("checked");
     });
 
     it("should render disabled when disabled is true", () => {
@@ -33,7 +35,9 @@ describe("Radio", () => {
             label: "Example radio",
             disabled: true,
         });
-        expect(screen.getByRole("radio", { name: "Example radio" })).to.have.attribute("disabled");
+        expect(
+            screen.getByRole("radio", { name: "Example radio" })
+        ).to.have.attribute("disabled");
     });
 
     it("should render value attribute", () => {
@@ -43,7 +47,9 @@ describe("Radio", () => {
             label: "Example radio",
             value: "option1",
         });
-        expect(screen.getByRole("radio", { name: "Example radio" })).to.have.attribute("value", "option1");
+        expect(
+            screen.getByRole("radio", { name: "Example radio" })
+        ).to.have.attribute("value", "option1");
     });
 
     it("should apply custom classes", () => {
@@ -53,6 +59,8 @@ describe("Radio", () => {
             label: "Example radio",
             class: "custom-class",
         });
-        expect(screen.getByRole("radio", { name: "Example radio" })).to.have.class("custom-class");
+        expect(
+            screen.getByRole("radio", { name: "Example radio" })
+        ).to.have.class("custom-class");
     });
 });

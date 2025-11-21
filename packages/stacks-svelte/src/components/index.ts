@@ -19,6 +19,8 @@ export { default as PopoverCloseButton } from "./Popover/PopoverCloseButton.svel
 export { default as PopoverContent } from "./Popover/PopoverContent.svelte";
 export { default as PostSummary } from "./PostSummary/PostSummary.svelte";
 export { default as PostSummaryAnswer } from "./PostSummary/PostSummaryAnswer.svelte";
+export { default as Checkbox } from "./Checkbox/Checkbox.svelte";
+export { default as Checkmark } from "./Checkmark/Checkmark.svelte";
 export { default as Radio } from "./Radio/Radio.svelte";
 export { default as Select } from "./Select/Select.svelte";
 export { default as SelectItem } from "./Select/SelectItem.svelte";
