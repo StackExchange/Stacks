@@ -100,7 +100,7 @@
         class?: string;
 
         /**
-         * Optional snippet to showcase user’s most popular tags (e.g. `<Tag href="#" size="xs">css</Tag>`)
+         * Optional snippet to showcase user’s most popular tags (e.g. `<Tag href="#" size="sm">css</Tag>`)
          */
         tags?: Snippet;
 
