@@ -30,7 +30,7 @@
 
 <button
     aria-label={label}
-    class={`s-popover--close s-btn s-btn__muted ps-absolute${className ? ` ${className}` : ""}`}
+    class={`s-popover--close s-btn s-btn__tonal ps-absolute${className ? ` ${className}` : ""}`}
     type="button"
     onclick={handleClick}
 >

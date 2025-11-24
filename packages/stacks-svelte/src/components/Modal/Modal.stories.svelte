@@ -27,7 +27,6 @@
         <div class="hmn4">
             <Button
                 variant={args.state === "danger" ? "danger" : ""}
-                weight="filled"
                 onclick={() => (visible = true)}
             >
                 Show Modal
@@ -56,14 +55,11 @@
                 </p>
             {/snippet}
             {#snippet footer()}
-                <Button
-                    variant={args.state === "danger" ? "danger" : ""}
-                    weight="filled"
-                >
+                <Button variant={args.state === "danger" ? "danger" : ""}>
                     Save changes
                 </Button>
                 <Button
-                    variant={args.state === "danger" ? "muted" : ""}
+                    variant={args.state === "danger" ? "tonal" : ""}
                     onclick={() => (visible = false)}
                 >
                     Cancel
@@ -77,7 +73,6 @@
     <div class="hmn4">
         <div class="d-flex g8">
             <Button
-                weight="filled"
                 onclick={() => {
                     visible = true;
                     mstate = "";
@@ -87,7 +82,6 @@
             </Button>
             <Button
                 variant="danger"
-                weight="filled"
                 onclick={() => {
                     visible = true;
                     mstate = "danger";
@@ -96,7 +90,6 @@
                 Danger
             </Button>
             <Button
-                weight="outlined"
                 onclick={() => {
                     visible = true;
                     mstate = "celebration";
@@ -126,14 +119,11 @@
             </p>
         {/snippet}
         {#snippet footer()}
-            <Button
-                variant={mstate === "danger" ? "danger" : ""}
-                weight="filled"
-            >
+            <Button variant={mstate === "danger" ? "danger" : ""}>
                 Save changes
             </Button>
             <Button
-                variant={mstate === "danger" ? "muted" : ""}
+                variant={mstate === "danger" ? "tonal" : ""}
                 onclick={() => (visible = false)}
             >
                 Cancel

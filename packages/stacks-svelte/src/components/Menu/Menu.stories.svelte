@@ -117,7 +117,7 @@
     <div class="hmn3 d-flex flex__center">
         <Popover id="menu-popover" placement="bottom">
             <PopoverReference>
-                <Button weight="filled">Open Menu</Button>
+                <Button>Open Menu</Button>
             </PopoverReference>
             <PopoverContent class="p8 ws2">
                 <Menu>
