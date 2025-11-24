@@ -10,16 +10,25 @@
          */
         role?: string | null;
         /**
-         * Additional CSS classes added to the element
+         * Additional CSS classes added to the s-popover element
          */
         class?: string;
+        /**
+         * Additional CSS classes added to the s-popover--content element
+         */
+        contentClass?: string;
         /**
          * Children snippet
          */
         children?: Snippet;
     }
 
-    let { role = null, class: className = "", children }: Props = $props();
+    let {
+        role = null,
+        class: className = "",
+        contentClass = "",
+        children,
+    }: Props = $props();
 
     let pstate = usePopoverContext("PopoverContent");
 
@@ -30,6 +39,14 @@
         }
         if (className) {
             result += " " + className;
+        }
+        return result;
+    });
+
+    let contentClasses = $derived.by(() => {
+        let result = "s-popover--content";
+        if (contentClass) {
+            result += " " + contentClass;
         }
         return result;
     });
@@ -58,7 +75,7 @@
     onfocusout={pstate.closeTooltip}
     data-popper-placement={pstate.computedPlacement}
 >
-    <div class="s-popover--content p12 mn12">
+    <div class={contentClasses}>
         <div class="ps-relative">
             {@render children?.()}
         </div>
