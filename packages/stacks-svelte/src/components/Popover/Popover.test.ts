@@ -375,6 +375,28 @@ describe("Popover", () => {
         expect(screen.queryByRole("dialog")).not.to.exist;
     });
 
+    it("should fire onoutclick callback when clicking outside the popover", async () => {
+        const onOutsideClickSpy = sinon.spy();
+
+        render(Popover, {
+            props: {
+                ...defaultProps,
+                autoshow: true,
+                onoutclick: onOutsideClickSpy,
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    defaultChildren.content,
+                ]),
+            },
+        });
+
+        expect(screen.getByRole("dialog")).to.exist;
+
+        await userEvent.click(document.body);
+        expect(onOutsideClickSpy).to.have.been.calledOnce;
+        expect(screen.queryByRole("dialog")).not.to.exist;
+    });
+
     it("should trap focus within the popover content when the trapFocus prop is set to true", async () => {
         render(Popover, {
             props: {
