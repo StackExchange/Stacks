@@ -267,3 +267,20 @@
         <p>Last Event: {lastEvent}</p>
     </div>
 </Story>
+
+<Story name="Custom Classes" asChild>
+    <div class="hmn3 d-flex fd-column flex__center">
+        <Popover id="custom-classes">
+            <PopoverReference>
+                <Button>Custom Classes</Button>
+            </PopoverReference>
+            <PopoverContent
+                class="w-auto wmn0"
+                contentClass="p0 mn0 ta-center fw-bold"
+            >
+                No padding<br />
+                No margin
+            </PopoverContent>
+        </Popover>
+    </div>
+</Story>

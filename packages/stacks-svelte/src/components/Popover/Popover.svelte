@@ -88,6 +88,11 @@
          */
         onclose?: () => void;
         /**
+         * Callback fired when a click occurs outside the popover.
+         * Use this to control what happens on outside clicks (e.g., close the popover in manually controlling visibility).
+         */
+        onoutclick?: () => void;
+        /**
          * Children snippet with visible, open, and close parameters
          */
         children?: Snippet<
@@ -112,6 +117,7 @@
         tooltip = false,
         onopen,
         onclose,
+        onoutclick,
         children,
     }: Props = $props();
 
@@ -181,6 +187,7 @@
             return;
         }
 
+        onoutclick?.();
         close();
     };
 
