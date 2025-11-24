@@ -11,7 +11,10 @@ const checkboxTemplate = ({ component, testid, id }: any) =>
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const checkmarkTemplate = ({ component, testid, id }: any) =>
-    html` <div class="s-check-control s-check-control__checkmark" data-testid="${testid}">
+    html` <div
+        class="s-check-control s-check-control__checkmark"
+        data-testid="${testid}"
+    >
         <label class="s-label" for="${id}">Label</label>
         ${component}
     </div>`;

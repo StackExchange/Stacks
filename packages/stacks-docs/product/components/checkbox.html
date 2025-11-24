@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Checkbox, Radio & Checkmark
+title: Checkbox & Radio
 figma: https://svelte.stackoverflow.design/figma/form-elements
 description: Checkable inputs that visually allow for multiple options or true/false values.
 tags: components
@@ -205,14 +205,14 @@ tags: components
                     <div style="width: 120px;">
                         <div class="s-check-control s-check-control__checkmark">
                             <label class="s-label" for="example-checkmark-no-icon">Default</label>
-                            <input class="s-checkmark" type="radio" name="example-name-checkmark-no-icon-1" id="example-checkmark-no-icon" />
+                            <input class="s-checkmark" type="radio" name="example-name-checkmark-unchecked" id="example-checkmark-no-icon" />
                         </div>
                     </div>
                     <!-- Unchecked disabled without icon -->
                     <div style="width: 120px;">
                         <div class="s-check-control s-check-control__checkmark">
                             <label class="s-label" for="example-checkmark-disabled-no-icon">Disabled</label>
-                            <input class="s-checkmark" type="radio" name="example-name-checkmark-no-icon-2" id="example-checkmark-disabled-no-icon" disabled />
+                            <input class="s-checkmark" type="radio" name="example-name-checkmark-unchecked" id="example-checkmark-disabled-no-icon" disabled />
                         </div>
                     </div>
                 </div>
@@ -223,15 +223,15 @@ tags: components
                         <div class="s-check-control s-check-control__checkmark">
                             {% icon "Dashboard" %}
                             <label class="s-label" for="example-checkmark">Default</label>
-                            <input class="s-checkmark" type="radio" name="example-name-checkmark" id="example-checkmark" />
+                            <input class="s-checkmark" type="radio" name="example-name-checkmark-unchecked" id="example-checkmark" />
                         </div>
                     </div>
-                    <!-- Disabled -->
+                    <!-- Unchecked disabled with icon -->
                     <div style="width: 120px;">
                         <div class="s-check-control s-check-control__checkmark">
                             {% icon "Dashboard" %}
                             <label class="s-label" for="example-checkmark-disabled">Disabled</label>
-                            <input class="s-checkmark" type="radio" name="example-name-checkmark" id="example-checkmark-disabled" disabled />
+                            <input class="s-checkmark" type="radio" name="example-name-checkmark-unchecked" id="example-checkmark-disabled" disabled />
                         </div>
                     </div>
                 </div>
@@ -241,14 +241,14 @@ tags: components
                     <div style="width: 120px;">
                         <div class="s-check-control s-check-control__checkmark">
                             <label class="s-label" for="example-checkmark-no-icon-checked">Default</label>
-                            <input class="s-checkmark" type="radio" name="example-name-checkmark-no-icon-3" id="example-checkmark-no-icon-checked" checked />
+                            <input class="s-checkmark" type="checkbox" name="example-name-checkmark-no-icon-3" id="example-checkmark-no-icon-checked" checked />
                         </div>
                     </div>
                     <!-- Checked disabled without icon -->
                     <div style="width: 120px;">
                         <div class="s-check-control s-check-control__checkmark">
                             <label class="s-label" for="example-checkmark-disabled-checked-no-icon">Disabled</label>
-                            <input class="s-checkmark" type="radio" name="example-name-checkmark-disabled-checked-no-icon" id="example-checkmark-disabled-checked-no-icon" checked disabled />
+                            <input class="s-checkmark" type="checkbox" name="example-name-checkmark-disabled-checked-no-icon" id="example-checkmark-disabled-checked-no-icon" checked disabled />
                         </div>
                     </div>
                 </div>
@@ -259,7 +259,7 @@ tags: components
                         <div class="s-check-control s-check-control__checkmark">
                             {% icon "Dashboard" %}
                             <label class="s-label" for="example-checkmark-checked">Default</label>
-                            <input class="s-checkmark" type="radio" name="example-name-checkmark-checked-1" id="example-checkmark-checked" checked />
+                            <input class="s-checkmark" type="checkbox" name="example-name-checkmark-checked-1" id="example-checkmark-checked" checked />
                         </div>
                     </div>
                     <!-- Disabled and checked -->
@@ -267,7 +267,7 @@ tags: components
                         <div class="s-check-control s-check-control__checkmark">
                             {% icon "Dashboard" %}
                             <label class="s-label" for="example-checkmark-disabled-checked">Disabled</label>
-                            <input class="s-checkmark" type="radio" name="example-name-checkmark-disabled-checked" id="example-checkmark-disabled-checked" checked disabled />
+                            <input class="s-checkmark" type="checkbox" name="example-name-checkmark-disabled-checked" id="example-checkmark-disabled-checked" checked disabled />
                         </div>
                     </div>
                 </div>
@@ -325,6 +325,50 @@ tags: components
         <label class="s-label" for="choice-vert-radio-3">Bananas</label>
     </div>
 </fieldset>
+
+<!-- Checkmark -->
+    <div class="s-popover is-visible ps-relative p8"> 
+        <ul class="s-menu" role="menu">
+            <li class="s-menu--title" role="separator">Sort by</li>
+            <li class="s-menu--item" role="menuitem">
+                <div class="s-check-control s-check-control__checkmark">
+                    <label class="s-label" for="choice-vert-checkmark-1">Relevant</label>
+                    <input class="s-checkmark" type="radio" name="choice-vert-checkmark" id="choice-vert-checkmark-1" checked/>
+                </div>
+            </li>
+            <li class="s-menu--item" role="menuitem">
+                <div class="s-check-control s-check-control__checkmark">
+                    <label class="s-label" for="choice-vert-checkmark-2">Recent activity</label>
+                    <input class="s-checkmark" type="radio" name="choice-vert-checkmark" id="choice-vert-checkmark-2"/>
+                </div>
+            </li>
+            <li class="s-menu--item" role="menuitem">
+                <div class="s-check-control s-check-control__checkmark">
+                    <label class="s-label" for="choice-vert-checkmark-3">Most frequent</label>
+                    <input class="s-checkmark" type="radio" name="choice-vert-checkmark" id="choice-vert-checkmark-3"/>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="s-popover is-visible ps-relative p8"> 
+        <ul class="s-menu" role="menu">
+            <li class="s-menu--title" role="separator">Layout</li>
+            <li class="s-menu--item" role="menuitem">
+                <div class="s-check-control s-check-control__checkmark">
+                    {% icon "Dashboard" %}
+                    <label class="s-label" for="choice-vert-checkmark-4">Expanded</label>
+                    <input class="s-checkmark" type="radio" name="choice-vert-checkmark-layout" id="choice-vert-checkmark-4" checked/>
+                </div>
+            </li>
+            <li class="s-menu--item" role="menuitem">
+                <div class="s-check-control s-check-control__checkmark">
+                    {% icon "Dashboard" %}
+                    <label class="s-label" for="choice-vert-checkmark-5">Compact</label>
+                    <input class="s-checkmark" type="radio" name="choice-vert-checkmark-layout" id="choice-vert-checkmark-5"/>
+                </div>
+            </li>
+        </ul>
+    </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <!-- Checkbox -->
@@ -360,6 +404,51 @@ tags: components
                     <label class="s-label" for="choice-vert-radio-3">Bananas</label>
                 </div>
             </fieldset>
+            <!-- Checkmark-->
+            <div class="d-flex g48 mt32">
+                <div class="s-popover is-visible ps-relative p8" style="width: 190px;"> 
+                    <ul class="s-menu" role="menu">
+                        <li class="s-menu--title" role="separator">Sort by</li>
+                        <li class="s-menu--item" role="menuitem">
+                            <div class="s-check-control s-check-control__checkmark">
+                                <label class="s-label" for="choice-vert-checkmark-1">Relevant</label>
+                                <input class="s-checkmark" type="radio" name="choice-vert-checkmark" id="choice-vert-checkmark-1" checked/>
+                            </div>
+                        </li>
+                        <li class="s-menu--item" role="menuitem">
+                            <div class="s-check-control s-check-control__checkmark">
+                                <label class="s-label" for="choice-vert-checkmark-2">Recent activity</label>
+                                <input class="s-checkmark" type="radio" name="choice-vert-checkmark" id="choice-vert-checkmark-2"/>
+                            </div>
+                        </li>
+                        <li class="s-menu--item" role="menuitem">
+                            <div class="s-check-control s-check-control__checkmark">
+                                <label class="s-label" for="choice-vert-checkmark-3">Most frequent</label>
+                                <input class="s-checkmark" type="radio" name="choice-vert-checkmark" id="choice-vert-checkmark-3"/>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="s-popover is-visible ps-relative p8" style="width: 190px;"> 
+                    <ul class="s-menu" role="menu">
+                        <li class="s-menu--title" role="separator">Layout</li>
+                        <li class="s-menu--item" role="menuitem">
+                            <div class="s-check-control s-check-control__checkmark">
+                                {% icon "Dashboard" %}
+                                <label class="s-label" for="choice-vert-checkmark-4">Expanded</label>
+                                <input class="s-checkmark" type="radio" name="choice-vert-checkmark-layout" id="choice-vert-checkmark-4" checked/>
+                            </div>
+                        </li>
+                        <li class="s-menu--item" role="menuitem">
+                            <div class="s-check-control s-check-control__checkmark">
+                                {% icon "Dashboard" %}
+                                <label class="s-label" for="choice-vert-checkmark-5">Compact</label>
+                                <input class="s-checkmark" type="radio" name="choice-vert-checkmark-layout" id="choice-vert-checkmark-5"/>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -464,6 +553,78 @@ tags: components
         </label>
     </div>
 </fieldset>
+
+<!-- Checkmark -->
+    <div class="s-popover p8"> 
+        <ul class="s-menu" role="menu">
+            <li class="s-menu--title" role="separator">Sort answers by</li>
+            <li class="s-menu--item" role="menuitem">
+                <div class="s-check-control s-check-control__checkmark">
+                    {% icon "Dashboard" %}
+                    <label class="s-label" for="choice-description-copy-checkmark-1">
+                        Trending
+                        <p class="s-description">Highest vote counts more</p>
+                    </label>
+                    <input class="s-checkmark" type="radio" name="choice-description-copy-checkmark" id="choice-description-copy-checkmark-1" checked/>
+                </div>
+            </li>
+            <li class="s-menu--item" role="menuitem">
+                <div class="s-check-control s-check-control__checkmark">
+                    {% icon "Question" %}
+                    <label class="s-label" for="choice-description-copy-checkmark-2">
+                        Date modified
+                        <p class="s-description">Newest first</p>
+                    </label>
+                    <input class="s-checkmark" type="radio" name="choice-description-copy-checkmark" id="choice-description-copy-checkmark-2"/>
+                </div>
+            </li>
+            <li class="s-menu--item" role="menuitem">
+                <div class="s-check-control s-check-control__checkmark">
+                    {% icon "Inbox" %}
+                    <label class="s-label" for="choice-description-copy-checkmark-3">
+                        Date created
+                        <p class="s-description">Oldest first</p>
+                    </label>
+                    <input class="s-checkmark" type="radio" name="choice-description-copy-checkmark" id="choice-description-copy-checkmark-3"/>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="s-popover p8"> 
+        <ul class="s-menu" role="menu">
+            <li class="s-menu--title" role="separator">Select answers by</li>
+            <li class="s-menu--item" role="menuitem">
+                <div class="s-check-control s-check-control__checkmark">
+                    {% icon "Dashboard" %}
+                    <label class="s-label" for="choice-description-copy-checkmark-4">
+                        Trending
+                        <p class="s-description">Highest vote counts more</p>
+                    </label>
+                    <input class="s-checkmark" type="checkbox" name="choice-description-copy-checkmark-checkbox" id="choice-description-copy-checkmark-4" checked/>
+                </div>
+            </li>
+            <li class="s-menu--item" role="menuitem">
+                <div class="s-check-control s-check-control__checkmark">
+                    {% icon "Question" %}
+                    <label class="s-label" for="choice-description-copy-checkmark-5">
+                        Date modified
+                        <p class="s-description">Newest first</p>
+                    </label>
+                    <input class="s-checkmark" type="checkbox" name="choice-description-copy-checkmark-checkbox" id="choice-description-copy-checkmark-5" checked/>
+                </div>
+            </li>
+            <li class="s-menu--item" role="menuitem">
+                <div class="s-check-control s-check-control__checkmark">
+                    {% icon "Inbox" %}
+                    <label class="s-label" for="choice-description-copy-checkmark-6">
+                        Date created
+                        <p class="s-description">Oldest first</p>
+                    </label>
+                    <input class="s-checkmark" type="checkbox" name="choice-description-copy-checkmark-checkbox" id="choice-description-copy-checkmark-6"/>
+                </div>
+            </li>
+        </ul>
+    </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <!-- Checkbox -->
@@ -517,6 +678,78 @@ tags: components
                     </label>
                 </div>
             </fieldset>
+            <div class="d-flex g48 mt32">
+                <div class="s-popover is-visible ps-relative p8"> 
+                    <ul class="s-menu" role="menu">
+                        <li class="s-menu--title" role="separator">Sort answers by</li>
+                        <li class="s-menu--item" role="menuitem">
+                            <div class="s-check-control s-check-control__checkmark">
+                                {% icon "Dashboard" %}
+                                <label class="s-label" for="choice-description-copy-checkmark-1">
+                                    Trending
+                                    <p class="s-description">Highest vote counts more</p>
+                                </label>
+                                <input class="s-checkmark" type="radio" name="choice-description-copy-checkmark" id="choice-description-copy-checkmark-1" checked/>
+                            </div>
+                        </li>
+                        <li class="s-menu--item" role="menuitem">
+                            <div class="s-check-control s-check-control__checkmark">
+                                {% icon "Question" %}
+                                <label class="s-label" for="choice-description-copy-checkmark-2">
+                                    Date modified
+                                    <p class="s-description">Newest first</p>
+                                </label>
+                                <input class="s-checkmark" type="radio" name="choice-description-copy-checkmark" id="choice-description-copy-checkmark-2"/>
+                            </div>
+                        </li>
+                        <li class="s-menu--item" role="menuitem">
+                            <div class="s-check-control s-check-control__checkmark">
+                                {% icon "Inbox" %}
+                                <label class="s-label" for="choice-description-copy-checkmark-3">
+                                    Date created
+                                    <p class="s-description">Oldest first</p>
+                                </label>
+                                <input class="s-checkmark" type="radio" name="choice-description-copy-checkmark" id="choice-description-copy-checkmark-3"/>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="s-popover is-visible ps-relative p8"> 
+                    <ul class="s-menu" role="menu">
+                        <li class="s-menu--title" role="separator">Select answers by</li>
+                        <li class="s-menu--item" role="menuitem">
+                            <div class="s-check-control s-check-control__checkmark">
+                                {% icon "Dashboard" %}
+                                <label class="s-label" for="choice-description-copy-checkmark-4">
+                                    Trending
+                                    <p class="s-description">Highest vote counts more</p>
+                                </label>
+                                <input class="s-checkmark" type="checkbox" name="choice-description-copy-checkmark-checkbox" id="choice-description-copy-checkmark-4" checked/>
+                            </div>
+                        </li>
+                        <li class="s-menu--item" role="menuitem">
+                            <div class="s-check-control s-check-control__checkmark">
+                                {% icon "Question" %}
+                                <label class="s-label" for="choice-description-copy-checkmark-5">
+                                    Date modified
+                                    <p class="s-description">Newest first</p>
+                                </label>
+                                <input class="s-checkmark" type="checkbox" name="choice-description-copy-checkmark-checkbox" id="choice-description-copy-checkmark-5" checked/>
+                            </div>
+                        </li>
+                        <li class="s-menu--item" role="menuitem">
+                            <div class="s-check-control s-check-control__checkmark">
+                                {% icon "Inbox" %}
+                                <label class="s-label" for="choice-description-copy-checkmark-6">
+                                    Date created
+                                    <p class="s-description">Oldest first</p>
+                                </label>
+                                <input class="s-checkmark" type="checkbox" name="choice-description-copy-checkmark-checkbox" id="choice-description-copy-checkmark-6"/>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 
