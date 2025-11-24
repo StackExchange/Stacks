@@ -10,13 +10,13 @@
          */
         role?: string | null;
         /**
-         * Additional CSS classes added to the element
+         * Additional CSS classes added to the s-popover element
          */
         class?: string;
         /**
-         * Override the default inner content class
+         * Additional CSS classes added to the s-popover--content element
          */
-        innerContentClassOverride?: string | null;
+        contentClass?: string;
         /**
          * Children snippet
          */
@@ -26,7 +26,7 @@
     let {
         role = null,
         class: className = "",
-        innerContentClassOverride = null,
+        contentClass = "",
         children,
     }: Props = $props();
 
@@ -43,12 +43,10 @@
         return result;
     });
 
-    let innerContentClass = $derived.by(() => {
-        let result = "s-popover--content ";
-        if (innerContentClassOverride != null) {
-            result += innerContentClassOverride;
-        } else {
-            result += "p12 mn12";
+    let contentClasses = $derived.by(() => {
+        let result = "s-popover--content";
+        if (contentClass) {
+            result += " " + contentClass;
         }
         return result;
     });
@@ -77,7 +75,7 @@
     onfocusout={pstate.closeTooltip}
     data-popper-placement={pstate.computedPlacement}
 >
-    <div class={innerContentClass}>
+    <div class={contentClasses}>
         <div class="ps-relative">
             {@render children?.()}
         </div>

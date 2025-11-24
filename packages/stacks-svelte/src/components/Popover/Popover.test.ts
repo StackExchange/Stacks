@@ -142,7 +142,7 @@ describe("Popover", () => {
         expect(screen.getByRole("menu")).to.exist;
     });
 
-    it("add classes to the popover content when the class prop is provided", async () => {
+    it("add classes to the s-popover element when the class prop is provided", async () => {
         render(Popover, {
             props: {
                 ...defaultProps,
@@ -163,6 +163,34 @@ describe("Popover", () => {
         });
 
         expect(screen.getByRole("dialog")).to.have.class("custom-class");
+    });
+
+    it("add classes to the s-popover--content element when the contentClass prop is provided", async () => {
+        const { container } = render(Popover, {
+            props: {
+                ...defaultProps,
+                autoshow: true,
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    {
+                        component: PopoverContent,
+                        props: {
+                            contentClass: "custom-class",
+                            children: createRawSnippet(() => ({
+                                render: () => "<span>Popover Content</span>",
+                            })),
+                        },
+                    },
+                ]),
+            },
+        });
+
+        const innerContentElement = container.querySelector(
+            ".s-popover--content"
+        );
+
+        expect(innerContentElement).to.exist;
+        expect(innerContentElement).to.have.class("custom-class");
     });
 
     it("add classes to the popover close button component when the class prop is provided", async () => {
@@ -193,57 +221,6 @@ describe("Popover", () => {
         expect(screen.getByRole("button", { name: "Close" })).to.have.class(
             "custom-class"
         );
-    });
-
-    it("override classes to the popover content inner div when the innerContentClassOverride prop is provided", async () => {
-        const { container } = render(Popover, {
-            props: {
-                ...defaultProps,
-                autoshow: true,
-                children: createSvelteComponentsSnippet([
-                    defaultChildren.reference,
-                    {
-                        component: PopoverContent,
-                        props: {
-                            innerContentClassOverride: "custom-class",
-                            children: createRawSnippet(() => ({
-                                render: () => "<span>Popover Content</span>",
-                            })),
-                        },
-                    },
-                ]),
-            },
-        });
-
-        const innerContentElement = container.querySelector(
-            ".s-popover--content"
-        );
-
-        expect(innerContentElement).to.exist;
-        expect(innerContentElement).to.have.class("custom-class");
-        expect(innerContentElement).not.to.have.class("p12");
-        expect(innerContentElement).not.to.have.class("mn12");
-    });
-
-    it("popover content inner div should contain default classes when innerContentClassOverride prop is not provided", async () => {
-        const { container } = render(Popover, {
-            props: {
-                ...defaultProps,
-                autoshow: true,
-                children: createSvelteComponentsSnippet([
-                    defaultChildren.reference,
-                    defaultChildren.content,
-                ]),
-            },
-        });
-
-        const innerContentElement = container.querySelector(
-            ".s-popover--content"
-        );
-
-        expect(innerContentElement).to.exist;
-        expect(innerContentElement).to.have.class("p12");
-        expect(innerContentElement).to.have.class("mn12");
     });
 
     it("should hide the popover content when the user click outside the popover", async () => {
