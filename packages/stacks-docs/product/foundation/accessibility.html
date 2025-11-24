@@ -211,29 +211,17 @@ tags: foundation
 
     {% header "h4", "Bordered" %}
 
-    <p class="stacks-copy">For components that have an existing border around the component when not in focus, a background fill color is added in addition to the focus rings. This ensures there’s a strong enough visual difference between the non-focus and focus state, especially in the case of the <code class="stacks-code">.s-btn__outlined</code> (which already displays a theme colored ring as default state). These patterns are maintained across all components for consistency.</p>
+    <p class="stacks-copy">For components that have an existing border around the component when not in focus, a background fill color is added in addition to the focus rings. This ensures there’s a strong enough visual difference between the non-focus and focus state. These patterns are maintained across all components for consistency.</p>
 
     <div class="{{exampleWrapperClasses}} grid__4 md:grid__2">
         {% for group in accessibility.consistent-style-patterns.bordered %}
             <div class="ta-center">
-                {% if group.type == "button" %}
-                    <div class="d-flex ai-center jc-center h32">
-                        <button
-                            class="s-btn s-btn__outlined {{group.classes | default: ""}}"
-                            role="presentation">
-                            Button
-                        </button>
-                    </div>
-                {% else %}
-                    <div class="d-flex ai-center jc-center h32">
-                        <div class="s-pagination">
-                            <span class="s-pagination--item m-auto {{ group.classes | default: ""}}" role="presentation">
-                                <span class="v-visible-sr">page</span>
-                                2
-                            </span>
-                        </div>
-                    </div>
-                {% endif %}
+                <div class="s-pagination">
+                    <span class="s-pagination--item m-auto {{ group.classes | default: ""}}" role="presentation">
+                        <span class="v-visible-sr">page</span>
+                        2
+                    </span>
+                </div>
 
                 {% render 'annotation.html',
                     text: group.description,
@@ -298,7 +286,7 @@ tags: foundation
 
     {% header "h4", "Exceptions" %}
 
-    <p class="stacks-copy">The exceptions to this pattern are the <code class="stacks-code">Clear</code> button variations. To avoid these buttons resembling <code class="stacks-code">s-btn__outlined</code> when in focus, the same background fill layer is added as well. All buttons display a background fill layer when in focus. <code class="stacks-code">Clear</code>, <code class="stacks-code">Outline</code> and <code class="stacks-code">Filled</code> styles will all look the same when in focus. The fill color was chosen to match the existing <code class="stacks-code">Filled</code> style. For <code class="stacks-code">Muted</code> variations, since <code class="stacks-code">Muted Filled</code> has been deprecated, the fill color is pulled from the text color used on <code class="stacks-code">Outline</code> before being reversed to white.</p>
+    <p class="stacks-copy">The exceptions to this pattern are the <code class="stacks-code">Clear</code> button variations. All buttons display a background fill layer when in focus. <code class="stacks-code">Clear</code>, <code class="stacks-code">Outline</code> and <code class="stacks-code">Filled</code> styles will all look the same when in focus. The fill color was chosen to match the existing <code class="stacks-code">Filled</code> style.</p>
 
     <div class="{{exampleWrapperClasses}} grid__4 md:grid__2">
         {% for group in accessibility.consistent-style-patterns.exceptions %}

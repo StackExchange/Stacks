@@ -1,5 +1,25 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.7
+
+### Minor Changes
+
+- [#2008](https://github.com/StackExchange/Stacks/pull/2008) [`4610d3a`](https://github.com/StackExchange/Stacks/commit/4610d3a6f8183a3e57208b6b8780cfa9aba393c4) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update button to new Shine styles
+
+    BREAKING CHANGES:
+    - The secondary style `outlined` has been removed i.e. `.s-btn__outlined`
+    - The variant `Muted` has been removed
+    - `s-btn__md` has been removed
+
+- [#2043](https://github.com/StackExchange/Stacks/pull/2043) [`6f6d576`](https://github.com/StackExchange/Stacks/commit/6f6d576b65cd0db5d9ed2747d8cba474d4633680) Thanks [@giamir](https://github.com/giamir)! - Added new Navigation Component
+
+### Patch Changes
+
+- [#2057](https://github.com/StackExchange/Stacks/pull/2057) [`ec61da3`](https://github.com/StackExchange/Stacks/commit/ec61da30c742ea7be21de11e932381d34e36bdba) Thanks [@dancormier](https://github.com/dancormier)! - Change popover close icon to Cross
+
+- Updated dependencies [[`4610d3a`](https://github.com/StackExchange/Stacks/commit/4610d3a6f8183a3e57208b6b8780cfa9aba393c4), [`6f6d576`](https://github.com/StackExchange/Stacks/commit/6f6d576b65cd0db5d9ed2747d8cba474d4633680), [`ec61da3`](https://github.com/StackExchange/Stacks/commit/ec61da30c742ea7be21de11e932381d34e36bdba)]:
+    - @stackoverflow/stacks@3.0.0-beta.5
+
 ## 1.0.0-beta.6
 
 ### Minor Changes
