@@ -346,7 +346,7 @@
                 <PopoverReference>
                     <Button
                         class="s-post-summary--content-menu-button"
-                        variant="muted"
+                        variant="tonal"
                     >
                         <Icon src={IconEllipsisVertical} />
                         <span class="v-visible-sr"

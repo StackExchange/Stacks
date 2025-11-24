@@ -2,8 +2,9 @@
 layout: page
 title: Navigation
 js: true
-figma: https://svelte.stackoverflow.design/figma/navigation
-description: Our navigation component is a collection of pill-shaped buttons that respond gracefully to various window sizes and parent containers.
+figma: https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=610-18812&t=5ggsDIb9OENEwDl0-1
+svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-navigation--docs
+description: Our navigation component is a collection of buttons that respond gracefully to various window sizes and parent containers.
 tags: components
 ---
 <section class="stacks-section">
@@ -62,6 +63,7 @@ tags: components
     <p class="stacks-copy">Forcing a navigation to scroll is an established pattern on mobile devices, so it may be appropriate to use it in that context. Wrapping tends to make more sense on larger screens, where the user isn’t forced to scroll passed a ton of navigation chrome.</p>
 
     {% header "h3", "Horizontal default" %}
+    <p class="stacks-copy">Use the default size for primary page-level navigation, typically placed near the top of the page.</p>
     <div class="stacks-preview">
 {% highlight html %}
 <nav aria-label="…">
@@ -159,102 +161,73 @@ tags: components
         </div>
     </div>
 
-    {% header "h3", "Muted" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<nav aria-label="…">
-    <ul class="s-navigation s-navigation__muted">
-        <li>
-            <a href="…" class="s-navigation--item is-selected">
-                <span class="s-navigation--item-text" data-text="…">…</span>
-            </a>
-        </li>
-        <li>
-            <a href="…" class="s-navigation--item">
-                <span class="s-navigation--item-text" data-text="…">…</span>
-            </a>
-        </li>
-        <li>
-            <a href="…" class="s-navigation--item">
-                <span class="s-navigation--item-text" data-text="…">…</span>
-            </a>
-        </li>
-        <li>
-            <a href="…" class="s-navigation--item">
-                <span class="s-navigation--item-text" data-text="…">…</span>
-            </a>
-        </li>
-        <li>
-            <a href="…" class="s-navigation--item">
-                <span class="s-navigation--item-text" data-text="…">…</span>
-            </a>
-        </li>
-    </ul>
-</nav>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <p class="ff-mono mb8" id="muted-nav-full-width">Full width</p>
-            <nav class="mb32" aria-label="muted full width navigation">
-                <ul class="s-navigation s-navigation__muted">
-                    <li>
-                        <a href="#" class="s-navigation--item is-selected">
-                            <span class="s-navigation--item-text" data-text="Product">Product</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="s-navigation--item">
-                            <span class="s-navigation--item-text" data-text="Email">Email</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="s-navigation--item">
-                            <span class="s-navigation--item-text" data-text="Content">Content</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="s-navigation--item">
-                            <span class="s-navigation--item-text" data-text="Brand">Brand</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="s-navigation--item">
-                            <span class="s-navigation--item-text" data-text="Marketing">Marketing</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+    {% header "h3", "Icons" %}
+    <p class="stacks-copy">Use the icon variant for a prominent, secondary horizontal navigation bar that directs users to main page sections. Limit use to one per page and do not use it for in-page filtering. Icon styles should change with the state of the item (ex: selected items use a fill icon)</p>
 
-            <p class="ff-mono mb8" id="muted-nav-wrapped">Wrapped</p>
-            <nav class="wmx2" aria-label="muted wrapped navigation">
-                <ul class="s-navigation s-navigation__muted">
+    <div class="stacks-preview">
+    {% highlight html %}
+    <nav aria-label="…">
+        <ul class="s-navigation">
+            <li>
+                <a href="…" class="s-navigation--item is-selected">
+                    @Svg.QandAFill.With("s-navigation--icon")
+                    <span class="s-navigation--item-text" data-text="Content">Content</span>
+                </a>
+            </li>
+            <li>
+                <a href="…" class="s-navigation--item">
+                    @Svg.TagStack.With("s-navigation--icon")
+                    <span class="s-navigation--item-text" data-text="Topics">Topics</span>
+                </a>
+            </li>
+            <li>
+                <a href="…" class="s-navigation--item">
+                    @Svg.UserStack.With("s-navigation--icon")
+                    <span class="s-navigation--item-text" data-text="People">People</span>
+                </a>
+            </li>
+            <li>
+                <a href="…" class="s-navigation--item s-navigation--item__dropdown">
+                    @Svg.Settings.With("s-navigation--icon")
+                    <span class="s-navigation--item-text" data-text="Settings">Settings</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    {% endhighlight %}
+    <div class="stacks-preview--example">
+        <div class="d-flex jc-space-between sm:d-block">
+            <nav aria-label="horizontal full width navigation with icons" class="d-inline-block">
+                <ul class="s-navigation">
                     <li>
                         <a href="#" class="s-navigation--item is-selected">
-                            <span class="s-navigation--item-text" data-text="Product">Product</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="s-navigation--item">
-                            <span class="s-navigation--item-text" data-text="Email">Email</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="s-navigation--item">
+                            {% icon "QandAFill", "s-navigation--icon" %}
                             <span class="s-navigation--item-text" data-text="Content">Content</span>
                         </a>
                     </li>
                     <li>
                         <a href="#" class="s-navigation--item">
-                            <span class="s-navigation--item-text" data-text="Brand">Brand</span>
+                            {% icon "TagStack", "s-navigation--icon" %}
+                            <span class="s-navigation--item-text" data-text="Topics">Topics</span>
                         </a>
                     </li>
                     <li>
                         <a href="#" class="s-navigation--item">
-                            <span class="s-navigation--item-text" data-text="Marketing">Marketing</span>
+                            {% icon "UserStack", "s-navigation--icon" %}
+                            <span class="s-navigation--item-text" data-text="People">People</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="s-navigation--item s-navigation--item__dropdown">
+                            {% icon "Settings", "s-navigation--icon" %}
+                            <span class="s-navigation--item-text" data-text="Settings">Settings</span>
                         </a>
                     </li>
                 </ul>
             </nav>
+            <button class="s-btn s-btn__tonal s-btn__dropdown">Today</button>
         </div>
+    </div>
     </div>
 
     {% header "h3", "Scrolling" %}
@@ -304,17 +277,17 @@ tags: components
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="s-navigation--item">Content
+                        <a href="#" class="s-navigation--item">
                             <span class="s-navigation--item-text" data-text="Content">Content</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="s-navigation--item">Brand
+                        <a href="#" class="s-navigation--item">
                             <span class="s-navigation--item-text" data-text="Brand">Brand</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="s-navigation--item">Marketing
+                        <a href="#" class="s-navigation--item">
                             <span class="s-navigation--item-text" data-text="Marketing">Marketing</span>
                         </a>
                     </li>
@@ -360,7 +333,7 @@ tags: components
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="s-navigation--item s-navigation--item__dropdown">More
+                        <a href="#" class="s-navigation--item s-navigation--item__dropdown">
                             <span class="s-navigation--item-text" data-text="More">More</span>
                         </a>
                     </li>
@@ -370,6 +343,7 @@ tags: components
     </div>
 
     {% header "h3", "Small" %}
+    <p class="stacks-copy">Use the small variant for on-page filtering in space-constrained areas, such as controlling small lists. Avoid using icons on the small variant.</p>
     <div class="stacks-preview">
 {% highlight html %}
 <nav aria-label="…">
@@ -506,6 +480,136 @@ tags: components
         </div>
     </div>
 
+    {% header "h3", "Vertical Icons" %}
+    <p class="stacks-copy">Vertical navigation items with icons have a larger padding.</p>
+
+    <div class="stacks-preview">
+    {% highlight html %}
+    <nav aria-label="…">
+        <ul class="s-navigation s-navigation__vertical">
+            <li>
+                <a href="…" class="s-navigation--item is-selected">
+                    @Svg.HomeFill.With("s-navigation--icon")
+                    <span class="s-navigation--item-text" data-text="Home">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="…" class="s-navigation--item d-flex jc-space-between">
+                    <div>
+                        @Svg.Jobs.With("s-navigation--icon")
+                        <span class="s-navigation--item-text" data-text="Jobs">Jobs</span>
+                    </div>
+                    <div class="s-badge s-badge__xs s-badge__new">New</div>
+                </a>
+            </li>
+            <li>
+                <a href="…" class="s-navigation--item d-flex jc-space-between">
+                    <div>
+                        @Svg.Bookmark.With("s-navigation--icon")
+                        <span class="s-navigation--item-text" data-text="Saves">Saves</span>
+                    </div>
+                    <div class="s-activity-indicator">
+                        3 <div class="v-visible-sr">new activities</div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="…" class="s-navigation--item">
+                    @Svg.UserStack.With("s-navigation--icon")
+                    <span class="s-navigation--item-text" data-text="Users">Users</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    {% endhighlight %}
+    <div class="stacks-preview--example">
+        <nav class="ws2" aria-label="vertical full width navigation with icons">
+            <ul class="s-navigation s-navigation__vertical">
+                <li>
+                    <a href="#" class="s-navigation--item is-selected">
+                        {% icon "HomeFill", "s-navigation--icon" %}
+                        <span class="s-navigation--item-text" data-text="Home">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="s-navigation--item d-flex jc-space-between">
+                        <div>
+                            {% icon "Jobs", "s-navigation--icon" %}
+                            <span class="s-navigation--item-text" data-text="Jobs">Jobs</span>
+                        </div>
+                        <div class="s-badge s-badge__xs s-badge__new">New</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="s-navigation--item d-flex jc-space-between">
+                        <div>
+                            {% icon "Bookmark", "s-navigation--icon" %}
+                            <span class="s-navigation--item-text" data-text="Saves">Saves</span>
+                        </div>
+                        <div class="s-activity-indicator">
+                            3 <div class="v-visible-sr">new activities</div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="s-navigation--item">
+                        {% icon "UserStack", "s-navigation--icon" %}
+                        <span class="s-navigation--item-text" data-text="Users">Users</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    </div>
+
+    {% header "h3", "Avatar" %}
+
+    <div class="stacks-preview">
+        {% highlight html %}
+<nav aria-label="…">
+    <ul class="s-navigation s-navigation__vertical">
+        <li>
+            <a href="…" class="s-navigation--item is-selected">
+                <div class="s-navigation--avatar s-avatar">
+                    <img class="s-avatar--image" src="https://picsum.photos/32" />
+                </div>
+                <span class="s-navigation--item-text" data-text="Humson">Humson</span>
+            </a>
+        </li>
+        <li>
+            <a href="…" class="s-navigation--item">
+                <div class="s-navigation--avatar s-avatar">
+                    <img class="s-avatar--image" src="https://picsum.photos/32" />
+                </div>
+                <span class="s-navigation--item-text" data-text="Samson">Samson</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+        {% endhighlight %}
+        <div class="stacks-preview--example">
+            <nav class="ws2" aria-label="avatar navigation">
+                <ul class="s-navigation s-navigation__vertical">
+                    <li>
+                        <a href="#" class="s-navigation--item is-selected">
+                            <div class="s-navigation--avatar s-avatar">
+                                <img class="s-avatar--image" src="https://picsum.photos/32" />
+                            </div>
+                            <span class="s-navigation--item-text" data-text="Humson">Humson</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="s-navigation--item">
+                            <div class="s-navigation--avatar s-avatar">
+                                <img class="s-avatar--image" src="https://picsum.photos/32" />
+                            </div>
+                            <span class="s-navigation--item-text" data-text="Samson">Samson</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
     {% header "h3", "Titles" %}
     <div class="stacks-preview">
 {% highlight html %}
@@ -560,11 +664,30 @@ tags: components
                     <li><a href="#" class="s-navigation--item">Spot illustrations</a></li>
 
                     <li class="s-navigation--title">Base</li>
-                    <li><a href="#" class="s-navigation--item">Backgrounds</a></li>
-                    <li><a href="#" class="s-navigation--item">Borders</a></li>
-                    <li><a href="#" class="s-navigation--item">Border radius</a></li>
-                    <li><a href="#" class="s-navigation--item">Box shadow</a></li>
-                    <li><a href="#" class="s-navigation--item">Box sizing</a></li>
+                    <li>
+                        <a href="#" class="s-navigation--item is-selected">
+                            {% icon "HomeFill", "s-navigation--icon" %}
+                            <span class="s-navigation--item-text" data-text="Home">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="s-navigation--item">
+                            {% icon "Jobs", "s-navigation--icon" %}
+                            <span class="s-navigation--item-text" data-text="Jobs">Jobs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="s-navigation--item">
+                            {% icon "Bookmark", "s-navigation--icon" %}
+                            <span class="s-navigation--item-text" data-text="Saves">Saves</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="s-navigation--item">
+                            {% icon "UserStack", "s-navigation--icon" %}
+                            <span class="s-navigation--item-text" data-text="Users">Users</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
