@@ -1,5 +1,11 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.6
+
+### Patch Changes
+
+- [#2066](https://github.com/StackExchange/Stacks/pull/2066) [`32ae839`](https://github.com/StackExchange/Stacks/commit/32ae839dd675ae50621a33f24bcd66694bc5c5c4) Thanks [@dancormier](https://github.com/dancormier)! - Remove activity indicator HC mode color overrides
+
 ## 3.0.0-beta.5
 
 ### Minor Changes
