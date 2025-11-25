@@ -8,7 +8,7 @@
     --_in-fs: var(--fs-body1);
     --_in-o: unset;
     --_in-px: 0.7em;
-    --_in-py: 0.6em;
+    --_in-py: var(--su8);
     --_in-placeholder-fc: var(--black-300);
 
     // CONTEXTUAL STYLES
@@ -56,29 +56,19 @@
     // Sizes
     &&__sm {
         .size-styles(sm; in; @styles: fs);
+        --_in-py: calc(var(--su6) - var(--su1)); // 5px
     }
 
-    &&__md {
+    &&__lg {
         @supports (-webkit-overflow-scrolling: touch) {
             --_in-fs: calc(var(--su-static16) + var(--su-static1)); // 17px
             --_in-py: 0.4em;
         }
 
         .size-styles(md; in; @styles: br, fs);
+        --_in-py: calc(var(--su8) + var(--su1)); // 9px
     }
-
-    &&__lg {
-        .size-styles(lg; in; @styles: br, fs);
-        --_in-px: 0.6em;
-        --_in-py: 0.45em;
-    }
-
-    &&__xl {
-        .size-styles(xl; in; @styles: br, fs);
-        --_in-px: 0.5em;
-        --_in-py: 0.4em;
-    }
-
+    
     // CHILD ELEMENTS
     .webkit-autofill();
 
@@ -112,7 +102,7 @@
     font-size: var(--_in-fs);
     opacity: var(--_in-o);
     padding: var(--_in-py) var(--_in-px) var(--_in-py) var(--_in-pl, var(--_in-px));
-
+    line-height: var(--lh-md);
     -webkit-appearance: none; // Removes shadows we don't want in mobile Safari
     font-family: inherit;
     margin: 0; // A guard against Core's default margins
@@ -123,20 +113,12 @@
     .input-states({
         padding-right: var(--su32);
     });
-
-    &&__md {
-        --_in-py: 0.5em;
-    }
 }
 
 .s-textarea {
     .input-states({
         padding-right: var(--su48);
     });
-
-    &&__md {
-        --_in-py: 0.72em;
-    }
 
     ~ .s-input-icon {
         right: 1.5em;
