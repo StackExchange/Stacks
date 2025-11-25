@@ -1,6 +1,6 @@
 <script module lang="ts">
     import { getContext } from "svelte";
-    export type Size = "" | "sm" | "md" | "lg" | "xl";
+    export type Size = "" | "sm" | "lg";
     export type State = "" | "error" | "success" | "warning";
     export type LabelPlacement = "top" | "left";
 

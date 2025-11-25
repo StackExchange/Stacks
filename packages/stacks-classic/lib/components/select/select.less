@@ -1,6 +1,5 @@
 .s-select {
-    --_se-arrow-bc: currentColor transparent;
-    --_se-arrow-size: var(--su-static4); // Constant
+    --_se-arrow-fc: currentColor;
     --_se-select-bc: var(--bc-darker);
     --_se-select-bg: var(--white);
     --_se-select-br: var(--br-md);
@@ -23,30 +22,13 @@
 
     .validation-states(se-select);
 
-    .is-disabled & {
-        --_se-arrow-bc: var(--bc-dark) transparent;
-    }
-
     &&__sm {
         .size-styles(sm; se-select; @styles: fs);
-        // --_se-select-fs: var(--fs-caption);
-    }
-
-    &&__md {
-        .size-styles(md; se-select; @styles: br, fs);
-        --_se-select-py: 0.5em;
     }
 
     &&__lg {
-        .size-styles(lg; se-select; @styles: br, fs);
-        --_se-select-px: 0.6em;
-        --_se-select-py: 0.45em;
-    }
-
-    &&__xl {
-        .size-styles(xl; se-select; @styles: br, fs);
-        --_se-select-px: 0.5em;
-        --_se-select-py: 0.4em;
+        .size-styles(md; se-select; @styles: fs);
+        --_se-select-py: 0.5em;
     }
 
     // CHILD ELEMENTS
@@ -55,26 +37,29 @@
         .webkit-autofill();
     }
 
-    &:before,
-    &:after { // menu arrows
-        border-color: var(--_se-arrow-bc);
-        border-style: solid;
-        border-width: var(--_se-arrow-size);
+    &:after { // Chevron16UpDown icon
+        background-color: currentColor;
         content: "";
+        height: var(--su-static16);
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='M13.06 10 8 15.06 2.94 10 4 8.94l.53.53L8 12.94l3.47-3.47.53-.53zm0-4L12 7.06l-.53-.53L8 3.06 4.53 6.53 4 7.06 2.94 6 8 .94z'/%3E%3C/svg%3E");
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: contain;
         pointer-events: none;
         position: absolute;
         right: calc(var(--su-static12) + var(--su-static1));
+        top: 50%;
+        transform: translateY(-50%);
+        width: var(--su-static16);
         z-index: var(--zi-selected);
     }
 
-    &:after {
-        border-bottom-width: 0;
-        top: calc(50% + var(--su-static1));
-    }
+    .is-disabled & {
+        --_se-arrow-fc: var(--bc-dark);
 
-    &:before {
-        border-top-width: 0;
-        top: calc(50% - calc(var(--_se-arrow-size) + var(--su-static1)));
+        &:after {
+            background-color: var(--_se-arrow-fc);
+        }
     }
 
     > select { // Menu
