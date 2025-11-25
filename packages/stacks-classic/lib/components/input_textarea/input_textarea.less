@@ -12,15 +12,15 @@
     --_in-placeholder-fc: var(--black-300);
 
     // CONTEXTUAL STYLES
-    @supports (-webkit-overflow-scrolling: touch) {
-        --_in-fs: var(--su-static16); // 16px — Increase font size for mobile safari. This keeps our inputs from zooming the page while focused.
-        --_in-px: 0.55em;
-        --_in-py: 0.36em;
+    // @supports (-webkit-overflow-scrolling: touch) {
+    //     --_in-fs: var(--su-static16); // 16px — Increase font size for mobile safari. This keeps our inputs from zooming the page while focused.
+    //     --_in-px: 0.55em;
+    //     --_in-py: 0.36em;
 
-        &::-webkit-input-placeholder {
-            line-height: normal !important;
-        }
-    }
+    //     &::-webkit-input-placeholder {
+    //         line-height: normal !important;
+    //     }
+    // }
 
     .highcontrast-mode({
         --_in-bc: var(--black);
@@ -70,10 +70,9 @@
     }
     
     // CHILD ELEMENTS
-    .webkit-autofill();
+    //.webkit-autofill();
 
-    &::placeholder,
-    &::-webkit-input-placeholder {
+    &::placeholder {
         color: var(--_in-placeholder-fc);
     }
 
@@ -103,7 +102,7 @@
     opacity: var(--_in-o);
     padding: var(--_in-py) var(--_in-px) var(--_in-py) var(--_in-pl, var(--_in-px));
     line-height: var(--lh-md);
-    -webkit-appearance: none; // Removes shadows we don't want in mobile Safari
+    //-webkit-appearance: none; // Removes shadows we don't want in mobile Safari
     font-family: inherit;
     margin: 0; // A guard against Core's default margins
     width: 100%;
