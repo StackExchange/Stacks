@@ -1,5 +1,16 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.8
+
+### Patch Changes
+
+- [#2061](https://github.com/StackExchange/Stacks/pull/2061) [`da4276a`](https://github.com/StackExchange/Stacks/commit/da4276adac3562f9d31ea2775e707cab6d5df816) Thanks [@chris-doucette-stack](https://github.com/chris-doucette-stack)! - Popover: add the ability to add classes to the s-popover--content element
+
+- [#2063](https://github.com/StackExchange/Stacks/pull/2063) [`efed5b2`](https://github.com/StackExchange/Stacks/commit/efed5b2d01892fad814778bd9a7ba6407a4979f0) Thanks [@dancormier](https://github.com/dancormier)! - Add `onoutclick` to Popover component
+
+- Updated dependencies [[`32ae839`](https://github.com/StackExchange/Stacks/commit/32ae839dd675ae50621a33f24bcd66694bc5c5c4)]:
+    - @stackoverflow/stacks@3.0.0-beta.6
+
 ## 1.0.0-beta.7
 
 ### Minor Changes
