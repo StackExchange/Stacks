@@ -6,6 +6,8 @@
     } from "svelte/elements";
     import Icon from "../Icon/Icon.svelte";
     import Avatar from "../Avatar/Avatar.svelte";
+    import { slide } from "svelte/transition";
+
     interface Props
         extends Omit<
             HTMLAnchorAttributes & HTMLButtonAttributes,
@@ -81,7 +83,7 @@
     const classes = $derived(getClasses(className, selected, dropdown));
 </script>
 
-<li>
+<li transition:slide>
     <svelte:element
         this={href ? "a" : "button"}
         {href}
