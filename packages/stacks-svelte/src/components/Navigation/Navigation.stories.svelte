@@ -341,11 +341,12 @@
                 (item) => item.group === group
             )}
             {@const isCollapsed = tCollapsed[group]}
-            <NavigationTitle title={group} class="bc-black-200 bt">
+            <NavigationTitle title={group} class="bc-black-200 bt ps-relative">
                 {#snippet trailing()}
                     <Button
-                        icon
-                        link
+                        class="ps-absolute r0"
+                        size="xs"
+                        weight="clear"
                         onclick={() => (tCollapsed[group] = !tCollapsed[group])}
                         aria-label={`${isCollapsed ? "Expand" : "Collapse"} ${group} Section`}
                     >
