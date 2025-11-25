@@ -3,6 +3,7 @@
     --_in-bc: var(--bc-darker);
     --_in-bg: var(--white);
     --_in-br: var(--br-md);
+    --_in-bw: var(--su-static1);
     --_in-c: unset;
     --_in-fc: var(--fc-dark);
     --_in-fs: var(--fs-body1);
@@ -10,7 +11,8 @@
     --_in-px: calc(var(--su12) - var(--su1)); // 11px
     --_in-py: var(--su4);
     --_in-placeholder-fc: var(--black-300);
-    --_in-min-h: calc(var(--su32) + var(--su4)); // 36px
+    --_in-default-h: calc(var(--su32) + var(--su4)); // 36px
+    --_in-min-h: var(--_in-default-h);
 
     // CONTEXTUAL STYLES
     .highcontrast-mode({
@@ -77,7 +79,7 @@
 
     @scrollbar-styles();
     background-color: var(--_in-bg);
-    border: var(--su-static1) solid var(--_in-bc);
+    border: var(--_in-bw) solid var(--_in-bc);
     border-radius: var(--_in-br);
     color: var(--_in-fc);
     cursor: var(--_in-c);
@@ -97,6 +99,10 @@
     });
 
     // Nested Inputs
+    & & {
+        //Subtract borders from min-height so it fits correctly
+        --_in-min-h: calc(var(--_in-default-h) - var(--_in-bw) * 2);
+    }
     &:has(&) {
         --_in-py: 0;
     }
