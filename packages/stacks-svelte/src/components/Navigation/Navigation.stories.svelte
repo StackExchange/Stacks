@@ -316,7 +316,7 @@
     </Navigation>
 </Story>
 
-<Story name="Trailing">
+<Story name="Trailing" asChild>
     <Navigation class="ws2 hs6" label="Trailing" orientation="vertical">
         <NavigationItem
             text="Home"
