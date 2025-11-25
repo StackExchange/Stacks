@@ -100,7 +100,7 @@
         class?: string;
 
         /**
-         * Optional snippet to showcase user’s most popular tags (e.g. `<Tag href="#" size="xs">css</Tag>`)
+         * Optional snippet to showcase user’s most popular tags (e.g. `<Tag href="#" size="sm">css</Tag>`)
          */
         tags?: Snippet;
 
@@ -208,15 +208,15 @@
             >
                 {name}
                 {#if !deleted && moderator}
-                    <div class="s-badge s-badge__xs s-badge__moderator">
+                    <div class="s-badge s-badge__sm s-badge__moderator">
                         Mod
                     </div>
                 {/if}
                 {#if !deleted && staff}
-                    <div class="s-badge s-badge__xs s-badge__staff">Staff</div>
+                    <div class="s-badge s-badge__sm s-badge__staff">Staff</div>
                 {/if}
                 {#if !deleted && admin}
-                    <div class="s-badge s-badge__xs s-badge__admin">Admin</div>
+                    <div class="s-badge s-badge__sm s-badge__admin">Admin</div>
                 {/if}
             </svelte:element>
         {/if}
