@@ -7,11 +7,6 @@
     --_bl-icon-size: var(--su8);
 
     // VARIANTS
-    &&__gold,
-    &&__silver {
-        --_bl-icon-size: calc(var(--su8) + var(--su2));
-    }
-
     &&__activity {
         --_bl-icon-bg: var(--pink-400);
     }
@@ -61,14 +56,29 @@
         }
     }
 
-    // Sizes
-    &&__sm {
-        --_bl-icon-size: var(--su6);
+    // SIZES
+    // Unfilled Sizes
+    &&__sm:not(&__filled) {
+        --_bl-size: var(--su8);
+    }
+    // Filled Sizes
+    &&__sm&__filled {
         --_bl-size: var(--su16);
     }
-
-    &&__lg {
+    &&__lg&__filled {
         --_bl-size: calc(var(--su24) + var(--su4)); // 28px
+    }
+    // Icon Sizes
+    &&__sm {
+        --_bl-icon-size: var(--su6);
+    }
+    &&__sm&__gold,
+    &&__sm&__silver {
+        --_bl-icon-size: calc(var(--su6) + var(--su1)); // 7px
+    }
+    &&__gold:not(&__sm),
+    &&__silver:not(&__sm) {
+        --_bl-icon-size: calc(var(--su8) + var(--su1)); // 9px
     }
 
     // CHILD ELEMENTS

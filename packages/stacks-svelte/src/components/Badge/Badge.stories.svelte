@@ -1,4 +1,3 @@
-<!-- NOTE: This component is not currently exposed to the consumer and is only used internally. It has been hidden from the Storybook docs with the `tags` meta property. -->
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import {
@@ -15,22 +14,24 @@
 
     const BadgeVariantGroups: {
         awards: Award[];
+        tags: Award[];
         counts: Variant[];
         states: Variant[];
         users: Variant[];
     } = {
         awards: ["gold", "silver", "bronze"],
+        tags: ["gold", "silver", "bronze"],
         counts: ["answered", "bounty", "important", "rep", "rep-down", "votes"],
         states: ["danger", "info", "new", "muted", "warning"],
         users: ["admin", "moderator", "staff", "ai", "bot"],
     };
     const BadgeAwards: Award[] = [...BadgeVariantGroups.awards, undefined];
-    const BadgeSizes: Size[] = ["xs", "sm", undefined];
+    const BadgeSizes: Size[] = ["sm", "lg", undefined];
     const BadgeVariants: Variant[] = [
         ...BadgeVariantGroups.counts,
         ...BadgeVariantGroups.states,
         ...BadgeVariantGroups.users,
-        ...BadgeVariantGroups.awards,
+        "tag",
         undefined,
     ];
 
@@ -66,7 +67,7 @@
         {#each [false, true] as includeVariant (includeVariant)}
             <div>
                 <h2 class="fs-title ff-mono mb16">
-                    {includeVariant ? "Award + award variant" : "Award only"}
+                    {includeVariant ? "Award + tag variant" : "Award only"}
                 </h2>
                 <table class="s-table s-table__bx-simple wmx7">
                     <thead>
@@ -79,29 +80,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {#each BadgeVariantGroups.awards as award (award)}
+                        {#each BadgeVariantGroups.tags as award (award)}
                             <tr>
                                 <th scope="row" class="va-middle">
                                     {award}
                                 </th>
                                 {#if includeVariant}
-                                    <th scope="row" class="va-middle">
-                                        {award}
-                                    </th>
+                                    <th scope="row" class="va-middle"> tag </th>
                                 {/if}
                                 <td class="va-middle px8">
                                     <Badge
                                         {award}
                                         variant={includeVariant
-                                            ? award
+                                            ? "tag"
                                             : undefined}
                                     >
                                         {#if award === "gold"}
-                                            Great Question
+                                            {#if includeVariant}python{:else}Great
+                                                Question{/if}
                                         {:else if award === "silver"}
-                                            Favorite Question
+                                            {#if includeVariant}css{:else}Favorite
+                                                Question{/if}
                                         {:else if award === "bronze"}
-                                            Altruist
+                                            {#if includeVariant}javascript{:else}Altruist{/if}
                                         {/if}
                                     </Badge>
                                 </td>
@@ -276,7 +277,7 @@
                             {size || "default"}
                         </th>
                         <td class="va-middle px8">
-                            <Badge {size}>Size: {size || "default"}</Badge>
+                            <Badge {size}>{size || "default"}</Badge>
                         </td>
                     </tr>
                 {/each}
