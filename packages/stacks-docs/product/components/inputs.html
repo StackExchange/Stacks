@@ -206,6 +206,7 @@ tags: components
                     <label class="flex--item s-label" for="example-warning">Username</label>
                     <div class="d-flex ps-relative">
                         <input class="s-input" id="example-warning" type="text" value="AA" aria-describedby="example-warning-desc" />
+                        <!-- TODO SHINE change to updated 20px Alert icon -->
                         {% icon "Alert", "s-input-icon" %}
                     </div>
                     <p id="example-warning-desc" class="flex--item s-input-message mb0">Caps lock is on! <a href="#">Having trouble entering your username?</a></p>
@@ -236,6 +237,7 @@ tags: components
                     <label class="flex--item s-label" for="example-error">Username</label>
                     <div class="d-flex ps-relative">
                         <input class="s-input" id="example-error" type="text" aria-describedby="example-error-desc" />
+                        <!-- TODO SHINE change to updated 20px AlertCircle icon -->
                         {% icon "AlertCircle", "s-input-icon" %}
                     </div>
                     <p id="example-error-desc" class="flex--item s-input-message mb0">You must provide a username. <a href="#">Forgot your username?</a></p>
@@ -262,7 +264,7 @@ tags: components
                     <label class="flex--item s-label" for="example-success">Username</label>
                     <div class="d-flex ps-relative">
                         <input class="s-input" id="example-success" type="text" value="aaronshekey" aria-describedby="example-success-desc" />
-                        {% icon "Checkmark", "s-input-icon" %}
+                        {% icon "Check", "s-input-icon" %}
                     </div>
                     <p id="example-success-desc" class="flex--item s-input-message mb0">That name is available! <a href="#">Why do we require a username?</a></p>
                 </div>
@@ -417,8 +419,8 @@ tags: components
 {% highlight html %}
 <div class="d-flex fd-column g4">
     <label class="s-label" for="tag-selector">Tags</label>
-    <div class="s-input d-flex fw-wrap gx8 ai-center">
-        <span>
+    <div class="s-input">
+        <div class="d-flex fw-wrap gx8 myn4">
             <span class="s-tag">
                 svelte
                 <button class="s-tag--dismiss" type="button" title="Remove tag">
@@ -426,19 +428,15 @@ tags: components
                     @Svg.ClearSm
                 </button>
             </span>
-        </span>
-        <input
-            id="tag-selector"
-            class="s-input bs-none fl-grow1 p0 w-auto baw0"
-            type="text"
-            …>
+        </div>
+        <input id="tag-selector" class="s-input" type="text" role="presentation" placeholder="enter up to 5 tags">
     </div>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example d-flex fd-column g4">
             <label class="s-label" for="tag-selector">Tags</label>
-            <div class="s-input d-flex fw-wrap gx8 ai-center">
-                <span>
+            <div class="s-input">
+                <div class="d-flex fw-wrap gx8 myn4">
                     <span class="s-tag">
                         svelte
                         <button class="s-tag--dismiss" type="button">
@@ -446,8 +444,8 @@ tags: components
                             {% icon "ClearSm" %}
                         </button>
                     </span>
-                </span>
-                <input id="tag-selector" class="s-input bs-none fl-grow1 p0 w-auto baw0" type="text" role="presentation" placeholder="enter up to 5 tags">
+                </div>
+                <input id="tag-selector" class="s-input" type="text" role="presentation" placeholder="enter up to 5 tags">
             </div>
         </div>
     </div>
