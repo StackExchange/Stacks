@@ -222,7 +222,7 @@
                 on:focus
                 on:blur
                 on:paste
-            >
+            />
 
             {#if state}
                 <div class="s-input-icon">
