@@ -1,6 +1,6 @@
 <script module lang="ts">
     export type FillSide = "prepend" | "append";
-    export type Size = "" | "sm" | "md" | "lg" | "xl";
+    export type Size = "" | "sm" | "lg";
     export type State = "" | "error" | "success" | "warning";
     export type Type =
         | "credit-card"
@@ -91,7 +91,7 @@
 
     /**
      * The size of the text input
-     * @type {"" | "sm" | "md" | "lg" | "xl"} Size
+     * @type {"" | "sm" | "lg"} Size
      */
     export let size: Size = "";
 

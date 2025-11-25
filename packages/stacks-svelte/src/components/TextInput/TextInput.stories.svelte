@@ -4,7 +4,7 @@
     import type { FillSide, Size, State, Type } from "./TextInput.svelte";
 
     const TextInputFillSides: FillSide[] = ["prepend", "append"];
-    const TextInputSizes: Size[] = ["", "sm", "md", "lg", "xl"];
+    const TextInputSizes: Size[] = ["", "sm", "lg"];
     const TextInputTypes: Type[] = [
         "credit-card",
         "date",
