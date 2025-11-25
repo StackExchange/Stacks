@@ -7,9 +7,10 @@
     --_in-fc: var(--fc-dark);
     --_in-fs: var(--fs-body1);
     --_in-o: unset;
-    --_in-px: 0.7em;
-    --_in-py: var(--su8);
+    --_in-px: calc(var(--su12) - var(--su1)); // 11px
+    --_in-py: var(--su4);
     --_in-placeholder-fc: var(--black-300);
+    --_in-min-h: calc(var(--su32) + var(--su4)); // 36px
 
     // CONTEXTUAL STYLES
     .highcontrast-mode({
@@ -46,17 +47,14 @@
     // Sizes
     &&__sm {
         .size-styles(sm; in; @styles: fs);
-        --_in-py: calc(var(--su6) - var(--su1)); // 5px
+        --_in-min-h: calc(var(--su32) - var(--su4)); // 28px
+        --_in-px: calc(var(--su8) + var(--su2)); // 10px
     }
 
     &&__lg {
-        @supports (-webkit-overflow-scrolling: touch) {
-            --_in-fs: calc(var(--su-static16) + var(--su-static1)); // 17px
-            --_in-py: 0.4em;
-        }
-
         .size-styles(md; in; @styles: br, fs);
-        --_in-py: calc(var(--su8) + var(--su1)); // 9px
+        --_in-min-h: calc(var(--su48) - var(--su4)); // 44px
+        --_in-px: calc(var(--su12) + var(--su2)); // 14px
     }
     
     // CHILD ELEMENTS
@@ -90,18 +88,26 @@
     font-family: inherit;
     margin: 0; // A guard against Core's default margins
     width: 100%;
+    min-height: var(--_in-min-h);
 }
 
 .s-input {
     .input-states({
         padding-right: var(--su32);
     });
+
+    // Nested Inputs
+    &:has(&) {
+        --_in-py: 0;
+    }
 }
 
 .s-textarea {
     .input-states({
         padding-right: var(--su48);
     });
+
+    --_in-py: var(--su8);
 
     ~ .s-input-icon {
         right: 1.5em;
