@@ -6,6 +6,8 @@
     } from "svelte/elements";
     import Icon from "../Icon/Icon.svelte";
     import Avatar from "../Avatar/Avatar.svelte";
+    import { slide } from "svelte/transition";
+
     interface Props
         extends Omit<
             HTMLAnchorAttributes & HTMLButtonAttributes,
@@ -44,6 +46,10 @@
          */
         class?: string;
         /**
+         * If true, applies a slide animation to the navigation item.
+         */
+        animate?: boolean;
+        /**
          * Optional content rendered at the end of the navigation item.
          */
         trailing?: Snippet;
@@ -57,6 +63,7 @@
         iconSelected = undefined,
         avatar = undefined,
         class: className = "",
+        animate = false,
         trailing,
         ...restProps
     }: Props = $props();
@@ -79,9 +86,11 @@
         return classes;
     };
     const classes = $derived(getClasses(className, selected, dropdown));
+
+    const maybeslide = (node: Element) => (animate ? slide(node) : {});
 </script>
 
-<li>
+<li transition:maybeslide>
     <svelte:element
         this={href ? "a" : "button"}
         {href}
