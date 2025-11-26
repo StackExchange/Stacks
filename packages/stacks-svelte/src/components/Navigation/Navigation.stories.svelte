@@ -1,6 +1,5 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
-    import { slide } from "svelte/transition";
     import Navigation from "./Navigation.svelte";
     import NavigationItem from "./NavigationItem.svelte";
     import NavigationTitle from "./NavigationTitle.svelte";
@@ -381,6 +380,7 @@
                         iconSelected={item.iconSelected}
                         text={item.text}
                         onclick={() => (tSelected = item.text)}
+                        animate
                     >
                         {#snippet trailing()}
                             {#if item.activity}
@@ -418,6 +418,7 @@
                         iconSelected={item.iconSelected}
                         text={item.text}
                         onclick={() => (tSelected = item.text)}
+                        animate
                     >
                         {#snippet trailing()}
                             {#if item.activity}

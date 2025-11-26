@@ -46,6 +46,10 @@
          */
         class?: string;
         /**
+         * If true, applies a slide animation to the navigation item.
+         */
+        animate?: boolean;
+        /**
          * Optional content rendered at the end of the navigation item.
          */
         trailing?: Snippet;
@@ -59,6 +63,7 @@
         iconSelected = undefined,
         avatar = undefined,
         class: className = "",
+        animate = false,
         trailing,
         ...restProps
     }: Props = $props();
@@ -81,9 +86,11 @@
         return classes;
     };
     const classes = $derived(getClasses(className, selected, dropdown));
+
+    const maybeslide = (node: Element) => (animate ? slide(node) : {});
 </script>
 
-<li transition:slide>
+<li transition:maybeslide>
     <svelte:element
         this={href ? "a" : "button"}
         {href}
