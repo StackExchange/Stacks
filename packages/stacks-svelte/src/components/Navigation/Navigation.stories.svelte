@@ -316,7 +316,7 @@
     </Navigation>
 </Story>
 
-<Story name="Trailing">
+<Story name="Trailing" asChild>
     <Navigation class="ws2 hs6" label="Trailing" orientation="vertical">
         <NavigationItem
             text="Home"
@@ -333,7 +333,7 @@
             onclick={() => (tSelected = "AI Assist")}
         >
             {#snippet trailing()}
-                <Badge variant="new" size="xs">New</Badge>
+                <Badge variant="new" size="sm">New</Badge>
             {/snippet}
         </NavigationItem>
         {#each groups as group (group)}
@@ -341,11 +341,12 @@
                 (item) => item.group === group
             )}
             {@const isCollapsed = tCollapsed[group]}
-            <NavigationTitle title={group} class="bc-black-200 bt">
+            <NavigationTitle title={group} class="bc-black-200 bt ps-relative">
                 {#snippet trailing()}
                     <Button
-                        icon
-                        link
+                        class="ps-absolute r0"
+                        size="xs"
+                        weight="clear"
                         onclick={() => (tCollapsed[group] = !tCollapsed[group])}
                         aria-label={`${isCollapsed ? "Expand" : "Collapse"} ${group} Section`}
                     >
