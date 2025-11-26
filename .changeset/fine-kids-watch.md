@@ -2,4 +2,4 @@
 "@stackoverflow/stacks-svelte": patch
 ---
 
-Add slide transition to NavigationItem
+Navigation: Add animate prop to NavigationItem
