@@ -66,7 +66,7 @@
         dropdown: boolean
     ) => {
         const base = "s-navigation--item";
-        let classes = "d-flex jc-space-between w100 " + base;
+        let classes = "w100 " + base;
         if (dropdown) {
             classes += ` ${base}__dropdown`;
         }
@@ -89,19 +89,19 @@
         aria-current={selected ? "true" : undefined}
         {...restProps}
     >
-        <div>
-            {#if icon && iconSelected}
-                <Icon
-                    src={selected ? iconSelected : icon}
-                    class="s-navigation--icon"
-                />
-            {/if}
-            {#if avatar}
-                <!-- TODO: should we have a version of the avatar decorative only? -->
-                <Avatar name={text} src={avatar} class="s-navigation--avatar" />
-            {/if}
-            <span class="s-navigation--item-text" data-text={text}>{text}</span>
+        {#if icon && iconSelected}
+            <Icon
+                src={selected ? iconSelected : icon}
+                class="s-navigation--icon"
+            />
+        {/if}
+        {#if avatar}
+            <!-- TODO: should we have a version of the avatar decorative only? -->
+            <Avatar name={text} src={avatar} class="s-navigation--avatar" />
+        {/if}
+        <span class="s-navigation--item-text" data-text={text}>{text}</span>
+        <div class="ml-auto">
+            {@render trailing?.()}
         </div>
-        {@render trailing?.()}
     </svelte:element>
 </li>
