@@ -1,5 +1,7 @@
 .s-input,
-.s-textarea {
+.s-textarea,
+//The :has selector allows us to use these vars for sibling icons in textarea components
+:has(> .s-textarea) { 
     --_in-bc: var(--black-300);
     --_in-bg: var(--white);
     --_in-br: var(--br-md);
@@ -11,7 +13,11 @@
     --_in-px: calc(var(--su12) - var(--su1)); // 11px
     --_in-py: var(--su8);
     --_in-placeholder-fc: var(--black-300);
+    --_in-min-h: unset;
+}
 
+.s-input,
+.s-textarea {
     // CONTEXTUAL STYLES
     .highcontrast-mode({
         --_in-bc: var(--black);
@@ -47,12 +53,14 @@
     &&__sm {
         --_in-fs: var(--fs-caption);
         --_in-lh: var(--lh-sm);
+        --_in-px: calc(var(--su12) - var(--su2)); // 10px
         --_in-py: calc(var(--su4) + var(--su1)); // 5px
     }
 
     &&__lg {
         --_in-fs: var(--fs-body3);
         --_in-lh: var(--lh-lg);
+        --_in-px: calc(var(--su12) + var(--su1)); // 13px
     }
     
     // CHILD ELEMENTS
@@ -89,6 +97,7 @@
     font-family: inherit;
     margin: 0; // A guard against Core's default margins
     width: 100%;
+    min-height: var(--_in-min-h);
 }
 
 .s-input {
@@ -119,10 +128,21 @@
         padding-right: var(--su48);
     });
 
+    --_in-min-h: calc(var(--su32) + var(--su4)); // 36px
+
+    &&__sm {
+        --_in-min-h: calc(var(--su32) - var(--su4)); // 28px
+    }
+
+    &&__lg {
+        --_in-min-h: calc(var(--su48) - var(--su4)); // 44px
+    }
+
     --_in-py: var(--su8);
 
     ~ .s-input-icon {
-        right: 1.5em;
-        top: 1.5em;
+        right: var(--_in-px);
+        top: var(--_in-py);
+        margin-top: 0;
     }
 }
