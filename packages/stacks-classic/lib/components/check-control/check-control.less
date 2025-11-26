@@ -1,14 +1,105 @@
-.s-check-control { // TODO would _love_ to use .s-check instead, with no class on the input itself
+.s-check-control {
     --_cc-ai: center;
+    --_cc-fc: unset;
+    --_cc-after-fc: unset;
+    --_cc-cursor: pointer;
+    --_cc-label-fc: var(--_cc-fc);
 
     // CONTEXTUAL STYLES
-    .s-check-group & {
-        --_cc-ai: flex-start; // manually align the checkboxes and radios to the top of the group
+    fieldset[disabled] & {
+        --_cc-fc: var(--black-300);
+    }
+
+    // MODIFIERS
+    &&__checkmark {
+        --_cc-fc: var(--theme-secondary);
+        --_cc-after-fc: unset;      
+
+        // CONTEXTUAL STYLES
+        &:has(> input:focus-visible) {
+            .focus-styles(true, false);
+        }
+
+        &:has(> input:checked) {
+            --_cc-after-fc: var(--_cc-fc);
+        }
+
+        &:has(> input[disabled]) {
+            --_cc-cursor: not-allowed;
+        }
+
+        &:has(> input:checked[disabled]) {
+            --_cc-fc: var(--theme-secondary-300);
+        }
+
+        // CHILD ELEMENTS
+        input,
+        &:after {
+            height: var(--su16);
+            margin-left: 100%;
+            // pointer-events: none;
+            width: var(--su16);
+        }
+
+        &:after {
+            background-color: var(--_cc-after-fc);
+            content: "";
+            flex-shrink: 0;
+            margin-left: auto;
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m14 3.88-.44.44-7.34 7.35-.44.44-.44-.44-2.9-2.9L2 8.34l.89-.88.44.44 2.45 2.45 6.9-6.9.44-.44z'/%3E%3C/svg%3E"); // check16
+            mask-size: contain;
+            mask-repeat: no-repeat;
+        }
+
+        input {
+            appearance: none;
+            opacity: 0;
+            position: absolute;
+            right: 0;
+            z-index: -1;
+        }
+
+        .s-label {
+            flex-grow: 1;
+        }
+
+        border-radius: var(--br-md);
+        color: var(--_cc-fc);
+        cursor: var(--_cc-cursor);
+
+        width: 100%;
     }
 
     // CHILD ELEMENTS
     .s-label {
+        color: var(--_cc-label-fc);
+        font-size: var(--fs-body1);
         font-weight: normal;
+    }
+
+    &:has(> input[disabled]) {
+        .s-label {
+            --_cc-label-fc: var(--black-300);
+        }
+    }
+
+    &:not(> input[disabled]) {
+        &:has(input:checked),
+        &:has(input:indeterminate) {
+            .s-label {
+                --_cc-label-fc: var(--black-600);
+            }
+        }
+    }
+
+    &:has(> .s-label .s-description),
+    &:has(> .s-label .s-input-message) {
+        --_cc-ai: flex-start;
+
+        .s-checkbox,
+        .s-radio {
+            margin-top: var(--su2);
+        }
     }
 
     align-items: var(--_cc-ai);
