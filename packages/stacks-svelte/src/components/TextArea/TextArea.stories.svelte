@@ -31,7 +31,15 @@
     });
 </script>
 
-<Story name="Base" args={{ id: "base-example-input", label: "Question body", placeholder: "e.g. The Stack Overflow glyph used to have 6 bars, but now…" }} />
+<Story
+    name="Base"
+    args={{
+        id: "base-example-input",
+        label: "Question body",
+        placeholder:
+            "e.g. The Stack Overflow glyph used to have 6 bars, but now…",
+    }}
+/>
 
 <Story name="Label visibility" asChild>
     <div class="d-grid g16">
