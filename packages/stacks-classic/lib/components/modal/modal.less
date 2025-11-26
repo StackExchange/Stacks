@@ -5,15 +5,15 @@
     --_mo-wmx: unset;
     --_mo-dialog-bg: var(--white);
     --_mo-dialog-pt: var(--su24);
-    --_mo-header-fc: var(--fc-dark);
+    --_mo-dialog-ou: 0;
 
     // CONTEXTUAL STYLES
     .dark-mode({
-        --_mo-dialog-bg: var(--black-225);
+        --_mo-dialog-bg: var(--black-100);
     });
 
-    .highcontrast-dark-mode({
-        --_mo-dialog-bg: var(--black-200);
+    .highcontrast-mode({
+        --_mo-dialog-ou: var(--su2) solid var(--black-500);
     });
 
     &[aria-hidden="false"] {
@@ -45,7 +45,6 @@
     &.has-danger,
     &&__danger {
         --_mo-bg: darken(fade(.set-red()[600], 50%), 18%);
-        --_mo-header-fc: var(--red-500);
     }
 
     // CHILD ELEMENTS
@@ -83,6 +82,7 @@
         transition: opacity 200ms var(--te-smooth) 0s, z-index 0s 100ms, visibility 0s 100ms, transform 100ms var(--te-smooth) 0s, transform 100ms var(--te-smooth) 0s; // Transition out
         visibility: hidden;
         z-index: var(--zi-hide); // Make sure it's also below everything so we can't interact with it.
+        outline: var(--_mo-dialog-ou);
     }
 
     & &--footer {
@@ -90,7 +90,7 @@
     }
 
     & &--header {
-        color: var(--_mo-header-fc);
+        color: var(--fc-dark);
 
         font-size: var(--fs-headline1);
         font-weight: normal;
