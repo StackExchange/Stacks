@@ -1,7 +1,7 @@
 import { addons } from "storybook/manager-api";
 import React from "react";
 import stacksTheme from "./stacks-theme";
-import "@stackoverflow/stacks/dist/css/stacks.css";
+import "@stackoverflow/stacks/lib/stacks.less";
 
 const renderLabsBadge = (name: string) => {
     return React.createElement(
