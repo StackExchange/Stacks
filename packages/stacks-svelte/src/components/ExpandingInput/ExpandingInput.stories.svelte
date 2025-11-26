@@ -8,6 +8,7 @@
     const { Story } = defineMeta({
         title: "Components/ExpandingInput",
         component: ExpandingInput,
+        tags: ["labs"],
         argTypes: {
             variant: {
                 control: "select",
