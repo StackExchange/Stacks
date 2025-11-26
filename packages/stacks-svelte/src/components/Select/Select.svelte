@@ -27,8 +27,8 @@
     import {
         IconAlert,
         IconAlertCircle,
-        IconCheckmark,
     } from "@stackoverflow/stacks-icons-legacy/icons";
+    import { IconCheck } from "@stackoverflow/stacks-icons/icons";
     import { setContext } from "svelte";
     import type { Snippet } from "svelte";
     import type { HTMLSelectAttributes } from "svelte/elements";
@@ -186,7 +186,7 @@
                 {#if vState === "error"}
                     <Icon src={IconAlertCircle} />
                 {:else if vState === "success"}
-                    <Icon src={IconCheckmark} />
+                    <Icon src={IconCheck} />
                 {:else}
                     <Icon src={IconAlert} />
                 {/if}
