@@ -1,5 +1,11 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.10
+
+### Patch Changes
+
+- [#2074](https://github.com/StackExchange/Stacks/pull/2074) [`1e98516`](https://github.com/StackExchange/Stacks/commit/1e9851617653b2233cb8ed62b5c0248379f528fb) Thanks [@dancormier](https://github.com/dancormier)! - Navigation: Add animate prop to NavigationItem
+
 ## 1.0.0-beta.9
 
 ### Minor Changes
