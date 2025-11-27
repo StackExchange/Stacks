@@ -1,5 +1,21 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.11
+
+### Minor Changes
+
+- [#2069](https://github.com/StackExchange/Stacks/pull/2069) [`bb1284b`](https://github.com/StackExchange/Stacks/commit/bb1284be4f168e5513a5377b077ddc274c27c7e4) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update Select component in classic and svelte to new SHINE styles
+
+    BREAKING CHANGES:
+    - `md` and `xl` sizes removed
+
+### Patch Changes
+
+- [#2068](https://github.com/StackExchange/Stacks/pull/2068) [`6de581f`](https://github.com/StackExchange/Stacks/commit/6de581f165a319ca0cfb9d4db0e2096bc6fb8a75) Thanks [@giamir](https://github.com/giamir)! - Modal: changed close icon to the new `Cross` beta icon (including some padding adjustments)
+
+- Updated dependencies [[`bb1284b`](https://github.com/StackExchange/Stacks/commit/bb1284be4f168e5513a5377b077ddc274c27c7e4), [`6de581f`](https://github.com/StackExchange/Stacks/commit/6de581f165a319ca0cfb9d4db0e2096bc6fb8a75)]:
+    - @stackoverflow/stacks@3.0.0-beta.8
+
 ## 1.0.0-beta.10
 
 ### Patch Changes
