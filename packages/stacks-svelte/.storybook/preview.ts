@@ -1,4 +1,5 @@
 import type { Preview } from "@storybook/svelte";
+import WithMode from "./decorators/with-mode";
 import "@stackoverflow/stacks/lib/stacks.less";
 
 const preview: Preview = {
@@ -54,6 +55,7 @@ const preview: Preview = {
         },
     },
     tags: ["autodocs"],
+    decorators: [WithMode],
 };
 
 export default preview;
