@@ -1,6 +1,5 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
-    import { slide } from "svelte/transition";
     import Navigation from "./Navigation.svelte";
     import NavigationItem from "./NavigationItem.svelte";
     import NavigationTitle from "./NavigationTitle.svelte";
@@ -374,27 +373,26 @@
             {@const itemsAfter =
                 selectedIndex >= 0 ? groupItems.slice(selectedIndex + 1) : []}
 
-            {#if !isCollapsed}
-                <div transition:slide>
-                    {#each itemsBefore as item (item.text)}
-                        <NavigationItem
-                            icon={item.icon}
-                            iconSelected={item.iconSelected}
-                            text={item.text}
-                            onclick={() => (tSelected = item.text)}
-                        >
-                            {#snippet trailing()}
-                                {#if item.activity}
-                                    <ActivityIndicator
-                                        content={item.activity.content}
-                                        label={item.activity.label}
-                                    />
-                                {/if}
-                            {/snippet}
-                        </NavigationItem>
-                    {/each}
-                </div>
-            {/if}
+            {#each itemsBefore as item (item.text)}
+                {#if !isCollapsed}
+                    <NavigationItem
+                        icon={item.icon}
+                        iconSelected={item.iconSelected}
+                        text={item.text}
+                        onclick={() => (tSelected = item.text)}
+                        animate
+                    >
+                        {#snippet trailing()}
+                            {#if item.activity}
+                                <ActivityIndicator
+                                    content={item.activity.content}
+                                    label={item.activity.label}
+                                />
+                            {/if}
+                        {/snippet}
+                    </NavigationItem>
+                {/if}
+            {/each}
             {#if selectedItem}
                 <NavigationItem
                     icon={selectedItem.icon}
@@ -413,27 +411,26 @@
                     {/snippet}
                 </NavigationItem>
             {/if}
-            {#if !isCollapsed}
-                <div transition:slide>
-                    {#each itemsAfter as item (item.text)}
-                        <NavigationItem
-                            icon={item.icon}
-                            iconSelected={item.iconSelected}
-                            text={item.text}
-                            onclick={() => (tSelected = item.text)}
-                        >
-                            {#snippet trailing()}
-                                {#if item.activity}
-                                    <ActivityIndicator
-                                        content={item.activity.content}
-                                        label={item.activity.label}
-                                    />
-                                {/if}
-                            {/snippet}
-                        </NavigationItem>
-                    {/each}
-                </div>
-            {/if}
+            {#each itemsAfter as item (item.text)}
+                {#if !isCollapsed}
+                    <NavigationItem
+                        icon={item.icon}
+                        iconSelected={item.iconSelected}
+                        text={item.text}
+                        onclick={() => (tSelected = item.text)}
+                        animate
+                    >
+                        {#snippet trailing()}
+                            {#if item.activity}
+                                <ActivityIndicator
+                                    content={item.activity.content}
+                                    label={item.activity.label}
+                                />
+                            {/if}
+                        {/snippet}
+                    </NavigationItem>
+                {/if}
+            {/each}
         {/each}
     </Navigation>
 </Story>
