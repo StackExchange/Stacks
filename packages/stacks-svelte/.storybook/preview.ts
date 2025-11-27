@@ -21,7 +21,7 @@ const preview: Preview = {
             controls: { sort: "requiredFirst" },
             story: {
                 inline: false,
-                iframeHeight: 400,
+                iframeHeight: "auto",
             },
         },
         backgrounds: {

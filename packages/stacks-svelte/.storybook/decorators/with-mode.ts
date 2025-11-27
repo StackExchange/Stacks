@@ -1,14 +1,14 @@
 import { addons, useEffect } from "storybook/preview-api";
 
-function getInitialMode() {
+const getInitialMode = () => {
     // If in an iframe, check parent URL first
     if (window.parent !== window) {
         return getModeFromURL(window.parent.location.href);
     }
     return getModeFromURL(window.location.href);
-}
+};
 
-function getModeFromURL(url: string) {
+const getModeFromURL = (url: string) => {
     const urlObj = new URL(url);
     const globalsParam = urlObj.searchParams.get("globals");
     if (globalsParam) {
@@ -25,9 +25,9 @@ function getModeFromURL(url: string) {
         return globals.mode || "light";
     }
     return "light";
-}
+};
 
-function applyMode(mode: string) {
+const applyMode = (mode: string) => {
     document.body.classList.remove("theme-dark", "theme-highcontrast");
 
     if (mode === "dark") {
@@ -37,7 +37,7 @@ function applyMode(mode: string) {
     } else if (mode === "highcontrast-dark") {
         document.body.classList.add("theme-dark", "theme-highcontrast");
     }
-}
+};
 
 const WithMode = (Story) => {
     const onGlobalsUpdated = (globals: { mode: string }) => {
