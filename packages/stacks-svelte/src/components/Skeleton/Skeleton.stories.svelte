@@ -5,6 +5,7 @@
     const { Story } = defineMeta({
         title: "Components/Skeleton",
         component: Skeleton,
+        tags: ["labs"],
     });
 </script>
 
