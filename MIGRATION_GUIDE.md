@@ -86,6 +86,9 @@ The menu component has been updated to use new class names and structure. The fo
 #### Popover
 - The new popovers no longer include an arrow element. The `s-popover--arrow` css class has been removed, and any markup using it (e.g. `<div class="s-popover--arrow"></div>`) should be deleted from the codebases as part of the migration.
 
+#### Select
+- `md` and `xl` sizes removed
+
 #### Tags
 - `.s-tag__xs` removed
 - `.s-tag__md` removed

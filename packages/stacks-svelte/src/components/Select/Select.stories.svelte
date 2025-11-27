@@ -7,7 +7,7 @@
     } from "./Select.svelte";
     import SelectItem from "./SelectItem.svelte";
 
-    const SelectSizes: Size[] = ["", "sm", "md", "lg", "xl"];
+    const SelectSizes: Size[] = ["", "sm", "lg"];
     const SelectStates: State[] = ["", "error", "success", "warning"];
     const SelectLabelPlacement: LabelPlacement[] = ["top", "left"];
 
