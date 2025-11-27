@@ -1,82 +1,66 @@
 .s-badge {
     --_ba-as: unset;
-    --_ba-bc: var(--bc-medium);
+    --_ba-bc: transparent;
     --_ba-bg: var(--black-150);
-    --_ba-fc: var(--black-500);
-    --_ba-fs: var(--fs-caption);
-    --_ba-fw: normal;
-    --_ba-g: 0.3em;
-    --_ba-lh: 2;
+    --_ba-fc: var(--black-600);
+    --_ba-fs: var(--fs-caption); //13px
     --_ba-px: var(--su6);
-    --_ba-py: 0;
+    --_ba-py: var(--su4);
     --_ba-tt: unset;
     --_ba-wmn: 0;
+    --_ba-bl: 0;
+    --_ba-fw: unset;
 
-    // CONTEXTUAL STYLES
-    .highcontrast-mode({
-        // Badge counts
-        &__gold,
-        &__silver,
-        &__bronze,
-        // Number counts
-        &__rep,
-        &__rep-down,
-        &__votes:not(.s-badge__answered),
-        // Users
-        &__admin,
-        &__moderator,
-        &__staff {
-            --_ba-bc: currentColor;
-        }
-
-        &__new {
-            --_ba-fc: var(--purple-600);
-        }
-    });
-
-    // MODIFIERS
-    // Sizes
-    &&__xs,
+    // SIZES
     &&__sm {
+        --_ba-wmn: calc(var(--su-static16) + var(--su-static2));
         --_ba-as: flex-start;
-        --_ba-fs: var(--fs-fine);
-    }
-
-    &&__xs {
-        --_ba-lh: 1.5;
-        --_ba-px: var(--su2);
-        --_ba-wmn: calc(var(--su-static16) + var(--su-static2));
-    }
-
-    &&__sm {
-        --_ba-lh: 1.8;
+        --_ba-fs: var(--fs-fine); //12px
         --_ba-px: var(--su4);
-        --_ba-wmn: calc(var(--su-static16) + var(--su-static2));
+        --_ba-py: var(--su1);
     }
 
-    // Badge counts
+    &&__lg {
+        --_ba-fs: var(--fs-body1); //14px
+        --_ba-px: var(--su8);
+        --_ba-py: calc(var(--su4) + var(--su1)); //5px
+    }
+
+    // We need negative margin to make up for the positive badge padding
+    & .s-bling__filled {
+        margin: calc(var(--_ba-py) * -1) 0 calc(var(--_ba-py) * -1) calc(var(--_ba-px) * -1);
+    }
+
+    &:has(.s-bling__rep) {
+        --_ba-fw: 600;
+    }
+
+    // TAG BADGES
     &&__gold,
     &&__silver,
     &&__bronze {
-        --_ba-fc: var(--black-500);
+        --_ba-bl: var(--su4);
+        
+        & .s-bling__gold,
+        & .s-bling__silver,
+        & .s-bling__bronze {
+            margin-left: -2px;            
+        }
     }
 
     &&__gold {
         --_ba-bc: var(--yellow-300);
-        --_ba-bg: var(--yellow-100);
     }
 
     &&__silver {
         --_ba-bc: var(--blue-300);
-        --_ba-bg: var(--blue-100);
     }
 
     &&__bronze {
         --_ba-bc: var(--orange-300);
-        --_ba-bg: var(--orange-100);
     }
 
-    // Number counts
+    // NUMBER COUNTS
     &&__answered,
     &&__bounty,
     &&__important {
@@ -117,48 +101,36 @@
         --_ba-fc: var(--black-500);
     }
 
-    // Users
-    &&__admin {
-        --_ba-bc: var(--theme-primary-200);
-        --_ba-bg: var(--theme-primary-100);
-        --_ba-fc: var(--theme-primary-500);
+    // USER TYPES
+    &&__admin,
+    &&__moderator,
+    &&__staff,
+    &&__ai,
+    &&__bot {
+        --_ba-bl: var(--su4);
     }
 
     &&__moderator {
-        --_ba-bc: var(--theme-secondary-300);
-        --_ba-bg: var(--theme-secondary-200);
-        --_ba-fc: var(--theme-secondary-600);
-        --_ba-g:  calc(var(--su-static4) - var(--su-static1)); // 3px
         // :before icon
-        --_ba-before-h: calc(var(--su-static16) - var(--su-static2)); // 14px
-        --_ba-before-icon: url("data:image/svg+xml;,%3Csvg width='12' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.528.746c.257-.329.675-.327.93 0l4.42 5.66c.258.329.257.864 0 1.192l-4.42 5.66c-.256.328-.674.327-.93 0l-4.42-5.66c-.257-.329-.256-.865 0-1.192l4.42-5.66z' fill='%23fff'/%3E%3C/svg%3E");
-        --_ba-before-mt:  calc(var(--su-static1) * -1); // -1px
-        --_ba-before-w: var(--su-static12);
-
-        // Sizes
-        &.s-badge__xs {
-            --_ba-before-h: calc(var(--su-static8) + var(--su-static1)); // 9px
-            --_ba-before-icon: url("data:image/svg+xml;,%3Csvg width='7' height='9' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 .246c.3-.329.701-.327 1 0L6.776 4c.3.329.298.672 0 1L4 8.75c-.299.329-.702.327-1 0L.224 5c-.284-.324-.285-.675 0-1L3 .246z' fill='%23fff'/%3E%3C/svg%3E");
-            --_ba-before-mt: 0;
-            --_ba-before-w: calc(var(--su-static8) - var(--su-static1)); // 7px
-        }
+        --_ba-bc: var(--blue-500);
+        --_ba-before-h: calc(var(--su12) + var(--su1)); // 13px
+        --_ba-before-w: calc(var(--su12) - var(--su1)); // 11px
+        --_ba-before-icon: url("data:image/svg+xml;,%3Csvg width='11' height='13' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.528.746c.257-.329.675-.327.93 0l4.42 5.66c.258.329.257.864 0 1.192l-4.42 5.66c-.256.328-.674.327-.93 0l-4.42-5.66c-.257-.329-.256-.865 0-1.192l4.42-5.66z' fill='%23fff'/%3E%3C/svg%3E");
 
         &.s-badge__sm {
-            --_ba-g: var(--su-static2);
-            --_ba-before-h: calc(var(--su-static12) - var(--su-static1)); // 11px
+            --_ba-before-h: calc(var(--su12) - var(--su1)); // 11px
+            --_ba-before-w: calc(var(--su8) + var(--su1)); // 9px
             --_ba-before-icon: url("data:image/svg+xml;,%3Csvg width='9' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.55.246c.257-.329.647-.327.903 0l3.36 4.66c.256.329.256.864 0 1.192L4.45 10.75c-.257.329-.644.327-.9 0L.192 6.098c-.256-.329-.256-.865 0-1.192L3.55.246z' fill='%23fff'/%3E%3C/svg%3E");
-            --_ba-before-mt: 0;
-            --_ba-before-w: calc(var(--su-static8) + var(--su-static1)); // 9px
         }
 
         &:before {
             height: var(--_ba-before-h);
-            margin-top: var(--_ba-before-mt);
+            margin-top: calc(var(--su1) * -1);
             width: var(--_ba-before-w);
 
             content: "";
             display: inline-block;
-            background-color: currentColor;
+            background-color: var(--_ba-bc);
             -webkit-mask: var(--_ba-before-icon) no-repeat center;
             mask: var(--_ba-before-icon) no-repeat center;
             -webkit-mask-size: contain;
@@ -167,22 +139,21 @@
     }
 
     &&__staff {
-        // Staff badges are always "Stack Overflow Orange"
-        --_ba-bc: var(--orange-300);
-        --_ba-bg: var(--orange-200);
-        --_ba-fc: var(--orange-600);
+        // Staff should always be "StackOverflow orange"
+        --_ba-bc: var(--orange-400);
     }
 
-    // VARIANTS
+    &&__admin {
+        // Only the admin badge is themeable
+        --_ba-bc: var(--theme-primary-500, var(--orange-500));
+    }
+
     &&__ai {
-        --_ba-bc: var(--_ba-fc);
-        --_ba-bg: var(--black-050);
-        --_ba-fc: var(--orange-500);
-        --_ba-tt: uppercase;
+        --_ba-bc: var(--purple-400);
     }
 
     &&__bot {
-        --_ba-bc: var(--black-300);
+        --_ba-bc: var(--black-400);
     }
 
     &&__danger,
@@ -229,7 +200,6 @@
         --_ba-bc: var(--_ba-bg);
         --_ba-bg: var(--purple-100);
         --_ba-fc: var(--purple-400);
-        --_ba-fw: bold;
         --_ba-tt: uppercase;
     }
 
@@ -249,18 +219,17 @@
 
     align-self: var(--_ba-as);
     background-color: var(--_ba-bg);
-    border: var(--su-static1) solid var(--_ba-bc);
+    border-left: var(--_ba-bl) solid var(--_ba-bc);
     color: var(--_ba-fc);
     font-size: var(--_ba-fs);
-    gap: var(--_ba-g);
     font-weight: var(--_ba-fw);
-    line-height: var(--_ba-lh);
-    min-width: var(--_ba-wmn);
+    gap: var(--_ba-px);
     padding: var(--_ba-py) var(--_ba-px);
+    line-height: var(--lh-md);
+    min-width: var(--_ba-wmn);
     text-transform: var(--_ba-tt);
 
     align-items: center;
-    border-radius: var(--br-md);
     display: inline-flex;
     justify-content: center;
     text-decoration: none;

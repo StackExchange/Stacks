@@ -1,6 +1,5 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
-    import { slide } from "svelte/transition";
     import Navigation from "./Navigation.svelte";
     import NavigationItem from "./NavigationItem.svelte";
     import NavigationTitle from "./NavigationTitle.svelte";
@@ -316,7 +315,7 @@
     </Navigation>
 </Story>
 
-<Story name="Trailing">
+<Story name="Trailing" asChild>
     <Navigation class="ws2 hs6" label="Trailing" orientation="vertical">
         <NavigationItem
             text="Home"
@@ -333,7 +332,7 @@
             onclick={() => (tSelected = "AI Assist")}
         >
             {#snippet trailing()}
-                <Badge variant="new" size="xs">New</Badge>
+                <Badge variant="new" size="sm">New</Badge>
             {/snippet}
         </NavigationItem>
         {#each groups as group (group)}
@@ -341,11 +340,12 @@
                 (item) => item.group === group
             )}
             {@const isCollapsed = tCollapsed[group]}
-            <NavigationTitle title={group} class="bc-black-200 bt">
+            <NavigationTitle title={group} class="bc-black-200 bt ps-relative">
                 {#snippet trailing()}
                     <Button
-                        icon
-                        link
+                        class="ps-absolute r0"
+                        size="xs"
+                        weight="clear"
                         onclick={() => (tCollapsed[group] = !tCollapsed[group])}
                         aria-label={`${isCollapsed ? "Expand" : "Collapse"} ${group} Section`}
                     >
@@ -373,27 +373,26 @@
             {@const itemsAfter =
                 selectedIndex >= 0 ? groupItems.slice(selectedIndex + 1) : []}
 
-            {#if !isCollapsed}
-                <div transition:slide>
-                    {#each itemsBefore as item (item.text)}
-                        <NavigationItem
-                            icon={item.icon}
-                            iconSelected={item.iconSelected}
-                            text={item.text}
-                            onclick={() => (tSelected = item.text)}
-                        >
-                            {#snippet trailing()}
-                                {#if item.activity}
-                                    <ActivityIndicator
-                                        content={item.activity.content}
-                                        label={item.activity.label}
-                                    />
-                                {/if}
-                            {/snippet}
-                        </NavigationItem>
-                    {/each}
-                </div>
-            {/if}
+            {#each itemsBefore as item (item.text)}
+                {#if !isCollapsed}
+                    <NavigationItem
+                        icon={item.icon}
+                        iconSelected={item.iconSelected}
+                        text={item.text}
+                        onclick={() => (tSelected = item.text)}
+                        animate
+                    >
+                        {#snippet trailing()}
+                            {#if item.activity}
+                                <ActivityIndicator
+                                    content={item.activity.content}
+                                    label={item.activity.label}
+                                />
+                            {/if}
+                        {/snippet}
+                    </NavigationItem>
+                {/if}
+            {/each}
             {#if selectedItem}
                 <NavigationItem
                     icon={selectedItem.icon}
@@ -412,27 +411,26 @@
                     {/snippet}
                 </NavigationItem>
             {/if}
-            {#if !isCollapsed}
-                <div transition:slide>
-                    {#each itemsAfter as item (item.text)}
-                        <NavigationItem
-                            icon={item.icon}
-                            iconSelected={item.iconSelected}
-                            text={item.text}
-                            onclick={() => (tSelected = item.text)}
-                        >
-                            {#snippet trailing()}
-                                {#if item.activity}
-                                    <ActivityIndicator
-                                        content={item.activity.content}
-                                        label={item.activity.label}
-                                    />
-                                {/if}
-                            {/snippet}
-                        </NavigationItem>
-                    {/each}
-                </div>
-            {/if}
+            {#each itemsAfter as item (item.text)}
+                {#if !isCollapsed}
+                    <NavigationItem
+                        icon={item.icon}
+                        iconSelected={item.iconSelected}
+                        text={item.text}
+                        onclick={() => (tSelected = item.text)}
+                        animate
+                    >
+                        {#snippet trailing()}
+                            {#if item.activity}
+                                <ActivityIndicator
+                                    content={item.activity.content}
+                                    label={item.activity.label}
+                                />
+                            {/if}
+                        {/snippet}
+                    </NavigationItem>
+                {/if}
+            {/each}
         {/each}
     </Navigation>
 </Story>
