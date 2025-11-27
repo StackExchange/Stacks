@@ -2,12 +2,12 @@
     --_uc-ai: center;
     --_uc-bg: unset;
     --_uc-bar: unset;
-    --_uc-d: grid;
+    --_uc-d: flex;
     --_uc-fc: unset;
-    --_uc-g: var(--su4) var(--su8);
+    --_uc-g: var(--su4);
     --_uc-p: var(--su8);
-    --_uc-info-ai: unset;
-    --_uc-info-fd: column;
+    --_uc-info-ai: center;
+    --_uc-info-fd: row;
     --_uc-link-fs: var(--fs-caption);
     --_uc-link-ws: unset;
     --_uc-rep-fc: unset;
@@ -72,6 +72,7 @@
 
         display: flex;
         gap: var(--su4);
+        font-weight: 500;
     }
 
     & &--link {
@@ -82,6 +83,7 @@
         flex-wrap: wrap;
         min-width: 0; // Allow things to wrap
         overflow-wrap: break-word;
+        font-weight: 500; // TODO: figure out why font-weight is not applied to flex items
     }
 
     & &--rep {
@@ -101,8 +103,6 @@
         white-space: var(--_uc-time-ws);
 
         font-size: var(--fs-caption);
-        grid-column: ~"1 / 3";
-        grid-row: ~"1 / 2";
     }
 
     & &--type {
@@ -121,9 +121,8 @@
     border-radius: var(--_uc-bar);
     color: var(--_uc-fc);
     display: var(--_uc-d);
+    flex-direction: row;
     gap: var(--_uc-g);
-
-    grid-template-columns: auto 1fr;
     line-height: 1;
     padding: var(--_uc-p);
 }
