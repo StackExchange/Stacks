@@ -80,6 +80,18 @@ The menu component has been updated to use new class names and structure. The fo
     </li>
 </ul>
 ```
+
+#### Modal
+
+- Changed close icon to the new `Cross` beta icon (including some padding adjustments)
+
+
+#### Navigation
+- Removed muted variant (`.s-navigation__muted`)
+- Selected page are now highlighted by an underscore (no pill shape background)
+- New `.s-navigation--icon` class to style icons alongside navigation items
+- New `.s-navigation--avatar` class to style avatars alongside navigation items
+
 #### Pagination
 - The next and previous button now uses an `ArrowRight` and `ArrowLeft` icon instead of text. To apply the new styling, use the class `.s-pagination--item__nav`. Since these buttons use icons to represent their behavior, make sure to include descriptive text for screen readers.
 
@@ -92,12 +104,6 @@ The menu component has been updated to use new class names and structure. The fo
 #### Tags
 - `.s-tag__xs` removed
 - `.s-tag__md` removed
-
-#### Navigation
-- Removed muted variant (`.s-navigation__muted`)
-- Selected page are now highlighted by an underscore (no pill shape background)
-- New `.s-navigation--icon` class to style icons alongside navigation items
-- New `.s-navigation--avatar` class to style avatars alongside navigation items
 
 # Migrating from Stacks Svelte v0 to v1
 
