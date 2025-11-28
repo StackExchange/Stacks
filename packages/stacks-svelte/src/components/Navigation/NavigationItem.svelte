@@ -26,10 +26,6 @@
          */
         selected?: boolean;
         /**
-         * Indicates if the navigation item is a dropdown. Use in horizontal navigations.
-         */
-        dropdown?: boolean;
-        /**
          * The icon source to display before the navigation item text
          */
         icon?: string | undefined;
@@ -50,6 +46,10 @@
          */
         animate?: boolean;
         /**
+         * Optional snippet for the dropdown content. Use in horizontal navigations.
+         */
+        dropdown?: Snippet;
+        /**
          * Optional content rendered at the end of the navigation item.
          */
         trailing?: Snippet;
@@ -58,12 +58,12 @@
         text,
         href = undefined,
         selected = false,
-        dropdown = false,
         icon = undefined,
         iconSelected = undefined,
         avatar = undefined,
         class: className = "",
         animate = false,
+        dropdown,
         trailing,
         ...restProps
     }: Props = $props();
@@ -85,7 +85,7 @@
         }
         return classes;
     };
-    const classes = $derived(getClasses(className, selected, dropdown));
+    const classes = $derived(getClasses(className, selected, !!dropdown));
 
     const maybeslide = (node: Element) => (animate ? slide(node) : {});
 </script>
@@ -113,4 +113,5 @@
             {@render trailing?.()}
         </div>
     </svelte:element>
+    {@render dropdown?.()}
 </li>

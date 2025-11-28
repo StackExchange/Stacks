@@ -1,5 +1,5 @@
 import { expect } from "@open-wc/testing";
-import { render, screen } from "@testing-library/svelte";
+import { render, screen, within } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import { createRawSnippet } from "svelte";
 import sinon from "sinon";
@@ -192,7 +192,10 @@ describe("Navigation", () => {
                             text: "Settings",
                             icon: IconSettings,
                             iconSelected: IconSettingsFill,
-                            dropdown: true,
+                            dropdown: createRawSnippet(() => ({
+                                render: () =>
+                                    `<div>popover component goes in here</div>`,
+                            })),
                         },
                     },
                 ]),
@@ -213,6 +216,9 @@ describe("Navigation", () => {
         expect(contentButton).not.to.have.class("s-navigation--item__dropdown");
         expect(topicsButton).not.to.have.class("s-navigation--item__dropdown");
         expect(settingsButton).to.have.class("s-navigation--item__dropdown");
+
+        expect(within(list).getByText("popover component goes in here")).to
+            .exist;
     });
 
     it("should render navigation with title sections separating groups", () => {
