@@ -356,7 +356,7 @@
                             style:transform="rotate({isCollapsed ? 180 : 0}deg)"
                             style:transition="transform 0.2s ease"
                         >
-                            <Icon src={IconChevron16Up} />
+                            <Icon src={IconChevron16Up} class="fc-black-400" />
                         </span>
                     </Button>
                 {/snippet}
