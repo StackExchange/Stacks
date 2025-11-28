@@ -26,6 +26,7 @@
 
 #### Badge
 - `.s-badge__xs` removed
+- `.s-badge__filled` removed
 - `.s-award-bling` renamed to `.s-bling` (used in some badge templates)
 
 #### Bling (previously *Award Bling*)
