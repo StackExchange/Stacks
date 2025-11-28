@@ -1,5 +1,11 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.12
+
+### Patch Changes
+
+- [#2080](https://github.com/StackExchange/Stacks/pull/2080) [`1f53476`](https://github.com/StackExchange/Stacks/commit/1f534769e7375b5a77434b8c7ee542f0dfd1729f) Thanks [@stacks-tooling](https://github.com/stacks-tooling)! - Navigation: ensure dropdown items can be rendered in a semantically correct way
+
 ## 1.0.0-beta.11
 
 ### Minor Changes
