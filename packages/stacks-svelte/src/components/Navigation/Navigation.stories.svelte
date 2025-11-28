@@ -23,7 +23,7 @@
         IconHomeFill,
         IconJobs,
         IconJobsFill,
-        IconChevron16Up,
+        IconChevronUp,
         IconQuestion,
         IconQuestionFill,
         IconChallenge,
@@ -40,6 +40,7 @@
         IconHelpFill,
         IconStar,
         IconStarFill,
+        IconCompose,
     } from "@stackoverflow/stacks-icons/icons";
     const { Story } = defineMeta({
         title: "Components/Navigation",
@@ -342,29 +343,53 @@
                 (item) => item.group === group
             )}
             {@const isCollapsed = tCollapsed[group]}
-            <NavigationTitle title={group} class="bc-black-200 bt ps-relative">
-                {#snippet trailing()}
-                    <Button
-                        class="ps-absolute r0"
-                        size="xs"
-                        weight="clear"
-                        onclick={() => (tCollapsed[group] = !tCollapsed[group])}
-                        aria-label={`${isCollapsed ? "Expand" : "Collapse"} ${group} Section`}
-                    >
-                        <span
-                            style:display="inline-block"
-                            style:transform="rotate({isCollapsed ? 180 : 0}deg)"
-                            style:transition="transform 0.2s ease"
-                        >
-                            <Icon src={IconChevron16Up} class="fc-black-400" />
-                        </span>
-                    </Button>
-                {/snippet}
-            </NavigationTitle>
-
             {@const selectedItem = groupItems.find(
                 (item) => tSelected === item.text
             )}
+            <NavigationTitle
+                title={group}
+                class={`bc-black-200 bt ps-relative ${isCollapsed && !selectedItem ? "mbn24" : ""}`}
+            >
+                {#snippet trailing()}
+                    <div class="ps-absolute r0 as-center d-flex ai-center">
+                        {#if !isCollapsed && group === "Resources"}
+                            <Button
+                                class="p6"
+                                weight="clear"
+                                aria-label="Edit Section"
+                            >
+                                <Icon src={IconCompose} class="fc-black-400" />
+                            </Button>
+                        {/if}
+                        {#if isCollapsed && groupItems.some((i) => i.activity)}
+                            <ActivityIndicator
+                                label="There is one or more activity in this section"
+                            />
+                        {/if}
+                        <Button
+                            class="p6"
+                            weight="clear"
+                            onclick={() =>
+                                (tCollapsed[group] = !tCollapsed[group])}
+                            aria-label={`${isCollapsed ? "Expand" : "Collapse"} ${group} Section`}
+                        >
+                            <span
+                                style:display="inline-block"
+                                style:transform="rotate({isCollapsed
+                                    ? 180
+                                    : 0}deg)"
+                                style:transition="transform 0.2s ease"
+                            >
+                                <Icon
+                                    src={IconChevronUp}
+                                    class="fc-black-400"
+                                />
+                            </span>
+                        </Button>
+                    </div>
+                {/snippet}
+            </NavigationTitle>
+
             {@const selectedIndex = groupItems.findIndex(
                 (item) => tSelected === item.text
             )}
