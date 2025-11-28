@@ -358,7 +358,7 @@
                                 weight="clear"
                                 aria-label="Edit Section"
                             >
-                                <Icon src={IconCompose} class="fc-black-400" />
+                                <Icon src={IconCompose} />
                             </Button>
                         {/if}
                         {#if isCollapsed && groupItems.some((i) => i.activity)}
@@ -380,10 +380,7 @@
                                     : 0}deg)"
                                 style:transition="transform 0.2s ease"
                             >
-                                <Icon
-                                    src={IconChevronUp}
-                                    class="fc-black-400"
-                                />
+                                <Icon src={IconChevronUp} />
                             </span>
                         </Button>
                     </div>
