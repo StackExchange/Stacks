@@ -58,10 +58,7 @@
                 <Button variant={args.state === "danger" ? "danger" : ""}>
                     Save changes
                 </Button>
-                <Button
-                    variant={args.state === "danger" ? "tonal" : ""}
-                    onclick={() => (visible = false)}
-                >
+                <Button weight="clear" onclick={() => (visible = false)}>
                     Cancel
                 </Button>
             {/snippet}
@@ -122,10 +119,7 @@
             <Button variant={mstate === "danger" ? "danger" : ""}>
                 Save changes
             </Button>
-            <Button
-                variant={mstate === "danger" ? "tonal" : ""}
-                onclick={() => (visible = false)}
-            >
+            <Button weight="clear" onclick={() => (visible = false)}>
                 Cancel
             </Button>
         {/snippet}
