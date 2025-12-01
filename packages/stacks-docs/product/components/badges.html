@@ -163,14 +163,45 @@ tags: components
     {% endtip %}
     <div class="stacks-preview">
 {% highlight html %}
-TODO
+<span class="s-badge">
+    @Svg.Document
+    Archived
+</span>
+<span class="s-badge s-badge__info">
+    @Svg.Compose
+    Draft
+</span>
+<span class="s-badge s-badge__warning">
+    @Svg.Eye
+    Review
+</span>
+<span class="s-badge s-badge__danger">
+    @Svg.Flag
+    Closed
+</span>
+<span class="s-badge s-badge__critical">
+    @Svg.Challenge
+    Deleted
+</span>
+<span class="s-badge s-badge__tonal">
+    @Svg.Key
+    Pinned
+</span>
+<span class="s-badge s-badge__success">
+    @Svg.Check
+    Success
+</span>
+<span class="s-badge s-badge__featured">
+    @Svg.Star
+    New
+</span>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="overflow-x-auto" tabindex="0">
                 <table class="wmn5 s-table s-table__bx-simple">
                     <thead>
                         <tr>
-                            <th scope="col">Example</th>
+                            <th scope="col" class="s-table--cell4">Example</th>
                             <th scope="col" class="s-table--cell4">Class</th>
                             <th scope="col">Description</th>
                         </tr>
@@ -182,12 +213,11 @@ TODO
                                 <tr>
                                     <td class="va-middle pr8">
                                         <span class="{{ type.html }}">
-                                            {% if type.icon != nil %}
-                                                {% icon type.icon %}
-                                                {{ type.label }}
-                                            {% else %}
-                                                {{ type.label }}
-                                            {% endif %}
+                                            {% icon type.icon %}
+                                            {{ type.label }}
+                                        </span>
+                                        <span class="{{ type.html }} ml2">
+                                            {{ type.label }}
                                         </span>
                                     </td>
                                     <td class="va-middle">

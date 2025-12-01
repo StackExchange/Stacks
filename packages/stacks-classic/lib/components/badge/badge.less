@@ -1,8 +1,8 @@
 .s-badge {
     --_ba-as: unset;
     --_ba-bc: transparent;
-    --_ba-bg: var(--black-150);
-    --_ba-fc: var(--black-600);
+    --_ba-bg: var(--black-100);
+    --_ba-fc: var(--black-500);
     --_ba-fs: var(--fs-caption); //13px
     --_ba-px: var(--su6);
     --_ba-py: var(--su4);
@@ -30,84 +30,50 @@
     & .s-bling__filled {
         margin: calc(var(--_ba-py) * -1) 0 calc(var(--_ba-py) * -1) calc(var(--_ba-px) * -1);
     }
+    & svg {
+        margin: calc(var(--_ba-py) * -1) 0 calc(var(--_ba-py) * -1) calc(var(--_ba-px) / 2 * -1);
+    }
 
     &:has(.s-bling__rep) {
         --_ba-fw: 600;
     }
+    &:has(.s-bling) {
+        --_ba-bg: var(--black-150);
+        --_ba-fc: var(--black-600);
+    }
 
-    // TAG BADGES
+    // TAG
     &&__gold,
     &&__silver,
     &&__bronze {
         --_ba-bl: var(--su4);
-        
+
         & .s-bling__gold,
         & .s-bling__silver,
         & .s-bling__bronze {
-            margin-left: -2px;            
+            margin-left: -2px;
         }
     }
 
     &&__gold {
         --_ba-bc: var(--yellow-300);
     }
-
     &&__silver {
         --_ba-bc: var(--blue-300);
     }
-
     &&__bronze {
         --_ba-bc: var(--orange-300);
     }
 
-    // NUMBER COUNTS
-    &&__answered,
-    &&__bounty,
-    &&__important {
-        --_ba-bc: transparent;
-        --_ba-fc: var(--white);
-    }
-
-    &&__rep,
-    &&__rep-down,
-    &&__votes:not(&__answered) {
-        --_ba-bg: var(--white);
-    }
-
-    &&__answered {
-        --_ba-bg: var(--green-400);
-    }
-
-    &&__bounty {
-        --_ba-bg: var(--blue-400);
-    }
-
-    &&__important {
-        --_ba-bg: var(--red-400);
-    }
-
-    &&__rep {
-        --_ba-bc: var(--green-300);
-        --_ba-fc: var(--green-400);
-    }
-
-    &&__rep-down {
-        --_ba-bc: var(--red-300);
-        --_ba-fc: var(--red-400);
-    }
-
-    &&__votes:not(&__answered) {
-        --_ba-bc: var(--black-250);
-        --_ba-fc: var(--black-500);
-    }
-
-    // USER TYPES
+    // USER
     &&__admin,
     &&__moderator,
     &&__staff,
     &&__ai,
     &&__bot {
         --_ba-bl: var(--su4);
+        --_ba-bg: var(--black-150);
+        --_ba-fc: var(--black-600);
     }
 
     &&__moderator {
@@ -142,65 +108,45 @@
         // Staff should always be "StackOverflow orange"
         --_ba-bc: var(--orange-400);
     }
-
     &&__admin {
         // Only the admin badge is themeable
         --_ba-bc: var(--theme-primary-500, var(--orange-500));
     }
-
     &&__ai {
         --_ba-bc: var(--purple-400);
     }
-
     &&__bot {
         --_ba-bc: var(--black-400);
     }
 
-    &&__danger,
-    &&__muted {
-        &.s-badge__filled {
-            --_ba-bc: transparent;
-        }
+    // STATES
+    &&__info {
+        --_ba-bg: var(--blue-100);
+        --_ba-fc: var(--blue-500);
     }
-
+    &&__warning {
+        --_ba-bg: var(--yellow-100);
+        --_ba-fc: var(--yellow-500);
+    }
     &&__danger {
-        --_ba-bc: var(--red-300);
+        --_ba-bg: var(--red-100);
+        --_ba-fc: var(--red-500);
+    }
+    &&__critical {
         --_ba-bg: var(--red-200);
         --_ba-fc: var(--red-600);
-
-        &.s-badge__filled {
-            --_ba-bg: var(--red-400);
-            --_ba-fc: var(--white);
-        }
     }
-    &&__info {
-        --_ba-bc: var(--blue-300);
-        --_ba-bg: var(--blue-200);
-        --_ba-fc: var(--blue-600);
-    }
-
-    &&__warning {
-        --_ba-bc: var(--yellow-300);
-        --_ba-bg: var(--yellow-200);
-        --_ba-fc: var(--yellow-600);
-    }
-
-    &&__muted {
-        --_ba-bc: var(--black-300);
+    &&__tonal {
         --_ba-bg: var(--black-200);
-        --_ba-fc: var(--black-500);
-
-        &.s-badge__filled {
-            --_ba-bg: var(--black-500);
-            --_ba-fc: var(--white);
-        }
+        --_ba-fc: var(--black-600);
     }
-
-    &&__new {
-        --_ba-bc: var(--_ba-bg);
+    &&__success {
+        --_ba-bg: var(--green-100);
+        --_ba-fc: var(--green-600);
+    }
+    &&__featured {
         --_ba-bg: var(--purple-100);
-        --_ba-fc: var(--purple-400);
-        --_ba-tt: uppercase;
+        --_ba-fc: var(--purple-500);
     }
 
     // CHILD ELEMENTS
