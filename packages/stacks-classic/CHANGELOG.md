@@ -1,5 +1,32 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.8
+
+### Minor Changes
+
+- [#2069](https://github.com/StackExchange/Stacks/pull/2069) [`bb1284b`](https://github.com/StackExchange/Stacks/commit/bb1284be4f168e5513a5377b077ddc274c27c7e4) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update Select component in classic and svelte to new SHINE styles
+
+    BREAKING CHANGES:
+    - `md` and `xl` sizes removed
+
+### Patch Changes
+
+- [#2068](https://github.com/StackExchange/Stacks/pull/2068) [`6de581f`](https://github.com/StackExchange/Stacks/commit/6de581f165a319ca0cfb9d4db0e2096bc6fb8a75) Thanks [@giamir](https://github.com/giamir)! - Modal: changed close icon to the new `Cross` beta icon (including some padding adjustments)
+
+## 3.0.0-beta.7
+
+### Minor Changes
+
+- [#2051](https://github.com/StackExchange/Stacks/pull/2051) [`f3f078c`](https://github.com/StackExchange/Stacks/commit/f3f078c682ec2df4dc338f6766792de2c158b4c2) Thanks [@mukunku](https://github.com/mukunku)! - feat(badges): first batch of design updates for the badge component as part of SHINE
+
+    BREAKING CHANGES:
+    - `.s-badge__xs` removed
+    - `.s-award-bling` renamed to `.s-bling` (used in some badge templates)
+
+### Patch Changes
+
+- [#2065](https://github.com/StackExchange/Stacks/pull/2065) [`a89da8b`](https://github.com/StackExchange/Stacks/commit/a89da8b1bec2fccca1c8a1a016461c6fd1c6e1a0) Thanks [@giamir](https://github.com/giamir)! - Navigation: accessibility tweaks for highcontrast mode
+
 ## 3.0.0-beta.6
 
 ### Patch Changes

@@ -6,6 +6,8 @@
     } from "svelte/elements";
     import Icon from "../Icon/Icon.svelte";
     import Avatar from "../Avatar/Avatar.svelte";
+    import { slide } from "svelte/transition";
+
     interface Props
         extends Omit<
             HTMLAnchorAttributes & HTMLButtonAttributes,
@@ -24,10 +26,6 @@
          */
         selected?: boolean;
         /**
-         * Indicates if the navigation item is a dropdown. Use in horizontal navigations.
-         */
-        dropdown?: boolean;
-        /**
          * The icon source to display before the navigation item text
          */
         icon?: string | undefined;
@@ -44,6 +42,14 @@
          */
         class?: string;
         /**
+         * If true, applies a slide animation to the navigation item.
+         */
+        animate?: boolean;
+        /**
+         * Optional snippet for the dropdown content. Use in horizontal navigations.
+         */
+        dropdown?: Snippet;
+        /**
          * Optional content rendered at the end of the navigation item.
          */
         trailing?: Snippet;
@@ -52,11 +58,12 @@
         text,
         href = undefined,
         selected = false,
-        dropdown = false,
         icon = undefined,
         iconSelected = undefined,
         avatar = undefined,
         class: className = "",
+        animate = false,
+        dropdown,
         trailing,
         ...restProps
     }: Props = $props();
@@ -66,7 +73,7 @@
         dropdown: boolean
     ) => {
         const base = "s-navigation--item";
-        let classes = "d-flex jc-space-between w100 " + base;
+        let classes = "w100 " + base;
         if (dropdown) {
             classes += ` ${base}__dropdown`;
         }
@@ -78,10 +85,12 @@
         }
         return classes;
     };
-    const classes = $derived(getClasses(className, selected, dropdown));
+    const classes = $derived(getClasses(className, selected, !!dropdown));
+
+    const maybeslide = (node: Element) => (animate ? slide(node) : {});
 </script>
 
-<li>
+<li transition:maybeslide>
     <svelte:element
         this={href ? "a" : "button"}
         {href}
@@ -89,19 +98,20 @@
         aria-current={selected ? "true" : undefined}
         {...restProps}
     >
-        <div>
-            {#if icon && iconSelected}
-                <Icon
-                    src={selected ? iconSelected : icon}
-                    class="s-navigation--icon"
-                />
-            {/if}
-            {#if avatar}
-                <!-- TODO: should we have a version of the avatar decorative only? -->
-                <Avatar name={text} src={avatar} class="s-navigation--avatar" />
-            {/if}
-            <span class="s-navigation--item-text" data-text={text}>{text}</span>
+        {#if icon && iconSelected}
+            <Icon
+                src={selected ? iconSelected : icon}
+                class="s-navigation--icon"
+            />
+        {/if}
+        {#if avatar}
+            <!-- TODO: should we have a version of the avatar decorative only? -->
+            <Avatar name={text} src={avatar} class="s-navigation--avatar" />
+        {/if}
+        <span class="s-navigation--item-text" data-text={text}>{text}</span>
+        <div class="ml-auto">
+            {@render trailing?.()}
         </div>
-        {@render trailing?.()}
     </svelte:element>
+    {@render dropdown?.()}
 </li>

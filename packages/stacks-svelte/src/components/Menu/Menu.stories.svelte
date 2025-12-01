@@ -33,18 +33,16 @@
 
 <Story name="Base">
     {#snippet template()}
-        <Popover id="base-popover" visible>
-            <PopoverContent class="ps-relative is-visible p8 ws2">
-                <Menu>
-                    {@render basicChildren()}
-                </Menu>
-            </PopoverContent>
-        </Popover>
+        <div class="s-card p8 ws2">
+            <Menu>
+                {@render basicChildren()}
+            </Menu>
+        </div>
     {/snippet}
 </Story>
 
 <Story name="Basic Examples" asChild>
-    <div class="d-flex g32 fw-wrap">
+    <div class="d-flex g32 fw-wrap hmn2">
         <div>
             <div class="ff-mono mb16">Within a popover</div>
             <Popover id="basic-example-popover" visible>
@@ -73,44 +71,50 @@
 </Story>
 
 <Story name="Titles and Dividers" asChild>
-    <Popover id="title-and-divider-popover" visible>
-        <PopoverContent class="ps-relative is-visible p8 ws2">
-            <Menu>
-                <MenuTitle>Layout</MenuTitle>
-                {@render basicChildren()}
-                <MenuDivider class="mxn8" />
-                <MenuItem href="#" danger>Deactivate</MenuItem>
-                <MenuItem href="#" danger>Delete</MenuItem>
-            </Menu>
-        </PopoverContent>
-    </Popover>
+    <div class="hmn3">
+        <Popover id="title-and-divider-popover" visible>
+            <PopoverContent class="ps-relative is-visible p8 ws2">
+                <Menu>
+                    <MenuTitle>Layout</MenuTitle>
+                    {@render basicChildren()}
+                    <MenuDivider class="mxn8" />
+                    <MenuItem href="#" danger>Deactivate</MenuItem>
+                    <MenuItem href="#" danger>Delete</MenuItem>
+                </Menu>
+            </PopoverContent>
+        </Popover>
+    </div>
 </Story>
 
 <Story name="Menu Items with Icons" asChild>
-    <Popover id="menu-items-with-icons-popover" visible>
-        <PopoverContent class="ps-relative is-visible p8 ws1">
-            <Menu>
-                <MenuItem href="#" icon={IconHome}>Home</MenuItem>
-                <MenuItem href="#" icon={IconInbox}>Inbox</MenuItem>
-                <MenuItem href="#" icon={IconSettings}>Settings</MenuItem>
-            </Menu>
-        </PopoverContent>
-    </Popover>
+    <div class="hmn2">
+        <Popover id="menu-items-with-icons-popover" visible>
+            <PopoverContent class="ps-relative is-visible p8 ws1">
+                <Menu>
+                    <MenuItem href="#" icon={IconHome}>Home</MenuItem>
+                    <MenuItem href="#" icon={IconInbox}>Inbox</MenuItem>
+                    <MenuItem href="#" icon={IconSettings}>Settings</MenuItem>
+                </Menu>
+            </PopoverContent>
+        </Popover>
+    </div>
 </Story>
 
 <Story name="Selected States" asChild>
-    <Popover id="selected-states-popover" visible>
-        <PopoverContent class="ps-relative is-visible p8 ws2">
-            <Menu>
-                <MenuItem href="#">Frequent</MenuItem>
-                <MenuItem href="#">Votes</MenuItem>
-                <MenuItem href="#" selected>Unanswered</MenuItem>
-                <MenuTitle>Custom filters</MenuTitle>
-                <MenuItem href="#">Frontend questions</MenuItem>
-                <MenuItem href="#">Design systems</MenuItem>
-            </Menu>
-        </PopoverContent>
-    </Popover>
+    <div class="hmn3">
+        <Popover id="selected-states-popover" visible>
+            <PopoverContent class="ps-relative is-visible p8 ws2">
+                <Menu>
+                    <MenuItem href="#">Frequent</MenuItem>
+                    <MenuItem href="#">Votes</MenuItem>
+                    <MenuItem href="#" selected>Unanswered</MenuItem>
+                    <MenuTitle>Custom filters</MenuTitle>
+                    <MenuItem href="#">Frontend questions</MenuItem>
+                    <MenuItem href="#">Design systems</MenuItem>
+                </Menu>
+            </PopoverContent>
+        </Popover>
+    </div>
 </Story>
 
 <Story name="In Popover" asChild>

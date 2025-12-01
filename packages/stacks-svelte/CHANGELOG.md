@@ -1,5 +1,50 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.12
+
+### Patch Changes
+
+- [#2080](https://github.com/StackExchange/Stacks/pull/2080) [`1f53476`](https://github.com/StackExchange/Stacks/commit/1f534769e7375b5a77434b8c7ee542f0dfd1729f) Thanks [@stacks-tooling](https://github.com/stacks-tooling)! - Navigation: ensure dropdown items can be rendered in a semantically correct way
+
+## 1.0.0-beta.11
+
+### Minor Changes
+
+- [#2069](https://github.com/StackExchange/Stacks/pull/2069) [`bb1284b`](https://github.com/StackExchange/Stacks/commit/bb1284be4f168e5513a5377b077ddc274c27c7e4) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update Select component in classic and svelte to new SHINE styles
+
+    BREAKING CHANGES:
+    - `md` and `xl` sizes removed
+
+### Patch Changes
+
+- [#2068](https://github.com/StackExchange/Stacks/pull/2068) [`6de581f`](https://github.com/StackExchange/Stacks/commit/6de581f165a319ca0cfb9d4db0e2096bc6fb8a75) Thanks [@giamir](https://github.com/giamir)! - Modal: changed close icon to the new `Cross` beta icon (including some padding adjustments)
+
+- Updated dependencies [[`bb1284b`](https://github.com/StackExchange/Stacks/commit/bb1284be4f168e5513a5377b077ddc274c27c7e4), [`6de581f`](https://github.com/StackExchange/Stacks/commit/6de581f165a319ca0cfb9d4db0e2096bc6fb8a75)]:
+    - @stackoverflow/stacks@3.0.0-beta.8
+
+## 1.0.0-beta.10
+
+### Patch Changes
+
+- [#2074](https://github.com/StackExchange/Stacks/pull/2074) [`1e98516`](https://github.com/StackExchange/Stacks/commit/1e9851617653b2233cb8ed62b5c0248379f528fb) Thanks [@dancormier](https://github.com/dancormier)! - Navigation: Add animate prop to NavigationItem
+
+## 1.0.0-beta.9
+
+### Minor Changes
+
+- [#2051](https://github.com/StackExchange/Stacks/pull/2051) [`f3f078c`](https://github.com/StackExchange/Stacks/commit/f3f078c682ec2df4dc338f6766792de2c158b4c2) Thanks [@mukunku](https://github.com/mukunku)! - feat(badges): first batch of design updates for the badge component as part of SHINE
+
+    BREAKING CHANGES:
+    - `.s-badge__xs` removed
+    - `.s-award-bling` renamed to `.s-bling` (used in some badge templates)
+
+### Patch Changes
+
+- [#2065](https://github.com/StackExchange/Stacks/pull/2065) [`a89da8b`](https://github.com/StackExchange/Stacks/commit/a89da8b1bec2fccca1c8a1a016461c6fd1c6e1a0) Thanks [@giamir](https://github.com/giamir)! - Navigation: Address an issue where in highcontrast mode anchor navigation items with activity indicator or badges were not correctly underlined
+
+- Updated dependencies [[`a89da8b`](https://github.com/StackExchange/Stacks/commit/a89da8b1bec2fccca1c8a1a016461c6fd1c6e1a0), [`f3f078c`](https://github.com/StackExchange/Stacks/commit/f3f078c682ec2df4dc338f6766792de2c158b4c2)]:
+    - @stackoverflow/stacks@3.0.0-beta.7
+
 ## 1.0.0-beta.8
 
 ### Patch Changes

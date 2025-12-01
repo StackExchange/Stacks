@@ -13,6 +13,9 @@ const config: StorybookConfig = {
         "@storybook/addon-docs",
         "@storybook/addon-svelte-csf",
     ],
+    features: {
+        outline: false,
+    },
     framework: {
         name: "@storybook/svelte-vite",
         options: {

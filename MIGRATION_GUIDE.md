@@ -24,6 +24,10 @@
 
 ### Components
 
+#### Badge
+- `.s-badge__xs` removed
+- `.s-award-bling` renamed to `.s-bling` (used in some badge templates)
+
 #### Bling (previously *Award Bling*)
 - The Award Bling component has been renamed to Bling.
 - Bling no longer accepts children elements besides those for screen readers. Please include any visually represented strings (such as counts) as siblings to the bling component.
@@ -76,21 +80,30 @@ The menu component has been updated to use new class names and structure. The fo
     </li>
 </ul>
 ```
-#### Pagination
-- The next and previous button now uses an `ArrowRight` and `ArrowLeft` icon instead of text. To apply the new styling, use the class `.s-pagination--item__nav`. Since these buttons use icons to represent their behavior, make sure to include descriptive text for screen readers.
 
-#### Popover
-- The new popovers no longer include an arrow element. The `s-popover--arrow` css class has been removed, and any markup using it (e.g. `<div class="s-popover--arrow"></div>`) should be deleted from the codebases as part of the migration.
+#### Modal
 
-#### Tags
-- `.s-tag__xs` removed
-- `.s-tag__md` removed
+- Changed close icon to the new `Cross` beta icon (including some padding adjustments)
+
 
 #### Navigation
 - Removed muted variant (`.s-navigation__muted`)
 - Selected page are now highlighted by an underscore (no pill shape background)
 - New `.s-navigation--icon` class to style icons alongside navigation items
 - New `.s-navigation--avatar` class to style avatars alongside navigation items
+
+#### Pagination
+- The next and previous button now uses an `ArrowRight` and `ArrowLeft` icon instead of text. To apply the new styling, use the class `.s-pagination--item__nav`. Since these buttons use icons to represent their behavior, make sure to include descriptive text for screen readers.
+
+#### Popover
+- The new popovers no longer include an arrow element. The `s-popover--arrow` css class has been removed, and any markup using it (e.g. `<div class="s-popover--arrow"></div>`) should be deleted from the codebases as part of the migration.
+
+#### Select
+- `md` and `xl` sizes removed
+
+#### Tags
+- `.s-tag__xs` removed
+- `.s-tag__md` removed
 
 # Migrating from Stacks Svelte v0 to v1
 
