@@ -38,7 +38,7 @@ tags: components
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-user-card">
-    <a href="…" class="s-avatar s-avatar s-user-card--avatar">
+    <a href="…" class="s-avatar__24 s-user-card--avatar">
         <img class="s-avatar--image" src="…" />
     </a>
     <div class="s-user-card--info">
@@ -77,7 +77,7 @@ tags: components
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="s-user-card">
-                <a href="#" class="s-avatar s-avatar s-user-card--avatar">
+                <a href="#" class="s-avatar__24 s-user-card--avatar">
                     <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
                 </a>
                 <div class="s-user-card--info">
@@ -89,7 +89,7 @@ tags: components
             </div>
 
             <div class="s-user-card">
-                <a href="#" class="s-avatar s-avatar s-user-card--avatar">
+                <a href="#" class="s-avatar__24 s-user-card--avatar">
                     <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
                 </a>
                 <div class="s-user-card--info">
@@ -108,7 +108,7 @@ tags: components
             </div>
 
             <div class="s-user-card">
-                <a href="#" class="s-avatar s-avatar s-user-card--avatar">
+                <a href="#" class="s-avatar__24 s-user-card--avatar">
                     <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
                 </a>
                 <div class="s-user-card--info">
@@ -143,7 +143,7 @@ tags: components
             </div>
 
             <div class="s-user-card">
-                <a href="#" class="s-avatar s-avatar s-user-card--avatar">
+                <a href="#" class="s-avatar__24 s-user-card--avatar">
                     <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
                 </a>
                 <div class="s-user-card--info">
@@ -181,7 +181,7 @@ tags: components
             </div>
 
             <div class="s-user-card">
-                <a href="#" class="s-avatar s-avatar s-user-card--avatar">
+                <a href="#" class="s-avatar__24 s-user-card--avatar">
                     <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
                 </a>
                 <div class="s-user-card--info">
@@ -223,480 +223,267 @@ tags: components
 </section>
 
 <section class="stacks-section">
-    {% header "h3", "Highlighted" %}
-    <p class="stacks-copy">Highlights the entire user card by adding a background color, some padding, and rounded corners. Used for post authors and edits.</p>
+    {% header "h3", "with Badges" %}
+    <p class="stacks-copy">Adds the <a href="/product/components/badges/#user-badges">User badge</a> indicator to the usercard. Use this to signify the official role, status, or origin of the account (such as Moderator, Staff, or Bot) directly alongside the user's name.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-user-card s-user-card__highlighted">
-    <a href="…" class="s-avatar s-avatar__32 s-user-card--avatar">
+<div class="s-user-card">
+    <a href="…" class="s-avatar__24 s-user-card--avatar">
         <img class="s-avatar--image" src="…" />
     </a>
     <div class="s-user-card--info">
-        <a href="…" class="s-user-card--link">…</a>
-        <ul class="s-user-card--awards">
-            <li class="s-user-card--rep">…</li>
-            <li class="s-bling s-bling__gold">…</li>
-            <li class="s-bling s-bling__silver">…</li>
-            <li class="s-bling s-bling__bronze">…</li>
-        </ul>
-    </div>
-
-    <!-- Optional -->
-    <div class="s-user-card--type">
-        @Svg.StarVerifiedSm Partner
+        <a href="…" class="s-user-card--link d-flex g4">
+            <div class="flex--item">…</div>
+            <div class="flex--item s-badge s-badge__bot s-badge__sm">…</div>
+        </a>
     </div>
     <time class="s-user-card--time">…</time>
 </div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="s-user-card s-user-card__highlighted wmx2">
-                <a href="#" class="s-avatar s-avatar__32 s-user-card--avatar">
-                    <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-                </a>
-                <div class="s-user-card--info">
-                    <a href="#" class="s-user-card--link">Paul Wright</a>
-                    <ul class="s-user-card--awards">
-                        <li class="s-user-card--rep">2,500</li>
-                        <li>
-                            <span class="s-bling s-bling__gold">
-                                <span class="v-visible-sr">gold bling</span>
-                            </span>
-                            5
-                        </li>
-                        <li>
-                            <span class="s-bling s-bling__silver">
-                                <span class="v-visible-sr">silver bling</span>
-                            </span>
-                            9
-                        </li>
-                        <li>
-                            <span class="s-bling s-bling__bronze">
-                                <span class="v-visible-sr">bronze bling</span>
-                            </span>
-                            1
-                        </li>
-                    </ul>
-                </div>
-                <time class="s-user-card--time">3 minutes ago</time>
-            </div>
 
-            <div class="d-flex gx16 mt16">
-                <div class="flex--item">
-                    <div class="s-user-card s-user-card__highlighted fw-wrap wmx2">
-                        <a href="#" class="s-avatar s-avatar__32 s-user-card--avatar">
-                            <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-                        </a>
-                        <div class="s-user-card--info">
-                            <a href="#" class="s-user-card--link">Paul Wright</a>
-                            <ul class="s-user-card--awards">
-                                <li class="s-user-card--rep">2,500</li>
-                                <li>
-                                    <span class="s-bling s-bling__gold">
-                                        <span class="v-visible-sr">gold bling</span>
-                                    </span>
-                                    5
-                                </li>
-                                <li>
-                                    <span class="s-bling s-bling__silver">
-                                        <span class="v-visible-sr">silver bling</span>
-                                    </span>
-                                    9
-                                </li>
-                                <li>
-                                    <span class="s-bling s-bling__bronze">
-                                        <span class="v-visible-sr">bronze bling</span>
-                                    </span>
-                                    1
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="s-user-card--type">
-                            {% icon "StarVerifiedSm" %} Recognized by <a href="#">Hum</a>
-                        </div>
-                        <time class="s-user-card--time">3 minutes ago</time>
-                    </div>
-                </div>
-
-                <div class="flex--item">
-                    <div class="s-user-card wmx2">
-                        <a href="#" class="s-avatar s-avatar__32 s-user-card--avatar">
-                            <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-                        </a>
-                        <div class="s-user-card--info">
-                            <a href="#" class="s-user-card--link">Paul Wright</a>
-                            <ul class="s-user-card--awards">
-                                <li class="s-user-card--rep">2,500</li>
-                                <li>
-                                    <span class="s-bling s-bling__gold">
-                                        <span class="v-visible-sr">gold bling</span>
-                                    </span>
-                                    5
-                                </li>
-                                <li>
-                                    <span class="s-bling s-bling__silver">
-                                        <span class="v-visible-sr">silver bling</span>
-                                    </span>
-                                    9
-                                </li>
-                                <li>
-                                    <span class="s-bling s-bling__bronze">
-                                        <span class="v-visible-sr">bronze bling</span>
-                                    </span>
-                                    1
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="s-user-card--type">
-                            {% icon "StarVerifiedSm" %} Recognized by <a href="#">Hum</a>
-                        </div>
-                        <time class="s-user-card--time">3 minutes ago</time>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="stacks-section">
-    {% header "h3", "Full" %}
-    <p class="stacks-copy">Displays a larger avatar, best paired with additional tags meta data. Currently used in user directories.</p>
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="s-user-card s-user-card__full">
-    <a href="…" class="s-avatar s-avatar__48 s-user-card--avatar">
+<div class="s-user-card">
+    <a href="…" class="s-avatar__24 s-user-card--avatar">
         <img class="s-avatar--image" src="…" />
     </a>
     <div class="s-user-card--info">
-        <a href="#" class="s-user-card--link d-flex g4">
+        <a href="…" class="s-user-card--link d-flex g4">
+            <div class="flex--item">…</div>
+            <div class="flex--item s-badge s-badge__moderator s-badge__sm">…</div>
+        </a>
+    </div>
+    <time class="s-user-card--time">…</time>
+</div>
+
+<div class="s-user-card">
+    <a href="…" class="s-avatar__24 s-user-card--avatar">
+        <img class="s-avatar--image" src="…" />
+    </a>
+    <div class="s-user-card--info">
+        <a href="…" class="s-user-card--link d-flex g4">
+            <div class="flex--item">…</div>
+            <div class="flex--item s-badge s-badge__staff s-badge__sm">…</div>
+            <div class="flex--item s-badge s-badge__moderator s-badge__sm">…</div>
+        </a>
+    </div>
+    <time class="s-user-card--time">…</time>
+</div>
+
+<div class="s-user-card">
+    <a href="…" class="s-avatar__24 s-user-card--avatar">
+        <img class="s-avatar--image" src="…" />
+    </a>
+    <div class="s-user-card--info">
+        <a href="…" class="s-user-card--link d-flex g4">
+            <div class="flex--item">…</div>
+            <div class="flex--item s-badge s-badge__moderator s-badge__sm">…</div>
+        </a>
+        <ul class="s-user-card--awards">
+            <li class="s-user-card--rep">
+                <span class="s-bling">
+                    <span class="v-visible-sr">…</span>
+                </span>
+                …
+            </li>
+            <li>
+                <span class="s-bling s-bling__gold">
+                    <span class="v-visible-sr">…</span>
+                </span>
+            </li>
+            <li>
+                <span class="s-bling s-bling__silver">
+                    <span class="v-visible-sr">…</span>
+                </span>
+            </li>
+            <li>
+                <span class="s-bling s-bling__bronze">
+                    <span class="v-visible-sr">…</span>
+                </span>
+            </li>
+        </ul>
+    </div>
+    <time class="s-user-card--time">…</time>
+</div>
+
+<div class="s-user-card">
+    <a href="…" class="s-avatar__24 s-user-card--avatar">
+        <img class="s-avatar--image" src="…" />
+    </a>
+    <div class="s-user-card--info">
+        <a href="…" class="s-user-card--link d-flex g4">
             <div class="flex--item">…</div>
             <div class="flex--item s-badge s-badge__staff s-badge__sm">…</div>
         </a>
         <ul class="s-user-card--awards">
-            <li class="s-user-card--rep">…</li>
-            <li class="s-bling s-bling__gold">…</li>
-            <li class="s-bling s-bling__silver">…</li>
-            <li class="s-bling s-bling__bronze">…</li>
-        </ul>
-        <div class="s-user-card--location">…</div>
-        <div class="s-user-card--tags d-flex g4">
-            <a href="…" class="flex--item s-tag s-tag__sm">…</a>
-            <a href="…" class="flex--item s-tag s-tag__sm">…</a>
-            <a href="…" class="flex--item s-tag s-tag__sm">…</a>
-        </div>
-    </div>
-
-    <!-- Optional -->
-    <div class="s-user-card--type">
-        @Svg.StarVerifiedSm Recognized by <a href="…">…</a>
-    </div>
-</div>
-{% endhighlight %}
-    <div class="stacks-preview--example">
-        <div class="s-user-card s-user-card__full">
-            <a href="#" class="s-avatar s-avatar__48 s-user-card--avatar">
-                <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-            </a>
-            <div class="s-user-card--info">
-                <a href="#" class="s-user-card--link d-flex g4">
-                    <div class="flex--item">Paul Wright</div>
-                    <div class="flex--item s-badge s-badge__staff s-badge__sm">Staff</div>
-                    <div class="flex--item s-badge s-badge__admin s-badge__sm">Admin</div>
-                </a>
-                <ul class="s-user-card--awards">
-                    <li class="s-user-card--rep">2,500</li>
-                    <li>
-                        <span class="s-bling s-bling__gold">
-                            <span class="v-visible-sr">gold bling</span>
-                        </span>
-                        5
-                    </li>
-                    <li>
-                        <span class="s-bling s-bling__silver">
-                            <span class="v-visible-sr">silver bling</span>
-                        </span>
-                        9
-                    </li>
-                    <li>
-                        <span class="s-bling s-bling__bronze">
-                            <span class="v-visible-sr">bronze bling</span>
-                        </span>
-                        1
-                    </li>
-                </ul>
-                <div class="s-user-card--location">Paris, France</div>
-                <div class="s-user-card--tags d-flex g4">
-                    <a href="#" class="flex--item s-tag s-tag__sm">js</a>
-                    <a href="#" class="flex--item s-tag s-tag__sm">node.js</a>
-                    <a href="#" class="flex--item s-tag s-tag__sm">graphQL</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="s-user-card s-user-card__full mt16">
-            <a href="#" class="s-avatar s-avatar__48 s-user-card--avatar">
-                <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-            </a>
-            <div class="s-user-card--info">
-                <a href="#" class="s-user-card--link d-flex g4">
-                    <div class="flex--item">Nick Craver</div>
-                    <div class="flex--item s-badge s-badge__moderator s-badge__sm">Mod</div>
-                </a>
-                <ul class="s-user-card--awards">
-                    <li class="s-user-card--rep">17k</li>
-                    <li>
-                        <span class="s-bling s-bling__gold">
-                            <span class="v-visible-sr">gold bling</span>
-                        </span>
-                        108
-                    </li>
-                    <li>
-                        <span class="s-bling s-bling__silver">
-                            <span class="v-visible-sr">silver bling</span>
-                        </span>
-                        265
-                    </li>
-                    <li>
-                        <span class="s-bling s-bling__bronze">
-                            <span class="v-visible-sr">bronze bling</span>
-                        </span>
-                        812
-                    </li>
-                </ul>
-                <div class="s-user-card--role">Architecture Lead</div>
-                <div class="s-user-card--location">North Carolina</div>
-                <div class="s-user-card--tags d-flex g4">
-                    <a href="#" class="flex--item s-tag s-tag__sm">.net</a>
-                    <a href="#" class="flex--item s-tag s-tag__sm">sre</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="s-user-card s-user-card__full mt16">
-            <a href="#" class="s-avatar s-avatar__48 s-user-card--avatar">
-                <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-            </a>
-            <div class="s-user-card--info">
-                <a href="#" class="s-user-card--link">
-                    Aaron Shekey
-                </a>
-                <ul class="s-user-card--awards">
-                    <li class="s-user-card--rep">768</li>
-                    <li>
-                        <span class="s-bling s-bling__silver">
-                            <span class="v-visible-sr">silver bling</span>
-                        </span>
-                        9
-                    </li>
-                    <li>
-                        <span class="s-bling s-bling__bronze">
-                            <span class="v-visible-sr">bronze bling</span>
-                        </span>
-                        1
-                    </li>
-                </ul>
-                <div class="s-user-card--role">Senior Product Designer</div>
-                <div class="s-user-card--location">Minneapolis, MN</div>
-                <div class="s-user-card--tags d-flex g4">
-                    <a href="#" class="flex--item s-tag s-tag__sm">css</a>
-                    <a href="#" class="flex--item s-tag s-tag__sm">js</a>
-                    <a href="#" class="flex--item s-tag s-tag__sm">html</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="s-user-card s-user-card__full mt16">
-            <a href="#" class="s-avatar s-avatar__48 s-user-card--avatar">
-                <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-            </a>
-            <div class="s-user-card--info">
-                <a href="#" class="s-user-card--link">
-                    Aaron Shekey
-                </a>
-                <ul class="s-user-card--awards">
-                    <li class="s-user-card--rep">768</li>
-                    <li>
-                        <span class="s-bling s-bling__silver">
-                            <span class="v-visible-sr">silver bling</span>
-                        </span>
-                        9
-                    </li>
-                    <li>
-                        <span class="s-bling s-bling__bronze">
-                            <span class="v-visible-sr">bronze bling</span>
-                        </span>
-                        1
-                    </li>
-                </ul>
-                <div class="s-user-card--location">Minneapolis, MN</div>
-            </div>
-            <div class="s-user-card--type">
-                {% icon "StarVerifiedSm" %} Recognized by <a href="#">Hum</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="stacks-section">
-    {% header "h3", "Small" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="s-user-card s-user-card__small">
-    <a href="…" class="s-avatar s-avatar__24 s-user-card--avatar">
-        <img class="s-avatar--image" src="…" />
-    </a>
-    <div class="s-user-card--info">
-        <ul class="s-user-card--awards">
-            <li class="s-user-card--rep">…</li>
-            <li class="s-bling s-bling__gold">…</li>
-            <li class="s-bling s-bling__silver">…</li>
-            <li class="s-bling s-bling__bronze">…</li>
+            <li class="s-user-card--rep">
+                <span class="s-bling">
+                    <span class="v-visible-sr">…</span>
+                </span>
+                …
+            </li>
+            <li>
+                <span class="s-bling s-bling__gold">
+                    <span class="v-visible-sr">…</span>
+                </span>
+                …
+            </li>
+            <li>
+                <span class="s-bling s-bling__silver">
+                    <span class="v-visible-sr">…</span>
+                </span>
+                …
+            </li>
+            <li>
+                <span class="s-bling s-bling__bronze">
+                    <span class="v-visible-sr">…</span>
+                </span>
+                …
+            </li>
         </ul>
     </div>
+    <time class="s-user-card--time">…</time>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="s-user-card s-user-card__small">
-                <a href="#" class="s-avatar s-avatar__24 s-user-card--avatar">
+            <div class="s-user-card">
+                <a href="#" class="s-avatar__24 s-user-card--avatar">
                     <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
                 </a>
                 <div class="s-user-card--info">
+                    <a href="#" class="s-user-card--link d-flex g4">
+                        <div class="flex--item">Community</div>
+                        <div class="flex--item s-badge s-badge__bot s-badge__sm">Bot</div>
+                    </a>
+                </div>
+                <time class="s-user-card--time">modified 2 hours ago</time>
+            </div>
+
+            <div class="s-user-card">
+                <a href="#" class="s-avatar__24 s-user-card--avatar">
+                    <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
+                </a>
+                <div class="s-user-card--info">
+                    <a href="#" class="s-user-card--link d-flex g4">
+                        <div class="flex--item">SofiaAlc</div>
+                        <div class="flex--item s-badge s-badge__moderator s-badge__sm">Mod</div>
+                    </a>
+                </div>
+                <time class="s-user-card--time">asked 2 hours ago</time>
+            </div>
+
+            <div class="s-user-card">
+                <a href="#" class="s-avatar__24 s-user-card--avatar">
+                    <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
+                </a>
+                <div class="s-user-card--info">
+                    <a href="#" class="s-user-card--link d-flex g4">
+                        <div class="flex--item">SofiaAlc</div>
+                        <div class="flex--item s-badge s-badge__staff s-badge__sm">Staff</div>
+                        <div class="flex--item s-badge s-badge__moderator s-badge__sm">Mod</div>
+                    </a>
+                </div>
+                <time class="s-user-card--time">asked 2 hours ago</time>
+            </div>
+
+            <div class="s-user-card">
+                <a href="#" class="s-avatar__24 s-user-card--avatar">
+                    <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
+                </a>
+                <div class="s-user-card--info">
+                    <a href="#" class="s-user-card--link d-flex g4">
+                        <div class="flex--item">SofiaAlc</div>
+                        <div class="flex--item s-badge s-badge__moderator s-badge__sm">Mod</div>
+                    </a>
                     <ul class="s-user-card--awards">
-                        <li class="s-user-card--rep">2,500</li>
+                        <li class="s-user-card--rep">
+                            <span class="s-bling">
+                                <span class="v-visible-sr">reputation bling</span>
+                            </span>
+                        1,775
+                        </li>
                         <li>
                             <span class="s-bling s-bling__gold">
                                 <span class="v-visible-sr">gold bling</span>
                             </span>
-                            5
                         </li>
                         <li>
                             <span class="s-bling s-bling__silver">
                                 <span class="v-visible-sr">silver bling</span>
                             </span>
-                            9
                         </li>
                         <li>
                             <span class="s-bling s-bling__bronze">
                                 <span class="v-visible-sr">bronze bling</span>
                             </span>
-                            1
                         </li>
                     </ul>
                 </div>
+                <time class="s-user-card--time">asked 2 hours ago</time>
+            </div>
+
+            <div class="s-user-card">
+                <a href="#" class="s-avatar__24 s-user-card--avatar">
+                    <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
+                </a>
+                <div class="s-user-card--info">
+                    <a href="#" class="s-user-card--link d-flex g4">
+                        <div class="flex--item">SofiaAlc</div>
+                        <div class="flex--item s-badge s-badge__staff s-badge__sm">Staff</div>
+                    </a>
+                    <ul class="s-user-card--awards">
+                        <li class="s-user-card--rep">
+                            <span class="s-bling">
+                                <span class="v-visible-sr">reputation bling</span>
+                            </span>
+                        1,775
+                        </li>
+                        <li>
+                            <span class="s-bling s-bling__gold">
+                                <span class="v-visible-sr">gold bling</span>
+                            </span>
+                            12
+                        </li>
+                        <li>
+                            <span class="s-bling s-bling__silver">
+                                <span class="v-visible-sr">silver bling</span>
+                            </span>
+                            8
+                        </li>
+                        <li>
+                            <span class="s-bling s-bling__bronze">
+                                <span class="v-visible-sr">bronze bling</span>
+                            </span>
+                            4
+                        </li>
+                    </ul>
+                </div>
+                <time class="s-user-card--time">asked 2 hours ago</time>
             </div>
         </div>
     </div>
 </section>
 
 <section class="stacks-section">
-    {% header "h3", "Minimal" %}
-    <p class="stacks-copy">
-        Minimal user cards reduce the amount of information down to who asked the question, how much rep they have, and when the action was taken. To read as plainly as possible, e.g. “Paul Wright modified 3 minutes ago,” we change the positioning of the time, and remove any reputation bling, leaving just the aggregated reputation.
-    </p>
+    {% header "h3", "Sizes" %}
+    {% header "h4", "Small" %}
+    <p class="stacks-copy">Use the Small variant for space-constrained areas, such as post summaries, or to establish visual hierarchy for secondary content like comments and replies.</p>
     <div class="stacks-preview">
-{% highlight html %}
-<div class="s-user-card s-user-card__minimal">
-    <div class="s-user-card--info">
-        <a href="…" class="s-user-card--link">…</a>
-        <ul class="s-user-card--awards">
-            <li class="s-user-card--rep">…</li>
-        </ul>
-    </div>
-    <time class="s-user-card--time">…</time>
-</div>
+        {% highlight html %}
+        <div class="s-user-card s-user-card__small">
 
-<div class="s-user-card s-user-card__minimal">
-    <a href="…" class="s-avatar s-user-card--avatar">
-        <img class="s-avatar--image" src="…" />
-    </a>
-    <div class="s-user-card--info">
-        <a href="#" class="s-user-card--link">…</a>
-        <ul class="s-user-card--awards">
-            <li class="s-user-card--rep">…</li>
-        </ul>
-    </div>
-    <time class="s-user-card--time">…</time>
-</div>
-{% endhighlight %}
+        </div>
+        {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="s-user-card s-user-card__minimal">
+            <div class="s-user-card s-user-card__small">
                 <a href="#" class="s-avatar s-user-card--avatar">
                     <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
                 </a>
                 <div class="s-user-card--info">
-                    <a href="#" class="s-user-card--link">
-                        Paul Wright
+                    <a href="#" class="s-user-card--link d-flex g4">
+                        <div class="flex--item">SofiaAlc</div>
                     </a>
-                    <ul class="s-user-card--awards">
-                        <li class="s-user-card--rep">2,500</li>
-                    </ul>
                 </div>
-                <time class="s-user-card--time">asked 3 minutes ago</time>
-            </div>
-
-            <div class="s-user-card s-user-card__minimal mt16">
-                <div class="s-user-card--info">
-                    <a href="#" class="s-user-card--link">
-                        Paul Wright
-                    </a>
-                    <ul class="s-user-card--awards">
-                        <li class="s-user-card--rep">2,500</li>
-                    </ul>
-                </div>
-                <time class="s-user-card--time">asked 3 minutes ago</time>
+                <time class="s-user-card--time">asked 2 hours ago</time>
             </div>
         </div>
     </div>
-</section>
-
-<section class="stacks-section">
-    {% header "h3", "Deleted" %}
-    <p class="stacks-copy">When a user is deleted, we still need to show their name, but we strip the meta data.</p>
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="s-user-card s-user-card__deleted">
-    <div class="s-avatar s-avatar__32 s-user-card--avatar">
-        <img class="s-avatar--image" src="…" />
-    </div>
-    <div class="s-user-card--info">…</div>
-    <time class="s-user-card--time">…</time>
-</div>
-
-<div class="s-user-card s-user-card__deleted s-user-card__minimal">
-    <div class="s-avatar s-avatar__32 s-user-card--avatar">
-        <img class="s-avatar--image" src="…" />
-    </div>
-    <div class="s-user-card--info">
-        <div class="s-user-card--link">
-            …
-        </div>
-    </div>
-    <time class="s-user-card--time">…</time>
-</div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="s-user-card s-user-card__deleted p0">
-                <div class="s-avatar s-avatar__32 s-user-card--avatar">
-                    <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/anonymous-user.svg" | url }}" />
-                </div>
-                <div class="s-user-card--info">
-                    <div class="s-user-card--link">
-                        Paul Wright
-                    </div>
-                </div>
-                <time class="s-user-card--time">3 minutes ago</time>
-            </div>
-
-            <div class="s-user-card s-user-card__deleted s-user-card__minimal mt16">
-                <div class="s-avatar s-user-card--avatar">
-                    <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/anonymous-user.svg" | url }}" />
-                </div>
-                <div class="s-user-card--info">
-                    <div class="s-user-card--link">
-                        Paul Wright
-                    </div>
-                </div>
-                <time class="s-user-card--time">asked 3 years ago</time>
-            </div>
-        </div>
-    </div>
+    {% header "h4", "Default" %}
 </section>
