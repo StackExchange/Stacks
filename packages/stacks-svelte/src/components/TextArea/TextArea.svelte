@@ -125,44 +125,42 @@
         </p>
     {/if}
 
-    <div class="d-flex">
-        <div class="ps-relative w100 d-flex">
-            <textarea
-                {id}
-                aria-describedby={$$slots.message
-                    ? `${id}-message`
-                    : $$slots.description
-                      ? `${id}-description`
-                      : undefined}
-                aria-invalid={state === "error"}
-                class={classes}
-                {disabled}
-                {name}
-                {placeholder}
-                {readonly}
-                {required}
-                {...$$restProps}
-                on:change
-                on:input
-                on:keydown
-                on:keyup
-                on:focus
-                on:blur
-                on:paste
-            />
+    <div class="ps-relative w100 d-flex">
+        <textarea
+            {id}
+            aria-describedby={$$slots.message
+                ? `${id}-message`
+                : $$slots.description
+                    ? `${id}-description`
+                    : undefined}
+            aria-invalid={state === "error"}
+            class={classes}
+            {disabled}
+            {name}
+            {placeholder}
+            {readonly}
+            {required}
+            {...$$restProps}
+            on:change
+            on:input
+            on:keydown
+            on:keyup
+            on:focus
+            on:blur
+            on:paste
+        />
 
-            {#if state}
-                <div class="s-input-icon">
-                    {#if state === "error"}
-                        <Icon src={IconAlertCircle} />
-                    {:else if state === "success"}
-                        <Icon src={IconCheckmark} />
-                    {:else}
-                        <Icon src={IconAlert} />
-                    {/if}
-                </div>
-            {/if}
-        </div>
+        {#if state}
+            <div class="s-input-icon">
+                {#if state === "error"}
+                    <Icon src={IconAlertCircle} />
+                {:else if state === "success"}
+                    <Icon src={IconCheckmark} />
+                {:else}
+                    <Icon src={IconAlert} />
+                {/if}
+            </div>
+        {/if}
     </div>
 
     {#if $$slots.message}
