@@ -82,7 +82,7 @@
                     {state}
                 >
                     {#snippet message()}
-                    <span>{state || "default"} message</span>
+                        <span>{state || "default"} message</span>
                     {/snippet}
                 </TextArea>
             </div>
@@ -100,7 +100,7 @@
                 required
             >
                 {#snippet description()}
-                <span>this input has been marked required.</span>
+                    <span>this input has been marked required.</span>
                 {/snippet}
             </TextArea>
         </div>
@@ -137,7 +137,10 @@
     <p>The examples below show all the snippets this component supports.</p>
     <div class="d-grid g16">
         <div class="d-flex fd-column">
-            <TextArea id="description-snippet-input" label="Description snippet">
+            <TextArea
+                id="description-snippet-input"
+                label="Description snippet"
+            >
                 {#snippet description()}
                     <span>This TextArea includes a description snippet.</span>
                 {/snippet}

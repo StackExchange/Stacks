@@ -58,7 +58,7 @@
          * @type {"" | "sm" | "lg"} Size
          */
         size?: Size;
-            /**
+        /**
          * The size of the text input
          * @type {"" | "error" | "success" | "warning"} State
          */
@@ -77,12 +77,12 @@
         /**
          * Optional description snippet rendered between the label and input.
          */
-        description?: import('svelte').Snippet;
+        description?: import("svelte").Snippet;
 
         /**
          * Optional message snippet rendered after the input.
          */
-        message?: import('svelte').Snippet;
+        message?: import("svelte").Snippet;
     }
 
     let {
@@ -102,7 +102,6 @@
         message,
         ...rest
     }: Props = $props();
-
 
     const getClasses = (className: string, size: Size) => {
         const base = "s-textarea";
@@ -160,7 +159,7 @@
             {readonly}
             {required}
             {...rest}
-></textarea>
+        ></textarea>
 
         {#if state}
             <div class="s-input-icon">

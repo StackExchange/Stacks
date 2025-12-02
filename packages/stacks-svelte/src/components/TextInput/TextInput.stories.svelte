@@ -67,7 +67,7 @@
                     {fillSide}
                 >
                     {#snippet fill()}
-                    <span>{fillSide}ed fill</span>
+                        <span>{fillSide}ed fill</span>
                     {/snippet}
                 </TextInput>
             </div>
@@ -116,7 +116,7 @@
                     {state}
                 >
                     {#snippet message()}
-                    <span>{state || "default"} message</span>
+                        <span>{state || "default"} message</span>
                     {/snippet}
                 </TextInput>
             </div>
@@ -134,7 +134,7 @@
                 required
             >
                 {#snippet description()}
-                <span>this input has been marked required.</span>
+                    <span>this input has been marked required.</span>
                 {/snippet}
             </TextInput>
         </div>
@@ -186,23 +186,26 @@
     <p>The examples below show all the snippets this component supports.</p>
     <div class="d-grid g16">
         <div class="d-flex fd-column">
-            <TextInput id="description-snippet-input" label="Description snippet">
+            <TextInput
+                id="description-snippet-input"
+                label="Description snippet"
+            >
                 {#snippet description()}
-                <span>This TextInput includes a description snippet.</span>
+                    <span>This TextInput includes a description snippet.</span>
                 {/snippet}
             </TextInput>
         </div>
         <div class="d-flex fd-column">
             <TextInput id="message-snippet-input" label="Message snippet">
                 {#snippet message()}
-                <span>This TextInput includes a message snippet.</span>
+                    <span>This TextInput includes a message snippet.</span>
                 {/snippet}
             </TextInput>
         </div>
         <div class="d-flex fd-column">
             <TextInput id="fill-snippet-input" label="Fill snippet">
                 {#snippet fill()}
-                <span>https://</span>
+                    <span>https://</span>
                 {/snippet}
             </TextInput>
         </div>
