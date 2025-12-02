@@ -300,7 +300,20 @@ tags: components
     <p class="stacks-copy">Emboldens the above visual styles by strengthening the background saturation. This should be used for time-sensitive, pressing information that needs to be noticed by the user.</p>
     <div class="stacks-preview">
 {% highlight html %}
-TODO
+<span class="s-badge s-badge__warning s-badge__squared s-badge__important">
+    @Svg.Notification
+    Needs attention
+</span>
+<span class="s-badge s-badge__danger s-badge__important">
+    @Svg.VoteUp
+    Ending soon
+</span>
+<span class="s-badge s-badge__critical s-badge__important">
+    Spam
+</span>
+<span class="s-badge s-badge__info s-badge__sm s-badge__important">
+    +100
+</span>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="overflow-x-auto" tabindex="0">
@@ -329,13 +342,10 @@ TODO
                                     </td>
                                     <td class="va-middle">
                                         <div class="d-flex g4 fw-wrap">
-                                            <code class="stacks-code">.s-badge</code>
-                                            {% if type.class != nil %}
-                                                <code class="stacks-code">.{{ type.class }}</code>
-                                            {% endif %}
-                                            {% if badge.class != nil %}
-                                                <code class="flex--item stacks-code">.{{ badge.class }}</code>
-                                            {% endif %}
+                                            {% assign classes = type.html | split: " " %}
+                                            {% for class in classes %}
+                                                <code class="stacks-code">.{{ class }}</code>
+                                            {% endfor %}
                                         </div>
                                     </td>
                                     <td class="va-middle">{{ type.description }}</td>
