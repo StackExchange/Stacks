@@ -131,8 +131,8 @@
             aria-describedby={$$slots.message
                 ? `${id}-message`
                 : $$slots.description
-                    ? `${id}-description`
-                    : undefined}
+                  ? `${id}-description`
+                  : undefined}
             aria-invalid={state === "error"}
             class={classes}
             {disabled}
