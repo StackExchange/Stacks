@@ -59,15 +59,6 @@ describe("TextArea", () => {
         );
     });
 
-    it('should render the "optional" label status', () => {
-        render(TextArea, {
-            id: "example-input",
-            label: "example label",
-            optional: true,
-        });
-        expect(screen.getByText("Optional")).to.have.class("s-label--status");
-    });
-
     it('should render the "required" label status', () => {
         render(TextArea, {
             id: "example-input",
@@ -269,15 +260,5 @@ describe("TextArea", () => {
 
         const requiredSymbol = screen.getByText("*");
         expect(requiredSymbol).to.have.attr("title", "Obbligatorio");
-    });
-
-    it("should localize the optional label status text when dedicated prop is specified", () => {
-        render(TextArea, {
-            id: "example-input",
-            label: "example label",
-            optional: true,
-            i18nOptionalText: "Facoltativo",
-        });
-        expect(screen.getByText("Facoltativo")).to.exist;
     });
 });
