@@ -1,6 +1,6 @@
 <script module lang="ts">
     export type FillSide = "prepend" | "append";
-    export type Size = "" | "sm" | "md" | "lg" | "xl";
+    export type Size = "" | "sm" | "lg";
     export type State = "" | "error" | "success" | "warning";
     export type Type =
         | "credit-card"
@@ -66,12 +66,6 @@
     export let name: string | undefined = undefined;
 
     /**
-     * Shows optional label status
-     * @type {boolean}
-     */
-    export let optional: boolean = false;
-
-    /**
      * Placeholder text for the input
      * @type {string}
      */
@@ -91,7 +85,7 @@
 
     /**
      * The size of the text input
-     * @type {"" | "sm" | "md" | "lg" | "xl"} Size
+     * @type {"" | "sm" | "lg"} Size
      */
     export let size: Size = "";
 
@@ -113,11 +107,6 @@
      */
     let className = "";
     export { className as class };
-
-    /**
-     * Localized translation for the optional label status text
-     */
-    export let i18nOptionalText: string | undefined = undefined;
 
     /**
      * Localized translation for the required label status text
@@ -154,8 +143,6 @@
         {size}
         {required}
         {i18nRequiredText}
-        {optional}
-        {i18nOptionalText}
     >
         {label}
     </Label>
