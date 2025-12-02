@@ -4,6 +4,7 @@
 </script>
 
 <script lang="ts">
+    import type { HTMLTextareaAttributes } from "svelte/elements";
     import Icon from "../Icon/Icon.svelte";
     import Label from "../Label/Label.svelte";
     import {
@@ -12,7 +13,7 @@
         IconCheckmark,
     } from "@stackoverflow/stacks-icons-legacy/icons";
 
-    interface Props {
+    interface Props extends Omit<HTMLTextareaAttributes, 'size'> {
         /**
          * `id` attribute of the text input
          * @type {string}

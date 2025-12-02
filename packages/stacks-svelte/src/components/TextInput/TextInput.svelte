@@ -19,6 +19,7 @@
 </script>
 
 <script lang="ts">
+    import type { HTMLInputAttributes } from "svelte/elements";
     import Icon from "../Icon/Icon.svelte";
     import Label from "../Label/Label.svelte";
     import {
@@ -29,7 +30,7 @@
         IconSearch,
     } from "@stackoverflow/stacks-icons-legacy/icons";
 
-    interface Props {
+    interface Props extends Omit<HTMLInputAttributes, "size" | "type"> {
         /**
          * `id` attribute of the text input
          * @type {string}
