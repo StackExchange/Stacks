@@ -33,7 +33,6 @@
 - `.s-badge__votes` removed
 - `.s-badge__rep-down` removed
 - `.s-badge__muted` removed
-- `.s-badge__filled` removed
 - `.s-badge__new` renamed to `.s-badge__featured`
 - `.s-award-bling` renamed to `.s-bling` (used in some badge templates)
 
