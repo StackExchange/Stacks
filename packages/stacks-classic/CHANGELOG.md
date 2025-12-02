@@ -1,5 +1,11 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.9
+
+### Patch Changes
+
+- [#2081](https://github.com/StackExchange/Stacks/pull/2081) [`327f25e`](https://github.com/StackExchange/Stacks/commit/327f25e541d4d6761273472b7134548607ab76f4) Thanks [@giamir](https://github.com/giamir)! - Navigation: adjust margin top of navigation title
+
 ## 3.0.0-beta.8
 
 ### Minor Changes
