@@ -10,6 +10,7 @@
     --_ba-wmn: 0;
     --_ba-bl: 0;
     --_ba-fw: unset;
+    --_ba-sq-bg: transparent;
 
     // SIZES
     &&__sm {
@@ -143,10 +144,20 @@
     &&__success {
         --_ba-bg: var(--green-100);
         --_ba-fc: var(--green-600);
+        --_ba-sq-bg: var(--green-200);
     }
     &&__featured {
         --_ba-bg: var(--purple-100);
         --_ba-fc: var(--purple-500);
+        --_ba-sq-bg: var(--purple-200);
+    }
+
+    // SQUARED
+    &&__squared {
+        & svg {
+            box-shadow: 0 0 0 var(--su2) var(--_ba-sq-bg);
+            background-color: var(--_ba-sq-bg);
+        }
     }
 
     // CHILD ELEMENTS

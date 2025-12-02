@@ -245,7 +245,14 @@ tags: components
     <p class="stacks-copy">Use the squared variant sparingly to provide additional emphasis, reserving it primarily for states related to gamification or achievements.</p>
     <div class="stacks-preview">
 {% highlight html %}
-TODO
+<span class="s-badge s-badge__squared s-badge__success">
+    @Svg.Check
+    Accepted answer
+</span>
+<span class="s-badge s-badge__squared s-badge__featured">
+    @Svg.VoteUp
+    Earn badge
+</span>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="overflow-x-auto" tabindex="0">
@@ -264,12 +271,8 @@ TODO
                                 <tr>
                                     <td class="va-middle pr8">
                                         <span class="{{ type.html }}">
-                                            {% if type.icon != nil %}
-                                                {% icon type.icon %}
-                                                {{ type.label }}
-                                            {% else %}
-                                                {{ type.label }}
-                                            {% endif %}
+                                            {% icon type.icon %}
+                                            {{ type.label }}
                                         </span>
                                     </td>
                                     <td class="va-middle">
