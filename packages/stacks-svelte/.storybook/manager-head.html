@@ -1,0 +1,20 @@
+<script type="module">
+    const findIframeById = (id, root = document) => {
+        for (const iframe of root.getElementsByTagName("iframe")) {
+            if (iframe.id === id) return iframe;
+            const found = findIframeById(id, iframe.contentDocument);
+            if (found) return found;
+        }
+
+        return null;
+    };
+
+    window.addEventListener("message", function (event) {
+        if (event?.data?.type === "resize-iframe") {
+            const iframe = findIframeById(event.data.frameId);
+            if (iframe) {
+                iframe.style.height = event.data.height + "px";
+            }
+        }
+    });
+</script>

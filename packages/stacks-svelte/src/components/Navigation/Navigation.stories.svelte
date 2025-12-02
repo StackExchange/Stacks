@@ -68,7 +68,6 @@
             text: "Settings",
             icon: IconSettings,
             iconSelected: IconSettingsFill,
-            dropdown: true,
         },
     ];
 
@@ -194,7 +193,6 @@
                 icon={item.icon}
                 iconSelected={item.iconSelected}
                 text={item.text}
-                dropdown={item.dropdown}
                 selected={horizontal === item.text}
                 onclick={() => (horizontal = item.text)}
             />
@@ -260,19 +258,23 @@
 <Story name="Dropdown" asChild>
     <Navigation class="hs1" label="Dropdown">
         {#each ["Label 1", "Label 2", "Label 3"] as label (label)}
-            <Popover id={`dropdown-${label}`} placement="bottom-start">
-                <PopoverReference>
-                    <NavigationItem
-                        text={label}
-                        selected={base === label}
-                        onclick={() => (base = label)}
-                        dropdown
-                    />
-                </PopoverReference>
-                <PopoverContent>
-                    <p>Content here</p>
-                </PopoverContent>
-            </Popover>
+            <NavigationItem
+                id={`dropdown-reference-${label}`}
+                text={label}
+                selected={base === label}
+                onclick={() => (base = label)}
+            >
+                {#snippet dropdown()}
+                    <Popover id={`dropdown-${label}`} placement="bottom-start">
+                        <PopoverReference
+                            elementId={`dropdown-reference-${label}`}
+                        />
+                        <PopoverContent>
+                            <p>Content here</p>
+                        </PopoverContent>
+                    </Popover>
+                {/snippet}
+            </NavigationItem>
         {/each}
     </Navigation>
 </Story>
