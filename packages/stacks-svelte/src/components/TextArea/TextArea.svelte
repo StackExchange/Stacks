@@ -43,12 +43,6 @@
     export let name: string | undefined = undefined;
 
     /**
-     * Shows optional label status
-     * @type {boolean}
-     */
-    export let optional: boolean = false;
-
-    /**
      * Placeholder text for the input
      * @type {string}
      */
@@ -86,11 +80,6 @@
     export { className as class };
 
     /**
-     * Localized translation for the optional label status text
-     */
-    export let i18nOptionalText: string | undefined = undefined;
-
-    /**
      * Localized translation for the required label status text
      */
     export let i18nRequiredText: string | undefined = undefined;
@@ -125,8 +114,6 @@
         {size}
         {required}
         {i18nRequiredText}
-        {optional}
-        {i18nOptionalText}
     >
         {label}
     </Label>
