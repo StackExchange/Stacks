@@ -28,6 +28,21 @@
     }
 
     // MODIFIERS
+    &&__expanded {
+        --_vo-child-g: var(--su2);
+        --_vo-child-p: 0;
+
+        .s-vote {
+            &--neutral {
+                display: none;
+            }
+            &--positive,
+            &--negative {
+                display: block;
+            }
+        }
+    }
+
     &&__horizontal {
         --_vo-fd: row;
         --_vo-child-h: var(--su32);
@@ -88,7 +103,21 @@
         white-space: nowrap;
     }
 
+    & &--positive,
+    & &--negative {
+        display: none;
+    }
+
+    & &--positive {
+        color: var(--green-500);
+    }
+
+    & &--negative {
+        color: var(--red-500);
+    }
+
     // INTERACTION
+    > button,
     & &--btn {
         &:focus-visible {
             .focus-styles(true, false);
