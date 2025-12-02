@@ -128,16 +128,20 @@
 
     --_in-py: var(--su8);
     --_te-hmn: calc(var(--su32) + var(--su4)); // 36px
+    --_te-h: calc(var(--su64) + var(--su6)); // 70px
 
     &&__sm {
         --_te-hmn: calc(var(--su32) - var(--su4)); // 28px
+        --_te-h: calc(var(--su48) + var(--su6)); // 54px
     }
 
     &&__lg {
         --_te-hmn: calc(var(--su48) - var(--su4)); // 44px
+        --_te-h: calc(var(--su64) + var(--su32)); // 96px
     }
 
     min-height: var(--_te-hmn);
+    height: var(--_te-h); //set initial height
 
     ~ .s-input-icon {
         right: var(--_in-px);
