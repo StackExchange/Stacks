@@ -81,7 +81,9 @@
                     label={`${state || "default"} input`}
                     {state}
                 >
-                    <span slot="message">{state || "default"} message</span>
+                    {#snippet message()}
+                    <span>{state || "default"} message</span>
+                    {/snippet}
                 </TextArea>
             </div>
         {/each}
@@ -92,19 +94,15 @@
     <div class="d-grid g16">
         <div class="d-flex fd-column">
             <TextArea
-                id="optional-status-input"
-                placeholder="Age"
-                label="optional input"
-                optional
-            />
-        </div>
-        <div class="d-flex fd-column">
-            <TextArea
                 id="required-status-input"
                 placeholder="Full name"
                 label="required input"
                 required
-            />
+            >
+                {#snippet description()}
+                <span>this input has been marked required.</span>
+                {/snippet}
+            </TextArea>
         </div>
     </div>
 </Story>
@@ -135,20 +133,21 @@
     </div>
 </Story>
 
-<Story name="Slots" asChild>
+<Story name="Snippets" asChild>
+    <p>The examples below show all the snippets this component supports.</p>
     <div class="d-grid g16">
         <div class="d-flex fd-column">
-            <TextArea id="description-slot-input" label="Description slot">
-                <span slot="description">
-                    This TextArea includes a description slot.
-                </span>
+            <TextArea id="description-snippet-input" label="Description snippet">
+                {#snippet description()}
+                    <span>This TextArea includes a description snippet.</span>
+                {/snippet}
             </TextArea>
         </div>
         <div class="d-flex fd-column">
-            <TextArea id="message-slot-input" label="Message slot">
-                <span slot="message">
-                    This TextArea includes a message slot.
-                </span>
+            <TextArea id="message-snippet-input" label="Message snippet">
+                {#snippet message()}
+                    <span>This TextArea includes a message snippet.</span>
+                {/snippet}
             </TextArea>
         </div>
     </div>
