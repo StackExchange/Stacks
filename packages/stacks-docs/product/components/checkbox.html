@@ -6,271 +6,139 @@ description: Checkable inputs that visually allow for multiple options or true/f
 tags: components
 ---
 <section class="stacks-section">
-    {% header "h2", "Base style" %}
-    {% header "h3", "Radio" %}
-    <p class="stacks-copy">Use radio buttons when users must select exactly one mutually exclusive option from a list (most commonly used in forms).</p>
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="s-check-control">
-    <input class="s-radio" type="radio" name="example-name-rad" id="example-item-rad" />
-    <label class="s-label" for="example-item-rad">Default</label>
-</div>
 
-<!-- Focus -->
-<div class="s-check-control">
-    <input class="s-radio" type="radio" name="example-name-rad" id="example-focus-rad" />
-    <label class="s-label" for="example-focus-rad">Focus</label>
-</div>
-
-<!-- Disabled -->
-<div class="s-check-control">
-    <input class="s-radio" type="radio" name="example-name-rad" id="example-disabled-rad" disabled />
-    <label class="s-label" for="example-disabled-rad">Disabled</label>
-</div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex fd-column g16">
-                <div class="d-inline-flex g64">
-                    <div class="fs-caption fs-italic w96">Unchecked</div>
-                    <!-- Base -->
-                    <div class="s-check-control">
-                        <input class="s-radio" type="radio" name="example-name-rad" id="example-rad" />
-                        <label class="s-label" for="example-rad">Default</label>
-                    </div>
-
-                    <!-- Focus -->
-                    <div class="s-check-control">
-                        <input class="s-radio" type="radio" name="example-name-rad" id="example-focus-rad" />
-                        <label class="s-label" for="example-focus-rad">Focus</label>
-                    </div>
-
-                    <!-- Disabled -->
-                    <div class="s-check-control">
-                        <input class="s-radio" type="radio" name="example-name-rad" id="example-disabled-rad" disabled />
-                        <label class="s-label" for="example-disabled-rad">Disabled</label>
-                    </div>
-                </div>
-                <div class="d-inline-flex g64">
-                    <div class="fs-caption fs-italic w96">Checked</div>
-                    <!-- Checked -->
-                    <div class="s-check-control">
-                        <input class="s-radio" type="radio" name="example-name-rad-checked-1" id="example-rad-checked" checked />
-                        <label class="s-label" for="example-rad-checked">Default</label>
-                    </div>
-
-                    <!-- Focus and checked -->
-                    <div class="s-check-control">
-                        <input class="s-radio" type="radio" name="example-name-rad-checked-3" id="example-focus-rad-checked" checked />
-                        <label class="s-label" for="example-focus-rad-checked">Focus</label>
-                    </div>
-
-                    <!-- Disabled and checked -->
-                    <div class="s-check-control">
-                        <input class="s-radio" type="radio" name="example-name-rad-checked-2" id="example-disabled-rad-checked" checked disabled />
-                        <label class="s-label" for="example-disabled-rad-checked">Disabled</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "Checkbox" %}
-    <p class="stacks-copy">Use checkboxes to allow users to select one or more items from a list of options (most commonly used in forms).</p>
-    {% tip, "", "mb32" %}
-        <strong>Note:</strong> The :indeterminate pseudo class can only be set via JavaScript. Use the HTMLInputElement object's indeterminate property to set the state.
-    {% endtip %}
+    {% header "h2", "Checkbox" %}
+    <p class="stacks-copy">Use the <code class="stacks-code">.s-checkbox</code> class on <code class="stacks-code">input[type="checkbox"]</code> elements to apply the default checkbox styles.</p>
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-check-control">
     <input class="s-checkbox" type="checkbox" name="example-name" id="example-item" />
-    <label class="s-label" for="example-item">Default</label>
-</div>
-
-<!-- Focus -->
-<div class="s-check-control">
-    <input class="s-checkbox" type="checkbox" name="example-name" id="example-focus" />
-    <label class="s-label" for="example-focus">Focus</label>
-</div>
-
-<!-- Disabled -->
-<div class="s-check-control">
-    <input class="s-checkbox" type="checkbox" name="example-name" id="example-disabled" disabled />
-    <label class="s-label" for="example-disabled">Disabled</label>
+    <label class="s-label" for="example-item">Checkbox Label</label>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="d-flex fd-column g16">
-                <div class="d-inline-flex g64">
-                    <div class="fs-caption fs-italic w96">Unchecked</div>
-                    <!-- Base -->
-                    <div class="s-check-control">
-                        <input class="s-checkbox" type="checkbox" name="example-name" id="example" />
-                        <label class="s-label" for="example">Default</label>
-                    </div>
-
-                    <!-- Focus -->
-                    <div class="s-check-control">
-                        <input class="s-checkbox" type="checkbox" name="example-name" id="example-focus" />
-                        <label class="s-label" for="example-focus">Focus</label>
-                    </div>
-
-                    <!-- Disabled -->
-                    <div class="s-check-control">
-                        <input class="s-checkbox" type="checkbox" name="example-name" id="example-disabled" disabled />
-                        <label class="s-label" for="example-disabled">Disabled</label>
-                    </div>
-                </div>
-                <div class="d-inline-flex g64">
-                    <div class="fs-caption fs-italic w96">Checked</div>
-                    <!-- Checked -->
-                    <div class="s-check-control">
-                        <input class="s-checkbox" type="checkbox" name="example-name-checked-1" id="example-checked" checked />
-                        <label class="s-label" for="example-checked">Default</label>
-                    </div>
-
-                    <!-- Focus and checked -->
-                    <div class="s-check-control">
-                        <input class="s-checkbox" type="checkbox" name="example-name-checked-3" id="example-focus-checked" checked />
-                        <label class="s-label" for="example-focus-checked">Focus</label>
-                    </div>
-
-                    <!-- Disabled and checked -->
-                    <div class="s-check-control">
-                        <input class="s-checkbox" type="checkbox" name="example-name-checked-2" id="example-disabled-checked" checked disabled />
-                        <label class="s-label" for="example-disabled-checked">Disabled</label>
-                    </div>
-                </div>
-                <div class="d-inline-flex g64">
-                    <div class="fs-caption fs-italic w96">Indeterminate</div>
-                    <!-- Indeterminate -->
-                    <div class="s-check-control">
-                        <input class="s-checkbox" type="checkbox" name="example-name-indeterminate-1" id="example-indeterminate" />
-                        <label class="s-label" for="example-indeterminate">Default</label>
-                    </div>
-
-                    <!-- Focus and indeterminate -->
-                    <div class="s-check-control">
-                        <input class="s-checkbox" type="checkbox" name="example-name-indeterminate-3" id="example-focus-indeterminate" />
-                        <label class="s-label" for="example-focus-indeterminate">Focus</label>
-                    </div>
-
-                    <!-- Disabled and indeterminate -->
-                    <div class="s-check-control">
-                        <input class="s-checkbox" type="checkbox" name="example-name-indeterminate-2" id="example-disabled-indeterminate" disabled />
-                        <label class="s-label" for="example-disabled-indeterminate">Disabled</label>
-                    </div>
-                </div>
+            <div class="overflow-x-auto" tabindex="0">
+                <table class="wmn5 s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col">Example</th>
+                            <th scope="col">Class</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for input in checkbox.checkbox %}
+                            <tr>
+                                <td class="va-middle pr8">
+                                    <div class="s-check-control">
+                                        <input class="s-checkbox" type="checkbox" name="checkbox-group" id="{{input.id}}" {% if input.checked %}checked{% endif %} {% if input.disabled %}disabled{% endif %} />
+                                        <label class="s-label" for="{{input.id}}">{{ input.label }}</label>
+                                    </div>
+                                </td>
+                                <td class="va-middle">
+                                    <div class="d-flex g4 fw-wrap">
+                                        <code class="stacks-code">.s-checkbox</code>
+                                    </div>
+                                </td>
+                                <td class="va-middle">{{ input.description }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
-    {% header "h3", "Checkmark" %}
-    <p class="stacks-copy">Use the checkmark variant for selection items within menus and dropdowns (vertical lists only). Its recommended use is for single-selection (like a radio), but it can be configured for multi-select. This variant is stylized for this specific context and should not be used for lists of options in a form (use radio buttons or checkboxes instead).</p>
-    {% tip, "", "mb32" %}
-        <strong>Note on focus:</strong> This variant does not have a dedicated focus state. Focus should be handled at the parent level, such as on the full menu item that contains the checkmark.
-    {% endtip %}
+    {% header "h2", "Radio" %}
+    <p class="stacks-copy">Use the <code class="stacks-code">.s-radio</code> class on <code class="stacks-code">input[type="radio"]</code> elements to apply the default radio styles.</p>
     <div class="stacks-preview">
 {% highlight html %}
-<!-- Without Icon -->
-<div class="s-check-control s-check-control__checkmark">
-    <label class="s-label" for="example-checkmark-no-icon">Default</label>
-    <input class="s-checkmark" type="radio" name="example-name-checkmark" id="example-checkmark-no-icon" />
-</div>
-
-<!-- Disabled without Icon -->
-<div class="s-check-control s-check-control__checkmark">
-    <label class="s-label" for="example-disabled-checkmark-no-icon">Disabled</label>
-    <input class="s-checkmark" type="radio" name="example-name-checkmark" id="example-disabled-checkmark-no-icon" disabled />
-</div>
-
-<!-- With Icon -->
-<div class="s-check-control s-check-control__checkmark">
-    {% icon "Dashboard" %}
-    <label class="s-label" for="example-item-checkmark">Default</label>
-    <input class="s-checkmark" type="radio" name="example-name-checkmark" id="example-item-checkmark" />
-</div>
-
-<!-- Disabled with Icon -->
-<div class="s-check-control s-check-control__checkmark">
-    {% icon "Dashboard" %}
-    <label class="s-label" for="example-disabled-checkmark">Disabled</label>
-    <input class="s-checkmark" type="radio" name="example-name-checkmark" id="example-disabled-checkmark" disabled />
+<div class="s-check-control">
+    <input class="s-radio" type="radio" name="example-name" id="example-item" />
+    <label class="s-label" for="example-item">Radio Label</label>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="d-flex fd-column g16">
-                <div class="d-inline-flex g64">
-                    <div class="fs-caption fs-italic w96">Unchecked</div>
-                    <!-- Unchecked without icon -->
-                    <div class="w128">
-                        <label class="s-check-control s-check-control__checkmark">
-                            <span class="s-label" for="example-checkmark-no-icon">Default</span>
-                            <input type="radio" name="example-name-checkmark-unchecked" id="example-checkmark-no-icon" />
-                        </label>
-                    </div>
-                    <!-- Unchecked disabled without icon -->
-                    <div class="w128">
-                        <label class="s-check-control s-check-control__checkmark">
-                            <span class="s-label" for="example-checkmark-disabled-no-icon">Disabled</span>
-                            <input type="radio" name="example-name-checkmark-unchecked" id="example-checkmark-disabled-no-icon" disabled />
-                        </label>
-                    </div>
-                </div>
-                <div class="d-inline-flex g64">
-                    <div class="fs-caption fs-italic w96"></div>
-                    <!-- Base -->
-                    <div class="w128">
-                        <label class="s-check-control s-check-control__checkmark">
-                            {% icon "Dashboard" %}
-                            <span class="s-label" for="example-checkmark">Default</span>
-                            <input type="radio" name="example-name-checkmark-unchecked" id="example-checkmark" />
-                        </label>
-                    </div>
-                    <!-- Unchecked disabled with icon -->
-                    <div class="w128">
-                        <label class="s-check-control s-check-control__checkmark">
-                            {% icon "Dashboard" %}
-                            <span class="s-label" for="example-checkmark-disabled">Disabled</span>
-                            <input type="radio" name="example-name-checkmark-unchecked" id="example-checkmark-disabled" disabled />
-                        </label>
-                    </div>
-                </div>
-                <div class="d-inline-flex g64">
-                    <div class="fs-caption fs-italic w96">Checked</div>
-                    <!-- Checked without icon -->
-                    <div class="w128">
-                        <label class="s-check-control s-check-control__checkmark">
-                            <span class="s-label" for="example-checkmark-no-icon-checked">Default</span>
-                            <input type="checkbox" name="example-name-checkmark-no-icon-3" id="example-checkmark-no-icon-checked" checked />
-                        </label>
-                    </div>
-                    <!-- Checked disabled without icon -->
-                    <div class="w128">
-                        <label class="s-check-control s-check-control__checkmark">
-                            <span class="s-label" for="example-checkmark-disabled-checked-no-icon">Disabled</span>
-                            <input type="checkbox" name="example-name-checkmark-disabled-checked-no-icon" id="example-checkmark-disabled-checked-no-icon" checked disabled />
-                        </label>
-                    </div>
-                </div>
-                <div class="d-inline-flex g64">
-                    <div class="fs-caption fs-italic w96"></div>
-                    <!-- Checked -->
-                    <div class="w128">
-                        <label class="s-check-control s-check-control__checkmark">
-                            {% icon "Dashboard" %}
-                            <span class="s-label" for="example-checkmark-checked">Default</span>
-                            <input type="checkbox" name="example-name-checkmark-checked-1" id="example-checkmark-checked" checked />
-                        </label>
-                    </div>
-                    <!-- Disabled and checked -->
-                    <div class="w128">
-                        <label class="s-check-control s-check-control__checkmark">
-                            {% icon "Dashboard" %}
-                            <span class="s-label" for="example-checkmark-disabled-checked">Disabled</span>
-                            <input type="checkbox" name="example-name-checkmark-disabled-checked" id="example-checkmark-disabled-checked" checked disabled />
-                        </label>
-                    </div>
-                </div>
+            <div class="overflow-x-auto" tabindex="0">
+                <table class="wmn5 s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col">Example</th>
+                            <th scope="col">Class</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for input in checkbox.radio %}
+                            {% assign name = input.name | default: "radio-group" %}
+                            <tr>
+                                <td class="va-middle pr8">
+                                    <div class="s-check-control">
+                                        <input class="s-radio" type="radio" name="{{ name }}" id="{{input.id}}" {% if input.checked %}checked{% endif %} {% if input.disabled %}disabled{% endif %} />
+                                        <label class="s-label" for="{{input.id}}">{{ input.label }}</label>
+                                    </div>
+                                </td>
+                                <td class="va-middle">
+                                    <div class="d-flex g4 fw-wrap">
+                                        <code class="stacks-code">.s-radio</code>
+                                    </div>
+                                </td>
+                                <td class="va-middle">{{ input.description }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% header "h2", "Checkmark" %}
+    <p class="stacks-copy">The checkmark style is an alternative to the default checkbox and radio styles. To use the checkmark style, wrap your input and label in a container with the <code class="stacks-code">.s-check-control__checkmark</code> class and omit <code class="stacks-code">.s-checkbox</code> or <code class="stacks-code">.s-radio</code>.</p>
+
+    <div class="stacks-preview">
+{% highlight html %}
+<!-- Using checkbox element -->
+<label class="s-check-control s-check-control__checkmark" for="example-item">
+    Checkmark Label
+    <input type="checkbox" name="example-name" id="example-item" />
+</label>
+
+<!-- Using radio element -->
+<label class="s-check-control s-check-control__checkmark" for="example-item">
+    Checkmark Label
+    <input type="radio" name="example-name" id="example-item" />
+</label>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="overflow-x-auto" tabindex="0">
+                <table class="wmn5 s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="s-table--cell3">Example</th>
+                            <th scope="col">Class</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for input in checkbox.checkmark %}
+                            <tr>
+                                <td class="va-middle pr8">
+                                    <label class="s-check-control s-check-control__checkmark" for="{{input.id}}">
+                                        {{ input.label }}
+                                        <input type="checkbox" name="checkmark-checkbox-group" id="{{input.id}}" {% if input.checked %}checked{% endif %} {% if input.disabled %}disabled{% endif %} />
+                                    </label>
+                                </td>
+                                <td class="va-middle">
+                                    <div class="d-flex g4 fw-wrap">
+                                        <code class="stacks-code">.s-check-control</code>
+                                        <code class="stacks-code">.s-check-control__checkmark</code>
+                                    </div>
+                                </td>
+                                <td class="va-middle">{{ input.description }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -288,166 +156,103 @@ tags: components
 </section>
 
 <section class="stacks-section">
-    {% header "h2", "Examples" %}
+    {% header "h2", "Check group" %}
     {% header "h3", "Vertical group" %}
     <div class="stacks-preview">
 {% highlight html %}
 <!-- Checkbox -->
 <fieldset class="s-check-group">
-    <legend class="s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
+    <legend class="s-label">…</legend>
     <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-vert-checkbox-1" />
-        <label class="s-label" for="choice-vert-checkbox-1">Apples</label>
+        <input class="s-checkbox" type="checkbox" name="…" id="vert-checkbox-1" />
+        <label class="s-label" for="vert-checkbox-1">…</label>
     </div>
     <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-vert-checkbox-2" />
-        <label class="s-label" for="choice-vert-checkbox-2">Oranges</label>
+        <input class="s-checkbox" type="checkbox" name="…" id="vert-checkbox-2" />
+        <label class="s-label" for="vert-checkbox-2">…</label>
     </div>
     <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-vert-checkbox-3" />
-        <label class="s-label" for="choice-vert-checkbox-3">Bananas</label>
+        <input class="s-checkbox" type="checkbox" name="…" id="vert-checkbox-3" />
+        <label class="s-label" for="vert-checkbox-3">…</label>
     </div>
 </fieldset>
 
 <!-- Radio -->
 <fieldset class="s-check-group">
-    <legend class="s-label">Which fruit do you like best?</legend>
+    <legend class="s-label">…</legend>
     <div class="s-check-control">
-        <input class="s-radio" type="radio" name="choice-vert-radio" id="choice-vert-radio-1" />
-        <label class="s-label" for="choice-vert-radio-1">Apples</label>
+        <input class="s-radio" type="radio" name="vert-radio" id="vert-radio-1" />
+        <label class="s-label" for="vert-radio-1">…</label>
     </div>
     <div class="s-check-control">
-        <input class="s-radio" type="radio" name="choice-vert-radio" id="choice-vert-radio-2" />
-        <label class="s-label" for="choice-vert-radio-2">Oranges</label>
+        <input class="s-radio" type="radio" name="vert-radio" id="vert-radio-2" />
+        <label class="s-label" for="vert-radio-2">…</label>
     </div>
     <div class="s-check-control">
-        <input class="s-radio" type="radio" name="choice-vert-radio" id="choice-vert-radio-3" />
-        <label class="s-label" for="choice-vert-radio-3">Bananas</label>
+        <input class="s-radio" type="radio" name="vert-radio" id="vert-radio-3" />
+        <label class="s-label" for="vert-radio-3">…</label>
     </div>
 </fieldset>
 
-<!-- Checkmark -->
-    <div class="s-popover is-visible ps-relative p8"> 
-        <ul class="s-menu" role="menu">
-            <li class="s-menu--title" role="separator">Sort by</li>
-            <li class="s-menu--item" role="menuitem">
-                <div class="s-check-control s-check-control__checkmark">
-                    <label class="s-label" for="choice-vert-checkmark-1">Relevant</label>
-                    <input class="s-checkmark" type="radio" name="choice-vert-checkmark" id="choice-vert-checkmark-1" checked/>
-                </div>
-            </li>
-            <li class="s-menu--item" role="menuitem">
-                <div class="s-check-control s-check-control__checkmark">
-                    <label class="s-label" for="choice-vert-checkmark-2">Recent activity</label>
-                    <input class="s-checkmark" type="radio" name="choice-vert-checkmark" id="choice-vert-checkmark-2"/>
-                </div>
-            </li>
-            <li class="s-menu--item" role="menuitem">
-                <div class="s-check-control s-check-control__checkmark">
-                    <label class="s-label" for="choice-vert-checkmark-3">Most frequent</label>
-                    <input class="s-checkmark" type="radio" name="choice-vert-checkmark" id="choice-vert-checkmark-3"/>
-                </div>
-            </li>
-        </ul>
+<!-- Checkmark w/ radio using .s-menu for additional styling -->
+<fieldset class="s-menu s-check-group">
+    <legend class="s-menu--title">…</legend>
+    <div class="s-menu--item">
+        <label class="s-menu--action s-check-control s-check-control__checkmark" for="vert-checkmark-1">
+            <input type="radio" name="vert-checkmark" id="vert-checkmark-1" />
+            …
+        </label>
     </div>
-    <div class="s-popover is-visible ps-relative p8"> 
-        <ul class="s-menu" role="menu">
-            <li class="s-menu--title" role="separator">Layout</li>
-            <li class="s-menu--item" role="menuitem">
-                <div class="s-check-control s-check-control__checkmark">
-                    {% icon "Dashboard" %}
-                    <label class="s-label" for="choice-vert-checkmark-4">Expanded</label>
-                    <input class="s-checkmark" type="radio" name="choice-vert-checkmark-layout" id="choice-vert-checkmark-4" checked/>
-                </div>
-            </li>
-            <li class="s-menu--item" role="menuitem">
-                <div class="s-check-control s-check-control__checkmark">
-                    {% icon "Dashboard" %}
-                    <label class="s-label" for="choice-vert-checkmark-5">Compact</label>
-                    <input class="s-checkmark" type="radio" name="choice-vert-checkmark-layout" id="choice-vert-checkmark-5"/>
-                </div>
-            </li>
-        </ul>
+    <div class="s-menu--item">
+        <label class="s-menu--action s-check-control s-check-control__checkmark" for="vert-checkmark-2">
+            <input type="radio" name="vert-checkmark" id="vert-checkmark-2" />
+            …
+        </label>
     </div>
+    <div class="s-menu--item">
+        <label class="s-menu--action s-check-control s-check-control__checkmark" for="vert-checkmark-3">
+            <input type="radio" name="vert-checkmark" id="vert-checkmark-3" />
+            …
+        </label>
+    </div>
+</fieldset>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="stacks-preview--example d-flex g24 fd-column">
             <!-- Checkbox -->
             <fieldset class="s-check-group">
                 <legend class="s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
-                <div class="s-check-control">
-                    <input class="s-checkbox" type="checkbox" name="" id="choice-vert-checkbox-1" />
-                    <label class="s-label" for="choice-vert-checkbox-1">Apples</label>
-                </div>
-                <div class="s-check-control">
-                    <input class="s-checkbox" type="checkbox" name="" id="choice-vert-checkbox-2" />
-                    <label class="s-label" for="choice-vert-checkbox-2">Oranges</label>
-                </div>
-                <div class="s-check-control">
-                    <input class="s-checkbox" type="checkbox" name="" id="choice-vert-checkbox-3" />
-                    <label class="s-label" for="choice-vert-checkbox-3">Bananas</label>
-                </div>
+                {% for item in checkbox.group-items %}
+                    <div class="s-check-control">
+                        <input class="s-checkbox" type="checkbox" name="" id="vert-checkbox-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
+                        <label class="s-label" for="vert-checkbox-{{ item.label }}">{{ item.label }}</label>
+                    </div>
+                {% endfor %}
             </fieldset>
 
             <!-- Radio -->
-            <fieldset class="s-check-group mt16">
-                <legend class="s-label">Which fruit do you like best?</legend>
-                <div class="s-check-control">
-                    <input class="s-radio" type="radio" name="choice-vert-radio" id="choice-vert-radio-1" />
-                    <label class="s-label" for="choice-vert-radio-1">Apples</label>
-                </div>
-                <div class="s-check-control">
-                    <input class="s-radio" type="radio" name="choice-vert-radio" id="choice-vert-radio-2" />
-                    <label class="s-label" for="choice-vert-radio-2">Oranges</label>
-                </div>
-                <div class="s-check-control">
-                    <input class="s-radio" type="radio" name="choice-vert-radio" id="choice-vert-radio-3" />
-                    <label class="s-label" for="choice-vert-radio-3">Bananas</label>
-                </div>
+            <fieldset class="s-check-group">
+                <legend class="s-label">Which types of fruit do you like?</legend>
+                {% for item in checkbox.group-items %}
+                    <div class="s-check-control">
+                        <input class="s-radio" type="radio" name="vert-radio" id="vert-radio-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
+                        <label class="s-label" for="vert-radio-{{ item.label }}">{{ item.label }}</label>
+                    </div>
+                {% endfor %}
             </fieldset>
-            <!-- Checkmark-->
-            <div class="d-flex g48 mt32">
-                <div class="s-popover is-visible ps-relative p8 w128"> 
-                    <ul class="s-menu" role="menu">
-                        <li class="s-menu--title" role="separator">Sort by</li>
-                        <li class="s-menu--item" role="menuitem">
-                            <label class="s-check-control s-check-control__checkmark">
-                                <span class="s-label">Relevant</span>
-                                <input type="radio" name="choice-vert-checkmark" id="choice-vert-checkmark-1" checked/>
+
+            <!-- Checkmark w/ radio using .s-menu for additional styling -->
+            <div class="s-popover is-visible ps-relative ws2 p8">
+                <fieldset class="s-menu s-check-group">
+                    <legend class="s-menu--title">Pick a fruit</legend>
+                    {% for item in checkbox.group-items %}
+                        <div class="s-menu--item">
+                            <label class="s-menu--action s-check-control s-check-control__checkmark" for="vert-checkmark-{{ item.label }}">
+                                <input type="radio" name="vert-checkmark" id="vert-checkmark-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
+                                {{ item.label }}
                             </label>
-                        </li>
-                        <li class="s-menu--item" role="menuitem">
-                            <label class="s-check-control s-check-control__checkmark">
-                                <span class="s-label">Recent activity</span>
-                                <input type="radio" name="choice-vert-checkmark" id="choice-vert-checkmark-2"/>
-                            </label>
-                        </li>
-                        <li class="s-menu--item" role="menuitem">
-                            <label class="s-check-control s-check-control__checkmark">
-                                <span class="s-label">Most frequent</span>
-                                <input type="radio" name="choice-vert-checkmark" id="choice-vert-checkmark-3"/>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-                <div class="s-popover is-visible ps-relative p8 w128"> 
-                    <ul class="s-menu" role="menu">
-                        <li class="s-menu--title" role="separator">Layout</li>
-                        <li class="s-menu--item" role="menuitem">
-                            <label class="s-check-control s-check-control__checkmark">
-                                {% icon "Dashboard" %}
-                                <span class="s-label">Expanded</span>
-                                <input type="radio" name="choice-vert-checkmark-layout" id="choice-vert-checkmark-4" checked/>
-                            </label>
-                        </li>
-                        <li class="s-menu--item" role="menuitem">
-                            <label class="s-check-control s-check-control__checkmark">
-                                {% icon "Dashboard" %}
-                                <span class="s-label">Compact</span>
-                                <input type="radio" name="choice-vert-checkmark-layout" id="choice-vert-checkmark-5"/>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
+                        </div>
+                    {% endfor %}
+                </fieldset>
             </div>
         </div>
     </div>
@@ -457,71 +262,59 @@ tags: components
 {% highlight html %}
 <!-- Checkbox -->
 <fieldset class="s-check-group s-check-group__horizontal">
-    <legend class="s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
+    <legend class="s-label">…</legend>
     <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-horz-checkbox-1" />
-        <label class="s-label" for="choice-horz-checkbox-1">Apples</label>
+        <input class="s-checkbox" type="checkbox" name="…" id="vert-checkbox-1" />
+        <label class="s-label" for="vert-checkbox-1">…</label>
     </div>
     <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-horz-checkbox-2" />
-        <label class="s-label" for="choice-horz-checkbox-2">Oranges</label>
+        <input class="s-checkbox" type="checkbox" name="…" id="vert-checkbox-2" />
+        <label class="s-label" for="vert-checkbox-2">…</label>
     </div>
     <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-horz-checkbox-3" />
-        <label class="s-label" for="choice-horz-checkbox-3">Bananas</label>
+        <input class="s-checkbox" type="checkbox" name="…" id="vert-checkbox-3" />
+        <label class="s-label" for="vert-checkbox-3">…</label>
     </div>
 </fieldset>
 
 <!-- Radio -->
 <fieldset class="s-check-group s-check-group__horizontal">
-    <legend class="s-label">Which fruit do you like best?</legend>
+    <legend class="s-label">…</legend>
     <div class="s-check-control">
-        <input class="s-radio" type="radio" name="choice-horz-radio" id="choice-horz-radio-1" />
-        <label class="s-label" for="choice-horz-radio-1">Apples</label>
+        <input class="s-radio" type="radio" name="hori-radio" id="hori-radio-1" />
+        <label class="s-label" for="hori-radio-1">…</label>
     </div>
     <div class="s-check-control">
-        <input class="s-radio" type="radio" name="choice-horz-radio" id="choice-horz-radio-2" />
-        <label class="s-label" for="choice-horz-radio-2">Oranges</label>
+        <input class="s-radio" type="radio" name="hori-radio" id="hori-radio-2" />
+        <label class="s-label" for="hori-radio-2">…</label>
     </div>
     <div class="s-check-control">
-        <input class="s-radio" type="checkbox" name="choice-horz-radio" id="choice-horz-radio-3" />
-        <label class="s-label" for="choice-horz-radio-3">Bananas</label>
+        <input class="s-radio" type="radio" name="hori-radio" id="hori-radio-3" />
+        <label class="s-label" for="hori-radio-3">…</label>
     </div>
 </fieldset>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="stacks-preview--example d-flex g24 fd-column">
             <!-- Checkbox -->
             <fieldset class="s-check-group s-check-group__horizontal">
                 <legend class="s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
-                <div class="s-check-control">
-                    <input class="s-checkbox" type="checkbox" name="" id="choice-horz-checkbox-1" />
-                    <label class="s-label" for="choice-horz-checkbox-1">Apples</label>
-                </div>
-                <div class="s-check-control">
-                    <input class="s-checkbox" type="checkbox" name="" id="choice-horz-checkbox-2" />
-                    <label class="s-label" for="choice-horz-checkbox-2">Oranges</label>
-                </div>
-                <div class="s-check-control">
-                    <input class="s-checkbox" type="checkbox" name="" id="choice-horz-checkbox-3" />
-                    <label class="s-label" for="choice-horz-checkbox-3">Bananas</label>
-                </div>
+                {% for item in checkbox.group-items %}
+                    <div class="s-check-control">
+                        <input class="s-checkbox" type="checkbox" name="" id="hori-checkbox-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
+                        <label class="s-label" for="hori-checkbox-{{ item.label }}">{{ item.label }}</label>
+                    </div>
+                {% endfor %}
             </fieldset>
 
             <!-- Radio -->
-            <fieldset class="s-check-group s-check-group__horizontal mt16">
-                <legend class="s-label">Which fruit do you like best?</legend>
-                <div class="s-check-control">
-                    <input class="s-radio" type="radio" name="choice-horz-radio" id="choice-horz-radio-1" />
-                    <label class="s-label" for="choice-horz-radio-1">Apples</label>
-                </div>
-                <div class="s-check-control">
-                    <input class="s-radio" type="radio" name="choice-horz-radio" id="choice-horz-radio-2" />
-                    <label class="s-label" for="choice-horz-radio-2">Oranges</label>
-                </div>
-                <div class="s-check-control">
-                    <input class="s-radio" type="radio" name="choice-horz-radio" id="choice-horz-radio-3" />
-                    <label class="s-label" for="choice-horz-radio-3">Bananas</label>
-                </div>
+            <fieldset class="s-check-group s-check-group__horizontal">
+                <legend class="s-label">Which types of fruit do you like?</legend>
+                {% for item in checkbox.group-items %}
+                    <div class="s-check-control">
+                        <input class="s-radio" type="radio" name="hori-radio" id="hori-radio-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
+                        <label class="s-label" for="hori-radio-{{ item.label }}">{{ item.label }}</label>
+                    </div>
+                {% endfor %}
             </fieldset>
         </div>
     </div>
@@ -529,231 +322,209 @@ tags: components
     {% header "h3", "With description copy" %}
     <div class="stacks-preview">
 {% highlight html %}
+<!-- Checkbox -->
 <fieldset class="s-check-group">
-    <legend class="s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
+    <legend class="s-label">…</legend>
     <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-copy-checkbox-1" />
-        <label class="s-label" for="choice-copy-checkbox-1">
-            Apples
-            <p class="s-description">A sweet, edible fruit produced by an apple tree (Malus pumila).</p>
+        <input class="s-checkbox" type="checkbox" name="…" id="desc-checkbox-1" />
+        <label class="s-label" for="desc-checkbox-1">
+            …
+            <p class="s-description">…</p>
         </label>
     </div>
-    <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-copy-checkbox-2" />
-        <label class="s-label" for="choice-copy-checkbox-2">
-            Oranges
-            <p class="s-description">A fruit of the citrus species Citrus × sinensis in the family Rutaceae.</p>
-        </label>
-    </div>
-    <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-copy-checkbox-3" />
-        <label class="s-label" for="choice-copy-checkbox-3">
-            Bananas
-            <p class="s-description">A fruit – botanically a berry – produced by several kinds of large herbaceous flowering plants in the genus Musa.</p>
-        </label>
-    </div>
+    …
 </fieldset>
 
-<!-- Checkmark -->
-    <div class="s-popover p8"> 
-        <ul class="s-menu" role="menu">
-            <li class="s-menu--title" role="separator">Sort answers by</li>
-            <li class="s-menu--item" role="menuitem">
-                <label class="s-check-control s-check-control__checkmark">
-                    {% icon "Dashboard" %}
-                    <span class="s-label">
-                        Trending
-                        <p class="s-description">Highest vote counts more</p>
-                    </span>
-                    <input type="radio" name="choice-description-copy-checkmark" id="choice-description-copy-checkmark-1" checked/>
-                </label>
-            </li>
-            <li class="s-menu--item" role="menuitem">
-                <label class="s-check-control s-check-control__checkmark">
-                    {% icon "Question" %}
-                    <span class="s-label">
-                        Date modified
-                        <p class="s-description">Newest first</p>
-                    </span>
-                    <input type="radio" name="choice-description-copy-checkmark" id="choice-description-copy-checkmark-2"/>
-                </label>
-            </li>
-            <li class="s-menu--item" role="menuitem">
-                <label class="s-check-control s-check-control__checkmark">
-                    {% icon "Inbox" %}
-                    <span class="s-label">
-                        Date created
-                        <p class="s-description">Oldest first</p>
-                    </span>
-                    <input type="radio" name="choice-description-copy-checkmark" id="choice-description-copy-checkmark-3"/>
-                </label>
-            </li>
-        </ul>
+<!-- Radio -->
+<fieldset class="s-check-group">
+    <legend class="s-label">…</legend>
+    <div class="s-check-control">
+        <input class="s-radio" type="radio" name="desc-radio" id="desc-radio-1" />
+        <label class="s-label" for="desc-radio-1">
+            …
+            <p class="s-description">…</p>
+        </label>
     </div>
-    <div class="s-popover p8"> 
-        <ul class="s-menu" role="menu">
-            <li class="s-menu--title" role="separator">Select answers by</li>
-            <li class="s-menu--item" role="menuitem">
-                <label class="s-check-control s-check-control__checkmark">
-                    {% icon "Dashboard" %}
-                    <span class="s-label">
-                        Trending
-                        <p class="s-description">Highest vote counts more</p>
-                    </span>
-                    <input type="checkbox" name="choice-description-copy-checkmark-checkbox" id="choice-description-copy-checkmark-4" checked/>
-                </label>
-            </li>
-            <li class="s-menu--item" role="menuitem">
-                <label class="s-check-control s-check-control__checkmark">
-                    {% icon "Question" %}
-                    <span class="s-label">
-                        Date modified
-                        <p class="s-description">Newest first</p>
-                    </span>
-                    <input type="checkbox" name="choice-description-copy-checkmark-checkbox" id="choice-description-copy-checkmark-5" checked/>
-                </label>
-            </li>
-            <li class="s-menu--item" role="menuitem">
-                <label class="s-check-control s-check-control__checkmark">
-                    {% icon "Inbox" %}
-                    <span class="s-label">
-                        Date created
-                        <p class="s-description">Oldest first</p>
-                    </span>
-                    <input type="checkbox" name="choice-description-copy-checkmark-checkbox" id="choice-description-copy-checkmark-6"/>
-                </label>
-            </li>
-        </ul>
+    …
+</fieldset>
+
+<!-- Checkmark w/ radio using .s-menu for additional styling -->
+<fieldset class="s-menu s-check-group">
+    <legend class="s-menu--title">…</legend>
+    <div class="s-menu--item">
+        <label class="s-menu--action s-check-control s-check-control__checkmark" for="desc-checkmark-1">
+            <input type="radio" name="desc-checkmark" id="desc-checkmark-1" />
+            <div>
+                …
+                <p class="s-description">…</p>
+            </div>
+        </label>
     </div>
+    …
+</fieldset>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="stacks-preview--example d-flex g24 fd-column">
             <!-- Checkbox -->
             <fieldset class="s-check-group">
                 <legend class="s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
-                <div class="s-check-control">
-                    <input class="s-checkbox" type="checkbox" name="" id="choice-copy-checkbox-1" />
-                    <label class="s-label" for="choice-copy-checkbox-1">
-                        Apples
-                        <p class="s-description">A sweet, edible fruit produced by an apple tree (Malus pumila).</p>
-                    </label>
-                </div>
-                <div class="s-check-control">
-                    <input class="s-checkbox" type="checkbox" name="" id="choice-copy-checkbox-2" />
-                    <label class="s-label" for="choice-copy-checkbox-2">
-                        Oranges
-                        <p class="s-description">A fruit of the citrus species Citrus × sinensis in the family Rutaceae.</p>
-                    </label>
-                </div>
-                <div class="s-check-control">
-                    <input class="s-checkbox" type="checkbox" name="" id="choice-copy-checkbox-3" />
-                    <label class="s-label" for="choice-copy-checkbox-3">
-                        Bananas
-                        <p class="s-description">A fruit – botanically a berry – produced by several kinds of large herbaceous flowering plants in the genus Musa.</p>
-                    </label>
-                </div>
+                {% for item in checkbox.group-items %}
+                    <div class="s-check-control">
+                        <input class="s-checkbox" type="checkbox" name="" id="desc-checkbox-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
+                        <label class="s-label" for="desc-checkbox-{{ item.label }}">
+                            {{ item.label }}
+                            <p class="s-description">{{ item.description }}</p>
+                        </label>
+                    </div>
+                {% endfor %}
             </fieldset>
 
-            <!-- Checkbox -->
-            <fieldset class="s-check-group mt16">
-                <legend class="s-label">Which fruit do you like best?</legend>
-                <div class="s-check-control">
-                    <input class="s-radio" type="radio" name="choice-copy-radio" id="choice-copy-radio-1" />
-                    <label class="s-label" for="choice-copy-radio-1">
-                        Apples
-                        <p class="s-description">A sweet, edible fruit produced by an apple tree (Malus pumila).</p>
-                    </label>
-                </div>
-                <div class="s-check-control">
-                    <input class="s-radio" type="radio" name="choice-copy-radio" id="choice-copy-radio-2" />
-                    <label class="s-label" for="choice-copy-radio-2">
-                        Oranges
-                        <p class="s-description">A fruit of the citrus species Citrus × sinensis in the family Rutaceae.</p>
-                    </label>
-                </div>
-                <div class="s-check-control">
-                    <input class="s-radio" type="radio" name="choice-copy-radio" id="choice-copy-radio-3" />
-                    <label class="s-label" for="choice-copy-radio-3">
-                        Bananas
-                        <p class="s-description">A fruit – botanically a berry – produced by several kinds of large herbaceous flowering plants in the genus Musa.</p>
-                    </label>
-                </div>
+            <!-- Radio -->
+            <fieldset class="s-check-group">
+                <legend class="s-label">Which types of fruit do you like?</legend>
+                {% for item in checkbox.group-items %}
+                    <div class="s-check-control">
+                        <input class="s-radio" type="radio" name="desc-radio" id="desc-radio-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
+                        <label class="s-label" for="desc-radio-{{ item.label }}">
+                            {{ item.label }}
+                            <p class="s-description">{{ item.description }}</p>
+                        </label>
+                    </div>
+                {% endfor %}
             </fieldset>
-            <div class="d-flex g48 mt32">
-                <div class="s-popover is-visible ps-relative p8"> 
-                    <ul class="s-menu" role="menu">
-                        <li class="s-menu--title" role="separator">Sort answers by</li>
-                        <li class="s-menu--item" role="menuitem">
-                            <label class="s-check-control s-check-control__checkmark">
-                                {% icon "Dashboard" %}
-                                <span class="s-label" for="choice-description-copy-checkmark-1">
-                                    Trending
-                                    <p class="s-description">Highest vote counts more</p>
-                                </span>
-                                <input type="radio" name="choice-description-copy-checkmark" id="choice-description-copy-checkmark-1" checked/>
+
+            <!-- Checkmark w/ radio using .s-menu for additional styling -->
+            <div class="s-popover is-visible ps-relative ws2 p8">
+                <fieldset class="s-menu s-check-group">
+                    <legend class="s-menu--title">Pick a fruit</legend>
+                    {% for item in checkbox.group-items %}
+                        <div class="s-menu--item">
+                            <label class="s-menu--action s-check-control s-check-control__checkmark" for="desc-checkmark-{{ item.label }}">
+                                <input type="radio" name="desc-checkmark" id="desc-checkmark-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
+                                <div>
+                                    {{ item.label }}
+                                    <p class="s-description">{{ item.description }}</p>
+                                </div>
                             </label>
-                        </li>
-                        <li class="s-menu--item" role="menuitem">
-                            <label class="s-check-control s-check-control__checkmark">
-                                {% icon "Question" %}
-                                <span class="s-label" for="choice-description-copy-checkmark-2">
-                                    Date modified
-                                    <p class="s-description">Newest first</p>
-                                </span>
-                                <input type="radio" name="choice-description-copy-checkmark" id="choice-description-copy-checkmark-2"/>
-                            </label>
-                        </li>
-                        <li class="s-menu--item" role="menuitem">
-                            <label class="s-check-control s-check-control__checkmark">
-                                {% icon "Inbox" %}
-                                <span class="s-label" for="choice-description-copy-checkmark-3">
-                                    Date created
-                                    <p class="s-description">Oldest first</p>
-                                </span>
-                                <input type="radio" name="choice-description-copy-checkmark" id="choice-description-copy-checkmark-3"/>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-                <div class="s-popover is-visible ps-relative p8"> 
-                    <ul class="s-menu" role="menu">
-                        <li class="s-menu--title" role="separator">Select answers by</li>
-                        <li class="s-menu--item" role="menuitem">
-                            <label class="s-check-control s-check-control__checkmark">
-                                {% icon "Dashboard" %}
-                                <span class="s-label" for="choice-description-copy-checkmark-4">
-                                    Trending
-                                    <p class="s-description">Highest vote counts more</p>
-                                </span>
-                                <input type="checkbox" name="choice-description-copy-checkmark-checkbox" id="choice-description-copy-checkmark-4" checked/>
-                            </label>
-                        </li>
-                        <li class="s-menu--item" role="menuitem">
-                            <label class="s-check-control s-check-control__checkmark">
-                                {% icon "Question" %}
-                                <span class="s-label" for="choice-description-copy-checkmark-5">
-                                    Date modified
-                                    <p class="s-description">Newest first</p>
-                                </span>
-                                <input type="checkbox" name="choice-description-copy-checkmark-checkbox" id="choice-description-copy-checkmark-5" checked/>
-                            </label>
-                        </li>
-                        <li class="s-menu--item" role="menuitem">
-                            <label class="s-check-control s-check-control__checkmark">
-                                {% icon "Inbox" %}
-                                <span class="s-label" for="choice-description-copy-checkmark-6">
-                                    Date created
-                                    <p class="s-description">Oldest first</p>
-                                </span>
-                                <input type="checkbox" name="choice-description-copy-checkmark-checkbox" id="choice-description-copy-checkmark-6"/>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
+                        </div>
+                    {% endfor %}
+                </fieldset>
             </div>
         </div>
     </div>
 
-    {% header "h3", "Indeterminate state" %}
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Validation states" %}
+    <p class="stacks-copy">Checkboxes, radios, and checkmarks use the same validation states as <a href="{{ "/product/components/inputs" | url }}">inputs</a>.</p>
+
+    {% header "h3", "Validation classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell2">Class</th>
+                    <th scope="col" class="s-table--cell4">Applies</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in inputs.checkbox %}
+                    {% assign state = item.validation %}
+                    {% for class in state %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ class.class }}</code></th>
+                        <td>{{ class.applies }}</td>
+                        <td>{{ class.description }}</td>
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Validation examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<!-- Checkbox w/ warning -->
+<div class="s-check-control has-warning">
+    <input class="s-checkbox" type="checkbox" name="…" id="warn-checkbox-1" />
+    <label class="s-label" for="warn-checkbox-1">
+        …
+        <p class="s-description">…</p>
+    </label>
+</div>
+
+<!-- Radio w/ error -->
+<div class="s-check-control has-error">
+    <input class="s-radio" type="radio" name="error-radio" id="error-radio-1" />
+    <label class="s-label" for="error-radio-1">
+        …
+        <p class="s-description">…</p>
+    </label>
+</div>
+
+<!-- Checkmark w/ success -->
+<label class="s-check-control s-check-control__checkmark has-success" for="success-checkmark-1">
+    <input type="radio" name="success-checkmark" id="success-checkmark-1" />
+    <div>
+        …
+        <p class="s-description">…</p>
+    </div>
+</label>
+{% endhighlight %}
+        <div class="stacks-preview--example d-flex g24 fd-column">
+            <!-- Checkbox -->
+            <fieldset class="s-check-group">
+                <legend class="s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
+                {% for item in checkbox.group-items %}
+                    <div class="s-check-control has-{{ item.state }}">
+                        <input class="s-checkbox" type="checkbox" name="" id="state-checkbox-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
+                        <label class="s-label" for="state-checkbox-{{ item.label }}">
+                            {{ item.label }}
+                            <p class="s-description">{{ item.description }}</p>
+                        </label>
+                    </div>
+                {% endfor %}
+            </fieldset>
+
+            <!-- Radio -->
+            <fieldset class="s-check-group">
+                <legend class="s-label">Which types of fruit do you like?</legend>
+                {% for item in checkbox.group-items %}
+                    <div class="s-check-control has-{{ item.state }}">
+                        <input class="s-radio" type="radio" name="state-radio" id="state-radio-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
+                        <label class="s-label" for="state-radio-{{ item.label }}">
+                            {{ item.label }}
+                            <p class="s-description">{{ item.description }}</p>
+                        </label>
+                    </div>
+                {% endfor %}
+            </fieldset>
+
+            <!-- Checkmark w/ radio using .s-menu for additional styling -->
+            <div class="s-popover is-visible ps-relative ws2 p8">
+                <fieldset class="s-menu s-check-group">
+                    <legend class="s-menu--title">Pick a fruit</legend>
+                    {% for item in checkbox.group-items %}
+                        <div class="s-menu--item">
+                            <label class="s-menu--action s-check-control s-check-control__checkmark has-{{ item.state }}" for="state-checkmark-{{ item.label }}">
+                                <input type="radio" name="state-checkmark" id="state-checkmark-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
+                                <div>
+                                    {{ item.label }}
+                                    <p class="s-description">{{ item.description }}</p>
+                                </div>
+                            </label>
+                        </div>
+                    {% endfor %}
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Indeterminate state" %}
     <p class="stacks-copy">Checkboxes can be styled by using the <code>:indeterminate</code> pseudo class.</p>
     {% tip, "", "mb32" %}
         <strong>Note:</strong> The <code>:indeterminate</code> pseudo class can only be set via JavaScript. Use the <code>HTMLInputElement</code> object's <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes"><code>indeterminate</code></a> property to set the state.
@@ -783,154 +554,6 @@ tags: components
     </div>
 </section>
 
-<section class="stacks-section">
-    {% header "h2", "Validation states" %}
-    <p class="stacks-copy">Checkboxes use the same validation states as <a href="{{ "/product/components/inputs" | url }}">inputs</a>.</p>
-
-    {% header "h3", "Validation classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col" class="s-table--cell2">Class</th>
-                    <th scope="col" class="s-table--cell4">Applies</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in inputs.checkbox %}
-                    {% assign state = item.validation %}
-                    {% for class in state %}
-                    <tr>
-                        <th scope="row"><code class="flex--item stacks-code bg-white">{{ class.class }}</code></th>
-                        <td>{{ class.applies }}</td>
-                        <td>{{ class.description }}</td>
-                    </tr>
-                    {% endfor %}
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
-    {% header "h3", "Validation examples" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<!-- Checkbox -->
-<fieldset class="s-check-group">
-    <legend class="s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
-    <div class="s-check-control has-warning">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-valid-checkbox-1" />
-        <label class="s-label" for="choice-valid-checkbox-1">
-            Apples
-            <p class="s-input-message"><strong>Note:</strong> Apples are currently not in season.</p>
-        </label>
-    </div>
-    <div class="s-check-control has-error">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-valid-checkbox-2" />
-        <label class="s-label" for="choice-valid-checkbox-2">
-            Oranges
-            <p class="s-input-message">All oranges are currently <strong>out of stock</strong>.</p>
-        </label>
-    </div>
-    <div class="s-check-control has-success">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-valid-checkbox-3" />
-        <label class="d-block mb4 s-label fw-normal" for="choice-valid-checkbox-3">
-            Bananas
-            <p class="s-input-message">You’ve successfully selected the most amazing fruit in the world.</p>
-        </label>
-    </div>
-</fieldset>
-
-<!-- Radio -->
-<fieldset class="s-check-group">
-    <legend class="s-label">Which fruit do you like best?</legend>
-    <div class="s-check-control has-warning">
-        <input class="s-radio" type="radio" name="choice-valid-radio" id="choice-valid-radio-1" />
-        <label class="s-label" for="choice-valid-radio-1">
-            Apples
-            <p class="s-input-message"><strong>Note:</strong> Apples are currently not in season.</p>
-        </label>
-    </div>
-    <div class="s-check-control has-error">
-        <input class="s-radio" type="radio" name="choice-valid-radio" id="choice-valid-radio-2" />
-        <label class="s-label" for="choice-valid-radio-2">
-            Oranges
-            <p class="s-input-message">All oranges are currently <strong>out of stock</strong>.</p>
-        </label>
-    </div>
-    <div class="s-check-control has-success">
-        <input class="s-radio" type="radio" name="choice-valid-radio" id="choice-valid-radio-3" />
-        <label class="s-label" for="choice-valid-radio-3">
-            Bananas
-            <p class="s-input-message">You’ve successfully selected the most amazing fruit in the world.</p>
-        </label>
-    </div>
-</fieldset>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <!-- Checkbox -->
-            <fieldset class="s-check-group">
-                <legend class="s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
-                <div class="s-check-control has-warning">
-                    <input class="s-checkbox" type="checkbox" name="" id="choice-valid-checkbox-1" />
-                    <label class="s-label" for="choice-valid-checkbox-1">
-                        Apples
-                        <p class="s-input-message"><strong>Note:</strong> Apples are currently not in season.</p>
-                    </label>
-                </div>
-                <div class="s-check-control has-error">
-                    <input class="s-checkbox" type="checkbox" name="" id="choice-valid-checkbox-2" />
-                    <label class="s-label" for="choice-valid-checkbox-2">
-                        Oranges
-                        <p class="s-input-message">All oranges are currently <strong>out of stock</strong>.</p>
-                    </label>
-                </div>
-                <div class="s-check-control has-success">
-                    <input class="s-checkbox" type="checkbox" name="" id="choice-valid-checkbox-3" />
-                    <label class="s-label" for="choice-valid-checkbox-3">
-                        Bananas
-                        <p class="s-input-message">You’ve successfully selected the most amazing fruit in the world.</p>
-                    </label>
-                </div>
-            </fieldset>
-
-            <!-- Radio -->
-            <fieldset class="s-check-group mt16">
-                <legend class="s-label">Which fruit do you like best?</legend>
-                <div class="s-check-control has-warning">
-                    <input class="s-radio" type="radio" name="choice-valid-radio" id="choice-valid-radio-1" />
-                    <label class="s-label" for="choice-valid-radio-1">
-                        Apples
-                        <p class="s-input-message"><strong>Note:</strong> Apples are currently not in season.</p>
-                    </label>
-                </div>
-                <div class="s-check-control has-error">
-                    <input class="s-radio" type="radio" name="choice-valid-radio" id="choice-valid-radio-2" />
-                    <label class="s-label" for="choice-valid-radio-2">
-                        Oranges
-                        <p class="s-input-message">All oranges are currently <strong>out of stock</strong>.</p>
-                    </label>
-                </div>
-                <div class="s-check-control has-success">
-                    <input class="s-radio" type="radio" name="choice-valid-radio" id="choice-valid-radio-3" />
-                    <label class="s-label" for="choice-valid-radio-3">
-                        Bananas
-                        <p class="s-input-message">You’ve successfully selected the most amazing fruit in the world.</p>
-                    </label>
-                </div>
-            </fieldset>
-        </div>
-    </div>
-</section>
-
 <script>
     document.getElementById("indeterminate-checkbox-1").indeterminate = true;
-    document.getElementById("example-focus-rad")?.focus();
-    document.getElementById("example-focus")?.focus();
-    document.getElementById("example-focus-rad-checked")?.focus();
-    document.getElementById("example-focus-checked")?.focus();
-    document.getElementById("example-indeterminate").indeterminate = true;
-    document.getElementById("example-disabled-indeterminate").indeterminate = true;
-    document.getElementById("example-focus-indeterminate").indeterminate = true;
-    document.getElementById("example-focus-indeterminate")?.focus();
 </script>
