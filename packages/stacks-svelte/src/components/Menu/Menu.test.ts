@@ -75,17 +75,28 @@ describe("Menu", () => {
         expect(link).to.have.class("s-menu--action");
     });
 
-    it("should render menu item as button when href is not provided", () => {
+    it("should render menu item as label with input when href is not provided", () => {
         const menuItems = createSvelteComponentsSnippet([
-            createMenuItem({ children: children("Delete") }),
+            createMenuItem({
+                name: "menu-filter",
+                value: "delete",
+                children: children("Delete"),
+            }),
         ]);
 
         render(Menu, { children: menuItems });
 
         const menuItem = screen.getByRole("menuitem");
-        const button = menuItem.querySelector("button");
-        expect(button).to.exist;
-        expect(button).to.have.class("s-menu--action");
+        const label = menuItem.querySelector("label");
+        const input = menuItem.querySelector("input");
+        expect(label).to.exist;
+        expect(label).to.have.class("s-menu--action");
+        expect(label).to.have.class("s-check-control");
+        expect(label).to.have.class("s-check-control__checkmark");
+        expect(input).to.exist;
+        expect(input).to.have.attribute("type", "radio");
+        expect(input).to.have.attribute("name", "menu-filter");
+        expect(input).to.have.attribute("value", "delete");
     });
 
     it("should render menu item with danger styling when danger prop is true", () => {
@@ -106,23 +117,44 @@ describe("Menu", () => {
     it("should render menu item with selected styling when selected prop is true", () => {
         const menuItems = createSvelteComponentsSnippet([
             createMenuItem({
-                href: "#",
-                selected: true,
+                name: "menu-filter",
+                value: "delete",
+                danger: true,
+                children: children("Delete"),
+            }),
+        ]);
+
+        render(Menu, { children: menuItems });
+
+        const label = screen.getByRole("menuitem").querySelector("label");
+        expect(label).to.have.class("s-menu--action__danger");
+    });
+
+    it("should render menu item with checked state when checked prop is true", () => {
+        const menuItems = createSvelteComponentsSnippet([
+            createMenuItem({
+                name: "menu-filter",
+                value: "current",
+                checked: true,
                 children: children("Current Item"),
             }),
         ]);
 
         render(Menu, { children: menuItems });
 
-        const link = screen.getByRole("menuitem").querySelector("a");
-        expect(link).to.have.class("is-selected");
+        const menuItem = screen.getByRole("menuitem");
+        const label = menuItem.querySelector("label");
+        const input = menuItem.querySelector("input");
+        expect(label).to.have.class("is-selected");
+        expect(input).to.have.property("checked", true);
     });
 
-    it("should render menu item with custom i18nSelectedLabel when selected", () => {
+    it("should render menu item with custom i18nSelectedLabel when checked", () => {
         const menuItems = createSvelteComponentsSnippet([
             createMenuItem({
-                href: "#",
-                selected: true,
+                name: "menu-filter",
+                value: "current",
+                checked: true,
                 i18nSelectedLabel: "Sélectionné",
                 children: children("Current Item"),
             }),
@@ -135,10 +167,59 @@ describe("Menu", () => {
         expect(selectedLabel).to.have.class("v-visible-sr");
     });
 
-    it("should render menu item with icon when icon prop is provided", () => {
+    it("should render menu item with checkbox type when type is checkbox", () => {
+        const menuItems = createSvelteComponentsSnippet([
+            createMenuItem({
+                type: "checkbox",
+                name: "menu-filter",
+                value: "option1",
+                children: children("Option 1"),
+            }),
+        ]);
+
+        render(Menu, { children: menuItems });
+
+        const input = screen.getByRole("menuitem").querySelector("input");
+        expect(input).to.have.attribute("type", "checkbox");
+        expect(input).to.have.class("s-checkbox");
+    });
+
+    it("should render menu item with radio type by default", () => {
+        const menuItems = createSvelteComponentsSnippet([
+            createMenuItem({
+                name: "menu-filter",
+                value: "option1",
+                children: children("Option 1"),
+            }),
+        ]);
+
+        render(Menu, { children: menuItems });
+
+        const input = screen.getByRole("menuitem").querySelector("input");
+        expect(input).to.have.attribute("type", "radio");
+        expect(input).to.have.class("s-radio");
+    });
+
+    it("should render menu item with icon when icon prop is provided (anchor)", () => {
         const menuItems = createSvelteComponentsSnippet([
             createMenuItem({
                 href: "#",
+                icon: IconSettings,
+                children: children("Share"),
+            }),
+        ]);
+
+        render(Menu, { children: menuItems });
+
+        const icon = document.querySelector(".s-menu--icon");
+        expect(icon).to.exist;
+    });
+
+    it("should render menu item with icon when icon prop is provided (input)", () => {
+        const menuItems = createSvelteComponentsSnippet([
+            createMenuItem({
+                name: "menu-filter",
+                value: "share",
                 icon: IconSettings,
                 children: children("Share"),
             }),

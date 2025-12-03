@@ -28,7 +28,7 @@
 {#snippet basicChildren()}
     <MenuItem href="#">Share</MenuItem>
     <MenuItem href="#">Edit</MenuItem>
-    <MenuItem>Follow</MenuItem>
+    <MenuItem href="#">Follow</MenuItem>
 {/snippet}
 
 <Story name="Base">
@@ -101,19 +101,63 @@
 </Story>
 
 <Story name="Selected States" asChild>
-    <div class="hmn3">
-        <Popover id="selected-states-popover" visible>
-            <PopoverContent class="ps-relative is-visible p8 ws2">
-                <Menu>
-                    <MenuItem href="#">Frequent</MenuItem>
-                    <MenuItem href="#">Votes</MenuItem>
-                    <MenuItem href="#" selected>Unanswered</MenuItem>
-                    <MenuTitle>Custom filters</MenuTitle>
-                    <MenuItem href="#">Frontend questions</MenuItem>
-                    <MenuItem href="#">Design systems</MenuItem>
-                </Menu>
-            </PopoverContent>
-        </Popover>
+    <div class="hmn3 d-flex g32 fw-wrap">
+        <div>
+            <div class="ff-mono mb16">Using .s-radio</div>
+            <Popover id="selected-states-radio-popover" visible>
+                <PopoverContent class="ps-relative is-visible p8 ws2">
+                    <Menu>
+                        <MenuTitle>Select one</MenuTitle>
+                        <MenuItem
+                            name="menu-radio-filter"
+                            value="frequent"
+                            checked
+                        >
+                            Frequent
+                        </MenuItem>
+                        <MenuItem name="menu-radio-filter" value="votes">
+                            Votes
+                        </MenuItem>
+                        <MenuItem name="menu-radio-filter" value="unanswered">
+                            Unanswered
+                        </MenuItem>
+                    </Menu>
+                </PopoverContent>
+            </Popover>
+        </div>
+        <div>
+            <div class="ff-mono mb16">Using .s-checkbox</div>
+            <Popover id="selected-states-checkbox-popover" visible>
+                <PopoverContent class="ps-relative is-visible p8 ws2">
+                    <Menu>
+                        <MenuTitle>Select multiple</MenuTitle>
+                        <MenuItem
+                            type="checkbox"
+                            name="menu-checkbox-filter"
+                            value="frequent"
+                            checked
+                        >
+                            Frequent
+                        </MenuItem>
+                        <MenuItem
+                            type="checkbox"
+                            name="menu-checkbox-filter"
+                            value="votes"
+                        >
+                            Votes
+                        </MenuItem>
+                        <MenuItem
+                            type="checkbox"
+                            name="menu-checkbox-filter"
+                            value="unanswered"
+                            checked
+                        >
+                            Unanswered
+                        </MenuItem>
+                    </Menu>
+                </PopoverContent>
+            </Popover>
+        </div>
     </div>
 </Story>
 
