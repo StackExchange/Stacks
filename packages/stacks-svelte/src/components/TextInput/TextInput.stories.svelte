@@ -66,7 +66,9 @@
                     label="{fillSide}ed fill"
                     {fillSide}
                 >
-                    <span slot="fill">{fillSide}ed fill</span>
+                    {#snippet fill()}
+                        <span>{fillSide}ed fill</span>
+                    {/snippet}
                 </TextInput>
             </div>
         {/each}
@@ -113,7 +115,9 @@
                     label={`${state || "default"} input`}
                     {state}
                 >
-                    <span slot="message">{state || "default"} message</span>
+                    {#snippet message()}
+                        <span>{state || "default"} message</span>
+                    {/snippet}
                 </TextInput>
             </div>
         {/each}
@@ -124,19 +128,15 @@
     <div class="d-grid g16">
         <div class="d-flex fd-column">
             <TextInput
-                id="optional-status-input"
-                placeholder="Age"
-                label="optional input"
-                optional
-            />
-        </div>
-        <div class="d-flex fd-column">
-            <TextInput
                 id="required-status-input"
                 placeholder="Full name"
                 label="required input"
                 required
-            />
+            >
+                {#snippet description()}
+                    <span>this input has been marked required.</span>
+                {/snippet}
+            </TextInput>
         </div>
     </div>
 </Story>
@@ -182,25 +182,31 @@
     </div>
 </Story>
 
-<Story name="Slots" asChild>
+<Story name="Snippets" asChild>
+    <p>The examples below show all the snippets this component supports.</p>
     <div class="d-grid g16">
         <div class="d-flex fd-column">
-            <TextInput id="description-slot-input" label="Description slot">
-                <span slot="description">
-                    This TextInput includes a description slot.
-                </span>
+            <TextInput
+                id="description-snippet-input"
+                label="Description snippet"
+            >
+                {#snippet description()}
+                    <span>This TextInput includes a description snippet.</span>
+                {/snippet}
             </TextInput>
         </div>
         <div class="d-flex fd-column">
-            <TextInput id="message-slot-input" label="Message slot">
-                <span slot="message">
-                    This TextInput includes a message slot.
-                </span>
+            <TextInput id="message-snippet-input" label="Message snippet">
+                {#snippet message()}
+                    <span>This TextInput includes a message snippet.</span>
+                {/snippet}
             </TextInput>
         </div>
         <div class="d-flex fd-column">
-            <TextInput id="fill-slot-input" label="Fill slot">
-                <span slot="fill">https://</span>
+            <TextInput id="fill-snippet-input" label="Fill snippet">
+                {#snippet fill()}
+                    <span>https://</span>
+                {/snippet}
             </TextInput>
         </div>
     </div>
