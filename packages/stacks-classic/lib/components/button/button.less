@@ -68,6 +68,7 @@
             --_bu-badge-fc-disabled: var(--white);
 
             .highcontrast-mode({
+                --_bu-bc: var(--theme-secondary-600);
                 --_bu-bc-disabled: var(--red-300);
             });
         }
@@ -197,7 +198,7 @@
         --_bu-bg-selected-overlay: color-mix(
             in srgb,
             var(--_bu-bg-selected, var(--_bu-bg)),
-            var(--white) 25%
+            var(--white) 20%
         );
 
         .s-btn--badge {
@@ -218,6 +219,24 @@
                 var(--_bu-bg-selected, var(--_bu-bg)) 50%
             ) border-box;
         color: var(--_bu-fc-selected, var(--_bu-fc));
+
+        .dark-mode({
+            --_bu-bg-selected-overlay: color-mix(
+                in srgb,
+                var(--_bu-bg-selected, var(--_bu-bg)),
+                var(--white) 13%
+            );
+
+            background:
+                linear-gradient(0deg,
+                    var(--_bu-bg-selected, var(--_bu-bg)) 50%,
+                    var(--_bu-bg-selected-overlay, var(--_bu-bg)) 50%
+                ) padding-box,
+                linear-gradient(0deg,
+                    var(--_bu-bg-selected, var(--_bu-bg)) 50%,
+                    var(--_bu-bg-selected-overlay, var(--_bu-bg)) 50%
+                ) border-box;
+        });
     }
 
     // CHILD ELEMENTS
@@ -278,7 +297,7 @@
         .focus-styles(false, true);
     }
 
-    &:hover {
+    &:hover:not(&.is-selected) {
         background:
             linear-gradient(0deg,
                 var(--_bu-bg-selected-overlay, var(--_bu-bg-hover, var(--_bu-bg))) 50%,
