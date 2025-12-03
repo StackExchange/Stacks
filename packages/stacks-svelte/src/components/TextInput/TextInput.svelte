@@ -20,10 +20,10 @@
 
 <script lang="ts">
     import type { HTMLInputAttributes } from "svelte/elements";
-    import type { Snippet } from "svelte"; 
+    import type { Snippet } from "svelte";
     import Icon from "../Icon/Icon.svelte";
     import Label from "../Label/Label.svelte";
-    
+
     import {
         IconAlert,
         IconAlertCircle,
