@@ -28,6 +28,7 @@ export { default as SelectItem } from "./Select/SelectItem.svelte";
 export { default as Skeleton } from "./Skeleton/Skeleton.svelte";
 export { default as Spinner } from "./Spinner/Spinner.svelte";
 export { default as Tag } from "./Tag/Tag.svelte";
+export { default as TextArea } from "./TextArea/TextArea.svelte";
 export { default as TextInput } from "./TextInput/TextInput.svelte";
 export { default as Toaster, showToast, hideToast } from "./Toast/Toast.svelte";
 export { default as UserCard } from "./UserCard/UserCard.svelte";
