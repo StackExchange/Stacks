@@ -127,9 +127,7 @@ describe("TextArea", () => {
         render(TextArea, {
             id: "example-input",
             label: "example label",
-            $$slots: {
-                description: snippet,
-            },
+            description: snippet,
         });
 
         expect(screen.getByText("test snippet").parentElement).to.have.class(
@@ -141,9 +139,7 @@ describe("TextArea", () => {
         render(TextArea, {
             id: "example-input",
             label: "example label",
-            $$slots: {
-                message: snippet,
-            },
+            message: snippet,
         });
 
         expect(screen.getByText("test snippet").parentElement).to.have.class(

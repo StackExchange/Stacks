@@ -36,9 +36,7 @@ describe("TextInput", () => {
         render(TextInput, {
             id: "example-input",
             label: "example label",
-            $$slots: {
-                fill: snippet,
-            },
+            fill: snippet,
         });
         expect(screen.getByRole("textbox")).to.have.class("blr0");
         expect(screen.getByText("test snippet").parentElement).to.have.class(
@@ -51,9 +49,7 @@ describe("TextInput", () => {
             id: "example-input",
             label: "example label",
             fillSide: "append",
-            $$slots: {
-                fill: snippet,
-            },
+            fill: snippet,
         });
 
         expect(screen.getByRole("textbox")).to.have.class("brr0");
@@ -182,9 +178,7 @@ describe("TextInput", () => {
         render(TextInput, {
             id: "example-input",
             label: "example label",
-            $$slots: {
-                description: snippet,
-            },
+            description: snippet,
         });
 
         expect(screen.getByText("test snippet").parentElement).to.have.class(
@@ -196,9 +190,7 @@ describe("TextInput", () => {
         render(TextInput, {
             id: "example-input",
             label: "example label",
-            $$slots: {
-                fill: snippet,
-            },
+            fill: snippet,
         });
 
         expect(screen.getByText("test snippet").parentElement).to.have.class(
@@ -210,9 +202,7 @@ describe("TextInput", () => {
         render(TextInput, {
             id: "example-input",
             label: "example label",
-            $$slots: {
-                message: snippet,
-            },
+            message: snippet,
         });
 
         expect(screen.getByText("test snippet").parentElement).to.have.class(
