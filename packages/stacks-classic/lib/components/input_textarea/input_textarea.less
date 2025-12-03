@@ -89,18 +89,19 @@
     line-height: var(--_in-lh);
     padding: var(--_in-py) var(--_in-px) var(--_in-py) var(--_in-pl, var(--_in-px));
     
-    align-items: center;
     border-radius: var(--br-md);
-    display: flex;
-    flex: 1 1 0;
     font-family: inherit;
     margin: 0; // A guard against Core's default margins
     width: 100%;
 }
 
-input.s-input:not([type="text"]) {
-    // We need `display: flex` for 'Nested Inputs'. But for other types we need block level rendering
-    display: inline-block;
+//Nested inputs (E.g. Tag selection control) need a flex layout.
+.s-input:has(> input.s-input) {
+    display: flex;
+    align-items: center;
+    input.s-input {
+         flex: 1 1 0;
+    }
 }
 
 .s-input {
