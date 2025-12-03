@@ -1,6 +1,6 @@
 .s-input,
 .s-textarea,
-//The :has selector here allows us to use these vars for sibling icons in textarea components
+//The :has selector here allows us to use these vars for sibling icons in textarea components (See .s-textarea -> ~ .s-input-icon)
 :has(> .s-textarea) { 
     --_in-bc: var(--black-300);
     --_in-bg: var(--white);
@@ -89,13 +89,19 @@
     line-height: var(--_in-lh);
     padding: var(--_in-py) var(--_in-px) var(--_in-py) var(--_in-pl, var(--_in-px));
     
-    align-items: center;
     border-radius: var(--br-md);
-    display: flex;
-    flex: 1 1 0;
     font-family: inherit;
     margin: 0; // A guard against Core's default margins
     width: 100%;
+}
+
+//Nested inputs (E.g. Tag selection control) need a flex layout.
+.s-input:has(> input.s-input) {
+    display: flex;
+    align-items: center;
+    input.s-input {
+         flex: 1 1 0;
+    }
 }
 
 .s-input {
