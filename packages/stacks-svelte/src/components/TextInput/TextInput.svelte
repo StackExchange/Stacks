@@ -20,8 +20,10 @@
 
 <script lang="ts">
     import type { HTMLInputAttributes } from "svelte/elements";
+    import type { Snippet } from "svelte"; 
     import Icon from "../Icon/Icon.svelte";
     import Label from "../Label/Label.svelte";
+    
     import {
         IconAlert,
         IconAlertCircle,
@@ -116,17 +118,17 @@
         /**
          * Optional description snippet rendered between the label and input.
          */
-        description?: import("svelte").Snippet;
+        description?: Snippet;
 
         /**
          * Optional fill snippet rendered either before or after the input based on the value of `fillSide`.
          */
-        fill?: import("svelte").Snippet;
+        fill?: Snippet;
 
         /**
          * Optional message snippet rendered after the input.
          */
-        message?: import("svelte").Snippet;
+        message?: Snippet;
     }
 
     let {

@@ -5,6 +5,7 @@
 
 <script lang="ts">
     import type { HTMLTextareaAttributes } from "svelte/elements";
+    import type { Snippet } from "svelte"; 
     import Icon from "../Icon/Icon.svelte";
     import Label from "../Label/Label.svelte";
     import {
@@ -78,12 +79,12 @@
         /**
          * Optional description snippet rendered between the label and input.
          */
-        description?: import("svelte").Snippet;
+        description?: Snippet;
 
         /**
          * Optional message snippet rendered after the input.
          */
-        message?: import("svelte").Snippet;
+        message?: Snippet;
     }
 
     let {
