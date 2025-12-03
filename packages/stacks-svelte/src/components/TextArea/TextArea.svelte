@@ -13,7 +13,7 @@
         IconCheckmark,
     } from "@stackoverflow/stacks-icons-legacy/icons";
 
-    interface Props extends Omit<HTMLTextareaAttributes, 'size'> {
+    interface Props extends Omit<HTMLTextareaAttributes, "size"> {
         /**
          * `id` attribute of the text input
          * @type {string}
