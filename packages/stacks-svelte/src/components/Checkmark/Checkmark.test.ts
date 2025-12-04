@@ -15,7 +15,7 @@ describe("Checkmark", () => {
             name: "Example checkmark",
         });
         expect(checkmark).to.have.id("example-checkmark");
-        expect(checkmark).to.have.class("s-checkmark");
+        expect(checkmark).to.have.class("s-radio");
     });
 
     it("should default to radio type", () => {
