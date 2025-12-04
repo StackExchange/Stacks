@@ -6,7 +6,7 @@ const Icons = { ...LegacyIcons, ...BetaIcons };
 const Spots = { ...LegacySpots, ...BetaSpots };
 
 function modifySvg(content, type, name, classes, dimension) {
-  var defaultClasses = `svg-${type} ${type}${name}`;
+  var defaultClasses = `svg-${type} ${type.charAt(0).toUpperCase() + type.slice(1)}${name}`;
 
   if (!content) {
     return `<span class="fc-danger">Invalid ${type}: ${name}</span>`;
