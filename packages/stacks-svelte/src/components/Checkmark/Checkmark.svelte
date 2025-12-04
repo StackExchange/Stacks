@@ -83,8 +83,8 @@
         ...restProps
     }: Props = $props();
 
-    const getClasses = (className: string) => {
-        const base = "s-checkmark";
+    const getClasses = (type: InputType, className: string) => {
+        const base = type === "radio" ? "s-radio" : "s-checkbox";
         let classes = base;
 
         if (className) {
@@ -94,7 +94,7 @@
         return classes;
     };
 
-    const classes = $derived(getClasses(className));
+    const classes = $derived(getClasses(type, className));
 </script>
 
 <div class="s-check-control s-check-control__checkmark">
