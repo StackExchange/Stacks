@@ -329,7 +329,7 @@
             {/if}
             <UserCard
                 href={userProfileUrl}
-                size="minimal"
+                size="small"
                 avatar={userAvatar}
                 name={userName}
                 reputation={userReputation}
