@@ -1,4 +1,3 @@
-import { createRawSnippet } from "svelte";
 import { expect } from "@open-wc/testing";
 import { render, screen } from "@testing-library/svelte";
 
