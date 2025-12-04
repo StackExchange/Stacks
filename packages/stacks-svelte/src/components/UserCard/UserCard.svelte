@@ -170,19 +170,19 @@
             {#if gold}
                 <li>
                     <Bling type="gold" name="gold bling" />
-                    {gold}
+                    {gold} gold awards
                 </li>
             {/if}
             {#if silver}
                 <li>
                     <Bling type="silver" name="silver bling" />
-                    {silver}
+                    {silver} silver awards
                 </li>
             {/if}
             {#if bronze}
                 <li>
                     <Bling type="bronze" name="bronze bling" />
-                    {bronze}
+                    {bronze} bronze awards
                 </li>
             {/if}
         </ul>
