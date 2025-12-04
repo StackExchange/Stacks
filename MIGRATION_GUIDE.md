@@ -47,6 +47,11 @@
 - The variant `Muted` has been removed, `Tonal` has been added
 - `s-btn__md` has been removed, `s-btn__lg` has been added
 
+#### Inputs
+- `s-input__md` removed
+- `s-input__xl` removed
+- **Nested inputs** html will require slight tweaking on consumers' side
+
 #### Menu
 
 The menu component has been updated to use new class names and structure. The following changes are breaking:
@@ -112,6 +117,10 @@ The menu component has been updated to use new class names and structure. The fo
 #### Tags
 - `.s-tag__xs` removed
 - `.s-tag__md` removed
+
+#### Textarea
+- `s-textarea__md` removed
+- `s-textarea__xl` removed
 
 # Migrating from Stacks Svelte v0 to v1
 
