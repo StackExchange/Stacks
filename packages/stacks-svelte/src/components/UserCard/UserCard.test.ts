@@ -4,14 +4,6 @@ import { render, screen } from "@testing-library/svelte";
 
 import UserCard from "./UserCard.svelte";
 
-const tags = createRawSnippet(() => ({
-    render: () => '<a class="s-tag" href="#">JavaScript</a>',
-}));
-
-const type = createRawSnippet(() => ({
-    render: () => "<span>Recognized by Hum</span>",
-}));
-
 describe("UserCard", () => {
     it("should render the user name", () => {
         render(UserCard, {
