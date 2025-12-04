@@ -132,14 +132,12 @@
 
     <div class="s-user-card--info">
         {#if name}
-            <div class="s-user-card--link d-flex g4">
-                <svelte:element
-                    this={href ? "a" : "div"}
-                    class="flex--item"
-                    {href}
-                >
-                    {name}
-                </svelte:element>
+            <svelte:element
+                this={href ? "a" : "div"}
+                class="s-user-card--link d-flex g4"
+                {href}
+            >
+                <div class="flex--item">{name}</div>
                 {#if moderator}
                     <div
                         class="flex--item s-badge s-badge__sm s-badge__moderator"
@@ -157,7 +155,7 @@
                         Admin
                     </div>
                 {/if}
-            </div>
+            </svelte:element>
         {/if}
     </div>
 
