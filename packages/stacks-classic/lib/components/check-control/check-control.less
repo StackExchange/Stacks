@@ -7,7 +7,8 @@
     --_cc-gap: var(--su8);
 
     // CONTEXTUAL STYLES
-    fieldset[disabled] & {
+    fieldset[disabled] &,
+    &:has(> input[disabled]) {
         --_cc-fc: var(--black-300);
     }
 
@@ -58,6 +59,11 @@
             position: absolute;
             right: 0;
             z-index: -1;
+        }
+
+        .s-description {
+            margin: var(--su2) 0 0;
+            padding: 0;
         }
 
         .s-label {

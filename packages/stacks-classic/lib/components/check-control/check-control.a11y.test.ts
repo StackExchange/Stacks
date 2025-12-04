@@ -9,6 +9,7 @@ import "../../index";
                 baseClass: "s-check-control",
                 modifiers: {
                     global: ["has-warning", "has-error", "has-success"],
+                    primary: ["checkmark"],
                 },
                 children: {
                     default: `
