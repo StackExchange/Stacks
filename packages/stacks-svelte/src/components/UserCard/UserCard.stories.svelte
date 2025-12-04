@@ -1,32 +1,18 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
-    import { createRawSnippet } from "svelte";
-    import Tag from "../Tag/Tag.svelte";
     import UserCard, { type Size } from "./UserCard.svelte";
-    import Icon from "../Icon/Icon.svelte";
-    import { IconStarVerifiedSm } from "@stackoverflow/stacks-icons-legacy/icons";
 
-    const createSnippet = (markup = "") =>
-        createRawSnippet(() => ({
-            render: () => markup,
-        }));
-
-    const UserCardSizes: (Size | undefined)[] = [
-        undefined,
-        "full",
-        "small",
-        "minimal",
-    ];
+    const UserCardSizes: (Size | undefined)[] = [undefined, "small"];
 
     const baseArgs = {
         avatar: "https://picsum.photos/128",
         href: "#",
-        name: "Josephine Doe",
-        timestamp: "asked 2 hours ago",
-        reputation: "1,226",
+        name: "SofiaAlc",
+        timestamp: "asked 2 hr ago",
+        reputation: "1,775",
         gold: 12,
-        silver: 23,
-        bronze: 86,
+        silver: 8,
+        bronze: 4,
     };
 
     const { Story } = defineMeta({
@@ -37,34 +23,13 @@
                 control: "select",
                 options: UserCardSizes,
             },
-            tags: {
-                control: "select",
-                options: ["no tags", "tags"],
-                mapping: {
-                    "no tags": "",
-                    "tags": '<a href="#" class="s-tag s-tag__sm">javascript</a>',
-                },
-            },
-            type: {
-                control: "select",
-                options: ["no type", "type"],
-                mapping: {
-                    "no type": "",
-                    "type": `<span>${IconStarVerifiedSm} Recognized by Hum</span>`,
-                },
-            },
         },
     });
 </script>
 
 <Story name="Base" args={baseArgs}>
     {#snippet template(args)}
-        {@const { tags, type, ...restArgs } = args}
-        <UserCard
-            tags={tags && createSnippet(tags as unknown as string)}
-            type={type && createSnippet(type as unknown as string)}
-            {...restArgs}
-        />
+        <UserCard {...args} />
     {/snippet}
 </Story>
 
@@ -105,53 +70,6 @@
     </div>
 </Story>
 
-<Story name="Deleted" asChild>
-    <div class="d-inline-flex">
-        <UserCard {...baseArgs} deleted />
-    </div>
-</Story>
-
-<Story name="Highlighted" asChild>
-    <div class="d-inline-flex">
-        <UserCard {...baseArgs} highlighted />
-    </div>
-</Story>
-
-<Story name="Role and location" asChild>
-    <div class="d-flex fd-column g64">
-        <table class="s-table s-table__bx-simple wmx7">
-            <thead>
-                <tr>
-                    <th scope="col">Property</th>
-                    <th scope="col" class="s-table--cell8">Example</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {#each ["role", "location", "both"] as prop (prop)}
-                    <tr>
-                        <th scope="row" class="va-middle">
-                            {prop}
-                        </th>
-                        <td class="va-middle px4">
-                            <UserCard
-                                {...baseArgs}
-                                size="full"
-                                location={prop === "location" || prop === "both"
-                                    ? "San Francisco, CA"
-                                    : ""}
-                                role={prop === "role" || prop === "both"
-                                    ? "Software engineer"
-                                    : ""}
-                            />
-                        </td>
-                    </tr>
-                {/each}
-            </tbody>
-        </table>
-    </div>
-</Story>
-
 <Story name="All Sizes" args={baseArgs} asChild>
     <div class="d-flex fd-column g64">
         <table class="s-table s-table__bx-simple wmx7">
@@ -177,27 +95,5 @@
                 {/each}
             </tbody>
         </table>
-    </div>
-</Story>
-
-<Story name="With Tags" asChild>
-    <div class="d-inline-flex">
-        <UserCard {...baseArgs}>
-            {#snippet tags()}
-                <Tag href="#" size="sm">css</Tag>
-                <Tag href="#" size="sm">reactjs</Tag>
-                <Tag href="#" size="sm">javascript</Tag>
-            {/snippet}
-        </UserCard>
-    </div>
-</Story>
-
-<Story name="With Type" asChild>
-    <div class="d-inline-flex">
-        <UserCard {...baseArgs}>
-            {#snippet type()}
-                <Icon src={IconStarVerifiedSm}></Icon> Recognized by Hum
-            {/snippet}
-        </UserCard>
     </div>
 </Story>
