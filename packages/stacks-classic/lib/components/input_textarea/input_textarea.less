@@ -1,5 +1,7 @@
 .s-input,
-.s-textarea {
+.s-textarea,
+//The :has selector here allows us to use these vars for sibling icons in textarea components (See .s-textarea -> ~ .s-input-icon)
+:has(> .s-textarea) { 
     --_in-bc: var(--black-300);
     --_in-bg: var(--white);
     --_in-br: var(--br-md);
@@ -11,7 +13,10 @@
     --_in-px: calc(var(--su12) - var(--su1)); // 11px
     --_in-py: var(--su8);
     --_in-placeholder-fc: var(--black-300);
+}
 
+.s-input,
+.s-textarea {
     // CONTEXTUAL STYLES
     .highcontrast-mode({
         --_in-bc: var(--black);
@@ -83,14 +88,20 @@
     font-size: var(--_in-fs);
     line-height: var(--_in-lh);
     padding: var(--_in-py) var(--_in-px) var(--_in-py) var(--_in-pl, var(--_in-px));
-
-    align-items: center;
+    
     border-radius: var(--br-md);
-    display: flex;
-    flex: 1 1 0;
     font-family: inherit;
     margin: 0; // A guard against Core's default margins
     width: 100%;
+}
+
+//Nested inputs (E.g. Tag selection control) need a flex layout.
+.s-input:has(> input.s-input) {
+    display: flex;
+    align-items: center;
+    input.s-input {
+         flex: 1 1 0;
+    }
 }
 
 .s-input {
@@ -122,9 +133,25 @@
     });
 
     --_in-py: var(--su8);
+    --_te-hmn: calc(var(--su32) + var(--su4)); // 36px
+    --_te-h: calc(var(--su64) + var(--su6)); // 70px
+
+    &&__sm {
+        --_te-hmn: calc(var(--su32) - var(--su4)); // 28px
+        --_te-h: calc(var(--su48) + var(--su6)); // 54px
+    }
+
+    &&__lg {
+        --_te-hmn: calc(var(--su48) - var(--su4)); // 44px
+        --_te-h: calc(var(--su64) + var(--su32)); // 96px
+    }
+
+    min-height: var(--_te-hmn);
+    height: var(--_te-h); //set initial height
 
     ~ .s-input-icon {
-        right: 1.5em;
-        top: 1.5em;
+        right: var(--_in-px);
+        top: var(--_in-py);
+        margin-top: 0;
     }
 }

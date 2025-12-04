@@ -4,7 +4,7 @@ import { render, screen } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import sinon from "sinon";
 
-import TextInput from "./TextInput.svelte";
+import TextArea from "./TextArea.svelte";
 
 const user = userEvent.setup();
 
@@ -12,9 +12,9 @@ const snippet = createRawSnippet(() => ({
     render: () => "<span>test snippet</span>",
 }));
 
-describe("TextInput", () => {
-    it("should render the TextInput", () => {
-        render(TextInput, {
+describe("TextArea", () => {
+    it("should render the TextArea", () => {
+        render(TextArea, {
             id: "example-input",
             label: "example label",
         });
@@ -24,7 +24,7 @@ describe("TextInput", () => {
 
     // props
     it("should render the appropriate classes to visually hide the label", () => {
-        render(TextInput, {
+        render(TextArea, {
             id: "example-input",
             label: "example label",
             hideLabel: true,
@@ -32,43 +32,17 @@ describe("TextInput", () => {
         expect(screen.getByText("example label")).to.have.class("v-visible-sr");
     });
 
-    it("should render the appropriate classes to prepend fill element", () => {
-        render(TextInput, {
-            id: "example-input",
-            label: "example label",
-            fill: snippet,
-        });
-        expect(screen.getByRole("textbox")).to.have.class("blr0");
-        expect(screen.getByText("test snippet").parentElement).to.have.class(
-            "order-first"
-        );
-    });
-
-    it("should render the appropriate classes to append fill element", () => {
-        render(TextInput, {
-            id: "example-input",
-            label: "example label",
-            fillSide: "append",
-            fill: snippet,
-        });
-
-        expect(screen.getByRole("textbox")).to.have.class("brr0");
-        expect(screen.getByText("test snippet").parentElement).to.have.class(
-            "order-last"
-        );
-    });
-
     it("should render the appropriate size class", () => {
-        render(TextInput, {
+        render(TextArea, {
             id: "example-input",
             label: "example label",
             size: "sm",
         });
-        expect(screen.getByRole("textbox")).to.have.class("s-input__sm");
+        expect(screen.getByRole("textbox")).to.have.class("s-textarea__sm");
     });
 
     it("should render the appropriate state class and icon", () => {
-        render(TextInput, {
+        render(TextArea, {
             id: "example-input",
             label: "example label",
             state: "error",
@@ -86,7 +60,7 @@ describe("TextInput", () => {
     });
 
     it('should render the "required" label status', () => {
-        render(TextInput, {
+        render(TextArea, {
             id: "example-input",
             label: "example label",
             required: true,
@@ -99,7 +73,7 @@ describe("TextInput", () => {
     });
 
     it("should render the disabled attribute on the input", () => {
-        render(TextInput, {
+        render(TextArea, {
             id: "example-input",
             label: "example label",
             disabled: true,
@@ -108,7 +82,7 @@ describe("TextInput", () => {
     });
 
     it("should render the readonly attribute on the input", () => {
-        render(TextInput, {
+        render(TextArea, {
             id: "example-input",
             label: "example label",
             readonly: true,
@@ -116,33 +90,8 @@ describe("TextInput", () => {
         expect(screen.getByRole("textbox")).to.have.attribute("readonly");
     });
 
-    it("should render the appropriate type attribute", () => {
-        render(TextInput, {
-            id: "example-input",
-            label: "example label",
-            type: "search",
-        });
-        expect(screen.getByRole("searchbox")).to.have.attribute(
-            "type",
-            "search"
-        );
-    });
-
-    it("should render the type attribute as `text` and prepend an icon when `credit-card` is passed", () => {
-        render(TextInput, {
-            id: "example-input",
-            label: "example label",
-            type: "credit-card",
-        });
-
-        expect(screen.getByRole("textbox")).to.exist;
-        expect(
-            screen.getByRole("textbox").previousElementSibling
-        ).to.have.class("s-input-icon");
-    });
-
-    it("should render the TextInput with artbirary classes", () => {
-        render(TextInput, {
+    it("should render the TextArea with artbirary classes", () => {
+        render(TextArea, {
             id: "example-input",
             label: "example label",
             class: "fc-theme-primary-400",
@@ -154,7 +103,7 @@ describe("TextInput", () => {
     });
 
     it("should adjust the classes on prop updates", async () => {
-        const { rerender } = render(TextInput, {
+        const { rerender } = render(TextArea, {
             class: "fc-theme-primary-400",
             id: "example-input",
             label: "example label",
@@ -175,7 +124,7 @@ describe("TextInput", () => {
 
     // slots
     it("should render the description slot", () => {
-        render(TextInput, {
+        render(TextArea, {
             id: "example-input",
             label: "example label",
             description: snippet,
@@ -186,20 +135,8 @@ describe("TextInput", () => {
         );
     });
 
-    it("should render the fill slot", () => {
-        render(TextInput, {
-            id: "example-input",
-            label: "example label",
-            fill: snippet,
-        });
-
-        expect(screen.getByText("test snippet").parentElement).to.have.class(
-            "s-input-fill"
-        );
-    });
-
     it("should render the message slot", () => {
-        render(TextInput, {
+        render(TextArea, {
             id: "example-input",
             label: "example label",
             message: snippet,
@@ -213,7 +150,7 @@ describe("TextInput", () => {
     // events
     it("should call the on:change callback when the user changes the value", async () => {
         const onChangeSpy = sinon.spy();
-        render(TextInput, {
+        render(TextArea, {
             id: "example-input",
             label: "example label",
             onchange: onChangeSpy,
@@ -228,7 +165,7 @@ describe("TextInput", () => {
 
     it("should call the on:input callback when the user changes the value", async () => {
         const onInputSpy = sinon.spy();
-        render(TextInput, {
+        render(TextArea, {
             id: "example-input",
             label: "example label",
             oninput: onInputSpy,
@@ -243,7 +180,7 @@ describe("TextInput", () => {
 
     it("should call the on:keydown callback when the user changes the value", async () => {
         const onKeydownSpy = sinon.spy();
-        render(TextInput, {
+        render(TextArea, {
             id: "example-input",
             label: "example label",
             onkeydown: onKeydownSpy,
@@ -257,7 +194,7 @@ describe("TextInput", () => {
 
     it("should call the on:keyup callback when the user changes the value", async () => {
         const onKeyupSpy = sinon.spy();
-        render(TextInput, {
+        render(TextArea, {
             id: "example-input",
             label: "example label",
             onkeyup: onKeyupSpy,
@@ -271,7 +208,7 @@ describe("TextInput", () => {
 
     it("should call the on:focus callback when the user changes the value", async () => {
         const onFocusSpy = sinon.spy();
-        render(TextInput, {
+        render(TextArea, {
             id: "example-input",
             label: "example label",
             onfocus: onFocusSpy,
@@ -283,7 +220,7 @@ describe("TextInput", () => {
 
     it("should call the on:blur callback when the user changes the value", async () => {
         const onBlurSpy = sinon.spy();
-        render(TextInput, {
+        render(TextArea, {
             id: "example-input",
             label: "example label",
             onblur: onBlurSpy,
@@ -295,7 +232,7 @@ describe("TextInput", () => {
 
     it("should call the on:paste callback when the user changes the value", async () => {
         const onPasteSpy = sinon.spy();
-        render(TextInput, {
+        render(TextArea, {
             id: "example-input",
             label: "example label",
             onpaste: onPasteSpy,
@@ -310,7 +247,7 @@ describe("TextInput", () => {
 
     // i18n
     it("should localize the required label status text when dedicated prop is specified", () => {
-        render(TextInput, {
+        render(TextArea, {
             id: "example-input",
             label: "example label",
             required: true,
