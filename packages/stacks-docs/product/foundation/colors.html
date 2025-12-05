@@ -39,6 +39,41 @@ tags: foundation
 </section>
 
 <section class="stacks-section">
+    {% header "h2", "Brand" %}
+
+    <p>TODO SHINE add guidance for brand colors.</p>
+    <div class="d-grid g24 mt16 mb32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+        {% for set in colors[0].brand %}
+            {% assign setClasses = "" %}
+            <div>
+                <div class="bar-md overflow-hidden bs-md ba baw2 bc-white">
+                    {% for stop in set.stops %}
+                        {% assign name = set.name | replace: " ", "-" %}
+
+                        {% if stop != "" %}
+                            {% assign name = set.name | append: "-" | append: stop | replace: " ", "-" %}
+                        {% endif %}
+
+                        {% assign stopFc = "fc-black" %}
+                        {% if set.invert contains stop %}
+                            {% assign stopFc = "fc-white" %}
+                        {% endif %}
+
+                        {% assign style = "background-color: var(--brand-" | append: stop | append: ")" %}
+                        {% if stop == "" %}
+                            {% assign style = "background-color: var(--brand)" %}
+                        {% endif %}
+                        <div class="p12 {{ stopFc }}" style="{{ style }}">
+                            {{ name }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="stacks-section">
     {% header "h2", "Classes" %}
 
     <p class="stacks-copy">
