@@ -33,12 +33,14 @@
         --_vo-child-p: 0;
 
         .s-vote {
-            &--neutral {
-                display: none;
-            }
-            &--positive,
-            &--negative {
-                display: block;
+            &--count {
+                &--votes {
+                    display: none;
+                }
+                &--upvotes,
+                &--downvotes {
+                    display: block;
+                }
             }
         }
     }
@@ -103,17 +105,19 @@
         white-space: nowrap;
     }
 
-    & &--positive,
-    & &--negative {
-        display: none;
-    }
+    & &--count {
+        &--upvotes,
+        &--downvotes {
+            display: none;
+        }
 
-    & &--positive {
-        color: var(--green-500);
-    }
+        &--upvotes {
+            color: var(--green-500);
+        }
 
-    & &--negative {
-        color: var(--red-500);
+        &--downvotes {
+            color: var(--red-500);
+        }
     }
 
     // INTERACTION

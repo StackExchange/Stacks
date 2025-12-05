@@ -8,8 +8,13 @@
     });
 </script>
 
-<Story name="Base" args={{}}>
+<Story name="Base">
     {#snippet template(args)}
         <Vote {...args} />
     {/snippet}
 </Story>
+
+<!-- TODO SHINE add examples story here (base, 0 count, ≥ 1k, ≥ 1m) -->
+<!-- TODO SHINE add expanded story -->
+<!-- TODO SHINE add horizontal story -->
+<!-- TODO SHINE add voted story (upvoted, downvoted, horizontal upvoted) -->
