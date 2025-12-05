@@ -1,5 +1,5 @@
 <script module lang="ts">
-    export type status = "upvoted" | "downvoted" | null;
+    export type Status = "upvoted" | "downvoted" | null;
 </script>
 
 <script lang="ts">
@@ -14,52 +14,52 @@
 
     interface Props {
         /**
-         * tbd
+         * The total vote count to display
          */
-        count: number;
+        total: number;
 
         /**
-         * tbd
+         * Number of upvotes. When provided along with downvotes, enables expandable vote counts.
          */
         upvotes?: number;
 
         /**
-         * tbd
+         * Number of downvotes. When provided along with upvotes, enables expandable vote counts.
          */
         downvotes?: number;
 
         /**
-         * tbd
+         * Display the vote component in horizontal layout. When true, hides the downvote button.
          */
         horizontal?: boolean;
 
         /**
-         * tbd
+         * Current vote status. Use "upvoted" or "downvoted" to show filled icons, or null for no vote.
          */
-        status?: "upvoted" | "downvoted" | null;
+        status?: Status;
 
         /**
-         * tbd
+         * Text to display when total is 0 and no vote has been cast. Defaults to "Vote".
          */
         i18nVote?: string;
 
         /**
-         * tbd
+         * Screen reader text for the upvote button. Defaults to "Upvote".
          */
         i18nUpvote?: string | undefined;
 
         /**
-         * tbd
+         * Screen reader text for the upvote button when upvoted. Defaults to "Upvoted".
          */
         i18nUpvoted?: string | undefined;
 
         /**
-         * tbd
+         * Screen reader text for the downvote button. Defaults to "Downvote".
          */
         i18nDownvote?: string | undefined;
 
         /**
-         * tbd
+         * Screen reader text for the downvote button when downvoted. Defaults to "Downvoted".
          */
         i18nDownvoted?: string | undefined;
 
@@ -82,7 +82,7 @@
     }
 
     const {
-        count,
+        total,
         upvotes = undefined,
         downvotes = undefined,
         horizontal,
@@ -123,7 +123,7 @@
     let expandable = $derived(
         upvotes !== undefined && downvotes !== undefined && !horizontal
     );
-    let currentCount = $state(count);
+    let currentCount = $state(total || 0);
     let currentStatus = $state(status);
     const classes = $derived(getClasses(className, expanded, horizontal));
 
@@ -169,19 +169,19 @@
     </button>
     <svelte:element
         this={expandable ? "button" : "span"}
-        class="s-vote--count"
+        class="s-vote--votes"
         on:click={() => (expandable ? (expanded = !expanded) : null)}
     >
         {#if upvotes !== undefined}
-            <span class="s-vote--count--upvotes">+{formatNumber(upvotes)}</span>
+            <span class="s-vote--upvotes">+{formatNumber(upvotes)}</span>
         {/if}
-        <span class="s-vote--count--votes">
-            {currentCount !== undefined ? formatNumber(currentCount) : i18nVote}
+        <span class="s-vote--total">
+            {currentCount !== 0 || currentStatus !== null
+                ? formatNumber(currentCount)
+                : i18nVote}
         </span>
         {#if downvotes !== undefined}
-            <span class="s-vote--count--downvotes"
-                >-{formatNumber(downvotes)}</span
-            >
+            <span class="s-vote--downvotes">-{formatNumber(downvotes)}</span>
         {/if}
     </svelte:element>
     {#if !horizontal}
