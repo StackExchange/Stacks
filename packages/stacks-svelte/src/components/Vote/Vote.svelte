@@ -145,20 +145,17 @@
 
         try {
             await callback();
-        } catch (error) {
+        } catch {
             // Revert on failure
             currentCount = previousCount;
             currentStatus = previousStatus;
-            throw error;
+            // Don't re-throw - the error should be handled by the callback if needed
         }
     }
 </script>
 
 <div class={classes}>
-    <button
-        class="s-vote--btn"
-        on:click={() => handleVote("upvoted", onupvote)}
-    >
+    <button class="s-vote--btn" onclick={() => handleVote("upvoted", onupvote)}>
         {#if currentStatus === "upvoted"}
             <span class="v-visible-sr">{i18nUpvoted}</span>
             <Icon src={IconVote16UpFill} />
@@ -170,7 +167,8 @@
     <svelte:element
         this={expandable ? "button" : "span"}
         class="s-vote--votes"
-        on:click={() => (expandable ? (expanded = !expanded) : null)}
+        role={expandable ? "button" : undefined}
+        onclick={() => (expandable ? (expanded = !expanded) : null)}
     >
         {#if upvotes !== undefined}
             <span class="s-vote--upvotes">+{formatNumber(upvotes)}</span>
@@ -187,7 +185,7 @@
     {#if !horizontal}
         <button
             class="s-vote--btn"
-            on:click={() => handleVote("downvoted", ondownvote)}
+            onclick={() => handleVote("downvoted", ondownvote)}
         >
             {#if currentStatus === "downvoted"}
                 <span class="v-visible-sr">{i18nDownvoted}</span>
