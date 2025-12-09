@@ -5,6 +5,35 @@ import {
 } from "@stackoverflow/stacks-icons/icons";
 import "../../index";
 
+const children = {
+    default: `
+        <button class="s-vote--btn">
+            ${IconVote16Up}
+            <span class="v-visible-sr">upvote</span>
+        </button>
+        <span class="s-vote--votes">
+            <span class="s-vote--total">12</span>
+            <span class="s-vote--upvotes">+20</span>
+            <span class="s-vote--downvotes">-8</span>
+        </span>
+        <button class="s-vote--btn">
+            ${IconVote16Down}
+            <span class="v-visible-sr">downvote</span>
+        </button>
+    `,
+    upvoteOnly: `
+        <button class="s-vote--btn">
+            ${IconVote16Up}
+            <span class="v-visible-sr">upvote</span>
+        </button>
+        <span class="s-vote--votes">
+            <span class="s-vote--total">12</span>
+            <span class="s-vote--upvotes">+20</span>
+            <span class="s-vote--downvotes">-8</span>
+        </span>
+    `
+};
+
 describe("vote", () => {
     runVisualTests({
         baseClass: "s-vote",
@@ -12,23 +41,11 @@ describe("vote", () => {
             primary: ["expanded"],
         },
         children: {
-            default: `
-                <button class="s-vote--btn">
-                    ${IconVote16Up}
-                </button>
-                <span class="s-vote--votes">
-                    <span class="s-vote--upvotes">+20</span>
-                    <span class="s-vote--total">12</span>
-                    <span class="s-vote--downvotes">-8</span>
-                </span>
-                <button class="s-vote--btn">
-                    ${IconVote16Down}
-                </button>
-            `,
+            default: children.default,
         },
     });
 
-    // Horizontal without downvote button
+    // Horizontal with and without downvote
     runVisualTests({
         baseClass: "s-vote",
         modifiers: {
@@ -37,17 +54,6 @@ describe("vote", () => {
         options: {
             includeNullModifier: false,
         },
-        children: {
-            default: `
-                <button class="s-vote--btn">
-                    ${IconVote16Up}
-                </button>
-                <span class="s-vote--votes">
-                    <span class="s-vote--upvotes">+20</span>
-                    <span class="s-vote--total">12</span>
-                    <span class="s-vote--downvotes">-8</span>
-                </span>
-            `,
-        },
+        children,
     });
 });
