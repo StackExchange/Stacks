@@ -52,7 +52,7 @@ describe("formatNumber", () => {
         expect(formatNumber(999)).to.equal("999");
         expect(formatNumber(1000)).to.equal("1k");
         expect(formatNumber(1500)).to.equal("1.5k");
-        
+
         // Exactly 4 chars
         expect(formatNumber(9999)).to.equal("10k");
         expect(formatNumber(10000)).to.equal("10k");

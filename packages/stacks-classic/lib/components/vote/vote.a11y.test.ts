@@ -31,7 +31,7 @@ const children = {
             <span class="s-vote--upvotes">+20</span>
             <span class="s-vote--downvotes">-8</span>
         </span>
-    `
+    `,
 };
 
 describe("vote", () => {

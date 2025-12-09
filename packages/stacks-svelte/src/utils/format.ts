@@ -1,10 +1,10 @@
 /**
  * Formats a number by abbreviating it with k (thousands) or m (millions) suffix.
  * The result will be at most 4 characters long.
- * 
+ *
  * @param num - The number to format
  * @returns The formatted number as a string
- * 
+ *
  * @example
  * formatNumber(123) // "123"
  * formatNumber(1234) // "1.2k"
@@ -17,7 +17,7 @@ export function formatNumber(num: number): string {
     if (num < 1000) {
         return num.toString();
     }
-    
+
     if (num < 1000000) {
         const k = num / 1000;
         const rounded = parseFloat(k.toFixed(1));
@@ -27,7 +27,7 @@ export function formatNumber(num: number): string {
         }
         return rounded + "k";
     }
-    
+
     const m = num / 1000000;
     const rounded = parseFloat(m.toFixed(1));
     // If the rounded result would be >= 10m, don't use decimal
