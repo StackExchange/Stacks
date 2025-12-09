@@ -28,8 +28,8 @@ describe("Vote", () => {
         expect(buttons).to.have.lengthOf(2);
     });
 
-    it("should render only upvote button in horizontal layout", () => {
-        render(Vote, { total: 12, horizontal: true });
+    it("should render only upvote button when hideDownvote is true", () => {
+        render(Vote, { total: 12, hideDownvote: true });
         const buttons = screen.getAllByRole("button");
         expect(buttons).to.have.lengthOf(1);
     });
@@ -52,9 +52,7 @@ describe("Vote", () => {
             upvotes: 20,
             downvotes: 8,
         });
-        const votesBtn = container.querySelector(
-            ".s-vote--votes"
-        ) as HTMLElement;
+        const votesBtn = container.querySelector(".s-vote--votes") as HTMLElement;
         const user = userEvent.setup();
 
         await user.click(votesBtn);
