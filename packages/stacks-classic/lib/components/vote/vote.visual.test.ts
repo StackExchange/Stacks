@@ -46,7 +46,7 @@ describe("vote", () => {
         },
         template: ({ component, testid }) => html`
             <div
-                class="d-inline-flex ai-center jc-center ws2 p8"
+                class="d-inline-flex ai-center jc-center ws1 p8"
                 data-testid="${testid}"
             >
                 ${component}
@@ -66,7 +66,7 @@ describe("vote", () => {
         children,
         template: ({ component, testid }) => html`
             <div
-                class="d-inline-flex ai-center jc-center ws2 p8"
+                class="d-inline-flex ai-center jc-center ws1 p8"
                 data-testid="${testid}"
             >
                 ${component}
