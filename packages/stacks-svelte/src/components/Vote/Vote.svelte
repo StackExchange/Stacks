@@ -39,6 +39,11 @@
         status?: Status;
 
         /**
+         * Whether to hide the downvote button. Defaults to false.
+         */
+        hideDownvote?: boolean;
+
+        /**
          * Text to display when total is 0 and no vote has been cast. Defaults to "Vote".
          */
         i18nVote?: string;
@@ -95,6 +100,7 @@
         upvotes = undefined,
         downvotes = undefined,
         horizontal,
+        hideDownvote = false,
         status = null,
         i18nVote = "Vote",
         i18nUpvote = "Upvote",
@@ -193,10 +199,12 @@
             <span class="s-vote--downvotes">-{formatNumber(downvotes)}</span>
         {/if}
         {#if expandable}
-            {expanded ? i18nExpanded : i18nExpand}
+            <span class="v-visible-sr">
+                {expanded ? i18nExpanded : i18nExpand}
+            </span>
         {/if}
     </svelte:element>
-    {#if !horizontal}
+    {#if !hideDownvote}
         <button
             class="s-vote--btn"
             onclick={() => handleVote("downvoted", ondownvote)}
