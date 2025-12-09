@@ -2,7 +2,7 @@
     "name": "@stackoverflow/stacks-svelte",
     "description": "Stacks Components built in Svelte",
     "type": "module",
-    "version": "1.0.0-beta.5",
+    "version": "1.0.0-beta.12",
     "exports": {
         ".": {
             "types": "./lib/components/index.d.ts",
@@ -23,11 +23,11 @@
         "test:watch": "npm run build:dependencies && web-test-runner --watch",
         "test:tools": "npm run storybook:build && node --test tools/*.test.js",
         "storybook": "storybook dev -p 6006",
-        "storybook:build": "storybook build -o netlify/dist && npm run storybook:extract",
+        "storybook:build": "npm run build:dependencies && storybook build -o netlify/dist && npm run storybook:extract",
         "storybook:extract": "node tools/storybook-llms-extractor.js"
     },
     "peerDependencies": {
-        "@stackoverflow/stacks": "^3.0.0-beta.3",
+        "@stackoverflow/stacks": "^3.0.0-beta.8",
         "svelte": "^5.0.0"
     },
     "dependencies": {

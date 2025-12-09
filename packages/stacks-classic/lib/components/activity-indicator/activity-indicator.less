@@ -4,34 +4,18 @@
     --_ai-min-size: var(--su-static16);
     --_ai-p: 0 calc(var(--su-static4) - var(--su-static1));
 
-    .highcontrast-mode({
-        --_ai-bg: var(--theme-secondary-500);
-    });
-
     // VARIANTS
     &&__danger {
         --_ai-bg: var(--red-400);
-
-        .highcontrast-mode({
-            --_ai-bg: var(--red-500);
-        });
     }
 
     &&__success {
         --_ai-bg: var(--green-400);
 
-        .highcontrast-mode({
-            --_ai-bg: var(--green-500);
-        });
     }
 
     &&__warning {
         --_ai-bg: var(--yellow-400);
-
-        .highcontrast-mode({
-            --_ai-bg: var(--yellow-500); // needs to be here to override default high contrast
-            --_ai-fc: var(--white);
-        });
     }
 
     &&__sm {
@@ -45,7 +29,7 @@
     min-height: var(--_ai-min-size);
     padding: var(--_ai-p);
 
-    border-radius: 1000px;
+    border-radius: var(--br-pill);
     display: inline-flex;
     font-size: var(--fs-fine);
     font-weight: 600;

@@ -142,7 +142,7 @@ describe("Popover", () => {
         expect(screen.getByRole("menu")).to.exist;
     });
 
-    it("add classes to the popover content when the class prop is provided", async () => {
+    it("add classes to the s-popover element when the class prop is provided", async () => {
         render(Popover, {
             props: {
                 ...defaultProps,
@@ -163,6 +163,34 @@ describe("Popover", () => {
         });
 
         expect(screen.getByRole("dialog")).to.have.class("custom-class");
+    });
+
+    it("add classes to the s-popover--content element when the contentClass prop is provided", async () => {
+        const { container } = render(Popover, {
+            props: {
+                ...defaultProps,
+                autoshow: true,
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    {
+                        component: PopoverContent,
+                        props: {
+                            contentClass: "custom-class",
+                            children: createRawSnippet(() => ({
+                                render: () => "<span>Popover Content</span>",
+                            })),
+                        },
+                    },
+                ]),
+            },
+        });
+
+        const innerContentElement = container.querySelector(
+            ".s-popover--content"
+        );
+
+        expect(innerContentElement).to.exist;
+        expect(innerContentElement).to.have.class("custom-class");
     });
 
     it("add classes to the popover close button component when the class prop is provided", async () => {
@@ -375,6 +403,28 @@ describe("Popover", () => {
         expect(screen.queryByRole("dialog")).not.to.exist;
     });
 
+    it("should fire onoutclick callback when clicking outside the popover", async () => {
+        const onOutsideClickSpy = sinon.spy();
+
+        render(Popover, {
+            props: {
+                ...defaultProps,
+                autoshow: true,
+                onoutclick: onOutsideClickSpy,
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    defaultChildren.content,
+                ]),
+            },
+        });
+
+        expect(screen.getByRole("dialog")).to.exist;
+
+        await userEvent.click(document.body);
+        expect(onOutsideClickSpy).to.have.been.calledOnce;
+        expect(screen.queryByRole("dialog")).not.to.exist;
+    });
+
     it("should trap focus within the popover content when the trapFocus prop is set to true", async () => {
         render(Popover, {
             props: {
@@ -515,7 +565,7 @@ describe("Popover", () => {
     });
 
     describe("when not in tooltip mode", () => {
-        it("should throw an error if the reference element provided is not of role button", () => {
+        it("should throw an error if the reference element provided does not have any children of role button", () => {
             expect(() =>
                 render(Popover, {
                     props: {
@@ -537,6 +587,28 @@ describe("Popover", () => {
             ).to.throw(
                 "Reference element must have a role of 'button' for uncontrolled popovers."
             );
+        });
+
+        it("should not throw an error if the reference element has any children of role button", () => {
+            expect(() =>
+                render(Popover, {
+                    props: {
+                        ...defaultProps,
+                        children: createSvelteComponentsSnippet([
+                            {
+                                component: PopoverReference,
+                                props: {
+                                    children: createRawSnippet(() => ({
+                                        render: () =>
+                                            "<li><button>button</button></li>",
+                                    })),
+                                },
+                            },
+                            defaultChildren.content,
+                        ]),
+                    },
+                })
+            ).not.to.throw();
         });
 
         it("should automatically apply the correct aria attributes to the elements", async () => {

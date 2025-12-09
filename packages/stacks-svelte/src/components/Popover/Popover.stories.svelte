@@ -60,7 +60,7 @@
         <div class="hmn3 d-flex flex__center">
             <Popover {...args}>
                 <PopoverReference>
-                    <Button weight="filled">Trigger</Button>
+                    <Button>Trigger</Button>
                 </PopoverReference>
                 <PopoverContent>Here I am</PopoverContent>
             </Popover>
@@ -72,18 +72,18 @@
     <div class="d-grid grid__2 w100 ji-center py128">
         <Popover id="tooltip" tooltip>
             <PopoverReference>
-                <Button weight="filled">Tooltip</Button>
+                <Button>Tooltip</Button>
             </PopoverReference>
             <PopoverContent>Here I am</PopoverContent>
         </Popover>
 
         <Popover id="tooltip-interactive" tooltip>
             <PopoverReference>
-                <Button weight="filled">Tooltip Interactive</Button>
+                <Button>Tooltip Interactive</Button>
             </PopoverReference>
             <PopoverContent>
                 <p>This tooltip contains a focusable element.</p>
-                <Button weight="filled">Some action</Button>
+                <Button>Some action</Button>
             </PopoverContent>
         </Popover>
     </div>
@@ -93,7 +93,7 @@
     <div class="hmn3 d-flex flex__center">
         <Popover id="autoshow" placement="right" autoshow>
             <PopoverReference>
-                <Button weight="filled">Trigger</Button>
+                <Button>Trigger</Button>
             </PopoverReference>
             <PopoverContent>Here I am</PopoverContent>
         </Popover>
@@ -106,7 +106,7 @@
             <div class="grid-item hmn1">
                 <Popover id={placement} {placement}>
                     <PopoverReference>
-                        <Button weight="filled" class="w128">
+                        <Button class="w128">
                             {placement}
                         </Button>
                     </PopoverReference>
@@ -169,7 +169,7 @@
     <div class="hmn3 d-flex flex__center">
         <Popover id="not-dismissable" placement="right" dismissible={false}>
             <PopoverReference>
-                <Button weight="filled">Trigger</Button>
+                <Button>Trigger</Button>
             </PopoverReference>
             <PopoverContent>
                 Here I am<PopoverCloseButton />
@@ -188,7 +188,7 @@
         >
             {#snippet children({ close })}
                 <PopoverReference>
-                    <Button weight="filled">Trigger</Button>
+                    <Button>Trigger</Button>
                 </PopoverReference>
                 <PopoverContent>
                     <p class="d-flex fd-column g16">
@@ -196,11 +196,7 @@
                         <TextInput size="sm" id="name" label="Name"></TextInput>
                         <TextInput size="sm" id="surname" label="Surname"
                         ></TextInput>
-                        <Button
-                            type="submit"
-                            weight="filled"
-                            onclick={() => close()}
-                        >
+                        <Button type="submit" onclick={() => close()}>
                             Submit
                         </Button>
                         <PopoverCloseButton />
@@ -262,12 +258,29 @@
         >
             {#snippet children({ visible })}
                 <PopoverReference>
-                    <Button weight="filled">Trigger</Button>
+                    <Button>Trigger</Button>
                 </PopoverReference>
                 <PopoverContent>Here I am</PopoverContent>
                 <p class="mt12">Visible: {visible}</p>
             {/snippet}
         </Popover>
         <p>Last Event: {lastEvent}</p>
+    </div>
+</Story>
+
+<Story name="Custom Classes" asChild>
+    <div class="hmn3 d-flex fd-column flex__center">
+        <Popover id="custom-classes">
+            <PopoverReference>
+                <Button>Custom Classes</Button>
+            </PopoverReference>
+            <PopoverContent
+                class="w-auto wmn0"
+                contentClass="p0 mn0 ta-center fw-bold"
+            >
+                No padding<br />
+                No margin
+            </PopoverContent>
+        </Popover>
     </div>
 </Story>

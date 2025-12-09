@@ -1,5 +1,77 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.9
+
+### Patch Changes
+
+- [#2081](https://github.com/StackExchange/Stacks/pull/2081) [`327f25e`](https://github.com/StackExchange/Stacks/commit/327f25e541d4d6761273472b7134548607ab76f4) Thanks [@giamir](https://github.com/giamir)! - Navigation: adjust margin top of navigation title
+
+## 3.0.0-beta.8
+
+### Minor Changes
+
+- [#2069](https://github.com/StackExchange/Stacks/pull/2069) [`bb1284b`](https://github.com/StackExchange/Stacks/commit/bb1284be4f168e5513a5377b077ddc274c27c7e4) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update Select component in classic and svelte to new SHINE styles
+
+    BREAKING CHANGES:
+    - `md` and `xl` sizes removed
+
+### Patch Changes
+
+- [#2068](https://github.com/StackExchange/Stacks/pull/2068) [`6de581f`](https://github.com/StackExchange/Stacks/commit/6de581f165a319ca0cfb9d4db0e2096bc6fb8a75) Thanks [@giamir](https://github.com/giamir)! - Modal: changed close icon to the new `Cross` beta icon (including some padding adjustments)
+
+## 3.0.0-beta.7
+
+### Minor Changes
+
+- [#2051](https://github.com/StackExchange/Stacks/pull/2051) [`f3f078c`](https://github.com/StackExchange/Stacks/commit/f3f078c682ec2df4dc338f6766792de2c158b4c2) Thanks [@mukunku](https://github.com/mukunku)! - feat(badges): first batch of design updates for the badge component as part of SHINE
+
+    BREAKING CHANGES:
+    - `.s-badge__xs` removed
+    - `.s-award-bling` renamed to `.s-bling` (used in some badge templates)
+
+### Patch Changes
+
+- [#2065](https://github.com/StackExchange/Stacks/pull/2065) [`a89da8b`](https://github.com/StackExchange/Stacks/commit/a89da8b1bec2fccca1c8a1a016461c6fd1c6e1a0) Thanks [@giamir](https://github.com/giamir)! - Navigation: accessibility tweaks for highcontrast mode
+
+## 3.0.0-beta.6
+
+### Patch Changes
+
+- [#2066](https://github.com/StackExchange/Stacks/pull/2066) [`32ae839`](https://github.com/StackExchange/Stacks/commit/32ae839dd675ae50621a33f24bcd66694bc5c5c4) Thanks [@dancormier](https://github.com/dancormier)! - Remove activity indicator HC mode color overrides
+
+## 3.0.0-beta.5
+
+### Minor Changes
+
+- [#2008](https://github.com/StackExchange/Stacks/pull/2008) [`4610d3a`](https://github.com/StackExchange/Stacks/commit/4610d3a6f8183a3e57208b6b8780cfa9aba393c4) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update button to new Shine styles
+
+    BREAKING CHANGES:
+    - The secondary style `outlined` has been removed i.e. `.s-btn__outlined`
+    - The variant `Muted` has been removed
+    - `s-btn__md` has been removed
+
+- [#2043](https://github.com/StackExchange/Stacks/pull/2043) [`6f6d576`](https://github.com/StackExchange/Stacks/commit/6f6d576b65cd0db5d9ed2747d8cba474d4633680) Thanks [@giamir](https://github.com/giamir)! - Navigation updates:
+    - Deprecated muted variant (`.s-navigation__muted`)
+
+### Patch Changes
+
+- [#2057](https://github.com/StackExchange/Stacks/pull/2057) [`ec61da3`](https://github.com/StackExchange/Stacks/commit/ec61da30c742ea7be21de11e932381d34e36bdba) Thanks [@dancormier](https://github.com/dancormier)! - Change popover close icon to Cross
+
+## 3.0.0-beta.4
+
+### Minor Changes
+
+- [#2046](https://github.com/StackExchange/Stacks/pull/2046) [`5e49f0b`](https://github.com/StackExchange/Stacks/commit/5e49f0b6b2361058bc941f81ee90fb9a5158e961) Thanks [@dancormier](https://github.com/dancormier)! - Update Menu to SHINE styles; add Svelte component
+
+- [#2035](https://github.com/StackExchange/Stacks/pull/2035) [`0b1841d`](https://github.com/StackExchange/Stacks/commit/0b1841d147ff8e9dc369c4bb758b3a11d1fafc73) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update pagination component to match new SHINE design system
+
+    BREAKING CHANGES
+    The next button now uses an ArrowRight and ArrowLeft icon instead of text. To apply the new styling, add the `item__nav` class to pagination items that represent the "Next" button.
+
+### Patch Changes
+
+- [#2054](https://github.com/StackExchange/Stacks/pull/2054) [`13b6189`](https://github.com/StackExchange/Stacks/commit/13b6189f3228a506fa6a607ef65cac7a45a912c9) Thanks [@dancormier](https://github.com/dancormier)! - Fix dark mode orange color
+
 ## 3.0.0-beta.3
 
 ### Minor Changes

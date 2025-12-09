@@ -1,5 +1,99 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.12
+
+### Patch Changes
+
+- [#2080](https://github.com/StackExchange/Stacks/pull/2080) [`1f53476`](https://github.com/StackExchange/Stacks/commit/1f534769e7375b5a77434b8c7ee542f0dfd1729f) Thanks [@stacks-tooling](https://github.com/stacks-tooling)! - Navigation: ensure dropdown items can be rendered in a semantically correct way
+
+## 1.0.0-beta.11
+
+### Minor Changes
+
+- [#2069](https://github.com/StackExchange/Stacks/pull/2069) [`bb1284b`](https://github.com/StackExchange/Stacks/commit/bb1284be4f168e5513a5377b077ddc274c27c7e4) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update Select component in classic and svelte to new SHINE styles
+
+    BREAKING CHANGES:
+    - `md` and `xl` sizes removed
+
+### Patch Changes
+
+- [#2068](https://github.com/StackExchange/Stacks/pull/2068) [`6de581f`](https://github.com/StackExchange/Stacks/commit/6de581f165a319ca0cfb9d4db0e2096bc6fb8a75) Thanks [@giamir](https://github.com/giamir)! - Modal: changed close icon to the new `Cross` beta icon (including some padding adjustments)
+
+- Updated dependencies [[`bb1284b`](https://github.com/StackExchange/Stacks/commit/bb1284be4f168e5513a5377b077ddc274c27c7e4), [`6de581f`](https://github.com/StackExchange/Stacks/commit/6de581f165a319ca0cfb9d4db0e2096bc6fb8a75)]:
+    - @stackoverflow/stacks@3.0.0-beta.8
+
+## 1.0.0-beta.10
+
+### Patch Changes
+
+- [#2074](https://github.com/StackExchange/Stacks/pull/2074) [`1e98516`](https://github.com/StackExchange/Stacks/commit/1e9851617653b2233cb8ed62b5c0248379f528fb) Thanks [@dancormier](https://github.com/dancormier)! - Navigation: Add animate prop to NavigationItem
+
+## 1.0.0-beta.9
+
+### Minor Changes
+
+- [#2051](https://github.com/StackExchange/Stacks/pull/2051) [`f3f078c`](https://github.com/StackExchange/Stacks/commit/f3f078c682ec2df4dc338f6766792de2c158b4c2) Thanks [@mukunku](https://github.com/mukunku)! - feat(badges): first batch of design updates for the badge component as part of SHINE
+
+    BREAKING CHANGES:
+    - `.s-badge__xs` removed
+    - `.s-award-bling` renamed to `.s-bling` (used in some badge templates)
+
+### Patch Changes
+
+- [#2065](https://github.com/StackExchange/Stacks/pull/2065) [`a89da8b`](https://github.com/StackExchange/Stacks/commit/a89da8b1bec2fccca1c8a1a016461c6fd1c6e1a0) Thanks [@giamir](https://github.com/giamir)! - Navigation: Address an issue where in highcontrast mode anchor navigation items with activity indicator or badges were not correctly underlined
+
+- Updated dependencies [[`a89da8b`](https://github.com/StackExchange/Stacks/commit/a89da8b1bec2fccca1c8a1a016461c6fd1c6e1a0), [`f3f078c`](https://github.com/StackExchange/Stacks/commit/f3f078c682ec2df4dc338f6766792de2c158b4c2)]:
+    - @stackoverflow/stacks@3.0.0-beta.7
+
+## 1.0.0-beta.8
+
+### Patch Changes
+
+- [#2061](https://github.com/StackExchange/Stacks/pull/2061) [`da4276a`](https://github.com/StackExchange/Stacks/commit/da4276adac3562f9d31ea2775e707cab6d5df816) Thanks [@chris-doucette-stack](https://github.com/chris-doucette-stack)! - Popover: add the ability to add classes to the s-popover--content element
+
+- [#2063](https://github.com/StackExchange/Stacks/pull/2063) [`efed5b2`](https://github.com/StackExchange/Stacks/commit/efed5b2d01892fad814778bd9a7ba6407a4979f0) Thanks [@dancormier](https://github.com/dancormier)! - Add `onoutclick` to Popover component
+
+- Updated dependencies [[`32ae839`](https://github.com/StackExchange/Stacks/commit/32ae839dd675ae50621a33f24bcd66694bc5c5c4)]:
+    - @stackoverflow/stacks@3.0.0-beta.6
+
+## 1.0.0-beta.7
+
+### Minor Changes
+
+- [#2008](https://github.com/StackExchange/Stacks/pull/2008) [`4610d3a`](https://github.com/StackExchange/Stacks/commit/4610d3a6f8183a3e57208b6b8780cfa9aba393c4) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update button to new Shine styles
+
+    BREAKING CHANGES:
+    - The secondary style `outlined` has been removed i.e. `.s-btn__outlined`
+    - The variant `Muted` has been removed
+    - `s-btn__md` has been removed
+
+- [#2043](https://github.com/StackExchange/Stacks/pull/2043) [`6f6d576`](https://github.com/StackExchange/Stacks/commit/6f6d576b65cd0db5d9ed2747d8cba474d4633680) Thanks [@giamir](https://github.com/giamir)! - Added new Navigation Component
+
+### Patch Changes
+
+- [#2057](https://github.com/StackExchange/Stacks/pull/2057) [`ec61da3`](https://github.com/StackExchange/Stacks/commit/ec61da30c742ea7be21de11e932381d34e36bdba) Thanks [@dancormier](https://github.com/dancormier)! - Change popover close icon to Cross
+
+- Updated dependencies [[`4610d3a`](https://github.com/StackExchange/Stacks/commit/4610d3a6f8183a3e57208b6b8780cfa9aba393c4), [`6f6d576`](https://github.com/StackExchange/Stacks/commit/6f6d576b65cd0db5d9ed2747d8cba474d4633680), [`ec61da3`](https://github.com/StackExchange/Stacks/commit/ec61da30c742ea7be21de11e932381d34e36bdba)]:
+    - @stackoverflow/stacks@3.0.0-beta.5
+
+## 1.0.0-beta.6
+
+### Minor Changes
+
+- [#2046](https://github.com/StackExchange/Stacks/pull/2046) [`5e49f0b`](https://github.com/StackExchange/Stacks/commit/5e49f0b6b2361058bc941f81ee90fb9a5158e961) Thanks [@dancormier](https://github.com/dancormier)! - Update Menu to SHINE styles; add Svelte component
+
+- [#2035](https://github.com/StackExchange/Stacks/pull/2035) [`0b1841d`](https://github.com/StackExchange/Stacks/commit/0b1841d147ff8e9dc369c4bb758b3a11d1fafc73) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update pagination component to match new SHINE design system
+
+    BREAKING CHANGES
+    The next button now uses an ArrowRight and ArrowLeft icon instead of text. To apply the new styling, add the `item__nav` class to pagination items that represent the "Next" button.
+
+### Patch Changes
+
+- [#2045](https://github.com/StackExchange/Stacks/pull/2045) [`10e108a`](https://github.com/StackExchange/Stacks/commit/10e108a476801015237f7937e7dcd79e268a52a2) Thanks [@mukunku](https://github.com/mukunku)! - accessibility(tags): add screen reader improvements
+
+- Updated dependencies [[`5e49f0b`](https://github.com/StackExchange/Stacks/commit/5e49f0b6b2361058bc941f81ee90fb9a5158e961), [`13b6189`](https://github.com/StackExchange/Stacks/commit/13b6189f3228a506fa6a607ef65cac7a45a912c9), [`0b1841d`](https://github.com/StackExchange/Stacks/commit/0b1841d147ff8e9dc369c4bb758b3a11d1fafc73)]:
+    - @stackoverflow/stacks@3.0.0-beta.4
+
 ## 1.0.0-beta.5
 
 ### Minor Changes

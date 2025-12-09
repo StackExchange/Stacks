@@ -45,7 +45,8 @@ interface ComponentMeta<T extends Component> {
 }
 
 const createSvelteComponentsSnippet = (
-    components: ComponentMeta<Component>[]
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    components: ComponentMeta<any>[]
 ) =>
     createRawSnippet(() => ({
         render: () => "<span></span>",

@@ -36,9 +36,7 @@ describe("TextInput", () => {
         render(TextInput, {
             id: "example-input",
             label: "example label",
-            $$slots: {
-                fill: snippet,
-            },
+            fill: snippet,
         });
         expect(screen.getByRole("textbox")).to.have.class("blr0");
         expect(screen.getByText("test snippet").parentElement).to.have.class(
@@ -51,9 +49,7 @@ describe("TextInput", () => {
             id: "example-input",
             label: "example label",
             fillSide: "append",
-            $$slots: {
-                fill: snippet,
-            },
+            fill: snippet,
         });
 
         expect(screen.getByRole("textbox")).to.have.class("brr0");
@@ -87,15 +83,6 @@ describe("TextInput", () => {
         expect(screen.getByRole("textbox").nextElementSibling).to.have.class(
             "s-input-icon"
         );
-    });
-
-    it('should render the "optional" label status', () => {
-        render(TextInput, {
-            id: "example-input",
-            label: "example label",
-            optional: true,
-        });
-        expect(screen.getByText("Optional")).to.have.class("s-label--status");
     });
 
     it('should render the "required" label status', () => {
@@ -191,9 +178,7 @@ describe("TextInput", () => {
         render(TextInput, {
             id: "example-input",
             label: "example label",
-            $$slots: {
-                description: snippet,
-            },
+            description: snippet,
         });
 
         expect(screen.getByText("test snippet").parentElement).to.have.class(
@@ -205,9 +190,7 @@ describe("TextInput", () => {
         render(TextInput, {
             id: "example-input",
             label: "example label",
-            $$slots: {
-                fill: snippet,
-            },
+            fill: snippet,
         });
 
         expect(screen.getByText("test snippet").parentElement).to.have.class(
@@ -219,9 +202,7 @@ describe("TextInput", () => {
         render(TextInput, {
             id: "example-input",
             label: "example label",
-            $$slots: {
-                message: snippet,
-            },
+            message: snippet,
         });
 
         expect(screen.getByText("test snippet").parentElement).to.have.class(
@@ -338,15 +319,5 @@ describe("TextInput", () => {
 
         const requiredSymbol = screen.getByText("*");
         expect(requiredSymbol).to.have.attr("title", "Obbligatorio");
-    });
-
-    it("should localize the optional label status text when dedicated prop is specified", () => {
-        render(TextInput, {
-            id: "example-input",
-            label: "example label",
-            optional: true,
-            i18nOptionalText: "Facoltativo",
-        });
-        expect(screen.getByText("Facoltativo")).to.exist;
     });
 });

@@ -247,7 +247,7 @@ const getChildren = ({
     const userEl = show.user ? getUser() : "";
     const menuBtnEl = show.menuBtn
         ? `
-        <a href="#" class="s-btn s-btn__muted s-post-summary--content-menu-button">
+        <a href="#" class="s-btn s-btn__tonal s-post-summary--content-menu-button">
             ${IconEllipsisVertical}
             <span class="v-visible-sr">menu</span>
         </a>

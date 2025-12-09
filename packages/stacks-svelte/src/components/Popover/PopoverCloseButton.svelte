@@ -1,6 +1,6 @@
 <script lang="ts">
     import Icon from "../Icon/Icon.svelte";
-    import { IconClear } from "@stackoverflow/stacks-icons-legacy/icons";
+    import { IconCross } from "@stackoverflow/stacks-icons/icons";
     import { usePopoverContext } from "./Popover.svelte";
 
     interface Props {
@@ -30,9 +30,9 @@
 
 <button
     aria-label={label}
-    class={`s-popover--close s-btn s-btn__muted ps-absolute${className ? ` ${className}` : ""}`}
+    class={`s-popover--close s-btn s-btn__tonal ps-absolute${className ? ` ${className}` : ""}`}
     type="button"
     onclick={handleClick}
 >
-    <Icon src={IconClear} />
+    <Icon src={IconCross} />
 </button>
