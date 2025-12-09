@@ -52,7 +52,9 @@ describe("Vote", () => {
             upvotes: 20,
             downvotes: 8,
         });
-        const votesBtn = container.querySelector(".s-vote--votes") as HTMLElement;
+        const votesBtn = container.querySelector(
+            ".s-vote--votes"
+        ) as HTMLElement;
         const user = userEvent.setup();
 
         await user.click(votesBtn);
