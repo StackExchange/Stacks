@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Vote
-description: tbd
+description: The vote component allows users to vote on the quality of content by casting an upvote or downvote.
 figma: https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=617-18830&p=f&t=u4su1MPgebbjmcfI-0
 svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-vote--docs
 tags: components
@@ -34,13 +34,9 @@ tags: components
 
 <section class="stacks-section">
     {% header "h2", "Examples" %}
-    <p class="stacks-copy">
-        <!-- TODO SHINE write description -->
-    </p>
-
     {% header "h3", "Base" %}
     <p class="stacks-copy">
-        <!-- TODO SHINE write description -->
+        The base vote component includes an upvote button, a downvote button, and a vote count. When the vote count is zero and the current user has not voted, it should display <code class="stacks-code">Vote</code> in place of a number. Otherwise, show the vote count and truncate large numbers (e.g., 1.2k).
     </p>
 
     <div class="stacks-preview mb24">
@@ -102,7 +98,7 @@ tags: components
 
     {% header "h3", "Expanded" %}
     <p class="stacks-copy">
-        <!-- TODO SHINE write description -->
+        Include the <code class="stacks-code">.s-vote__expanded</code> modifier to show upvote and downvote counts in addition to the total vote count. This modifier hides <code class="stacks-code">.s-vote--total</code> and shows <code class="stacks-code">.s-vote--upvotes</code> and <code class="stacks-code">.s-vote--downvotes</code> instead.
     </p>
 
     <div class="stacks-preview mb24">
@@ -111,11 +107,11 @@ tags: components
     <button class="s-vote--btn">
         @Svg.Vote16Up
     </button>
-    <span class="s-vote--votes">
+    <button class="s-vote--votes">
         <span class="s-vote--upvotes">12</span>
         <span class="s-vote--total">20</span>
         <span class="s-vote--downvotes">8</span>
-    </span>
+    </button>
     <button class="s-vote--btn">
         @Svg.Vote16Down
     </button>
@@ -131,7 +127,6 @@ tags: components
                     {% assign classList = classList | append: " s-vote__expanded" %}
                 {% endif %}
                 <div class="d-flex fd-column ai-center g16">
-                    <code>{{ vote.description }}</code>
                     <div class="{{ classList }}">
                         <button class="s-vote--btn">
                             {% if vote.upvoted %}
@@ -166,7 +161,7 @@ tags: components
 
     {% header "h3", "Horizontal" %}
     <p class="stacks-copy">
-        <!-- TODO SHINE write description -->
+        Apply the <code class="stacks-code">.s-vote__horizontal</code> modifier to arrange the vote buttons and counts in a horizontal layout. This layout does not officially support downvoting or expanded vote count. This configuration is best suited scenarios such as comment voting, where a more compact design is preferred.
     </p>
 
     <div class="stacks-preview mb24">
@@ -190,7 +185,6 @@ tags: components
                     {% assign classList = classList | append: " s-vote__expanded" %}
                 {% endif %}
                 <div class="d-flex fd-column ai-center g16">
-                    <code>{{ vote.description }}</code>
                     <div class="{{ classList }}">
                         <button class="s-vote--btn">
                             {% if vote.upvoted %}
@@ -226,7 +220,7 @@ tags: components
 
     {% header "h3", "Voted" %}
     <p class="stacks-copy">
-        <!-- TODO SHINE write description -->
+        Use filled vote icons to indicate when the current user has upvoted or downvoted the content.
     </p>
 
     <div class="stacks-preview mb24">
