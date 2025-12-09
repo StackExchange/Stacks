@@ -161,11 +161,25 @@ tags: components
 
     {% header "h3", "Horizontal" %}
     <p class="stacks-copy">
-        Apply the <code class="stacks-code">.s-vote__horizontal</code> modifier to arrange the vote buttons and counts in a horizontal layout. This layout does not officially support downvoting or expanded vote count. This configuration is best suited scenarios such as comment voting, where a more compact design is preferred.
+        Apply the <code class="stacks-code">.s-vote__horizontal</code> modifier to arrange the vote buttons and counts in a horizontal layout. This layout does not officially support expanded vote count. This configuration is best suited scenarios such as comment voting, where a more compact design is preferred.
     </p>
 
     <div class="stacks-preview mb24">
 {% highlight html %}
+<!-- Standard horizontal vote component -->
+<div class="s-vote s-vote__horizontal">
+    <button class="s-vote--btn">
+        @Svg.Vote16Up
+    </button>
+    <span class="s-vote--votes">
+        <span class="s-vote--total">12</span>
+    </span>
+    <button class="s-vote--btn">
+        @Svg.Vote16Down
+    </button>
+</div>
+
+<!-- Upvote only -->
 <div class="s-vote s-vote__horizontal">
     <button class="s-vote--btn">
         @Svg.Vote16Up
@@ -185,6 +199,7 @@ tags: components
                     {% assign classList = classList | append: " s-vote__expanded" %}
                 {% endif %}
                 <div class="d-flex fd-column ai-center g16">
+                    <code>{{ vote.description }}</code>
                     <div class="{{ classList }}">
                         <button class="s-vote--btn">
                             {% if vote.upvoted %}
