@@ -206,11 +206,15 @@ describe("Vote", () => {
     it("should use custom i18n text for screen readers", () => {
         render(Vote, {
             total: 12,
+            upvotes: 20,
+            downvotes: 8,
             i18nUpvote: "Vote up",
             i18nDownvote: "Vote down",
+            i18nExpand: "Expand votes",
         });
         expect(screen.getByText("Vote up")).to.exist;
         expect(screen.getByText("Vote down")).to.exist;
+        expect(screen.getByText("Expand votes")).to.exist;
     });
 
     it("should show count instead of 'Vote' text after voting on 0 count", async () => {
