@@ -1,4 +1,5 @@
 import { runVisualTests } from "../../test/visual-test-utils";
+import { html } from "@open-wc/testing";
 import {
     IconVote16Up,
     IconVote16Down,
@@ -43,6 +44,14 @@ describe("vote", () => {
         children: {
             default: children.default,
         },
+        template: ({ component, testid }) => html`
+            <div
+                class="d-inline-flex ai-center jc-center ws2 p8"
+                data-testid="${testid}"
+            >
+                ${component}
+            </div>
+        `,
     });
 
     // Horizontal with and without downvote
@@ -55,5 +64,13 @@ describe("vote", () => {
             includeNullModifier: false,
         },
         children,
+        template: ({ component, testid }) => html`
+            <div
+                class="d-inline-flex ai-center jc-center ws2 p8"
+                data-testid="${testid}"
+            >
+                ${component}
+            </div>
+        `
     });
 });
