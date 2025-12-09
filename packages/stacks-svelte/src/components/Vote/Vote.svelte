@@ -64,6 +64,15 @@
         i18nDownvoted?: string | undefined;
 
         /**
+         * Screen reader text for the vote count when not expanded. Defaults to "Show vote details".
+         */
+        i18nExpand?: string | undefined;
+
+        /**
+         * Screen reader text for the vote count when expanded. Defaults to "Hide vote details".
+         */
+        i18nExpanded?: string | undefined;
+        /**
          * Callback fired when the upvote button is clicked.
          * Should return a promise that resolves on success.
          */
@@ -92,6 +101,8 @@
         i18nUpvoted = "Upvoted",
         i18nDownvote = "Downvote",
         i18nDownvoted = "Downvoted",
+        i18nExpand = "Show vote details",
+        i18nExpanded = "Hide vote details",
         onupvote = () => Promise.resolve(),
         ondownvote = () => Promise.resolve(),
         class: className = "",
@@ -157,11 +168,11 @@
 <div class={classes}>
     <button class="s-vote--btn" onclick={() => handleVote("upvoted", onupvote)}>
         {#if currentStatus === "upvoted"}
-            <span class="v-visible-sr">{i18nUpvoted}</span>
             <Icon src={IconVote16UpFill} />
+            <span class="v-visible-sr">{i18nUpvoted}</span>
         {:else}
-            <span class="v-visible-sr">{i18nUpvote}</span>
             <Icon src={IconVote16Up} />
+            <span class="v-visible-sr">{i18nUpvote}</span>
         {/if}
     </button>
     <svelte:element
@@ -181,6 +192,9 @@
         {#if downvotes !== undefined}
             <span class="s-vote--downvotes">-{formatNumber(downvotes)}</span>
         {/if}
+        {#if expandable}
+            {expanded ? i18nExpanded : i18nExpand}
+        {/if}
     </svelte:element>
     {#if !horizontal}
         <button
@@ -188,11 +202,11 @@
             onclick={() => handleVote("downvoted", ondownvote)}
         >
             {#if currentStatus === "downvoted"}
-                <span class="v-visible-sr">{i18nDownvoted}</span>
                 <Icon src={IconVote16DownFill} />
+                <span class="v-visible-sr">{i18nDownvoted}</span>
             {:else}
-                <span class="v-visible-sr">{i18nDownvote}</span>
                 <Icon src={IconVote16Down} />
+                <span class="v-visible-sr">{i18nDownvote}</span>
             {/if}
         </button>
     {/if}
