@@ -72,3 +72,7 @@ Color also comes through in our highlighted headlines. The guidance below shows 
 ## Things to avoid
 
 <img src="/images/brand/color/avoid.svg" alt="" />
+
+## Accessibility
+
+Accessible design starts with clear, readable text. In digital spaces, that means maintaining strong contrast between text and background. Learn more [about requirements here](https://stackoverflow.design/product/foundation/accessibility/).
