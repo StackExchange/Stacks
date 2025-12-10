@@ -18,18 +18,19 @@
 	<link rel="icon" href={Favicon} />
 </svelte:head>
 
-<header class="sidebar hmx100 h100 overflow-auto ps-fixed br bc-black-200">
-	<a class="d-block fc-black p24 bb bc-black-200" href="/" title="Home">
-		<Icon src={IconLogo} />
-	</a>
+<header class="w20 sm:w100 hmx100 h100 sm:h-auto overflow-auto ps-fixed br bc-black-200 z-nav">
+	<div class="d-flex ai-center jc-space-between bb bc-black-200 bg-white py16 px24 sm:pb12 sm:pt12">
+		<a href="/" title="Home" class="fc-black h:fc-orange-400">
+			<Icon src={IconLogo} />
+		</a>
 
-	<div class="p12">
 		<Search />
 	</div>
-
-	<Navigation
-		navigation={data.structure?.navigation}
-	/>
+	<div class="sm:d-none">
+		<Navigation
+			navigation={data.structure?.navigation}
+		/>
+	</div>
 </header>
 
 <main>
