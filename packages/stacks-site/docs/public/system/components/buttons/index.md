@@ -11,7 +11,7 @@ updated: 2025-12-09
 
   import { IconTrash, IconArrowUp, IconServiceFacebook, IconServiceGoogle, IconServiceGitHub } from '@stackoverflow/stacks-icons';
 
-  import buttons from '$lib/data/buttons.js';
+  import buttons from '$data/buttons.json';
 
   import ButtonTable from './ButtonTable.svelte';
   import AnchorButtonTable from './AnchorButtonTable.svelte';
@@ -157,30 +157,30 @@ Stacks provides additional classes for cases that are a bit more rare.
 
 ### Disabled
 
-| Type     | Class                    | Definition                                                  | Example            |
-| -------- | ------------------------ | ----------------------------------------------------------- | ------------------ |
+| Type     | Class                    | Definition                                                  | Example                                                        |
+| -------- | ------------------------ | ----------------------------------------------------------- | -------------------------------------------------------------- |
 | Disabled | `[aria-disabled="true"]` | Adds disabled styling to any element with `.s-btn` applied. | <Button href="#" weight="clear" disabled>Ask question</Button> |
 
 ### Resets
 
-| Type  | Class           | Definition                                                                                                                                                                                             | Example         |
-| ----- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| Type  | Class           | Definition                                                                                                                                                                                             | Example                                               |
+| ----- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------- |
 | Unset | `.s-btn__unset` | Removes all styling from a button and reverts focus states to browser default.                                                                                                                         | <Button unset class="ws-nowrap">Unset button</Button> |
-| Link  | `.s-btn__link`  | Styles a button element as though it were a link. Instead of transforming an `s-btn` to a link, you most likely want to style a `button` as a [link](/product/components/links/#single-link-examples). | <Button link class="ws-nowrap">Link button</Button>  |
+| Link  | `.s-btn__link`  | Styles a button element as though it were a link. Instead of transforming an `s-btn` to a link, you most likely want to style a `button` as a [link](/product/components/links/#single-link-examples). | <Button link class="ws-nowrap">Link button</Button>   |
 
 ### Icons
 
-| Type | Class          | Definition                                                       | Examples               |
-| ---- | -------------- | ---------------------------------------------------------------- | ---------------------- |
+| Type | Class          | Definition                                                       | Examples                                                                                                                                                                                                                                                                                                     |
+| ---- | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Icon | `.s-btn__icon` | Adds some margin overrides that apply to an icon within a button | <div class="d-flex ai-center"><button class="s-btn s-btn__danger s-btn__icon ws-nowrap mr8" type="button"><Icon src={IconTrash} /> Delete</button> <button class="s-btn s-btn__icon s-btn__link" type="button" aria-label="up"><Icon src={IconArrowUp} /><span class="v-visible-sr">up</span></button></div> |
 
 ### Social
 
-| Type     | Class              | Definition                                          | Examples           |
-| -------- | ------------------ | --------------------------------------------------- | ------------------ |
+| Type     | Class              | Definition                                          | Examples                                                                                                                       |
+| -------- | ------------------ | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | Facebook | `.s-btn__facebook` | Styles a button consistent with Facebook's branding | <button class="s-btn s-btn__icon s-btn__facebook ws-nowrap" type="button"><Icon src={IconServiceFacebook} /> Facebook</button> |
-| Google   | `.s-btn__google`   | Styles a button consistent with Google's branding   | <button class="s-btn s-btn__icon s-btn__google ws-nowrap" type="button"><Icon src={IconServiceGoogle} /> Google</button>   |
-| GitHub   | `.s-btn__github`   | Styles a button consistent with GitHub's branding   | <button class="s-btn s-btn__icon s-btn__github ws-nowrap" type="button"><Icon src={IconServiceGitHub} /> GitHub</button>   |
+| Google   | `.s-btn__google`   | Styles a button consistent with Google's branding   | <button class="s-btn s-btn__icon s-btn__google ws-nowrap" type="button"><Icon src={IconServiceGoogle} /> Google</button>       |
+| GitHub   | `.s-btn__github`   | Styles a button consistent with GitHub's branding   | <button class="s-btn s-btn__icon s-btn__github ws-nowrap" type="button"><Icon src={IconServiceGitHub} /> GitHub</button>       |
 
 ## Ordering
 
