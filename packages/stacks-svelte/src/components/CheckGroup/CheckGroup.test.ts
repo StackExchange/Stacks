@@ -1,0 +1,1 @@
+// TODO SHINE add tests for CheckGroup component
