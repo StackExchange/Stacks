@@ -183,7 +183,6 @@ Type animations utilize the Click behavior. While headlines animate word-by-word
     <iframe class="w100 d-block mb12" style="aspect-ratio: 16/9" src="https://fast.wistia.net/embed/iframe/jxwt1j6kk6?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
 
     <iframe class="w100 d-block" style="aspect-ratio: 16/9" src="https://fast.wistia.net/embed/iframe/y94ibtjy0q?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
-
   </GridColumn>
   <GridColumn padding={false} extraClasses="bg-brand-blue-light">
     <div class="bg-black ps-absolute fs-fine fc-white t0 l0 px6 py4">Body copy</div>
