@@ -1,6 +1,9 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import Menu from "./Menu.svelte";
+    import MenuCheckItem, {
+        type Type as MenuCheckItemType,
+    } from "./MenuCheckItem.svelte";
     import MenuItem from "./MenuItem.svelte";
     import MenuTitle from "./MenuTitle.svelte";
     import MenuDivider from "./MenuDivider.svelte";
@@ -14,10 +17,13 @@
     import PopoverContent from "../Popover/PopoverContent.svelte";
     import Button from "../Button/Button.svelte";
 
+    const MenuCheckItemTypes: MenuCheckItemType[] = ["checkbox", "radio"];
+
     const { Story } = defineMeta({
         title: "Components/Menu",
         component: Menu,
         subcomponents: {
+            MenuCheckItem,
             MenuItem,
             MenuTitle,
             MenuDivider,
@@ -100,64 +106,43 @@
     </div>
 </Story>
 
+<!-- TODO SHINE Update example -->
 <Story name="Selected States" asChild>
     <div class="hmn3 d-flex g32 fw-wrap">
-        <div>
-            <div class="ff-mono mb16">Using .s-radio</div>
-            <Popover id="selected-states-radio-popover" visible>
-                <PopoverContent class="ps-relative is-visible p8 ws2">
-                    <Menu>
-                        <MenuTitle>Select one</MenuTitle>
-                        <MenuItem
-                            name="menu-radio-filter"
-                            value="frequent"
-                            checked
-                        >
-                            Frequent
-                        </MenuItem>
-                        <MenuItem name="menu-radio-filter" value="votes">
-                            Votes
-                        </MenuItem>
-                        <MenuItem name="menu-radio-filter" value="unanswered">
-                            Unanswered
-                        </MenuItem>
-                    </Menu>
-                </PopoverContent>
-            </Popover>
-        </div>
-        <div>
-            <div class="ff-mono mb16">Using .s-checkbox</div>
-            <Popover id="selected-states-checkbox-popover" visible>
-                <PopoverContent class="ps-relative is-visible p8 ws2">
-                    <Menu>
-                        <MenuTitle>Select multiple</MenuTitle>
-                        <MenuItem
-                            type="checkbox"
-                            name="menu-checkbox-filter"
-                            value="frequent"
-                            checked
-                        >
-                            Frequent
-                        </MenuItem>
-                        <MenuItem
-                            type="checkbox"
-                            name="menu-checkbox-filter"
-                            value="votes"
-                        >
-                            Votes
-                        </MenuItem>
-                        <MenuItem
-                            type="checkbox"
-                            name="menu-checkbox-filter"
-                            value="unanswered"
-                            checked
-                        >
-                            Unanswered
-                        </MenuItem>
-                    </Menu>
-                </PopoverContent>
-            </Popover>
-        </div>
+        {#each MenuCheckItemTypes as type (type)}
+            <div>
+                <div class="ff-mono mb16">Using {type}</div>
+                <Popover id="selected-states-{type}-popover" visible>
+                    <PopoverContent class="ps-relative is-visible p8 ws2">
+                        <Menu type="fieldset">
+                            <MenuTitle type="legend">Select one</MenuTitle>
+                            <MenuCheckItem
+                                {type}
+                                checked={true}
+                                id="menu-checkitem-frequent-{type}"
+                                label="Frequent"
+                                value="frequent"
+                                name="menu checkitem {type}"
+                            />
+                            <MenuCheckItem
+                                {type}
+                                id="menu-checkitem-votes-{type}"
+                                label="Votes"
+                                name="menu checkitem {type}"
+                                value="votes"
+                            />
+                            <MenuCheckItem
+                                {type}
+                                id="menu-unanswered-votes-{type}"
+                                label="Unanswered"
+                                name="menu checkitem {type}"
+                                value="unanswered"
+                            />
+                        </Menu>
+                    </PopoverContent>
+                </Popover>
+            </div>
+        {/each}
     </div>
 </Story>
 

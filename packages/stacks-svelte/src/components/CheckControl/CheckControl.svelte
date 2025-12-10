@@ -121,11 +121,11 @@
         bind:this={inputElement}
         class:s-checkbox={type === "checkbox" && !checkmark}
         class:s-radio={type === "radio" && !checkmark}
-        {type}
-        {id}
-        {name}
         checked={checked === "indeterminate" ? false : checked}
         {disabled}
+        {id}
+        {name}
+        {type}
         {value}
     />
     {#if checkmark}

@@ -1,14 +1,18 @@
+<script module lang="ts">
+    export type Tag = "div" | "li";
+</script>
+
 <script lang="ts">
     import type { Snippet } from "svelte";
     import type {
         HTMLAnchorAttributes,
-        HTMLInputAttributes,
+        HTMLButtonAttributes,
     } from "svelte/elements";
     import Icon from "../Icon/Icon.svelte";
 
     interface Props
         extends Omit<
-            HTMLAnchorAttributes & HTMLInputAttributes,
+            HTMLAnchorAttributes & HTMLButtonAttributes,
             "href" | "type" | "class"
         > {
         /**
@@ -17,60 +21,39 @@
         href?: string | undefined;
 
         /**
-         * The type of input (radio or checkbox) - only used when href is not provided
-         */
-        type?: "radio" | "checkbox";
-
-        /**
          * If true, applies danger styling for destructive actions
          */
         danger?: boolean;
 
         /**
-         * The icon source to display before the menu content
+         * The icon source to display before the menu item content
          */
         icon?: string | undefined;
 
         /**
-         * Additional CSS classes added to the item element
+         * If true, marks the menu item as selected
+         */
+        selected?: boolean;
+
+        /**
+         * Additional CSS classes added to the element
          */
         class?: string;
-
-        /**
-         * Additional CSS classes added to the label element (only used when href is not provided)
-         */
-        labelClass?: string;
-
-        /**
-         * Additional CSS classes added to the input element (only used when href is not provided)
-         */
-        inputClass?: string;
 
         /**
          * Snippet for the menu item content
          */
         children: Snippet;
-
-        /**
-         * Localized translation for the selected label
-         */
-        i18nSelectedLabel?: string;
     }
 
     let {
-        href = undefined,
-        type = "radio",
+        href,
         danger = false,
-        icon = undefined,
+        icon,
+        selected = false,
         class: className = "",
-        labelClass = "",
-        inputClass = "",
+        onclick,
         children,
-        i18nSelectedLabel = "Selected",
-        checked = false,
-        name,
-        value,
-        id,
         ...restProps
     }: Props = $props();
 
@@ -78,7 +61,11 @@
         return `s-menu--item${className ? ` ${className}` : ""}`;
     };
 
-    const getLinkClasses = (danger: boolean) => {
+    const getLinkClasses = (
+        className: string,
+        danger: boolean,
+        selected: boolean
+    ) => {
         const base = "s-menu--action";
         let classes = base;
 
@@ -86,77 +73,32 @@
             classes += ` ${base}__danger`;
         }
 
-        return classes;
-    };
-
-    const getLabelClasses = (
-        labelClass: string,
-        danger: boolean,
-        checked: boolean
-    ) => {
-        const base =
-            "s-menu--action s-check-control s-check-control__checkmark";
-        let classes = base;
-
-        if (checked) {
-            classes += ` is-selected`;
+        if (className) {
+            classes += ` ${className}`;
         }
 
-        if (danger) {
-            classes += ` s-menu--action__danger`;
-        }
-
-        if (labelClass) {
-            classes += ` ${labelClass}`;
+        if (selected) {
+            classes += ` is--selected`;
         }
 
         return classes;
-    };
-
-    const getInputClasses = (
-        inputClass: string,
-        type: "radio" | "checkbox"
-    ) => {
-        if (inputClass) {
-            return inputClass;
-        }
-        return type === "radio" ? "s-radio" : "s-checkbox";
     };
 
     const itemClasses = $derived(getItemClasses(className));
-    const linkClasses = $derived(getLinkClasses(danger));
-    const labelClasses = $derived(
-        getLabelClasses(labelClass, danger, checked ?? false)
-    );
-    const inputClasses = $derived(getInputClasses(inputClass, type));
+    const linkClasses = $derived(getLinkClasses("", danger, selected));
 </script>
 
 <li class={itemClasses} role="menuitem">
-    {#if href}
-        <a {href} class={linkClasses} {...restProps}>
-            {#if icon}
-                <Icon src={icon} class="s-menu--icon" />
-            {/if}
-            {@render children()}
-        </a>
-    {:else}
-        <label class={labelClasses}>
-            {#if icon}
-                <Icon src={icon} class="s-menu--icon" />
-            {/if}
-            <input
-                {type}
-                {name}
-                {value}
-                {id}
-                {checked}
-                class={inputClasses}
-                {...restProps}
-            />
-            {@render children()}
-            {#if checked}
-                <span class="v-visible-sr">{i18nSelectedLabel}</span>
-            {/if}
-        </label>
-    {/if}
+    <svelte:element
+        this={href ? "a" : "button"}
+        {href}
+        {onclick}
+        class={linkClasses}
+        {...restProps}
+    >
+        {#if icon}
+            <Icon src={icon} class="s-menu--icon" />
+        {/if}
+        {@render children()}
+    </svelte:element>
 </li>

@@ -9,6 +9,7 @@ export { default as Link } from "./Link/Link.svelte";
 export { default as Menu } from "./Menu/Menu.svelte";
 export { default as MenuDivider } from "./Menu/MenuDivider.svelte";
 export { default as MenuItem } from "./Menu/MenuItem.svelte";
+export { default as MenuCheckItem } from "./Menu/MenuCheckItem.svelte";
 export { default as MenuTitle } from "./Menu/MenuTitle.svelte";
 export { default as Modal } from "./Modal/Modal.svelte";
 export { default as Navigation } from "./Navigation/Navigation.svelte";
