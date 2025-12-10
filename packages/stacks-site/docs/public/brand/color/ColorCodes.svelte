@@ -22,7 +22,7 @@
 <style>
   .colors {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(6, 1fr);
     gap: 10px;
     grid-auto-rows: 120px;
   }

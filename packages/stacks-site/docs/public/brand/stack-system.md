@@ -1,5 +1,5 @@
 ---
-updated: 2025-12-09
+updated: 2025-12-10
 ---
 
 <script>
@@ -48,7 +48,6 @@ The composition below shows how type, color, and 3D graphics come together withi
 <img src="/images/brand/stack-system/stacks-container-ex1.svg" alt="" />
 
 <img src="/images/brand/stack-system/stacks-container-ex2.svg" alt="" />
-
 
 ### In use
 

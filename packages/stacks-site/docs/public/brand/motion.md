@@ -1,5 +1,5 @@
 ---
-updated: 2025-12-09
+updated: 2025-12-10
 ---
 
 <script>
@@ -10,6 +10,7 @@ updated: 2025-12-09
 This section offers guidance on the core motion principles of our brand and how to roll them out over a variety of assets. By following this we create a unique and cohesive look across all moving assets that connects to our great brand image.
 
 ## Motion Principles
+
 The three guiding principles of our motion language align to strengthen our brand vision. All motion revolves around these core ideas.
 
 <Grid>
@@ -26,7 +27,6 @@ The three guiding principles of our motion language align to strengthen our bran
     <iframe class="w100 d-block" style="aspect-ratio: 17/20" src="https://fast.wistia.net/embed/iframe/rxsildvvaj?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
   </GridColumn>
 </Grid>
-
 
 ### Click
 
@@ -61,9 +61,9 @@ This should take place over 12 frames or less: 2 for the intro frame, maximum 10
       <circle cx="20.1953" cy="183.127" r="2.75387" fill="var(--black)"/>
     </svg>
 
-    
-    Hold Keyframe / 100% out<br/>
-    (0, 0, 0, 1)
+    <p class="mx-auto">Hold Keyframe / 100% out<br/>
+    (0, 0, 0, 1)</p>
+
   </GridColumn>
 </Grid>
 
@@ -105,9 +105,9 @@ This should take place over maximum 22 frames and include 1 frame skip in the mi
       <circle cx="175.585" cy="180.592" r="2.72928" fill="#575757"/>
     </svg>
 
-    
-    100% in / Keyframe Jump / 100% out<br/>
-    (1,1,0,1) + (0,0,0,1)
+    <p class="mx-auto">100% in / Keyframe Jump / 100% out<br/>
+    (1,1,0,1) + (0,0,0,1)</p>
+
   </GridColumn>
 </Grid>
 
@@ -152,9 +152,9 @@ This should never be longer than 20 frames to keep the final movement as a snap 
       <circle cx="191.166" cy="178.999" r="2.70521" fill="#575757"/>
     </svg>
 
+    <p class="mx-auto">100% in / Keyframe Jump / 100% out / Keyframe Jump<br/>
+    (1,1,0,1) + (0,0,0,1)</p>
 
-    100% in / Keyframe Jump / 100% out / Keyframe Jump<br/>
-    (1,1,0,1) + (0,0,0,1)
   </GridColumn>
 </Grid>
 
@@ -183,6 +183,7 @@ Type animations utilize the Click behavior. While headlines animate word-by-word
     <iframe class="w100 d-block mb12" style="aspect-ratio: 16/9" src="https://fast.wistia.net/embed/iframe/jxwt1j6kk6?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
 
     <iframe class="w100 d-block" style="aspect-ratio: 16/9" src="https://fast.wistia.net/embed/iframe/y94ibtjy0q?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
+
   </GridColumn>
   <GridColumn padding={false} extraClasses="bg-brand-blue-light">
     <div class="bg-black ps-absolute fs-fine fc-white t0 l0 px6 py4">Body copy</div>
@@ -215,12 +216,12 @@ The above transitions can also be applied to more complex layouts.
     <iframe class="w100 d-block mb12" style="aspect-ratio: 1/1" src="https://fast.wistia.net/embed/iframe/p3hpmpgot2?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
 
     <iframe class="w100 d-block" style="aspect-ratio: 16/9" src="https://fast.wistia.net/embed/iframe/gkqcf0z5bv?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
+
   </GridColumn>
   <GridColumn padding={false} extraClasses="bg-brand-blue-light">
     <iframe class="w100 d-block" style="aspect-ratio: 4/5" src="https://fast.wistia.net/embed/iframe/8mv15a6lln?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
   </GridColumn>
 </Grid>
-
 
 ### Lower Thirds
 
@@ -249,7 +250,7 @@ The logo animations can also be used to start or end longer videos.
 
 ### Cursor Animations
 
-Our bespoke cursor animations can be used to show interactions both on desktop and mobile. 
+Our bespoke cursor animations can be used to show interactions both on desktop and mobile.
 
 <Grid>
   <GridColumn padding={false} extraClasses="bg-white">
@@ -310,6 +311,7 @@ Our core motion principles can also be applied to UI when showing digital intera
         <iframe class="w100 d-block" style="aspect-ratio: 1/1" src="https://fast.wistia.net/embed/iframe/yn4pqdd1s6?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
       </GridColumn>
     </Grid>
+
   </GridColumn>
 </Grid>
 
