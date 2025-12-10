@@ -5,7 +5,15 @@
 
   const lastUpdated = $derived(new Date(data?.metadata?.updated).toLocaleDateString());
   const toc = $derived(data?.metadata?.toc || []);
+
+  const pageTitle = $derived(data.active.title ? `${data.active.title} - Stack Overflow Design System` : 'Stack Overflow Design System');
+  const pageDescription = $derived(data?.metadata?.description || `Documentation for ${data.active.title} in the Stack Overflow Design System`);
 </script>
+
+<svelte:head>
+  <title>{pageTitle}</title>
+  <meta name="description" content={pageDescription} />
+</svelte:head>
 
 {#if data?.active?.image}
   <img class="w100 h-auto" width="1030" height="540" alt="" src={data.active.image} />
