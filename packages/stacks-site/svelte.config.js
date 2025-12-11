@@ -1,4 +1,4 @@
-import path from 'path';
+import path from "path";
 import { mdsvex } from "mdsvex";
 import adapter from "@sveltejs/adapter-netlify";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
@@ -31,9 +31,7 @@ const config = {
                     return `<pre class="s-code-block" tabindex="0"><code class="s-code-block language-${lang}">${escaped}</code></pre>`;
                 },
             },
-            remarkPlugins: [
-                relativeImagesToImports,
-            ],
+            remarkPlugins: [relativeImagesToImports],
             rehypePlugins: [
                 rehypeSlug,
                 extractToc,
@@ -49,7 +47,7 @@ const config = {
         alias: {
             $src: "src",
             $components: "src/components",
-            $docs: "docs",
+            $docs: "src/docs",
             $data: "../stacks-docs/_data",
         },
     },
@@ -87,28 +85,37 @@ function relativeImagesToImports() {
     return function (tree, file) {
         // Get the file path - try multiple properties
         const filePath = file.path || file.history?.[0] || file.filename;
-        
+
         if (!filePath) {
-            console.warn('Could not determine file path for image rewriting');
+            console.warn("Could not determine file path for image rewriting");
             return; // Skip if we can't determine the file path
         }
-        
+
         visit(tree, "image", (node) => {
             const url = node.url;
-            
+
             if (url.startsWith("./") || url.startsWith("../")) {
                 try {
                     // Get the directory of the markdown file
                     const mdDir = path.dirname(filePath);
                     const imagePath = path.resolve(mdDir, url);
-                    const relativeToRoot = path.relative(process.cwd(), imagePath);
+                    let relativeToRoot = path.relative(
+                        process.cwd(),
+                        imagePath
+                    );
                     
+                    // Remove the src
+                    relativeToRoot = relativeToRoot.replace(/^src\//, '');
+
                     // Rewrite to absolute URL path
-                    node.url = '/' + relativeToRoot.replace(/\\/g, '/');
-                    
+                    node.url = "/" + relativeToRoot.replace(/\\/g, "/");
+
                     console.log(`Rewrote image: ${url} -> ${node.url}`);
                 } catch (err) {
-                    console.error(`Error rewriting image path ${url}:`, err.message);
+                    console.error(
+                        `Error rewriting image path ${url}:`,
+                        err.message
+                    );
                 }
             }
         });

@@ -761,6 +761,7 @@ All headings or subheadings should be concise, scannable, and sentence case. Don
 ### Lists
 
 When writing lists:
+
 - Use a colon (:) to introduce an unordered list
 - Use sentence case
 - If any list item contains two or more sentences, punctuate all list items

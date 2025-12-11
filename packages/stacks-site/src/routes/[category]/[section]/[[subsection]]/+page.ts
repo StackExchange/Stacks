@@ -17,13 +17,13 @@ export const load: PageLoad = async (event) => {
     // Look for either public or private version of the file
     // i.e., try both color.md and color/index.md patterns, in public and private folders
     const possiblePaths = [
-        `/docs/public/${slug}.md`,
-        `/docs/public/${slug}/index.md`,
-        `/docs/private/${slug}.md`,
-        `/docs/private/${slug}/index.md`,
+        `/src/docs/public/${slug}.md`,
+        `/src/docs/public/${slug}/index.md`,
+        `/src/docs/private/${slug}.md`,
+        `/src/docs/private/${slug}/index.md`,
     ];
 
-    const found = Object.entries(mdFiles).find(([path]) => 
+    const found = Object.entries(mdFiles).find(([path]) =>
         possiblePaths.includes(path)
     );
 

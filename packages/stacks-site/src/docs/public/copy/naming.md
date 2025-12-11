@@ -22,25 +22,25 @@ The overarching brand that serves as the main identifier for a company and its v
 
 Exist as part of the larger parent brand, but often represent or cater to a particular category or market segment.
 
-*I.e., Stack Overflow Public Platforms, Stack Overflow Business*
+_I.e., Stack Overflow Public Platforms, Stack Overflow Business_
 
 ### Product
 
 Standalone offerings designed to serve a subset of customers. Customers sign up for a product and can opt out if they wish. Products usually combine a set of complimentary features. They are externally facing and could be the subject of marketing.
 
-*E.g., Stack Internal, Stack Ads*
+_E.g., Stack Internal, Stack Ads_
 
 ### Feature
 
 Functional aspects of a product or platform, or specific actions customers can take within a product/platform. Customers must sign up for a product in order to make use of a feature. Externally facing, but not as often the subject of marketing.
 
-*E.g., Collectives*
+_E.g., Collectives_
 
 ## A (mostly) descriptive system
 
 Our default is a descriptive approach when it comes to naming our brands, products and features. This means we use names that clearly explain what a thing is (or does), often following industry conventions.
 
-*E.g., Reddit Ads, Mozilla VPN, Slack AI*
+_E.g., Reddit Ads, Mozilla VPN, Slack AI_
 
 ### Why descriptive?
 
@@ -50,22 +50,22 @@ We want to make it as clear as possible to our audiences what our products, bran
 
 A descriptive naming system is also an easy naming system to scale and roll out across any new brands, products or features that come along in the short to medium-term.
 
-* **Audience friendly** - technologists in particular favour "no bs".
-* **Prioritises clarity and simplicity** - we have a lot of historical confusion with naming, this sets up the future holistically and clearly.
-* **Keeps the barrier to understanding low** - our products and services are quite technical so this keeps the headline clear.
-* **Easiest to scale across new brands, products and features** - things change and will always change in tech, this keeps us adaptable.
+- **Audience friendly** - technologists in particular favour "no bs".
+- **Prioritises clarity and simplicity** - we have a lot of historical confusion with naming, this sets up the future holistically and clearly.
+- **Keeps the barrier to understanding low** - our products and services are quite technical so this keeps the headline clear.
+- **Easiest to scale across new brands, products and features** - things change and will always change in tech, this keeps us adaptable.
 
 ### A note on '(Mostly)'
 
 There's still scope to flex with the right associative name if we find it — a name that speaks to the benefits or qualities of a product. But our baseline and benchmark is simplicity and clarity, and we feel in the majority of cases, descriptive names fit that bill the best.
 
-*E.g., Spotify Jam, Atlassian Confluence*
+_E.g., Spotify Jam, Atlassian Confluence_
 
 ### Why not abstract names?
 
 We feel abstract names — names that don't directly speak to the benefits or qualities of a product — are too far from our heritage, and would likely confuse audiences at this point.
 
-*E.g., Amazon Kindle, Microsoft Azure*
+_E.g., Amazon Kindle, Microsoft Azure_
 
 ## The company
 

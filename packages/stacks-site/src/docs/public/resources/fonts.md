@@ -12,8 +12,8 @@ updated: 2025-12-10
 
 More information and usage guidelines [on Stack Sans](/brand/typography/).
 
-| Variation                                                                                        | Use                                    | Download                                                                                                          |
-| ------------------------------------------------------------------------------------------------ | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Variation                                                                                        | Use                                    | Download                                                                                             |
+| ------------------------------------------------------------------------------------------------ | -------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | <span class="fc-black ff-stack-sans-headline-notch fw-bold fs-headline1">Stack Sans Notch</span> | Hero headlines and display text        | <Button size="xs" href="https://fonts.google.com/specimen/Stack+Sans+Notch">Google Fonts</Button>    |
 | <span class="fc-black ff-stack-sans-headline fw-semibold fs-title">Stack Sans Headline</span>    | Headers and titles (i.e., larger uses) | <Button size="xs" href="https://fonts.google.com/specimen/Stack+Sans+Headline">Google Fonts</Button> |
 | <span class="fc-black ff-stack-sans-headline fs-body3 fw-light">Stack Sans Text</span>           | Body copy (i.e., smaller uses)         | <Button size="xs" href="https://fonts.google.com/specimen/Stack+Sans+Text">Google Fonts</Button>     |
