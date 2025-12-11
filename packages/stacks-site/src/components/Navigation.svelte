@@ -24,7 +24,7 @@
   <ul class="s-navigation s-navigation__vertical p12">
     <li>
       <a
-        class="s-navigation--item fc-black mb1 bar0"
+        class="s-navigation--item mb1 bar0"
         href="/"
         class:is-selected={!page.params.category}
       >
@@ -36,7 +36,7 @@
 
       <li>
         <a
-          class="s-navigation--item fc-black jc-space-between bar0 mb1"
+          class="s-navigation--item jc-space-between bar0 mb1"
           class:is-selected={isSelected}
           href={`/${category.slug}/`}
         >

@@ -20,7 +20,7 @@
 	<link rel="icon" href={Favicon} />
 </svelte:head>
 
-<header class="w20 sm:w100 hmx100 h100 sm:h-auto overflow-auto ps-fixed br bc-black-200 z-nav">
+<header class="w20 sm:w100 hmx100 h100 sm:h-auto overflow-auto ps-fixed br bc-black-200 z-nav d-flex fd-column">
 	<div class="d-flex ai-center jc-space-between bb bc-black-200 bg-white py16 px24 sm:pb12 sm:pt12">
 		<a href="/" title="Home" class="fc-black h:fc-orange-400">
 			<Icon src={IconLogo} />
@@ -28,12 +28,13 @@
 
 		<Search />
 	</div>
-	<div class="sm:d-none h100 d-flex fd-column">
+	<div class="sm:d-none">
 		<Navigation
 			navigation={data.structure?.navigation}
 		/>
-		<ThemeToggle />
 	</div>
+	
+	<ThemeToggle />
 </header>
 
 <main>
