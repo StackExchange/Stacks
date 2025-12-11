@@ -7,6 +7,6 @@
   const columnCount = setContext('columnCount', writable(0));
 </script>
 
-<div class={`d-grid grid__${$columnCount} sm:grid__1 g12 my12`}>
+<div class={`doc__grid d-grid grid__${$columnCount} sm:grid__1 g12`}>
   {@render children()}
 </div>

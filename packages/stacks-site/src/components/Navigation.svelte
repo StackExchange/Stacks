@@ -3,7 +3,7 @@
   import { slide } from 'svelte/transition';
 
   import { Icon } from '@stackoverflow/stacks-svelte';
-  import { IconLock, IconChevron16Up } from '@stackoverflow/stacks-icons'
+  import { IconLock, IconChevron16Up, IconArrowUpRightBox } from '@stackoverflow/stacks-icons'
 
   let { navigation } = $props();
 </script>
@@ -54,11 +54,11 @@
                   <a
                     class="s-navigation--item jc-space-between bar0 mb1"
                     class:is-selected={page.params.section === subsection.slug}
-                    href={`/${category.slug}/${subsection.slug}/`}
+                    href={subsection.externalUrl || `/${category.slug}/${subsection.slug}/`}
                     data-sveltekit-reload={subsection.private ? true : undefined}
                   >
                     <span>{subsection.title}</span>
-                    {#if subsection.private || subsection.new || subsection?.items}
+                    {#if subsection.private || subsection.new || subsection.items || subsection.externalUrl}
                       <span class="d-flex g4 ai-center">
                         {#if subsection.new}
                           <span class="s-activity-indicator s-activity-indicator__sm"><span class="v-visible-sr">new</span></span>
@@ -68,6 +68,9 @@
                         {/if}
                         {#if subsection?.items}
                           {@render dropdown(page.params.section === subsection.slug, 2)}
+                        {/if}
+                        {#if subsection.externalUrl}
+                          <Icon src={IconArrowUpRightBox} />
                         {/if}
                       </span> 
                     {/if}
@@ -81,7 +84,7 @@
                             <a
                               class="s-navigation--item jc-space-between bar0 mb1"
                               class:is-selected={page.params.subsection === item.slug}
-                              href={`/${category.slug}/${subsection.slug}/${item.slug}/`}
+                              href={item.externalUrl || `/${category.slug}/${subsection.slug}/${item.slug}/`}
                               data-sveltekit-reload={item.private ? true : undefined}
                             >
                               <span>{item.title}</span>

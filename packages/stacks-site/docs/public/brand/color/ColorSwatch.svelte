@@ -6,6 +6,7 @@
       name: string;
       hex: string;
       cssVar?: string;
+      pantone?: string;
       invertLabel?: boolean;
       weight?: number;
     };
@@ -22,6 +23,7 @@
     color,
     orientation = 'horizontal',
     showHex = false,
+    showPantone = false,
     disabled = false,
     hover = true,
     extraClasses = '',
@@ -34,7 +36,9 @@
   const classes = `color color--${orientation} ${disabled ? 'color--disabled' : ''} ${!hover ? 'color--no-hover' : ''} ${extraClasses}`.trim();
 </script>
 
+<!-- svelte-ignore a11y_interactive_supports_focus -->
 <svelte:element
+  role="button"
   this={element}
   {onclick}
   class={classes}
@@ -46,6 +50,9 @@
     <span class="color__name">{color.name}</span>
     {#if showHex}
       <span class="color__value">{color.hex}</span>
+    {/if}
+     {#if showPantone}
+      <span class="color__value">{color.pantone}</span>
     {/if}
   {/if}
 </svelte:element>

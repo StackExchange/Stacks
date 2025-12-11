@@ -20,11 +20,11 @@ Our logo is the core identifier of Stack Overflow and one of the most visible ex
 
 Our logo is the core identifier of Stack Overflow and one of the most visible expressions of our brand. It represents our community and our products. To protect its integrity, it must always be used consistently, with proper clear space, proportions, and placement.
 
-<img src="/images/brand/logo/primary-lockup.svg" alt="The Stack Overflow logo" />
+![The Stack Overflow logo](/images/brand/logo/primary-lockup.svg)
 
 ## Logo architecture
 
-<img src="/images/brand/logo/logo-architecture.svg" alt="How the logo is rationalised" />
+![How the logo is rationalised](/images/brand/logo/logo-architecture.svg)
 
 ## Color combinations
 
@@ -34,7 +34,7 @@ Our preference is to use the logo in Off-Black. Where accessibility makes this u
 
 ## Logo clearspace
 
-<img src="/images/brand/logo/logo-clearspace.svg" alt="Space to keep around the logo" />
+![Space to keep around the logo](/images/brand/logo/logo-clearspace.svg)
 
 ## Page format lockups
 
@@ -46,33 +46,33 @@ When using this horizontal lockup, follow the guidance below on where to place t
 
 We have two approaches to sub-brand lockups. The approach you use should be determined by the scale at which the lockup is going to appear.
 
-<img src="/images/brand/logo/sub-brand-lockups.svg" alt="How to use for sub-brands" />
+![How to use for sub-brands](/images/brand/logo/sub-brand-lockups.svg)
 
 ## Sub-brand large usage
 
 Use the diagram below to determine how sub-brand lockups, used at a large scale, should be created.
 
-<img src="/images/brand/logo/sub-brand-large.svg" alt="" />
+![](/images/brand/logo/sub-brand-large.svg)
 
 ## Sub-brand small usage
 
 Use the diagram below to determine how sub-brand lockups, used at a large scale, should be created.
 
-<img src="/images/brand/logo/sub-brand-small.svg" alt="" />
+![](/images/brand/logo/sub-brand-small.svg)
 
 ## External partnership lockups
 
 External partnerships use a simpler lockup, where the height of both logos should always align.
 
-<img src="/images/brand/logo/external-partnership-lockup.svg" alt="" />
+![](/images/brand/logo/external-partnership-lockup.svg)
 
 ## Things to avoid
 
-<img src="/images/brand/logo/things-to-avoid.svg" alt="" />
+![](/images/brand/logo/things-to-avoid.svg)
 
 ## Symbol
 
-<img src="/images/brand/logo/symbol.svg" alt="" />
+![](/images/brand/logo/symbol.svg)
 
 ## Symbol lockup
 

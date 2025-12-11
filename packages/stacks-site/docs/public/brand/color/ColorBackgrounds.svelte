@@ -4,7 +4,7 @@
   import ColorSwatch from './ColorSwatch.svelte';
 
   import YAML from 'yaml';
-  import colorsRaw from '$docs/public/brand/colors.yaml?raw';
+  import colorsRaw from '$docs/public/brand/color/colors.yaml?raw';
 
   const colorsByCss = Object.fromEntries(
     YAML.parse(colorsRaw).colors.map(color => [color.cssVar, color])

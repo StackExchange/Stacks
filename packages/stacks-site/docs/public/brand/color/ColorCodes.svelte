@@ -1,6 +1,6 @@
 <script lang="ts">
   import YAML from 'yaml';
-  import colorsRaw from '$docs/public/brand/colors.yaml?raw';
+  import colorsRaw from '$docs/public/brand/color/colors.yaml?raw';
   import ColorSwatch from './ColorSwatch.svelte';
 
   const colors = YAML.parse(colorsRaw).colors;
@@ -15,6 +15,7 @@
       showHex={true}
       disabled={business && !color.business}
       extraClasses={`color--weight-${color.weight} ba-color`}
+      hover={false}
     />
   {/each}
 </div>
