@@ -1,5 +1,33 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.13
+
+### Minor Changes
+
+- [#2077](https://github.com/StackExchange/Stacks/pull/2077) [`78d6a22`](https://github.com/StackExchange/Stacks/commit/78d6a22fd01442de1a325d3530d429b55aa5a8c4) Thanks [@mukunku](https://github.com/mukunku)! - feat(textarea): new SHINE styles and Svelte component
+
+    BREAKING CHANGES:
+    - `s-input__md` removed
+    - `s-input__xl` removed
+
+- [#2070](https://github.com/StackExchange/Stacks/pull/2070) [`55f3a17`](https://github.com/StackExchange/Stacks/commit/55f3a179621375ca95fc93d219f8ab3edb526514) Thanks [@mukunku](https://github.com/mukunku)! - feat(input): update input styles for SHINE
+
+    BREAKING CHANGES:
+    - `s-input__md` removed
+    - `s-input__xl` removed
+    - Nested input styles slightly updated
+    - `optional` and `i18nOptionalText` attributes removed from TextInput Svelte component
+
+### Patch Changes
+
+- [#2085](https://github.com/StackExchange/Stacks/pull/2085) [`4310a45`](https://github.com/StackExchange/Stacks/commit/4310a45c72f058d59f4ad97deeade3d7243d22dc) Thanks [@mukunku](https://github.com/mukunku)! - chore(textinput/textarea): upgrade to Svelte 5 syntax
+
+    BREAKING CHANGES:
+    - The message, description, and fill slots have been replaced with snippets.
+
+- Updated dependencies [[`78d6a22`](https://github.com/StackExchange/Stacks/commit/78d6a22fd01442de1a325d3530d429b55aa5a8c4), [`55f3a17`](https://github.com/StackExchange/Stacks/commit/55f3a179621375ca95fc93d219f8ab3edb526514), [`2f3cb89`](https://github.com/StackExchange/Stacks/commit/2f3cb89399c06564ec5c1c59893787e8af4d9643), [`efc2120`](https://github.com/StackExchange/Stacks/commit/efc21209fd73e12f1fd42d5a89138757923de4fc)]:
+    - @stackoverflow/stacks@3.0.0-beta.10
+
 ## 1.0.0-beta.12
 
 ### Patch Changes
