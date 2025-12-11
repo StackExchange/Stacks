@@ -20,11 +20,11 @@ Our logo is the core identifier of Stack Overflow and one of the most visible ex
 
 Our logo is the core identifier of Stack Overflow and one of the most visible expressions of our brand. It represents our community and our products. To protect its integrity, it must always be used consistently, with proper clear space, proportions, and placement.
 
-![The Stack Overflow logo](/images/brand/logo/primary-lockup.svg)
+![The Stack Overflow logo](./primary-lockup.svg)
 
 ## Logo architecture
 
-![How the logo is rationalised](/images/brand/logo/logo-architecture.svg)
+![How the logo is rationalised](./logo-architecture.svg)
 
 ## Color combinations
 
@@ -34,7 +34,7 @@ Our preference is to use the logo in Off-Black. Where accessibility makes this u
 
 ## Logo clearspace
 
-![Space to keep around the logo](/images/brand/logo/logo-clearspace.svg)
+![Space to keep around the logo](./logo-clearspace.svg)
 
 ## Page format lockups
 
@@ -46,33 +46,33 @@ When using this horizontal lockup, follow the guidance below on where to place t
 
 We have two approaches to sub-brand lockups. The approach you use should be determined by the scale at which the lockup is going to appear.
 
-![How to use for sub-brands](/images/brand/logo/sub-brand-lockups.svg)
+![How to use for sub-brands](./sub-brand-lockups.svg)
 
 ## Sub-brand large usage
 
 Use the diagram below to determine how sub-brand lockups, used at a large scale, should be created.
 
-![](/images/brand/logo/sub-brand-large.svg)
+![](./sub-brand-large.svg)
 
 ## Sub-brand small usage
 
 Use the diagram below to determine how sub-brand lockups, used at a large scale, should be created.
 
-![](/images/brand/logo/sub-brand-small.svg)
+![](./sub-brand-small.svg)
 
 ## External partnership lockups
 
 External partnerships use a simpler lockup, where the height of both logos should always align.
 
-![](/images/brand/logo/external-partnership-lockup.svg)
+![](./external-partnership-lockup.svg)
 
 ## Things to avoid
 
-![](/images/brand/logo/things-to-avoid.svg)
+![](./things-to-avoid.svg)
 
 ## Symbol
 
-![](/images/brand/logo/symbol.svg)
+![](./symbol.svg)
 
 ## Symbol lockup
 

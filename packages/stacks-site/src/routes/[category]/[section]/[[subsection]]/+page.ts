@@ -16,17 +16,24 @@ export const load: PageLoad = async (event) => {
 
     // Look for either public or private version of the file
     // i.e., try both color.md and color/index.md patterns, in public and private folders
-    const doc =
-        mdFiles[`/docs/public/${slug}.md`] ||
-        mdFiles[`/docs/public/${slug}/index.md`] ||
-        mdFiles[`/docs/private/${slug}.md`] ||
-        mdFiles[`/docs/private/${slug}/index.md`];
+    const possiblePaths = [
+        `/docs/public/${slug}.md`,
+        `/docs/public/${slug}/index.md`,
+        `/docs/private/${slug}.md`,
+        `/docs/private/${slug}/index.md`,
+    ];
 
-    if (doc) {
+    const found = Object.entries(mdFiles).find(([path]) => 
+        possiblePaths.includes(path)
+    );
+
+    if (found) {
+        const [filename, doc] = found;
         const loader: any = await doc();
 
         return {
             source: "md",
+            filename,
             Content: loader.default,
             metadata: loader.metadata,
         };

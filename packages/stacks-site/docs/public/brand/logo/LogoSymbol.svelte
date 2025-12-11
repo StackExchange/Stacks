@@ -7,6 +7,9 @@
   import { Icon } from '@stackoverflow/stacks-svelte';
 	import { IconGlyph } from '@stackoverflow/stacks-icons'
 
+  import Square from './symbol-lockup-square.svg'
+  import Circle from './symbol-lockup-circle.svg'
+
   let index = $state(0)
 
   const sizes = [
@@ -24,12 +27,12 @@
     <GridColumn>
       <Slide>
         <div class="symbol">
-          <img class="symbol__image" src="/images/brand/logo/symbol-lockup-square.svg" alt="" />
+          <img class="symbol__image" src={Square} alt="" />
         </div>
       </Slide>
       <Slide>
         <div class="symbol">
-          <img class="symbol__image" src="/images/brand/logo/symbol-lockup-circle.svg" alt="" />
+          <img class="symbol__image" src={Circle} alt="" />
         </div>
       </Slide>
     </GridColumn>

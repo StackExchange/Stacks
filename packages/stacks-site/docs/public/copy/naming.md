@@ -90,6 +90,50 @@ The legal entity is **Stack Exchange Inc.** However, most of the time we refer t
   </GridColumn>
 </Grid>
 
+## The public platform vs the company
+
+**Stack Overflow** refers to both the company and the public Q&A platform. In most contexts, this ambiguity is acceptable and even desirable—the platform is our flagship and most recognizable product.
+
+However, when disambiguation is necessary, use these conventions:
+
+<Grid>
+  <GridColumn extraClasses="bg-green-100">
+    <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> When referring to the company</h3>
+    <ul class="ml0 pl16">
+      <li>Stack Overflow (in most contexts)</li>
+      <li>"We at Stack Overflow believe…"</li>
+      <li>"Stack Overflow announced today…"</li>
+      <li>"Stack Overflow serves millions of developers"</li>
+    </ul>
+  </GridColumn>
+  <GridColumn extraClasses="bg-green-100">
+    <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> When referring to the public platform</h3>
+    <ul class="ml0 pl16">
+      <li>Stack Overflow (in most contexts)</li>
+      <li>"the public platform" (when disambiguation is needed)</li>
+      <li>"stackoverflow.com" (when being very specific)</li>
+      <li>"Ask a question on Stack Overflow"</li>
+      <li>"Browse Stack Overflow's questions and answers"</li>
+    </ul>
+  </GridColumn>
+</Grid>
+
+### When disambiguation is needed
+
+Use contextual clues or specific phrasing when you need to make the distinction clear:
+
+<Grid>
+  <GridColumn extraClasses="bg-green-100">
+    <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
+    <ul class="ml0 pl16">
+      <li>"Stack Overflow offers both a public platform and business products"</li>
+      <li>"Visit stackoverflow.com to ask questions, or try Stack Internal for your team"</li>
+      <li>"Unlike the public Stack Overflow site, Stack Internal is private to your organization"</li>
+      <li>"Stack Overflow's public Q&A platform serves millions daily"</li>
+    </ul>
+  </GridColumn>
+</Grid>
+
 ## Stack Overflow Business
 
 The collective name for our business products is **Stack Overflow Business**.

@@ -38,7 +38,15 @@
     {/if}
   </div>
 
-  <div class="flex--item3 md:order-first ml32 md:ml0">
-    <Contents {toc} />
-  </div>
+  <aside class="flex--item3 md:order-first ml32 md:ml0">
+    <div class="ps-sticky t0 pt24 md:mb32 overflow-auto hmx-screen">
+      {#if data.filename}
+        <a href={`https://github.com/StackExchange/Stacks/edit/develop/packages/stacks-docs${data.filename}`}>
+          Edit on GitHub
+        </a>
+      {/if}
+
+      <Contents {toc} />
+    </div>
+  </aside>
 </div>

@@ -77,9 +77,7 @@
       }
 
       // Load the font file
-      console.log('Loading font from:', fontPath);
       font = await window.opentype.load(fontPath);
-      console.log('Font loaded:', font.names.fontFamily?.en, font.names.fontSubfamily?.en);
 
       // Set unitsPerEm
       unitsPerEm = font.unitsPerEm;
@@ -106,15 +104,19 @@
 
   function handleWeightChange(weight) {
     if (selectedWeight.file === weight.file) return;
+
     selectedWeight = weight;
+
     const fontPath = `/fonts/${weight.file}`;
-    console.log('Switching to:', weight.label, fontPath);
+
     loadFont(fontPath, false);
   }
 
   function selectGlyphByChar(char) {
     if (!font) return;
+
     const glyph = font.charToGlyph(char);
+    
     if (!glyph) return;
 
     selectedGlyph = glyph;
