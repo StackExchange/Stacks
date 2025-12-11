@@ -14,7 +14,7 @@
         /**
          * Sets whether the menu is rendered within a fieldset
          */
-        type: Type;
+        type?: Type;
 
         /**
          * Snippet for the menu content
