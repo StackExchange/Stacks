@@ -41,9 +41,6 @@
           href={`/${category.slug}/`}
         >
           <span>{category.title}</span>
-          <!-- {#if category.items}
-            {@render dropdown(isSelected)}
-          {/if} -->
         </a>
 
         {#if category.items && isSelected}

@@ -20,7 +20,7 @@ When Stack Overflow products appear in running text, always capitalize the full 
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Sign up for stack internal today</li>
       <li>Our stack ads platform reaches millions</li>
@@ -45,7 +45,7 @@ Feature names should be capitalized when referring to the specific Stack Overflo
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Use enhanced search to find answers</li>
       <li>Join a collective on Stack Overflow</li>
@@ -69,7 +69,7 @@ When using product-related terms generically (not referring to the Stack Overflo
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>We offer Data Licensing to our clients (when not referring to the specific product)</li>
       <li>internal knowledge sharing tools (when specifically referring to Stack Internal)</li>
@@ -94,7 +94,7 @@ Use standard possessive rules with Stack Overflow and product names.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Stack Overflows' mission</li>
       <li>Stack Internals' features</li>
@@ -116,7 +116,7 @@ Avoid pluralizing product names. Use "instances," "deployments," or similar term
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Multiple Stack Internals</li>
       <li>Two Stack Ads</li>
@@ -140,7 +140,7 @@ Never use abbreviations in external-facing materials including marketing, docume
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>SO provides data licensing</li>
       <li>Try SI for your team</li>
@@ -180,7 +180,7 @@ When referring to multiple products together, use "and" and maintain each produc
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Stack Internal & Ads customers</li>
       <li>SI/SA users</li>
@@ -205,8 +205,8 @@ After the first mention of a product name, you may use shortened forms if the co
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
     <ul class="ml0 pl16">
-      <li>First mention: "Stack Internal provides private knowledge management." Second mention: "Internal helps teams collaborate..."</li>
-      <li>First mention: "Stack Overflow Business includes three products." Second mention: "Business customers have access to..."</li>
+      <li>First mention: "Stack Internal provides private knowledge management". Second mention: "Internal helps teams collaborate..".</li>
+      <li>First mention: "Stack Overflow Business includes three products". Second mention: "Business customers have access to..".</li>
       <li>Use "the product," "the platform," or "it" when context is unmistakable</li>
     </ul>
   </GridColumn>
@@ -220,11 +220,12 @@ Use sentence case for all headings. This means capitalizing the first word, the 
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>User Roles</li>
       <li>Performance Overview</li>
       <li>Edit Your Profile</li>
+      <li>Ask A Question</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
@@ -233,6 +234,7 @@ Use sentence case for all headings. This means capitalizing the first word, the 
       <li>User roles</li>
       <li>Performance overview</li>
       <li>Edit your profile</li>
+      <li>Ask a question</li>
     </ul>
   </GridColumn>
 </Grid>
@@ -243,7 +245,7 @@ Capitalize "Articles" when referring to the specific Stack Overflow feature sect
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>I'm writing an article and then I'm going to put it in our team's articles section</li>
       <li>In articles, you can find how-to guides</li>
@@ -266,7 +268,7 @@ Always capitalize user roles, no matter the context.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>employees</li>
       <li>Recommended members</li>
@@ -287,7 +289,7 @@ Always capitalize "Collective" or "Collectives" when used as a proper noun or wh
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>join the Google Cloud collective</li>
       <li>join an Collective</li>
@@ -331,7 +333,7 @@ Questions, answers, and other types of posts have **scores**. A post's score is 
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Highest voted posts</li>
       <li>Total number of votes for this answer</li>
@@ -358,7 +360,7 @@ Write in the active voice, particularly if the user needs to do something.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>You should update your profile</li>
     </ul>
@@ -375,7 +377,7 @@ While it's generally best to avoid the passive voice, in certain situations it h
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>We cancelled your order</li>
       <li>We've suspended your account</li>
@@ -396,7 +398,7 @@ Contractions make copy sound more human. Avoid contractions that sound awkward w
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>This'll help you get answers to your questions</li>
       <li>There must've been an error with your order</li>
@@ -417,7 +419,7 @@ Use American spelling for all public-facing content. When in doubt, check the [M
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Recognise</li>
       <li>Travelled</li>
@@ -438,11 +440,11 @@ Use American spelling for all public-facing content. When in doubt, check the [M
 
 ### Pronouns
 
-Leave off possessives when referring to users or features when possible. If you must use pronouns, refer to users as "you." Don't put words in their mouths with phrases that use "I" or "my."
+Leave off possessives when referring to users or features when possible. If you must use pronouns, refer to users as “you”. Don’t put words in their mouths with phrases that use “I” or “my”.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>My Teams</li>
       <li>My settings</li>
@@ -459,13 +461,13 @@ Leave off possessives when referring to users or features when possible. If you 
   </GridColumn>
 </Grid>
 
-When referring to Stack Overflow, use "we." However, try to avoid inserting Stack Overflow into the content as much as possible.
+When referring to Stack Overflow, use “we”. However, try to avoid inserting Stack Overflow into the content as much as possible.
 
-Use "their" as a singular, gender-neutral pronoun when the gender of the subject is unknown or unimportant. Avoid using gendered terms.
+Use “their” as a singular, gender-neutral pronoun when the gender of the subject is unknown or unimportant. Avoid using gendered terms.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>When a new user is added, he or she will be able to edit content</li>
       <li>We appreciate the guys and gals of Stack Overflow</li>
@@ -482,11 +484,11 @@ Use "their" as a singular, gender-neutral pronoun when the gender of the subject
 
 ### Mind your verbs and nouns
 
-Take extra care with "login" and "log in." The former is a noun while the latter is a verb. Do not use "login" as a verb. The same logic applies to "signup" and "sign up."
+Take extra care with “login” and “log in”. The former is a noun while the latter is a verb. Do not use "login" as a verb. The same logic applies to "signup" and "sign up".
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Login to ask a question</li>
       <li>Add a log in to your account</li>
@@ -511,7 +513,7 @@ Use the abbreviated version "OK" (fully capitalized in every context). This is p
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Okay</li>
       <li>okay</li>
@@ -530,11 +532,11 @@ Use the abbreviated version "OK" (fully capitalized in every context). This is p
 
 ### Ampersands
 
-Don't use ampersands (&) unless it's part of a branded term. Spell out the word "and" instead.
+Don’t use ampersands (&) unless it's part of a branded term. Spell out the word "and" instead.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Update your email address & password</li>
       <li>Stack Overflow Q and A</li>
@@ -551,11 +553,11 @@ Don't use ampersands (&) unless it's part of a branded term. Spell out the word 
 
 ### Apostrophes
 
-Use apostrophes to represent omitted letters or numbers (can't, you're, '90s) and to form possessives.
+Use apostrophes to represent omitted letters or numbers (can’t, you’re, ’90s) and to form possessives.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Admins role</li>
       <li>Moderators's tasks</li>
@@ -572,15 +574,15 @@ Use apostrophes to represent omitted letters or numbers (can't, you're, '90s) an
 
 ### Colons
 
-Avoid using colons unless you're introducing a list. If you need to use a colon in a sentence, don't capitalize the first word after it.
+Avoid using colons unless you're introducing a list. If you need to use a colon in a sentence, Don’t capitalize the first word after it.
 
 ### Commas
 
-Use the oxford comma in sentences. Don't use a comma to separate two distinct phrases (comma splicing). Use two sentences instead.
+Use the oxford comma in sentences. Don’t use a comma to separate two distinct phrases (comma splicing). Use two sentences instead.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Our community is rooted in kindness, collaboration and mutual respect</li>
       <li>Thanks for contacting us, we'll be in touch soon</li>
@@ -601,7 +603,7 @@ The ellipsis (…) can be used in place of missing text. Avoid using ellipses in
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Avoid subjective questions… stick to fact-based questions</li>
       <li>Search...</li>
@@ -618,7 +620,7 @@ The ellipsis (…) can be used in place of missing text. Avoid using ellipses in
 
 ### Exclamation points
 
-Don't use exclamation points unless something is really exciting. If you have to use one, limit yourself to one exclamation mark per page.
+Don’t use exclamation points unless something is really exciting. If you have to use one, limit yourself to one exclamation mark per page.
 
 ### Hyphens and dashes
 
@@ -628,7 +630,7 @@ Use an en dash with no spaces (–) for a fixed range of numbers. Avoid using em
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Start your free 14 day trial</li>
       <li>January 7 – 9</li>
@@ -645,7 +647,7 @@ Use an en dash with no spaces (–) for a fixed range of numbers. Avoid using em
 
 ### Periods
 
-Don't use periods in interface copy unless it's a full sentence or description. Don't use periods in top-level headings, titles, or buttons. Do use periods in body text, descriptions, and help text.
+Don’t use periods in interface copy unless it's a full sentence or description. Don’t use periods in top-level headings, titles, or buttons. Do use periods in body text, descriptions, and help text.
 
 ### Question marks
 
@@ -653,7 +655,7 @@ Avoid using question marks wherever possible. Reword into affirmative statements
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Want to learn more?</li>
     </ul>
@@ -668,7 +670,16 @@ Avoid using question marks wherever possible. Reword into affirmative statements
 
 ### Quotation marks
 
-Always use smart, curly quotes ("), not vertical, straight quotes ("). Place punctuation marks inside quotation marks.
+Always use [smart/typographers/curly quotes](https://practicaltypography.com/straight-and-curly-quotes.html) not vertical, straight quotes. Place punctuation marks outside quotation marks.
+
+#### Shortcuts
+
+| Symbol | Description | Alt Code | Mac Shortcut | HTML Entity |
+|--------|-------------|----------|--------------|-------------|
+| ' | opening single quote | `alt 0145` | `option + ]` | `&amp;lsquo;` |
+| ' | closing single quote | `alt 0146` | `option + shift + ]` | `&amp;rsquo;` |
+| " | opening double quote | `alt 0147` | `option + [` | `&amp;ldquo;` |
+| " | closing double quote | `alt 0148` | `option + shift + [` | `&amp;rdquo;` |
 
 ### Semicolons
 
@@ -678,13 +689,13 @@ Avoid using semicolons. When connecting two closely related ideas, use a comma o
 
 ### Dates
 
-Use the month's full name where possible (e.g., October). If there are space constraints, use 3-letter abbreviations with the exception of May (e.g., Oct.). Always write out the full year.
+Use the month’s full name where possible (e.g., October). If there are space constraints, use 3-letter abbreviations with the exception of May (e.g., Oct.). Always write out the full year.
 
-Don't write dates numerically since differing international standards can lead to confusion. There is no need to add superscripts (st, nd, th, rd) to dates.
+Don’t write dates numerically since differing international standards can lead to confusion. There is no need to add superscripts (st, nd, th, rd) to dates.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>September 2, '19</li>
       <li>9-2-19</li>
@@ -703,13 +714,13 @@ Don't write dates numerically since differing international standards can lead t
 
 ### Time
 
-Use the 12-hour clock, followed by am or pm. Include a space after the last number (e.g., 1:20 pm). Time should be relative to the user's time zone (not UTC).
+Use the 12-hour clock, followed by am or pm. Include a space after the last number (e.g., 1:20 pm). Time should be relative to the user’s time zone (not UTC).
 
-If indicating both date and time, separate them with the word "at" rather than a comma or @ symbol.
+If indicating both date and time, separate them with the word “at” rather than a comma or @ symbol.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>15:30</li>
       <li>September 2, 2019 @ 4:35 pm</li>
@@ -737,7 +748,7 @@ Buttons and links should be clear and predictable. Button and link text should b
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>New team</li>
       <li>Settings</li>
@@ -756,7 +767,7 @@ Buttons and links should be clear and predictable. Button and link text should b
 
 ### Headings and subheadings
 
-All headings or subheadings should be concise, scannable, and sentence case. Don't use periods at the end of headings. If a subheading is a full sentence, you may use a period.
+All headings or subheadings should be concise, scannable, and sentence case. Don’t use periods at the end of headings. If a subheading is a full sentence, you may use a period.
 
 ### Lists
 
@@ -765,4 +776,4 @@ When writing lists:
 - Use a colon (:) to introduce an unordered list
 - Use sentence case
 - If any list item contains two or more sentences, punctuate all list items
-- If all list items are one sentence or fragments, don't punctuate
+- If all list items are one sentence or fragments, don’t punctuate

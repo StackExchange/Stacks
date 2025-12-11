@@ -11,7 +11,7 @@ updated: 2025-12-10
   import ColorHeadlines from './ColorHeadlines.svelte'
 </script>
 
-Our color palette sets the visual tone of the brand and ensures consistency across every platform. At its core is our distinct orange, a bold and instantly recognizable signature. This is supported by a balanced palette of primary and secondary colors that bring both vibrancy and sophistication. In this section, you'll find guidance on when and how to use each color, the hierarchy to follow, and important considerations to keep in mind.
+Our color palette sets the visual tone of the brand and ensures consistency across every platform. At its core is our distinct orange, a bold and instantly recognizable signature. This is supported by a balanced palette of primary and secondary colors that bring both vibrancy and sophistication. In this section, you’ll find guidance on when and how to use each color, the hierarchy to follow, and important considerations to keep in mind.
 
 ## Color hierarchy
 

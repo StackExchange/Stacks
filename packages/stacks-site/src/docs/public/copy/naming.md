@@ -50,20 +50,20 @@ We want to make it as clear as possible to our audiences what our products, bran
 
 A descriptive naming system is also an easy naming system to scale and roll out across any new brands, products or features that come along in the short to medium-term.
 
-- **Audience friendly** - technologists in particular favour "no bs".
+- **Audience friendly** - technologists in particular favour “no bs”.
 - **Prioritises clarity and simplicity** - we have a lot of historical confusion with naming, this sets up the future holistically and clearly.
 - **Keeps the barrier to understanding low** - our products and services are quite technical so this keeps the headline clear.
 - **Easiest to scale across new brands, products and features** - things change and will always change in tech, this keeps us adaptable.
 
-### A note on '(Mostly)'
+### A note on ‘(Mostly)’
 
-There's still scope to flex with the right associative name if we find it — a name that speaks to the benefits or qualities of a product. But our baseline and benchmark is simplicity and clarity, and we feel in the majority of cases, descriptive names fit that bill the best.
+There’s still scope to flex with the right associative name if we find it — a name that speaks to the benefits or qualities of a product. But our baseline and benchmark is simplicity and clarity, and we feel in the majority of cases, descriptive names fit that bill the best.
 
 _E.g., Spotify Jam, Atlassian Confluence_
 
 ### Why not abstract names?
 
-We feel abstract names — names that don't directly speak to the benefits or qualities of a product — are too far from our heritage, and would likely confuse audiences at this point.
+We feel abstract names — names that don’t directly speak to the benefits or qualities of a product — are too far from our heritage, and would likely confuse audiences at this point.
 
 _E.g., Amazon Kindle, Microsoft Azure_
 
@@ -73,7 +73,7 @@ The legal entity is **Stack Exchange Inc.** However, most of the time we refer t
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>StackOverflow</li>
       <li>Stackoverflow</li>
@@ -101,19 +101,18 @@ However, when disambiguation is necessary, use these conventions:
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> When referring to the company</h3>
     <ul class="ml0 pl16">
       <li>Stack Overflow (in most contexts)</li>
-      <li>"We at Stack Overflow believe…"</li>
-      <li>"Stack Overflow announced today…"</li>
-      <li>"Stack Overflow serves millions of developers"</li>
+      <li>“We at Stack Overflow believe…”</li>
+      <li>“Stack Overflow announced today…”</li>
+      <li>“Stack Overflow serves millions of developers”</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
-    <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> When referring to the public platform</h3>
+    <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> When referring to the site Stack Overflow</h3>
     <ul class="ml0 pl16">
       <li>Stack Overflow (in most contexts)</li>
-      <li>"the public platform" (when disambiguation is needed)</li>
-      <li>"stackoverflow.com" (when being very specific)</li>
-      <li>"Ask a question on Stack Overflow"</li>
-      <li>"Browse Stack Overflow's questions and answers"</li>
+      <li>“stackoverflow.com” (when being very specific)</li>
+      <li>“Ask a question on Stack Overflow”</li>
+      <li>“Browse Stack Overflow's questions and answers”</li>
     </ul>
   </GridColumn>
 </Grid>
@@ -126,10 +125,10 @@ Use contextual clues or specific phrasing when you need to make the distinction 
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
     <ul class="ml0 pl16">
-      <li>"Stack Overflow offers both a public platform and business products"</li>
-      <li>"Visit stackoverflow.com to ask questions, or try Stack Internal for your team"</li>
-      <li>"Unlike the public Stack Overflow site, Stack Internal is private to your organization"</li>
-      <li>"Stack Overflow's public Q&A platform serves millions daily"</li>
+      <li>“Stack Overflow offers both a public platforms and business products”</li>
+      <li>“Visit stackoverflow.com to ask questions, or try Stack Internal for your team”</li>
+      <li>“Unlike the public Stack Overflow site, Stack Internal is private to your organization”</li>
+      <li>“Stack Overflow’s public Q&A platform serves millions daily”</li>
     </ul>
   </GridColumn>
 </Grid>
@@ -142,11 +141,11 @@ Business products do not have distinct logos but there are [differences with col
 
 ### Stack Data Licensing
 
-Our data licensing product provides access to Stack Overflow's vast knowledge base.
+Our data licensing product provides access to Stack Overflow’s vast knowledge base.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Stack Overflow Knowledge Solutions</li>
       <li>SOKS</li>
@@ -172,7 +171,7 @@ Our advertising platform for reaching developers and technologists.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Stack Overflow Talent</li>
       <li>Stack Overflow Employer Branding</li>
@@ -197,7 +196,7 @@ In November 2025 we renamed **Stack Overflow for Teams** to **Stack Internal**.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Stack Overflow for Teams</li>
       <li>SO4T</li>
@@ -250,7 +249,7 @@ Stack Internal tier names are unchanged from previous naming.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Stack Overflow Enterprise</li>
       <li>Stack Overflow for Enterprise</li>
@@ -275,7 +274,7 @@ When referring to Stack Internal instances and users in product contexts:
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Team (capitalized when referring to an instance)</li>
       <li>Members</li>
@@ -299,7 +298,7 @@ The OverflowAI brand has been retired. When referring to AI functionality:
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>OverflowAI</li>
       <li>Overflow AI</li>
@@ -324,7 +323,7 @@ The following brands and visual identities have been retired:
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Stack Overflow Labs visual identity</li>
       <li>Collectives on Stack Overflow visual identity</li>
@@ -348,7 +347,7 @@ The Stack Exchange brand name is being phased out in favor of Stack Overflow.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
       <li>Stack Exchange (when referring to the company)</li>
       <li>“I work at Stack Exchange”</li>

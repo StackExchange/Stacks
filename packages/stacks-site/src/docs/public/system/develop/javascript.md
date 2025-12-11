@@ -76,7 +76,7 @@ button.addEventListener('click', function() {
 });
 ```
 
-### ✗ Don't
+### ✗ Don’t
 
 ```html
 <div class="s-card bs-lg">…</div>
@@ -95,7 +95,7 @@ button.addEventListener('click', function() {
 }
 ```
 
-### ✗ Don't
+### ✗ Don’t
 
 ```html
 <div id="card">…</div>

@@ -6,6 +6,8 @@
 
 	import Navigation from '$components/Navigation.svelte';
 	import Search from '$components/Search.svelte';
+	import ThemeToggle from '$components/ThemeToggle.svelte';
+
 	import Favicon from '$lib/assets/favicon.svg';
 
 	let { children, data } = $props();
@@ -26,10 +28,11 @@
 
 		<Search />
 	</div>
-	<div class="sm:d-none">
+	<div class="sm:d-none h100 d-flex fd-column">
 		<Navigation
 			navigation={data.structure?.navigation}
 		/>
+		<ThemeToggle />
 	</div>
 </header>
 
@@ -39,12 +42,13 @@
 	</div>
 
 	{@render children?.()}
+
+	<footer class="d-flex ai-center mt64 ml32 pb32 fc-black-400">
+		<Icon src={IconGlyph24} />
+		<div class="footer__blurb ml12">
+			© {year} Stack Exchange Inc.
+			All rights reserved.
+		</div>
+	</footer>
 </main>
 
-<footer class="d-flex ai-center p24 fc-black-400">
-	<Icon src={IconGlyph24} />
-	<div class="footer__blurb ml12">
-		© {year} Stack Exchange Inc.
-		All rights reserved.
-	</div>
-</footer>

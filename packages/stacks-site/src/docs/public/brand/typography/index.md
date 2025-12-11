@@ -2,7 +2,7 @@
 updated: 2025-12-10
 ---
 
-<script>
+<script context="module">
   import { Button } from '@stackoverflow/stacks-svelte'
 
   import Grid from '$components/Grid.svelte'
@@ -15,13 +15,11 @@ updated: 2025-12-10
   import TypographySpacing from './TypographySpacing.svelte'
 </script>
 
-Our brand font defines the voice of our visual identity and brings character to every expression. Rooted in modernist inspiration yet enriched with traditional motifs, it strikes a balance between timelessness and innovation. Its distinctive notched detailing sets it apart, creating a recognizable signature that builds equity across every touchpoint. In this section, you'll find guidance on how to apply the font effectively, the typographic hierarchy to follow, and key considerations to ensure clarity, consistency, and impact.
+Our brand font defines the voice of our visual identity and brings character to every expression. Rooted in modernist inspiration yet enriched with traditional motifs, it strikes a balance between timelessness and innovation. Its distinctive notched detailing sets it apart, creating a recognizable signature that builds equity across every touchpoint. In this section, you’ll find guidance on how to apply the font effectively, the typographic hierarchy to follow, and key considerations to ensure clarity, consistency, and impact.
 
-| Variation                                                                                        | Use                                    | Download                                                                                                          |
-| ------------------------------------------------------------------------------------------------ | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| <span class="fc-black ff-stack-sans-headline-notch fw-bold fs-headline1">Stack Sans Notch</span> | Hero headlines and display text        | <Button size="xs" href="https://fonts.google.com/specimen/Stack+Sans+Notch">Available on Google Fonts</Button>    |
-| <span class="fc-black ff-stack-sans-headline fw-semibold fs-title">Stack Sans Headline</span>    | Headers and titles (i.e., larger uses) | <Button size="xs" href="https://fonts.google.com/specimen/Stack+Sans+Headline">Available on Google Fonts</Button> |
-| <span class="fc-black ff-stack-sans-headline fs-body3 fw-light">Stack Sans Text</span>           | Body copy (i.e., smaller uses)         | <Button size="xs" href="https://fonts.google.com/specimen/Stack+Sans+Text">Available on Google Fonts</Button>     |
+<Button href="/resources/fonts/">
+  Get the font
+</Button>
 
 ## Primary typeface
 
@@ -74,9 +72,9 @@ Across the brand system, text should only be left-aligned or center-aligned.Cent
 
 Consistent margins ensure consistent layouts across the brand. To calculate the margin, add the two side lengths of the layout and set the margin to 2% of that total.
 
-<code>
+```
 (Side A + Side B) X 0.02 = Margin
-</code>
+```
 
 <TypographySpacing />
 
