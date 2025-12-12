@@ -61,6 +61,10 @@ Our 3D stacks are the most expressive part of our brand, so they’re reserved f
 
 ![](./stacks-3d.svg)
 
+### Generating shapes
+
+We have a [Figma file of pre-made collages](https://www.figma.com/design/FEdyUP08JZQWfjSKwt5AOo/Base-shapes-for-3d-heros?node-id=0-1&t=v6OzktCCxojq0rI5-1), for creating new simple shapes you can use [i3D Figma plugin](https://www.figma.com/community/plugin/1387823712562916211), and more complicated shapes we have a custom build tool called [Stack Trace](https://github.com/StackEng/BrandStackTrace) (access currently to employees only).
+
 ### In use
 
 ![](./stacks-3d-in-use.svg)
