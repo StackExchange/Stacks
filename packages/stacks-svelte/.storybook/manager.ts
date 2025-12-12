@@ -11,8 +11,8 @@ const renderLabsBadge = (name: string) => {
         " ",
         React.createElement(
             "span",
-            { className: "s-badge s-badge__new s-badge__sm" },
-            "labs"
+            { className: "s-badge s-badge__featured s-badge__sm" },
+            "Labs"
         )
     );
 };

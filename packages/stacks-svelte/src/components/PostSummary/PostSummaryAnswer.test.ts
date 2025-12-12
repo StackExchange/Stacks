@@ -41,7 +41,7 @@ describe("PostSummaryAnswer", () => {
             selector: ".s-post-summary--stats-item",
         });
         expect(acceptedItem).to.exist;
-        expect(acceptedItem?.textContent).to.equal(" Accepted answer");
+        expect(acceptedItem?.textContent?.trim()).to.equal("Accepted answer");
         expect(acceptedItem).to.have.class("s-post-summary--stats-item");
     });
 
