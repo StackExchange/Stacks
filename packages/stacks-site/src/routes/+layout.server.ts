@@ -29,7 +29,6 @@ export const load: LayoutServerData = async (event: any) => {
 
     const active = findByPath(structure, path);
 
-    //
     const session = await event.locals.auth();
 
     if (!session?.user && active?.private) throw redirect(303, "/auth/signin");

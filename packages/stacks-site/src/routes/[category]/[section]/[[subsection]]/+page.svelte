@@ -22,7 +22,7 @@
   <img class="w100 h-auto" width="1030" height="540" alt="" src={data.active.image} />
 {/if}
 
-<div class="d-flex md:fd-column mx-auto pl32 sm:pl24 sm:pr24">
+<div class="d-flex md:fd-column mx-auto pl32 md:pr32 sm:pl24 sm:pr24">
   <div class="doc flex--item9 wmn1 s-prose fs-body2 pt32">
     <div class="d-flex jc-space-between ai-start mb128">
       {#if data?.metadata?.updated}

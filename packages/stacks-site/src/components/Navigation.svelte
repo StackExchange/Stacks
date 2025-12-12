@@ -83,7 +83,7 @@
                         {#each subsection?.items as item}
                           <li>
                             <a
-                              class="s-navigation--item jc-space-between bar0 mb1"
+                              class="s-navigation--item jc-space-between mb1"
                               class:is-selected={page.params.subsection === item.slug}
                               href={item.externalUrl || `/${category.slug}/${subsection.slug}/${item.slug}/`}
                               data-sveltekit-reload={item.private ? true : undefined}

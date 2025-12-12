@@ -28,7 +28,7 @@ Our logo is the core identifier of Stack Overflow and one of the most visible ex
 
 ### Color combinations
 
-Our preference is to use the logo in Off-Black. Where accessibility makes this unsuitable, you can use Off-White instead. [Explore full color guidence](./color/)
+Our preference is to use the logo in Off-Black. Where accessibility makes this unsuitable, you can use Off-White instead. [Explore full color guidence](./color/).
 
 <LogoColors />
 

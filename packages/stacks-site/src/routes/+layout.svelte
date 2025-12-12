@@ -36,7 +36,7 @@
 	
 	<div class="d-flex md:fd-column sm:d-none bt bc-black-150 pt12 pb12 px12 mt-auto">
 		<div class="flex--item6 mr4 sm:mr0">
-			<Button href="https://github.com/StackExchange/Stacks/" class="w100" weight="clear">
+			<Button rel="external" target="_blank" href="https://github.com/StackExchange/Stacks/" class="w100" weight="clear">
 				<Icon src={IconServiceGitHub} />
 				GitHub
 			</Button>
