@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { Navigation, NavigationItem } from '@stackoverflow/stacks-svelte';
+
   const weights = [
     'Extralight',
     'Light',
@@ -11,20 +13,17 @@
   let notch = $state(true);
 </script>
 
+<Navigation class="ws-nowrap" label="Font weight" overflow="scroll">
+  {#each weights as weight}
+    <NavigationItem
+      text={weight}
+      selected={selected === weight}
+      onclick={() => selected = weight}
+    />
+  {/each}
+</Navigation>
+
 <div class="doc__grid sample">
-  <nav class="sample__select">
-    {#each weights as weight}
-      <label class:active={selected === weight}>
-        <input
-          type="radio"
-          name="type-weight"
-          value={weight}
-          bind:group={selected}
-        >
-          {weight}
-        </label>
-    {/each}
-  </nav>
   <div class={`sample__type weight--${selected} ${notch && 'style--notch'}`}>
     Overflow
   </div>
@@ -46,22 +45,6 @@
     justify-items: center;
     margin: 30px auto -30px;
     gap: 5px;
-  }
-  .sample__select label {
-    border: 1px solid;
-    padding: 5px 10px;
-    cursor: pointer;
-    background: rgba(0,0,0,0.1);
-  }
-  .sample__select label:hover {
-    background: rgba(255,255,255,0.1);
-  }
-  .sample__select label.active {
-    background: #fff
-  }
-  .sample__select input {
-    visibility: hidden;
-    position: absolute;
   }
   .sample__type {
     margin: auto;
