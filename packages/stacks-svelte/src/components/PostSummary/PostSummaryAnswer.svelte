@@ -5,7 +5,7 @@
 
 <script lang="ts">
     import PostSummaryStatsItem from "./PostSummaryStatsItem.svelte";
-    import { IconCheckmarkSm } from "@stackoverflow/stacks-icons-legacy/icons";
+    import { IconCheck } from "@stackoverflow/stacks-icons/icons";
     import Badge from "../Badge/Badge.svelte";
     import Link from "../Link/Link.svelte";
     import UserCard from "../UserCard/UserCard.svelte";
@@ -80,12 +80,13 @@
         />
         {#if accepted}
             <Badge
+                text={i18nAcceptedAnswerText}
+                type="state"
+                state="success"
+                icon={IconCheck}
+                squared
                 class="s-post-summary--stats-item"
-                variant="answered"
-                icon={IconCheckmarkSm}
-            >
-                {i18nAcceptedAnswerText}
-            </Badge>
+            />
         {/if}
     </div>
     <p class="s-post-summary--answer-excerpt">{excerpt}</p>

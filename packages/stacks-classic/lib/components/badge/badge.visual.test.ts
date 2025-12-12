@@ -1,20 +1,27 @@
 import { runVisualTests } from "../../test/visual-test-utils";
-import { IconEyeSm } from "@stackoverflow/stacks-icons-legacy/icons";
-import "../../index";
+import { IconNotification } from "@stackoverflow/stacks-icons/icons";
 import { html } from "@open-wc/testing";
+import "../../index";
 
 const variants = {
-    blings: ["gold", "silver", "bronze"],
-    numbers: ["answered", "bounty", "important", "rep", "rep-down", "votes"],
-    filled: ["danger", "muted"],
-    states: ["danger", "muted", "info", "new", "warning"],
+    blings: ["default", "activity", "rep", "gold", "silver", "bronze"],
+    tags: ["gold", "silver", "bronze"],
+    states: [
+        "info",
+        "warning",
+        "danger",
+        "critical",
+        "tonal",
+        "success",
+        "featured",
+    ],
     users: ["admin", "moderator", "staff", "ai", "bot"],
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const template = ({ component, testid }: any) => html`
     <div
-        class="d-inline-flex ai-center jc-center hs1 ws1 p8"
+        class="d-inline-flex ai-center jc-center hs1 ws2 p8"
         data-testid="${testid}"
     >
         ${component}
@@ -22,109 +29,58 @@ const template = ({ component, testid }: any) => html`
 `;
 
 describe("badge", () => {
-    // Base badge
-    runVisualTests({
-        baseClass: "s-badge",
-        children: {
-            default: `base badge`,
-        },
-        tag: "span",
-        template,
-    });
-
-    // Award badges
+    // Badges with filled bling
     variants.blings.map((bling) => {
         runVisualTests({
             baseClass: "s-badge",
-            variants: [bling],
             children: {
-                default: `<span class="s-bling s-bling__${bling}">
-                    with bling
-                </span>`,
+                default: `<span class="s-bling s-bling__filled s-bling__${bling}">
+                    <span class="v-visible-sr">${bling} badge</span>
+                </span>
+                ${bling} Badge`,
             },
             options: {
-                includeNullVariant: false,
+                testidSuffix: bling,
             },
             tag: "span",
             template,
         });
     });
 
-    // Number counts
-    runVisualTests({
-        baseClass: "s-badge",
-        variants: variants.numbers,
-        children: {
-            default: "123",
-        },
-        options: {
-            includeNullVariant: false,
-        },
-        tag: "span",
-        template,
+    // Tag badges
+    variants.tags.map((tag) => {
+        runVisualTests({
+            baseClass: "s-badge",
+            variants: [tag],
+            children: {
+                default: `<span class="s-bling s-bling__${tag}">
+                    <span class="v-visible-sr">${tag} tag badge</span>
+                </span>
+                tag`,
+            },
+            options: {
+                includeNullVariant: false,
+                testidSuffix: "tag",
+            },
+            tag: "span",
+            template,
+        });
     });
 
-    // State badges
+    // State badges (with important and squared modifiers)
     runVisualTests({
         baseClass: "s-badge",
         variants: variants.states,
+        modifiers: {
+            primary: ["important"],
+            secondary: ["squared"],
+        },
         children: {
             default: `state badge`,
-        },
-        tag: "span",
-        options: {
-            includeNullVariant: false,
-        },
-        template,
-    });
-
-    // State badges w/ filled modifier
-    runVisualTests({
-        baseClass: "s-badge",
-        variants: variants.filled,
-        modifiers: {
-            primary: ["filled"],
-        },
-        children: {
-            default: `filled badge`,
+            icon: `${IconNotification} icon badge`,
         },
         options: {
-            includeNullModifier: false,
-        },
-        tag: "span",
-        template,
-    });
-
-    // State badges w/ filled modifier and icon
-    runVisualTests({
-        baseClass: "s-badge",
-        variants: variants.filled,
-        modifiers: {
-            primary: ["filled"],
-            secondary: ["icon"],
-        },
-        children: {
-            default: `${IconEyeSm} icon badge`,
-        },
-        options: {
-            includeNullModifier: false,
-        },
-        tag: "span",
-        template,
-    });
-
-    // State badges w/ icon
-    runVisualTests({
-        baseClass: "s-badge",
-        variants: variants.states.filter((state) => state !== "new"),
-        modifiers: {
-            primary: ["icon"],
-        },
-        children: {
-            default: `${IconEyeSm} icon badge`,
-        },
-        options: {
-            includeNullModifier: false,
+            testidSuffix: "state",
         },
         tag: "span",
         template,
@@ -134,9 +90,6 @@ describe("badge", () => {
     runVisualTests({
         baseClass: "s-badge",
         variants: variants.users,
-        modifiers: {
-            primary: ["xs", "sm"],
-        },
         children: {
             default: "user badge",
         },
@@ -151,13 +104,13 @@ describe("badge", () => {
     runVisualTests({
         baseClass: "s-badge",
         modifiers: {
-            primary: ["xs", "sm"],
+            primary: ["sm", "lg"],
         },
         children: {
             default: "size badge",
         },
         options: {
-            includeNullModifier: false,
+            testidSuffix: "size",
         },
         tag: "span",
         template,

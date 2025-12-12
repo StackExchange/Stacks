@@ -335,7 +335,7 @@
             onclick={() => (tSelected = "AI Assist")}
         >
             {#snippet trailing()}
-                <Badge variant="new" size="sm">New</Badge>
+                <Badge text="New" type="state" state="featured" size="sm" />
             {/snippet}
         </NavigationItem>
         {#each groups as group (group)}

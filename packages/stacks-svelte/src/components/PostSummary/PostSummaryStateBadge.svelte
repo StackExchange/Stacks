@@ -1,6 +1,6 @@
 <script lang="ts">
     import Badge from "../Badge/Badge.svelte";
-    import type { Variant as BadgeVariant } from "../Badge/Badge.svelte";
+    import type { BadgeState } from "../Badge/Badge.svelte";
     import type { State } from "./PostSummary.svelte";
     import {
         IconArchiveSm,
@@ -11,13 +11,13 @@
         IconTrashSm,
     } from "@stackoverflow/stacks-icons-legacy/icons";
 
-    type BadgeState = Exclude<State, undefined>;
+    type PostSummaryState = Exclude<State, undefined>;
 
     /**
      * The state of the post, which affects its styling
      * @type {"archived" | "closed" | "deleted" | "draft" | "deleted" | "pinned" | "review"} State
      */
-    export let state: BadgeState;
+    export let state: PostSummaryState;
 
     /**
      * Text to display in the badge
@@ -33,12 +33,12 @@
         review: IconEyeSm,
     };
 
-    const STATE_VARIANT_MAP: Record<BadgeState, BadgeVariant> = {
-        archived: "muted",
+    const STATE_BADGE_MAP: Record<PostSummaryState, BadgeState> = {
+        archived: "tonal",
         closed: "danger",
         deleted: "danger",
         draft: "info",
-        pinned: "muted",
+        pinned: "tonal",
         review: "warning",
     };
 
@@ -48,10 +48,11 @@
 </script>
 
 <Badge
-    class="s-post-summary--stats-item"
-    filled={state === "deleted" || state === "pinned"}
+    text={i18nText || capitalizeFirstLetter(state)}
+    type="state"
     icon={STATE_ICON_MAP[state]}
-    variant={STATE_VARIANT_MAP[state]}
->
-    {i18nText || capitalizeFirstLetter(state)}
-</Badge>
+    state={STATE_BADGE_MAP[state]}
+    squared
+    important={state === "deleted" || state === "pinned"}
+    class="s-post-summary--stats-item"
+/>
