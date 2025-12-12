@@ -46,7 +46,7 @@
 <Story name="Horizontal">
     {#snippet template()}
         <div class="d-flex ai-center g64 fw-wrap">
-            <Vote total={12} horizontal hideDownvote />
+            <Vote total={12} horizontal />
             <Vote total={25789} horizontal />
             <Vote total={0} horizontal />
         </div>
@@ -59,7 +59,6 @@
             <Vote total={13} status="upvoted" />
             <Vote total={11} status="downvoted" />
             <Vote total={13} status="upvoted" horizontal />
-            <Vote total={11} status="downvoted" horizontal />
         </div>
     {/snippet}
 </Story>

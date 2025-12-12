@@ -79,7 +79,7 @@ tags: components
 
     {% header "h3", "Expanded" %}
     <p class="stacks-copy">
-        Include the <code class="stacks-code">.s-vote__expanded</code> modifier to show upvote and downvote counts in addition to the total vote count. This modifier hides <code class="stacks-code">.s-vote--total</code> and shows <code class="stacks-code">.s-vote--upvotes</code> and <code class="stacks-code">.s-vote--downvotes</code> instead.
+        Include the <code class="stacks-code">.s-vote__expanded</code> modifier to show upvote and downvote counts instead of the total vote count. This modifier hides <code class="stacks-code">.s-vote--total</code> and shows <code class="stacks-code">.s-vote--upvotes</code> and <code class="stacks-code">.s-vote--downvotes</code> instead.
     </p>
 
     <div class="stacks-preview mb24">
@@ -130,50 +130,30 @@ tags: components
 
     <div class="stacks-preview mb24">
 {% highlight html %}
-<!-- Standard horizontal vote component -->
 <div class="s-vote s-vote__horizontal">
     <button class="s-vote--btn">
         @Svg.Vote16Up
         <span class="v-visible-sr">upvote</span>
+        <span class="s-vote--votes">
+            <span class="s-vote--total">12</span>
+        </span>
     </button>
-    <span class="s-vote--votes">
-        <span class="s-vote--total">12</span>
-    </span>
-    <button class="s-vote--btn">
-        @Svg.Vote16Down
-        <span class="v-visible-sr">downvote</span>
-    </button>
-</div>
-
-<!-- Upvote only -->
-<div class="s-vote s-vote__horizontal">
-    <button class="s-vote--btn">
-        @Svg.Vote16Up
-        <span class="v-visible-sr">upvote</span>
-    </button>
-    <span class="s-vote--votes">
-        <span class="s-vote--total">12</span>
-    </span>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example d-flex ai-start fw-wrap g64">
             {% for vote in vote.groups.horizontal %}
                 <div class="d-flex fd-column ai-center g16">
-                    <code>{{ vote.description }}</code>
+                    {% if vote.description %}
+                        <code>{{ vote.description }}</code>
+                    {% endif %}
                     <div class="s-vote s-vote__horizontal">
                         <button class="s-vote--btn">
                             {% icon "Vote16Up" %}
                             <span class="v-visible-sr">upvote</span>
+                            <span class="s-vote--votes">
+                                <span class="s-vote--total">{{ vote.count }}</span>
+                            </span>
                         </button>
-                        <span class="s-vote--votes">
-                            <span class="s-vote--total">{{ vote.count }}</span>
-                        </span>
-                        {% if vote.downvote %}
-                            <button class="s-vote--btn">
-                                {% icon "Vote16Down" %}
-                                <span class="v-visible-sr">downvote</span>
-                            </button>
-                        {% endif %}
                     </div>
                 </div>
             {% endfor %}
@@ -211,19 +191,19 @@ tags: components
                 <div class="d-flex fd-column ai-center g16">
                     <code>{{ vote.description }}</code>
                     <div class="{{ classList }}">
-                        <button class="s-vote--btn">
-                            {% if vote.upvoted %}
-                                {% icon "Vote16UpFill" %}
-                                <span class="v-visible-sr">upvoted</span>
-                            {% else %}
-                                {% icon "Vote16Up" %}
-                                <span class="v-visible-sr">upvote</span>
-                            {% endif %}
-                        </button>
-                        <span class="s-vote--votes">
-                            <span class="s-vote--total">{{ vote.count }}</span>
-                        </span>
                         {% if vote.downvote %}
+                            <button class="s-vote--btn">
+                                {% if vote.upvoted %}
+                                    {% icon "Vote16UpFill" %}
+                                    <span class="v-visible-sr">upvoted</span>
+                                {% else %}
+                                    {% icon "Vote16Up" %}
+                                    <span class="v-visible-sr">upvote</span>
+                                {% endif %}
+                            </button>
+                            <span class="s-vote--votes">
+                                <span class="s-vote--total">{{ vote.count }}</span>
+                            </span>
                             <button class="s-vote--btn">
                                 {% if vote.downvoted %}
                                     {% icon "Vote16DownFill" %}
@@ -232,6 +212,19 @@ tags: components
                                     {% icon "Vote16Down" %}
                                     <span class="v-visible-sr">downvote</span>
                                 {% endif %}
+                            </button>
+                        {% else %}
+                            <button class="s-vote--btn">
+                                {% if vote.upvoted %}
+                                    {% icon "Vote16UpFill" %}
+                                    <span class="v-visible-sr">upvoted</span>
+                                {% else %}
+                                    {% icon "Vote16Up" %}
+                                    <span class="v-visible-sr">upvote</span>
+                                {% endif %}
+                                <span class="s-vote--votes">
+                                    <span class="s-vote--total">{{ vote.count }}</span>
+                                </span>
                             </button>
                         {% endif %}
                     </div>

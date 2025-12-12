@@ -39,11 +39,6 @@
         status?: Status;
 
         /**
-         * Whether to hide the downvote button. Defaults to false.
-         */
-        hideDownvote?: boolean;
-
-        /**
          * Text to display when total is 0 and no vote has been cast. Defaults to "Vote".
          */
         i18nVote?: string;
@@ -100,7 +95,6 @@
         upvotes = undefined,
         downvotes = undefined,
         horizontal,
-        hideDownvote = false,
         status = null,
         i18nVote = "Vote",
         i18nUpvote = "Upvote",
@@ -180,31 +174,41 @@
             <Icon src={IconVote16Up} />
             <span class="v-visible-sr">{i18nUpvote}</span>
         {/if}
-    </button>
-    <svelte:element
-        this={expandable ? "button" : "span"}
-        class="s-vote--votes"
-        role={expandable ? "button" : undefined}
-        onclick={() => (expandable ? (expanded = !expanded) : null)}
-    >
-        {#if upvotes !== undefined}
-            <span class="s-vote--upvotes">+{formatNumber(upvotes)}</span>
-        {/if}
-        <span class="s-vote--total">
-            {currentCount !== 0 || currentStatus !== null
-                ? formatNumber(currentCount)
-                : i18nVote}
-        </span>
-        {#if downvotes !== undefined}
-            <span class="s-vote--downvotes">-{formatNumber(downvotes)}</span>
-        {/if}
-        {#if expandable}
-            <span class="v-visible-sr">
-                {expanded ? i18nExpanded : i18nExpand}
+        {#if horizontal}
+            <span class="s-vote--votes">
+                <span class="s-vote--total">
+                    {currentCount !== 0 || currentStatus !== null
+                        ? formatNumber(currentCount)
+                        : i18nVote}
+                </span>
             </span>
         {/if}
-    </svelte:element>
-    {#if !hideDownvote}
+    </button>
+    {#if !horizontal}
+        <svelte:element
+            this={expandable ? "button" : "span"}
+            class="s-vote--votes"
+            role={expandable ? "button" : undefined}
+            onclick={() => (expandable ? (expanded = !expanded) : null)}
+        >
+            {#if upvotes !== undefined}
+                <span class="s-vote--upvotes">+{formatNumber(upvotes)}</span>
+            {/if}
+            <span class="s-vote--total">
+                {currentCount !== 0 || currentStatus !== null
+                    ? formatNumber(currentCount)
+                    : i18nVote}
+            </span>
+            {#if downvotes !== undefined}
+                <span class="s-vote--downvotes">-{formatNumber(downvotes)}</span
+                >
+            {/if}
+            {#if expandable}
+                <span class="v-visible-sr">
+                    {expanded ? i18nExpanded : i18nExpand}
+                </span>
+            {/if}
+        </svelte:element>
         <button
             class="s-vote--btn"
             onclick={() => handleVote("downvoted", ondownvote)}
