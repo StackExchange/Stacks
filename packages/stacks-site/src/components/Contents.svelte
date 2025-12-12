@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { Icon } from '@stackoverflow/stacks-svelte';
+  import { IconChevron16Down } from '@stackoverflow/stacks-icons'
+
   interface TocItem {
     id: string;
     value: string;
@@ -13,6 +16,7 @@
   let indicatorHeight = $state(0);
   let navElement: HTMLElement | null = null;
   let linkElements: Map<string, HTMLElement> = new Map();
+  let isOpen = $state(false);
 
   // Flatten toc to get all items including children
   function flattenToc(items: TocItem[]): TocItem[] {
@@ -35,6 +39,31 @@
       const linkRect = linkElement.getBoundingClientRect();
       indicatorTop = linkRect.top - navRect.top;
       indicatorHeight = linkRect.height;
+
+      // Auto-scroll the sidebar to keep active item visible (desktop only)
+      const scrollableContainer = navElement.closest('.overflow-auto') as HTMLElement;
+      const isMobile = window.innerWidth < 768;
+
+      if (scrollableContainer && !isMobile) {
+        const containerRect = scrollableContainer.getBoundingClientRect();
+        const linkRelativeTop = linkRect.top - containerRect.top;
+        const linkRelativeBottom = linkRect.bottom - containerRect.top;
+
+        // Scroll if the link is outside the viewport
+        if (linkRelativeTop < 0) {
+          linkElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest'
+          });
+        } else if (linkRelativeBottom > containerRect.height) {
+          linkElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'end',
+            inline: 'nearest'
+          });
+        }
+      }
     }
   }
 
@@ -103,9 +132,17 @@
 
 <aside class="flex--item3 md:order-first ml32 md:ml0">
   {#if toc.length > 0}
-    <div class="ps-sticky t0 py24 pr24 md:mb32 overflow-auto hmx-screen">
-      <nav bind:this={navElement} class="ps-relative">
-        <h2 class="fs-body2 fw-bold mb12 px6 fc-black-400">Contents</h2>
+    <div class="ps-sticky t0 py24 pr24 md:pb0 overflow-auto hmx-screen md:hmx-initial">
+      <button
+        class="d-none md:d-block s-btn s-btn__filled w100 mb12 jc-space-between"
+        onclick={() => isOpen = !isOpen}
+      >
+        <span>Contents</span>
+        <Icon src={IconChevron16Down} />
+      </button>
+
+      <nav bind:this={navElement} class={`ps-relative d-block ${!isOpen ? 'd-block md:d-none' : ''}`}>
+        <h2 class="fs-body2 fw-bold mb12 px6 fc-black-400 d-block sm:d-none">Contents</h2>
 
         <div
           class="contents-indicator ps-absolute l0 r0 z-base pe-none"
@@ -120,6 +157,7 @@
                 use:registerLink={item.id}
                 class="s-navigation--item fs-caption bar0 ps-relative fw-bold fc-black ai-start"
                 class:is-active={activeId === item.id}
+                onclick={() => isOpen = false}
               >
                 <span class={`w24 d-flex ai-center fc-orange-400`}>{(index + 1).toString().padStart(2, "0")}</span>
                 <span>{item.value}</span>
@@ -133,6 +171,7 @@
                         use:registerLink={child.id}
                         class="s-navigation--item fs-caption bar0 ps-relative"
                         class:is-active={activeId === child.id}
+                        onclick={() => isOpen = false}
                       >
                         {child.value}
                       </a>
