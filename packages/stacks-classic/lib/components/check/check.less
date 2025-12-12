@@ -1,0 +1,218 @@
+.s-check {
+    --_ch-ai: center;
+    --_ch-fc: unset;
+    --_ch-after-fc: unset;
+    --_ch-cursor: pointer;
+    --_ch-label-fc: var(--_ch-fc);
+    --_ch-gap: var(--su8);
+
+    // inputs
+    --_ch-input-baw: var(--su-static1);
+    --_ch-input-bc: var(--black-350);
+    --_ch-input-bg: var(--white);
+    --_ch-input-bg-image: unset;
+    --_ch-input-br: var(--su-static1);
+    --_ch-input-cursor: pointer;
+    --_ch-input-h: calc(var(--su-static12) + var(--su-static2)); // 14px
+    // Less variables for check svg fill color
+    @ch-bg-image-fill: .set-white()[default];
+    @ch-bg-image-fill-dark: .set-white-dark()[default];
+    @ch-bg-image-fill-esc: escape("@{ch-bg-image-fill}"); // color escaped for URL usage
+    @ch-bg-image-fill-dark-esc: escape("@{ch-bg-image-fill-dark}"); // color escaped for URL usage
+
+    // CONTEXTUAL STYLES
+    .dark-mode({
+        input[type="checkbox"] {
+            &:checked {
+                --_ch-input-bg-image: url("data:image/svg+xml;,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='@{ch-bg-image-fill-dark-esc}'/%3E%3C/svg%3E");
+            }
+            &:indeterminate {
+                --_ch-input-bg-image: url("data:image/svg+xml;,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4.5 h7 v2 h-7 z' fill='@{ch-bg-image-fill-dark-esc}'/%3E%3C/svg%3E");
+            }
+        }
+    });
+
+    @media (forced-colors: active) { // This is for Windows High Contrast Mode
+        &:checked,
+        &:indeterminate {
+            --_ch-input-bg: ButtonText !important;
+        }
+    }
+
+    fieldset[disabled] &,
+    &:has(> input[disabled]) {
+        --_ch-fc: var(--black-300);
+        --_ch-input-bc: var(--black-300);
+        --_ch-input-cursor: not-allowed;
+    }
+
+    fieldset[disabled] & input[type="checkbox"],
+    & input[type="checkbox"][disabled] {
+        &:checked, &:indeterminate {
+            --_ch-input-bc: var(--theme-secondary-300) !important;
+            --_ch-input-bg: var(--theme-secondary-300);
+        }
+    }
+
+    &:has(> input[disabled]:checked) {
+            --_ch-input-bc: var(--theme-secondary-300);
+    }
+
+    // MODIFIERS
+    &&__checkmark {
+        --_ch-fc: var(--theme-secondary);
+        --_ch-gap: var(--su4);
+        --_ch-after-fc: unset;      
+
+        // CONTEXTUAL STYLES
+        &:has(> input:focus-visible) {
+            .focus-styles(true, false);
+        }
+
+        &:has(> input:checked) {
+            --_ch-after-fc: var(--_ch-fc);
+        }
+
+        &:has(> input[disabled]) {
+            --_ch-cursor: not-allowed;
+        }
+
+        &:has(> input:checked[disabled]) {
+            --_ch-fc: var(--theme-secondary-300);
+        }
+
+        // CHILD ELEMENTS
+        input,
+        &:after {
+            height: var(--su16);
+            margin-left: 100%;
+            width: var(--su16);
+        }
+
+        &:after {
+            background-color: var(--_ch-after-fc);
+            content: "";
+            flex-shrink: 0;
+            margin-left: auto;
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m14 3.88-.44.44-7.34 7.35-.44.44-.44-.44-2.9-2.9L2 8.34l.89-.88.44.44 2.45 2.45 6.9-6.9.44-.44z'/%3E%3C/svg%3E"); // check16
+            mask-size: contain;
+            mask-repeat: no-repeat;
+        }
+
+        input {
+            appearance: none;
+            opacity: 0;
+            position: absolute;
+            right: 0;
+            z-index: -1;
+        }
+
+        .s-description {
+            margin: var(--su2) 0 0;
+            padding: 0;
+        }
+
+        .s-label {
+            flex-grow: 1;
+        }
+
+        border-radius: var(--br-md);
+        color: var(--_ch-fc);
+        cursor: var(--_ch-cursor);
+
+        width: 100%;
+    }
+
+    // CHILD ELEMENTS
+    &:has(> input[disabled]) {
+        .s-label {
+            --_ch-label-fc: var(--black-300);
+        }
+    }
+
+    &:not(> input[disabled]) {
+        &:has(input:checked),
+        &:has(input:indeterminate) {
+            .s-label {
+                --_ch-label-fc: var(--black-600);
+            }
+        }
+    }
+
+    &:has(> .s-label .s-description),
+    &:has(> .s-label .s-input-message) {
+        --_ch-ai: flex-start;
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            margin-top: var(--su2);
+        }
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+
+        &:focus-visible {
+            .focus-styles();
+        }
+
+        &:not(:checked) {
+            .validation-states(ch);
+        }
+
+        appearance: none;
+        background-color: var(--_ch-input-bg);
+        border: var(--_ch-input-baw) solid var(--_ch-input-bc);
+        border-radius: var(--_ch-input-br);
+        cursor: var(--_ch-input-cursor);
+        height: var(--_ch-input-h);
+        
+        aspect-ratio: 1 / 1;
+        flex-shrink: 0;
+        font-size: inherit;
+        margin: 0; // A guard against Core's default margins
+        outline: 0;
+        vertical-align: middle;
+    }
+
+    input[type="checkbox"] {
+        &:checked, &:indeterminate {
+            --_ch-input-bc: var(--theme-secondary);
+            --_ch-input-bg: var(--theme-secondary);
+        }
+
+        &:checked {
+            --_ch-input-bg-image: url("data:image/svg+xml;,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='@{ch-bg-image-fill-esc}'/%3E%3C/svg%3E");
+        }
+
+        &:indeterminate {
+            --_ch-input-bg-image: url("data:image/svg+xml;,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4.5 h7 v2 h-7 z' fill='@{ch-bg-image-fill-esc}'/%3E%3C/svg%3E");
+        }
+
+        background-image: var(--_ch-input-bg-image);
+
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    input[type="radio"] {
+        --_ch-input-br: var(--br-circle);
+
+        &:checked {
+            --_ch-input-baw: calc(var(--_ch-input-h) / 3); // 14px / 3 = ~4.67px
+            --_ch-input-bc: var(--theme-secondary);
+            --_ch-input-bg: var(--white);
+        }
+    }
+
+    .s-label {
+        color: var(--_ch-label-fc);
+        font-size: var(--fs-body1);
+        font-weight: normal;
+    }
+
+    align-items: var(--_ch-ai);
+    display: flex;
+    gap: var(--_ch-gap);
+}

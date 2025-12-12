@@ -24,7 +24,7 @@ checkTypes.forEach((type) => {
                     ${checkEls
                         .map(
                             ({ type, state, id }, index) => `
-                        <div class="s-check-control">
+                        <div class="s-check">
                             <input
                                 class="s-${type}"
                                 type="${type}"

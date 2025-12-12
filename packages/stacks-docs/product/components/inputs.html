@@ -162,15 +162,12 @@ tags: components
                 </tr>
             </thead>
             <tbody>
-                {% for item in inputs.input %}
-                    {% assign state = item.validation %}
-                    {% for class in state %}
+                {% for state in inputs.validation %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ class.class }}</code></th>
-                        <td>{{ class.applies }}</td>
-                        <td>{{ class.description }}</td>
+                        <th scope="row"><code class="stacks-code">{{ state.class }}</code></th>
+                        <td>Parent wrapper for input</td>
+                        <td>{{ state.description }}</td>
                     </tr>
-                    {% endfor %}
                 {% endfor %}
             </tbody>
         </table>
@@ -381,7 +378,7 @@ tags: components
     <div class="d-flex">
         <div class="d-flex ai-center order-last s-input-fill">
             <div class="d-flex gx4 ai-center">
-                <input class="s-checkbox" type="checkbox" id="need-visa" />
+                <input type="checkbox" id="need-visa" />
                 <label class="s-label s-label__sm fw-normal" for="need-visa">Need Visa Sponsorship</label>
             </div>
         </div>
@@ -397,7 +394,7 @@ tags: components
                 <div class="d-flex">
                     <div class="d-flex ai-center order-last s-input-fill">
                         <div class="d-flex gx4 ai-center">
-                            <input class="s-checkbox" type="checkbox" id="need-visa" />
+                            <input type="checkbox" id="need-visa" />
                             <label class="s-label s-label__sm fw-normal" for="need-visa">Need Visa Sponsorship</label>
                         </div>
                     </div>

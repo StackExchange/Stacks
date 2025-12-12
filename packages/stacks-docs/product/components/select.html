@@ -96,15 +96,12 @@ tags: components
                 </tr>
             </thead>
             <tbody>
-                {% for item in inputs.select %}
-                    {% assign state = item.validation %}
-                    {% for class in state %}
+                {% for state in inputs.validation %}
                     <tr>
-                        <th scope="row"><code class="flex--item stacks-code">{{ class.class }}</code></th>
-                        <td>{{ class.applies }}</td>
-                        <td>{{ class.description }}</td>
+                        <th scope="row"><code class="flex--item stacks-code">{{ state.class }}</code></th>
+                        <td>Parent wrapper for select</td>
+                        <td>{{ state.description }}</td>
                     </tr>
-                    {% endfor %}
                 {% endfor %}
             </tbody>
         </table>

@@ -7,13 +7,15 @@ tags: components
 ---
 <section class="stacks-section">
 
-    {% header "h2", "Checkbox" %}
-    <p class="stacks-copy">Use the <code class="stacks-code">.s-checkbox</code> class on <code class="stacks-code">input[type="checkbox"]</code> elements to apply the default checkbox styles.</p>
+    {% header "h2", "Check" %}
+    <p class="stacks-copy">Use the <code class="stacks-code">.s-check</code> to wrap <code class="stacks-code">input[type="checkbox"]</code> and <code class="stacks-code">input[type="radio"]</code> elements to apply the default checkbox/radio styles.</p>
+
+    {% header "h3", "Checkbox" %}
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-check-control">
-    <input class="s-checkbox" type="checkbox" name="example-name" id="example-item" />
-    <label class="s-label" for="example-item">Checkbox Label</label>
+<div class="s-check">
+    <input type="checkbox" name="example-name" id="example-item" />
+    <label class="s-label" for="example-item">Check Label</label>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -22,25 +24,25 @@ tags: components
                     <thead>
                         <tr>
                             <th scope="col">Example</th>
-                            <th scope="col">Class</th>
+                            <th scope="col">Child input</th>
                             <th scope="col">Description</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for input in checkbox.checkbox %}
+                        {% for item in check.checkbox %}
                             <tr>
                                 <td class="va-middle pr8">
-                                    <div class="s-check-control">
-                                        <input class="s-checkbox" type="checkbox" name="checkbox-group" id="{{input.id}}" {% if input.checked %}checked{% endif %} {% if input.disabled %}disabled{% endif %} />
-                                        <label class="s-label" for="{{input.id}}">{{ input.label }}</label>
+                                    <div class="s-check">
+                                        <input type="checkbox" name="checkbox-group" id="{{item.id}}" {% if item.checked %}checked{% endif %} {% if item.disabled %}disabled{% endif %} />
+                                        <label class="s-label" for="{{item.id}}">{{ item.label }}</label>
                                     </div>
                                 </td>
                                 <td class="va-middle">
                                     <div class="d-flex g4 fw-wrap">
-                                        <code class="stacks-code">.s-checkbox</code>
+                                        <code class="stacks-code">input[type="checkbox"]</code>
                                     </div>
                                 </td>
-                                <td class="va-middle">{{ input.description }}</td>
+                                <td class="va-middle">{{ item.description }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -49,13 +51,12 @@ tags: components
         </div>
     </div>
 
-    {% header "h2", "Radio" %}
-    <p class="stacks-copy">Use the <code class="stacks-code">.s-radio</code> class on <code class="stacks-code">input[type="radio"]</code> elements to apply the default radio styles.</p>
+    {% header "h3", "Radio" %}
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-check-control">
-    <input class="s-radio" type="radio" name="example-name" id="example-item" />
-    <label class="s-label" for="example-item">Radio Label</label>
+<div class="s-check">
+    <input type="radio" name="example-name" id="example-item" />
+    <label class="s-label" for="example-item">Check Label</label>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
@@ -64,26 +65,25 @@ tags: components
                     <thead>
                         <tr>
                             <th scope="col">Example</th>
-                            <th scope="col">Class</th>
+                            <th scope="col">Child input</th>
                             <th scope="col">Description</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for input in checkbox.radio %}
-                            {% assign name = input.name | default: "radio-group" %}
+                        {% for item in check.radio %}
                             <tr>
                                 <td class="va-middle pr8">
-                                    <div class="s-check-control">
-                                        <input class="s-radio" type="radio" name="{{ name }}" id="{{input.id}}" {% if input.checked %}checked{% endif %} {% if input.disabled %}disabled{% endif %} />
-                                        <label class="s-label" for="{{input.id}}">{{ input.label }}</label>
+                                    <div class="s-check">
+                                        <input type="radio" name="radio-group" id="{{item.id}}" {% if item.checked %}checked{% endif %} {% if item.disabled %}disabled{% endif %} />
+                                        <label class="s-label" for="{{item.id}}">{{ item.label }}</label>
                                     </div>
                                 </td>
                                 <td class="va-middle">
                                     <div class="d-flex g4 fw-wrap">
-                                        <code class="stacks-code">.s-radio</code>
+                                        <code class="stacks-code">input[type="radio"]</code>
                                     </div>
                                 </td>
-                                <td class="va-middle">{{ input.description }}</td>
+                                <td class="va-middle">{{ item.description }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -92,19 +92,19 @@ tags: components
         </div>
     </div>
 
-    {% header "h2", "Checkmark" %}
-    <p class="stacks-copy">The checkmark style is an alternative to the default checkbox and radio styles. To use the checkmark style, wrap your input and label in a container with the <code class="stacks-code">.s-check-control__checkmark</code> class and omit <code class="stacks-code">.s-checkbox</code> or <code class="stacks-code">.s-radio</code>.</p>
+    {% header "h3", "Checkmark" %}
+    <p class="stacks-copy">The checkmark style is an alternative to the default checkbox and radio styles. To use the checkmark style, wrap your input and label in a container with the <code class="stacks-code">.s-check__checkmark</code> class.</p>
 
     <div class="stacks-preview">
 {% highlight html %}
 <!-- Using checkbox element -->
-<label class="s-check-control s-check-control__checkmark" for="example-item">
+<label class="s-check s-check__checkmark" for="example-item">
     Checkmark Label
     <input type="checkbox" name="example-name" id="example-item" />
 </label>
 
 <!-- Using radio element -->
-<label class="s-check-control s-check-control__checkmark" for="example-item">
+<label class="s-check s-check__checkmark" for="example-item">
     Checkmark Label
     <input type="radio" name="example-name" id="example-item" />
 </label>
@@ -120,18 +120,18 @@ tags: components
                         </tr>
                     </thead>
                     <tbody>
-                        {% for input in checkbox.checkmark %}
+                        {% for input in check.checkmark %}
                             <tr>
                                 <td class="va-middle pr8">
-                                    <label class="s-check-control s-check-control__checkmark" for="{{input.id}}">
+                                    <label class="s-check s-check__checkmark" for="{{input.id}}">
                                         {{ input.label }}
                                         <input type="checkbox" name="checkmark-checkbox-group" id="{{input.id}}" {% if input.checked %}checked{% endif %} {% if input.disabled %}disabled{% endif %} />
                                     </label>
                                 </td>
                                 <td class="va-middle">
                                     <div class="d-flex g4 fw-wrap">
-                                        <code class="stacks-code">.s-check-control</code>
-                                        <code class="stacks-code">.s-check-control__checkmark</code>
+                                        <code class="stacks-code">.s-check</code>
+                                        <code class="stacks-code">.s-check__checkmark</code>
                                     </div>
                                 </td>
                                 <td class="va-middle">{{ input.description }}</td>
@@ -163,16 +163,16 @@ tags: components
 <!-- Checkbox -->
 <fieldset class="s-check-group">
     <legend class="s-label">…</legend>
-    <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="…" id="vert-checkbox-1" />
+    <div class="s-check">
+        <input type="checkbox" name="…" id="vert-checkbox-1" />
         <label class="s-label" for="vert-checkbox-1">…</label>
     </div>
-    <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="…" id="vert-checkbox-2" />
+    <div class="s-check">
+        <input type="checkbox" name="…" id="vert-checkbox-2" />
         <label class="s-label" for="vert-checkbox-2">…</label>
     </div>
-    <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="…" id="vert-checkbox-3" />
+    <div class="s-check">
+        <input type="checkbox" name="…" id="vert-checkbox-3" />
         <label class="s-label" for="vert-checkbox-3">…</label>
     </div>
 </fieldset>
@@ -180,16 +180,16 @@ tags: components
 <!-- Radio -->
 <fieldset class="s-check-group">
     <legend class="s-label">…</legend>
-    <div class="s-check-control">
-        <input class="s-radio" type="radio" name="vert-radio" id="vert-radio-1" />
+    <div class="s-check">
+        <input type="radio" name="vert-radio" id="vert-radio-1" />
         <label class="s-label" for="vert-radio-1">…</label>
     </div>
-    <div class="s-check-control">
-        <input class="s-radio" type="radio" name="vert-radio" id="vert-radio-2" />
+    <div class="s-check">
+        <input type="radio" name="vert-radio" id="vert-radio-2" />
         <label class="s-label" for="vert-radio-2">…</label>
     </div>
-    <div class="s-check-control">
-        <input class="s-radio" type="radio" name="vert-radio" id="vert-radio-3" />
+    <div class="s-check">
+        <input type="radio" name="vert-radio" id="vert-radio-3" />
         <label class="s-label" for="vert-radio-3">…</label>
     </div>
 </fieldset>
@@ -198,19 +198,19 @@ tags: components
 <fieldset class="s-menu s-check-group">
     <legend class="s-menu--title">…</legend>
     <div class="s-menu--item">
-        <label class="s-menu--action s-check-control s-check-control__checkmark" for="vert-checkmark-1">
+        <label class="s-menu--action s-check s-check__checkmark" for="vert-checkmark-1">
             <input type="radio" name="vert-checkmark" id="vert-checkmark-1" />
             …
         </label>
     </div>
     <div class="s-menu--item">
-        <label class="s-menu--action s-check-control s-check-control__checkmark" for="vert-checkmark-2">
+        <label class="s-menu--action s-check s-check__checkmark" for="vert-checkmark-2">
             <input type="radio" name="vert-checkmark" id="vert-checkmark-2" />
             …
         </label>
     </div>
     <div class="s-menu--item">
-        <label class="s-menu--action s-check-control s-check-control__checkmark" for="vert-checkmark-3">
+        <label class="s-menu--action s-check s-check__checkmark" for="vert-checkmark-3">
             <input type="radio" name="vert-checkmark" id="vert-checkmark-3" />
             …
         </label>
@@ -221,9 +221,9 @@ tags: components
             <!-- Checkbox -->
             <fieldset class="s-check-group">
                 <legend class="s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
-                {% for item in checkbox.group-items %}
-                    <div class="s-check-control">
-                        <input class="s-checkbox" type="checkbox" name="" id="vert-checkbox-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
+                {% for item in check.group-items %}
+                    <div class="s-check">
+                        <input type="checkbox" name="" id="vert-checkbox-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
                         <label class="s-label" for="vert-checkbox-{{ item.label }}">{{ item.label }}</label>
                     </div>
                 {% endfor %}
@@ -232,9 +232,9 @@ tags: components
             <!-- Radio -->
             <fieldset class="s-check-group">
                 <legend class="s-label">Which types of fruit do you like?</legend>
-                {% for item in checkbox.group-items %}
-                    <div class="s-check-control">
-                        <input class="s-radio" type="radio" name="vert-radio" id="vert-radio-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
+                {% for item in check.group-items %}
+                    <div class="s-check">
+                        <input type="radio" name="vert-radio" id="vert-radio-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
                         <label class="s-label" for="vert-radio-{{ item.label }}">{{ item.label }}</label>
                     </div>
                 {% endfor %}
@@ -244,9 +244,9 @@ tags: components
             <div class="s-popover is-visible ps-relative ws2 p8">
                 <fieldset class="s-menu s-check-group">
                     <legend class="s-menu--title">Pick a fruit</legend>
-                    {% for item in checkbox.group-items %}
+                    {% for item in check.group-items %}
                         <div class="s-menu--item">
-                            <label class="s-menu--action s-check-control s-check-control__checkmark" for="vert-checkmark-{{ item.label }}">
+                            <label class="s-menu--action s-check s-check__checkmark" for="vert-checkmark-{{ item.label }}">
                                 <input type="radio" name="vert-checkmark" id="vert-checkmark-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
                                 {{ item.label }}
                             </label>
@@ -263,16 +263,16 @@ tags: components
 <!-- Checkbox -->
 <fieldset class="s-check-group s-check-group__horizontal">
     <legend class="s-label">…</legend>
-    <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="…" id="vert-checkbox-1" />
+    <div class="s-check">
+        <input type="checkbox" name="…" id="vert-checkbox-1" />
         <label class="s-label" for="vert-checkbox-1">…</label>
     </div>
-    <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="…" id="vert-checkbox-2" />
+    <div class="s-check">
+        <input type="checkbox" name="…" id="vert-checkbox-2" />
         <label class="s-label" for="vert-checkbox-2">…</label>
     </div>
-    <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="…" id="vert-checkbox-3" />
+    <div class="s-check">
+        <input type="checkbox" name="…" id="vert-checkbox-3" />
         <label class="s-label" for="vert-checkbox-3">…</label>
     </div>
 </fieldset>
@@ -280,16 +280,16 @@ tags: components
 <!-- Radio -->
 <fieldset class="s-check-group s-check-group__horizontal">
     <legend class="s-label">…</legend>
-    <div class="s-check-control">
-        <input class="s-radio" type="radio" name="hori-radio" id="hori-radio-1" />
+    <div class="s-check">
+        <input type="radio" name="hori-radio" id="hori-radio-1" />
         <label class="s-label" for="hori-radio-1">…</label>
     </div>
-    <div class="s-check-control">
-        <input class="s-radio" type="radio" name="hori-radio" id="hori-radio-2" />
+    <div class="s-check">
+        <input type="radio" name="hori-radio" id="hori-radio-2" />
         <label class="s-label" for="hori-radio-2">…</label>
     </div>
-    <div class="s-check-control">
-        <input class="s-radio" type="radio" name="hori-radio" id="hori-radio-3" />
+    <div class="s-check">
+        <input type="radio" name="hori-radio" id="hori-radio-3" />
         <label class="s-label" for="hori-radio-3">…</label>
     </div>
 </fieldset>
@@ -298,9 +298,9 @@ tags: components
             <!-- Checkbox -->
             <fieldset class="s-check-group s-check-group__horizontal">
                 <legend class="s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
-                {% for item in checkbox.group-items %}
-                    <div class="s-check-control">
-                        <input class="s-checkbox" type="checkbox" name="" id="hori-checkbox-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
+                {% for item in check.group-items %}
+                    <div class="s-check">
+                        <input type="checkbox" name="" id="hori-checkbox-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
                         <label class="s-label" for="hori-checkbox-{{ item.label }}">{{ item.label }}</label>
                     </div>
                 {% endfor %}
@@ -309,9 +309,9 @@ tags: components
             <!-- Radio -->
             <fieldset class="s-check-group s-check-group__horizontal">
                 <legend class="s-label">Which types of fruit do you like?</legend>
-                {% for item in checkbox.group-items %}
-                    <div class="s-check-control">
-                        <input class="s-radio" type="radio" name="hori-radio" id="hori-radio-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
+                {% for item in check.group-items %}
+                    <div class="s-check">
+                        <input type="radio" name="hori-radio" id="hori-radio-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
                         <label class="s-label" for="hori-radio-{{ item.label }}">{{ item.label }}</label>
                     </div>
                 {% endfor %}
@@ -325,8 +325,8 @@ tags: components
 <!-- Checkbox -->
 <fieldset class="s-check-group">
     <legend class="s-label">…</legend>
-    <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="…" id="desc-checkbox-1" />
+    <div class="s-check">
+        <input type="checkbox" name="…" id="desc-checkbox-1" />
         <label class="s-label" for="desc-checkbox-1">
             …
             <p class="s-description">…</p>
@@ -338,8 +338,8 @@ tags: components
 <!-- Radio -->
 <fieldset class="s-check-group">
     <legend class="s-label">…</legend>
-    <div class="s-check-control">
-        <input class="s-radio" type="radio" name="desc-radio" id="desc-radio-1" />
+    <div class="s-check">
+        <input type="radio" name="desc-radio" id="desc-radio-1" />
         <label class="s-label" for="desc-radio-1">
             …
             <p class="s-description">…</p>
@@ -352,7 +352,7 @@ tags: components
 <fieldset class="s-menu s-check-group">
     <legend class="s-menu--title">…</legend>
     <div class="s-menu--item">
-        <label class="s-menu--action s-check-control s-check-control__checkmark" for="desc-checkmark-1">
+        <label class="s-menu--action s-check s-check__checkmark" for="desc-checkmark-1">
             <input type="radio" name="desc-checkmark" id="desc-checkmark-1" />
             <div>
                 …
@@ -367,9 +367,9 @@ tags: components
             <!-- Checkbox -->
             <fieldset class="s-check-group">
                 <legend class="s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
-                {% for item in checkbox.group-items %}
-                    <div class="s-check-control">
-                        <input class="s-checkbox" type="checkbox" name="" id="desc-checkbox-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
+                {% for item in check.group-items %}
+                    <div class="s-check">
+                        <input type="checkbox" name="" id="desc-checkbox-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
                         <label class="s-label" for="desc-checkbox-{{ item.label }}">
                             {{ item.label }}
                             <p class="s-description">{{ item.description }}</p>
@@ -381,9 +381,9 @@ tags: components
             <!-- Radio -->
             <fieldset class="s-check-group">
                 <legend class="s-label">Which types of fruit do you like?</legend>
-                {% for item in checkbox.group-items %}
-                    <div class="s-check-control">
-                        <input class="s-radio" type="radio" name="desc-radio" id="desc-radio-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
+                {% for item in check.group-items %}
+                    <div class="s-check">
+                        <input type="radio" name="desc-radio" id="desc-radio-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
                         <label class="s-label" for="desc-radio-{{ item.label }}">
                             {{ item.label }}
                             <p class="s-description">{{ item.description }}</p>
@@ -396,9 +396,9 @@ tags: components
             <div class="s-popover is-visible ps-relative ws2 p8">
                 <fieldset class="s-menu s-check-group">
                     <legend class="s-menu--title">Pick a fruit</legend>
-                    {% for item in checkbox.group-items %}
+                    {% for item in check.group-items %}
                         <div class="s-menu--item">
-                            <label class="s-menu--action s-check-control s-check-control__checkmark" for="desc-checkmark-{{ item.label }}">
+                            <label class="s-menu--action s-check s-check__checkmark" for="desc-checkmark-{{ item.label }}">
                                 <input type="radio" name="desc-checkmark" id="desc-checkmark-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
                                 <div>
                                     {{ item.label }}
@@ -424,20 +424,17 @@ tags: components
             <thead>
                 <tr>
                     <th scope="col" class="s-table--cell2">Class</th>
-                    <th scope="col" class="s-table--cell4">Applies</th>
+                    <th scope="col" class="s-table--cell2">Applies</th>
                     <th scope="col">Description</th>
                 </tr>
             </thead>
             <tbody>
-                {% for item in inputs.checkbox %}
-                    {% assign state = item.validation %}
-                    {% for class in state %}
+                {% for state in inputs.validation %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ class.class }}</code></th>
-                        <td>{{ class.applies }}</td>
-                        <td>{{ class.description }}</td>
+                        <th scope="row"><code class="stacks-code">{{ state.class }}</code></th>
+                        <td><code class="stacks-code">.s-check</code></td>
+                        <td>{{ state.description }}</td>
                     </tr>
-                    {% endfor %}
                 {% endfor %}
             </tbody>
         </table>
@@ -447,8 +444,8 @@ tags: components
     <div class="stacks-preview">
 {% highlight html %}
 <!-- Checkbox w/ warning -->
-<div class="s-check-control has-warning">
-    <input class="s-checkbox" type="checkbox" name="…" id="warn-checkbox-1" />
+<div class="s-check has-warning">
+    <input type="checkbox" name="…" id="warn-checkbox-1" />
     <label class="s-label" for="warn-checkbox-1">
         …
         <p class="s-description">…</p>
@@ -456,8 +453,8 @@ tags: components
 </div>
 
 <!-- Radio w/ error -->
-<div class="s-check-control has-error">
-    <input class="s-radio" type="radio" name="error-radio" id="error-radio-1" />
+<div class="s-check has-error">
+    <input type="radio" name="error-radio" id="error-radio-1" />
     <label class="s-label" for="error-radio-1">
         …
         <p class="s-description">…</p>
@@ -465,7 +462,7 @@ tags: components
 </div>
 
 <!-- Checkmark w/ success -->
-<label class="s-check-control s-check-control__checkmark has-success" for="success-checkmark-1">
+<label class="s-check s-check__checkmark has-success" for="success-checkmark-1">
     <input type="radio" name="success-checkmark" id="success-checkmark-1" />
     <div>
         …
@@ -477,9 +474,9 @@ tags: components
             <!-- Checkbox -->
             <fieldset class="s-check-group">
                 <legend class="s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
-                {% for item in checkbox.group-items %}
-                    <div class="s-check-control has-{{ item.state }}">
-                        <input class="s-checkbox" type="checkbox" name="" id="state-checkbox-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
+                {% for item in check.group-items %}
+                    <div class="s-check has-{{ item.state }}">
+                        <input type="checkbox" name="" id="state-checkbox-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
                         <label class="s-label" for="state-checkbox-{{ item.label }}">
                             {{ item.label }}
                             <p class="s-description">{{ item.description }}</p>
@@ -491,9 +488,9 @@ tags: components
             <!-- Radio -->
             <fieldset class="s-check-group">
                 <legend class="s-label">Which types of fruit do you like?</legend>
-                {% for item in checkbox.group-items %}
-                    <div class="s-check-control has-{{ item.state }}">
-                        <input class="s-radio" type="radio" name="state-radio" id="state-radio-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
+                {% for item in check.group-items %}
+                    <div class="s-check has-{{ item.state }}">
+                        <input type="radio" name="state-radio" id="state-radio-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
                         <label class="s-label" for="state-radio-{{ item.label }}">
                             {{ item.label }}
                             <p class="s-description">{{ item.description }}</p>
@@ -506,9 +503,9 @@ tags: components
             <div class="s-popover is-visible ps-relative ws2 p8">
                 <fieldset class="s-menu s-check-group">
                     <legend class="s-menu--title">Pick a fruit</legend>
-                    {% for item in checkbox.group-items %}
+                    {% for item in check.group-items %}
                         <div class="s-menu--item">
-                            <label class="s-menu--action s-check-control s-check-control__checkmark has-{{ item.state }}" for="state-checkmark-{{ item.label }}">
+                            <label class="s-menu--action s-check s-check__checkmark has-{{ item.state }}" for="state-checkmark-{{ item.label }}">
                                 <input type="radio" name="state-checkmark" id="state-checkmark-{{ item.label }}" {% if forloop.first %} checked {% endif %} />
                                 <div>
                                     {{ item.label }}
@@ -533,8 +530,8 @@ tags: components
     <div class="stacks-preview">
 {% highlight html %}
 <fieldset class="s-check-group">
-    <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="" id="indeterminate-checkbox-1" />
+    <div class="s-check">
+        <input type="checkbox" name="" id="indeterminate-checkbox-1" />
         <label class="s-label" for="indeterminate-checkbox-1">Select all</label>
     </div>
 </fieldset>
@@ -545,8 +542,8 @@ tags: components
 {% endhighlight %}
         <div class="stacks-preview--example">
             <fieldset class="s-check-group">
-                <div class="s-check-control">
-                    <input class="s-checkbox" type="checkbox" name="" id="indeterminate-checkbox-1" />
+                <div class="s-check">
+                    <input type="checkbox" name="" id="indeterminate-checkbox-1" />
                     <label class="s-label" for="indeterminate-checkbox-1">Select all</label>
                 </div>
             </fieldset>

@@ -24,7 +24,7 @@ export { default as PopoverContent } from "./Popover/PopoverContent.svelte";
 export { default as PopoverReference } from "./Popover/PopoverReference.svelte";
 export { default as PostSummary } from "./PostSummary/PostSummary.svelte";
 export { default as PostSummaryAnswer } from "./PostSummary/PostSummaryAnswer.svelte";
-export { default as CheckControl } from "./CheckControl/CheckControl.svelte";
+export { default as Check } from "./Check/Check.svelte";
 export { default as CheckGroup } from "./CheckGroup/CheckGroup.svelte";
 export { default as Select } from "./Select/Select.svelte";
 export { default as SelectItem } from "./Select/SelectItem.svelte";

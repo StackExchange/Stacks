@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-    import CheckControl from "../CheckControl/CheckControl.svelte";
+    import Check from "../Check/Check.svelte";
     import Icon from "../Icon/Icon.svelte";
 
     interface Props {
@@ -82,7 +82,7 @@
     {#if icon}
         <Icon src={icon} class="s-menu--icon" />
     {/if}
-    <CheckControl
+    <Check
         class="s-menu--action"
         {checked}
         {description}

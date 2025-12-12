@@ -4,21 +4,21 @@ import { render, screen } from "@testing-library/svelte";
 import { createRawSnippet, mount, unmount } from "svelte";
 
 import CheckGroup from "./CheckGroup.svelte";
-import CheckControl from "../CheckControl/CheckControl.svelte";
+import Check from "../Check/Check.svelte";
 
-type CheckControlProps = {
+type CheckProps = {
     id: string;
     name: string;
     label: string;
     type: "checkbox" | "radio";
 };
 
-const createCheckControlsSnippet = (controls: Array<CheckControlProps>) =>
+const createChecksSnippet = (controls: Array<CheckProps>) =>
     createRawSnippet(() => ({
         render: () => "<span></span>",
         setup: (target) => {
             const instances = controls.map((props) => {
-                return mount(CheckControl, {
+                return mount(Check, {
                     target,
                     props,
                 });
@@ -29,7 +29,7 @@ const createCheckControlsSnippet = (controls: Array<CheckControlProps>) =>
         },
     }));
 
-const baseCheckControlProps = (suffix: string | number): CheckControlProps => ({
+const baseCheckProps = (suffix: string | number): CheckProps => ({
     id: `test-checkbox-${suffix}`,
     label: `Option ${suffix}`,
     name: "test-name",
@@ -38,9 +38,7 @@ const baseCheckControlProps = (suffix: string | number): CheckControlProps => ({
 
 describe("CheckGroup", () => {
     it("should render the CheckGroup", () => {
-        const children = createCheckControlsSnippet([
-            baseCheckControlProps("base"),
-        ]);
+        const children = createChecksSnippet([baseCheckProps("base")]);
 
         render(CheckGroup, {
             label: "Test Legend",
@@ -65,8 +63,8 @@ describe("CheckGroup", () => {
     });
 
     it("should render multiple check controls", () => {
-        const children = createCheckControlsSnippet(
-            [1, 2, 3].map((num) => baseCheckControlProps(num))
+        const children = createChecksSnippet(
+            [1, 2, 3].map((num) => baseCheckProps(num))
         );
 
         render(CheckGroup, {
@@ -81,9 +79,7 @@ describe("CheckGroup", () => {
     });
 
     it("should render disabled fieldset when disabled is true", () => {
-        const children = createCheckControlsSnippet([
-            baseCheckControlProps("disabled"),
-        ]);
+        const children = createChecksSnippet([baseCheckProps("disabled")]);
         render(CheckGroup, {
             label: "Test Legend",
             disabled: true,
@@ -95,9 +91,7 @@ describe("CheckGroup", () => {
     });
 
     it("should apply horizontal class when horizontal is true", () => {
-        const children = createCheckControlsSnippet([
-            baseCheckControlProps("horizontal"),
-        ]);
+        const children = createChecksSnippet([baseCheckProps("horizontal")]);
 
         render(CheckGroup, {
             label: "Test Legend",
@@ -110,9 +104,7 @@ describe("CheckGroup", () => {
     });
 
     it("should apply the appropriate state class", () => {
-        const children = createCheckControlsSnippet([
-            baseCheckControlProps("state"),
-        ]);
+        const children = createChecksSnippet([baseCheckProps("state")]);
 
         render(CheckGroup, {
             label: "Test Legend",
@@ -125,9 +117,7 @@ describe("CheckGroup", () => {
     });
 
     it("should apply arbitrary classes to fieldset", () => {
-        const children = createCheckControlsSnippet([
-            baseCheckControlProps("classes"),
-        ]);
+        const children = createChecksSnippet([baseCheckProps("classes")]);
 
         render(CheckGroup, {
             label: "Test Legend",
@@ -141,9 +131,7 @@ describe("CheckGroup", () => {
     });
 
     it("should adjust classes on prop updates", async () => {
-        const children = createCheckControlsSnippet([
-            baseCheckControlProps("update"),
-        ]);
+        const children = createChecksSnippet([baseCheckProps("update")]);
 
         const { rerender } = render(CheckGroup, {
             label: "Test Legend",

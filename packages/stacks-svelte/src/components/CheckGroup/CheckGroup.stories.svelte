@@ -1,11 +1,9 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import CheckGroup, { type State } from "./CheckGroup.svelte";
-    import CheckControl, {
-        type Type as CheckControlType,
-    } from "../CheckControl/CheckControl.svelte";
+    import Check, { type Type as CheckType } from "../Check/Check.svelte";
     const CheckGroupStates: State[] = ["", "error", "success", "warning"];
-    const CheckControlTypes: CheckControlType[] = ["checkbox", "radio"];
+    const CheckTypes: CheckType[] = ["checkbox", "radio"];
 
     const { Story } = defineMeta({
         title: "Components/CheckGroup",
@@ -30,9 +28,9 @@
         <div class="wmx2">
             <CheckGroup {...args}>
                 {#each ["Apples", "Oranges", "Bananas"] as label (label)}
-                    <CheckControl
-                        name="checkcontrol-{label}"
-                        id="checkcontrol-{label}"
+                    <Check
+                        name="Check-{label}"
+                        id="Check-{label}"
                         {label}
                         type="checkbox"
                     />
@@ -61,9 +59,9 @@
                             <td class="va-middle px8">
                                 <CheckGroup label="Legend text" {state}>
                                     {#each ["checkbox", "radio", "checkmark"] as type (type)}
-                                        <CheckControl
-                                            name="checkcontrol-{type}"
-                                            id="checkcontrol-{type}-{state}"
+                                        <Check
+                                            name="Check-{type}"
+                                            id="Check-{type}-{state}"
                                             label={titleCase(type)}
                                             type={type === "radio"
                                                 ? "radio"
@@ -94,7 +92,7 @@
                 </tr>
             </thead>
             <tbody>
-                {#each CheckControlTypes as type (type)}
+                {#each CheckTypes as type (type)}
                     <tr>
                         <th scope="row" class="va-middle">
                             {titleCase(type)}
@@ -102,9 +100,9 @@
                         <td class="va-middle px8">
                             <CheckGroup label="Legend text" horizontal>
                                 {#each ["Apples", "Oranges", "Bananas"] as label (label)}
-                                    <CheckControl
-                                        name="checkcontrol-{type}"
-                                        id="checkcontrol-{label}-{type}"
+                                    <Check
+                                        name="Check-{type}"
+                                        id="Check-{label}-{type}"
                                         {label}
                                         {type}
                                     />

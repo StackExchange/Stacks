@@ -47,6 +47,10 @@
 - The variant `Muted` has been removed, `Tonal` has been added
 - `s-btn__md` has been removed, `s-btn__lg` has been added
 
+#### Checkbox & Radio
+- The `s-checkbox` and `s-radio` classes have been removed. Any `input[type="checkbox"]` or `input[type="radio"]` element should now be placed within a `s-check` container.
+- The `s-check-control` class has been renamed to `s-check`
+
 #### Inputs
 - `s-input__md` removed
 - `s-input__xl` removed
