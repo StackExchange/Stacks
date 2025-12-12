@@ -553,7 +553,7 @@ Don’t use ampersands (&) unless it's part of a branded term. Spell out the wor
 
 ### Apostrophes
 
-Use apostrophes to represent omitted letters or numbers (can’t, you’re, ’90s) and to form possessives.
+Use apostrophes to represent omitted letters or numbers (can’t, you’re, ’90s) and to form possessives. See also: [use of curly quotes](#quotation-marks).
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
