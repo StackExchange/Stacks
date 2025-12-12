@@ -39,8 +39,12 @@
           class="s-navigation--item jc-space-between bar0 mb1"
           class:is-selected={isSelected}
           href={`/${category.slug}/`}
+          data-sveltekit-reload={category.private ? true : undefined}
         >
           <span>{category.title}</span>
+          {#if category.private}
+            <Icon src={IconLock} />
+          {/if}
         </a>
 
         {#if category.items && isSelected}
