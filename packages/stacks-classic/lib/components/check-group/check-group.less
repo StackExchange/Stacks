@@ -1,5 +1,11 @@
 .s-check-group {
     --_cg-fd: column;
+    --_cg-gap: var(--su8);
+
+    // CONTEXTUAL STYLES
+    &.s-menu {
+        --_cg-gap: 0;
+    }
 
     // MODIFIERS
     &&__horizontal {
@@ -7,13 +13,13 @@
     }
 
     // CHILD ELEMENTS
-    // TODO HACK? <legend> isn't respecting gap...
     legend.s-label {
         margin-bottom: var(--su8);
     }
+    
 
     flex-direction: var(--_cg-fd);
 
     display: flex;
-    gap: var(--su8);
+    gap: var(--_cg-gap);
 }
