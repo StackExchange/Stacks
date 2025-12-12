@@ -14,9 +14,9 @@ This guide helps ensure consistent naming across all Stack Overflow communicatio
 
 ## Components
 
-### Mainbrand: Stack Overflow
+### Mainbrand
 
-The overarching brand that serves as the main identifier for a company and its various products or services. This name is our most valuable asset with nearly two-decades of awareness around it in technology and technology-adjacent fields.
+The overarching brand that serves as the main identifier for a company and its various products or services. _Stack Overflow_ has nearly two-decades of awareness around it in technology and technology-adjacent fields.
 
 ### Sub-brand
 
@@ -90,7 +90,7 @@ The legal entity is **Stack Exchange Inc.** However, most of the time we refer t
   </GridColumn>
 </Grid>
 
-## The public platform vs the company
+## The website vs the company
 
 **Stack Overflow** refers to both the company and the public Q&A platform. In most contexts, this ambiguity is acceptable and even desirable—the platform is our flagship and most recognizable product.
 
@@ -107,7 +107,7 @@ However, when disambiguation is necessary, use these conventions:
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
-    <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> When referring to the site Stack Overflow</h3>
+    <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> When referring to website</h3>
     <ul class="ml0 pl16">
       <li>Stack Overflow (in most contexts)</li>
       <li>“stackoverflow.com” (when being very specific)</li>
@@ -125,10 +125,10 @@ Use contextual clues or specific phrasing when you need to make the distinction 
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
     <ul class="ml0 pl16">
-      <li>“Stack Overflow offers both a public platforms and business products”</li>
+      <li>“Stack Overflow has 183+ public platforms, and business products”</li>
       <li>“Visit stackoverflow.com to ask questions, or try Stack Internal for your team”</li>
       <li>“Unlike the public Stack Overflow site, Stack Internal is private to your organization”</li>
-      <li>“Stack Overflow’s public Q&A platform serves millions daily”</li>
+      <li>“Stack Overflow’s public Q&A platforms serves millions daily”</li>
     </ul>
   </GridColumn>
 </Grid>
@@ -141,7 +141,7 @@ Business products do not have distinct logos but there are [differences with col
 
 ### Stack Data Licensing
 
-Our data licensing product provides access to Stack Overflow’s vast knowledge base.
+Our data licensing product provides access to Stack Overflow’s vast dataset.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
@@ -225,6 +225,7 @@ Both **Stack \_\_\_** and **Stack Overflow \_\_\_** are acceptable when referrin
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Use Stack ___</h3>
     <ul class="ml0 pl16">
+      <li>Inside the product themselves</li>
       <li>Internal communications (presentations, emails, Slack)</li>
       <li>Official social media posts from company accounts</li>
       <li>On our own web properties</li>
@@ -325,7 +326,7 @@ The following brands and visual identities have been retired:
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
     <ul class="ml0 pl16">
-      <li>Stack Overflow Labs visual identity</li>
+      <li>Stack Overflow Labs</li>
       <li>Collectives on Stack Overflow visual identity</li>
       <li>Old style product logos (i.e., Teams, Talent, Advertising)</li>
       <li>Custom or unofficial product logos</li>
@@ -334,32 +335,10 @@ The following brands and visual identities have been retired:
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
     <ul class="ml0 pl16">
+      <li>Refer to the <a href="https://stackoverflow.blog/releases" class="s-link__underlined">releases</a> section on the blog</li>
       <li>Refer to these products in text when contextually appropriate</li>
       <li>Link to historical content (blog posts, documentation)</li>
       <li>Use approved current brand assets from the brand design team</li>
-    </ul>
-  </GridColumn>
-</Grid>
-
-## Stack Exchange
-
-The Stack Exchange brand name is being phased out in favor of Stack Overflow.
-
-<Grid>
-  <GridColumn extraClasses="bg-red-100">
-    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
-      <li>Stack Exchange (when referring to the company)</li>
-      <li>“I work at Stack Exchange”</li>
-      <li>Stack Exchange products</li>
-    </ul>
-  </GridColumn>
-  <GridColumn extraClasses="bg-green-100">
-    <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
-      <li>Stack Exchange Inc. (legal contexts only)</li>
-      <li>“I work at Stack Overflow”</li>
-      <li>Stack Overflow (in all other contexts)</li>
     </ul>
   </GridColumn>
 </Grid>

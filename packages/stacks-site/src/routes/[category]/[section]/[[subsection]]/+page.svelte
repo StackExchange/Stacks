@@ -26,9 +26,9 @@
   <div class="doc flex--item9 wmn1 s-prose fs-body2 pt32">
     <div class="d-flex jc-space-between ai-start mb128">
       {#if data?.metadata?.updated}
-        <span class="s-badge s-badge__new">
-          Last updated: {lastUpdated}
-        </span>
+        <div class="s-badge s-badge__new">
+          <strong>Last updated:</strong> {lastUpdated}
+        </div>
       {/if}
     </div>  
 
