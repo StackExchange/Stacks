@@ -24,7 +24,7 @@
   <ul class="s-navigation s-navigation__vertical p12">
     <li>
       <a
-        class="s-navigation--item mb1 bar0"
+        class="s-navigation--item mb1"
         href="/"
         class:is-selected={!page.params.category}
       >
@@ -36,7 +36,7 @@
 
       <li>
         <a
-          class="s-navigation--item jc-space-between bar0 mb1"
+          class="s-navigation--item jc-space-between mb1"
           class:is-selected={isSelected}
           href={`/${category.slug}/`}
           data-sveltekit-reload={category.private ? true : undefined}
@@ -53,7 +53,7 @@
               {#each category.items as subsection}
                 <li>
                   <a
-                    class="s-navigation--item jc-space-between bar0 mb1"
+                    class="s-navigation--item jc-space-between mb1"
                     class:is-selected={page.params.section === subsection.slug}
                     href={subsection.externalUrl || `/${category.slug}/${subsection.slug}/`}
                     data-sveltekit-reload={subsection.private ? true : undefined}
