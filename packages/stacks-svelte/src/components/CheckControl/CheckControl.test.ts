@@ -86,7 +86,9 @@ describe("CheckControl", () => {
             checkmark: false,
         });
 
-        const container = screen.getByText("Option checkmark-false").closest("div");
+        const container = screen
+            .getByText("Option checkmark-false")
+            .closest("div");
         expect(container).to.exist;
         expect(container).to.have.class("s-check-control");
         expect(container).not.to.have.class("s-check-control__checkmark");
@@ -98,11 +100,16 @@ describe("CheckControl", () => {
             checkmark: true,
         });
 
-        const container = screen.getByText("Option checkmark-true").closest("label");
+        const container = screen
+            .getByText("Option checkmark-true")
+            .closest("label");
         expect(container).to.exist;
         expect(container).to.have.class("s-check-control");
         expect(container).to.have.class("s-check-control__checkmark");
-        expect(container).to.have.attribute("for", "test-checkbox-checkmark-true");
+        expect(container).to.have.attribute(
+            "for",
+            "test-checkbox-checkmark-true"
+        );
     });
 
     it("should not apply s-checkbox or s-radio classes when checkmark is true", () => {
@@ -146,7 +153,9 @@ describe("CheckControl", () => {
             state: "error",
         });
 
-        const container = screen.getByText("Option state").closest(".s-check-control");
+        const container = screen
+            .getByText("Option state")
+            .closest(".s-check-control");
         expect(container).to.have.class("has-error");
     });
 
@@ -168,7 +177,9 @@ describe("CheckControl", () => {
             class: "custom-class",
         });
 
-        const container = screen.getByText("Option class").closest(".s-check-control");
+        const container = screen
+            .getByText("Option class")
+            .closest(".s-check-control");
         expect(container).to.have.class("custom-class");
         expect(container).to.have.class("s-check-control");
     });
@@ -186,7 +197,9 @@ describe("CheckControl", () => {
 
         await tick();
 
-        const container = screen.getByText("Option class-change").closest(".s-check-control");
+        const container = screen
+            .getByText("Option class-change")
+            .closest(".s-check-control");
         expect(container).not.to.have.class("custom-class-1");
         expect(container).to.have.class("custom-class-2");
     });
