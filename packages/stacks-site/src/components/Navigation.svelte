@@ -58,7 +58,7 @@
                     {#if subsection.private || subsection.new || subsection.items || subsection.externalUrl}
                       <span class="d-flex g4 ai-center">
                         {#if subsection.new}
-                          <span class="s-activity-indicator s-activity-indicator__sm"><span class="v-visible-sr">new</span></span>
+                          <span class="s-activity-indicator s-activity-indicator__sm ba"><span class="v-visible-sr">new</span></span>
                         {/if}
                         {#if subsection.private}
                           <Icon src={IconLock} />
@@ -87,7 +87,7 @@
                               <span>{item.title}</span>
 
                               {#if item.new}
-                                <span class="s-activity-indicator s-activity-indicator__sm"><span class="v-visible-sr">new</span></span>
+                                <span class="s-activity-indicator s-activity-indicator__sm ba"><span class="v-visible-sr">new</span></span>
                               {/if}
                             </a>
                           </li>

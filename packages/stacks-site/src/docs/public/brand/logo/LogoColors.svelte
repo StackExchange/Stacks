@@ -6,16 +6,16 @@
 	import { IconLogo } from '@stackoverflow/stacks-icons'
 
   const gallery = [
-    'white',
     'off-white',
     'blue-light',
     'beige',
     'orange',
     'black',
+    'white',
   ]
 </script>
 
-<Gallery type="colors" controls={gallery}>
+<Gallery controls={gallery}>
   {#each gallery as item}
     <Slide>
       <div class="opt ba-color" style={`background: var(--brand-color-${item}); color: var(--brand-color-${item === 'black' ? 'white': 'black'}`}>

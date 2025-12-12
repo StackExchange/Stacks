@@ -1,129 +1,105 @@
-<script lang="ts">
-  import type { Snippet } from 'svelte';
+<script>
+  import { copyToClipboard } from '$src/lib/copyToClipboard'
+  import { IconArrowUpRightBox, IconCheckFillCircle  } from '@stackoverflow/stacks-icons/icons';
+  import { Icon, Modal } from '@stackoverflow/stacks-svelte';
+  
+  const uuid = crypto.randomUUID();
 
-  interface Props {
-    color: {
-      name: string;
-      hex: string;
-      cssVar?: string;
-      pantone?: string;
-      invertLabel?: boolean;
-      weight?: number;
-    };
-    orientation?: 'horizontal' | 'vertical';
-    showHex?: boolean;
-    disabled?: boolean;
-    hover?: boolean;
-    extraClasses?: string;
-    onclick?: () => void;
-    children?: Snippet;
-  }
+  let visible = $state(false);
+  let copiedField = $state(null);
 
   const {
     color,
     orientation = 'horizontal',
     showHex = false,
-    showPantone = false,
-    disabled = false,
-    hover = true,
     extraClasses = '',
-    onclick,
-    children
-  }: Props = $props();
+    onclick = null,
+    disabled = false,
+  } = $props();
 
-  const textColor = color.invertLabel ? '#fff' : 'inherit';
-  const element = onclick ? 'button' : 'div';
-  const classes = `color color--${orientation} ${disabled ? 'color--disabled' : ''} ${!hover ? 'color--no-hover' : ''} ${extraClasses}`.trim();
+  function copySuccess(event) {
+    const field = event.detail.dataset.field;
+    copiedField = field;
+
+    setTimeout(() => {
+      copiedField = null;
+    }, 2000);
+  }
 </script>
 
-<!-- svelte-ignore a11y_interactive_supports_focus -->
+<svelte:window on:copysuccess={copySuccess} />
+
 <svelte:element
+  tabindex="0"
+  id={uuid}
   role="button"
-  this={element}
-  {onclick}
-  class={classes}
-  style={`background: ${color.hex}; color: ${textColor}`}
+  this={onclick ? 'button' : 'div'}
+  onclick={onclick || (() => visible = true)}
+  class={`d-flex fs-body1 fd-column ps-relative c-pointer ff-sans ta-left color color--${orientation} ${extraClasses} ${disabled ? 'o50 bg-black-200 fc-black pe-none c-not-allowed' : ''}`}
+  style={`background: ${color.hex}; color: ${color.invertLabel ? '#fff' : '#000'}`}
 >
-  {#if children}
-    {@render children()}
-  {:else}
-    <span class="color__name">{color.name}</span>
-    {#if showHex}
-      <span class="color__value">{color.hex}</span>
-    {/if}
-     {#if showPantone}
-      <span class="color__value">{color.pantone}</span>
-    {/if}
+  <span class="p12 pr32 lh-xs">{color.name}</span>
+
+  {#if showHex && !disabled}
+    <span class="p12 mt-auto">{color.hex}</span>
+  {/if}
+
+  {#if !disabled}
+    <Icon class="ps-absolute t12 r12" src={IconArrowUpRightBox} />
   {/if}
 </svelte:element>
 
+<Modal
+  id={uuid}
+  visible={visible || undefined}
+  state={undefined}
+  class="wmx3 w100 p0"
+  onclose={() => (visible = false)}
+>
+  {#snippet header()}
+    <div class="px16 pt16 ff-stack-sans-headline">{color.name}</div>
+  {/snippet}
+  {#snippet body()}
+    {#each [
+      { label: 'Hex', field: 'hex', value: color.hex },
+      { label: 'RGB', field: 'rgb', value: color.rgb },
+      { label: 'CSS', field: 'css', value: color.cssVar },
+      { label: 'Pantone', field: 'pantone', value: color.pantone },
+    ] as row, i}
+      {#if row.value}
+        <div class="fs-body1 px16 d-flex jc-space-between py8 {i !== 0 ? 'bt bc-black-150' : ''}">
+          <div>{row.label}</div>
+          <div class="d-flex ai-center">
+            {row.value}
+            <button class="s-btn s-btn__unset ml8" data-field={row.field} use:copyToClipboard={row.value}>
+              {#if copiedField === row.field}
+                <Icon src={IconCheckFillCircle} class="fc-green-400" />
+              {:else}
+                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon">
+                  <path d="M13 5H15.5V7H18.001V18H7.00098V15.5H5V13H2V2H13V5ZM15.5 15.5H8.50098V16.5H16.501V8.5H15.5V15.5ZM13 13H6.5V14H14V6.5H13V13ZM3.5 11.5H11.5V3.5H3.5V11.5Z" />
+                </svg>
+              {/if}
+            </button>
+          </div>
+        </div>
+      {/if}
+    {/each}
+  {/snippet}
+  {#snippet footer()}
+    <div class="w100 h96" style={`background: ${color.hex}`}></div>
+  {/snippet}
+</Modal>
+
 <style>
   .color {
-    position: relative;
     top: 0;
-    left: 0;
-    transition: top 0.2s, left 0.2s;
+    right: 0;
+    transition: top 0.2s, right 0.2s;
     border: 1px solid rgba(0,0,0,0.2);
     font-weight: 400;
-    line-height: 19px;
-    font-family: "Stack Sans Text";
-    text-align: left;
   }
-
-  .color:hover:not(.color--disabled):not(.color--no-hover) {
+  .color:hover {
     top: -3px;
-    left: -3px;
-  }
-
-  .color--horizontal {
-    display: flex;
-    flex-direction: column;
-    justify-content:space-between;
-    height: auto;
-  }
-
-  .color--horizontal .color__name,
-  .color--horizontal .color__value {
-    vertical-align: top;
-    padding: 10px;
-  }
-
-  .color--vertical {
-    display: flex;
-    writing-mode: sideways-lr;
-    position: relative;
-    transition: top 0.1s ease-out;
-  }
-
-  .color--vertical .color__name {
-    vertical-align: top;
-    margin-left: auto;
-    padding: 0 3px 10px 0;
-  }
-
-  .color--vertical:hover:not(.color--disabled):not(.color--no-hover) {
-    top: 10px;
-    left: 0;
-  }
-
-  .color__name {
-    font-weight: 300;
-  }
-
-  .color--disabled {
-    opacity: 0.2;
-    cursor: not-allowed !important;
-  }
-
-  .color--disabled:hover {
-    top: 0 !important;
-    left: 0 !important;
-  }
-
-  button.color {
-    cursor: pointer;
-    background: none;
-    text-align: left;
-    width: 100%;
+    right: -3px;
   }
 </style>

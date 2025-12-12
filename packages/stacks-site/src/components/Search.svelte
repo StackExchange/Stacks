@@ -39,5 +39,5 @@
 </script>
 
 <Button icon size="sm" variant="tonal" onclick={openSearch}>
-	<Icon src={IconSearch} native />
+	<Icon src={IconSearch} />
 </Button>

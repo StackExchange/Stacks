@@ -1,8 +1,8 @@
 <script lang="ts">
 	import '../app.css';
 
-	import { Icon } from '@stackoverflow/stacks-svelte';
-	import { IconLogo, IconGlyph24 } from '@stackoverflow/stacks-icons'
+	import { Icon, Button } from '@stackoverflow/stacks-svelte';
+	import { IconLogo, IconGlyph24, IconServiceGitHub } from '@stackoverflow/stacks-icons'
 
 	import Navigation from '$components/Navigation.svelte';
 	import Search from '$components/Search.svelte';
@@ -20,8 +20,8 @@
 	<link rel="icon" href={Favicon} />
 </svelte:head>
 
-<header class="w20 sm:w100 hmx100 h100 sm:h-auto overflow-auto ps-fixed br bc-black-200 z-nav d-flex fd-column">
-	<div class="d-flex ai-center jc-space-between bb bc-black-200 bg-white py16 px24 sm:pb12 sm:pt12">
+<header class="w20 sm:w100 hmx100 h100 sm:h-auto overflow-auto ps-fixed br bc-black-150 z-nav d-flex fd-column">
+	<div class="d-flex ai-center jc-space-between bb bc-black-150 bg-white py16 px24 sm:pb12 sm:pt12">
 		<a href="/" title="Home" class="fc-black h:fc-orange-400">
 			<Icon src={IconLogo} />
 		</a>
@@ -34,7 +34,17 @@
 		/>
 	</div>
 	
-	<ThemeToggle />
+	<div class="d-flex md:fd-column sm:d-none bt bc-black-150 pt12 pb12 px12 mt-auto">
+		<div class="flex--item6 mr4 sm:mr0">
+			<Button href="https://github.com/StackExchange/Stacks/" class="w100" weight="clear">
+				<Icon src={IconServiceGitHub} />
+				GitHub
+			</Button>
+		</div>
+		<div class="flex--item6 ml4 sm:ml0">
+			<ThemeToggle />
+		</div>
+	</div>
 </header>
 
 <main>

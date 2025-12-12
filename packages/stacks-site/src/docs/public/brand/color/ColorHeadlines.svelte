@@ -1,8 +1,8 @@
 <script lang="ts">
+  import { Navigation, NavigationItem } from '@stackoverflow/stacks-svelte';
+
   import Grid from '$components/Grid.svelte';
   import GridColumn from '$components/GridColumn.svelte';
-
-  import ColorSwatch from './ColorSwatch.svelte';
 
   import YAML from 'yaml';
   import colorsRaw from '$docs/public/brand/color/colors.yaml?raw';
@@ -59,9 +59,25 @@
   ]
 </script>
 
+
+<Navigation class="mbn24" label="Theme" overflow="scroll">
+  {#each themes as theme, index}
+    <NavigationItem 
+      onclick={() => selected = index}
+      selected={selected === index}
+      text={`${colorsByCss[theme.highlightBackground].name}`}
+    >
+      {#snippet trailing()}
+        <span class="s-activity-indicator s-activity-indicator__sm ba ml4 mrn8" style={`background: var(${theme.textBackground})`}></span>
+        <span class="s-activity-indicator s-activity-indicator__sm ba" style={`background: var(${theme.highlightBackground})`}></span>
+      {/snippet}
+    </NavigationItem>
+  {/each}
+</Navigation>
+
 <Grid>
-  <GridColumn>
-    <svg class="d-inline-block wmx100" fill="none" height="207" viewBox="0 0 479 207" width="479">
+  <GridColumn extraClasses="ta-center bg-black-200 py64">
+    <svg class="d-inline-block wmx100 mx-auto" fill="none" height="207" viewBox="0 0 479 207" width="479">
       <g fill={`var(${themes[selected].textBackground})`}>
         <path d="m0 131.653h423.445v75.23h-423.445z" />
         <path d="m0 75.2305h478.352v75.2305h-478.352z" />
@@ -78,26 +94,5 @@
         <tspan x="16.7695" y="55.5406">For developers.</tspan>
       </text>
     </svg>
-  </GridColumn>
-  <GridColumn padding={false} extraClasses="bg-white">
-    <div class="d-flex gs12 ff-row-wrap h100 ">
-      {#each themes as theme, index}
-        <button
-          onclick={() => selected = index}
-          class={`flex--item6 d-flex fd-column ai-stretch c-pointer s-btn s-btn__unset p0 b0`}
-        >
-          <ColorSwatch
-            color={colorsByCss[theme.highlightBackground]}
-            extraClasses="flex--item mbn1"
-            hover={false}
-          />
-           <ColorSwatch
-            color={colorsByCss[theme.textBackground]}
-            extraClasses="flex--item"
-            hover={false}
-          />
-        </button>
-      {/each}
-    </div>
   </GridColumn>
 </Grid>

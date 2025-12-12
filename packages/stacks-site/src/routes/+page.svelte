@@ -35,7 +35,7 @@
 
 <div class="p32">
   <p>
-    <span class="badge">v{__APP_VERSION__}</span>
+    <span class="s-badge s-badge__new">v{__APP_VERSION__}</span>
   </p>
 
   <h1 class="mt24 mb12">Stacks</h1>

@@ -22,51 +22,51 @@ Our logo is the core identifier of Stack Overflow and one of the most visible ex
 
 ![The Stack Overflow logo](./primary-lockup.svg)
 
-## Logo architecture
+### Logo architecture
 
 ![How the logo is rationalised](./logo-architecture.svg)
 
-## Color combinations
+### Color combinations
 
-Our preference is to use the logo in Off-Black. Where accessibility makes this unsuitable, you can use Off-White instead.
+Our preference is to use the logo in Off-Black. Where accessibility makes this unsuitable, you can use Off-White instead. [Explore full color guidence](./color/)
 
 <LogoColors />
 
-## Logo clearspace
+### Logo clearspace
 
 ![Space to keep around the logo](./logo-clearspace.svg)
 
-## Page format lockups
+### Page format lockups
 
 When using this horizontal lockup, follow the guidance below on where to place the logo on a composition.
 
 <LogoFormatLockups />
 
-## Sub-brand lockups
+### Sub-brand lockups
 
 We have two approaches to sub-brand lockups. The approach you use should be determined by the scale at which the lockup is going to appear.
 
 ![How to use for sub-brands](./sub-brand-lockups.svg)
 
-## Sub-brand large usage
+### Sub-brand large usage
 
 Use the diagram below to determine how sub-brand lockups, used at a large scale, should be created.
 
 ![](./sub-brand-large.svg)
 
-## Sub-brand small usage
+### Sub-brand small usage
 
 Use the diagram below to determine how sub-brand lockups, used at a large scale, should be created.
 
 ![](./sub-brand-small.svg)
 
-## External partnership lockups
+### External partnership lockups
 
 External partnerships use a simpler lockup, where the height of both logos should always align.
 
 ![](./external-partnership-lockup.svg)
 
-## Things to avoid
+### Things to avoid
 
 ![](./things-to-avoid.svg)
 
@@ -74,7 +74,7 @@ External partnerships use a simpler lockup, where the height of both logos shoul
 
 ![](./symbol.svg)
 
-## Symbol lockup
+### Symbol lockup
 
 Where the Stack Overflow name is already present (e.g. social media profiles) or within the Stack Overflow ecosystem (e.g. product) you can use the symbol. Always follow the clearspace guidance below to make sure you correctly scale and center the symbol in application.
 

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { browser } from '$app/environment';
-  import { Popover, PopoverReference, PopoverContent, Button } from '@stackoverflow/stacks-svelte';
+  import { Popover, PopoverReference, PopoverContent, Button, Icon } from '@stackoverflow/stacks-svelte';
+  import { IconArrowUpRight } from '@stackoverflow/stacks-icons'
 
   // State for theme toggles
   let darkMode = $state(false);
@@ -87,12 +88,15 @@
   }
 </script>
 
-<div class="theme-controls bt bc-black-100 pt12 pb12 px12 mt-auto">
+<div class="theme-controls">
   <Popover id="theme-popover" placement="top-end">
     <PopoverReference>
-      <Button class="w100" weight="clear">Theme</Button>
+      <Button class="w100" weight="clear">
+        <Icon src={IconArrowUpRight} />
+        Theme
+      </Button>
     </PopoverReference>
-    <PopoverContent class="wmn3">
+    <PopoverContent class="w50">
       <div class="d-flex fd-column g12">
         <div class="d-flex ai-center jc-space-between g8">
           <label class="s-label fs-body1 fw-normal" for="toggle-theme-dark">
@@ -136,11 +140,3 @@
     </PopoverContent>
   </Popover>
 </div>
-
-<style>
-  .theme-controls {
-    position: sticky;
-    bottom: 0;
-    background-color: var(--white);
-  }
-</style>

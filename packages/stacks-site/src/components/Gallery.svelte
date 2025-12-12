@@ -2,7 +2,7 @@
   import { setContext } from 'svelte';
   import { Navigation, NavigationItem } from '@stackoverflow/stacks-svelte';
 
-  let { type, children, controls = [], onChange } = $props();
+  let { children, controls = [], onChange = () => {} } = $props();
 
   let index = $state(0);
   let total = $state(0);
@@ -28,13 +28,8 @@
       selected={index === i}
       onclick={() => goto(i)}
       class="tt-capitalize"
-    >
-      {#if type === 'color'}
-        {#snippet trailing()}
-          <span class="ml6 w12 h12 bar-circle d-inline-block ba" style={`background-color: var(--brand-color-${item})`}></span>
-        {/snippet}
-      {/if}
-    </NavigationItem>
+      trailing={item.trailing}
+    />
   {/each}
 </Navigation>
 

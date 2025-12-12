@@ -30,17 +30,23 @@ Our primary typeface is called **Stack Sans**. Crafted uniquely for Stack Overfl
 <TypographyWeights />
 
 <Grid>
-  <GridColumn extraClasses="bg-brand-yellow">
-    <img src="./typography-sample-x-cap.svg" alt="" />
-    <p class="lh-md">Distinct x, cap and ascender heights used for character distinction. High x-height for increased legibility.</p>
+  <GridColumn extraClasses="bg-brand-yellow lh-md">
+
+    ![](./typography-sample-x-cap.svg)
+    Distinct x, cap and ascender heights used for character distinction. High x-height for increased legibility.
+
   </GridColumn>
-  <GridColumn extraClasses="bg-brand-purple">
-    <img src="./typography-sample-spacing.svg" alt="" />
-    <p class="lh-md">Even spacing ensures consistent rhythm, aiding word recognition and improving accessibility.</p>
+  <GridColumn extraClasses="bg-brand-purple lh-md">
+
+    ![](./typography-sample-spacing.svg)
+    Even spacing ensures consistent rhythm, aiding word recognition and improving accessibility.
+
   </GridColumn>
-  <GridColumn extraClasses="bg-brand-pink">
-    <img src="./typography-sample-lowercase.svg" alt="" />
-    <p class="lh-md">Distinct forms for lowercase letters, to increase legibility at smaller scales.</p>
+  <GridColumn extraClasses="bg-brand-pink lh-md">
+
+    ![](./typography-sample-lowercase.svg)
+    Distinct forms for lowercase letters, to increase legibility at smaller scales.
+
   </GridColumn>
 </Grid>
 

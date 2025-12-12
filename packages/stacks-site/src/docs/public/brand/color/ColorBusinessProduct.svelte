@@ -25,7 +25,7 @@
 
 <style>
   .slide {
-    padding: 110px 40px 40px;
-    background: var(--brand-color-gray-200)
+    padding: 32px;
+    background: var(--black-200)
   }
 </style>

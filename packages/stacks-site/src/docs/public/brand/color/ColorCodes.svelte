@@ -2,13 +2,13 @@
   import YAML from 'yaml';
   import colorsRaw from '$docs/public/brand/color/colors.yaml?raw';
   import ColorSwatch from './ColorSwatch.svelte';
-
+  
   const colors = YAML.parse(colorsRaw).colors;
 
   const { business = false } = $props()
 </script>
 
-<div class="colors overflow-auto wmx100">
+<div class="colors">
   {#each colors as color}
     <ColorSwatch
       {color}

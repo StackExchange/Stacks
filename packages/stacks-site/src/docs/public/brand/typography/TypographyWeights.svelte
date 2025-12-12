@@ -11,7 +11,7 @@
   let notch = $state(true);
 </script>
 
-<div class="mt32 sample">
+<div class="doc__grid sample">
   <nav class="sample__select">
     {#each weights as weight}
       <label class:active={selected === weight}>
