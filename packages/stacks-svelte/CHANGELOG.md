@@ -1,5 +1,25 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.14
+
+### Major Changes
+
+- [#2082](https://github.com/StackExchange/Stacks/pull/2082) [`8ed0cea`](https://github.com/StackExchange/Stacks/commit/8ed0cea0dda875049713263a00aa4be5e986ea7c) Thanks [@giamir](https://github.com/giamir)! - Badges: update to the new SHINE visuals
+
+    BREAKING CHANGES:
+    - `.s-badge__icon` removed
+    - `.s-badge__bounty` removed
+    - `.s-badge__answered` removed
+    - `.s-badge__votes` removed
+    - `.s-badge__rep-down` removed
+    - `.s-badge__muted` removed
+    - `.s-badge__new` renamed to `.s-badge__featured`
+
+### Patch Changes
+
+- Updated dependencies [[`5a8a4e1`](https://github.com/StackExchange/Stacks/commit/5a8a4e17c73ca5a2a9c282ca769dd08426b17812), [`8ed0cea`](https://github.com/StackExchange/Stacks/commit/8ed0cea0dda875049713263a00aa4be5e986ea7c), [`5c4b9b5`](https://github.com/StackExchange/Stacks/commit/5c4b9b52ef12937307b234a179d52d109e1333e3), [`ae44e91`](https://github.com/StackExchange/Stacks/commit/ae44e9103ce0f581d48cf744ecba173ca7eedcc6)]:
+    - @stackoverflow/stacks@3.0.0-beta.11
+
 ## 1.0.0-beta.13
 
 ### Minor Changes
