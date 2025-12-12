@@ -39,16 +39,18 @@
 
 <Story name="Base">
     {#snippet template()}
-        <div class="s-card p8 ws2">
-            <Menu>
-                {@render basicChildren()}
-            </Menu>
-        </div>
+        <Popover id="base-popover" visible>
+            <PopoverContent class="ps-relative is-visible p8 ws2">
+                <Menu>
+                    {@render basicChildren()}
+                </Menu>
+            </PopoverContent>
+        </Popover>
     {/snippet}
 </Story>
 
 <Story name="Basic Examples" asChild>
-    <div class="d-flex g32 fw-wrap hmn2">
+    <div class="d-flex g32 fw-wrap">
         <div>
             <div class="ff-mono mb16">Within a popover</div>
             <Popover id="basic-example-popover" visible>
@@ -77,33 +79,29 @@
 </Story>
 
 <Story name="Titles and Dividers" asChild>
-    <div class="hmn3">
-        <Popover id="title-and-divider-popover" visible>
-            <PopoverContent class="ps-relative is-visible p8 ws2">
-                <Menu>
-                    <MenuTitle>Layout</MenuTitle>
-                    {@render basicChildren()}
-                    <MenuDivider class="mxn8" />
-                    <MenuItem href="#" danger>Deactivate</MenuItem>
-                    <MenuItem href="#" danger>Delete</MenuItem>
-                </Menu>
-            </PopoverContent>
-        </Popover>
-    </div>
+    <Popover id="title-and-divider-popover" visible>
+        <PopoverContent class="ps-relative is-visible p8 ws2">
+            <Menu>
+                <MenuTitle>Layout</MenuTitle>
+                {@render basicChildren()}
+                <MenuDivider class="mxn8" />
+                <MenuItem href="#" danger>Deactivate</MenuItem>
+                <MenuItem href="#" danger>Delete</MenuItem>
+            </Menu>
+        </PopoverContent>
+    </Popover>
 </Story>
 
 <Story name="Menu Items with Icons" asChild>
-    <div class="hmn2">
-        <Popover id="menu-items-with-icons-popover" visible>
-            <PopoverContent class="ps-relative is-visible p8 ws1">
-                <Menu>
-                    <MenuItem href="#" icon={IconHome}>Home</MenuItem>
-                    <MenuItem href="#" icon={IconInbox}>Inbox</MenuItem>
-                    <MenuItem href="#" icon={IconSettings}>Settings</MenuItem>
-                </Menu>
-            </PopoverContent>
-        </Popover>
-    </div>
+    <Popover id="menu-items-with-icons-popover" visible>
+        <PopoverContent class="ps-relative is-visible p8 ws1">
+            <Menu>
+                <MenuItem href="#" icon={IconHome}>Home</MenuItem>
+                <MenuItem href="#" icon={IconInbox}>Inbox</MenuItem>
+                <MenuItem href="#" icon={IconSettings}>Settings</MenuItem>
+            </Menu>
+        </PopoverContent>
+    </Popover>
 </Story>
 
 <!-- TODO SHINE Update example -->
