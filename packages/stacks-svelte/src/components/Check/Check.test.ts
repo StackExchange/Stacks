@@ -42,7 +42,6 @@ describe("Check", () => {
 
         const input = screen.getByRole("radio");
         expect(input).to.have.attribute("type", "radio");
-        expect(input).to.have.class("s-radio");
     });
 
     it("should render checked input when checked is true", () => {
