@@ -173,7 +173,7 @@
     </Navigation>
 
     <Grid>
-      <GridColumn extraClasses="bg-orange-400">
+      <GridColumn extraClasses="bg-brand-orange">
         {#if loading}
           <div class="ta-center p32">
             <div class="fs-headline2 fc-medium">Loading font...</div>
@@ -254,7 +254,7 @@
         <div class="d-flex ff-row-wrap ai-start jc-start">
           {#each availableChars as { char, code }}
             <button
-              class="char-cell h:bg-black-200"
+              class="char-cell h:bg-black-200 fc-black"
               class:is-selected={selectedGlyph?.unicode === code}
               onclick={() => selectGlyphByChar(char)}
               style="font-family: 'Stack Sans Headline', sans-serif; font-weight: {selectedWeight.weight};"
