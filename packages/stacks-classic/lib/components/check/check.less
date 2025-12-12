@@ -46,16 +46,8 @@
         --_ch-input-cursor: not-allowed;
     }
 
-    fieldset[disabled] & input[type="checkbox"],
-    & input[type="checkbox"][disabled] {
-        &:checked, &:indeterminate {
-            --_ch-input-bc: var(--theme-secondary-300) !important;
-            --_ch-input-bg: var(--theme-secondary-300);
-        }
-    }
-
     &:has(> input[disabled]:checked) {
-            --_ch-input-bc: var(--theme-secondary-300);
+        --_ch-input-bc: var(--theme-secondary-300);
     }
 
     // MODIFIERS
@@ -151,13 +143,12 @@
 
     input[type="checkbox"],
     input[type="radio"] {
-
         &:focus-visible {
             .focus-styles();
         }
 
         &:not(:checked) {
-            .validation-states(ch);
+            .validation-states(ch-input);
         }
 
         appearance: none;
@@ -176,6 +167,14 @@
     }
 
     input[type="checkbox"] {
+        fieldset[disabled] &,
+        &[disabled] {
+            &:checked, &:indeterminate {
+                --_ch-input-bc: var(--theme-secondary-300);
+                --_ch-input-bg: var(--theme-secondary-300);
+            }
+        }
+
         &:checked, &:indeterminate {
             --_ch-input-bc: var(--theme-secondary);
             --_ch-input-bg: var(--theme-secondary);
@@ -197,6 +196,13 @@
     }
 
     input[type="radio"] {
+        fieldset[disabled] &,
+        &[disabled] {
+            &:checked {
+                --_ch-input-bc: var(--theme-secondary-300);
+            }
+        }
+
         --_ch-input-br: var(--br-circle);
 
         &:checked {

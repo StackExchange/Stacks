@@ -26,6 +26,18 @@ import "../../index";
                             <p class="s-input-message">Description</p>
                         </label>
                     `,
+                    disabled: `
+                        <input
+                            type="${type}"
+                            id="test-input"
+                            name=""
+                            disabled
+                            ${state === "checked" ? "checked" : ""}/>
+                        <label class="s-label" for="test-input">
+                            Label ${type}
+                            <p class="s-input-message">Description</p>
+                        </label>
+                    `,
                 },
                 options: {
                     testidSuffix: `${state}-${type}`,
