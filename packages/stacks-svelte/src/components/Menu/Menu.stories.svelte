@@ -1,9 +1,8 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import Menu from "./Menu.svelte";
-    import MenuCheckItem, {
-        type Type as MenuCheckItemType,
-    } from "./MenuCheckItem.svelte";
+    import MenuCheckItem from "./MenuCheckItem.svelte";
+    import type { Type as MenuCheckItemType } from "./MenuCheckItem.svelte";
     import MenuItem from "./MenuItem.svelte";
     import MenuTitle from "./MenuTitle.svelte";
     import MenuDivider from "./MenuDivider.svelte";
@@ -22,12 +21,14 @@
     const { Story } = defineMeta({
         title: "Components/Menu",
         component: Menu,
+        // subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
         subcomponents: {
             MenuCheckItem,
             MenuItem,
             MenuTitle,
             MenuDivider,
-        },
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any,
     });
 </script>
 
