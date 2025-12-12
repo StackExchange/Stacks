@@ -8,7 +8,7 @@
 
   {#each data?.active?.items as subsection}
     <a class="ff-stack-sans-headline d-flex bb bc-black-200 fs-title ai-center py16" href={subsection.externalUrl || `/${data?.active?.slug}/${subsection.slug}/`}>
-      <img class="w20 mr16" src={subsection.image} alt="" />
+      <img class="w20 mr16" src={subsection.image} alt="Thumbnail" />
       {subsection?.title}
     </a>
   {/each}
