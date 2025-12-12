@@ -24,7 +24,7 @@
 
 <Gallery controls={sizes} {onChange}>
   <Grid>
-    <GridColumn>
+    <GridColumn extraClasses="bg-black-200 d:bg-black-100">
       <Slide>
         <div class="symbol">
           <img class="symbol__image" src={Square} alt="" />
@@ -36,10 +36,10 @@
         </div>
       </Slide>
     </GridColumn>
-    <GridColumn extraClasses="bg-black">
+    <GridColumn extraClasses="bg-black d:bg-black-100">
       <div class="symbol">
         <div class={`symbol__image live live--${sizes[index]}`}>
-          <Icon src={IconGlyph} />
+          <Icon src={IconGlyph} class="fc-black d:fc-white" />
         </div>
       </div>
     </GridColumn>
@@ -59,15 +59,15 @@
 
   .live {
     background: var(--brand-color-orange);
-    transition: all 0.3s;
+    transition: border-radius 0.3s;
   }
   .live--Square {
     border-radius: 28px;
-    padding: 31px 38px 38px 38px;
+    padding: 13px 0 20px 9px;
   }
   .live--Circle {
     border-radius: 260px;
-    padding: 38px 38px 56px 38px;
+    padding: 20px 38px 32px 31px;
   }
   :global(.live svg) {
     width: auto;
