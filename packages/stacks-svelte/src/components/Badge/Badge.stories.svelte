@@ -1,287 +1,555 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import {
-        IconArchiveSm,
-        IconCheckmarkSm,
-        IconEyeSm,
-        IconFilter,
-        IconNotInterestedSm,
-        IconPencilSm,
-        IconTackSm,
-        IconTrashSm,
-    } from "@stackoverflow/stacks-icons-legacy/icons";
-    import Badge, { type Award, type Size, type Variant } from "./Badge.svelte";
+        IconDocument,
+        IconCompose,
+        IconEye,
+        IconFlag,
+        IconChallenge,
+        IconKey,
+        IconCheck,
+        IconStar,
+        IconVoteUp,
+        IconNotification,
+    } from "@stackoverflow/stacks-icons/icons";
+    import Badge from "./Badge.svelte";
 
-    const BadgeVariantGroups: {
-        awards: Award[];
-        tags: Award[];
-        counts: Variant[];
-        states: Variant[];
-        users: Variant[];
-    } = {
-        awards: ["gold", "silver", "bronze"],
-        tags: ["gold", "silver", "bronze"],
-        counts: ["answered", "bounty", "important", "rep", "rep-down", "votes"],
-        states: ["danger", "info", "new", "muted", "warning"],
-        users: ["admin", "moderator", "staff", "ai", "bot"],
-    };
-    const BadgeAwards: Award[] = [...BadgeVariantGroups.awards, undefined];
-    const BadgeSizes: Size[] = ["sm", "lg", undefined];
-    const BadgeVariants: Variant[] = [
-        ...BadgeVariantGroups.counts,
-        ...BadgeVariantGroups.states,
-        ...BadgeVariantGroups.users,
+    const BadgeTypes = [
+        "",
+        "reputation",
+        "activity",
+        "achievement",
         "tag",
-        undefined,
-    ];
+        "state",
+        "user",
+    ] as const;
+    const BadgeStates = [
+        "info",
+        "warning",
+        "danger",
+        "critical",
+        "tonal",
+        "success",
+        "featured",
+    ] as const;
+    const BadgeSizes = ["sm", "", "lg"] as const;
+    const BadgeUserTypes = [
+        "admin",
+        "moderator",
+        "staff",
+        "ai",
+        "bot",
+    ] as const;
 
     const { Story } = defineMeta({
         title: "Components/Badge",
         component: Badge,
-        // tags: ["!autodocs", "!dev"], // This hides the stories and link in sidebar
         argTypes: {
-            award: {
+            text: {
+                control: "text",
+            },
+            label: {
+                control: "text",
+            },
+            type: {
                 control: "select",
-                options: BadgeAwards,
+                options: BadgeTypes,
             },
             size: {
                 control: "select",
                 options: BadgeSizes,
             },
-            variant: {
+            state: {
                 control: "select",
-                options: BadgeVariants,
+                options: BadgeStates,
+            },
+            icon: {
+                control: "text",
+            },
+            squared: {
+                control: "boolean",
+            },
+            important: {
+                control: "boolean",
             },
         },
     });
 </script>
 
 <Story name="Base">
-    {#snippet template({ children, ...args })}
-        <Badge {...args}>{children ?? "1.23k"}</Badge>
+    {#snippet template({ text, ...args })}
+        <Badge text={text ?? "1.23k"} {...args} />
     {/snippet}
 </Story>
 
-<Story name="Awards" asChild>
-    <div class="d-flex fd-column g64">
-        {#each [false, true] as includeVariant (includeVariant)}
-            <div>
-                <h2 class="fs-title ff-mono mb16">
-                    {includeVariant ? "Award + tag variant" : "Award only"}
-                </h2>
-                <table class="s-table s-table__bx-simple wmx7">
-                    <thead>
-                        <tr>
-                            <th scope="col">Award</th>
-                            {#if includeVariant}
-                                <th scope="col">Variant</th>
-                            {/if}
-                            <th scope="col">Example</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {#each BadgeVariantGroups.tags as award (award)}
-                            <tr>
-                                <th scope="row" class="va-middle">
-                                    {award}
-                                </th>
-                                {#if includeVariant}
-                                    <th scope="row" class="va-middle"> tag </th>
-                                {/if}
-                                <td class="va-middle px8">
-                                    <Badge
-                                        {award}
-                                        variant={includeVariant
-                                            ? "tag"
-                                            : undefined}
-                                    >
-                                        {#if award === "gold"}
-                                            {#if includeVariant}python{:else}Great
-                                                Question{/if}
-                                        {:else if award === "silver"}
-                                            {#if includeVariant}css{:else}Favorite
-                                                Question{/if}
-                                        {:else if award === "bronze"}
-                                            {#if includeVariant}javascript{:else}Altruist{/if}
-                                        {/if}
-                                    </Badge>
-                                </td>
-                            </tr>
-                        {/each}
-                    </tbody>
-                </table>
-            </div>
-        {/each}
-    </div>
+<Story name="General" asChild>
+    <Badge type="general" text="general" />
 </Story>
 
-<Story name="Icon" asChild>
-    <Badge icon={IconFilter}>Filtered</Badge>
+<Story name="Reputation" asChild>
+    <Badge type="reputation" text="99 rep" />
 </Story>
 
-<Story name="Counts" asChild>
-    <div class="d-flex fd-column g64">
-        <table class="s-table s-table__bx-simple wmx7">
-            <thead>
-                <tr>
-                    <th scope="col">Variant</th>
-                    <th scope="col">Example</th>
-                </tr>
-            </thead>
-            <tbody>
-                {#each BadgeVariantGroups.counts as variant (variant)}
-                    <tr>
-                        <th scope="row" class="va-middle">
-                            {variant}
-                        </th>
-                        <td class="va-middle px8">
-                            {#if variant === "answered"}
-                                <Badge {variant}>154</Badge>
-                            {:else if variant === "bounty"}
-                                <Badge {variant}>100</Badge>
-                            {:else if variant === "important"}
-                                <Badge {variant}>99+</Badge>
-                            {:else if variant === "new"}
-                                <Badge {variant}>New</Badge>
-                            {:else if variant === "rep"}
-                                <Badge {variant}>15</Badge>
-                            {:else if variant === "rep-down"}
-                                <Badge {variant}>-2</Badge>
-                            {:else if variant === "votes"}
-                                <Badge {variant}>15</Badge>
-                            {/if}
-                        </td>
-                    </tr>
-                {/each}
-            </tbody>
-        </table>
-    </div>
+<Story name="Activity" asChild>
+    <Badge type="activity" text="new message" label="Activity badge" />
+</Story>
+
+<Story name="Achievement" asChild>
+    <table class="s-table s-table__bx-simple wmx7">
+        <thead>
+            <tr>
+                <th scope="col">Example</th>
+                <th scope="col">Props</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="achievement"
+                        award="gold"
+                        text="Great Question"
+                        label="Gold badge"
+                    />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code"
+                        >type="achievement" award="gold"</code
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="achievement"
+                        award="silver"
+                        text="Favorite Question"
+                        label="Silver badge"
+                    />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code"
+                        >type="achievement" award="silver"</code
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="achievement"
+                        award="bronze"
+                        text="Altruist"
+                        label="Bronze badge"
+                    />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code"
+                        >type="achievement" award="bronze"</code
+                    >
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</Story>
+
+<Story name="Tag" asChild>
+    <table class="s-table s-table__bx-simple wmx7">
+        <thead>
+            <tr>
+                <th scope="col">Example</th>
+                <th scope="col">Props</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="tag"
+                        award="gold"
+                        text="python"
+                        label="Gold tag badge"
+                    />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code">type="tag" award="gold"</code>
+                </td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="tag"
+                        award="silver"
+                        text="css"
+                        label="Silver tag badge"
+                    />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code">type="tag" award="silver"</code>
+                </td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="tag"
+                        award="bronze"
+                        text="javascript"
+                        label="Bronze tag badge"
+                    />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code">type="tag" award="bronze"</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </Story>
 
 <Story name="States" asChild>
-    <div class="d-flex fd-column g64">
-        <table class="s-table s-table__bx-simple wmx7">
-            <thead>
-                <tr>
-                    <th scope="col">Variant</th>
-                    <th scope="col">Filled</th>
-                    <th scope="col">Example</th>
-                </tr>
-            </thead>
-            <tbody>
-                {#each BadgeVariantGroups.states as variant (variant)}
-                    <tr>
-                        <th scope="row" class="va-middle">{variant}</th>
-                        <th scope="row" class="va-middle">false</th>
-                        <td class="va-middle px8">
-                            {#if variant === "danger"}
-                                <Badge {variant} icon={IconNotInterestedSm}>
-                                    Closed
-                                </Badge>
-                            {:else if variant === "info"}
-                                <Badge {variant} icon={IconPencilSm}>
-                                    Draft
-                                </Badge>
-                            {:else if variant === "new"}
-                                <Badge {variant}>New</Badge>
-                            {:else if variant === "muted"}
-                                <Badge {variant} icon={IconArchiveSm}>
-                                    Archived
-                                </Badge>
-                            {:else if variant === "warning"}
-                                <Badge {variant} icon={IconEyeSm}>Review</Badge>
-                            {/if}
-                        </td>
-                    </tr>
-                {/each}
-                <tr>
-                    <th scope="row" class="va-middle">answered</th>
-                    <th scope="row" class="va-middle">false</th>
-                    <td class="va-middle px8">
-                        <Badge variant="answered" icon={IconCheckmarkSm}>
-                            Accepted answer
-                        </Badge>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row" class="va-middle">danger</th>
-                    <th scope="row" class="va-middle">true</th>
-                    <td class="va-middle px8">
-                        <Badge variant="danger" filled icon={IconTrashSm}>
-                            Deleted
-                        </Badge>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row" class="va-middle">muted</th>
-                    <th scope="row" class="va-middle">true</th>
-                    <td class="va-middle px8">
-                        <Badge variant="muted" filled icon={IconTackSm}>
-                            Pinned
-                        </Badge>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <table class="s-table s-table__bx-simple wmx7">
+        <thead>
+            <tr>
+                <th scope="col" class="s-table--cell4">Example</th>
+                <th scope="col" class="s-table--cell4">Props</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge type="state" text="Archived" icon={IconDocument} />
+                    <Badge type="state" text="Archived" class="ml2" />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code">type="state"</code>
+                </td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="state"
+                        state="info"
+                        text="Draft"
+                        icon={IconCompose}
+                    />
+                    <Badge type="state" state="info" text="Draft" class="ml2" />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code">type="state" state="info"</code>
+                </td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="state"
+                        state="warning"
+                        text="Review"
+                        icon={IconEye}
+                    />
+                    <Badge
+                        type="state"
+                        state="warning"
+                        text="Review"
+                        class="ml2"
+                    />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code">type="state" state="warning"</code
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="state"
+                        state="danger"
+                        text="Closed"
+                        icon={IconFlag}
+                    />
+                    <Badge
+                        type="state"
+                        state="danger"
+                        text="Closed"
+                        class="ml2"
+                    />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code">type="state" state="danger"</code>
+                </td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="state"
+                        state="critical"
+                        text="Deleted"
+                        icon={IconChallenge}
+                    />
+                    <Badge
+                        type="state"
+                        state="critical"
+                        text="Deleted"
+                        class="ml2"
+                    />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code"
+                        >type="state" state="critical"</code
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="state"
+                        state="tonal"
+                        text="Pinned"
+                        icon={IconKey}
+                    />
+                    <Badge
+                        type="state"
+                        state="tonal"
+                        text="Pinned"
+                        class="ml2"
+                    />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code">type="state" state="tonal"</code>
+                </td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="state"
+                        state="success"
+                        text="Success"
+                        icon={IconCheck}
+                    />
+                    <Badge
+                        type="state"
+                        state="success"
+                        text="Success"
+                        class="ml2"
+                    />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code">type="state" state="success"</code
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="state"
+                        state="featured"
+                        text="New"
+                        icon={IconStar}
+                    />
+                    <Badge type="state" state="featured" text="New" />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code"
+                        >type="state" state="featured"</code
+                    >
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </Story>
 
-<Story name="Users" asChild>
-    <div class="d-flex fd-column g64">
-        <table class="s-table s-table__bx-simple wmx7">
-            <thead>
+<Story name="Squared" asChild>
+    <table class="s-table s-table__bx-simple wmx7">
+        <thead>
+            <tr>
+                <th scope="col">Example</th>
+                <th scope="col">Props</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="state"
+                        state="success"
+                        squared
+                        text="Accepted answer"
+                        icon={IconCheck}
+                    />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code"
+                        >{`type="state" state="success" squared={true}`}</code
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="state"
+                        state="featured"
+                        squared
+                        text="Earn badge"
+                        icon={IconVoteUp}
+                    />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code"
+                        >{`type="state" state="featured" squared={true}`}</code
+                    >
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</Story>
+
+<Story name="Important" asChild>
+    <table class="s-table s-table__bx-simple wmx7">
+        <thead>
+            <tr>
+                <th scope="col">Example</th>
+                <th scope="col">Props</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="state"
+                        state="warning"
+                        squared={true}
+                        important={true}
+                        icon={IconNotification}
+                        text="Needs attention"
+                    />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code"
+                        >{`type="state" state="warning" squared={true} important={true}`}</code
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="state"
+                        state="danger"
+                        important={true}
+                        icon={IconVoteUp}
+                        text="Ending soon"
+                    />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code"
+                        >{`type="state" state="danger" important={true}`}</code
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="state"
+                        state="critical"
+                        important={true}
+                        text="Spam"
+                    />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code"
+                        >{`type="state" state="critical" important={true}`}</code
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="state"
+                        state="info"
+                        size="sm"
+                        important={true}
+                        text="+100"
+                    />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code"
+                        >{`type="state" state="info" size="sm" important={true}`}</code
+                    >
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</Story>
+
+<Story name="User" asChild>
+    <table class="s-table s-table__bx-simple wmx7">
+        <thead>
+            <tr>
+                <th scope="col">Examples</th>
+                <th scope="col">Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {#each BadgeUserTypes as userType (userType)}
                 <tr>
-                    <th scope="col">Variant</th>
-                    <th scope="col">Example</th>
+                    <td class="va-middle pr8">
+                        <Badge
+                            type="user"
+                            {userType}
+                            text={userType.charAt(0).toUpperCase() +
+                                userType.slice(1)}
+                        />
+                    </td>
+                    <td class="va-middle">
+                        <code class="stacks-code"
+                            >type="user" userType="{userType}"</code
+                        >
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                {#each BadgeVariantGroups.users as variant (variant)}
-                    <tr>
-                        <th scope="row" class="va-middle">
-                            {variant}
-                        </th>
-                        <td class="va-middle px8">
-                            {#if variant === "admin"}
-                                <Badge {variant}>Admin</Badge>
-                            {:else if variant === "moderator"}
-                                <Badge {variant}>Moderator</Badge>
-                            {:else if variant === "staff"}
-                                <Badge {variant}>Staff</Badge>
-                            {:else if variant === "ai"}
-                                <Badge {variant}>AI</Badge>
-                            {:else if variant === "bot"}
-                                <Badge {variant}>Bot</Badge>
-                            {/if}
-                        </td>
-                    </tr>
-                {/each}
-            </tbody>
-        </table>
-    </div>
+            {/each}
+        </tbody>
+    </table>
 </Story>
 
 <Story name="Sizes" asChild>
-    <div class="d-flex fd-column g64">
-        <table class="s-table s-table__bx-simple wmx7">
-            <thead>
-                <tr>
-                    <th scope="col">Size</th>
-                    <th scope="col">Example</th>
-                </tr>
-            </thead>
-            <tbody>
-                {#each BadgeSizes as size (size)}
-                    <tr>
-                        <th scope="row" class="va-middle">
-                            {size || "default"}
-                        </th>
-                        <td class="va-middle px8">
-                            <Badge {size}>{size || "default"}</Badge>
-                        </td>
-                    </tr>
-                {/each}
-            </tbody>
-        </table>
-    </div>
+    <table class="wmn5 s-table s-table__bx-simple">
+        <thead>
+            <tr>
+                <th scope="col">Examples</th>
+                <th scope="col">Size</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="state"
+                        state="success"
+                        size="sm"
+                        text="Small"
+                    />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code">size="sm"</code>
+                </td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge
+                        type="state"
+                        state="warning"
+                        size=""
+                        text="Default"
+                    />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code">size=""</code>
+                </td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <Badge type="state" state="danger" size="lg" text="Large" />
+                </td>
+                <td class="va-middle">
+                    <code class="stacks-code">size="lg"</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </Story>
