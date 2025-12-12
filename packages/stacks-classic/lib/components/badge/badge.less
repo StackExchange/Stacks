@@ -11,6 +11,9 @@
     --_ba-bl: 0;
     --_ba-fw: unset;
     --_ba-sq-bg: var(--black-200);
+    --_ba-bx-sh-w: var(--su2);
+    --_ba-gap: unset;
+    --_ba-bx-sh-inset: ~"";
 
     // SIZES
     &&__sm {
@@ -19,12 +22,15 @@
         --_ba-fs: var(--fs-fine); //12px
         --_ba-px: var(--su4);
         --_ba-py: var(--su1);
+        --_ba-bx-sh-w: 0px;
+        --_ba-bx-sh-inset: inset;
     }
 
     &&__lg {
         --_ba-fs: var(--fs-body1); //14px
         --_ba-px: var(--su8);
         --_ba-py: calc(var(--su4) + var(--su1)); //5px
+        --_ba-bx-sh-w: var(--su4);
     }
 
     // We need negative margin to make up for the positive badge padding
@@ -32,7 +38,7 @@
         margin: calc(var(--_ba-py) * -1) 0 calc(var(--_ba-py) * -1) calc(var(--_ba-px) * -1);
     }
     & svg {
-        margin: calc(var(--_ba-py) * -1) 0 calc(var(--_ba-py) * -1) calc(var(--_ba-px) / 2 * -1);
+        margin: calc(var(--_ba-py) * -1) 0 calc(var(--_ba-py) * -1) calc(var(--su4) * -1);
     }
 
     &:has(.s-bling__rep) {
@@ -187,10 +193,25 @@
 
     // SQUARED
     &&__squared {
-        & svg {
-            box-shadow: 0 0 0 var(--su2) var(--_ba-sq-bg);
+        --_ba_box-shadow: 0 0 0 var(--_ba-bx-sh-w) var(--_ba-sq-bg);
+        svg {
             background-color: var(--_ba-sq-bg);
+            box-shadow: var(--_ba_box-shadow);
+            margin-right: var(--_ba-bx-sh-w)
         }
+    }
+    &&__squared:not(&__important) {
+        .highcontrast-mode({
+            //Add border around the square in high contrast mode
+            --_ba_box-shadow: 0 0 0 calc(var(--_ba-bx-sh-w) - var(--su1)) var(--_ba-sq-bg), 
+                0 0 0 max(var(--su1), var(--_ba-bx-sh-w)) currentcolor var(--_ba-bx-sh-inset);
+        });
+    }
+
+    // ICONS
+    &:not(&__squared):has(> svg){
+        //We want a smaller gap for icons that aren't squared
+        --_ba-gap: calc(var(--_ba-px) - var(--su2));
     }
 
     // IMPORTANT
@@ -212,7 +233,7 @@
     color: var(--_ba-fc);
     font-size: var(--_ba-fs);
     font-weight: var(--_ba-fw);
-    gap: var(--_ba-px);
+    gap: var(--_ba-gap, var(--_ba-px));
     padding: var(--_ba-py) var(--_ba-px);
     line-height: var(--lh-md);
     min-width: var(--_ba-wmn);
