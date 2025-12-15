@@ -23,7 +23,8 @@
 <svelte:head>
   <style>
     body {
-      background: url(/images/heros/home.svg) no-repeat;
+      background-image: url(/images/heros/home.svg);
+      background-repeat: no-repeat;
       background-position: calc(100% + 100px) 0%;
       background-size: 55% auto;
       display: flex;
@@ -47,7 +48,7 @@
   <div class="d-grid grid__12 g16">
     {#each data.structure?.navigation as category, index}
       <a
-        class={`grid--col4 md:grid--col6 sm:grid--col12 d-flex fd-column p24 bg-black fc-white hmn2`}
+        class={`grid--col4 md:grid--col6 sm:grid--col12 d-flex fd-column p24 bg-black fc-white d:bg-black-100 d:fc-black hmn2`}
         href={category.slug}
       >
         <Icon src={icons[category.title]} />

@@ -112,5 +112,14 @@
 <style>
   .s-navigation--item {
     transition: font-weight 0.1s;
+    border-radius: 4px;
   }
+  .s-navigation--item:hover {
+    background: var(--orange-400);
+     color: var(--fc-white);
+  }
+	.s-navigation--item.is-selected {
+		background: var(--black-600);
+    color: var(--fc-white);
+	}
 </style>

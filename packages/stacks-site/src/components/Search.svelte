@@ -38,6 +38,6 @@
 	}
 </script>
 
-<Button icon size="sm" variant="tonal" onclick={openSearch}>
+<Button icon weight="clear" class="h:fc-blue-400" onclick={openSearch}>
 	<Icon src={IconSearch} />
 </Button>
