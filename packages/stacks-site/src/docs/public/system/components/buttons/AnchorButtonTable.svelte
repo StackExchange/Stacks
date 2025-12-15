@@ -1,17 +1,20 @@
 <script>
   import { Button } from '@stackoverflow/stacks-svelte';
+  import type { Variant, Weight } from '@stackoverflow/stacks-svelte';
 
-  let { data } = $props();
+  let { variants, weights } = $props();
 
-  const getButtonProps = (btn) => {
-    const props = { href: '#', class: 'ws-nowrap' };
+  const titleCase = (str) => str.toLowerCase().replace(/(?:^|\s)\w/g, (match) => match.toUpperCase());
 
-    if (btn.variant === 's-btn__danger') props.variant = 'danger';
-    if (btn.variant === 's-btn__featured') props.variant = 'featured';
-    if (btn.variant === 's-btn__tonal') props.variant = 'tonal';
-    if (btn.modifier === 's-btn__clear') props.weight = 'clear';
+  const getVariantClass = (v) => v ? `s-btn__${v}` : null;
+  const getWeightClass = (w) => w ? `s-btn__${w}` : null;
 
-    return props;
+  const getTitle = (variant, weight) => {
+    const parts = [];
+    if (variant) parts.push(titleCase(variant));
+    else parts.push("Base");
+    if (weight) parts.push(titleCase(weight));
+    return parts.join(", ");
   };
 </script>
 
@@ -27,31 +30,36 @@
       </tr>
     </thead>
     <tbody>
-      {#each data as btn}
-        {@const buttonProps = getButtonProps(btn)}
-        <tr>
-          <th scope="row" class="va-middle">{btn.title}</th>
-          <td class="va-middle">
-            <div class="d-flex g4 fw-wrap">
-              <code class="stacks-code">.s-btn</code>
-              {#if btn.variant}
-                <code class="stacks-code">.{btn.variant}</code>
-              {/if}
-              {#if btn.modifier}
-                <code class="stacks-code">.{btn.modifier}</code>
-              {/if}
-            </div>
-          </td>
-          <td class="va-middle ta-center px4">
-            <Button {...buttonProps}>Ask question</Button>
-          </td>
-          <td class="va-middle ta-center px4">
-            <Button {...buttonProps} selected aria-pressed="true">Ask question</Button>
-          </td>
-          <td class="va-middle ta-center px4">
-            <Button {...buttonProps} disabled>Ask question</Button>
-          </td>
-        </tr>
+      {#each variants as variant}
+        {#each weights as weight}
+          {#if !(weight === "clear" && (variant === "featured" || variant === "tonal"))}
+            {@const variantClass = getVariantClass(variant)}
+            {@const weightClass = getWeightClass(weight)}
+            <tr>
+              <th scope="row" class="va-middle">{getTitle(variant, weight)}</th>
+              <td class="va-middle">
+                <div class="d-flex g4 fw-wrap">
+                  <code class="stacks-code">.s-btn</code>
+                  {#if variantClass}
+                    <code class="stacks-code">.{variantClass}</code>
+                  {/if}
+                  {#if weightClass}
+                    <code class="stacks-code">.{weightClass}</code>
+                  {/if}
+                </div>
+              </td>
+              <td class="va-middle ta-center px4">
+                <Button href="#" class="ws-nowrap" {variant} {weight}>Ask question</Button>
+              </td>
+              <td class="va-middle ta-center px4">
+                <Button href="#" class="ws-nowrap" {variant} {weight} selected aria-pressed="true">Ask question</Button>
+              </td>
+              <td class="va-middle ta-center px4">
+                <Button href="#" class="ws-nowrap" {variant} {weight} disabled>Ask question</Button>
+              </td>
+            </tr>
+          {/if}
+        {/each}
       {/each}
     </tbody>
   </table>

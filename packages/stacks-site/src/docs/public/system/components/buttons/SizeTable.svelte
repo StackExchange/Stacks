@@ -1,13 +1,19 @@
 <script>
   import { Button } from '@stackoverflow/stacks-svelte';
+  import type { Size } from '@stackoverflow/stacks-svelte';
 
-  let { data } = $props();
+  let { sizes } = $props();
 
-  const getSize = (className) => {
-    if (className === 's-btn__xs') return 'xs';
-    if (className === 's-btn__sm') return 'sm';
-    if (className === 's-btn__lg') return 'lg';
-    return '';
+  const titleCase = (str) => str.toLowerCase().replace(/(?:^|\s)\w/g, (match) => match.toUpperCase());
+
+  const getSizeInfo = (size) => {
+    const sizeMap = {
+      'xs': { name: 'Extra Small', fs: '12px', class: 's-btn__xs' },
+      'sm': { name: 'Small', fs: '13px', class: 's-btn__sm' },
+      '': { name: 'Default', fs: '14px', class: 'N/A' },
+      'lg': { name: 'Large', fs: '17px', class: 's-btn__lg' }
+    };
+    return sizeMap[size] || sizeMap[''];
   };
 </script>
 
@@ -22,19 +28,20 @@
       </tr>
     </thead>
     <tbody>
-      {#each data as sizeData}
+      {#each sizes as size}
+        {@const sizeInfo = getSizeInfo(size)}
         <tr>
-          <th scope="row" class="va-middle">{sizeData.size}</th>
+          <th scope="row" class="va-middle">{sizeInfo.name}</th>
           <td class="va-middle">
-            {#if sizeData.class === 'N/A'}
-              <em class="fc-black-350">{sizeData.class}</em>
+            {#if sizeInfo.class === 'N/A'}
+              <em class="fc-black-350">{sizeInfo.class}</em>
             {:else}
-              <code class="stacks-code">{sizeData.class}</code>
+              <code class="stacks-code">{sizeInfo.class}</code>
             {/if}
           </td>
-          <td class="va-middle">{sizeData.fs}</td>
+          <td class="va-middle">{sizeInfo.fs}</td>
           <td class="va-middle">
-            <Button class="ws-nowrap" size={getSize(sizeData.class)}>
+            <Button class="ws-nowrap" {size}>
               Ask question
             </Button>
           </td>
