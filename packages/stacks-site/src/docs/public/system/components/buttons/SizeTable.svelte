@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Button } from '@stackoverflow/stacks-svelte';
   import type { Size } from '@stackoverflow/stacks-svelte';
 

@@ -6,7 +6,7 @@ description: Buttons are user interface elements which allows users to take acti
 updated: 2025-12-09
 ---
 
-<script>
+<script lang="ts">
   import { Button, Icon } from '@stackoverflow/stacks-svelte';
   import type { Brand, Size, Variant, Weight } from '@stackoverflow/stacks-svelte';
 

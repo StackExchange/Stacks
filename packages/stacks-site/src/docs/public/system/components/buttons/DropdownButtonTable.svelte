@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Button } from '@stackoverflow/stacks-svelte';
   import type { Variant, Weight } from '@stackoverflow/stacks-svelte';
 
