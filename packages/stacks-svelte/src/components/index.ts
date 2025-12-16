@@ -3,6 +3,7 @@ export { default as Avatar } from "./Avatar/Avatar.svelte";
 export { default as Badge } from "./Badge/Badge.svelte";
 export { default as Bling } from "./Bling/Bling.svelte";
 export { default as Button } from "./Button/Button.svelte";
+export { default as EmptyState } from "./EmptyState/EmptyState.svelte";
 export { default as ExpandingInput } from "./ExpandingInput/ExpandingInput.svelte";
 export { default as Icon } from "./Icon/Icon.svelte";
 export { default as Link } from "./Link/Link.svelte";
