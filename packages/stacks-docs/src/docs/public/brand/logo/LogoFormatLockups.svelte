@@ -10,10 +10,6 @@
     'Horizontal',
   ]
 
-  const logoSize = [
-
-  ]
-
   let index = $state(0)
 
   function onChange(i) {
