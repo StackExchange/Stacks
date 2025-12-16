@@ -21,7 +21,10 @@
          */
         value?: string;
 
-        [key: string]: any;
+        /**
+         * Additional input attributes like `placeholder`
+         */
+        [key: string]: unknown;
     }
 
     let { id, variant = "default", value = "", ...rest }: Props = $props();
