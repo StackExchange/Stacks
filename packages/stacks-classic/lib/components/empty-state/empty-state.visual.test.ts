@@ -7,7 +7,8 @@ describe("empty-state", () => {
     runVisualTests({
         baseClass: "s-empty-state",
         children: {
-            default: `${SpotEmpty}<p>This is a wonderful empty state component.</p>`,
+            default: `${SpotEmpty.replace("svg-spot", "svg-spot native")}
+            <p>This is a wonderful empty state component.</p>`,
         },
         template: ({ component, testid }) => html`
             <div class="ws3 p16" data-testid="${testid}">${component}</div>
