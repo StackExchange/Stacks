@@ -1,15 +1,19 @@
 <script module lang="ts">
-    export type State = "" | "error" | "success" | "warning";
-</script>
-
-<script lang="ts">
     import type { Snippet } from "svelte";
 
-    interface Props {
+    export type State = "" | "error" | "success" | "warning";
+    export type Type = "checkbox" | "radio";
+
+    export type CheckGroupProps = {
         /**
          * The label text for the legend element
          */
         label: string;
+
+        /**
+         * The type of check group
+         */
+        type: Type;
 
         /**
          * Sets the disabled state of the fieldset
@@ -27,18 +31,23 @@
         state?: State;
 
         /**
-         * Additional CSS classes added to the check control container
+         * Additional CSS classes added to the check group container
          */
         class?: string;
 
         /**
-         * Snippet for the badge content
+         * Snippet for the check content
          */
         children: Snippet;
-    }
+    };
+</script>
+
+<script lang="ts">
+    type Props = CheckGroupProps;
 
     const {
         label,
+        type,
         disabled = false,
         horizontal = false,
         state = "",
@@ -49,9 +58,10 @@
     const getClasses = (
         className: string,
         horizontal: boolean,
-        state: State
+        state: State,
+        type: Type
     ) => {
-        const base = "s-check-group";
+        const base = `s-${type}-group`;
         let classes = base;
 
         if (className) {
@@ -69,7 +79,7 @@
         return classes;
     };
 
-    const classes = $derived(getClasses(className, horizontal, state));
+    const classes = $derived(getClasses(className, horizontal, state, type));
 </script>
 
 <fieldset class={classes} {disabled}>

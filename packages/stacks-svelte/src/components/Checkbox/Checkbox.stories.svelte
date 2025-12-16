@@ -126,7 +126,7 @@
 <Story name="State" asChild>
     <div class="d-flex fw-wrap g64">
         {#each [false, true] as checkmark (checkmark)}
-            <fieldset class="s-check-group wmx2">
+            <fieldset class="s-checkbox-group wmx2">
                 <legend class="s-label">
                     {checkmark ? "checkmark" : "checkbox"}
                 </legend>

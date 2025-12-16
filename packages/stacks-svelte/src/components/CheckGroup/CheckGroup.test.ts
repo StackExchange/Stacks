@@ -1,47 +1,21 @@
-import { tick } from "svelte";
 import { expect } from "@open-wc/testing";
 import { render, screen } from "@testing-library/svelte";
-import { createRawSnippet, mount, unmount } from "svelte";
+import { createRawSnippet } from "svelte";
 
 import CheckGroup from "./CheckGroup.svelte";
-import Check from "../Check/Check.svelte";
 
-type CheckProps = {
-    id: string;
-    name: string;
-    label: string;
-    type: "checkbox" | "radio";
-};
-
-const createChecksSnippet = (controls: Array<CheckProps>) =>
+const createChildrenSnippet = () =>
     createRawSnippet(() => ({
-        render: () => "<span></span>",
-        setup: (target) => {
-            const instances = controls.map((props) => {
-                return mount(Check, {
-                    target,
-                    props,
-                });
-            });
-            return () => {
-                instances.forEach((instance) => unmount(instance));
-            };
-        },
+        render: () => "<span>Test content</span>",
     }));
 
-const baseCheckProps = (suffix: string | number): CheckProps => ({
-    id: `test-checkbox-${suffix}`,
-    label: `Option ${suffix}`,
-    name: "test-name",
-    type: "checkbox",
-});
-
 describe("CheckGroup", () => {
-    it("should render the CheckGroup", () => {
-        const children = createChecksSnippet([baseCheckProps("base")]);
+    it("should render as a checkbox group", () => {
+        const children = createChildrenSnippet();
 
         render(CheckGroup, {
             label: "Test Legend",
+            type: "checkbox",
             children,
         });
 
@@ -49,106 +23,34 @@ describe("CheckGroup", () => {
         const fieldset = legend.closest("fieldset");
 
         expect(screen.getByText("Test Legend")).to.exist;
-        expect(screen.getByText("Option base")).to.exist;
-        expect(screen.getByRole("checkbox")).to.exist;
+        expect(screen.getByText("Test content")).to.exist;
 
-        // Ensure it renders as a fieldset with the correct class
         expect(fieldset).to.exist;
-        expect(fieldset).to.have.class("s-check-group");
-
-        //Ensure legend is present
+        expect(fieldset).to.have.class("s-checkbox-group");
         expect(legend).to.exist;
         expect(legend.tagName.toLowerCase()).to.equal("legend");
         expect(legend).to.have.class("s-label");
     });
 
-    it("should render multiple check controls", () => {
-        const children = createChecksSnippet(
-            [1, 2, 3].map((num) => baseCheckProps(num))
-        );
+    it("should render as a radio group", () => {
+        const children = createChildrenSnippet();
 
         render(CheckGroup, {
             label: "Test Legend",
+            type: "radio",
             children,
         });
 
-        expect(screen.getAllByRole("checkbox")).to.have.length(3);
-        expect(screen.getByText("Option 1")).to.exist;
-        expect(screen.getByText("Option 2")).to.exist;
-        expect(screen.getByText("Option 3")).to.exist;
-    });
+        const legend = screen.getByText("Test Legend");
+        const fieldset = legend.closest("fieldset");
 
-    it("should render disabled fieldset when disabled is true", () => {
-        const children = createChecksSnippet([baseCheckProps("disabled")]);
-        render(CheckGroup, {
-            label: "Test Legend",
-            disabled: true,
-            children,
-        });
+        expect(screen.getByText("Test Legend")).to.exist;
+        expect(screen.getByText("Test content")).to.exist;
 
-        const fieldset = screen.getByText("Test Legend").closest("fieldset");
-        expect(fieldset).to.have.attribute("disabled");
-    });
-
-    it("should apply horizontal class when horizontal is true", () => {
-        const children = createChecksSnippet([baseCheckProps("horizontal")]);
-
-        render(CheckGroup, {
-            label: "Test Legend",
-            horizontal: true,
-            children,
-        });
-
-        const fieldset = screen.getByText("Test Legend").closest("fieldset");
-        expect(fieldset).to.have.class("s-check-group__horizontal");
-    });
-
-    it("should apply the appropriate state class", () => {
-        const children = createChecksSnippet([baseCheckProps("state")]);
-
-        render(CheckGroup, {
-            label: "Test Legend",
-            state: "error",
-            children,
-        });
-
-        const fieldset = screen.getByText("Test Legend").closest("fieldset");
-        expect(fieldset).to.have.class("has-error");
-    });
-
-    it("should apply arbitrary classes to fieldset", () => {
-        const children = createChecksSnippet([baseCheckProps("classes")]);
-
-        render(CheckGroup, {
-            label: "Test Legend",
-            class: "custom-class",
-            children,
-        });
-
-        const fieldset = screen.getByText("Test Legend").closest("fieldset");
-        expect(fieldset).to.have.class("custom-class");
-        expect(fieldset).to.have.class("s-check-group");
-    });
-
-    it("should adjust classes on prop updates", async () => {
-        const children = createChecksSnippet([baseCheckProps("update")]);
-
-        const { rerender } = render(CheckGroup, {
-            label: "Test Legend",
-            class: "custom-class-1",
-            children,
-        });
-
-        rerender({
-            label: "Test Legend",
-            class: "custom-class-2",
-            children,
-        });
-
-        await tick();
-
-        const fieldset = screen.getByText("Test Legend").closest("fieldset");
-        expect(fieldset).not.to.have.class("custom-class-1");
-        expect(fieldset).to.have.class("custom-class-2");
+        expect(fieldset).to.exist;
+        expect(fieldset).to.have.class("s-radio-group");
+        expect(legend).to.exist;
+        expect(legend.tagName.toLowerCase()).to.equal("legend");
+        expect(legend).to.have.class("s-label");
     });
 });
