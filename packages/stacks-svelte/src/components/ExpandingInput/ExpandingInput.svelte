@@ -20,11 +20,9 @@
          * Initial value to pass to input
          */
         value?: string;
-
-        [key: string]: any;
     }
 
-    let { id, variant = "default", value = "", ...rest }: Props = $props();
+    let { id, variant = "default", value = "" }: Props = $props();
 
     const getClasses = (variant: string) => {
         let common = "s-textarea ws-pre-wrap break-word hmx3 lh-lg";
@@ -43,8 +41,7 @@
 </script>
 
 <div class="d-flex ai-center ps-relative w100">
-    <textarea class={classes.textarea} rows="1" bind:value {id} {...rest}
-    ></textarea>
+    <textarea class={classes.textarea} rows="1" bind:value {id}></textarea>
     <pre class={classes.grower} aria-hidden="true">{value}<br /></pre>
 </div>
 
