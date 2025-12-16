@@ -9,8 +9,8 @@ describe("PostSummaryStateBadge", () => {
         const badge = screen.getByText("Archived");
         expect(badge).to.exist;
         expect(badge).to.have.class("s-badge");
-        expect(badge).to.have.class("s-badge__muted");
-        expect(badge).to.have.class("s-badge__icon");
+        expect(badge).to.have.class("s-badge__tonal");
+        expect(badge).to.have.class("s-badge__squared");
     });
 
     it("should render the state badge with the appropriate icon", () => {

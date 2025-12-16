@@ -68,6 +68,7 @@
             --_bu-badge-fc-disabled: var(--white);
 
             .highcontrast-mode({
+                --_bu-bc: var(--red-600);
                 --_bu-bc-disabled: var(--red-300);
             });
         }
@@ -101,7 +102,6 @@
         .highcontrast-mode({
             --_bu-bc: var(--black-300);
         });
-
     }
 
     // Social
@@ -194,11 +194,20 @@
 
     &.is-selected,
     .s-btn--radio:checked + & {
+        --_bu-bg-selected-overlay-o: 20%;
         --_bu-bg-selected-overlay: color-mix(
             in srgb,
             var(--_bu-bg-selected, var(--_bu-bg)),
-            var(--white) 25%
+            var(--white) var(--_bu-bg-selected-overlay-o)
         );
+        --_bu-bg-gradient-top: var(--_bu-bg-selected, var(--_bu-bg));
+        --_bu-bg-gradient-bottom: var(--_bu-bg-selected-overlay, var(--_bu-bg));
+
+        .dark-mode({
+            --_bu-bg-selected-overlay-o: 13%;
+            --_bu-bg-gradient-top: var(--_bu-bg-selected-overlay, var(--_bu-bg));
+            --_bu-bg-gradient-bottom: var(--_bu-bg-selected, var(--_bu-bg));
+        });
 
         .s-btn--badge {
             .s-btn--number {
@@ -208,14 +217,13 @@
             background-color: var(--_bu-badge-bg);
         }
 
-        background:
-            linear-gradient(0deg,
-                var(--_bu-bg-selected-overlay, var(--_bu-bg)) 50%,
-                var(--_bu-bg-selected, var(--_bu-bg)) 50%
+        background: linear-gradient(0deg,
+                var(--_bu-bg-gradient-top) 50%,
+                var(--_bu-bg-gradient-bottom) 50%
             ) padding-box,
             linear-gradient(0deg,
-                var(--_bu-bg-selected-overlay, var(--_bu-bg)) 50%,
-                var(--_bu-bg-selected, var(--_bu-bg)) 50%
+                var(--_bu-bg-gradient-top) 50%,
+                var(--_bu-bg-gradient-bottom) 50%
             ) border-box;
         color: var(--_bu-fc-selected, var(--_bu-fc));
     }
@@ -278,7 +286,7 @@
         .focus-styles(false, true);
     }
 
-    &:hover {
+    &:not(.is-selected):hover {
         background:
             linear-gradient(0deg,
                 var(--_bu-bg-selected-overlay, var(--_bu-bg-hover, var(--_bu-bg))) 50%,

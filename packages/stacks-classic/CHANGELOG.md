@@ -1,5 +1,56 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.11
+
+### Major Changes
+
+- [#2082](https://github.com/StackExchange/Stacks/pull/2082) [`8ed0cea`](https://github.com/StackExchange/Stacks/commit/8ed0cea0dda875049713263a00aa4be5e986ea7c) Thanks [@giamir](https://github.com/giamir)! - Badges: update to the new SHINE visuals
+
+    BREAKING CHANGES:
+    - `.s-badge__icon` removed
+    - `.s-badge__bounty` removed
+    - `.s-badge__answered` removed
+    - `.s-badge__votes` removed
+    - `.s-badge__rep-down` removed
+    - `.s-badge__muted` removed
+    - `.s-badge__new` renamed to `.s-badge__featured`
+
+### Patch Changes
+
+- [#2091](https://github.com/StackExchange/Stacks/pull/2091) [`5a8a4e1`](https://github.com/StackExchange/Stacks/commit/5a8a4e17c73ca5a2a9c282ca769dd08426b17812) Thanks [@mukunku](https://github.com/mukunku)! - chore(bling): adjust HC colors
+
+- [#2089](https://github.com/StackExchange/Stacks/pull/2089) [`5c4b9b5`](https://github.com/StackExchange/Stacks/commit/5c4b9b52ef12937307b234a179d52d109e1333e3) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Fix the following bugs:
+    - Selected buttons no longer change colors when hovered
+    - Swap selected state gradient colors in dark mode
+    - Update contrast for selected state. 25% to 20% in light mode and 13% in dark mode
+    - Add border to color to danger clear button variant in HC mode
+
+- [#2094](https://github.com/StackExchange/Stacks/pull/2094) [`ae44e91`](https://github.com/StackExchange/Stacks/commit/ae44e9103ce0f581d48cf744ecba173ca7eedcc6) Thanks [@mukunku](https://github.com/mukunku)! - chore(colors): tweak colors to match latest values for SHINE
+
+## 3.0.0-beta.10
+
+### Minor Changes
+
+- [#2077](https://github.com/StackExchange/Stacks/pull/2077) [`78d6a22`](https://github.com/StackExchange/Stacks/commit/78d6a22fd01442de1a325d3530d429b55aa5a8c4) Thanks [@mukunku](https://github.com/mukunku)! - feat(textarea): new SHINE styles and Svelte component
+
+    BREAKING CHANGES:
+    - `s-input__md` removed
+    - `s-input__xl` removed
+
+- [#2070](https://github.com/StackExchange/Stacks/pull/2070) [`55f3a17`](https://github.com/StackExchange/Stacks/commit/55f3a179621375ca95fc93d219f8ab3edb526514) Thanks [@mukunku](https://github.com/mukunku)! - feat(input): update input styles for SHINE
+
+    BREAKING CHANGES:
+    - `s-input__md` removed
+    - `s-input__xl` removed
+    - Nested input styles slightly updated
+    - `optional` and `i18nOptionalText` attributes removed from TextInput Svelte component
+
+### Patch Changes
+
+- [#2088](https://github.com/StackExchange/Stacks/pull/2088) [`2f3cb89`](https://github.com/StackExchange/Stacks/commit/2f3cb89399c06564ec5c1c59893787e8af4d9643) Thanks [@mukunku](https://github.com/mukunku)! - chore(input): fix non text input styles
+
+- [#2086](https://github.com/StackExchange/Stacks/pull/2086) [`efc2120`](https://github.com/StackExchange/Stacks/commit/efc21209fd73e12f1fd42d5a89138757923de4fc) Thanks [@mukunku](https://github.com/mukunku)! - chore(colors): Update Dark Mode HC Colors for 300/400 Stops
+
 ## 3.0.0-beta.9
 
 ### Patch Changes
