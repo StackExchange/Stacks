@@ -7,7 +7,7 @@ describe("EmptyState", () => {
     it("should render an empty state with the description content", () => {
         render(EmptyState, {
             description: createRawSnippet(() => ({
-                render: () => "There are no items to display at this time.",
+                render: () => "<span>There are no items to display at this time.</span>",
             })),
         });
         expect(screen.getByText("There are no items to display at this time."))
@@ -17,7 +17,7 @@ describe("EmptyState", () => {
     it("should render an empty state with the description and call-to-action content", () => {
         render(EmptyState, {
             description: createRawSnippet(() => ({
-                render: () => "There are no items to display at this time.",
+                render: () => "<span>There are no items to display at this time.</span>",
             })),
             callToAction: createRawSnippet(() => ({
                 render: () =>
@@ -32,7 +32,7 @@ describe("EmptyState", () => {
     it("should render an empty state with the description and title content", () => {
         render(EmptyState, {
             description: createRawSnippet(() => ({
-                render: () => "There are no items to display at this time.",
+                render: () => "<span>There are no items to display at this time.</span>",
             })),
             title: "No results found",
         });
