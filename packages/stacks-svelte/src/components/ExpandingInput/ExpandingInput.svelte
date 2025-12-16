@@ -3,24 +3,28 @@
 </script>
 
 <script lang="ts">
-    /**
-     * The id to pair with a label
-     * @type {string} Id
-     */
-    export let id: string;
+    interface Props {
+        /**
+         * The id to pair with a label
+         * @type {string} Id
+         */
+        id: string;
 
-    /**
-     * The input's variant
-     * @type {"default" | "chat"} Variant
-     */
-    export let variant: Variant = "default";
+        /**
+         * The input's variant
+         * @type {"default" | "chat"} Variant
+         */
+        variant?: Variant;
+        
+        /**
+         * Initial value to pass to input
+         */
+        value?: string;
 
-    /**
-     * Initial value to pass to input
-     */
-    export let value = "";
+        [key: string]: any
+    }
 
-    $: classes = getClasses(variant);
+    let { id, variant = "default", value = "", ...rest }: Props = $props();
 
     const getClasses = (variant: string) => {
         let common = "s-textarea ws-pre-wrap break-word hmx3 lh-lg";
@@ -35,6 +39,7 @@
 
         return { textarea, grower };
     };
+    let classes = $derived(getClasses(variant));
 </script>
 
 <div class="d-flex ai-center ps-relative w100">
@@ -43,9 +48,7 @@
         rows="1"
         bind:value
         {id}
-        {...$$restProps}
-        on:input
-        on:keydown
+        {...rest}
     ></textarea>
     <pre class={classes.grower} aria-hidden="true">{value}<br /></pre>
 </div>
