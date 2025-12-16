@@ -15,7 +15,7 @@
         class?: ClassValue;
 
         /**
-         * Snippet containing brief text 
+         * Snippet containing brief text
          * explaining the empty state
          */
         description: Snippet;
@@ -28,13 +28,13 @@
 
     let {
         title,
-        class : className,
+        class: className,
         description,
         callToAction,
     }: Props = $props();
 </script>
 
-<div class={['s-empty-state', className]}>
+<div class={["s-empty-state", className]}>
     <Icon src={SpotEmpty} />
     {#if title}
         <h4 class="s-empty-state__title">{title}</h4>
