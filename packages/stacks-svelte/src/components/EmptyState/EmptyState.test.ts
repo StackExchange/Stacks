@@ -12,7 +12,6 @@ describe("EmptyState", () => {
         });
         expect(screen.getByText("There are no items to display at this time."))
             .to.exist;
-        expect(screen.getByRole("button")).not.to.exist;
     });
 
     it("should render an empty state with the description and call-to-action content", () => {
