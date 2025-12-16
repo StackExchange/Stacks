@@ -124,13 +124,22 @@
         }
     }
 
+    // Validation states
+    &:has(> input:not(:checked)) {
+        &.has-error {
+            --_ch-input-bc: var(--red-400);
+        }
+        &.has-success {
+            --_ch-input-bc: var(--green-400);
+        }
+        &.has-warning {
+            --_ch-input-bc: var(--yellow-400);
+        }
+    }
+
     input {
         &:focus-visible {
             .focus-styles();
-        }
-
-        &:not(:checked) {
-            .validation-states(ch-input);
         }
 
         appearance: none;
