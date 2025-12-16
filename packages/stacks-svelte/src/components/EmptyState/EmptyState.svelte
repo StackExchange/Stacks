@@ -35,7 +35,7 @@
 </script>
 
 <div class={["s-empty-state", className]}>
-    <Icon src={SpotEmpty} />
+    <Icon src={SpotEmpty} native />
     {#if title}
         <h4 class="s-empty-state__title">{title}</h4>
     {/if}
