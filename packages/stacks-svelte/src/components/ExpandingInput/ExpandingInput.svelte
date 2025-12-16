@@ -15,13 +15,13 @@
          * @type {"default" | "chat"} Variant
          */
         variant?: Variant;
-        
+
         /**
          * Initial value to pass to input
          */
         value?: string;
 
-        [key: string]: any
+        [key: string]: any;
     }
 
     let { id, variant = "default", value = "", ...rest }: Props = $props();
@@ -43,12 +43,7 @@
 </script>
 
 <div class="d-flex ai-center ps-relative w100">
-    <textarea
-        class={classes.textarea}
-        rows="1"
-        bind:value
-        {id}
-        {...rest}
+    <textarea class={classes.textarea} rows="1" bind:value {id} {...rest}
     ></textarea>
     <pre class={classes.grower} aria-hidden="true">{value}<br /></pre>
 </div>
