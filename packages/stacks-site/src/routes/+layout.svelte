@@ -21,7 +21,7 @@
 </svelte:head>
 
 <header class="bg-black-100 fc-white w20 sm:w100 hmx100 h100 sm:h-auto overflow-auto ps-fixed br bc-black-200 z-nav d-flex fd-column">
-	<div class="d-flex ai-center jc-space-between bg-black-100 pt16 pl24 sm:pb12 sm:pt12">
+	<div class="d-flex ai-center jc-space-between bg-black-100 pt8 pl24 sm:pb12 sm:pt12">
 		<a href="/" title="Home" class="fc-orange-400">
 			<Icon src={IconLogo} />
 		</a>
