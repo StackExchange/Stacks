@@ -36,6 +36,12 @@
       {data.active.title}
     </h1>
 
+    {#if data?.metadata?.description}
+      <p class="fc-dark fs-body3 mtn16 wmx5">
+        {data.metadata.description}
+      </p>
+    {/if}
+
     {#if data.source === 'md'}
       <data.Content />
     {/if}
