@@ -11,3 +11,8 @@
   # variable through the Netlify UI otherwise netlify won't be able to clone the repo due to all our images.
   # https://docs.netlify.com/build/configure-builds/environment-variables/#netlify-configuration-variables
   GIT_LFS_ENABLED = "true" # just here as a reminder
+
+[[plugins]]
+package = "netlify-plugin-inline-functions-env"
+  [plugins.inputs]
+  buildEvent = "onBuild"
