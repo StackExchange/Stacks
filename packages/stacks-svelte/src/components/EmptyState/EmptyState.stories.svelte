@@ -1,6 +1,7 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import EmptyState from "./EmptyState.svelte";
+    import Link from "../Link/Link.svelte";
 
     const { Story } = defineMeta({
         title: "Components/EmptyState",
@@ -34,7 +35,7 @@
     {#snippet template(args)}
         <EmptyState title={args.title} class={args.class}>
             {#snippet description()}
-                No data found. Check back later.
+                No data found. <Link href="#" underlined>Check back</Link> later.
             {/snippet}
         </EmptyState>
     {/snippet}
