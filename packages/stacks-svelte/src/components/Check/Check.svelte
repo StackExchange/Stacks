@@ -2,12 +2,8 @@
     export type Checked = boolean | "indeterminate";
     export type State = "" | "error" | "success" | "warning";
     export type Type = "checkbox" | "radio";
-</script>
 
-<script lang="ts">
-    import Label from "../Label/Label.svelte";
-
-    interface Props {
+    export type CheckProps = {
         /**
          * The id attribute of the input
          */
@@ -62,7 +58,13 @@
          * Additional CSS classes added to the check control container
          */
         class?: string;
-    }
+    };
+</script>
+
+<script lang="ts">
+    import Label from "../Label/Label.svelte";
+
+    type Props = CheckProps;
 
     const {
         id,
@@ -85,7 +87,7 @@
         checkmark: boolean,
         state: State
     ) => {
-        const base = "s-check";
+        const base = `s-${type}`;
         let classes = base;
 
         if (className) {
