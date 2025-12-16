@@ -43,10 +43,7 @@ const config = {
         }),
     ],
     kit: {
-        adapter: adapter({
-            pages: '_site',
-            assets: '_site',
-        }),
+        adapter: adapter(),
         alias: {
             $src: "src",
             $components: "src/components",
