@@ -1,4 +1,5 @@
-.s-check {
+.s-checkbox,
+.s-radio {
     --_ch-ai: center;
     --_ch-fc: unset;
     --_ch-after-fc: unset;
@@ -14,23 +15,6 @@
     --_ch-input-br: var(--su-static1);
     --_ch-input-cursor: pointer;
     --_ch-input-h: calc(var(--su-static12) + var(--su-static2)); // 14px
-    // Less variables for check svg fill color
-    @ch-bg-image-fill: .set-white()[default];
-    @ch-bg-image-fill-dark: .set-white-dark()[default];
-    @ch-bg-image-fill-esc: escape("@{ch-bg-image-fill}"); // color escaped for URL usage
-    @ch-bg-image-fill-dark-esc: escape("@{ch-bg-image-fill-dark}"); // color escaped for URL usage
-
-    // CONTEXTUAL STYLES
-    .dark-mode({
-        input[type="checkbox"] {
-            &:checked {
-                --_ch-input-bg-image: url("data:image/svg+xml;,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='@{ch-bg-image-fill-dark-esc}'/%3E%3C/svg%3E");
-            }
-            &:indeterminate {
-                --_ch-input-bg-image: url("data:image/svg+xml;,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4.5 h7 v2 h-7 z' fill='@{ch-bg-image-fill-dark-esc}'/%3E%3C/svg%3E");
-            }
-        }
-    });
 
     @media (forced-colors: active) { // This is for Windows High Contrast Mode
         &:checked,
@@ -135,14 +119,12 @@
     &:has(> .s-label .s-input-message) {
         --_ch-ai: flex-start;
 
-        input[type="checkbox"],
-        input[type="radio"] {
+        input {
             margin-top: var(--su2);
         }
     }
 
-    input[type="checkbox"],
-    input[type="radio"] {
+    input {
         &:focus-visible {
             .focus-styles();
         }
@@ -166,7 +148,39 @@
         vertical-align: middle;
     }
 
-    input[type="checkbox"] {
+
+    .s-label {
+        color: var(--_ch-label-fc);
+        font-size: var(--fs-body1);
+        font-weight: normal;
+    }
+
+    align-items: var(--_ch-ai);
+    display: flex;
+    gap: var(--_ch-gap);
+}
+
+.s-checkbox{
+    // Less variables for check svg fill color
+    @ch-bg-image-fill: .set-white()[default];
+    @ch-bg-image-fill-dark: .set-white-dark()[default];
+    @ch-bg-image-fill-esc: escape("@{ch-bg-image-fill}"); // color escaped for URL usage
+    @ch-bg-image-fill-dark-esc: escape("@{ch-bg-image-fill-dark}"); // color escaped for URL usage
+
+    // CONTEXTUAL STYLES
+    .dark-mode({
+        input {
+            &:checked {
+                --_ch-input-bg-image: url("data:image/svg+xml;,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='@{ch-bg-image-fill-dark-esc}'/%3E%3C/svg%3E");
+            }
+            &:indeterminate {
+                --_ch-input-bg-image: url("data:image/svg+xml;,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4.5 h7 v2 h-7 z' fill='@{ch-bg-image-fill-dark-esc}'/%3E%3C/svg%3E");
+            }
+        }
+    });
+
+    // CHILD ELEMENTS
+    input {
         fieldset[disabled] &,
         &[disabled] {
             &:checked, &:indeterminate {
@@ -194,8 +208,10 @@
         background-repeat: no-repeat;
         background-size: contain;
     }
+}
 
-    input[type="radio"] {
+.s-radio {
+    input {
         fieldset[disabled] &,
         &[disabled] {
             &:checked {
@@ -211,14 +227,4 @@
             --_ch-input-bg: var(--white);
         }
     }
-
-    .s-label {
-        color: var(--_ch-label-fc);
-        font-size: var(--fs-body1);
-        font-weight: normal;
-    }
-
-    align-items: var(--_ch-ai);
-    display: flex;
-    gap: var(--_ch-gap);
 }
