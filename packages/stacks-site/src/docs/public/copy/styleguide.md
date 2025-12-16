@@ -674,11 +674,11 @@ Always use [smart/typographers/curly quotes](https://practicaltypography.com/str
 
 #### Shortcuts
 
-| Symbol | Description | Alt Code | Mac Shortcut | HTML Entity |
-|--------|-------------|----------|--------------|-------------|
-| <span class="fs-display2">‘</span> | Opening single quote | `alt 0145` | `option + ]` | `&amp;lsquo;` |
+| Symbol                             | Description          | Alt Code   | Mac Shortcut         | HTML Entity   |
+| ---------------------------------- | -------------------- | ---------- | -------------------- | ------------- |
+| <span class="fs-display2">‘</span> | Opening single quote | `alt 0145` | `option + ]`         | `&amp;lsquo;` |
 | <span class="fs-display2">’</span> | Closing single quote | `alt 0146` | `option + shift + ]` | `&amp;rsquo;` |
-| <span class="fs-display2">“</span> | Opening double quote | `alt 0147` | `option + [` | `&amp;ldquo;` |
+| <span class="fs-display2">“</span> | Opening double quote | `alt 0147` | `option + [`         | `&amp;ldquo;` |
 | <span class="fs-display2">”</span> | Closing double quote | `alt 0148` | `option + shift + [` | `&amp;rdquo;` |
 
 ### Semicolons

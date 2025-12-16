@@ -103,9 +103,9 @@ function relativeImagesToImports() {
                         process.cwd(),
                         imagePath
                     );
-                    
+
                     // Remove the src
-                    relativeToRoot = relativeToRoot.replace(/^src\//, '');
+                    relativeToRoot = relativeToRoot.replace(/^src\//, "");
 
                     // Rewrite to absolute URL path
                     node.url = "/" + relativeToRoot.replace(/\\/g, "/");

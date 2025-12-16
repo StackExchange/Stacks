@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from "fs";
 import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vite";
 
@@ -8,14 +8,14 @@ export default defineConfig({
     plugins: [
         sveltekit(),
         {
-            name: 'copy-doc-images',
+            name: "copy-doc-images",
             buildStart() {
-                fs.cpSync('src/docs', 'static/docs', { 
+                fs.cpSync("src/docs", "static/docs", {
                     recursive: true,
-                    filter: (src) => !/\.md$/i.test(src)
+                    filter: (src) => !/\.md$/i.test(src),
                 });
-            }
-        }
+            },
+        },
     ],
     define: {
         __APP_VERSION__: JSON.stringify(pkg.version),
