@@ -5,7 +5,7 @@ type CheckGroup = "checkbox" | "radio";
 const checkTypes: CheckGroup[] = ["checkbox", "radio"];
 
 checkTypes.forEach((type) => {
-    describe("s-check-group", () => {
+    describe(`s-${type}-group`, () => {
         const checkEls: {
             type: CheckGroup;
             id: string;
@@ -16,7 +16,7 @@ checkTypes.forEach((type) => {
         ];
         runA11yTests({
             tag: "fieldset",
-            baseClass: "s-check-group",
+            baseClass: `s-${type}-group`,
             variants: ["horizontal"],
             children: {
                 default: `
@@ -24,9 +24,8 @@ checkTypes.forEach((type) => {
                     ${checkEls
                         .map(
                             ({ type, state, id }, index) => `
-                        <div class="s-check">
+                        <div class="s-${type}">
                             <input
-                                class="s-${type}"
                                 type="${type}"
                                 id="${id}-${index}"
                                 name=""

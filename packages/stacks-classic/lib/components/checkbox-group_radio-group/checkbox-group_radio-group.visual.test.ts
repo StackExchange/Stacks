@@ -7,7 +7,7 @@ const checkTypes: CheckGroup[] = ["checkbox", "radio"];
 // Account for horizontal variant
 [true, false].forEach((isHorizontal) => {
     checkTypes.forEach((type) => {
-        describe("s-check-group", () => {
+        describe(`s-${type}-group`, () => {
             const checkEls: {
                 type: CheckGroup;
                 id: string;
@@ -18,7 +18,7 @@ const checkTypes: CheckGroup[] = ["checkbox", "radio"];
             ];
             runVisualTests({
                 tag: "fieldset",
-                baseClass: "s-check-group",
+                baseClass: `s-${type}-group`,
                 attributes: {
                     class: isHorizontal ? "hs1 ws3 p8" : "hs2 ws2 p8",
                 },
@@ -29,9 +29,8 @@ const checkTypes: CheckGroup[] = ["checkbox", "radio"];
                         ${checkEls
                             .map(
                                 ({ type, state, id }, index) => `
-                            <div class="s-check">
+                            <div class="s-${type}">
                                 <input
-                                    class="s-${type}"
                                     type="${type}"
                                     id="${id}-${index}"
                                     name=""
