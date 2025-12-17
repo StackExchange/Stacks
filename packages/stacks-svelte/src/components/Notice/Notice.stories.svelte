@@ -1,5 +1,5 @@
 <script lang="ts" module>
-    import { IconAlert } from "@stackoverflow/stacks-icons-legacy/icons";
+    import { IconAlertFill } from "@stackoverflow/stacks-icons/icons";
 
     import Notice, { type Variant } from "./Notice.svelte";
     import { defineMeta } from "@storybook/addon-svelte-csf";
@@ -102,7 +102,7 @@
 </Story>
 
 <Story name="With Icon" asChild>
-    <Notice variant="danger" icon={IconAlert} iconTitle="Alert Icon">
+    <Notice variant="danger" icon={IconAlertFill} iconTitle="Alert Icon">
         I am a notice with an icon
     </Notice>
 </Story>
