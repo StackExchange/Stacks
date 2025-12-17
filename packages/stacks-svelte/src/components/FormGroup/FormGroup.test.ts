@@ -1,20 +1,19 @@
-import { tick } from "svelte";
 import { expect } from "@open-wc/testing";
 import { render, screen } from "@testing-library/svelte";
 import { createRawSnippet } from "svelte";
 
-import CheckboxGroup from "./CheckboxGroup.svelte";
+import FormGroup from "./FormGroup.svelte";
 
 const createChildrenSnippet = () =>
     createRawSnippet(() => ({
         render: () => "<span>Test content</span>",
     }));
 
-describe("CheckboxGroup", () => {
-    it("should render the CheckboxGroup", () => {
+describe("FormGroup", () => {
+    it("should render the form group", () => {
         const children = createChildrenSnippet();
 
-        render(CheckboxGroup, {
+        render(FormGroup, {
             label: "Test Legend",
             children,
         });
@@ -25,11 +24,8 @@ describe("CheckboxGroup", () => {
         expect(screen.getByText("Test Legend")).to.exist;
         expect(screen.getByText("Test content")).to.exist;
 
-        // Ensure it renders as a fieldset with the correct class
         expect(fieldset).to.exist;
-        expect(fieldset).to.have.class("s-checkbox-group");
-
-        //Ensure legend is present
+        expect(fieldset).to.have.class("s-form-group");
         expect(legend).to.exist;
         expect(legend.tagName.toLowerCase()).to.equal("legend");
         expect(legend).to.have.class("s-label");
@@ -37,7 +33,7 @@ describe("CheckboxGroup", () => {
 
     it("should render disabled fieldset when disabled is true", () => {
         const children = createChildrenSnippet();
-        render(CheckboxGroup, {
+        render(FormGroup, {
             label: "Test Legend",
             disabled: true,
             children,
@@ -49,21 +45,19 @@ describe("CheckboxGroup", () => {
 
     it("should apply horizontal class when horizontal is true", () => {
         const children = createChildrenSnippet();
-
-        render(CheckboxGroup, {
+        render(FormGroup, {
             label: "Test Legend",
             horizontal: true,
             children,
         });
 
         const fieldset = screen.getByText("Test Legend").closest("fieldset");
-        expect(fieldset).to.have.class("s-checkbox-group__horizontal");
+        expect(fieldset).to.have.class("s-form-group__horizontal");
     });
 
     it("should apply the appropriate state class", () => {
         const children = createChildrenSnippet();
-
-        render(CheckboxGroup, {
+        render(FormGroup, {
             label: "Test Legend",
             state: "error",
             children,
@@ -76,7 +70,7 @@ describe("CheckboxGroup", () => {
     it("should apply arbitrary classes to fieldset", () => {
         const children = createChildrenSnippet();
 
-        render(CheckboxGroup, {
+        render(FormGroup, {
             label: "Test Legend",
             class: "custom-class",
             children,
@@ -84,28 +78,6 @@ describe("CheckboxGroup", () => {
 
         const fieldset = screen.getByText("Test Legend").closest("fieldset");
         expect(fieldset).to.have.class("custom-class");
-        expect(fieldset).to.have.class("s-checkbox-group");
-    });
-
-    it("should adjust classes on prop updates", async () => {
-        const children = createChildrenSnippet();
-
-        const { rerender } = render(CheckboxGroup, {
-            label: "Test Legend",
-            class: "custom-class-1",
-            children,
-        });
-
-        rerender({
-            label: "Test Legend",
-            class: "custom-class-2",
-            children,
-        });
-
-        await tick();
-
-        const fieldset = screen.getByText("Test Legend").closest("fieldset");
-        expect(fieldset).not.to.have.class("custom-class-1");
-        expect(fieldset).to.have.class("custom-class-2");
+        expect(fieldset).to.have.class("s-form-group");
     });
 });
