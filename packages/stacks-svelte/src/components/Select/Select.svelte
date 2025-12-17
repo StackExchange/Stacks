@@ -24,11 +24,11 @@
 <script lang="ts">
     import Icon from "../Icon/Icon.svelte";
     import Label from "../Label/Label.svelte";
-    import {
-        IconAlert,
-        IconAlertCircle,
-    } from "@stackoverflow/stacks-icons-legacy/icons";
-    import { IconCheck } from "@stackoverflow/stacks-icons/icons";
+    import { 
+        IconAlert, 
+        IconAlertFill, 
+        IconCheck 
+    } from "@stackoverflow/stacks-icons/icons";
     import { setContext } from "svelte";
     import type { Snippet } from "svelte";
     import type { HTMLSelectAttributes } from "svelte/elements";
@@ -184,7 +184,7 @@
         {#if vState}
             <div class="s-input-icon">
                 {#if vState === "error"}
-                    <Icon src={IconAlertCircle} />
+                    <Icon src={IconAlertFill} />
                 {:else if vState === "success"}
                     <Icon src={IconCheck} />
                 {:else}

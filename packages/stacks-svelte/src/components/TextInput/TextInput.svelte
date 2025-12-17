@@ -26,10 +26,13 @@
 
     import {
         IconAlert,
-        IconAlertCircle,
-        IconCheckmark,
-        IconCreditCard,
+        IconAlertFill,
+        IconCheck,
         IconSearch,
+    } from "@stackoverflow/stacks-icons/icons";
+
+    import {
+        IconCreditCard,
     } from "@stackoverflow/stacks-icons-legacy/icons";
 
     interface Props extends Omit<HTMLInputAttributes, "size" | "type"> {
@@ -245,9 +248,9 @@
             {#if state}
                 <div class="s-input-icon">
                     {#if state === "error"}
-                        <Icon src={IconAlertCircle} />
+                        <Icon src={IconAlertFill} />
                     {:else if state === "success"}
-                        <Icon src={IconCheckmark} />
+                        <Icon src={IconCheck} />
                     {:else}
                         <Icon src={IconAlert} />
                     {/if}
