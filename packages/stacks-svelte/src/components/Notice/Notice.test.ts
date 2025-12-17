@@ -25,7 +25,7 @@ describe("Notice", () => {
             iconTitle: "test title",
             children,
         });
-        const icon = document.querySelector("svg.iconAlert");
+        const icon = document.querySelector("svg.iconAlertFill");
         expect(icon).to.exist;
         expect(screen.getByRole("status")).to.exist;
     });
@@ -72,7 +72,7 @@ describe("Notice", () => {
         expect(closeButton).to.exist;
 
         // Assert that the IconClear is rendered inside the button
-        const closeIcon = closeButton.querySelector("svg.iconClear");
+        const closeIcon = closeButton.querySelector("svg.iconCross");
         expect(closeIcon).to.exist;
 
         // Assert that the button has the s-notice--btn class

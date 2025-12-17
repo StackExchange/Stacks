@@ -124,7 +124,7 @@ describe("UserCard", () => {
         const avatarImg = screen
             .getByTitle("John Doe")
             .closest(".s-user-card--avatar");
-        expect(avatarImg).to.have.class("iconPerson");
+        expect(avatarImg).to.have.class("iconUserFill");
     });
 
     it("should not render many properties when the deleted prop is true", () => {
