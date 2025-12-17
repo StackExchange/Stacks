@@ -1,4 +1,5 @@
 ---
+figma: https://www.figma.com/design/Qx4PIAImUMCQlTLeWWO5zeqE/Stack-Overflow-Logos--Marketing-?node-id=4470-198&t=0AmX7Bm4bOMDBW98-1
 updated: 2025-12-10
 ---
 
