@@ -410,7 +410,7 @@ A flex layout is initiated with the <code class="stacks-code">.d-flex</code> cla
 
 ## Fluid
 
-By default, all flex items will only be as wide as their content. If you would like a flex item or all the flex items to fill the remaining space, apply the <code class="stacks-code">.fl-grow1</code> to the individual item, or <code class="stacks-code">.flex__fl-equal</code> to the parent to apply to all children.
+By default, all flex items will only be as wide as their content. If you would like a flex item or all the flex items to fill the remaining space, apply the <code class="stacks-code">.fl-grow1</code> to the individual item, or <code class="stacks-code">.flex\_\_fl-equal</code> to the parent to apply to all children.
 
 ### Fluid examples
 
@@ -1630,4 +1630,5 @@ You can control the growing and shrinking behavior of individual elements within
             <div class="flex--item stacks-flex-example--item bg-black-225 bc-black-250 fl-equal">.flex--item</div>
         </div>
     </div>
+
 </div>

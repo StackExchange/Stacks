@@ -165,7 +165,6 @@ updated: 2025-12-05
 
 ### All corners
 
-
 ```
 <div class="bar0">0px Border radius</div>
 <div class="bar-md">10px Border radius</div>
@@ -182,7 +181,6 @@ updated: 2025-12-05
 
 ### Top left corner
 
-
 ```
 <div class="btlr0">0px Top Left Border Radius</div>
 <div class="btlr-md">10px Top Left Border Radius</div>
@@ -196,7 +194,6 @@ updated: 2025-12-05
 </div>
 
 ### Top right corner
-
 
 ```
 <div class="btrr0">0px Top Right Border Radius</div>
@@ -212,7 +209,6 @@ updated: 2025-12-05
 
 ### Bottom right corner
 
-
 ```
 <div class="bbrr0">0px Bottom Right Border Radius</div>
 <div class="bbrr-md">10px Bottom Right Border Radius</div>
@@ -227,7 +223,6 @@ updated: 2025-12-05
 
 ### Bottom left corner
 
-
 ```
 <div class="bblr0">0px Bottom Left Border Radius</div>
 <div class="bblr-md">10px Bottom Left Border Radius</div>
@@ -241,7 +236,6 @@ updated: 2025-12-05
 </div>
 
 ### Top corners
-
 
 ```
 <div class="btr0">0px Top Border Radius</div>
@@ -296,4 +290,3 @@ updated: 2025-12-05
     <div class="flex--item flex__center p12 bg-black-200 brr-md ba bc-black-225">10px Right Border Radius</div>
   </div>
 </div>
-

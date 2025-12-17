@@ -170,11 +170,11 @@ Our spacing units aren't limited to margin and padding; they also apply to top, 
 ### Coordinate examples
 
 ```html
-<div class="ps-absolute t12 l12"> … </div>
-<div class="ps-absolute t48 r24"> … </div>
-<div class="ps-absolute b48 l48"> … </div>
-<div class="ps-absolute bn8 rn8"> … </div>
-<div class="ps-absolute i64"> … </div>
+<div class="ps-absolute t12 l12">…</div>
+<div class="ps-absolute t48 r24">…</div>
+<div class="ps-absolute b48 l48">…</div>
+<div class="ps-absolute bn8 rn8">…</div>
+<div class="ps-absolute i64">…</div>
 ```
 
 <div class="ps-relative hs2">
@@ -200,6 +200,7 @@ Our spacing units aren't limited to margin and padding; they also apply to top, 
     <div class="ps-absolute bg-black-200 p12 ba bc-black-225 ff-mono i64 z-base">
         .i64
     </div>
+
 </div>
 
 ## Positive coordinates

@@ -5,9 +5,9 @@ description: Atomic classes allow you to quickly add currentColor to an element'
 
 ## Classes
 
-| Class | Output |
-|-------|--------|
-| `.fill-current` | `fill: currentColor;` |
+| Class             | Output                  |
+| ----------------- | ----------------------- |
+| `.fill-current`   | `fill: currentColor;`   |
 | `.stroke-current` | `stroke: currentColor;` |
 
 ## Examples

@@ -791,11 +791,12 @@ CSS Grids are the most powerful layout system available in CSS. It has two dimen
             <div class="d-none md:d-inline-block md:highlight">.md:grid--col-all</div>
         </div>
     </div>
+
 </div>
 
 ## Columns
 
-To define a discrete number of columns in your grid layout, you can add a <code class="stacks-code">grid__[x]</code> modifying class.
+To define a discrete number of columns in your grid layout, you can add a <code class="stacks-code">grid\_\_[x]</code> modifying class.
 
 ### Column classes
 
@@ -965,6 +966,7 @@ To define a discrete number of columns in your grid layout, you can add a <code 
         <div class="grid--item bg-black-200 p12 ba bc-black-225">3</div>
         <div class="grid--item bg-black-200 p12 ba bc-black-225">4</div>
     </div>
+
 </div>
 
 ## Column and row spans
@@ -1196,6 +1198,7 @@ If you have grid items that you don't explicitly place on the grid, the auto-pla
         <div class="grid--item bg-black-200 p12 ba bc-black-225">11</div>
         <div class="grid--col6 bg-black-200 p12 ba bc-black-225">12</div>
     </div>
+
 </div>
 
 ## Start and end
@@ -1372,4 +1375,5 @@ On the grid container, you can apply <code class="stacks-code">align-items</code
         <div class="grid--item bg-black-200 p12 ba bc-black-225 h64">5</div>
         <div class="grid--item bg-black-200 p12 ba bc-black-225 h64">6</div>
     </div>
+
 </div>

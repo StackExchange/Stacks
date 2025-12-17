@@ -250,4 +250,3 @@ Adding the confetti background utility adds confetti to any block-level element.
 #### Static
 
 <div class="bg-confetti-static h64"></div>
-
