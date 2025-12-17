@@ -156,9 +156,7 @@ Margin should never be declared outside of these utilities. This is meant to hel
 ### Margin classes
 
 ```html
-<div class="mt8 mr4 mb32 ml64">
-    …
-</div>
+<div class="mt8 mr4 mb32 ml64">…</div>
 ```
 
 <div class="mt8 mr4 mb32 ml64 bg-black-200 p12 ba bc-black-225">
@@ -316,9 +314,7 @@ Padding should never be declared outside of these utilities. This is meant to he
 ### Padding classes
 
 ```html
-<div class="pt4 pr64 pb64 pl64">
-    …
-</div>
+<div class="pt4 pr64 pb64 pl64">…</div>
 ```
 
 <div class="pt4 pr64 pb64 pl64 bg-black-200 p12 ba bc-black-225">

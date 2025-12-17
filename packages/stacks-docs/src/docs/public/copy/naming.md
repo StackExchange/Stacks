@@ -10,7 +10,7 @@ updated: 2025-12-11
   import { IconCheck24FillCircle, IconCross24FillCircle } from '@stackoverflow/stacks-icons'
 </script>
 
-This guide helps ensure consistent naming across all Stack Overflow communications, products, and materials.
+This guide helps ensure consistent naming across all Stack Overflow communications, products, features, and materials.
 
 ## Components
 
@@ -46,7 +46,7 @@ _E.g., Reddit Ads, Mozilla VPN, Slack AI_
 
 At the current rate of change, it's simplest to name products descriptively, to keep barriers to understanding as low as possible.
 
-We want to make it as clear as possible to our audiences what our products, brands and features are and do — and what they can expect when interacting with them.
+We want to make it as clear as possible to our audiences what our brands, products and features are and do — and what they can expect when interacting with them.
 
 A descriptive naming system is also an easy naming system to scale and roll out across any new brands, products or features that come along in the short to medium-term.
 
@@ -141,7 +141,7 @@ Business products do not have distinct logos but there are [differences with col
 
 ### Stack Data Licensing
 
-Our data licensing product provides access to Stack Overflow’s vast dataset.
+Our data licensing product provides ethical access to Stack Overflow’s vast dataset.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
