@@ -36,10 +36,12 @@
     import PopoverReference from "../Popover/PopoverReference.svelte";
     import UserCard from "../UserCard/UserCard.svelte";
     import {
-        IconEllipsisVertical,
         IconShield,
     } from "@stackoverflow/stacks-icons-legacy/icons";
-    import { IconCheck } from "@stackoverflow/stacks-icons/icons";
+    import { 
+        IconCheck,
+        IconMore16V,
+    } from "@stackoverflow/stacks-icons/icons";
 
     /**
      * The URL to navigate to when the post title is clicked
@@ -352,7 +354,7 @@
                         class="s-post-summary--content-menu-button"
                         variant="tonal"
                     >
-                        <Icon src={IconEllipsisVertical} />
+                        <Icon src={IconMore16V} />
                         <span class="v-visible-sr"
                             >{i18nActionMenuButtonText}</span
                         >
