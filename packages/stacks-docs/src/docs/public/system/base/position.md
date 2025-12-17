@@ -1,4 +1,6 @@
 ---
+title: Positioning
+description: Atomic positioning classes allow you to quickly change an element’s position.
 updated: 2025-12-05
 ---
 

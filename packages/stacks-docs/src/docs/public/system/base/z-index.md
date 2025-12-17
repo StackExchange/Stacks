@@ -1,6 +1,6 @@
 ---
 title: Z-Index
-description: Atomic z-index classes allow you to change an element's z-index quickly.
+description: Atomic z-index classes allow you to change an element’s z-index quickly.
 updated: 2025-12-16
 ---
 

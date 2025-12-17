@@ -1,4 +1,6 @@
 ---
+title: Spacing
+description: Stacks provides atomic classes to override margin and padding.
 updated: 2025-12-05
 ---
 
