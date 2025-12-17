@@ -1,11 +1,8 @@
 import { tick } from "svelte";
 import { expect } from "@open-wc/testing";
 import { render, screen } from "@testing-library/svelte";
-import userEvent from "@testing-library/user-event";
 
 import Checkbox from "./Checkbox.svelte";
-
-const user = userEvent.setup();
 
 type CheckboxProps = {
     id: string;
@@ -113,7 +110,9 @@ describe("Checkbox", () => {
             state: "error",
         });
 
-        const container = screen.getByText("Option state").closest(".s-checkbox");
+        const container = screen
+            .getByText("Option state")
+            .closest(".s-checkbox");
         expect(container).to.have.class("has-error");
     });
 
@@ -133,7 +132,9 @@ describe("Checkbox", () => {
             class: "custom-class",
         });
 
-        const container = screen.getByText("Option class").closest(".s-checkbox");
+        const container = screen
+            .getByText("Option class")
+            .closest(".s-checkbox");
         expect(container).to.have.class("custom-class");
     });
 

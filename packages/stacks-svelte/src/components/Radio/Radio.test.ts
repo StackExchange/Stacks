@@ -1,11 +1,8 @@
 import { tick } from "svelte";
 import { expect } from "@open-wc/testing";
 import { render, screen } from "@testing-library/svelte";
-import userEvent from "@testing-library/user-event";
 
 import Radio from "./Radio.svelte";
-
-const user = userEvent.setup();
 
 type RadioProps = {
     id: string;
