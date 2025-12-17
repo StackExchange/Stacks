@@ -114,7 +114,7 @@ describe("UserCard", () => {
         ).to.have.class("s-user-card__deleted");
     });
 
-    it("should render the Icon Person instead of Avatar and name unlinked when deleted prop is true", () => {
+    it("should render the Icon UserFill instead of Avatar and name unlinked when deleted prop is true", () => {
         render(UserCard, {
             name: "John Doe",
             avatar: "https://picsum.photos/128",
@@ -124,7 +124,7 @@ describe("UserCard", () => {
         const avatarImg = screen
             .getByTitle("John Doe")
             .closest(".s-user-card--avatar");
-        expect(avatarImg).to.have.class("iconUserFill");
+        expect(avatarImg).to.have.class("IconUserFill");
     });
 
     it("should not render many properties when the deleted prop is true", () => {
