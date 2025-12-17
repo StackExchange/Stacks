@@ -55,7 +55,7 @@
                   <a
                     class="s-navigation--item jc-space-between mb1"
                     class:is-selected={page.params.section === subsection.slug}
-                    href={subsection.externalUrl || `/${category.slug}/${subsection.slug}/`}
+                    href={subsection.externalUrl || `/${category.slug}/${subsection.slug}/${subsection?.items[0].slug}`}
                     data-sveltekit-reload={subsection.private ? true : undefined}
                   >
                     <span>{subsection.title}</span>
