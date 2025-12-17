@@ -133,26 +133,19 @@
 
 <Story name="State" asChild>
     <div class="d-flex fw-wrap g64">
-        {#each [false, true] as checkmark (checkmark)}
-            <fieldset class="s-checkbox-group wmx2">
-                <legend class="s-label">
-                    {checkmark ? "checkmark" : "checkbox"}
-                </legend>
-                {#each CheckboxStates as state (state)}
-                    {#if state !== ""}
-                        <Checkbox
-                            name="description checkbox {state} example"
-                            id="Checkbox-{state}-example{checkmark
-                                ? '-checkmark'
-                                : ''}"
-                            label="Label"
-                            description="Checkbox with {state}."
-                            {checkmark}
-                            {state}
-                        />
-                    {/if}
-                {/each}
-            </fieldset>
-        {/each}
+        <fieldset class="s-form-group wmx2">
+            <legend class="s-label"> Checkbox Group </legend>
+            {#each CheckboxStates as state (state)}
+                {#if state !== ""}
+                    <Checkbox
+                        name="description checkbox {state} example"
+                        id="Checkbox-{state}-example"
+                        label="Label"
+                        description="Checkbox with {state}."
+                        {state}
+                    />
+                {/if}
+            {/each}
+        </fieldset>
     </div>
 </Story>

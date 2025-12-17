@@ -1,6 +1,8 @@
 import { tick } from "svelte";
 import { expect } from "@open-wc/testing";
 import { render, screen } from "@testing-library/svelte";
+import userEvent from "@testing-library/user-event";
+import sinon from "sinon";
 
 import Checkbox from "./Checkbox.svelte";
 
@@ -166,5 +168,154 @@ describe("Checkbox", () => {
         const label = screen.getByText("Option label").closest("label");
         expect(label).to.exist;
         expect(label).to.have.attribute("for", "test-checkbox-label");
+    });
+
+    it("should call onchange callback when checkbox is clicked", async () => {
+        const onChangeSpy = sinon.spy();
+        render(Checkbox, {
+            ...baseCheckboxProps("onchange"),
+            onchange: onChangeSpy,
+        });
+
+        const input = screen.getByRole("checkbox");
+        await userEvent.click(input);
+
+        await tick();
+        expect(onChangeSpy).to.have.been.calledOnce;
+        expect(onChangeSpy).to.have.been.calledWithMatch({
+            currentTarget: { checked: true },
+        });
+    });
+
+    it("should update checked state when checkbox is clicked", async () => {
+        render(Checkbox, {
+            ...baseCheckboxProps("bindable"),
+        });
+
+        const input = screen.getByRole("checkbox");
+        expect(input).not.to.have.property("checked", true);
+
+        await userEvent.click(input);
+        await tick();
+
+        expect(input).to.have.property("checked", true);
+    });
+
+    it("should not update checked state when indeterminate is true", async () => {
+        render(Checkbox, {
+            ...baseCheckboxProps("indeterminate-no-update"),
+            indeterminate: true,
+        });
+
+        await tick();
+
+        const input = screen.getByRole("checkbox") as HTMLInputElement;
+        expect(input.indeterminate).to.be.true;
+        expect(input).not.to.have.property("checked", true);
+
+        await userEvent.click(input);
+        await tick();
+
+        expect(input).not.to.have.property("checked", true);
+        expect(input.indeterminate).to.be.true;
+    });
+
+    it("should apply all state classes", () => {
+        const states = ["error", "success", "warning"] as const;
+
+        states.forEach((state) => {
+            const { unmount } = render(Checkbox, {
+                ...baseCheckboxProps(`state-${state}`),
+                state,
+            });
+
+            const container = screen
+                .getByText(`Option state-${state}`)
+                .closest(".s-checkbox");
+            expect(container).to.have.class(`has-${state}`);
+
+            unmount();
+        });
+    });
+
+    it("should render string value", () => {
+        render(Checkbox, {
+            ...baseCheckboxProps("value-string"),
+            value: "test-value",
+        });
+
+        const input = screen.getByRole("checkbox");
+        expect(input).to.have.attribute("value", "test-value");
+    });
+
+    it("should render description in checkmark mode", () => {
+        render(Checkbox, {
+            ...baseCheckboxProps("checkmark-description"),
+            checkmark: true,
+            description: "Checkmark description",
+        });
+
+        const description = screen.getByText("Checkmark description");
+        expect(description).to.exist;
+        expect(description).to.have.class("s-description");
+
+        const container = screen
+            .getByText("Option checkmark-description")
+            .closest("label");
+        expect(container).to.exist;
+    });
+
+    it("should render description in non-checkmark mode", () => {
+        render(Checkbox, {
+            ...baseCheckboxProps("non-checkmark-description"),
+            checkmark: false,
+            description: "Non-checkmark description",
+        });
+
+        const description = screen.getByText("Non-checkmark description");
+        expect(description).to.exist;
+        expect(description).to.have.class("s-description");
+    });
+
+    it("should update indeterminate state when prop changes", async () => {
+        const { rerender } = render(Checkbox, {
+            ...baseCheckboxProps("indeterminate-update"),
+            indeterminate: false,
+        });
+
+        await tick();
+
+        let input = screen.getByRole("checkbox") as HTMLInputElement;
+        expect(input.indeterminate).to.be.false;
+
+        rerender({
+            ...baseCheckboxProps("indeterminate-update"),
+            indeterminate: true,
+        });
+
+        await tick();
+
+        input = screen.getByRole("checkbox") as HTMLInputElement;
+        expect(input.indeterminate).to.be.true;
+    });
+
+    it("should update checked state when prop changes externally", async () => {
+        const { rerender } = render(Checkbox, {
+            ...baseCheckboxProps("checked-external"),
+            checked: false,
+        });
+
+        let input = screen.getByRole("checkbox");
+        expect(input).not.to.have.property("checked", true);
+
+        rerender({
+            ...baseCheckboxProps("checked-external"),
+            checked: true,
+        });
+
+        await tick();
+
+        input = screen.getByRole("checkbox");
+        expect(input).to.have.property("checked", true);
     });
 });

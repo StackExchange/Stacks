@@ -58,7 +58,7 @@
         value?: string | number;
 
         /**
-         * Additional CSS classes added to the checkbox control container
+         * Additional CSS classes
          */
         class?: string;
 
