@@ -20,7 +20,11 @@ describe("Notice", () => {
     });
 
     it("should render the icon", () => {
-        render(Notice, { icon: IconAlertFill, iconTitle: "test title", children });
+        render(Notice, {
+            icon: IconAlertFill,
+            iconTitle: "test title",
+            children,
+        });
         const icon = document.querySelector("svg.iconAlert");
         expect(icon).to.exist;
         expect(screen.getByRole("status")).to.exist;

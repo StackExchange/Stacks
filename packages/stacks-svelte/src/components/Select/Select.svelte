@@ -24,10 +24,10 @@
 <script lang="ts">
     import Icon from "../Icon/Icon.svelte";
     import Label from "../Label/Label.svelte";
-    import { 
-        IconAlert, 
-        IconAlertFill, 
-        IconCheck 
+    import {
+        IconAlert,
+        IconAlertFill,
+        IconCheck,
     } from "@stackoverflow/stacks-icons/icons";
     import { setContext } from "svelte";
     import type { Snippet } from "svelte";

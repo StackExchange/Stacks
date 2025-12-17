@@ -31,9 +31,7 @@
         IconSearch,
     } from "@stackoverflow/stacks-icons/icons";
 
-    import {
-        IconCreditCard,
-    } from "@stackoverflow/stacks-icons-legacy/icons";
+    import { IconCreditCard } from "@stackoverflow/stacks-icons-legacy/icons";
 
     interface Props extends Omit<HTMLInputAttributes, "size" | "type"> {
         /**

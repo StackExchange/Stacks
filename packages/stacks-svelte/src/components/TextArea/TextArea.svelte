@@ -12,7 +12,7 @@
         IconAlert,
         IconAlertFill,
         IconCheck,
-    } from "@stackoverflow/stacks-icons/icons";;
+    } from "@stackoverflow/stacks-icons/icons";
 
     interface Props extends Omit<HTMLTextareaAttributes, "size"> {
         /**
