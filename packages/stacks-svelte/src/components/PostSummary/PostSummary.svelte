@@ -35,13 +35,8 @@
     import PopoverContent from "../Popover/PopoverContent.svelte";
     import PopoverReference from "../Popover/PopoverReference.svelte";
     import UserCard from "../UserCard/UserCard.svelte";
-    import {
-        IconShield,
-    } from "@stackoverflow/stacks-icons-legacy/icons";
-    import { 
-        IconCheck,
-        IconMore16V,
-    } from "@stackoverflow/stacks-icons/icons";
+    import { IconShield } from "@stackoverflow/stacks-icons-legacy/icons";
+    import { IconCheck, IconMore16V } from "@stackoverflow/stacks-icons/icons";
 
     /**
      * The URL to navigate to when the post title is clicked
