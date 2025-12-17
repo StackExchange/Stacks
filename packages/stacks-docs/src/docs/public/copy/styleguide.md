@@ -41,7 +41,7 @@ When Stack Overflow products appear in running text, always capitalize the full 
 
 ### Feature names
 
-Feature names should be capitalized when referring to the specific Stack Overflow feature, but lowercase when used generically.
+Feature names should be capitalized when referring to the specific Stack Overflow feature, but lowercase when used generically. Generic features like questions, answers, tags and search etc should all remain lowercase.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
@@ -262,9 +262,9 @@ Capitalize “Articles” when referring to the specific Stack Overflow feature 
   </GridColumn>
 </Grid>
 
-### User roles
+### User management and roles
 
-Always capitalize user roles, no matter the context.
+Always capitalize user roles in relation to management systems.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
@@ -626,7 +626,7 @@ Don’t use exclamation points unless something is really exciting. If you have 
 
 Use hyphens to combine two words that modify or describe the noun that follows, or join prefixes and suffixes when there are two vowels beside each other.
 
-Use an en dash with no spaces (–) for a fixed range of numbers. Avoid using em dashes in microcopy.
+Use an en dash with no spaces (–) for a fixed range of numbers. Avoid using em dashes in microcopy for readability, but fine to use in long-form articles or documentation.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
