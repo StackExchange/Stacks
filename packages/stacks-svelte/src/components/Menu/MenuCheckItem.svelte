@@ -3,7 +3,8 @@
 </script>
 
 <script lang="ts">
-    import Check from "../Check/Check.svelte";
+    import Checkbox from "../Checkbox/Checkbox.svelte";
+    import Radio from "../Radio/Radio.svelte";
     import Icon from "../Icon/Icon.svelte";
 
     interface Props {
@@ -82,16 +83,29 @@
     {#if icon}
         <Icon src={icon} class="s-menu--icon" />
     {/if}
-    <Check
-        class="s-menu--action"
-        {checked}
-        {description}
-        {disabled}
-        {id}
-        {label}
-        {name}
-        {type}
-        {value}
-        checkmark
-    />
+    {#if type === "checkbox"}
+        <Checkbox
+            class="s-menu--action"
+            {checked}
+            {description}
+            {disabled}
+            {id}
+            {label}
+            {name}
+            {value}
+            checkmark
+        />
+    {:else}
+        <Radio
+            class="s-menu--action"
+            {checked}
+            {description}
+            {disabled}
+            {id}
+            {label}
+            {name}
+            {value}
+            checkmark
+        />
+    {/if}
 </div>
