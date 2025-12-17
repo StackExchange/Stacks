@@ -1,7 +1,7 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import Checkbox, { type Checked, type State } from "./Checkbox.svelte";
-    const CheckboxChecked: Checked[] = [true, false, "indeterminate"];
+    const CheckboxChecked: Checked[] = [true, false];
     const CheckboxStates: State[] = ["", "error", "success", "warning"];
 
     const { Story } = defineMeta({
@@ -49,13 +49,12 @@
                         <th scope="col">
                             {#if checked === true}
                                 Checked
-                            {:else if checked === false}
-                                Unchecked
                             {:else}
-                                {checked}
+                                Unchecked
                             {/if}
                         </th>
                     {/each}
+                    <th scope="col">Indeterminate</th>
                 </tr>
             </thead>
             <tbody>
@@ -65,24 +64,33 @@
                             {checkmark ? "Checkmark" : "Default"}
                         </th>
                         {#each CheckboxChecked as checked (checked)}
-                            {#if checked === "indeterminate" && checkmark}
-                                <td class="va-middle px16">N/A</td>
-                            {:else}
-                                <td class="va-middle p16">
-                                    <Checkbox
-                                        name="checkbox {checkmark
-                                            ? ' checkmark'
-                                            : ''}"
-                                        id="Checkbox-checked{checkmark
-                                            ? '-checkmark'
-                                            : ''}-{checked}"
-                                        label="Label"
-                                        {checked}
-                                        {checkmark}
-                                    />
-                                </td>
-                            {/if}
+                            <td class="va-middle p16">
+                                <Checkbox
+                                    name="checkbox {checkmark
+                                        ? ' checkmark'
+                                        : ''}"
+                                    id="Checkbox-checked{checkmark
+                                        ? '-checkmark'
+                                        : ''}-{checked}"
+                                    label="Label"
+                                    {checked}
+                                    {checkmark}
+                                />
+                            </td>
                         {/each}
+                        <td class="va-middle p16">
+                            <Checkbox
+                                name="checkbox {checkmark
+                                    ? ' checkmark'
+                                    : ''} indeterminate"
+                                id="Checkbox-indeterminate{checkmark
+                                    ? '-checkmark'
+                                    : ''}"
+                                label="Label"
+                                indeterminate
+                                {checkmark}
+                            />
+                        </td>
                     </tr>
                 {/each}
             </tbody>

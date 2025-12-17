@@ -38,10 +38,10 @@ describe("Checkbox", () => {
         expect(input).to.have.property("checked", true);
     });
 
-    it("should set indeterminate state when checked is 'indeterminate'", async () => {
+    it("should set indeterminate state when indeterminate is true", async () => {
         render(Checkbox, {
             ...baseCheckboxProps("indeterminate"),
-            checked: "indeterminate",
+            indeterminate: true,
         });
 
         await tick();

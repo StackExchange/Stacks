@@ -1,12 +1,12 @@
 <script module lang="ts">
-    export type Checked = boolean | "indeterminate";
+    export type Checked = boolean;
     export type State = "" | "error" | "success" | "warning";
 </script>
 
 <script lang="ts">
     import Label from "../Label/Label.svelte";
 
-    type Props = {
+    export type Props = {
         /**
          * The id attribute of the input
          */
@@ -28,9 +28,14 @@
         checkmark?: boolean;
 
         /**
-         * Sets the checked state of the input. "indeterminate" can only be used for checkboxes.
+         * Sets the checked state of the input
          */
         checked?: Checked;
+
+        /**
+         * Sets the indeterminate state of the input
+         */
+        indeterminate?: boolean;
 
         /**
          * The description text for the input
@@ -56,22 +61,37 @@
          * Additional CSS classes added to the checkbox control container
          */
         class?: string;
+
+        /**
+         * Change event handler
+         */
+        onchange?: (
+            event: Event & { currentTarget: EventTarget & HTMLInputElement }
+        ) => void;
     };
 
-    const {
+    let {
         id,
         name,
         label,
-        checked = false,
+        checked = $bindable(false),
+        indeterminate = false,
         checkmark = false,
         description = "",
         disabled = false,
         state = "",
         value = "",
         class: className = "",
+        onchange,
     }: Props = $props();
 
     let inputElement: HTMLInputElement;
+
+    $effect(() => {
+        if (inputElement) {
+            inputElement.indeterminate = indeterminate;
+        }
+    });
 
     const getClasses = (
         className: string,
@@ -97,12 +117,6 @@
     };
 
     const classes = $derived(getClasses(className, checkmark, state));
-
-    // Handle indeterminate state (must be set on the DOM element)
-    $effect(() => {
-        inputElement.indeterminate =
-            checked === "indeterminate" && !!inputElement;
-    });
 </script>
 
 <svelte:element
@@ -112,12 +126,18 @@
 >
     <input
         bind:this={inputElement}
-        checked={checked === "indeterminate" ? false : checked}
+        bind:checked
         {disabled}
         {id}
         {name}
         type="checkbox"
         {value}
+        onchange={(event) => {
+            if (!indeterminate) {
+                checked = event.currentTarget.checked;
+            }
+            onchange?.(event);
+        }}
     />
     {#if checkmark}
         {#if description}
@@ -129,10 +149,13 @@
             {label}
         {/if}
     {:else}
-        <Label {id}
-            >{label}{#if description}<p class="s-description">
+        <Label {id}>
+            {label}
+            {#if description}
+                <p class="s-description">
                     {description}
-                </p>{/if}</Label
-        >
+                </p>
+            {/if}
+        </Label>
     {/if}
 </svelte:element>

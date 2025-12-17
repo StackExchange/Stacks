@@ -5,7 +5,7 @@
 <script lang="ts">
     import Label from "../Label/Label.svelte";
 
-    type Props = {
+    export type Props = {
         /**
          * The id attribute of the input
          */
@@ -52,12 +52,19 @@
         value?: string | number;
 
         /**
-         * Additional CSS classes added to the radio control container
+         * Additional CSS classes
          */
         class?: string;
+
+        /**
+         * Change event handler
+         */
+        onchange?: (
+            event: Event & { currentTarget: EventTarget & HTMLInputElement }
+        ) => void;
     };
 
-    const {
+    let {
         id,
         name,
         label,
@@ -68,6 +75,7 @@
         state = "",
         value = "",
         class: className = "",
+        onchange,
     }: Props = $props();
 
     const getClasses = (
@@ -101,7 +109,7 @@
     class={classes}
     for={checkmark ? id : undefined}
 >
-    <input {checked} {disabled} {id} {name} type="radio" {value} />
+    <input {checked} {disabled} {id} {name} type="radio" {value} {onchange} />
     {#if checkmark}
         {#if description}
             <div>
@@ -112,10 +120,13 @@
             {label}
         {/if}
     {:else}
-        <Label {id}
-            >{label}{#if description}<p class="s-description">
+        <Label {id}>
+            {label}
+            {#if description}
+                <p class="s-description">
                     {description}
-                </p>{/if}</Label
-        >
+                </p>
+            {/if}
+        </Label>
     {/if}
 </svelte:element>
