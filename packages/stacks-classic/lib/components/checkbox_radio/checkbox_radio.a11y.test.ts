@@ -1,12 +1,14 @@
 import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
-["checkbox", "radio"].forEach((type) => {
-    describe("s-check", () => {
+["s-checkbox", "s-radio"].forEach((atomicClass) => {
+    const type = atomicClass.replace("s-", "");
+
+    describe(type, () => {
         // TODO include indeterminate
         ["checked", "unchecked"].forEach((state) => {
             runA11yTests({
-                baseClass: "s-check",
+                baseClass: atomicClass,
                 modifiers: {
                     global: ["has-warning", "has-error", "has-success"],
                     primary: ["checkmark"],

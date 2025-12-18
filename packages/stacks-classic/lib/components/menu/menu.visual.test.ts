@@ -29,19 +29,19 @@ describe("menu", () => {
             checkmark: `
                 <li class="s-menu--title" role="separator">Checkmark Menu</li>
                 <li class="s-menu--item" role="menuitem">
-                    <label class="s-menu--action s-check s-check__checkmark" for="check-1">
+                    <label class="s-menu--action s-checkbox s-checkbox__checkmark" for="check-1">
                         <input type="checkbox" id="check-1" name="check-1" />
                         Option 1
                     </label>
                 </li>
                 <li class="s-menu--item" role="menuitem">
-                    <label class="s-menu--action s-check s-check__checkmark" for="check-2">
+                    <label class="s-menu--action s-checkbox s-checkbox__checkmark" for="check-2">
                         <input type="checkbox" id="check-2" name="check-2" checked />
                         Option 2
                     </label>
                 </li>
                 <li class="s-menu--item" role="menuitem">
-                    <label class="s-menu--action s-check s-check__checkmark" for="check-3">
+                    <label class="s-menu--action s-checkbox s-checkbox__checkmark" for="check-3">
                         <input type="checkbox" id="check-3" name="check-3" />
                         Option 3
                     </label>

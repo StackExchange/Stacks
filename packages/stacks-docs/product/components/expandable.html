@@ -122,49 +122,35 @@ tags: components
     <div class="stacks-preview">
 {% highlight html %}
 …
-<div class="flex--item">
+<div class="s-radio">
     <input type="radio" name="mood-choice" id="mood-happy"
         data-controller="s-expandable-control"
         aria-controls="mood-happy-text" />
+    <label class="s-label" for="mood-happy">Happy</label>
 </div>
-<div class="flex--item">
-    <label class="d-block mb4 s-label fw-normal" for="mood-happy">Happy</label>
-    <div class="s-expandable" id="mood-happy-text">
-        <p class="s-expandable--content">@Svg.FaceSmile</p>
-    </div>
+<div class="s-expandable" id="mood-happy-text">
+    <p class="s-expandable--content">@Svg.FaceSmile</p>
 </div>
 …
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <fieldset class="d-flex gy8 fd-column">
-                <legend class="flex--item s-label mb8">What is your mood?</legend>
-                <div class="flex--item">
-                    <div class="d-flex gx8">
-                        <div class="flex--item">
-                            <input type="radio" name="mood-choice" id="mood-happy"
-                                data-controller="s-expandable-control"
-                                aria-controls="mood-happy-text" />
-                        </div>
-                        <div class="flex--item">
-                            <label class="d-block mb4 s-label fw-normal" for="mood-happy">Happy</label>
-                            <div class="s-expandable" id="mood-happy-text">
-                                <p class="s-expandable--content">{% icon "FaceSmile", "", "64" %}</p>
-                            </div>
-                        </div>
-                    </div>
+            <fieldset class="s-form-group">
+                <legend class="s-label">What is your mood?</legend>
+                <div class="s-radio">
+                    <input type="radio" name="mood-choice" id="mood-happy"
+                    data-controller="s-expandable-control"
+                        aria-controls="mood-happy-text" />
+                    <label class="s-label" for="mood-happy">Happy</label>
                 </div>
-                <div class="flex--item">
-                    <div class="d-flex gx8">
-                        <div class="flex--item">
-                            <input type="radio" name="mood-choice" id="mood-sad" data-controller="s-expandable-control" aria-controls="mood-sad-text" />
-                        </div>
-                        <div class="flex--item">
-                            <label class="d-block mb4 s-label fw-normal" for="mood-sad">Sad</label>
-                            <div class="s-expandable" id="mood-sad-text">
-                                <p class="s-expandable--content">{% icon "FaceSad", "", "64" %}</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="s-expandable" id="mood-happy-text">
+                    <p class="s-expandable--content">{% icon "FaceSmile", "", "64" %}</p>
+                </div>
+                <div class="s-radio">
+                    <input type="radio" name="mood-choice" id="mood-sad" data-controller="s-expandable-control" aria-controls="mood-sad-text" />
+                    <label class="s-label" for="mood-sad">Sad</label>
+                </div>
+                <div class="s-expandable" id="mood-sad-text">
+                    <p class="s-expandable--content">{% icon "FaceSad", "", "64" %}</p>
                 </div>
             </fieldset>
         </div>
