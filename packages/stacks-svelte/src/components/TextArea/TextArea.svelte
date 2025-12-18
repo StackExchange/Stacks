@@ -10,9 +10,9 @@
     import Label from "../Label/Label.svelte";
     import {
         IconAlert,
-        IconAlertCircle,
-        IconCheckmark,
-    } from "@stackoverflow/stacks-icons-legacy/icons";
+        IconAlertFill,
+        IconCheck,
+    } from "@stackoverflow/stacks-icons/icons";
 
     interface Props extends Omit<HTMLTextareaAttributes, "size"> {
         /**
@@ -166,9 +166,9 @@
         {#if state}
             <div class="s-input-icon">
                 {#if state === "error"}
-                    <Icon src={IconAlertCircle} />
+                    <Icon src={IconAlertFill} />
                 {:else if state === "success"}
-                    <Icon src={IconCheckmark} />
+                    <Icon src={IconCheck} />
                 {:else}
                     <Icon src={IconAlert} />
                 {/if}
