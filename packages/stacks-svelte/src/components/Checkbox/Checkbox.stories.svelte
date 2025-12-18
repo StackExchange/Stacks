@@ -11,12 +11,16 @@
         component: Checkbox,
     });
 
-    // For CheckboxGroup stories
-    let selectedValues = $state<string[]>([]);
-
     // For bindable value and onchange story
     let isChecked = $state(false);
     let changeCount = $state(0);
+
+    // For CheckboxGroup bindable value and onValueChange story
+    let checkboxGroupValues = $state<(string | number)[]>([]);
+    let checkboxGroupChangeCount = $state(0);
+    let previousCheckboxValues = $state<(string | number)[] | undefined>(
+        undefined
+    );
     const checkboxGroupOptions = (
         suffix: string = "checkbox"
     ): CheckboxOption[] => {
@@ -208,16 +212,29 @@
         </p>
         <div class="d-flex fw-wrap g32">
             <div class="wmx2">
-                <h3>With bindable value</h3>
+                <h3>Bindable value and onValueChange</h3>
                 <div class="s-card">
                     <CheckboxGroup
                         label="Which fruits do you like?"
-                        name="fruit-preference"
-                        options={checkboxGroupOptions()}
-                        bind:value={selectedValues}
+                        name="fruit-bindable-onchange"
+                        options={checkboxGroupOptions("bindable")}
+                        bind:value={checkboxGroupValues}
+                        onValueChange={(newValue) => {
+                            if (
+                                previousCheckboxValues !== undefined &&
+                                JSON.stringify(previousCheckboxValues) !==
+                                    JSON.stringify(newValue)
+                            ) {
+                                checkboxGroupChangeCount++;
+                            }
+                            previousCheckboxValues = Array.isArray(newValue)
+                                ? newValue
+                                : [];
+                        }}
                     />
                     <p class="mt16">
-                        Selected: {selectedValues.join(", ") || "None"}
+                        Selected: {checkboxGroupValues.join(", ") || "None"} | Changes:
+                        {checkboxGroupChangeCount}
                     </p>
                 </div>
             </div>
