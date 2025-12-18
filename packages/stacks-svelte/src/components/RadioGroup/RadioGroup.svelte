@@ -16,11 +16,6 @@
          * The array of radio options to render
          */
         options: RadioOption[];
-
-        /**
-         * Callback function called when the value changes
-         */
-        onValueChange?: (newValue: string | number | undefined) => void;
     };
 
     let {
@@ -34,16 +29,6 @@
         class: className = "",
         onValueChange,
     }: Props = $props();
-
-    $effect(() => {
-        if (onValueChange) {
-            onValueChange(
-                Array.isArray(value)
-                    ? undefined
-                    : (value as string | number | undefined)
-            );
-        }
-    });
 </script>
 
 <FormGroup
@@ -56,4 +41,5 @@
     {name}
     {options}
     {state}
+    {onValueChange}
 />

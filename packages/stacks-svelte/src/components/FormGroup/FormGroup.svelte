@@ -61,6 +61,13 @@
          * Additional CSS classes
          */
         class?: string;
+
+        /**
+         * Callback function called when the value changes
+         */
+        onValueChange?: (
+            newValue: string | number | (string | number)[] | undefined
+        ) => void;
     };
 
     let {
@@ -73,6 +80,7 @@
         horizontal = false,
         state = "",
         class: className = "",
+        onValueChange,
     }: Props = $props();
 
     // Ensure all options have the name and id properties set
@@ -133,6 +141,12 @@
     };
 
     const classes = $derived(getClasses(className, horizontal, state));
+
+    $effect(() => {
+        if (onValueChange) {
+            onValueChange(value);
+        }
+    });
 </script>
 
 <fieldset class={classes} {disabled}>

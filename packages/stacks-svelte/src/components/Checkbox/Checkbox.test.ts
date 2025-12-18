@@ -521,4 +521,20 @@ describe("CheckboxGroup", () => {
         expect(onChangeSpy1).to.have.been.calledOnce;
         expect(onChangeSpy2).not.to.have.been.called;
     });
+
+    it("should call onValueChange callback when value changes", async () => {
+        const onValueChangeSpy = sinon.spy();
+        render(CheckboxGroup, {
+            label: "Test Checkbox Group",
+            name: "test-checkbox-group",
+            options: baseCheckboxGroupOptions,
+            onValueChange: onValueChangeSpy,
+        });
+
+        const checkboxes = screen.getAllByRole("checkbox");
+        await userEvent.click(checkboxes[0]);
+        await tick();
+
+        expect(onValueChangeSpy).to.have.been.called;
+    });
 });

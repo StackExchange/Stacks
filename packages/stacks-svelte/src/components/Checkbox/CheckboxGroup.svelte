@@ -29,6 +29,7 @@
         horizontal = false,
         state = "",
         class: className = "",
+        onValueChange,
     }: Props = $props();
 </script>
 
@@ -42,4 +43,5 @@
     {name}
     {options}
     {state}
+    {onValueChange}
 />
