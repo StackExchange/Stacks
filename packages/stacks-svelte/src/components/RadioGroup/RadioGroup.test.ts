@@ -245,14 +245,14 @@ describe("RadioGroup", () => {
     });
 
     it("should apply state classes", async () => {
-        const { rerender } = render(RadioGroup, {
+        render(RadioGroup, {
             label: "Test Radio Group",
             name: "test-radio-group",
             options: baseRadioGroupOptions,
             state: "error",
         });
 
-        let fieldset = screen
+        const fieldset = screen
             .getByText("Test Radio Group")
             .closest("fieldset");
         expect(fieldset).to.have.class("has-error");
@@ -314,11 +314,11 @@ describe("RadioGroup", () => {
     it("should call option onchange callback when provided", async () => {
         const onChangeSpy1 = sinon.spy();
         const onChangeSpy2 = sinon.spy();
-        const optionsWithOnChange = [
+        const optionsWithOnChange: RadioOption[] = [
             { ...baseRadioGroupOptions[0], onchange: onChangeSpy1 },
             { ...baseRadioGroupOptions[1], onchange: onChangeSpy2 },
             baseRadioGroupOptions[2],
-        ] as any as RadioOption[];
+        ];
 
         render(RadioGroup, {
             label: "Test Radio Group",

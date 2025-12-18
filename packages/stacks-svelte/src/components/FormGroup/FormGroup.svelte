@@ -9,9 +9,12 @@
     import type { Props as CheckboxProps } from "../Checkbox/Checkbox.svelte";
     import type { Props as RadioProps } from "../RadioGroup/Radio.svelte";
 
-    // Option types without name and onchange (id is optional, name is added by FormGroup)
-    export type CheckboxOption = Omit<CheckboxProps, "name" | "onchange">;
-    export type RadioOption = Omit<RadioProps, "name" | "onchange">;
+    export type CheckboxOption = Omit<CheckboxProps, "name" | "id"> & {
+        id?: string;
+    };
+    export type RadioOption = Omit<RadioProps, "name" | "id"> & {
+        id?: string;
+    };
     export type Option = CheckboxOption | RadioOption;
     export type Props = {
         /**

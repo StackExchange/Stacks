@@ -108,7 +108,7 @@ describe("FormGroup", () => {
         });
 
         it("should update checked state when value prop changes", async () => {
-            const { component, rerender } = render(FormGroup, {
+            const { rerender } = render(FormGroup, {
                 type: "radio",
                 label: "Test Radio Group",
                 name: "test-radio",
@@ -276,11 +276,11 @@ describe("FormGroup", () => {
         it("should call option onchange callback when provided", async () => {
             const onChangeSpy1 = sinon.spy();
             const onChangeSpy2 = sinon.spy();
-            const optionsWithOnChange = [
+            const optionsWithOnChange: CheckboxOption[] = [
                 { ...baseCheckboxOptions[0], onchange: onChangeSpy1 },
                 { ...baseCheckboxOptions[1], onchange: onChangeSpy2 },
                 baseCheckboxOptions[2],
-            ] as any as CheckboxOption[];
+            ];
 
             render(FormGroup, {
                 type: "checkbox",

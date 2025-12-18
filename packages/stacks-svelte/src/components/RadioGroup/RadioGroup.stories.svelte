@@ -42,7 +42,7 @@
         options: baseOptions,
     }}
 >
-    {#snippet template(args: any)}
+    {#snippet template(args)}
         <div class="wmx2">
             <RadioGroup {...args} />
         </div>
@@ -77,7 +77,10 @@
         <RadioGroup
             label="Which fruit do you prefer?"
             name="fruit-horizontal"
-            options={baseOptions.map(({ description, ...opt }) => opt)}
+            options={baseOptions.map(
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                ({ description, ...opt }) => opt
+            )}
             horizontal
         />
     </div>

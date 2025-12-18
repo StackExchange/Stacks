@@ -433,14 +433,14 @@ describe("CheckboxGroup", () => {
     });
 
     it("should apply state classes", async () => {
-        const { rerender } = render(CheckboxGroup, {
+        render(CheckboxGroup, {
             label: "Test Checkbox Group",
             name: "test-checkbox-group",
             options: baseCheckboxGroupOptions,
             state: "error",
         });
 
-        let fieldset = screen
+        const fieldset = screen
             .getByText("Test Checkbox Group")
             .closest("fieldset");
         expect(fieldset).to.have.class("has-error");
@@ -502,11 +502,11 @@ describe("CheckboxGroup", () => {
     it("should call option onchange callback when provided", async () => {
         const onChangeSpy1 = sinon.spy();
         const onChangeSpy2 = sinon.spy();
-        const optionsWithOnChange = [
+        const optionsWithOnChange: CheckboxOption[] = [
             { ...baseCheckboxGroupOptions[0], onchange: onChangeSpy1 },
             { ...baseCheckboxGroupOptions[1], onchange: onChangeSpy2 },
             baseCheckboxGroupOptions[2],
-        ] as any as CheckboxOption[];
+        ];
 
         render(CheckboxGroup, {
             label: "Test Checkbox Group",
