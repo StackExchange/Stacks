@@ -1,5 +1,13 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.12
+
+### Patch Changes
+
+- [#2103](https://github.com/StackExchange/Stacks/pull/2103) [`2bea67e`](https://github.com/StackExchange/Stacks/commit/2bea67ed467ab879b630e22ab21501e56a186f23) Thanks [@mukunku](https://github.com/mukunku)! - chore(inputs): adjust alert icon
+
+- [#2104](https://github.com/StackExchange/Stacks/pull/2104) [`258abee`](https://github.com/StackExchange/Stacks/commit/258abee7efeb8e317aba9e6e8bad0d575f79edbd) Thanks [@giamir](https://github.com/giamir)! - Add predefined line-height to font size atomic classes (.fs-fine, .fs-caption, etc...)
+
 ## 3.0.0-beta.11
 
 ### Major Changes
