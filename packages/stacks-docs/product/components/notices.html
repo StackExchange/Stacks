@@ -10,8 +10,6 @@ tags: components
 <!-- Example notice content -->
 <script src="{{ "/assets/dist/entry.toasts.js" | url }}" defer></script>
 
-{% assign variants = "default, info, success, warning, danger" | split: ", " %}
-
 <aside
     class="s-toast"
     id="launch-toast-base"
@@ -21,19 +19,12 @@ tags: components
     data-controller="s-toast"
     data-s-toast-target="toast"
     data-s-toast-return-element=".js-toast-open[data-target='#launch-toast-base']">
-    <div class="s-notice s-notice__info d-flex ai-center gx16 jc-space-between p8 pl16 wmn4">
-        <p class="m0">
-            Info toast with an undo button.
-        </p>
-        <div class="d-flex">
-            <button type="button" class="s-btn s-notice--btn">Undo</button>
-            <button
-                type="button"
-                class="s-btn s-notice--btn js-toast-close"
-                aria-label="Dismiss"
-                data-action="s-toast#hide">
-                {% icon "ClearSm", "m0" %}
-            </button>
+    <div class="s-notice s-notice__info d-flex ai-center wmn4">
+        <span class="s-notice--icon">{% icon "Info" %}</span>
+        Toast notice message with an undo button
+        <div class="d-flex ml-auto">
+            <button type="button" class="s-link s-link__underlined">Undo</button>
+            <button type="button" class="s-link s-notice--dismiss js-toast-close" aria-label="Dismiss" data-action="s-toast#hide">{% icon "ClearSm" %}</button>
         </div>
     </div>
 </aside>
@@ -242,64 +233,102 @@ tags: components
     </div>
 
 
-    {% header "h3", "Filled" %}
-    <p class="stacks-copy">Default style used to separate notices from the main content</p>
+    {% header "h3", "Base" %}
+    <p class="stacks-copy">Default notice variations</p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-notice" role="status">…</div>
-<div class="s-notice s-notice__info" role="status">…</div>
+<div class="s-notice" role="status">
+    <span class="s-notice--icon">@Svg.Help</span>
+    …
+</div>
+<div class="s-notice s-notice__info" role="status">
+    <span class="s-notice--icon">@Svg.Info</span>
+    …
+</div>
 <div class="s-notice s-notice__success s-anchors s-anchors__inherit s-anchors__underlined" role="status">
+    <span class="s-notice--icon">@Svg.Info</span>
     … <a href="…">…</a>
 </div>
-<div class="s-notice s-notice__warning" role="status">…</div>
-<div class="s-notice s-notice__danger" role="status">…</div>
+<div class="s-notice s-notice__warning" role="status">
+    <span class="s-notice--icon">@Svg.Alert</span>
+    …
+</div>
+<div class="s-notice s-notice__danger" role="status">
+    <span class="s-notice--icon">@Svg.AlertFill</span>
+    …
+</div>
+<div class="s-notice s-notice__featured" role="status">
+    <span class="s-notice--icon">@Svg.Star</span>
+    …
+</div>
+<div class="s-notice s-notice__activity" role="status">
+    <span class="s-notice--icon">@Svg.Notification</span>
+    …
+</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="d-flex g8 fd-column">
-                {% for variant in variants %}
-                    {% assign variantCapitalized = variant | capitalize %}
-                    {% assign variantClass = " s-notice__" | append: variant %}
+                {% for variant in notices.base %}
+                    {% assign variantClass = " s-notice__" | append: variant.type %}
                     {% if variant == "default" %}
                         {% assign variantClass = "" %}
                     {% endif %}
 
                     <div class="s-notice{{variantClass}} s-anchors s-anchors__inherit s-anchors__underlined" role="presentation">
-                        <p class="m0">
-                            {{variantCapitalized}} filled message style
-                            <code>and some code</code> notice. <a href="#">Link</a>
-                        </p>
+                        <span class="s-notice--icon">{% icon variant.icon %}</span>
+                        {{variant.type | capitalize}} filled message style
+                        <code>and some code</code> notice. <a href="#">Link</a>
                     </div>
                 {% endfor %}
             </div>
         </div>
     </div>
 
-    {% header "h3", "Filled important" %}
+    {% header "h3", "Important" %}
     <p class="stacks-copy">Used sparingly for when an important notice needs to be noticed</p>
     <div class="stacks-preview">
 {% highlight html %}
-<div class="s-notice s-notice__important" role="alert">…</div>
-<div class="s-notice s-notice__info s-notice__important" role="alert">…</div>
+<div class="s-notice s-notice__important" role="alert">
+    <span class="s-notice--icon">@Svg.Help</span>
+    …
+</div>
+<div class="s-notice s-notice__info s-notice__important" role="alert">
+    <span class="s-notice--icon">@Svg.Info</span>
+    …
+</div>
 <div class="s-notice s-notice__success s-notice__important s-anchors s-anchors__inherit s-anchors__underlined" role="alert">
+    <span class="s-notice--icon">@Svg.Info</span>
     … <a href="…">…</a>
 </div>
-<div class="s-notice s-notice__warning s-notice__important" role="alert">…</div>
-<div class="s-notice s-notice__danger s-notice__important" role="alert">…</div>
+<div class="s-notice s-notice__warning s-notice__important" role="alert">
+    <span class="s-notice--icon">@Svg.Alert</span>
+    …
+</div>
+<div class="s-notice s-notice__danger s-notice__important" role="alert">
+    <span class="s-notice--icon">@Svg.AlertFill</span>
+    …
+</div>
+<div class="s-notice s-notice__featured s-notice__important" role="alert">
+    <span class="s-notice--icon">@Svg.Star</span>
+    …
+</div>
+<div class="s-notice s-notice__activity s-notice__important" role="alert">
+    <span class="s-notice--icon">@Svg.Notification</span>
+    …
+</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="d-flex g8 fd-column">
-                {% for variant in variants %}
-                    {% assign variantCapitalized = variant | capitalize %}
-                    {% assign variantClass = " s-notice__" | append: variant %}
-                    {% if variant == "default" %}
+                {% for variant in notices.base %}
+                    {% assign variantClass = " s-notice__" | append: variant.type %}
+                    {% if variant.type == "default" %}
                         {% assign variantClass = "" %}
                     {% endif %}
 
                     <div class="s-notice{{variantClass}} s-notice__important s-anchors s-anchors__inherit s-anchors__underlined" role="presentation">
-                        <p class="m0">
-                            {{variantCapitalized}} important message style
-                            <code>and some code</code> notice. <a href="#">Link</a>
-                        </p>
+                        <span class="s-notice--icon">{% icon variant.icon %}</span>
+                        {{variant.type | capitalize}} filled message style
+                        <code>and some code</code> notice. <a href="#">Link</a>
                     </div>
                 {% endfor %}
             </div>
@@ -321,16 +350,14 @@ tags: components
             <div class="d-flex fd-column g8">
 
                 <div class="s-notice s-notice__info" role="presentation">
-                    <p class="m0">
-                        Notice with <a href="#" class="s-link">default link style</a>
-                    </p>
+                    <span class="s-notice--icon">{% icon "Info" %}</span>
+                    Notice with <a href="#" class="s-link">default link style</a>
                 </div>
 
                 <div class="s-notice s-notice__info s-anchors s-anchors__inherit s-anchors__underlined" role="presentation">
-                    <p class="m0">
-                        Notice with
-                        <code>.s-anchors</code> <code>.s-anchors__inherit</code> <code>.s-anchors__underlined</code> and <a href="#">custom link style</a>
-                    </p>
+                    <span class="s-notice--icon">{% icon "Info" %}</span>
+                    Notice with
+                    <code>.s-anchors</code> <code>.s-anchors__inherit</code> <code>.s-anchors__underlined</code> and <a href="#">custom link style</a>
                 </div>
 
             </div>
@@ -373,48 +400,12 @@ tags: components
         </table>
     </div>
 
-    {% header "h3", "Inline" %}
-    <p class="stacks-copy">Default behavior for notices that are inserted within the content area</p>
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="s-notice s-notice__info" role="status">…</div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="ps-relative d-flex gy8 fd-column jc-center">
-                <div class="s-notice s-notice__info" role="status">
-                    <p class="m0">Inline notice message style</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "With an Icon" %}
-    <p class="stacks-copy">Notices are often accompanied by an icon.</p>
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="d-flex s-notice s-notice__info" role="status">
-    <div class="mr8">
-        @Svg.Alert
-    </div>
-    <div class="lh-lg">
-        …
-    </div>
-</div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex s-notice s-notice__info" role="status">
-                <div class="mr8">
-                    {% icon "Alert" %}
-                </div>
-                <div class="lh-lg">
-                    This question and its answers are locked because the question is off-topic but has historical significance. It is not currently accepting new answers or interactions.
-                </div>
-            </div>
-        </div>
-    </div>
-
     {% header "h3", "Toast" %}
-    <p class="stacks-copy">Floating notices, but aligned to the top and center of the page and they disappear after a set time.  Visibility is changed with animation by toggling between <code class="stacks-code">aria-hidden="true"</code> and <code class="stacks-code">aria-hidden="false"</code>. When including buttons, you can apply <code class="stacks-code">.s-notice--btn</code> to buttons to apply a toast-specific color.</p>
+    <p class="stacks-copy">
+        Floating notices, but aligned to the top and center of the page and they disappear after a set time. 
+        Visibility is changed with animation by toggling between <code class="stacks-code">aria-hidden="true"</code> and <code class="stacks-code">aria-hidden="false"</code>. 
+        When including a dismiss button the <code class="stacks-code">.s-notice--dismiss</code> class should be applied to the button for toast-specific styling.
+    </p>
 
     <!-- TODO: document controller attributes -->
     <div class="stacks-preview bs-none">
@@ -434,38 +425,31 @@ tags: components
     data-controller="s-toast"
     data-s-toast-target="toast"
     data-s-toast-return-element=".js-example-toast-open[data-target='#example-toast']">
-    <aside class="s-notice d-flex ai-center gx16 jc-space-between p8 pl16 wmn4">
-        <div id="notice-message">
-            Toast notice message with an undo button
-        </div>
-        <div class="d-flex">
-            <button type="button" class="s-btn s-notice--btn">
-                Undo
-            </button>
-            <button type="button" class="s-btn s-notice--btn" aria-label="Dismiss">
-                @Svg.ClearSm
-            </button>
+    <aside class="s-notice d-flex ai-center wmn4">
+        <span class="s-notice--icon">@Svg.Info</span>
+        Toast notice message with an undo button
+        <div class="d-flex ml-auto">
+            <button type="button" class="s-link s-link__underlined">Undo</button>
+            <button type="button" class="s-link s-notice--dismiss js-toast-close" aria-label="Dismiss">@Svg.ClearSm</button>
         </div>
     </aside>
 </div>
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="ps-relative d-flex flex__center gy8 fd-column jc-center">
-                {% for variant in variants %}
-                    {% assign variantCapitalized = variant | capitalize %}
-                    {% assign variantClass = " s-notice__" | append: variant %}
-                    {% if variant == "default" %}
+                {% for variant in notices.base %}
+                    {% assign variantClass = " s-notice__" | append: variant.type %}
+                    {% if variant.type == "default" %}
                         {% assign variantClass = "" %}
                     {% endif %}
 
                     <div class="s-toast ps-static" aria-hidden="false" role="presentation">
-                        <div class="s-notice{{variantClass}} d-flex ai-center gx16 jc-space-between p8 pl16 wmn4">
-                            <p class="m0">
-                                {{variantCapitalized}} toast with an undo button.
-                            </p>
-                            <div class="d-flex">
-                                <button type="button" class="s-btn s-notice--btn">Undo</button>
-                                <button type="button" class="s-btn s-notice--btn">{% icon "ClearSm" %}</button>
+                        <div class="s-notice{{variantClass}} d-flex ai-center gx16 wmn4">
+                            <span class="s-notice--icon">{% icon variant.icon %}</span>
+                            {{variant.type | capitalize}} toast with an undo button.
+                            <div class="d-flex ml-auto">
+                                <button type="button" class="s-link s-link__underlined">Undo</button>
+                                <button type="button" class="s-link s-notice--dismiss">{% icon "ClearSm" %}</button>
                             </div>
                         </div>
                     </div>

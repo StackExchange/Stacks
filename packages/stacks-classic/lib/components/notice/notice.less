@@ -9,26 +9,22 @@
  */
 .generate-variant-variables(@colorName: "", @modifier: "") {
     & when (@modifier = "") {
-        --_no-bc: ~"var(--@{colorName}-300)";
         --_no-bg: ~"var(--@{colorName}-100)";
-        --_no-btn-bg-active: ~"var(--@{colorName}-200)";
-        --_no-btn-bg-focus: ~"var(--@{colorName}-200)";
-        --_no-btn-fc: ~"var(--@{colorName}-500)";
+        --_no-icon-bg: ~"var(--@{colorName}-200)";
+        --_no-icon-bc: ~"var(--@{colorName}-200)";
         --_no-code-bc: ~"var(--@{colorName}-300)";
         --_no-code-bg: ~"var(--@{colorName}-200)";
 
         .highcontrast-mode({
-            --_no-bc: ~"var(--@{colorName}-400)";
+            
         });
     }
 
     & when (@modifier = important) {
-        --_no-bc: var(--_no-bg);
         --_no-bg: ~"var(--@{colorName}-400)";
+        --_no-icon-bg: ~"var(--@{colorName}-500)";
+        --_no-icon-bc: ~"var(--@{colorName}-500)";
         --_no-fc: var(--white);
-        --_no-btn-bg-active: ~"var(--@{colorName}-500)";
-        --_no-btn-bg-focus: ~"var(--@{colorName}-500)";
-        --_no-btn-fc: ~"var(--@{colorName}-100)";
         --_no-code-bc: ~"var(--@{colorName}-300)";
         --_no-code-bg: ~"var(--@{colorName}-500)";
 
@@ -47,12 +43,10 @@
  * @baseClass - The base class name for the notice component
  */
 .construct-notice-component(@baseClass) {
-    --_no-bc: var(--black-225);
-    --_no-bg: var(--black-100);
-    --_no-fc: var(--black-500);
-    --_no-btn-bg-active: var(--black-250);
-    --_no-btn-bg-focus: var(--black-225);
-    --_no-btn-fc: var(--_no-fc);
+    --_no-bg: var(--black-150);
+    --_no-icon-bg: var(--black-200);
+    --_no-icon-bc: var(--black-200);
+    --_no-fc: var(--black-600);
     --_no-code-bc: var(--black-300);
     --_no-code-bg: var(--black-200);
     --_no-code-fc: var(--_no-fc);
@@ -74,20 +68,16 @@
                 --_no-code-fc: var(--white);
             }
         }
-
-        --_no-bc: var(--black-400);
     });
 
     // MODIFIERS
-    &__important:not(.@{baseClass}__danger):not(.@{baseClass}__info):not(.@{baseClass}__success):not(.@{baseClass}__warning) {
-        --_no-bc: var(--_no-bg);
-        --_no-bg: var(--black-500);
+    &__important {
+        --_no-bg: var(--black-400);
+        --_no-icon-bg: var(--black-500);
+        --_no-icon-bc: var(--black-500);
         --_no-fc: var(--white);
-        --_no-btn-bg-focus: var(--black-600);
-        --_no-btn-bg-active: var(--black-600);
-        --_no-btn-fc: var(--_no-fc);
         --_no-code-bc: var(--black-300);
-        --_no-code-bg: var(--black-600);
+        --_no-code-bg: var(--black-500);
     }
 
     // VARIANTS
@@ -103,11 +93,11 @@
 
     &__info {
         &:not(.@{baseClass}__important) {
-            .generate-variant-variables(theme-secondary);
+            .generate-variant-variables(blue);
         }
 
         &.@{baseClass}__important {
-            .generate-variant-variables(theme-secondary, important);
+            .generate-variant-variables(blue, important);
         }
     }
 
@@ -121,21 +111,43 @@
         }
     }
 
-    &__warning {
+    &__featured {
         &:not(.@{baseClass}__important) {
-            .generate-variant-variables(yellow);
-            --_no-btn-fc: var(--yellow-600);
+            .generate-variant-variables(purple);
         }
 
         &.@{baseClass}__important {
-            --_no-bc: var(--_no-bg);
-            --_no-bg: var(--yellow-400);
+            .generate-variant-variables(purple, important);
+        }
+    }
+
+    &__activity {
+        &:not(.@{baseClass}__important) {
+            .generate-variant-variables(pink);
+        }
+
+        &.@{baseClass}__important {
+            .generate-variant-variables(pink, important);
+        }
+    }
+
+    &__warning {
+        &:not(.@{baseClass}__important) {
+            .generate-variant-variables(yellow);
+            
+        }
+
+        &.@{baseClass}__important {
+            --_no-bg: var(--yellow-300);
+            --_no-icon-bg: var(--yellow-400);
+            --_no-icon-bc: var(--yellow-400);
             --_no-fc: var(--black);
-            --_no-btn-fc: var(--_no-fc);
-            --_no-btn-bg-active: var(--yellow-300);
-            --_no-btn-bg-focus: var(--yellow-300);
-            --_no-code-bc: var(--yellow-500);
-            --_no-code-bg: var(--yellow-300);
+            --_no-code-bc: var(--yellow-400);
+            --_no-code-bg: var(--yellow-200);
+
+            .s-notice--icon {
+                color: var(--white);
+            }
 
             .dark-mode({
                 --_no-fc: var(--white);
@@ -146,8 +158,6 @@
             .highcontrast-mode({
                 --_no-bg: var(--yellow-500);
                 --_no-fc: var(--white);
-                --_no-btn-bg-active: transparent;
-                --_no-btn-bg-focus: transparent;
             });
         }
     }
@@ -158,40 +168,54 @@
         color: var(--_no-code-fc);
         outline: var(--su-static1) solid var(--_no-code-bc);
 
-        border-radius: var(--br-md);
         padding-left: var(--su2);
         padding-right: var(--su2);
     }
 
-    & &--btn {
-        // TODO: decouple .s-notice--btn from .s-btn
+    button&--dismiss {
         &:active {
-            background-color: var(--_no-btn-bg-active, inherit) !important;
+            background-color: var(--_no-fc);
+            color: var(--_no-bg);
         }
 
         &:focus-visible,
         &:hover,
         &.focus-inset-bordered {
-            background-color: var(--_no-btn-bg-focus, inherit) !important;
+            background-color: var(--_no-fc);
+            color: var(--_no-bg);
         }
 
-        color: var(--_no-btn-fc, inherit) !important;
-        padding: var(--su8);
+        margin-left: calc(var(--su24) - var(--su2)); //22px
+        margin-right: var(--su12);
+
+        .svg-icon {
+            margin: 0px var(--su2) var(--su2) var(--su2);
+        }
     }
 
     // STYLES MODIFIED BY COMPONENT-SPECIFIC CUSTOM PROPERTIES
     background: var(--_no-bg);
-    border-color: var(--_no-bc);
     color: var(--_no-fc);
-
-    border-style: solid;
-    font-size: var(--fs-body1);
 }
 
 .s-notice {
     .construct-notice-component(s-notice);
 
-    border-radius: var(--br-md);
-    border-width: var(--su-static1);
-    padding: var(--su16);
+    display: flex;
+    align-items: center;
+    gap: var(--su4);
+
+    &--icon {
+        background: var(--_no-icon-bg);
+        border-style: var(--su1) solid var(--_no-icon-bc);
+        min-height: calc(var(--su32) + var(--su4)); //36px
+        height: 100%;
+        width: calc(var(--su32) + var(--su4)); //36px
+        padding: var(--su8);
+        margin-right: var(--su8);
+
+        //Center the svg icon
+        display: flex;
+        align-items: center;
+    }
 }
