@@ -11,7 +11,6 @@
     & when (@modifier = "") {
         --_no-bg: ~"var(--@{colorName}-100)";
         --_no-icon-bg: ~"var(--@{colorName}-200)";
-        --_no-icon-bc: ~"var(--@{colorName}-200)";
         --_no-code-bc: ~"var(--@{colorName}-300)";
         --_no-code-bg: ~"var(--@{colorName}-200)";
 
@@ -23,13 +22,12 @@
     & when (@modifier = important) {
         --_no-bg: ~"var(--@{colorName}-400)";
         --_no-icon-bg: ~"var(--@{colorName}-500)";
-        --_no-icon-bc: ~"var(--@{colorName}-500)";
         --_no-fc: var(--white);
         --_no-code-bc: ~"var(--@{colorName}-300)";
         --_no-code-bg: ~"var(--@{colorName}-500)";
 
         .highcontrast-mode({
-            --_no-bg: ~"var(--@{colorName}-500)";
+            //--_no-bg: ~"var(--@{colorName}-500)";
         });
     }
 }
@@ -45,7 +43,6 @@
 .construct-notice-component(@baseClass) {
     --_no-bg: var(--black-150);
     --_no-icon-bg: var(--black-200);
-    --_no-icon-bc: var(--black-200);
     --_no-fc: var(--black-600);
     --_no-code-bc: var(--black-300);
     --_no-code-bg: var(--black-200);
@@ -53,20 +50,8 @@
 
     // CONTEXTUAL STYLES
     .highcontrast-mode({
-        &,
-        &.@{baseClass}__danger,
-        &.@{baseClass}__info,
-        &.@{baseClass}__success,
-        &.@{baseClass}__warning {
-            --_no-code-bc: var(--black-400);
-            --_no-code-bg: var(--white);
-            --_no-code-fc: var(--black);
-
-            &.@{baseClass}__important {
-                --_no-code-bc: var(--black-200);
-                --_no-code-bg: var(--black);
-                --_no-code-fc: var(--white);
-            }
+        &:not(&__important) {
+            --_no-icon-bc: var(--_no-code-bc);
         }
     });
 
@@ -74,7 +59,6 @@
     &__important {
         --_no-bg: var(--black-400);
         --_no-icon-bg: var(--black-500);
-        --_no-icon-bc: var(--black-500);
         --_no-fc: var(--white);
         --_no-code-bc: var(--black-300);
         --_no-code-bg: var(--black-500);
@@ -140,7 +124,6 @@
         &.@{baseClass}__important {
             --_no-bg: var(--yellow-300);
             --_no-icon-bg: var(--yellow-400);
-            --_no-icon-bc: var(--yellow-400);
             --_no-fc: var(--black);
             --_no-code-bc: var(--yellow-400);
             --_no-code-bg: var(--yellow-200);
@@ -155,11 +138,13 @@
                 --_no-code-bg: var(--yellow-500);
                 --_no-bg: var(--yellow-400);
                 --_no-icon-bg: var(--yellow-500);
-                --_no-icon-bc: var(--yellow-500);
             });
 
             .highcontrast-mode({
-                --_no-bg: var(--yellow-500);
+                --_no-bg: var(--yellow-400);
+                --_no-icon-bg: var(--yellow-500);
+                --_no-code-bc: var(--yellow-300);
+                --_no-code-bg: var(--yellow-500);
                 --_no-fc: var(--white);
             });
         }
@@ -210,7 +195,7 @@
 
     &--icon {
         background: var(--_no-icon-bg);
-        border-style: var(--su1) solid var(--_no-icon-bc);
+        border: var(--su1) solid var(--_no-icon-bc, var(--_no-icon-bg));
         min-height: calc(var(--su32) + var(--su4)); //36px
         height: 100%;
         width: calc(var(--su32) + var(--su4)); //36px
