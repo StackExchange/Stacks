@@ -38,8 +38,10 @@ const children = {
         <thead>
             <tr>
                 <th scope="col" class="s-table--bulk">
-                    <label class="v-visible-sr" for="check">bulk action</label>
-                    <input type="checkbox" id="check">
+                    <div class="s-checkbox">
+                        <input type="checkbox" id="check">
+                        <label class="v-visible-sr" for="check">bulk action</label>
+                    </div>
                 </th>
                 <th scope="col">Display Name</th>
                 <th scope="col">Full name</th>
@@ -53,8 +55,10 @@ const children = {
                     (row, i) => `
                 <tr class="${row.active ? "" : "is-disabled"}">
                     <th scope="row">
-                        <label class="v-visible-sr" for="check-${i}">bulk</label>
-                        <input type="checkbox" id="check-${i}">
+                        <div class="s-checkbox">
+                            <input type="checkbox" id="check-${i}">
+                            <label class="v-visible-sr" for="check-${i}">bulk</label>
+                        </div>
                     </th>
                     <td>${row.displayName}</td>
                     <td>${row.fullName}</td>
