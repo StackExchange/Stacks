@@ -5,6 +5,7 @@ import userEvent from "@testing-library/user-event";
 import sinon from "sinon";
 
 import Checkbox from "./Checkbox.svelte";
+import CheckboxGroup, { type CheckboxOption } from "./CheckboxGroup.svelte";
 
 type CheckboxProps = {
     id: string;
@@ -317,5 +318,207 @@ describe("Checkbox", () => {
 
         input = screen.getByRole("checkbox");
         expect(input).to.have.property("checked", true);
+    });
+});
+
+describe("CheckboxGroup", () => {
+    const baseCheckboxGroupOptions: CheckboxOption[] = [
+        { id: "checkbox-1", label: "Option 1", value: "option1" },
+        { id: "checkbox-2", label: "Option 2", value: "option2" },
+        { id: "checkbox-3", label: "Option 3", value: "option3" },
+    ];
+
+    it("should render the CheckboxGroup", () => {
+        render(CheckboxGroup, {
+            label: "Test Checkbox Group",
+            name: "test-checkbox-group",
+            options: baseCheckboxGroupOptions,
+        });
+
+        expect(screen.getByText("Test Checkbox Group")).to.exist;
+        expect(screen.getByText("Test Checkbox Group").tagName).to.equal(
+            "LEGEND"
+        );
+
+        const checkboxes = screen.getAllByRole("checkbox");
+        expect(checkboxes).to.have.length(3);
+        expect(checkboxes[0]).to.have.attribute("name", "test-checkbox-group");
+        expect(checkboxes[1]).to.have.attribute("name", "test-checkbox-group");
+        expect(checkboxes[2]).to.have.attribute("name", "test-checkbox-group");
+    });
+
+    it("should render checkbox options with correct values", () => {
+        render(CheckboxGroup, {
+            label: "Test Checkbox Group",
+            name: "test-checkbox-group",
+            options: baseCheckboxGroupOptions,
+        });
+
+        const checkboxes = screen.getAllByRole("checkbox");
+        expect(checkboxes[0]).to.have.attribute("value", "option1");
+        expect(checkboxes[1]).to.have.attribute("value", "option2");
+        expect(checkboxes[2]).to.have.attribute("value", "option3");
+    });
+
+    it("should render checkbox options with correct labels", () => {
+        render(CheckboxGroup, {
+            label: "Test Checkbox Group",
+            name: "test-checkbox-group",
+            options: baseCheckboxGroupOptions,
+        });
+
+        expect(screen.getByText("Option 1")).to.exist;
+        expect(screen.getByText("Option 2")).to.exist;
+        expect(screen.getByText("Option 3")).to.exist;
+    });
+
+    it("should check checkbox options when value array includes them", () => {
+        render(CheckboxGroup, {
+            label: "Test Checkbox Group",
+            name: "test-checkbox-group",
+            options: baseCheckboxGroupOptions,
+            value: ["option1", "option3"],
+        });
+
+        const checkboxes = screen.getAllByRole("checkbox");
+        expect(checkboxes[0]).to.have.property("checked", true);
+        expect(checkboxes[1]).not.to.have.property("checked", true);
+        expect(checkboxes[2]).to.have.property("checked", true);
+    });
+
+    it("should update checked state when checkboxes are clicked", async () => {
+        render(CheckboxGroup, {
+            label: "Test Checkbox Group",
+            name: "test-checkbox-group",
+            options: baseCheckboxGroupOptions,
+        });
+
+        const checkboxes = screen.getAllByRole("checkbox");
+        await userEvent.click(checkboxes[0]);
+        await tick();
+        await userEvent.click(checkboxes[2]);
+        await tick();
+
+        expect(checkboxes[0]).to.have.property("checked", true);
+        expect(checkboxes[1]).not.to.have.property("checked", true);
+        expect(checkboxes[2]).to.have.property("checked", true);
+    });
+
+    it("should render disabled fieldset when disabled is true", () => {
+        render(CheckboxGroup, {
+            label: "Test Checkbox Group",
+            name: "test-checkbox-group",
+            options: baseCheckboxGroupOptions,
+            disabled: true,
+        });
+
+        const fieldset = screen
+            .getByText("Test Checkbox Group")
+            .closest("fieldset");
+        expect(fieldset).to.have.attribute("disabled");
+    });
+
+    it("should render horizontal layout when horizontal is true", () => {
+        render(CheckboxGroup, {
+            label: "Test Checkbox Group",
+            name: "test-checkbox-group",
+            options: baseCheckboxGroupOptions,
+            horizontal: true,
+        });
+
+        const fieldset = screen
+            .getByText("Test Checkbox Group")
+            .closest("fieldset");
+        expect(fieldset).to.have.class("s-form-group__horizontal");
+    });
+
+    it("should apply state classes", async () => {
+        const { rerender } = render(CheckboxGroup, {
+            label: "Test Checkbox Group",
+            name: "test-checkbox-group",
+            options: baseCheckboxGroupOptions,
+            state: "error",
+        });
+
+        let fieldset = screen
+            .getByText("Test Checkbox Group")
+            .closest("fieldset");
+        expect(fieldset).to.have.class("has-error");
+    });
+
+    it("should apply custom classes", () => {
+        render(CheckboxGroup, {
+            label: "Test Checkbox Group",
+            name: "test-checkbox-group",
+            options: baseCheckboxGroupOptions,
+            class: "custom-class",
+        });
+
+        const fieldset = screen
+            .getByText("Test Checkbox Group")
+            .closest("fieldset");
+        expect(fieldset).to.have.class("s-form-group");
+        expect(fieldset).to.have.class("custom-class");
+    });
+
+    it("should render checkbox options with descriptions", () => {
+        const optionsWithDescriptions: CheckboxOption[] = [
+            {
+                ...baseCheckboxGroupOptions[0],
+                description: "Description for option 1",
+            },
+            baseCheckboxGroupOptions[1],
+            baseCheckboxGroupOptions[2],
+        ];
+
+        render(CheckboxGroup, {
+            label: "Test Checkbox Group",
+            name: "test-checkbox-group",
+            options: optionsWithDescriptions,
+        });
+
+        expect(screen.getByText("Description for option 1")).to.exist;
+    });
+
+    it("should assign name and id to options without them", () => {
+        const optionsWithoutId = [
+            { label: "Option 1", value: "option1" },
+            { label: "Option 2", value: "option2" },
+        ] as CheckboxOption[];
+
+        render(CheckboxGroup, {
+            label: "Test Checkbox Group",
+            name: "test-checkbox-group",
+            options: optionsWithoutId,
+        });
+
+        const checkboxes = screen.getAllByRole("checkbox");
+        expect(checkboxes[0]).to.have.id("test-checkbox-group-0");
+        expect(checkboxes[1]).to.have.id("test-checkbox-group-1");
+        expect(checkboxes[0]).to.have.attribute("name", "test-checkbox-group");
+        expect(checkboxes[1]).to.have.attribute("name", "test-checkbox-group");
+    });
+
+    it("should call option onchange callback when provided", async () => {
+        const onChangeSpy1 = sinon.spy();
+        const onChangeSpy2 = sinon.spy();
+        const optionsWithOnChange = [
+            { ...baseCheckboxGroupOptions[0], onchange: onChangeSpy1 },
+            { ...baseCheckboxGroupOptions[1], onchange: onChangeSpy2 },
+            baseCheckboxGroupOptions[2],
+        ] as any as CheckboxOption[];
+
+        render(CheckboxGroup, {
+            label: "Test Checkbox Group",
+            name: "test-checkbox-group",
+            options: optionsWithOnChange,
+        });
+
+        const checkboxes = screen.getAllByRole("checkbox");
+        await userEvent.click(checkboxes[0]);
+
+        await tick();
+        expect(onChangeSpy1).to.have.been.calledOnce;
+        expect(onChangeSpy2).not.to.have.been.called;
     });
 });

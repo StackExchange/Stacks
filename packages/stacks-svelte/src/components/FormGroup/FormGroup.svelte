@@ -5,9 +5,9 @@
 
 <script lang="ts">
     import Checkbox from "../Checkbox/Checkbox.svelte";
-    import Radio from "../Radio/Radio.svelte";
+    import Radio from "../RadioGroup/Radio.svelte";
     import type { Props as CheckboxProps } from "../Checkbox/Checkbox.svelte";
-    import type { Props as RadioProps } from "../Radio/Radio.svelte";
+    import type { Props as RadioProps } from "../RadioGroup/Radio.svelte";
 
     // Option types without name and onchange (id is optional, name is added by FormGroup)
     export type CheckboxOption = Omit<CheckboxProps, "name" | "onchange">;

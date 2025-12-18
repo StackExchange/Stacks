@@ -1,6 +1,8 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import Checkbox, { type Checked, type State } from "./Checkbox.svelte";
+    import CheckboxGroup, { type CheckboxOption } from "./CheckboxGroup.svelte";
+
     const CheckboxChecked: Checked[] = [true, false];
     const CheckboxStates: State[] = ["", "error", "success", "warning"];
 
@@ -8,6 +10,33 @@
         title: "Components/Checkbox",
         component: Checkbox,
     });
+
+    // For CheckboxGroup stories
+    let selectedValues = $state<string[]>([]);
+    const checkboxGroupOptions = (
+        suffix: string = "checkbox"
+    ): CheckboxOption[] => {
+        return [
+            {
+                label: "Apples",
+                value: `apples-${suffix}`,
+                description: "Fresh red apples",
+                id: `apples-${suffix}`,
+            },
+            {
+                label: "Oranges",
+                value: `oranges-${suffix}`,
+                description: "Juicy oranges",
+                id: `oranges-${suffix}`,
+            },
+            {
+                label: "Bananas",
+                value: `bananas-${suffix}`,
+                description: "Yellow bananas",
+                id: `bananas-${suffix}`,
+            },
+        ];
+    };
 </script>
 
 <Story
@@ -147,5 +176,71 @@
                 {/if}
             {/each}
         </fieldset>
+    </div>
+</Story>
+
+<Story name="Using CheckboxGroup" asChild>
+    <div class="d-flex fd-column g32 fw-wrap">
+        <p>
+            <code>CheckboxGroup</code> is a component that allows you to group multiple
+            checkboxes together.
+        </p>
+        <div class="d-flex fw-wrap g32">
+            <div class="wmx2">
+                <h3>With bindable value</h3>
+                <div class="s-card">
+                    <CheckboxGroup
+                        label="Which fruits do you like?"
+                        name="fruit-preference"
+                        options={checkboxGroupOptions()}
+                        bind:value={selectedValues}
+                    />
+                    <p class="mt16">
+                        Selected: {selectedValues.join(", ") || "None"}
+                    </p>
+                </div>
+            </div>
+            <div class="wmx2">
+                <h3>Checkmark style</h3>
+                <div class="s-card">
+                    <CheckboxGroup
+                        label="Which fruits do you like?"
+                        name="fruit-checkmark"
+                        options={checkboxGroupOptions("checkmark").map(
+                            (opt) => ({
+                                ...opt,
+                                checkmark: true,
+                            })
+                        )}
+                    />
+                </div>
+            </div>
+            <div class="wmx2">
+                <h3>Disabled</h3>
+                <div class="s-card">
+                    <CheckboxGroup
+                        label="Which fruits do you like?"
+                        name="fruit-disabled"
+                        options={checkboxGroupOptions("disabled")}
+                        disabled
+                    />
+                </div>
+            </div>
+            {#each CheckboxStates as state (state)}
+                {#if state !== ""}
+                    <div class="wmx2">
+                        <h3>State: {state}</h3>
+                        <div class="s-card">
+                            <CheckboxGroup
+                                label="Which fruits do you like?"
+                                name="fruit-state-{state}"
+                                options={checkboxGroupOptions(state)}
+                                {state}
+                            />
+                        </div>
+                    </div>
+                {/if}
+            {/each}
+        </div>
     </div>
 </Story>

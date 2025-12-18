@@ -4,7 +4,7 @@
 
 <script lang="ts">
     import Checkbox from "../Checkbox/Checkbox.svelte";
-    import Radio from "../Radio/Radio.svelte";
+    import Radio from "../RadioGroup/Radio.svelte";
     import Icon from "../Icon/Icon.svelte";
 
     interface Props {
