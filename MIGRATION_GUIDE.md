@@ -21,6 +21,7 @@
 
 #### Typography
 - `.fs-category` removed
+- Atomic classes now have a predefined line-height to font size associated to them
 
 ### Components
 
