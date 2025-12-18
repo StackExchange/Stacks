@@ -32,6 +32,11 @@
     ];
 
     let selectedValue = $state("apples");
+
+    // For bindable value and onchange story
+    let radioValue = $state("apples");
+    let changeCount = $state(0);
+    let previousValue = $state<number | undefined>(0);
 </script>
 
 <Story
@@ -49,15 +54,23 @@
     {/snippet}
 </Story>
 
-<Story name="With bindable value" asChild>
+<Story name="Bindable value and onchange" asChild>
     <div class="wmx2">
         <RadioGroup
             label="Which fruit do you prefer?"
-            name="fruit-bindable"
+            name="fruit-bindable-onchange"
             options={baseOptions}
-            bind:value={selectedValue}
+            bind:value={radioValue}
+            onValueChange={(newValue) => {
+                if (previousValue !== undefined && previousValue !== newValue) {
+                    changeCount++;
+                }
+                previousValue = newValue;
+            }}
         />
-        <p class="mt16">Selected: {selectedValue}</p>
+        <p class="mt16">
+            Selected: {radioValue} | Changes: {changeCount}
+        </p>
     </div>
 </Story>
 

@@ -13,6 +13,10 @@
 
     // For CheckboxGroup stories
     let selectedValues = $state<string[]>([]);
+
+    // For bindable value and onchange story
+    let isChecked = $state(false);
+    let changeCount = $state(0);
     const checkboxGroupOptions = (
         suffix: string = "checkbox"
     ): CheckboxOption[] => {
@@ -52,6 +56,23 @@
             <Checkbox {...args} />
         </div>
     {/snippet}
+</Story>
+
+<Story name="Bindable value and onchange" asChild>
+    <div class="wmx2">
+        <Checkbox
+            name="bindable-checkbox"
+            id="bindable-checkbox"
+            label="Click me"
+            bind:checked={isChecked}
+            onchange={() => {
+                changeCount++;
+            }}
+        />
+        <p class="mt16">
+            Checked: {isChecked ? "Yes" : "No"} | Changes: {changeCount}
+        </p>
+    </div>
 </Story>
 
 <Story name="Checkmark (checked)" asChild>
