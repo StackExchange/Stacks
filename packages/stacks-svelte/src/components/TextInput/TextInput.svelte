@@ -130,6 +130,11 @@
          * Optional message snippet rendered after the input.
          */
         message?: Snippet;
+
+        /**
+         * value of the text input.
+         */
+        value?: string;
     }
 
     let {
@@ -150,6 +155,7 @@
         description,
         fill,
         message,
+        value = $bindable(undefined),
         ...rest
     }: Props = $props();
 
@@ -240,6 +246,7 @@
                 {placeholder}
                 {readonly}
                 {required}
+                bind:value
                 {...rest}
             />
 
