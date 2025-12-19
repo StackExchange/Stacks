@@ -204,7 +204,7 @@ describe("Popover", () => {
                         component: PopoverContent,
                         props: {
                             "aria-label": "Popover with content",
-                            children: createRawSnippet(() => ({
+                            "children": createRawSnippet(() => ({
                                 render: () => "<span>Popover Content</span>",
                             })),
                         },
@@ -230,7 +230,7 @@ describe("Popover", () => {
                         component: PopoverContent,
                         props: {
                             "aria-labelledby": "my-label-id",
-                            children: createRawSnippet(() => ({
+                            "children": createRawSnippet(() => ({
                                 render: () => "<span>Popover Content</span>",
                             })),
                         },
