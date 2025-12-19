@@ -139,7 +139,9 @@ describe("modal", () => {
 
         await user.click(trigger);
         expect(modal).to.be.visible;
-        await waitFor(() => expect(initialFocusEl).to.have.focus, { timeout: 20000 });
+        await waitFor(() => expect(initialFocusEl).to.have.focus, {
+            timeout: 20000,
+        });
     });
 
     it("should focus on the first focusable element when modal is shown and no initialFocus is specified", async () => {

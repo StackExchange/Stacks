@@ -7,7 +7,7 @@ describe("empty-state", () => {
     runVisualTests({
         baseClass: "s-empty-state",
         children: {
-            default: `${SpotEmpty.replace("svg-spot", "svg-spot native")}
+            "default": `${SpotEmpty.replace("svg-spot", "svg-spot native")}
             <p>This is a wonderful empty state component.</p>`,
             "with-title": `${SpotEmpty.replace("svg-spot", "svg-spot native")}
             <h4 class="s-empty-state--title">Amazing title for this empty state.</h4>
