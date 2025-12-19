@@ -10,6 +10,11 @@
         title?: string;
 
         /**
+         * Html tag to use for the title
+         */
+        titleTag?: string;
+
+        /**
          * Additional CSS classes added to the underlying outer HTML element
          */
         class?: ClassValue;
@@ -28,6 +33,7 @@
 
     let {
         title,
+        titleTag = "h4",
         class: className,
         description,
         actions,
@@ -37,7 +43,9 @@
 <div class={["s-empty-state", className]}>
     <Icon src={SpotEmpty} native />
     {#if title}
-        <h4 class="s-empty-state--title">{title}</h4>
+        <svelte:element this={titleTag} class="s-empty-state--title">
+            {title}
+        </svelte:element>
     {/if}
     <p>{@render description()}</p>
     {#if actions}
