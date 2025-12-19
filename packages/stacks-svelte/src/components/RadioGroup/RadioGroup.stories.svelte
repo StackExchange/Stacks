@@ -31,12 +31,10 @@
         },
     ];
 
-    let selectedValue = $state("apples");
-
     // For bindable value and onchange story
     let radioValue = $state("apples");
     let changeCount = $state(0);
-    let previousValue = $state<number | undefined>(0);
+    let previousValue = $state<string | number | undefined>(undefined);
 </script>
 
 <Story
@@ -231,14 +229,14 @@
                     <Radio
                         name="radio-standalone-state"
                         label="Warning state radio"
-                        id="radio-standalone-state-checked"
+                        id="radio-standalone-state-warning"
                         state="warning"
                         description="This is a description for the radio."
                     />
                     <Radio
                         name="radio-standalone-state"
                         label="Error state radio"
-                        id="radio-standalone-state-checked"
+                        id="radio-standalone-state-error"
                         state="error"
                         description="This is a description for the radio."
                     />

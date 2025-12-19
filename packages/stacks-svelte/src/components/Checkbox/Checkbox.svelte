@@ -90,6 +90,11 @@
     $effect(() => {
         if (inputElement) {
             inputElement.indeterminate = indeterminate;
+            // When indeterminate is set to true, ensure checked is false
+            if (indeterminate && checked) {
+                checked = false;
+                inputElement.checked = false;
+            }
         }
     });
 
@@ -133,8 +138,14 @@
         type="checkbox"
         {value}
         onchange={(event) => {
-            if (!indeterminate) {
-                checked = event.currentTarget.checked;
+            if (indeterminate) {
+                // Reset checked state when indeterminate - bind:checked may have already updated it
+                // We need to reset both the bound value and the DOM element
+                checked = false;
+                if (inputElement) {
+                    inputElement.checked = false;
+                    inputElement.indeterminate = true;
+                }
             }
             onchange?.(event);
         }}
