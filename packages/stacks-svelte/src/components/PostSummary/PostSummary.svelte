@@ -35,7 +35,10 @@
     import PopoverContent from "../Popover/PopoverContent.svelte";
     import PopoverReference from "../Popover/PopoverReference.svelte";
     import UserCard from "../UserCard/UserCard.svelte";
-    import { IconShield, IconEllipsisVertical } from "@stackoverflow/stacks-icons-legacy/icons";
+    import {
+        IconShield,
+        IconEllipsisVertical,
+    } from "@stackoverflow/stacks-icons-legacy/icons";
     import { IconCheck } from "@stackoverflow/stacks-icons/icons";
 
     /**
