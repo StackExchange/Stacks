@@ -1,6 +1,4 @@
 <script lang="ts" module>
-    import { IconAlertFill } from "@stackoverflow/stacks-icons/icons";
-
     import Notice, { type Variant } from "./Notice.svelte";
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import NoticeAction from "./NoticeAction.svelte";
@@ -11,6 +9,8 @@
         "warning",
         "danger",
         "success",
+        "featured",
+        "activity",
     ];
 
     const titleCase = (str: string) => {
@@ -36,13 +36,19 @@
     });
 </script>
 
-{#snippet content()}
-    I am a notice
-{/snippet}
-
 <Story name="Base">
     {#snippet template(args)}
-        <Notice {...args} children={content}></Notice>
+        <Notice {...args}>
+            I am a notice
+        </Notice>
+    {/snippet}
+</Story>
+
+<Story name="Dismissable">
+    {#snippet template(args)}
+        <Notice {...args} dismissable onDismiss={() => {alert("You clicked dismiss");}}>
+            I am a dismissable notice
+        </Notice>
     {/snippet}
 </Story>
 
@@ -57,9 +63,9 @@
             <table class="s-table s-table__bx-simple wmx7">
                 <thead>
                     <tr>
-                        <th scope="col" class="s-table--cell2">Filled</th>
+                        <th scope="col" class="s-table--cell2">Base</th>
                         <th scope="col" class="s-table--cell2"
-                            >Filled important</th
+                            >Base important</th
                         >
                     </tr>
                 </thead>
@@ -82,27 +88,11 @@
 
 <Story name="Actions" asChild>
     <Notice variant="info">
-        I am a notice with a Close Action
-        {#snippet actions()}
-            <NoticeAction
-                type="close"
-                onclick={() => {
-                    alert("You closed the notice");
-                }}
-            />,
-        {/snippet}
-    </Notice>
-    <hr />
-    <Notice variant="info">
         I am a notice with a Custom Action
         {#snippet actions()}
-            <NoticeAction>Click me</NoticeAction>
+            <NoticeAction class="pr8" onclick={() => {
+                    alert("You triggered a custom action");
+                }}>Click me</NoticeAction>
         {/snippet}
-    </Notice>
-</Story>
-
-<Story name="With Icon" asChild>
-    <Notice variant="danger" icon={IconAlertFill} iconTitle="Alert Icon">
-        I am a notice with an icon
     </Notice>
 </Story>

@@ -5,35 +5,44 @@
         | "info"
         | "success"
         | "warning"
+        | "featured"
+        | "activity"
         | undefined;
 </script>
 
 <script lang="ts">
     import type { Snippet } from "svelte";
     import Icon from "../Icon/Icon.svelte";
-    import type { AriaRole } from "svelte/elements";
+    import Button from "../Button/Button.svelte";
+    import { 
+        IconAlert, 
+        IconAlertFill, 
+        IconInfo, 
+        IconCheck, 
+        IconStar, 
+        IconNotification, 
+        IconHelp
+    } from "@stackoverflow/stacks-icons/icons";
+    import { IconClearSm } from "@stackoverflow/stacks-icons-legacy/icons";
+    import type { AriaRole, MouseEventHandler } from "svelte/elements";
 
     interface Props {
         /**
          * The variant of the notice
-         * @type {"" | "danger" | "info" | "success" | "warning"}
+         * @type {"" | "danger" | "info" | "success" | "warning" | "featured" | "activity"}
          */
-        variant?: Variant;
+        variant: Variant;
 
         /**
          * Apply important styling to for extra emphasis
          */
-        important?: boolean;
+        important: boolean;
 
         /**
          * Underlying ARIA role attribute (see https://stackoverflow.design/product/components/notices/)
          */
         role?: AriaRole | undefined | null;
 
-        /**
-         * The icon to display within the badge
-         */
-        icon?: string | undefined;
         /**
          * The title attribute for the icon
          */
@@ -43,6 +52,21 @@
          * Additional CSS classes added to the element
          */
         class?: string;
+
+        /**
+         * Whether to include a dismiss button on the notice or not
+         */
+        dismissable: boolean;
+
+        /**
+         * Optional dismiss event handler
+         */
+        onDismiss?: MouseEventHandler<HTMLButtonElement>;
+
+        /**
+         * Dismiss button label override
+         */
+        i18nDismissButtonLabel?: string;
 
         /**
          * Snippet for the button content
@@ -56,14 +80,16 @@
     }
 
     const {
-        variant = undefined,
+        variant,
         important = false,
         role = "status",
-        icon = undefined,
-        iconTitle = undefined,
+        iconTitle,
         class: className = "",
+        dismissable = false,
+        onDismiss,
         children,
         actions,
+        i18nDismissButtonLabel = "Dismiss",
     }: Props = $props();
 
     const getClasses = (
@@ -86,28 +112,46 @@
             classes += ` ${base}__important`;
         }
 
-        if (icon || actions) {
-            classes += ` d-flex ai-center gx8`;
-        }
-
-        if (actions) {
-            classes += `  p8 pl16`;
-        }
-
         return classes;
     };
 
+    const getIcon = (variant?: Variant) => {
+        if (variant == "danger") {
+            return IconAlertFill;
+        } else if (variant == "warning") {
+            return IconAlert;
+        } else if (variant == "info") {
+            return IconInfo;
+        } else if (variant == "success") {
+            return IconCheck;
+        } else if (variant == "featured") {
+            return IconStar;
+        } else if (variant == "activity") {
+            return IconNotification;
+        } else {
+            return IconHelp;
+        }
+    }
+
     const classes = $derived(getClasses(className, variant, important));
+    const icon = $derived(getIcon(variant));
 </script>
 
 <div class={classes} {role}>
-    {#if icon}
+    <span class="s-notice--icon">
         <Icon src={icon} title={iconTitle} />
-    {/if}
-    <p class="m0 fl-grow1">{@render children()}</p>
-    {#if actions}
-        <div class="d-flex">
+    </span>
+    {@render children()}
+    {#if actions || dismissable}
+        <div class="d-flex ml-auto">
+            {#if actions}
             {@render actions()}
+            {/if}
+            {#if dismissable}
+                <Button link class="s-notice--dismiss js-toast-close" onclick={onDismiss} aria-label="{i18nDismissButtonLabel}">
+                    <Icon src={IconClearSm} />
+                </Button>
+            {/if}
         </div>
     {/if}
 </div>
