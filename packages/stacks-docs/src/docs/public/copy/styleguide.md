@@ -777,3 +777,64 @@ When writing lists:
 - Use sentence case
 - If any list item contains two or more sentences, punctuate all list items
 - If all list items are one sentence or fragments, don’t punctuate
+
+### URLS
+
+The golden rules of URLs is they should be short and rarely (if ever) change. In addition we want them to act as "[URL as UI](https://www.nngroup.com/articles/url-as-ui/)" which respond to manipulation by the user in an intuitive way.
+
+For example, a user should be able to modify them to navigate e.g., changing `/docs/api/v2` to `/docs/api/v1`, or up and down taxonomy like `/questions/tagged/javascript/react` to `/questions/tagged/javascript` to `/questions`, or changing filters like `/jobs?location=remote&type=engineering` to `/jobs?location=remote`.
+
+A good URL can also provide a solid foundation for SEO/AEO.
+
+<Grid>
+  <GridColumn extraClasses="bg-red-100">
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
+    <ul class="ml0 pl16">
+      <li>Avoid using branded language e.g., `/overflowapi`</li>
+      <li>Avoid overly long lengths e.g., `/introducing-stack-internal-powering-the-human-intelligence-layer-of-enterprise-ai/`</li>
+      <li>Use underscores e.g., `/user_settings`</li>
+      <li>Mix cases e.g., `/Pricing` or `/contactUs`</li>
+      <li>Add unnecessary nesting e.g., `/docs/guides/getting-started/tutorials/beginner/hello-world`</li>
+    </ul>
+  </GridColumn>
+  <GridColumn extraClasses="bg-green-100">
+    <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
+    <ul class="ml0 pl16">
+      <li>Instead say what it is e.g., `/api-dashboard`</li>
+      <li>Instead summarise the content e.g., `/announcing-stack-internal`</li>
+      <li>Use hyphens e.g., `/user-settings`</li>
+      <li>Keep it lowercase e.g., `/pricing` or `/contact-us`</li>
+      <li>Keep hierarchy shallow e.g., `/docs/hello-world`</li>
+    </ul>
+  </GridColumn>
+</Grid>
+
+#### Query Parameters vs. Path Segments
+
+<Grid>
+  <GridColumn extraClasses="bg-green-100">
+    <h4 class="fc-green-500">Use path segments for:</h4>
+    <ul class="ml0 pl16">
+      <li>Core content hierarchy and navigation</li>
+      <li>Specific resources: `/users/12345/ada-lovelace`</li>
+      <li>Content categories: `/questions/tagged/python`</li>
+      <li>Organized taxonomy: `/tags/javascript/info`</li>
+    </ul>
+  </GridColumn>
+  <GridColumn extraClasses="bg-green-100">
+    <h4 class="fc-green-500">Use query parameters for:</h4>
+    <ul class="ml0 pl16">
+      <li>Filters, sorting, and temporary state</li>
+      <li>Sorting options: `/questions?tab=newest&sort=votes`</li>
+      <li>Search and pagination: `/search?q=javascript&page=2`</li>
+      <li>Refinement criteria: `/jobs?location=remote&type=full-time`</li>
+    </ul>
+  </GridColumn>
+</Grid>
+
+Query parameters are ideal when:
+
+* Multiple values can be combined (`?type=remote&level=senior`)
+* The same content can be viewed with different options
+* Users might want to share or bookmark specific filtered views
+* The parameters are optional (the page works without them)
