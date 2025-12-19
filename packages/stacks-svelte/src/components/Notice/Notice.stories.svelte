@@ -38,15 +38,19 @@
 
 <Story name="Base">
     {#snippet template(args)}
-        <Notice {...args}>
-            I am a notice
-        </Notice>
+        <Notice {...args}>I am a notice</Notice>
     {/snippet}
 </Story>
 
 <Story name="Dismissable">
     {#snippet template(args)}
-        <Notice {...args} dismissable onDismiss={() => {alert("You clicked dismiss");}}>
+        <Notice
+            {...args}
+            dismissable
+            onDismiss={() => {
+                alert("You clicked dismiss");
+            }}
+        >
             I am a dismissable notice
         </Notice>
     {/snippet}
@@ -90,9 +94,12 @@
     <Notice variant="info">
         I am a notice with a Custom Action
         {#snippet actions()}
-            <NoticeAction class="pr8" onclick={() => {
+            <NoticeAction
+                class="pr8"
+                onclick={() => {
                     alert("You triggered a custom action");
-                }}>Click me</NoticeAction>
+                }}>Click me</NoticeAction
+            >
         {/snippet}
     </Notice>
 </Story>

@@ -14,14 +14,14 @@
     import type { Snippet } from "svelte";
     import Icon from "../Icon/Icon.svelte";
     import Button from "../Button/Button.svelte";
-    import { 
-        IconAlert, 
-        IconAlertFill, 
-        IconInfo, 
-        IconCheck, 
-        IconStar, 
-        IconNotification, 
-        IconHelp
+    import {
+        IconAlert,
+        IconAlertFill,
+        IconInfo,
+        IconCheck,
+        IconStar,
+        IconNotification,
+        IconHelp,
     } from "@stackoverflow/stacks-icons/icons";
     import { IconClearSm } from "@stackoverflow/stacks-icons-legacy/icons";
     import type { AriaRole, MouseEventHandler } from "svelte/elements";
@@ -131,7 +131,7 @@
         } else {
             return IconHelp;
         }
-    }
+    };
 
     const classes = $derived(getClasses(className, variant, important));
     const icon = $derived(getIcon(variant));
@@ -145,10 +145,15 @@
     {#if actions || dismissable}
         <div class="d-flex ml-auto">
             {#if actions}
-            {@render actions()}
+                {@render actions()}
             {/if}
             {#if dismissable}
-                <Button link class="s-notice--dismiss js-toast-close" onclick={onDismiss} aria-label="{i18nDismissButtonLabel}">
+                <Button
+                    link
+                    class="s-notice--dismiss js-toast-close"
+                    onclick={onDismiss}
+                    aria-label={i18nDismissButtonLabel}
+                >
                     <Icon src={IconClearSm} />
                 </Button>
             {/if}

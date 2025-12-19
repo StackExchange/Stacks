@@ -4,7 +4,7 @@
     import type { Props as ButtonProps } from "../Button/Button.svelte";
     import type { ClassValue } from "svelte/elements";
 
-    interface Props {        
+    interface Props {
         /**
          * Snippet for the button content
          */
