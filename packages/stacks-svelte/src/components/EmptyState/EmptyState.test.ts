@@ -21,9 +21,9 @@ describe("EmptyState", () => {
                 render: () =>
                     "<span>There are no items to display at this time.</span>",
             })),
-            callToAction: createRawSnippet(() => ({
+            actions: createRawSnippet(() => ({
                 render: () =>
-                    '<button class="s-btn s-btn__filled">Click Me!</button>',
+                    '<button class="s-btn s-btn__tonal">Click Me!</button>',
             })),
         });
         expect(screen.getByText("There are no items to display at this time."))

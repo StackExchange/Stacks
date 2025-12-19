@@ -7,7 +7,9 @@ describe("empty-state", () => {
     runA11yTests({
         baseClass: "s-empty-state",
         children: {
-            default: `${SpotEmpty}<p>This is a wonderful empty state component.</p>`,
+            default: `${SpotEmpty}
+            <h4 class="s-empty-state--title">No questions match your result.</h4>
+            <p>This is a wonderful empty state component.</p>`,
         },
         template: ({ component, testid }) => html`
             <div class="ws3 p16" data-testid="${testid}">${component}</div>
