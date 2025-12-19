@@ -41,7 +41,7 @@ describe("showToast", () => {
         render(Toaster);
         showToast("Test Toast");
         const closeButton = await screen.findByRole("button", {
-            name: "Close",
+            name: "Dismiss",
         });
         expect(closeButton).to.exist;
     });
@@ -162,7 +162,7 @@ describe("showToast", () => {
             onAutoClose: onAutoCloseSpy,
         });
         await waitFor(() => expect(screen.getByText("Test Toast")).to.exist);
-        const closeButton = screen.getByRole("button", { name: "Close" });
+        const closeButton = screen.getByRole("button", { name: "Dismiss" });
         expect(closeButton).to.exist;
         await userEvent.click(closeButton);
         await waitFor(

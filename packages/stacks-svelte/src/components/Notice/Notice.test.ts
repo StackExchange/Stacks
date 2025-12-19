@@ -8,8 +8,10 @@ import userEvent from "@testing-library/user-event";
 import Notice from "./Notice.svelte";
 import NoticeAction from "./NoticeAction.svelte";
 
+const text = "test notice";
+
 const children = createRawSnippet(() => ({
-    render: () => "<span>test notice</span>",
+    render: () => `<span>${text}</span>`,
 }));
 
 describe("Notice", () => {
@@ -22,7 +24,7 @@ describe("Notice", () => {
         render(Notice, {
             children,
         });
-        const icon = document.querySelector("svg.iconAlertFill");
+        const icon = document.querySelector("svg.svg-icon");
         expect(icon).to.exist;
         expect(screen.getByRole("status")).to.exist;
     });
@@ -50,30 +52,35 @@ describe("Notice", () => {
         expect(screen.getByRole("alert")).to.exist;
     });
 
-    it("should render the notice with a notice action of type close", async () => {
+    it("should render dismissable notice", async () => {
+        const onDismissMock = sinon.spy();
         render(Notice, {
             children,
-            actions: createSvelteComponentsSnippet([
-                {
-                    component: NoticeAction,
-                    props: {
-                        type: "close",
-                        i18nCloseButtonLabel: "Chiudi",
-                    },
-                },
-            ]),
+            dismissible: true,
+            onDismiss: onDismissMock,
+            i18nDismissButtonLabel: "Chiudi",
         });
 
         // Assert that the button exists
         const closeButton = screen.getByRole("button", { name: /Chiudi/i });
         expect(closeButton).to.exist;
 
-        // Assert that the IconClear is rendered inside the button
-        const closeIcon = closeButton.querySelector("svg.iconCross");
+        // Assert that the IconClearSm is rendered inside the button
+        const closeIcon = closeButton.querySelector("svg.iconClearSm");
         expect(closeIcon).to.exist;
 
-        // Assert that the button has the s-notice--btn class
-        expect(closeButton).to.have.class("s-notice--btn");
+        // Assert that the button has the s-notice--dismiss class
+        expect(closeButton).to.have.class("s-notice--dismiss");
+
+        // Confirm the text is on-screen
+        expect(screen.getByText(text)).to.be.visible;
+
+         // Check dismiss is clicked correctly
+        await userEvent.click(closeButton);
+        expect(onDismissMock).to.have.been.called;
+        
+        // Confirm the notice was hidden
+        expect(screen.queryByText(text)).to.not.exist;
     });
 
     it("should render the notice with a user provided notice action", async () => {
@@ -98,9 +105,6 @@ describe("Notice", () => {
             name: /test notice action/i,
         });
         expect(noticeAction).to.exist;
-
-        // Assert that the button has the s-notice--btn class
-        expect(noticeAction).to.have.class("s-notice--btn");
 
         // Check notice alert is clicked correctly
         await userEvent.click(noticeAction);
