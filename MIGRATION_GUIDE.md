@@ -48,8 +48,10 @@
 - `s-btn__md` has been removed, `s-btn__lg` has been added
 
 #### Checkbox & Radio
-- The `s-checkbox` and `s-radio` classes have been removed. Any `input[type="checkbox"]` or `input[type="radio"]` element should now be placed within a `s-check` container.
-- The `s-check-control` class has been renamed to `s-check`
+- The `s-checkbox` and `s-radio` classes should now be applied to the container including the `input` and `label`. These classes replace `.s-check-control`
+- The `s-checkbox` and `s-radio` classes are no longer needed on the `input` element itself
+- The `s-check-group` class has been renamed to `s-form-group`
+- Added `.s-checkbox__checkmark` and `.s-radio__checkmark` modifier classes for checkmark-style variants
 
 #### Inputs
 - `s-input__md` removed
