@@ -30,9 +30,9 @@
     let { id, variant = "default", value = "", ...rest }: Props = $props();
 
     const getClasses = (variant: string) => {
-        let common = "s-textarea ws-pre-wrap break-word hmx3 lh-lg";
-        let textarea = `${common} ps-absolute i0 h100`;
-        let grower = `${common} v-hidden overflow-hidden h100`;
+        let common = "s-textarea ws-pre-wrap break-word hmx3 lh-lg h100";
+        let textarea = `${common} ps-absolute i0`;
+        let grower = `${common} v-hidden overflow-hidden`;
 
         if (variant === "chat") {
             let chatCommon = " py12 pr64 hmn48";
