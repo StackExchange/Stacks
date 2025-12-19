@@ -1,7 +1,7 @@
 import { createRawSnippet } from "svelte";
 import { expect } from "@open-wc/testing";
 import { render, screen } from "@testing-library/svelte";
-import { IconAlert } from "@stackoverflow/stacks-icons-legacy/icons";
+import { IconAlertFill } from "@stackoverflow/stacks-icons/icons";
 import { createSvelteComponentsSnippet } from "../../../test-utils";
 import sinon from "sinon";
 import userEvent from "@testing-library/user-event";
@@ -20,8 +20,12 @@ describe("Notice", () => {
     });
 
     it("should render the icon", () => {
-        render(Notice, { icon: IconAlert, iconTitle: "test title", children });
-        const icon = document.querySelector("svg.iconAlert");
+        render(Notice, {
+            icon: IconAlertFill,
+            iconTitle: "test title",
+            children,
+        });
+        const icon = document.querySelector("svg.iconAlertFill");
         expect(icon).to.exist;
         expect(screen.getByRole("status")).to.exist;
     });
@@ -68,7 +72,7 @@ describe("Notice", () => {
         expect(closeButton).to.exist;
 
         // Assert that the IconClear is rendered inside the button
-        const closeIcon = closeButton.querySelector("svg.iconClear");
+        const closeIcon = closeButton.querySelector("svg.iconCross");
         expect(closeIcon).to.exist;
 
         // Assert that the button has the s-notice--btn class

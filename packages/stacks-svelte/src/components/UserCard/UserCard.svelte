@@ -8,7 +8,7 @@
     import Avatar, { type Size as AvatarSize } from "../Avatar/Avatar.svelte";
     import Bling from "../Bling/Bling.svelte";
     import Icon from "../Icon/Icon.svelte";
-    import { IconPerson } from "@stackoverflow/stacks-icons-legacy/icons";
+    import { IconUserFill } from "@stackoverflow/stacks-icons/icons";
 
     interface Props {
         /**
@@ -185,7 +185,7 @@
 
     {#if deleted}
         <Icon
-            src={IconPerson}
+            src={IconUserFill}
             class="bar-md fc-white bg-black-225 s-user-card--avatar {iconSizeClasses}"
             title={name}
         />
