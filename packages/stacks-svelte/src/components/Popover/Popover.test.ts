@@ -193,6 +193,75 @@ describe("Popover", () => {
         expect(innerContentElement).to.have.class("custom-class");
     });
 
+    it("should add aria-label to the popover when the aria-label prop is provided", async () => {
+        render(Popover, {
+            props: {
+                ...defaultProps,
+                autoshow: true,
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    {
+                        component: PopoverContent,
+                        props: {
+                            "aria-label": "Popover with content",
+                            children: createRawSnippet(() => ({
+                                render: () => "<span>Popover Content</span>",
+                            })),
+                        },
+                    },
+                ]),
+            },
+        });
+
+        expect(screen.getByRole("dialog")).to.have.attribute(
+            "aria-label",
+            "Popover with content"
+        );
+    });
+
+    it("should add aria-labelledby to the popover when the aria-labelledby prop is provided", async () => {
+        render(Popover, {
+            props: {
+                ...defaultProps,
+                autoshow: true,
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    {
+                        component: PopoverContent,
+                        props: {
+                            "aria-labelledby": "my-label-id",
+                            children: createRawSnippet(() => ({
+                                render: () => "<span>Popover Content</span>",
+                            })),
+                        },
+                    },
+                ]),
+            },
+        });
+
+        expect(screen.getByRole("dialog")).to.have.attribute(
+            "aria-labelledby",
+            "my-label-id"
+        );
+    });
+
+    it("should not add aria-label or aria-labelledby when not provided", async () => {
+        render(Popover, {
+            props: {
+                ...defaultProps,
+                autoshow: true,
+                children: createSvelteComponentsSnippet([
+                    defaultChildren.reference,
+                    defaultChildren.content,
+                ]),
+            },
+        });
+
+        const dialog = screen.getByRole("dialog");
+        expect(dialog).not.to.have.attribute("aria-label");
+        expect(dialog).not.to.have.attribute("aria-labelledby");
+    });
+
     it("add classes to the popover close button component when the class prop is provided", async () => {
         render(Popover, {
             props: {
