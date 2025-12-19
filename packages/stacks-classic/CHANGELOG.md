@@ -1,5 +1,11 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.13
+
+### Patch Changes
+
+- [#2108](https://github.com/StackExchange/Stacks/pull/2108) [`d91d8c8`](https://github.com/StackExchange/Stacks/commit/d91d8c82059b949758a82612feff4fc81f1a2291) Thanks [@giamir](https://github.com/giamir)! - Make avatar background in navigation components transparent
+
 ## 3.0.0-beta.12
 
 ### Patch Changes
