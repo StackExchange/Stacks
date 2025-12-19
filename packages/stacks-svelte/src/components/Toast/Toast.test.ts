@@ -1,6 +1,5 @@
 import { expect } from "@open-wc/testing";
 import { render, screen, waitFor } from "@testing-library/svelte";
-import { IconAlertFill } from "@stackoverflow/stacks-icons/icons";
 import userEvent from "@testing-library/user-event";
 import sinon from "sinon";
 import { createRawSnippet, mount, unmount } from "svelte";

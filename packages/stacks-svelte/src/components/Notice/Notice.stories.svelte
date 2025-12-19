@@ -34,27 +34,35 @@
             },
             onDismiss: {
                 control: false,
-            }
+            },
         },
     });
 </script>
 
+{#snippet content()}
+    I am a notice
+{/snippet}
+
+{#snippet dismissibleContent()}
+    I am a dismissible notice
+{/snippet}
+
 <Story name="Base">
     {#snippet template(args)}
-        <Notice {...args}>I am a notice</Notice>
+        <Notice {...args} children={content} />
     {/snippet}
 </Story>
 
 <Story name="Dismissible">
     {#snippet template(args)}
-        <Notice {...args}
+        <Notice
+            {...args}
             dismissible
             onDismiss={() => {
                 alert("You clicked dismiss");
             }}
-        >
-            I am a dismissible notice
-        </Notice>
+            children={dismissibleContent}
+        />
     {/snippet}
 </Story>
 

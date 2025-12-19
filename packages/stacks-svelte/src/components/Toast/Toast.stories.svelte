@@ -1,6 +1,5 @@
 <script lang="ts" module>
     import { IconWave } from "@stackoverflow/stacks-icons-legacy/icons";
-    import { IconAlertFill } from "@stackoverflow/stacks-icons/icons";
     import Toaster, { showToast, hideToast } from "./Toast.svelte";
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import Button from "../Button/Button.svelte";

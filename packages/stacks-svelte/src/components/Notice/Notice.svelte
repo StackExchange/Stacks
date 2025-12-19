@@ -24,7 +24,7 @@
         IconHelp,
     } from "@stackoverflow/stacks-icons/icons";
     import { IconClearSm } from "@stackoverflow/stacks-icons-legacy/icons";
-    import type { AriaRole, MouseEventHandler } from "svelte/elements";
+    import type { AriaRole } from "svelte/elements";
 
     interface Props {
         /**

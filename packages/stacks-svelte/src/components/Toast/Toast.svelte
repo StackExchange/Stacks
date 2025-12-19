@@ -48,18 +48,17 @@
                   }))
                 : message;
 
-        const actionsSnip =
-            actions
-                ? createRawSnippet(() => ({
-                      render: () => "<span />",
-                      setup: (target) => {
-                          if (actions) {
-                              // @ts-expect-error this is the only way I found to render a Snippet (in the context of a function)
-                              actions(target);
-                          }
-                      },
-                  }))
-                : undefined;
+        const actionsSnip = actions
+            ? createRawSnippet(() => ({
+                  render: () => "<span />",
+                  setup: (target) => {
+                      if (actions) {
+                          // @ts-expect-error this is the only way I found to render a Snippet (in the context of a function)
+                          actions(target);
+                      }
+                  },
+              }))
+            : undefined;
 
         let role: string;
         if (variant === "danger") {
