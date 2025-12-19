@@ -34,7 +34,9 @@
     // For bindable value and onchange story
     let radioValue = $state("apples");
     let changeCount = $state(0);
-    let previousValue = $state<string | number | undefined>(undefined);
+    let previousValue = $state<
+        string | number | (string | number)[] | undefined
+    >(undefined);
 </script>
 
 <Story

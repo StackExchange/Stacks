@@ -178,14 +178,16 @@ describe("Checkbox", () => {
             onchange: onChangeSpy,
         });
 
-        const input = screen.getByRole("checkbox");
+        const input = screen.getByRole("checkbox") as HTMLInputElement;
         await userEvent.click(input);
 
         await tick();
         expect(onChangeSpy).to.have.been.calledOnce;
-        expect(onChangeSpy).to.have.been.calledWithMatch({
-            currentTarget: { checked: true },
-        });
+        const event = onChangeSpy.firstCall.args[0] as Event & {
+            target: HTMLInputElement;
+        };
+        expect(event.target).to.exist;
+        expect(event.target.checked).to.be.true;
     });
 
     it("should update checked state when checkbox is clicked", async () => {
