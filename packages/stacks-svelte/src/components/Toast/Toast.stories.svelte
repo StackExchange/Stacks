@@ -80,7 +80,6 @@
             onclick={() =>
                 showToast("I am a toast component with the an icon", {
                     variant: "danger",
-                    icon: IconAlertFill,
                     iconTitle: "Alert Icon",
                 })}>Toast with an Icon</Button
         >

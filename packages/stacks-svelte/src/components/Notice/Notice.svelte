@@ -31,12 +31,12 @@
          * The variant of the notice
          * @type {"" | "danger" | "info" | "success" | "warning" | "featured" | "activity"}
          */
-        variant: Variant;
+        variant?: Variant;
 
         /**
          * Apply important styling to for extra emphasis
          */
-        important: boolean;
+        important?: boolean;
 
         /**
          * Underlying ARIA role attribute (see https://stackoverflow.design/product/components/notices/)
@@ -56,12 +56,12 @@
         /**
          * Whether to include a dismiss button on the notice or not
          */
-        dismissable: boolean;
+        dismissible?: boolean;
 
         /**
          * Optional dismiss event handler
          */
-        onDismiss?: MouseEventHandler<HTMLButtonElement>;
+        onDismiss?: () => void;
 
         /**
          * Dismiss button label override
@@ -80,17 +80,24 @@
     }
 
     const {
-        variant,
+        variant = "",
         important = false,
         role = "status",
         iconTitle,
         class: className = "",
-        dismissable = false,
-        onDismiss,
+        dismissible = false,
+        onDismiss = () => {},
         children,
         actions,
         i18nDismissButtonLabel = "Dismiss",
     }: Props = $props();
+
+    let visible = $state(true);
+
+    const handleDismiss = () => {
+        visible = false;
+        onDismiss?.();
+    };
 
     const getClasses = (
         className: string,
@@ -137,26 +144,28 @@
     const icon = $derived(getIcon(variant));
 </script>
 
-<div class={classes} {role}>
-    <span class="s-notice--icon">
-        <Icon src={icon} title={iconTitle} />
-    </span>
-    {@render children()}
-    {#if actions || dismissable}
-        <div class="d-flex ml-auto">
-            {#if actions}
-                {@render actions()}
-            {/if}
-            {#if dismissable}
-                <Button
-                    link
-                    class="s-notice--dismiss js-toast-close"
-                    onclick={onDismiss}
-                    aria-label={i18nDismissButtonLabel}
-                >
-                    <Icon src={IconClearSm} />
-                </Button>
-            {/if}
-        </div>
-    {/if}
-</div>
+{#if visible}
+    <div class={classes} {role}>
+        <span class="s-notice--icon">
+            <Icon src={icon} title={iconTitle} />
+        </span>
+        {@render children()}
+        {#if actions || dismissible}
+            <div class="d-flex ml-auto">
+                {#if actions}
+                    {@render actions()}
+                {/if}
+                {#if dismissible}
+                    <Button
+                        link
+                        class="s-notice--dismiss"
+                        onclick={handleDismiss}
+                        aria-label={i18nDismissButtonLabel}
+                    >
+                        <Icon src={IconClearSm} />
+                    </Button>
+                {/if}
+            </div>
+        {/if}
+    </div>
+{/if}

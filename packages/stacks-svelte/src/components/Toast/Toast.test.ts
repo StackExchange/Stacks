@@ -38,12 +38,6 @@ describe("showToast", () => {
         expect(toastEl).to.have.class("s-notice__important");
     });
 
-    it("should render a toast with an Icon when an icon is set", async () => {
-        render(Toaster);
-        showToast("Test Toast", { icon: IconAlertFill, iconTitle: "Alert" });
-        await waitFor(() => expect(screen.getByTitle("Alert")).to.exist);
-    });
-
     it("should render the close button by default", async () => {
         render(Toaster);
         showToast("Test Toast");

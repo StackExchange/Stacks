@@ -32,6 +32,9 @@
             role: {
                 control: "text",
             },
+            onDismiss: {
+                control: false,
+            }
         },
     });
 </script>
@@ -42,16 +45,15 @@
     {/snippet}
 </Story>
 
-<Story name="Dismissable">
+<Story name="Dismissible">
     {#snippet template(args)}
-        <Notice
-            {...args}
-            dismissable
+        <Notice {...args}
+            dismissible
             onDismiss={() => {
                 alert("You clicked dismiss");
             }}
         >
-            I am a dismissable notice
+            I am a dismissible notice
         </Notice>
     {/snippet}
 </Story>

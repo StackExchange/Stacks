@@ -21,8 +21,6 @@ describe("Notice", () => {
 
     it("should render the icon", () => {
         render(Notice, {
-            icon: IconAlertFill,
-            iconTitle: "test title",
             children,
         });
         const icon = document.querySelector("svg.iconAlertFill");

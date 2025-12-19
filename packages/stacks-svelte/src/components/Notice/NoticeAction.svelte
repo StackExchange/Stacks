@@ -13,7 +13,7 @@
         /**
          * Modifier describing if the button should be styled as a link
          */
-        link: boolean;
+        link?: boolean;
 
         /**
          * Additional CSS class for the button
