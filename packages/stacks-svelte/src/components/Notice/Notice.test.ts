@@ -75,10 +75,10 @@ describe("Notice", () => {
         // Confirm the text is on-screen
         expect(screen.getByText(text)).to.be.visible;
 
-         // Check dismiss is clicked correctly
+        // Check dismiss is clicked correctly
         await userEvent.click(closeButton);
         expect(onDismissMock).to.have.been.called;
-        
+
         // Confirm the notice was hidden
         expect(screen.queryByText(text)).to.not.exist;
     });
