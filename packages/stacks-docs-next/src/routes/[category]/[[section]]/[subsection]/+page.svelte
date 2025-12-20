@@ -16,8 +16,6 @@
 
   const pageTitle = $derived(data.active.title ? `${data.active.title} - Stack Overflow Design System` : 'Stack Overflow Design System');
   const pageDescription = $derived(data?.metadata?.description || `Documentation for ${data.active.title} in the Stack Overflow Design System`);
-
-  console.log(data.breadcrumb)
 </script>
 
 <svelte:head>
@@ -31,22 +29,22 @@
 
 <article class="d-flex md:fd-column mx-auto pl32 md:pr32 sm:pl24 sm:pr24">
   <div class="doc flex--item9 wmn1 s-prose fs-body2 pt32">
-    <div class="d-flex gs4 ai-start mb128">
+    <div class="d-flex gs4 ai-center mb128">
       {#if data?.metadata?.updated}
-        <div class="flex--item fs-body1">
+        <div class="flex--item fs-body2 mr-auto">
           {#each data.breadcrumb as crumb, index}
             <a href={crumb.path} class="px6">{crumb.label}</a>{#if index !== data.breadcrumb.length - 1}<span class="fc-black-300">/</span>{/if}
           {/each}
         </div>
       {/if}
       {#if data?.metadata?.figma}
-        <Button size="sm" weight="clear" icon href={data?.metadata?.figma} class="flex--item mtn12">
+        <Button size="sm" weight="clear" icon href={data?.metadata?.figma} class="flex--item">
           <Icon src={IconServiceFigma} class="native" />
           Figma
         </Button>
       {/if}
       {#if data?.metadata?.svelte}
-        <Button size="sm" weight="clear" icon href={data?.metadata?.svelte} class="flex--item mtn12">
+        <Button size="sm" weight="clear" icon href={data?.metadata?.svelte} class="flex--item">
           <Icon src={IconServiceSvelte} class="native" />
           Svelte
         </Button>
@@ -67,22 +65,20 @@
       <data.Content />
     {/if}
 
-    <footer class="d-flex gs4 ai-start bt bc-black-200 py32">
+    <footer class="d-flex gs4 ai-center bt bc-black-200 py12">
       {#if data?.metadata?.updated}
-        <time datetime={data?.metadata?.updated} class="flex--item mr-auto fc-black-400">
+        <time datetime={data?.metadata?.updated} class="flex--item fs-body1 mr-auto fc-black-400">
           <Icon src={IconCalendar} class="va-middle mr4" />
           Last updated: <strong>{lastUpdated}</strong>
         </time>
       {/if}
       {#if data.filename}
-        <Button size="sm" variant="tonal" href={`https://github.com/StackExchange/Stacks/edit/alpha/packages/stacks-docs-next${data.filename}`} class="flex--iitem mtn12">
+        <Button size="sm" weight="clear" href={`https://github.com/StackExchange/Stacks/edit/alpha/packages/stacks-docs-next${data.filename}`} class="flex--item">
           <Icon src={IconServiceGitHub} /> Edit on GitHub
         </Button>
       {/if}
     </footer>
   </div>
-
-
 
   <Contents {toc} />
 </article>

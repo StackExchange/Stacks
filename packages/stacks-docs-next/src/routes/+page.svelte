@@ -22,7 +22,7 @@
 
 <svelte:head>
   <style>
-    body {
+    main {
       background-image: url(/images/heros/home.svg);
       background-repeat: no-repeat;
       background-position: calc(100% + 100px) 0%;
@@ -34,7 +34,7 @@
   </style>
 </svelte:head>
 
-<div class="p32">
+<div class="page p32">
   <p>
     <span class="s-badge s-badge__new">v{__APP_VERSION__}</span>
   </p>

@@ -31,7 +31,7 @@ export const load: LayoutServerData = async (event: any) => {
 
     const user = event.locals.user;
 
-    if (!user && active?.private) throw redirect(303, "/auth/signin");
+    if (!user && active?.private) throw redirect(303, "/auth/login");
 
     // Build breadcrumbs with actual page titles
     const segments: [string] = event.url.pathname.split('/').filter(Boolean);

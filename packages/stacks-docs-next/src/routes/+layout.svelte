@@ -20,9 +20,9 @@
 	<link rel="icon" href={Favicon} />
 </svelte:head>
 
-<header class="bg-black-100 fc-white w20 sm:w100 hmx100 h100 sm:h-auto overflow-auto ps-fixed br bc-black-200 z-nav d-flex fd-column">
-	<div class="d-flex ai-center jc-space-between bg-black-100 pt8 pl24 sm:pb12 sm:pt12">
-		<a href="/" title="Home" class="fc-orange-400">
+<header class="fc-white w20 sm:w100 hmx100 h100 sm:h-auto overflow-auto ps-fixed z-nav d-flex fd-column">
+	<div class="d-flex ai-center jc-space-between bg-black-100 pt16 pl24 sm:pb12 sm:pt12">
+		<a href="/" title="Home" class="fc-brand-orange">
 			<Icon src={IconLogo} />
 		</a>
 
@@ -34,7 +34,7 @@
 		/>
 	</div>
 	
-	<div class="d-flex md:fd-column sm:d-none bt bc-black-200 pt12 pb12 px12 mt-auto">
+	<div class="d-flex md:fd-column sm:d-none pt12 pb12 px12 mt-auto">
 		<div class="flex--item6 mr4 sm:mr0">
 			<Button rel="external" target="_blank" href="https://github.com/StackExchange/Stacks/" class="w100" weight="clear">
 				<Icon src={IconServiceGitHub} />
@@ -47,9 +47,9 @@
 	</div>
 </header>
 
-<main class="hmn-screen d-flex fd-column">
-	<div class="bg-blue-100 px24 py12">
-		This is a preview, you can find the <a href="https://stackoverflow.design" class="s-link s-link__underlined">current version here.</a>
+<main class="main bg-white hmn-screen d-flex fd-column">
+	<div class="bg-blue-400 fc-white px24 py12">
+		This is a preview focused on branding – for developer reference please see the <a href="https://stackoverflow.design" class="s-link fc-white s-link__underlined">curent version</a> or <a href="https://beta.stackoverflow.design" class="s-link fc-white s-link__underlined">beta version</a>.
 	</div>
 
 	<div class="my-auto">
@@ -64,3 +64,10 @@
 		</div>
 	</footer>
 </main>
+
+<style>
+main {
+	position: relative;
+	top: 24px;
+}
+</style>

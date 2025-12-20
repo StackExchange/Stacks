@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { authClient } from "$lib/auth-client";
-    import { SpotLock } from "@stackoverflow/stacks-icons/spots";
+	
 	import { Button, Icon } from "@stackoverflow/stacks-svelte";
+	import { SpotLock } from "@stackoverflow/stacks-icons/spots";
 
 	async function handleSignIn() {
 		await authClient.signIn.oauth2({ 
@@ -13,7 +14,7 @@
 
 <svelte:head>
   <style>
-    body {
+    main {
       background-image: url(/images/heros/home.svg);
       background-repeat: no-repeat;
       background-position: calc(100% + 100px) 0%;
@@ -33,7 +34,7 @@
 		<p class="fs-body2 fc-black-500 mb24">Only employees can access what’s here. It’s not that interesting unless you work here, honestly.</p>
 
 		<Button onclick={handleSignIn} class="w100">
-			Sign in with Okta
+			Login in with Okta
 		</Button>
 	</div>
 </div>
