@@ -14,6 +14,11 @@
   # https://docs.netlify.com/build/configure-builds/environment-variables/#netlify-configuration-variables
   GIT_LFS_ENABLED = "true" # just here as a reminder
 
+# Build configuration for alpha branch (SvelteKit version)
+[context.alpha.build]
+  command = "npm run build -w packages/stacks-docs-next"
+  publish = "packages/stacks-docs-next/build"
+
 [[redirects]]
   from = "/favicon.ico"
   to = "/assets/img/favicons/favicon.ico"
