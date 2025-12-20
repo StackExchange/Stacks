@@ -47,14 +47,16 @@
 	</div>
 </header>
 
-<main>
+<main class="hmn-screen d-flex fd-column">
 	<div class="bg-blue-100 px24 py12">
 		This is a preview, you can find the <a href="https://stackoverflow.design" class="s-link s-link__underlined">current version here.</a>
 	</div>
 
+	<div class="my-auto">
 	{@render children?.()}
+	</div>
 
-	<footer class="d-flex ai-center mt64 ml32 pb32 fc-black-400">
+	<footer class="d-flex ai-center ml32 py32 fc-black-400">
 		<Icon src={IconGlyph24} />
 		<div class="footer__blurb ml12">
 			© {year} Stack Exchange Inc.
