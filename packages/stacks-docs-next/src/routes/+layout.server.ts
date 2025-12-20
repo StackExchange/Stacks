@@ -29,13 +29,35 @@ export const load: LayoutServerData = async (event: any) => {
 
     const active = findByPath(structure, path);
 
-    const session = event.locals.session;
     const user = event.locals.user;
 
     if (!user && active?.private) throw redirect(303, "/auth/signin");
 
+    // Build breadcrumbs with actual page titles
+    const segments: [string] = event.url.pathname.split('/').filter(Boolean);
+    const breadcrumb: { label: string, path: string }[] = [];
+    
+    let currentLevel = { items: structure.navigation };
+    let currentPath = '';
+    
+    segments.forEach((segment: string) => {
+        const item = currentLevel?.items?.find((item) => item.slug === segment);
+
+        if (item) {
+            currentPath += `/${segment}`;
+
+            breadcrumb.push({
+                label: item.title || segment,
+                path: currentPath,
+            });
+
+            currentLevel = item;
+        }
+    });
+
     return {
         structure,
         active,
+        breadcrumb,
     };
 };

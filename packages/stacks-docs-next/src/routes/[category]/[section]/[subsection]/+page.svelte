@@ -1,16 +1,23 @@
 <script lang="ts">
-  import { IconServiceGitHub, IconServiceFigma, IconServiceSvelte } from '@stackoverflow/stacks-icons/icons';
+  import { IconServiceGitHub, IconServiceFigma, IconServiceSvelte, IconCalendar } from '@stackoverflow/stacks-icons/icons';
   import { Icon, Button } from '@stackoverflow/stacks-svelte';
 
   import Contents from '$src/components/Contents.svelte';
 
   let { data } = $props();
 
-  const lastUpdated = $derived(new Date(data?.metadata?.updated).toLocaleDateString());
+  const lastUpdated = $derived(new Date(data?.metadata?.updated).toLocaleDateString('en-US', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  }));
+
   const toc = $derived(data?.metadata?.toc || []);
 
   const pageTitle = $derived(data.active.title ? `${data.active.title} - Stack Overflow Design System` : 'Stack Overflow Design System');
   const pageDescription = $derived(data?.metadata?.description || `Documentation for ${data.active.title} in the Stack Overflow Design System`);
+
+  console.log(data.breadcrumb)
 </script>
 
 <svelte:head>
@@ -22,12 +29,14 @@
   <img class="w100 h-auto" width="1030" height="540" alt="" src={data.active.image} />
 {/if}
 
-<div class="d-flex md:fd-column mx-auto pl32 md:pr32 sm:pl24 sm:pr24">
+<article class="d-flex md:fd-column mx-auto pl32 md:pr32 sm:pl24 sm:pr24">
   <div class="doc flex--item9 wmn1 s-prose fs-body2 pt32">
     <div class="d-flex gs4 ai-start mb128">
       {#if data?.metadata?.updated}
-        <div class="flex--item s-badge s-badge__new mr-auto">
-          <strong>Last updated:</strong> {lastUpdated}
+        <div class="flex--item fs-body1">
+          {#each data.breadcrumb as crumb, index}
+            <a href={crumb.path} class="px6">{crumb.label}</a>{#if index !== data.breadcrumb.length - 1}<span class="fc-black-300">/</span>{/if}
+          {/each}
         </div>
       {/if}
       {#if data?.metadata?.figma}
@@ -58,12 +67,22 @@
       <data.Content />
     {/if}
 
-    {#if data.filename}
-      <Button size="sm" variant="tonal" href={`https://github.com/StackExchange/Stacks/edit/develop/packages/stacks-docs${data.filename}`}>
-        <Icon src={IconServiceGitHub} /> Edit on GitHub
-      </Button>
-    {/if}
+    <footer class="d-flex gs4 ai-start bt bc-black-200 py32">
+      {#if data?.metadata?.updated}
+        <time datetime={data?.metadata?.updated} class="flex--item mr-auto fc-black-400">
+          <Icon src={IconCalendar} class="va-middle mr4" />
+          Last updated: <strong>{lastUpdated}</strong>
+        </time>
+      {/if}
+      {#if data.filename}
+        <Button size="sm" variant="tonal" href={`https://github.com/StackExchange/Stacks/edit/alpha/packages/stacks-docs-next${data.filename}`} class="flex--iitem mtn12">
+          <Icon src={IconServiceGitHub} /> Edit on GitHub
+        </Button>
+      {/if}
+    </footer>
   </div>
 
+
+
   <Contents {toc} />
-</div>
+</article>

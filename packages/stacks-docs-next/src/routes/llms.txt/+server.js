@@ -1,4 +1,5 @@
 import { render } from "svelte/server";
+import htmlToMd from "$src/lib/htmlToMd";
 
 export async function GET() {
     const baseUrl = "http://beta.stackoverflow.design/";
@@ -42,7 +43,7 @@ Date: ${new Date().toISOString()}
 description: ${page.metadata?.description ?? ""}
 
 Content:
-${processContent(render(page.default).body)}
+${htmlToMd(render(page.default).body)}
 
 ---
 
@@ -66,59 +67,4 @@ function getSlug(filePath) {
         .replace(".md", "");
 
     return slug;
-}
-
-// Borrowed from
-// https://github.com/CleverCloud/eleventy-plugin-llms-txt/blob/main/src/index.js#L16
-function processContent(
-    content,
-    maxLength,
-    normalizeWhitespace = true,
-    stripHorizontalRules = true
-) {
-    if (!content) return "";
-
-    // Remove <style> tags and their content
-    let processedContent = content.replace(
-        /<style[^>]*>[\s\S]*?<\/style>/gi,
-        ""
-    );
-
-    // Remove <script> tags and their content
-    processedContent = processedContent.replace(
-        /<script[^>]*>[\s\S]*?<\/script>/gi,
-        ""
-    );
-
-    // Strip HTML tags
-    processedContent = processedContent.replace(/<[^>]*>/g, " ");
-
-    // Remove horizontal rules if configured
-    if (stripHorizontalRules) {
-        // Replace '---' with a space to avoid breaking content flow
-        processedContent = processedContent.replace(/---/g, " ");
-    }
-
-    // Normalize whitespace if configured
-    if (normalizeWhitespace) {
-        processedContent = processedContent.replace(/\s+/g, " ").trim();
-    } else {
-        // Just trim leading/trailing whitespace but preserve internal formatting
-        processedContent = processedContent.trim();
-    }
-
-    // Truncate if needed
-    if (maxLength && processedContent.length > maxLength) {
-        // Try to truncate at a sentence boundary
-        const lastPeriod = processedContent.lastIndexOf(".", maxLength - 3);
-        if (lastPeriod > maxLength * 0.8) {
-            // Only truncate at period if it's reasonably close to the max length
-            processedContent =
-                processedContent.substring(0, lastPeriod + 1) + "...";
-        } else {
-            processedContent = processedContent.substring(0, maxLength) + "...";
-        }
-    }
-
-    return processedContent;
 }
