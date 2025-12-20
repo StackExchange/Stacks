@@ -1,0 +1,193 @@
+---
+layout: page
+title: Activity indicator
+svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-activityindicator--docs
+figma: https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=610-18796
+description: Stacks provides a small jewel for indicating new activity.
+tags: components
+---
+
+{% assign examples = " ,3,12,370,new" | split: "," %}
+
+<section class="stacks-section">
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in activity-indicator.indicator %}
+                    <tr>
+                        <td><code class="stacks-code">{{ item.class }}</code></td>
+                        <td>{% if item.applies == "N/A" %}<em class="fc-black-350">{{ item.applies }}</em>{% else %}<code class="stacks-code">{{ item.applies }}</code>{% endif %}</td>
+                        <td>{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Examples" %}
+    {% header "h3", "Default" %}
+    <p class="stacks-copy">By default, our indicator has no positioning attached to it. Depending on your context, you can modify the activity indicator’s positioning using any combination of atomic classes. Since our activity indicator has no inherent semantic meaning, make sure to include <a href="{{ '/product/base/visibility/' | url }}">visually-hidden, screenreader-only</a> text with the <code class="stacks-code">v-visible-sr</code> class.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-activity-indicator">
+    <div class="v-visible-sr">New activity</div>
+</div>
+
+<div class="s-activity-indicator">
+    …
+    <div class="v-visible-sr">…</div>
+</div>
+
+<div class="s-activity-indicator">
+    …
+    <div class="v-visible-sr">…</div>
+</div>
+
+<div class="s-activity-indicator">
+    …
+    <div class="v-visible-sr">…</div>
+</div>
+
+<div class="s-activity-indicator">
+    …
+</div>
+
+<a href="#" class="s-link s-link__muted">
+    <div class="s-avatar bg-red-400 ps-relative">
+        <div class="s-avatar--indicator s-activity-indicator s-activity-indicator__sm">
+            <div class="v-visible-sr">…</div>
+        </div>
+        <div class="s-avatar--letter">…</div>
+        @Svg.ShieldXSm.With("native s-avatar--badge")
+    </div>
+    <span class="pl4">…</span>
+</a>
+
+<div class="ps-relative">
+    @Svg.Notification
+
+    <div class="s-activity-indicator s-activity-indicator__sm ps-absolute tn4 rn4 ba baw2 bc-white box-content">
+        <div class="v-visible-sr">…</div>
+    </div>
+</div>
+
+<div class="ps-relative">
+    @Svg.Notification
+
+    <div class="ps-absolute ba baw2 bc-white bar-pill lh-xs tn8 rn8">
+        <div class="s-activity-indicator">
+            3 <div class="v-visible-sr">…</div>
+        </div>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="d-flex g24 ai-center fw-wrap">
+                {% for example in examples %}
+                    <div class="s-activity-indicator">
+                        {{ example }}
+                        <div class="v-visible-sr">New activity</div>
+                    </div>
+                {% endfor %}
+
+                <a href="#" class="s-link s-link__muted">
+                    <div class="s-avatar bg-red-400 d:bg-red-200 ps-relative">
+                        <div class="s-avatar--indicator s-activity-indicator s-activity-indicator__sm">
+                            <div class="v-visible-sr">New activity</div>
+                        </div>
+                        <div class="s-avatar--letter">G</div>
+                        {% icon "ShieldXSm", "native s-avatar--badge" %}
+                    </div>
+                    <span class="pl4">Grayson</span>
+                </a>
+
+                <div class="fc-medium ps-relative">
+                    {% icon "Notification" %}
+
+                    <div class="s-activity-indicator s-activity-indicator__sm ps-absolute tn4 rn4 ba baw2 bc-white box-content">
+                        <div class="v-visible-sr">New activity</div>
+                    </div>
+                </div>
+
+                <div class="fc-medium ps-relative">
+                    {% icon "Notification" %}
+
+                    <div class="ps-absolute ba baw2 bc-white bar-pill lh-xs tn8 rn8">
+                        <div class="s-activity-indicator">
+                            3 <div class="v-visible-sr">…</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Variations" %}
+    <p class="stacks-copy">Stacks also provides alternative styling for success, warning, and danger states.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-activity-indicator s-activity-indicator__success">
+    <div class="v-visible-sr">…</div>
+</div>
+<div class="s-activity-indicator s-activity-indicator__warning">
+    <div class="v-visible-sr">…</div>
+</div>
+<div class="s-activity-indicator s-activity-indicator__danger">
+    <div class="v-visible-sr">…</div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            {% assign variants = "success,warning,danger" | split: "," %}
+            <div class="d-flex fd-column g24">
+                {% for variant in variants %}
+                    <div class="d-flex g24 ai-center fw-wrap">
+                        {% for example in examples %}
+                            <div class="s-activity-indicator s-activity-indicator__{{variant}}">
+                                {{ example }}
+                                <div class="v-visible-sr">New activity</div>
+                            </div>
+                        {% endfor %}
+
+                        <a href="#" class="s-link s-link__muted">
+                            <div class="s-avatar bg-blue-400 d:bg-blue-200 ps-relative">
+                                <div class="s-avatar--indicator s-activity-indicator s-activity-indicator__sm s-activity-indicator__{{variant}}">
+                                    <div class="v-visible-sr">New activity</div>
+                                </div>
+                                <div class="s-avatar--letter">G</div>
+                                {% icon "ShieldXSm", "native s-avatar--badge" %}
+                            </div>
+                            <span class="pl4">Grayson</span>
+                        </a>
+
+                        <div class="fc-medium ps-relative">
+                            {% icon "Notification" %}
+
+                            <div class="s-activity-indicator s-activity-indicator__{{variant}} s-activity-indicator__sm ps-absolute tn4 rn4 ba baw2 bc-white bar-pill box-content">
+                                <div class="v-visible-sr">New activity</div>
+                            </div>
+                        </div>
+
+                        <div class="fc-medium ps-relative">
+                            {% icon "Notification" %}
+
+                            <div class="ps-absolute ba baw2 bc-white bar-pill lh-xs tn8 rn8">
+                                <div class="s-activity-indicator s-activity-indicator__{{variant}}">
+                                    3 <div class="v-visible-sr">New activities</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,27 @@
+{% for set in colorSets %}
+  {% if set.name == color %}
+    <div class="d-flex overflow-hidden {{classes | default: "bar-md sm:fd-column"}}">
+      {% for stop in set.stops %}
+        {% if stop != "" %}
+          {% capture stopStr %}{{ stop }}{% endcapture %}
+          {% assign name = set.name | append: "-" | append: stop | replace: " ", "-" %}
+          {% assign showClass = " sm:d-none" %}
+          {% if labeledStops contains stopStr or labeledStops == null %}
+            {% assign showClass = "" %}
+          {% endif %}
+          {% assign stopFc = "fc-medium" %}
+          {% if set.invert contains stop %}
+              {% assign stopFc = "fc-white" %}
+          {% endif %}
+
+          <div class="d-flex ai-end jc-end bg-{{name}} {{stopFc}} fs-body2 box-content w100{{showClass}} {{stopClasses | default: "h64 sm:h32 p8"}}" style="{{stopStyle | default: ""}}">
+              <span class="v-visible-sr">{{ name }}</span>
+              {% if labeledStops contains stopStr %}
+                  <div class="mr16 md:mr0 sm:mr16">{{stop | replace: "050", "50"}}</div>
+              {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endfor %}

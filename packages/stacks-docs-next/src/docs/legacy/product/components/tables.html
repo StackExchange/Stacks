@@ -1,0 +1,1256 @@
+---
+layout: page
+title: Tables
+js: true
+description: Tables are used to list all information from a data set. The base style establishes preferred padding, font-size, and font-weight treatments. To enhance or customize the look of the table, apply any additional classes listed below.
+tags: components
+---
+
+<section class="stacks-section">
+    {% header "h2", "Default style" %}
+    <p class="stacks-copy">Tables should be wrapped in a container, <code class="stacks-code">.s-table-container</code>. This provides horizontal scrolling when necessary in the smallest breakpoints. The default table style is a bordered cell layout with a stylized header row.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-table-container">
+    <table class="s-table">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-table-container">
+                <table class="s-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Reputation</th>
+                            <th scope="col">Joined</th>
+                            <th scope="col">Last seen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th><a>Aaron Shekey</a></th>
+                            <td>
+                            <div class="s-user-card">
+                                <ul class="s-user-card--awards">
+                                    <li class="s-user-card--rep">350</li>
+                                    <li>
+                                        <span class="s-bling s-bling__gold">
+                                            <span class="v-visible-sr">gold bling</span>
+                                        </span>
+                                        1
+                                    </li>
+                                    <li>
+                                        <span class="s-bling s-bling__silver">
+                                            <span class="v-visible-sr">silver bling</span>
+                                        </span>
+                                        2
+                                    </li>
+                                    <li>
+                                        <span class="s-bling s-bling__bronze">
+                                            <span class="v-visible-sr">bronze bling</span>
+                                        </span>
+                                        7
+                                    </li>
+                                </ul>
+                            </div>
+                            </td>
+                            <td>Dec 1 ’17 at 20:24</td>
+                            <td>just now</td>
+                        </tr>
+                        <tr>
+                            <th><a>Joshua Hynes</a></th>
+                            <td>
+                                <div class="s-user-card">
+                                    <ul class="s-user-card--awards">
+                                        <li class="s-user-card--rep">260</li>
+                                        <li>
+                                            <span class="s-bling s-bling__gold">
+                                                <span class="v-visible-sr">gold bling</span>
+                                            </span>
+                                            1
+                                        <li>
+                                            <span class="s-bling s-bling__bronze">
+                                                <span class="v-visible-sr">bronze bling</span>
+                                            </span>
+                                            4
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td>Feb 12 at 18:47</td>
+                            <td>Aug 10 at 14:57</td>
+                        </tr>
+                        <tr>
+                            <th><a>Piper Lawson</a></th>
+                            <td>
+                                <div class="s-user-card">
+                                    <ul class="s-user-card--awards">
+                                        <li class="s-user-card--rep">1460</li>
+                                        <li>
+                                            <span class="s-bling s-bling__gold">
+                                                <span class="v-visible-sr">gold bling</span>
+                                            </span>
+                                            1
+                                        </li>
+                                        <li>
+                                            <span class="s-bling s-bling__silver">
+                                                <span class="v-visible-sr">silver bling</span>
+                                            </span>
+                                            3
+                                        </li>
+                                        <li>
+                                            <span class="s-bling s-bling__bronze">
+                                                <span class="v-visible-sr">bronze bling</span>
+                                            </span>
+                                            12
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td>Jul 5 at 14:32</td>
+                            <td>Aug 14 at 12:41</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Borders & backgrounds" %}
+    <p class="stacks-copy">By default, tables are outlined, have borders on all cells, and have a styled header. Depending on the size and complexity of a table, these can all be configured.</p>
+    {% header "h3", "Horizontal borders" %}
+    <p class="stacks-copy">Shows only horizontal table cell borders. Good for tables with lots of data that can be sorted and filtered.</p>
+    <div class="stacks-preview mb24">
+{% highlight html %}
+<div class="s-table-container">
+    <table class="s-table s-table__bx">
+        …
+    </table>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-table-container">
+                <table class="s-table s-table__bx">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Aaron</td>
+                            <td>S.</td>
+                            <td>@aarons</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Joshua</td>
+                            <td>H.</td>
+                            <td>@joshuah</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Paweł</td>
+                            <td>L.</td>
+                            <td>@pawełl</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Ted</td>
+                            <td>G.</td>
+                            <td>@so-ted</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Simple borders" %}
+    <p class="stacks-copy">Removes most of the default borders and backgrounds. Good for tables without much data that don't need to be sorted or filtered.</p>
+    <div class="stacks-preview mb24">
+{% highlight html %}
+<div class="s-table-container">
+    <table class="s-table s-table__bx-simple">
+        …
+    </table>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-table-container">
+                <table class="s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Aaron</td>
+                            <td>S.</td>
+                            <td>@aarons</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Joshua</td>
+                            <td>H.</td>
+                            <td>@joshuah</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Paweł</td>
+                            <td>L.</td>
+                            <td>@pawełl</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Ted</td>
+                            <td>G.</td>
+                            <td>@so-ted</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "No borders" %}
+    <p class="stacks-copy">Removes all table cell borders.</p>
+    <div class="stacks-preview mb24">
+{% highlight html %}
+<div class="s-table-container">
+    <table class="s-table s-table__b0">
+        …
+    </table>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-table-container">
+                <table class="s-table s-table__b0">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Aaron</td>
+                            <td>S.</td>
+                            <td>@aarons</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Joshua</td>
+                            <td>H.</td>
+                            <td>@joshuah</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Paweł</td>
+                            <td>L.</td>
+                            <td>@pawełl</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Ted</td>
+                            <td>G.</td>
+                            <td>@so-ted</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% header "h3", "Zebra striping" %}
+    <p class="stacks-copy">When tables have a lot of information, you can help users group information and isolate data by adding zebra striping.</p>
+
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-table-container">
+    <table class="s-table s-table__stripes">
+        …
+    </table>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-table-container">
+                <table class="s-table s-table__stripes d:bg-white">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Aaron</td>
+                            <td>S.</td>
+                            <td>@aarons</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Joshua</td>
+                            <td>H.</td>
+                            <td>@joshuah</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Paweł</td>
+                            <td>L.</td>
+                            <td>@pawełl</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Ted</td>
+                            <td>G.</td>
+                            <td>@so-ted</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Spacing" %}
+    <p class="stacks-copy">A table’s padding can be changed to be more or less condensed.</p>
+
+    {% header "h3", "Small" %}
+    <div class="stacks-preview mb24">
+{% highlight html %}
+<div class="s-table-container">
+    <table class="s-table s-table__sm">
+        …
+    </table>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-table-container">
+                <table class="s-table s-table__sm">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Aaron</td>
+                            <td>S.</td>
+                            <td>@aarons</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Joshua</td>
+                            <td>H.</td>
+                            <td>@joshuah</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Default" %}
+    <div class="stacks-preview mb24">
+{% highlight html %}
+<div class="s-table-container">
+    <table class="s-table">
+        …
+    </table>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-table-container">
+                <table class="s-table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Paweł</td>
+                            <td>L.</td>
+                            <td>@pawełl</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Ted</td>
+                            <td>G.</td>
+                            <td>@so-ted</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Large" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-table-container">
+    <table class="s-table s-table__lg">
+        …
+    </table>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-table-container">
+                <table class="s-table s-table__lg">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Aaron</td>
+                            <td>S.</td>
+                            <td>@aarons</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Joshua</td>
+                            <td>H.</td>
+                            <td>@joshuah</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Cell widths" %}
+    <p class="stacks-copy">Table columns will size themselves based on their content. To set a specific width, you can use one of the following table cell classes to specify the width for any column.</p>
+    {% header "h3", "Classes" %}
+    <table class="mb24 s-table s-table__bx-simple">
+        <thead>
+            <tr>
+                <th scope="col">Class</th>
+                <th scope="col">Width</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in tables.widths %}
+            <tr>
+                <td><code class="ff-mono fw-bold">{{ item.class }}</code></td>
+                <td><code class="ff-mono">{{ item.output }}</code></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% header "h3", "Examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+// Example 1
+<div class="s-table-container">
+    <table class="s-table">
+        <tr>
+            <td class="s-table--cell2">…</td>
+            <td>…</td>
+        </tr>
+    </table>
+</div>
+// Example 2
+<div class="s-table-container">
+    <table class="s-table">
+        <tr>
+            <td class="s-table--cell3">…</td>
+            <td class="s-table--cell6">…</td>
+            <td>…</td>
+            <td>…</td>
+            <td>…</td>
+        </tr>
+    </table>
+</div>
+// Example 3
+<div class="s-table-container">
+    <table class="s-table">
+        <tr>
+            <td class="s-table--cell4">…</td>
+            <td>…</td>
+            <td>…</td>
+            <td>…</td>
+            <td>…</td>
+            <td class="s-table--cell2">…</td>
+        </tr>
+    </table>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ff-mono">
+            <div class="s-table-container mb16">
+                <table class="s-table ta-center">
+                    <tr>
+                        <td class="stacks-flex-example--item s-table--cell2"><strong>.s-table--cell2</strong></td>
+                        <td class="stacks-flex-example--item"><em class="fc-light">No Class</em></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="s-table-container mb16">
+                <table class="s-table ta-center">
+                    <tr>
+                        <td class="stacks-flex-example--item s-table--cell3"><strong>.s-table--cell3</strong></td>
+                        <td class="stacks-flex-example--item s-table--cell6"><strong>.s-table--cell6</strong></td>
+                        <td class="stacks-flex-example--item"><em class="fc-light">No Class</em></td>
+                        <td class="stacks-flex-example--item"><em class="fc-light">No Class</em></td>
+                        <td class="stacks-flex-example--item"><em class="fc-light">No Class</em></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="s-table-container">
+                <table class="s-table ta-center">
+                    <tr>
+                        <td class="stacks-flex-example--item s-table--cell4"><strong>.s-table--cell4</strong></td>
+                        <td class="stacks-flex-example--item"><em class="fc-light">No Class</em></td>
+                        <td class="stacks-flex-example--item"><em class="fc-light">No Class</em></td>
+                        <td class="stacks-flex-example--item"><em class="fc-light">No Class</em></td>
+                        <td class="stacks-flex-example--item"><em class="fc-light">No Class</em></td>
+                        <td class="stacks-flex-example--item s-table--cell2"><strong>.s-table--cell2</strong></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Alignment" %}
+    {% header "h3", "Vertical alignment" %}
+    <p class="stacks-copy">The default vertical alignment is <code class="stacks-code">middle</code>. You change a table’s or a specific cell’s vertical alignment by using the <a href="{{ "/product/base/vertical-alignment#classes" | url }}">Vertical Alignment atomic classes</a>.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-table-container">
+    <table class="s-table">
+        <tbody>
+            <tr>
+                <td class="va-top">…</td>
+                <td class="va-middle">…</td>
+                <td class="va-bottom">…</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="s-table-container">
+    <table class="s-table va-bottom">
+        <tbody>
+            <tr>
+                <td>…</td>
+                <td>…</td>
+                <td>…</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ff-mono">
+            <div class="s-table-container">
+                <table class="s-table mb16">
+                    <tbody>
+                        <tr>
+                            <td class="stacks-flex-example--item va-top hs1">.va-top</td>
+                            <td class="stacks-flex-example--item va-middle">.va-middle</td>
+                            <td class="stacks-flex-example--item va-bottom">.va-bottom</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="s-table-container">
+                <table class="s-table va-bottom">
+                    <tbody>
+                        <tr>
+                            <td class="stacks-flex-example--item hs1">.s-table.va-bottom</td>
+                            <td class="stacks-flex-example--item">.s-table.va-bottom</td>
+                            <td class="stacks-flex-example--item">.s-table.va-bottom</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Text alignment" %}
+    <p class="stacks-copy">Text alignment can be changed at a table or cell level by using <a href="{{ "/product/foundation/typography#layout-classes" | url }}">atomic text alignment classes</a>. Columns containing copy should be left-aligned. Columns containing numbers should be right-aligned.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-table-container">
+    <table class="s-table">
+        <tbody>
+            <tr>
+                <td class="ta-left">…</td>
+                <td class="ta-center">…</td>
+                <td class="ta-right">…</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="s-table-container">
+    <table class="s-table ta-right">
+        <tbody>
+            <tr>
+                <td>…</td>
+                <td>…</td>
+                <td>…</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example ff-mono">
+            <div class="s-table-container">
+                <table class="s-table mb16">
+                    <tbody>
+                        <tr>
+                            <td class="stacks-flex-example--item ta-left hs1">.ta-left</td>
+                            <td class="stacks-flex-example--item ta-center">.ta-center</td>
+                            <td class="stacks-flex-example--item ta-right">.ta-right</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="s-table-container">
+                <table class="s-table ta-right">
+                    <tbody>
+                        <tr>
+                            <td class="stacks-flex-example--item hs1">.s-table.ta-right</td>
+                            <td class="stacks-flex-example--item">.s-table.ta-right</td>
+                            <td class="stacks-flex-example--item">.s-table.ta-right</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Sortable tables" %}
+    <p class="stacks-copy">To indicate that the user can sort a table by different columns, add the <code class="stacks-code">s-table__sortable</code> class to the table.</p>
+    <p class="stacks-copy">The <code class="stacks-code">&lt;th&gt;</code> cells should include arrows to indicate sortability or the currently applied sorting. In addition, the column that is currently sorted should be indicated with the <code class="stacks-code">is-sorted</code> class on its <code class="stacks-code">&lt;th&gt;</code>.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-table-container">
+    <table class="s-table s-table__sortable">
+        <thead>
+            <tr>
+                <th scope="col" class="is-sorted">
+                    <button type="button">Listing @Svg.ArrowDownSm</button>
+                </th>
+                <th scope="col">
+                    <button type="button">Status @Svg.ArrowUpDownSm</button>
+
+                </th>
+                <th scope="col">
+                    <button type="button">Owner @Svg.ArrowUpDownSm</button>
+
+                </th>
+                <th scope="col" class="ta-right">
+                    <button type="button">Views @Svg.ArrowUpDownSm</button>
+
+                </th>
+                <th scope="col" class="ta-right">
+                    <button type="button">Applies @Svg.ArrowUpDownSm</button>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            …
+        </tbody>
+    </table>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-table-container">
+                <table class="s-table s-table__sortable">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="is-sorted">
+                                <a href="#sortable-tables">Listing {% icon "ArrowDownSm" %}</a>
+                            </th>
+                            <th scope="col">
+                                <a href="#sortable-tables">Status {% icon "ArrowUpDownSm" %}</a>
+                            </th>
+                            <th scope="col">
+                                <button type="button">Owner {% icon "ArrowUpDownSm" %}</button>
+                            </th>
+                            <th scope="col" class="ta-right">
+                                <button type="button">Views {% icon "ArrowUpDownSm" %}</button>
+                            </th>
+                            <th scope="col" class="ta-right">
+                                <button type="button">Applies {% icon "ArrowUpDownSm" %}</button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a>Site Reliability Engineer, Generalist</a><br>
+                                <span class="fs-caption">Sydney, Australia</span>
+                            </td>
+                            <td>Running</td>
+                            <td>Sansa Stark</td>
+                            <td class="ta-right">502</td>
+                            <td class="ta-right">13</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Senior Product Designer</a><br>
+                                <span class="fs-caption">New York, NY, USA</span>
+                            </td>
+                            <td>Running</td>
+                            <td>Robert Baratheon</td>
+                            <td class="ta-right">900</td>
+                            <td class="ta-right">15</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Product Manager, Developer Products</a><br>
+                                <span class="fs-caption">London, England</span>
+                            </td>
+                            <td>Running</td>
+                            <td>Sansa Stark</td>
+                            <td class="ta-right">3</td>
+                            <td class="ta-right">1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "JavaScript sorting" %}
+    <p class="stacks-copy">Stacks provides built-in functionality for letting the user sort a table by the values in a column through clicking the column header. This requires the complete data to already exist in the table (e.g. it is not going to work if the table is paged and requires a call to the server to update data on sorting). See the <a href="{{ "/product/develop/javascript" | url }}">JavaScript introduction</a> for general information about JS in Stacks.</p>
+
+    <p class="stacks-copy">To make your table user-sortable, do the following:</p>
+
+    <ol class="stacks-list">
+        <li>Style the table as sortable as explained in the section above.</li>
+        <li>Set <code class="stacks-code">data-controller="s-table"</code> on the <code class="stacks-code">&lt;table&gt;</code> element.</li>
+        <li>Set <code class="stacks-code">data-s-table-target="column"</code> and <code class="stacks-code">data-action="click->s-table#sort"</code> on each of the <code class="stacks-code">&lt;th&gt;</code> elements that control sorting.</li>
+        <li>
+            Add the three icons for showing <i>ascending sort</i>, <i>descending sort</i>, and <i>unsorted</i> to each of these header cells, hiding the first two with a <code class="stacks-code">d-none</code> class. Add the <code class="stacks-code">js-sorting-indicator</code> class to each of the icons, and add <code class="stacks-code">js-sorting-indicator-asc</code>, <code class="stacks-code">js-sorting-indicator-desc</code>, and <code class="stacks-code">js-sorting-indicator-none</code> to the appropriate icon.
+        </li>
+    </ol>
+
+    {% tip %}
+        <strong>Note:</strong> Using <code class="stacks-code">js-…</code> classes is not really the optimal way of doing this, and will probably replaced with something better eventually. When that happens, the <code class="stacks-code">js-…</code> mechanism will be deprecated but continue to be supported for a while, so you have ample time to update things.
+    {% endtip %}
+
+    <p class="stacks-copy">By default, the data is sorted by the content of the cell. If you need to use a different value, for example because your cell contains a human-readable date, add a <code class="stacks-code">data-s-table-sort-val</code> attribute to the cell.</p>
+
+    <p class="stacks-copy">If a column contains any data that is not an integer, the data will be sorted lexicographically. Otherwise it will be sorted numerically, with empty cells being considered the lowest number.</p>
+
+    <p class="stacks-copy">If the table contains rows that should not be sorted, but rather always be at the top or always be at the bottom, add <code class="stacks-code">data-s-table-sort-to="top"</code> or <code class="stacks-code">data-s-table-sort-to="bottom"</code> to the <code class="stacks-code">&lt;tr&gt;</code> element.</p>
+
+    {% header "h3", "JavaScript data attributes" %}
+    <div class="s-table-container">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell5">Attribute</th>
+                    <th scope="col" class="s-table--cell2">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in tables.data-attributes %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ item.attribute }}</code></th>
+                        <td><code class="stacks-code">{{ item.applies }}</code></td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "JavaScript example" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-table-container">
+    <table class="s-table s-table__sortable" data-controller="s-table">
+        <thead>
+            <tr>
+                <th scope="col" data-s-table-target="column">
+                    <button data-action="click->s-table#sort">
+                        Season
+                        @Svg.ArrowUpSm.With("js-sorting-indicator js-sorting-indicator-asc d-none")
+                        @Svg.ArrowDownSm.With("js-sorting-indicator js-sorting-indicator-desc d-none")
+                        @Svg.ArrowUpDownSm.With("js-sorting-indicator js-sorting-indicator-none")
+                    </button>
+                </th>
+                <th scope="col" data-s-table-target="column">
+                    <button data-action="click->s-table#sort">
+                        Starts in month
+                        …
+                    </button>
+                </th>
+                <th scope="col" data-s-table-target="column">
+                    <button data-action="click->s-table#sort">
+                        Typical temperature in °C
+                        …
+                    </button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Winter</td><td data-s-table-sort-val="12">December</td><td>2</td></tr>
+            <tr><td>Spring</td><td data-s-table-sort-val="3">March</td><td>13</td></tr>
+            <tr><td>Summer</td><td data-s-table-sort-val="6">June</td><td>25</td></tr>
+            <tr><td>Fall</td><td data-s-table-sort-val="9">September</td><td>13</td></tr>
+            <tr data-s-table-sort-to="bottom" class="fw-bold">
+                <td colspan="2">Average temperature</td>
+                <td>13</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-table-container">
+                <table class="s-table s-table__sortable" data-controller="s-table">
+                    <thead>
+                        <tr>
+                            <th scope="col" data-s-table-target="column">
+                                <button data-action="click->s-table#sort">
+                                    Season
+                                    {% icon "ArrowUpSm", "js-sorting-indicator js-sorting-indicator-asc d-none" %}
+                                    {% icon "ArrowDownSm", "js-sorting-indicator js-sorting-indicator-desc d-none" %}
+                                    {% icon "ArrowUpDownSm", "js-sorting-indicator js-sorting-indicator-none" %}
+                                </button>
+                            </th>
+                            <th scope="col" data-s-table-target="column">
+                                <button data-action="click->s-table#sort">
+                                    Starts in month
+                                    {% icon "ArrowUpSm", "js-sorting-indicator js-sorting-indicator-asc d-none" %}
+                                    {% icon "ArrowDownSm", "js-sorting-indicator js-sorting-indicator-desc d-none" %}
+                                    {% icon "ArrowUpDownSm", "js-sorting-indicator js-sorting-indicator-none" %}
+                                </button>
+                            </th>
+                            <th scope="col" data-s-table-target="column">
+                                <button data-action="click->s-table#sort">
+                                    Typical temperature in °C
+                                    {% icon "ArrowUpSm", "js-sorting-indicator js-sorting-indicator-asc d-none" %}
+                                    {% icon "ArrowDownSm", "js-sorting-indicator js-sorting-indicator-desc d-none" %}
+                                    {% icon "ArrowUpDownSm", "js-sorting-indicator js-sorting-indicator-none" %}
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Winter</td><td data-s-table-sort-val="12">December</td><td>2</td></tr>
+                        <tr><td>Spring</td><td data-s-table-sort-val="3">March</td><td>13</td></tr>
+                        <tr><td>Summer</td><td data-s-table-sort-val="6">June</td><td>25</td></tr>
+                        <tr><td>Fall</td><td data-s-table-sort-val="9">September</td><td>13</td></tr>
+                        <tr data-s-table-sort-to="bottom" class="fw-bold">
+                            <td colspan="2">Average temperature</td>
+                            <td>13</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Bar graphs" %}
+    <p class="stacks-copy">To help users, you can add data visualizations into table cells. These are useful to help visualize the reported data and calling extra attention to the table cell. These graphs should always be paired with a number.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-table-container">
+    <table class="s-table">
+        <thead>…</thead>
+        <tbody>
+            <tr>
+                <td>…</td>
+                <td>…</td>
+                <td>…</td>
+                <td>…</td>
+                <td class="s-table--progress">1,854</td>
+                <td class="s-table--progress-bar">
+                    <div class="s-progress bg-white">
+                        <div class="s-progress--bar bg-blue-400" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="67.247" aria-label="example progressbar powder" style="width: 67.247%"></div>
+                    </div>
+                </td>
+                <td class="s-table--progress">43</td>
+                <td class="s-table--progress-bar">
+                    <div class="s-progress bg-white">
+                        <div class="s-progress--bar bg-orange-400" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72.881" aria-label="example progressbar orange" style="width: 72.881%"></div>
+                    </div>
+                </td>
+            </tr>
+            …
+        </tbody>
+    </table>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-table-container">
+                <table class="s-table s-table__sortable">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="is-sorted">Listing</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Owner</th>
+                            <th scope="col">Source</th>
+                            <th colspan="2" scope="colgroup">Views</th>
+                            <th colspan="2" scope="colgroup">Applies</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a>Site Reliability Engineer, Generalist</a><br>
+                                <span class="fs-caption">Sydney, Australia</span>
+                            </td>
+                            <td>Running</td>
+                            <td>Sansa Stark</td>
+                            <td>stackoverflow.com</td>
+                            <td class="s-table--progress">
+                                1,854
+                            </td>
+                            <td class="s-table--progress-bar">
+                                <div class="s-progress bg-white">
+                                    <div class="s-progress--bar bg-blue-400" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="67.247" aria-label="example progressbar powder" style="width: 67.247%"></div>
+                                </div>
+                            </td>
+                            <td class="s-table--progress">
+                                43
+                            </td>
+                            <td class="s-table--progress-bar">
+                                <div class="s-progress bg-white">
+                                    <div class="s-progress--bar bg-orange-400" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72.881" aria-label="example progressbar orange" style="width: 72.881%"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Senior Product Designer</a><br>
+                                <span class="fs-caption">New York, NY, USA</span>
+                            </td>
+                            <td>Running</td>
+                            <td>Robert Baratheon</td>
+                            <td>linkedin.com</td>
+                            <td class="s-table--progress">
+                                900
+                            </td>
+                            <td class="s-table--progress-bar">
+                                <div class="s-progress bg-white">
+                                    <div class="s-progress--bar bg-blue-400" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="32.644" aria-label="example progressbar powder" style="width: 32.644%"></div>
+                                </div>
+                            </td>
+                            <td class="s-table--progress">
+                                15
+                            </td>
+                            <td class="s-table--progress-bar">
+                                <div class="s-progress bg-white">
+                                    <div class="s-progress--bar bg-orange-400" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25.424" aria-label="example progressbar orange" style="width: 25.424%"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Product Manager, Developer Products</a><br>
+                                <span class="fs-caption">London, England</span>
+                            </td>
+                            <td>Running</td>
+                            <td>Sansa Stark</td>
+                            <td>m.facebook.com</td>
+                            <td class="s-table--progress">
+                                3
+                            </td>
+                            <td class="s-table--progress-bar">
+                                <div class="s-progress bg-white">
+                                    <div class="s-progress--bar bg-blue-400" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="00.109" aria-label="example progressbar powder" style="width: 00.1088%"></div>
+                                </div>
+                            </td>
+                            <td class="s-table--progress">
+                                1
+                            </td>
+                            <td class="s-table--progress-bar">
+                                <div class="s-progress bg-white">
+                                    <div class="s-progress--bar bg-orange-400" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="01.695" aria-label="example progressbar orange" style="width: 01.695%"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Bulk actions" %}
+    <p class="stacks-copy">Generally for a checkbox input that’s placed first in the table row for bulk actions.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-table-container">
+    <table class="s-table">
+        <thead>
+            <tr>
+                <th scope="col" class="s-table--bulk">
+                    <label class="v-visible-sr" for="example-checkbox-1">bulk checkbox</label>
+                    <input type="checkbox" class="s-checkbox" id="example-checkbox-1">
+                </th>
+                <th scope="col">…</th>
+                <th scope="col">…</th>
+                <th scope="col">…</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="s-table--bulk">
+                    <label class="v-visible-sr" for="example-checkbox-2">bulk checkbox</label>
+                    <input type="checkbox" class="s-checkbox" id="example-checkbox-2">
+                </td>
+                <td>…</th>
+                <td>…</td>
+                <td>…</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-table-container">
+                <table class="s-table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="s-table--bulk">
+                                <label class="v-visible-sr" for="bulk-checkbox-1">bulk checkbox</label>
+                                <input type="checkbox" class="s-checkbox" id="bulk-checkbox-1">
+                            </th>
+                            <th scope="col">Display Name</th>
+                            <th scope="col">Full Name</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="s-table--bulk">
+                                <label class="v-visible-sr" for="bulk-checkbox-2">bulk checkbox</label>
+                                <input type="checkbox" class="s-checkbox" id="bulk-checkbox-2">
+                            </td>
+                            <td><a>SansaStark</a></th>
+                            <td>Sansa Stark</td>
+                            <td>sstark@company.com</td>
+                        </tr>
+                        <tr>
+                            <td class="s-table--bulk">
+                                <label class="v-visible-sr" for="bulk-checkbox-3">bulk checkbox</label>
+                                <input type="checkbox" class="s-checkbox" id="bulk-checkbox-3">
+                            </td>
+                            <td><a>RobertBaratheon</a></th>
+                            <td>Robert Baratheon</td>
+                            <td>rbaratheon@company.com</td>
+                        </tr>
+                        <tr>
+                            <td class="s-table--bulk">
+                                <label class="v-visible-sr" for="bulk-checkbox-4">bulk checkbox</label>
+                                <input type="checkbox" class="s-checkbox" id="bulk-checkbox-4">
+                            </td>
+                            <td><a>Test Developer To Be Is Not A Developer Yet</a></th>
+                            <td>Test Developer To Be Is Not A Developer Yet</td>
+                            <td>testdevelopertobeisnotadevyet@team-mgmt.dev.company.com</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Totals row" %}
+    <p class="stacks-copy">Used mainly with data tables, the totals row increases the font-size for all cells within a row.</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-table-container">
+    <table class="s-table ta-right">
+        …
+        <tfoot class="s-table--totals">
+            …
+        </tfoot>
+    </table>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-table-container">
+                <table class="s-table ta-right">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="ta-left">Listing</th>
+                            <th scope="col" class="s-table--cell2">Views</th>
+                            <th scope="col" class="s-table--cell2">Apps</th>
+                            <th scope="col" class="s-table--cell2">App CTR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="ta-left"><a>Site Reliability Engineer, Generalist</a></th>
+                            <td>6,871</td>
+                            <td>187</td>
+                            <td>5.02%</td>
+                        </tr>
+                        <tr>
+                            <td class="ta-left"><a>Senior Product Designer</a></th>
+                            <td>2,242</td>
+                            <td>196</td>
+                            <td>16.46%</td>
+                        </tr>
+                        <tr>
+                            <td class="ta-left"><a>Product Manager, Developer Products</a></th>
+                            <td>3,469</td>
+                            <td>229</td>
+                            <td>14.9%</td>
+                        </tr>
+                    </tbody>
+                    <tfoot class="s-table--totals">
+                        <tr>
+                            <th scope="row" class="ta-left">Totals</th>
+                            <td>12,582</td>
+                            <td>612</td>
+                            <td>14.65%</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="stacks-section">
+    {% header "h2", "Inactive rows" %}
+    <p class="stacks-copy">For tables that include inactive or disabled rows, such as inactive users or teams, <code class="stacks-code">.is-disabled</code> can be applied to any <code class="stacks-code">&lt;tr&gt;</code>. Additionally, <code class="stacks-code">.is-enabled</code> can be applied to any <code class="stacks-code">&lt;th&gt;</code> or <code class="stacks-code">&lt;td&gt;</code> that you’d like to ignoring the parent disabled styling (such as a persistent link to reactivate a disabled account).</p>
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-table-container">
+    <table class="s-table">
+        <tbody>
+            <tr class="is-disabled">
+                <td>…</td>
+                <td>…</td>
+                <td class="is-enabled">
+                    <a>Add</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example">
+            <div class="s-table-container">
+                <table class="s-table s-table__bx">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="ta-left">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Last seen</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th><a>Aaron Shekey</a></th>
+                            <td>emailaddress@website.com</td>
+                            <td>just now</td>
+                            <td class="ta-right"><a class="fc-red-400">Remove</a></td>
+                        </tr>
+                        <tr class="is-disabled">
+                            <th>Joshua Hynes</th>
+                            <td>emailaddress@website.com</td>
+                            <td>Sep 28 ’18</td>
+                            <td class="ta-right is-enabled"><a>Add</a></td>
+                        </tr>
+                        <tr class="is-disabled">
+                            <th>Paweł Ludwiczak</th>
+                            <td>emailaddress@website.com</td>
+                            <td>Apr 17 ’19</td>
+                            <td class="ta-right is-enabled"><a>Add</a></td>
+                        </tr>
+                        <tr>
+                            <th><a>Piper Lawson</a></th>
+                            <td>emailaddress@website.com</td>
+                            <td>Yesterday</td>
+                            <td class="ta-right"><a class="fc-red-400">Remove</a></td>
+                        </tr>
+                        <tr>
+                            <th><a>Ted Goas</a></th>
+                            <td>emailaddress@website.com</td>
+                            <td>5min ago</td>
+                            <td class="ta-right"><a class="fc-red-400">Remove</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% header "h2", "Atomic classes" %}
+    <p class="stacks-copy">Further control of table behavior is possible with atomic classes. For example, you can make non-table markup display as a table layout by pairing <code class="stacks-code">.d-table</code>, <code class="stacks-code">.d-table-cell</code> and <code class="stacks-code">.tl-fixed</code>.</p>
+    <div class="s-table-container">
+        <table class="s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell3">Class</th>
+                    <th scope="col">Output</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in tables.atomic %}
+                <tr>
+                    <td><code class="stacks-code">{{ item.class }}</code></td>
+                    <td class="ff-mono">{{ item.output }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>

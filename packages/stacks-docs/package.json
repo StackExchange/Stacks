@@ -1,40 +1,21 @@
 {
-    "name": "@stackoverflow/stacks-site",
     "private": true,
-    "version": "0.0.1",
-    "type": "module",
+    "name": "@stackoverflow/stacks-docs",
+    "description": "Stacks Design website. Contains all documentation around using Stacks and its components.",
     "scripts": {
-        "dev": "vite dev",
-        "prebuild": "npm run build -w @stackoverflow/stacks && npm run build -w @stackoverflow/stacks-svelte",
-        "build": "bash netlify-setup.sh && npm run init-private-content && vite build",
-        "preview": "vite preview",
-        "prepare": "svelte-kit sync || echo ''",
-        "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-        "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-        "lint": "eslint .",
-        "format": "prettier --write .",
-        "init-private-content": "GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no\" git submodule update --init --remote"
-    },
-    "devDependencies": {
-        "@sveltejs/adapter-netlify": "^5.0.0",
-        "@sveltejs/kit": "^2.22.0",
-        "@sveltejs/vite-plugin-svelte": "^6.0.0",
-        "mdsvex": "^0.12.3",
-        "vite": "^7.0.4"
+        "start": "concurrently -n w: npm:start:*",
+        "start:webpack": "webpack --watch",
+        "start:eleventy": "eleventy --serve",
+        "build": "webpack --mode=production && eleventy"
     },
     "dependencies": {
-        "@auth/sveltekit": "^1.10.0",
-        "@docsearch/css": "^4.3.2",
-        "@docsearch/js": "^4.3.2",
-        "@hbsnow/rehype-sectionize": "^1.0.7",
+        "@hotwired/stimulus": "^3.2.2",
         "@stackoverflow/stacks": "*",
-        "@stackoverflow/stacks-icons": "*",
-        "@stackoverflow/stacks-svelte": "*",
-        "@stefanprobst/rehype-extract-toc": "^3.0.0",
-        "modern-normalize": "^3.0.1",
-        "rehype-autolink-headings": "^7.1.0",
-        "rehype-slug": "^6.0.0",
-        "unist-util-visit": "^5.0.0",
-        "yaml": "^2.8.1"
+        "@stackoverflow/stacks-editor": "^1.0.0-beta.3",
+        "@stackoverflow/stacks-icons": "^7.0.0-beta.7",
+        "@stackoverflow/stacks-icons-legacy": "npm:@stackoverflow/stacks-icons@^6.6.1",
+        "jquery": "^3.7.1",
+        "list.js": "^2.3.1",
+        "docsearch.js": "^2.6.3"
     }
 }

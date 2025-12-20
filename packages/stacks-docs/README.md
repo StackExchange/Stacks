@@ -1,38 +1,15 @@
-# sv
+# Stacks Docs
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+This workspace contains the Stacks documentation project that’s hosted on: https://stackoverflow.design/
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
+To contribute to Stacks documentation you can build locally via:
 ```sh
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
+npm start
 ```
+This command will pull up the local dev server at http://localhost:8080. You can also view our [building guidelines](https://stackoverflow.design/product/develop/building).
 
-## Developing
+# Release management
+Refer to the main [README.md](../../README.md) for details on how releases are currently managed.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+# Bugs and feature requests
+Have a bug or feature request? First search existing or closed issues to make sure the issue hasn’t been noted yet. If not, review our [issue guidelines](../../CONTRIBUTING.md#open-an-issue) for submitting [a bug report](../../CONTRIBUTING.md#reporting-bugs) or [feature request](../../CONTRIBUTING.md#feature-requests).
