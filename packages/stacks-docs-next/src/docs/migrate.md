@@ -226,4 +226,185 @@ Before proceeding, investigate and report:
 
 ---
 
-**Start by exploring the codebase and proposing your migration strategy. Once I approve the approach, proceed with implementation.**
+## Current Migration Status
+
+### Approach Chosen: Manual Migration
+
+After analysis, we chose **manual migration one-by-one** over automation. This allows for:
+- Full quality control for each page
+- Building reusable component library as we go
+- Handling edge cases perfectly
+- Learning the codebase deeply
+
+### Progress Summary (as of 2025-12-20)
+
+**Total pages:** 76 HTML files + 18 includes/layouts
+
+**Migration Status:**
+
+✅ **Forms** - 5/5 pages (100%) - FULLY MIGRATED
+- ✅ **inputs.md** - FULLY MIGRATED (2025-12-20)
+- ✅ **checkbox.md** - FULLY MIGRATED (2025-12-20)
+- ✅ **select.md** - FULLY MIGRATED (2025-12-20)
+- ✅ **textarea.md** - FULLY MIGRATED (2025-12-20)
+- ✅ **labels.md** - FULLY MIGRATED (2025-12-20)
+
+🟡 **Components** - 8/43 pages FULLY MIGRATED (35 with placeholder content)
+- ✅ **skeleton.md** - FULLY MIGRATED (2025-12-20)
+- ✅ **spinner.md** - FULLY MIGRATED (2025-12-20)
+- ✅ **empty-states.md** - FULLY MIGRATED (2025-12-20)
+- ✅ **toggle-switch.md** - FULLY MIGRATED (2025-12-20)
+- ✅ **tags.md** - FULLY MIGRATED (2025-12-20)
+- ✅ **pagination.md** - FULLY MIGRATED (2025-12-20)
+- ✅ **page-titles.md** - FULLY MIGRATED (2025-12-20)
+- ✅ **bling.md** - FULLY MIGRATED (2025-12-20)
+- ❌ 35 components - placeholder only (need real migration)
+
+✅ **Base** - 26/26 pages (100%)
+- All migrated
+
+🟡 **Foundation** - 1/7 pages (14%)
+- ❌ **icons.html** - not migrated (can ignore per requirements)
+- ❌ **spots.html** - not migrated (can ignore per requirements)
+- ❌ **color-fundamentals.md** - placeholder only
+- ❌ **colors.md** - placeholder only
+- ❌ **accessibility.md** - placeholder only
+- ❌ **theming.md** - placeholder only
+- ✅ **typography.md** - migrated
+
+✅ **Develop** - 4/4 pages (100%)
+- All migrated
+
+### Key Learnings
+
+1. **Simple inline data > separate files**
+   - For validation classes, sizes, etc., define data inline in `<script>` section
+   - Only extract to separate components when logic is complex
+
+2. **Tables with data loops**
+   ```svelte
+   {#each validationClasses as item}
+   <tr>
+     <th scope="row"><code class="stacks-code">{item.class}</code></th>
+     <td>{item.applies}</td>
+     <td>{item.description}</td>
+   </tr>
+   {/each}
+   ```
+
+3. **Icon handling**
+   - Import from `@stackoverflow/stacks-icons`
+   - Use `<Icon src={IconName} class="..." />` from stacks-svelte
+   - Example: `{% icon "Lock" %}` → `<Icon src={IconLock} />`
+
+4. **Notice/Warning boxes**
+   - `{% tip, "warning" %}` → `<div class="s-notice s-notice__warning">...</div>`
+   - Can create reusable Notice component if needed
+
+5. **Live examples stay as HTML**
+   - Keep the live preview sections as raw HTML
+   - Use Svelte components (Icon, etc.) within them
+   - This allows interactive examples to work
+
+### Patterns Established
+
+**Page structure:**
+```markdown
+---
+title: Page Title
+svelte: https://...
+figma: https://...
+description: ...
+updated: YYYY-MM-DD
+---
+
+<script lang="ts">
+  import { Icon } from '@stackoverflow/stacks-svelte';
+  import { IconName } from '@stackoverflow/stacks-icons';
+
+  // Inline data for tables
+  const tableData = [...];
+</script>
+
+## Section
+
+Content with markdown, code blocks, and live examples.
+
+```html
+<!-- Code example -->
+```
+
+<div class="example">
+  <!-- Live example using Stacks CSS and Svelte components -->
+  <Icon src={IconName} />
+</div>
+```
+
+### Next Steps
+
+1. **Complete Forms section** (4 pages remaining)
+   - checkbox.md
+   - select.md
+   - textarea.md
+   - labels.md
+
+2. **Fill placeholder content in Components** (43 pages)
+   - Priority: Most commonly used components first
+
+3. **Fill placeholder content in Foundation** (4 pages)
+   - color-fundamentals.md
+   - colors.md
+   - accessibility.md
+   - theming.md
+
+### Estimated Remaining Effort
+
+- Simple pages: 15-30 min each
+- Medium pages: 30-60 min each
+- Complex pages: 1-3 hours each
+
+**Total remaining:** ~35 pages to fill in with real content
+
+---
+
+## Migration Session Log
+
+### Session 2025-12-20
+
+**Pages Migrated:** 13 pages fully completed
+
+**Forms Section (5 pages):**
+1. inputs.md - Base styles, validation states, accessibility, icons, sizes, input fills, nested inputs
+2. checkbox.md - Checkbox & radio, vertical/horizontal groups, indeterminate state, validation
+3. select.md - Select menus with validation states and sizes
+4. textarea.md - Textareas with validation states and sizes
+5. labels.md - Label styles, sizes, description copy, status flags
+
+**Components Section (8 pages):**
+1. skeleton.md - Base & AI loading states with accessibility
+2. spinner.md - 5 sizes + `.is-loading` helper
+3. empty-states.md - No data/results states (actionable & non-actionable)
+4. toggle-switch.md - Single & multiple option toggles
+5. tags.md - All tag states (base, moderator, required, watched, ignored) + sizes
+6. pagination.md - Navigation with states
+7. page-titles.md - Headers with descriptions, actions, breadcrumbs
+8. bling.md - Award indicators (types, filled, sizes)
+
+**Time per page:** ~5-15 minutes for simple components
+
+**Next components to migrate (in order of complexity):**
+- breadcrumbs.html (157 lines)
+- cards.html (169 lines)
+- expandable.html (175 lines)
+- prose.html (186 lines)
+- avatars.html, badges.html, banners.html, etc.
+
+**Notes:**
+- Pattern is very consistent now
+- Inline data constants work well for simple tables
+- `{#each}` loops replace Liquid `{% for %}` perfectly
+- Icon components from `@stackoverflow/stacks-icons` work great
+
+---
+
+**Migration is ongoing. Focus on Components → Foundation for maximum impact.**

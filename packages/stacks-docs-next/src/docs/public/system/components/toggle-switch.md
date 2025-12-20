@@ -1,11 +1,128 @@
 ---
-updated: 2025-12-05
+title: Toggle switch
+figma: https://svelte.stackoverflow.design/figma/toggle-switches
+description: A toggle is used to quickly switch between two or more possible states. They are most commonly used for simple "on/off" switches, but can contain multiple options.
+updated: 2025-12-20
 ---
 
-## Toggle switch
+## Classes
 
-Toggle switch components for binary options.
+<div class="overflow-x-auto">
+    <table class="wmn4 s-table s-table__bx-simple">
+        <thead>
+            <tr>
+                <th class="s-table--cell4" scope="col">Class</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody class="fs-caption">
+            <tr>
+                <th scope="row"><code class="stacks-code">.s-toggle-switch</code></th>
+                <td>Class to apply toggle switch styling to <code class="stacks-code">input[type="checkbox"]</code> or on a parent of multiple <code class="stacks-code">input[type="radio"]</code> elements.</td>
+            </tr>
+            <tr>
+                <th scope="row"><code class="stacks-code">.s-toggle-switch__multiple</code></th>
+                <td>Modifies the base container to accept multiple options.</td>
+            </tr>
+            <tr>
+                <th scope="row"><code class="stacks-code">.s-toggle-switch--label-off</code></th>
+                <td>Apply to the "Off" or "None" option so it's highlighted state isn't lit up green.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-### Overview
+<div class="s-notice s-notice__warning mb24">
+    <p class="mb0"><strong>Deprecation:</strong> <a href="https://github.com/StackExchange/Stacks/pull/1121#issue-1381594434">the markup for toggle switches has changed</a>. Please update your toggle switches to match the markup structure detailed on this page.</p>
+</div>
 
-Documentation coming soon.
+## Examples
+
+### Single
+
+A single toggle is appropriate for simple "on/off" states eg. enabling emails, markdown editing, or various cookies. Toggle switches take up less space than an "on/off" radio button group and communicate their intended purpose more clearly than a checkbox that toggles functionality. They also provide consistency between desktop and mobile experiences.
+
+```html
+<div class="d-flex ai-center g8">
+    <label class="s-label" for="toggle-example-default">…</label>
+    <input class="s-toggle-switch" id="toggle-example-default" type="checkbox">
+</div>
+<div class="d-flex ai-center g8">
+    <label class="s-label" for="toggle-example-checked">…</label>
+    <input class="s-toggle-switch" id="toggle-example-checked" type="checkbox" checked>
+</div>
+<div class="d-flex ai-center g8">
+    <label class="s-label" for="toggle-example-disabled">…</label>
+    <input class="s-toggle-switch" id="toggle-example-disabled" type="checkbox" disabled>
+</div>
+<div class="d-flex ai-center g8">
+    <label class="s-label" for="toggle-example-checked">…</label>
+    <input class="s-toggle-switch" id="toggle-example-checked-disabled" type="checkbox" disabled checked>
+</div>
+```
+
+<div class="d-flex fw-wrap g16">
+    <div class="d-flex ai-center g8">
+        <label class="s-label" for="toggle-example-default">Default</label>
+        <input class="s-toggle-switch" id="toggle-example-default" type="checkbox">
+    </div>
+    <div class="d-flex ai-center g8">
+        <label class="s-label" for="toggle-example-checked">Checked</label>
+        <input class="s-toggle-switch" id="toggle-example-checked" type="checkbox" checked>
+    </div>
+    <div class="d-flex ai-center g8">
+        <label class="s-label" for="toggle-example-disabled">Disabled</label>
+        <input class="s-toggle-switch" id="toggle-example-disabled" type="checkbox" disabled>
+    </div>
+    <div class="d-flex ai-center g8">
+        <label class="s-label" for="toggle-example-disabled">Checked and disabled</label>
+        <input class="s-toggle-switch" id="toggle-example-checked-disabled" type="checkbox" disabled checked>
+    </div>
+</div>
+
+### 3 or more options
+
+Toggles switches can be extended to choose between three or more states—in this case, the user is setting the frequency of an email digest. Use the multiple toggle instead of a radio group when unifying the aesthetics is important.
+
+```html
+<div class="d-flex ai-center g8">
+    <label class="s-label c-default">…</label>
+    <div class="s-toggle-switch s-toggle-switch__multiple">
+        <input type="radio" name="group" id="four" checked>
+        <label for="four" class="s-toggle-switch--label-off">Off</label>
+        <input type="radio" name="group" id="one">
+        <label for="one">Weekly</label>
+        <input type="radio" name="group" id="two">
+        <label for="two">Daily</label>
+        <input type="radio" name="group" id="three">
+        <label for="three">3 hrs</label>
+    </div>
+</div>
+```
+
+<div class="d-flex fd-column g24">
+    <div class="d-flex ai-center g8">
+        <label class="c-default s-label">Email frequency</label>
+        <div class="s-toggle-switch s-toggle-switch__multiple">
+            <input type="radio" name="example2" id="example2-off" checked value="Off">
+            <label for="example2-off" class="s-toggle-switch--label-off">Off</label>
+            <input type="radio" name="example2" id="example2-w" value="Weekly">
+            <label for="example2-w">Weekly</label>
+            <input type="radio" name="example2" id="example2-d" value="Daily">
+            <label for="example2-d">Daily</label>
+            <input type="radio" name="example2" id="example2-3" value="3 hrs">
+            <label for="example2-3">3 hrs</label>
+        </div>
+    </div>
+    <div class="d-flex ai-center g8">
+        <label class="c-default s-label">Encryption</label>
+        <div class="s-toggle-switch s-toggle-switch__multiple">
+            <input type="radio" name="example3" id="example3-off" value="Off">
+            <label for="example3-off" class="s-toggle-switch--label-off">Off</label>
+            <input type="radio" name="example3" id="example3-a" value="Automatic" checked>
+            <label for="example3-a">Automatic</label>
+            <input type="radio" name="example3" id="example3-m" value="Manual">
+            <label for="example3-m">Manual</label>
+        </div>
+    </div>
+</div>
