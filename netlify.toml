@@ -1,7 +1,7 @@
-# Temporary to get stacks-svelte site to build ($SITE_ID below)
+# Skips stacks-svelte builds
 # We can remove this when we resolve stacks-docs with stacks-docs-next
 
 [build]
   command = "npm run build -w packages/stacks-docs-next"
   publish = "packages/stacks-docs-next/build"
-  ignore = "bash -c '[[ $BRANCH != alpha ]] || [[ $SITE_ID == c07bc127-6503-4fa9-bc31-abde9298ca09 ]]'"
+  ignore = "bash -c '[[ $BRANCH != alpha || $SITE_ID != c07bc127-6503-4fa9-bc31-abde9298ca09 ]]'"
