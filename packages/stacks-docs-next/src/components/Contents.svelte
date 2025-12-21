@@ -159,7 +159,7 @@
                 class:is-active={activeId === item.id}
                 onclick={() => isOpen = false}
               >
-                <span class={`w24 d-flex ai-center fc-orange-400`}>{(index + 1).toString().padStart(2, "0")}</span>
+                <span class="fl-shrink0 w24 d-flex ai-center fc-orange-400">{(index + 1).toString().padStart(2, "0")}</span>
                 <span>{item.value}</span>
               </a>
               {#if item.children && item.children.length > 0}
