@@ -6,7 +6,9 @@ import { env } from '$env/dynamic/private';
 import { getRequestEvent } from "$app/server";
 
 export const auth = betterAuth({
-	baseURL: env.URL || "http://localhost:5173",
+	// Comes from Netlify
+	// https://docs.netlify.com/build/configure-builds/environment-variables/#deploy-urls-and-metadata
+	baseURL: process.env.URL || "http://localhost:5173",
 
 	// Secret for signing cookies and tokens
 	// openssl rand -base64 32
