@@ -2,7 +2,7 @@
 	import '../app.css';
 
 	import { Icon, Button } from '@stackoverflow/stacks-svelte';
-	import { IconLogo, IconGlyph24, IconServiceGitHub } from '@stackoverflow/stacks-icons'
+	import { IconLogo, IconGlyph24, IconServiceGitHub, IconMenu, IconCross } from '@stackoverflow/stacks-icons'
 
 	import Navigation from '$components/Navigation.svelte';
 	import Search from '$components/Search.svelte';
@@ -12,6 +12,8 @@
 
 	let { children, data } = $props();
 
+	let mobileMenu = $state(false)
+
 	const year = new Date().getFullYear()
 </script>
 
@@ -20,15 +22,20 @@
 	<link rel="icon" href={Favicon} />
 </svelte:head>
 
-<header class="fc-white w20 sm:w100 hmx100 h100 sm:h-auto overflow-auto ps-fixed z-nav d-flex fd-column">
-	<div class="d-flex ai-center jc-space-between bg-black-100 pt16 pl24 sm:pb12 sm:pt12">
-		<a href="/" title="Home" class="fc-brand-orange">
+<header class="fc-white w20 sm:w100 hmx100 h100 sm:h-auto overflow-auto ps-fixed z-nav d-flex fd-column sm:fd-column sm:ps-static sm:order-last">
+	<div class="d-flex ai-center bg-black-100 pt16 px24 sm:pr6 sm:pb12 sm:pt12">
+		<a href="/" title="Home" class="fc-brand-orange mr-auto">
 			<Icon src={IconLogo} />
 		</a>
 
 		<Search />
+
+		<Button class="d-none sm:d-block" onclick={() => mobileMenu = !mobileMenu} weight="clear" icon>
+			<Icon src={mobileMenu ? IconCross : IconMenu} class="fc-black" />
+		</Button>
 	</div>
-	<div class="sm:d-none">
+
+	<div class={`d-block ${mobileMenu ? '' : 'sm:d-none'}`}>
 		<Navigation
 			navigation={data.structure?.navigation}
 		/>
@@ -47,13 +54,13 @@
 	</div>
 </header>
 
-<main class="main bg-white hmn-screen d-flex fd-column">
+<main class="main bg-white hmn-screen d-flex fd-column t24 sm:t0 ps-relative">
 	<div class="bg-blue-400 fc-white px24 py12">
 		This is a preview focused on branding – for developer reference please see the <a href="https://stackoverflow.design" class="s-link fc-white s-link__underlined">curent version</a> or <a href="https://beta.stackoverflow.design" class="s-link fc-white s-link__underlined">beta version</a>.
 	</div>
 
 	<div class="my-auto">
-	{@render children?.()}
+		{@render children?.()}
 	</div>
 
 	<footer class="d-flex ai-center ml32 py32 fc-black-400">
@@ -64,10 +71,3 @@
 		</div>
 	</footer>
 </main>
-
-<style>
-main {
-	position: relative;
-	top: 24px;
-}
-</style>

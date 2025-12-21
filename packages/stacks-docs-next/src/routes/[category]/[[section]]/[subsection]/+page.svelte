@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { IconServiceGitHub, IconServiceFigma, IconServiceSvelte, IconCalendar } from '@stackoverflow/stacks-icons/icons';
+  import { IconServiceGitHub, IconServiceFigma, IconServiceSvelte, IconCheckFillCircle, IconStackCards } from '@stackoverflow/stacks-icons/icons';
   import { Icon, Button } from '@stackoverflow/stacks-svelte';
-
+  
+  import { copyToClipboard } from '$src/lib/copyToClipboard'
   import Contents from '$src/components/Contents.svelte';
 
   let { data } = $props();
@@ -16,12 +17,24 @@
 
   const pageTitle = $derived(data.active.title ? `${data.active.title} - Stack Overflow Design System` : 'Stack Overflow Design System');
   const pageDescription = $derived(data?.metadata?.description || `Documentation for ${data.active.title} in the Stack Overflow Design System`);
+  
+  let copiedMd = $state(false);
+
+  function copySuccess() {
+    copiedMd = true
+   
+    setTimeout(() => {
+      copiedMd = false;
+    }, 2000);
+  }
 </script>
 
 <svelte:head>
   <title>{pageTitle}</title>
   <meta name="description" content={pageDescription} />
 </svelte:head>
+
+<svelte:window on:copysuccess={copySuccess} />
 
 {#if data?.active?.image}
   <img class="w100 h-auto" width="1030" height="540" alt="" src={data.active.image} />
@@ -30,54 +43,63 @@
 <article class="d-flex md:fd-column mx-auto pl32 md:pr32 sm:pl24 sm:pr24">
   <div class="doc flex--item9 wmn1 s-prose fs-body2 pt32">
     <div class="d-flex gs4 ai-center mb128">
-      {#if data?.metadata?.updated}
-        <div class="flex--item fs-body2 mr-auto">
-          {#each data.breadcrumb as crumb, index}
-            <a href={crumb.path} class="px6">{crumb.label}</a>{#if index !== data.breadcrumb.length - 1}<span class="fc-black-300">/</span>{/if}
-          {/each}
-        </div>
+      <div class="flex--item fs-body2 mr-auto">
+        {#each data.breadcrumb as crumb, index}
+          <a href={crumb.path} class="px6">{crumb.label}</a>{#if index !== data.breadcrumb.length - 1}<span class="fc-black-300">/</span>{/if}
+        {/each}
+      </div>
+
+      <button title="Copy to Markdown" class="s-btn s-btn__sm s-btn__clear s-btn__icon" use:copyToClipboard={data.markdown}>
+        {#if copiedMd}
+          <Icon src={IconCheckFillCircle} class="fc-green-400" />
+        {:else}
+          <Icon src={IconStackCards} />
+        {/if}
+        <span class="sm:d-none">Copy</span>
+      </button>
+
+      {#if data.filename}
+        <Button title="Edit on GitHub" size="sm" weight="clear" href={`https://github.com/StackExchange/Stacks/edit/alpha/packages/stacks-docs-next${data.filename}`} class="flex--item">
+          <Icon src={IconServiceGitHub} />
+          <span class="sm:d-none">Edit</span>
+        </Button>
       {/if}
+
       {#if data?.metadata?.figma}
-        <Button size="sm" weight="clear" icon href={data?.metadata?.figma} class="flex--item">
+        <Button title="Open in Figma" size="sm" weight="clear" icon href={data?.metadata?.figma} class="flex--item">
           <Icon src={IconServiceFigma} class="native" />
-          Figma
+          <span class="sm:d-none">Figma</span>
         </Button>
       {/if}
       {#if data?.metadata?.svelte}
-        <Button size="sm" weight="clear" icon href={data?.metadata?.svelte} class="flex--item">
+        <Button title="Svelte component docs" size="sm" weight="clear" icon href={data?.metadata?.svelte} class="flex--item">
           <Icon src={IconServiceSvelte} class="native" />
-          Svelte
+          <span class="sm:d-none">Svelte</span>
         </Button>
       {/if}
     </div>  
 
-    <h1 class="fs-display2 ff-stack-sans-headline-notch mb32">
-      {data.active.title}
-    </h1>
+    <header>
+      {#if data?.metadata?.updated}
+        <time datetime={data?.metadata?.updated} class="d-block mb24 fs-body1 fc-black-400">
+          Last updated: <strong>{lastUpdated}</strong>
+        </time>
+      {/if}
 
-    {#if data?.metadata?.description}
-      <p class="fc-dark fs-body3 mtn16 wmx5">
-        {@html data.metadata.description}
-      </p>
-    {/if}
+      <h1 class="fs-display2 ff-stack-sans-headline-notch mb32">
+        {data.active.title}
+      </h1>
+
+      {#if data?.metadata?.description}
+        <p class="fc-dark fs-body3 mtn16 wmx5">
+          {@html data.metadata.description}
+        </p>
+      {/if}
+    </header>
 
     {#if data.source === 'md'}
       <data.Content />
     {/if}
-
-    <footer class="d-flex gs4 ai-center bt bc-black-200 py12">
-      {#if data?.metadata?.updated}
-        <time datetime={data?.metadata?.updated} class="flex--item fs-body1 mr-auto fc-black-400">
-          <Icon src={IconCalendar} class="va-middle mr4" />
-          Last updated: <strong>{lastUpdated}</strong>
-        </time>
-      {/if}
-      {#if data.filename}
-        <Button size="sm" weight="clear" href={`https://github.com/StackExchange/Stacks/edit/alpha/packages/stacks-docs-next${data.filename}`} class="flex--item">
-          <Icon src={IconServiceGitHub} /> Edit on GitHub
-        </Button>
-      {/if}
-    </footer>
   </div>
 
   <Contents {toc} />

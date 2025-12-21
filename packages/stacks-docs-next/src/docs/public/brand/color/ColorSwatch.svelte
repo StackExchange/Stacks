@@ -1,6 +1,6 @@
 <script>
   import { copyToClipboard } from '$src/lib/copyToClipboard'
-  import { IconArrowUpRightBox, IconCheckFillCircle  } from '@stackoverflow/stacks-icons/icons';
+  import { IconArrowUpRightBox, IconCheckFillCircle, IconStackCards } from '@stackoverflow/stacks-icons/icons';
   import { Icon, Modal } from '@stackoverflow/stacks-svelte';
   
   const uuid = crypto.randomUUID();
@@ -75,9 +75,7 @@
               {#if copiedField === row.field}
                 <Icon src={IconCheckFillCircle} class="fc-green-400" />
               {:else}
-                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon">
-                  <path d="M13 5H15.5V7H18.001V18H7.00098V15.5H5V13H2V2H13V5ZM15.5 15.5H8.50098V16.5H16.501V8.5H15.5V15.5ZM13 13H6.5V14H14V6.5H13V13ZM3.5 11.5H11.5V3.5H3.5V11.5Z" />
-                </svg>
+                <Icon src={IconStackCards} />
               {/if}
             </button>
           </div>

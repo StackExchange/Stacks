@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Icon } from '@stackoverflow/stacks-svelte';
-  import { IconChevron16Down } from '@stackoverflow/stacks-icons'
+  import { IconChevron16Down, IconChevron16Up } from '@stackoverflow/stacks-icons'
 
   interface TocItem {
     id: string;
@@ -132,13 +132,13 @@
 
 <aside class="flex--item3 md:order-first ml32 md:ml0">
   {#if toc.length > 0}
-    <div class="ps-sticky t0 py24 pr24 md:pb0 overflow-auto hmx-screen md:hmx-initial">
+    <div class="ps-sticky t0 py32 mt6 pr24 md:pb0 overflow-auto hmx-screen md:hmx-initial">
       <button
-        class="d-none md:d-block s-btn s-btn__filled w100 mb12 jc-space-between"
+        class="d-none md:d-block s-btn s-btn__tonal s-btn__icon w100 mb12 d-flex jc-space-between"
         onclick={() => isOpen = !isOpen}
       >
-        <span>Contents</span>
-        <Icon src={IconChevron16Down} />
+        <Icon src={isOpen ? IconChevron16Up : IconChevron16Down} />
+        Contents
       </button>
 
       <nav bind:this={navElement} class={`ps-relative d-block ${!isOpen ? 'd-block md:d-none' : ''}`}>
