@@ -7,7 +7,7 @@ updated: 2025-12-20
 
 <script lang="ts">
   import { Icon } from '@stackoverflow/stacks-svelte';
-  import { IconArrowRightAltSm, IconShieldXSm } from '@stackoverflow/stacks-icons';
+  import { IconPlaceholder16 } from '@stackoverflow/stacks-icons';
 
   const breadcrumbClasses = [
     { class: '.s-breadcrumbs', applies: 'N/A', description: 'Base parent container for breadcrumbs' },
@@ -80,13 +80,12 @@ It is **not** appropriate to use Breadcrumbs when:
         <div class="s-breadcrumbs--item">
             <a class="s-breadcrumbs--link" href="#" aria-label="Stack Overflow">
                 <!-- TODO: Add LogoGlyphXxs SVG -->
-                <svg class="mtn2" width="18" height="20" viewBox="0 0 18 20"><path fill="#F48024" d="M15 19v-5h2v7H0v-7h2v5h13Z"/><path fill="#BCBBBB" d="m4 11 .5-2L14 12l-.5 2L4 11Zm.96-4.37L14 11l1-1.73-9-4.36-1.04 1.72Zm1.81-3.97 8.04 5.67 1.3-1.84-8.04-5.67-1.3 1.84ZM14.2 0l-1.7 1.27 6.25 8.35 1.7-1.27L14.2 0Z"/></svg>
             </a>
-            <Icon src={IconArrowRightAltSm} class="s-breadcrumbs--divider" />
+            <Icon src={IconPlaceholder16} class="s-breadcrumbs--divider" />
         </div>
         <div class="s-breadcrumbs--item">
             <a class="s-breadcrumbs--link" href="#">Help center</a>
-            <Icon src={IconArrowRightAltSm} class="s-breadcrumbs--divider" />
+            <Icon src={IconPlaceholder16} class="s-breadcrumbs--divider" />
         </div>
         <div class="s-breadcrumbs--item">
             <a class="s-breadcrumbs--link" href="#">Asking</a>
@@ -116,9 +115,8 @@ It is **not** appropriate to use Breadcrumbs when:
         <div class="s-breadcrumbs--item">
             <a class="s-breadcrumbs--link" href="#" aria-label="Stack Exchange">
                 <!-- TODO: Add LogoSEXxs SVG -->
-                <svg class="mtn2" width="18" height="20" viewBox="0 0 18 20"><path fill="#1e5397" d="M0 16h18v3H0z"/><path fill="#376db6" d="M0 11h18v3H0z"/><path fill="#4f9fd9" d="M0 6h18v3H0z"/></svg>
             </a>
-            <Icon src={IconArrowRightAltSm} class="s-breadcrumbs--divider" />
+            <Icon src={IconPlaceholder16} class="s-breadcrumbs--divider" />
         </div>
         <div class="s-breadcrumbs--item">
             <a class="s-breadcrumbs--link" href="#">Review queues</a>
@@ -155,15 +153,15 @@ It is **not** appropriate to use Breadcrumbs when:
         <div class="s-breadcrumbs--item">
             <a href="#" class="s-link s-link__muted mtn1" aria-label="Hum">
                 <div class="team-avatar s-avatar">
-                    <Icon src={IconShieldXSm} native class="s-avatar--badge" />
+                    <Icon src={IconPlaceholder16} native class="s-avatar--badge" />
                 </div>
                 <span class="pl4">Hum</span>
             </a>
-            <Icon src={IconArrowRightAltSm} class="s-breadcrumbs--divider" />
+            <Icon src={IconPlaceholder16} class="s-breadcrumbs--divider" />
         </div>
         <div class="s-breadcrumbs--item">
             <a class="s-breadcrumbs--link" href="#">Settings</a>
-            <Icon src={IconArrowRightAltSm} class="s-breadcrumbs--divider" />
+            <Icon src={IconPlaceholder16} class="s-breadcrumbs--divider" />
         </div>
         <div class="s-breadcrumbs--item">
             <a class="s-breadcrumbs--link" href="#">Billing</a>
