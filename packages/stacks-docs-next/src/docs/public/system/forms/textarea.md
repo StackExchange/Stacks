@@ -8,7 +8,7 @@ updated: 2025-12-20
 
 <script lang="ts">
   import { Icon } from '@stackoverflow/stacks-svelte';
-  import { IconAlert, IconAlertCircle, IconCheck } from '@stackoverflow/stacks-icons';
+  import { IconAlert, IconCheck } from '@stackoverflow/stacks-icons';
 
   const validationClasses = [
     { class: '.has-warning', applies: 'Parent wrapper for textarea', description: "Used to warn users that the value they've entered has a potential problem, but it doesn't block them from proceeding." },
@@ -114,7 +114,7 @@ Validation states provides the user feedback based on their interaction (or lack
     <label class="s-label" for="example-success1">Description</label>
     <div class="d-flex ps-relative">
         <textarea class="s-textarea" id="example-success1" placeholder="Please describe your problem"></textarea>
-        <Icon src={IconAlertCircle} class="s-input-icon" />
+        <Icon src={IconAlert} class="s-input-icon" />
     </div>
     <p class="s-input-message mb0">A description must be provided.</p>
 </div>

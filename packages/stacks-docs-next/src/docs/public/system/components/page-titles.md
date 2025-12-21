@@ -6,7 +6,7 @@ updated: 2025-12-20
 
 <script lang="ts">
   import { Icon } from '@stackoverflow/stacks-svelte';
-  import { IconArrowRightAltSm } from '@stackoverflow/stacks-icons';
+  import { IconArrowRight } from '@stackoverflow/stacks-icons';
 </script>
 
 ## Components
@@ -131,11 +131,11 @@ Breadcrumbs are used to provide context for the currently-viewed page and reduce
             <nav class="s-breadcrumbs" aria-label="example breadcrumbs">
                 <div class="s-breadcrumbs--item">
                     <a class="s-breadcrumbs--link">Stack Overflow</a>
-                    <Icon src={IconArrowRightAltSm} class="s-breadcrumbs--divider" />
+                    <Icon src={IconArrowRight} class="s-breadcrumbs--divider" />
                 </div>
                 <div class="s-breadcrumbs--item">
                     <a class="s-breadcrumbs--link">…</a>
-                    <Icon src={IconArrowRightAltSm} class="s-breadcrumbs--divider" />
+                    <Icon src={IconArrowRight} class="s-breadcrumbs--divider" />
                 </div>
                 <div class="s-breadcrumbs--item">
                     <a class="s-breadcrumbs--link">…</a>
