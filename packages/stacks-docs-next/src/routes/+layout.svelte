@@ -22,7 +22,7 @@
 	<link rel="icon" href={Favicon} />
 </svelte:head>
 
-<header class="fc-white w20 sm:w100 hmx100 h100 sm:h-auto overflow-auto ps-fixed z-nav d-flex fd-column sm:fd-column sm:ps-static sm:order-last">
+<header class="fc-white w20 sm:w100 hmx100 h100 sm:h-auto overflow-auto ps-fixed z-nav sm:ps-static">
 	<div class="d-flex ai-center bg-black-100 pt16 px24 sm:pr6 sm:pb12 sm:pt12">
 		<a href="/" title="Home" class="fc-brand-orange mr-auto">
 			<Icon src={IconLogo} />
@@ -35,21 +35,21 @@
 		</Button>
 	</div>
 
-	<div class={`d-block ${mobileMenu ? '' : 'sm:d-none'}`}>
+	<div class={`d-flex fd-column h100 ${mobileMenu ? '' : 'sm:d-none'}`}>
 		<Navigation
 			navigation={data.structure?.navigation}
 		/>
-	</div>
-	
-	<div class="d-flex md:fd-column sm:d-none pt12 pb12 px12 mt-auto">
-		<div class="flex--item6 mr4 sm:mr0">
-			<Button rel="external" target="_blank" href="https://github.com/StackExchange/Stacks/" class="w100" weight="clear">
-				<Icon src={IconServiceGitHub} />
-				GitHub
-			</Button>
-		</div>
-		<div class="flex--item6 ml4 sm:ml0">
-			<ThemeToggle />
+
+		<div class="d-flex pt12 pb12 px12 mt-auto">
+			<div class="flex--item6 mr4 sm:mr0">
+				<Button target="_blank" href="https://github.com/StackExchange/Stacks/" class="w100" weight="clear">
+					<Icon src={IconServiceGitHub} />
+					GitHub
+				</Button>
+			</div>
+			<div class="flex--item6 ml4 sm:ml0">
+				<ThemeToggle />
+			</div>
 		</div>
 	</div>
 </header>
