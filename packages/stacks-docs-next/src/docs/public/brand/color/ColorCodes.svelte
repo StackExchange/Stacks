@@ -8,7 +8,7 @@
   const { business = false } = $props()
 </script>
 
-<div class="colors">
+<div class="colors overflow-auto">
   {#each colors as color}
     <ColorSwatch
       {color}

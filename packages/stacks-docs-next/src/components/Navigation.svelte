@@ -116,10 +116,10 @@
   }
   .s-navigation--item:hover {
     background: var(--orange-400);
-     color: var(--fc-white);
+    color: var(--white);
   }
 	.s-navigation--item.is-selected {
 		background: var(--black-600);
-    color: var(--fc-white);
+    color: var(--white);
 	}
 </style>

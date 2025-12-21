@@ -1,11 +1,14 @@
 <script lang="ts">
   import { IconServiceGitHub, IconServiceFigma, IconServiceSvelte, IconCheckFillCircle, IconStackCards } from '@stackoverflow/stacks-icons/icons';
   import { Icon, Button } from '@stackoverflow/stacks-svelte';
-  
-  import { copyToClipboard } from '$src/lib/copyToClipboard'
-  import Contents from '$src/components/Contents.svelte';
+
+  import { copyToClipboard } from '$src/lib/copyToClipboard';
+  import Contents from '$components/Contents.svelte';
 
   let { data } = $props();
+  let copiedMd = $state(false);
+  
+  const toc = $derived(data?.metadata?.toc || []);
 
   const lastUpdated = $derived(new Date(data?.metadata?.updated).toLocaleDateString('en-US', { 
     year: 'numeric', 
@@ -13,13 +16,9 @@
     day: 'numeric' 
   }));
 
-  const toc = $derived(data?.metadata?.toc || []);
-
   const pageTitle = $derived(data.active.title ? `${data.active.title} - Stack Overflow Design System` : 'Stack Overflow Design System');
   const pageDescription = $derived(data?.metadata?.description || `Documentation for ${data.active.title} in the Stack Overflow Design System`);
   
-  let copiedMd = $state(false);
-
   function copySuccess() {
     copiedMd = true
    

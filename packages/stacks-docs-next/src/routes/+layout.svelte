@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import '../app.css';
 
 	import { Icon, Button } from '@stackoverflow/stacks-svelte';
@@ -7,6 +8,7 @@
 	import Navigation from '$components/Navigation.svelte';
 	import Search from '$components/Search.svelte';
 	import ThemeToggle from '$components/ThemeToggle.svelte';
+	import Login from '$src/components/LoginPrompt.svelte';
 
 	import Favicon from '$lib/assets/favicon.svg';
 
@@ -22,7 +24,7 @@
 	<link rel="icon" href={Favicon} />
 </svelte:head>
 
-<header class="fc-white w20 sm:w100 hmx100 h100 sm:h-auto overflow-auto ps-fixed z-nav sm:ps-static">
+<header class="d-flex fd-column w20 sm:w100 hmx100 h-screen sm:h-auto overflow-auto ps-fixed z-nav sm:ps-static">
 	<div class="d-flex ai-center bg-black-100 pt16 px24 sm:pr6 sm:pb12 sm:pt12">
 		<a href="/" title="Home" class="fc-brand-orange mr-auto">
 			<Icon src={IconLogo} />
@@ -60,7 +62,11 @@
 	</div>
 
 	<div class="my-auto">
-		{@render children?.()}
+		{#if data.needsAuth}
+			<Login returnUrl={page.url.pathname} />
+		{:else}
+			{@render children?.()}
+		{/if}
 	</div>
 
 	<footer class="d-flex ai-center ml32 py32 fc-black-400">

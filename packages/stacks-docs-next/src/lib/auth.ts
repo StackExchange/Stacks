@@ -5,13 +5,6 @@ import { sveltekitCookies } from "better-auth/svelte-kit";
 import { env } from '$env/dynamic/private';
 import { getRequestEvent } from "$app/server";
 
-console.log('All AUTH vars:', {
-  issuer: env.AUTH_OKTA_ISSUER,
-  id: env.AUTH_OKTA_ID,
-  secret: env.AUTH_OKTA_SECRET ? '***' : undefined,
-  authSecret: env.AUTH_SECRET ? '***' : undefined,
-});
-
 export const auth = betterAuth({
 	baseURL: env.URL || "http://localhost:5173",
 

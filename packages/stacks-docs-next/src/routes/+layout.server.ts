@@ -1,7 +1,6 @@
 import type { LayoutServerData } from "./$types";
 import YAML from "yaml";
 import structureRaw from "$src/structure.yaml?raw";
-import { redirect } from "@sveltejs/kit";
 
 function findByPath({ navigation }, path) {
     return path.reduce(
@@ -31,7 +30,9 @@ export const load: LayoutServerData = async (event: any) => {
 
     const user = event.locals.user;
 
-    if (!user && active?.private) throw redirect(303, "/auth/login");
+    // In development, skip auth since the submodule itself requires authorization to clone
+    const isDev = process.env.NODE_ENV === 'development';
+    const needsAuth = !isDev && !user && active?.private;
 
     // Build breadcrumbs with actual page titles
     const segments: [string] = event.url.pathname.split('/').filter(Boolean);
@@ -59,5 +60,6 @@ export const load: LayoutServerData = async (event: any) => {
         structure,
         active,
         breadcrumb,
+        needsAuth,
     };
 };

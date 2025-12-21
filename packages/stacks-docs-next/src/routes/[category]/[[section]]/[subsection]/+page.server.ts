@@ -12,6 +12,18 @@ const turndownService = new TurndownService({
 const mdFiles = import.meta.glob("$docs/**/*.md");
 
 export const load: PageServerLoad = async (event) => {
+    // SECURITY: Check auth first - don't load any content if unauthorized
+    const parent = await event.parent();
+    if (parent.needsAuth) {
+        // Return minimal data - no content loading to prevent data leakage
+        return {
+            source: null,
+            filename: null,
+            metadata: null,
+            markdown: null,
+        };
+    }
+
     const slug = [
         event.params.category,
         event.params.section,
