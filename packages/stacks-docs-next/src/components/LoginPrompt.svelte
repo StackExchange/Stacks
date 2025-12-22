@@ -7,10 +7,22 @@
 	let { returnUrl = "/" }: { returnUrl?: string } = $props();
 
 	async function handleSignIn() {
-		await authClient.signIn.oauth2({
-			providerId: "okta",
-			callbackURL: returnUrl,
-		});
+		try {
+			console.log('Attempting sign in with:', {
+				providerId: 'okta',
+				callbackURL: returnUrl,
+				baseURL: window.location.origin
+			});
+
+			const result = await authClient.signIn.oauth2({
+				providerId: "okta",
+				callbackURL: returnUrl,
+			});
+
+			console.log('Sign in result:', result);
+		} catch (error) {
+			console.error('Sign in error:', error);
+		}
 	}
 </script>
 
