@@ -10,6 +10,14 @@
          */
         role?: string | null;
         /**
+         * Accessible label for the popover
+         */
+        ariaLabel?: string;
+        /**
+         * ID of an element that labels the popover
+         */
+        ariaLabelledby?: string;
+        /**
          * Additional CSS classes added to the s-popover element
          */
         class?: string;
@@ -25,6 +33,8 @@
 
     let {
         role = null,
+        ariaLabel,
+        ariaLabelledby,
         class: className = "",
         contentClass = "",
         children,
@@ -65,6 +75,8 @@
     id={`${pstate.id}-popover`}
     class={computedClass}
     role={computedRole}
+    aria-label={ariaLabel}
+    aria-labelledby={ariaLabelledby}
     use:pstate.floatingContent
     use:focusTrap={{ active: pstate.trapFocus && !!pstate.visible }}
     use:clickOutside
