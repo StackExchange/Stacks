@@ -834,7 +834,7 @@ A good URL can also provide a solid foundation for SEO/AEO.
 
 Query parameters are ideal when:
 
-* Multiple values can be combined (`?type=remote&level=senior`)
-* The same content can be viewed with different options
-* Users might want to share or bookmark specific filtered views
-* The parameters are optional (the page works without them)
+- Multiple values can be combined (`?type=remote&level=senior`)
+- The same content can be viewed with different options
+- Users might want to share or bookmark specific filtered views
+- The parameters are optional (the page works without them)

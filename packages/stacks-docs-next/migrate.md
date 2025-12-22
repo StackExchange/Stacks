@@ -17,11 +17,14 @@ Here are three files showing a completed migration:
 ## Key Migration Transformations
 
 ### 1. File Structure
+
 - **From:** `packages/stack-docs/product/{folder}/{page}.html` (Liquid) + `packages/stacks-docs/_data/{page}.json` (data)
 - **To:** `packages/stacks-docs-next/src/docs/public/system/{folder}/{page}/index.md` (`~{folder}/{page}.md` if no dependancies) (MDsveX with frontmatter)
 
 ### 2. Frontmatter Migration
+
 **From (Liquid):**
+
 ```liquid
 ---
 layout: page
@@ -34,6 +37,7 @@ tags: components
 ```
 
 **To (MDsveX):**
+
 ```markdown
 ---
 title: Buttons
@@ -45,7 +49,9 @@ updated: YYYY-MM-DD
 ```
 
 ### 3. Data Access Pattern
+
 **From (Liquid):**
+
 ```liquid
 {% for btn in buttons.base %}
   {% assign types = btn.classes %}
@@ -56,12 +62,13 @@ updated: YYYY-MM-DD
 ```
 
 **To (Svelte Component):**
+
 ```svelte
 <script lang="ts">
   // Import types and components
   import { Button } from '@stackoverflow/stacks-svelte';
   import ButtonTable from './ButtonTable.svelte';
-  
+
   // Define data inline or import if needed
   const ButtonVariants: Variant[] = ["", "danger", "featured", "tonal"];
 </script>
@@ -72,20 +79,25 @@ updated: YYYY-MM-DD
 Note: stacks-svelte contains components we can use natively, for example <a class="s-btn"> can become <Button>. This means our codebase is svelte end to end.
 
 ### 4. Component Extraction Strategy
+
 Complex Liquid loops with tables should become dedicated Svelte components:
+
 - `ButtonTable.svelte` - Renders button variants table
 - `AnchorButtonTable.svelte` - Renders anchor button examples
 - `LoadingButtonTable.svelte` - Renders loading state examples
 - etc.
 
 ### 5. HTML/Markdown Conversion
+
 **From (Liquid):**
+
 ```liquid
 {% header "h2", "Styles" %}
 <p class="stacks-copy">...</p>
 ```
 
 **To (MDsveX):**
+
 ```markdown
 ## Styles
 
@@ -93,7 +105,9 @@ Stacks provides 3 different button styles:
 ```
 
 ### 6. Code Highlighting
+
 **From (Liquid):**
+
 ```liquid
 {% highlight html %}
 <button class="s-btn" type="button">...</button>
@@ -101,6 +115,7 @@ Stacks provides 3 different button styles:
 ```
 
 **To (MDsveX):**
+
 ````markdown
 ```html
 <button class="s-btn" type="button">...</button>
@@ -108,12 +123,15 @@ Stacks provides 3 different button styles:
 ````
 
 ### 7. Icon Handling
+
 **From (Liquid):**
+
 ```liquid
 {% icon "Trash" %}
 ```
 
 **To (Svelte):**
+
 ```svelte
 <script>
   import { Icon } from '@stackoverflow/stacks-svelte';
@@ -124,25 +142,28 @@ Stacks provides 3 different button styles:
 ```
 
 ### 8. Interactive Examples
+
 **From (Liquid with inline script):**
+
 ```html
 <button class="s-btn js-toggle-button">...</button>
 
 <script>
-  for (const toggleButton of document.querySelectorAll('.js-toggle-button')) {
-    toggleButton.addEventListener('click', () => { ... });
-  }
+    for (const toggleButton of document.querySelectorAll('.js-toggle-button')) {
+      toggleButton.addEventListener('click', () => { ... });
+    }
 </script>
 ```
 
 **To (Svelte Component):**
 Create `ToggleButtonDemo.svelte` with proper Svelte reactivity:
+
 ```svelte
 <script lang="ts">
   let pressed = false;
 </script>
 
-<Button 
+<Button
   on:click={() => pressed = !pressed}
   class={pressed ? 'is-selected' : ''}
   aria-pressed={pressed}
@@ -156,26 +177,28 @@ Create `ToggleButtonDemo.svelte` with proper Svelte reactivity:
 **Analyze the codebase and decide:**
 
 1. **Approach Selection:**
-   - Should I write a migration script (if patterns are consistent)?
-   - Should I manually migrate files (if lots of edge cases)?
-   - Hybrid approach (script for boilerplate, manual for complex parts)?
+    - Should I write a migration script (if patterns are consistent)?
+    - Should I manually migrate files (if lots of edge cases)?
+    - Hybrid approach (script for boilerplate, manual for complex parts)?
 
 2. **Component Strategy:**
-   - Should JSON data files be converted to TypeScript constants?
-   - Should complex tables become reusable Svelte components?
-   - Which patterns repeat across multiple pages?
+    - Should JSON data files be converted to TypeScript constants?
+    - Should complex tables become reusable Svelte components?
+    - Which patterns repeat across multiple pages?
 
 3. **Scope Analysis:**
-   - How many pages need migration?
-   - What Liquid helpers/filters are being used?
-   - Are there custom Liquid tags that need special handling?
+    - How many pages need migration?
+    - What Liquid helpers/filters are being used?
+    - Are there custom Liquid tags that need special handling?
 
 ## Expected Output
 
 Based on your analysis, provide either:
 
 ### Option A: Migration Script
+
 A Node.js/TypeScript script that:
+
 - Reads Liquid templates and JSON files
 - Converts frontmatter
 - Transforms Liquid syntax to MDsveX
@@ -183,13 +206,16 @@ A Node.js/TypeScript script that:
 - Outputs migrated files to target directory
 
 ### Option B: Manual Migration Guide
+
 A detailed guide covering:
+
 - Step-by-step migration checklist
 - Common patterns and their conversions
 - Edge cases to watch for
 - Testing/validation approach
 
 ### Option C: Hybrid Approach
+
 - Script for mechanical transformations
 - Documentation for manual steps
 - Component templates for common patterns
@@ -197,6 +223,7 @@ A detailed guide covering:
 ## Files to Analyze
 
 Please examine:
+
 1. All `.html` files in the source directory
 2. Corresponding `.json` data files
 3. The `buttons.html` example I've provided
@@ -217,6 +244,7 @@ Please examine:
 ## Questions to Answer First
 
 Before proceeding, investigate and report:
+
 1. How many pages need migration?
 2. What unique Liquid helpers/filters are used?
 3. Are there shared layouts or includes?
@@ -231,6 +259,7 @@ Before proceeding, investigate and report:
 ### Approach Chosen: Manual Migration
 
 After analysis, we chose **manual migration one-by-one** over automation. This allows for:
+
 - Full quality control for each page
 - Building reusable component library as we go
 - Handling edge cases perfectly
@@ -243,6 +272,7 @@ After analysis, we chose **manual migration one-by-one** over automation. This a
 **Migration Status:**
 
 ✅ **Forms** - 5/5 pages (100%) - FULLY MIGRATED
+
 - ✅ **inputs.md** - FULLY MIGRATED (2025-12-20)
 - ✅ **checkbox.md** - FULLY MIGRATED (2025-12-20)
 - ✅ **select.md** - FULLY MIGRATED (2025-12-20)
@@ -250,6 +280,7 @@ After analysis, we chose **manual migration one-by-one** over automation. This a
 - ✅ **labels.md** - FULLY MIGRATED (2025-12-20)
 
 🟡 **Components** - 8/43 pages FULLY MIGRATED (35 with placeholder content)
+
 - ✅ **skeleton.md** - FULLY MIGRATED (2025-12-20)
 - ✅ **spinner.md** - FULLY MIGRATED (2025-12-20)
 - ✅ **empty-states.md** - FULLY MIGRATED (2025-12-20)
@@ -261,9 +292,11 @@ After analysis, we chose **manual migration one-by-one** over automation. This a
 - ❌ 35 components - placeholder only (need real migration)
 
 ✅ **Base** - 26/26 pages (100%)
+
 - All migrated
 
 🟡 **Foundation** - 1/7 pages (14%)
+
 - ❌ **icons.html** - not migrated (can ignore per requirements)
 - ❌ **spots.html** - not migrated (can ignore per requirements)
 - ❌ **color-fundamentals.md** - placeholder only
@@ -273,43 +306,46 @@ After analysis, we chose **manual migration one-by-one** over automation. This a
 - ✅ **typography.md** - migrated
 
 ✅ **Develop** - 4/4 pages (100%)
+
 - All migrated
 
 ### Key Learnings
 
 1. **Simple inline data > separate files**
-   - For validation classes, sizes, etc., define data inline in `<script>` section
-   - Only extract to separate components when logic is complex
+    - For validation classes, sizes, etc., define data inline in `<script>` section
+    - Only extract to separate components when logic is complex
 
 2. **Tables with data loops**
-   ```svelte
-   {#each validationClasses as item}
-   <tr>
-     <th scope="row"><code class="stacks-code">{item.class}</code></th>
-     <td>{item.applies}</td>
-     <td>{item.description}</td>
-   </tr>
-   {/each}
-   ```
+
+    ```svelte
+    {#each validationClasses as item}
+    <tr>
+      <th scope="row"><code class="stacks-code">{item.class}</code></th>
+      <td>{item.applies}</td>
+      <td>{item.description}</td>
+    </tr>
+    {/each}
+    ```
 
 3. **Icon handling**
-   - Import from `@stackoverflow/stacks-icons`
-   - Use `<Icon src={IconName} class="..." />` from stacks-svelte
-   - Example: `{% icon "Lock" %}` → `<Icon src={IconLock} />`
+    - Import from `@stackoverflow/stacks-icons`
+    - Use `<Icon src={IconName} class="..." />` from stacks-svelte
+    - Example: `{% icon "Lock" %}` → `<Icon src={IconLock} />`
 
 4. **Notice/Warning boxes**
-   - `{% tip, "warning" %}` → `<div class="s-notice s-notice__warning">...</div>`
-   - Can create reusable Notice component if needed
+    - `{% tip, "warning" %}` → `<div class="s-notice s-notice__warning">...</div>`
+    - Can create reusable Notice component if needed
 
 5. **Live examples stay as HTML**
-   - Keep the live preview sections as raw HTML
-   - Use Svelte components (Icon, etc.) within them
-   - This allows interactive examples to work
+    - Keep the live preview sections as raw HTML
+    - Use Svelte components (Icon, etc.) within them
+    - This allows interactive examples to work
 
 ### Patterns Established
 
 **Page structure:**
-```markdown
+
+````markdown
 ---
 title: Page Title
 svelte: https://...
@@ -333,6 +369,7 @@ Content with markdown, code blocks, and live examples.
 ```html
 <!-- Code example -->
 ```
+````
 
 <div class="example">
   <!-- Live example using Stacks CSS and Svelte components -->
@@ -343,19 +380,19 @@ Content with markdown, code blocks, and live examples.
 ### Next Steps
 
 1. **Complete Forms section** (4 pages remaining)
-   - checkbox.md
-   - select.md
-   - textarea.md
-   - labels.md
+    - checkbox.md
+    - select.md
+    - textarea.md
+    - labels.md
 
 2. **Fill placeholder content in Components** (43 pages)
-   - Priority: Most commonly used components first
+    - Priority: Most commonly used components first
 
 3. **Fill placeholder content in Foundation** (4 pages)
-   - color-fundamentals.md
-   - colors.md
-   - accessibility.md
-   - theming.md
+    - color-fundamentals.md
+    - colors.md
+    - accessibility.md
+    - theming.md
 
 ### Estimated Remaining Effort
 
@@ -374,6 +411,7 @@ Content with markdown, code blocks, and live examples.
 **Pages Migrated:** 13 pages fully completed
 
 **Forms Section (5 pages):**
+
 1. inputs.md - Base styles, validation states, accessibility, icons, sizes, input fills, nested inputs
 2. checkbox.md - Checkbox & radio, vertical/horizontal groups, indeterminate state, validation
 3. select.md - Select menus with validation states and sizes
@@ -381,6 +419,7 @@ Content with markdown, code blocks, and live examples.
 5. labels.md - Label styles, sizes, description copy, status flags
 
 **Components Section (8 pages):**
+
 1. skeleton.md - Base & AI loading states with accessibility
 2. spinner.md - 5 sizes + `.is-loading` helper
 3. empty-states.md - No data/results states (actionable & non-actionable)
@@ -393,6 +432,7 @@ Content with markdown, code blocks, and live examples.
 **Time per page:** ~5-15 minutes for simple components
 
 **Next components to migrate (in order of complexity):**
+
 - breadcrumbs.html (157 lines)
 - cards.html (169 lines)
 - expandable.html (175 lines)
@@ -400,6 +440,7 @@ Content with markdown, code blocks, and live examples.
 - avatars.html, badges.html, banners.html, etc.
 
 **Notes:**
+
 - Pattern is very consistent now
 - Inline data constants work well for simple tables
 - `{#each}` loops replace Liquid `{% for %}` perfectly

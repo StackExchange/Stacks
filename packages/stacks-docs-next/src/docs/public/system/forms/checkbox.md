@@ -22,24 +22,46 @@ updated: 2025-12-20
 ```html
 <!-- Checkbox -->
 <div class="s-check-control">
-    <input class="s-checkbox" type="checkbox" name="example-name" id="example-item" />
+    <input
+        class="s-checkbox"
+        type="checkbox"
+        name="example-name"
+        id="example-item"
+    />
     <label class="s-label" for="example-item">Checkbox Label</label>
 </div>
 
 <!-- Radio -->
 <div class="s-check-control">
-    <input class="s-radio" type="radio" name="example-name-rad" id="example-item-rad" />
+    <input
+        class="s-radio"
+        type="radio"
+        name="example-name-rad"
+        id="example-item-rad"
+    />
     <label class="s-label" for="example-item-rad">Radio Label</label>
 </div>
 
 <!-- Disabled -->
 <div class="s-check-control">
-    <input class="s-checkbox" type="checkbox" name="example-name" id="example-disabled" disabled />
+    <input
+        class="s-checkbox"
+        type="checkbox"
+        name="example-name"
+        id="example-disabled"
+        disabled
+    />
     <label class="s-label" for="example-disabled">Checkbox Label</label>
 </div>
 
 <div class="s-check-control">
-    <input class="s-checkbox" type="checkbox" name="example-name-rad" id="example-disabled-rad" disabled />
+    <input
+        class="s-checkbox"
+        type="checkbox"
+        name="example-name-rad"
+        id="example-disabled-rad"
+        disabled
+    />
     <label class="s-label" for="example-disabled-rad">Radio Label</label>
 </div>
 ```
@@ -95,6 +117,7 @@ updated: 2025-12-20
             <label class="s-label" for="example-checked-disabled-rad">Radio Label</label>
         </div>
     </fieldset>
+
 </div>
 
 ## Accessibility
@@ -105,7 +128,7 @@ The best accessibility is semantic HTML. Most screen readers understand how to p
 - Be sure to associate the checkbox/radio label by using the `for` attribute. The value here is the input's `id`.
 - If you have a group of related checkboxes or radios, use the `fieldset` and `legend` to group them together.
 
-For more information, please read Gov.UK's article, [*"Using the fieldset and legend elements"*](https://accessibility.blog.gov.uk/2016/07/22/using-the-fieldset-and-legend-elements/).
+For more information, please read Gov.UK's article, [_"Using the fieldset and legend elements"_](https://accessibility.blog.gov.uk/2016/07/22/using-the-fieldset-and-legend-elements/).
 
 ## Examples
 
@@ -114,17 +137,35 @@ For more information, please read Gov.UK's article, [*"Using the fieldset and le
 ```html
 <!-- Checkbox -->
 <fieldset class="s-check-group">
-    <legend class="s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
+    <legend class="s-label">
+        Which types of fruit do you like?
+        <span class="ml4 fw-normal fc-light">(Check all that apply)</span>
+    </legend>
     <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-vert-checkbox-1" />
+        <input
+            class="s-checkbox"
+            type="checkbox"
+            name=""
+            id="choice-vert-checkbox-1"
+        />
         <label class="s-label" for="choice-vert-checkbox-1">Apples</label>
     </div>
     <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-vert-checkbox-2" />
+        <input
+            class="s-checkbox"
+            type="checkbox"
+            name=""
+            id="choice-vert-checkbox-2"
+        />
         <label class="s-label" for="choice-vert-checkbox-2">Oranges</label>
     </div>
     <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-vert-checkbox-3" />
+        <input
+            class="s-checkbox"
+            type="checkbox"
+            name=""
+            id="choice-vert-checkbox-3"
+        />
         <label class="s-label" for="choice-vert-checkbox-3">Bananas</label>
     </div>
 </fieldset>
@@ -133,15 +174,30 @@ For more information, please read Gov.UK's article, [*"Using the fieldset and le
 <fieldset class="s-check-group">
     <legend class="s-label">Which fruit do you like best?</legend>
     <div class="s-check-control">
-        <input class="s-radio" type="radio" name="choice-vert-radio" id="choice-vert-radio-1" />
+        <input
+            class="s-radio"
+            type="radio"
+            name="choice-vert-radio"
+            id="choice-vert-radio-1"
+        />
         <label class="s-label" for="choice-vert-radio-1">Apples</label>
     </div>
     <div class="s-check-control">
-        <input class="s-radio" type="radio" name="choice-vert-radio" id="choice-vert-radio-2" />
+        <input
+            class="s-radio"
+            type="radio"
+            name="choice-vert-radio"
+            id="choice-vert-radio-2"
+        />
         <label class="s-label" for="choice-vert-radio-2">Oranges</label>
     </div>
     <div class="s-check-control">
-        <input class="s-radio" type="radio" name="choice-vert-radio" id="choice-vert-radio-3" />
+        <input
+            class="s-radio"
+            type="radio"
+            name="choice-vert-radio"
+            id="choice-vert-radio-3"
+        />
         <label class="s-label" for="choice-vert-radio-3">Bananas</label>
     </div>
 </fieldset>
@@ -186,34 +242,67 @@ For more information, please read Gov.UK's article, [*"Using the fieldset and le
 ```html
 <!-- Checkbox -->
 <fieldset class="s-check-group s-check-group__horizontal">
-    <legend class="s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
+    <legend class="s-label">
+        Which types of fruit do you like?
+        <span class="ml4 fw-normal fc-light">(Check all that apply)</span>
+    </legend>
     <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-horz-checkbox-1" />
+        <input
+            class="s-checkbox"
+            type="checkbox"
+            name=""
+            id="choice-horz-checkbox-1"
+        />
         <label class="s-label" for="choice-horz-checkbox-1">Apples</label>
     </div>
     <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-horz-checkbox-2" />
+        <input
+            class="s-checkbox"
+            type="checkbox"
+            name=""
+            id="choice-horz-checkbox-2"
+        />
         <label class="s-label" for="choice-horz-checkbox-2">Oranges</label>
     </div>
     <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-horz-checkbox-3" />
+        <input
+            class="s-checkbox"
+            type="checkbox"
+            name=""
+            id="choice-horz-checkbox-3"
+        />
         <label class="s-label" for="choice-horz-checkbox-3">Bananas</label>
     </div>
 </fieldset>
 
- <!-- Radio -->
- <fieldset class="s-check-group s-check-group__horizontal">
+<!-- Radio -->
+<fieldset class="s-check-group s-check-group__horizontal">
     <legend class="s-label">Which fruit do you like best?</legend>
     <div class="s-check-control">
-        <input class="s-radio" type="radio" name="choice-horz-radio" id="choice-horz-radio-1" />
+        <input
+            class="s-radio"
+            type="radio"
+            name="choice-horz-radio"
+            id="choice-horz-radio-1"
+        />
         <label class="s-label" for="choice-horz-radio-1">Apples</label>
     </div>
     <div class="s-check-control">
-        <input class="s-radio" type="radio" name="choice-horz-radio" id="choice-horz-radio-2" />
+        <input
+            class="s-radio"
+            type="radio"
+            name="choice-horz-radio"
+            id="choice-horz-radio-2"
+        />
         <label class="s-label" for="choice-horz-radio-2">Oranges</label>
     </div>
     <div class="s-check-control">
-        <input class="s-radio" type="checkbox" name="choice-horz-radio" id="choice-horz-radio-3" />
+        <input
+            class="s-radio"
+            type="checkbox"
+            name="choice-horz-radio"
+            id="choice-horz-radio-3"
+        />
         <label class="s-label" for="choice-horz-radio-3">Bananas</label>
     </div>
 </fieldset>
@@ -257,26 +346,52 @@ For more information, please read Gov.UK's article, [*"Using the fieldset and le
 
 ```html
 <fieldset class="s-check-group">
-    <legend class="s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
+    <legend class="s-label">
+        Which types of fruit do you like?
+        <span class="ml4 fw-normal fc-light">(Check all that apply)</span>
+    </legend>
     <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-copy-checkbox-1" />
+        <input
+            class="s-checkbox"
+            type="checkbox"
+            name=""
+            id="choice-copy-checkbox-1"
+        />
         <label class="s-label" for="choice-copy-checkbox-1">
             Apples
-            <p class="s-description">A sweet, edible fruit produced by an apple tree (Malus pumila).</p>
+            <p class="s-description">
+                A sweet, edible fruit produced by an apple tree (Malus pumila).
+            </p>
         </label>
     </div>
     <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-copy-checkbox-2" />
+        <input
+            class="s-checkbox"
+            type="checkbox"
+            name=""
+            id="choice-copy-checkbox-2"
+        />
         <label class="s-label" for="choice-copy-checkbox-2">
             Oranges
-            <p class="s-description">A fruit of the citrus species Citrus × sinensis in the family Rutaceae.</p>
+            <p class="s-description">
+                A fruit of the citrus species Citrus × sinensis in the family
+                Rutaceae.
+            </p>
         </label>
     </div>
     <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-copy-checkbox-3" />
+        <input
+            class="s-checkbox"
+            type="checkbox"
+            name=""
+            id="choice-copy-checkbox-3"
+        />
         <label class="s-label" for="choice-copy-checkbox-3">
             Bananas
-            <p class="s-description">A fruit – botanically a berry – produced by several kinds of large herbaceous flowering plants in the genus Musa.</p>
+            <p class="s-description">
+                A fruit – botanically a berry – produced by several kinds of
+                large herbaceous flowering plants in the genus Musa.
+            </p>
         </label>
     </div>
 </fieldset>
@@ -345,7 +460,12 @@ Checkboxes can be styled by using the `:indeterminate` pseudo class.
 ```html
 <fieldset class="s-check-group">
     <div class="s-check-control">
-        <input class="s-checkbox" type="checkbox" name="" id="indeterminate-checkbox-1" />
+        <input
+            class="s-checkbox"
+            type="checkbox"
+            name=""
+            id="indeterminate-checkbox-1"
+        />
         <label class="s-label" for="indeterminate-checkbox-1">Select all</label>
     </div>
 </fieldset>
@@ -394,26 +514,54 @@ Checkboxes use the same validation states as [inputs](/product/components/inputs
 ```html
 <!-- Checkbox -->
 <fieldset class="s-check-group">
-    <legend class="s-label">Which types of fruit do you like? <span class="ml4 fw-normal fc-light">(Check all that apply)</span></legend>
+    <legend class="s-label">
+        Which types of fruit do you like?
+        <span class="ml4 fw-normal fc-light">(Check all that apply)</span>
+    </legend>
     <div class="s-check-control has-warning">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-valid-checkbox-1" />
+        <input
+            class="s-checkbox"
+            type="checkbox"
+            name=""
+            id="choice-valid-checkbox-1"
+        />
         <label class="s-label" for="choice-valid-checkbox-1">
             Apples
-            <p class="s-input-message"><strong>Note:</strong> Apples are currently not in season.</p>
+            <p class="s-input-message">
+                <strong>Note:</strong> Apples are currently not in season.
+            </p>
         </label>
     </div>
     <div class="s-check-control has-error">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-valid-checkbox-2" />
+        <input
+            class="s-checkbox"
+            type="checkbox"
+            name=""
+            id="choice-valid-checkbox-2"
+        />
         <label class="s-label" for="choice-valid-checkbox-2">
             Oranges
-            <p class="s-input-message">All oranges are currently <strong>out of stock</strong>.</p>
+            <p class="s-input-message">
+                All oranges are currently <strong>out of stock</strong>.
+            </p>
         </label>
     </div>
     <div class="s-check-control has-success">
-        <input class="s-checkbox" type="checkbox" name="" id="choice-valid-checkbox-3" />
-        <label class="d-block mb4 s-label fw-normal" for="choice-valid-checkbox-3">
+        <input
+            class="s-checkbox"
+            type="checkbox"
+            name=""
+            id="choice-valid-checkbox-3"
+        />
+        <label
+            class="d-block mb4 s-label fw-normal"
+            for="choice-valid-checkbox-3"
+        >
             Bananas
-            <p class="s-input-message">You've successfully selected the most amazing fruit in the world.</p>
+            <p class="s-input-message">
+                You've successfully selected the most amazing fruit in the
+                world.
+            </p>
         </label>
     </div>
 </fieldset>
@@ -422,24 +570,46 @@ Checkboxes use the same validation states as [inputs](/product/components/inputs
 <fieldset class="s-check-group">
     <legend class="s-label">Which fruit do you like best?</legend>
     <div class="s-check-control has-warning">
-        <input class="s-radio" type="radio" name="choice-valid-radio" id="choice-valid-radio-1" />
+        <input
+            class="s-radio"
+            type="radio"
+            name="choice-valid-radio"
+            id="choice-valid-radio-1"
+        />
         <label class="s-label" for="choice-valid-radio-1">
             Apples
-            <p class="s-input-message"><strong>Note:</strong> Apples are currently not in season.</p>
+            <p class="s-input-message">
+                <strong>Note:</strong> Apples are currently not in season.
+            </p>
         </label>
     </div>
     <div class="s-check-control has-error">
-        <input class="s-radio" type="radio" name="choice-valid-radio" id="choice-valid-radio-2" />
+        <input
+            class="s-radio"
+            type="radio"
+            name="choice-valid-radio"
+            id="choice-valid-radio-2"
+        />
         <label class="s-label" for="choice-valid-radio-2">
             Oranges
-            <p class="s-input-message">All oranges are currently <strong>out of stock</strong>.</p>
+            <p class="s-input-message">
+                All oranges are currently <strong>out of stock</strong>.
+            </p>
         </label>
     </div>
     <div class="s-check-control has-success">
-        <input class="s-radio" type="radio" name="choice-valid-radio" id="choice-valid-radio-3" />
+        <input
+            class="s-radio"
+            type="radio"
+            name="choice-valid-radio"
+            id="choice-valid-radio-3"
+        />
         <label class="s-label" for="choice-valid-radio-3">
             Bananas
-            <p class="s-input-message">You've successfully selected the most amazing fruit in the world.</p>
+            <p class="s-input-message">
+                You've successfully selected the most amazing fruit in the
+                world.
+            </p>
         </label>
     </div>
 </fieldset>

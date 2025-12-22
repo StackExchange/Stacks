@@ -25,9 +25,16 @@ Labels inform users what information is being asked of them. They should be writ
 
 ```html
 <form class="d-flex gy4 fd-column">
-    <label class="flex--item s-label" for="question-title">Question title</label>
+    <label class="flex--item s-label" for="question-title"
+        >Question title</label
+    >
     <div class="d-flex ps-relative">
-        <input class="flex--item s-input" type="text" id="question-title" placeholder="e.g. Why doesn't Stack Overflow use a custom web font?"/>
+        <input
+            class="flex--item s-input"
+            type="text"
+            id="question-title"
+            placeholder="e.g. Why doesn't Stack Overflow use a custom web font?"
+        />
     </div>
 </form>
 ```
@@ -70,12 +77,17 @@ When a label or input needs further explantation, text should be placed directly
 
 ```html
 <form class="d-flex gy4 fd-column">
-    <label class="d-block s-label" for="example-item">
-        Question title
-    </label>
-    <p class="s-description mtn2 mb0">Clear question titles are more likely to get answered.</p>
+    <label class="d-block s-label" for="example-item"> Question title </label>
+    <p class="s-description mtn2 mb0">
+        Clear question titles are more likely to get answered.
+    </p>
     <div class="d-flex ps-relative">
-        <input class="s-input" id="example-item" type="text" placeholder="e.g. Why doesn't Stack Overflow use a custom web font?" />
+        <input
+            class="s-input"
+            id="example-item"
+            type="text"
+            placeholder="e.g. Why doesn't Stack Overflow use a custom web font?"
+        />
     </div>
 </form>
 ```
@@ -98,9 +110,16 @@ When you need to flag labels as required or optional, use the following flags. U
 
 ```html
 <form class="d-flex gy4 fd-column">
-    <label class="flex--item s-label" for="question-tags">Question tags <span class="s-label--status">Optional</span></label>
+    <label class="flex--item s-label" for="question-tags"
+        >Question tags <span class="s-label--status">Optional</span></label
+    >
     <div class="d-flex ps-relative">
-        <input class="flex--item s-input" type="text" id="question-tags" placeholder="e.g. Why doesn't Stack Overflow use a custom web font?"/>
+        <input
+            class="flex--item s-input"
+            type="text"
+            id="question-tags"
+            placeholder="e.g. Why doesn't Stack Overflow use a custom web font?"
+        />
     </div>
 </form>
 ```
@@ -116,9 +135,19 @@ When you need to flag labels as required or optional, use the following flags. U
 
 ```html
 <form class="d-flex gy4 fd-column">
-    <label class="flex--item s-label" for="question-title-required">Question title <span class="s-label--status s-label--status__required">Required</span></label>
+    <label class="flex--item s-label" for="question-title-required"
+        >Question title
+        <span class="s-label--status s-label--status__required"
+            >Required</span
+        ></label
+    >
     <div class="d-flex ps-relative">
-        <input class="flex--item s-input" type="text" id="question-title-required" placeholder="e.g. Why doesn't Stack Overflow use a custom web font?"/>
+        <input
+            class="flex--item s-input"
+            type="text"
+            id="question-title-required"
+            placeholder="e.g. Why doesn't Stack Overflow use a custom web font?"
+        />
     </div>
 </form>
 ```
@@ -134,9 +163,17 @@ When you need to flag labels as required or optional, use the following flags. U
 
 ```html
 <form class="d-flex gy4 fd-column">
-    <label class="flex--item s-label" for="question-title-new">What is your favorite animal? <span class="s-label--status s-label--status__new">New</span></label>
+    <label class="flex--item s-label" for="question-title-new"
+        >What is your favorite animal?
+        <span class="s-label--status s-label--status__new">New</span></label
+    >
     <div class="d-flex ps-relative">
-        <input class="flex--item s-input" type="text" id="question-title-new" placeholder="e.g. hedgehog, platypus, sugar glider"/>
+        <input
+            class="flex--item s-input"
+            type="text"
+            id="question-title-new"
+            placeholder="e.g. hedgehog, platypus, sugar glider"
+        />
     </div>
 </form>
 ```
@@ -152,9 +189,17 @@ When you need to flag labels as required or optional, use the following flags. U
 
 ```html
 <form class="d-flex gy4 fd-column">
-    <label class="flex--item s-label" for="question-title-beta">Notify people <span class="s-label--status s-label--status__beta">Beta</span></label>
+    <label class="flex--item s-label" for="question-title-beta"
+        >Notify people
+        <span class="s-label--status s-label--status__beta">Beta</span></label
+    >
     <div class="d-flex ps-relative">
-        <input class="flex--item s-input" type="text" id="question-title-beta" placeholder="e.g. jdoe, bgates, sjobs"/>
+        <input
+            class="flex--item s-input"
+            type="text"
+            id="question-title-beta"
+            placeholder="e.g. jdoe, bgates, sjobs"
+        />
     </div>
 </form>
 ```

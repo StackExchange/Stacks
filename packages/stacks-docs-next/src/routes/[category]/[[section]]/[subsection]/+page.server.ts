@@ -3,11 +3,11 @@ import { error } from "@sveltejs/kit";
 import { render } from "svelte/server";
 import htmlToMd from "$src/lib/htmlToMd";
 
-import TurndownService from 'turndown'
+import TurndownService from "turndown";
 const turndownService = new TurndownService({
-    headingStyle: 'atx',
-    codeBlockStyle: 'fenced',
-})
+    headingStyle: "atx",
+    codeBlockStyle: "fenced",
+});
 
 const mdFiles = import.meta.glob("$docs/**/*.md");
 

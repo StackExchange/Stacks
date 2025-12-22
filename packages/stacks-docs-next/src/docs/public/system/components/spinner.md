@@ -61,9 +61,7 @@ For accessibility, it's important to add fallback loading text that is visible t
 <div class="s-spinner s-spinner__lg fc-theme-primary">
     <div class="v-visible-sr">Loading…</div>
 </div>
-<div class="is-loading">
-    Loading…
-</div>
+<div class="is-loading">Loading…</div>
 ```
 
 <div class="d-flex g16 fw-wrap">

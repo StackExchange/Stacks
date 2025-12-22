@@ -62,8 +62,23 @@ For that reason it is recommended to provide additional context using hidden tex
 
 ```html
 <a class="s-tag" href="#">jquery</a>
-<span class="s-tag">javascript <button class="s-tag--dismiss"><span class="v-visible-sr">Dismiss javascript tag</span><svg>...</svg></button></span>
-<a class="s-tag" href="#"><img class="s-tag--sponsor" src="https://i.stack.imgur.com/tKsDb.png" width="16" height="18" alt="Google Android"> android <div class="v-visible-sr">Sponsored tag</div></a>
+<span class="s-tag"
+    >javascript
+    <button class="s-tag--dismiss">
+        <span class="v-visible-sr">Dismiss javascript tag</span><svg>...</svg>
+    </button></span
+>
+<a class="s-tag" href="#"
+    ><img
+        class="s-tag--sponsor"
+        src="https://i.stack.imgur.com/tKsDb.png"
+        width="16"
+        height="18"
+        alt="Google Android"
+    />
+    android
+    <div class="v-visible-sr">Sponsored tag</div></a
+>
 ```
 
 <div class="d-flex g4 fw-wrap">
@@ -75,9 +90,22 @@ For that reason it is recommended to provide additional context using hidden tex
 ### Moderator
 
 ```html
-<a class="s-tag s-tag__moderator" href="#">status-completed <div class="v-visible-sr">Moderator tag</div></a>
-<span class="s-tag s-tag__moderator">status-bydesign <div class="v-visible-sr">Moderator tag</div><button class="s-tag--dismiss"><span class="v-visible-sr">Dismiss status-bydesign tag</span><svg>...</svg></button></span>
-<a class="s-tag s-tag__moderator" href="#">status-planned <div class="v-visible-sr">Moderator tag</div></a>
+<a class="s-tag s-tag__moderator" href="#"
+    >status-completed
+    <div class="v-visible-sr">Moderator tag</div></a
+>
+<span class="s-tag s-tag__moderator"
+    >status-bydesign
+    <div class="v-visible-sr">Moderator tag</div>
+    <button class="s-tag--dismiss">
+        <span class="v-visible-sr">Dismiss status-bydesign tag</span
+        ><svg>...</svg>
+    </button></span
+>
+<a class="s-tag s-tag__moderator" href="#"
+    >status-planned
+    <div class="v-visible-sr">Moderator tag</div></a
+>
 ```
 
 <div class="d-flex g4 fw-wrap">
@@ -89,9 +117,22 @@ For that reason it is recommended to provide additional context using hidden tex
 ### Required
 
 ```html
-<a class="s-tag s-tag__required" href="#">discussion <div class="v-visible-sr">Required tag</div></a>
-<span class="s-tag s-tag__required">feature-request <div class="v-visible-sr">Required tag</div><button class="s-tag--dismiss"><span class="v-visible-sr">Dismiss feature-request tag</span><svg>...</svg></button></span>
-<a class="s-tag s-tag__required" href="#">bug <div class="v-visible-sr">Required tag</div></a>
+<a class="s-tag s-tag__required" href="#"
+    >discussion
+    <div class="v-visible-sr">Required tag</div></a
+>
+<span class="s-tag s-tag__required"
+    >feature-request
+    <div class="v-visible-sr">Required tag</div>
+    <button class="s-tag--dismiss">
+        <span class="v-visible-sr">Dismiss feature-request tag</span
+        ><svg>...</svg>
+    </button></span
+>
+<a class="s-tag s-tag__required" href="#"
+    >bug
+    <div class="v-visible-sr">Required tag</div></a
+>
 ```
 
 <div class="d-flex g4 fw-wrap">
@@ -103,7 +144,10 @@ For that reason it is recommended to provide additional context using hidden tex
 ### Watched
 
 ```html
-<a class="s-tag s-tag__watched" href="#">asp-net <div class="v-visible-sr">Watched tag</div></a>
+<a class="s-tag s-tag__watched" href="#"
+    >asp-net
+    <div class="v-visible-sr">Watched tag</div></a
+>
 ```
 
 <div class="d-flex g4 fw-wrap">
@@ -113,7 +157,10 @@ For that reason it is recommended to provide additional context using hidden tex
 ### Ignored
 
 ```html
-<a class="s-tag s-tag__ignored" href="#">netscape <div class="v-visible-sr">Ignored tag</div></a>
+<a class="s-tag s-tag__ignored" href="#"
+    >netscape
+    <div class="v-visible-sr">Ignored tag</div></a
+>
 ```
 
 <div class="d-flex g4 fw-wrap">

@@ -29,7 +29,10 @@ updated: 2025-12-20
 <div class="d-flex gy4 fd-column">
     <label class="flex--item s-label" for="select-menu">
         How will you be traveling?
-        <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+        <p class="mt2 s-description">
+            Select the transportation method you will be using to come to the
+            event.
+        </p>
     </label>
     <div class="flex--item s-select">
         <select id="select-menu">
@@ -44,7 +47,9 @@ updated: 2025-12-20
 </div>
 
 <div class="d-flex gy4 fd-column is-disabled">
-    <label class="flex--item s-label" for="select-menu-disabled">Where are you staying?</label>
+    <label class="flex--item s-label" for="select-menu-disabled"
+        >Where are you staying?</label
+    >
     <div class="flex--item s-select">
         <select id="select-menu-disabled" disabled>
             <option value="" selected>Please select one…</option>
@@ -129,7 +134,10 @@ Validation states provides the user feedback based on their interaction (or lack
 <div class="d-flex gy4 fd-column has-warning">
     <label class="flex--item s-label" for="select-menu">
         How will you be traveling?
-        <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+        <p class="mt2 s-description">
+            Select the transportation method you will be using to come to the
+            event.
+        </p>
     </label>
     <div class="flex--item s-select">
         <select id="select-menu">
@@ -169,7 +177,10 @@ Validation states provides the user feedback based on their interaction (or lack
 <div class="d-flex gy4 fd-column has-error">
     <label class="flex--item s-label" for="select-menu">
         How will you be traveling?
-        <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+        <p class="mt2 s-description">
+            Select the transportation method you will be using to come to the
+            event.
+        </p>
     </label>
     <div class="flex--item s-select">
         <select id="select-menu">
@@ -209,7 +220,10 @@ Validation states provides the user feedback based on their interaction (or lack
 <div class="d-flex gy4 fd-column has-success">
     <label class="flex--item s-label" for="select-menu">
         How will you be traveling?
-        <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+        <p class="mt2 s-description">
+            Select the transportation method you will be using to come to the
+            event.
+        </p>
     </label>
     <div class="flex--item s-select">
         <select id="select-menu">

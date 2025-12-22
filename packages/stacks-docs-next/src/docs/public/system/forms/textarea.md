@@ -29,7 +29,11 @@ updated: 2025-12-20
 <div class="d-flex fd-column gy4">
     <label class="s-label" for="example-item">Question body</label>
     <div class="d-flex ps-relative">
-        <textarea class="s-textarea" id="example-item" placeholder="…"></textarea>
+        <textarea
+            class="s-textarea"
+            id="example-item"
+            placeholder="…"
+        ></textarea>
     </div>
 </div>
 ```
@@ -81,10 +85,16 @@ Validation states provides the user feedback based on their interaction (or lack
 <div class="d-flex gy4 fd-column has-warning">
     <label class="s-label" for="example-warning">Description</label>
     <div class="d-flex ps-relative">
-        <textarea class="s-textarea" id="example-warning" placeholder="Please describe your problem"></textarea>
+        <textarea
+            class="s-textarea"
+            id="example-warning"
+            placeholder="Please describe your problem"
+        ></textarea>
         <svg class="s-input-icon" ...>...</svg>
     </div>
-    <p class="s-input-message mb0">Consider entering a description to help us better help you.</p>
+    <p class="s-input-message mb0">
+        Consider entering a description to help us better help you.
+    </p>
 </div>
 ```
 
@@ -103,7 +113,11 @@ Validation states provides the user feedback based on their interaction (or lack
 <div class="d-flex gy4 fd-column has-error">
     <label class="s-label" for="example-success">Description</label>
     <div class="d-flex ps-relative">
-        <textarea class="s-textarea" id="example-success" placeholder="Please describe your problem"></textarea>
+        <textarea
+            class="s-textarea"
+            id="example-success"
+            placeholder="Please describe your problem"
+        ></textarea>
         <svg class="s-input-icon" ...>...</svg>
     </div>
     <p class="s-input-message mb0">A description must be provided.</p>
@@ -125,7 +139,13 @@ Validation states provides the user feedback based on their interaction (or lack
 <div class="d-flex gy4 fd-column has-success">
     <label class="s-label" for="example-success">Description</label>
     <div class="d-flex ps-relative">
-        <textarea class="s-textarea" id="example-success" placeholder="Please describe your problem">How do you know your company is ready for a design system? How do you implement one without too many pain points? How do you efficiently maintain one once it's built?</textarea>
+        <textarea
+            class="s-textarea"
+            id="example-success"
+            placeholder="Please describe your problem"
+        >
+How do you know your company is ready for a design system? How do you implement one without too many pain points? How do you efficiently maintain one once it's built?</textarea
+        >
         <svg class="s-input-icon" ...>...</svg>
     </div>
     <p class="s-input-message mb0">Thanks for providing a description.</p>

@@ -31,16 +31,16 @@ export const load: LayoutServerData = async (event: any) => {
     const user = event.locals.user;
 
     // In development, skip auth since the submodule itself requires authorization to clone
-    const isDev = process.env.NODE_ENV === 'development';
+    const isDev = process.env.NODE_ENV === "development";
     const needsAuth = !isDev && !user && active?.private;
 
     // Build breadcrumbs with actual page titles
-    const segments: [string] = event.url.pathname.split('/').filter(Boolean);
-    const breadcrumb: { label: string, path: string }[] = [];
-    
+    const segments: [string] = event.url.pathname.split("/").filter(Boolean);
+    const breadcrumb: { label: string; path: string }[] = [];
+
     let currentLevel = { items: structure.navigation };
-    let currentPath = '';
-    
+    let currentPath = "";
+
     segments.forEach((segment: string) => {
         const item = currentLevel?.items?.find((item) => item.slug === segment);
 

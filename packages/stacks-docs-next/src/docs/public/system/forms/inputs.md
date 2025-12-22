@@ -31,15 +31,28 @@ Inputs are normally paired with a label, but there are times when they can be us
 <!-- Base -->
 <div class="d-flex gy4 fd-column">
     <label class="s-label" for="example-item1">Full name</label>
-    <p class="s-description mtn2 mb0">This will be shown only to employers and other Team members.</p>
-    <input class="s-input" id="example-item1" type="text" placeholder="Enter your input here" />
+    <p class="s-description mtn2 mb0">
+        This will be shown only to employers and other Team members.
+    </p>
+    <input
+        class="s-input"
+        id="example-item1"
+        type="text"
+        placeholder="Enter your input here"
+    />
 </div>
 
 <!-- Disabled -->
 <div class="d-flex gy4 fd-column is-disabled">
     <label class="s-label" for="example-item2">Display name</label>
     <div class="d-flex ps-relative">
-        <input class="s-input" id="example-item2" type="text" placeholder="Enter your input here" disabled />
+        <input
+            class="s-input"
+            id="example-item2"
+            type="text"
+            placeholder="Enter your input here"
+            disabled
+        />
         <svg class="s-input-icon fc-black-400" ...>...</svg>
     </div>
 </div>
@@ -48,7 +61,14 @@ Inputs are normally paired with a label, but there are times when they can be us
 <div class="d-flex gy4 fd-column ps-relative is-readonly">
     <label class="s-label" for="example-item3">Legal name</label>
     <div class="d-flex ps-relative">
-        <input class="s-input" id="example-item3" type="text" placeholder="Enter your input here" readonly value="Prefilled readonly input" />
+        <input
+            class="s-input"
+            id="example-item3"
+            type="text"
+            placeholder="Enter your input here"
+            readonly
+            value="Prefilled readonly input"
+        />
         <svg class="s-input-icon" ...>...</svg>
     </div>
 </div>
@@ -84,7 +104,7 @@ The best accessibility is semantic HTML. Most screen readers understand how to p
 - Be sure to associate the input's label by using the `for` attribute. The value here is the input's `id`.
 - If you have a group of related inputs, use the `fieldset` and `legend` to group them together.
 
-For more information, please read Gov.UK's article, [*"Using the fieldset and legend elements"*](https://accessibility.blog.gov.uk/2016/07/22/using-the-fieldset-and-legend-elements/).
+For more information, please read Gov.UK's article, [_"Using the fieldset and legend elements"_](https://accessibility.blog.gov.uk/2016/07/22/using-the-fieldset-and-legend-elements/).
 
 ### Required input fields
 
@@ -92,8 +112,8 @@ Labels or instructions must be provided when content requires user input. For an
 
 Stacks includes a special `.s-required-symbol` class to ensure the symbol (asterisk) is clearly visible.
 
-| Class | Applies | Definition |
-|-------|---------|------------|
+| Class                | Applies                               | Definition                                                               |
+| -------------------- | ------------------------------------- | ------------------------------------------------------------------------ |
 | `.s-required-symbol` | `abbr` element enclosing the asterisk | Used to style the asterisk indicating that a specific field is required. |
 
 ```html
@@ -106,23 +126,47 @@ Required symbols are not necessary for areas where only a single input field is 
 
 ```html
 <div class="d-flex w100 jc-space-between ai-center">
-    <h1 class="fs-headline1 fw-normal mb16">
-        Ask a question
-    </h1>
-    <p class="fs-caption fc-black-400">Required fields<abbr class="s-required-symbol" title="required">*</abbr></p>
+    <h1 class="fs-headline1 fw-normal mb16">Ask a question</h1>
+    <p class="fs-caption fc-black-400">
+        Required fields<abbr class="s-required-symbol" title="required">*</abbr>
+    </p>
 </div>
 <form class="d-flex fd-column gy16">
     <div class="d-flex gy4 fd-column">
-        <label class="s-label" for="example-title-required">Title<abbr class="s-required-symbol" title="required">*</abbr></label>
-        <input class="s-input" id="example-title-required" type="text" placeholder="Type a title" />
+        <label class="s-label" for="example-title-required"
+            >Title<abbr class="s-required-symbol" title="required"
+                >*</abbr
+            ></label
+        >
+        <input
+            class="s-input"
+            id="example-title-required"
+            type="text"
+            placeholder="Type a title"
+        />
     </div>
     <div class="d-flex gy4 fd-column">
-        <label class="s-label" for="example-body-required">Body<abbr class="s-required-symbol" title="required">*</abbr></label>
-        <textarea class="s-textarea hmn1" id="example-body-required" placeholder="Type a question"></textarea>
+        <label class="s-label" for="example-body-required"
+            >Body<abbr class="s-required-symbol" title="required"
+                >*</abbr
+            ></label
+        >
+        <textarea
+            class="s-textarea hmn1"
+            id="example-body-required"
+            placeholder="Type a question"
+        ></textarea>
     </div>
     <div class="d-flex gy4 fd-column">
-        <label class="s-label" for="example-ask-members">Ask team members</label>
-        <input class="s-input" id="example-ask-members" type="text" placeholder="Type a name" />
+        <label class="s-label" for="example-ask-members"
+            >Ask team members</label
+        >
+        <input
+            class="s-input"
+            id="example-ask-members"
+            type="text"
+            placeholder="Type a name"
+        />
     </div>
 </form>
 ```
@@ -191,10 +235,18 @@ Similarly to using `for` with labels, validation messages below inputs should be
 <div class="d-flex gy4 fd-column has-warning">
     <label class="s-label" for="example-warning">Username</label>
     <div class="d-flex ps-relative">
-        <input class="s-input" id="example-warning" type="text" placeholder="" aria-describedby="example-warning-desc" />
+        <input
+            class="s-input"
+            id="example-warning"
+            type="text"
+            placeholder=""
+            aria-describedby="example-warning-desc"
+        />
         <svg class="s-input-icon" ...>...</svg>
     </div>
-    <p id="example-warning-desc" class="s-input-message mb0">Caps lock is on! <a href="#">Having trouble entering your username?</a></p>
+    <p id="example-warning-desc" class="s-input-message mb0">
+        Caps lock is on! <a href="#">Having trouble entering your username?</a>
+    </p>
 </div>
 ```
 
@@ -217,10 +269,19 @@ Similarly to using `for` with labels, validation messages below inputs should be
 <div class="d-flex gy4 fd-column has-error">
     <label class="s-label" for="example-error">Username</label>
     <div class="d-flex ps-relative">
-        <input class="s-input" id="example-error" type="text" placeholder="e.g. johndoe111" aria-describedby="example-error-desc" aria-invalid="true" />
+        <input
+            class="s-input"
+            id="example-error"
+            type="text"
+            placeholder="e.g. johndoe111"
+            aria-describedby="example-error-desc"
+            aria-invalid="true"
+        />
         <svg class="s-input-icon" ...>...</svg>
     </div>
-    <p id="example-error-desc" class="s-input-message mb0">You must provide a username. <a href="#">Forgot your username?</a></p>
+    <p id="example-error-desc" class="s-input-message mb0">
+        You must provide a username. <a href="#">Forgot your username?</a>
+    </p>
 </div>
 ```
 
@@ -239,10 +300,17 @@ Similarly to using `for` with labels, validation messages below inputs should be
 <div class="d-flex gy4 fd-column has-success">
     <label class="s-label" for="example-success">Username</label>
     <div class="d-flex ps-relative">
-        <input class="s-input" id="example-success" type="text" aria-describedby="example-success-desc" />
+        <input
+            class="s-input"
+            id="example-success"
+            type="text"
+            aria-describedby="example-success-desc"
+        />
         <svg class="s-input-icon" ...>...</svg>
     </div>
-    <p id="example-success-desc" class="s-input-message mb0">That name is available! <a href="#">Why do we require a username?</a></p>
+    <p id="example-success-desc" class="s-input-message mb0">
+        That name is available! <a href="#">Why do we require a username?</a>
+    </p>
 </div>
 ```
 
@@ -264,7 +332,12 @@ Stacks provides helper classes to consistently style an input used for search. F
 ```html
 <div class="ps-relative">
     <label class="v-visible-sr" for="example-search">Search</label>
-    <input class="s-input s-input__search" id="example-search" type="text" placeholder="Search…" />
+    <input
+        class="s-input s-input__search"
+        id="example-search"
+        type="text"
+        placeholder="Search…"
+    />
     <svg class="s-input-icon s-input-icon__search" ...>...</svg>
 </div>
 ```
@@ -280,7 +353,11 @@ Stacks provides helper classes to consistently style an input used for search. F
 ```html
 <div class="ps-relative">
     <label class="v-visible-sr" for="example-creditcard">Credit Card</label>
-    <input class="s-input s-input__creditcard" id="example-creditcard" type="text" />
+    <input
+        class="s-input s-input__creditcard"
+        id="example-creditcard"
+        type="text"
+    />
     <svg class="s-input-icon s-input-icon__creditcard" ...>...</svg>
 </div>
 ```
@@ -328,7 +405,12 @@ Input fills are used to visually connect input text boxes with related content.
     <div class="d-flex">
         <div class="s-input-fill order-first">https://</div>
         <div class="d-flex fl-grow1 ps-relative">
-            <input class="s-input blr0" type="text" id="website-url" placeholder="www.stackoverflow.com" />
+            <input
+                class="s-input blr0"
+                type="text"
+                id="website-url"
+                placeholder="www.stackoverflow.com"
+            />
         </div>
     </div>
 </div>
@@ -353,11 +435,18 @@ Input fills are used to visually connect input text boxes with related content.
         <div class="d-flex ai-center order-last s-input-fill">
             <div class="d-flex gx4 ai-center">
                 <input class="s-checkbox" type="checkbox" id="need-visa" />
-                <label class="s-label s-label__sm fw-normal" for="need-visa">Need Visa Sponsorship</label>
+                <label class="s-label s-label__sm fw-normal" for="need-visa"
+                    >Need Visa Sponsorship</label
+                >
             </div>
         </div>
         <div class="d-flex fl-grow1 ps-relative">
-            <input class="s-input brr0" type="number" id="min-salary" placeholder="e.g. 125,000" />
+            <input
+                class="s-input brr0"
+                type="number"
+                id="min-salary"
+                placeholder="e.g. 125,000"
+            />
         </div>
     </div>
 </div>
@@ -395,7 +484,13 @@ An input can be nested within a container that has the `.s-input` class applied 
                 </button>
             </span>
         </div>
-        <input id="tag-selector" class="s-input" type="text" role="presentation" placeholder="enter up to 5 tags">
+        <input
+            id="tag-selector"
+            class="s-input"
+            type="text"
+            role="presentation"
+            placeholder="enter up to 5 tags"
+        />
     </div>
 </div>
 ```

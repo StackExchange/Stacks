@@ -45,19 +45,39 @@ A single toggle is appropriate for simple "on/off" states eg. enabling emails, m
 ```html
 <div class="d-flex ai-center g8">
     <label class="s-label" for="toggle-example-default">…</label>
-    <input class="s-toggle-switch" id="toggle-example-default" type="checkbox">
+    <input
+        class="s-toggle-switch"
+        id="toggle-example-default"
+        type="checkbox"
+    />
 </div>
 <div class="d-flex ai-center g8">
     <label class="s-label" for="toggle-example-checked">…</label>
-    <input class="s-toggle-switch" id="toggle-example-checked" type="checkbox" checked>
+    <input
+        class="s-toggle-switch"
+        id="toggle-example-checked"
+        type="checkbox"
+        checked
+    />
 </div>
 <div class="d-flex ai-center g8">
     <label class="s-label" for="toggle-example-disabled">…</label>
-    <input class="s-toggle-switch" id="toggle-example-disabled" type="checkbox" disabled>
+    <input
+        class="s-toggle-switch"
+        id="toggle-example-disabled"
+        type="checkbox"
+        disabled
+    />
 </div>
 <div class="d-flex ai-center g8">
     <label class="s-label" for="toggle-example-checked">…</label>
-    <input class="s-toggle-switch" id="toggle-example-checked-disabled" type="checkbox" disabled checked>
+    <input
+        class="s-toggle-switch"
+        id="toggle-example-checked-disabled"
+        type="checkbox"
+        disabled
+        checked
+    />
 </div>
 ```
 
@@ -88,13 +108,13 @@ Toggles switches can be extended to choose between three or more states—in thi
 <div class="d-flex ai-center g8">
     <label class="s-label c-default">…</label>
     <div class="s-toggle-switch s-toggle-switch__multiple">
-        <input type="radio" name="group" id="four" checked>
+        <input type="radio" name="group" id="four" checked />
         <label for="four" class="s-toggle-switch--label-off">Off</label>
-        <input type="radio" name="group" id="one">
+        <input type="radio" name="group" id="one" />
         <label for="one">Weekly</label>
-        <input type="radio" name="group" id="two">
+        <input type="radio" name="group" id="two" />
         <label for="two">Daily</label>
-        <input type="radio" name="group" id="three">
+        <input type="radio" name="group" id="three" />
         <label for="three">3 hrs</label>
     </div>
 </div>

@@ -48,7 +48,11 @@ updated: 2025-12-20
 <nav class="s-pagination" aria-label="pagination">
     <ul>
         <li>
-            <a class="s-pagination--item is-selected" href="…" aria-current="page">
+            <a
+                class="s-pagination--item is-selected"
+                href="…"
+                aria-current="page"
+            >
                 <span class="v-visible-sr">page</span>
                 1
             </a>
