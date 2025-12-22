@@ -5,19 +5,18 @@ import { sveltekitCookies } from "better-auth/svelte-kit";
 import { env } from "$env/dynamic/private";
 import { getRequestEvent } from "$app/server";
 
+// https://docs.netlify.com/build/configure-builds/environment-variables/#deploy-urls-and-metadata
 const baseURL = process.env.URL || "http://localhost:5173";
 
 export const auth = betterAuth({
-    // Comes from Netlify
-    // https://docs.netlify.com/build/configure-builds/environment-variables/#deploy-urls-and-metadata
     baseURL,
 
     // Secret for signing cookies and tokens
     // openssl rand -base64 32
     secret: env.AUTH_SECRET || "",
 
-    // Trust the host for OAuth redirects (important for Netlify)
-    trustedOrigins: [baseURL],
+    // Trust the host header (important for proxied requests like Netlify)
+    trustHost: true,
 
     // Cookie configuration
     advanced: {
