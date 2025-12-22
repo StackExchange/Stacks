@@ -1,5 +1,6 @@
 ---
 updated: 2025-12-10
+figma: https://www.figma.com/design/T7PJSsFD8hrB1qfsj8GcmK/Brand-colors
 ---
 
 <script>
