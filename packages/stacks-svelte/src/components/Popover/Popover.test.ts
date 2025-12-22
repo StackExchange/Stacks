@@ -193,7 +193,7 @@ describe("Popover", () => {
         expect(innerContentElement).to.have.class("custom-class");
     });
 
-    it("should add aria-label to the popover when the aria-label prop is provided", async () => {
+    it("should add aria-label to the popover when the ariaLabel prop is provided", async () => {
         render(Popover, {
             props: {
                 ...defaultProps,
@@ -203,8 +203,8 @@ describe("Popover", () => {
                     {
                         component: PopoverContent,
                         props: {
-                            "aria-label": "Popover with content",
-                            "children": createRawSnippet(() => ({
+                            ariaLabel: "Popover with content",
+                            children: createRawSnippet(() => ({
                                 render: () => "<span>Popover Content</span>",
                             })),
                         },
@@ -219,7 +219,7 @@ describe("Popover", () => {
         );
     });
 
-    it("should add aria-labelledby to the popover when the aria-labelledby prop is provided", async () => {
+    it("should add aria-labelledby to the popover when the ariaLabelledby prop is provided", async () => {
         render(Popover, {
             props: {
                 ...defaultProps,
@@ -229,8 +229,8 @@ describe("Popover", () => {
                     {
                         component: PopoverContent,
                         props: {
-                            "aria-labelledby": "my-label-id",
-                            "children": createRawSnippet(() => ({
+                            ariaLabelledby: "my-label-id",
+                            children: createRawSnippet(() => ({
                                 render: () => "<span>Popover Content</span>",
                             })),
                         },

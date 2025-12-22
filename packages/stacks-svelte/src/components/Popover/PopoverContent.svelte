@@ -8,34 +8,34 @@
          * The aria role of the popover
          * (if not specified, it will default to 'dialog' for popovers or 'tooltip' when in tooltip mode)
          */
-        "role"?: string | null;
+        role?: string | null;
         /**
          * Accessible label for the popover
          */
-        "aria-label"?: string;
+        ariaLabel?: string;
         /**
          * ID of an element that labels the popover
          */
-        "aria-labelledby"?: string;
+        ariaLabelledby?: string;
         /**
          * Additional CSS classes added to the s-popover element
          */
-        "class"?: string;
+        class?: string;
         /**
          * Additional CSS classes added to the s-popover--content element
          */
-        "contentClass"?: string;
+        contentClass?: string;
         /**
          * Children snippet
          */
-        "children"?: Snippet;
+        children?: Snippet;
     }
 
     let {
         role = null,
-        "aria-label": ariaLabel,
-        "aria-labelledby": ariaLabelledby,
-        "class": className = "",
+        ariaLabel,
+        ariaLabelledby,
+        class: className = "",
         contentClass = "",
         children,
     }: Props = $props();
