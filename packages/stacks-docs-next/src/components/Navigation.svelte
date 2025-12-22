@@ -64,7 +64,7 @@
                         {#if subsection.new}
                           <span class="s-activity-indicator s-activity-indicator__sm ba"><span class="v-visible-sr">new</span></span>
                         {/if}
-                        {#if subsection.private}
+                        {#if subsection.private && !category.private}
                           <Icon src={IconLock} />
                         {/if}
                         {#if subsection?.items}
