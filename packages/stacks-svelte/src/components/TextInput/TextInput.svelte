@@ -26,11 +26,12 @@
 
     import {
         IconAlert,
-        IconAlertCircle,
-        IconCheckmark,
-        IconCreditCard,
+        IconAlertFill,
+        IconCheck,
         IconSearch,
-    } from "@stackoverflow/stacks-icons-legacy/icons";
+    } from "@stackoverflow/stacks-icons/icons";
+
+    import { IconCreditCard } from "@stackoverflow/stacks-icons-legacy/icons";
 
     interface Props extends Omit<HTMLInputAttributes, "size" | "type"> {
         /**
@@ -129,6 +130,11 @@
          * Optional message snippet rendered after the input.
          */
         message?: Snippet;
+
+        /**
+         * value of the text input.
+         */
+        value?: string;
     }
 
     let {
@@ -149,6 +155,7 @@
         description,
         fill,
         message,
+        value = $bindable(undefined),
         ...rest
     }: Props = $props();
 
@@ -239,15 +246,16 @@
                 {placeholder}
                 {readonly}
                 {required}
+                bind:value
                 {...rest}
             />
 
             {#if state}
                 <div class="s-input-icon">
                     {#if state === "error"}
-                        <Icon src={IconAlertCircle} />
+                        <Icon src={IconAlertFill} />
                     {:else if state === "success"}
-                        <Icon src={IconCheckmark} />
+                        <Icon src={IconCheck} />
                     {:else}
                         <Icon src={IconAlert} />
                     {/if}

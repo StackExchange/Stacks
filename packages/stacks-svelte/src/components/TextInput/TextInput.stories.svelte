@@ -53,6 +53,8 @@
             },
         },
     });
+
+    let bindableValue = $state("Change me");
 </script>
 
 <Story name="Base" args={{ id: "base-example-input", label: "Username" }} />
@@ -208,6 +210,22 @@
                     <span>https://</span>
                 {/snippet}
             </TextInput>
+        </div>
+    </div>
+</Story>
+
+<Story name="Bindable Value" asChild>
+    <div class="d-grid g16">
+        <div class="d-flex fd-column">
+            <TextInput
+                id="binding-input"
+                label="Bindable input"
+                bind:value={bindableValue}
+            />
+            <p class="mt24">
+                <span class="fw-bold">Bound value:</span>
+                {bindableValue}
+            </p>
         </div>
     </div>
 </Story>

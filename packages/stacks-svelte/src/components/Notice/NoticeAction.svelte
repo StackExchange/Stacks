@@ -2,7 +2,7 @@
     import type { Snippet } from "svelte";
     import Button from "../Button/Button.svelte";
     import Icon from "../Icon/Icon.svelte";
-    import { IconClear } from "@stackoverflow/stacks-icons-legacy/icons";
+    import { IconCross } from "@stackoverflow/stacks-icons/icons";
     import type { Props as ButtonProps } from "../Button/Button.svelte";
 
     interface Props {
@@ -31,7 +31,7 @@
 
 <Button class={"s-notice--btn " + className} {...restProps}>
     {#if type === "close"}
-        <Icon src={IconClear} title={i18nCloseButtonLabel}></Icon>
+        <Icon src={IconCross} title={i18nCloseButtonLabel}></Icon>
     {:else if children}
         {@render children()}
     {/if}

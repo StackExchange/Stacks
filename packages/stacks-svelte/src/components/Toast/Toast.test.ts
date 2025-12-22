@@ -1,6 +1,6 @@
 import { expect } from "@open-wc/testing";
 import { render, screen, waitFor } from "@testing-library/svelte";
-import { IconAlert } from "@stackoverflow/stacks-icons-legacy/icons";
+import { IconAlertFill } from "@stackoverflow/stacks-icons/icons";
 import userEvent from "@testing-library/user-event";
 import sinon from "sinon";
 import { createRawSnippet, mount, unmount } from "svelte";
@@ -40,7 +40,7 @@ describe("showToast", () => {
 
     it("should render a toast with an Icon when an icon is set", async () => {
         render(Toaster);
-        showToast("Test Toast", { icon: IconAlert, iconTitle: "Alert" });
+        showToast("Test Toast", { icon: IconAlertFill, iconTitle: "Alert" });
         await waitFor(() => expect(screen.getByTitle("Alert")).to.exist);
     });
 

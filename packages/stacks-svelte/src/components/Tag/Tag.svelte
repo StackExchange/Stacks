@@ -6,7 +6,7 @@
 <script lang="ts">
     import type { Snippet } from "svelte";
     import Icon from "../Icon/Icon.svelte";
-    import { IconClearSm } from "@stackoverflow/stacks-icons-legacy/icons";
+    import { IconCross16 } from "@stackoverflow/stacks-icons/icons";
     import type {
         HTMLAnchorAttributes,
         HTMLButtonAttributes,
@@ -194,7 +194,7 @@
     {#if dismissable && !href}
         <button class="s-tag--dismiss" type="button" onclick={ondismiss}>
             <span class="v-visible-sr">{i18nDismissButtonText}</span><Icon
-                src={IconClearSm}
+                src={IconCross16}
             />
         </button>
     {/if}

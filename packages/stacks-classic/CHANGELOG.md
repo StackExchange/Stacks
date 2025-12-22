@@ -1,5 +1,19 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.13
+
+### Patch Changes
+
+- [#2108](https://github.com/StackExchange/Stacks/pull/2108) [`d91d8c8`](https://github.com/StackExchange/Stacks/commit/d91d8c82059b949758a82612feff4fc81f1a2291) Thanks [@giamir](https://github.com/giamir)! - Make avatar background in navigation components transparent
+
+## 3.0.0-beta.12
+
+### Patch Changes
+
+- [#2103](https://github.com/StackExchange/Stacks/pull/2103) [`2bea67e`](https://github.com/StackExchange/Stacks/commit/2bea67ed467ab879b630e22ab21501e56a186f23) Thanks [@mukunku](https://github.com/mukunku)! - chore(inputs): adjust alert icon
+
+- [#2104](https://github.com/StackExchange/Stacks/pull/2104) [`258abee`](https://github.com/StackExchange/Stacks/commit/258abee7efeb8e317aba9e6e8bad0d575f79edbd) Thanks [@giamir](https://github.com/giamir)! - Add predefined line-height to font size atomic classes (.fs-fine, .fs-caption, etc...)
+
 ## 3.0.0-beta.11
 
 ### Major Changes
