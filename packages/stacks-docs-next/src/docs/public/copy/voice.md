@@ -46,7 +46,7 @@ We’re not going to lie: it takes a little bit of practice to do. And it’s no
 
 Here’s how we do it...
 
-## Writing Principle 1: Simple
+## Writing principle 1: Simple
 
 Simple doesn’t mean basic. It means clarity earned through rigor. We think about the reader first, cut the needless formality and bring the most essential ideas out concisely.
 
@@ -110,7 +110,7 @@ Check out the Spirited section for more tips on making our writing a little more
   </GridColumn>
 </Grid>
 
-## Writing Principle 2: Spirited
+## Writing principle 2: Spirited
 
 Spirited is where our human touch kicks in. It means we bring warmth, curiosity and the occasional dry aside. But we don’t perform this part of our voice. We let it show up naturally, when it helps to land the point, or when the moment feels right.
 
@@ -186,7 +186,7 @@ If we’re excited about something, we let it show. If we believe in something, 
   </GridColumn>
 </Grid>
 
-## Writing Principle 3: Syntax
+## Writing principle 3: Syntax
 
 Syntax is how it all comes together. Not just grammar, but rhythm, structure, flow. These are the telltale signs that someone has thought a message through, and has considered how it might be received.
 
@@ -253,7 +253,7 @@ Learn more about how we dial these aspects of our voice up and down in different
   </GridColumn>
 </Grid>
 
-## Brand Volume Across Channels
+## Brand volume across channels
 
 In everyday conversations, the way you speak flexes depending on what you’re saying and who you’re saying it to. Our brand tone of voice should flex in the same way.
 
