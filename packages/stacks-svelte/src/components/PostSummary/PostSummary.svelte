@@ -35,11 +35,8 @@
     import PopoverContent from "../Popover/PopoverContent.svelte";
     import PopoverReference from "../Popover/PopoverReference.svelte";
     import UserCard from "../UserCard/UserCard.svelte";
-    import {
-        IconCheckmarkSm,
-        IconEllipsisVertical,
-        IconShield,
-    } from "@stackoverflow/stacks-icons-legacy/icons";
+    import { IconShield } from "@stackoverflow/stacks-icons-legacy/icons";
+    import { IconCheck, IconMore16V } from "@stackoverflow/stacks-icons/icons";
 
     /**
      * The URL to navigate to when the post title is clicked
@@ -262,15 +259,15 @@
         {/if}
         {#if answers || answers === 0}
             {#if acceptedAnswer}
+                <span class="v-visible-sr">{i18nAcceptedAnswerIconTitle}</span>
                 <Badge
+                    text={`${answers} ${i18nAnswersUnit}`}
+                    type="state"
+                    state="success"
+                    icon={IconCheck}
+                    squared
                     class="s-post-summary--stats-item"
-                    variant="answered"
-                    icon={IconCheckmarkSm}
-                    iconTitle={i18nAcceptedAnswerIconTitle}
-                >
-                    {answers}
-                    {i18nAnswersUnit}
-                </Badge>
+                />
             {:else}
                 <PostSummaryStatsItem
                     variant="answers"
@@ -291,9 +288,13 @@
             <PostSummaryStatsItem unit={readTime} number="" />
         {/if}
         {#if bounty}
-            <Badge class="s-post-summary--stats-item" variant="bounty">
-                +{bounty}
-            </Badge>
+            <Badge
+                text={`+${bounty}`}
+                type="state"
+                state="info"
+                important
+                class="s-post-summary--stats-item"
+            />
         {/if}
     </div>
     <div class="s-post-summary--content">
@@ -348,7 +349,7 @@
                         class="s-post-summary--content-menu-button"
                         variant="tonal"
                     >
-                        <Icon src={IconEllipsisVertical} />
+                        <Icon src={IconMore16V} />
                         <span class="v-visible-sr"
                             >{i18nActionMenuButtonText}</span
                         >

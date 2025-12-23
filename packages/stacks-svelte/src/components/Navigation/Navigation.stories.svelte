@@ -23,7 +23,7 @@
         IconHomeFill,
         IconJobs,
         IconJobsFill,
-        IconChevron16Up,
+        IconChevronUp,
         IconQuestion,
         IconQuestionFill,
         IconChallenge,
@@ -40,6 +40,7 @@
         IconHelpFill,
         IconStar,
         IconStarFill,
+        IconCompose,
     } from "@stackoverflow/stacks-icons/icons";
     const { Story } = defineMeta({
         title: "Components/Navigation",
@@ -68,7 +69,6 @@
             text: "Settings",
             icon: IconSettings,
             iconSelected: IconSettingsFill,
-            dropdown: true,
         },
     ];
 
@@ -194,7 +194,6 @@
                 icon={item.icon}
                 iconSelected={item.iconSelected}
                 text={item.text}
-                dropdown={item.dropdown}
                 selected={horizontal === item.text}
                 onclick={() => (horizontal = item.text)}
             />
@@ -260,19 +259,23 @@
 <Story name="Dropdown" asChild>
     <Navigation class="hs1" label="Dropdown">
         {#each ["Label 1", "Label 2", "Label 3"] as label (label)}
-            <Popover id={`dropdown-${label}`} placement="bottom-start">
-                <PopoverReference>
-                    <NavigationItem
-                        text={label}
-                        selected={base === label}
-                        onclick={() => (base = label)}
-                        dropdown
-                    />
-                </PopoverReference>
-                <PopoverContent>
-                    <p>Content here</p>
-                </PopoverContent>
-            </Popover>
+            <NavigationItem
+                id={`dropdown-reference-${label}`}
+                text={label}
+                selected={base === label}
+                onclick={() => (base = label)}
+            >
+                {#snippet dropdown()}
+                    <Popover id={`dropdown-${label}`} placement="bottom-start">
+                        <PopoverReference
+                            elementId={`dropdown-reference-${label}`}
+                        />
+                        <PopoverContent>
+                            <p>Content here</p>
+                        </PopoverContent>
+                    </Popover>
+                {/snippet}
+            </NavigationItem>
         {/each}
     </Navigation>
 </Story>
@@ -332,7 +335,7 @@
             onclick={() => (tSelected = "AI Assist")}
         >
             {#snippet trailing()}
-                <Badge variant="new" size="sm">New</Badge>
+                <Badge text="New" type="state" state="featured" size="sm" />
             {/snippet}
         </NavigationItem>
         {#each groups as group (group)}
@@ -340,29 +343,50 @@
                 (item) => item.group === group
             )}
             {@const isCollapsed = tCollapsed[group]}
-            <NavigationTitle title={group} class="bc-black-200 bt ps-relative">
-                {#snippet trailing()}
-                    <Button
-                        class="ps-absolute r0"
-                        size="xs"
-                        weight="clear"
-                        onclick={() => (tCollapsed[group] = !tCollapsed[group])}
-                        aria-label={`${isCollapsed ? "Expand" : "Collapse"} ${group} Section`}
-                    >
-                        <span
-                            style:display="inline-block"
-                            style:transform="rotate({isCollapsed ? 180 : 0}deg)"
-                            style:transition="transform 0.2s ease"
-                        >
-                            <Icon src={IconChevron16Up} />
-                        </span>
-                    </Button>
-                {/snippet}
-            </NavigationTitle>
-
             {@const selectedItem = groupItems.find(
                 (item) => tSelected === item.text
             )}
+            <NavigationTitle
+                title={group}
+                class={`bc-black-200 bt ps-relative ${isCollapsed && !selectedItem ? "mbn24" : ""}`}
+            >
+                {#snippet trailing()}
+                    <div class="ps-absolute r0 as-center d-flex ai-center">
+                        {#if !isCollapsed && group === "Resources"}
+                            <Button
+                                class="p6"
+                                weight="clear"
+                                aria-label="Edit Section"
+                            >
+                                <Icon src={IconCompose} />
+                            </Button>
+                        {/if}
+                        {#if isCollapsed && groupItems.some((i) => i.activity)}
+                            <ActivityIndicator
+                                label="There is one or more activity in this section"
+                            />
+                        {/if}
+                        <Button
+                            class="p6"
+                            weight="clear"
+                            onclick={() =>
+                                (tCollapsed[group] = !tCollapsed[group])}
+                            aria-label={`${isCollapsed ? "Expand" : "Collapse"} ${group} Section`}
+                        >
+                            <span
+                                style:display="inline-block"
+                                style:transform="rotate({isCollapsed
+                                    ? 180
+                                    : 0}deg)"
+                                style:transition="transform 0.2s ease"
+                            >
+                                <Icon src={IconChevronUp} />
+                            </span>
+                        </Button>
+                    </div>
+                {/snippet}
+            </NavigationTitle>
+
             {@const selectedIndex = groupItems.findIndex(
                 (item) => tSelected === item.text
             )}

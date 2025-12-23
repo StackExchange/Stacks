@@ -21,11 +21,20 @@
 
 #### Typography
 - `.fs-category` removed
+- Atomic classes now have a predefined line-height associated to them
 
 ### Components
 
 #### Badge
 - `.s-badge__xs` removed
+- `.s-badge__filled` removed
+- `.s-badge__icon` removed
+- `.s-badge__bounty` removed
+- `.s-badge__answered` removed
+- `.s-badge__votes` removed
+- `.s-badge__rep-down` removed
+- `.s-badge__muted` removed
+- `.s-badge__new` renamed to `.s-badge__featured`
 - `.s-award-bling` renamed to `.s-bling` (used in some badge templates)
 
 #### Bling (previously *Award Bling*)
@@ -38,6 +47,17 @@
 - The featured and tonal variant no longer have a clear style
 - The variant `Muted` has been removed, `Tonal` has been added
 - `s-btn__md` has been removed, `s-btn__lg` has been added
+
+#### Checkbox & Radio
+- The `s-checkbox` and `s-radio` classes should now be applied to the container including the `input` and `label`. These classes replace `.s-check-control`
+- The `s-checkbox` and `s-radio` classes are no longer needed on the `input` element itself
+- The `s-check-group` class has been renamed to `s-form-group`
+- Added `.s-checkbox__checkmark` and `.s-radio__checkmark` modifier classes for checkmark-style variants
+
+#### Inputs
+- `s-input__md` removed
+- `s-input__xl` removed
+- **Nested inputs** html will require slight tweaking on consumers' side
 
 #### Menu
 
@@ -80,6 +100,18 @@ The menu component has been updated to use new class names and structure. The fo
     </li>
 </ul>
 ```
+
+#### Modal
+
+- Changed close icon to the new `Cross` beta icon (including some padding adjustments)
+
+
+#### Navigation
+- Removed muted variant (`.s-navigation__muted`)
+- Selected page are now highlighted by an underscore (no pill shape background)
+- New `.s-navigation--icon` class to style icons alongside navigation items
+- New `.s-navigation--avatar` class to style avatars alongside navigation items
+
 #### Pagination
 - The next and previous button now uses an `ArrowRight` and `ArrowLeft` icon instead of text. To apply the new styling, use the class `.s-pagination--item__nav`. Since these buttons use icons to represent their behavior, make sure to include descriptive text for screen readers.
 
@@ -93,11 +125,9 @@ The menu component has been updated to use new class names and structure. The fo
 - `.s-tag__xs` removed
 - `.s-tag__md` removed
 
-#### Navigation
-- Removed muted variant (`.s-navigation__muted`)
-- Selected page are now highlighted by an underscore (no pill shape background)
-- New `.s-navigation--icon` class to style icons alongside navigation items
-- New `.s-navigation--avatar` class to style avatars alongside navigation items
+#### Textarea
+- `s-textarea__md` removed
+- `s-textarea__xl` removed
 
 # Migrating from Stacks Svelte v0 to v1
 

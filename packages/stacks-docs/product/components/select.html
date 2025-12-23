@@ -96,15 +96,12 @@ tags: components
                 </tr>
             </thead>
             <tbody>
-                {% for item in inputs.select %}
-                    {% assign state = item.validation %}
-                    {% for class in state %}
+                {% for state in inputs.validation %}
                     <tr>
-                        <th scope="row"><code class="flex--item stacks-code">{{ class.class }}</code></th>
-                        <td>{{ class.applies }}</td>
-                        <td>{{ class.description }}</td>
+                        <th scope="row"><code class="flex--item stacks-code">{{ state.class }}</code></th>
+                        <td>Parent wrapper for select</td>
+                        <td>{{ state.description }}</td>
                     </tr>
-                    {% endfor %}
                 {% endfor %}
             </tbody>
         </table>
@@ -170,7 +167,7 @@ tags: components
             <option value="rail">Train</option>
             <option value="fly">Plane</option>
         </select>
-        @Svg.AlertCircle.With("s-input-icon")
+        @Svg.AlertFill.With("s-input-icon")
     </div>
 </div>
 {% endhighlight %}
@@ -189,7 +186,7 @@ tags: components
                         <option value="rail">Train</option>
                         <option value="fly">Plane</option>
                     </select>
-                    {% icon "AlertCircle", "s-input-icon" %}
+                    {% icon "AlertFill", "s-input-icon" %}
                 </div>
             </div>
         </div>

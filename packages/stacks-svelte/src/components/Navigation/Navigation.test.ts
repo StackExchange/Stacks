@@ -1,5 +1,5 @@
 import { expect } from "@open-wc/testing";
-import { render, screen } from "@testing-library/svelte";
+import { render, screen, within } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import { createRawSnippet } from "svelte";
 import sinon from "sinon";
@@ -148,19 +148,19 @@ describe("Navigation", () => {
 
         // selected item should show iconSelected (IconHomeFill)
         const homeIcon = homeButton.querySelector(".s-navigation--icon");
-        expect(homeIcon).to.have.class("iconHomeFill");
-        expect(homeIcon).not.to.have.class("iconHome");
+        expect(homeIcon).to.have.class("IconHomeFill");
+        expect(homeIcon).not.to.have.class("IconHome");
 
         // Non-selected items should show regular icon (not the selected variant)
         const jobsButton = screen.getByRole("button", { name: "Jobs" });
         const jobsIcon = jobsButton.querySelector(".s-navigation--icon");
-        expect(jobsIcon).to.have.class("iconJobs");
-        expect(jobsIcon).not.to.have.class("iconJobsFill");
+        expect(jobsIcon).to.have.class("IconJobs");
+        expect(jobsIcon).not.to.have.class("IconJobsFill");
 
         const savesButton = screen.getByRole("button", { name: "Saves" });
         const savesIcon = savesButton.querySelector(".s-navigation--icon");
-        expect(savesIcon).to.have.class("iconTagStack");
-        expect(savesIcon).not.to.have.class("iconTagStackFill");
+        expect(savesIcon).to.have.class("IconTagStack");
+        expect(savesIcon).not.to.have.class("IconTagStackFill");
     });
 
     it("should render horizontal navigation with dropdown indicators on specific items", () => {
@@ -192,7 +192,10 @@ describe("Navigation", () => {
                             text: "Settings",
                             icon: IconSettings,
                             iconSelected: IconSettingsFill,
-                            dropdown: true,
+                            dropdown: createRawSnippet(() => ({
+                                render: () =>
+                                    `<div>popover component goes in here</div>`,
+                            })),
                         },
                     },
                 ]),
@@ -213,6 +216,9 @@ describe("Navigation", () => {
         expect(contentButton).not.to.have.class("s-navigation--item__dropdown");
         expect(topicsButton).not.to.have.class("s-navigation--item__dropdown");
         expect(settingsButton).to.have.class("s-navigation--item__dropdown");
+
+        expect(within(list).getByText("popover component goes in here")).to
+            .exist;
     });
 
     it("should render navigation with title sections separating groups", () => {

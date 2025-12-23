@@ -1,101 +1,104 @@
 <script module lang="ts">
-    export type Award = "gold" | "silver" | "bronze" | undefined;
-    export type Size = "sm" | "lg" | undefined;
-    export type Variant =
-        | "answered"
-        | "bounty"
-        | "new"
-        | "important"
-        | "rep"
-        | "rep-down"
-        | "votes"
-        | "danger"
-        | "info"
-        | "muted"
-        | "warning"
-        | "ai"
-        | "bot"
-        | "admin"
-        | "moderator"
-        | "staff"
+    export type BadgeType =
+        | "general"
+        | "reputation"
+        | "activity"
+        | "achievement"
         | "tag"
-        | undefined;
+        | "state"
+        | "user";
+    export type BadgeSize = "sm" | "" | "lg";
+    export type BadgeState =
+        | "info"
+        | "warning"
+        | "danger"
+        | "critical"
+        | "tonal"
+        | "success"
+        | "featured";
+    export type Award = "gold" | "silver" | "bronze";
+    export type UserType = "admin" | "moderator" | "staff" | "ai" | "bot";
 </script>
 
 <script lang="ts">
     import Bling from "../Bling/Bling.svelte";
     import Icon from "../Icon/Icon.svelte";
-    import type { Snippet } from "svelte";
-    import type { HTMLAnchorAttributes } from "svelte/elements";
-
     interface Props {
         /**
-         * The type of award
-         * @type {"gold" | "silver" | "bronze"} Type
+         * The text content of the badge
+         */
+        text: string;
+
+        /**
+         * Text to convey the badge's purpose to assistive technologies
+         */
+        label?: string;
+
+        /**
+         * The type of badge
+         */
+        type?: BadgeType;
+
+        /**
+         * The size of the badge
+         * @type {"sm" | "" | "lg"}
+         */
+        size?: BadgeSize;
+
+        /**
+         * The svg icon to display within the badge (generally provided as a reference to our icon package)
+         */
+        icon?: string;
+
+        /**
+         * Whether to use squared variant (only relevant if an icon is specified)
+         */
+        squared?: boolean;
+
+        /**
+         * Whether to use important styling
+         */
+        important?: boolean;
+
+        /**
+         * The state variant
+         * Only used when type is "state"
+         */
+        state?: BadgeState;
+
+        /**
+         * Award level for achievement badges (gold, silver, bronze)
+         * Only used when type is "achievement" or "tag"
          */
         award?: Award;
 
         /**
-         * Applies the filled style to "muted" or "danger" variants
+         * User type for user badges (admin, moderator, staff, ai, bot)
+         * Only used when type is "user"
          */
-        filled?: boolean;
+        userType?: UserType;
 
         /**
-         * The icon to display within the badge
-         */
-        icon?: string | undefined;
-
-        /**
-         * The title attribute for the icon
-         */
-        iconTitle?: string | undefined;
-
-        /**
-         * The size of the badge
-         * @type {"sm" | "lg" | undefined} Size
-         */
-        size?: Size;
-
-        /**
-         * The variant of the badge
-         * @type {"answered" | "bounty" | "danger" | "muted" | "new" | "important" | "rep" | "rep-down" | "votes" | "ai" | "bot" | "admin" | "moderator" | "staff" | "tag" | undefined} Variant
-         */
-        variant?: Variant;
-
-        /**
-         * Descriptive text for the award
-         */
-        i18nAwardName?: string | undefined;
-
-        /**
-         * Additional CSS classes added to the element
+         * Additional CSS classes added to the badge element
          */
         class?: string;
-
-        /**
-         * Snippet for the badge content
-         */
-        children?: Snippet;
     }
 
     const {
-        award,
-        filled = false,
+        text,
+        label = undefined,
+        type = undefined,
+        size = "",
         icon = undefined,
-        iconTitle = undefined,
-        size = undefined,
-        variant = undefined,
-        i18nAwardName = undefined,
+        squared = false,
+        important = false,
+        state = undefined,
+        award = undefined,
+        userType = undefined,
         class: className = "",
-        children,
-    }: Props & HTMLAnchorAttributes = $props();
+    }: Props = $props();
 
-    const getClasses = (
-        filled: boolean,
-        icon: string | undefined,
-        size: Size,
-        variant: Variant | undefined
-    ) => {
+    const classes = $derived(() => {
         const base = "s-badge";
         let classes = base;
 
@@ -103,48 +106,71 @@
             classes += ` ${className}`;
         }
 
-        if (filled) {
-            classes += ` ${base}__filled`;
-        }
-
-        if (icon) {
-            classes += ` ${base}__icon`;
-        }
-
         if (size) {
             classes += ` ${base}__${size}`;
         }
 
-        if (variant) {
-            if (variant === "tag") {
-                classes += ` ${base}__${award}`;
-            } else {
-                classes += ` ${base}__${variant}`;
-            }
+        if (squared) {
+            classes += ` ${base}__squared`;
+        }
+
+        if (important) {
+            classes += ` ${base}__important`;
+        }
+
+        if (type === "state" && state) {
+            classes += ` ${base}__${state}`;
+        } else if (type === "user" && userType) {
+            classes += ` ${base}__${userType}`;
+        } else if (type === "tag" && award) {
+            classes += ` ${base}__${award}`;
         }
 
         return classes;
-    };
+    });
 
-    const classes = $derived(getClasses(filled, icon, size, variant));
-    const isTagVariant = $derived(() => variant === "tag");
+    const needsBling = $derived(() => {
+        return (
+            type === "general" ||
+            type === "reputation" ||
+            type === "activity" ||
+            (type === "achievement" && award !== undefined)
+        );
+    });
+
+    const blingType = $derived(() => {
+        if (type === "reputation") {
+            return "rep" as const;
+        }
+        if (type === "activity") {
+            return "activity" as const;
+        }
+        if (type === "achievement" && award) {
+            return award;
+        }
+        return "" as const;
+    });
+
+    const blingFilled = $derived(() => {
+        // tag badges are not filled, the rest are
+        if (type === "tag" && award) {
+            return false;
+        }
+        return true;
+    });
 </script>
 
-<span class={classes}>
-    {#if award}
+<span class={classes()}>
+    {#if needsBling()}
         <Bling
-            type={award}
-            name={i18nAwardName || award}
+            type={blingType()}
+            filled={blingFilled()}
+            name={label ?? "badge"}
             {size}
-            filled={!isTagVariant()}
         />
-        {@render children?.()}
-    {:else}
-        {#if icon}
-            <Icon src={icon} title={iconTitle} />
-        {/if}
-        {#if !award}
-            {@render children?.()}
-        {/if}
     {/if}
+    {#if icon}
+        <Icon src={icon} />
+    {/if}
+    {text}
 </span>

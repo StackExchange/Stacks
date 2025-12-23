@@ -1,9 +1,6 @@
 <script lang="ts" module>
-    import {
-        IconWave,
-        IconAlert,
-    } from "@stackoverflow/stacks-icons-legacy/icons";
-
+    import { IconWave } from "@stackoverflow/stacks-icons-legacy/icons";
+    import { IconAlertFill } from "@stackoverflow/stacks-icons/icons";
     import Toaster, { showToast, hideToast } from "./Toast.svelte";
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import Button from "../Button/Button.svelte";
@@ -83,7 +80,7 @@
             onclick={() =>
                 showToast("I am a toast component with the an icon", {
                     variant: "danger",
-                    icon: IconAlert,
+                    icon: IconAlertFill,
                     iconTitle: "Alert Icon",
                 })}>Toast with an Icon</Button
         >
