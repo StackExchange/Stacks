@@ -74,7 +74,7 @@ describe("UserCard", () => {
         const avatarImg = screen.getByRole("presentation").parentElement;
         const name = screen.getAllByText("John Doe")[1];
         expect(avatarImg).to.have.attr("href", "#");
-        expect(name).to.have.attr("href", "#");
+        expect(name.parentElement).to.have.attr("href", "#");
     });
 
     it("should render the user card with arbitrary classes", () => {

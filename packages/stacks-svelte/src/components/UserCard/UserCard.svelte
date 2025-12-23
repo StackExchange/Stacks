@@ -134,7 +134,7 @@
         {#if name}
             <svelte:element
                 this={href ? "a" : "div"}
-                class="s-user-card--link d-flex g4"
+                class="s-user-card--link d-flex g6"
                 {href}
             >
                 <div class="flex--item">{name}</div>
