@@ -63,7 +63,13 @@
         .list-reset;
         align-items: center;
         display: flex;
-        gap: var(--su6);
+        gap: var(--su4);
+
+        // When li contains only s-bling__silver or s-bling__gold (no text content), reduce gap to 2px
+        li:has(> .s-bling__silver:only-child),
+        li:has(> .s-bling__gold:only-child) {
+            margin-right: calc(var(--su2) - var(--su4));
+        }
     }
 
     & &--info {
@@ -82,6 +88,11 @@
         flex-wrap: wrap;
         min-width: 0; // Allow things to wrap
         overflow-wrap: break-word;
+
+        // Reduce gap between adjacent s-badge elements from 6px to 4px
+        .s-badge:has(+ .s-badge) {
+            margin-right: calc(var(--su4) - var(--su6));
+        }
     }
 
     & &--rep {
