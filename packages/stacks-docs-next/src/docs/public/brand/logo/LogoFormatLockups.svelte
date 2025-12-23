@@ -18,7 +18,7 @@
 </script>
 
 <Gallery controls={sizes} {onChange}>
-  <div class="wrap">
+  <div class="wrap d:fc-white">
     <div class={`lockup lockup--${sizes[index]}`}>
       <div class="logo logo--tl"><Icon src={IconLogo} /></div>
       <div class="logo logo--tr"><Icon src={IconLogo} /></div>

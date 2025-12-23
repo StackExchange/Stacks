@@ -59,7 +59,7 @@ Word choice plays a huge role in this. For some reason, we seem to think busines
 If you’re not sure how normal or formal you’re being, read what you’ve written aloud. If it sounds like something you’d say in real life, you’re on to a winner.
 
 <Grid>
-  <GridColumn extraClasses="py64 ta-center bg-brand-yellow">
+  <GridColumn extraClasses="py64 ta-center bg-brand-yellow d:fc-white">
     <div class="ps-absolute t12 l12">Say this…</div>
     <h1>The knowledge you need to keep creating.</h1>
     <p>Stack Overflow is a place for technologists and businesses to learn and share knowledge.</p>
@@ -78,7 +78,7 @@ Protect our audience’s flow state, and their time, by keeping copy short, acti
 You can explain context or reasoning after, if you like, but keep it concise. That way people will find the information they need, and we’ll make sure we get our message across before they’re onto the next task or tab.
 
 <Grid>
-  <GridColumn extraClasses="py64 ta-center bg-brand-yellow">
+  <GridColumn extraClasses="py64 ta-center bg-brand-yellow d:fc-white">
     <div class="ps-absolute t12 l12">Say this…</div>
     <h1>Switch (100 opinions) for one right answer</h1>
     <p>Get the knowledge you need to solve problems and craft code that works. No vague ideas or random suggestions. Just verified, definitive answers from experienced developers.</p>
@@ -100,7 +100,7 @@ We get the appeal: they do sound kinda impressive. But if we’re honest with ou
 Check out the Spirited section for more tips on making our writing a little more…interesting.
 
 <Grid>
-  <GridColumn extraClasses="py64 ta-center bg-brand-yellow">
+  <GridColumn extraClasses="py64 ta-center bg-brand-yellow d:fc-white">
     <div class="ps-absolute t12 l12">Say this…</div>
     <p>Connect Stack Internal to Slack and Microsoft Teams so your developers can find the answers they need quickly. You can also create Communities where specialists can share the most relevant knowledge.</p>
   </GridColumn>
@@ -121,7 +121,7 @@ Don’t be afraid to ruffle a few feathers or challenge conventional wisdom. Sta
 Done well, this kind of writing earns trust, gives us an air of expertise and authority and, importantly, is just easier to read!
 
 <Grid>
-  <GridColumn extraClasses="py64 ta-center bg-brand-yellow">
+  <GridColumn extraClasses="py64 ta-center bg-brand-yellow d:fc-white">
     <div class="ps-absolute t12 l12">Say this…</div>
     <h1>You can’t know everything</h1>
     <p>But with Stack Internal, you can find someone who does.</p>
@@ -138,7 +138,7 @@ Done well, this kind of writing earns trust, gives us an air of expertise and au
 If there’s no expectation to subvert, no convention to challenge or no feather to ruffle (and sometimes, there really isn’t) just be really, really honest. It’s a rarity in brand writing, and it stands out for that very reason. You can reference the overbearing nature of a lot of the writing in our space, and provide a succinct and honest counterpoint to it.
 
 <Grid>
-  <GridColumn extraClasses="py64 ta-center bg-brand-yellow">
+  <GridColumn extraClasses="py64 ta-center bg-brand-yellow d:fc-white">
     <div class="ps-absolute t12 l12">Say this…</div>
     <h1>Find knowledge to upskill. Reskill. Outskill.</h1>
     <p>We can’t promise you a promotion, but we can promise you’ll learn something.</p>
@@ -157,7 +157,7 @@ A little bit of wit goes a long way, especially in technical spaces where a mome
 But always remember: there’s a line. It's about inviting the reader to be in on the joke,not putting them in their place.
 
 <Grid>
-  <GridColumn extraClasses="py64 ta-center bg-brand-yellow">
+  <GridColumn extraClasses="py64 ta-center bg-brand-yellow d:fc-white">
     <div class="ps-absolute t12 l12">Say this…</div>
     <h1>This meeting could have been a Stack post.</h1>
   </GridColumn>
@@ -174,7 +174,7 @@ We’re not in the business of hype. Especially empty hype. But we do believe in
 If we’re excited about something, we let it show. If we believe in something, we’re not afraid of having that optimism come through. And if there’s an opportunity for celebration, we grasp it.
 
 <Grid>
-  <GridColumn extraClasses="py64 ta-center bg-brand-yellow">
+  <GridColumn extraClasses="py64 ta-center bg-brand-yellow d:fc-white">
     <div class="ps-absolute t12 l12">Say this…</div>
     <h1>One place. A million breakthroughs.</h1>
     <p>Join a community of technologists, businesses and developers working things out, together.</p>
@@ -210,7 +210,7 @@ Like computers, readers have a limit on how much they can process and remember �
 </Grid>
 
 <Grid>
-  <GridColumn extraClasses="py64 ta-center bg-brand-yellow">
+  <GridColumn extraClasses="py64 ta-center bg-brand-yellow d:fc-white">
     <h1>Teaching developers. And models.</h1>
     <p>Stack Overflow has been the go-to place for technologists to learn for over fifteen years. Now you can license our vital, verified knowledge to train your AI models.</p>
   </GridColumn>
@@ -226,7 +226,7 @@ We use the active voice as much as possible to make it clear who’s acting — 
 That said, in certain situations the passive voice can help soften a message. This can be particularly true in-product, for time-sensitive messages, or things like error messages. Using the passive voice in these instances can avoid attributing blame unnecessarily.
 
 <Grid>
-  <GridColumn extraClasses="py64 ta-center bg-brand-yellow">
+  <GridColumn extraClasses="py64 ta-center bg-brand-yellow d:fc-white">
     <p>With Stack Internal, your developers can share knowledge and resources with the whole organization, so everyone can find the right answers quickly.</p>
   </GridColumn>
   <GridColumn extraClasses="py64 ta-center bg-black-200 column-strike">
@@ -243,7 +243,7 @@ Precision can matter more in some business and brand settings, too. If the momen
 Learn more about how we dial these aspects of our voice up and down in different settings in the “Brand Volume” section.
 
 <Grid>
-  <GridColumn extraClasses="py64 ta-center bg-brand-yellow">
+  <GridColumn extraClasses="py64 ta-center bg-brand-yellow d:fc-white">
     <h1>Content Health.</h1>
     <p>These posts haven’t been updated for six months. You may want to review them to check if the information is still accurate.</p>
   </GridColumn>
@@ -266,16 +266,16 @@ There are no hard rules around this. It’s about reading the room and thinking 
 ### When to turn up Simple
 
 <Grid>
-  <GridColumn extraClasses="bg-brand-blue-light">
-    <h4>B2B</h4>
+  <GridColumn extraClasses="bg-brand-blue-light d:fc-white">
+    <h4 class="fc-black d:fc-white">B2B</h4>
     <p>When we’re speaking to businesses, our messaging needs to feel professional. So we should focus on Simple over Spirited. The good news is that most B2B messaging is so stuffed with marketing fluff that clear, simple copy is enough to help us stand out and get our message across.</p>
   </GridColumn>
-  <GridColumn extraClasses="bg-brand-blue-light">
-    <h4>In product</h4>
+  <GridColumn extraClasses="bg-brand-blue-light d:fc-white">
+    <h4 class="fc-black d:fc-white">In product</h4>
     <p>In-product copy is there to guide, not distract. So simplicity is king. That said, there can still be moments where Spirited shines through, for example in a success message or during onboarding.</p>
   </GridColumn>
-  <GridColumn extraClasses="bg-brand-blue-light">
-    <h4>Support</h4>
+  <GridColumn extraClasses="bg-brand-blue-light d:fc-white">
+    <h4 class="fc-black d:fc-white">Support</h4>
     <p>Someone reading our help center may be feeling frustrated or trying to fix an urgent problem. We should prioritize our Simple pillar to make sure the information they find is clear and easy to understand.</p>
   </GridColumn>
 </Grid>
@@ -283,16 +283,16 @@ There are no hard rules around this. It’s about reading the room and thinking 
 ### When to turn up Spirited
 
 <Grid>
-  <GridColumn extraClasses="bg-brand-pink">
-    <h4>B2C</h4>
+  <GridColumn extraClasses="bg-brand-pink d:fc-white">
+    <h4 class="fc-black d:fc-white">B2C</h4>
     <p>Consumers are used to brands talking to them in more relaxed and informal ways, so it’s appropriate for us to bring a little more wit and charm.</p>
   </GridColumn>
-  <GridColumn extraClasses="bg-brand-pink">
-    <h4>Social Media</h4>
+  <GridColumn extraClasses="bg-brand-pink d:fc-white">
+    <h4 class="fc-black d:fc-white">Social Media</h4>
     <p>On social media, our content needs to stand out and get noticed. Turning up the Spirited part of our voice can help.</p>
   </GridColumn>
-  <GridColumn extraClasses="bg-brand-pink">
-    <h4>Email Marketing</h4>
+  <GridColumn extraClasses="bg-brand-pink d:fc-white">
+    <h4 class="fc-black d:fc-white">Email Marketing</h4>
     <p>As a one-to-one channel, email marketing helps us build relationships with our customers. Leaning into our Spirited side helps keep our emails engaging, and humanizes us as a brand. </p>
   </GridColumn>
 </Grid>

@@ -20,7 +20,7 @@
 
 		<h1 class="fs-headline2 mb12">Access required</h1>
 
-		<p class="fs-body2 fc-black-500 mb24">Only employees can access what's here. It's not that interesting unless you work here, honestly.</p>
+		<p class="fs-body2 fc-black-500 mb24">Only employees can access what’s here (it’s really not that interesting unless you work here).</p>
 
 		<Button onclick={handleSignIn} class="w100">
 			Login with Okta
