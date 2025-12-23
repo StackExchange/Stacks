@@ -11,15 +11,11 @@ const baseURL = process.env.URL || "http://localhost:5173";
 export const auth = betterAuth({
     baseURL,
 
-    trustedOrigins: [
-        baseURL,
-        "https://*.stackoverflow.design",
-    ],
+    trustedOrigins: [baseURL, "https://*.stackoverflow.design"],
 
     // Secret for signing cookies and tokens
     // openssl rand -base64 32
     secret: env.AUTH_SECRET || "",
-
 
     // Cookie configuration
     advanced: {
