@@ -100,4 +100,15 @@ describe("UserCard", () => {
         expect(screen.getByText("Mod")).to.exist;
         expect(screen.getByText("Staff")).to.exist;
     });
+
+    it("should render the user card with large size class", () => {
+        render(UserCard, {
+            name: "John Doe",
+            avatar: "https://picsum.photos/128",
+            size: "large",
+        });
+        expect(
+            screen.getAllByText("John Doe")[1].closest(".s-user-card")
+        ).to.have.class("s-user-card__large");
+    });
 });

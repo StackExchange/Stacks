@@ -1,11 +1,12 @@
 <script lang="ts" module>
     export type Award = string | number | undefined;
-    export type Size = "small" | undefined; //TODO: Add "large" when working on SPARK-127
+    export type Size = "small" | "large" | undefined;
 </script>
 
 <script lang="ts">
     import Avatar, { type Size as AvatarSize } from "../Avatar/Avatar.svelte";
     import Bling from "../Bling/Bling.svelte";
+    import Icon from "../Icon/Icon.svelte";
 
     interface Props {
         /**
@@ -30,7 +31,7 @@
 
         /**
          * The size of the user card
-         * @type {undefined | "small"} Size
+         * @type {undefined | "small" | "large"} Size
          */
         size?: Size;
 
@@ -71,6 +72,42 @@
          */
         staff?: boolean;
 
+        // Large variant only
+        /**
+         * Type text (e.g., "Recognized by") for large variant
+         */
+        type?: string;
+
+        /**
+         * Link for the type text (e.g., link to the organization)
+         */
+        typeHref?: string;
+
+        /**
+         * Text for the type link
+         */
+        typeLinkText?: string;
+
+        /**
+         * Icon source for the type section
+         */
+        typeIcon?: string;
+
+        /**
+         * Role text
+         */
+        role?: string;
+
+        /**
+         * Location text
+         */
+        location?: string;
+
+        /**
+         * Excerpt text
+         */
+        excerpt?: string;
+
         /**
          * Additional CSS classes added to the element
          */
@@ -90,6 +127,13 @@
         admin = false,
         moderator = false,
         staff = false,
+        type,
+        typeHref,
+        typeIcon,
+        typeLinkText,
+        role,
+        location,
+        excerpt,
         class: className = "",
     }: Props = $props();
 
@@ -112,6 +156,8 @@
         switch (size) {
             case "small":
                 return 16;
+            case "large":
+                return 48;
             default:
                 return 24;
         }
@@ -157,9 +203,37 @@
                 {/if}
             </svelte:element>
         {/if}
+        {#if size === "large" && (reputation || gold || silver || bronze)}
+            <ul class="s-user-card--awards">
+                {#if reputation}
+                    <li class="s-user-card--rep">
+                        <Bling name="reputation bling" />
+                        {reputation}
+                    </li>
+                {/if}
+                {#if gold}
+                    <li>
+                        <Bling type="gold" name="gold bling" />
+                        {gold}
+                    </li>
+                {/if}
+                {#if silver}
+                    <li>
+                        <Bling type="silver" name="silver bling" />
+                        {silver}
+                    </li>
+                {/if}
+                {#if bronze}
+                    <li>
+                        <Bling type="bronze" name="bronze bling" />
+                        {bronze}
+                    </li>
+                {/if}
+            </ul>
+        {/if}
     </div>
 
-    {#if reputation || gold || silver || bronze}
+    {#if size !== "large" && (reputation || gold || silver || bronze)}
         <ul class="s-user-card--awards">
             {#if reputation}
                 <li class="s-user-card--rep">
@@ -170,22 +244,54 @@
             {#if gold}
                 <li>
                     <Bling type="gold" name="gold bling" />
-                    {gold} gold awards
+                    {gold}
                 </li>
             {/if}
             {#if silver}
                 <li>
                     <Bling type="silver" name="silver bling" />
-                    {silver} silver awards
+                    {silver}
                 </li>
             {/if}
             {#if bronze}
                 <li>
                     <Bling type="bronze" name="bronze bling" />
-                    {bronze} bronze awards
+                    {bronze}
                 </li>
             {/if}
         </ul>
+    {/if}
+
+    {#if size === "large" && type}
+        <div class="s-user-card--type">
+            {#if typeIcon}
+                <Icon src={typeIcon} />
+            {/if}
+            {type}
+            {#if typeHref}
+                <a href={typeHref}>{typeLinkText || "…"}</a>
+            {/if}
+        </div>
+    {/if}
+
+    {#if size === "large" && (role || location)}
+        <div class="d-flex ai-center g4">
+            {#if role}
+                <div class="s-user-card--role">{role}</div>
+            {/if}
+            {#if role && location}
+                <div class="s-user-card--square"></div>
+            {/if}
+            {#if location}
+                <div class="s-user-card--location">{location}</div>
+            {/if}
+        </div>
+    {/if}
+
+    {#if size === "large" && excerpt}
+        <div class="s-user-card--excerpt">
+            {excerpt}
+        </div>
     {/if}
 
     {#if timestamp}

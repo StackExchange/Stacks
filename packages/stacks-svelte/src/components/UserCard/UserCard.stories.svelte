@@ -2,7 +2,7 @@
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import UserCard, { type Size } from "./UserCard.svelte";
 
-    const UserCardSizes: (Size | undefined)[] = [undefined, "small"];
+    const UserCardSizes: (Size | undefined)[] = [undefined, "small", "large"];
 
     const baseArgs = {
         avatar: "https://picsum.photos/128",
@@ -93,6 +93,50 @@
                         </td>
                     </tr>
                 {/each}
+                <tr>
+                    <th scope="row" class="va-middle">large (full example)</th>
+                    <td class="va-middle px4">
+                        <UserCard
+                            {...baseArgs}
+                            size="large"
+                            moderator
+                            type="Recognized by"
+                            typeHref="#"
+                            typeLinkText="AudioBubble"
+                            role="Senior Product Designer"
+                            location="Vancouver, Canada"
+                            excerpt="Developer who believes in clean code, clear coffee, and the occasional snake pun. Automating the boring stuff one script at a time."
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row" class="va-middle">
+                        large (with location and excerpt)
+                    </th>
+                    <td class="va-middle px4">
+                        <UserCard
+                            {...baseArgs}
+                            size="large"
+                            reputation="1"
+                            location="Vancouver, Canada"
+                            excerpt="Developer who believes in clean code, clear coffee, and the occasional snake pun. Automating the boring stuff one script at a time."
+                            timestamp={undefined}
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row" class="va-middle">
+                        large (with badges and awards)
+                    </th>
+                    <td class="va-middle px4">
+                        <UserCard
+                            {...baseArgs}
+                            size="large"
+                            moderator
+                            timestamp={undefined}
+                        />
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
