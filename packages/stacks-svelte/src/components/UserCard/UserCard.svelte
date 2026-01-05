@@ -203,35 +203,36 @@
                 {/if}
             </svelte:element>
         {/if}
-        {#if size === "large" && (reputation || gold || silver || bronze)}
-            <ul class="s-user-card--awards">
-                {#if reputation}
-                    <li class="s-user-card--rep">
-                        <Bling name="reputation bling" />
-                        {reputation}
-                    </li>
-                {/if}
-                {#if gold}
-                    <li>
-                        <Bling type="gold" name="gold bling" />
-                        {gold}
-                    </li>
-                {/if}
-                {#if silver}
-                    <li>
-                        <Bling type="silver" name="silver bling" />
-                        {silver}
-                    </li>
-                {/if}
-                {#if bronze}
-                    <li>
-                        <Bling type="bronze" name="bronze bling" />
-                        {bronze}
-                    </li>
-                {/if}
-            </ul>
-        {/if}
     </div>
+
+    {#if size === "large" && (reputation || gold || silver || bronze)}
+        <ul class="s-user-card--awards">
+            {#if reputation}
+                <li class="s-user-card--rep">
+                    <Bling name="reputation bling" />
+                    {reputation}
+                </li>
+            {/if}
+            {#if gold}
+                <li>
+                    <Bling type="gold" name="gold bling" />
+                    {gold}
+                </li>
+            {/if}
+            {#if silver}
+                <li>
+                    <Bling type="silver" name="silver bling" />
+                    {silver}
+                </li>
+            {/if}
+            {#if bronze}
+                <li>
+                    <Bling type="bronze" name="bronze bling" />
+                    {bronze}
+                </li>
+            {/if}
+        </ul>
+    {/if}
 
     {#if size !== "large" && (reputation || gold || silver || bronze)}
         <ul class="s-user-card--awards">

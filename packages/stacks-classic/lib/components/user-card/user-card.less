@@ -48,7 +48,7 @@
         grid-template-columns: minmax(0, 250px) max-content;
         grid-auto-rows: auto;
         column-gap: 0;
-        row-gap: var(--su4);
+        row-gap: var(--su6);
         align-items: start;
 
         .s-user-card--avatar {
@@ -62,6 +62,14 @@
             // Below line is needed so the info div is 12px away from the avatar
             // TODO: find a better way to do this 
             margin-left: calc(-1 * (var(--su128) + var(--su48) + var(--su16)));
+        }
+
+        .s-user-card--awards {
+            grid-column: 2;
+            grid-row: 1;
+            // TODO: find a better way to do this
+            margin-left: calc(-1 * (var(--su128) + var(--su48) + var(--su16)));
+            margin-top: calc(var(--su16) + var(--su6));
         }
 
         .s-user-card--type {
@@ -165,4 +173,46 @@
     gap: var(--_uc-g);
     line-height: 1;
     padding: var(--_uc-p);
+
+    // At widths less than 600px, place timestamp and awards on same line below avatar
+    @media (max-width: 600px) {
+        flex-wrap: wrap;
+        align-items: flex-start;
+
+        // Set explicit order for all elements
+        .s-user-card--avatar {
+            flex-shrink: 0;
+            order: 1;
+        }
+
+        .s-user-card--info {
+            flex-grow: 1;
+            min-width: 0;
+            order: 2;
+        }
+
+        // Insert a line break element after info using pseudo-element
+        // This forces awards and timestamp to wrap to the next line together
+        &:after {
+            content: "";
+            flex-basis: 100%;
+            width: 0;
+            height: 0;
+            order: 3;
+        }
+
+        // Awards and timestamp will wrap to next line together
+        // Ensure 4px gap between the two rows
+        .s-user-card--awards {
+            order: 4;
+            margin-top: var(--su4);
+            margin-right: var(--su4);
+        }
+
+        .s-user-card--time {
+            order: 5;
+            // No margin-top needed since it's on the same row as awards
+            margin-top: 0;
+        }
+    }
 }
