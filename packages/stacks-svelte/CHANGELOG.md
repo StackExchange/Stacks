@@ -1,5 +1,11 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.15
+
+### Minor Changes
+
+- [#2107](https://github.com/StackExchange/Stacks/pull/2107) [`c130895`](https://github.com/StackExchange/Stacks/commit/c1308950616e7950c3fb5dc0257fa6572e0f6c66) Thanks [@chris-doucette-stack](https://github.com/chris-doucette-stack)! - Made TextInputs value prop bindable
+
 ## 1.0.0-beta.14
 
 ### Major Changes

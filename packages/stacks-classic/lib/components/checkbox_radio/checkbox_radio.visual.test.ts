@@ -1,31 +1,48 @@
-import { html } from "@open-wc/testing";
 import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const checkboxTemplate = ({ component, testid }: any) =>
-    html`<div
-        class="d-inline-flex ai-center jc-center bg-black-225 hs1 ws1 p8"
-        data-testid="${testid}"
-    >
-        ${component}
-    </div>`;
+["s-checkbox", "s-radio"].forEach((atomicClass) => {
+    const type = atomicClass.replace("s-", "");
 
-["checkbox", "radio"].forEach((type) => {
     describe(type, () => {
         // TODO include indeterminate
         ["checked", "unchecked"].forEach((state) => {
             runVisualTests({
-                tag: "input",
-                baseClass: `s-${type}`,
-                attributes: {
-                    type,
-                    ...(state === "checked" ? { checked: "checked" } : {}),
+                baseClass: atomicClass,
+                modifiers: {
+                    global: ["has-warning", "has-error", "has-success"],
+                    primary: ["checkmark"],
                 },
-                template: ({ component, testid }) =>
-                    checkboxTemplate({ component, testid }),
+                attributes: {
+                    class: "bg-black-100 hs1 ws2 p8",
+                },
+                children: {
+                    default: `
+                        <input
+                            type="${type}"
+                            id="test-input"
+                            name=""
+                            ${state === "checked" ? "checked" : ""}/>
+                        <label class="s-label" for="test-input">
+                            Label ${type}
+                            <p class="s-input-message">Description</p>
+                        </label>
+                    `,
+                    disabled: `
+                        <input
+                            type="${type}"
+                            id="test-input"
+                            name=""
+                            disabled
+                            ${state === "checked" ? "checked" : ""}/>
+                        <label class="s-label" for="test-input">
+                            Label ${type}
+                            <p class="s-input-message">Description</p>
+                        </label>
+                    `,
+                },
                 options: {
-                    testidSuffix: state,
+                    testidSuffix: `${state}`,
                 },
             });
         });

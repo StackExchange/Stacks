@@ -1,3 +1,7 @@
+<script module lang="ts">
+    export type Type = "legend" | "li";
+</script>
+
 <script lang="ts">
     import type { Snippet } from "svelte";
 
@@ -8,12 +12,17 @@
         class?: string;
 
         /**
+         * Sets whether the menu title is rendered within a fieldset
+         */
+        type?: Type;
+
+        /**
          * Snippet for the title content
          */
         children: Snippet;
     }
 
-    let { class: className = "", children }: Props = $props();
+    let { class: className = "", type = "li", children }: Props = $props();
 
     const getClasses = (className: string) => {
         const base = "s-menu--title";
@@ -29,6 +38,10 @@
     const classes = $derived(getClasses(className));
 </script>
 
-<li class={classes} role="separator">
+<svelte:element
+    this={type}
+    class={classes}
+    role={type === "li" ? "separator" : undefined}
+>
     {@render children()}
-</li>
+</svelte:element>
