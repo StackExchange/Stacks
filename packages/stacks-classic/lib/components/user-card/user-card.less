@@ -34,6 +34,8 @@
         --_uc-g: var(--su4);
         --_uc-info-ai: center;
         --_uc-info-fd: row;
+        --_uc-link-ws: nowrap;
+        --_uc-time-ws: nowrap;
     }
 
     &&__large {
@@ -113,9 +115,6 @@
         white-space: var(--_uc-link-ws);
 
         align-items: center;
-        flex-wrap: wrap;
-        min-width: 0; // Allow things to wrap
-        overflow-wrap: break-word;
 
         // Reduce gap between adjacent s-badge elements from 6px to 4px
         .s-badge:has(+ .s-badge) {
@@ -126,12 +125,6 @@
     & &--rep {
         color: var(--_uc-rep-fc);
         font-weight: 600;
-    }
-
-    & &--tags {
-        align-items: center;
-        min-width: 0; // Allow things to wrap
-        flex-wrap: wrap;
     }
 
     & &--time {
