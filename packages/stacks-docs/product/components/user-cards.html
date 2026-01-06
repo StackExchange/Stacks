@@ -11,13 +11,13 @@ tags: components
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th class="s-table--cell4" scope="col">Class</th>
                     <th class="s-table--cell3" scope="col">Applied to</th>
                     <th scope="col">Description</th>
                 </tr>
             </thead>
             <tbody class="fs-caption">
-                {% for item in user-cards-component.classes %}
+                {% for item in user-card.classes %}
                     <tr>
                         <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
                         <td><code class="stacks-code bg-white">{{ item.applies }}</td>
@@ -30,7 +30,7 @@ tags: components
 </section>
 <section class="stacks-section">
     {% header "h2", "Examples" %}
-    {% header "h3", "Base" %}
+    {% header "h3", "Default" %}
     <p class="stacks-copy">The Base style is the standard variant used to connect a user to their content, appearing most frequently in post-summary lists and on question pages. This view is flexible, allowing various metadata fields to be shown or hidden as needed.</p>
     {% tip, "info", "mb24" %}
         <strong>Note on timestamps:</strong> Hovering over the timestamp displays a popover with precise dates and a link to the post's /timeline. For authors, this shows the post creation date; for editors, it shows the last modification date.
@@ -38,497 +38,208 @@ tags: components
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-user-card">
-    <div class="s-user-card--primary">
-        <a class="s-user-card--avatar s-avatar s-avatar__24" href="…">
-            <img class="s-avatar--image" src="…" />
-        </a>
-        <div class="s-user-card--info">
-            <div class="s-user-card--group">
-                <a class="s-user-card--username" href="…">…</a>
-                <div class="s-user-card--badges">
-                    <span class="s-badge s-badge__staff s-badge__sm">…</span>
-                    <span class="s-badge s-badge__moderator s-badge__sm">…</span>
-                </div>
-            </div>
-            <ul class="s-user-card--awards">
-                <li class="s-user-card--rep">
-                    <span class="s-bling s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-                <li>
-                    <span class="s-bling s-bling__gold s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-                <li>
-                    <span class="s-bling s-bling__silver s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-                <li>
-                    <span class="s-bling s-bling__bronze s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-            </ul>
-            <time class="s-user-card--time" title="Show activity on this post" data-controller="s-tooltip">…</time>
-        </div>
+    <a class="s-user-card--group" href="…">
+        <!-- Note: Default variant includes avatar size modifier (s-avatar__24) -->
+        <span class="s-avatar s-avatar__24">
+            <img class="s-avatar--image" alt="…" src="…" />
+        </span>
+        <span class="s-user-card--username">…</span>
+    </a>
+    <div class="s-user-card--group">
+        <span class="s-badge s-badge__sm">…</span>
     </div>
+    <ul class="s-user-card--group">
+        <li class="s-user-card--rep">
+            <span class="s-bling s-bling__sm">
+                <span class="v-visible-sr">reputation bling</span>
+            </span>
+            …
+        </li>
+        <li>
+            <span class="s-bling s-bling__gold s-bling__sm">
+                <span class="v-visible-sr">gold bling</span>
+            </span>
+            …
+        </li>
+        <li>
+            <span class="s-bling s-bling__silver s-bling__sm">
+                <span class="v-visible-sr">silver bling</span>
+            </span>
+            …
+        </li>
+        <li>
+            <span class="s-bling s-bling__bronze s-bling__sm">
+                <span class="v-visible-sr">bronze bling</span>
+            </span>
+            …
+        </li>
+    </ul>
+    <time class="s-user-card--time" title="Show activity on this post" data-controller="s-tooltip">…</time>
 </div>
 {% endhighlight %}
-        <!-- TODO SHINE remove flex stuff below -->
-        <div class="stacks-preview--example">
-            <!-- SM variant (only change from default is the avatar size, modifier not necessary) -->
-            <div class="s-user-card s-user-card__sm">
-                <div class="s-user-card--primary">
-                    <a class="s-user-card--avatar s-avatar" href="#">
-                        <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
+        <div class="stacks-preview--example d-flex fd-column g8">
+            {% for user in user-card.base %}
+                <div class="s-user-card">
+                    <a class="s-user-card--group" href="#">
+                        <span class="s-avatar s-avatar__24">
+                            <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
+                        </span>
+                        <span class="s-user-card--username">{{ user.username }}</span>
                     </a>
-                    <div class="s-user-card--info">
+                    {% if user.badges %}
                         <div class="s-user-card--group">
-                            <a class="s-user-card--username" href="#">SofiaAlc</a>
-                            <div class="s-user-card--badges">
-                                <span class="s-badge s-badge__staff s-badge__sm">
-                                    Staff
-                                </span>
-                                <span class="s-badge s-badge__moderator s-badge__sm">
-                                    Mod
-                                </span>
-                            </div>
+                            {% for badge in user.badges %}
+                                <span class="s-badge s-badge__sm {{ badge.class }}">{{ badge.text }}</span>
+                            {% endfor %}
                         </div>
-                        <ul class="s-user-card--awards">
-                            <li class="s-user-card--rep">
-                                <span class="s-bling s-bling__sm">
-                                    <span class="v-visible-sr">reputation bling</span>
-                                </span>
-                                1,775
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__gold s-bling__sm">
-                                    <span class="v-visible-sr">gold bling</span>
-                                </span>
-                                8
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__silver s-bling__sm">
-                                    <span class="v-visible-sr">silver bling</span>
-                                </span>
-                                12
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__bronze s-bling__sm">
-                                    <span class="v-visible-sr">bronze bling</span>
-                                </span>
-                                4
-                            </li>
+                    {% endif %}
+                    {% if user.reputation or user.gold or user.silver or user.bronze %}
+                        <ul class="s-user-card--group">
+                            {% if user.reputation %}
+                                <li class="s-user-card--rep">
+                                    <span class="s-bling s-bling__sm">
+                                        <span class="v-visible-sr">reputation bling</span>
+                                    </span>
+                                    {{ user.reputation }}
+                                </li>
+                            {% endif %}
+                            {% if user.gold %}
+                                <li>
+                                    <span class="s-bling s-bling__gold s-bling__sm">
+                                        <span class="v-visible-sr">gold bling</span>
+                                    </span>
+                                    {{ user.gold }}
+                                </li>
+                            {% endif %}
+                            {% if user.silver %}
+                                <li>
+                                    <span class="s-bling s-bling__silver s-bling__sm">
+                                        <span class="v-visible-sr">silver bling</span>
+                                    </span>
+                                    {{ user.silver }}
+                                </li>
+                            {% endif %}
+                            {% if user.bronze %}
+                                <li>
+                                    <span class="s-bling s-bling__bronze s-bling__sm">
+                                        <span class="v-visible-sr">bronze bling</span>
+                                    </span>
+                                    {{ user.bronze }}
+                                </li>
+                            {% endif %}
                         </ul>
-                        <time class="s-user-card--time" title="TODO SHINE tbd" data-controller="s-tooltip">asked 2 hr ago</time>
-                    </div>
+                    {% endif %}
+                    {% if user.timestamp %}
+                        <time class="s-user-card--time" title="Show activity on this post" data-controller="s-tooltip">{{ user.timestamp }}</time>
+                    {% endif %}
                 </div>
-            </div>
-
-            <!-- Default -->
-            <div class="s-user-card">
-                <div class="s-user-card--primary">
-                    <a class="s-user-card--avatar s-avatar s-avatar__24" href="#">
-                        <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-                    </a>
-                    <div class="s-user-card--info">
-                        <div class="s-user-card--group">
-                            <a class="s-user-card--username" href="#">SofiaAlc</a>
-                            <div class="s-user-card--badges">
-                                <span class="s-badge s-badge__staff s-badge__sm">
-                                    Staff
-                                </span>
-                                <span class="s-badge s-badge__moderator s-badge__sm">
-                                    Mod
-                                </span>
-                            </div>
-                        </div>
-                        <ul class="s-user-card--awards">
-                            <li class="s-user-card--rep">
-                                <span class="s-bling s-bling__sm">
-                                    <span class="v-visible-sr">reputation bling</span>
-                                </span>
-                                1,775
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__gold s-bling__sm">
-                                    <span class="v-visible-sr">gold bling</span>
-                                </span>
-                                8
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__silver s-bling__sm">
-                                    <span class="v-visible-sr">silver bling</span>
-                                </span>
-                                12
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__bronze s-bling__sm">
-                                    <span class="v-visible-sr">bronze bling</span>
-                                </span>
-                                4
-                            </li>
-                        </ul>
-                        <time class="s-user-card--time" title="TODO SHINE tbd" data-controller="s-tooltip">asked 2 hr ago</time>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Large (only markup change from default is avatar size) -->
-            <div class="s-user-card s-user-card__lg">
-                <div class="s-user-card--primary">
-                    <a class="s-user-card--avatar s-avatar s-avatar__48" href="#">
-                        <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-                    </a>
-                    <div class="s-user-card--info">
-                        <div class="s-user-card--group">
-                            <a class="s-user-card--username" href="#">SofiaAlc</a>
-                            <div class="s-user-card--badges">
-                                <span class="s-badge s-badge__moderator s-badge__sm">
-                                    Mod
-                                </span>
-                            </div>
-                        </div>
-                        <ul class="s-user-card--awards">
-                            <li class="s-user-card--rep">
-                                <span class="s-bling s-bling__sm">
-                                    <span class="v-visible-sr">reputation bling</span>
-                                </span>
-                                1,775
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__gold s-bling__sm">
-                                    <span class="v-visible-sr">gold bling</span>
-                                </span>
-                                8
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__silver s-bling__sm">
-                                    <span class="v-visible-sr">silver bling</span>
-                                </span>
-                                12
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__bronze s-bling__sm">
-                                    <span class="v-visible-sr">bronze bling</span>
-                                </span>
-                                4
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="s-user-card--secondary">
-                    <div class="s-user-card--rm-status">
-                        {% icon "StarVerifiedSm" %} Recognized by <a href="#">AudioBubble</a>
-                    </div>
-                    <div class="s-user-card--position-location">
-                        <div class="s-user-card--role">Senior Product Designer</div>
-                        <span class="w4 h4 bg-black-350"></span>
-                        <div class="s-user-card--location">Vancouver, Canada</div>
-                    </div>
-                    <div class="s-user-card--excerpt">
-                        Developer who believes in clean code, clear coffee, and the occasional snake pun. Automating the boring stuff one script at...
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
 
 <section class="stacks-section">
-    {% header "h3", "with user badges" %}
-    <p class="stacks-copy">Adds the <a href="/product/components/badges/#user-badges">User badge</a> indicator to the usercard. Use this to signify the official role, status, or origin of the account (such as Moderator, Staff, or Bot) directly alongside the user's name.</p>
+    {% header "h3", "With badges" %}
+    <p class="stacks-copy">Adds the <a href="/product/components/badges/#user">User badge</a> indicator to the usercard. Use this to signify the official role, status, or origin of the account (such as Moderator, Staff, or Bot) directly alongside the user's name.</p>
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-user-card">
-    <div class="s-user-card--primary">
-        <a class="s-user-card--avatar s-avatar s-avatar__24" href="…">
-            <img class="s-avatar--image" src="…" />
-        </a>
-        <div class="s-user-card--info">
-            <div class="s-user-card--group">
-                <a class="s-user-card--username" href="…">…</a>
-                <div class="s-user-card--badges">
-                    <span class="s-badge s-badge__bot s-badge__sm">…</span>
-                </div>
-            </div>
-            <time class="s-user-card--time" title="Show activity on this post" data-controller="s-tooltip">…</time>
-        </div>
+    <a class="s-user-card--group" href="…">
+        <!-- Note: Default variant includes avatar size modifier (s-avatar__24) -->
+        <span class="s-avatar s-avatar__24">
+            <img class="s-avatar--image" alt="…" src="…" />
+        </span>
+        <span class="s-user-card--username">…</span>
+    </a>
+    <div class="s-user-card--group">
+        <span class="s-badge s-badge__sm">…</span>
     </div>
-</div>
-
-<div class="s-user-card">
-    <div class="s-user-card--primary">
-        <a class="s-user-card--avatar s-avatar s-avatar__24" href="…">
-            <img class="s-avatar--image" src="…" />
-        </a>
-        <div class="s-user-card--info">
-            <div class="s-user-card--group">
-                <a class="s-user-card--username" href="…">…</a>
-                <div class="s-user-card--badges">
-                    <span class="s-badge s-badge__moderator s-badge__sm">…</span>
-                </div>
-            </div>
-            <time class="s-user-card--time" title="Show activity on this post" data-controller="s-tooltip">…</time>
-        </div>
-    </div>
-</div>
-
-<div class="s-user-card">
-    <div class="s-user-card--primary">
-        <a class="s-user-card--avatar s-avatar s-avatar__24" href="…">
-            <img class="s-avatar--image" src="…" />
-        </a>
-        <div class="s-user-card--info">
-            <div class="s-user-card--group">
-                <a class="s-user-card--username" href="…">…</a>
-                <div class="s-user-card--badges">
-                    <span class="s-badge s-badge__staff s-badge__sm">…</span>
-                    <span class="s-badge s-badge__moderator s-badge__sm">…</span>
-                </div>
-            </div>
-            <time class="s-user-card--time" title="Show activity on this post" data-controller="s-tooltip">…</time>
-        </div>
-    </div>
-</div>
-
-<div class="s-user-card">
-    <div class="s-user-card--primary">
-        <a class="s-user-card--avatar s-avatar s-avatar__24" href="…">
-            <img class="s-avatar--image" src="…" />
-        </a>
-        <div class="s-user-card--info">
-            <div class="s-user-card--group">
-                <a class="s-user-card--username" href="…">…</a>
-                <div class="s-user-card--badges">
-                    <span class="s-badge s-badge__moderator s-badge__sm">…</span>
-                </div>
-            </div>
-            <ul class="s-user-card--awards">
-                <li class="s-user-card--rep">
-                    <span class="s-bling s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-                <li>
-                    <span class="s-bling s-bling__gold s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                </li>
-                <li>
-                    <span class="s-bling s-bling__silver s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                </li>
-                <li>
-                    <span class="s-bling s-bling__bronze s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                </li>
-            </ul>
-            <time class="s-user-card--time" title="Show activity on this post" data-controller="s-tooltip">…</time>
-        </div>
-    </div>
-</div>
-
-<div class="s-user-card">
-    <div class="s-user-card--primary">
-        <a class="s-user-card--avatar s-avatar s-avatar__24" href="…">
-            <img class="s-avatar--image" src="…" />
-        </a>
-        <div class="s-user-card--info">
-            <div class="s-user-card--group">
-                <a class="s-user-card--username" href="…">…</a>
-                <div class="s-user-card--badges">
-                    <span class="s-badge s-badge__staff s-badge__sm">…</span>
-                </div>
-            </div>
-            <ul class="s-user-card--awards">
-                <li class="s-user-card--rep">
-                    <span class="s-bling s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-                <li>
-                    <span class="s-bling s-bling__gold s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-                <li>
-                    <span class="s-bling s-bling__silver s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-                <li>
-                    <span class="s-bling s-bling__bronze s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-            </ul>
-            <time class="s-user-card--time" title="Show activity on this post" data-controller="s-tooltip">…</time>
-        </div>
-    </div>
+    <ul class="s-user-card--group">
+        <li class="s-user-card--rep">
+            <span class="s-bling s-bling__sm">
+                <span class="v-visible-sr">reputation bling</span>
+            </span>
+            …
+        </li>
+        <li>
+            <span class="s-bling s-bling__gold s-bling__sm">
+                <span class="v-visible-sr">gold bling</span>
+            </span>
+            …
+        </li>
+        <li>
+            <span class="s-bling s-bling__silver s-bling__sm">
+                <span class="v-visible-sr">silver bling</span>
+            </span>
+            …
+        </li>
+        <li>
+            <span class="s-bling s-bling__bronze s-bling__sm">
+                <span class="v-visible-sr">bronze bling</span>
+            </span>
+            …
+        </li>
+    </ul>
+    <time class="s-user-card--time" title="Show activity on this post" data-controller="s-tooltip">…</time>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="s-user-card">
-                <div class="s-user-card--primary">
-                    <a class="s-user-card--avatar s-avatar s-avatar__24" href="#">
-                        <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
+        <div class="stacks-preview--example d-flex fd-column g8">
+            {% for user in user-card.with-badges %}
+                <div class="s-user-card">
+                    <a class="s-user-card--group" href="#">
+                        <span class="s-avatar s-avatar__24">
+                            <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
+                        </span>
+                        <span class="s-user-card--username">{{ user.username }}</span>
                     </a>
-                    <div class="s-user-card--info">
+                    {% if user.badges %}
                         <div class="s-user-card--group">
-                            <a class="s-user-card--username" href="#">Community</a>
-                            <div class="s-user-card--badges">
-                                <span class="s-badge s-badge__bot s-badge__sm">
-                                    Bot
-                                </span>
-                            </div>
+                            {% for badge in user.badges %}
+                                <span class="s-badge s-badge__sm {{ badge.class }}">{{ badge.text }}</span>
+                            {% endfor %}
                         </div>
-                        <time class="s-user-card--time" title="TODO SHINE tbd" data-controller="s-tooltip">modified 2 hr ago</time>
-                    </div>
-                </div>
-            </div>
-
-            <div class="s-user-card">
-                <div class="s-user-card--primary">
-                    <a class="s-user-card--avatar s-avatar s-avatar__24" href="#">
-                        <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-                    </a>
-                    <div class="s-user-card--info">
-                        <div class="s-user-card--group">
-                            <a class="s-user-card--username" href="#">SofiaAlc</a>
-                            <div class="s-user-card--badges">
-                                <span class="s-badge s-badge__moderator s-badge__sm">
-                                    Mod
-                                </span>
-                            </div>
-                        </div>
-                        <time class="s-user-card--time" title="TODO SHINE tbd" data-controller="s-tooltip">asked 2 hr ago</time>
-                    </div>
-                </div>
-            </div>
-
-            <div class="s-user-card">
-                <div class="s-user-card--primary">
-                    <a class="s-user-card--avatar s-avatar s-avatar__24" href="#">
-                        <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-                    </a>
-                    <div class="s-user-card--info">
-                        <div class="s-user-card--group">
-                            <a class="s-user-card--username" href="#">SofiaAlc</a>
-                            <div class="s-user-card--badges">
-                                <span class="s-badge s-badge__staff s-badge__sm">
-                                    Staff
-                                </span>
-                                <span class="s-badge s-badge__moderator s-badge__sm">
-                                    Mod
-                                </span>
-                            </div>
-                        </div>
-                        <time class="s-user-card--time" title="TODO SHINE tbd" data-controller="s-tooltip">asked 2 hr ago</time>
-                    </div>
-                </div>
-            </div>
-
-            <div class="s-user-card">
-                <div class="s-user-card--primary">
-                    <a class="s-user-card--avatar s-avatar s-avatar__24" href="#">
-                        <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-                    </a>
-                    <div class="s-user-card--info">
-                        <div class="s-user-card--group">
-                            <a class="s-user-card--username" href="#">SofiaAlc</a>
-                            <div class="s-user-card--badges">
-                                <span class="s-badge s-badge__moderator s-badge__sm">
-                                    Mod
-                                </span>
-                            </div>
-                        </div>
-                        <ul class="s-user-card--awards">
-                            <li class="s-user-card--rep">
-                                <span class="s-bling s-bling__sm">
-                                    <span class="v-visible-sr">reputation bling</span>
-                                </span>
-                                1,775
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__gold s-bling__sm">
-                                    <span class="v-visible-sr">gold bling</span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__silver s-bling__sm">
-                                    <span class="v-visible-sr">silver bling</span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__bronze s-bling__sm">
-                                    <span class="v-visible-sr">bronze bling</span>
-                                </span>
-                            </li>
+                    {% endif %}
+                    {% if user.reputation or user.gold or user.silver or user.bronze %}
+                        <ul class="s-user-card--group">
+                            {% if user.reputation %}
+                                <li class="s-user-card--rep">
+                                    <span class="s-bling s-bling__sm">
+                                        <span class="v-visible-sr">reputation bling</span>
+                                    </span>
+                                    {{ user.reputation }}
+                                </li>
+                            {% endif %}
+                            {% if user.gold %}
+                                <li>
+                                    <span class="s-bling s-bling__gold s-bling__sm">
+                                        <span class="v-visible-sr">gold bling</span>
+                                    </span>
+                                    {{ user.gold }}
+                                </li>
+                            {% endif %}
+                            {% if user.silver %}
+                                <li>
+                                    <span class="s-bling s-bling__silver s-bling__sm">
+                                        <span class="v-visible-sr">silver bling</span>
+                                    </span>
+                                    {{ user.silver }}
+                                </li>
+                            {% endif %}
+                            {% if user.bronze %}
+                                <li>
+                                    <span class="s-bling s-bling__bronze s-bling__sm">
+                                        <span class="v-visible-sr">bronze bling</span>
+                                    </span>
+                                    {{ user.bronze }}
+                                </li>
+                            {% endif %}
                         </ul>
-                        <time class="s-user-card--time" title="TODO SHINE tbd" data-controller="s-tooltip">asked 2 hr ago</time>
-                    </div>
+                    {% endif %}
+                    {% if user.timestamp %}
+                        <time class="s-user-card--time" title="Show activity on this post" data-controller="s-tooltip">{{ user.timestamp }}</time>
+                    {% endif %}
                 </div>
-            </div>
-
-            <div class="s-user-card">
-                <div class="s-user-card--primary">
-                    <a class="s-user-card--avatar s-avatar s-avatar__24" href="#">
-                        <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-                    </a>
-                    <div class="s-user-card--info">
-                        <div class="s-user-card--group">
-                            <a class="s-user-card--username" href="#">SofiaAlc</a>
-                            <div class="s-user-card--badges">
-                                <span class="s-badge s-badge__staff s-badge__sm">
-                                    Staff
-                                </span>
-                            </div>
-                        </div>
-                        <ul class="s-user-card--awards">
-                            <li class="s-user-card--rep">
-                                <span class="s-bling s-bling__sm">
-                                    <span class="v-visible-sr">reputation bling</span>
-                                </span>
-                                1,775
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__gold s-bling__sm">
-                                    <span class="v-visible-sr">gold bling</span>
-                                </span>
-                                12
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__silver s-bling__sm">
-                                    <span class="v-visible-sr">silver bling</span>
-                                </span>
-                                8
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__bronze s-bling__sm">
-                                    <span class="v-visible-sr">bronze bling</span>
-                                </span>
-                                4
-                            </li>
-                        </ul>
-                        <time class="s-user-card--time" title="TODO SHINE tbd" data-controller="s-tooltip">asked 2 hr ago</time>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -545,7 +256,7 @@ tags: components
                 </tr>
             </thead>
             <tbody class="fs-caption">
-                {% for item in user-cards-component.sizes %}
+                {% for item in user-card.sizes %}
                     <tr>
                         <th scope="row" class="va-middle">{{ item.size }}</th>
                         <td class="va-middle">
@@ -561,556 +272,250 @@ tags: components
             </tbody>
         </table>
     </div>
+    {% header "h4", "Small" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-user-card s-user-card__sm">
-    <div class="s-user-card--primary">
-        <a class="s-user-card--avatar s-avatar" href="…">
-            <img class="s-avatar--image" src="…" />
-        </a>
-        <div class="s-user-card--info">
-            <div class="s-user-card--group">
-                <a class="s-user-card--username" href="…">…</a>
-            </div>
-            <time class="s-user-card--time" title="Show activity on this post" data-controller="s-tooltip">…</time>
-        </div>
+    <a class="s-user-card--group" href="…">
+        <!-- Note: Small variant does not include avatar size modifier -->
+        <span class="s-avatar">
+            <img class="s-avatar--image" alt="…" src="…" />
+        </span>
+        <span class="s-user-card--username">…</span>
+    </a>
+    <div class="s-user-card--group">
+        <span class="s-badge s-badge__sm">…</span>
     </div>
-</div>
-
-<div class="s-user-card s-user-card__sm">
-    <div class="s-user-card--primary">
-        <a class="s-user-card--avatar s-avatar" href="…">
-            <img class="s-avatar--image" src="…" />
-        </a>
-        <div class="s-user-card--info">
-            <div class="s-user-card--group">
-                <a class="s-user-card--username" href="…">…</a>
-            </div>
-            <ul class="s-user-card--awards">
-                <li class="s-user-card--rep">
-                    <span class="s-bling s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-                <li>
-                    <span class="s-bling s-bling__gold s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-                <li>
-                    <span class="s-bling s-bling__silver s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-                <li>
-                    <span class="s-bling s-bling__bronze s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-            </ul>
-            <time class="s-user-card--time" title="Show activity on this post" data-controller="s-tooltip">…</time>
-        </div>
-    </div>
-</div>
-
-<div class="s-user-card s-user-card__sm">
-    <div class="s-user-card--primary">
-        <a class="s-user-card--avatar s-avatar" href="…">
-            <img class="s-avatar--image" src="…" />
-        </a>
-        <div class="s-user-card--info">
-            <div class="s-user-card--group">
-                <a class="s-user-card--username" href="…">…</a>
-                <div class="s-user-card--badges">
-                    <span class="s-badge s-badge__moderator s-badge__sm">…</span>
-                </div>
-            </div>
-            <time class="s-user-card--time" title="Show activity on this post" data-controller="s-tooltip">…</time>
-        </div>
-    </div>
-</div>
-
-<div class="s-user-card">
-    <div class="s-user-card--primary">
-        <a class="s-user-card--avatar s-avatar s-avatar__24" href="…">
-            <img class="s-avatar--image" src="…" />
-        </a>
-        <div class="s-user-card--info">
-            <div class="s-user-card--group">
-                <a class="s-user-card--username" href="…">…</a>
-            </div>
-            <time class="s-user-card--time" title="Show activity on this post" data-controller="s-tooltip">…</time>
-        </div>
-    </div>
-</div>
-
-<div class="s-user-card">
-    <div class="s-user-card--primary">
-        <a class="s-user-card--avatar s-avatar s-avatar__24" href="…">
-            <img class="s-avatar--image" src="…" />
-        </a>
-        <div class="s-user-card--info">
-            <div class="s-user-card--group">
-                <a class="s-user-card--username" href="…">…</a>
-            </div>
-            <ul class="s-user-card--awards">
-                <li class="s-user-card--rep">
-                    <span class="s-bling s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-                <li>
-                    <span class="s-bling s-bling__gold s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-                <li>
-                    <span class="s-bling s-bling__silver s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-                <li>
-                    <span class="s-bling s-bling__bronze s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-            </ul>
-            <time class="s-user-card--time" title="Show activity on this post" data-controller="s-tooltip">…</time>
-        </div>
-    </div>
-</div>
-
-<div class="s-user-card">
-    <div class="s-user-card--primary">
-        <a class="s-user-card--avatar s-avatar s-avatar__24" href="…">
-            <img class="s-avatar--image" src="…" />
-        </a>
-        <div class="s-user-card--info">
-            <div class="s-user-card--group">
-                <a class="s-user-card--username" href="…">…</a>
-                <div class="s-user-card--badges">
-                    <span class="s-badge s-badge__moderator s-badge__sm">…</span>
-                </div>
-            </div>
-            <time class="s-user-card--time" title="Show activity on this post" data-controller="s-tooltip">…</time>
-        </div>
-    </div>
-</div>
-
-<div class="s-user-card s-user-card__lg">
-    <div class="s-user-card--primary">
-        <a class="s-user-card--avatar s-avatar s-avatar__48" href="…">
-            <img class="s-avatar--image" src="…" />
-        </a>
-        <div class="s-user-card--info">
-            <div class="s-user-card--group">
-                <a class="s-user-card--username" href="…">…</a>
-                <div class="s-user-card--badges">
-                    <span class="s-badge s-badge__moderator s-badge__sm">…</span>
-                </div>
-            </div>
-            <ul class="s-user-card--awards">
-                <li class="s-user-card--rep">
-                    <span class="s-bling s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-                <li>
-                    <span class="s-bling s-bling__gold s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-                <li>
-                    <span class="s-bling s-bling__silver s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-                <li>
-                    <span class="s-bling s-bling__bronze s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="s-user-card--secondary">
-        <div class="s-user-card--rm-status">
-            {% icon "StarVerifiedSm" %} Recognized by <a href="…">…</a>
-        </div>
-        <div class="s-user-card--position-location">
-            <div class="s-user-card--role">…</div>
-            <span class="w4 h4 bg-black-350"></span>
-            <div class="s-user-card--location">…</div>
-        </div>
-        <div class="s-user-card--excerpt">
+    <ul class="s-user-card--group">
+        <li class="s-user-card--rep">
+            <span class="s-bling s-bling__sm">
+                <span class="v-visible-sr">reputation bling</span>
+            </span>
             …
-        </div>
-    </div>
-</div>
-
-<div class="s-user-card s-user-card__lg">
-    <div class="s-user-card--primary">
-        <a class="s-user-card--avatar s-avatar s-avatar__48" href="…">
-            <img class="s-avatar--image" src="…" />
-        </a>
-        <div class="s-user-card--info">
-            <div class="s-user-card--group">
-                <a class="s-user-card--username" href="…">…</a>
-            </div>
-            <ul class="s-user-card--awards">
-                <li class="s-user-card--rep">
-                    <span class="s-bling s-bling__sm">
-                        <span class="v-visible-sr">…</span>
-                    </span>
-                    …
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="s-user-card--secondary">
-        <div class="s-user-card--position-location">
-            <div class="s-user-card--location">…</div>
-        </div>
-        <div class="s-user-card--excerpt">
+        </li>
+        <li>
+            <span class="s-bling s-bling__gold s-bling__sm">
+                <span class="v-visible-sr">gold bling</span>
+            </span>
             …
+        </li>
+        <li>
+            <span class="s-bling s-bling__silver s-bling__sm">
+                <span class="v-visible-sr">silver bling</span>
+            </span>
+            …
+        </li>
+        <li>
+            <span class="s-bling s-bling__bronze s-bling__sm">
+                <span class="v-visible-sr">bronze bling</span>
+            </span>
+            …
+        </li>
+    </ul>
+    <time class="s-user-card--time" title="Show activity on this post" data-controller="s-tooltip">…</time>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d-flex fd-column g8">
+            {% for user in user-card.small %}
+                <div class="s-user-card s-user-card__sm">
+                    <a class="s-user-card--group" href="#">
+                        <span class="s-avatar">
+                            <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
+                        </span>
+                        <span class="s-user-card--username">{{ user.username }}</span>
+                    </a>
+                    {% if user.badges %}
+                        <div class="s-user-card--group">
+                            {% for badge in user.badges %}
+                                <span class="s-badge s-badge__sm {{ badge.class }}">{{ badge.text }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% if user.reputation or user.gold or user.silver or user.bronze %}
+                        <ul class="s-user-card--group">
+                            {% if user.reputation %}
+                                <li class="s-user-card--rep">
+                                    <span class="s-bling s-bling__sm">
+                                        <span class="v-visible-sr">reputation bling</span>
+                                    </span>
+                                    {{ user.reputation }}
+                                </li>
+                            {% endif %}
+                            {% if user.gold %}
+                                <li>
+                                    <span class="s-bling s-bling__gold s-bling__sm">
+                                        <span class="v-visible-sr">gold bling</span>
+                                    </span>
+                                    {{ user.gold }}
+                                </li>
+                            {% endif %}
+                            {% if user.silver %}
+                                <li>
+                                    <span class="s-bling s-bling__silver s-bling__sm">
+                                        <span class="v-visible-sr">silver bling</span>
+                                    </span>
+                                    {{ user.silver }}
+                                </li>
+                            {% endif %}
+                            {% if user.bronze %}
+                                <li>
+                                    <span class="s-bling s-bling__bronze s-bling__sm">
+                                        <span class="v-visible-sr">bronze bling</span>
+                                    </span>
+                                    {{ user.bronze }}
+                                </li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+                    {% if user.timestamp %}
+                        <time class="s-user-card--time" title="Show activity on this post" data-controller="s-tooltip">{{ user.timestamp }}</time>
+                    {% endif %}
+                </div>
+            {% endfor %}
         </div>
     </div>
-</div>
 
+    {% header "h4", "Large" %}
+    <div class="stacks-preview">
+{% highlight html %}
 <div class="s-user-card s-user-card__lg">
-    <div class="s-user-card--primary">
-        <a class="s-user-card--avatar s-avatar s-avatar__48" href="…">
-            <img class="s-avatar--image" src="…" />
+    <div class="s-user-card--row">
+        <a class="s-avatar s-avatar__48" href="#">
+            <img class="s-avatar--image" alt="…" src="…" />
         </a>
-        <div class="s-user-card--info">
-            <div class="s-user-card--group">
-                <a class="s-user-card--username" href="…">…</a>
-                <div class="s-user-card--badges">
+        <div class="s-user-card--column">
+            <div class="s-user-card--row">
+                <a class="s-user-card--username" href="#">…</a>
+                <div class="s-user-card--group">
+                    <span class="s-badge s-badge__staff s-badge__sm">…</span>
                     <span class="s-badge s-badge__moderator s-badge__sm">…</span>
                 </div>
             </div>
-            <ul class="s-user-card--awards">
+            <ul class="s-user-card--group">
                 <li class="s-user-card--rep">
                     <span class="s-bling s-bling__sm">
-                        <span class="v-visible-sr">…</span>
+                        <span class="v-visible-sr">reputation bling</span>
                     </span>
                     …
                 </li>
                 <li>
                     <span class="s-bling s-bling__gold s-bling__sm">
-                        <span class="v-visible-sr">…</span>
+                        <span class="v-visible-sr">gold bling</span>
                     </span>
                     …
                 </li>
                 <li>
                     <span class="s-bling s-bling__silver s-bling__sm">
-                        <span class="v-visible-sr">…</span>
+                        <span class="v-visible-sr">silver bling</span>
                     </span>
                     …
                 </li>
                 <li>
                     <span class="s-bling s-bling__bronze s-bling__sm">
-                        <span class="v-visible-sr">…</span>
+                        <span class="v-visible-sr">bronze bling</span>
                     </span>
                     …
                 </li>
             </ul>
+            <div class="s-user-card--column">
+                <div class="s-user-card--recognition">
+                    Recognized by <a href="…">…</a>
+                </div>
+                <ul class="s-user-card--group s-user-card--group__split">
+                    <li>…</li>
+                    <li>…</li>
+                </ul>
+                <div class="s-user-card--bio">…</div>
+            </div>
         </div>
     </div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="s-user-card s-user-card__sm">
-                <div class="s-user-card--primary">
-                    <a class="s-user-card--avatar s-avatar" href="#">
-                        <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-                    </a>
-                    <div class="s-user-card--info">
-                        <div class="s-user-card--group">
-                            <a class="s-user-card--username" href="#">SofiaAlc</a>
-                        </div>
-                        <time class="s-user-card--time" title="TODO SHINE tbd" data-controller="s-tooltip">asked 2 hr ago</time>
-                    </div>
-                </div>
-            </div>
-
-            <div class="s-user-card s-user-card__sm">
-                <div class="s-user-card--primary">
-                    <a class="s-user-card--avatar s-avatar" href="#">
-                        <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-                    </a>
-                    <div class="s-user-card--info">
-                        <div class="s-user-card--group">
-                            <a class="s-user-card--username" href="#">SofiaAlc</a>
-                        </div>
-                        <ul class="s-user-card--awards">
-                            <li class="s-user-card--rep">
-                                <span class="s-bling s-bling__sm">
-                                    <span class="v-visible-sr">reputation bling</span>
-                                </span>
-                                1,775
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__gold s-bling__sm">
-                                    <span class="v-visible-sr">gold bling</span>
-                                </span>
-                                12
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__silver s-bling__sm">
-                                    <span class="v-visible-sr">silver bling</span>
-                                </span>
-                                8
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__bronze s-bling__sm">
-                                    <span class="v-visible-sr">bronze bling</span>
-                                </span>
-                                4
-                            </li>
-                        </ul>
-                        <time class="s-user-card--time" title="TODO SHINE tbd" data-controller="s-tooltip">asked 2 hr ago</time>
-                    </div>
-                </div>
-            </div>
-
-            <div class="s-user-card s-user-card__sm">
-                <div class="s-user-card--primary">
-                    <a class="s-user-card--avatar s-avatar" href="#">
-                        <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-                    </a>
-                    <div class="s-user-card--info">
-                        <div class="s-user-card--group">
-                            <a class="s-user-card--username" href="#">SofiaAlc</a>
-                            <div class="s-user-card--badges">
-                                <span class="s-badge s-badge__moderator s-badge__sm">
-                                    Mod
-                                </span>
+        <div class="stacks-preview--example d-flex g32 fw-wrap">
+            {% for user in user-card.large %}
+                <div class="s-user-card s-user-card__lg wmx3">
+                    <div class="s-user-card--row">
+                        <a class="s-avatar s-avatar__48" href="#">
+                            <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
+                        </a>
+                        <div class="s-user-card--column">
+                            <div class="s-user-card--row">
+                                <a class="s-user-card--username" href="#">{{ user.username }}</a>
+                                <div class="s-user-card--group">
+                                    {% for badge in user.badges %}
+                                        <span class="s-badge s-badge__sm {{ badge.class }}">{{ badge.text }}</span>
+                                    {% endfor %}
+                                </div>
                             </div>
+                            <ul class="s-user-card--group">
+                                {% if user.reputation %}
+                                    <li class="s-user-card--rep">
+                                        <span class="s-bling s-bling__sm">
+                                            <span class="v-visible-sr">reputation bling</span>
+                                        </span>
+                                        {{ user.reputation }}
+                                    </li>
+                                {% endif %}
+                                {% if user.gold %}
+                                    <li>
+                                        <span class="s-bling s-bling__gold s-bling__sm">
+                                            <span class="v-visible-sr">gold bling</span>
+                                        </span>
+                                        {{ user.gold }}
+                                    </li>
+                                {% endif %}
+                                {% if user.silver %}
+                                    <li>
+                                        <span class="s-bling s-bling__silver s-bling__sm">
+                                            <span class="v-visible-sr">silver bling</span>
+                                        </span>
+                                        {{ user.silver }}
+                                    </li>
+                                {% endif %}
+                                {% if user.bronze %}
+                                    <li>
+                                        <span class="s-bling s-bling__bronze s-bling__sm">
+                                            <span class="v-visible-sr">bronze bling</span>
+                                        </span>
+                                        {{ user.bronze }}
+                                    </li>
+                                {% endif %}
+                            </ul>
                         </div>
-                        <time class="s-user-card--time" title="TODO SHINE tbd" data-controller="s-tooltip">asked 2 hr ago</time>
                     </div>
-                </div>
-            </div>
-
-            <hr class="my24" />
-
-            <div class="s-user-card">
-                <div class="s-user-card--primary">
-                    <a class="s-user-card--avatar s-avatar s-avatar__24" href="#">
-                        <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-                    </a>
-                    <div class="s-user-card--info">
-                        <div class="s-user-card--group">
-                            <a class="s-user-card--username" href="#">SofiaAlc</a>
-                        </div>
-                        <time class="s-user-card--time" title="TODO SHINE tbd" data-controller="s-tooltip">asked 2 hr ago</time>
-                    </div>
-                </div>
-            </div>
-
-            <div class="s-user-card">
-                <div class="s-user-card--primary">
-                    <a class="s-user-card--avatar s-avatar s-avatar__24" href="#">
-                        <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-                    </a>
-                    <div class="s-user-card--info">
-                        <div class="s-user-card--group">
-                            <a class="s-user-card--username" href="#">SofiaAlc</a>
-                        </div>
-                        <ul class="s-user-card--awards">
-                            <li class="s-user-card--rep">
-                                <span class="s-bling s-bling__sm">
-                                    <span class="v-visible-sr">reputation bling</span>
-                                </span>
-                                1,775
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__gold s-bling__sm">
-                                    <span class="v-visible-sr">gold bling</span>
-                                </span>
-                                12
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__silver s-bling__sm">
-                                    <span class="v-visible-sr">silver bling</span>
-                                </span>
-                                8
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__bronze s-bling__sm">
-                                    <span class="v-visible-sr">bronze bling</span>
-                                </span>
-                                4
-                            </li>
-                        </ul>
-                        <time class="s-user-card--time" title="TODO SHINE tbd" data-controller="s-tooltip">asked 2 hr ago</time>
-                    </div>
-                </div>
-            </div>
-
-            <div class="s-user-card">
-                <div class="s-user-card--primary">
-                    <a class="s-user-card--avatar s-avatar s-avatar__24" href="#">
-                        <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-                    </a>
-                    <div class="s-user-card--info">
-                        <div class="s-user-card--group">
-                            <a class="s-user-card--username" href="#">SofiaAlc</a>
-                            <div class="s-user-card--badges">
-                                <span class="s-badge s-badge__moderator s-badge__sm">
-                                    Mod
-                                </span>
+                    <div class="s-user-card--column">
+                        {% if user.recognition %}
+                            <div class="s-user-card--recognition">
+                                {{ user.recognition }}
                             </div>
-                        </div>
-                        <time class="s-user-card--time" title="TODO SHINE tbd" data-controller="s-tooltip">asked 2 hr ago</time>
+                        {% endif %}
+                        {% if user.role or user.location %}
+                            <ul class="s-user-card--group s-user-card--group__split">
+                                {% if user.role %}
+                                    <li>{{ user.role }}</li>
+                                {% endif %}
+                                {% if user.location %}
+                                    <li>{{ user.location }}</li>
+                                {% endif %}
+                            </ul>
+                        {% endif %}
+                        {% if user.bio %}
+                            <div class="s-user-card--bio">{{ user.bio }}</div>
+                        {% endif %}
                     </div>
                 </div>
-            </div>
-
-            <hr class="my24" />
-
-            <div class="s-user-card s-user-card__lg">
-                <div class="s-user-card--primary">
-                    <a class="s-user-card--avatar s-avatar s-avatar__48" href="#">
-                        <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-                    </a>
-                    <div class="s-user-card--info">
-                        <div class="s-user-card--group">
-                            <a class="s-user-card--username" href="#">SofiaAlc</a>
-                            <div class="s-user-card--badges">
-                                <span class="s-badge s-badge__moderator s-badge__sm">
-                                    Mod
-                                </span>
-                            </div>
-                        </div>
-                        <ul class="s-user-card--awards">
-                            <li class="s-user-card--rep">
-                                <span class="s-bling s-bling__sm">
-                                    <span class="v-visible-sr">reputation bling</span>
-                                </span>
-                                1,775
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__gold s-bling__sm">
-                                    <span class="v-visible-sr">gold bling</span>
-                                </span>
-                                12
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__silver s-bling__sm">
-                                    <span class="v-visible-sr">silver bling</span>
-                                </span>
-                                8
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__bronze s-bling__sm">
-                                    <span class="v-visible-sr">bronze bling</span>
-                                </span>
-                                4
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="s-user-card--secondary">
-                    <div class="s-user-card--rm-status">
-                        {% icon "StarVerifiedSm" %} Recognized by <a href="#">AudioBubble</a>
-                    </div>
-                    <div class="s-user-card--position-location">
-                        <div class="s-user-card--role">Senior Product Designer</div>
-                        <span class="w4 h4 bg-black-350"></span>
-                        <div class="s-user-card--location">Vancouver, Canada</div>
-                    </div>
-                    <div class="s-user-card--excerpt">
-                        Developer who believes in clean code, clear coffee, and the occasional snake pun. Automating the boring stuff one script at...
-                    </div>
-                </div>
-            </div>
-
-            <div class="s-user-card s-user-card__lg">
-                <div class="s-user-card--primary">
-                    <a class="s-user-card--avatar s-avatar s-avatar__48" href="#">
-                        <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-                    </a>
-                    <div class="s-user-card--info">
-                        <div class="s-user-card--group">
-                            <a class="s-user-card--username" href="#">SofiaAlc</a>
-                        </div>
-                        <ul class="s-user-card--awards">
-                            <li class="s-user-card--rep">
-                                <span class="s-bling s-bling__sm">
-                                    <span class="v-visible-sr">reputation bling</span>
-                                </span>
-                                1
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="s-user-card--secondary">
-                    <div class="s-user-card--position-location">
-                        <div class="s-user-card--location">Vancouver, Canada</div>
-                    </div>
-                    <div class="s-user-card--excerpt">
-                        Developer who believes in clean code, clear coffee, and the occasional snake pun. Automating the boring stuff one script at...
-                    </div>
-                </div>
-            </div>
-
-            <div class="s-user-card s-user-card__lg">
-                <div class="s-user-card--primary">
-                    <a class="s-user-card--avatar s-avatar s-avatar__48" href="#">
-                        <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/placeholder.svg" | url }}" />
-                    </a>
-                    <div class="s-user-card--info">
-                        <div class="s-user-card--group">
-                            <a class="s-user-card--username" href="#">SofiaAlc</a>
-                            <div class="s-user-card--badges">
-                                <span class="s-badge s-badge__moderator s-badge__sm">
-                                    Mod
-                                </span>
-                            </div>
-                        </div>
-                        <ul class="s-user-card--awards">
-                            <li class="s-user-card--rep">
-                                <span class="s-bling s-bling__sm">
-                                    <span class="v-visible-sr">reputation bling</span>
-                                </span>
-                                1,775
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__gold s-bling__sm">
-                                    <span class="v-visible-sr">gold bling</span>
-                                </span>
-                                12
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__silver s-bling__sm">
-                                    <span class="v-visible-sr">silver bling</span>
-                                </span>
-                                8
-                            </li>
-                            <li>
-                                <span class="s-bling s-bling__bronze s-bling__sm">
-                                    <span class="v-visible-sr">bronze bling</span>
-                                </span>
-                                4
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
+
+<section class="stacks-section">
+    {% header "h3", "States" %}
+    <p class="stacks-copy">Coming soon</p>
+</section>
+
+<section class="stacks-section">
+    {% header "h3", "Additional bling" %}
+    <p class="stacks-copy">Coming soon</p>
+</section>
+
