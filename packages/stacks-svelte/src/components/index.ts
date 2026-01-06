@@ -5,6 +5,7 @@ export { default as Bling } from "./Bling/Bling.svelte";
 export { default as Button } from "./Button/Button.svelte";
 export { default as Checkbox } from "./Checkbox/Checkbox.svelte";
 export { default as CheckboxGroup } from "./Checkbox/CheckboxGroup.svelte";
+export { default as EmptyState } from "./EmptyState/EmptyState.svelte";
 export { default as ExpandingInput } from "./ExpandingInput/ExpandingInput.svelte";
 export { default as Icon } from "./Icon/Icon.svelte";
 export { default as Link } from "./Link/Link.svelte";
