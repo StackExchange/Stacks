@@ -1,5 +1,23 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.14
+
+### Minor Changes
+
+- [#2062](https://github.com/StackExchange/Stacks/pull/2062) [`83d21b8`](https://github.com/StackExchange/Stacks/commit/83d21b8cc89fdc8ad2fe4e43ad39fd07a1eca8a0) Thanks [@dancormier](https://github.com/dancormier)! - Add Vote component
+
+- [#2060](https://github.com/StackExchange/Stacks/pull/2060) [`d53cdd1`](https://github.com/StackExchange/Stacks/commit/d53cdd189e6b831ea2db442068b26ab7c281f3b8) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Updated checkbox and radio styling in Stacks Classic and documentation for SHINE
+  `.s-check-control` has been removed
+  Renamed `.s-check-group` to `.s-form-group`
+  `.s-checkbox` and `.s-radio` are now expected to be on the container where `.s-check-control` would previously be applied. They are no longer needed on the input itself
+  Added `.s-checkbox__checkmark` and `.s-radio__checkmark` to Stacks Classic
+  Added `Checkbox`, `CheckboxGroup`, `Radio`, `RadioGroup` components to Stacks Svelte
+
+### Patch Changes
+
+- [#2100](https://github.com/StackExchange/Stacks/pull/2100) [`1407fb5`](https://github.com/StackExchange/Stacks/commit/1407fb512458203d5f9d4dbf40efb0d2b0426062) Thanks [@mukunku](https://github.com/mukunku)! - feat(empty-state): new SHINE styles and Svelte Component
+  fix(expanding-input): expands correctly now after textarea update
+
 ## 3.0.0-beta.13
 
 ### Patch Changes
