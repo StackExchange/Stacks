@@ -1,172 +1,80 @@
 .s-user-card {
-    --_uc-ai: center;
-    --_uc-bg: unset;
-    --_uc-bar: unset;
-    --_uc-d: flex;
-    --_uc-fc: unset;
-    --_uc-g: var(--su4);
-    --_uc-p: var(--su8);
-    --_uc-info-ai: center;
-    --_uc-info-fd: row;
-    --_uc-link-fs: var(--fs-caption);
-    --_uc-link-ws: unset;
-    --_uc-rep-fc: unset;
-    --_uc-time-fc: var(--black-400);
-    --_uc-time-ws: unset;
-    --_uc-type-fc: var(--theme-primary-400);
-    --_uc-excerpt-fc: var(--black-400);
-
-    // MODIFIERS
-    &&__deleted {
-        --_uc-fc: var(--black-400);
-    }
-
-    &&__highlighted {
-        --_uc-bg: var(--theme-secondary-100);
-        --_uc-bar: var(--br-md);
-        --_uc-time-fc: var(--black-500);
-        --_uc-type-fc: var(--black-500);
-    }
+    // TODO SHINE PPCP
 
     // VARIANTS
-    &&__small {
-        --_uc-d: flex;
-        --_uc-g: var(--su4);
-        --_uc-info-ai: center;
-        --_uc-info-fd: row;
-        --_uc-link-ws: nowrap;
-        --_uc-time-ws: nowrap;
-    }
+    // SIZES
+    // TODO SHINE most or all of these styles to PPCP
+    &&__lg {
+        .s-user-card {
+            &--info {
+                align-items: flex-start;
+                flex-direction: column;
+                justify-content: space-around;
+                min-height: var(--su48);
+            }
 
-    &&__large {
-        --_uc-ai: flex-start;
-        --_uc-info-ai: flex-start;
-        --_uc-info-fd: column;
-        --_uc-link-fs: var(--fs-body3);
+            &--primary {
+                flex-direction: row;
+            }
 
-        display: grid;
-        grid-template-columns: minmax(0, 250px) max-content;
-        grid-auto-rows: auto;
-        column-gap: 0;
-        row-gap: var(--su6);
-        align-items: start;
-
-        .s-user-card--avatar {
-            grid-column: 1;
-            grid-row: 1;
+            &--username {
+                font-size: var(--fs-body3);
+            }
         }
 
-        .s-user-card--info {
-            grid-column: 2;
-            grid-row: 1;
-            // Below line is needed so the info div is 12px away from the avatar
-            // TODO: find a better way to do this 
-            margin-left: calc(-1 * (var(--su128) + var(--su48) + var(--su16)));
-        }
-
-        .s-user-card--awards {
-            grid-column: 2;
-            grid-row: 1;
-            // TODO: find a better way to do this
-            margin-left: calc(-1 * (var(--su128) + var(--su48) + var(--su16)));
-            margin-top: calc(var(--su16) + var(--su6));
-        }
-
-        .s-user-card--type {
-            grid-column: 1;
-        }
-
-        // Role and location container (div containing .s-user-card--role or .s-user-card--location)
-        & > div:has(.s-user-card--role, .s-user-card--location) {
-            grid-column: 1;
-        }
-
-        .s-user-card--excerpt {
-            grid-column: 1;
-        }
+        align-items: flex-start;
+        flex-direction: column;
+        gap: var(--su6);
     }
 
     // CHILD ELEMENTS
-    & &--location,
-    & &--role {
-        font-size: var(--fs-fine);
-        color: var(--black-500);
+    &,
+    & &--awards,
+    & &--group,
+    & &--info,
+    & &--rep,
+    & &--primary {
+        align-items: center;
+        display: flex;
+    }
+
+    &,
+    & &--group,
+    & &--info,
+    & &--primary {
+        gap: var(--su6);
+    }
+
+    & &--awards,
+    & &--rep {
+        gap: var(--su4);
     }
 
     & &--awards {
         li {
-            font-size: var(--fs-fine);
+            align-items: center;
+            display: inline-flex;
+            gap: var(--su2);
         }
 
         .list-reset;
-        align-items: center;
-        display: flex;
-        gap: var(--su4);
-
-        // When li contains only s-bling__silver or s-bling__gold (no numbers), reduce gap to 2px
-        li:has(> .s-bling__silver:only-child),
-        li:has(> .s-bling__gold:only-child) {
-            margin-right: calc(var(--su2) - var(--su4));
-        }
     }
 
-    & &--info {
-        align-items: var(--_uc-info-ai);
-        flex-direction: var(--_uc-info-fd);
-
-        display: flex;
-        gap: var(--su4);
-    }
-
-    & &--link,
-    & &--badge {
-        font-size: var(--_uc-link-fs);
-        white-space: var(--_uc-link-ws);
-        align-items: center;
+    & &--username {
+        font-weight: 500;
     }
 
     & &--rep {
-        color: var(--_uc-rep-fc);
         font-weight: 600;
     }
 
     & &--time {
-        color: var(--_uc-time-fc);
-        white-space: var(--_uc-time-ws);
-
-        font-size: var(--fs-caption);
+        color: var(--black-400);
     }
 
-    & &--type {
-        a:not(.s-link) {
-            color: inherit !important;
-        }
-
-        color: var(--_uc-type-fc);
-
-        font-size: var(--fs-caption);
-        grid-column: ~"1 / 3";
-    }
-
-    & &--square {
-        width: 4px;
-        height: 4px;
-        background-color: var(--black-350);
-    }
-
-    & &--excerpt { 
-        color: var(--_uc-excerpt-fc);
-        font-size: var(--fs-fine);
-    }
-
-    align-items: var(--_uc-ai);
-    background-color: var(--_uc-bg);
-    border-radius: var(--_uc-bar);
-    color: var(--_uc-fc);
-    display: var(--_uc-d);
-    flex-direction: row;
+    align-items: center;
+    display: flex;
     flex-wrap: wrap;
-    gap: var(--_uc-g);
-    line-height: 1;
-    padding: var(--_uc-p);
+    gap: var(--su6);
+    font-size: var(--fs-caption);
 }
