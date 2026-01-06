@@ -1,80 +1,137 @@
 .s-user-card {
-    // TODO SHINE PPCP
+    // BASE COMPONENT-SPECIFIC CUSTOM PROPERTIES
+    --_uc-ai: center;
+    --_uc-d: flex;
+    --_uc-fd: row;
+    --_uc-fw: wrap;
+    --_uc-g: var(--su6);
+    --_uc-fs: var(--fs-caption);
+    // CHILD COMPONENT CUSTOM PROPERTIES
+    --_uc-awards-ai: center;
+    --_uc-awards-d: flex;
+    --_uc-awards-g: var(--su4);
+    --_uc-awards-li-ai: center;
+    --_uc-awards-li-d: inline-flex;
+    --_uc-awards-li-g: var(--su2);
+    --_uc-group-ai: center;
+    --_uc-group-d: flex;
+    --_uc-group-g: var(--su6);
+    --_uc-info-ai: center;
+    --_uc-info-d: flex;
+    --_uc-info-fd: row;
+    --_uc-info-g: var(--su6);
+    --_uc-info-jc: unset;
+    --_uc-info-mh: unset;
+    --_uc-primary-ai: center;
+    --_uc-primary-d: flex;
+    --_uc-primary-fd: row;
+    --_uc-primary-g: var(--su6);
+    --_uc-secondary-ai: flex-start;
+    --_uc-secondary-fd: column;
+    --_uc-secondary-fs: var(--fs-fine);
+    --_uc-secondary-g: var(--su6);
+    --_uc-rep-ai: center;
+    --_uc-rep-d: flex;
+    --_uc-rep-fw: 600;
+    --_uc-rep-g: var(--su4);
+    --_uc-username-fs: unset;
+    --_uc-username-fw: 500;
+    --_uc-time-fc: var(--black-400);
+    --_uc-rm-status-ai: center;
+    --_uc-rm-status-d: flex;
+    --_uc-rm-status-fc: var(--orange-400);
+    --_uc-rm-status-g: var(--su4);
 
-    // VARIANTS
-    // SIZES
-    // TODO SHINE most or all of these styles to PPCP
+    // MODIFIERS
+    // Sizes
     &&__lg {
-        .s-user-card {
-            &--info {
-                align-items: flex-start;
-                flex-direction: column;
-                justify-content: space-around;
-                min-height: var(--su48);
-            }
-
-            &--primary {
-                flex-direction: row;
-            }
-
-            &--username {
-                font-size: var(--fs-body3);
-            }
-        }
-
-        align-items: flex-start;
-        flex-direction: column;
-        gap: var(--su6);
+        --_uc-ai: flex-start;
+        --_uc-fd: column;
+        --_uc-g: var(--su6);
+        --_uc-info-ai: flex-start;
+        --_uc-info-fd: column;
+        --_uc-info-jc: space-around;
+        --_uc-info-mh: var(--su48);
+        --_uc-primary-fd: row;
+        --_uc-username-fs: var(--fs-body3);
     }
 
     // CHILD ELEMENTS
-    &,
-    & &--awards,
-    & &--group,
-    & &--info,
-    & &--rep,
-    & &--primary {
-        align-items: center;
-        display: flex;
-    }
-
-    &,
-    & &--group,
-    & &--info,
-    & &--primary {
-        gap: var(--su6);
-    }
-
-    & &--awards,
-    & &--rep {
-        gap: var(--su4);
-    }
-
     & &--awards {
+        align-items: var(--_uc-awards-ai);
+        display: var(--_uc-awards-d);
+        gap: var(--_uc-awards-g);
+
         li {
-            align-items: center;
-            display: inline-flex;
-            gap: var(--su2);
+            align-items: var(--_uc-awards-li-ai);
+            display: var(--_uc-awards-li-d);
+            gap: var(--_uc-awards-li-g);
         }
 
         .list-reset;
     }
 
-    & &--username {
-        font-weight: 500;
+    & &--group {
+        align-items: var(--_uc-group-ai);
+        display: var(--_uc-group-d);
+        gap: var(--_uc-group-g);
+    }
+
+    & &--info {
+        align-items: var(--_uc-info-ai);
+        display: var(--_uc-info-d);
+        flex-direction: var(--_uc-info-fd);
+        gap: var(--_uc-info-g);
+        justify-content: var(--_uc-info-jc);
+        min-height: var(--_uc-info-mh);
+    }
+
+    & &--primary {
+        align-items: var(--_uc-primary-ai);
+        display: var(--_uc-primary-d);
+        flex-direction: var(--_uc-primary-fd);
+        gap: var(--_uc-primary-g);
+    }
+
+    & &--secondary {
+        font-size: var(--_uc-secondary-fs);
+        gap: var(--_uc-secondary-g);
+        flex-direction: var(--_uc-secondary-fd);
+        align-items: var(--_uc-secondary-ai);
     }
 
     & &--rep {
-        font-weight: 600;
+        align-items: var(--_uc-rep-ai);
+        display: var(--_uc-rep-d);
+        font-weight: var(--_uc-rep-fw);
+        gap: var(--_uc-rep-g);
+    }
+
+    & &--username {
+        font-size: var(--_uc-username-fs);
+        font-weight: var(--_uc-username-fw);
     }
 
     & &--time {
-        color: var(--black-400);
+        color: var(--_uc-time-fc);
     }
 
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--su6);
-    font-size: var(--fs-caption);
+    & &--rm-status {
+        align-items: var(--_uc-rm-status-ai);
+        color: var(--_uc-rm-status-fc);
+        display: var(--_uc-rm-status-d);
+        gap: var(--_uc-rm-status-g);
+
+        a {
+            color: inherit !important;
+        }
+    }
+
+    // STYLES MODIFIED BY COMPONENT-SPECIFIC CUSTOM PROPERTIES
+    align-items: var(--_uc-ai);
+    display: var(--_uc-d);
+    flex-direction: var(--_uc-fd);
+    flex-wrap: var(--_uc-fw);
+    gap: var(--_uc-g);
+    font-size: var(--_uc-fs);
 }
