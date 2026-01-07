@@ -126,37 +126,37 @@
         if (variant == "danger") {
             return {
                 icon: IconAlertFill,
-                title: iconTitle || "Danger"
+                title: iconTitle || "Danger",
             };
         } else if (variant == "warning") {
             return {
                 icon: IconAlert,
-                title: iconTitle || "Warning"
+                title: iconTitle || "Warning",
             };
         } else if (variant == "info") {
             return {
                 icon: IconInfo,
-                title: iconTitle || "Information"
+                title: iconTitle || "Information",
             };
         } else if (variant == "success") {
             return {
                 icon: IconCheck,
-                title: iconTitle || "Success"
+                title: iconTitle || "Success",
             };
         } else if (variant == "featured") {
             return {
                 icon: IconStar,
-                title: iconTitle || "Featured"
+                title: iconTitle || "Featured",
             };
         } else if (variant == "activity") {
             return {
                 icon: IconNotification,
-                title: iconTitle || "Activity"
-            }
+                title: iconTitle || "Activity",
+            };
         } else {
             return {
                 icon: IconHelp,
-                title: iconTitle || "Help"
+                title: iconTitle || "Help",
             };
         }
     };

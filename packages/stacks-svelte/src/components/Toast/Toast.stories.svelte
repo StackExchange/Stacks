@@ -34,7 +34,9 @@
 </Story>
 
 {#snippet message()}
-    <span>I am a <strong>toast</strong> component with an <em>HTML</em> message</span>
+    <span
+        >I am a <strong>toast</strong> component with an <em>HTML</em> message</span
+    >
 {/snippet}
 <Story name="With HTML Message" asChild>
     <div class="hmn3 d-flex flex__center">
