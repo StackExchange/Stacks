@@ -94,7 +94,7 @@
         <Link {href}>{i18nViewAnswersText}</Link>
         <UserCard
             href={userProfileUrl}
-            size="small"
+            size="sm"
             avatar={userAvatar}
             name={userName}
             reputation={userReputation}

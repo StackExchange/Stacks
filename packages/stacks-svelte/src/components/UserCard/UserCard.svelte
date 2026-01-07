@@ -16,7 +16,7 @@
         /**
          * Name of user to be displayed
          */
-        username: string;
+        name: string;
 
         /**
          * Avatar image source of user
@@ -118,7 +118,7 @@
     }
 
     const {
-        username,
+        name,
         avatar,
         href,
         reputation,
@@ -191,22 +191,17 @@
 
 <div class={classes}>
     {#if size !== "lg"}
-        {#if avatar || username}
+        {#if avatar || name}
             <svelte:element
                 this={href ? "a" : "div"}
                 class="s-user-card--group"
                 {href}
             >
                 {#if avatar}
-                    <Avatar
-                        name={username}
-                        {href}
-                        src={avatar}
-                        size={avatarSize}
-                    />
+                    <Avatar {name} {href} src={avatar} size={avatarSize} />
                 {/if}
-                {#if username}
-                    <span class="s-user-card--username">{username}</span>
+                {#if name}
+                    <span class="s-user-card--username">{name}</span>
                 {/if}
             </svelte:element>
         {/if}
@@ -224,17 +219,17 @@
     {:else}
         <div class="s-user-card--row">
             {#if avatar}
-                <Avatar name={username} {href} src={avatar} size={avatarSize} />
+                <Avatar {name} {href} src={avatar} size={avatarSize} />
             {/if}
             <div class="s-user-card--column">
                 <div class="s-user-card--row">
-                    {#if username}
+                    {#if name}
                         <svelte:element
                             this={href ? "a" : "div"}
                             class="s-user-card--username"
                             {href}
                         >
-                            {username}
+                            {name}
                         </svelte:element>
                     {/if}
                     <UserCardBadges {badges} />

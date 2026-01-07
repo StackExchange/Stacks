@@ -13,7 +13,7 @@
     const baseArgs = {
         avatar: "https://picsum.photos/128",
         href: "#",
-        username: "SofiaAlc",
+        name: "SofiaAlc",
         timestamp: "asked 2 hr ago",
         reputation: "1,775",
         gold: 12,

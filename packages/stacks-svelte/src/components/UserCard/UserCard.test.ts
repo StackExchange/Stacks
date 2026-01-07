@@ -6,7 +6,7 @@ import UserCard from "./UserCard.svelte";
 describe("UserCard", () => {
     it("should render the user name", () => {
         render(UserCard, {
-            username: "John Doe",
+            name: "John Doe",
             avatar: "https://picsum.photos/128",
         });
         expect(screen.getAllByText("John Doe")[1]).to.exist;
@@ -14,7 +14,7 @@ describe("UserCard", () => {
 
     it("should render the avatar with the provided image", () => {
         render(UserCard, {
-            username: "John Doe",
+            name: "John Doe",
             avatar: "https://picsum.photos/128",
         });
         const avatarImg = screen.getByRole("presentation");
@@ -24,7 +24,7 @@ describe("UserCard", () => {
 
     it("should render the user reputation", () => {
         render(UserCard, {
-            username: "John Doe",
+            name: "John Doe",
             avatar: "https://picsum.photos/128",
             reputation: "1234",
         });
@@ -33,7 +33,7 @@ describe("UserCard", () => {
 
     it("should not render the user reputation", () => {
         render(UserCard, {
-            username: "John Doe",
+            name: "John Doe",
             avatar: "https://picsum.photos/128",
         });
 
@@ -43,7 +43,7 @@ describe("UserCard", () => {
 
     it("should render the user awards", () => {
         render(UserCard, {
-            username: "John Doe",
+            name: "John Doe",
             avatar: "https://picsum.photos/128",
             gold: 1,
             silver: 2,
@@ -56,7 +56,7 @@ describe("UserCard", () => {
 
     it("should render the user card with the appropriate size class", () => {
         render(UserCard, {
-            username: "John Doe",
+            name: "John Doe",
             avatar: "https://picsum.photos/128",
             size: "sm",
         });
@@ -67,7 +67,7 @@ describe("UserCard", () => {
 
     it("should render the avatar and name as links", () => {
         render(UserCard, {
-            username: "John Doe",
+            name: "John Doe",
             avatar: "https://picsum.photos/128",
             href: "#",
         });
@@ -79,7 +79,7 @@ describe("UserCard", () => {
 
     it("should render the user card with arbitrary classes", () => {
         render(UserCard, {
-            username: "John Doe",
+            name: "John Doe",
             avatar: "https://picsum.photos/128",
             class: "custom-class",
         });
@@ -90,7 +90,7 @@ describe("UserCard", () => {
 
     it("should render the user card with badges", () => {
         render(UserCard, {
-            username: "John Doe",
+            name: "John Doe",
             avatar: "https://picsum.photos/128",
             admin: true,
             moderator: true,
@@ -103,7 +103,7 @@ describe("UserCard", () => {
 
     it("should render the user card with large size class", () => {
         render(UserCard, {
-            username: "John Doe",
+            name: "John Doe",
             avatar: "https://picsum.photos/128",
             size: "lg",
         });
