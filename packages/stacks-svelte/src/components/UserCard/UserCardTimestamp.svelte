@@ -27,4 +27,3 @@
         {timestamp}
     </time>
 {/if}
-
