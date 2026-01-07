@@ -52,7 +52,10 @@ describe("PostSummaryAnswer", () => {
         expect(userCard).to.exist;
 
         const name = document.querySelector(".s-user-card--username");
-        expect(name?.parentElement).to.have.attr("href", baseArgs.userProfileUrl);
+        expect(name?.parentElement).to.have.attr(
+            "href",
+            baseArgs.userProfileUrl
+        );
 
         const avatarImg = screen.getByRole("presentation");
         const avatar = avatarImg?.parentElement;

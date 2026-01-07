@@ -31,14 +31,16 @@
     }: Props = $props();
 </script>
 
-<div class="s-user-card--row">
-    {#if recognitionIcon}
-        <Icon src={recognitionIcon} class="fc-theme-primary" />
-    {/if}
-    <div class="s-user-card--recognition">
-        {recognition}
-        {#if recognitionHref}
-            <a href={recognitionHref}>{recognitionLinkText || "…"}</a>
+{#if recognition}
+    <div class="s-user-card--row">
+        {#if recognitionIcon}
+            <Icon src={recognitionIcon} class="fc-theme-primary" />
         {/if}
+        <div class="s-user-card--recognition">
+            {recognition}
+            {#if recognitionHref}
+                <a href={recognitionHref}>{recognitionLinkText || "…"}</a>
+            {/if}
+        </div>
     </div>
-</div>
+{/if}

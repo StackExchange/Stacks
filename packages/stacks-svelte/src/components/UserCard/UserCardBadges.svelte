@@ -1,11 +1,12 @@
 <script lang="ts">
-    import type { Badge } from "./UserCard.svelte";
+    import Badge from "../Badge/Badge.svelte";
+    import type { UserType } from "../Badge/Badge.svelte";
 
     interface Props {
         /**
          * Array of badges to display
          */
-        badges?: Badge[];
+        badges?: UserType[];
     }
 
     const { badges }: Props = $props();
@@ -14,9 +15,7 @@
 {#if badges && badges.length > 0}
     <div class="s-user-card--group">
         {#each badges as badge (badge)}
-            <span class="s-badge s-badge__sm s-badge__{badge}">
-                {badge}
-            </span>
+            <Badge type="user" userType={badge} size="sm" text={badge} />
         {/each}
     </div>
 {/if}

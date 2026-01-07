@@ -9,6 +9,8 @@
     const { bio }: Props = $props();
 </script>
 
-<div class="s-user-card--bio">
-    {bio}
-</div>
+{#if bio}
+    <div class="s-user-card--bio">
+        {bio}
+    </div>
+{/if}

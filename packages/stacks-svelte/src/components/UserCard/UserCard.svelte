@@ -1,11 +1,12 @@
 <script lang="ts" module>
     export type Award = string | number | undefined;
     export type Size = "sm" | "lg" | undefined;
-    export type Badge = "admin" | "moderator" | "staff" | undefined;
+    export type UserBadgeType = "admin" | "moderator" | "staff";
 </script>
 
 <script lang="ts">
     import Avatar, { type Size as AvatarSize } from "../Avatar/Avatar.svelte";
+    import type { UserType } from "../Badge/Badge.svelte";
     import UserCardBadges from "./UserCardBadges.svelte";
     import UserCardAwards from "./UserCardAwards.svelte";
     import UserCardRecognition from "./UserCardRecognition.svelte";
@@ -43,6 +44,12 @@
          * Timestamp displayed in the user card generally used to indicate when a comment was posted
          */
         timestamp?: string;
+
+        /**
+         * Tooltip text for the timestamp
+         * @default "Show activity on this post"
+         */
+        i18nTimestampTooltip?: string;
 
         // Awards
         /**
@@ -115,6 +122,15 @@
          * Additional CSS classes added to the element
          */
         class?: string;
+
+        /**
+         * Internationalization labels for awards
+         */
+        i18nAwardLabels?: {
+            gold: (count: number | string) => string;
+            silver: (count: number | string) => string;
+            bronze: (count: number | string) => string;
+        };
     }
 
     const {
@@ -138,6 +154,8 @@
         location,
         bio,
         class: className = "",
+        i18nTimestampTooltip = "Show activity on this post",
+        i18nAwardLabels,
     }: Props = $props();
 
     const getClasses = (className: string, size?: Size) => {
@@ -170,8 +188,8 @@
         admin: boolean,
         moderator: boolean,
         staff: boolean
-    ): Badge[] => {
-        const badges: Badge[] = [];
+    ): UserType[] => {
+        const badges: UserType[] = [];
         if (admin) {
             badges.push("admin");
         }
@@ -189,28 +207,38 @@
     const badges = $derived(getBadges(admin, moderator, staff));
 </script>
 
+{#snippet avatarAndName()}
+    {#if avatar || name}
+        <svelte:element
+            this={href ? "a" : "div"}
+            class="s-user-card--group"
+            {href}
+        >
+            {#if avatar}
+                <Avatar {name} {href} src={avatar} size={avatarSize} />
+            {/if}
+            {#if name}
+                <span class="s-user-card--username">{name}</span>
+            {/if}
+        </svelte:element>
+    {/if}
+{/snippet}
+
 <div class={classes}>
     {#if size !== "lg"}
-        {#if avatar || name}
-            <svelte:element
-                this={href ? "a" : "div"}
-                class="s-user-card--group"
-                {href}
-            >
-                {#if avatar}
-                    <Avatar {name} {href} src={avatar} size={avatarSize} />
-                {/if}
-                {#if name}
-                    <span class="s-user-card--username">{name}</span>
-                {/if}
-            </svelte:element>
-        {/if}
+        {@render avatarAndName()}
         <UserCardBadges {badges} />
-        <UserCardAwards {reputation} {gold} {silver} {bronze} />
+        <UserCardAwards
+            {reputation}
+            {gold}
+            {silver}
+            {bronze}
+            {i18nAwardLabels}
+        />
         {#if timestamp}
             <time
                 class="s-user-card--time"
-                title="Show activity on this post"
+                title={i18nTimestampTooltip}
                 data-controller="s-tooltip"
             >
                 {timestamp}
@@ -234,23 +262,25 @@
                     {/if}
                     <UserCardBadges {badges} />
                 </div>
-                <UserCardAwards {reputation} {gold} {silver} {bronze} />
+                <UserCardAwards
+                    {reputation}
+                    {gold}
+                    {silver}
+                    {bronze}
+                    {i18nAwardLabels}
+                />
             </div>
         </div>
         {#if recognition || role || location || bio}
             <div class="s-user-card--column">
-                {#if recognition}
-                    <UserCardRecognition
-                        {recognition}
-                        {recognitionHref}
-                        {recognitionLinkText}
-                        {recognitionIcon}
-                    />
-                {/if}
+                <UserCardRecognition
+                    {recognition}
+                    {recognitionHref}
+                    {recognitionLinkText}
+                    {recognitionIcon}
+                />
                 <UserCardMeta {role} {location} />
-                {#if bio}
-                    <UserCardBio {bio} />
-                {/if}
+                <UserCardBio {bio} />
             </div>
         {/if}
     {/if}
