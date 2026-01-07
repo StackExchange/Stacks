@@ -1,6 +1,11 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import UserCard, { type Size } from "./UserCard.svelte";
+    import UserCardBadges from "./UserCardBadges.svelte";
+    import UserCardAwards from "./UserCardAwards.svelte";
+    import UserCardRecognition from "./UserCardRecognition.svelte";
+    import UserCardMeta from "./UserCardMeta.svelte";
+    import UserCardBio from "./UserCardBio.svelte";
 
     const UserCardSizes: (Size | undefined)[] = [undefined, "sm", "lg"];
 
@@ -18,6 +23,14 @@
     const { Story } = defineMeta({
         title: "Components/UserCard",
         component: UserCard,
+        subcomponents: {
+            // @ts-expect-error: subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
+            UserCardBadges,
+            UserCardAwards,
+            UserCardRecognition,
+            UserCardMeta,
+            UserCardBio,
+        },
         argTypes: {
             size: {
                 control: "select",

@@ -6,8 +6,11 @@
 
 <script lang="ts">
     import Avatar, { type Size as AvatarSize } from "../Avatar/Avatar.svelte";
-    import Bling from "../Bling/Bling.svelte";
-    import Icon from "../Icon/Icon.svelte";
+    import UserCardBadges from "./UserCardBadges.svelte";
+    import UserCardAwards from "./UserCardAwards.svelte";
+    import UserCardRecognition from "./UserCardRecognition.svelte";
+    import UserCardMeta from "./UserCardMeta.svelte";
+    import UserCardBio from "./UserCardBio.svelte";
 
     interface Props {
         /**
@@ -207,43 +210,8 @@
                 {/if}
             </svelte:element>
         {/if}
-        {#if badges}
-            <div class="s-user-card--group">
-                {#each badges as badge (badge)}
-                    <span class="s-badge s-badge__sm s-badge__{badge}">
-                        {badge}
-                    </span>
-                {/each}
-            </div>
-        {/if}
-        {#if reputation || gold || silver || bronze}
-            <ul class="s-user-card--group">
-                {#if reputation}
-                    <li class="s-user-card--rep">
-                        <Bling name="reputation bling" />
-                        {reputation}
-                    </li>
-                {/if}
-                {#if gold}
-                    <li>
-                        <Bling type="gold" name="gold bling" />
-                        {gold}
-                    </li>
-                {/if}
-                {#if silver}
-                    <li>
-                        <Bling type="silver" name="silver bling" />
-                        {silver}
-                    </li>
-                {/if}
-                {#if bronze}
-                    <li>
-                        <Bling type="bronze" name="bronze bling" />
-                        {bronze}
-                    </li>
-                {/if}
-            </ul>
-        {/if}
+        <UserCardBadges {badges} />
+        <UserCardAwards {reputation} {gold} {silver} {bronze} />
         {#if timestamp}
             <time
                 class="s-user-card--time"
@@ -269,73 +237,24 @@
                             {username}
                         </svelte:element>
                     {/if}
-                    <div class="s-user-card--group">
-                        {#each badges as badge (badge)}
-                            <span class="s-badge s-badge__sm s-badge__{badge}">
-                                {badge}
-                            </span>
-                        {/each}
-                    </div>
+                    <UserCardBadges {badges} />
                 </div>
-                {#if reputation || gold || silver || bronze}
-                    <ul class="s-user-card--group">
-                        {#if reputation}
-                            <li class="s-user-card--rep">
-                                <Bling name="reputation bling" />
-                                {reputation}
-                            </li>
-                        {/if}
-                        {#if gold}
-                            <li>
-                                <Bling type="gold" name="gold bling" />
-                                {gold}
-                            </li>
-                        {/if}
-                        {#if silver}
-                            <li>
-                                <Bling type="silver" name="silver bling" />
-                                {silver}
-                            </li>
-                        {/if}
-                        {#if bronze}
-                            <li>
-                                <Bling type="bronze" name="bronze bling" />
-                                {bronze}
-                            </li>
-                        {/if}
-                    </ul>
-                {/if}
+                <UserCardAwards {reputation} {gold} {silver} {bronze} />
             </div>
         </div>
         {#if recognition || role || location || bio}
             <div class="s-user-card--column">
                 {#if recognition}
-                    {#if recognitionIcon}
-                        <Icon src={recognitionIcon} />
-                    {/if}
-                    <div class="s-user-card--recognition">
+                    <UserCardRecognition
                         {recognition}
-                        {#if recognitionHref}
-                            <a href={recognitionHref}
-                                >{recognitionLinkText || "…"}</a
-                            >
-                        {/if}
-                    </div>
+                        {recognitionHref}
+                        {recognitionLinkText}
+                        {recognitionIcon}
+                    />
                 {/if}
-                {#if role || location}
-                    <ul class="s-user-card--group s-user-card--group__split">
-                        {#if role}
-                            <li>{role}</li>
-                        {/if}
-                        {#if location}
-                            <li>{location}</li>
-                        {/if}
-                    </ul>
-                {/if}
+                <UserCardMeta {role} {location} />
                 {#if bio}
-                    <div class="s-user-card--bio">
-                        {bio}
-                    </div>
+                    <UserCardBio {bio} />
                 {/if}
             </div>
         {/if}
