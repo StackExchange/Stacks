@@ -1,5 +1,6 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
+    import { IconStarVerifiedSm } from "@stackoverflow/stacks-icons-legacy/icons";
     import UserCard, { type Size } from "./UserCard.svelte";
     import UserCardBadges from "./UserCardBadges.svelte";
     import UserCardAwards from "./UserCardAwards.svelte";
@@ -116,6 +117,7 @@
                             recognition="Recognized by"
                             recognitionHref="#"
                             recognitionLinkText="AudioBubble"
+                            recognitionIcon={IconStarVerifiedSm}
                             role="Senior Product Designer"
                             location="Vancouver, Canada"
                             bio="Developer who believes in clean code, clear coffee, and the occasional snake pun. Automating the boring stuff one script at a time."

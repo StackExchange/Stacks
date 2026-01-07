@@ -484,11 +484,14 @@ tags: components
                         </div>
                     </div>
                     <div class="s-user-card--column">
-                        {% if user.recognition %}
-                            <div class="s-user-card--recognition">
-                                {{ user.recognition }}
-                            </div>
-                        {% endif %}
+                            {% if user.recognition %}
+                               <div class="s-user-card--row">
+                                        {% icon "StarVerifiedSm", "fc-theme-primary" %}
+                                    <div class="s-user-card--recognition">
+                                        {{ user.recognition }}
+                                    </div>
+                                </div>
+                            {% endif %}
                         {% if user.role or user.location %}
                             <ul class="s-user-card--group s-user-card--group__split">
                                 {% if user.role %}
