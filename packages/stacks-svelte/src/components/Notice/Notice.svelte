@@ -124,30 +124,51 @@
 
     const getIcon = (variant?: Variant) => {
         if (variant == "danger") {
-            return IconAlertFill;
+            return {
+                icon: IconAlertFill,
+                title: iconTitle || "Danger"
+            };
         } else if (variant == "warning") {
-            return IconAlert;
+            return {
+                icon: IconAlert,
+                title: iconTitle || "Warning"
+            };
         } else if (variant == "info") {
-            return IconInfo;
+            return {
+                icon: IconInfo,
+                title: iconTitle || "Information"
+            };
         } else if (variant == "success") {
-            return IconCheck;
+            return {
+                icon: IconCheck,
+                title: iconTitle || "Success"
+            };
         } else if (variant == "featured") {
-            return IconStar;
+            return {
+                icon: IconStar,
+                title: iconTitle || "Featured"
+            };
         } else if (variant == "activity") {
-            return IconNotification;
+            return {
+                icon: IconNotification,
+                title: iconTitle || "Activity"
+            }
         } else {
-            return IconHelp;
+            return {
+                icon: IconHelp,
+                title: iconTitle || "Help"
+            };
         }
     };
 
     const classes = $derived(getClasses(className, variant, important));
-    const icon = $derived(getIcon(variant));
+    const iconInfo = $derived(getIcon(variant));
 </script>
 
 {#if visible}
     <div class={classes} {role}>
         <span class="s-notice--icon">
-            <Icon src={icon} title={iconTitle} />
+            <Icon src={iconInfo.icon} title={iconInfo.title} />
         </span>
         {@render children()}
         {#if actions || dismissible}
