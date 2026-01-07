@@ -1,11 +1,26 @@
 .s-user-card {
     --_uc-ai: center;
     --_uc-fd: unset;
+    --_uc-column-gap: var(--su6);
+    --_uc-group-gap: var(--su4);
+    --_uc-row-gap: var(--su6);
     --_uc-username-fs: unset;
 
     // VARIANTS
     // SIZES
     &&__lg {
+        .s-avatar {
+            margin-right: var(--su6);
+        }
+
+        .s-user-card--username {
+            margin-right: var(--su2);
+        }
+
+        .s-user-card--group:has(> .s-user-card--rep) {
+            margin-top: calc(var(--su2) * -1);
+        }
+
         --_uc-ai: flex-start;
         --_uc-fd: column;
         --_uc-username-fs: var(--fs-body3);
@@ -18,6 +33,8 @@
     }
 
     & &--recognition {
+        --_uc-row-gap: var(--su4);
+
         &,
         & a {
             color: var(--theme-primary);
@@ -38,21 +55,25 @@
     }
 
     // Layout specific
-    & &--column,
-    & &--row {
-        display: flex;
-        gap: var(--su6);
-    }
-
     & &--column {
         align-items: flex-start;
+        display: flex;
         flex-direction: column;
+        gap: var(--_uc-column-gap);
     }
 
     & &--group {
+        &:has(> .s-avatar) {
+            --_uc-group-gap: var(--su6);
+        }
+
+        &:has(+ .s-user-card--time) {
+            margin-right: var(--su2);
+        }
+
         align-items: center;
         display: flex;
-        gap: var(--su4);
+        gap: var(--_uc-group-gap);
     }
 
     & ul&--group {
@@ -80,8 +101,10 @@
 
     & &--row {
         align-items: center;
+        display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        gap: var(--_uc-row-gap);
     }
 
     align-items: var(--_uc-ai);
