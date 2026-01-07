@@ -18,7 +18,7 @@ describe("UserCard", () => {
             avatar: "https://picsum.photos/128",
         });
         const avatarImg = screen.getByRole("presentation");
-        expect(avatarImg.parentElement).to.have.class("s-user-card--avatar");
+        expect(avatarImg.parentElement).to.have.class("s-avatar");
         expect(avatarImg).to.have.attr("src", "https://picsum.photos/128");
     });
 
@@ -49,9 +49,9 @@ describe("UserCard", () => {
             silver: 2,
             bronze: 3,
         });
-        expect(screen.getByText("1 gold awards")).to.exist;
-        expect(screen.getByText("2 silver awards")).to.exist;
-        expect(screen.getByText("3 bronze awards")).to.exist;
+        expect(screen.getByText("1")).to.exist;
+        expect(screen.getByText("2")).to.exist;
+        expect(screen.getByText("3")).to.exist;
     });
 
     it("should render the user card with the appropriate size class", () => {
@@ -96,9 +96,9 @@ describe("UserCard", () => {
             moderator: true,
             staff: true,
         });
-        expect(screen.getByText("Admin")).to.exist;
-        expect(screen.getByText("Mod")).to.exist;
-        expect(screen.getByText("Staff")).to.exist;
+        expect(screen.getByText("admin")).to.exist;
+        expect(screen.getByText("moderator")).to.exist;
+        expect(screen.getByText("staff")).to.exist;
     });
 
     it("should render the user card with large size class", () => {

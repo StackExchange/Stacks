@@ -51,13 +51,13 @@ describe("PostSummaryAnswer", () => {
         const userCard = document.querySelector(".s-user-card");
         expect(userCard).to.exist;
 
-        const name = document.querySelector(".s-user-card--link");
-        expect(name).to.have.attr("href", baseArgs.userProfileUrl);
+        const name = document.querySelector(".s-user-card--username");
+        expect(name?.parentElement).to.have.attr("href", baseArgs.userProfileUrl);
 
         const avatarImg = screen.getByRole("presentation");
         const avatar = avatarImg?.parentElement;
         expect(avatarImg).to.have.attr("src", baseArgs.userAvatar);
-        expect(avatar).to.have.class("s-user-card--avatar");
+        expect(avatar).to.have.class("s-avatar");
         expect(avatar).to.have.attr("href", baseArgs.userProfileUrl);
 
         const reputation = screen.getByText(baseArgs.userReputation);
