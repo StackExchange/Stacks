@@ -12,6 +12,7 @@
     import UserCardRecognition from "./UserCardRecognition.svelte";
     import UserCardMeta from "./UserCardMeta.svelte";
     import UserCardBio from "./UserCardBio.svelte";
+    import UserCardTimestamp from "./UserCardTimestamp.svelte";
 
     interface Props {
         /**
@@ -235,15 +236,7 @@
             {bronze}
             {i18nAwardLabels}
         />
-        {#if timestamp}
-            <time
-                class="s-user-card--time"
-                title={i18nTimestampTooltip}
-                data-controller="s-tooltip"
-            >
-                {timestamp}
-            </time>
-        {/if}
+        <UserCardTimestamp {timestamp} {i18nTimestampTooltip} />
     {:else}
         <div class="s-user-card--row">
             {#if avatar}

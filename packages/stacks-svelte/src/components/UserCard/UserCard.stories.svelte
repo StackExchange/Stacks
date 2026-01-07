@@ -7,6 +7,7 @@
     import UserCardRecognition from "./UserCardRecognition.svelte";
     import UserCardMeta from "./UserCardMeta.svelte";
     import UserCardBio from "./UserCardBio.svelte";
+    import UserCardTimestamp from "./UserCardTimestamp.svelte";
 
     const UserCardSizes: (Size | undefined)[] = [undefined, "sm", "lg"];
 
@@ -31,6 +32,7 @@
             UserCardRecognition,
             UserCardMeta,
             UserCardBio,
+            UserCardTimestamp,
         },
         argTypes: {
             size: {
