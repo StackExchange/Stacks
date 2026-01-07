@@ -89,7 +89,7 @@
                         {#each [false, true] as important (important)}
                             <td>
                                 <Notice {variant} {important}>
-                                    I am a notice
+                                    <span>I am a notice</span>
                                 </Notice>
                             </td>
                         {/each}
@@ -102,7 +102,7 @@
 
 <Story name="Actions" asChild>
     <Notice variant="info">
-        I am a notice with a Custom Action
+        <span>I am a notice with a Custom Action</span>
         {#snippet actions()}
             <NoticeAction
                 class="pr8"
