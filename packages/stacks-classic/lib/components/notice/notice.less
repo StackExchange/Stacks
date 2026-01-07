@@ -185,17 +185,22 @@
     align-items: center;
     gap: var(--su4);
 
+    --_no-pd: var(--su8);
+    padding: var(--_no-pd) var(--_no-pd) var(--_no-pd) 0;
+
     &--icon {
         background: var(--_no-icon-bg);
         border: var(--su1) solid var(--_no-icon-bc, var(--_no-icon-bg));
-        min-height: calc(var(--su32) + var(--su4)); //36px
-        height: 100%;
-        width: calc(var(--su32) + var(--su4)); //36px
-        padding: var(--su8);
-        margin-right: var(--su8);
+        padding: var(--_no-pd);
+        margin-right: var(--_no-pd);
+        align-self: stretch;
 
         //Center the svg icon
         display: flex;
-        align-items: center;
+        align-items: top;
+
+        //Negative margin to make up for s-notice's padding
+        margin-top: calc(var(--_no-pd) * -1);
+        margin-bottom: calc(var(--_no-pd) * -1);
     }
 }
