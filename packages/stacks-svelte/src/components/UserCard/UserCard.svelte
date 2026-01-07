@@ -1,6 +1,7 @@
 <script lang="ts" module>
     export type Award = string | number | undefined;
-    export type Size = "small" | "large" | undefined;
+    export type Size = "sm" | "lg" | undefined;
+    export type Badge = "admin" | "moderator" | "staff" | undefined;
 </script>
 
 <script lang="ts">
@@ -12,7 +13,7 @@
         /**
          * Name of user to be displayed
          */
-        name: string;
+        username: string;
 
         /**
          * Avatar image source of user
@@ -31,7 +32,7 @@
 
         /**
          * The size of the user card
-         * @type {undefined | "small" | "large"} Size
+         * @type {undefined | "sm" | "lg"} Size
          */
         size?: Size;
 
@@ -72,26 +73,25 @@
          */
         staff?: boolean;
 
-        // Large variant only
         /**
-         * Type text (e.g., "Recognized by") for large variant
+         * recognition text (e.g., "Recognized by") for large variant
          */
-        type?: string;
+        recognition?: string;
 
         /**
-         * Link for the type text (e.g., link to the organization)
+         * Link for the recognition text (e.g., link to the organization)
          */
-        typeHref?: string;
+        recognitionHref?: string;
 
         /**
-         * Text for the type link
+         * Text for the recognition link
          */
-        typeLinkText?: string;
+        recognitionLinkText?: string;
 
         /**
-         * Icon source for the type section
+         * Icon source for the recognition section
          */
-        typeIcon?: string;
+        recognitionIcon?: string;
 
         /**
          * Role text
@@ -104,9 +104,9 @@
         location?: string;
 
         /**
-         * Excerpt text
+         * bio text
          */
-        excerpt?: string;
+        bio?: string;
 
         /**
          * Additional CSS classes added to the element
@@ -115,7 +115,7 @@
     }
 
     const {
-        name,
+        username,
         avatar,
         href,
         reputation,
@@ -127,13 +127,13 @@
         admin = false,
         moderator = false,
         staff = false,
-        type,
-        typeHref,
-        typeIcon,
-        typeLinkText,
+        recognition,
+        recognitionHref,
+        recognitionIcon,
+        recognitionLinkText,
         role,
         location,
-        excerpt,
+        bio,
         class: className = "",
     }: Props = $props();
 
@@ -154,154 +154,190 @@
 
     const getAvatarSize = (size?: Size): AvatarSize => {
         switch (size) {
-            case "small":
+            case "sm":
                 return 16;
-            case "large":
+            case "lg":
                 return 48;
             default:
                 return 24;
         }
     };
 
+    const getBadges = (
+        admin: boolean,
+        moderator: boolean,
+        staff: boolean
+    ): Badge[] => {
+        const badges: Badge[] = [];
+        if (admin) {
+            badges.push("admin");
+        }
+        if (moderator) {
+            badges.push("moderator");
+        }
+        if (staff) {
+            badges.push("staff");
+        }
+        return badges;
+    };
+
     const classes = $derived(getClasses(className, size));
     const avatarSize = $derived(getAvatarSize(size));
+    const badges = $derived(getBadges(admin, moderator, staff));
 </script>
 
 <div class={classes}>
-    <Avatar
-        class="s-user-card--avatar"
-        {name}
-        {href}
-        src={avatar}
-        size={avatarSize}
-    />
-
-    <div class="s-user-card--info">
-        {#if name}
+    {#if size !== "lg"}
+        {#if avatar || username}
             <svelte:element
                 this={href ? "a" : "div"}
-                class="s-user-card--link d-flex g6"
+                class="s-user-card--group"
                 {href}
             >
-                <div class="flex--item">{name}</div>
-                {#if moderator}
-                    <div
-                        class="flex--item s-badge s-badge__sm s-badge__moderator"
-                    >
-                        Mod
-                    </div>
+                {#if avatar}
+                    <Avatar
+                        name={username}
+                        {href}
+                        src={avatar}
+                        size={avatarSize}
+                    />
                 {/if}
-                {#if staff}
-                    <div class="flex--item s-badge s-badge__sm s-badge__staff">
-                        Staff
-                    </div>
-                {/if}
-                {#if admin}
-                    <div class="flex--item s-badge s-badge__sm s-badge__admin">
-                        Admin
-                    </div>
+                {#if username}
+                    <span class="s-user-card--username">{username}</span>
                 {/if}
             </svelte:element>
         {/if}
-    </div>
-
-    {#if size === "large" && (reputation || gold || silver || bronze)}
-        <ul class="s-user-card--awards">
-            {#if reputation}
-                <li class="s-user-card--rep">
-                    <Bling name="reputation bling" />
-                    {reputation}
-                </li>
+        {#if badges}
+            <div class="s-user-card--group">
+                {#each badges as badge (badge)}
+                    <span class="s-badge s-badge__sm s-badge__{badge}">
+                        {badge}
+                    </span>
+                {/each}
+            </div>
+        {/if}
+        {#if reputation || gold || silver || bronze}
+            <ul class="s-user-card--group">
+                {#if reputation}
+                    <li class="s-user-card--rep">
+                        <Bling name="reputation bling" />
+                        {reputation}
+                    </li>
+                {/if}
+                {#if gold}
+                    <li>
+                        <Bling type="gold" name="gold bling" />
+                        {gold}
+                    </li>
+                {/if}
+                {#if silver}
+                    <li>
+                        <Bling type="silver" name="silver bling" />
+                        {silver}
+                    </li>
+                {/if}
+                {#if bronze}
+                    <li>
+                        <Bling type="bronze" name="bronze bling" />
+                        {bronze}
+                    </li>
+                {/if}
+            </ul>
+        {/if}
+        {#if timestamp}
+            <time
+                class="s-user-card--time"
+                title="Show activity on this post"
+                data-controller="s-tooltip"
+            >
+                {timestamp}
+            </time>
+        {/if}
+    {:else}
+        <div class="s-user-card--row">
+            {#if avatar}
+                <Avatar name={username} {href} src={avatar} size={avatarSize} />
             {/if}
-            {#if gold}
-                <li>
-                    <Bling type="gold" name="gold bling" />
-                    {gold}
-                </li>
-            {/if}
-            {#if silver}
-                <li>
-                    <Bling type="silver" name="silver bling" />
-                    {silver}
-                </li>
-            {/if}
-            {#if bronze}
-                <li>
-                    <Bling type="bronze" name="bronze bling" />
-                    {bronze}
-                </li>
-            {/if}
-        </ul>
-    {/if}
-
-    {#if size !== "large" && (reputation || gold || silver || bronze)}
-        <ul class="s-user-card--awards">
-            {#if reputation}
-                <li class="s-user-card--rep">
-                    <Bling name="reputation bling" />
-                    {reputation}
-                </li>
-            {/if}
-            {#if gold}
-                <li>
-                    <Bling type="gold" name="gold bling" />
-                    {gold}
-                </li>
-            {/if}
-            {#if silver}
-                <li>
-                    <Bling type="silver" name="silver bling" />
-                    {silver}
-                </li>
-            {/if}
-            {#if bronze}
-                <li>
-                    <Bling type="bronze" name="bronze bling" />
-                    {bronze}
-                </li>
-            {/if}
-        </ul>
-    {/if}
-
-    {#if size === "large" && type}
-        <div class="s-user-card--type">
-            {#if typeIcon}
-                <Icon src={typeIcon} />
-            {/if}
-            {type}
-            {#if typeHref}
-                <a href={typeHref}>{typeLinkText || "…"}</a>
-            {/if}
+            <div class="s-user-card--column">
+                <div class="s-user-card--row">
+                    {#if username}
+                        <svelte:element
+                            this={href ? "a" : "div"}
+                            class="s-user-card--username"
+                            {href}
+                        >
+                            {username}
+                        </svelte:element>
+                    {/if}
+                    <div class="s-user-card--group">
+                        {#each badges as badge (badge)}
+                            <span class="s-badge s-badge__sm s-badge__{badge}">
+                                {badge}
+                            </span>
+                        {/each}
+                    </div>
+                </div>
+                {#if reputation || gold || silver || bronze}
+                    <ul class="s-user-card--group">
+                        {#if reputation}
+                            <li class="s-user-card--rep">
+                                <Bling name="reputation bling" />
+                                {reputation}
+                            </li>
+                        {/if}
+                        {#if gold}
+                            <li>
+                                <Bling type="gold" name="gold bling" />
+                                {gold}
+                            </li>
+                        {/if}
+                        {#if silver}
+                            <li>
+                                <Bling type="silver" name="silver bling" />
+                                {silver}
+                            </li>
+                        {/if}
+                        {#if bronze}
+                            <li>
+                                <Bling type="bronze" name="bronze bling" />
+                                {bronze}
+                            </li>
+                        {/if}
+                    </ul>
+                {/if}
+            </div>
         </div>
-    {/if}
-
-    {#if size === "large" && (role || location)}
-        <div class="d-flex ai-center g4">
-            {#if role}
-                <div class="s-user-card--role">{role}</div>
-            {/if}
-            {#if role && location}
-                <div class="s-user-card--square"></div>
-            {/if}
-            {#if location}
-                <div class="s-user-card--location">{location}</div>
-            {/if}
-        </div>
-    {/if}
-
-    {#if size === "large" && excerpt}
-        <div class="s-user-card--excerpt">
-            {excerpt}
-        </div>
-    {/if}
-
-    {#if timestamp}
-        <time
-            class="s-user-card--time"
-            title="Show activity on this post"
-            data-controller="s-tooltip"
-        >
-            {timestamp}
-        </time>
+        {#if recognition || role || location || bio}
+            <div class="s-user-card--column">
+                {#if recognition}
+                    {#if recognitionIcon}
+                        <Icon src={recognitionIcon} />
+                    {/if}
+                    <div class="s-user-card--recognition">
+                        {recognition}
+                        {#if recognitionHref}
+                            <a href={recognitionHref}
+                                >{recognitionLinkText || "…"}</a
+                            >
+                        {/if}
+                    </div>
+                {/if}
+                {#if role || location}
+                    <ul class="s-user-card--group s-user-card--group__split">
+                        {#if role}
+                            <li>{role}</li>
+                        {/if}
+                        {#if location}
+                            <li>{location}</li>
+                        {/if}
+                    </ul>
+                {/if}
+                {#if bio}
+                    <div class="s-user-card--bio">
+                        {bio}
+                    </div>
+                {/if}
+            </div>
+        {/if}
     {/if}
 </div>

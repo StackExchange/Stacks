@@ -2,12 +2,12 @@
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import UserCard, { type Size } from "./UserCard.svelte";
 
-    const UserCardSizes: (Size | undefined)[] = [undefined, "small", "large"];
+    const UserCardSizes: (Size | undefined)[] = [undefined, "sm", "lg"];
 
     const baseArgs = {
         avatar: "https://picsum.photos/128",
         href: "#",
-        name: "SofiaAlc",
+        username: "SofiaAlc",
         timestamp: "asked 2 hr ago",
         reputation: "1,775",
         gold: 12,
@@ -94,46 +94,18 @@
                     </tr>
                 {/each}
                 <tr>
-                    <th scope="row" class="va-middle">large (full example)</th>
+                    <th scope="row" class="va-middle">lg (full example)</th>
                     <td class="va-middle px4">
                         <UserCard
                             {...baseArgs}
-                            size="large"
+                            size="lg"
                             moderator
-                            type="Recognized by"
-                            typeHref="#"
-                            typeLinkText="AudioBubble"
+                            recognition="Recognized by"
+                            recognitionHref="#"
+                            recognitionLinkText="AudioBubble"
                             role="Senior Product Designer"
                             location="Vancouver, Canada"
-                            excerpt="Developer who believes in clean code, clear coffee, and the occasional snake pun. Automating the boring stuff one script at a time."
-                        />
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row" class="va-middle">
-                        large (with location and excerpt)
-                    </th>
-                    <td class="va-middle px4">
-                        <UserCard
-                            {...baseArgs}
-                            size="large"
-                            reputation="1"
-                            location="Vancouver, Canada"
-                            excerpt="Developer who believes in clean code, clear coffee, and the occasional snake pun. Automating the boring stuff one script at a time."
-                            timestamp={undefined}
-                        />
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row" class="va-middle">
-                        large (with badges and awards)
-                    </th>
-                    <td class="va-middle px4">
-                        <UserCard
-                            {...baseArgs}
-                            size="large"
-                            moderator
-                            timestamp={undefined}
+                            bio="Developer who believes in clean code, clear coffee, and the occasional snake pun. Automating the boring stuff one script at a time."
                         />
                     </td>
                 </tr>
