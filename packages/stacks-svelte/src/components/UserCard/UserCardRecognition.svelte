@@ -34,10 +34,10 @@
 {#if recognition}
     <div class="s-user-card--row s-user-card--recognition">
         {#if recognitionIcon}
-            <Icon src={recognitionIcon} class="fc-theme-primary" />
+            <Icon src={recognitionIcon} />
             {recognition}
             {#if recognitionHref}
-                <a href={recognitionHref}>{recognitionLinkText || "…"}</a>
+                <a href={recognitionHref}>{recognitionLinkText}</a>
             {/if}
         {/if}
     </div>

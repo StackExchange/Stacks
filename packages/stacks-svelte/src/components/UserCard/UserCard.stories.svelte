@@ -16,6 +16,7 @@
         href: "#",
         name: "SofiaAlc",
         timestamp: "asked 2 hr ago",
+        timestampHref: "#",
         reputation: "1,775",
         gold: 12,
         silver: 8,

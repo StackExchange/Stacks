@@ -10,20 +10,28 @@
          * @default "Show activity on this post"
          */
         i18nTimestampTooltip?: string;
+
+        /**
+         * Link to post activity
+         */
+        timestampHref?: string;
     }
 
     const {
         timestamp,
         i18nTimestampTooltip = "Show activity on this post",
+        timestampHref,
     }: Props = $props();
 </script>
 
 {#if timestamp}
-    <time
-        class="s-user-card--time"
-        title={i18nTimestampTooltip}
-        data-controller="s-tooltip"
-    >
-        {timestamp}
-    </time>
+    <a href={timestampHref}>
+        <time
+            class="s-user-card--time"
+            title={i18nTimestampTooltip}
+            data-controller="s-tooltip"
+        >
+            {timestamp}
+        </time>
+    </a>
 {/if}

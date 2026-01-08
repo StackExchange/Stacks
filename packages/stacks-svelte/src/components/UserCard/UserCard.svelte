@@ -52,6 +52,11 @@
          */
         i18nTimestampTooltip?: string;
 
+        /**
+         * Link to post activity
+         */
+        timestampHref?: string;
+
         // Awards
         /**
          * Count of gold award badges to display
@@ -157,6 +162,7 @@
         class: className = "",
         i18nTimestampTooltip = "Show activity on this post",
         i18nAwardLabels,
+        timestampHref,
     }: Props = $props();
 
     const getClasses = (className: string, size?: Size) => {
@@ -236,7 +242,7 @@
             {bronze}
             {i18nAwardLabels}
         />
-        <UserCardTimestamp {timestamp} {i18nTimestampTooltip} />
+        <UserCardTimestamp {timestamp} {i18nTimestampTooltip} {timestampHref} />
     {:else}
         <div class="s-user-card--row">
             {#if avatar}
