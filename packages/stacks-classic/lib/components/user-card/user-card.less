@@ -42,21 +42,20 @@
     }
 
     & &--rep {
-        font-weight: 600;
         color: var(--black-600);
+        font-weight: 600;
     }
 
     & &--time {
         color: var(--black-400);
-        margin-left: var(--su2);
     }
 
     & &--username {
         font-size: var(--_uc-username-fs);
         font-weight: 500;
+        min-width: 0;
         overflow-wrap: break-word;
         word-break: break-all;
-        min-width: 0;
     }
 
     // Layout specific
@@ -70,6 +69,10 @@
     & &--group {
         &:has(> .s-avatar) {
             --_uc-group-gap: var(--su6);
+        }
+
+        &:has(+ .s-user-card--time) {
+            margin-right: var(--su2);
         }
 
         align-items: center;
