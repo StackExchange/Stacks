@@ -152,7 +152,8 @@
         white-space: nowrap;
     }
 
-    button&--dismiss {
+    button&--dismiss, //notices
+    button&--btn { //banners
         &:active {
             background-color: var(--_no-fc);
             color: var(--_no-bg);
@@ -166,27 +167,39 @@
         }
 
         margin-left: calc(var(--su24) - var(--su2)); //22px
-
-        .svg-icon {
-            margin: 0px var(--su2) var(--su2) var(--su2);
-        }
     }
 
     // STYLES MODIFIED BY COMPONENT-SPECIFIC CUSTOM PROPERTIES
     background: var(--_no-bg);
     color: var(--_no-fc);
+
+    // STYLES SHARED BY BOTH s-notice AND s-banner
+    display: flex;
+    align-items: center;
+
+    --_no-pd: var(--su8);
+    padding: var(--_no-pd) var(--su12) var(--_no-pd) 0;
+
+    &--icon {
+        //Position the svg icon
+        display: flex;
+        align-items: top;
+        align-self: stretch;
+    }
 }
 
 .s-notice {
     .construct-notice-component(s-notice);
 
-    display: flex;
-    align-items: center;
-    gap: var(--su4);
+    & button&--dismiss .svg-icon{
+        //Align the dismiss button
+        margin: 0px var(--su2) var(--su2) var(--su2);
+    }
 
     --_no-pd: var(--su8);
     padding: var(--_no-pd) var(--su12) var(--_no-pd) 0;
-
+    gap: var(--su4);
+    
     &--icon {
         background: var(--_no-icon-bg);
         border: var(--su1) solid var(--_no-icon-bc, var(--_no-icon-bg));

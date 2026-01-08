@@ -9,20 +9,12 @@ tags: components
 <script src="{{ "/assets/dist/entry.banners.js" | url }}" defer></script>
 
 <div class="s-banner s-banner__info js-notice-banner" id="launch-banner-base" aria-hidden="true" role="alert" aria-labelledby="banner-message" data-controller="s-banner" data-s-banner-target="banner">
-    <div class="d-flex flex__center jc-space-between s-banner--container" role="alertdialog" aria-describedby="banner-message">
-        <div class="d-flex g8" aria-label="banner message">
-            <div class="flex--item">
-                {% icon "Lock" %}
-            </div>
-            <div class="d-flex ai-center">
-                <p class="m0"><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</p>
-            </div>
-        </div>
-        <div class="flex--item ml-auto myn8">
-            <button type="button" class="s-btn s-banner--btn js-banner-close" aria-label="Dismiss" data-toggle="s-banner" data-target="#launch-banner-base">
-                {% icon "ClearSm", "m0" %}
-            </button>
-        </div>
+    <span class="s-banner--icon">{% icon "Alert" %}</span>    
+    <span>
+        <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
+    </span>
+    <div class="d-flex ml-auto">
+        <button class="s-link s-banner--btn">{% icon "EllipsisVertical" %}</button>
     </div>
 </div>
 
@@ -179,11 +171,13 @@ tags: components
                         <label class="flex--item s-label fs-body1" for="sys-banner-style">Style</label>
                         <div class="flex--item s-select">
                             <select id="sys-banner-style" class="js-sys-banner-style-menu">
-                                <option name="sys-banner-style" id="sys-banner-style-base" data-class="" selected>Base</option>
+                                <option name="sys-banner-style" id="sys-banner-style-base" data-class="" selected>Help</option>
                                 <option name="sys-banner-style" id="sys-banner-style-info" data-class="s-banner__info" selected>Info</option>
                                 <option name="sys-banner-style" id="sys-banner-style-success" data-class="s-banner__success">Success</option>
                                 <option name="sys-banner-style" id="sys-banner-style-warning" data-class="s-banner__warning">Warning</option>
                                 <option name="sys-banner-style" id="sys-banner-style-danger" data-class="s-banner__danger">Danger</option>
+                                <option name="sys-banner-style" id="sys-banner-style-featured" data-class="s-banner__featured">Featured</option>
+                                <option name="sys-banner-style" id="sys-banner-style-activity" data-class="s-banner__activity">Activity</option>
                             </select>
                         </div>
                     </div>
@@ -206,7 +200,7 @@ tags: components
         </div>
     </div>
 
-    {% header "h3", "Base" %}
+    {% header "h3", "Help" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-banner" role="alert" aria-hidden="false">…</div>
@@ -263,6 +257,30 @@ tags: components
                 <div class="stacks-preview--example ps-relative">
                     {% bannerExample "danger" %}
                     {% bannerExample "danger", "true", "mt8" %}
+                </div>
+            </div>
+        
+        {% header "h3", "Featured" %}
+        <div class="stacks-preview">
+    {% highlight html %}
+    <div class="s-banner s-banner__featured" role="alert" aria-hidden="false">…</div>
+    <div class="s-banner s-banner__featured s-banner__important" role="alert" aria-hidden="false">…</div>
+    {% endhighlight %}
+                <div class="stacks-preview--example ps-relative">
+                    {% bannerExample "featured" %}
+                    {% bannerExample "featured", "true", "mt8" %}
+                </div>
+            </div>
+        
+        {% header "h3", "Activity" %}
+        <div class="stacks-preview">
+    {% highlight html %}
+    <div class="s-banner s-banner__activity" role="alert" aria-hidden="false">…</div>
+    <div class="s-banner s-banner__activity s-banner__important" role="alert" aria-hidden="false">…</div>
+    {% endhighlight %}
+                <div class="stacks-preview--example ps-relative">
+                    {% bannerExample "activity" %}
+                    {% bannerExample "activity", "true", "mt8" %}
                 </div>
             </div>
 

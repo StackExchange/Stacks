@@ -5,6 +5,10 @@
     --_no-ty-offset: 0;
     --_no-ty: var(--theme-topbar-height, calc(var(--su-static48) + var(--su-static8)));
     .construct-notice-component(s-banner);
+    
+    &--icon {
+        --_no-icon-bg: transparent;
+    }
 
     &[aria-hidden="true"] { // If you want to hide and reveal the banner
         --_no-ty-offset: -1;
@@ -27,16 +31,10 @@
         padding-top: 93px;
     }
 
-    & &--container { // When we want to keep hero content capped
-        margin: 0 auto;
-        max-width: calc(var(--s-step) * 10);
-        position: relative;
-        width: 100%;
-    }
-
+    gap: var(--su8);
+    padding: var(--su16);
     border-width: 0 0 var(--su-static1);
     inset: 0 0 auto 0;
-    padding: var(--su12);
     position: fixed;
     transform: translate3d(0, calc(var(--_no-ty) * var(--_no-ty-offset)), 0);
     width: 100%;

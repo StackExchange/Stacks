@@ -1,10 +1,10 @@
-const { Icons } = require("@stackoverflow/stacks-icons-legacy");
+const { Icons } = require("@stackoverflow/stacks-icons");
 
 module.exports = {
     configFunction(eleventyConfig) {
       eleventyConfig.addLiquidShortcode("bannerExample", function(type, important, classes) {
-        var lockIcon = Icons.IconLock;
-        var closeIcon = Icons.IconClearSm;
+        var typeIcon = Icons.IconAlert;
+        var btnIcon = Icons.MoreV;
 
         // add type switch statement
         function getTypeClass() {
@@ -17,6 +17,10 @@ module.exports = {
                 return "s-banner__warning";
               case "danger":
                 return "s-banner__danger";
+              case "activity":
+                return "s-banner__activity";
+              case "featured":
+                return "s-banner__featured";
               default:
                 return "";
           }
@@ -29,18 +33,14 @@ module.exports = {
           classes += " s-banner__important";
         }
 
-        return `<aside class="s-banner is-pinned ps-relative ${classes} ${getTypeClass()}" role="presentation" aria-hidden="false" style="z-index: 1;">
-        <div class="d-flex flex__center jc-space-between s-banner--container">
-            <div class="d-flex g8" aria-label="banner message">
-                <div>${lockIcon}</div>
-                <div class="d-flex ai-center">
-                    <p class="m0"><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</p>
-                </div>
+        return `<aside class="s-banner d-flex is-pinned ps-relative ${classes} ${getTypeClass()}" role="presentation" aria-hidden="false" style="z-index: 1;">
+            <span class="s-banner--icon">${typeIcon}</span>
+            <span>
+                <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
+            </span>
+            <div class="d-flex ml-auto">
+              <button class="s-link s-banner--btn">${btnIcon}</button>
             </div>
-            <div class="ml-auto myn8">
-                <span class="s-btn s-banner--btn">${closeIcon}</span>
-            </div>
-        </div>
     </aside>`;
     });
   }
