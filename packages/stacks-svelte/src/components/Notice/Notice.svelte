@@ -13,7 +13,7 @@
 <script lang="ts">
     import type { Snippet } from "svelte";
     import Icon from "../Icon/Icon.svelte";
-    import Button from "../Button/Button.svelte";
+    import Link from "../Link/Link.svelte";
     import {
         IconAlert,
         IconAlertFill,
@@ -22,8 +22,8 @@
         IconStar,
         IconNotification,
         IconHelp,
+        IconCross,
     } from "@stackoverflow/stacks-icons/icons";
-    import { IconClearSm } from "@stackoverflow/stacks-icons-legacy/icons";
     import type { AriaRole } from "svelte/elements";
 
     interface Props {
@@ -177,14 +177,13 @@
                     {@render actions()}
                 {/if}
                 {#if dismissible}
-                    <Button
-                        link
+                    <Link
                         class="s-notice--dismiss"
                         onclick={handleDismiss}
                         aria-label={i18nDismissButtonLabel}
                     >
-                        <Icon src={IconClearSm} />
-                    </Button>
+                        <Icon src={IconCross} />
+                    </Link>
                 {/if}
             </div>
         {/if}
