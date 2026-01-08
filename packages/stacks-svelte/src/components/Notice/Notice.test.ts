@@ -65,8 +65,8 @@ describe("Notice", () => {
         const closeButton = screen.getByRole("button", { name: /Chiudi/i });
         expect(closeButton).to.exist;
 
-        // Assert that the IconClearSm is rendered inside the button
-        const closeIcon = closeButton.querySelector("svg.iconClearSm");
+        // Assert that the IconCross is rendered inside the button
+        const closeIcon = closeButton.querySelector("svg.iconCross");
         expect(closeIcon).to.exist;
 
         // Assert that the button has the s-notice--dismiss class
