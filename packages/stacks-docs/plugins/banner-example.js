@@ -4,7 +4,7 @@ module.exports = {
     configFunction(eleventyConfig) {
       eleventyConfig.addLiquidShortcode("bannerExample", function(type, important, classes) {
         var typeIcon = Icons.IconAlert;
-        var btnIcon = Icons.MoreV;
+        var btnIcon = Icons.IconEllipsisVertical;
 
         // add type switch statement
         function getTypeClass() {
