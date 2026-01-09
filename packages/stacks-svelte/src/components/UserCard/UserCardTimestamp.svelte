@@ -25,12 +25,13 @@
 </script>
 
 {#if timestamp}
-    <a href={timestampHref}>
-        <time
-            class="s-user-card--time"
-            title={i18nTimestampTooltip}
-            data-controller="s-tooltip"
-        >
+    <a
+        href={timestampHref}
+        class="s-user-card--time"
+        title={i18nTimestampTooltip}
+        data-controller="s-tooltip"
+    >
+        <time>
             {timestamp}
         </time>
     </a>
