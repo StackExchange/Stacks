@@ -4,7 +4,7 @@ module.exports = {
     configFunction(eleventyConfig) {
       eleventyConfig.addLiquidShortcode("bannerExample", function(type, important, classes) {
         var typeIcon = Icons.IconAlert;
-        var btnIcon = Icons.IconEllipsisVertical;
+        var btnIcon = Icons.IconCross;
 
         // add type switch statement
         function getTypeClass() {
@@ -39,7 +39,7 @@ module.exports = {
                 <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
             </span>
             <div class="d-flex ml-auto">
-              <button class="s-link s-banner--btn">${btnIcon}</button>
+              <button class="s-link s-banner--dismiss">${btnIcon}</button>
             </div>
     </aside>`;
     });

@@ -27,8 +27,9 @@
 /**
  * Generate styles for a notice-based component
  *
- * Usage example:
+ * Usage examples:
  * .construct-notice-component(s-banner);
+ * .construct-notice-component(s-notice);
  *
  * @baseClass - The base class name for the notice component
  */
@@ -152,8 +153,7 @@
         white-space: nowrap;
     }
 
-    button&--dismiss, //notices
-    button&--btn { //banners
+    button&--dismiss {
         &:active {
             background-color: var(--_no-fc);
             color: var(--_no-bg);
@@ -169,10 +169,6 @@
         margin-left: calc(var(--su24) - var(--su2)); //22px
     }
 
-    // STYLES MODIFIED BY COMPONENT-SPECIFIC CUSTOM PROPERTIES
-    background: var(--_no-bg);
-    color: var(--_no-fc);
-
     // STYLES SHARED BY BOTH s-notice AND s-banner
     display: flex;
     align-items: center;
@@ -186,6 +182,10 @@
         align-items: top;
         align-self: stretch;
     }
+
+    // STYLES MODIFIED BY COMPONENT-SPECIFIC CUSTOM PROPERTIES
+    background: var(--_no-bg);
+    color: var(--_no-fc);
 }
 
 .s-notice {
@@ -199,7 +199,7 @@
     --_no-pd: var(--su8);
     padding: var(--_no-pd) var(--su12) var(--_no-pd) 0;
     gap: var(--su4);
-    
+
     &--icon {
         background: var(--_no-icon-bg);
         border: var(--su1) solid var(--_no-icon-bc, var(--_no-icon-bg));

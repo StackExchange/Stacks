@@ -40,6 +40,7 @@
 #### Banners
 
 - Banner markup has changed. New markup and icons should be applied.
+- `.s-banner--btn` has been replaced with `.s-banner--dismiss`
 
 #### Bling (previously *Award Bling*)
 - The Award Bling component has been renamed to Bling.
