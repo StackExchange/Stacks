@@ -518,7 +518,132 @@ tags: components
 
 <section class="stacks-section">
     {% header "h3", "States" %}
-    <p class="stacks-copy">Coming soon</p>
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">State</th>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for state in user-card.states %}
+                    <tr>
+                        <th scope="row">{{ state.name }}</th>
+                        <td><code class="stacks-code">{{ state.class }}</code></td>
+                        <td class="p8">{{ state.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% header "h4", "Original Poster" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="s-user-card">
+    <a class="s-user-card--group" href="…">
+        <span class="s-avatar s-avatar__24">
+            <img class="s-avatar--image" alt="…" src="…" />
+        </span>
+        <span class="s-user-card--username s-user-card--original-poster" data-s-tooltip-html-title="<a href='…' class='s-link s-link__underlined'>…</a> is the original poster" data-controller="s-tooltip">…</span>
+    </a>
+    <ul class="s-user-card--group">
+        <li class="s-user-card--rep">
+            <span class="s-bling s-bling__sm">
+                <span class="v-visible-sr">reputation bling</span>
+            </span>
+            …
+        </li>
+        <li>
+            <span class="s-bling s-bling__gold s-bling__sm">
+                <span class="v-visible-sr">gold bling</span>
+            </span>
+            …
+        </li>
+        <li>
+            <span class="s-bling s-bling__silver s-bling__sm">
+                <span class="v-visible-sr">silver bling</span>
+            </span>
+            …
+        </li>
+        <li>
+            <span class="s-bling s-bling__bronze s-bling__sm">
+                <span class="v-visible-sr">bronze bling</span>
+            </span>
+            …
+        </li>
+    </ul>
+    <a class="s-user-card--time" href="…" title="Show activity on this post" data-controller="s-tooltip">
+        <time>…</time>
+    </a>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d-flex fd-column g8">
+            {% for user in user-card.original-poster %}
+                <div class="s-user-card{% if user.size == 'small' %} s-user-card__sm{% endif %}">
+                    <a class="s-user-card--group" href="#">
+                        <span class="s-avatar{% if user.size != 'small' %} s-avatar__24{% endif %}">
+                            {% if user.size == 'small' %}
+                                <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/avatar-disgusted-16.svg" | url }}" />
+                            {% else %}
+                                <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/avatar-disgusted-24.svg" | url }}" />
+                            {% endif %}
+                        </span>
+                        <span class="s-user-card--username s-user-card--original-poster" data-s-tooltip-html-title="<a href='#' class='s-link s-link__underlined'>{{ user.username }}</a> is the original poster" data-controller="s-tooltip">{{ user.username }}</span>
+                    </a>
+                    {% if user.badges %}
+                        <div class="s-user-card--group">
+                            {% for badge in user.badges %}
+                                <span class="s-badge s-badge__sm {{ badge.class }}">{{ badge.text }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% if user.reputation or user.gold or user.silver or user.bronze %}
+                        <ul class="s-user-card--group">
+                            {% if user.reputation %}
+                                <li class="s-user-card--rep">
+                                    <span class="s-bling s-bling__sm">
+                                        <span class="v-visible-sr">reputation bling</span>
+                                    </span>
+                                    {{ user.reputation }}
+                                </li>
+                            {% endif %}
+                            {% if user.gold %}
+                                <li>
+                                    <span class="s-bling s-bling__gold s-bling__sm">
+                                        <span class="v-visible-sr">gold bling</span>
+                                    </span>
+                                    {{ user.gold }}
+                                </li>
+                            {% endif %}
+                            {% if user.silver %}
+                                <li>
+                                    <span class="s-bling s-bling__silver s-bling__sm">
+                                        <span class="v-visible-sr">silver bling</span>
+                                    </span>
+                                    {{ user.silver }}
+                                </li>
+                            {% endif %}
+                            {% if user.bronze %}
+                                <li>
+                                    <span class="s-bling s-bling__bronze s-bling__sm">
+                                        <span class="v-visible-sr">bronze bling</span>
+                                    </span>
+                                    {{ user.bronze }}
+                                </li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+                    {% if user.timestamp %}
+                        <a class="s-user-card--time" href="#" title="Show activity on this post" data-controller="s-tooltip">
+                            <time>{{ user.timestamp }}</time>
+                        </a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 </section>
 
 <section class="stacks-section">

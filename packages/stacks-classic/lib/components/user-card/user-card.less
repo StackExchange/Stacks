@@ -5,6 +5,9 @@
     --_uc-group-gap: var(--su4);
     --_uc-row-gap: var(--su6);
     --_uc-username-fs: unset;
+    --_uc-username-p: unset;
+    --_uc-username-bl: unset;
+    --_uc-username-bg: unset;
 
     // VARIANTS
     // SIZES
@@ -50,11 +53,20 @@
         color: var(--black-400);
     }
 
+    & &--original-poster {
+        --_uc-username-bg: var(--blue-100);
+        --_uc-username-bl: var(--su4) solid var(--blue-300);
+        --_uc-username-p: 0px var(--su4);
+    }
+
     & &--username {
+        background-color: var(--_uc-username-bg);
+        border-left: var(--_uc-username-bl);
         font-size: var(--_uc-username-fs);
         font-weight: 500;
         min-width: 0;
         overflow-wrap: break-word;
+        padding: var(--_uc-username-p);
         word-break: break-all;
     }
 
