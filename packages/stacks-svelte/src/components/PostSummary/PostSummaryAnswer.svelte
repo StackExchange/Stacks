@@ -97,7 +97,7 @@
         {#snippet time()}
             <UserCardTime text={timestamp} />
         {/snippet}
-        {#snippet awards()}
+        {#snippet blings()}
             {#if userReputation}
                 <ul class="s-user-card--group">
                     <li class="s-user-card--rep">
@@ -113,7 +113,7 @@
             avatar={userAvatar}
             name={userName}
             {time}
-            {awards}
+            {blings}
         />
     </div>
 </div>

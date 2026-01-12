@@ -23,8 +23,8 @@ describe("UserCard", () => {
         expect(avatarImg).to.have.attr("src", "https://picsum.photos/128");
     });
 
-    it("should render the user reputation in awards", () => {
-        const awardsSnippet = createRawSnippet(() => ({
+    it("should render the user reputation in blings", () => {
+        const blingsSnippet = createRawSnippet(() => ({
             render: () => `
                 <ul class="s-user-card--group">
                     <li class="s-user-card--rep">
@@ -40,12 +40,12 @@ describe("UserCard", () => {
         render(UserCard, {
             name: "John Doe",
             avatar: "https://picsum.photos/128",
-            awards: awardsSnippet,
+            blings: blingsSnippet,
         });
         expect(screen.getByText("1234")).to.exist;
     });
 
-    it("should not render the user reputation when awards are not provided", () => {
+    it("should not render the user reputation when blings are not provided", () => {
         render(UserCard, {
             name: "John Doe",
             avatar: "https://picsum.photos/128",
@@ -55,8 +55,8 @@ describe("UserCard", () => {
         expect(reputation).not.to.exist;
     });
 
-    it("should render the user awards", () => {
-        const awardsSnippet = createRawSnippet(() => ({
+    it("should render the user blings", () => {
+        const blingsSnippet = createRawSnippet(() => ({
             render: () => `
                 <ul class="s-user-card--group">
                     <li class="s-user-card--rep">
@@ -90,7 +90,7 @@ describe("UserCard", () => {
         render(UserCard, {
             name: "John Doe",
             avatar: "https://picsum.photos/128",
-            awards: awardsSnippet,
+            blings: blingsSnippet,
         });
         expect(screen.getByText("1")).to.exist;
         expect(screen.getByText("2")).to.exist;

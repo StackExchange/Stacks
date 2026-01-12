@@ -34,7 +34,7 @@
         {#snippet time()}
             <UserCardTime text="asked 2 hr ago" href="#" />
         {/snippet}
-        {#snippet awards()}
+        {#snippet blings()}
             <ul class="s-user-card--group">
                 <li class="s-user-card--rep">
                     <Bling name="reputation bling" type="rep" size="sm" />
@@ -54,7 +54,7 @@
                 </li>
             </ul>
         {/snippet}
-        <UserCard {...args} {time} {awards} />
+        <UserCard {...args} {time} {blings} />
     {/snippet}
 </Story>
 

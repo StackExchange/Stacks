@@ -45,9 +45,9 @@
         time?: Snippet;
 
         /**
-         * Snippet used to display user awards
+         * Snippet used to display user blings
          */
-        awards?: Snippet;
+        blings?: Snippet;
 
         /**
          * Snippet used to display user badges
@@ -76,7 +76,7 @@
         profileUrl,
         size,
         time,
-        awards,
+        blings,
         badges,
         recognition,
         location,
@@ -143,8 +143,8 @@
         {#if badges}
             {@render badges()}
         {/if}
-        {#if awards}
-            {@render awards()}
+        {#if blings}
+            {@render blings()}
         {/if}
         {#if time}
             {@render time()}
@@ -174,8 +174,8 @@
                         {@render badges()}
                     {/if}
                 </div>
-                {#if awards}
-                    {@render awards()}
+                {#if blings}
+                    {@render blings()}
                 {/if}
             </div>
         </div>
