@@ -1,9 +1,8 @@
 import { expect } from "@open-wc/testing";
 import { render, screen } from "@testing-library/svelte";
-import { createRawSnippet, mount, unmount } from "svelte";
+import { createRawSnippet } from "svelte";
 
 import UserCard from "./UserCard.svelte";
-import Badge from "../Badge/Badge.svelte";
 
 describe("UserCard", () => {
     it("should render the user name", () => {
@@ -115,10 +114,10 @@ describe("UserCard", () => {
             avatar: "https://picsum.photos/128",
             profileUrl: "#",
         });
-        const avatarImg = screen.getByRole("presentation").parentElement;
-        const name = screen.getAllByText("John Doe")[1];
-        expect(avatarImg).to.have.attr("href", "#");
-        expect(name.parentElement).to.have.attr("href", "#");
+        const avatarLink = screen.getByRole("presentation").parentElement;
+        const nameLink = screen.getByRole("link", { name: "John Doe" });
+        expect(avatarLink).to.have.attr("href", "#");
+        expect(nameLink).to.have.attr("href", "#");
     });
 
     it("should render the user card with arbitrary classes", () => {
@@ -134,21 +133,8 @@ describe("UserCard", () => {
 
     it("should render the user card with badges", () => {
         const badgesSnippet = createRawSnippet(() => ({
-            render: () => "",
-            setup: (target) => {
-                const badge = mount(Badge, {
-                    target,
-                    props: {
-                        text: "admin",
-                        type: "user",
-                        userType: "admin",
-                        size: "sm",
-                    },
-                });
-                return () => {
-                    unmount(badge);
-                };
-            },
+            render: () =>
+                '<span class="s-badge s-badge__sm s-badge__admin">admin</span>',
         }));
 
         render(UserCard, {
