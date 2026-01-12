@@ -9,6 +9,8 @@
     import Badge from "../Badge/Badge.svelte";
     import Link from "../Link/Link.svelte";
     import UserCard from "../UserCard/UserCard.svelte";
+    import UserCardTime from "../UserCard/UserCardTime.svelte";
+    import Bling from "../Bling/Bling.svelte";
 
     /**
      * A brief excerpt of the answer
@@ -92,13 +94,26 @@
     <p class="s-post-summary--answer-excerpt">{excerpt}</p>
     <div class="s-post-summary--meta">
         <Link {href}>{i18nViewAnswersText}</Link>
+        {#snippet time()}
+            <UserCardTime text={timestamp} />
+        {/snippet}
+        {#snippet awards()}
+            {#if userReputation}
+                <ul class="s-user-card--group">
+                    <li class="s-user-card--rep">
+                        <Bling name="reputation bling" type="rep" size="sm" />
+                        {userReputation}
+                    </li>
+                </ul>
+            {/if}
+        {/snippet}
         <UserCard
-            href={userProfileUrl}
+            profileUrl={userProfileUrl}
             size="sm"
             avatar={userAvatar}
             name={userName}
-            reputation={userReputation}
-            {timestamp}
+            {time}
+            {awards}
         />
     </div>
 </div>
