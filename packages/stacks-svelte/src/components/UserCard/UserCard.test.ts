@@ -134,11 +134,12 @@ describe("UserCard", () => {
 
     it("should render the user card with badges", () => {
         const badgesSnippet = createRawSnippet(() => ({
-            render: () => '<div class="s-user-card--group"></div>',
+            render: () => "",
             setup: (target) => {
-                const wrapper = target.querySelector(
-                    ".s-user-card--group"
-                ) as HTMLElement;
+                const wrapper = document.createElement("div");
+                wrapper.className = "s-user-card--group";
+                target.appendChild(wrapper);
+
                 const badge1 = mount(Badge, {
                     target: wrapper,
                     props: {
