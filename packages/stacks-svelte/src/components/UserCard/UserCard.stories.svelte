@@ -1,7 +1,6 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import UserCard, { type Size } from "./UserCard.svelte";
-    import UserCardMeta from "./UserCardMeta.svelte";
     import UserCardTime from "./UserCardTime.svelte";
     import Badge, { type UserType } from "../Badge/Badge.svelte";
     import Bling from "../Bling/Bling.svelte";
@@ -18,7 +17,6 @@
         title: "Components/UserCard",
         component: UserCard,
         subcomponents: {
-            UserCardMeta,
             // @ts-expect-error: subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
             UserCardTime,
         },

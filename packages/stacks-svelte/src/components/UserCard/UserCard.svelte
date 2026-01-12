@@ -5,7 +5,6 @@
 <script lang="ts">
     import Avatar, { type Size as AvatarSize } from "../Avatar/Avatar.svelte";
     import Icon from "../Icon/Icon.svelte";
-    import UserCardMeta from "./UserCardMeta.svelte";
     import { IconStarVerifiedSm } from "@stackoverflow/stacks-icons-legacy/icons";
     import type { Snippet } from "svelte";
 
@@ -189,7 +188,14 @@
                     </div>
                 {/if}
                 {#if designation || location}
-                    <UserCardMeta {designation} {location} />
+                    <ul class="s-user-card--group s-user-card--group__split">
+                        {#if designation}
+                            <li>{designation}</li>
+                        {/if}
+                        {#if location}
+                            <li>{location}</li>
+                        {/if}
+                    </ul>
                 {/if}
                 {#if bio}
                     {@render bio()}
