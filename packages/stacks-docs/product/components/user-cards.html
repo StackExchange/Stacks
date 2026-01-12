@@ -800,6 +800,119 @@ tags: components
 
 <section class="stacks-section">
     {% header "h3", "Additional bling" %}
-    <p class="stacks-copy">Coming soon</p>
+    <p class="stacks-copy">Use to display a specialized icon alongside the username, highlighting unique achievements. This style is additive and can be combined with any of the usercard variants listed above.</p>
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for bling in user-card.additional-bling %}
+                    <tr>
+                        <th scope="row">{{ bling.name }}</th>
+                        <td class="p8">{{ bling.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h4", "Recognized Member" %}
+    <div class="stacks-preview">
+        {% highlight html %}
+        <div class="s-user-card s-user-card__sm">
+            <a class="s-user-card--group" href="…">
+                <span class="s-avatar">
+                    <img class="s-avatar--image" alt="…" src="…" />
+                </span>
+                <span class="s-user-card--username">…</span>
+            </a>
+            <div class="s-user-card--group">
+                @Svg.Icon.StarVerifiedSm.With("native")
+            </div>
+            <div class="s-user-card--group">
+                <span class="s-badge s-badge__sm">…</span>
+            </div>
+            <ul class="s-user-card--group">
+                <li class="s-user-card--rep">
+                    <span class="s-bling s-bling__sm">
+                        <span class="v-visible-sr">reputation bling</span>
+                    </span>
+                    …
+                </li>
+                <li>
+                    <span class="s-bling s-bling__gold s-bling__sm">
+                        <span class="v-visible-sr">gold bling</span>
+                    </span>
+                    …
+                </li>
+                <li>
+                    <span class="s-bling s-bling__silver s-bling__sm">
+                        <span class="v-visible-sr">silver bling</span>
+                    </span>
+                    …
+                </li>
+                <li>
+                    <span class="s-bling s-bling__bronze s-bling__sm">
+                        <span class="v-visible-sr">bronze bling</span>
+                    </span>
+                    …
+                </li>
+            </ul>
+            <a class="s-user-card--time" href="…" title="Show activity on this post" data-controller="s-tooltip">
+                <time>…</time>
+            </a>
+        </div>
+        {% endhighlight %}
+        <div class="stacks-preview--example d-flex fd-column g8">
+            {% for user in user-card.recognized-member %}
+                <div class="s-user-card s-user-card__sm">
+                    <a class="s-user-card--group" href="#">
+                        <span class="s-avatar">
+                            <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/avatar-disgusted-16.svg" | url }}" />
+                        </span>
+                        <span class="s-user-card--username">{{ user.username }}</span>
+                    </a>
+                    <div class="s-user-card--group s-user-card--recognition">
+                        {% icon user.recognitionIcon %}
+                    </div>
+                    <ul class="s-user-card--group">
+                        <li class="s-user-card--rep">
+                            <span class="s-bling s-bling__sm">
+                                <span class="v-visible-sr">reputation bling</span>
+                            </span>
+                            {{ user.reputation }}
+                        </li>
+                        <li>
+                            <span class="s-bling s-bling__gold s-bling__sm">
+                                <span class="v-visible-sr">gold bling</span>
+                            </span>
+                            {{ user.gold }}
+                        </li>
+                        <li>
+                            <span class="s-bling s-bling__silver s-bling__sm">
+                                <span class="v-visible-sr">silver bling</span>
+                            </span>
+                            {{ user.silver }}
+                        </li>
+                        <li>
+                            <span class="s-bling s-bling__bronze s-bling__sm">
+                                <span class="v-visible-sr">bronze bling</span>
+                            </span>
+                            {{ user.bronze }}
+                        </li>
+                    </ul>
+                    <a class="s-user-card--time" href="#" title="Show activity on this post" data-controller="s-tooltip">
+                        <time>{{ user.timestamp }}</time>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 </section>
 
