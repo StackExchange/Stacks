@@ -4,7 +4,9 @@
 
 <script lang="ts">
     import Avatar, { type Size as AvatarSize } from "../Avatar/Avatar.svelte";
+    import Icon from "../Icon/Icon.svelte";
     import UserCardMeta from "./UserCardMeta.svelte";
+    import { IconStarVerifiedSm } from "@stackoverflow/stacks-icons-legacy/icons";
     import type { Snippet } from "svelte";
 
     interface Props {
@@ -181,7 +183,10 @@
         {#if recognition || designation || location || bio}
             <div class="s-user-card--column">
                 {#if recognition}
-                    {@render recognition()}
+                    <div class="s-user-card--row s-user-card--recognition">
+                        <Icon src={IconStarVerifiedSm} />
+                        {@render recognition()}
+                    </div>
                 {/if}
                 {#if designation || location}
                     <UserCardMeta {designation} {location} />

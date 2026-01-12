@@ -1,12 +1,10 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
-    import { IconStarVerifiedSm } from "@stackoverflow/stacks-icons-legacy/icons";
     import UserCard, { type Size } from "./UserCard.svelte";
     import UserCardMeta from "./UserCardMeta.svelte";
     import UserCardTime from "./UserCardTime.svelte";
     import Badge, { type UserType } from "../Badge/Badge.svelte";
     import Bling from "../Bling/Bling.svelte";
-    import Icon from "../Icon/Icon.svelte";
 
     const UserCardSizes: (Size | undefined)[] = [undefined, "sm", "lg"];
 
@@ -164,13 +162,8 @@
                             </div>
                         {/snippet}
                         {#snippet recognition()}
-                            <div
-                                class="s-user-card--row s-user-card--recognition"
-                            >
-                                <Icon src={IconStarVerifiedSm} />
-                                <span>Recognized by</span>
-                                <a href="#"> AudioBubble </a>
-                            </div>
+                            <span>Recognized by</span>
+                            <a href="#"> AudioBubble </a>
                         {/snippet}
                         {#snippet bio()}
                             <p class="s-user-card--bio">
