@@ -134,11 +134,9 @@ describe("UserCard", () => {
 
     it("should render the user card with badges", () => {
         const badgesSnippet = createRawSnippet(() => ({
-            render: () => "",
+            render: () => '<div class="s-user-card--group"></div>',
             setup: (target) => {
-                const wrapper = document.createElement("div");
-                wrapper.className = "s-user-card--group";
-                target.appendChild(wrapper);
+                const wrapper = target.firstElementChild as HTMLElement;
 
                 const badge1 = mount(Badge, {
                     target: wrapper,
