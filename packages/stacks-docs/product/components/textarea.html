@@ -13,7 +13,7 @@ tags: components
 <div class="d-flex fd-column gy4">
     <label class="s-label" for="example-item">Question body</label>
     <div class="d-flex ps-relative">
-        <textarea class="s-textarea" id="example-item" placeholder="…"></textarea>
+        <textarea class="s-textarea w100" id="example-item" placeholder="…"></textarea>
     </div>
 </div>
 {% endhighlight %}
@@ -21,7 +21,7 @@ tags: components
             <div class="d-flex gy4 fd-column">
                 <label class="s-label" for="example-item7">Question body</label>
                 <div class="d-flex ps-relative">
-                    <textarea class="s-textarea ps-relative" id="example-item7" placeholder="e.g. The Stack Overflow glyph used to have 6 bars, but now…"></textarea>
+                    <textarea class="s-textarea ps-relative w100" id="example-item7" placeholder="e.g. The Stack Overflow glyph used to have 6 bars, but now…"></textarea>
                 </div>
             </div>
         </div>
@@ -51,15 +51,12 @@ tags: components
                 </tr>
             </thead>
             <tbody>
-                {% for item in inputs.textarea %}
-                    {% assign state = item.validation %}
-                    {% for class in state %}
+                {% for state in inputs.validation %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ class.class }}</code></th>
-                        <td>{{ class.applies }}</td>
-                        <td>{{ class.description }}</td>
+                        <th scope="row"><code class="stacks-code">{{ state.class }}</code></th>
+                        <td>Parent wrapper for textarea</td>
+                        <td>{{ state.description }}</td>
                     </tr>
-                    {% endfor %}
                 {% endfor %}
             </tbody>
         </table>
@@ -72,7 +69,7 @@ tags: components
 <div class="d-flex gy4 fd-column has-warning">
     <label class="s-label" for="example-warning">Description</label>
     <div class="d-flex ps-relative">
-        <textarea class="s-textarea" id="example-warning" placeholder="Please describe your problem"></textarea>
+        <textarea class="s-textarea w100" id="example-warning" placeholder="Please describe your problem"></textarea>
         @Svg.Alert.With("s-input-icon")
     </div>
     <p class="s-input-message mb0">Consider entering a description to help us better help you.</p>
@@ -82,7 +79,7 @@ tags: components
             <div class="d-flex gy4 fd-column has-warning">
                 <label class="s-label" for="example-warning">Description</label>
                 <div class="d-flex ps-relative">
-                    <textarea class="s-textarea" id="example-warning" placeholder="Please describe your problem"></textarea>
+                    <textarea class="s-textarea w100" id="example-warning" placeholder="Please describe your problem"></textarea>
                     {% icon "Alert", "s-input-icon" %}
                 </div>
                 <p class="s-input-message mb0">Consider entering a description to help us better help you.</p>
@@ -96,7 +93,7 @@ tags: components
 <div class="d-flex gy4 fd-column has-error">
     <label class="s-label" for="example-success">Description</label>
     <div class="d-flex ps-relative">
-        <textarea class="s-textarea" id="example-success" placeholder="Please describe your problem"></textarea>
+        <textarea class="s-textarea w100" id="example-success" placeholder="Please describe your problem"></textarea>
         @Svg.AlertCircle.With("s-input-icon")
     </div>
     <p class="s-input-message mb0">A description must be provided.</p>
@@ -106,7 +103,7 @@ tags: components
             <div class="d-flex gy4 fd-column has-error">
                 <label class="s-label" for="example-success1">Description</label>
                 <div class="d-flex ps-relative">
-                    <textarea class="s-textarea" id="example-success1" placeholder="Please describe your problem"></textarea>
+                    <textarea class="s-textarea w100" id="example-success1" placeholder="Please describe your problem"></textarea>
                     {% icon "AlertCircle", "s-input-icon" %}
                 </div>
                 <p class="s-input-message mb0">A description must be provided.</p>
@@ -120,7 +117,7 @@ tags: components
 <div class="d-flex gy4 fd-column has-success">
     <label class="s-label" for="example-success">Description</label>
     <div class="d-flex ps-relative">
-        <textarea class="s-textarea" id="example-success" placeholder="Please describe your problem">How do you know your company is ready for a design system? How do you implement one without too many pain points? How do you efficiently maintain one once it’s built?</textarea>
+        <textarea class="s-textarea w100" id="example-success" placeholder="Please describe your problem">How do you know your company is ready for a design system? How do you implement one without too many pain points? How do you efficiently maintain one once it’s built?</textarea>
         @Svg.Checkmark.With("s-input-icon")
     </div>
     <p class="s-input-message mb0">Thanks for providing a description.</p>
@@ -130,7 +127,7 @@ tags: components
             <div class="d-flex gy4 fd-column has-success">
                 <label class="s-label" for="example-success2">Description</label>
                 <div class="d-flex ps-relative">
-                    <textarea class="s-textarea" id="example-success2" placeholder="Please describe your problem">How do you know your company is ready for a design system? How do you implement one without too many pain points? How do you efficiently maintain one once it’s built?</textarea>
+                    <textarea class="s-textarea w100" id="example-success2" placeholder="Please describe your problem">How do you know your company is ready for a design system? How do you implement one without too many pain points? How do you efficiently maintain one once it’s built?</textarea>
                     {% icon "Check", "s-input-icon" %}
                 </div>
                 <p class="s-input-message mb0">Thanks for providing a description.</p>
@@ -161,7 +158,7 @@ tags: components
                         <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code class="stacks-code">.{{ item.class }}</code>{% endif %}</td>
                         <td>
                             <div class="d-flex ps-relative">
-                                <textarea class="s-textarea {% if item.class != 'N/A' %}{{ item.class }}{% endif %}" aria-label="demo textarea">Not sure what to ask? Recurring questions, onboarding procedures, local setups, and FAQs all make for useful questions.</textarea>
+                                <textarea class="s-textarea w100 {% if item.class != 'N/A' %}{{ item.class }}{% endif %}" aria-label="demo textarea">Not sure what to ask? Recurring questions, onboarding procedures, local setups, and FAQs all make for useful questions.</textarea>
                             </div>
                         </td>
                     </tr>

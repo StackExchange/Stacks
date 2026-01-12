@@ -1,0 +1,235 @@
+---
+layout: page
+title: Vote
+description: The vote component allows users to vote on the quality of content by casting an upvote or downvote.
+figma: https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=617-18830&p=f&t=u4su1MPgebbjmcfI-0
+svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-vote--docs
+tags: components
+---
+
+<!-- TODO SHINE add screen reader text for buttons -->
+<section class="stacks-section">
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell4" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Parent</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in vote.classes %}
+                    <tr>
+                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <td><code class="stacks-code">{{ item.applies }}</td>
+                        <td class="p8">{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="stacks-section">
+    {% header "h2", "Examples" %}
+    {% header "h3", "Base" %}
+    <p class="stacks-copy">
+        The base vote component includes an upvote button, a downvote button, and a vote count. When the vote count is zero and the current user has not voted, it should display <code class="stacks-code">Vote</code> in place of a number. Otherwise, show the vote count and truncate large numbers (e.g., 1.2k).
+    </p>
+
+    <div class="stacks-preview mb24">
+{% highlight html %}
+<div class="s-vote">
+    <button class="s-vote--btn">
+        @Svg.Vote16Up
+        <span class="v-visible-sr">upvote</span>
+    </button>
+    <span class="s-vote--votes">
+        <span class="s-vote--total">12</span>
+    </span>
+    <button class="s-vote--btn">
+        @Svg.Vote16Down
+        <span class="v-visible-sr">downvote</span>
+    </button>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d-flex ai-start fw-wrap g64">
+            {% for vote in vote.groups.base %}
+                <div class="d-flex fd-column ai-center g16">
+                    <code>{{ vote.description }}</code>
+                    <div class="s-vote">
+                        <button class="s-vote--btn">
+                            {% icon "Vote16Up" %}
+                            <span class="v-visible-sr">upvote</span>
+                        </button>
+                        <span class="s-vote--votes">
+                            <span class="s-vote--total">{{ vote.count }}</span>
+                        </span>
+                        <button class="s-vote--btn">
+                            {% icon "Vote16Down" %}
+                            <span class="v-visible-sr">downvote</span>
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% header "h3", "Expanded" %}
+    <p class="stacks-copy">
+        Include the <code class="stacks-code">.s-vote__expanded</code> modifier to show upvote and downvote counts instead of the total vote count. This modifier hides <code class="stacks-code">.s-vote--total</code> and shows <code class="stacks-code">.s-vote--upvotes</code> and <code class="stacks-code">.s-vote--downvotes</code> instead.
+    </p>
+
+    <div class="stacks-preview mb24">
+{% highlight html %}
+<div class="s-vote">
+    <button class="s-vote--btn">
+        @Svg.Vote16Up
+        <span class="v-visible-sr">upvote</span>
+    </button>
+    <button class="s-vote--votes">
+        <span class="s-vote--upvotes">12</span>
+        <span class="s-vote--total">20</span>
+        <span class="s-vote--downvotes">8</span>
+    </button>
+    <button class="s-vote--btn">
+        @Svg.Vote16Down
+        <span class="v-visible-sr">downvote</span>
+    </button>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d-flex ai-start fw-wrap g64">
+            {% for vote in vote.groups.expanded %}
+                <div class="d-flex fd-column ai-center g16">
+                    <div class="s-vote s-vote__expanded">
+                        <button class="s-vote--btn">
+                            {% icon "Vote16Up" %}
+                            <span class="v-visible-sr">upvote</span>
+                        </button>
+                        <span class="s-vote--votes">
+                            <span class="s-vote--upvotes">{{ vote.positive }}</span>
+                            <span class="s-vote--total">{{ vote.count }}</span>
+                            <span class="s-vote--downvotes">{{ vote.negative }}</span>
+                        </span>
+                        <button class="s-vote--btn">
+                            {% icon "Vote16Down" %}
+                            <span class="v-visible-sr">downvote</span>
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% header "h3", "Horizontal" %}
+    <p class="stacks-copy">
+        Apply the <code class="stacks-code">.s-vote__horizontal</code> modifier to arrange the vote buttons and counts in a horizontal layout. This layout does not officially support expanded vote count. This configuration is best suited for scenarios such as comment voting, where a more compact design is preferred.
+    </p>
+
+    <div class="stacks-preview mb24">
+{% highlight html %}
+<div class="s-vote s-vote__horizontal">
+    <button class="s-vote--btn">
+        @Svg.Vote16Up
+        <span class="v-visible-sr">upvote</span>
+        <span class="s-vote--votes">
+            <span class="s-vote--total">12</span>
+        </span>
+    </button>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d-flex ai-start fw-wrap g64">
+            {% for vote in vote.groups.horizontal %}
+                <div class="d-flex fd-column ai-center g16">
+                    {% if vote.description %}
+                        <code>{{ vote.description }}</code>
+                    {% endif %}
+                    <div class="s-vote s-vote__horizontal">
+                        <button class="s-vote--btn">
+                            {% icon "Vote16Up" %}
+                            <span class="v-visible-sr">upvote</span>
+                            <span class="s-vote--votes">
+                                <span class="s-vote--total">{{ vote.count }}</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    {% header "h3", "Voted" %}
+    <p class="stacks-copy">
+        Use filled vote icons to indicate when the current user has upvoted or downvoted the content.
+    </p>
+
+    <div class="stacks-preview mb24">
+{% highlight html %}
+<div class="s-vote s-vote__horizontal">
+    <button class="s-vote--btn">
+        @Svg.Vote16Up
+        <span class="v-visible-sr">upvote</span>
+    </button>
+    <span class="s-vote--votes">
+        <span class="s-vote--total">12</span>
+    </span>
+    <button class="s-vote--btn">
+        @Svg.Vote16Down
+        <span class="v-visible-sr">downvote</span>
+    </button>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d-flex ai-start fw-wrap g64">
+            {% for vote in vote.groups.voted %}
+                {% assign classList = "s-vote" %}
+                {% if vote.horizontal %}
+                    {% assign classList = classList | append: " s-vote__horizontal" %}
+                {% endif %}
+                <div class="d-flex fd-column ai-center g16">
+                    <code>{{ vote.description }}</code>
+                    <div class="{{ classList }}">
+                        {% if vote.downvote %}
+                            <button class="s-vote--btn">
+                                {% if vote.upvoted %}
+                                    {% icon "Vote16UpFill" %}
+                                    <span class="v-visible-sr">upvoted</span>
+                                {% else %}
+                                    {% icon "Vote16Up" %}
+                                    <span class="v-visible-sr">upvote</span>
+                                {% endif %}
+                            </button>
+                            <span class="s-vote--votes">
+                                <span class="s-vote--total">{{ vote.count }}</span>
+                            </span>
+                            <button class="s-vote--btn">
+                                {% if vote.downvoted %}
+                                    {% icon "Vote16DownFill" %}
+                                    <span class="v-visible-sr">downvoted</span>
+                                {% else %}
+                                    {% icon "Vote16Down" %}
+                                    <span class="v-visible-sr">downvote</span>
+                                {% endif %}
+                            </button>
+                        {% else %}
+                            <button class="s-vote--btn">
+                                {% if vote.upvoted %}
+                                    {% icon "Vote16UpFill" %}
+                                    <span class="v-visible-sr">upvoted</span>
+                                {% else %}
+                                    {% icon "Vote16Up" %}
+                                    <span class="v-visible-sr">upvote</span>
+                                {% endif %}
+                                <span class="s-vote--votes">
+                                    <span class="s-vote--total">{{ vote.count }}</span>
+                                </span>
+                            </button>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
