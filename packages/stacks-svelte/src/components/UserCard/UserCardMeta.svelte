@@ -1,9 +1,9 @@
 <script lang="ts">
     interface Props {
         /**
-         * Role text
+         * Job designation text
          */
-        role?: string;
+        designation?: string;
 
         /**
          * Location text
@@ -11,13 +11,13 @@
         location?: string;
     }
 
-    const { role, location }: Props = $props();
+    const { designation, location }: Props = $props();
 </script>
 
-{#if role || location}
+{#if designation || location}
     <ul class="s-user-card--group s-user-card--group__split">
-        {#if role}
-            <li>{role}</li>
+        {#if designation}
+            <li>{designation}</li>
         {/if}
         {#if location}
             <li>{location}</li>

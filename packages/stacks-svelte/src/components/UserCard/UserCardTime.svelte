@@ -1,38 +1,38 @@
 <script lang="ts">
     interface Props {
         /**
-         * Timestamp displayed in the user card generally used to indicate when a comment was posted
+         * Timestamp displayed in the user card generally used to indicate when a comment was posted UPDATE THIS
          */
-        timestamp?: string;
+        text?: string;
 
         /**
          * Tooltip text for the timestamp
          * @default "Show activity on this post"
          */
-        i18nTimestampTooltip?: string;
+        tooltipText?: string;
 
         /**
          * Link to post activity
          */
-        timestampHref?: string;
+        href?: string;
     }
 
     const {
-        timestamp,
-        i18nTimestampTooltip = "Show activity on this post",
-        timestampHref,
+        text,
+        tooltipText = "Show activity on this post",
+        href,
     }: Props = $props();
 </script>
 
-{#if timestamp}
+{#if text}
     <a
-        href={timestampHref}
+        {href}
         class="s-user-card--time"
-        title={i18nTimestampTooltip}
+        title={tooltipText}
         data-controller="s-tooltip"
     >
         <time>
-            {timestamp}
+            {text}
         </time>
     </a>
 {/if}

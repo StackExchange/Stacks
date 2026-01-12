@@ -2,38 +2,28 @@
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import { IconStarVerifiedSm } from "@stackoverflow/stacks-icons-legacy/icons";
     import UserCard, { type Size } from "./UserCard.svelte";
-    import UserCardBadges from "./UserCardBadges.svelte";
-    import UserCardAwards from "./UserCardAwards.svelte";
-    import UserCardRecognition from "./UserCardRecognition.svelte";
     import UserCardMeta from "./UserCardMeta.svelte";
-    import UserCardBio from "./UserCardBio.svelte";
-    import UserCardTimestamp from "./UserCardTimestamp.svelte";
+    import UserCardTime from "./UserCardTime.svelte";
+    import Badge, { type UserType } from "../Badge/Badge.svelte";
+    import Bling from "../Bling/Bling.svelte";
+    import Icon from "../Icon/Icon.svelte";
 
     const UserCardSizes: (Size | undefined)[] = [undefined, "sm", "lg"];
 
     const baseArgs = {
         avatar: "https://picsum.photos/128",
-        href: "#",
+        profileUrl: "#",
         name: "SofiaAlc",
-        timestamp: "asked 2 hr ago",
-        timestampHref: "#",
         reputation: "1,775",
-        gold: 12,
-        silver: 8,
-        bronze: 4,
     };
 
     const { Story } = defineMeta({
         title: "Components/UserCard",
         component: UserCard,
         subcomponents: {
-            // @ts-expect-error: subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
-            UserCardBadges,
-            UserCardAwards,
-            UserCardRecognition,
             UserCardMeta,
-            UserCardBio,
-            UserCardTimestamp,
+            // @ts-expect-error: subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
+            UserCardTime,
         },
         argTypes: {
             size: {
@@ -46,7 +36,30 @@
 
 <Story name="Base" args={baseArgs}>
     {#snippet template(args)}
-        <UserCard {...args} />
+        {#snippet time()}
+            <UserCardTime text="asked 2 hr ago" href="#" />
+        {/snippet}
+        {#snippet awards()}
+            <ul class="s-user-card--group">
+                <li class="s-user-card--rep">
+                    <Bling name="reputation bling" type="rep" size="sm" />
+                    {args.reputation}
+                </li>
+                <li>
+                    <Bling name="gold bling" type="gold" size="sm" />
+                    12
+                </li>
+                <li>
+                    <Bling name="silver bling" type="silver" size="sm" />
+                    8
+                </li>
+                <li>
+                    <Bling name="bronze bling" type="bronze" size="sm" />
+                    4
+                </li>
+            </ul>
+        {/snippet}
+        <UserCard {...args} {time} {awards} />
     {/snippet}
 </Story>
 
@@ -67,19 +80,46 @@
                             {badge}
                         </th>
                         <td class="va-middle px4">
-                            <UserCard
-                                {...baseArgs}
-                                admin={badge === "admin"}
-                                moderator={badge === "moderator"}
-                                staff={badge === "staff"}
-                            />
+                            {#snippet badges()}
+                                <div class="s-user-card--group">
+                                    <Badge
+                                        text={badge}
+                                        type="user"
+                                        userType={badge as UserType}
+                                        size="sm"
+                                    />
+                                </div>
+                            {/snippet}
+                            <UserCard {...baseArgs} {badges} />
                         </td>
                     </tr>
                 {/each}
                 <tr>
                     <th scope="row" class="va-middle"> all </th>
                     <td class="va-middle px4">
-                        <UserCard {...baseArgs} admin moderator staff />
+                        {#snippet badges()}
+                            <div class="s-user-card--group">
+                                <Badge
+                                    text="admin"
+                                    type="user"
+                                    userType="admin"
+                                    size="sm"
+                                />
+                                <Badge
+                                    text="moderator"
+                                    type="user"
+                                    userType="moderator"
+                                    size="sm"
+                                />
+                                <Badge
+                                    text="staff"
+                                    type="user"
+                                    userType="staff"
+                                    size="sm"
+                                />
+                            </div>
+                        {/snippet}
+                        <UserCard {...baseArgs} {badges} />
                     </td>
                 </tr>
             </tbody>
@@ -113,17 +153,40 @@
                 <tr>
                     <th scope="row" class="va-middle">lg (full example)</th>
                     <td class="va-middle px4">
+                        {#snippet badges()}
+                            <div class="s-user-card--group">
+                                <Badge
+                                    text="moderator"
+                                    type="user"
+                                    userType="moderator"
+                                    size="sm"
+                                />
+                            </div>
+                        {/snippet}
+                        {#snippet recognition()}
+                            <div
+                                class="s-user-card--row s-user-card--recognition"
+                            >
+                                <Icon src={IconStarVerifiedSm} />
+                                <span>Recognized by</span>
+                                <a href="#"> AudioBubble </a>
+                            </div>
+                        {/snippet}
+                        {#snippet bio()}
+                            <p class="s-user-card--bio">
+                                Developer who believes in clean code, clear
+                                coffee, and the occasional snake pun. Automating
+                                the boring stuff one script at a time.
+                            </p>
+                        {/snippet}
                         <UserCard
                             {...baseArgs}
                             size="lg"
-                            moderator
-                            recognition="Recognized by"
-                            recognitionHref="#"
-                            recognitionLinkText="AudioBubble"
-                            recognitionIcon={IconStarVerifiedSm}
-                            role="Senior Product Designer"
+                            {badges}
+                            {recognition}
+                            designation="Senior Product Designer"
                             location="Vancouver, Canada"
-                            bio="Developer who believes in clean code, clear coffee, and the occasional snake pun. Automating the boring stuff one script at a time."
+                            {bio}
                         />
                     </td>
                 </tr>
