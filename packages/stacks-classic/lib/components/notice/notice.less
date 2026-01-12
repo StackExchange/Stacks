@@ -164,8 +164,13 @@
             background-color: var(--_no-fc);
             color: var(--_no-bg);
         }
+    }
 
-        margin-left: calc(var(--su24) - var(--su2)); //22px
+    :has(button&--dismiss) {
+        //Add spacing between multiple notice actions
+        gap: calc(var(--su24) - var(--su2)); //22px
+        //Fix css issue caused by svelte-sonner-toast in the NoticeAction svelte component
+        word-wrap: initial !important;
     }
 
     // STYLES MODIFIED BY COMPONENT-SPECIFIC CUSTOM PROPERTIES

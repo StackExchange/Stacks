@@ -50,7 +50,7 @@
 
         const actionsSnip = actions
             ? createRawSnippet(() => ({
-                  render: () => "<span />",
+                  render: () => "<span class=\"d-none\" />", // d-none here hides the empty span we end up with which breaks css
                   setup: (target) => {
                       if (actions) {
                           // @ts-expect-error this is the only way I found to render a Snippet (in the context of a function)
