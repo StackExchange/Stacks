@@ -12,7 +12,6 @@
         avatar: "https://picsum.photos/128",
         profileUrl: "#",
         name: "SofiaAlc",
-        reputation: "1,775",
     };
 
     const { Story } = defineMeta({
@@ -41,7 +40,7 @@
             <ul class="s-user-card--group">
                 <li class="s-user-card--rep">
                     <Bling name="reputation bling" type="rep" size="sm" />
-                    {args.reputation}
+                    1,775
                 </li>
                 <li>
                     <Bling name="gold bling" type="gold" size="sm" />
