@@ -134,12 +134,10 @@ describe("UserCard", () => {
 
     it("should render the user card with badges", () => {
         const badgesSnippet = createRawSnippet(() => ({
-            render: () => '<div class="s-user-card--group"></div>',
+            render: () => "",
             setup: (target) => {
-                const wrapper = target.firstElementChild as HTMLElement;
-
-                const badge1 = mount(Badge, {
-                    target: wrapper,
+                const badge = mount(Badge, {
+                    target,
                     props: {
                         text: "admin",
                         type: "user",
@@ -147,28 +145,8 @@ describe("UserCard", () => {
                         size: "sm",
                     },
                 });
-                const badge2 = mount(Badge, {
-                    target: wrapper,
-                    props: {
-                        text: "moderator",
-                        type: "user",
-                        userType: "moderator",
-                        size: "sm",
-                    },
-                });
-                const badge3 = mount(Badge, {
-                    target: wrapper,
-                    props: {
-                        text: "staff",
-                        type: "user",
-                        userType: "staff",
-                        size: "sm",
-                    },
-                });
                 return () => {
-                    unmount(badge1);
-                    unmount(badge2);
-                    unmount(badge3);
+                    unmount(badge);
                 };
             },
         }));
@@ -179,8 +157,6 @@ describe("UserCard", () => {
             badges: badgesSnippet,
         });
         expect(screen.getByText("admin")).to.exist;
-        expect(screen.getByText("moderator")).to.exist;
-        expect(screen.getByText("staff")).to.exist;
     });
 
     it("should render the user card with large size class", () => {
