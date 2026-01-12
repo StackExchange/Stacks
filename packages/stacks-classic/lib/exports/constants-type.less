@@ -88,48 +88,30 @@
     Menlo, Monaco, Consolas, // A few sensible system font choices
     monospace; // The final fallback for rendering in monospace.
 
-html,
+html {
+    font-size: 100%;
+}
+
 body {
     --ff-sans: @ff-sans;
     --ff-serif: @ff-serif;
     --ff-mono: @ff-mono;
     --theme-body-font-family: var(--ff-sans);
 
-    //  ============================================================================
-    //  $   FONT SIZES (fs-)
-    //      Base font-size is 13px.
-    //  ----------------------------------------------------------------------------
-    --fs-fine:           12px;
-    --fs-caption:        13px;
-    --fs-body1:          14px;
-
-    //  Relative to the root element
-    --fs-body2:               1.143rem; // 16px
-    --fs-body3:               1.286rem; // 18px
-    --fs-subheading:          1.429rem; // 20px
-    --fs-title:               1.571rem; // 22px
-    --fs-headline1:           2rem;     // 28px
-    --fs-headline2:           2.571rem; // 36px
-    --fs-display1:            3.286rem; // 46px
-    --fs-display2:            4.143rem; // 58px
-    --fs-display3:            5.143rem; // 72px
-    --fs-display4:            7.143rem; // 100px
-
-    //  Relative to the parent
-    --fs-body2-relative:      1.143rem; // 16px
-    --fs-body3-relative:      1.286rem; // 18px
-    --fs-subheading-relative: 1.429rem; // 20px
-    --fs-title-relative:      1.571rem; // 22px
-    --fs-headline1-relative:  2rem;     // 28px
-    --fs-headline2-relative:  2.571rem; // 36px
-    --fs-display1-relative:   3.286rem; // 46px
-    --fs-display2-relative:   4.143rem; // 58px
-    --fs-display3-relative:   5.143rem; // 72px
-    --fs-display4-relative:   7.143rem; // 100px
-
-    // this value is not using spacing units because the calc involved results
-    // in unexpected sizing. I'm not sure why, honestly.
-    --fs-base: 14px;
+    // All rem values are relative to the font size applied to <html> (16px by default).
+    --fs-fine:          0.75rem;    // 12px
+    --fs-caption:       0.8125rem;  // 13px
+    --fs-body1:         0.875rem;   // 14px (base font size applied to <body>)
+    --fs-body2:         1rem;       // 16px
+    --fs-body3:         1.125rem;   // 18px
+    --fs-subheading:    1.25rem;    // 20px
+    --fs-title:         1.375rem;   // 22px
+    --fs-headline1:     1.75rem;    // 28px
+    --fs-headline2:     2.25rem;    // 36px
+    --fs-display1:      2.875rem;      // 46px
+    --fs-display2:      3.625rem;   // 58px
+    --fs-display3:      4.5rem;     // 72px
+    --fs-display4:      6.25rem;    // 100px
 
     //  ============================================================================
     //  $   LINE HEIGHT (lh-)
