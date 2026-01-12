@@ -655,10 +655,10 @@ tags: components
         <span class="s-avatar s-avatar__24">
             <img class="s-avatar--image" alt="…" src="…" />
         </span>
-        <span class="s-user-card--username s-user-card--new-contributor" data-s-tooltip-html-title="<a href='…' class='s-link s-link__underlined'>…</a> is a new contributor" data-controller="s-tooltip">…</span>
+        <span class="s-user-card--username s-user-card--new-contributor">…</span>
     </a>
     <div class="s-user-card--group">
-        <span class="s-badge s-badge__sm s-badge__new">New</span>
+        <span class="s-badge s-badge__sm s-badge__new" data-s-tooltip-html-title="<a href='…' class='s-link s-link__underlined'>…</a> is a new contributor to this site. Take care in asking for clarification, commenting, and answering. <a href='…' class='s-link s-link__underlined'>Check out our Code of Conduct</a>" data-controller="s-tooltip">New</span>
     </div>
     <ul class="s-user-card--group">
         <li class="s-user-card--rep">
@@ -702,12 +702,12 @@ tags: components
                                 <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/avatar-disgusted-24.svg" | url }}" />
                             {% endif %}
                         </span>
-                        <span class="s-user-card--username s-user-card--new-contributor" data-s-tooltip-html-title="<a href='#' class='s-link s-link__underlined'>{{ user.username }}</a> is a new contributor to this site. Take care in asking for clarification, commenting, and answering. <a href='#' class='s-link s-link__underlined'>Check out our Code of Conduct</a>" data-controller="s-tooltip">{{ user.username }}</span>
+                        <span class="s-user-card--username s-user-card--new-contributor">{{ user.username }}</span>
                     </a>
                     {% if user.badges %}
                         <div class="s-user-card--group">
                             {% for badge in user.badges %}
-                                <span class="s-badge s-badge__sm {{ badge.class }}">{{ badge.text }}</span>
+                                <span class="s-badge s-badge__sm {{ badge.class }}"{% if badge.class == 's-badge__new' %} data-s-tooltip-html-title="<a href='#' class='s-link s-link__underlined'>{{ user.username }}</a> is a new contributor to this site. Take care in asking for clarification, commenting, and answering. <a href='#' class='s-link s-link__underlined'>Check out our Code of Conduct</a>" data-controller="s-tooltip"{% endif %}>{{ badge.text }}</span>
                             {% endfor %}
                         </div>
                     {% endif %}
@@ -763,12 +763,12 @@ tags: components
     <div class="stacks-preview">
 {% highlight html %}
 <div class="s-user-card s-user-card__deleted">
-    <a class="s-user-card--group" href="…">
+    <div class="s-user-card--group">
         <span class="s-avatar s-avatar__24">
             <img class="s-avatar--image" alt="…" src="…" />
         </span>
         <span class="s-user-card--username">…</span>
-    </a>
+    </div>
     <a class="s-user-card--time" href="…" title="Show activity on this post" data-controller="s-tooltip">
         <time>…</time>
     </a>
@@ -777,7 +777,7 @@ tags: components
         <div class="stacks-preview--example d-flex fd-column g8">
             {% for user in user-card.deleted-user %}
                 <div class="s-user-card s-user-card__deleted{% if user.size == 'small' %} s-user-card__sm{% endif %}">
-                    <a class="s-user-card--group" href="#">
+                    <div class="s-user-card--group">
                         <span class="s-avatar{% if user.size != 'small' %} s-avatar__24{% endif %}">
                             {% if user.size == 'small' %}
                                 <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/avatar-deleted-16.svg" | url }}" />
@@ -786,7 +786,7 @@ tags: components
                             {% endif %}
                         </span>
                         <span class="s-user-card--username">{{ user.username }}</span>
-                    </a>
+                    </div>
                     {% if user.timestamp %}
                         <a class="s-user-card--time" href="#" title="Show activity on this post" data-controller="s-tooltip">
                             <time>{{ user.timestamp }}</time>
