@@ -166,7 +166,8 @@
         }
     }
 
-    :has(button&--dismiss) {
+    :has(>button&--dismiss) {
+        padding-left: var(--su24);
         //Add spacing between multiple notice actions
         gap: calc(var(--su24) - var(--su2)); //22px
         //Fix css issue caused by svelte-sonner-toast in the NoticeAction svelte component
@@ -183,7 +184,6 @@
 
     display: flex;
     align-items: center;
-    gap: var(--su4);
 
     --_no-pd: var(--su8);
     padding: var(--_no-pd) var(--su12) var(--_no-pd) 0;
@@ -192,7 +192,7 @@
         background: var(--_no-icon-bg);
         border: var(--su1) solid var(--_no-icon-bc, var(--_no-icon-bg));
         padding: var(--_no-pd);
-        margin-right: var(--_no-pd);
+        margin-right: var(--su12);
         align-self: stretch;
 
         //Position the svg icon
