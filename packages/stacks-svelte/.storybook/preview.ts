@@ -3,7 +3,11 @@ import "@stackoverflow/stacks/lib/stacks.less";
 
 const preview: Preview = {
     parameters: {
-        actions: { argTypesRegex: "^on[A-Z].*" },
+        //Don't inject event handlers to storybook code previews since
+        //there are no user controls for the user to interact with them.
+        //Fixes: https://github.com/storybook-eol/addon-smart-knobs/issues/63#issuecomment-995798227
+        actions: { argTypesRegex: null },
+
         controls: {
             matchers: {
                 color: /(background|color)$/i,

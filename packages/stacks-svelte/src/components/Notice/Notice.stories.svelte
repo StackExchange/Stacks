@@ -1,6 +1,4 @@
 <script lang="ts" module>
-    import { IconAlertFill } from "@stackoverflow/stacks-icons/icons";
-
     import Notice, { type Variant } from "./Notice.svelte";
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import NoticeAction from "./NoticeAction.svelte";
@@ -11,6 +9,8 @@
         "warning",
         "danger",
         "success",
+        "featured",
+        "activity",
     ];
 
     const titleCase = (str: string) => {
@@ -32,6 +32,9 @@
             role: {
                 control: "text",
             },
+            onDismiss: {
+                control: false,
+            },
         },
     });
 </script>
@@ -40,9 +43,26 @@
     I am a notice
 {/snippet}
 
+{#snippet dismissibleContent()}
+    I am a dismissible notice
+{/snippet}
+
 <Story name="Base">
     {#snippet template(args)}
-        <Notice {...args} children={content}></Notice>
+        <Notice {...args} children={content} />
+    {/snippet}
+</Story>
+
+<Story name="Dismissible">
+    {#snippet template(args)}
+        <Notice
+            {...args}
+            dismissible
+            onDismiss={() => {
+                alert("You clicked dismiss");
+            }}
+            children={dismissibleContent}
+        />
     {/snippet}
 </Story>
 
@@ -57,9 +77,9 @@
             <table class="s-table s-table__bx-simple wmx7">
                 <thead>
                     <tr>
-                        <th scope="col" class="s-table--cell2">Filled</th>
+                        <th scope="col" class="s-table--cell2">Base</th>
                         <th scope="col" class="s-table--cell2"
-                            >Filled important</th
+                            >Base important</th
                         >
                     </tr>
                 </thead>
@@ -69,7 +89,7 @@
                         {#each [false, true] as important (important)}
                             <td>
                                 <Notice {variant} {important}>
-                                    I am a notice
+                                    <span>I am a notice</span>
                                 </Notice>
                             </td>
                         {/each}
@@ -82,27 +102,14 @@
 
 <Story name="Actions" asChild>
     <Notice variant="info">
-        I am a notice with a Close Action
+        <span>I am a notice with a Custom Action</span>
         {#snippet actions()}
             <NoticeAction
-                type="close"
+                class="pr8"
                 onclick={() => {
-                    alert("You closed the notice");
-                }}
-            />,
+                    alert("You triggered a custom action");
+                }}>Click me</NoticeAction
+            >
         {/snippet}
-    </Notice>
-    <hr />
-    <Notice variant="info">
-        I am a notice with a Custom Action
-        {#snippet actions()}
-            <NoticeAction>Click me</NoticeAction>
-        {/snippet}
-    </Notice>
-</Story>
-
-<Story name="With Icon" asChild>
-    <Notice variant="danger" icon={IconAlertFill} iconTitle="Alert Icon">
-        I am a notice with an icon
     </Notice>
 </Story>
