@@ -1,12 +1,9 @@
 ---
 layout: page
 title: Height
-description: Stacks provides atomic sizing classes for heights using pixel, rem, and percentage values.
+description: Stacks provides atomic sizing classes for heights using pixel, rem, and percentage values. Most height classes are based on a 16px base font size and will scale based on the browser's font size.
 tags: base
 ---
-
-<!-- TODO add copy to explain the 16px base font size's relationship to the rem values -->
-<!-- TODO add a link to width.html -->
 <!-- Pixel height (.h) -->
 <section class="stacks-section">
     {% header "h2", "Pixel height" %}
@@ -17,17 +14,17 @@ tags: base
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th scope="col">Height class</th>
+                    <th class="s-table--cell3" scope="col">Class</th>
                     <th scope="col">Computed value</th>
                     <th scope="col">rem value</th>
-                    <th scope="col">Responsive?</th>
+                    <th class="s-table--cell2 ta-center" scope="col">Responsive?</th>
                 </tr>
             </thead>
             <tbody>
-                {% for size in atomics.width-height.px %}
+                {% for size in atomics.sizing.px %}
                     <tr class="ff-mono fs-caption">
                         <th scope="row"><code class="stacks-code">.h{{ size.px }}</code></th>
-                        <td class="p8">{{ size.px }}px;</td>
+                        <td class="p8">height: {{ size.px }}px;</td>
                         <td class="p8">{{ size.rem }}rem</td>
                         <td class="ta-center">
                             {% if size.responsive %}
@@ -57,7 +54,7 @@ tags: base
 <div class="h128">…</div>
 {% endhighlight %}
         <div class="stacks-preview--example d-flex fd-column g16 fs-caption ff-mono">
-            {% for size in atomics.width-height.px %}
+            {% for size in atomics.sizing.px %}
                 <div class="d-flex fd-column g4">
                     <div>.h{{ size.px }}</div>
                     <div class="h{{ size.px }} bg-black-225"></div>
@@ -78,17 +75,17 @@ tags: base
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th scope="col">Height class</th>
+                    <th class="s-table--cell3" scope="col">Class</th>
                     <th scope="col">Computed value</th>
                     <th scope="col">rem value</th>
-                    <th scope="col">Responsive?</th>
+                    <th class="s-table--cell2 ta-center" scope="col">Responsive?</th>
                 </tr>
             </thead>
             <tbody>
-                {% for size in atomics.width-height.sizing-units %}
+                {% for size in atomics.sizing.sizing-units %}
                     <tr class="ff-mono fs-caption">
                         <th scope="row"><code class="stacks-code">.hs{{ size.level }}</code></th>
-                        <td class="p8">{{ size.px }}px</td>
+                        <td class="p8">height: {{ size.px }}px;</td>
                         <td class="p8">{{ size.rem }}rem</td>
                         <td class="ta-center">
                             {% if size.responsive %}
@@ -119,7 +116,7 @@ tags: base
 {% endhighlight %}
         <div class="stacks-preview--example d-flex g4 hmx6 fs-caption ff-mono overflow-auto">
             <div class="d-flex g6 hs12 w100 overflow-x-auto">
-                {% for size in atomics.width-height.sizing-units %}
+                {% for size in atomics.sizing.sizing-units %}
                     <div class="hs{{ size.level }} ai-start bg-black-200 ba bc-black-225 d-flex fl-shrink0 w48 p6" style="min-width: calc(100% / 12 - 6px);">
                         <div>.hs{{ size.level }}</div>
                     </div>
@@ -129,18 +126,18 @@ tags: base
     </div>
 </section>
 
-<!-- Other height classes (.h) -->
+<!-- Fluid height classes (.h) -->
 <section class="stacks-section">
-    {% header "h2", "Other height classes" %}
+    {% header "h2", "Fluid height" %}
     <!-- TODO SPARK: Update this copy -->
-    <p class="stacks-copy">Other height classes are…</p>
+    <p class="stacks-copy">Fluid height classes are…</p>
 
-    {% header "h3", "Other height classes" %}
+    {% header "h3", "Fluid height classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn3 s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Class</th>
                     <th scope="col">Value</th>
                     <th scope="col" class="s-table--cell2 ta-center">Responsive?</th>
                 </tr>
@@ -171,7 +168,7 @@ tags: base
         </table>
     </div>
 
-    {% header "h3", "Other height examples" %}
+    {% header "h3", "Fluid height examples" %}
     <div class="stacks-preview">
 {% highlight html %}
 <div class="h100">…</div>
@@ -188,5 +185,128 @@ tags: base
     </div>
 </section>
 
-<!-- TODO max height class -->
-<!-- TODO min height class -->
+<!-- Min height classes (.hmn) -->
+<section class="stacks-section">
+    {% header "h2", "Min height" %}
+    <!-- TODO SPARK: Update this copy -->
+    <p class="stacks-copy">Min height classes are…</p>
+
+    {% header "h3", "Min height classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th scope="col">Computed value</th>
+                    <th scope="col">rem value</th>
+                    <th class="s-table--cell2 ta-center" scope="col">Responsive?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="ff-mono fs-caption">
+                    <th scope="row"><code class="stacks-code">.hmn0</code></th>
+                    <td class="p8">min-height: 0;</td>
+                    <td class="p8">-</td>
+                    <td class="ta-center">
+                        {% icon "Checkmark", "fc-green-400" %}
+                    </td>
+                </tr>
+                {% for size in atomics.sizing.sizing-units %}
+                    <tr class="ff-mono fs-caption">
+                        <th scope="row"><code class="stacks-code">.hmn{{ size.level }}</code></th>
+                        <td class="p8">min-height: {{ size.px }}px;</td>
+                        <td class="p8">{{ size.rem }}rem</td>
+                        <td class="ta-center">
+                            {% if size.responsive %}
+                                {% icon "Checkmark", "fc-green-400" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr class="ff-mono fs-caption">
+                    <th scope="row"><code class="stacks-code">.hmn100</code></th>
+                    <td class="p8">min-height: 100%;</td>
+                    <td class="p8">-</td>
+                    <td class="ta-center">
+                        {% icon "Checkmark", "fc-green-400" %}
+                    </td>
+                </tr>
+                <tr class="ff-mono fs-caption">
+                    <th scope="row"><code class="stacks-code">.hmn-screen</code></th>
+                    <td class="p8">min-height: 100vh;</td>
+                    <td class="p8">-</td>
+                    <td class="ta-center">
+                        {% icon "Checkmark", "fc-green-400" %}
+                    </td>
+                </tr>
+                <tr class="ff-mono fs-caption">
+                    <th scope="row"><code class="stacks-code">.hmn-initial</code></th>
+                    <td class="p8">min-height: initial;</td>
+                    <td class="p8">-</td>
+                    <td class="ta-center">
+                        {% icon "Checkmark", "fc-green-400" %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Max height classes (.hmx) -->
+<section class="stacks-section">
+    {% header "h2", "Max height" %}
+    <!-- TODO SPARK: Update this copy -->
+    <p class="stacks-copy">Max height classes are…</p>
+
+    {% header "h3", "Max height classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell3" scope="col">Class</th>
+                    <th scope="col">Computed value</th>
+                    <th scope="col">rem value</th>
+                    <th class="s-table--cell2 ta-center" scope="col">Responsive?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for size in atomics.sizing.sizing-units %}
+                    <tr class="ff-mono fs-caption">
+                        <th scope="row"><code class="stacks-code">.hmx{{ size.level }}</code></th>
+                        <td class="p8">max-height: {{ size.px }}px;</td>
+                        <td class="p8">{{ size.rem }}rem</td>
+                        <td class="ta-center">
+                            {% if size.responsive %}
+                                {% icon "Checkmark", "fc-green-400" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr class="ff-mono fs-caption">
+                    <th scope="row"><code class="stacks-code">.hmx100</code></th>
+                    <td class="p8">max-height: 100%;</td>
+                    <td class="p8">-</td>
+                    <td class="ta-center">
+                        {% icon "Checkmark", "fc-green-400" %}
+                    </td>
+                </tr>
+                <tr class="ff-mono fs-caption">
+                    <th scope="row"><code class="stacks-code">.hmx-screen</code></th>
+                    <td class="p8">max-height: 100vh;</td>
+                    <td class="p8">-</td>
+                    <td class="ta-center">
+                        {% icon "Checkmark", "fc-green-400" %}
+                    </td>
+                </tr>
+                <tr class="ff-mono fs-caption">
+                    <th scope="row"><code class="stacks-code">.hmx-initial</code></th>
+                    <td class="p8">max-height: initial;</td>
+                    <td class="p8">-</td>
+                    <td class="ta-center">
+                        {% icon "Checkmark", "fc-green-400" %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
