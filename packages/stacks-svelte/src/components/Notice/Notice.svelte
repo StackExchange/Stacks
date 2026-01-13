@@ -172,7 +172,7 @@
         </span>
         {@render children()}
         {#if actions || dismissible}
-            <div class="d-flex ml-auto">
+            <div class="s-notice--actions">
                 {#if actions}
                     {@render actions()}
                 {/if}

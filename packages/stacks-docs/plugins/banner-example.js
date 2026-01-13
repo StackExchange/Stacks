@@ -33,12 +33,12 @@ module.exports = {
           classes += " s-banner__important";
         }
 
-        return `<aside class="s-banner d-flex is-pinned ps-relative ${classes} ${getTypeClass()}" role="presentation" aria-hidden="false" style="z-index: 1;">
+        return `<aside class="s-banner is-pinned ps-relative ${classes} ${getTypeClass()}" role="presentation" aria-hidden="false" style="z-index: 1;">
             <span class="s-banner--icon">${typeIcon}</span>
             <span>
                 <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
             </span>
-            <div class="d-flex ml-auto">
+            <div class="s-banner--actions">
               <button class="s-link s-banner--dismiss">${btnIcon}</button>
             </div>
     </aside>`;
