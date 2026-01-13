@@ -164,23 +164,14 @@
             background-color: var(--_no-fc);
             color: var(--_no-bg);
         }
-
-        margin-left: calc(var(--su24) - var(--su2)); //22px
-        color: var(--_no-fc);
     }
 
-    // STYLES SHARED BY BOTH s-notice AND s-banner
-    display: flex;
-    align-items: center;
-
-    --_no-pd: var(--su8);
-    padding: var(--_no-pd) var(--su12) var(--_no-pd) 0;
-
-    &--icon {
-        //Position the svg icon
-        display: flex;
-        align-items: top;
-        align-self: stretch;
+    :has(>button&--dismiss) {
+        padding-left: var(--su24);
+        //Add spacing between multiple notice actions
+        gap: calc(var(--su24) - var(--su2)); //22px
+        //Fix css issue caused by svelte-sonner-toast in the NoticeAction svelte component
+        word-wrap: initial !important;
     }
 
     // STYLES MODIFIED BY COMPONENT-SPECIFIC CUSTOM PROPERTIES
@@ -191,15 +182,17 @@
 .s-notice {
     .construct-notice-component(s-notice);
 
+    display: flex;
+    align-items: center;
+
     --_no-pd: var(--su8);
     padding: var(--_no-pd) var(--su12) var(--_no-pd) 0;
-    gap: var(--su4);
 
     &--icon {
         background: var(--_no-icon-bg);
         border: var(--su1) solid var(--_no-icon-bc, var(--_no-icon-bg));
         padding: var(--_no-pd);
-        margin-right: var(--_no-pd);
+        margin-right: var(--su12);
         align-self: stretch;
 
         //Position the svg icon
