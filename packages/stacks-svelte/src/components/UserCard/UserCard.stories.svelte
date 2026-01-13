@@ -2,8 +2,8 @@
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import UserCard, { type Size } from "./UserCard.svelte";
     import UserCardTime from "./UserCardTime.svelte";
-    import Badge, { type UserType } from "../Badge/Badge.svelte";
-    import Bling from "../Bling/Bling.svelte";
+    import UserCardBadge from "./UserCardBadge.svelte";
+    import UserCardBling from "./UserCardBling.svelte";
 
     const UserCardSizes: (Size | undefined)[] = [undefined, "sm", "lg"];
 
@@ -19,6 +19,10 @@
         subcomponents: {
             // @ts-expect-error: subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
             UserCardTime,
+            // @ts-expect-error: subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
+            UserCardBadge,
+            // @ts-expect-error: subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
+            UserCardBling,
         },
         argTypes: {
             size: {
@@ -32,27 +36,17 @@
 <Story name="Base" args={baseArgs}>
     {#snippet template(args)}
         {#snippet time()}
-            <UserCardTime text="asked 2 hr ago" href="#" />
+            <UserCardTime
+                text="asked 2 hr ago"
+                href="#"
+                preciseTimestamp="2026-01-09 12:15:39Z"
+            />
         {/snippet}
         {#snippet blings()}
-            <ul class="s-user-card--group">
-                <li class="s-user-card--rep">
-                    <Bling name="reputation bling" type="rep" size="sm" />
-                    1,775
-                </li>
-                <li>
-                    <Bling name="gold bling" type="gold" size="sm" />
-                    12
-                </li>
-                <li>
-                    <Bling name="silver bling" type="silver" size="sm" />
-                    8
-                </li>
-                <li>
-                    <Bling name="bronze bling" type="bronze" size="sm" />
-                    4
-                </li>
-            </ul>
+            <UserCardBling name="reputation bling" type="rep" text="1,775" />
+            <UserCardBling name="gold bling" type="gold" text={12} />
+            <UserCardBling name="silver bling" type="silver" text={8} />
+            <UserCardBling name="bronze bling" type="bronze" text={4} />
         {/snippet}
         <UserCard {...args} {time} {blings} />
     {/snippet}
@@ -76,14 +70,12 @@
                         </th>
                         <td class="va-middle px4">
                             {#snippet badges()}
-                                <div class="s-user-card--group">
-                                    <Badge
-                                        text={badge}
-                                        type="user"
-                                        userType={badge as UserType}
-                                        size="sm"
-                                    />
-                                </div>
+                                <UserCardBadge
+                                    type={badge as
+                                        | "admin"
+                                        | "moderator"
+                                        | "staff"}
+                                />
                             {/snippet}
                             <UserCard {...baseArgs} {badges} />
                         </td>
@@ -93,26 +85,9 @@
                     <th scope="row" class="va-middle"> all </th>
                     <td class="va-middle px4">
                         {#snippet badges()}
-                            <div class="s-user-card--group">
-                                <Badge
-                                    text="admin"
-                                    type="user"
-                                    userType="admin"
-                                    size="sm"
-                                />
-                                <Badge
-                                    text="moderator"
-                                    type="user"
-                                    userType="moderator"
-                                    size="sm"
-                                />
-                                <Badge
-                                    text="staff"
-                                    type="user"
-                                    userType="staff"
-                                    size="sm"
-                                />
-                            </div>
+                            <UserCardBadge type="admin" />
+                            <UserCardBadge type="moderator" />
+                            <UserCardBadge type="staff" />
                         {/snippet}
                         <UserCard {...baseArgs} {badges} />
                     </td>
@@ -149,14 +124,7 @@
                     <th scope="row" class="va-middle">lg (full example)</th>
                     <td class="va-middle px4">
                         {#snippet badges()}
-                            <div class="s-user-card--group">
-                                <Badge
-                                    text="moderator"
-                                    type="user"
-                                    userType="moderator"
-                                    size="sm"
-                                />
-                            </div>
+                            <UserCardBadge type="moderator" />
                         {/snippet}
                         {#snippet recognition()}
                             <span>Recognized by</span>

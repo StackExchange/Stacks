@@ -141,10 +141,14 @@
     {#if size !== "lg"}
         {@render avatarAndName()}
         {#if badges}
-            {@render badges()}
+            <ul class="s-user-card--group">
+                {@render badges()}
+            </ul>
         {/if}
         {#if blings}
-            {@render blings()}
+            <ul class="s-user-card--group">
+                {@render blings()}
+            </ul>
         {/if}
         {#if time}
             {@render time()}
@@ -171,11 +175,15 @@
                         </svelte:element>
                     {/if}
                     {#if badges}
-                        {@render badges()}
+                        <ul class="s-user-card--group">
+                            {@render badges()}
+                        </ul>
                     {/if}
                 </div>
                 {#if blings}
-                    {@render blings()}
+                    <ul class="s-user-card--group">
+                        {@render blings()}
+                    </ul>
                 {/if}
             </div>
         </div>
