@@ -116,6 +116,11 @@ The menu component has been updated to use new class names and structure. The fo
 - New `.s-navigation--icon` class to style icons alongside navigation items
 - New `.s-navigation--avatar` class to style avatars alongside navigation items
 
+#### Notices
+- Markup has been been updated
+- New `.s-notice--icon` class to style the new notice icons
+- New `.s-notice--dismiss` class to style the optional dismiss button
+
 #### Pagination
 - The next and previous button now uses an `ArrowRight` and `ArrowLeft` icon instead of text. To apply the new styling, use the class `.s-pagination--item__nav`. Since these buttons use icons to represent their behavior, make sure to include descriptive text for screen readers.
 
