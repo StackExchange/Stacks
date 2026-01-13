@@ -10,7 +10,7 @@
     import Link from "../Link/Link.svelte";
     import UserCard from "../UserCard/UserCard.svelte";
     import UserCardTime from "../UserCard/UserCardTime.svelte";
-    import Bling from "../Bling/Bling.svelte";
+    import UserCardBling from "../UserCard/UserCardBling.svelte";
 
     /**
      * A brief excerpt of the answer
@@ -99,12 +99,11 @@
         {/snippet}
         {#snippet blings()}
             {#if userReputation}
-                <ul class="s-user-card--group">
-                    <li class="s-user-card--rep">
-                        <Bling name="reputation bling" type="rep" size="sm" />
-                        {userReputation}
-                    </li>
-                </ul>
+                <UserCardBling
+                    name="reputation bling"
+                    type="rep"
+                    text={userReputation}
+                />
             {/if}
         {/snippet}
         <UserCard
