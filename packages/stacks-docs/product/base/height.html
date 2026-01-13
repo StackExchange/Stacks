@@ -1,0 +1,192 @@
+---
+layout: page
+title: Height
+description: Stacks provides atomic sizing classes for heights using pixel, rem, and percentage values.
+tags: base
+---
+
+<!-- TODO add copy to explain the 16px base font size's relationship to the rem values -->
+<!-- TODO add a link to width.html -->
+<!-- Pixel height (.h) -->
+<section class="stacks-section">
+    {% header "h2", "Pixel height" %}
+    <p class="stacks-copy">Pixel height is…</p>
+
+    {% header "h3", "Pixel height classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Height class</th>
+                    <th scope="col">Computed value</th>
+                    <th scope="col">rem value</th>
+                    <th scope="col">Responsive?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for size in atomics.width-height.px %}
+                    <tr class="ff-mono fs-caption">
+                        <th scope="row"><code class="stacks-code">.h{{ size.px }}</code></th>
+                        <td class="p8">{{ size.px }}px;</td>
+                        <td class="p8">{{ size.rem }}rem</td>
+                        <td class="ta-center">
+                            {% if size.responsive %}
+                                {% icon "Checkmark", "fc-green-400" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Base height examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="h2">…</div>
+<div class="h4">…</div>
+<div class="h6">…</div>
+<div class="h8">…</div>
+<div class="h12">…</div>
+<div class="h16">…</div>
+<div class="h24">…</div>
+<div class="h32">…</div>
+<div class="h48">…</div>
+<div class="h64">…</div>
+<div class="h96">…</div>
+<div class="h128">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d-flex fd-column g16 fs-caption ff-mono">
+            {% for size in atomics.width-height.px %}
+                <div class="d-flex fd-column g4">
+                    <div>.h{{ size.px }}</div>
+                    <div class="h{{ size.px }} bg-black-225"></div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Sizing units height (.hs) -->
+<section class="stacks-section">
+    {% header "h2", "Sizing units height" %}
+    <!-- TODO SPARK: Update this copy -->
+    <p class="stacks-copy">Sizing units height classes are…</p>
+
+    {% header "h3", "Sizing units height classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Height class</th>
+                    <th scope="col">Computed value</th>
+                    <th scope="col">rem value</th>
+                    <th scope="col">Responsive?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for size in atomics.width-height.sizing-units %}
+                    <tr class="ff-mono fs-caption">
+                        <th scope="row"><code class="stacks-code">.hs{{ size.level }}</code></th>
+                        <td class="p8">{{ size.px }}px</td>
+                        <td class="p8">{{ size.rem }}rem</td>
+                        <td class="ta-center">
+                            {% if size.responsive %}
+                                {% icon "Checkmark", "fc-green-400" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Sizing units height examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="hs1">…</div>
+<div class="hs2">…</div>
+<div class="hs3">…</div>
+<div class="hs4">…</div>
+<div class="hs5">…</div>
+<div class="hs6">…</div>
+<div class="hs7">…</div>
+<div class="hs8">…</div>
+<div class="hs9">…</div>
+<div class="hs10">…</div>
+<div class="hs11">…</div>
+<div class="hs12">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d-flex g4 hmx6 fs-caption ff-mono overflow-auto">
+            <div class="d-flex g6 hs12 w100 overflow-x-auto">
+                {% for size in atomics.width-height.sizing-units %}
+                    <div class="hs{{ size.level }} ai-start bg-black-200 ba bc-black-225 d-flex fl-shrink0 w48 p6" style="min-width: calc(100% / 12 - 6px);">
+                        <div>.hs{{ size.level }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Other height classes (.h) -->
+<section class="stacks-section">
+    {% header "h2", "Other height classes" %}
+    <!-- TODO SPARK: Update this copy -->
+    <p class="stacks-copy">Other height classes are…</p>
+
+    {% header "h3", "Other height classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Value</th>
+                    <th scope="col" class="s-table--cell2 ta-center">Responsive?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="ff-mono fs-caption">
+                    <th scope="row"><code class="stacks-code">.h100</code></th>
+                    <td class="p8">height: 100%;</td>
+                    <td class="ta-center">
+                        {% icon "Checkmark", "fc-green-400" %}
+                    </td>
+                </tr>
+                <tr class="ff-mono fs-caption">
+                    <th scope="row"><code class="stacks-code">.h-screen</code></th>
+                    <td class="p8">height: 100vh;</td>
+                    <td class="ta-center">
+                        {% icon "Checkmark", "fc-green-400" %}
+                    </td>
+                </tr>
+                <tr class="ff-mono fs-caption">
+                    <th scope="row"><code class="stacks-code">.h-auto</code></th>
+                    <td class="p8">height: auto;</td>
+                    <td class="ta-center">
+                        {% icon "Checkmark", "fc-green-400" %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Other height examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="h100">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example fs-caption ff-mono hmx6 overflow-auto">
+            <div class="d-flex fd-column g4">
+                <div class="d-flex bg-black-100 ba bc-black-200 hs2 fs-caption ff-mono p6">
+                    <div class="h100 bg-black-200 br bc-black-225 p8 ws2">
+                        .h100
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TODO max height class -->
+<!-- TODO min height class -->

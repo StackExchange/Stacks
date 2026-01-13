@@ -1,0 +1,206 @@
+---
+layout: page
+title: Width
+description: Stacks provides atomic sizing classes for widths using pixel, rem, and percentage values.
+tags: base
+---
+
+<!-- TODO add copy to explain the 16px base font size's relationship to the rem values -->
+<!-- TODO add a link to height.html -->
+<!-- Pixel width (.w) -->
+<section class="stacks-section">
+    {% header "h2", "Pixel width" %}
+    <!-- TODO SPARK: Update this copy -->
+    <p class="stacks-copy">Pixel width classes are…</p>
+
+    {% header "h3", "Pixel width classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Width class</th>
+                    <th scope="col">Computed value</th>
+                    <th scope="col">rem value</th>
+                    <th scope="col">Responsive?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for size in atomics.width-height.px %}
+                    <tr class="ff-mono fs-caption">
+                        <th scope="row"><code class="stacks-code">.w{{ size.px }}</code></th>
+                        <td class="p8">{{ size.px }}px</td>
+                        <td class="p8">{{ size.rem }}rem</td>
+                        <td class="ta-center">
+                            {% if size.responsive %}
+                                {% icon "Checkmark", "fc-green-400" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Pixel width examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="w2">…</div>
+<div class="w4">…</div>
+<div class="w6">…</div>
+<div class="w8">…</div>
+<div class="w12">…</div>
+<div class="w16">…</div>
+<div class="w24">…</div>
+<div class="w32">…</div>
+<div class="w48">…</div>
+<div class="w64">…</div>
+<div class="w96">…</div>
+<div class="w128">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d-flex g8 fd-column fs-caption ff-mono">
+            {% for size in atomics.width-height.px %}
+                <div class="d-grid grid__12 g4">
+                    <div class="grid--col1">.w{{ size.px }}</div>
+                    <div class="w{{ size.px }} bg-black-200 h24 {% if size.px == 0 %}{% else %} ba bc-black-225{% endif %}"></div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Sizing units width (.ws) -->
+<section class="stacks-section">
+    {% header "h2", "Sizing units width" %}
+    <!-- TODO SPARK: Update this copy -->
+    <p class="stacks-copy">Sizing units width classes are…</p>
+
+    {% header "h3", "Sizing units width classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Width class</th>
+                    <th scope="col">Computed value</th>
+                    <th scope="col">rem value</th>
+                    <th scope="col">Responsive?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for size in atomics.width-height.sizing-units %}
+                    <tr class="ff-mono fs-caption">
+                        <th scope="row"><code class="stacks-code">.ws{{ size.level }}</code></th>
+                        <td class="p8">{{ size.px }}px</td>
+                        <td class="p8">{{ size.rem }}rem</td>
+                        <td class="ta-center">
+                            {% if size.responsive %}
+                                {% icon "Checkmark", "fc-green-400" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Sizing units width examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="ws1">…</div>
+<div class="ws2">…</div>
+<div class="ws3">…</div>
+<div class="ws4">…</div>
+<div class="ws5">…</div>
+<div class="ws6">…</div>
+<div class="ws7">…</div>
+<div class="ws8">…</div>
+<div class="ws9">…</div>
+<div class="ws10">…</div>
+<div class="ws11">…</div>
+<div class="ws12">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d-flex g4 fd-column fs-caption ff-mono overflow-x-auto">
+            {% for size in atomics.width-height.sizing-units %}
+                <div class="ws{{ size.level }} ai-center bg-black-200 ba bc-black-225 d-flex h48 p6">
+                    <div>.ws{{ size.level }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Percentage width (.w) -->
+<section class="stacks-section">
+    {% header "h2", "Percentage width" %}
+    <!-- TODO SPARK: Update this copy -->
+    <p class="stacks-copy">Percentage width is…</p>
+
+    {% header "h3", "Percentage width classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn3 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Value</th>
+                    <th scope="col" class="s-table--cell2 ta-center">Responsive?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for size in atomics.width-height.percent %}
+                    <tr class="ff-mono fs-caption">
+                        <th scope="row"><code class="stacks-code">.w{{ size.percentage }}</code></th>
+                        <td class="p8">width: {{ size.percentage }}%</td>
+                        <td class="ta-center">
+                            {% if size.responsive %}
+                                {% icon "Checkmark", "fc-green-400" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr class="ff-mono fs-caption">
+                    <th scope="row"><code class="stacks-code">.h100</code></th>
+                    <td class="p8">height: 100%;</td>
+                    <td class="ta-center">
+                        {% icon "Checkmark", "fc-green-400" %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h3", "Percentage width examples" %}
+    <div class="stacks-preview">
+{% highlight html %}
+<div class="w10">…</div>
+<div class="w20">…</div>
+<div class="w25">…</div>
+<div class="w30">…</div>
+<div class="w33">…</div>
+<div class="w40">…</div>
+<div class="w50">…</div>
+<div class="w60">…</div>
+<div class="w66">…</div>
+<div class="w70">…</div>
+<div class="w75">…</div>
+<div class="w80">…</div>
+<div class="w90">…</div>
+<div class="w100">…</div>
+{% endhighlight %}
+        <div class="stacks-preview--example fs-caption ff-mono">
+            <div class="d-flex fd-column g4">
+                {% for size in atomics.width-height.percent %}
+                    <div class="ba bc-black-225 bg-black-100">
+                        <div class="w{{ size.percentage }} ai-center bg-black-200 br bc-black-225 d-flex h24 p6">
+                            <div>.w{{ size.percentage }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TODO viewport width classes (wh) -->
+<!-- TODO auto width classes -->
+
+<!-- TODO max width classes -->
+<!-- TODO min width classes -->
