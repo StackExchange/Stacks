@@ -310,6 +310,21 @@
     );
 }
 
+
+/**
+ * Generate atomic sizing classes using predefined SU (spacing unit) values.
+ *
+ * Generates 12 utility classes (numbered 1-12) that map to specific SU values:
+ * 128, 256, 344, 448, 512, 640, 768, 848, 960, 1024, 1120, 1280.
+ *
+ * Usage example:
+ * .generate-su-sizing('.ws', width);
+ * .generate-su-sizing('.hs', height);
+ * .generate-su-sizing('.wmn', min-width);
+ *
+ * @param {string} prefix - Class prefix to generate (e.g. `.ws`, `.hs`, `.wmn`).
+ * @param {string} property - CSS property to set (e.g. `width`, `height`, `min-width`).
+ */
 .generate-su-sizing(@prefix, @property) {
     @su-values: 128, 256, 344, 448, 512, 640, 768, 848, 960, 1024, 1120, 1280;
     #stacks-internals #build-classes(
