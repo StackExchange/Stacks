@@ -3,39 +3,50 @@
 
 @px-values: 0 1 2 4 6 8 12 16 24 32 48 64 96 128;
 @px-values-negative: 1 2 4 6 8 12 16 24 32 48 64 96 128;
-@percent-values: 50% 100%;
+@percent-values: 50 100;
 
 // MARGIN
-//  Margin
 .m-auto { margin: auto !important; }
 .generate-sizing('.m', margin, @px-values, 'px', true);
+.generate-sizing('.mn', margin, @px-values-negative, 'px', true, true);
 .generate-sizing('.m', margin, @percent-values, 'percent', true);
+.generate-sizing('.mn', margin, @percent-values, 'percent', true, true);
 
 //  Margin top
 .mt-auto { margin-top: auto !important; }
 .generate-sizing('.mt', margin-top, @px-values, 'px', true);
+.generate-sizing('.mtn', margin-top, @px-values-negative, 'px', true, true);
 .generate-sizing('.mt', margin-top, @percent-values, 'percent', true);
+.generate-sizing('.mtn', margin-top, @percent-values, 'percent', true, true);
 
 //  Margin right
 .mr-auto { margin-right: auto !important; }
 .generate-sizing('.mr', margin-right, @px-values, 'px', true);
+.generate-sizing('.mrn', margin-right, @px-values-negative, 'px', true, true);
 .generate-sizing('.mr', margin-right, @percent-values, 'percent', true);
+.generate-sizing('.mrn', margin-right, @percent-values, 'percent', true, true);
 
 //  Margin bottom
 .mb-auto { margin-bottom: auto !important; }
 .generate-sizing('.mb', margin-bottom, @px-values, 'px', true);
+.generate-sizing('.mbn', margin-bottom, @px-values-negative, 'px', true, true);
 .generate-sizing('.mb', margin-bottom, @percent-values, 'percent', true);
+.generate-sizing('.mbn', margin-bottom, @percent-values, 'percent', true, true);
 
 //  Margin left
 .ml-auto { margin-left: auto !important; }
 .generate-sizing('.ml', margin-left, @px-values, 'px', true);
+.generate-sizing('.mln', margin-left, @px-values-negative, 'px', true, true);
 .generate-sizing('.ml', margin-left, @percent-values, 'percent', true);
+.generate-sizing('.mln', margin-left, @percent-values, 'percent', true, true);
 
 //  Margin x-axis, y-axis
 .mx-auto { margin-left: auto !important; margin-right: auto !important; }
 .my-auto { margin-top: auto !important; margin-bottom: auto !important; }
-.generate-sizing('.mx', margin-left, margin-right; @px-values; 'px', true);
-.generate-sizing('.my'; margin-top, margin-bottom; @px-values; 'px', true);
+.generate-sizing('.mx'; margin-left, margin-right; @px-values; 'px'; true);
+.generate-sizing('.mxn'; margin-left, margin-right; @px-values-negative; 'px'; true; true);
+.generate-sizing('.my'; margin-top, margin-bottom; @px-values; 'px'; true);
+.generate-sizing('.myn'; margin-top, margin-bottom; @px-values-negative; 'px'; true; true);
 
 // PADDING
 .generate-sizing('.p', padding, @px-values, 'px');
@@ -43,5 +54,5 @@
 .generate-sizing('.pr', padding-right, @px-values, 'px');
 .generate-sizing('.pb', padding-bottom, @px-values, 'px');
 .generate-sizing('.pl', padding-left, @px-values, 'px');
-.generate-sizing('.px'; padding-left, padding-right; @px-values, 'px');
-.generate-sizing('.py'; padding-top, padding-bottom; @px-values, 'px');
+.generate-sizing('.px'; padding-left, padding-right; @px-values; 'px');
+.generate-sizing('.py'; padding-top, padding-bottom; @px-values; 'px');
