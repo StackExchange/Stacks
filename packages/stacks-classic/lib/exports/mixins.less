@@ -277,10 +277,12 @@
  * .generate-sizing('.mx'; margin-left, margin-right; true);
  * .generate-sizing('.pr', padding-right);
  *
- * @prefix - (required) What prefix to generate (e.g. `.m`, `.pr`, etc).
- * @properties - (required) What CSS properties to generate (e.g. `margin`, `margin-right, margin-left`, etc).
- * @includeNegative: bool - Boolean to include generation of negative value classes.
- * @type: px | percent - What set of value to generate.
+ * @param {string} prefix - What prefix to generate (e.g. `.m`, `.pr`, etc).
+ * @param {string|list} properties - What CSS properties to generate (e.g. `margin`, `margin-right, margin-left`, etc).
+ * @param {list} values - List of values to generate classes for.
+ * @param {string} [type='px'] - What set of values to generate. Options: `px` | `percent`.
+ * @param {boolean} [responsive=false] - Whether to generate responsive variants.
+ * @param {boolean} [negative=false] - Whether to generate negative value classes.
  */
 .generate-sizing(@prefix, @properties, @values, @type: 'px', @responsive: false, @negative: false) {
     #stacks-internals #build-classes(
