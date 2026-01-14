@@ -39,7 +39,7 @@
             <UserCardTime
                 text="asked 2 hr ago"
                 href="#"
-                preciseTimestamp="2026-01-09 12:15:39Z"
+                timestamp="2026-01-09 12:15:39Z"
             />
         {/snippet}
         {#snippet blings()}

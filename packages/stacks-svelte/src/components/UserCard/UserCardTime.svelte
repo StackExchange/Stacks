@@ -5,14 +5,14 @@
 
     interface Props {
         /**
-         * Timestamp displayed in the user card generally used to indicate when a comment was posted UPDATE THIS
+         * Text to display in the user card time e.g. asked 2h ago
          */
-        text?: string;
+        text: string;
 
         /**
-         * Tooltip text for the timestamp
+         * Precise date and time of the post in ISO format
          */
-        preciseTimestamp?: string;
+        timestamp?: string;
 
         /**
          * Link to post activity
@@ -20,20 +20,18 @@
         href?: string;
     }
 
-    const { text, preciseTimestamp, href }: Props = $props();
+    const { text, timestamp, href }: Props = $props();
 </script>
 
-{#if text}
-    <Popover id="user-card-time-popover" tooltip>
-        <PopoverReference>
-            <a {href} class="s-user-card--time">
-                <time>
-                    {text}
-                </time>
-            </a>
-        </PopoverReference>
-        <PopoverContent>
-            {preciseTimestamp}
-        </PopoverContent>
-    </Popover>
-{/if}
+<Popover id="user-card-time-popover" tooltip>
+    <PopoverReference>
+        <a {href} class="s-user-card--time">
+            <time>
+                {text}
+            </time>
+        </a>
+    </PopoverReference>
+    <PopoverContent>
+        {timestamp}
+    </PopoverContent>
+</Popover>
