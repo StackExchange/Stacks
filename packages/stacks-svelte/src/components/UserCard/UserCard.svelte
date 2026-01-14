@@ -109,7 +109,6 @@
             default:
                 return 24;
         }
-        return badges;
     };
 
     const classes = $derived(getClasses(className, size));
