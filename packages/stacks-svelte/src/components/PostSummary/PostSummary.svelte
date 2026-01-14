@@ -35,6 +35,8 @@
     import PopoverContent from "../Popover/PopoverContent.svelte";
     import PopoverReference from "../Popover/PopoverReference.svelte";
     import UserCard from "../UserCard/UserCard.svelte";
+    import UserCardTime from "../UserCard/UserCardTime.svelte";
+    import UserCardBling from "../UserCard/UserCardBling.svelte";
     import {
         IconShield,
         IconEllipsisVertical,
@@ -331,13 +333,25 @@
                     <slot name="tags" />
                 </div>
             {/if}
+            {#snippet time()}
+                <UserCardTime text={timestamp} />
+            {/snippet}
+            {#snippet blings()}
+                {#if userReputation}
+                    <UserCardBling
+                        name="reputation bling"
+                        type="rep"
+                        text={userReputation}
+                    />
+                {/if}
+            {/snippet}
             <UserCard
-                href={userProfileUrl}
-                size="minimal"
+                profileUrl={userProfileUrl}
+                size="sm"
                 avatar={userAvatar}
                 name={userName}
-                reputation={userReputation}
-                {timestamp}
+                {time}
+                {blings}
             />
         </div>
         <!-- (Optional) Answer previews on the post -->
