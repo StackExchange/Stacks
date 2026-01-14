@@ -757,5 +757,4 @@ describe("UserCardBling", () => {
         expect(listItem).to.exist;
         expect(listItem).not.to.have.class("s-user-card--rep");
     });
-
 });
