@@ -252,14 +252,16 @@ describe("UserCard", () => {
         });
 
         it("should render as a div when profileUrl is not provided", () => {
-            render(UserCard, {
+            const { container } = render(UserCard, {
                 name: "John Doe",
                 avatar: "https://picsum.photos/128",
                 size: "sm",
             });
             const link = screen.queryByRole("link", { name: "John Doe" });
             expect(link).not.to.exist;
-            expect(screen.getByText("John Doe")).to.exist;
+            const username = container.querySelector(".s-user-card--username");
+            expect(username).to.exist;
+            expect(username?.textContent).to.equal("John Doe");
         });
     });
 
@@ -306,26 +308,31 @@ describe("UserCard", () => {
         });
 
         it("should render name as a div when profileUrl is not provided in large size", () => {
-            render(UserCard, {
+            const { container } = render(UserCard, {
                 name: "John Doe",
                 avatar: "https://picsum.photos/128",
                 size: "lg",
             });
             const link = screen.queryByRole("link", { name: "John Doe" });
             expect(link).not.to.exist;
-            expect(screen.getByText("John Doe")).to.exist;
+            const username = container.querySelector(".s-user-card--username");
+            expect(username).to.exist;
+            expect(username?.textContent).to.equal("John Doe");
         });
 
         it("should render name as a link when profileUrl is provided in large size", () => {
-            render(UserCard, {
+            const { container } = render(UserCard, {
                 name: "John Doe",
                 avatar: "https://picsum.photos/128",
                 profileUrl: "#",
                 size: "lg",
             });
-            const nameLink = screen.getByRole("link", { name: "John Doe" });
-            expect(nameLink).to.exist;
-            expect(nameLink).to.have.attr("href", "#");
+            const usernameLink = container.querySelector(
+                ".s-user-card--username"
+            );
+            expect(usernameLink).to.exist;
+            expect(usernameLink?.tagName.toLowerCase()).to.equal("a");
+            expect(usernameLink).to.have.attr("href", "#");
         });
 
         it("should not render badges when badges are not provided in large size", () => {
@@ -478,9 +485,10 @@ describe("UserCard", () => {
             const list = screen.getByRole("list");
             expect(list).to.exist;
 
-            const designationLi = screen.getByRole("listitem", {
-                name: "Software Engineer",
-            });
+            const listItems = screen.getAllByRole("listitem");
+            const designationLi = listItems.find(
+                (li) => li.textContent === "Software Engineer"
+            );
             expect(designationLi).to.exist;
         });
 
@@ -498,9 +506,10 @@ describe("UserCard", () => {
             const list = screen.getByRole("list");
             expect(list).to.exist;
 
-            const locationLi = screen.getByRole("listitem", {
-                name: "New York, NY",
-            });
+            const listItems = screen.getAllByRole("listitem");
+            const locationLi = listItems.find(
+                (li) => li.textContent === "New York, NY"
+            );
             expect(locationLi).to.exist;
         });
 
@@ -594,13 +603,14 @@ describe("UserCard", () => {
             expect(recognitionRow).to.exist;
             expect(screen.getByText("Verified User")).to.exist;
 
-            const designationLi = screen.getByRole("listitem", {
-                name: "Software Engineer",
-            });
+            const listItems = screen.getAllByRole("listitem");
+            const designationLi = listItems.find(
+                (li) => li.textContent === "Software Engineer"
+            );
             expect(designationLi).to.exist;
-            const locationLi = screen.getByRole("listitem", {
-                name: "New York, NY",
-            });
+            const locationLi = listItems.find(
+                (li) => li.textContent === "New York, NY"
+            );
             expect(locationLi).to.exist;
 
             expect(screen.getByText("I am a software engineer")).to.exist;
