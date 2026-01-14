@@ -10,7 +10,7 @@
         IconVote16Down,
         IconVote16DownFill,
     } from "@stackoverflow/stacks-icons/icons";
-    import { formatNumber } from "../../utils/format";
+    import { formatCount } from "@stackoverflow/stacks-utils";
 
     interface Props {
         /**
@@ -178,7 +178,7 @@
             <span class="s-vote--votes">
                 <span class="s-vote--total">
                     {currentCount !== 0 || currentStatus !== null
-                        ? formatNumber(currentCount)
+                        ? formatCount(currentCount)
                         : i18nVote}
                 </span>
             </span>
@@ -192,15 +192,15 @@
             onclick={() => (expandable ? (expanded = !expanded) : null)}
         >
             {#if upvotes !== undefined}
-                <span class="s-vote--upvotes">+{formatNumber(upvotes)}</span>
+                <span class="s-vote--upvotes">+{formatCount(upvotes)}</span>
             {/if}
             <span class="s-vote--total">
                 {currentCount !== 0 || currentStatus !== null
-                    ? formatNumber(currentCount)
+                    ? formatCount(currentCount)
                     : i18nVote}
             </span>
             {#if downvotes !== undefined}
-                <span class="s-vote--downvotes">-{formatNumber(downvotes)}</span
+                <span class="s-vote--downvotes">-{formatCount(downvotes)}</span
                 >
             {/if}
             {#if expandable}
