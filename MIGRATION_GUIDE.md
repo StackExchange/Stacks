@@ -24,7 +24,7 @@
 - Atomic classes now have a predefined line-height associated to them
 
 #### Width & Height
-- Removed undocumented `.hmn0`, `.hmx0`, `.wmn0`, `.wmx0`
+- Removed undocumented `.hmx0`, `.wmx0`
 - Added `.hmn-screen`, `.wmn-screen`
 
 ### Components
