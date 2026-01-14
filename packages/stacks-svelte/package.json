@@ -15,26 +15,27 @@
     },
     "scripts": {
         "build": "svelte-package -i src -o lib && rimraf test-utils.d.ts",
-        "build:dependencies": "echo 'Building stacks-classic because web-test-runner.config.mjs needs dist/css/stacks.css' && npm run build -w ../stacks-classic",
+        "build:stacks-classic": "echo 'Building stacks-classic because web-test-runner.config.mjs needs dist/css/stacks.css' && npm run build -w ../stacks-classic", 
+        "build:stacks-utils": "echo 'Building stacks-utils because it's needed for linting' && npm run build -w ../stacks-utils",
         "format": "prettier --write .",
-        "lint": "svelte-check && eslint .",
+        "lint": "svelte-check && build:stacks-utils && eslint .",
         "lint:fix": "eslint . --fix",
-        "test": "npm run build:dependencies && web-test-runner && npm run test:tools",
-        "test:watch": "npm run build:dependencies && web-test-runner --watch",
+        "test": "npm run build:stacks-classic && web-test-runner && npm run test:tools",
+        "test:watch": "npm run build:stacks-classic && web-test-runner --watch",
         "test:tools": "npm run storybook:build && node --test tools/*.test.js",
         "storybook": "storybook dev -p 6006",
-        "storybook:build": "npm run build:dependencies && storybook build -o netlify/dist && npm run storybook:extract",
+        "storybook:build": "npm run build:stacks-classic && storybook build -o netlify/dist && npm run storybook:extract",
         "storybook:extract": "node tools/storybook-llms-extractor.js"
     },
     "peerDependencies": {
         "@stackoverflow/stacks": "^3.0.0-beta.15",
+        "@stackoverflow/stacks-utils": "*",
         "svelte": "^5.0.0"
     },
     "dependencies": {
         "@floating-ui/core": "^1.7.3",
         "@stackoverflow/stacks-icons": "^7.0.0-beta.14",
         "@stackoverflow/stacks-icons-legacy": "npm:@stackoverflow/stacks-icons@^6.9.0",
-        "@stackoverflow/stacks-utils": "^0.0.1",
         "svelte-floating-ui": "^1.6.2",
         "svelte-sonner": "^1.0.5"
     },
