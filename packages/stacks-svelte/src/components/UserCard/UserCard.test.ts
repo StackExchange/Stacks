@@ -213,6 +213,410 @@ describe("UserCard", () => {
         expect(screen.getByText("2")).to.exist;
         expect(screen.getByText("3")).to.exist;
     });
+
+    describe("avatarAndName snippet nested conditions", () => {
+        it("should not render the group when neither avatar nor name is provided", () => {
+            const { container } = render(UserCard, {
+                name: "",
+                size: "sm",
+            });
+            const group = container.querySelector(".s-user-card--group");
+            expect(group).not.to.exist;
+        });
+
+        it("should render only avatar when only avatar is provided", () => {
+            const { container } = render(UserCard, {
+                name: "",
+                avatar: "https://picsum.photos/128",
+                size: "sm",
+            });
+            const group = container.querySelector(".s-user-card--group");
+            expect(group).to.exist;
+            const avatarImg = screen.getByRole("presentation");
+            expect(avatarImg).to.exist;
+            expect(avatarImg).to.have.attr("src", "https://picsum.photos/128");
+            const username = container.querySelector(".s-user-card--username");
+            expect(username).not.to.exist;
+        });
+
+        it("should render only name when only name is provided", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                size: "sm",
+            });
+            const group = container.querySelector(".s-user-card--group");
+            expect(group).to.exist;
+            expect(screen.getByText("John Doe")).to.exist;
+            const avatarImg = container.querySelector('[role="presentation"]');
+            expect(avatarImg).not.to.exist;
+        });
+
+        it("should render both avatar and name when both are provided", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "sm",
+            });
+            const group = container.querySelector(".s-user-card--group");
+            expect(group).to.exist;
+            const avatarImg = screen.getByRole("presentation");
+            expect(avatarImg).to.exist;
+            expect(avatarImg).to.have.attr("src", "https://picsum.photos/128");
+            expect(screen.getByText("John Doe")).to.exist;
+        });
+
+        it("should render as a div when profileUrl is not provided", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "sm",
+            });
+            const group = container.querySelector(".s-user-card--group");
+            expect(group).to.exist;
+            expect(group?.tagName.toLowerCase()).to.equal("div");
+            expect(group).not.to.have.attr("href");
+        });
+    });
+
+    describe("large size branch nested conditions", () => {
+        it("should not render avatar when avatar is not provided in large size", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                size: "lg",
+            });
+            const avatarImg = container.querySelector('[role="presentation"]');
+            expect(avatarImg).not.to.exist;
+        });
+
+        it("should render avatar when avatar is provided in large size", () => {
+            render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "lg",
+            });
+            const avatarImg = screen.getByRole("presentation");
+            expect(avatarImg).to.exist;
+            expect(avatarImg).to.have.attr("src", "https://picsum.photos/128");
+        });
+
+        it("should not render name when name is not provided in large size", () => {
+            const { container } = render(UserCard, {
+                name: "",
+                avatar: "https://picsum.photos/128",
+                size: "lg",
+            });
+            const username = container.querySelector(".s-user-card--username");
+            expect(username).not.to.exist;
+        });
+
+        it("should render name when name is provided in large size", () => {
+            render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "lg",
+            });
+            expect(screen.getByText("John Doe")).to.exist;
+        });
+
+        it("should render name as a div when profileUrl is not provided in large size", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "lg",
+            });
+            const username = container.querySelector(".s-user-card--username");
+            expect(username).to.exist;
+            expect(username?.tagName.toLowerCase()).to.equal("div");
+            expect(username).not.to.have.attr("href");
+        });
+
+        it("should render name as a link when profileUrl is provided in large size", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                profileUrl: "#",
+                size: "lg",
+            });
+            const username = container.querySelector(".s-user-card--username");
+            expect(username).to.exist;
+            expect(username?.tagName.toLowerCase()).to.equal("a");
+            expect(username).to.have.attr("href", "#");
+        });
+
+        it("should not render badges when badges are not provided in large size", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "lg",
+            });
+            const badgesGroup = container.querySelectorAll(
+                ".s-user-card--group"
+            );
+            const hasBadges = Array.from(badgesGroup).some((group) => {
+                const listItems = group.querySelectorAll("li");
+                return Array.from(listItems).some((li) =>
+                    li.textContent?.includes("admin")
+                );
+            });
+            expect(hasBadges).to.be.false;
+        });
+
+        it("should render badges when badges are provided in large size", () => {
+            const badgesSnippet = createRawSnippet(() => ({
+                render: () => "<span></span>",
+                setup: (target) => {
+                    const instance = mount(UserCardBadge, {
+                        target,
+                        props: {
+                            type: "admin",
+                        },
+                    });
+                    return () => {
+                        unmount(instance);
+                    };
+                },
+            }));
+
+            render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "lg",
+                badges: badgesSnippet,
+            });
+            expect(screen.getByText("admin")).to.exist;
+        });
+
+        it("should not render blings when blings are not provided in large size", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "lg",
+            });
+            const blingsGroup = container.querySelectorAll(".s-user-card--group");
+            const hasBlings = Array.from(blingsGroup).some((group) => {
+                const listItems = group.querySelectorAll("li");
+                return Array.from(listItems).some((li) =>
+                    li.textContent?.includes("1234")
+                );
+            });
+            expect(hasBlings).to.be.false;
+        });
+
+        it("should render blings when blings are provided in large size", () => {
+            const blingsSnippet = createRawSnippet(() => ({
+                render: () => "<span></span>",
+                setup: (target) => {
+                    const instance = mount(UserCardBling, {
+                        target,
+                        props: {
+                            type: "rep",
+                            name: "reputation bling",
+                            text: "1234",
+                        },
+                    });
+                    return () => {
+                        unmount(instance);
+                    };
+                },
+            }));
+
+            render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "lg",
+                blings: blingsSnippet,
+            });
+            expect(screen.getByText("1234")).to.exist;
+        });
+    });
+
+    describe("large size nested conditions", () => {
+        it("should not render the column div when recognition, designation, location, and bio are not provided", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "lg",
+            });
+            const column = container.querySelector(".s-user-card--column");
+            expect(column).not.to.exist;
+        });
+
+        it("should render the recognition row with icon when recognition is provided", () => {
+            const recognitionSnippet = createRawSnippet(() => ({
+                render: () => "<span></span>",
+                setup: (target) => {
+                    const span = document.createElement("span");
+                    span.textContent = "Verified User";
+                    target.appendChild(span);
+                    return () => {
+                        target.removeChild(span);
+                    };
+                },
+            }));
+
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "lg",
+                recognition: recognitionSnippet,
+            });
+
+            const recognitionRow = container.querySelector(
+                ".s-user-card--recognition"
+            );
+            expect(recognitionRow).to.exist;
+            expect(recognitionRow).to.have.class("s-user-card--row");
+            expect(screen.getByText("Verified User")).to.exist;
+        });
+
+        it("should render the designation in a list item when only designation is provided", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "lg",
+                designation: "Software Engineer",
+            });
+
+            const column = container.querySelector(".s-user-card--column");
+            expect(column).to.exist;
+
+            const ul = container.querySelector(
+                ".s-user-card--group.s-user-card--group__split"
+            );
+            expect(ul).to.exist;
+
+            const designationLi = Array.from(ul!.querySelectorAll("li")).find(
+                (li) => li.textContent === "Software Engineer"
+            );
+            expect(designationLi).to.exist;
+        });
+
+        it("should render the location in a list item when only location is provided", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "lg",
+                location: "New York, NY",
+            });
+
+            const column = container.querySelector(".s-user-card--column");
+            expect(column).to.exist;
+
+            const ul = container.querySelector(
+                ".s-user-card--group.s-user-card--group__split"
+            );
+            expect(ul).to.exist;
+
+            const locationLi = Array.from(ul!.querySelectorAll("li")).find(
+                (li) => li.textContent === "New York, NY"
+            );
+            expect(locationLi).to.exist;
+        });
+
+        it("should render both designation and location in list items when both are provided", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "lg",
+                designation: "Software Engineer",
+                location: "New York, NY",
+            });
+
+            const column = container.querySelector(".s-user-card--column");
+            expect(column).to.exist;
+
+            const ul = container.querySelector(
+                ".s-user-card--group.s-user-card--group__split"
+            );
+            expect(ul).to.exist;
+
+            const listItems = Array.from(ul!.querySelectorAll("li"));
+            expect(listItems).to.have.length(2);
+            expect(listItems[0].textContent).to.equal("Software Engineer");
+            expect(listItems[1].textContent).to.equal("New York, NY");
+        });
+
+        it("should render the bio snippet when bio is provided", () => {
+            const bioSnippet = createRawSnippet(() => ({
+                render: () => "<span></span>",
+                setup: (target) => {
+                    const span = document.createElement("span");
+                    span.textContent = "I am a software engineer";
+                    target.appendChild(span);
+                    return () => {
+                        target.removeChild(span);
+                    };
+                },
+            }));
+
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "lg",
+                bio: bioSnippet,
+            });
+
+            const column = container.querySelector(".s-user-card--column");
+            expect(column).to.exist;
+            expect(screen.getByText("I am a software engineer")).to.exist;
+        });
+
+        it("should render all fields together: recognition, designation, location, and bio", () => {
+            const recognitionSnippet = createRawSnippet(() => ({
+                render: () => "<span></span>",
+                setup: (target) => {
+                    const span = document.createElement("span");
+                    span.textContent = "Verified User";
+                    target.appendChild(span);
+                    return () => {
+                        target.removeChild(span);
+                    };
+                },
+            }));
+
+            const bioSnippet = createRawSnippet(() => ({
+                render: () => "<span></span>",
+                setup: (target) => {
+                    const span = document.createElement("span");
+                    span.textContent = "I am a software engineer";
+                    target.appendChild(span);
+                    return () => {
+                        target.removeChild(span);
+                    };
+                },
+            }));
+
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "lg",
+                recognition: recognitionSnippet,
+                designation: "Software Engineer",
+                location: "New York, NY",
+                bio: bioSnippet,
+            });
+
+            const column = container.querySelector(".s-user-card--column");
+            expect(column).to.exist;
+
+            const recognitionRow = container.querySelector(
+                ".s-user-card--recognition"
+            );
+            expect(recognitionRow).to.exist;
+            expect(screen.getByText("Verified User")).to.exist;
+
+            const ul = container.querySelector(
+                ".s-user-card--group.s-user-card--group__split"
+            );
+            expect(ul).to.exist;
+            const listItems = Array.from(ul!.querySelectorAll("li"));
+            expect(listItems).to.have.length(2);
+            expect(listItems[0].textContent).to.equal("Software Engineer");
+            expect(listItems[1].textContent).to.equal("New York, NY");
+
+            expect(screen.getByText("I am a software engineer")).to.exist;
+        });
+    });
 });
 
 describe("UserCardTime", () => {
