@@ -72,7 +72,8 @@ export class DateTimeFormatter {
                 },
             },
             {
-                condition: (_: number) =>
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                condition: (diff: number) =>
                     dtNow.getFullYear() === dtTime.getFullYear(),
                 format: (theTime: Date) => {
                     return new Intl.DateTimeFormat("en-US", options)
