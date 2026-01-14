@@ -134,6 +134,23 @@ The menu component has been updated to use new class names and structure. The fo
 - `s-textarea__md` removed
 - `s-textarea__xl` removed
 
+#### User Card
+
+Markup for the User Card has changed significantly. Please refer to the [docs](https://beta.stackoverflow.design/product/components/user-cards) for full guidance. Here are the most notable class changes:
+
+- Some component child classes have been replaced in favor of more generic wrappers. These include:
+    - `s-user-card--avatar`: The avatar should just include the appropriate `.s-avatar` classes
+    - `s-user-card--awards`: Awards should be placed within a `li` in a `ul.s-user-card--group` container
+    - `s-user-card--info`: Replaced with other layout classes as appropriate
+    - `s-user-card--link`: Previously used to style the username and now handled by `.s-user-card--username`
+    - `s-user-card--location`: Location should be placed in a `li` in a `ul.s-user-card--group.s-user-card--group__split` container
+    - `s-user-card--role`: Role should be placed in a `li` in a `ul.s-user-card--group.s-user-card--group__split` container
+    - `s-user-card--tags`: Tags are no longer included in the user card
+    - `s-user-card--type`: Replaced with `.s-user-card--recognition`
+- `s-user-card__highlighted` removed
+- `s-user-card__deleted` removed (expected to return in our next User Card iteration)
+- The size modifiers `full`, `small`, and `minimal` have been replaced with `sm` and `lg`
+
 # Migrating from Stacks Svelte v0 to v1
 
 ## Breaking changes
