@@ -192,15 +192,15 @@
             onclick={() => (expandable ? (expanded = !expanded) : null)}
         >
             {#if upvotes !== undefined}
-                <span class="s-vote--upvotes">+{formatCount(upvotes)}</span>
+                <span class="s-vote--upvotes">+{formatCount(upvotes, 1000)}</span>
             {/if}
             <span class="s-vote--total">
                 {currentCount !== 0 || currentStatus !== null
-                    ? formatCount(currentCount)
+                    ? formatCount(currentCount, 1000)
                     : i18nVote}
             </span>
             {#if downvotes !== undefined}
-                <span class="s-vote--downvotes">-{formatCount(downvotes)}</span
+                <span class="s-vote--downvotes">-{formatCount(downvotes, 1000)}</span
                 >
             {/if}
             {#if expandable}
