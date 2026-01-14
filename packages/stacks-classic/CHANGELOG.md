@@ -1,5 +1,21 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.15
+
+### Minor Changes
+
+- [#2092](https://github.com/StackExchange/Stacks/pull/2092) [`c1443ec`](https://github.com/StackExchange/Stacks/commit/c1443ecfc69784be393fa26edefb63cca24a80f2) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update User card to new SHINE design (part 1)
+
+- [#2109](https://github.com/StackExchange/Stacks/pull/2109) [`96224f0`](https://github.com/StackExchange/Stacks/commit/96224f0bdf3c9208489c4053d34af86df9ffe25b) Thanks [@mukunku](https://github.com/mukunku)! - feat(notice): update styles for SHINE
+  feat(toast): update styles for SHINE
+
+    BREAKING CHANGES
+    - Markup for notices has been updated
+
+### Patch Changes
+
+- [#2119](https://github.com/StackExchange/Stacks/pull/2119) [`85c14d4`](https://github.com/StackExchange/Stacks/commit/85c14d41a33f36cadc338d1f83b166b8ba1ff01f) Thanks [@dancormier](https://github.com/dancormier)! - Fix rem font size values
+
 ## 3.0.0-beta.14
 
 ### Minor Changes
