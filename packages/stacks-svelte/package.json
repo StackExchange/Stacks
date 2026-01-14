@@ -18,7 +18,7 @@
         "build:stacks-classic": "echo 'Building stacks-classic because web-test-runner.config.mjs needs dist/css/stacks.css' && npm run build -w ../stacks-classic", 
         "build:stacks-utils": "echo 'Building stacks-utils because it's needed by svelte-check for linting' && npm run build -w ../stacks-utils",
         "format": "prettier --write .",
-        "lint": "build:stacks-utils && svelte-check && eslint .",
+        "lint": "npm run build:stacks-utils && svelte-check && eslint .",
         "lint:fix": "eslint . --fix",
         "test": "npm run build:stacks-classic && web-test-runner && npm run test:tools",
         "test:watch": "npm run build:stacks-classic && web-test-runner --watch",
