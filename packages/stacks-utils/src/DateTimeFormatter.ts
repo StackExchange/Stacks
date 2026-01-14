@@ -98,7 +98,7 @@ export class DateTimeFormatter {
         }
 
         return formattedTime;
-    };
+    }
 }
 
 //Convenience function

@@ -19,7 +19,7 @@ const formatters = [
             largeNumberFormat
                 .format(rep)
                 // default is 'K' for thousands and 'M' for millions, we want lowercase
-        .toLowerCase(),
+                .toLowerCase(),
     },
 ];
 
@@ -42,7 +42,7 @@ export class NumberFormatter {
             }
         }
         return count.toString(); // should never reach here
-    };
+    }
 }
 
 //Convenience function
