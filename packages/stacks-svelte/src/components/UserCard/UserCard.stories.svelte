@@ -1,26 +1,16 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
-    import { IconStarVerifiedSm } from "@stackoverflow/stacks-icons-legacy/icons";
     import UserCard, { type Size } from "./UserCard.svelte";
-    import UserCardBadges from "./UserCardBadges.svelte";
-    import UserCardAwards from "./UserCardAwards.svelte";
-    import UserCardRecognition from "./UserCardRecognition.svelte";
-    import UserCardMeta from "./UserCardMeta.svelte";
-    import UserCardBio from "./UserCardBio.svelte";
-    import UserCardTimestamp from "./UserCardTimestamp.svelte";
+    import UserCardTime from "./UserCardTime.svelte";
+    import UserCardBadge from "./UserCardBadge.svelte";
+    import UserCardBling from "./UserCardBling.svelte";
 
     const UserCardSizes: (Size | undefined)[] = [undefined, "sm", "lg"];
 
     const baseArgs = {
         avatar: "https://picsum.photos/128",
-        href: "#",
+        profileUrl: "#",
         name: "SofiaAlc",
-        timestamp: "asked 2 hr ago",
-        timestampHref: "#",
-        reputation: "1,775",
-        gold: 12,
-        silver: 8,
-        bronze: 4,
     };
 
     const { Story } = defineMeta({
@@ -28,12 +18,11 @@
         component: UserCard,
         subcomponents: {
             // @ts-expect-error: subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
-            UserCardBadges,
-            UserCardAwards,
-            UserCardRecognition,
-            UserCardMeta,
-            UserCardBio,
-            UserCardTimestamp,
+            UserCardTime,
+            // @ts-expect-error: subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
+            UserCardBadge,
+            // @ts-expect-error: subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
+            UserCardBling,
         },
         argTypes: {
             size: {
@@ -46,7 +35,20 @@
 
 <Story name="Base" args={baseArgs}>
     {#snippet template(args)}
-        <UserCard {...args} />
+        {#snippet time()}
+            <UserCardTime
+                text="asked 2 hr ago"
+                href="#"
+                timestamp="2026-01-09 12:15:39Z"
+            />
+        {/snippet}
+        {#snippet blings()}
+            <UserCardBling name="reputation bling" type="rep" text="1,775" />
+            <UserCardBling name="gold bling" type="gold" text={12} />
+            <UserCardBling name="silver bling" type="silver" text={8} />
+            <UserCardBling name="bronze bling" type="bronze" text={4} />
+        {/snippet}
+        <UserCard {...args} {time} {blings} />
     {/snippet}
 </Story>
 
@@ -67,19 +69,27 @@
                             {badge}
                         </th>
                         <td class="va-middle px4">
-                            <UserCard
-                                {...baseArgs}
-                                admin={badge === "admin"}
-                                moderator={badge === "moderator"}
-                                staff={badge === "staff"}
-                            />
+                            {#snippet badges()}
+                                <UserCardBadge
+                                    type={badge as
+                                        | "admin"
+                                        | "moderator"
+                                        | "staff"}
+                                />
+                            {/snippet}
+                            <UserCard {...baseArgs} {badges} />
                         </td>
                     </tr>
                 {/each}
                 <tr>
                     <th scope="row" class="va-middle"> all </th>
                     <td class="va-middle px4">
-                        <UserCard {...baseArgs} admin moderator staff />
+                        {#snippet badges()}
+                            <UserCardBadge type="admin" />
+                            <UserCardBadge type="moderator" />
+                            <UserCardBadge type="staff" />
+                        {/snippet}
+                        <UserCard {...baseArgs} {badges} />
                     </td>
                 </tr>
             </tbody>
@@ -113,17 +123,28 @@
                 <tr>
                     <th scope="row" class="va-middle">lg (full example)</th>
                     <td class="va-middle px4">
+                        {#snippet badges()}
+                            <UserCardBadge type="moderator" />
+                        {/snippet}
+                        {#snippet recognition()}
+                            <span>Recognized by</span>
+                            <a href="#"> AudioBubble </a>
+                        {/snippet}
+                        {#snippet bio()}
+                            <p class="s-user-card--bio">
+                                Developer who believes in clean code, clear
+                                coffee, and the occasional snake pun. Automating
+                                the boring stuff one script at a time.
+                            </p>
+                        {/snippet}
                         <UserCard
                             {...baseArgs}
                             size="lg"
-                            moderator
-                            recognition="Recognized by"
-                            recognitionHref="#"
-                            recognitionLinkText="AudioBubble"
-                            recognitionIcon={IconStarVerifiedSm}
-                            role="Senior Product Designer"
+                            {badges}
+                            {recognition}
+                            designation="Senior Product Designer"
                             location="Vancouver, Canada"
-                            bio="Developer who believes in clean code, clear coffee, and the occasional snake pun. Automating the boring stuff one script at a time."
+                            {bio}
                         />
                     </td>
                 </tr>

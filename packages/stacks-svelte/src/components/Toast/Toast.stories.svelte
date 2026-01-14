@@ -1,6 +1,5 @@
 <script lang="ts" module>
     import { IconWave } from "@stackoverflow/stacks-icons-legacy/icons";
-    import { IconAlertFill } from "@stackoverflow/stacks-icons/icons";
     import Toaster, { showToast, hideToast } from "./Toast.svelte";
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import Button from "../Button/Button.svelte";
@@ -35,7 +34,9 @@
 </Story>
 
 {#snippet message()}
-    I am a <strong>toast</strong> component with an <em>HTML</em> message
+    <span
+        >I am a <strong>toast</strong> component with an <em>HTML</em> message</span
+    >
 {/snippet}
 <Story name="With HTML Message" asChild>
     <div class="hmn3 d-flex flex__center">
@@ -70,19 +71,6 @@
                 showToast("I am a toast component with the success variant", {
                     variant: "success",
                 })}>Success Toast</Button
-        >
-    </div>
-</Story>
-
-<Story name="With Icon" asChild>
-    <div class="hmn3 d-flex flex__center">
-        <Button
-            onclick={() =>
-                showToast("I am a toast component with the an icon", {
-                    variant: "danger",
-                    icon: IconAlertFill,
-                    iconTitle: "Alert Icon",
-                })}>Toast with an Icon</Button
         >
     </div>
 </Story>
