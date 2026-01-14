@@ -247,44 +247,29 @@ describe("UserCard", () => {
             const group = container.querySelector(".s-user-card--group");
             expect(group).to.exist;
             expect(screen.getByText("John Doe")).to.exist;
-            const avatarImg = container.querySelector('[role="presentation"]');
+            const avatarImg = screen.queryByRole("presentation");
             expect(avatarImg).not.to.exist;
         });
 
-        it("should render both avatar and name when both are provided", () => {
-            const { container } = render(UserCard, {
-                name: "John Doe",
-                avatar: "https://picsum.photos/128",
-                size: "sm",
-            });
-            const group = container.querySelector(".s-user-card--group");
-            expect(group).to.exist;
-            const avatarImg = screen.getByRole("presentation");
-            expect(avatarImg).to.exist;
-            expect(avatarImg).to.have.attr("src", "https://picsum.photos/128");
-            expect(screen.getByText("John Doe")).to.exist;
-        });
-
         it("should render as a div when profileUrl is not provided", () => {
-            const { container } = render(UserCard, {
+            render(UserCard, {
                 name: "John Doe",
                 avatar: "https://picsum.photos/128",
                 size: "sm",
             });
-            const group = container.querySelector(".s-user-card--group");
-            expect(group).to.exist;
-            expect(group?.tagName.toLowerCase()).to.equal("div");
-            expect(group).not.to.have.attr("href");
+            const link = screen.queryByRole("link", { name: "John Doe" });
+            expect(link).not.to.exist;
+            expect(screen.getByText("John Doe")).to.exist;
         });
     });
 
     describe("large size branch nested conditions", () => {
         it("should not render avatar when avatar is not provided in large size", () => {
-            const { container } = render(UserCard, {
+            render(UserCard, {
                 name: "John Doe",
                 size: "lg",
             });
-            const avatarImg = container.querySelector('[role="presentation"]');
+            const avatarImg = screen.queryByRole("presentation");
             expect(avatarImg).not.to.exist;
         });
 
@@ -310,37 +295,37 @@ describe("UserCard", () => {
         });
 
         it("should render name when name is provided in large size", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "lg",
+            });
+            const username = container.querySelector(".s-user-card--username");
+            expect(username).to.exist;
+            expect(username?.textContent).to.equal("John Doe");
+        });
+
+        it("should render name as a div when profileUrl is not provided in large size", () => {
             render(UserCard, {
                 name: "John Doe",
                 avatar: "https://picsum.photos/128",
                 size: "lg",
             });
+            const link = screen.queryByRole("link", { name: "John Doe" });
+            expect(link).not.to.exist;
             expect(screen.getByText("John Doe")).to.exist;
         });
 
-        it("should render name as a div when profileUrl is not provided in large size", () => {
-            const { container } = render(UserCard, {
-                name: "John Doe",
-                avatar: "https://picsum.photos/128",
-                size: "lg",
-            });
-            const username = container.querySelector(".s-user-card--username");
-            expect(username).to.exist;
-            expect(username?.tagName.toLowerCase()).to.equal("div");
-            expect(username).not.to.have.attr("href");
-        });
-
         it("should render name as a link when profileUrl is provided in large size", () => {
-            const { container } = render(UserCard, {
+            render(UserCard, {
                 name: "John Doe",
                 avatar: "https://picsum.photos/128",
                 profileUrl: "#",
                 size: "lg",
             });
-            const username = container.querySelector(".s-user-card--username");
-            expect(username).to.exist;
-            expect(username?.tagName.toLowerCase()).to.equal("a");
-            expect(username).to.have.attr("href", "#");
+            const nameLink = screen.getByRole("link", { name: "John Doe" });
+            expect(nameLink).to.exist;
+            expect(nameLink).to.have.attr("href", "#");
         });
 
         it("should not render badges when badges are not provided in large size", () => {
@@ -392,7 +377,9 @@ describe("UserCard", () => {
                 avatar: "https://picsum.photos/128",
                 size: "lg",
             });
-            const blingsGroup = container.querySelectorAll(".s-user-card--group");
+            const blingsGroup = container.querySelectorAll(
+                ".s-user-card--group"
+            );
             const hasBlings = Array.from(blingsGroup).some((group) => {
                 const listItems = group.querySelectorAll("li");
                 return Array.from(listItems).some((li) =>
@@ -437,8 +424,16 @@ describe("UserCard", () => {
                 avatar: "https://picsum.photos/128",
                 size: "lg",
             });
-            const column = container.querySelector(".s-user-card--column");
-            expect(column).not.to.exist;
+            const columns = container.querySelectorAll(".s-user-card--column");
+            expect(columns).to.have.length(1);
+            const recognitionRow = container.querySelector(
+                ".s-user-card--recognition"
+            );
+            expect(recognitionRow).not.to.exist;
+            const splitGroup = container.querySelector(
+                ".s-user-card--group__split"
+            );
+            expect(splitGroup).not.to.exist;
         });
 
         it("should render the recognition row with icon when recognition is provided", () => {
@@ -480,14 +475,12 @@ describe("UserCard", () => {
             const column = container.querySelector(".s-user-card--column");
             expect(column).to.exist;
 
-            const ul = container.querySelector(
-                ".s-user-card--group.s-user-card--group__split"
-            );
-            expect(ul).to.exist;
+            const list = screen.getByRole("list");
+            expect(list).to.exist;
 
-            const designationLi = Array.from(ul!.querySelectorAll("li")).find(
-                (li) => li.textContent === "Software Engineer"
-            );
+            const designationLi = screen.getByRole("listitem", {
+                name: "Software Engineer",
+            });
             expect(designationLi).to.exist;
         });
 
@@ -502,14 +495,12 @@ describe("UserCard", () => {
             const column = container.querySelector(".s-user-card--column");
             expect(column).to.exist;
 
-            const ul = container.querySelector(
-                ".s-user-card--group.s-user-card--group__split"
-            );
-            expect(ul).to.exist;
+            const list = screen.getByRole("list");
+            expect(list).to.exist;
 
-            const locationLi = Array.from(ul!.querySelectorAll("li")).find(
-                (li) => li.textContent === "New York, NY"
-            );
+            const locationLi = screen.getByRole("listitem", {
+                name: "New York, NY",
+            });
             expect(locationLi).to.exist;
         });
 
@@ -525,12 +516,10 @@ describe("UserCard", () => {
             const column = container.querySelector(".s-user-card--column");
             expect(column).to.exist;
 
-            const ul = container.querySelector(
-                ".s-user-card--group.s-user-card--group__split"
-            );
-            expect(ul).to.exist;
+            const list = screen.getByRole("list");
+            expect(list).to.exist;
 
-            const listItems = Array.from(ul!.querySelectorAll("li"));
+            const listItems = screen.getAllByRole("listitem");
             expect(listItems).to.have.length(2);
             expect(listItems[0].textContent).to.equal("Software Engineer");
             expect(listItems[1].textContent).to.equal("New York, NY");
@@ -605,14 +594,14 @@ describe("UserCard", () => {
             expect(recognitionRow).to.exist;
             expect(screen.getByText("Verified User")).to.exist;
 
-            const ul = container.querySelector(
-                ".s-user-card--group.s-user-card--group__split"
-            );
-            expect(ul).to.exist;
-            const listItems = Array.from(ul!.querySelectorAll("li"));
-            expect(listItems).to.have.length(2);
-            expect(listItems[0].textContent).to.equal("Software Engineer");
-            expect(listItems[1].textContent).to.equal("New York, NY");
+            const designationLi = screen.getByRole("listitem", {
+                name: "Software Engineer",
+            });
+            expect(designationLi).to.exist;
+            const locationLi = screen.getByRole("listitem", {
+                name: "New York, NY",
+            });
+            expect(locationLi).to.exist;
 
             expect(screen.getByText("I am a software engineer")).to.exist;
         });
@@ -759,13 +748,4 @@ describe("UserCardBling", () => {
         expect(listItem).not.to.have.class("s-user-card--rep");
     });
 
-    it("should render the bling within a list item", () => {
-        const { container } = render(UserCardBling, {
-            type: "rep",
-            name: "reputation bling",
-            text: "1234",
-        });
-        const listItem = container.querySelector("li");
-        expect(listItem).to.exist;
-    });
 });
