@@ -13,7 +13,8 @@ describe("notice", () => {
             ariaHidden: "false",
         },
         children: {
-            default: `Test notice <code>some code</code> <a class="s-link s-link__inherit s-link__underlined" href="#">Link</a>`,
+            default: `<span>Test notice <code>some code</code> <a class="s-link s-link__inherit s-link__underlined" href="#">Link</a></span>`,
+            longText: `<span>Test notice <code>some code</code> <a class="s-link s-link__inherit s-link__underlined" href="#">Link</a> with very long text that should surely wrap around to the next line so we can test the visual changes of multi-line notices in our pages.</span>`,
         },
         tag: "aside",
         template: ({ component, testid }) => html`
