@@ -64,31 +64,6 @@ import { DateTimeFormatter } from "@stackoverflow/stacks-utils";
 DateTimeFormatter.formatTime("2026-01-15T10:00:00Z");  // "2 hours ago"
 ```
 
-## API
-
-### `formatCount(count: number): string`
-
-Formats a count/number into a human-readable string with compact notation for large numbers.
-
-**Parameters:**
-- `count`: The number to format
-
-**Returns:** A formatted string:
-- Less than 10,000: standard format with commas (e.g., "1,234", "999")
-- 10,000 or more: compact format with lowercase suffixes (e.g., "10k", "1.2m")
-
-### `formatTime(utcTime: string): string`
-
-Formats a UTC time string into a human-readable relative or absolute time format.
-
-**Parameters:**
-- `utcTime`: A UTC time string (e.g., "2026-01-15T15:45:30Z")
-
-**Returns:** A formatted time string:
-- Within 2 days: relative time (e.g., "2 hours ago", "yesterday")
-- Same year: short date with time (e.g., "Jan 15 at 15:45")
-- Different year: full date with time (e.g., "Jan 15, 2025 at 15:45")
-
 ## License
 
 MIT
