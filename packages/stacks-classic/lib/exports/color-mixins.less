@@ -21,7 +21,7 @@
  *
  * @mode - Determines what to generate and which mode set to use.
  */
-// 
+//
 .generate-colors(@mode: light) {
     @set: .sets-mode()[$@mode];
     @setUtility: .sets-utility-mode()[$@mode];
@@ -144,6 +144,23 @@
         & when (@property = all), (@property = color) {
             .d\:fc-@{name} {
                 color: @value;
+            }
+        }
+    }
+
+    // Create high contrast mode atomic class assignments
+    & when (@modeSimple = highcontrast) {
+        // Create fc atomic class assignments
+        & when (@property = all), (@property = color) {
+            .hc\:fc-@{name} {
+                color: @value;
+            }
+        }
+
+        // Create bg atomic class assignments
+        & when (@property = all), (@property = background-color) {
+            .hc\:bg-@{name} {
+                background-color: @value;
             }
         }
     }
