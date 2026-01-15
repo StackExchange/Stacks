@@ -1,10 +1,10 @@
 import { describe, it, expect } from "vitest";
 import { renderLess } from "../test/less-test-utils";
 
-describe("atomic: spacing", () => {
-    it("should output all spacing classes", async () => {
+describe("atomic: height", () => {
+    it("should output all height classes", async () => {
         const css = await renderLess(`
-            @import "./lib/atomic/spacing.less";
+            @import "./lib/atomic/height.less";
         `);
 
         expect(css).toMatchSnapshot();

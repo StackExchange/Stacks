@@ -1,25 +1,4 @@
-//
-//  STACK OVERFLOW
-//  FLEXBOX HELPERS
-//
-//  This CSS comes from Stacks, our CSS & Pattern library for rapidly building
-//  Stack Overflow. For documentation of all these classes and how to contribute,
-//  visit https://stackoverflow.design/
-//
-//  TABLE OF CONTENTS
-//  • VARIABLES
-//  • MIXINS
-//  • FLEX ELEMENTS
-//  • FLEX SPACING
-//  • MODIFICATIONS
-//  • ATOMIC
-//  • DEPRECATED
-//
-//  ============================================================================
-//  --  STACKS FLEX LAYOUT MIXINS
-//  ============================================================================
-//  --  FIXED COLUMN WIDTHS
-//  ----------------------------------------------------------------------------
+@import (reference) "../base/internal.less";
 
 #stacks-internals() {
     #flex-builder-settings() {
@@ -321,19 +300,15 @@
 .ac-start { align-content: flex-start !important; }
 .ac-stretch { align-content: stretch !important; }
 
-//  --  ALIGN ITEMS
-//      Defines the default behavior for how child items align along
-//      the parent's cross axis. Think of it the cross-axis for
-//      justify-content.
-//  ----------------------------------------------------------------------------
+// Align items
 #stacks-internals #build-classes(
-    responsive,
     '.ai',
     {
         .template(@value) when (@value=start), (@value=end) { align-items: ~"flex-@{value}" !important; }
         .template(@value) when (default()) { align-items: @value !important; };
     },
-    baseline center end start stretch
+    baseline center end start stretch,
+    true
 );
 
 //  --  CENTER ITEMS
@@ -345,18 +320,15 @@
     .ai-center;
 }
 
-//  --  ALIGN SELF
-//      Allows child containers to re-align themselves regardless
-//      of the parent's main axis direction.
-//  ----------------------------------------------------------------------------
+// Align self
 #stacks-internals #build-classes(
-    responsive,
     '.as',
     {
         .template(@value) when (@value=start), (@value=end) { align-self: ~"flex-@{value}" !important; }
         .template(@value) when (default()) { align-self: @value !important; };
     },
     auto baseline center end start stretch
+    true
 );
 
 //  --  FLEX
