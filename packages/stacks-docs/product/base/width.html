@@ -59,7 +59,7 @@ tags: base
             {% for size in atomics.sizing.px %}
                 <div class="d-grid grid__12 g4">
                     <div class="grid--col1">.w{{ size.px }}</div>
-                    <div class="w{{ size.px }} bg-black-200 h24 {% if size.px == 0 %}{% else %} ba bc-black-225{% endif %}"></div>
+                    <div class="w{{ size.px }} h24 {% if size.px is not 0 %} docs-box p0{% endif %}"></div>
                 </div>
             {% endfor %}
         </div>
@@ -117,7 +117,7 @@ tags: base
 {% endhighlight %}
         <div class="stacks-preview--example d-flex g4 fd-column fs-caption ff-mono overflow-x-auto">
             {% for size in atomics.sizing.sizing-units %}
-                <div class="ws{{ size.level }} ai-center bg-black-200 ba bc-black-225 d-flex h48 p6">
+                <div class="docs-box p0 ws{{ size.level }} ai-center d-flex h48">
                     <div>.ws{{ size.level }}</div>
                 </div>
             {% endfor %}
@@ -191,8 +191,8 @@ tags: base
         <div class="stacks-preview--example fs-caption ff-mono">
             <div class="d-flex fd-column g4">
                 {% for size in atomics.sizing.percent %}
-                    <div class="ba bc-black-225 bg-black-100">
-                        <div class="w{{ size.percentage }} ai-center bg-black-200 br bc-black-225 d-flex h24 p6">
+                    <div class="docs-box p0 bg-black-100">
+                        <div class="docs-box w{{ size.percentage }} ai-center py4">
                             <div>.w{{ size.percentage }}</div>
                         </div>
                     </div>

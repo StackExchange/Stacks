@@ -32,12 +32,12 @@ tags: foundation
 
     {% capture correctElement %}
         <button class="s-btn s-btn__filled" role="presentation">Button</button>
-        <div class="bar-pill ta-center px8 py2 bg-green-400 fc-white">Robotics</div>
+        <div class="bar-pill ta-center px8 py2 bg-green-400 fc-white">Robots</div>
     {% endcapture %}
 
     {% capture incorrectElement %}
         <button class="s-btn s-btn__filled bg-theme-secondary-200" role="presentation">Button</button>
-        <div class="bar-pill ta-center px8 py2 bg-green-400 fc-green-300">Robotics</div>
+        <div class="bar-pill ta-center px8 py2 bg-green-400 fc-green-300">Robots</div>
     {% endcapture %}
 
     {% render 'accessibility/comparison.html',
@@ -249,24 +249,9 @@ tags: foundation
 
                 {% if group.type == "editor-icon-buttons" %}
                     <div class="d-flex ai-center jc-center h32">
-                        <style>
-                            .s-btn.s-btn__example,
-                            .s-btn.s-btn__example:hover {
-                                border: var(--su-static2) solid transparent;
-                                color: var(--black-500) !important;
-                            }
-                            .s-btn.s-btn__example:focus,
-                            .s-btn.s-btn__example:focus-visible,
-                            .s-btn.s-btn__example.focus-inset-bordered {
-                                color: var(--black-600) !important;
-                            }
-                            .s-btn.s-btn__dropdown.s-btn__example:after {
-                                right: var(--su-static2);
-                            }
-                        </style>
                         {% for button in group.items %}
                             <button
-                                class="s-btn s-btn__example bar-md bg-transparent p1 {{button.classes}}"
+                                class="s-btn s-btn__clear bar0 p1 {{button.classes}}"
                                 role="presentation">
                                 {% icon button.icon %}
                                 <span class="v-visible-sr">{{button}}</span>

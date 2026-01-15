@@ -12,9 +12,11 @@ tags: foundation
     <p class="stacks-copy">Stacks icons are designed to be directly injected into the markup as an <code class="stacks-code">svg</code> element. This allows us to color them on the fly using any of our atomic classes. We have different helpers in different environments.</p>
 
     {% header "h3", "Svelte" %}
-    <p class="stacks-copy">If you are working in a Svelte project, you can use the <code class="stacks-code">Icon</code> component to render an icon.
+    <p class="stacks-copy">
+        If you are working in a Svelte project, you can use the <code class="stacks-code">Icon</code> component to render an icon.
         This component will render the icon as an <code class="stacks-code">svg</code> element with the appropriate classes and attributes (<a href="https://svelte.stackoverflow.design/?path=/docs/components-icon--docs">docs</a>).
     </p>
+    <div class="stacks-preview">
 {% highlight html %}
 <script lang="ts">
     import { IconServiceCCPA } from "@stackoverflow/stacks-icons/icons";
@@ -24,24 +26,25 @@ tags: foundation
 <Icon src="IconServiceCCPA" class="native" />
 <Icon src="IconServiceCCPA" class="fc-black-350 float-right" />
 {% endhighlight %}
-<div class="stacks-preview--example">
-    <div class="d-flex g24 fw-wrap ff-mono">
-        <div class="flex--item">
-            <div class="fc-medium mb12">Default</div>
-            {% icon "ServiceCCPA" %}
-        </div>
-        <div class="flex--item">
-            <div class="fc-medium mb12">With native colors</div>
-            {% icon "ServiceCCPA", "native" %}
-        </div>
-        <div class="flex--item ml-auto">
-            <div class="fc-medium mb12">With arbitrary classes</div>
-            {% icon "ServiceCCPA", "fc-black-350 float-right" %}
+        <div class="stacks-preview--example">
+            <div class="d-flex g24 fw-wrap ff-mono">
+                <div>
+                    <div class="fc-medium mb12">Default</div>
+                    {% icon "ServiceCCPA" %}
+                </div>
+                <div>
+                    <div class="fc-medium mb12">With native colors</div>
+                    {% icon "ServiceCCPA", "native" %}
+                </div>
+                <div class="ml-auto">
+                    <div class="fc-medium mb12">With arbitrary classes</div>
+                    {% icon "ServiceCCPA", "fc-black-350 float-right" %}
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
-{% header "h3", "Dotnet" %}
+    {% header "h3", "Dotnet" %}
     <p class="stacks-copy">If you’re working in a dotnet project, we have a helper that can be called with <code class="stacks-code">@Svg.</code> and the icon name, eg. <code class="stacks-code">@Svg.Answer</code>. By default, any icon will inherit the text color of the parent element. Optionally, you can pass the class <code class="stacks-code">native</code> to the icon to render any native colors that are included eg. <code class="stacks-code">@Svg.ServiceCCPA.With("native")</code>. This same syntax allows you to pass additional arbitrary classes like atomic helpers, or <code class="stacks-code">js-</code> prefixed classes.</p>
     <div class="stacks-preview">
 {% highlight java %}
@@ -51,15 +54,15 @@ tags: foundation
 {% endhighlight %}
         <div class="stacks-preview--example">
             <div class="d-flex g24 fw-wrap ff-mono">
-                <div class="flex--item">
+                <div >
                     <div class="fc-medium mb12">Default</div>
                     {% icon "ServiceCCPA" %}
                 </div>
-                <div class="flex--item">
+                <div >
                     <div class="fc-medium mb12">With native colors</div>
                     {% icon "ServiceCCPA", "native" %}
                 </div>
-                <div class="flex--item ml-auto">
+                <div class="ml-auto">
                     <div class="fc-medium mb12">With arbitrary classes</div>
                     {% icon "ServiceCCPA", "fc-black-350 float-right js-dropdown-target" %}
                 </div>
@@ -80,19 +83,19 @@ tags: foundation
 <section class="stacks-section mb32" id="js-sortable-list">
     {% header "h2", "Icon set" %}
     <div class="ps-sticky z-nav t64 bb bc-black-225 bg-white py16 mtn8 mb16 d-flex jc-space-between">
-        <input type="text" class="flex--item fuzzy-search s-input s-input__search" placeholder="Search icons…" />
+        <input type="text" class="fuzzy-search s-input s-input__search" placeholder="Search icons…" />
         <button class="s-btn s-btn__filled ws-nowrap js-color-toggle-btn ml8">Toggle native colors</button>
         {% icon "Search", "s-input-icon s-input-icon__search" %}
     </div>
     <div class="d-flex fw-wrap sm:fd-column g16 flex__allitems4 list js-icon-list">
         {% for iconName in stacks-icons.icons %}
-            <div class="flex--item">
+            <div >
                 <div id="{{ iconName | downcase }}" class="d-flex fd-column p0 s-card stacks-icon-container">
                     <div class="d-flex fl-grow1 flex__center stacks-icon-preview">
                         {% icon iconName, "native js-svg" %}
                     </div>
                     <div class="d-flex ai-center jc-space-between p8">
-                        <code class="flex--item fs-caption py8 ff-mono ow-break-word js-name">{{ iconName }}</code>
+                        <code class="fs-caption py8 ff-mono ow-break-word js-name">{{ iconName }}</code>
                         <a class="d-flex flex__center s-btn s-btn__tonal fc-black-400 p2" href="#{{ iconName | downcase }}">
                             {% icon "Link" %}
                             <span class="v-visible-sr">{{ iconName }} icon</span>

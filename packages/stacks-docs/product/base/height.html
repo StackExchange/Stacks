@@ -57,7 +57,7 @@ tags: base
             {% for size in atomics.sizing.px %}
                 <div class="d-flex fd-column g4">
                     <div>.h{{ size.px }}</div>
-                    <div class="h{{ size.px }} bg-black-225"></div>
+                    <div class="h{{ size.px }} {% if size.px is not 0 %} docs-box p0{% endif %}"></div>
                 </div>
             {% endfor %}
         </div>
@@ -116,7 +116,7 @@ tags: base
         <div class="stacks-preview--example d-flex g4 hmx6 fs-caption ff-mono overflow-auto">
             <div class="d-flex g6 hs12 w100 overflow-x-auto">
                 {% for size in atomics.sizing.sizing-units %}
-                    <div class="hs{{ size.level }} ai-start bg-black-200 ba bc-black-225 d-flex fl-shrink0 w48 p6" style="min-width: calc(100% / 12 - 6px);">
+                    <div class="docs-box px4 hs{{ size.level }} ai-start d-flex fl-shrink0 w48" style="min-width: calc(100% / 12 - 6px);">
                         <div>.hs{{ size.level }}</div>
                     </div>
                 {% endfor %}
@@ -173,8 +173,8 @@ tags: base
 {% endhighlight %}
         <div class="stacks-preview--example fs-caption ff-mono hmx6 overflow-auto">
             <div class="d-flex fd-column g4">
-                <div class="d-flex bg-black-100 ba bc-black-200 hs2 fs-caption ff-mono p6">
-                    <div class="h100 bg-black-200 br bc-black-225 p8 ws2">
+                <div class="d-flex docs-box p0 bg-black-100 hs2 fs-caption ff-mono p6">
+                    <div class="h100 docs-box ws2">
                         .h100
                     </div>
                 </div>

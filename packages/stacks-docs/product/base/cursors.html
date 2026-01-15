@@ -38,31 +38,12 @@ tags: base
 <div class="c-help">…</div>
 {% endhighlight %}
         <div class="stacks-preview--example fs-caption ff-mono">
-            <div class="d-flex g8 fw-wrap">
-                <div class="flex--item bg-black-200 p12 ba bc-black-225 c-auto">
-                    .c-auto
-                </div>
-                <div class="flex--item bg-black-200 p12 ba bc-black-225 c-default">
-                    .c-default
-                </div>
-                <div class="flex--item bg-black-200 p12 ba bc-black-225 c-pointer">
-                    .c-pointer
-                </div>
-                <div class="flex--item bg-black-200 p12 ba bc-black-225 c-text">
-                    .c-text
-                </div>
-                <div class="flex--item bg-black-200 p12 ba bc-black-225 c-wait">
-                    .c-wait
-                </div>
-                <div class="flex--item bg-black-200 p12 ba bc-black-225 c-move">
-                    .c-move
-                </div>
-                <div class="flex--item bg-black-200 p12 ba bc-black-225 c-not-allowed">
-                    .c-not-allowed
-                </div>
-                <div class="flex--item bg-black-200 p12 ba bc-black-225 c-help">
-                    .c-help
-                </div>
+            <div class="d-grid grid__4 lg:grid__3 sm:grid__2 g8 fw-wrap">
+                {% for atomic in atomics.cursors %}
+                    <div class="docs-box grid--item ws-nowrap {{ atomic.class }}">
+                        .{{ atomic.class }}
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>

@@ -19,7 +19,7 @@ tags: base
             <tbody>
                 {% for background-size in backgrounds.background-size %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ background-size.class }}</code></th>
+                        <th scope="row"><code class="stacks-code">.{{ background-size.class }}</code></th>
                         <td class="ff-mono">{{ background-size.output }}</td>
                     </tr>
                 {% endfor %}
@@ -42,7 +42,7 @@ tags: base
             <tbody>
                 {% for background-repeat in backgrounds.background-repeat %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ background-repeat.class }}</code></th>
+                        <th scope="row"><code class="stacks-code">.{{ background-repeat.class }}</code></th>
                         <td class="ff-mono">{{ background-repeat.output }}</td>
                     </tr>
                 {% endfor %}
@@ -65,7 +65,7 @@ tags: base
             <tbody>
                 {% for background-position in backgrounds.background-position %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ background-position.class }}</code></th>
+                        <th scope="row"><code class="stacks-code">.{{ background-position.class }}</code></th>
                         <td class="ff-mono">{{ background-position.output }}</td>
                     </tr>
                 {% endfor %}
@@ -87,16 +87,17 @@ tags: base
 <div class="bg-no-repeat bg-top">…</div>
 {% endhighlight %}
         <div class="stacks-preview--example">
-            <div class="d-flex flex__allitems3 w100 g8 fc-black-600 ff-mono fw-wrap">
-                <div class="flex--item p12 bg-black-200 hs1 ba bc-black-225 stacks-bg-img bg-no-repeat bg-bottom">.bg-bottom</div>
-                <div class="flex--item p12 bg-black-200 hs1 ba bc-black-225 stacks-bg-img bg-no-repeat bg-center">.bg-center</div>
-                <div class="flex--item p12 bg-black-200 hs1 ba bc-black-225 stacks-bg-img bg-no-repeat bg-left">.bg-left</div>
-                <div class="flex--item p12 bg-black-200 hs1 ba bc-black-225 stacks-bg-img bg-no-repeat bg-left-bottom">.bg-left-bottom</div>
-                <div class="flex--item p12 bg-black-200 hs1 ba bc-black-225 stacks-bg-img bg-no-repeat bg-left-top">.bg-left-top</div>
-                <div class="flex--item p12 bg-black-200 hs1 ba bc-black-225 stacks-bg-img bg-no-repeat bg-right">.bg-right</div>
-                <div class="flex--item p12 bg-black-200 hs1 ba bc-black-225 stacks-bg-img bg-no-repeat bg-right-bottom">.bg-right-bottom</div>
-                <div class="flex--item p12 bg-black-200 hs1 ba bc-black-225 stacks-bg-img bg-no-repeat bg-right-top">.bg-right-top</div>
-                <div class="flex--item p12 bg-black-200 hs1 ba bc-black-225 stacks-bg-img bg-no-repeat bg-top">.bg-top</div>
+            <div class="d-grid grid__3 sm:grid__2 w100 g8 fc-black-600 ff-mono fw-wrap">
+                {% for background-position in backgrounds.background-position %}
+                <div class="d-flex fd-column g4 p8">
+                    <code>.{{ background-position.class }}</code>
+                    <div
+                        class="docs-bg-img docs-box hs1 w100 bg-no-repeat {{ background-position.class }}"
+                        style="background-image: url(/assets/img/illustrationBgImage.svg);"
+                    >
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -116,7 +117,7 @@ tags: base
             <tbody>
                 {% for background-attachment in backgrounds.background-attachment %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ background-attachment.class }}</code></th>
+                        <th scope="row"><code class="stacks-code">.{{ background-attachment.class }}</code></th>
                         <td class="ff-mono">{{ background-attachment.output }}</td>
                     </tr>
                 {% endfor %}
@@ -139,7 +140,7 @@ tags: base
             <tbody>
                 {% for background-image in backgrounds.background-image %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ background-image.class }}</code></th>
+                        <th scope="row"><code class="stacks-code">.{{ background-image.class }}</code></th>
                         <td class="ff-mono">{{ background-image.output }}</td>
                     </tr>
                 {% endfor %}
