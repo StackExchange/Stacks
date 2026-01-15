@@ -9,11 +9,11 @@ module.exports = {
       var linkIcon = Icons.IconLink;
 
       var output = '';
-      output += '<div class="d-flex jc-space-between ai-end pe-none stacks-header">';
-      output +=   '<' + tag + ' class="flex--item fl-grow1 stacks-' + tag + '" id="'+ slug +'">';
-      output +=     '<span class="pe-auto">' + text + '</span>';
+      output += '<div class="d-flex jc-space-between ai-end mb12">';
+      output +=   '<' + tag + ' class="fl-grow1 stacks-' + tag + '" id="'+ slug +'">';
+      output +=     text;
       output +=   '</' + tag + '>';
-      output +=   '<a class="d-flex flex__center mbn6 s-btn s-btn__tonal pe-auto" href="#'+ slug +'">';
+      output +=   '<a class="s-btn s-btn__clear" href="#'+ slug +'">';
       output +=     '<span class="v-visible-sr">Section titled ' + text + '</span>';
       output +=     linkIcon;
       output +=   '</a>';
