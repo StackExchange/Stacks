@@ -1,5 +1,11 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.16
+
+### Patch Changes
+
+- [#2122](https://github.com/StackExchange/Stacks/pull/2122) [`93ae01b`](https://github.com/StackExchange/Stacks/commit/93ae01bdec7c120cb77f98b9bcf0e718642c9552) Thanks [@dancormier](https://github.com/dancormier)! - Updated size scale plus many under-the-hood improvements
+
 ## 3.0.0-beta.15
 
 ### Minor Changes
