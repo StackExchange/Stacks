@@ -1,5 +1,14 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.20
+
+### Patch Changes
+
+- [#2130](https://github.com/StackExchange/Stacks/pull/2130) [`e2dea15`](https://github.com/StackExchange/Stacks/commit/e2dea15216568555cd1562dc65e5ff7477372a47) Thanks [@giamir](https://github.com/giamir)! - dependencies upgrade
+
+- Updated dependencies [[`e2dea15`](https://github.com/StackExchange/Stacks/commit/e2dea15216568555cd1562dc65e5ff7477372a47)]:
+    - @stackoverflow/stacks-utils@1.0.0-beta.1
+
 ## 1.0.0-beta.19
 
 ### Patch Changes
