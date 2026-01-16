@@ -10,7 +10,7 @@
     const UserCardAwardBlings: AwardBlings[] = ["first", "second", "third"];
     const baseArgs = {
         avatar: "https://picsum.photos/128",
-        profileUrl: "#",
+        profileUrl: "/",
         name: "SofiaAlc",
     };
 
@@ -39,7 +39,7 @@
         {#snippet time()}
             <UserCardTime
                 text="asked 2 hr ago"
-                href="#"
+                href="/"
                 timestamp="2026-01-09 12:15:39Z"
             />
         {/snippet}
@@ -182,7 +182,7 @@
                                 >
                                 is a new contributor to this site. Take care in asking
                                 for clarification, commenting, and answering.
-                                <a href="…" class="s-link s-link__underlined"
+                                <a href="/" class="s-link s-link__underlined"
                                     >Check out our Code of Conduct</a
                                 >
                             </span>
@@ -235,7 +235,7 @@
                         <UserCard
                             {...baseArgs}
                             {recognition}
-                            recognitionHref="#"
+                            recognitionHref="/"
                             size="sm"
                         />
                     </td>
@@ -247,13 +247,13 @@
                     <td class="va-middle px4">
                         {#snippet recognition()}
                             <span
-                                >Recognized by <a href="…">AudioBubble</a></span
+                                >Recognized by <a href="/">AudioBubble</a></span
                             >
                         {/snippet}
                         <UserCard
                             {...baseArgs}
                             {recognition}
-                            recognitionHref="#"
+                            recognitionHref="/"
                         />
                     </td>
                 </tr>
