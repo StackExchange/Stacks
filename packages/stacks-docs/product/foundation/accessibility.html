@@ -31,12 +31,12 @@ tags: foundation
     <p class="stacks-copy">Contrast is the difference in luminance or color between any two elements. All visual readers require ample luminance contrast for fluent readability. Stack Overflow products must conform to a custom conformance level of the Accessible Perceptual Contrast Algorithm (APCA). Based on our custom conformance level, all text must have a Lightness contrast (Lc) value of 60, body copy must have a Lc value of 75, icons must have a Lc value of 45, and placeholder and disabled text must have a Lc of 30. These numbers will be negative when calculating for dark mode.</p>
 
     {% capture correctElement %}
-        <button class="s-btn s-btn__filled" role="presentation">Button</button>
+        <button class="s-btn" role="presentation">Button</button>
         <div class="bar-pill ta-center px8 py2 bg-green-400 fc-white">Robots</div>
     {% endcapture %}
 
     {% capture incorrectElement %}
-        <button class="s-btn s-btn__filled bg-theme-secondary-200" role="presentation">Button</button>
+        <button class="s-btn bg-theme-secondary-200" role="presentation">Button</button>
         <div class="bar-pill ta-center px8 py2 bg-green-400 fc-green-300">Robots</div>
     {% endcapture %}
 
@@ -103,7 +103,7 @@ tags: foundation
         {% for group in accessibility.foundation-for-custom-approach.base %}
             <div class="ta-center">
                 <button
-                    class="s-btn s-btn__filled s-btn__dropdown s-btn__icon {{group.classes | default: ""}}"
+                    class="s-btn s-btn__dropdown s-btn__icon {{group.classes | default: ""}}"
                     role="presentation">
                     {% icon "Pencil" %} Button
                 </button>

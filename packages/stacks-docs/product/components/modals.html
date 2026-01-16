@@ -220,7 +220,7 @@ tags: components
         <h1 class="s-modal--header" id="launch-modal-base-title">Example title</h1>
         <p class="s-modal--body" id="launch-modal-base-description">Nullam ornare lectus vitae lacus sagittis, at sodales leo viverra. Suspendisse nec nulla dignissim elit varius tempus. Cras viverra neque at imperdiet vehicula. Curabitur condimentum id dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo fringilla bibendum. Etiam feugiat imperdiet mi, eu blandit arcu cursus a. Pellentesque cursus massa id dolor ullamcorper, at condimentum nunc ultrices.</p>
         <div class="d-flex gx8 s-modal--footer">
-            <button class="flex--item s-btn s-btn__filled" type="button">Save changes</button>
+            <button class="flex--item s-btn" type="button">Save changes</button>
             <button class="flex--item s-btn s-btn__clear" type="button" data-action="s-modal#hide">Cancel</button>
         </div>
         <button class="s-modal--close s-btn s-btn__clear js-modal-close" type="button" aria-label="Close" data-action="s-modal#hide">
@@ -235,7 +235,7 @@ tags: components
         <h1 class="s-modal--header" id="launch-modal-danger-title">Example danger title</h1>
         <p class="s-modal--body" id="launch-modal-danger-description">Nullam ornare lectus vitae lacus sagittis, at sodales leo viverra. Suspendisse nec nulla dignissim elit varius tempus. Cras viverra neque at imperdiet vehicula. Curabitur condimentum id dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo fringilla bibendum. Etiam feugiat imperdiet mi, eu blandit arcu cursus a. Pellentesque cursus massa id dolor ullamcorper, at condimentum nunc ultrices.</p>
         <div class="d-flex gx8 s-modal--footer">
-            <button class="flex--item s-btn s-btn__filled s-btn__danger" type="button">Save changes</button>
+            <button class="flex--item s-btn s-btn__danger" type="button">Save changes</button>
             <button class="flex--item s-btn s-btn__clear" type="button" data-action="s-modal#hide">Cancel</button>
         </div>
         <button class="s-modal--close s-btn s-btn__clear js-modal-close" type="button" aria-label="Close" data-action="s-modal#hide">
@@ -249,8 +249,8 @@ tags: components
     {% header "h2", "Examples" %}
     <div class="stacks-preview bs-none">
         <div class="stacks-preview--example ba bar-md bg-black-100 d-flex g8 fw-wrap">
-            <button class="flex--item s-btn s-btn__filled js-modal-open" data-toggle="s-modal" data-target="#launch-modal-base">Launch example modal</button>
-            <button class="flex--item s-btn s-btn__filled js-modal-open" data-toggle="s-modal" data-target="#launch-modal-danger">Launch example modal w/ danger state</button>
+            <button class="flex--item s-btn js-modal-open" data-toggle="s-modal" data-target="#launch-modal-base">Launch example modal</button>
+            <button class="flex--item s-btn js-modal-open" data-toggle="s-modal" data-target="#launch-modal-danger">Launch example modal w/ danger state</button>
         </div>
     </div>
     <p class="stacks-copy">You can wire up a modal along with the corresponding button by wrapping both in a <span class="stacks-code">s-modal</span> controller and attaching the corresponding <span class="stacks-code">data-*</span> attributes. Make sure to set <span class="stacks-code">data-s-modal-return-element</span> if you want your button to refocus on close.</p>
@@ -263,8 +263,8 @@ tags: components
             <h1 class="s-modal--header" id="modal-title">…</h1>
             <p class="s-modal--body" id="modal-description">…</p>
             <div class="d-flex gx8 s-modal--footer">
-                <button class="flex--item s-btn s-btn__filled" type="button">…</button>
-                <button class="flex--item s-btn" type="button" data-action="s-modal#hide">…</button>
+                <button class="flex--item s-btn" type="button">…</button>
+                <button class="flex--item s-btn s-btn__danger" type="button" data-action="s-modal#hide">…</button>
             </div>
             <button class="s-modal--close s-btn s-btn__clear" type="button" aria-label="@_s("Close")" data-action="s-modal#hide">
                 @Svg.Cross
@@ -279,7 +279,7 @@ tags: components
                     <h1 class="s-modal--header" id="example-modal-base-title">Example title</h1>
                     <p class="s-modal--body" id="example-modal-base-description">Nullam ornare lectus vitae lacus sagittis, at sodales leo viverra. Suspendisse nec nulla dignissim elit varius tempus. Cras viverra neque at imperdiet vehicula. Curabitur condimentum id dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo fringilla bibendum. Etiam feugiat imperdiet mi, eu blandit arcu cursus a.</p>
                     <div class="d-flex gx8 s-modal--footer">
-                        <button class="flex--item s-btn s-btn__filled" type="button">Save changes</button>
+                        <button class="flex--item s-btn" type="button">Save changes</button>
                         <button class="flex--item s-btn s-btn__clear" type="button">Cancel</button>
                     </div>
                     <button class="s-modal--close s-btn s-btn__clear" aria-label="Close">
@@ -299,8 +299,8 @@ tags: components
         <h1 class="s-modal--header" id="modal-title">…</h1>
         <p class="s-modal--body" id="modal-description">…</p>
         <div class="d-flex gx8 s-modal--footer">
-            <button class="flex--item s-btn s-btn__filled" type="button">…</button>
-            <button class="flex--item s-btn" type="button" data-action="s-modal#hide">…</button>
+            <button class="flex--item s-btn" type="button">…</button>
+            <button class="flex--item s-btn s-btn__clear" type="button" data-action="s-modal#hide">…</button>
         </div>
         <button class="s-modal--close s-btn s-btn__clear" type="button" aria-label="@_s("Close")" data-action="s-modal#hide">
             @Svg.Cross
@@ -321,7 +321,7 @@ document.querySelector(".js-modal-toggle").addEventListener("click", function(e)
 
 <section class="stacks-section">
     {% header "h2", "Danger state" %}
-    <p class="stacks-copy">Not every modal is sunshine and rainbows. Sometimes there are potentially drastic things that could happen by hitting a confirm button in a modal—such as deleting an account. In moments like this, add the <code class="stacks-code">.s-modal__danger</code> class to <code class="stacks-code">.s-modal</code>. Additionally, you should switch the buttons to <code class="stacks-code">.s-btn__danger.s-btn__filled</code>, since the main call to action will be destructive.</p>
+    <p class="stacks-copy">Not every modal is sunshine and rainbows. Sometimes there are potentially drastic things that could happen by hitting a confirm button in a modal—such as deleting an account. In moments like this, add the <code class="stacks-code">.s-modal__danger</code> class to <code class="stacks-code">.s-modal</code>. Additionally, you should switch the buttons to <code class="stacks-code">.s-btn__danger</code>, since the main call to action will be destructive.</p>
     <div class="stacks-preview">
 {% highlight html %}
 <aside class="s-modal s-modal__danger" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true"
@@ -330,7 +330,7 @@ document.querySelector(".js-modal-toggle").addEventListener("click", function(e)
         <h1 class="s-modal--header" id="modal-title">…</h1>
         <p class="s-modal--body" id="modal-description">…</p>
         <div class="d-flex gx8 s-modal--footer">
-            <button class="flex--item s-btn s-btn__filled s-btn__danger" type="button">…</button>
+            <button class="flex--item s-btn s-btn__danger" type="button">…</button>
             <button class="flex--item s-btn s-btn__clear" type="button" data-action="s-modal#hide">…</button>
         </div>
         <button class="s-modal--close s-btn s-btn__clear" type="button" aria-label="@_s("Close")" data-action="s-modal#hide">
@@ -345,7 +345,7 @@ document.querySelector(".js-modal-toggle").addEventListener("click", function(e)
                     <h1 class="s-modal--header" id="example-modal-danger-title">Example title</h1>
                     <p class="s-modal--body" id="example-modal-danger-description">Nullam ornare lectus vitae lacus sagittis, at sodales leo viverra. Suspendisse nec nulla dignissim elit varius tempus. Cras viverra neque at imperdiet vehicula. Curabitur condimentum id dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo fringilla bibendum. Etiam feugiat imperdiet mi, eu blandit arcu cursus a.</p>
                     <div class="d-flex gx8 s-modal--footer">
-                        <button class="flex--item s-btn s-btn__filled s-btn__danger" type="button">Save changes</button>
+                        <button class="flex--item s-btn s-btn__danger" type="button">Save changes</button>
                         <button class="flex--item s-btn s-btn__clear" type="button">Cancel</button>
                     </div>
                     <button class="s-modal--close s-btn s-btn__clear" aria-label="Close">
@@ -367,7 +367,7 @@ document.querySelector(".js-modal-toggle").addEventListener("click", function(e)
         <h1 class="s-modal--header" id="modal-title">…</h1>
         <p class="s-modal--body" id="modal-description">…</p>
         <div class="d-flex gx8 s-modal--footer">
-            <button class="flex--item s-btn s-btn__filled" type="button">…</button>
+            <button class="flex--item s-btn" type="button">…</button>
             <button class="flex--item s-btn s-btn__clear" type="button" data-action="s-modal#hide">…</button>
         </div>
         <button class="s-modal--close s-btn s-btn__clear" type="button" aria-label="@_s("Close")" data-action="s-modal#hide">
@@ -382,7 +382,7 @@ document.querySelector(".js-modal-toggle").addEventListener("click", function(e)
                     <h1 class="s-modal--header" id="example-modal-celebratory-title">Congratulations!</h1>
                     <p class="s-modal--body" id="example-modal-celebratory-description">Nullam ornare lectus vitae lacus sagittis, at sodales leo viverra. Suspendisse nec nulla dignissim elit varius tempus. Cras viverra neque at imperdiet vehicula. Curabitur condimentum id dolor vitae ultrices. Pellentesque scelerisque nunc sit amet leo fringilla bibendum. Etiam feugiat imperdiet mi, eu blandit arcu cursus a.</p>
                     <div class="d-flex gx8 s-modal--footer">
-                        <button class="flex--item s-btn s-btn__filled" type="button">Got it!</button>
+                        <button class="flex--item s-btn" type="button">Got it!</button>
                     </div>
                     <button class="s-modal--close s-btn s-btn__clear" type="button" aria-label="Close">
                         {% icon "Cross" %}

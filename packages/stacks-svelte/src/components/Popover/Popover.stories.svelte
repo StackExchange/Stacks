@@ -236,7 +236,7 @@
             This API is particularly useful when the reference element is
             outside the svelte codebase<br /> (e.g. in a Razor view)
         </p>
-        <button class="s-btn s-btn__filled" id="external-reference-element">
+        <button class="s-btn" id="external-reference-element">
             External Reference
         </button>
         <Popover id="external-reference" placement="bottom">

@@ -234,7 +234,7 @@ hide-menu: true
         <p class="stacks-copy">
             Colors in the neutral palette are layered on top of each other to foster a sense of hierarchy and create associations.
         </p>
-        <div class="d-flex sm:fd-column">
+        <div class="d-grid grid__2 sm:fd-column">
             {% assign groups = "light,dark" | split: "," %}
             {% for mode in groups %}
                 {% assign bgColor = "bg-black-100" %}
@@ -362,7 +362,8 @@ hide-menu: true
         <div class="d-flex js-space-between gx16 gy32 bg-black-100 bar-md p32">
             {% for group in colors[0].interaction %}
                 <div class="ta-center w100">
-                    <button class="s-btn s-btn__filled {{group.classes}}" {{group.attr}} role="presentation">Button</button>
+                    <!-- TODO SHINE update this to reflect the new button component -->
+                    <button class="s-btn {{group.classes}}" {{group.attr}} role="presentation">Button</button>
                     {% render 'annotation.html',
                         text: group.name,
                         classes: "mx-auto",
