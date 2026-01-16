@@ -4,7 +4,6 @@ title: Color fundamentals
 figma: https://svelte.stackoverflow.design/figma/colors
 description: Color is used distinguish our brand, convey meaning, and invoke emotions. A color palette ensures a familiar and consistent experience across our products.
 tags: foundation
-hide-menu: true
 ---
 
 <div class="lg:pr24 sm:pr0">
@@ -38,38 +37,6 @@ hide-menu: true
                     <div class="bar-md overflow-hidden">
                         {% for set in colors[0].sets %}
                             {% if set.type == "color" %}
-                                {% render 'color-row.html',
-                                    color: set.name,
-                                    colorSets: colors[0].sets,
-                                    stopClasses: "h-auto",
-                                    stopStyle: "aspect-ratio: 1/1",
-                                    classes: "fd-row-reverse"
-                                %}
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </section>
-
-    <section class="docs-section">
-
-        {% header "h3", "Award colors" %}
-        <p class="docs-copy">
-            Stacks has 3 award colors with 4 stops per color. Colors are used to represent gold, silver, and bronze within gamification aspects of our products.
-        </p>
-        <div class="d-flex sm:fd-column bar-md overflow-hidden">
-            {% assign groups = "light,dark" | split: "," %}
-            {% for mode in groups %}
-                {% assign bgColor = "bg-black-100" %}
-                {% if mode == "dark" %}
-                    {% assign bgColor = "bg-white" %}
-                {% endif %}
-                <div class="{{bgColor}} overflow-hidden p64 px128 md:p64 w100 theme-{{mode}}__forced">
-                    <div class="bar-md overflow-hidden">
-                        {% for set in colors[0].sets %}
-                            {% if set.type == "award" %}
                                 {% render 'color-row.html',
                                     color: set.name,
                                     colorSets: colors[0].sets,
@@ -244,7 +211,7 @@ hide-menu: true
                     {% assign borderRadius = "brr-md" %}
                 {% endif %}
                 {% assign layers = colors[0].layers %}
-                <div class="theme-{{mode}}__forced {{bgColor}} {{borderRadius}} ba bc-black-200 fc-dark fs-body2 p64 md:p16 w100">
+                <div class="theme-{{mode}}__forced {{bgColor}} {{borderRadius}} ba bc-black-200 fc-dark fs-body2 p48 md:p16 w100">
                     <div>{{layers[0].name}}</div>
                     <div class="bg-{{layers[1].color}} ba bc-black-200 bar-md p48 md:p16 mt8">
                         <div>{{layers[1].name}}</div>
@@ -362,8 +329,7 @@ hide-menu: true
         <div class="d-flex js-space-between gx16 gy32 bg-black-100 bar-md p32">
             {% for group in colors[0].interaction %}
                 <div class="ta-center w100">
-                    <!-- TODO SHINE update this to reflect the new button component -->
-                    <button class="s-btn {{group.classes}}" {{group.attr}} role="presentation">Button</button>
+                    <button class="s-btn {{group.classes}}" {{group.attr}} role="presentation" style="{{ group.style }}">Button</button>
                     {% render 'annotation.html',
                         text: group.name,
                         classes: "mx-auto",
