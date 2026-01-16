@@ -10,11 +10,10 @@
     } from "svelte/elements";
     import Icon from "../Icon/Icon.svelte";
 
-    interface Props
-        extends Omit<
-            HTMLAnchorAttributes & HTMLButtonAttributes,
-            "href" | "type" | "class"
-        > {
+    interface Props extends Omit<
+        HTMLAnchorAttributes & HTMLButtonAttributes,
+        "href" | "type" | "class"
+    > {
         /**
          * If provided, renders as an anchor tag with this href
          */

@@ -134,7 +134,11 @@
     let expandable = $derived(
         upvotes !== undefined && downvotes !== undefined && !horizontal
     );
+    // svelte-ignore state_referenced_locally
+    // Props are intentionally captured as initial values. The component uses optimistic updates
+    // for vote actions, so local state may temporarily diverge from props during async operations.
     let currentCount = $state(total || 0);
+    // svelte-ignore state_referenced_locally
     let currentStatus = $state(status);
     const classes = $derived(getClasses(className, expanded, horizontal));
 
