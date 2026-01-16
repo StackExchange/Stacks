@@ -8,11 +8,10 @@
     import Avatar from "../Avatar/Avatar.svelte";
     import { slide } from "svelte/transition";
 
-    interface Props
-        extends Omit<
-            HTMLAnchorAttributes & HTMLButtonAttributes,
-            "href" | "class"
-        > {
+    interface Props extends Omit<
+        HTMLAnchorAttributes & HTMLButtonAttributes,
+        "href" | "class"
+    > {
         /**
          * The text of the navigation item
          */

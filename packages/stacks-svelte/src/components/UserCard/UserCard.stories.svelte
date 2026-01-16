@@ -128,7 +128,7 @@
                         {/snippet}
                         {#snippet recognition()}
                             <span>Recognized by</span>
-                            <a href="#"> AudioBubble </a>
+                            <a href="/"> AudioBubble </a>
                         {/snippet}
                         {#snippet bio()}
                             <p class="s-user-card--bio">
