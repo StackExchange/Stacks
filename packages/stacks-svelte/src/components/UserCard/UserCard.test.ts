@@ -758,3 +758,346 @@ describe("UserCardBling", () => {
         expect(listItem).not.to.have.class("s-user-card--rep");
     });
 });
+
+describe("UserCard states", () => {
+    describe("Original Poster", () => {
+        it("should render the original poster class on the username", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                originalPoster: true,
+            });
+            const username = container.querySelector(
+                ".s-user-card--username.s-user-card--original-poster"
+            );
+            expect(username).to.exist;
+            expect(username?.textContent).to.equal("John Doe");
+        });
+
+        it("should show tooltip when hovering over the username", async () => {
+            const clock = sinon.useFakeTimers({
+                shouldAdvanceTime: true,
+                shouldClearNativeTimers: true,
+            });
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                profileUrl: "#",
+                originalPoster: true,
+            });
+
+            const username = container.querySelector(
+                ".s-user-card--username.s-user-card--original-poster"
+            );
+            expect(username).to.exist;
+
+            await userEvent.hover(username!);
+            await clock.runAllAsync();
+            await tick();
+
+            expect(screen.getByText(/is the original poster/)).to.exist;
+            clock.restore();
+        });
+    });
+
+    describe("New Contributor", () => {
+        it("should render the new contributor badge with tooltip", async () => {
+            const clock = sinon.useFakeTimers({
+                shouldAdvanceTime: true,
+                shouldClearNativeTimers: true,
+            });
+            const tooltipSnippet = createRawSnippet(() => ({
+                render: () => "<span></span>",
+                setup: (target) => {
+                    const span = document.createElement("span");
+                    span.textContent = "New contributor tooltip";
+                    target.appendChild(span);
+                    return () => {
+                        target.removeChild(span);
+                    };
+                },
+            }));
+
+            const badgesSnippet = createRawSnippet(() => ({
+                render: () => "<span></span>",
+                setup: (target) => {
+                    const instance = mount(UserCardBadge, {
+                        target,
+                        props: {
+                            type: "new",
+                            tooltip: tooltipSnippet,
+                        },
+                    });
+                    return () => {
+                        unmount(instance);
+                    };
+                },
+            }));
+
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                badges: badgesSnippet,
+            });
+
+            const badge = screen.getByText("new");
+            expect(badge).to.exist;
+
+            await userEvent.hover(badge);
+            await clock.runAllAsync();
+            await tick();
+
+            expect(screen.getByText("New contributor tooltip")).to.exist;
+            clock.restore();
+        });
+    });
+
+    describe("Deleted User", () => {
+        it("should render the deleted user class", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                deleted: true,
+            });
+            const userCard = container.querySelector(".s-user-card");
+            expect(userCard).to.have.class("s-user-card__deleted");
+        });
+
+        it("should render the deleted avatar image", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                deleted: true,
+            });
+            const avatarImg = container.querySelector(
+                ".s-avatar--image"
+            ) as HTMLImageElement;
+            expect(avatarImg).to.exist;
+            expect(avatarImg.src).to.include("avatar-deleted-24.svg");
+        });
+
+        it("should render the deleted username with deleted class", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                deleted: true,
+            });
+            const username = container.querySelector(
+                ".s-user-card--username.s-user-card--deleted"
+            );
+            expect(username).to.exist;
+            expect(username?.textContent).to.equal("John Doe");
+        });
+
+        it("should render small deleted avatar when size is sm", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                deleted: true,
+                size: "sm",
+            });
+            const avatarImg = container.querySelector(
+                ".s-avatar--image"
+            ) as HTMLImageElement;
+            expect(avatarImg).to.exist;
+            expect(avatarImg.src).to.include("avatar-deleted-16.svg");
+        });
+
+        it("should render time snippet when provided for deleted user", () => {
+            const timeSnippet = createRawSnippet(() => ({
+                render: () => "<span></span>",
+                setup: (target) => {
+                    const instance = mount(UserCardTime, {
+                        target,
+                        props: {
+                            text: "asked 2 hr ago",
+                            href: "#",
+                        },
+                    });
+                    return () => {
+                        unmount(instance);
+                    };
+                },
+            }));
+
+            render(UserCard, {
+                name: "John Doe",
+                deleted: true,
+                time: timeSnippet,
+            });
+            expect(screen.getByText("asked 2 hr ago")).to.exist;
+        });
+    });
+
+    describe("Recognized Member (small)", () => {
+        it("should render the recognition icon with tooltip when size is sm", async () => {
+            const clock = sinon.useFakeTimers({
+                shouldAdvanceTime: true,
+                shouldClearNativeTimers: true,
+            });
+            const recognitionSnippet = createRawSnippet(() => ({
+                render: () => "<span></span>",
+                setup: (target) => {
+                    const span = document.createElement("span");
+                    span.textContent = "Recognized by AudioBubble";
+                    target.appendChild(span);
+                    return () => {
+                        target.removeChild(span);
+                    };
+                },
+            }));
+
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "sm",
+                recognition: recognitionSnippet,
+                recognitionHref: "#",
+            });
+
+            const recognitionGroup = container.querySelector(
+                ".s-user-card--recognition"
+            );
+            expect(recognitionGroup).to.exist;
+
+            await userEvent.hover(recognitionGroup!);
+            await clock.runAllAsync();
+            await tick();
+
+            expect(screen.getByText("Recognized by AudioBubble")).to.exist;
+            clock.restore();
+        });
+
+        it("should render recognition as a link when recognitionHref is provided", () => {
+            const recognitionSnippet = createRawSnippet(() => ({
+                render: () => "<span></span>",
+                setup: (target) => {
+                    const span = document.createElement("span");
+                    span.textContent = "Recognized by AudioBubble";
+                    target.appendChild(span);
+                    return () => {
+                        target.removeChild(span);
+                    };
+                },
+            }));
+
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "sm",
+                recognition: recognitionSnippet,
+                recognitionHref: "#",
+            });
+
+            const recognitionLink = container.querySelector(
+                ".s-user-card--recognition"
+            );
+            expect(recognitionLink).to.exist;
+            expect(recognitionLink?.tagName.toLowerCase()).to.equal("a");
+            expect(recognitionLink).to.have.attr("href", "#");
+        });
+    });
+
+    describe("Recognized Member (default)", () => {
+        it("should render the recognition row with icon when size is not sm", () => {
+            const recognitionSnippet = createRawSnippet(() => ({
+                render: () => "<span></span>",
+                setup: (target) => {
+                    const span = document.createElement("span");
+                    span.textContent = "Recognized by AudioBubble";
+                    target.appendChild(span);
+                    return () => {
+                        target.removeChild(span);
+                    };
+                },
+            }));
+
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                recognition: recognitionSnippet,
+            });
+
+            const recognitionRow = container.querySelector(
+                ".s-user-card--recognition"
+            );
+            expect(recognitionRow).to.exist;
+            expect(recognitionRow).to.have.class("s-user-card--row");
+            expect(screen.getByText("Recognized by AudioBubble")).to.exist;
+        });
+
+        it("should render recognition in a column layout when size is not sm", () => {
+            const recognitionSnippet = createRawSnippet(() => ({
+                render: () => "<span></span>",
+                setup: (target) => {
+                    const span = document.createElement("span");
+                    span.textContent = "Recognized by AudioBubble";
+                    target.appendChild(span);
+                    return () => {
+                        target.removeChild(span);
+                    };
+                },
+            }));
+
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                recognition: recognitionSnippet,
+            });
+
+            const column = container.querySelector(".s-user-card--column");
+            expect(column).to.exist;
+            const recognitionRow = column?.querySelector(
+                ".s-user-card--recognition"
+            );
+            expect(recognitionRow).to.exist;
+        });
+    });
+
+    describe("Awarded", () => {
+        it("should render the awarded icon with first variant", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                award: "first",
+            });
+
+            const awardedGroup = container.querySelector(
+                ".s-user-card--awarded-first"
+            );
+            expect(awardedGroup).to.exist;
+            expect(awardedGroup).to.have.class("s-user-card--group");
+        });
+
+        it("should show tooltip when hovering over the awarded icon", async () => {
+            const clock = sinon.useFakeTimers({
+                shouldAdvanceTime: true,
+                shouldClearNativeTimers: true,
+            });
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                award: "first",
+            });
+
+            const awardedGroup = container.querySelector(
+                ".s-user-card--awarded-first"
+            );
+            expect(awardedGroup).to.exist;
+
+            await userEvent.hover(awardedGroup!);
+            await clock.runAllAsync();
+            await tick();
+
+            expect(screen.getByText(/This user is first on the weekly leaderboard/)).to.exist;
+            clock.restore();
+        });
+
+        it("should render the achievements icon", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                award: "first",
+            });
+
+            const icon = container.querySelector(".s-user-card--awarded-first svg");
+            expect(icon).to.exist;
+        });
+    });
+});
