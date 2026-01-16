@@ -14,6 +14,8 @@
     import Popover from "../Popover/Popover.svelte";
     import PopoverReference from "../Popover/PopoverReference.svelte";
     import PopoverContent from "../Popover/PopoverContent.svelte";
+    import avatarDeleted16 from "../../assets/img/avatar-deleted-16.svg?url";
+    import avatarDeleted24 from "../../assets/img/avatar-deleted-24.svg?url";
 
     interface Props {
         /**
@@ -148,9 +150,7 @@
     const classes = $derived(getClasses(className, size, deleted));
     const avatarSize = $derived(getAvatarSize(size));
     const deletedAvatarSrc = $derived(
-        size === "sm"
-            ? "../../assets/img/avatar-deleted-16.svg"
-            : "../../assets/img/avatar-deleted-24.svg"
+        size === "sm" ? avatarDeleted16 : avatarDeleted24
     );
 </script>
 
