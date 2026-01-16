@@ -84,7 +84,7 @@
         recognitionHref?: string;
 
         /**
-         * Identifies if the user card is the orginal poster
+         * Identifies if the user card is the original poster
          */
         originalPoster?: boolean;
 
@@ -171,7 +171,7 @@
             {/if}
             {#if name}
                 {#if originalPoster}
-                    <Popover id="user-card-original-poster-popover tooltip">
+                    <Popover id="user-card-original-poster-popover" tooltip>
                         <PopoverReference>
                             <span
                                 class="s-user-card--username s-user-card--original-poster"
@@ -219,9 +219,16 @@
         </ul>
     {/if}
     {#if award}
-        <div class="s-user-card--group s-user-card--awarded-{award}">
-            <Icon src={IconAchievementsSm} />
-        </div>
+        <Popover id="user-card-award-popover" tooltip>
+            <PopoverReference>
+                <div class="s-user-card--group s-user-card--awarded-{award}">
+                    <Icon src={IconAchievementsSm} />
+                </div>
+            </PopoverReference>
+            <PopoverContent>
+                <span>This user is {award} on the weekly leaderboard.</span>
+            </PopoverContent>
+        </Popover>
     {/if}
     {#if blings}
         <ul class="s-user-card--group">
