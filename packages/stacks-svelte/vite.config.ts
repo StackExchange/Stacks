@@ -7,6 +7,7 @@ import path from "path";
 export default defineConfig({
     plugins: [svelte(svelteConfig), svelteTesting(), svelteInlineComponent()],
     optimizeDeps: {
+        exclude: ["svelte-sonner"],
         //without the following explicit includes, test runs fail on the first run because these dependencies don't get pre-optimized properly
         include: [
             "@web/test-runner-commands",
