@@ -834,7 +834,7 @@ describe("UserCard states", () => {
                 },
             }));
 
-            const { container } = render(UserCard, {
+            render(UserCard, {
                 name: "John Doe",
                 avatar: "https://picsum.photos/128",
                 badges: badgesSnippet,
@@ -871,7 +871,10 @@ describe("UserCard states", () => {
                 ".s-avatar--image"
             ) as HTMLImageElement;
             expect(avatarImg).to.exist;
-            expect(avatarImg.src).to.include("avatar-deleted-24.svg");
+            expect(avatarImg.src).to.include("data:image/svg+xml");
+            const avatar = avatarImg.closest(".s-avatar");
+            expect(avatar).to.exist;
+            expect(avatar).to.have.class("s-avatar__24");
         });
 
         it("should render the deleted username with deleted class", () => {
@@ -896,7 +899,10 @@ describe("UserCard states", () => {
                 ".s-avatar--image"
             ) as HTMLImageElement;
             expect(avatarImg).to.exist;
-            expect(avatarImg.src).to.include("avatar-deleted-16.svg");
+            expect(avatarImg.src).to.include("data:image/svg+xml");
+            const avatar = avatarImg.closest(".s-avatar");
+            expect(avatar).to.exist;
+            expect(avatar).not.to.have.class("s-avatar__24");
         });
 
         it("should render time snippet when provided for deleted user", () => {
@@ -1085,7 +1091,9 @@ describe("UserCard states", () => {
             await clock.runAllAsync();
             await tick();
 
-            expect(screen.getByText(/This user is first on the weekly leaderboard/)).to.exist;
+            expect(
+                screen.getByText(/This user is first on the weekly leaderboard/)
+            ).to.exist;
             clock.restore();
         });
 
@@ -1096,7 +1104,9 @@ describe("UserCard states", () => {
                 award: "first",
             });
 
-            const icon = container.querySelector(".s-user-card--awarded-first svg");
+            const icon = container.querySelector(
+                ".s-user-card--awarded-first svg"
+            );
             expect(icon).to.exist;
         });
     });
