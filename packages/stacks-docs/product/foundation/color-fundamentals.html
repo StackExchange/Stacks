@@ -8,7 +8,7 @@ hide-menu: true
 ---
 
 <div class="lg:pr24 sm:pr0">
-    <section class="stacks-section">
+    <section class="docs-section">
         {% header "h2", "Palette" %}
         {% header "h3", "Neutral colors" %}
         <p class="stacks-copy">
@@ -22,7 +22,7 @@ hide-menu: true
         %}
     </section>
 
-    <section class="stacks-section">
+    <section class="docs-section">
         {% header "h3", "Saturated colors" %}
         <p class="stacks-copy">
             Stacks uses 5 colors with 6 stops per color. Colors are used sparingly and intentionally to convey meaning, draw attention to UI, or create associations.
@@ -53,7 +53,7 @@ hide-menu: true
         </div>
     </section>
 
-    <section class="stacks-section">
+    <section class="docs-section">
 
         {% header "h3", "Award colors" %}
         <p class="stacks-copy">
@@ -85,7 +85,7 @@ hide-menu: true
         </div>
     </section>
 
-    <section class="stacks-section">
+    <section class="docs-section">
         {% header "h2", "Usage" %}
         {% header "h3", "Color roles" %}
         <p class="stacks-copy">
@@ -126,7 +126,7 @@ hide-menu: true
         {% endfor %}
     </section>
 
-    <section class="stacks-section">
+    <section class="docs-section">
         {% header "h3", "Backgrounds" %}
         <div class="d-flex fd-column bg-black-100 bar-md p32">
             {% render 'annotation.html',
@@ -152,7 +152,7 @@ hide-menu: true
         </p>
     </section>
 
-    <section class="stacks-section">
+    <section class="docs-section">
         {% header "h3", "Borders" %}
         <div class="d-flex fd-column bg-black-100 bar-md p32">
             {% render 'color-row.html',
@@ -179,7 +179,7 @@ hide-menu: true
         </p>
     </section>
 
-    <section class="stacks-section">
+    <section class="docs-section">
         {% header "h3", "Text" %}
         <div class="d-flex fd-column bg-black-100 bar-md p32">
             {% render 'color-row.html',
@@ -206,7 +206,7 @@ hide-menu: true
         </p>
     </section>
 
-    <section class="stacks-section">
+    <section class="docs-section">
         {% header "h3", "Icons and illustrations" %}
         <div class="d-flex fd-column bg-black-100 bar-md p32">
             {% render 'color-row.html', color: "black", colorSets: colors[0].sets, labeledStops: "350,400,500" | split: "," %}
@@ -229,7 +229,7 @@ hide-menu: true
         </p>
     </section>
 
-    <section class="stacks-section">
+    <section class="docs-section">
         {% header "h2", "Layering" %}
         <p class="stacks-copy">
             Colors in the neutral palette are layered on top of each other to foster a sense of hierarchy and create associations.
@@ -257,7 +257,7 @@ hide-menu: true
         </div>
     </section>
 
-    <section class="stacks-section">
+    <section class="docs-section">
         <div class="overflow-x-auto mb48" tabindex="0">
             <table class="wmn5 s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
                 <thead>
@@ -318,7 +318,7 @@ hide-menu: true
         </div>
     </section>
 
-    <section class="stacks-section">
+    <section class="docs-section">
         {% header "h2", "Emphasis levels" %}
         <p class="stacks-copy">
             Emphasis determines the amount of contrast a color has against the default surface. Emphasis has a range from subtle to bold. Bold emphasis has more contrast against the background, which adds more attention than using UI with the subtle or default emphasis level.
@@ -354,7 +354,7 @@ hide-menu: true
         </div>
     </section>
 
-    <section class="stacks-section">
+    <section class="docs-section">
         {% header "h2", "Interaction states" %}
         <p class="stacks-copy">
             In Stacks, a component will get darker (or lighter in dark mode) as they interact with it. These progresses happen by adding 100 to the color before the interaction happens. Example: Blue-400 on hover becomes Blue-500. For a disabled button state, subtract 100 from the default color.
@@ -374,10 +374,10 @@ hide-menu: true
         </div>
     </section>
 
-    <section class="stacks-section">
+    <section class="docs-section">
         {% header "h2", "Light, dark, and high contrast modes" %}
         <p class="stacks-copy">Stacks supports light, dark, and high contrast modes. By using Stacks, you will get each of these modes for free. By using a Stacks component, an atomic color class, or CSS variable directly, your theme will switch appropriately based on the following methods: </p>
-        <ol class="stacks-list">
+        <ol class="stacks-copy">
             <li>You can apply <code class="stacks-code">.theme-system</code> to the <code class="stacks-code">body</code> element. This will change colors based on the <code class="stacks-code">prefers-color-scheme</code> media query, which is ultimately powered by the user’s system or browser settings. This can be preferable for folks who have their system turn to dark mode based on ambient light or time of day.</li>
             <li>Alternatively, you can set a dark mode that is not system dependent by attaching <code class="stacks-code">.theme-dark</code> to the <code class="stacks-code">body</code> element.</li>
             <li>Adding <code class="stacks-code">.theme-highcontrast</code> to the <code class="stacks-code">body</code> element will boost colors to WCAG Level AAA contrast ratios in as many places as possible. This mode stacks on top of both light and dark modes. The only exception is branded themed colors remain untouched by high contrast mode.</li>

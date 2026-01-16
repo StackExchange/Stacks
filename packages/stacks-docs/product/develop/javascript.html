@@ -5,7 +5,7 @@ description: This is an introduction to the JavaScript functionality provided by
 tags: develop
 ---
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Including the Stacks JavaScript" %}
 
     <p class="stacks-copy">While Stacks is first and foremost a CSS library, it also provides commonly used functionality for some components via JavaScript. This functionality is optional. If you only need the styling parts of Stack, you’re free to ignore the provided JavaScript. The converse is not true: The JavaScript components work under the assumption that the Stacks CSS is available.</p>
@@ -13,12 +13,12 @@ tags: develop
     <p class="stacks-copy">Stacks JavaScript is currently included within various Stack Overflow projects automatically. If you’re working on a Stack Overflow project, chances are it’s already available for you! If not, reach out to us and we’ll work on getting it setup.</p>
     <p class="stacks-copy">To include Stacks JavaScript in other projects, do the following.</p>
 
-    <ul class="stacks-list">
+    <ul class="stacks-copy">
         <li>Include the file <code class="stacks-code">dist/js/stacks.min.js</code> in your page. For example, if you use the unpkg CDN, add the tag <code class="stacks-code">&lt;script src="https://unpkg.com/@stackoverflow/stacks/dist/js/stacks.min.js"&gt;&lt;/script&gt;</code> to your HTML. See <a href="{{ "/product/develop/using-stacks" | url }}">Using Stacks</a> for more information on Unpkg and installing Stacks via NPM.</li>
     </ul>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Using the Stacks JavaScript" %}
 
     <p class="stacks-copy">The Stacks JavaScript components are provided as Stimulus controllers. <a href="https://stimulus.hotwired.dev/">Stimulus</a> is a library created by <a href="https://basecamp.com">Basecamp</a>.</p>
@@ -38,7 +38,7 @@ tags: develop
     <p class="stacks-copy">Refer to the documentation of individual components on how to configure a component’s behavior.</p>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Creating your own Stimulus controllers" %}
 
     <p class="stacks-copy">A side effect of including the Stacks JavaScript in your project is that you also have Stimulus available in your page. This means you can not only use Stacks-provided controllers, but also create your own.</p>
@@ -66,7 +66,7 @@ Stacks.addController("greeter", {
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "JavaScript classnames" %}
     <p class="stacks-copy">We prefix our JavaScript target classes with <code class="stacks-code">.js-</code> so that changing or adding a class name for styling purposes doesn’t inadvertently break our JS. This allows us to style elements with any chain of atomic or component classes from Stacks without breaking any additional JavaScript interactivity.</p>
     <p class="stacks-copy">We also try to avoid IDs for <em>both</em> visual styling and JavaScript targeting. They aren’t reusable, visual styling can’t be overwritten by atomic classes, and, like non-<code class="stacks-code">.js-</code> classes, we can’t tell if there is JavaScript interactivity attached at a glance.</p>

@@ -7,17 +7,21 @@ description: Spot illustrations are the slightly grown up version of icons with 
 tags: foundation
 ---
 
-<section class="stacks-section mb32" id="js-sortable-list">
+<section class="docs-section mb32" id="js-sortable-list">
     {% header "h2", "Spot illustrations" %}
     <div class="ps-sticky z-nav t64 bb bc-black-225 bg-white py16 mtn8 mb16 d-flex jc-space-between">
         <input type="text" class="flex--item fuzzy-search s-input s-input__search" placeholder="Search spot illustrations…" />
         {% icon "Search", "s-input-icon s-input-icon__search" %}
     </div>
-    <div class="d-flex fw-wrap sm:fd-column g16 flex__allitems4 list js-icon-list">
+    <div class="d-grid grid__3 lg:grid__2 md:grid__3 sm:grid__2 g16 js-icon-list">
         {% for spotName in stacks-icons.spots %}
             <div>
-                <div id="{{ spotName | downcase }}" class="d-flex fd-column p0 s-card h100 stacks-icon-container">
-                    <div class="d-flex fl-grow1 flex__center stacks-icon-preview">
+                <div
+                    id="{{ spotName | downcase }}"
+                    class="d-flex fd-column p0 s-card h100"
+                    style="scroll-margin-top: calc(var(--theme-topbar-height) + var(--su64) + var(--su12));"
+                >
+                    <div class="d-flex fl-grow1 flex__center bg-black-100 bb bc-black-225 p16 btr-md">
                         {% spot spotName, "native" %}
                     </div>
                     <div class="d-flex ai-center jc-space-between p8">

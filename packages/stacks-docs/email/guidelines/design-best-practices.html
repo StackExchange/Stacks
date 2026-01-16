@@ -3,12 +3,12 @@ layout: page
 title: Design best practices
 description: <a href="http://doemailshavetolookthesameineveryclient.com/" target="_blank">Emails don’t need to look the same in every email client</a>, but there are some best practices and guidelines to keep in mind to make sure they are consistently designed, render properly in email clients, and are as accessible as possible.
 ---
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "General rules and principles" %}
     <p class="stacks-copy">
         Given Stack Overflow’s reach, we strive to support email clients with low levels of HTML &amp; CSS support (namely Microsoft Outlook, a <a href="https://emails.hteumeuleu.com/trying-to-make-sense-of-gmail-css-support-after-the-2016-update-53c15151063a" target="_blank">few versions of Gmail</a>, and a handful of <a href="https://emails.hteumeuleu.com/should-we-stop-inlining-styles-in-emails-8c3b64f0d407" target="_blank">mostly non-US clients</a>). Less than 1% of a mailing list can still mean a few thousand users, so it’s safest to code emails like it’s 1999.
     </p>
-    <ul class="stacks-list">
+    <ul class="stacks-copy">
         <li>CSS2 instead of CSS3</li>
         <li>Tables instead of Divs</li>
         <li>PNGs instead of SVGs</li>
@@ -20,7 +20,7 @@ description: <a href="http://doemailshavetolookthesameineveryclient.com/" target
     </p>
 
     {% header "h3", "HTML and CSS" %}
-    <ol class="stacks-list">
+    <ol class="stacks-copy">
         <li class="mb24 lh-sm">
             Use <code class="stacks-code">&lt;table border="0" cellpadding="0" cellspacing="0" role="presentation"&gt;</code> when creating new tables.
             <span class="d-block fs-body2 fc-light lh-md mt8">This negates any unwanted spacing and borders and tells screen readers to skip over the table’s tags and move straight into the content.</span>
@@ -55,7 +55,7 @@ description: <a href="http://doemailshavetolookthesameineveryclient.com/" target
         </li>
     </ol>
     {% header "h3", "Images" %}
-    <ol class="stacks-list">
+    <ol class="stacks-copy">
         <li class="mb24 lh-sm">
             Save images as PNG, GIF, or JPG instead of SVG.
             <span class="d-block fs-body2 fc-light lh-md mt8">SVG has almost no support in email, no matter how it’s referenced (inline, Base64, <code class="stacks-code">.svg</code>).</span>
@@ -66,7 +66,7 @@ description: <a href="http://doemailshavetolookthesameineveryclient.com/" target
         </li>
     </ol>
     {% header "h3", "Accessibility" %}
-    <ol class="stacks-list">
+    <ol class="stacks-copy">
         <li class="mb24 lh-sm">
             Include <code class="stacks-code">role="presentation"</code> on all tables used for layout.
             <span class="d-block fs-body2 fc-light lh-md mt8">This prevents screen readers from reading aloud the structure of each table cell.</span>
@@ -89,7 +89,7 @@ description: <a href="http://doemailshavetolookthesameineveryclient.com/" target
         </li>
     </ol>
 </section>
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Testing" %}
     <p class="stacks-copy">
         Tools to ensure emails look as they should when they’re sent.

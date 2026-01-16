@@ -3,10 +3,6 @@
 //  ----------------------------------------------------------------------------
 @import (reference) "../../../stacks-classic/lib/stacks.less"; //  These are actual styles used in SO projects
 
-.stacks-section {
-    margin-bottom: var(--su48);
-}
-
 .stacks-intro-crane {
     position: absolute;
     top: -15%;
@@ -74,83 +70,12 @@
     }
 }
 
-//  $$  NAV SECONDARY SUBNAV
-//  ----------------------------------------------------------------------------
-.toc {
-    ol {
-        .list-reset;
-        display: flex;
-        flex-direction: column;
-
-        li {
-            margin-bottom: var(--su8);
-        }
-
-        li a {
-            display: block;
-            font-size: var(--fs-body1);
-            line-height: var(--lh-sm);
-            padding-top: var(--su2);
-            padding-bottom: var(--su2);
-        }
-
-        ol {
-            padding-top: var(--su6);
-
-            li {
-                margin-bottom: var(--su0);
-                padding: var(--su2) var(--su2) var(--su2) var(--su12);
-            }
-        }
-    }
-}
-
-
-//  ============================================================================
-//  $   TYPE STYLES
-//  ============================================================================
-//  $$  TITLES
-//  ----------------------------------------------------------------------------
+// Typography styles -------------------------------------------------------------
 .stacks-title {
     text-shadow: 0 0 10px var(--theme-primary-400), 0 0 10px var(--theme-primary-400), 0 0 10px var(--theme-primary-400);
     text-rendering: optimizeLegibility;
 }
 
-.stacks-h1,
-.stacks-h2,
-.stacks-h3,
-.stacks-h4 {
-    margin-bottom: 0;
-    font-weight: 700;
-    line-height: var(--lh-sm);
-    color: var(--fc-dark);
-    text-rendering: optimizeLegibility;
-}
-
-//  --  Page Title
-.stacks-h1 {
-    font-size: var(--fs-display1);
-    margin-bottom: 0.5em;
-}
-
-//  --  Section Title
-.stacks-h2 {
-    font-size: var(--fs-headline1);
-}
-
-//  --  Sub-section Title
-.stacks-h3 {
-    font-size: var(--fs-subheading);
-    color: var(--fc-medium);
-}
-
-.stacks-h4 {
-    font-size: var(--fs-body3);
-    color: var(--fc-light);
-}
-
-//  $$  PARAGRAPHS
-//  ----------------------------------------------------------------------------
 .stacks-copy {
     margin-top: 0;
     margin-bottom: 1em;
@@ -168,13 +93,7 @@
     }
 }
 
-.stacks-copy__lg {
-    font-size: var(--fs-title);
-}
-
-
-//  --   Code Tag
-//  ----------------------------------------------------------------------------
+// Code styles -------------------------------------------------------------
 .stacks-code {
     padding: 3px 5px var(--su2) var(--su4);
     border-radius: var(--br-md);
@@ -188,26 +107,6 @@
     white-space: normal;
 }
 
-
-//  ============================================================================
-//  $  LISTS
-//  ----------------------------------------------------------------------------
-.stacks-list {
-    margin-bottom: 1em;
-    font-size: var(--fs-body3);
-    line-height: var(--lh-lg);
-    color: var(--fc-medium);
-
-    a:not([class]),
-    .s-link {
-        text-decoration: underline;
-    }
-}
-
-
-//  ============================================================================
-//  $   CODE STYLES
-//  ----------------------------------------------------------------------------
 .stacks-preview {
     margin-bottom: var(--su48);
     border-radius: var(--br-md);
@@ -232,7 +131,6 @@
     }
 }
 
-//  Preview area
 .stacks-preview--example {
     padding: var(--su16);
     border-bottom-left-radius: var(--br-md);
@@ -246,32 +144,10 @@
     });
 }
 
-// Checkered background
+// Checkered background -------------------------------------------------------------
 .bg-checkered {
     background-color: var(--white);
     background-image: url("data:image/svg+xml;,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%23e4e6e8' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
-}
-
-//  ============================================================================
-//  $   ICON PRESENTATION
-//  ----------------------------------------------------------------------------
-.stacks-icon-container {
-    scroll-margin-top: 150px;
-}
-
-//  --   Preview Area
-.stacks-icon-preview {
-    padding: var(--su8);
-    min-height: 4em;
-    border-top-left-radius: var(--br-md);
-    border-top-right-radius: var(--br-md);
-    background-color: var(--black-100);
-    box-shadow: inset 0 -1px 0 var(--black-200);
-    color: var(--fc-medium);
-
-    .dark-mode({
-        fill: var(--black);
-    });
 }
 
 // Refactored
@@ -341,6 +217,10 @@ h2, h3 {
         background-color: var(--black-100);
     }
 
+}
+
+.docs-section {
+    margin-bottom: var(--su48);
 }
 
 // Algolia search -------------------------------------------------------------
