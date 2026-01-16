@@ -182,7 +182,9 @@
                                 >
                                 is a new contributor to this site. Take care in asking
                                 for clarification, commenting, and answering.
-                                <a href="#">Check out our Code of Conduct</a>
+                                <a href="…" class="s-link s-link__underlined"
+                                    >Check out our Code of Conduct</a
+                                >
                             </span>
                         {/snippet}
                         {#snippet badges()}
