@@ -964,7 +964,7 @@ tags: components
                                 {% if user.recognitionIcon %}
                                     <div class="s-user-card--row s-user-card--recognition">
                                         {% icon user.recognitionIcon, native %}
-                                        <span>Recognized by <a href="#">AudioBubble</a></span>
+                                        <span>Recognized by <a href="…">AudioBubble</a></span>
                                     </div>
                                 {% endif %}
                             </div>
@@ -976,17 +976,17 @@ tags: components
                             </span>
                             <span class="s-user-card--username">{{ user.username }}</span>
                         </a>
-                        {% if user.recognitionIcon %}
-                            <a href="#" class="s-user-card--group s-user-card--recognition" title="Recognized by Audiobubble" data-controller="s-tooltip">
-                                {% icon user.recognitionIcon %}
-                            </a>
-                        {% endif %}
                         {% if user.badges %}
                             <div class="s-user-card--group">
                                 {% for badge in user.badges %}
                                     <span class="s-badge s-badge__sm {{ badge.class }}">{{ badge.text }}</span>
                                 {% endfor %}
                             </div>
+                        {% endif %}
+                        {% if user.recognitionIcon %}
+                            <a href="#" class="s-user-card--group s-user-card--recognition" title="Recognized by Audiobubble" data-controller="s-tooltip">
+                                {% icon user.recognitionIcon %}
+                            </a>
                         {% endif %}
                         <ul class="s-user-card--group">
                             <li class="s-user-card--rep">

@@ -1,12 +1,21 @@
 <script lang="ts" module>
     export type Size = "sm" | "lg" | undefined;
+    export type AwardBlings = "first" | "second" | "third" | undefined;
 </script>
 
 <script lang="ts">
     import Avatar, { type Size as AvatarSize } from "../Avatar/Avatar.svelte";
     import Icon from "../Icon/Icon.svelte";
-    import { IconStarVerifiedSm } from "@stackoverflow/stacks-icons-legacy/icons";
+    import {
+        IconStarVerifiedSm,
+        IconAchievementsSm,
+    } from "@stackoverflow/stacks-icons-legacy/icons";
     import type { Snippet } from "svelte";
+    import Popover from "../Popover/Popover.svelte";
+    import PopoverReference from "../Popover/PopoverReference.svelte";
+    import PopoverContent from "../Popover/PopoverContent.svelte";
+    import avatarDeleted16 from "../../assets/img/avatar-deleted-16.svg";
+    import avatarDeleted24 from "../../assets/img/avatar-deleted-24.svg";
 
     interface Props {
         /**
@@ -65,6 +74,25 @@
         bio?: Snippet;
 
         /**
+         * The award of the user
+         */
+        award?: AwardBlings;
+
+        /**
+         * The recognition href (used for small variant)
+         */
+        recognitionHref?: string;
+
+        /**
+         * Identifies if the user card is the orginal poster
+         */
+        originalPoster?: boolean;
+
+        /**
+         * Identifies if the user has been deleted
+         */
+        deleted?: boolean;
+        /**
          * Additional CSS classes added to the element
          */
         class?: string;
@@ -82,10 +110,14 @@
         location,
         designation,
         bio,
+        award,
+        recognitionHref,
+        originalPoster,
+        deleted,
         class: className = "",
     }: Props = $props();
 
-    const getClasses = (className: string, size?: Size) => {
+    const getClasses = (className: string, size?: Size, deleted?: boolean) => {
         const base = "s-user-card";
         let classes = base;
 
@@ -95,6 +127,10 @@
 
         if (size) {
             classes += ` ${base}__${size}`;
+        }
+
+        if (deleted) {
+            classes += ` ${base}__deleted`;
         }
 
         return classes;
@@ -111,8 +147,11 @@
         }
     };
 
-    const classes = $derived(getClasses(className, size));
+    const classes = $derived(getClasses(className, size, deleted));
     const avatarSize = $derived(getAvatarSize(size));
+    const deletedAvatarSrc = $derived(
+        size === "sm" ? avatarDeleted16 : avatarDeleted24
+    );
 </script>
 
 {#snippet avatarAndName()}
@@ -131,27 +170,93 @@
                 />
             {/if}
             {#if name}
-                <span class="s-user-card--username">{name}</span>
+                {#if originalPoster}
+                    <Popover id="user-card-original-poster-popover tooltip">
+                        <PopoverReference>
+                            <span
+                                class="s-user-card--username s-user-card--original-poster"
+                                >{name}</span
+                            >
+                        </PopoverReference>
+                        <PopoverContent>
+                            <span>
+                                <a
+                                    href={profileUrl}
+                                    class="s-link s-link__underlined">{name}</a
+                                > is the original poster.
+                            </span>
+                        </PopoverContent>
+                    </Popover>
+                {:else}
+                    <span class="s-user-card--username">{name}</span>
+                {/if}
             {/if}
         </svelte:element>
     {/if}
 {/snippet}
 
+{#snippet userCardMainContent()}
+    {@render avatarAndName()}
+    {#if recognition && size === "sm"}
+        <Popover id="user-card-recognition-popover" tooltip>
+            <PopoverReference>
+                <svelte:element
+                    this={recognitionHref ? "a" : "div"}
+                    href={recognitionHref}
+                    class="s-user-card--group s-user-card--recognition"
+                >
+                    <Icon src={IconStarVerifiedSm} />
+                </svelte:element>
+            </PopoverReference>
+            <PopoverContent>
+                {@render recognition()}
+            </PopoverContent>
+        </Popover>
+    {/if}
+    {#if badges}
+        <ul class="s-user-card--group">
+            {@render badges()}
+        </ul>
+    {/if}
+    {#if award}
+        <div class="s-user-card--group s-user-card--awarded-{award}">
+            <Icon src={IconAchievementsSm} />
+        </div>
+    {/if}
+    {#if blings}
+        <ul class="s-user-card--group">
+            {@render blings()}
+        </ul>
+    {/if}
+    {#if time}
+        {@render time()}
+    {/if}
+{/snippet}
+
 <div class={classes}>
-    {#if size !== "lg"}
-        {@render avatarAndName()}
-        {#if badges}
-            <ul class="s-user-card--group">
-                {@render badges()}
-            </ul>
-        {/if}
-        {#if blings}
-            <ul class="s-user-card--group">
-                {@render blings()}
-            </ul>
-        {/if}
+    {#if deleted}
+        <div class="s-user-card--group">
+            <Avatar {name} src={deletedAvatarSrc} size={avatarSize} />
+            <span class="s-user-card--username s-user-card--deleted"
+                >{name}</span
+            >
+        </div>
         {#if time}
             {@render time()}
+        {/if}
+    {:else if size !== "lg"}
+        {#if recognition && size === undefined}
+            <div class="s-user-card--column">
+                <div class="s-user-card--row">
+                    {@render userCardMainContent()}
+                </div>
+                <div class="s-user-card--row s-user-card--recognition">
+                    <Icon src={IconStarVerifiedSm} />
+                    {@render recognition()}
+                </div>
+            </div>
+        {:else}
+            {@render userCardMainContent()}
         {/if}
     {:else}
         <div class="s-user-card--row">

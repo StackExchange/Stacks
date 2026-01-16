@@ -4,9 +4,10 @@
     import UserCardTime from "./UserCardTime.svelte";
     import UserCardBadge from "./UserCardBadge.svelte";
     import UserCardBling from "./UserCardBling.svelte";
+    import type { AwardBlings } from "./UserCard.svelte";
 
     const UserCardSizes: (Size | undefined)[] = [undefined, "sm", "lg"];
-
+    const UserCardAwardBlings: AwardBlings[] = ["first", "second", "third"];
     const baseArgs = {
         avatar: "https://picsum.photos/128",
         profileUrl: "#",
@@ -128,7 +129,7 @@
                         {/snippet}
                         {#snippet recognition()}
                             <span>Recognized by</span>
-                            <a href="#"> AudioBubble </a>
+                            <a href="…"> AudioBubble </a>
                         {/snippet}
                         {#snippet bio()}
                             <p class="s-user-card--bio">
@@ -145,6 +146,112 @@
                             designation="Senior Product Designer"
                             location="Vancouver, Canada"
                             {bio}
+                        />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</Story>
+
+<Story name="States" args={baseArgs} asChild>
+    <div class="d-flex fd-column g64">
+        <table class="s-table s-table__bx-simple wmx7">
+            <thead>
+                <tr>
+                    <th scope="col">States</th>
+                    <th scope="col" class="s-table--cell8">Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" class="va-middle">Original Poster</th>
+                    <td class="va-middle px4">
+                        <UserCard {...baseArgs} originalPoster />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row" class="va-middle">New Contributor</th>
+                    <td class="va-middle px4">
+                        {#snippet tooltip()}
+                            <span>
+                                <a
+                                    href={baseArgs.profileUrl}
+                                    class="s-link s-link__underlined"
+                                    >{baseArgs.name}</a
+                                >
+                                is a new contributor to this site. Take care in asking
+                                for clarification, commenting, and answering.
+                                <a href="#">Check out our Code of Conduct</a>
+                            </span>
+                        {/snippet}
+                        {#snippet badges()}
+                            <UserCardBadge type="new" {tooltip} />
+                        {/snippet}
+                        <UserCard {...baseArgs} {badges} />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row" class="va-middle">Deleted User</th>
+                    <td class="va-middle px4">
+                        <UserCard {...baseArgs} deleted />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</Story>
+<Story name="Additional Bling" args={baseArgs} asChild>
+    <div class="d-flex fd-column g64">
+        <table class="s-table s-table__bx-simple wmx7">
+            <thead>
+                <tr>
+                    <th scope="col">Additional Bling</th>
+                    <th scope="col" class="s-table--cell8">Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                {#each UserCardAwardBlings as award (award)}
+                    <tr>
+                        <th scope="row" class="va-middle">{award}</th>
+                        <td class="va-middle px4">
+                            <UserCard
+                                {...baseArgs}
+                                award={award as AwardBlings}
+                            />
+                        </td>
+                    </tr>
+                {/each}
+                <tr>
+                    <th scope="row" class="va-middle"
+                        >Recognized Member (small)</th
+                    >
+                    <td class="va-middle px4">
+                        {#snippet recognition()}
+                            <span>Recognized by AudioBubble</span>
+                        {/snippet}
+                        <UserCard
+                            {...baseArgs}
+                            {recognition}
+                            recognitionHref="#"
+                            size="sm"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row" class="va-middle"
+                        >Recognized Member (default)</th
+                    >
+                    <td class="va-middle px4">
+                        {#snippet recognition()}
+                            <span
+                                >Recognized by <a href="…">AudioBubble</a></span
+                            >
+                        {/snippet}
+                        <UserCard
+                            {...baseArgs}
+                            {recognition}
+                            recognitionHref="#"
                         />
                     </td>
                 </tr>
