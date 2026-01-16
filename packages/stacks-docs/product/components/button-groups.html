@@ -2,7 +2,7 @@
 layout: page
 title: Button groups
 figma: https://svelte.stackoverflow.design/figma/button-groups
-description: Button groups are a collection of buttons. This component is used in our questions view, and is frequently used in conjunction with other form elements such as search fields and sorting dropdowns. If the content you’re interacting with is a simple paring down or filter of the current view, it’s appropriate to use the <code class="stacks-code">.s-btn-group</code> component. Add the class <code class="stacks-code">.is-selected</code> and the <code class="stacks-code">aria-current</code> attribute with the <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current#values">appropriate value</a> to show the currently selected button.
+description: Button groups are a collection of buttons. This component is used in our questions view, and is frequently used in conjunction with other form elements such as search fields and sorting dropdowns. If the content you’re interacting with is a simple paring down or filter of the current view, it’s appropriate to use the <code class="docs-code">.s-btn-group</code> component. Add the class <code class="docs-code">.is-selected</code> and the <code class="docs-code">aria-current</code> attribute with the <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current#values">appropriate value</a> to show the currently selected button.
 tags: components
 ---
 <section class="docs-section">
@@ -19,8 +19,8 @@ tags: components
             <tbody class="fs-caption">
                 {% for item in button-groups.classes %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
-                        <td><code class="stacks-code bg-white">{{ item.applies }}</td>
+                        <th scope="row"><code class="docs-code">{{ item.class }}</code></th>
+                        <td><code class="docs-code bg-white">{{ item.applies }}</td>
                         <td class="p8">{{ item.description }}</td>
                     </tr>
                 {% endfor %}
@@ -33,7 +33,7 @@ tags: components
     {% for item in button-groups.button-attributes %}
         {% header "h3", item.title %}
 
-        <p class="stacks-copy">{{item.description}}</p>
+        <p class="docs-copy">{{item.description}}</p>
 
         <div class="overflow-x-auto mb32" tabindex="0">
             <table class="wmn4 s-table s-table__bx-simple">
@@ -47,8 +47,8 @@ tags: components
                 <tbody>
                     {% for attribute in item.attributes %}
                         <tr>
-                            <th scope="row"><code class="stacks-code">{{ attribute.attribute }}</code></th>
-                            <td><code class="stacks-code">{{ attribute.applies }}</td>
+                            <th scope="row"><code class="docs-code">{{ attribute.attribute }}</code></th>
+                            <td><code class="docs-code">{{ attribute.applies }}</td>
                             <td class="p8">{{ attribute.description }}</td>
                         </tr>
                     {% endfor %}
@@ -60,7 +60,7 @@ tags: components
 
 <section class="docs-section">
     {% header "h2", "Example" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="s-btn-group">
     <button class="s-btn s-btn__clear" type="button">
@@ -80,7 +80,7 @@ tags: components
     </button>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="s-btn-group">
                 <button class="s-btn s-btn__clear" type="button">
                     <span class="s-btn--text" data-text="Newest">Newest</span>
@@ -104,10 +104,10 @@ tags: components
 
 <section class="docs-section">
     {% header "h2", "Counts" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         Counts are used to display a numerical count inside a button group. This is good for large data sets where it’s helpful to quickly know how many items are behind each filter.
     </p>
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="s-btn-group">
     <button class="s-btn s-btn__clear" type="button">
@@ -130,7 +130,7 @@ tags: components
     </button>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="s-btn-group js-btn-group">
                 <button class="s-btn s-btn__clear js-btn-group-item" type="button">
                     <span class="s-btn--text" data-text="Active">Active</span>
@@ -157,10 +157,10 @@ tags: components
 
 <section class="docs-section">
     {% header "h2", "Radio" %}
-    <p class="stacks-copy">
-        Button groups can be implemented using radio elements with the class <code class="stacks-code">.s-btn--radio</code> on the radio input element. This class assumes all buttons are styled <code class="stacks-code">label</code> elements.
+    <p class="docs-copy">
+        Button groups can be implemented using radio elements with the class <code class="docs-code">.s-btn--radio</code> on the radio input element. This class assumes all buttons are styled <code class="docs-code">label</code> elements.
     </p>
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="s-btn-group">
     <input class="s-btn--radio" type="radio" name="example-btn-group" id="example-btn-group-1" />
@@ -177,7 +177,7 @@ tags: components
     </label>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="s-btn-group">
                 <input class="s-btn--radio" type="radio" name="example-btn-group" id="example-btn-group-1" />
                 <label class="s-btn s-btn__clear" for="example-btn-group-1">
@@ -198,11 +198,11 @@ tags: components
 
 <section class="docs-section">
     {% header "h2", "Links" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         In some cases items in the button groups let users navigate between related sections of content, displaying one section at a time.
-        In those cases an <code class="stacks-code">a</code> tag should be prefferred over the <code class="stacks-code">button</code>.
+        In those cases an <code class="docs-code">a</code> tag should be prefferred over the <code class="docs-code">button</code>.
     </p>
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="s-btn-group">
     <a href="#" class="s-btn s-btn__clear is-selected" aria-current="true">Newest</a>
@@ -210,7 +210,7 @@ tags: components
     <a href="#" class="s-btn s-btn__clear">Unanswered</a>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="s-btn-group">
                 <a href="#links" class="s-btn s-btn__clear is-selected" aria-current="true">Newest</a>
                 <a href="#links" class="s-btn s-btn__clear">Frequent</a>

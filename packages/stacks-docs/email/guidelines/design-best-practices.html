@@ -5,24 +5,24 @@ description: <a href="http://doemailshavetolookthesameineveryclient.com/" target
 ---
 <section class="docs-section">
     {% header "h2", "General rules and principles" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         Given Stack Overflow’s reach, we strive to support email clients with low levels of HTML &amp; CSS support (namely Microsoft Outlook, a <a href="https://emails.hteumeuleu.com/trying-to-make-sense-of-gmail-css-support-after-the-2016-update-53c15151063a" target="_blank">few versions of Gmail</a>, and a handful of <a href="https://emails.hteumeuleu.com/should-we-stop-inlining-styles-in-emails-8c3b64f0d407" target="_blank">mostly non-US clients</a>). Less than 1% of a mailing list can still mean a few thousand users, so it’s safest to code emails like it’s 1999.
     </p>
-    <ul class="stacks-copy">
+    <ul class="docs-copy">
         <li>CSS2 instead of CSS3</li>
         <li>Tables instead of Divs</li>
         <li>PNGs instead of SVGs</li>
         <li>Inline CSS instead of embedded styles or stylesheets</li>
         <li>HTML text instead of images containing text</li>
     </ul>
-    <p class="stacks-copy">
+    <p class="docs-copy">
         <a href="https://www.caniemail.com/">Can I Email?</a> and <a href="https://www.campaignmonitor.com/css/" target="_blank">Campaign Monitor’s guide to CSS</a> are good references for HTML &amp; CSS support in email.</p>
     </p>
 
     {% header "h3", "HTML and CSS" %}
-    <ol class="stacks-copy">
+    <ol class="docs-copy">
         <li class="mb24 lh-sm">
-            Use <code class="stacks-code">&lt;table border="0" cellpadding="0" cellspacing="0" role="presentation"&gt;</code> when creating new tables.
+            Use <code class="docs-code">&lt;table border="0" cellpadding="0" cellspacing="0" role="presentation"&gt;</code> when creating new tables.
             <span class="d-block fs-body2 fc-light lh-md mt8">This negates any unwanted spacing and borders and tells screen readers to skip over the table’s tags and move straight into the content.</span>
         </li>
         <li class="mb24 lh-sm">
@@ -39,15 +39,15 @@ description: <a href="http://doemailshavetolookthesameineveryclient.com/" target
         </li>
         <li class="mb24 lh-sm">
             HTML Attributes
-            <span class="d-block fs-body2 fc-light lh-md mt8">Most styling is done via CSS. But because some email clients use antiquated rendering engines, they tend to better understand attributes like <code class="stacks-code">align</code>, <code class="stacks-code">valign</code>, <code class="stacks-code">height</code>, and <code class="stacks-code">width</code>.</span>
+            <span class="d-block fs-body2 fc-light lh-md mt8">Most styling is done via CSS. But because some email clients use antiquated rendering engines, they tend to better understand attributes like <code class="docs-code">align</code>, <code class="docs-code">valign</code>, <code class="docs-code">height</code>, and <code class="docs-code">width</code>.</span>
         </li>
         <li class="mb24 lh-sm">
-            Use <code class="stacks-code">align</code> for layout instead of <code class="stacks-code">float</code>, <code class="stacks-code">d-flex</code>, or <code class="stacks-code">flexbox</code>
+            Use <code class="docs-code">align</code> for layout instead of <code class="docs-code">float</code>, <code class="docs-code">d-flex</code>, or <code class="docs-code">flexbox</code>
             <span class="d-block fs-body2 fc-light lh-md mt8">Floats aren’t supported in Outlook and the others don’t have good support in general.</span>
         </li>
         <li class="mb24 lh-sm">
-            Define color as <code class="stacks-code">#ffffff</code> instead of <code class="stacks-code">#fff</code> or <code class="stacks-code">rgb(1,2,3)</code>.
-            <span class="d-block fs-body2 fc-light lh-md mt8">Six-digit hex is supported in inline CSS as well as HTML attributes like <code class="stacks-code">bgcolor</code> that are still supported in email.</span>
+            Define color as <code class="docs-code">#ffffff</code> instead of <code class="docs-code">#fff</code> or <code class="docs-code">rgb(1,2,3)</code>.
+            <span class="d-block fs-body2 fc-light lh-md mt8">Six-digit hex is supported in inline CSS as well as HTML attributes like <code class="docs-code">bgcolor</code> that are still supported in email.</span>
         </li>
         <li class="mb24 lh-sm">
             Don’t forget about <a href="{{ "/email/guidelines/faq#what-is-preview-text?" | url }}">preview text</a>.
@@ -55,29 +55,29 @@ description: <a href="http://doemailshavetolookthesameineveryclient.com/" target
         </li>
     </ol>
     {% header "h3", "Images" %}
-    <ol class="stacks-copy">
+    <ol class="docs-copy">
         <li class="mb24 lh-sm">
             Save images as PNG, GIF, or JPG instead of SVG.
-            <span class="d-block fs-body2 fc-light lh-md mt8">SVG has almost no support in email, no matter how it’s referenced (inline, Base64, <code class="stacks-code">.svg</code>).</span>
+            <span class="d-block fs-body2 fc-light lh-md mt8">SVG has almost no support in email, no matter how it’s referenced (inline, Base64, <code class="docs-code">.svg</code>).</span>
         </li>
         <li class="mb24 lh-sm">
             Save images as @2x and scale them down using HTML attributes.
-            <span class="d-block fs-body2 fc-light lh-md mt8">Since SVG isn’t supported, a 20x20 raster image coded like <code class="stacks-code">&lt;img src="40x40-image.png" height="20" width="20"&gt;</code> displays crisply on high-definition screens.</span>
+            <span class="d-block fs-body2 fc-light lh-md mt8">Since SVG isn’t supported, a 20x20 raster image coded like <code class="docs-code">&lt;img src="40x40-image.png" height="20" width="20"&gt;</code> displays crisply on high-definition screens.</span>
         </li>
     </ol>
     {% header "h3", "Accessibility" %}
-    <ol class="stacks-copy">
+    <ol class="docs-copy">
         <li class="mb24 lh-sm">
-            Include <code class="stacks-code">role="presentation"</code> on all tables used for layout.
+            Include <code class="docs-code">role="presentation"</code> on all tables used for layout.
             <span class="d-block fs-body2 fc-light lh-md mt8">This prevents screen readers from reading aloud the structure of each table cell.</span>
         </li>
         <li class="mb24 lh-sm">
             Use HTML1 semantic tags whenever possible.
-            <span class="d-block fs-body2 fc-light lh-md mt8">Tags like <code class="stacks-code">&lt;p&gt;</code> and <code class="stacks-code">&lt;h&gt;</code> allow screen readers to quickly jump from section to section. Tags like <code class="stacks-code">&lt;strong&gt;</code> and <code class="stacks-code">&lt;em&gt;</code> give text more importance.</span>
+            <span class="d-block fs-body2 fc-light lh-md mt8">Tags like <code class="docs-code">&lt;p&gt;</code> and <code class="docs-code">&lt;h&gt;</code> allow screen readers to quickly jump from section to section. Tags like <code class="docs-code">&lt;strong&gt;</code> and <code class="docs-code">&lt;em&gt;</code> give text more importance.</span>
         </li>
         <li class="mb24 lh-sm">
-            Include an <code class="stacks-code">alt</code> attribute on every image.
-            <span class="d-block fs-body2 fc-light lh-md mt8">Be descriptive and use <code class="stacks-code">alt</code> to help readers “see” the email if images aren’t displayed. Use an empty <code class="stacks-code">alt=""</code> for images a screen reader should skip (eg. decorative images). Screenreaders will dictate the filename of images without an <code class="stacks-code">alt</code> attribute (eg. "icon dash checkmark dot png"). <a href="{{ "/content/examples/alt-text/" | url }}">More on alt text</a>.</span>
+            Include an <code class="docs-code">alt</code> attribute on every image.
+            <span class="d-block fs-body2 fc-light lh-md mt8">Be descriptive and use <code class="docs-code">alt</code> to help readers “see” the email if images aren’t displayed. Use an empty <code class="docs-code">alt=""</code> for images a screen reader should skip (eg. decorative images). Screenreaders will dictate the filename of images without an <code class="docs-code">alt</code> attribute (eg. "icon dash checkmark dot png"). <a href="{{ "/content/examples/alt-text/" | url }}">More on alt text</a>.</span>
         </li>
         <li class="mb24 lh-sm">
             Avoid “Click Here” or “Learn More” link copy.
@@ -91,7 +91,7 @@ description: <a href="http://doemailshavetolookthesameineveryclient.com/" target
 </section>
 <section class="docs-section">
     {% header "h2", "Testing" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         Tools to ensure emails look as they should when they’re sent.
     </p>
     <div class="d-flex gx24">

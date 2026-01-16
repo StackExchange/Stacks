@@ -8,9 +8,9 @@ tags: components
 ---
 <section class="docs-section">
     {% header "h2", "Base style" %}
-    <p class="stacks-copy">Inputs are normally paired with a label, but there are times when they can be used without a label. Placeholder text should primarily be used as a content prompt and only provided when needed.</p>
+    <p class="docs-copy">Inputs are normally paired with a label, but there are times when they can be used without a label. Placeholder text should primarily be used as a content prompt and only provided when needed.</p>
 
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <!-- Base -->
 <div class="d-flex gy4 fd-column">
@@ -37,7 +37,7 @@ tags: components
     </div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex gy16 fd-column">
                 <div class="d-flex gy4 fd-column">
                     <label class="s-label" for="example-item1">Full name</label>
@@ -65,17 +65,17 @@ tags: components
 
 <section class="docs-section">
     {% header "h2", "Accessibility" %}
-    <p class="stacks-copy">The best accessibility is semantic HTML. Most screen readers understand how to parse inputs if they're correctly formatted. When it comes to inputs, there are a few things to keep in mind:</p>
-    <ul class="stacks-copy">
-        <li>All inputs should have an <code class="stacks-code">id</code> attribute.</li>
-        <li>Be sure to associate the input’s label by using the <code class="stacks-code">for</code> attribute. The value here is the input’s <code class="stacks-code">id</code>.</li>
-        <li>If you have a group of related inputs, use the <code class="stacks-code">fieldset</code> and <code class="stacks-code">legend</code> to group them together.</li>
+    <p class="docs-copy">The best accessibility is semantic HTML. Most screen readers understand how to parse inputs if they're correctly formatted. When it comes to inputs, there are a few things to keep in mind:</p>
+    <ul class="docs-copy">
+        <li>All inputs should have an <code class="docs-code">id</code> attribute.</li>
+        <li>Be sure to associate the input’s label by using the <code class="docs-code">for</code> attribute. The value here is the input’s <code class="docs-code">id</code>.</li>
+        <li>If you have a group of related inputs, use the <code class="docs-code">fieldset</code> and <code class="docs-code">legend</code> to group them together.</li>
     </ul>
-    <p class="stacks-copy">For more information, please read Gov.UK's article, <a href="https://accessibility.blog.gov.uk/2016/07/22/using-the-fieldset-and-legend-elements/" target="_blank"><em>"Using the fieldset and legend elements"</em></a>.</p>
+    <p class="docs-copy">For more information, please read Gov.UK's article, <a href="https://accessibility.blog.gov.uk/2016/07/22/using-the-fieldset-and-legend-elements/" target="_blank"><em>"Using the fieldset and legend elements"</em></a>.</p>
 
     {% header "h3", "Required input fields" %}
-    <p class="stacks-copy">Labels or instructions must be provided when content requires user input. For any input field within a form that is required for successful data submission, provide the asterisk <code class="stacks-code">*</code> as a symbol and a legend advising the meaning of the symbol before the first use.</p>
-    <p class="stacks-copy">Stacks includes a special <code class="stacks-code">.s-required-symbol</code> class to ensure the symbol (asterisk) is clearly visible.</p>
+    <p class="docs-copy">Labels or instructions must be provided when content requires user input. For any input field within a form that is required for successful data submission, provide the asterisk <code class="docs-code">*</code> as a symbol and a legend advising the meaning of the symbol before the first use.</p>
+    <p class="docs-copy">Stacks includes a special <code class="docs-code">.s-required-symbol</code> class to ensure the symbol (asterisk) is clearly visible.</p>
 
     <table class="wmn4 s-table s-table__bx-simple mb16">
         <thead>
@@ -87,8 +87,8 @@ tags: components
         </thead>
         <tbody>
             <tr>
-                <th scope="row"><code class="stacks-code">.s-required-symbol</code></th>
-                <td><code class="stacks-code">abbr</code> element enclosing the asterisk</td>
+                <th scope="row"><code class="docs-code">.s-required-symbol</code></th>
+                <td><code class="docs-code">abbr</code> element enclosing the asterisk</td>
                 <td>Used to style the asterisk indicating that a specific field is required.</td>
             </tr>
         </tbody>
@@ -96,10 +96,10 @@ tags: components
 {% highlight html %}
 <abbr class="s-required-symbol" title="required">*</abbr>
 {% endhighlight %}
-    <p class="stacks-copy mt16">Required symbols are not necessary for areas where only a single input field is seen on the page (ex: sign up modals). For more information, see <a href="https://www.w3.org/WAI/WCAG22/Techniques/html/H90" target="_blank">WCAG Technique H90</a>.</p>
+    <p class="docs-copy mt16">Required symbols are not necessary for areas where only a single input field is seen on the page (ex: sign up modals). For more information, see <a href="https://www.w3.org/WAI/WCAG22/Techniques/html/H90" target="_blank">WCAG Technique H90</a>.</p>
 
     {% header "h3", "Required input fields example" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="d-flex w100 jc-space-between ai-center">
     <h1 class="fs-headline1 fw-normal mb16">
@@ -122,7 +122,7 @@ tags: components
     </div>
 </form>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex w100 jc-space-between ai-center">
                 <h1 class="fs-headline1 fw-normal mb16">
                     Ask a question
@@ -149,7 +149,7 @@ tags: components
 
 <section class="docs-section">
     {% header "h2", "Validation states" %}
-    <p class="stacks-copy">Validation states provides the user feedback based on their interaction (or lack of interaction) with an input. These styles are applied by applying the appropriate class to the wrapping parent container.</p>
+    <p class="docs-copy">Validation states provides the user feedback based on their interaction (or lack of interaction) with an input. These styles are applied by applying the appropriate class to the wrapping parent container.</p>
 
     {% header "h3", "Validation classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
@@ -164,7 +164,7 @@ tags: components
             <tbody>
                 {% for state in inputs.validation %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ state.class }}</code></th>
+                        <th scope="row"><code class="docs-code">{{ state.class }}</code></th>
                         <td>Parent wrapper for input</td>
                         <td>{{ state.description }}</td>
                     </tr>
@@ -174,19 +174,19 @@ tags: components
     </div>
 
     {% header "h3", "Validation guidance" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         In most cases, validation states shouldn’t be shown until after the user has submitted the form. There are certain exceptions where it can be appropriate to show a validation state without form submission—after a sufficient delay. For example, validating the existence of a username can occur after the user has stopped typing, or when they’ve deselected the input.
     </p>
-    <p class="stacks-copy">
+    <p class="docs-copy">
         Once the user is presented validation states, they can be cleared as soon as the user interacts with the form field. For example, the error state for an incorrect password should be cleared as soon as the user focuses the input to re-enter their password.
     </p>
-    <p class="stacks-copy mb32">
-        Similarly to using <code class="stacks-code">for</code> with labels, validation messages below inputs should be associated with their respective fields using the <code class="stacks-code">aria-describedby</code> attribute for accessible behavior.
+    <p class="docs-copy mb32">
+        Similarly to using <code class="docs-code">for</code> with labels, validation messages below inputs should be associated with their respective fields using the <code class="docs-code">aria-describedby</code> attribute for accessible behavior.
     </p>
 
     {% header "h3", "Validation examples" %}
     {% header "h4", "Warning" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="d-flex gy4 fd-column has-warning">
     <label class="s-label" for="example-warning">Username</label>
@@ -197,7 +197,7 @@ tags: components
     <p id="example-warning-desc" class="s-input-message mb0">Caps lock is on! <a href="#">Having trouble entering your username?</a></p>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div>
                 <div class="d-flex gy4 fd-column has-warning">
                     <label class="s-label" for="example-warning">Username</label>
@@ -216,7 +216,7 @@ tags: components
         <p class="mb0">In addition to using the "error" state for a field, be sure to use the <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-invalid_attributev"><code>aria-invalid</code></a> attribute to indicate to assistive technology that respective fields have failed validation.</p>
     {% endtip %}
 
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="d-flex gy4 fd-column has-error">
     <label class="s-label" for="example-error">Username</label>
@@ -227,7 +227,7 @@ tags: components
     <p id="example-error-desc" class="s-input-message mb0">You must provide a username. <a href="#">Forgot your username?</a></p>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div>
                 <div class="d-flex gy4 fd-column has-error">
                     <label class="s-label" for="example-error">Username</label>
@@ -242,7 +242,7 @@ tags: components
     </div>
 
     {% header "h4", "Success" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="d-flex gy4 fd-column has-success">
     <label class="s-label" for="example-success">Username</label>
@@ -253,7 +253,7 @@ tags: components
     <p id="example-success-desc" class="s-input-message mb0">That name is available! <a href="#">Why do we require a username?</a></p>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div>
                 <div class="d-flex gy4 fd-column has-success">
                     <label class="s-label" for="example-success">Username</label>
@@ -271,9 +271,9 @@ tags: components
 <section class="docs-section">
     {% header "h2", "Icons" %}
     {% header "h3", "Search" %}
-    <p class="stacks-copy">Stacks provides helper classes to consistently style an input used for search. First, wrap your search input in an element with relative positioning. Then, and add <code class="stacks-code">s-input__search</code> to the input itself. Finally, be sure to add <code class="stacks-code">s-input-icon</code> and <code class="stacks-code">s-input-icon__search</code> to the search icon.</p>
+    <p class="docs-copy">Stacks provides helper classes to consistently style an input used for search. First, wrap your search input in an element with relative positioning. Then, and add <code class="docs-code">s-input__search</code> to the input itself. Finally, be sure to add <code class="docs-code">s-input-icon</code> and <code class="docs-code">s-input-icon__search</code> to the search icon.</p>
 
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="ps-relative">
     <label class="v-visible-sr" for="example-search">Search</label>
@@ -281,7 +281,7 @@ tags: components
     @Svg.Search.With("s-input-icon s-input-icon__search")
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="ps-relative">
                 <label class="v-visible-sr" for="example-search">Search</label>
                 <input class="s-input s-input__search" id="example-search" type="text" placeholder="Search…" />
@@ -291,7 +291,7 @@ tags: components
     </div>
 
     {% header "h3", "Credit Card" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="ps-relative">
     <label class="v-visible-sr" for="example-creditcard">Credit Card</label>
@@ -299,7 +299,7 @@ tags: components
     @Svg.CreditCard.With("s-input-icon s-input-icon__creditcard")
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="ps-relative">
                 <label class="v-visible-sr" for="example-creditcard">Credit Card</label>
                 <input class="s-input s-input__creditcard" id="example-creditcard" type="text" />
@@ -328,7 +328,7 @@ tags: components
                     <tr>
                         <th scope="row">{{ item.name }}</th>
                         <td>{{ item.size }}</td>
-                        <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code class="stacks-code">.{{ item.class }}</code>{% endif %}</td>
+                        <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code class="docs-code">.{{ item.class }}</code>{% endif %}</td>
                         <td><input type="text" class="s-input {{ item.class }}" placeholder="e.g. What is Stacks?"></td>
                     </tr>
                     {% endfor %}
@@ -340,10 +340,10 @@ tags: components
 
 <section class="docs-section">
     {% header "h2", "Input fills" %}
-    <p class="stacks-copy">Input fills are used to visually connect input text boxes with related content.</p>
+    <p class="docs-copy">Input fills are used to visually connect input text boxes with related content.</p>
 
     {% header "h3", "Prepended inputs" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="d-flex gy4 fd-column">
     <label class="s-label" for="website-url">Website URL</label>
@@ -355,7 +355,7 @@ tags: components
     </div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex gy4 fd-column">
                 <label class="s-label" for="website-url">Website URL</label>
                 <div class="d-flex">
@@ -369,7 +369,7 @@ tags: components
     </div>
 
     {% header "h3", "Appended inputs" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="d-flex gy4 fd-column">
     <label class="s-label" for="min-salary">Minimum Salary</label>
@@ -388,7 +388,7 @@ tags: components
     </div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex gy4 fd-column">
                 <label class="s-label" for="min-salary">Minimum Salary</label>
                 <div class="d-flex">
@@ -412,9 +412,9 @@ tags: components
 <section class="docs-section">
 
     {% header "h2", "Nested inputs" %}
-    <p class="stacks-copy">An input can be nested within a container that has the <code class="stacks-code">.s-input</code> class applied to display styled elements as if they're within an input.</p>
+    <p class="docs-copy">An input can be nested within a container that has the <code class="docs-code">.s-input</code> class applied to display styled elements as if they're within an input.</p>
 
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="d-flex fd-column g4">
     <label class="s-label" for="tag-selector">Tags</label>
@@ -432,7 +432,7 @@ tags: components
     </div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example d-flex fd-column g4">
+        <div class="docs-preview--example d-flex fd-column g4">
             <label class="s-label" for="tag-selector">Tags</label>
             <div class="s-input">
                 <div class="d-flex fw-wrap gx8 myn4">

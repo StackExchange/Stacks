@@ -23,8 +23,8 @@ tags: components
             <tbody class="fs-caption">
                 {% for item in activity-indicator.indicator %}
                     <tr>
-                        <td><code class="stacks-code">{{ item.class }}</code></td>
-                        <td>{% if item.applies == "N/A" %}<em class="fc-black-350">{{ item.applies }}</em>{% else %}<code class="stacks-code">{{ item.applies }}</code>{% endif %}</td>
+                        <td><code class="docs-code">{{ item.class }}</code></td>
+                        <td>{% if item.applies == "N/A" %}<em class="fc-black-350">{{ item.applies }}</em>{% else %}<code class="docs-code">{{ item.applies }}</code>{% endif %}</td>
                         <td>{{ item.description }}</td>
                     </tr>
                 {% endfor %}
@@ -35,8 +35,8 @@ tags: components
 <section class="docs-section">
     {% header "h2", "Examples" %}
     {% header "h3", "Default" %}
-    <p class="stacks-copy">By default, our indicator has no positioning attached to it. Depending on your context, you can modify the activity indicator’s positioning using any combination of atomic classes. Since our activity indicator has no inherent semantic meaning, make sure to include <a href="{{ '/product/base/visibility/' | url }}">visually-hidden, screenreader-only</a> text with the <code class="stacks-code">v-visible-sr</code> class.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">By default, our indicator has no positioning attached to it. Depending on your context, you can modify the activity indicator’s positioning using any combination of atomic classes. Since our activity indicator has no inherent semantic meaning, make sure to include <a href="{{ '/product/base/visibility/' | url }}">visually-hidden, screenreader-only</a> text with the <code class="docs-code">v-visible-sr</code> class.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <div class="s-activity-indicator">
     <div class="v-visible-sr">New activity</div>
@@ -90,7 +90,7 @@ tags: components
     </div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex g24 ai-center fw-wrap">
                 {% for example in examples %}
                     <div class="s-activity-indicator">
@@ -132,8 +132,8 @@ tags: components
     </div>
 
     {% header "h3", "Variations" %}
-    <p class="stacks-copy">Stacks also provides alternative styling for success, warning, and danger states.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">Stacks also provides alternative styling for success, warning, and danger states.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <div class="s-activity-indicator s-activity-indicator__success">
     <div class="v-visible-sr">…</div>
@@ -145,7 +145,7 @@ tags: components
     <div class="v-visible-sr">…</div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             {% assign variants = "success,warning,danger" | split: "," %}
             <div class="d-flex fd-column g24">
                 {% for variant in variants %}

@@ -5,11 +5,11 @@ description: Everything we know about alt-texts, when to use them, and how to cr
 ---
 <section class="docs-section">
     {% header "h2", "How to write alt-text" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         An alt-text is a description of an image that’s shown to people who can’t see the image. Alt-texts help people with little or no vision who use assistive technologies, people who have turned off images, and search engines.
     </p>
     {% header "h3", "Describe the image concisely" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         It might sound obvious, but an alt-text should describe the image in case an image doesn’t display or someone has trouble seeing it. The goal of alt-text is to give the necessary information from the image <strong class="ws-nowrap">at a glance</strong>. It’s best to include only the necessary information.
     </p>
     <div class="ta-center w100 wmx5 mb8">
@@ -33,11 +33,11 @@ description: Everything we know about alt-texts, when to use them, and how to cr
             </tr>
         </tbody>
     </table>
-    <p class="stacks-copy">
+    <p class="docs-copy">
         Take context into account. For instance, if the image above is part of a blog post about standing tables, then it’s safer to skip the part about standing tables.
     </p>
     {% header "h3", "Don’t say it’s an image" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         Don’t start alt-texts with things like “Image of” or “Photo of.”. Screen readers add that by default. If it’s a special type of image (like an icon), you can note that at the end.
     </p>
     <table class="s-table s-table__lg va-middle fs-body2 va-top w100 wmx5 mb48">
@@ -63,20 +63,20 @@ description: Everything we know about alt-texts, when to use them, and how to cr
         </tbody>
     </table>
     {% header "h3", "End with a period" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         End the alt-text with a period. This makes screen readers pause a bit after the last word in the alt-text, creating a natural pause before the next bit of text.
     </p>
 </section>
 <section class="docs-section">
     {% header "h2", "When not to write alt-text" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         In most cases you should use an alt-text for images, but there are some exceptions where you should leave the alt-text blank.
     </p>
     {% header "h3", "Decorative images" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         If an image does not convey any meaning to the user, leave the alt-text blank.
     </p>
-    <div class="stacks-preview mb16">
+    <div class="docs-preview mb16">
 {% highlight html %}
 <div>
     <img src="rocket.svg" alt="">
@@ -84,7 +84,7 @@ description: Everything we know about alt-texts, when to use them, and how to cr
     <p>…</p>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex fd-column gy8 wmx3">
                 <div>
                     <img src="{{ "/assets/img/efficiency.svg" | url }}"" alt="">
@@ -94,14 +94,14 @@ description: Everything we know about alt-texts, when to use them, and how to cr
             </div>
         </div>
     </div>
-    <p class="stacks-copy">
+    <p class="docs-copy">
         The rocket here doesn’t add meaningful information.
     </p>
     {% header "h3", "Images accompanied by text" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         If an image has a label nearby, leave the alt-text blank.
     </p>
-    <div class="stacks-preview mb16">
+    <div class="docs-preview mb16">
 {% highlight html %}
 <div>
     <img src="leaderboard.svg" alt="">
@@ -109,7 +109,7 @@ description: Everything we know about alt-texts, when to use them, and how to cr
     <p>…</p>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex gx8 ai-center wmx4">
                 <div>
                     <img src="{{ "/assets/img/leaderboard.svg" | url }}"" alt="" width="44" height="43">
@@ -121,7 +121,7 @@ description: Everything we know about alt-texts, when to use them, and how to cr
             </div>
         </div>
     </div>
-    <p class="stacks-copy">
+    <p class="docs-copy">
         The nearby text here already explains what the graphic illustrates. If there was alt-text here, screen readers would repeat information to the user.
     </p>
     {% tip %}
@@ -131,20 +131,20 @@ description: Everything we know about alt-texts, when to use them, and how to cr
 <section class="docs-section">
     {% header "h2", "How to add alt-text" %}
     {% header "h3", "Using &lt;img&gt;" %}
-    <p class="stacks-copy">
-        Inside an <code class="stacks-code">&lt;img&gt;</code> tag, add the alt-text inside the <code class="stacks-code">alt</code> attribute:
+    <p class="docs-copy">
+        Inside an <code class="docs-code">&lt;img&gt;</code> tag, add the alt-text inside the <code class="docs-code">alt</code> attribute:
     </p>
-    <div class="stacks-preview mb16">
+    <div class="docs-preview mb16">
 {% highlight html %}
 <img src="image.png" alt="The alt text.">
 <img src="image.svg" alt="The alt text.">
 {% endhighlight %}
     </div>
     {% header "h3", "Using inline SVG" %}
-    <p class="stacks-copy">
-        Inline SVG doesn’t support the <code class="stacks-code">alt</code> attribute, so instead add two wai-aria attributes: <code class="stacks-code">role="img"</code> and <code class="stacks-code">aria-label="The alt-text."</code>:
+    <p class="docs-copy">
+        Inline SVG doesn’t support the <code class="docs-code">alt</code> attribute, so instead add two wai-aria attributes: <code class="docs-code">role="img"</code> and <code class="docs-code">aria-label="The alt-text."</code>:
     </p>
-    <div class="stacks-preview mb16">
+    <div class="docs-preview mb16">
 {% highlight html %}
 <svg role="img" aria-label="the alt-text" viewBox="…">…</svg>
 {% endhighlight %}

@@ -22,8 +22,8 @@ tags: components
             <tbody class="fs-caption">
                 {% for item in vote.classes %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
-                        <td><code class="stacks-code">{{ item.applies }}</td>
+                        <th scope="row"><code class="docs-code">{{ item.class }}</code></th>
+                        <td><code class="docs-code">{{ item.applies }}</td>
                         <td class="p8">{{ item.description }}</td>
                     </tr>
                 {% endfor %}
@@ -35,11 +35,11 @@ tags: components
 <section class="docs-section">
     {% header "h2", "Examples" %}
     {% header "h3", "Base" %}
-    <p class="stacks-copy">
-        The base vote component includes an upvote button, a downvote button, and a vote count. When the vote count is zero and the current user has not voted, it should display <code class="stacks-code">Vote</code> in place of a number. Otherwise, show the vote count and truncate large numbers (e.g., 1.2k).
+    <p class="docs-copy">
+        The base vote component includes an upvote button, a downvote button, and a vote count. When the vote count is zero and the current user has not voted, it should display <code class="docs-code">Vote</code> in place of a number. Otherwise, show the vote count and truncate large numbers (e.g., 1.2k).
     </p>
 
-    <div class="stacks-preview mb24">
+    <div class="docs-preview mb24">
 {% highlight html %}
 <div class="s-vote">
     <button class="s-vote--btn">
@@ -55,7 +55,7 @@ tags: components
     </button>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example d-flex ai-start fw-wrap g64">
+        <div class="docs-preview--example d-flex ai-start fw-wrap g64">
             {% for vote in vote.groups.base %}
                 <div class="d-flex fd-column ai-center g16">
                     <code>{{ vote.description }}</code>
@@ -78,11 +78,11 @@ tags: components
     </div>
 
     {% header "h3", "Expanded" %}
-    <p class="stacks-copy">
-        Include the <code class="stacks-code">.s-vote__expanded</code> modifier to show upvote and downvote counts instead of the total vote count. This modifier hides <code class="stacks-code">.s-vote--total</code> and shows <code class="stacks-code">.s-vote--upvotes</code> and <code class="stacks-code">.s-vote--downvotes</code> instead.
+    <p class="docs-copy">
+        Include the <code class="docs-code">.s-vote__expanded</code> modifier to show upvote and downvote counts instead of the total vote count. This modifier hides <code class="docs-code">.s-vote--total</code> and shows <code class="docs-code">.s-vote--upvotes</code> and <code class="docs-code">.s-vote--downvotes</code> instead.
     </p>
 
-    <div class="stacks-preview mb24">
+    <div class="docs-preview mb24">
 {% highlight html %}
 <div class="s-vote">
     <button class="s-vote--btn">
@@ -100,7 +100,7 @@ tags: components
     </button>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example d-flex ai-start fw-wrap g64">
+        <div class="docs-preview--example d-flex ai-start fw-wrap g64">
             {% for vote in vote.groups.expanded %}
                 <div class="d-flex fd-column ai-center g16">
                     <div class="s-vote s-vote__expanded">
@@ -124,11 +124,11 @@ tags: components
     </div>
 
     {% header "h3", "Horizontal" %}
-    <p class="stacks-copy">
-        Apply the <code class="stacks-code">.s-vote__horizontal</code> modifier to arrange the vote buttons and counts in a horizontal layout. This layout does not officially support expanded vote count. This configuration is best suited for scenarios such as comment voting, where a more compact design is preferred.
+    <p class="docs-copy">
+        Apply the <code class="docs-code">.s-vote__horizontal</code> modifier to arrange the vote buttons and counts in a horizontal layout. This layout does not officially support expanded vote count. This configuration is best suited for scenarios such as comment voting, where a more compact design is preferred.
     </p>
 
-    <div class="stacks-preview mb24">
+    <div class="docs-preview mb24">
 {% highlight html %}
 <div class="s-vote s-vote__horizontal">
     <button class="s-vote--btn">
@@ -140,7 +140,7 @@ tags: components
     </button>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example d-flex ai-start fw-wrap g64">
+        <div class="docs-preview--example d-flex ai-start fw-wrap g64">
             {% for vote in vote.groups.horizontal %}
                 <div class="d-flex fd-column ai-center g16">
                     {% if vote.description %}
@@ -162,11 +162,11 @@ tags: components
 
 
     {% header "h3", "Voted" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         Use filled vote icons to indicate when the current user has upvoted or downvoted the content.
     </p>
 
-    <div class="stacks-preview mb24">
+    <div class="docs-preview mb24">
 {% highlight html %}
 <div class="s-vote s-vote__horizontal">
     <button class="s-vote--btn">
@@ -182,7 +182,7 @@ tags: components
     </button>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example d-flex ai-start fw-wrap g64">
+        <div class="docs-preview--example d-flex ai-start fw-wrap g64">
             {% for vote in vote.groups.voted %}
                 {% assign classList = "s-vote" %}
                 {% if vote.horizontal %}

@@ -7,10 +7,10 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
 <!-- TAGS -->
 <section class="docs-section">
     {% header "h2", "Basic syntax" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         We can use <strong>MSO</strong> (<strong>M</strong>icro<strong>s</strong>oft <strong>O</strong>ffice) tags to add HTML / CSS anywhere in an email template. This code will be ignored by other email clients. Here’s what it looks like:
     </p>
-    <div class="stacks-preview _preview-none mb24">
+    <div class="docs-preview _preview-none mb24">
 {% highlight html %}
 <!--[if mso]>
     <table><tr><td>
@@ -19,13 +19,13 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
 <![endif]-->
 {% endhighlight %}
     </div>
-    <p class="stacks-copy mt16">
+    <p class="docs-copy mt16">
         Only Outlook will render this table.
         <p>
-    <p class="stacks-copy">
-        MSO tags can also be used to add styles targeting Outlook (<a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">Outlook supports CSS in the <code class="stacks-code">&lt;head&gt;</code></a>):
+    <p class="docs-copy">
+        MSO tags can also be used to add styles targeting Outlook (<a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">Outlook supports CSS in the <code class="docs-code">&lt;head&gt;</code></a>):
     </p>
-    <div class="stacks-preview _preview-none mb24">
+    <div class="docs-preview _preview-none mb24">
 {% highlight html %}
 <!--[if mso]>
     <style>
@@ -36,16 +36,16 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
 <![endif]-->
 {% endhighlight %}
     </div>
-    <p class="stacks-copy">
+    <p class="docs-copy">
         It’s the same thing we used to do to <a href="https://www.quirksmode.org/css/condcom.html">target old versions of Internet Explorer</a>, except it targets Microsoft Office.
     </p>
 </section>
 <section class="docs-section">
     {% header "h2", "Ghost tables" %}
-    <p class="stacks-copy">
-        The main way we use MSO tags in our emails is to create “ghost tables” so <a href="/email/base/responsiveness#hybrid-design">hybrid emails</a> don’t fall apart in Outlook. Hybrid design uses <code class="stacks-code">inline-block</code>, <code class="stacks-code">max-width</code>, <code class="stacks-code">min-width</code> to stack table columns. Outlook doesn’t support these CSS properties, so we use MSO tags to create “ghost tables” that apply a fixed width just for Outlook.
+    <p class="docs-copy">
+        The main way we use MSO tags in our emails is to create “ghost tables” so <a href="/email/base/responsiveness#hybrid-design">hybrid emails</a> don’t fall apart in Outlook. Hybrid design uses <code class="docs-code">inline-block</code>, <code class="docs-code">max-width</code>, <code class="docs-code">min-width</code> to stack table columns. Outlook doesn’t support these CSS properties, so we use MSO tags to create “ghost tables” that apply a fixed width just for Outlook.
     </p>
-    <div class="stacks-preview _preview-none mb24">
+    <div class="docs-preview _preview-none mb24">
 {% highlight html %}
 <!--[if mso]>
 <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
@@ -64,17 +64,17 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
 <![endif]-->
 {% endhighlight %}
     </div>
-    <p class="stacks-copy">
-        Without the ghost table above, Outlook would display the <code class="stacks-code">&lt;div&gt;</code> at 100% width. <a href="/email/base/responsiveness#hybrid-design">Learn how we use ghost tables to make our emails responsive</a>.
+    <p class="docs-copy">
+        Without the ghost table above, Outlook would display the <code class="docs-code">&lt;div&gt;</code> at 100% width. <a href="/email/base/responsiveness#hybrid-design">Learn how we use ghost tables to make our emails responsive</a>.
     </p>
 </section>
 <section class="docs-section">
     {% header "h2", "Targeting specific Outlook versions" %}
-    <p class="stacks-copy">
-        We usually target <em>all</em> versions of Outlook using <code class="stacks-code">&lt;!--[if mso]&gt;</code>. But sometimes when testing emails in Litmus, an email looks ok in one Outlook version but is broken in another. It’s not common but it happens, and there are a few ways to target specific versions of Outlook while omitting others.
+    <p class="docs-copy">
+        We usually target <em>all</em> versions of Outlook using <code class="docs-code">&lt;!--[if mso]&gt;</code>. But sometimes when testing emails in Litmus, an email looks ok in one Outlook version but is broken in another. It’s not common but it happens, and there are a few ways to target specific versions of Outlook while omitting others.
     </p>
     {% header "h3", "Outlook versions" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         Using Microsoft Office version numbers allows you to target a specific Outlook version.
     </p>
     <div class="overflow-x-auto mb32" tabindex="0">
@@ -92,35 +92,35 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
                             <span>All Windows Outlook</span>
                             <span class="s-badge s-badge__mini ml8">Most common</span>
                         </td>
-                    <td class="-cell1"><code class="stacks-code">&lt;!--[if mso]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                    <td class="-cell1"><code class="docs-code">&lt;!--[if mso]&gt;  your code  &lt;![endif]--&gt;</code></td>
                 </tr>
                 <tr>
                     <td>Outlook 2000</td>
-                    <td class="-cell1"><code class="stacks-code">&lt;!--[if mso 9]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                    <td class="-cell1"><code class="docs-code">&lt;!--[if mso 9]&gt;  your code  &lt;![endif]--&gt;</code></td>
                 </tr>
                 <tr>
                     <td>Outlook 2002</td>
-                    <td class="-cell1"><code class="stacks-code">&lt;!--[if mso 10]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                    <td class="-cell1"><code class="docs-code">&lt;!--[if mso 10]&gt;  your code  &lt;![endif]--&gt;</code></td>
                 </tr>
                 <tr>
                     <td>Outlook 2003</td>
-                    <td class="-cell1"><code class="stacks-code">&lt;!--[if mso 11]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                    <td class="-cell1"><code class="docs-code">&lt;!--[if mso 11]&gt;  your code  &lt;![endif]--&gt;</code></td>
                 </tr>
                 <tr>
                     <td>Outlook 2007</td>
-                    <td class="-cell1"><code class="stacks-code">&lt;!--[if mso 12]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                    <td class="-cell1"><code class="docs-code">&lt;!--[if mso 12]&gt;  your code  &lt;![endif]--&gt;</code></td>
                 </tr>
                 <tr>
                     <td>Outlook 2010</td>
-                    <td class="-cell1"><code class="stacks-code">&lt;!--[if mso 14]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                    <td class="-cell1"><code class="docs-code">&lt;!--[if mso 14]&gt;  your code  &lt;![endif]--&gt;</code></td>
                 </tr>
                 <tr>
                     <td>Outlook 2013</td>
-                    <td class="-cell1"><code class="stacks-code">&lt;!--[if mso 15]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                    <td class="-cell1"><code class="docs-code">&lt;!--[if mso 15]&gt;  your code  &lt;![endif]--&gt;</code></td>
                 </tr>
                 <tr>
                     <td>Outlook 2016</td>
-                    <td class="-cell1"><code class="stacks-code">&lt;!--[if mso 16]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                    <td class="-cell1"><code class="docs-code">&lt;!--[if mso 16]&gt;  your code  &lt;![endif]--&gt;</code></td>
                 </tr>
             </tbody>
         </table>
@@ -128,7 +128,7 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
 </section>
 <section class="docs-section">
     {% header "h3", "Conditional logic" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         Using operators allows you to create conditional expressions for targeting multiple Outlook versions.
     </p>
     {% tip %}
@@ -145,34 +145,34 @@ description: Windows Outlook 2003 and above use Microsoft Word as a rendering en
             </thead>
             <tbody>
                 <tr>
-                    <td><code class="stacks-code">gt</code></td>
+                    <td><code class="docs-code">gt</code></td>
                     <td>greater than</td>
-                    <td><code class="stacks-code">&lt;!--[if gt mso 14]&gt;  Everything above Outlook 2010  &lt;![endif]--&gt;</code></td>
+                    <td><code class="docs-code">&lt;!--[if gt mso 14]&gt;  Everything above Outlook 2010  &lt;![endif]--&gt;</code></td>
                 </tr>
                 <tr>
-                    <td><code class="stacks-code">lt</code></td>
+                    <td><code class="docs-code">lt</code></td>
                     <td>less than</td>
-                    <td><code class="stacks-code">&lt;!--[if lt mso 14]&gt;  Everything below Outlook 2010  &lt;![endif]--&gt;</code></td>
+                    <td><code class="docs-code">&lt;!--[if lt mso 14]&gt;  Everything below Outlook 2010  &lt;![endif]--&gt;</code></td>
                 </tr>
                 <tr>
-                    <td><code class="stacks-code">gte</code></td>
+                    <td><code class="docs-code">gte</code></td>
                     <td>greater than or equal to</td>
-                    <td><code class="stacks-code">&lt;!--[if gte mso 14]&gt;  Outlook 2010 and above  &lt;![endif]--&gt;</code></td>
+                    <td><code class="docs-code">&lt;!--[if gte mso 14]&gt;  Outlook 2010 and above  &lt;![endif]--&gt;</code></td>
                 </tr>
                 <tr>
-                    <td><code class="stacks-code">lte</code></td>
+                    <td><code class="docs-code">lte</code></td>
                     <td>less than or equal to</td>
-                    <td><code class="stacks-code">&lt;!--[if lte mso 14]&gt;  Outlook 2010 and below  &lt;![endif]--&gt;</code></td>
+                    <td><code class="docs-code">&lt;!--[if lte mso 14]&gt;  Outlook 2010 and below  &lt;![endif]--&gt;</code></td>
                 </tr>
                 <tr>
-                    <td><code class="stacks-code">|</code></td>
+                    <td><code class="docs-code">|</code></td>
                     <td>or</td>
-                    <td><code class="stacks-code">&lt;!--[if (mso 12)|(mso 16)]&gt;  Outlook 2007 / 2016 only  &lt;![endif]--&gt;</code></td>
+                    <td><code class="docs-code">&lt;!--[if (mso 12)|(mso 16)]&gt;  Outlook 2007 / 2016 only  &lt;![endif]--&gt;</code></td>
                 </tr>
                 <tr>
-                    <td><code class="stacks-code">!</code></td>
+                    <td><code class="docs-code">!</code></td>
                     <td>not</td>
-                    <td><code class="stacks-code">&lt;!--[if !mso]&gt;&lt;!--&gt;  All Outlooks will ignore this  &lt;!--&lt;![endif]--&gt;</code></td>
+                    <td><code class="docs-code">&lt;!--[if !mso]&gt;&lt;!--&gt;  All Outlooks will ignore this  &lt;!--&lt;![endif]--&gt;</code></td>
                 </tr>
             </tbody>
         </table>
