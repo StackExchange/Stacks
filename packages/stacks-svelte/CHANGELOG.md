@@ -1,5 +1,11 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.19
+
+### Patch Changes
+
+- [#2128](https://github.com/StackExchange/Stacks/pull/2128) [`d60aa26`](https://github.com/StackExchange/Stacks/commit/d60aa261b6bfa53ad4fc5761921c02d1cec2aecd) Thanks [@giamir](https://github.com/giamir)! - Adjust stacks svelte peer deps
+
 ## 1.0.0-beta.18
 
 ### Patch Changes
