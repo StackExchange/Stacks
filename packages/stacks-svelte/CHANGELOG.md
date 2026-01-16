@@ -1,5 +1,36 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.19
+
+### Patch Changes
+
+- [#2128](https://github.com/StackExchange/Stacks/pull/2128) [`d60aa26`](https://github.com/StackExchange/Stacks/commit/d60aa261b6bfa53ad4fc5761921c02d1cec2aecd) Thanks [@giamir](https://github.com/giamir)! - Adjust stacks svelte peer deps
+
+## 1.0.0-beta.18
+
+### Patch Changes
+
+- Updated dependencies [[`93ae01b`](https://github.com/StackExchange/Stacks/commit/93ae01bdec7c120cb77f98b9bcf0e718642c9552), [`65938dd`](https://github.com/StackExchange/Stacks/commit/65938dd760fdc6d2e4cff71ac5c67d3582e02cd4)]:
+    - @stackoverflow/stacks@3.0.0-beta.16
+    - @stackoverflow/stacks-utils@1.0.0-beta.0
+
+## 1.0.0-beta.17
+
+### Minor Changes
+
+- [#2092](https://github.com/StackExchange/Stacks/pull/2092) [`c1443ec`](https://github.com/StackExchange/Stacks/commit/c1443ecfc69784be393fa26edefb63cca24a80f2) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update User card to new SHINE design (part 1)
+
+- [#2109](https://github.com/StackExchange/Stacks/pull/2109) [`96224f0`](https://github.com/StackExchange/Stacks/commit/96224f0bdf3c9208489c4053d34af86df9ffe25b) Thanks [@mukunku](https://github.com/mukunku)! - feat(notice): update styles for SHINE
+  feat(toast): update styles for SHINE
+
+    BREAKING CHANGES
+    - Markup for notices has been updated
+
+### Patch Changes
+
+- Updated dependencies [[`c1443ec`](https://github.com/StackExchange/Stacks/commit/c1443ecfc69784be393fa26edefb63cca24a80f2), [`85c14d4`](https://github.com/StackExchange/Stacks/commit/85c14d41a33f36cadc338d1f83b166b8ba1ff01f), [`96224f0`](https://github.com/StackExchange/Stacks/commit/96224f0bdf3c9208489c4053d34af86df9ffe25b)]:
+    - @stackoverflow/stacks@3.0.0-beta.15
+
 ## 1.0.0-beta.16
 
 ### Minor Changes
