@@ -3,11 +3,16 @@ import { render, screen } from "@testing-library/svelte";
 import { createRawSnippet, mount, unmount, tick } from "svelte";
 import userEvent from "@testing-library/user-event";
 import sinon from "sinon";
+import {
+    IconStarVerifiedSm,
+    IconAchievementsSm,
+} from "@stackoverflow/stacks-icons-legacy/icons";
 
 import UserCard from "./UserCard.svelte";
 import UserCardTime from "./UserCardTime.svelte";
 import UserCardBadge from "./UserCardBadge.svelte";
 import UserCardBling from "./UserCardBling.svelte";
+import UserCardAdditionalBling from "./UserCardAdditionalBling.svelte";
 
 describe("UserCard", () => {
     it("should render the user name", () => {
@@ -798,6 +803,32 @@ describe("UserCard states", () => {
             expect(screen.getByText(/is the original poster/)).to.exist;
             clock.restore();
         });
+
+        it("should show custom tooltip text when i18nOpTooltipText is provided", async () => {
+            const clock = sinon.useFakeTimers({
+                shouldAdvanceTime: true,
+                shouldClearNativeTimers: true,
+            });
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                profileUrl: "#",
+                originalPoster: true,
+                i18nOpTooltipText: "est l'auteur original.",
+            });
+
+            const username = container.querySelector(
+                ".s-user-card--username.s-user-card--original-poster"
+            );
+            expect(username).to.exist;
+
+            await userEvent.hover(username!);
+            await clock.runAllAsync();
+            await tick();
+
+            expect(screen.getByText(/est l'auteur original/)).to.exist;
+            clock.restore();
+        });
     });
 
     describe("New Contributor", () => {
@@ -932,19 +963,61 @@ describe("UserCard states", () => {
     });
 
     describe("Recognized Member (small)", () => {
-        it("should render the recognition icon with tooltip when size is sm", async () => {
+        it("should render the recognizedMemberAdditionalBling snippet when size is sm", () => {
+            const recognizedMemberBlingSnippet = createRawSnippet(() => ({
+                render: () => "<span></span>",
+                setup: (target) => {
+                    const instance = mount(UserCardAdditionalBling, {
+                        target,
+                        props: {
+                            type: "recognized member",
+                            tooltipText:
+                                "This user is recognized by AudioBubble",
+                            popoverId: "user-card-recognized-member-popover",
+                            icon: IconStarVerifiedSm,
+                            href: "#",
+                        },
+                    });
+                    return () => {
+                        unmount(instance);
+                    };
+                },
+            }));
+
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "sm",
+                recognizedMemberAdditionalBling: recognizedMemberBlingSnippet,
+            });
+
+            const recognitionBling = container.querySelector(
+                ".s-user-card--recognition-additional-bling"
+            );
+            expect(recognitionBling).to.exist;
+        });
+
+        it("should show popover tooltip when hovering over recognizedMemberAdditionalBling", async () => {
             const clock = sinon.useFakeTimers({
                 shouldAdvanceTime: true,
                 shouldClearNativeTimers: true,
             });
-            const recognitionSnippet = createRawSnippet(() => ({
+            const recognizedMemberBlingSnippet = createRawSnippet(() => ({
                 render: () => "<span></span>",
                 setup: (target) => {
-                    const span = document.createElement("span");
-                    span.textContent = "Recognized by AudioBubble";
-                    target.appendChild(span);
+                    const instance = mount(UserCardAdditionalBling, {
+                        target,
+                        props: {
+                            type: "recognized member",
+                            tooltipText:
+                                "This user is recognized by AudioBubble",
+                            popoverId: "user-card-recognized-member-popover",
+                            icon: IconStarVerifiedSm,
+                            href: "#",
+                        },
+                    });
                     return () => {
-                        target.removeChild(span);
+                        unmount(instance);
                     };
                 },
             }));
@@ -953,29 +1026,29 @@ describe("UserCard states", () => {
                 name: "John Doe",
                 avatar: "https://picsum.photos/128",
                 size: "sm",
-                recognition: recognitionSnippet,
-                recognitionHref: "#",
+                recognizedMemberAdditionalBling: recognizedMemberBlingSnippet,
             });
 
-            const recognitionGroup = container.querySelector(
-                ".s-user-card--recognition"
+            const recognitionBling = container.querySelector(
+                ".s-user-card--recognition-additional-bling"
             );
-            expect(recognitionGroup).to.exist;
+            expect(recognitionBling).to.exist;
 
-            await userEvent.hover(recognitionGroup!);
+            await userEvent.hover(recognitionBling!);
             await clock.runAllAsync();
             await tick();
 
-            expect(screen.getByText("Recognized by AudioBubble")).to.exist;
+            expect(screen.getByText("This user is recognized by AudioBubble"))
+                .to.exist;
             clock.restore();
         });
 
-        it("should render recognition as a link when recognitionHref is provided", () => {
-            const recognitionSnippet = createRawSnippet(() => ({
+        it("should not render recognizedMemberAdditionalBling when size is not sm", () => {
+            const recognizedMemberBlingSnippet = createRawSnippet(() => ({
                 render: () => "<span></span>",
                 setup: (target) => {
                     const span = document.createElement("span");
-                    span.textContent = "Recognized by AudioBubble";
+                    span.textContent = "Recognized Member";
                     target.appendChild(span);
                     return () => {
                         target.removeChild(span);
@@ -983,20 +1056,13 @@ describe("UserCard states", () => {
                 },
             }));
 
-            const { container } = render(UserCard, {
+            render(UserCard, {
                 name: "John Doe",
                 avatar: "https://picsum.photos/128",
-                size: "sm",
-                recognition: recognitionSnippet,
-                recognitionHref: "#",
+                recognizedMemberAdditionalBling: recognizedMemberBlingSnippet,
             });
 
-            const recognitionLink = container.querySelector(
-                ".s-user-card--recognition"
-            );
-            expect(recognitionLink).to.exist;
-            expect(recognitionLink?.tagName.toLowerCase()).to.equal("a");
-            expect(recognitionLink).to.have.attr("href", "#");
+            expect(screen.queryByText("Recognized Member")).not.to.exist;
         });
     });
 
@@ -1056,58 +1122,191 @@ describe("UserCard states", () => {
         });
     });
 
-    describe("Awarded", () => {
-        it("should render the awarded icon with first variant", () => {
+    describe("Additional Blings", () => {
+        it("should render the additionalBlings snippet", () => {
+            const additionalBlingsSnippet = createRawSnippet(() => ({
+                render: () => "<span></span>",
+                setup: (target) => {
+                    const instance = mount(UserCardAdditionalBling, {
+                        target,
+                        props: {
+                            type: "first",
+                            tooltipText:
+                                "This user is first on the weekly leaderboard.",
+                            popoverId: "user-card-award-popover-first",
+                            icon: IconAchievementsSm,
+                            href: "#",
+                        },
+                    });
+                    return () => {
+                        unmount(instance);
+                    };
+                },
+            }));
+
             const { container } = render(UserCard, {
                 name: "John Doe",
                 avatar: "https://picsum.photos/128",
-                award: "first",
+                additionalBlings: additionalBlingsSnippet,
             });
 
-            const awardedGroup = container.querySelector(
+            const awardedFirst = container.querySelector(
                 ".s-user-card--awarded-first"
             );
-            expect(awardedGroup).to.exist;
-            expect(awardedGroup).to.have.class("s-user-card--group");
+            expect(awardedFirst).to.exist;
         });
 
-        it("should show tooltip when hovering over the awarded icon", async () => {
+        it("should apply awarded-first class when using UserCardAdditionalBling with first type", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                additionalBlings: createRawSnippet(() => ({
+                    render: () => "<span></span>",
+                    setup: (target) => {
+                        const instance = mount(UserCardAdditionalBling, {
+                            target,
+                            props: {
+                                type: "first",
+                                tooltipText:
+                                    "This user is first on the weekly leaderboard.",
+                                popoverId: "user-card-award-popover-first",
+                                icon: IconAchievementsSm,
+                                href: "#",
+                            },
+                        });
+                        return () => {
+                            unmount(instance);
+                        };
+                    },
+                })),
+            });
+
+            const awardedFirst = container.querySelector(
+                ".s-user-card--awarded-first"
+            );
+            expect(awardedFirst).to.exist;
+        });
+
+        it("should apply awarded-second class when using UserCardAdditionalBling with second type", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                additionalBlings: createRawSnippet(() => ({
+                    render: () => "<span></span>",
+                    setup: (target) => {
+                        const instance = mount(UserCardAdditionalBling, {
+                            target,
+                            props: {
+                                type: "second",
+                                tooltipText:
+                                    "This user is second on the weekly leaderboard.",
+                                popoverId: "user-card-award-popover-second",
+                                icon: IconAchievementsSm,
+                                href: "#",
+                            },
+                        });
+                        return () => {
+                            unmount(instance);
+                        };
+                    },
+                })),
+            });
+
+            const awardedSecond = container.querySelector(
+                ".s-user-card--awarded-second"
+            );
+            expect(awardedSecond).to.exist;
+        });
+
+        it("should apply awarded-third class when using UserCardAdditionalBling with third type", () => {
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                additionalBlings: createRawSnippet(() => ({
+                    render: () => "<span></span>",
+                    setup: (target) => {
+                        const instance = mount(UserCardAdditionalBling, {
+                            target,
+                            props: {
+                                type: "third",
+                                tooltipText:
+                                    "This user is third on the weekly leaderboard.",
+                                popoverId: "user-card-award-popover-third",
+                                icon: IconAchievementsSm,
+                                href: "#",
+                            },
+                        });
+                        return () => {
+                            unmount(instance);
+                        };
+                    },
+                })),
+            });
+
+            const awardedThird = container.querySelector(
+                ".s-user-card--awarded-third"
+            );
+            expect(awardedThird).to.exist;
+        });
+
+        it("should show popover tooltip when hovering over additionalBlings", async () => {
             const clock = sinon.useFakeTimers({
                 shouldAdvanceTime: true,
                 shouldClearNativeTimers: true,
             });
+            const additionalBlingsSnippet = createRawSnippet(() => ({
+                render: () => "<span></span>",
+                setup: (target) => {
+                    const instance = mount(UserCardAdditionalBling, {
+                        target,
+                        props: {
+                            type: "first",
+                            tooltipText:
+                                "This user is first on the weekly leaderboard.",
+                            popoverId: "user-card-award-popover-first",
+                            icon: IconAchievementsSm,
+                            href: "#",
+                        },
+                    });
+                    return () => {
+                        unmount(instance);
+                    };
+                },
+            }));
+
             const { container } = render(UserCard, {
                 name: "John Doe",
                 avatar: "https://picsum.photos/128",
-                award: "first",
+                additionalBlings: additionalBlingsSnippet,
             });
 
-            const awardedGroup = container.querySelector(
+            const awardedFirst = container.querySelector(
                 ".s-user-card--awarded-first"
             );
-            expect(awardedGroup).to.exist;
+            expect(awardedFirst).to.exist;
 
-            await userEvent.hover(awardedGroup!);
+            await userEvent.hover(awardedFirst!);
             await clock.runAllAsync();
             await tick();
 
             expect(
-                screen.getByText(/This user is first on the weekly leaderboard/)
+                screen.getByText(
+                    "This user is first on the weekly leaderboard."
+                )
             ).to.exist;
             clock.restore();
         });
 
-        it("should render the achievements icon", () => {
-            const { container } = render(UserCard, {
+        it("should not render additionalBlings when not provided", () => {
+            render(UserCard, {
                 name: "John Doe",
                 avatar: "https://picsum.photos/128",
-                award: "first",
             });
 
-            const icon = container.querySelector(
-                ".s-user-card--awarded-first svg"
+            const awardedFirst = document.querySelector(
+                ".s-user-card--awarded-first"
             );
-            expect(icon).to.exist;
+            expect(awardedFirst).not.to.exist;
         });
     });
 });
