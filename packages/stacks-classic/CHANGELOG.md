@@ -1,5 +1,11 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.18
+
+### Minor Changes
+
+- [#2132](https://github.com/StackExchange/Stacks/pull/2132) [`4d3ad74`](https://github.com/StackExchange/Stacks/commit/4d3ad7496141352af80d23297ff985f86ad67a6b) Thanks [@giamir](https://github.com/giamir)! - adjust breakpoints to the new SHINE spec
+
 ## 3.0.0-beta.17
 
 ### Patch Changes
