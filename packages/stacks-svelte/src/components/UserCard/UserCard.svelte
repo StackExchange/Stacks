@@ -6,10 +6,7 @@
 <script lang="ts">
     import Avatar, { type Size as AvatarSize } from "../Avatar/Avatar.svelte";
     import Icon from "../Icon/Icon.svelte";
-    import {
-        IconStarVerifiedSm,
-        IconAchievementsSm,
-    } from "@stackoverflow/stacks-icons-legacy/icons";
+    import { IconStarVerifiedSm } from "@stackoverflow/stacks-icons-legacy/icons";
     import type { Snippet } from "svelte";
     import Popover from "../Popover/Popover.svelte";
     import PopoverReference from "../Popover/PopoverReference.svelte";
