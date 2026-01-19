@@ -227,7 +227,7 @@
                         <UserCardAdditionalBling
                             type={award as AdditionalBlingType}
                             tooltipText="This user is {award} on the weekly leaderboard."
-                            popoverId="user-card-award-popover-{award}"
+                            id="user-card-award-popover-{award}"
                             icon={IconAchievementsSm}
                             href="/"
                         />
@@ -244,20 +244,16 @@
                         >Recognized Member (small)</th
                     >
                     <td class="va-middle px4">
-                        {#snippet recognizedMemberAdditionalBling()}
+                        {#snippet additionalBlings()}
                             <UserCardAdditionalBling
                                 type="recognized member"
                                 tooltipText="This user is recognized by AudioBubble"
-                                popoverId="user-card-recognized-member-popover"
+                                id="user-card-recognized-member-popover"
                                 icon={IconStarVerifiedSm}
                                 href="/"
                             />
                         {/snippet}
-                        <UserCard
-                            {...baseArgs}
-                            {recognizedMemberAdditionalBling}
-                            size="sm"
-                        />
+                        <UserCard {...baseArgs} {additionalBlings} size="sm" />
                     </td>
                 </tr>
                 <tr>

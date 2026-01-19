@@ -964,7 +964,7 @@ describe("UserCard states", () => {
 
     describe("Recognized Member (small)", () => {
         it("should render the recognizedMemberAdditionalBling snippet when size is sm", () => {
-            const recognizedMemberBlingSnippet = createRawSnippet(() => ({
+            const additionalBlingsSnippet = createRawSnippet(() => ({
                 render: () => "<span></span>",
                 setup: (target) => {
                     const instance = mount(UserCardAdditionalBling, {
@@ -973,7 +973,7 @@ describe("UserCard states", () => {
                             type: "recognized member",
                             tooltipText:
                                 "This user is recognized by AudioBubble",
-                            popoverId: "user-card-recognized-member-popover",
+                            id: "user-card-recognized-member-popover",
                             icon: IconStarVerifiedSm,
                             href: "#",
                         },
@@ -988,7 +988,7 @@ describe("UserCard states", () => {
                 name: "John Doe",
                 avatar: "https://picsum.photos/128",
                 size: "sm",
-                recognizedMemberAdditionalBling: recognizedMemberBlingSnippet,
+                additionalBlings: additionalBlingsSnippet,
             });
 
             const recognitionBling = container.querySelector(
@@ -1002,7 +1002,7 @@ describe("UserCard states", () => {
                 shouldAdvanceTime: true,
                 shouldClearNativeTimers: true,
             });
-            const recognizedMemberBlingSnippet = createRawSnippet(() => ({
+            const additionalBlingsSnippet = createRawSnippet(() => ({
                 render: () => "<span></span>",
                 setup: (target) => {
                     const instance = mount(UserCardAdditionalBling, {
@@ -1011,7 +1011,7 @@ describe("UserCard states", () => {
                             type: "recognized member",
                             tooltipText:
                                 "This user is recognized by AudioBubble",
-                            popoverId: "user-card-recognized-member-popover",
+                            id: "user-card-recognized-member-popover",
                             icon: IconStarVerifiedSm,
                             href: "#",
                         },
@@ -1026,7 +1026,7 @@ describe("UserCard states", () => {
                 name: "John Doe",
                 avatar: "https://picsum.photos/128",
                 size: "sm",
-                recognizedMemberAdditionalBling: recognizedMemberBlingSnippet,
+                additionalBlings: additionalBlingsSnippet,
             });
 
             const recognitionBling = container.querySelector(
@@ -1044,7 +1044,7 @@ describe("UserCard states", () => {
         });
 
         it("should not render recognizedMemberAdditionalBling when size is not sm", () => {
-            const recognizedMemberBlingSnippet = createRawSnippet(() => ({
+            const additionalBlingsSnippet = createRawSnippet(() => ({
                 render: () => "<span></span>",
                 setup: (target) => {
                     const span = document.createElement("span");
@@ -1059,7 +1059,7 @@ describe("UserCard states", () => {
             render(UserCard, {
                 name: "John Doe",
                 avatar: "https://picsum.photos/128",
-                recognizedMemberAdditionalBling: recognizedMemberBlingSnippet,
+                additionalBlings: additionalBlingsSnippet,
             });
 
             expect(screen.queryByText("Recognized Member")).not.to.exist;
@@ -1133,7 +1133,7 @@ describe("UserCard states", () => {
                             type: "first",
                             tooltipText:
                                 "This user is first on the weekly leaderboard.",
-                            popoverId: "user-card-award-popover-first",
+                            id: "user-card-award-popover-first",
                             icon: IconAchievementsSm,
                             href: "#",
                         },
@@ -1169,7 +1169,7 @@ describe("UserCard states", () => {
                                 type: "first",
                                 tooltipText:
                                     "This user is first on the weekly leaderboard.",
-                                popoverId: "user-card-award-popover-first",
+                                id: "user-card-award-popover-first",
                                 icon: IconAchievementsSm,
                                 href: "#",
                             },
@@ -1200,7 +1200,7 @@ describe("UserCard states", () => {
                                 type: "second",
                                 tooltipText:
                                     "This user is second on the weekly leaderboard.",
-                                popoverId: "user-card-award-popover-second",
+                                id: "user-card-award-popover-second",
                                 icon: IconAchievementsSm,
                                 href: "#",
                             },
@@ -1231,7 +1231,7 @@ describe("UserCard states", () => {
                                 type: "third",
                                 tooltipText:
                                     "This user is third on the weekly leaderboard.",
-                                popoverId: "user-card-award-popover-third",
+                                id: "user-card-award-popover-third",
                                 icon: IconAchievementsSm,
                                 href: "#",
                             },
@@ -1263,7 +1263,7 @@ describe("UserCard states", () => {
                             type: "first",
                             tooltipText:
                                 "This user is first on the weekly leaderboard.",
-                            popoverId: "user-card-award-popover-first",
+                            id: "user-card-award-popover-first",
                             icon: IconAchievementsSm,
                             href: "#",
                         },

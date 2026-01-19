@@ -28,7 +28,7 @@
         /**
          * Unique id for the popover
          */
-        popoverId: string;
+        id: string;
 
         /**
          * The additional bling icon
@@ -36,12 +36,12 @@
         icon: string;
 
         /**
-         * href for the link to leaderboard or collective landing page
+         * Link for the additional bling element (e.g. leaderboard or collective landing page)
          */
         href?: string;
     }
 
-    const { type, tooltipText, popoverId, icon, href }: Props = $props();
+    const { type, tooltipText, id, icon, href }: Props = $props();
 
     const getClasses = (type: AdditionalBlingType) => {
         const base = "s-user-card--group";
@@ -68,7 +68,7 @@
     const classes = $derived(getClasses(type));
 </script>
 
-<Popover id={popoverId} tooltip>
+<Popover {id} tooltip>
     <PopoverReference>
         <svelte:element this={href ? "a" : "div"} {href} class={classes}>
             <Icon src={icon} />

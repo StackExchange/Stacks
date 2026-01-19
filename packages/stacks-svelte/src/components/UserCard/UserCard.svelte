@@ -66,11 +66,6 @@
         recognition?: Snippet;
 
         /**
-         * Snippet used to display user recognized member
-         */
-        recognizedMemberAdditionalBling?: Snippet;
-
-        /**
          * Snippet used to display user bio
          */
         bio?: Snippet;
@@ -113,7 +108,6 @@
         designation,
         bio,
         additionalBlings,
-        recognizedMemberAdditionalBling,
         originalPoster,
         i18nOpTooltipText = "is the original poster.",
         deleted,
@@ -198,9 +192,6 @@
 
 {#snippet userCardMainContent()}
     {@render avatarAndName()}
-    {#if recognizedMemberAdditionalBling && size === "sm"}
-        {@render recognizedMemberAdditionalBling()}
-    {/if}
     {#if badges}
         <ul class="s-user-card--group">
             {@render badges()}
