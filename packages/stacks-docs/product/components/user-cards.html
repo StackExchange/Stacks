@@ -754,9 +754,7 @@ tags: components
 {% highlight html %}
 <div class="s-user-card s-user-card__deleted">
     <div class="s-user-card--group">
-        <span class="s-avatar s-avatar__24">
-            <img class="s-avatar--image" alt="…" src="…" />
-        </span>
+        <img alt="…" src="…" />
         <span class="s-user-card--username">…</span>
     </div>
     <a class="s-user-card--time" href="…" title="Show activity on this post" data-controller="s-tooltip">
@@ -768,13 +766,11 @@ tags: components
             {% for user in user-card.deleted-user %}
                 <div class="s-user-card s-user-card__deleted{% if user.size == 'small' %} s-user-card__sm{% endif %}">
                     <div class="s-user-card--group">
-                        <span class="s-avatar{% if user.size != 'small' %} s-avatar__24{% endif %}">
                             {% if user.size == 'small' %}
-                                <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/avatar-deleted-16.svg" | url }}" />
+                                <img alt="deleted avatar" src="{{ "/assets/img/avatar-deleted-16.svg" | url }}" />
                             {% else %}
-                                <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/avatar-deleted-24.svg" | url }}" />
+                                <img alt="deleted avatar" src="{{ "/assets/img/avatar-deleted-24.svg" | url }}" />
                             {% endif %}
-                        </span>
                         <span class="s-user-card--username">{{ user.username }}</span>
                     </div>
                     {% if user.timestamp %}

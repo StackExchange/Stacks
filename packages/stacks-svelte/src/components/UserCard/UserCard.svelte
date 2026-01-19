@@ -11,8 +11,7 @@
     import Popover from "../Popover/Popover.svelte";
     import PopoverReference from "../Popover/PopoverReference.svelte";
     import PopoverContent from "../Popover/PopoverContent.svelte";
-    import AvatarDeleted16 from "./AvatarDeleted16.svelte";
-    import AvatarDeleted24 from "./AvatarDeleted24.svelte";
+    import AvatarDeleted from "./AvatarDeleted.svelte";
 
     interface Props {
         /**
@@ -214,9 +213,9 @@
     {#if deleted}
         <div class="s-user-card--group">
             {#if size === "sm"}
-                <AvatarDeleted16 {name} />
+                <AvatarDeleted size={16} />
             {:else}
-                <AvatarDeleted24 {name} />
+                <AvatarDeleted size={24} />
             {/if}
             <span class="s-user-card--username s-user-card--deleted"
                 >{name}</span
