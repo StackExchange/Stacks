@@ -893,19 +893,15 @@ describe("UserCard states", () => {
             expect(userCard).to.have.class("s-user-card__deleted");
         });
 
-        it("should render the deleted avatar image", () => {
+        it("should render the deleted avatar SVG", () => {
             const { container } = render(UserCard, {
                 name: "John Doe",
                 deleted: true,
             });
-            const avatarImg = container.querySelector(
-                ".s-avatar--image"
-            ) as HTMLImageElement;
-            expect(avatarImg).to.exist;
-            expect(avatarImg.src).to.include("data:image/svg+xml");
-            const avatar = avatarImg.closest(".s-avatar");
-            expect(avatar).to.exist;
-            expect(avatar).to.have.class("s-avatar__24");
+            const avatarSvg = container.querySelector("svg");
+            expect(avatarSvg).to.exist;
+            expect(avatarSvg).to.have.attr("width", "24");
+            expect(avatarSvg).to.have.attr("height", "24");
         });
 
         it("should render the deleted username with deleted class", () => {
@@ -926,14 +922,10 @@ describe("UserCard states", () => {
                 deleted: true,
                 size: "sm",
             });
-            const avatarImg = container.querySelector(
-                ".s-avatar--image"
-            ) as HTMLImageElement;
-            expect(avatarImg).to.exist;
-            expect(avatarImg.src).to.include("data:image/svg+xml");
-            const avatar = avatarImg.closest(".s-avatar");
-            expect(avatar).to.exist;
-            expect(avatar).not.to.have.class("s-avatar__24");
+            const avatarSvg = container.querySelector("svg");
+            expect(avatarSvg).to.exist;
+            expect(avatarSvg).to.have.attr("width", "16");
+            expect(avatarSvg).to.have.attr("height", "16");
         });
 
         it("should render time snippet when provided for deleted user", () => {
