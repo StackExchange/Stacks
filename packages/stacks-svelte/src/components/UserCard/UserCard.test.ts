@@ -963,7 +963,7 @@ describe("UserCard states", () => {
     });
 
     describe("Recognized Member (small)", () => {
-        it("should render the recognizedMemberAdditionalBling snippet when size is sm", () => {
+        it("should render the additional bling snippet when size is sm", () => {
             const additionalBlingsSnippet = createRawSnippet(() => ({
                 render: () => "<span></span>",
                 setup: (target) => {
@@ -997,7 +997,7 @@ describe("UserCard states", () => {
             expect(recognitionBling).to.exist;
         });
 
-        it("should show popover tooltip when hovering over recognizedMemberAdditionalBling", async () => {
+        it("should show popover tooltip when hovering over additional bling", async () => {
             const clock = sinon.useFakeTimers({
                 shouldAdvanceTime: true,
                 shouldClearNativeTimers: true,
@@ -1041,28 +1041,6 @@ describe("UserCard states", () => {
             expect(screen.getByText("This user is recognized by AudioBubble"))
                 .to.exist;
             clock.restore();
-        });
-
-        it("should not render recognizedMemberAdditionalBling when size is not sm", () => {
-            const additionalBlingsSnippet = createRawSnippet(() => ({
-                render: () => "<span></span>",
-                setup: (target) => {
-                    const span = document.createElement("span");
-                    span.textContent = "Recognized Member";
-                    target.appendChild(span);
-                    return () => {
-                        target.removeChild(span);
-                    };
-                },
-            }));
-
-            render(UserCard, {
-                name: "John Doe",
-                avatar: "https://picsum.photos/128",
-                additionalBlings: additionalBlingsSnippet,
-            });
-
-            expect(screen.queryByText("Recognized Member")).not.to.exist;
         });
     });
 
