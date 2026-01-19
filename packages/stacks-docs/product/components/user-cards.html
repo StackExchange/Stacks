@@ -542,7 +542,7 @@ tags: components
         <span class="s-avatar s-avatar__24">
             <img class="s-avatar--image" alt="…" src="…" />
         </span>
-        <span class="s-user-card--username s-user-card--original-poster" data-s-tooltip-html-title="<a href='…' class='s-link s-link__underlined'>…</a> is the original poster" data-controller="s-tooltip">…</span>
+        <span class="s-user-card--username s-user-card--username__op" data-s-tooltip-html-title="<a href='…' class='s-link s-link__underlined'>…</a> is the original poster" data-controller="s-tooltip">…</span>
     </a>
     <ul class="s-user-card--group">
         <li class="s-user-card--rep">
@@ -586,7 +586,7 @@ tags: components
                                 <img class="s-avatar--image" alt="demo avatar" src="{{ "/assets/img/avatar-disgusted-24.svg" | url }}" />
                             {% endif %}
                         </span>
-                        <span class="s-user-card--username s-user-card--original-poster" data-s-tooltip-html-title="<a href='#' class='s-link s-link__underlined'>{{ user.username }}</a> is the original poster" data-controller="s-tooltip">{{ user.username }}</span>
+                        <span class="s-user-card--username s-user-card--username__op" data-s-tooltip-html-title="<a href='#' class='s-link s-link__underlined'>{{ user.username }}</a> is the original poster" data-controller="s-tooltip">{{ user.username }}</span>
                     </a>
                     {% if user.badges %}
                         <div class="s-user-card--group">
@@ -1032,9 +1032,9 @@ tags: components
             </span>
             <span class="s-user-card--username">…</span>
         </a>
-        <div class="s-user-card--group s-user-card--awarded-third" title="…" data-controller="s-tooltip">
+        <a class="s-user-card--group s-user-card--awarded-third" href="…" title="…" data-controller="s-tooltip">
             @Svg.Icon.AchievementsSm.With("native")
-        </div>
+        </a>
         <div class="s-user-card--group">
             <span class="s-badge s-badge__sm">…</span>
         </div>
@@ -1089,9 +1089,9 @@ tags: components
                             {% endfor %}
                         </div>
                     {% endif %}
-            <div class="s-user-card--group s-user-card--awarded-{{user.award}}" title="This user is {{user.award}} on the weekly R Language leaderboard." data-controller="s-tooltip">
+            <a class="s-user-card--group s-user-card--awarded-{{user.award}}" href="…" title="This user is {{user.award}} on the weekly R Language leaderboard." data-controller="s-tooltip">
                 {% icon "AchievementsSm", native %}
-            </div>
+            </a>
                     {% if user.reputation or user.gold or user.silver or user.bronze %}
                         <ul class="s-user-card--group">
                             {% if user.reputation %}

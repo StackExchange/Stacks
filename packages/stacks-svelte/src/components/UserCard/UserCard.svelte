@@ -14,8 +14,8 @@
     import Popover from "../Popover/Popover.svelte";
     import PopoverReference from "../Popover/PopoverReference.svelte";
     import PopoverContent from "../Popover/PopoverContent.svelte";
-    import avatarDeleted16 from "../../assets/img/avatar-deleted-16.svg?url";
-    import avatarDeleted24 from "../../assets/img/avatar-deleted-24.svg?url";
+    import AvatarDeleted16 from "./AvatarDeleted16.svelte";
+    import AvatarDeleted24 from "./AvatarDeleted24.svelte";
 
     interface Props {
         /**
@@ -69,24 +69,29 @@
         recognition?: Snippet;
 
         /**
+         * Snippet used to display user recognized member
+         */
+        recognizedMemberAdditionalBling?: Snippet;
+
+        /**
          * Snippet used to display user bio
          */
         bio?: Snippet;
 
         /**
-         * The award of the user
+         * Snippet used to display user additional blings
          */
-        award?: AwardBlings;
-
-        /**
-         * The recognition href (used for small variant)
-         */
-        recognitionHref?: string;
+        additionalBlings?: Snippet;
 
         /**
          * Identifies if the user card is the original poster
          */
         originalPoster?: boolean;
+
+        /**
+         * The text for the original poster tooltip
+         */
+        i18nOpTooltipText?: string;
 
         /**
          * Identifies if the user has been deleted
@@ -110,9 +115,10 @@
         location,
         designation,
         bio,
-        award,
-        recognitionHref,
+        additionalBlings,
+        recognizedMemberAdditionalBling,
         originalPoster,
+        i18nOpTooltipText = "is the original poster.",
         deleted,
         class: className = "",
     }: Props = $props();
@@ -149,9 +155,6 @@
 
     const classes = $derived(getClasses(className, size, deleted));
     const avatarSize = $derived(getAvatarSize(size));
-    const deletedAvatarSrc = $derived(
-        size === "sm" ? avatarDeleted16 : avatarDeleted24
-    );
 </script>
 
 {#snippet avatarAndName()}
@@ -183,7 +186,8 @@
                                 <a
                                     href={profileUrl}
                                     class="s-link s-link__underlined">{name}</a
-                                > is the original poster.
+                                >
+                                {i18nOpTooltipText}
                             </span>
                         </PopoverContent>
                     </Popover>
@@ -197,38 +201,16 @@
 
 {#snippet userCardMainContent()}
     {@render avatarAndName()}
-    {#if recognition && size === "sm"}
-        <Popover id="user-card-recognition-popover" tooltip>
-            <PopoverReference>
-                <svelte:element
-                    this={recognitionHref ? "a" : "div"}
-                    href={recognitionHref}
-                    class="s-user-card--group s-user-card--recognition"
-                >
-                    <Icon src={IconStarVerifiedSm} />
-                </svelte:element>
-            </PopoverReference>
-            <PopoverContent>
-                {@render recognition()}
-            </PopoverContent>
-        </Popover>
+    {#if recognizedMemberAdditionalBling && size === "sm"}
+        {@render recognizedMemberAdditionalBling()}
     {/if}
     {#if badges}
         <ul class="s-user-card--group">
             {@render badges()}
         </ul>
     {/if}
-    {#if award}
-        <Popover id="user-card-award-popover" tooltip>
-            <PopoverReference>
-                <div class="s-user-card--group s-user-card--awarded-{award}">
-                    <Icon src={IconAchievementsSm} />
-                </div>
-            </PopoverReference>
-            <PopoverContent>
-                <span>This user is {award} on the weekly leaderboard.</span>
-            </PopoverContent>
-        </Popover>
+    {#if additionalBlings}
+        {@render additionalBlings()}
     {/if}
     {#if blings}
         <ul class="s-user-card--group">
@@ -243,7 +225,11 @@
 <div class={classes}>
     {#if deleted}
         <div class="s-user-card--group">
-            <Avatar {name} src={deletedAvatarSrc} size={avatarSize} />
+            {#if size === "sm"}
+                <AvatarDeleted16 {name} />
+            {:else}
+                <AvatarDeleted24 {name} />
+            {/if}
             <span class="s-user-card--username s-user-card--deleted"
                 >{name}</span
             >

@@ -9,6 +9,8 @@
     --_uc-username-bl: unset;
     --_uc-username-bg: unset;
     --_uc-username-fc: unset;
+    --_uc-username-d: unset;
+    --_uc-username-ai: unset;
 
     // VARIANTS
     // SIZES
@@ -49,6 +51,13 @@
         }
     }
 
+    & &--recognition-additional-bling {
+        &,
+        & a {
+            color: var(--theme-primary);
+        }
+    }
+
     & &--rep {
         color: var(--black-600);
         font-weight: 600;
@@ -58,22 +67,29 @@
         color: var(--black-400);
     }
 
-    & &--original-poster {
-        --_uc-username-bg: var(--blue-100);
-        --_uc-username-bl: var(--su4) solid var(--blue-300);
-        --_uc-username-p: 0px var(--su4);
-    }
-
     & &--username {
+        align-items: var(--_uc-username-ai);
         background-color: var(--_uc-username-bg);
         border-left: var(--_uc-username-bl);
         color: var(--_uc-username-fc);
+        display: var(--_uc-username-d);
         font-size: var(--_uc-username-fs);
         font-weight: 500;
         min-width: 0;
         overflow-wrap: break-word;
         padding: var(--_uc-username-p);
         word-break: break-all;
+    }
+
+    &--username__op {
+        --_uc-username-p: var(--su2) var(--su4) var(--su2) var(--su4);
+        --_uc-username-bg: var(--blue-100);
+        --_uc-username-bl: var(--su4) solid var(--blue-300);
+        --_uc-username-d: flex;
+        --_uc-username-ai: center;
+        .s-user-card__sm & {
+        --_uc-username-p: 0px var(--su4);
+        }
     }
 
     & &--awarded-third {

@@ -5,6 +5,13 @@
     import UserCardBadge from "./UserCardBadge.svelte";
     import UserCardBling from "./UserCardBling.svelte";
     import type { AwardBlings } from "./UserCard.svelte";
+    import UserCardAdditionalBling, {
+        type AdditionalBlingType,
+    } from "./UserCardAdditionalBling.svelte";
+    import {
+        IconAchievementsSm,
+        IconStarVerifiedSm,
+    } from "@stackoverflow/stacks-icons-legacy/icons";
 
     const UserCardSizes: (Size | undefined)[] = [undefined, "sm", "lg"];
     const UserCardAwardBlings: AwardBlings[] = ["first", "second", "third"];
@@ -24,6 +31,8 @@
             UserCardBadge,
             // @ts-expect-error: subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
             UserCardBling,
+            // @ts-expect-error: subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
+            UserCardAdditionalBling,
         },
         argTypes: {
             size: {
@@ -214,13 +223,19 @@
             </thead>
             <tbody>
                 {#each UserCardAwardBlings as award (award)}
+                    {#snippet additionalBlings()}
+                        <UserCardAdditionalBling
+                            type={award as AdditionalBlingType}
+                            tooltipText="This user is {award} on the weekly leaderboard."
+                            popoverId="user-card-award-popover-{award}"
+                            icon={IconAchievementsSm}
+                            href="/"
+                        />
+                    {/snippet}
                     <tr>
                         <th scope="row" class="va-middle">{award}</th>
                         <td class="va-middle px4">
-                            <UserCard
-                                {...baseArgs}
-                                award={award as AwardBlings}
-                            />
+                            <UserCard {...baseArgs} {additionalBlings} />
                         </td>
                     </tr>
                 {/each}
@@ -229,13 +244,18 @@
                         >Recognized Member (small)</th
                     >
                     <td class="va-middle px4">
-                        {#snippet recognition()}
-                            <span>Recognized by AudioBubble</span>
+                        {#snippet recognizedMemberAdditionalBling()}
+                            <UserCardAdditionalBling
+                                type="recognized member"
+                                tooltipText="This user is recognized by AudioBubble"
+                                popoverId="user-card-recognized-member-popover"
+                                icon={IconStarVerifiedSm}
+                                href="/"
+                            />
                         {/snippet}
                         <UserCard
                             {...baseArgs}
-                            {recognition}
-                            recognitionHref="/"
+                            {recognizedMemberAdditionalBling}
                             size="sm"
                         />
                     </td>
@@ -250,11 +270,7 @@
                                 >Recognized by <a href="/">AudioBubble</a></span
                             >
                         {/snippet}
-                        <UserCard
-                            {...baseArgs}
-                            {recognition}
-                            recognitionHref="/"
-                        />
+                        <UserCard {...baseArgs} {recognition} />
                     </td>
                 </tr>
             </tbody>
