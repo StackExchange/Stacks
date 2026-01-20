@@ -1,10 +1,8 @@
 ---
 name: Bug report
-about: Create a report to help us improve Stacks
-
+about: Report a bug in the Stacks design system
+labels: bug
 ---
-
-⚠️ Please do not file bugs for Stack Overflow (eg. Login fails on Stack Exchange). This repo is for Stacks, our design system, not Stack Overflow.
 
 **Describe the bug**
 A clear and concise description of what the bug is.
@@ -22,16 +20,18 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 37]
+**Environment:**
+- OS: [e.g. macOS, Windows, Linux]
+- Browser: [e.g. Chrome, Firefox, Safari]
+- Node.js version: [e.g. 18.17.0]
+- NPM version: [e.g. 9.6.7]
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone8]
- - OS: [e.g. iOS 12.1]
- - Browser [e.g. stock browser, Chrome]
- - Version [e.g. 37]
+**Component/Feature affected**
+Which Stacks component or feature is affected? [e.g. Button, Input, Modal, etc.]
 
 **Additional context**
-Add any other context about the problem here.
+Add any other context about the problem here, such as:
+- Related design tokens
+- CSS/styling issues
+- Accessibility concerns
+- Browser compatibility issues
