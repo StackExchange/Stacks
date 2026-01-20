@@ -31,7 +31,6 @@ export { default as Radio } from "./RadioGroup/Radio.svelte";
 export { default as RadioGroup } from "./RadioGroup/RadioGroup.svelte";
 export { default as Select } from "./Select/Select.svelte";
 export { default as SelectItem } from "./Select/SelectItem.svelte";
-export { default as Skeleton } from "./Skeleton/Skeleton.svelte";
 export { default as Spinner } from "./Spinner/Spinner.svelte";
 export { default as Tag } from "./Tag/Tag.svelte";
 export { default as TextArea } from "./TextArea/TextArea.svelte";
