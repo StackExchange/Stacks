@@ -85,6 +85,11 @@
         i18nOpTooltipText?: string;
 
         /**
+         * The text for the deleted user tooltip
+         */
+        i18nDeletedTooltipText?: string;
+
+        /**
          * Identifies if the user has been deleted
          */
         deleted?: boolean;
@@ -109,6 +114,7 @@
         additionalBlings,
         originalPoster,
         i18nOpTooltipText = "is the original poster.",
+        i18nDeletedTooltipText = "Deleted user",
         deleted,
         class: className = "",
     }: Props = $props();
@@ -212,11 +218,14 @@
 <div class={classes}>
     {#if deleted}
         <div class="s-user-card--group">
-            {#if size === "sm"}
-                <AvatarDeleted size={16} />
-            {:else}
-                <AvatarDeleted size={24} />
-            {/if}
+            <Popover id="user-card-deleted-popover" tooltip>
+                <PopoverReference>
+                    <AvatarDeleted size={size === "sm" ? 16 : 24} />
+                </PopoverReference>
+                <PopoverContent>
+                    <span>{i18nDeletedTooltipText}</span>
+                </PopoverContent>
+            </Popover>
             <span class="s-user-card--username s-user-card--deleted"
                 >{name}</span
             >

@@ -952,6 +952,49 @@ describe("UserCard states", () => {
             });
             expect(screen.getByText("asked 2 hr ago")).to.exist;
         });
+
+        it("should show popover tooltip when hovering over deleted avatar", async () => {
+            const clock = sinon.useFakeTimers({
+                shouldAdvanceTime: true,
+                shouldClearNativeTimers: true,
+            });
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                deleted: true,
+            });
+
+            const avatarSvg = container.querySelector("svg");
+            expect(avatarSvg).to.exist;
+
+            await userEvent.hover(avatarSvg!);
+            await clock.runAllAsync();
+            await tick();
+
+            expect(screen.getByText("Deleted user")).to.exist;
+            clock.restore();
+        });
+
+        it("should show custom tooltip text when i18nDeletedTooltipText is provided", async () => {
+            const clock = sinon.useFakeTimers({
+                shouldAdvanceTime: true,
+                shouldClearNativeTimers: true,
+            });
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                deleted: true,
+                i18nDeletedTooltipText: "Utilisateur supprimé",
+            });
+
+            const avatarSvg = container.querySelector("svg");
+            expect(avatarSvg).to.exist;
+
+            await userEvent.hover(avatarSvg!);
+            await clock.runAllAsync();
+            await tick();
+
+            expect(screen.getByText("Utilisateur supprimé")).to.exist;
+            clock.restore();
+        });
     });
 
     describe("Recognized Member (small)", () => {
