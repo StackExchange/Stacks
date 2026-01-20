@@ -5,6 +5,138 @@ svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-postsumm
 description: The post summary component summarizes various content and associated meta data into a highly configurable component.
 tags: components
 ---
+
+<section class="docs-section">
+    {% header "h2", "Examples" %}
+    <div class="docs-preview">
+        {% for example in post-summary.examples %}
+            <h4 class="fs-body3 mb4 mt24">{{ example.type }}</h4>
+            {% assign modifier = "" %}
+            {% if example.type == "Ignored" %}
+                {% assign modifier = modifier | append: "s-psx__ignored" %}
+            {% elsif example.type == "Deleted" %}
+                {% assign modifier = modifier | append: "s-psx__deleted" %}
+            {% endif %}
+            <div class="s-psx {% if example.answered %}s-psx__answered{% endif %} {{ modifier }}">
+                <div class="s-psx--stats s-psx--sm-hide">
+                    <div class="s-psx--stats-votes">+{{ example.votes }}</div>
+                    <div class="s-psx--stats-answers">
+                        {% if example.answered %}
+                            {% icon "Answer16Fill" %}
+                        {% else %}
+                            {% icon "Answer16" %}
+                        {% endif %}
+                        {{ example.answers }}
+                    </div>
+                    {% if example.bounty %}
+                        <div class="s-psx--stats-bounty">
+                            <span>+</span>
+                            {{ example.bounty }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="s-psx--content">
+                    <div class="s-psx--sm-show">
+                        {% if example.badge %}
+                            <span class="s-badge s-badge__sm {{ example.badge.class }}">
+                                {% if example.badge.icon %}
+                                    {% icon example.badge.icon %}
+                                {% endif %}
+                                {{ example.badge.text }}
+                            </span>
+                        {% endif %}
+                    </div>
+                    <div class="s-psx--content-meta">
+                        <div class="s-user-card s-user-card__sm">
+                            <a class="s-user-card--group" href="{{ example.user.href }}">
+                                <span class="s-avatar">
+                                    <img class="s-avatar--image" alt="{{ example.user.username }}" src="{{ example.user.avatar }}" />
+                                </span>
+                                <span class="s-user-card--username">{{ example.user.username }}</span>
+                            </a>
+                            {% if example.user.reputation %}
+                                <ul class="s-user-card--group">
+                                    <li class="s-user-card--rep">
+                                        <span class="s-bling s-bling__sm">
+                                            <span class="v-visible-sr">reputation bling</span>
+                                        </span>
+                                        {{ example.user.reputation }}
+                                    </li>
+                                </ul>
+                            {% endif %}
+                            {% if example.user.time %}
+                            <a class="s-user-card--time" href="#" title="{{ example.user.tooltip }}" data-controller="s-tooltip">
+                                <time>asked {{ example.user.time }}</time>
+                            </a>
+                            {% endif %}
+                        </div>
+                        <!-- Stats (sm) -->
+                        <div class="s-psx--stats s-psx--sm-show g6">
+                            <!-- Votes -->
+                            <div class="s-psx--stats-votes">
+                                {% icon "Vote16Up" %}
+                                {{ example.votes }}
+                            </div>
+                            <!-- Answers -->
+                            <div class="s-psx--stats-answers">
+                                {% if example.answered %}
+                                    {% icon "Answer16Fill", "s-psx--stats-answers--icon" %}
+                                {% else %}
+                                    {% icon "Answer16" %}
+                                {% endif %}
+                                {{ example.answers }}
+                            </div>
+                            <!-- Bounty -->
+                            {% if example.bounty %}
+                                <div class="s-psx--stats-bounty">
+                                    <span>+</span>
+                                    {{ example.bounty }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="s-psx--content-meta-views">
+                            {{ example.views }} views
+                        </div>
+                        {% if example.badge %}
+                            <span class="s-badge {{ example.badge.class }} ml-auto s-psx--sm-hide">
+                                {% if example.badge.icon %}
+                                    {% icon example.badge.icon %}
+                                {% endif %}
+                                {{ example.badge.text }}
+                            </span>
+                        {% endif %}
+                    </div>
+                    <div class="s-psx--title">
+                        <a class="s-psx--title-link" href="#">
+                            <!-- TODO SHINE include badge icon -->
+                            {{ example.title }}
+                        </a>
+                    </div>
+                    <div class="s-psx--excerpt v-truncate3">
+                        {{ example.excerpt }}
+                    </div>
+                    <div class="s-psx--tags">
+                        {% for tag in example.tags %}
+                            <a class="s-tag" href="#">{{ tag }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+
+
+        <!-- Default example -->
+        <!-- Ignored example -->
+        <!-- Watched example -->
+        <!-- Deleted example -->
+        <!-- Draft example -->
+        <!-- Review example -->
+        <!-- Closed example -->
+        <!-- Archived example -->
+        <!-- Pinned example -->
+    </div>
+</section>
 <section class="docs-section">
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">

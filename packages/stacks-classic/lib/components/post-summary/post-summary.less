@@ -1,3 +1,220 @@
+.s-psx {
+    @psx-container-sm: 28rem;
+    --_ps-stats-answers-bg: unset;
+    --_ps-stats-answers-fc: unset;
+    --_ps-stats-answers-fw: unset;
+    --_ps-stats-answers-icon-fc: unset;
+    --_ps-title-link-fc: var(--theme-secondary-600);
+
+    // Conditional styles
+    // Note: we cannot use CSS custom properties for container query values
+    @container post-summary (width <= @psx-container-sm) {
+        .s-psx--sm-hide {
+            display: none !important;
+        }
+        .s-psx--sm-show {
+            display: flex !important;
+        }
+    }
+
+    @container post-summary (width > @psx-container-sm) {
+        .s-psx--sm-hide {
+            display: flex !important;
+        }
+        .s-psx--sm-show {
+            display: none !important;
+        }
+    }
+
+    // MODIFIERS
+    &&__answered {
+        --_ps-stats-answers-bg: var(--green-400);
+        --_ps-stats-answers-fc: var(--white);
+        --_ps-stats-answers-fw: 600;
+        --_ps-stats-answers-icon-fc: var(--green-400);
+    }
+
+    &&__deleted {
+        background-color: var(--red-100);
+    }
+
+    &&__deleted,
+    &&__ignored {
+        --_ps-ignored-bg: var(--black-100);
+        --_ps-ignored-fc: var(--black-400);
+        
+        &.s-psx__answered {
+            --_ps-stats-answers-bg: var(--_ps-ignored-bg);
+            --_ps-stats-answers-fc: var(--_ps-ignored-fc);
+            --_ps-stats-answers-icon-fc: var(--_ps-ignored-fc);
+        }
+
+        * {
+            &:not(.s-badge):not(.s-popover):not(.s-tag):not(.s-psx--stats-answers):not(.s-psx--stats-bounty) {
+                background-color: transparent !important;
+            }
+
+            color: var(--_ps-ignored-fc) !important;
+        }
+
+        .s-avatar {
+            opacity: 0.5;
+        }
+        .s-user-card--rep .s-bling:before {
+            background-color: var(--_ps-ignored-fc) !important;
+        }
+
+        .s-badge,
+        .s-tag,
+        .s-psx--stats-bounty {
+            background-color: var(--_ps-ignored-bg) !important;
+            border-color: var(--_ps-ignored-bg) !important;
+            color: var(--_ps-ignored-fc) !important;
+        }
+    }
+
+    // Child components
+    & &--content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--su6);
+    }
+
+    & &--content-meta {
+        align-items: center;
+        color: var(--black-400);
+        display: flex;
+        flex-wrap: wrap;
+        font-size: var(--fs-caption);
+        gap: var(--su6);
+    }
+
+    & &--content-meta-views {
+        &:before {
+            aspect-ratio: 1/1;
+            background-color: var(--black-300);
+            content: "";
+            display: block;
+            height: var(--su4);
+        }
+
+        align-items: center;
+        display: flex;
+        gap: var(--su6);
+    }
+
+    & &--stats {
+        &.s-psx--sm-hide {
+            .s-psx--stats-answers {
+                background-color: var(--_ps-stats-answers-bg);
+                color: var(--_ps-stats-answers-fc);
+                font-weight: var(--_ps-stats-answers-fw);
+
+                align-items: center;
+                display: flex;
+                gap: var(--su4);
+                justify-content: center;
+                padding: var(--su4);
+            }
+
+            .s-psx--stats-bounty {
+                align-items: center;
+                background-color: var(--blue-400);
+                color: var(--white);
+                display: flex;
+                gap: var(--su2);
+                font-weight: 600;
+                justify-content: center;
+                padding: var(--su4);
+            }
+
+            .s-psx--stats-votes {
+                align-items: center;
+                aspect-ratio: 1/1;
+                border: var(--su1) solid var(--black-200);
+                display: flex;
+                justify-content: center;
+                font-size: var(--fs-body2);
+                font-weight: 600;
+                padding: var(--su4);
+                width: calc(var(--su48) + var(--su8)); // 3.5rem
+            }
+
+            flex-direction: column;
+        }
+
+        &.s-psx--sm-show {
+            .s-psx--stats-answers--icon {
+                color: var(--_ps-stats-answers-icon-fc);
+            }
+
+            align-items: center;
+            justify-content: center;
+            padding: var(--su4);
+        }
+
+        .s-psx--stats-bounty {
+            align-items: center;
+            justify-content: center;
+            background-color: var(--blue-400);
+            color: var(--white);
+            display: flex;
+            gap: var(--su1);
+            padding: 0 calc(var(--su4) - var(--su1));
+        }
+
+        display: flex;
+        gap: var(--su6);
+        font-size: var(--fs-caption);
+    }
+
+    & &--tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--su4);
+        margin-top: var(--su2);
+    }
+
+    & &--title {
+        display: flex;
+        gap: var(--su6);
+    }
+
+    & &--title-link {
+        &:hover {
+            --_ps-title-link-fc: var(--theme-secondary-500);
+
+            &:visited {
+                color: var(--theme-secondary-600);
+            }
+        }
+
+        // TODO: Since custom property is not being applied for some reason, we're changing the color directly. Remove this once the custom property is fixed.
+        &:visited {
+            color: var(--theme-secondary-400);
+        }
+
+        color: var(--_ps-title-link-fc);
+        display: flex;
+        font-size: var(--fs-body3);
+        font-weight: 600;
+        gap: var(--su16);
+        line-height: var(--lh-sm);
+        margin-top: var(--su2);
+    }
+
+    // Container query setup
+    container-type: inline-size;
+    container-name: post-summary;
+
+    color: var(--black-500);
+    display: flex;
+    gap: var(--su16);
+    padding: var(--su8);
+    position: relative;
+}
+
+// Reference
 .s-post-summary {
     // --_ps-state-* are custom properties to broadly override colors for a given post summary state
     --_ps-bb: var(--su1) solid var(--bc-light);
