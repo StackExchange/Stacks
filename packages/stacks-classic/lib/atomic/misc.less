@@ -68,7 +68,23 @@
 .bg-image-none { background-image: none !important; }
 
 .bg-loading {
-    
+    animation: loadingBgAnimation 0.75s ease-out infinite;
+    animation-delay: 1ms;
+}
+
+@keyframes loadingBgAnimation {
+    0% {
+        background-color: var(--black-150);
+        opacity: 1;
+    }
+    50% {
+        background-color: var(--black-100);
+        opacity: 0.7;
+    }
+    100% {
+        background-color: var(--black-150);
+        opacity: 1;
+    }
 }
 
 .bg-confetti-animated {
