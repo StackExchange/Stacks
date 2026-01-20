@@ -17,10 +17,10 @@ const baseChild = `
         This is a description of the card’s content.
     </p>
     <div class="d-flex gx4">
-        <button class="flex--item s-btn s-btn__filled s-btn__sm">
+        <button class="s-btn s-btn__sm">
             Call to action
         </button>
-        <button class="flex--item s-btn s-btn__sm">Cancel</button>
+        <button class="s-btn s-btn__clear s-btn__sm">Cancel</button>
     </div>
 `;
 

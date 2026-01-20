@@ -15,7 +15,7 @@ describe("page title", () => {
                     </p>
                 </div>
                 <div class="s-page-title--actions">
-                    <button class="s-btn s-btn__filled" type="button">Action</button>
+                    <button class="s-btn" type="button">Action</button>
                 </div>
             `,
         },

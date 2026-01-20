@@ -82,7 +82,7 @@ const children = {
                 <a href="#" class="s-topbar--item s-topbar--item__unset s-btn ws-nowrap">Log in</a>
             </li>
             <li>
-                <a href="#" class="s-topbar--item s-topbar--item__unset s-btn s-btn__filled ws-nowrap">Sign up</a>
+                <a href="#" class="s-topbar--item s-topbar--item__unset s-btn ws-nowrap">Sign up</a>
             </li>
         `,
         loggedIn: `<li>

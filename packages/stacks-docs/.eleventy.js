@@ -1,4 +1,4 @@
-const pluginTOC = require("eleventy-plugin-nesting-toc");
+const cheerio = require('cheerio');
 const llmsTxtPlugin = require("eleventy-plugin-llms-txt");
 const { version } = require("../stacks-classic/package.json");
 
@@ -34,8 +34,21 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addPlugin(markdownPlugin);
 
-  // Add submenu generation
-  eleventyConfig.addPlugin(pluginTOC, {tags: ['h2', 'h3'], wrapper: 'nav aria-label="Table of contents"', wrapperClass: 'toc s-anchors s-anchors__muted'});
+  // Create page table of contents data
+  eleventyConfig.addLiquidFilter("extractHeadings", function(content) {
+    const $ = cheerio.load(content);
+    const headings = [];
+    
+    $('h2, h3').each((i, el) => {
+      headings.push({
+        level: parseInt(el.tagName[1]),
+        text: $(el).text(),
+        id: $(el).attr('id')
+      });
+    });
+    
+    return headings;
+  });
 
   // Copy these files over to _site
   eleventyConfig.addPassthroughCopy('assets/dist');

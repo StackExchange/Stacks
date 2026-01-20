@@ -113,9 +113,7 @@
                     />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code"
-                        >type="achievement" award="gold"</code
-                    >
+                    <code>type="achievement" award="gold"</code>
                 </td>
             </tr>
             <tr>
@@ -128,9 +126,7 @@
                     />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code"
-                        >type="achievement" award="silver"</code
-                    >
+                    <code>type="achievement" award="silver"</code>
                 </td>
             </tr>
             <tr>
@@ -143,9 +139,7 @@
                     />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code"
-                        >type="achievement" award="bronze"</code
-                    >
+                    <code>type="achievement" award="bronze"</code>
                 </td>
             </tr>
         </tbody>
@@ -171,7 +165,7 @@
                     />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code">type="tag" award="gold"</code>
+                    <code>type="tag" award="gold"</code>
                 </td>
             </tr>
             <tr>
@@ -184,7 +178,7 @@
                     />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code">type="tag" award="silver"</code>
+                    <code>type="tag" award="silver"</code>
                 </td>
             </tr>
             <tr>
@@ -197,7 +191,7 @@
                     />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code">type="tag" award="bronze"</code>
+                    <code>type="tag" award="bronze"</code>
                 </td>
             </tr>
         </tbody>
@@ -219,7 +213,7 @@
                     <Badge type="state" text="Archived" class="ml2" />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code">type="state"</code>
+                    <code>type="state"</code>
                 </td>
             </tr>
             <tr>
@@ -233,7 +227,7 @@
                     <Badge type="state" state="info" text="Draft" class="ml2" />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code">type="state" state="info"</code>
+                    <code>type="state" state="info"</code>
                 </td>
             </tr>
             <tr>
@@ -252,8 +246,7 @@
                     />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code">type="state" state="warning"</code
-                    >
+                    <code>type="state" state="warning"</code>
                 </td>
             </tr>
             <tr>
@@ -272,7 +265,7 @@
                     />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code">type="state" state="danger"</code>
+                    <code>type="state" state="danger"</code>
                 </td>
             </tr>
             <tr>
@@ -291,9 +284,7 @@
                     />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code"
-                        >type="state" state="critical"</code
-                    >
+                    <code>type="state" state="critical"</code>
                 </td>
             </tr>
             <tr>
@@ -312,7 +303,7 @@
                     />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code">type="state" state="tonal"</code>
+                    <code>type="state" state="tonal"</code>
                 </td>
             </tr>
             <tr>
@@ -331,8 +322,7 @@
                     />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code">type="state" state="success"</code
-                    >
+                    <code>type="state" state="success"</code>
                 </td>
             </tr>
             <tr>
@@ -346,9 +336,7 @@
                     <Badge type="state" state="featured" text="New" />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code"
-                        >type="state" state="featured"</code
-                    >
+                    <code>type="state" state="featured"</code>
                 </td>
             </tr>
         </tbody>
@@ -375,9 +363,7 @@
                     />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code"
-                        >{`type="state" state="success" squared={true}`}</code
-                    >
+                    <code>{`type="state" state="success" squared={true}`}</code>
                 </td>
             </tr>
             <tr>
@@ -391,8 +377,7 @@
                     />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code"
-                        >{`type="state" state="featured" squared={true}`}</code
+                    <code>{`type="state" state="featured" squared={true}`}</code
                     >
                 </td>
             </tr>
@@ -421,7 +406,7 @@
                     />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code"
+                    <code
                         >{`type="state" state="warning" squared={true} important={true}`}</code
                     >
                 </td>
@@ -437,8 +422,7 @@
                     />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code"
-                        >{`type="state" state="danger" important={true}`}</code
+                    <code>{`type="state" state="danger" important={true}`}</code
                     >
                 </td>
             </tr>
@@ -452,7 +436,7 @@
                     />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code"
+                    <code
                         >{`type="state" state="critical" important={true}`}</code
                     >
                 </td>
@@ -468,7 +452,7 @@
                     />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code"
+                    <code
                         >{`type="state" state="info" size="sm" important={true}`}</code
                     >
                 </td>
@@ -497,9 +481,7 @@
                         />
                     </td>
                     <td class="va-middle">
-                        <code class="stacks-code"
-                            >type="user" userType="{userType}"</code
-                        >
+                        <code>type="user" userType="{userType}"</code>
                     </td>
                 </tr>
             {/each}
@@ -526,7 +508,7 @@
                     />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code">size="sm"</code>
+                    <code>size="sm"</code>
                 </td>
             </tr>
             <tr>
@@ -539,7 +521,7 @@
                     />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code">size=""</code>
+                    <code>size=""</code>
                 </td>
             </tr>
             <tr>
@@ -547,7 +529,7 @@
                     <Badge type="state" state="danger" size="lg" text="Large" />
                 </td>
                 <td class="va-middle">
-                    <code class="stacks-code">size="lg"</code>
+                    <code>size="lg"</code>
                 </td>
             </tr>
         </tbody>
