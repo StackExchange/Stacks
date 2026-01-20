@@ -42,6 +42,10 @@ jobs:
           command: npm run test -w packages/stacks-svelte
           needs_lfs: false
           needs_playwright: true
+        - command_description: Unit Tests (stacks-utils)
+          command: npm run test -w packages/stacks-utils
+          needs_lfs: false
+          needs_playwright: false
     with:
       command: ${{ matrix.command }}
       command_description: ${{ matrix.command_description }}

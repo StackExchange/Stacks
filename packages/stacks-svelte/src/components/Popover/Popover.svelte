@@ -132,6 +132,8 @@
     // if the visible prop is passed, the component is controlled
     const controlled = $derived(visible !== undefined);
 
+    // svelte-ignore state_referenced_locally
+    // placement and strategy are intentionally captured at init - update() is used to change placement dynamically
     const [floatingRef, floatingContent, update] = createFloatingActions({
         placement,
         strategy,
@@ -197,6 +199,9 @@
         }
     };
 
+    // svelte-ignore state_referenced_locally
+    // Props are intentionally captured at init. The component manages visibility internally
+    // (uncontrolled mode) or syncs from props via $effect (controlled mode).
     const pstate = $state<PopoverState>({
         id,
         controlled: visible !== undefined,
