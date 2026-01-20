@@ -13,14 +13,14 @@ tags: components
             <h4 class="fs-body3 mb4 mt24">{{ example.type }}</h4>
             {% assign modifier = "" %}
             {% if example.type == "Ignored" %}
-                {% assign modifier = modifier | append: "s-psx__ignored" %}
+                {% assign modifier = modifier | append: "s-post-summary__ignored" %}
             {% elsif example.type == "Deleted" %}
-                {% assign modifier = modifier | append: "s-psx__deleted" %}
+                {% assign modifier = modifier | append: "s-post-summary__deleted" %}
             {% endif %}
-            <div class="s-psx {% if example.answered %}s-psx__answered{% endif %} {{ modifier }}">
-                <div class="s-psx--stats s-psx--sm-hide">
-                    <div class="s-psx--stats-votes">+{{ example.votes }}</div>
-                    <div class="s-psx--stats-answers">
+            <div class="s-post-summary {% if example.answered %}s-post-summary__answered{% endif %} {{ modifier }}">
+                <div class="s-post-summary--stats s-post-summary--sm-hide">
+                    <div class="s-post-summary--stats-votes">+{{ example.votes }}</div>
+                    <div class="s-post-summary--stats-answers">
                         {% if example.answered %}
                             {% icon "Answer16Fill" %}
                         {% else %}
@@ -29,14 +29,14 @@ tags: components
                         {{ example.answers }}
                     </div>
                     {% if example.bounty %}
-                        <div class="s-psx--stats-bounty">
+                        <div class="s-post-summary--stats-bounty">
                             <span>+</span>
                             {{ example.bounty }}
                         </div>
                     {% endif %}
                 </div>
-                <div class="s-psx--content">
-                    <div class="s-psx--sm-show">
+                <div class="s-post-summary--content">
+                    <div class="s-post-summary--sm-show">
                         {% if example.badge %}
                             <span class="s-badge s-badge__sm {{ example.badge.class }}">
                                 {% if example.badge.icon %}
@@ -46,7 +46,7 @@ tags: components
                             </span>
                         {% endif %}
                     </div>
-                    <div class="s-psx--content-meta">
+                    <div class="s-post-summary--content-meta">
                         <div class="s-user-card s-user-card__sm">
                             <a class="s-user-card--group" href="{{ example.user.href }}">
                                 <span class="s-avatar">
@@ -71,16 +71,16 @@ tags: components
                             {% endif %}
                         </div>
                         <!-- Stats (sm) -->
-                        <div class="s-psx--stats s-psx--sm-show g6">
+                        <div class="s-post-summary--stats s-post-summary--sm-show g6">
                             <!-- Votes -->
-                            <div class="s-psx--stats-votes">
+                            <div class="s-post-summary--stats-votes">
                                 {% icon "Vote16Up" %}
                                 {{ example.votes }}
                             </div>
                             <!-- Answers -->
-                            <div class="s-psx--stats-answers">
+                            <div class="s-post-summary--stats-answers">
                                 {% if example.answered %}
-                                    {% icon "Answer16Fill", "s-psx--stats-answers--icon" %}
+                                    {% icon "Answer16Fill", "s-post-summary--stats-answers--icon" %}
                                 {% else %}
                                     {% icon "Answer16" %}
                                 {% endif %}
@@ -88,17 +88,17 @@ tags: components
                             </div>
                             <!-- Bounty -->
                             {% if example.bounty %}
-                                <div class="s-psx--stats-bounty">
+                                <div class="s-post-summary--stats-bounty">
                                     <span>+</span>
                                     {{ example.bounty }}
                                 </div>
                             {% endif %}
                         </div>
-                        <div class="s-psx--content-meta-views">
+                        <div class="s-post-summary--content-meta-views">
                             {{ example.views }} views
                         </div>
                         {% if example.badge %}
-                            <span class="s-badge {{ example.badge.class }} ml-auto s-psx--sm-hide">
+                            <span class="s-badge {{ example.badge.class }} ml-auto s-post-summary--sm-hide">
                                 {% if example.badge.icon %}
                                     {% icon example.badge.icon %}
                                 {% endif %}
@@ -106,16 +106,16 @@ tags: components
                             </span>
                         {% endif %}
                     </div>
-                    <div class="s-psx--title">
-                        <a class="s-psx--title-link" href="#">
+                    <div class="s-post-summary--title">
+                        <a class="s-post-summary--title-link" href="#">
                             <!-- TODO SHINE include badge icon -->
                             {{ example.title }}
                         </a>
                     </div>
-                    <div class="s-psx--excerpt v-truncate3">
+                    <div class="s-post-summary--excerpt v-truncate3">
                         {{ example.excerpt }}
                     </div>
-                    <div class="s-psx--tags">
+                    <div class="s-post-summary--tags">
                         {% for tag in example.tags %}
                             <a class="s-tag" href="#">{{ tag }}</a>
                         {% endfor %}
