@@ -5,7 +5,7 @@
 <body class="d-flex fd-column bg-black-100 theme-system">
     {% include 'theme.html' %}
     <header class="ai-center bg-theme-primary d-flex fd-column fl-grow1 jc-center hmx10 hmn4 w100">
-        <div class="d-flex fd-column ps-relative fl-grow1 overflow-hidden p64 w100 wmx12 lg:p32 sm:py16">
+        <div class="d-flex fd-column ps-relative fl-grow1 overflow-hidden p64 w100 wmx12 lg:p32 md:py16 sm:p24">
             <div class="d-flex fd-column fl-grow1 jc-space-between ps-relative z-selected">
                 <div class="d-flex ai-center jc-end g16">
                     <a class="fc-white" title="Stack Overflow" href="https://stackoverflow.com">
@@ -199,41 +199,17 @@
             </div>
         </div>
     </header>
-    <div class="bg-black-100 p64 lg:p32 sm:p24">
-        <nav class="d-grid grid__4 lg:grid__2 sm:grid__1 fs-body2 g16 w100 wmx12 mx-auto sm:g8" aria-label="Global">
-            {% assign cardClasses = "s-card d-flex ai-center fd-column g16 p16 sm:ai-center sm:fd-row sm:py2 md:fd-column md:px24 md:pb24 md:g16 lg:fd-row lg:g24 h:bs-md h:fc-theme-secondary-600 f:fc-theme-secondary-600" %}
-            {% assign cardTextClasses = "lg:w50 md:w-auto sm:w100" %}
-            <a class="{{ cardClasses }}" href="{{ "/product/develop/using-stacks" | url }}">
-                {% spot "Puzzle", "native w100 lg:w33 md:w100 sm:w33" %}
-                <div class="{{ cardTextClasses }}">
-                    <div class="fw-bold fs-headline1 mb2">Product</div>
-                    <div>Robust CSS & JavaScript Pattern libraries for rapidly building Stack Overflow.</div>
-                </div>
-            </a>
-
-            <a class="{{ cardClasses }}" href="{{ "/email/guidelines/getting-started" | url }}">
-                {% spot "Conversation", "native w100 lg:w33 md:w100 sm:w33" %}
-                <div class="{{ cardTextClasses }}">
-                    <div class="fw-bold fs-headline1 mb2">Email</div>
-                    <div>Patterns and guidelines for creating and sending emails to Stack Overflow users.</div>
-                </div>
-            </a>
-
-            <a class="{{ cardClasses }}" href="{{ "/content/guidelines/principles" | url }}">
-                {% spot "Document", "native w100 lg:w33 md:w100 sm:w33" %}
-                <div class="{{ cardTextClasses }}">
-                    <div class="fw-bold fs-headline1 mb2">Content</div>
-                    <div>Principles and tactics for writing at Stack Overflow.</div>
-                </div>
-            </a>
-
-            <a class="{{ cardClasses }}" href="{{ "/brand/principles" | url }}">
-                {% spot "Create", "native w100 lg:w33 md:w100 sm:w33" %}
-                <div class="{{ cardTextClasses }}">
-                    <div class="fw-bold fs-headline1 mb2">Brand</div>
-                    <div>Visual patterns and guidelines for Stack Overflow’s brand.</div>
-                </div>
-            </a>
+    <div class="bg-black-100 ai-center d-flex fd-column jc-center w100">
+        <nav class="d-grid grid__2 fs-body2 g16 px64 py32 w100 wmx12 lg:px32 md:py24 sm:grid__1 sm:g8 sm:p24" aria-label="Global">
+            {% for card in home.cards %}
+                <a class="s-card ai-center d-flex g32 p16" href="{{ card.url }}">
+                    {% spot card.spot, "native h96 w96 sm:d-none" %}
+                    <div class="fl-grow1 w75">
+                        <div class="fw-bold fs-headline1 mb2">{{ card.title }}</div>
+                        <div class="fs-body3 fc-medium">{{ card.description }}</div>
+                    </div>
+                </a>
+            {% endfor %}
         </nav>
     </div>
     {% include 'scripts.html' %}
