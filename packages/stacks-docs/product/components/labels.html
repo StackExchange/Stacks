@@ -5,35 +5,35 @@ figma: https://svelte.stackoverflow.design/figma/labels
 description: Labels are used to describe inputs, select menus, textareas, radio buttons, and checkboxes.
 tags: components
 ---
-<section class="stacks-section">
-    <p class="stacks-copy">Labels inform users what information is being asked of them. They should be written in sentence case.</p>
+<section class="docs-section">
+    <p class="docs-copy">Labels inform users what information is being asked of them. They should be written in sentence case.</p>
     {% tip %}
-        For usability reasons, if a label is connected with an input, the <code class="stacks-code">for="[id]"</code> attribute should be filled in. This attribute references the input’s <code class="stacks-code">id="[value]"</code> value. This makes clicking the label automatically focus the proper input.
+        For usability reasons, if a label is connected with an input, the <code>for="[id]"</code> attribute should be filled in. This attribute references the input’s <code>id="[value]"</code> value. This makes clicking the label automatically focus the proper input.
     {% endtip %}
 </section>
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Base style" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <form class="d-flex gy4 fd-column">
-    <label class="flex--item s-label" for="question-title">Question title</label>
+    <label class="s-label" for="question-title">Question title</label>
     <div class="d-flex ps-relative">
-        <input class="flex--item s-input" type="text" id="question-title" placeholder="e.g. Why doesn’t Stack Overflow use a custom web font?"/>
+        <input class="s-input" type="text" id="question-title" placeholder="e.g. Why doesn’t Stack Overflow use a custom web font?"/>
     </div>
 </form>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <form class="d-flex gy4 fd-column">
-                <label class="flex--item s-label" for="question-title">Question title</label>
+                <label class="s-label" for="question-title">Question title</label>
                 <div class="d-flex ps-relative">
-                    <input class="flex--item s-input" type="text" id="question-title" placeholder="e.g. Why doesn’t Stack Overflow use a custom web font?"/>
+                    <input class="s-input" type="text" id="question-title" placeholder="e.g. Why doesn’t Stack Overflow use a custom web font?"/>
                 </div>
             </form>
         </div>
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Sizes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple va-middle">
@@ -52,7 +52,7 @@ tags: components
                     <tr>
                         <th scope="row">{{ item.name }}</th>
                         <td>{{ item.size }}</td>
-                        <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code class="stacks-code">.{{ item.class }}</code>{% endif %}</td>
+                        <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code class="docs-code">.{{ item.class }}</code>{% endif %}</td>
                         <td><label class="s-label {% if item.class != "N/A" %}{{ item.class }}{% endif %}">Question title</label></td>
                     </tr>
                     {% endfor %}
@@ -62,11 +62,11 @@ tags: components
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Description copy" %}
-    <p class="stacks-copy">When a label or input needs further explantation, text should be placed directly underneath it.</p>
+    <p class="docs-copy">When a label or input needs further explantation, text should be placed directly underneath it.</p>
 
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <form class="d-flex gy4 fd-column">
     <label class="d-block s-label" for="example-item">
@@ -78,7 +78,7 @@ tags: components
     </div>
 </form>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <form class="d-flex gy4 fd-column">
                 <label class="d-block s-label" for="question-title-copy">
                     Question title
@@ -92,85 +92,85 @@ tags: components
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Status" %}
-    <p class="stacks-copy">When you need to flag labels as required or optional, use the following flags. Use the full word “Required” or “Optional” for these flags instead of using asterisks. If a majority of a form’s inputs are required, use the asterisk symbol to indicate which fields are required and include a legend. See <a href="/product/components/inputs/#accessibility">Input Accessibility</a> for more details.</p>
+    <p class="docs-copy">When you need to flag labels as required or optional, use the following flags. Use the full word “Required” or “Optional” for these flags instead of using asterisks. If a majority of a form’s inputs are required, use the asterisk symbol to indicate which fields are required and include a legend. See <a href="/product/components/inputs/#accessibility">Input Accessibility</a> for more details.</p>
 
     {% header "h3", "Optional" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <form class="d-flex gy4 fd-column">
-    <label class="flex--item s-label" for="question-tags">Question tags <span class="s-label--status">Optional</span></label>
+    <label class="s-label" for="question-tags">Question tags <span class="s-label--status">Optional</span></label>
     <div class="d-flex ps-relative">
-        <input class="flex--item s-input" type="text" id="question-tags" placeholder="e.g. Why doesn’t Stack Overflow use a custom web font?"/>
+        <input class="s-input" type="text" id="question-tags" placeholder="e.g. Why doesn’t Stack Overflow use a custom web font?"/>
     </div>
 </form>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <form class="d-flex gy4 fd-column">
-                <label class="flex--item s-label" for="question-tags">Question tags <span class="s-label--status">Optional</span></label>
+                <label class="s-label" for="question-tags">Question tags <span class="s-label--status">Optional</span></label>
                 <div class="d-flex ps-relative">
-                    <input class="flex--item s-input" type="text" id="question-tags" placeholder="e.g. Why doesn’t Stack Overflow use a custom web font?"/>
+                    <input class="s-input" type="text" id="question-tags" placeholder="e.g. Why doesn’t Stack Overflow use a custom web font?"/>
                 </div>
             </form>
         </div>
     </div>
 
     {% header "h3", "Required" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <form class="d-flex gy4 fd-column">
-    <label class="flex--item s-label" for="question-title-required">Question title <span class="s-label--status s-label--status__required">Required</span></label>
+    <label class="s-label" for="question-title-required">Question title <span class="s-label--status s-label--status__required">Required</span></label>
     <div class="d-flex ps-relative">
-        <input class="flex--item s-input" type="text" id="question-title-required" placeholder="e.g. Why doesn’t Stack Overflow use a custom web font?"/>
+        <input class="s-input" type="text" id="question-title-required" placeholder="e.g. Why doesn’t Stack Overflow use a custom web font?"/>
     </div>
 </form>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <form class="d-flex gy4 fd-column">
-                <label class="flex--item s-label" for="question-title-required">Question title <span class="s-label--status s-label--status__required">Required</span></label>
+                <label class="s-label" for="question-title-required">Question title <span class="s-label--status s-label--status__required">Required</span></label>
                 <div class="d-flex ps-relative">
-                    <input class="flex--item s-input" type="text" id="question-title-required" placeholder="e.g. Why doesn’t Stack Overflow use a custom web font?"/>
+                    <input class="s-input" type="text" id="question-title-required" placeholder="e.g. Why doesn’t Stack Overflow use a custom web font?"/>
                 </div>
             </form>
         </div>
     </div>
 
     {% header "h3", "New" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <form class="d-flex gy4 fd-column">
-    <label class="flex--item s-label" for="question-title-new">What is your favorite animal? <span class="s-label--status s-label--status__new">New</span></label>
+    <label class="s-label" for="question-title-new">What is your favorite animal? <span class="s-label--status s-label--status__new">New</span></label>
     <div class="d-flex ps-relative">
-        <input class="flex--item s-input" type="text" id="question-title-new" placeholder="e.g. hedgehog, platypus, sugar glider"/>
+        <input class="s-input" type="text" id="question-title-new" placeholder="e.g. hedgehog, platypus, sugar glider"/>
     </div>
 </form>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <form class="d-flex gy4 fd-column">
-                <label class="flex--item s-label" for="question-title-new">What is your favorite animal? <span class="s-label--status s-label--status__new">New</span></label>
+                <label class="s-label" for="question-title-new">What is your favorite animal? <span class="s-label--status s-label--status__new">New</span></label>
                 <div class="d-flex ps-relative">
-                    <input class="flex--item s-input" type="text" id="question-title-new" placeholder="e.g. hedgehog, platypus, sugar glider"/>
+                    <input class="s-input" type="text" id="question-title-new" placeholder="e.g. hedgehog, platypus, sugar glider"/>
                 </div>
             </form>
         </div>
     </div>
 
     {% header "h3", "Beta" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <form class="d-flex gy4 fd-column">
-    <label class="flex--item s-label" for="question-title-beta">Notify people <span class="s-label--status s-label--status__beta">Beta</span></label>
+    <label class="s-label" for="question-title-beta">Notify people <span class="s-label--status s-label--status__beta">Beta</span></label>
     <div class="d-flex ps-relative">
-        <input class="flex--item s-input" type="text" id="question-title-beta" placeholder="e.g. jdoe, bgates, sjobs"/>
+        <input class="s-input" type="text" id="question-title-beta" placeholder="e.g. jdoe, bgates, sjobs"/>
     </div>
 </form>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <form class="d-flex gy4 fd-column">
-                <label class="flex--item s-label" for="question-title-beta">Notify people <span class="s-label--status s-label--status__beta">Beta</span></label>
+                <label class="s-label" for="question-title-beta">Notify people <span class="s-label--status s-label--status__beta">Beta</span></label>
                 <div class="d-flex ps-relative">
-                    <input class="flex--item s-input" type="text" id="question-title-beta" placeholder="e.g. jdoe, bgates, sjobs"/>
+                    <input class="s-input" type="text" id="question-title-beta" placeholder="e.g. jdoe, bgates, sjobs"/>
                 </div>
             </form>
         </div>
