@@ -18,16 +18,38 @@ tags: foundation
                     <div class="ba bc-{{ set.name }}-400 overflow-hidden">
                         {% for stop in set.stops %}
                             {% assign name = set.name | replace: " ", "-" %}
+                            {% assign bgClass = "bg-" | append: name %}
+                            {% assign fcStop = "100" %}
 
                             {% if stop != "" %}
                                 {% assign name = set.name | append: "-" | append: stop | replace: " ", "-" %}
+                                {% assign bgClass = "bg-" | append: name %}
+
+                                {% if stop <= 100 and stop > 0 or stop == "050" %}
+                                    {% assign fcStop = "400" %}
+                                {% endif %}
+                                {% if stop <= 200 and stop > 100 %}
+                                    {% assign fcStop = "500" %}
+                                {% endif %}
+                                {% if stop <= 300 and stop > 600 %}
+                                    {% assign fcStop = "100" %}
+                                {% endif %}
+                            {% else %}
+                                {% if set.name == "theme primary" or set.name == "theme secondary" %}
+                                    {% assign fcStop = "100" %}
+                                {% endif %}
                             {% endif %}
 
-                            {% assign stopFc = "fc-black" %}
-                            {% if set.invert contains stop %}
-                                {% assign stopFc = "fc-white" %}
+                            {% assign fcClass = "fc-" | append: set.name | append: "-" | append: fcStop | replace: " ", "-" %}
+
+                            {% if set.name == "white" %}
+                                {% assign fcClass = "fc-black" %}
                             {% endif %}
-                            <div class="p12 bg-{{ name }} {{ stopFc }}">
+                            {% if stop <= 300 and stop > 200 or set.name == "black" and stop == "" %}
+                                {% assign fcClass = "fc-white" %}
+                            {% endif %}
+
+                            <div class="p12 {{ bgClass }} {{ fcClass }}">
                                 {{ name }}
                             </div>
                         {% endfor %}
