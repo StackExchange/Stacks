@@ -6,12 +6,12 @@ import "../../index";
 const template = ({ component, testid }: any) => html`
     <div class="d-inline-block p8" data-testid="${testid}">${component}</div>
 `;
-describe("spinner", () => {
+describe("loading", () => {
     // default, sizes
     runVisualTests({
-        baseClass: "s-spinner",
+        baseClass: "s-loading",
         modifiers: {
-            primary: ["xs", "sm", "md", "lg"],
+            primary: ["sm", "lg"],
         },
         children: {
             default: `<div class="v-visible-sr">Loading…</div>`,
@@ -20,7 +20,7 @@ describe("spinner", () => {
     });
     // applied font color
     runVisualTests({
-        baseClass: "s-spinner",
+        baseClass: "s-loading",
         modifiers: {
             global: ["fc-theme-primary"],
         },

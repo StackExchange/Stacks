@@ -1,11 +1,11 @@
 import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
-describe("spinner", () => {
+describe("loading", () => {
     runA11yTests({
-        baseClass: "s-spinner",
+        baseClass: "s-loading",
         modifiers: {
-            primary: ["xs", "sm", "md", "lg"],
+            primary: ["sm", "lg"],
         },
         children: {
             default: `<div class="v-visible-sr">Loading…</div>`,

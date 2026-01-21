@@ -1,0 +1,80 @@
+.s-loading--block {
+    // BASE COMPONENT-SPECIFIC CUSTOM PROPERTIES
+    --_ld-size: var(--su-static24);
+    --_ld-block-size: calc(var(--su-static4) + var(--su-static1));
+    --_ld-bg: var(--black-600);
+    --_ld-secondary-bg: var(--black-200);
+
+    // MODIFIERS
+    &&__sm {
+        --_ld-size: var(--su-static16);
+        --_ld-block-size: calc((var(--su-static6) + var(--su-static1)) / 2);
+    }
+    &&__lg {
+        --_ld-size: var(--su-static48);
+        --_ld-block-size: var(--su-static8);
+    }
+
+    // CHILD ELEMENTS
+    &:before {
+        animation: loading-block-animation 1.5s cubic-bezier(1, 1, 0, 1) infinite;
+        background-color: var(--_ld-secondary-bg);
+        box-shadow: calc(-1 * var(--_ld-block-size) - 2.5px) 0 0 0 var(--_ld-secondary-bg),
+                    calc(var(--_ld-block-size) + 2.5px) 0 0 0 var(--_ld-secondary-bg);
+        content: "";
+        display: block;
+        height: var(--_ld-block-size);
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: var(--_ld-block-size);
+    }
+
+    height: var(--_ld-size);
+    position: relative;
+    width: var(--_ld-size);
+}
+
+@keyframes loading-block-animation {
+    0% {
+        background-color: var(--_ld-secondary-bg);
+        box-shadow: calc(-1 * var(--_ld-block-size) - 2.5px) 0 0 0 var(--_ld-secondary-bg),
+                    calc(var(--_ld-block-size) + 2.5px) 0 0 0 var(--_ld-secondary-bg);
+        transform: translate(-50%, -50%);
+    }
+    16.667% {
+        box-shadow: calc(-1 * var(--_ld-block-size) - 2.5px) -5px 0 0 var(--_ld-bg),
+                    calc(var(--_ld-block-size) + 2.5px) 0 0 0 var(--_ld-secondary-bg);
+        transform: translate(-50%, -50%);
+    }
+    33.333% {
+        background-color: var(--_ld-secondary-bg);
+        box-shadow: calc(-1 * var(--_ld-block-size) - 2.5px) 0 0 0 var(--_ld-secondary-bg),
+                    calc(var(--_ld-block-size) + 2.5px) 0 0 0 var(--_ld-secondary-bg);
+        transform: translate(-50%, -50%);
+    }
+    50% {
+        background-color: var(--_ld-bg);
+        box-shadow: calc(-1 * var(--_ld-block-size) - 2.5px) 5px 0 0 var(--_ld-secondary-bg),
+                    calc(var(--_ld-block-size) + 2.5px) 5px 0 0 var(--_ld-secondary-bg);
+        transform: translate(-50%, calc(-50% - 5px));
+    }
+    66.667% {
+        background-color: var(--_ld-secondary-bg);
+        box-shadow: calc(-1 * var(--_ld-block-size) - 2.5px) 0 0 0 var(--_ld-secondary-bg),
+                    calc(var(--_ld-block-size) + 2.5px) 0 0 0 var(--_ld-secondary-bg);
+        transform: translate(-50%, -50%);
+    }
+    83.333% {
+        box-shadow: calc(-1 * var(--_ld-block-size) - 2.5px) 0 0 0 var(--_ld-secondary-bg),
+                    calc(var(--_ld-block-size) + 2.5px) -5px 0 0 var(--_ld-bg);
+        transform: translate(-50%, -50%);
+    }
+    100% {
+        background-color: var(--_ld-secondary-bg);
+        box-shadow: calc(-1 * var(--_ld-block-size) - 2.5px) 0 0 0 var(--_ld-secondary-bg),
+                    calc(var(--_ld-block-size) + 2.5px) 0 0 0 var(--_ld-secondary-bg);
+        transform: translate(-50%, -50%);
+    }
+}
