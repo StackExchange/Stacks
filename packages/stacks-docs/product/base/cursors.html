@@ -4,7 +4,7 @@ title: Cursors
 description: Atomic cursor classes allow you to quickly change an element’s cursor behavior.
 tags: base
 ---
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn3 s-table s-table__bx-simple">
@@ -17,8 +17,8 @@ tags: base
             <tbody>
                 {% for atomic in atomics.cursors %}
                 <tr class="fs-caption">
-                    <th scope="row"><code class="stacks-code">.{{ atomic.class }}</code></th>
-                    <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
+                    <th scope="row"><code class="docs-code">.{{ atomic.class }}</code></th>
+                    <td><code class="docs-code bg-white">{{ atomic.output }}</code></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -26,7 +26,7 @@ tags: base
     </div>
 
     {% header "h2", "Examples" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="c-auto">…</div>
 <div class="c-default">…</div>
@@ -37,32 +37,13 @@ tags: base
 <div class="c-not-allowed">…</div>
 <div class="c-help">…</div>
 {% endhighlight %}
-        <div class="stacks-preview--example fs-caption ff-mono">
-            <div class="d-flex g8 fw-wrap">
-                <div class="flex--item bg-black-200 p12 ba bc-black-225 c-auto">
-                    .c-auto
-                </div>
-                <div class="flex--item bg-black-200 p12 ba bc-black-225 c-default">
-                    .c-default
-                </div>
-                <div class="flex--item bg-black-200 p12 ba bc-black-225 c-pointer">
-                    .c-pointer
-                </div>
-                <div class="flex--item bg-black-200 p12 ba bc-black-225 c-text">
-                    .c-text
-                </div>
-                <div class="flex--item bg-black-200 p12 ba bc-black-225 c-wait">
-                    .c-wait
-                </div>
-                <div class="flex--item bg-black-200 p12 ba bc-black-225 c-move">
-                    .c-move
-                </div>
-                <div class="flex--item bg-black-200 p12 ba bc-black-225 c-not-allowed">
-                    .c-not-allowed
-                </div>
-                <div class="flex--item bg-black-200 p12 ba bc-black-225 c-help">
-                    .c-help
-                </div>
+        <div class="docs-preview--example fs-caption ff-mono">
+            <div class="d-grid grid__4 lg:grid__3 sm:grid__2 g8 fw-wrap">
+                {% for atomic in atomics.cursors %}
+                    <div class="docs-box grid--item ws-nowrap {{ atomic.class }}">
+                        .{{ atomic.class }}
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>

@@ -6,7 +6,7 @@ description: To avoid specifying color values by hand, we’ve included a robust
 tags: foundation
 ---
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Stops" %}
 
     <div class="d-grid g24 mt16 mb32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
@@ -14,8 +14,8 @@ tags: foundation
             {% assign setClasses = "" %}
             {% if set.name != "transparent" and set.name != "inherit" %}
                 <div>
-                    <h3>{{ set.name | capitalize }}</h3>
-                    <div class="bar-md overflow-hidden bs-md ba baw2 bc-white">
+                    <h3 class="mb8 fs-body2">{{ set.name | capitalize }}</h3>
+                    <div class="ba bc-{{ set.name }}-400 overflow-hidden">
                         {% for stop in set.stops %}
                             {% assign name = set.name | replace: " ", "-" %}
 
@@ -38,10 +38,10 @@ tags: foundation
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Classes" %}
 
-    <p class="stacks-copy">
+    <p class="docs-copy">
         Each color stop is available as an atomic text, background, and border class. Using these atomic classes means your view will respond to dark mode appropriately. These colors are available <a href="{{ "/product/develop/conditional-classes#hover" | url }}">conditionally</a>.
     </p>
 
@@ -82,13 +82,13 @@ tags: foundation
 
                         <tr class="ff-mono">
                             <td class="fc-{{name}}">
-                                <div class="fc-{{name}} bar-md d-inline-block p6 ws-nowrap {{ stopFcBg }}">.fc-{{name}}</div>
+                                <div class="fc-{{name}} d-inline-block p6 ws-nowrap {{ stopFcBg }}">.fc-{{name}}</div>
                             </td>
                             <td class="p8">
-                                <div class="bc-inherit bg-{{name}} bar-md d-inline-block fc-white p6 ws-nowrap {{ stopBgFc }}">.bg-{{name}}</div>
+                                <div class="bc-inherit bg-{{name}} d-inline-block fc-white p6 ws-nowrap {{ stopBgFc }}">.bg-{{name}}</div>
                             </td>
                             <td class="p8">
-                                <div class="bar-md d-inline-block p6 {{ stopFcBg }} {{ stopBcFc }}">
+                                <div class="d-inline-block p6 {{ stopFcBg }} {{ stopBcFc }}">
                                     <div class="bc-{{name}} ba d-inline-block p6">.bc-{{name}}</div>
                                 </div>
                             </td>
@@ -100,10 +100,10 @@ tags: foundation
     {% endfor %}
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Aliases" %}
     {% header "h3", "Body text" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <p class="fc-light">…</p>
 <p class="fc-medium">…</p>
@@ -152,10 +152,10 @@ tags: foundation
                     <tr class="ff-mono">
                         <td class="fc-{{alias}}">.fc-{{alias}}</td>
                         <td class="p8">
-                            <div class="bg-{{alias}} bar-md d-inline-block fc-white p8 ws-nowrap">.bg-{{alias}}</div>
+                            <div class="bg-{{alias}} d-inline-block fc-white p8 ws-nowrap">.bg-{{alias}}</div>
                         </td>
                         <td class="p8">
-                            <div class="bc-{{alias}} ba bar-md d-inline-block p8">.bc-{{alias}}</div>
+                            <div class="bc-{{alias}} ba d-inline-block p8">.bc-{{alias}}</div>
                         </td>
                     </tr>
                 </tbody>

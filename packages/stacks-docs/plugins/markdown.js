@@ -23,7 +23,7 @@ module.exports = {
     markdownIt.use(function (md) {
       // mapping of tag: classes
       const customClasses = {
-        "code": "stacks-code"
+        "code": "docs-code"
       }
 
       const addClasses = function (tokens) {

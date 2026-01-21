@@ -6,7 +6,7 @@ svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-menu--do
 figma: https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=610-18810
 tags: components
 ---
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
@@ -20,8 +20,8 @@ tags: components
             <tbody class="fs-caption">
                 {% for item in menu.classes %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
-                        <td><code class="stacks-code">{{ item.applies }}</td>
+                        <th scope="row"><code class="docs-code">{{ item.class }}</code></th>
+                        <td><code class="docs-code">{{ item.applies }}</td>
                         <td class="p8">{{ item.description }}</td>
                     </tr>
                 {% endfor %}
@@ -29,17 +29,17 @@ tags: components
         </table>
     </div>
 </section>
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Examples" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         A menu displays a list of choices temporarily, and usually represent tasks or actions. Don’t confuse menus for <a href="{{ '/product/components/navigation' | url }}">navigation</a>.
     </p>
 
     {% header "h3", "Basic" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         At its most basic, a menu is a simple styled list of contextual actions. Because they’re contextual, it’s strongly recommended that a menu is contained within a <a href="{{ '/product/components/popovers' | url }}">popover</a> or a <a href="{{ '/product/components/cards' | url }}">card</a>. When placed in various containers, you’ll need to either account for the padding on the container, or use negative margins on the menu component itself.
     </p>
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="s-popover p8">
     <ul class="s-menu" role="menu">
@@ -64,7 +64,7 @@ tags: components
     </li>
 </ul>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex g32 fw-wrap">
                 <div>
                     <div class="ff-mono mb16">Within a popover</div>
@@ -135,10 +135,10 @@ tags: components
     </div>
 
     {% header "h3", "Titles and Dividers" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         You can split up your menu by using either titles, dividers, or some combination of the two. Titles help group similar conceptual actions—in this example, we’ve grouped all sharing options. We’ve also split our destructive actions into their own section using a divider.
     </p>
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="s-popover px0 py4">
     <ul class="s-menu" role="menu">
@@ -153,7 +153,7 @@ tags: components
     </ul>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="s-popover is-visible ps-relative ws2 p8">
                 <ul class="s-menu" role="menu">
                     <li class="s-menu--title" role="separator">
@@ -191,10 +191,10 @@ tags: components
     </div>
 
     {% header "h3", "Icons" %}
-    <p class="stacks-copy">
-        Icons can be added to menu items to help visually distinguish actions. Include the <code class="stacks-code">s-menu--icon</code> class on the icon to ensure proper spacing and alignment.
+    <p class="docs-copy">
+        Icons can be added to menu items to help visually distinguish actions. Include the <code class="docs-code">s-menu--icon</code> class on the icon to ensure proper spacing and alignment.
     </p>
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <ul class="s-menu" role="menu">
     <li class="s-menu--item" role="menuitem">
@@ -217,7 +217,7 @@ tags: components
     </li>
 </ul>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="s-popover is-visible ps-relative ws1 p8">
                 <ul class="s-menu" role="menu">
                     <li class="s-menu--item" role="menuitem">
@@ -244,10 +244,10 @@ tags: components
     </div>
 
     {% header "h3", "Selected states" %}
-    <p class="stacks-copy">
-        To create selectable menu items, add <code class="stacks-code">.s-checkbox.s-checkbox__checkmark</code> or <code class="stacks-code">.s-radio.s-radio__checkmark</code> to the <code class="stacks-code">.s-menu--action</code> element and include a radio or checkbox input as a child element. When the input is <code class="stacks-code">:checked</code>, the corresponding menu item displays a checkmark.
+    <p class="docs-copy">
+        To create selectable menu items, add <code class="docs-code">.s-checkbox.s-checkbox__checkmark</code> or <code class="docs-code">.s-radio.s-radio__checkmark</code> to the <code class="docs-code">.s-menu--action</code> element and include a radio or checkbox input as a child element. When the input is <code class="docs-code">:checked</code>, the corresponding menu item displays a checkmark.
     </p>
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <fieldset class="s-menu s-form-group">
     <legend class="s-menu--title">…</legend>
@@ -271,7 +271,7 @@ tags: components
     …
 </fieldset>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex g32 fw-wrap">
                 <div>
                     <div class="ff-mono mb16">With radio input</div>
@@ -330,10 +330,10 @@ tags: components
     </div>
 
     {% header "h3", "Radio groups" %}
-    <p class="stacks-copy">
-        In the case of user management, it’s appropriate to include radio options. In this example, we’re setting a user’s role. While our examples up to this point have all been simple unordered lists, the <code class="stacks-code">s-menu</code> component works on any markup including <code class="stacks-code">fieldset</code>.
+    <p class="docs-copy">
+        In the case of user management, it’s appropriate to include radio options. In this example, we’re setting a user’s role. While our examples up to this point have all been simple unordered lists, the <code class="docs-code">s-menu</code> component works on any markup including <code class="docs-code">fieldset</code>.
     </p>
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="s-menu" role="menu">
     <fieldset>
@@ -355,7 +355,7 @@ tags: components
     </fieldset>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="s-popover is-visible ps-relative ws3">
                 <div class="s-menu" role="menu">
                     <fieldset>

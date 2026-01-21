@@ -64,6 +64,12 @@ $(document).ready(function() {
                 $('#nav').html(nav)
                 $('#content').html(content)
 
+                // Update the TOC from new content headings
+                var toc = $(html).find('.js-toc').html()
+                if (toc) {
+                    $('.js-toc').html(toc)
+                }
+
                 // Scroll to the top of the page
                 $(document).scrollTop(0)
 

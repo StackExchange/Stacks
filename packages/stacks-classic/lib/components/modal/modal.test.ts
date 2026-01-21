@@ -57,14 +57,14 @@ const createModal = ({
                     renderFocusables
                         ? html` <div class="d-flex gx8 s-modal--footer">
                                   <button
-                                      class="flex--item s-btn s-btn__filled"
+                                      class="s-btn"
                                       type="button"
                                       data-testid="save-btn"
                                   >
                                       Save changes
                                   </button>
                                   <button
-                                      class="flex--item s-btn"
+                                      class="s-btn s-btn__clear"
                                       type="button"
                                       data-action="s-modal#hide"
                                       data-testid="cancel-btn"

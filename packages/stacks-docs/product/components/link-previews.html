@@ -4,7 +4,7 @@ title: Link previews
 description: Link previews add rich previews to links included in questions and answers on Stack Overflow. They’re also known as oneboxes or link unfurls.
 tags: components
 ---
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
@@ -18,8 +18,8 @@ tags: components
             <tbody class="fs-caption">
                 {% for item in link-previews.classes %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
-                        <td><code class="stacks-code">{{ item.parent }}</td>
+                        <th scope="row"><code class="docs-code">{{ item.class }}</code></th>
+                        <td><code class="docs-code">{{ item.parent }}</td>
                         <td class="p8">{{ item.description }}</td>
                     </tr>
                 {% endfor %}
@@ -27,12 +27,12 @@ tags: components
         </table>
     </div>
 </section>
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Examples" %}
-    <p class="stacks-copy">Link previews automatically appear when you pasting a link into a post, providing a glimpse of what’s been linked to. This approach has been popularized by Slack, Twitter, Facebook, etc. Link previews should be tailored to fit the content received from each third party. It might be appropriate to use atomic utility classes for further customization, but Stacks provides a few reusable patterns:</p>
+    <p class="docs-copy">Link previews automatically appear when you pasting a link into a post, providing a glimpse of what’s been linked to. This approach has been popularized by Slack, Twitter, Facebook, etc. Link previews should be tailored to fit the content received from each third party. It might be appropriate to use atomic utility classes for further customization, but Stacks provides a few reusable patterns:</p>
     {% header "h3", "Base style" %}
-    <p class="stacks-copy">Use for links whose expected body is rich text or markdown like Jira issues or Slack messages. Wherever possible, it’s best practice to support basic markdown formatting (bold, italics, line breaks, lists, etc.)</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">Use for links whose expected body is rich text or markdown like Jira issues or Slack messages. Wherever possible, it’s best practice to support basic markdown formatting (bold, italics, line breaks, lists, etc.)</p>
+    <div class="docs-preview">
 {% highlight html %}
 <div class="s-link-preview">
     <div class="s-link-preview--header">
@@ -49,7 +49,7 @@ tags: components
     </div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="s-link-preview">
                 <div class="s-link-preview--header">
                     <div class="s-link-preview--icon">
@@ -79,9 +79,9 @@ tags: components
     </div>
 
     {% header "h3", "Code blocks" %}
-    <p class="stacks-copy">Use for links whose expected body is code like code files or GitHub Gists. In these scenarios, replace <code class="stacks-code ws-nowrap">s-link-preview--body</code> class with <code class="stacks-code ws-nowrap">s-link-preview--code</code>.</p>
-    <p class="stacks-copy">Add a <code class="stacks-code">s-code-block</code> class to the <code class="stacks-code">&lt;pre&gt;</code> tag if you’d like to apply <a href="https://highlightjs.org/">highlight.js’s</a> syntax highlighting on Stack Exchange sites with this option enabled.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">Use for links whose expected body is code like code files or GitHub Gists. In these scenarios, replace <code class="docs-code ws-nowrap">s-link-preview--body</code> class with <code class="docs-code ws-nowrap">s-link-preview--code</code>.</p>
+    <p class="docs-copy">Add a <code class="docs-code">s-code-block</code> class to the <code class="docs-code">&lt;pre&gt;</code> tag if you’d like to apply <a href="https://highlightjs.org/">highlight.js’s</a> syntax highlighting on Stack Exchange sites with this option enabled.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <div class="s-link-preview">
     <div class="s-link-preview--header">
@@ -102,7 +102,7 @@ tags: components
     </div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="s-link-preview">
                 <div class="s-link-preview--header">
                     <div class="s-link-preview--icon">
@@ -147,7 +147,7 @@ module.exports = function(grunt) {
     </div>
 
     {% header "h3", "Code blocks with line numbers" %}
-    <p class="stacks-copy">You can further configure highlight.js’s syntax highlighting to include line numbers by adding the class <code class="stacks-code">linenums</code> to the prettified <code class="stacks-code">&lt;pre&gt;</code> tag containing the code. See also <a href="/product/components/code-blocks/#line-numbers">Code blocks</a>.</p>
+    <p class="docs-copy">You can further configure highlight.js’s syntax highlighting to include line numbers by adding the class <code class="docs-code">linenums</code> to the prettified <code class="docs-code">&lt;pre&gt;</code> tag containing the code. See also <a href="/product/components/code-blocks/#line-numbers">Code blocks</a>.</p>
     <div class="overflow-x-auto mb16">
         <table class="wmn4 s-table s-table__bx-simple">
             <thead>
@@ -158,17 +158,17 @@ module.exports = function(grunt) {
             </thead>
             <tbody class="fs-caption">
                 <tr>
-                    <th scope="row"><code class="stacks-code">linenums</code></th>
+                    <th scope="row"><code class="docs-code">linenums</code></th>
                     <td class="p8">Count starts at line 1</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="stacks-code">linenums:&lt;n&gt;</code></th>
-                    <td class="p8">Count starts at line <code class="stacks-code">&lt;n&gt;</code></td>
+                    <th scope="row"><code class="docs-code">linenums:&lt;n&gt;</code></th>
+                    <td class="p8">Count starts at line <code class="docs-code">&lt;n&gt;</code></td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="s-link-preview">
     <div class="s-link-preview--header">
@@ -189,7 +189,7 @@ module.exports = function(grunt) {
     </div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="s-link-preview">
                 <div class="s-link-preview--header">
                     <div class="s-link-preview--icon">

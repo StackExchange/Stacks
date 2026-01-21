@@ -17,10 +17,10 @@ describe("modal", () => {
                     <h1 class="s-modal--header" id="modal-title">Modal header</h1>
                     <p class="s-modal--body" id="modal-description">Modal body. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
                     <div class="d-flex gx8 s-modal--footer">
-                        <button class="s-btn s-btn__filled" type="button">Confirm</button>
-                        <button class="s-btn s-btn__tonal" type="button">Cancel</button>
+                        <button class="s-btn" type="button">Confirm</button>
+                        <button class="s-btn s-btn__clear" type="button">Cancel</button>
                     </div>
-                    <button class="s-modal--close s-btn s-btn__tonal" type="button" aria-label="Close">
+                    <button class="s-modal--close s-btn s-btn__clear" type="button" aria-label="Close">
                         ${IconClearSm}
                     </button>
                 </div>
