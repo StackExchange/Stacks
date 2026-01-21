@@ -139,26 +139,6 @@ tags: components
 </section>
 
 <!-- Classes table -->
-
-<!-- Default -->
-
-<!-- States -->
-    <!-- Ignored -->
-    <!-- Watched -->
-    <!-- Deleted -->
-    <!-- Draft -->
-    <!-- Review -->
-    <!-- Closed -->
-    <!-- Archived -->
-    <!-- Pinned -->
-
-<!-- Excerpt sizes -->
-
-<!-- Small container query examples? -->
-
-<!-- With answers -->
-
-<!-- Old stuff below -->
 <section class="docs-section">
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
@@ -182,6 +162,278 @@ tags: components
         </table>
     </div>
 </section>
+
+<!-- Default -->
+<section class="docs-section">
+    {% header "h2", "Examples" %}
+    {% header "h3", "Base" %}
+    <div class="docs-preview">
+{% highlight html %}
+<div class="s-post-summary">
+    …
+</div>
+{% endhighlight %}
+        <div class="docs-preview--example">
+            {% for example in post-summary.base %}
+                {% assign modifier = "" %}
+                {% if example.type == "Ignored" %}
+                    {% assign modifier = modifier | append: "s-post-summary__ignored" %}
+                {% elsif example.type == "Deleted" %}
+                    {% assign modifier = modifier | append: "s-post-summary__deleted" %}
+                {% endif %}
+                <div class="s-post-summary {% if example.answered %}s-post-summary__answered{% endif %} {{ modifier }}">
+                    <div class="s-post-summary--stats s-post-summary--sm-hide">
+                        <div class="s-post-summary--stats-votes">+{{ example.votes }}</div>
+                        <div class="s-post-summary--stats-answers">
+                            {% if example.answered %}
+                                {% icon "Answer16Fill" %}
+                            {% else %}
+                                {% icon "Answer16" %}
+                            {% endif %}
+                            {{ example.answers }}
+                        </div>
+                        {% if example.bounty %}
+                            <div class="s-post-summary--stats-bounty">
+                                <span>+</span>
+                                {{ example.bounty }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="s-post-summary--content">
+                        <div class="s-post-summary--sm-show">
+                            {% if example.badge %}
+                                <span class="s-badge s-badge__sm {{ example.badge.class }}">
+                                    {% if example.badge.icon %}
+                                        {% icon example.badge.icon %}
+                                    {% endif %}
+                                    {{ example.badge.text }}
+                                </span>
+                            {% endif %}
+                        </div>
+                        <div class="s-post-summary--content-meta">
+                            <div class="s-user-card s-user-card__sm">
+                                <a class="s-user-card--group" href="{{ example.user.href }}">
+                                    <span class="s-avatar">
+                                        <img class="s-avatar--image" alt="{{ example.user.username }}" src="{{ example.user.avatar }}" />
+                                    </span>
+                                    <span class="s-user-card--username">{{ example.user.username }}</span>
+                                </a>
+                                {% if example.user.reputation %}
+                                    <ul class="s-user-card--group">
+                                        <li class="s-user-card--rep">
+                                            <span class="s-bling s-bling__sm">
+                                                <span class="v-visible-sr">reputation bling</span>
+                                            </span>
+                                            {{ example.user.reputation }}
+                                        </li>
+                                    </ul>
+                                {% endif %}
+                                {% if example.user.time %}
+                                <a class="s-user-card--time" href="#" title="{{ example.user.tooltip }}" data-controller="s-tooltip">
+                                    <time>asked {{ example.user.time }}</time>
+                                </a>
+                                {% endif %}
+                            </div>
+                            <!-- Stats (sm) -->
+                            <div class="s-post-summary--stats s-post-summary--sm-show g6">
+                                <!-- Votes -->
+                                <div class="s-post-summary--stats-votes">
+                                    {% icon "Vote16Up" %}
+                                    {{ example.votes }}
+                                </div>
+                                <!-- Answers -->
+                                <div class="s-post-summary--stats-answers">
+                                    {% if example.answered %}
+                                        {% icon "Answer16Fill", "s-post-summary--stats-answers--icon" %}
+                                    {% else %}
+                                        {% icon "Answer16" %}
+                                    {% endif %}
+                                    {{ example.answers }}
+                                </div>
+                                <!-- Bounty -->
+                                {% if example.bounty %}
+                                    <div class="s-post-summary--stats-bounty">
+                                        <span>+</span>
+                                        {{ example.bounty }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="s-post-summary--content-meta-views">
+                                {{ example.views }} views
+                            </div>
+                            {% if example.badge %}
+                                <span class="s-badge {{ example.badge.class }} ml-auto s-post-summary--sm-hide">
+                                    {% if example.badge.icon %}
+                                        {% icon example.badge.icon %}
+                                    {% endif %}
+                                    {{ example.badge.text }}
+                                </span>
+                            {% endif %}
+                        </div>
+                        <div class="s-post-summary--title">
+                            <a class="s-post-summary--title-link" href="#">
+                                <!-- TODO SHINE include badge icon -->
+                                {{ example.title }}
+                            </a>
+                        </div>
+                        <div class="s-post-summary--excerpt v-truncate3">
+                            {{ example.excerpt }}
+                        </div>
+                        <div class="s-post-summary--tags">
+                            {% for tag in example.tags %}
+                                <a class="s-tag" href="#">{{ tag }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- States -->
+<section class="docs-section">
+    {% header "h3", "States" %}
+    <div class="docs-preview">
+{% highlight html %}
+<!-- Ignored -->
+<!-- Watched -->
+<!-- Deleted -->
+<!-- Draft -->
+<!-- Review -->
+<!-- Closed -->
+<!-- Archived -->
+<!-- Pinned -->
+<div class="s-post-summary">
+    …
+</div>
+{% endhighlight %}
+        <div class="docs-preview--example d-flex fd-column g32">
+            {% for example in post-summary.states %}
+                {% assign modifier = "" %}
+                {% if example.type == "Ignored" %}
+                    {% assign modifier = modifier | append: "s-post-summary__ignored" %}
+                {% elsif example.type == "Deleted" %}
+                    {% assign modifier = modifier | append: "s-post-summary__deleted" %}
+                {% endif %}
+                <div class="s-post-summary {% if example.answered %}s-post-summary__answered{% endif %} {{ modifier }}">
+                    <div class="s-post-summary--stats s-post-summary--sm-hide">
+                        <div class="s-post-summary--stats-votes">+{{ example.votes }}</div>
+                        <div class="s-post-summary--stats-answers">
+                            {% if example.answered %}
+                                {% icon "Answer16Fill" %}
+                            {% else %}
+                                {% icon "Answer16" %}
+                            {% endif %}
+                            {{ example.answers }}
+                        </div>
+                        {% if example.bounty %}
+                            <div class="s-post-summary--stats-bounty">
+                                <span>+</span>
+                                {{ example.bounty }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="s-post-summary--content">
+                        <div class="s-post-summary--sm-show">
+                            {% if example.badge %}
+                                <span class="s-badge s-badge__sm {{ example.badge.class }}">
+                                    {% if example.badge.icon %}
+                                        {% icon example.badge.icon %}
+                                    {% endif %}
+                                    {{ example.badge.text }}
+                                </span>
+                            {% endif %}
+                        </div>
+                        <div class="s-post-summary--content-meta">
+                            <div class="s-user-card s-user-card__sm">
+                                <a class="s-user-card--group" href="{{ example.user.href }}">
+                                    <span class="s-avatar">
+                                        <img class="s-avatar--image" alt="{{ example.user.username }}" src="{{ example.user.avatar }}" />
+                                    </span>
+                                    <span class="s-user-card--username">{{ example.user.username }}</span>
+                                </a>
+                                {% if example.user.reputation %}
+                                    <ul class="s-user-card--group">
+                                        <li class="s-user-card--rep">
+                                            <span class="s-bling s-bling__sm">
+                                                <span class="v-visible-sr">reputation bling</span>
+                                            </span>
+                                            {{ example.user.reputation }}
+                                        </li>
+                                    </ul>
+                                {% endif %}
+                                {% if example.user.time %}
+                                <a class="s-user-card--time" href="#" title="{{ example.user.tooltip }}" data-controller="s-tooltip">
+                                    <time>asked {{ example.user.time }}</time>
+                                </a>
+                                {% endif %}
+                            </div>
+                            <!-- Stats (sm) -->
+                            <div class="s-post-summary--stats s-post-summary--sm-show g6">
+                                <!-- Votes -->
+                                <div class="s-post-summary--stats-votes">
+                                    {% icon "Vote16Up" %}
+                                    {{ example.votes }}
+                                </div>
+                                <!-- Answers -->
+                                <div class="s-post-summary--stats-answers">
+                                    {% if example.answered %}
+                                        {% icon "Answer16Fill", "s-post-summary--stats-answers--icon" %}
+                                    {% else %}
+                                        {% icon "Answer16" %}
+                                    {% endif %}
+                                    {{ example.answers }}
+                                </div>
+                                <!-- Bounty -->
+                                {% if example.bounty %}
+                                    <div class="s-post-summary--stats-bounty">
+                                        <span>+</span>
+                                        {{ example.bounty }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="s-post-summary--content-meta-views">
+                                {{ example.views }} views
+                            </div>
+                            {% if example.badge %}
+                                <span class="s-badge {{ example.badge.class }} ml-auto s-post-summary--sm-hide">
+                                    {% if example.badge.icon %}
+                                        {% icon example.badge.icon %}
+                                    {% endif %}
+                                    {{ example.badge.text }}
+                                </span>
+                            {% endif %}
+                        </div>
+                        <div class="s-post-summary--title">
+                            <a class="s-post-summary--title-link" href="#">
+                                <!-- TODO SHINE include badge icon -->
+                                {{ example.title }}
+                            </a>
+                        </div>
+                        <div class="s-post-summary--excerpt v-truncate3">
+                            {{ example.excerpt }}
+                        </div>
+                        <div class="s-post-summary--tags">
+                            {% for tag in example.tags %}
+                                <a class="s-tag" href="#">{{ tag }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+    <!-- Excerpt sizes -->
+
+<!-- Small container query examples? -->
+
+<!-- With answers -->
+
+<!-- Old stuff below -->
+
 <section class="docs-section">
     {% header "h2", "Layout Examples" %}
     <p class="docs-copy">Post summaries are a flexible component capable of previewing various content types—questions or articles. Post summaries are meant to be flexible, allowing for each individual piece to be removed. Let’s start with a full example of a few questions and an article interleaved.</p>

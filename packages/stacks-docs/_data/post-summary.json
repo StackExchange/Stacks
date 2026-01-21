@@ -6,54 +6,29 @@
       "description": "Base parent container for a post summary"
     },
     {
-      "class": ".s-post-summary--stats",
+      "class": ".s-post-summary__answered",
       "applies": ".s-post-summary",
-      "description": "Container for the post summary stats"
-    },
-    {
-      "class": ".s-post-summary--stats-item",
-      "applies": ".s-post-summary--stats",
-      "description": "Individual stat item within the stats container"
-    },
-    {
-      "class": ".s-post-summary--stats-item-number",
-      "applies": ".s-post-summary--stats-item",
-      "description": "Container for applying styling to the number of a stat item"
-    },
-    {
-      "class": ".s-post-summary--stats-item-unit",
-      "applies": ".s-post-summary--stats-item",
-      "description": "Container for applying styling to the unit of a stat item"
-    },
-    {
-      "class": ".has-answers",
-      "applies": ".s-post-summary--stats-item",
-      "description": "Adds the styling necessary for a question with answers"
-    },
-    {
-      "class": ".has-accepted-answer",
-      "applies": ".s-post-summary--stats-item",
       "description": "Adds the styling necessary for a question with accepted answers"
     },
     {
-      "class": ".has-bounty",
-      "applies": ".s-post-summary--stats-item",
-      "description": "Styles the stats item appropriately to display a bounty"
+      "class": ".s-post-summary__deleted",
+      "applies": ".s-post-summary",
+      "description": "Adds the styling necessary for a deleted post"
     },
     {
-      "class": ".is-warm",
-      "applies": ".s-post-summary--stats-item",
-      "description": "Styles post stats with a warm color"
+      "class": ".s-post-summary__ignored",
+      "applies": ".s-post-summary",
+      "description": "Adds the styling necessary for an ignored post"
     },
     {
-      "class": ".is-hot",
-      "applies": ".s-post-summary--stats-item",
-      "description": "Warmer still, for more popular posts"
+      "class": ".s-post-summary--sm-hide",
+      "applies": ".s-post-summary",
+      "description": "Hides the stats container on small screens"
     },
     {
-      "class": ".is-supernova",
-      "applies": ".s-post-summary--stats-item",
-      "description": "Paired with a fire icon, these are the most popular stats"
+      "class": ".s-post-summary--sm-show",
+      "applies": ".s-post-summary",
+      "description": "Shows the stats container on small screens"
     },
     {
       "class": ".s-post-summary--content",
@@ -61,59 +36,63 @@
       "description": "Container for the post summary content"
     },
     {
-      "class": ".s-post-summary--content-type",
-      "applies": ".s-post-summary--content",
-      "description": "A container for various content types, eg. How-to guide on Articles"
-    },
-    {
       "class": ".s-post-summary--content-title",
       "applies": ".s-post-summary--content",
       "description": "Post title styling"
     },
     {
-      "class": ".s-post-summary--content-excerpt",
-      "applies": ".s-post-summary--content",
-      "description": "An optional content excerpt truncated at 2 lines."
-    },
-    {
-      "class": ".s-post-summary--content-excerpt__sm",
-      "applies": ".s-post-summary--content-excerpt",
-      "description": "An optional content excerpt truncated at 1 line."
-    },
-    {
-      "class": ".s-post-summary--content-excerpt__md",
-      "applies": ".s-post-summary--content-excerpt",
-      "description": "An optional content excerpt truncated at 3 lines."
-    },
-    {
-      "class": ".s-post-summary--answer",
-      "applies": ".s-post-summary--content",
-      "description": "Adds blockquote styling and spacing for answer previews"
-    },
-    {
-      "class": ".s-post-summary--answer-excerpt",
-      "applies": ".s-post-summary--content",
-      "description": "Provides padding, and truncation to 4 lines."
-    },
-    {
-      "class": ".s-post-summary--content-menu-button",
-      "applies": ".s-post-summary--content",
-      "description": "An optional button for displaying a post-specific menu."
-    },
-    {
-      "class": ".s-post-summary--meta",
+      "class": ".s-post-summary--content-meta",
       "applies": ".s-post-summary--content",
       "description": "A container for post meta data, things like tags and user cards."
     },
     {
-      "class": ".s-post-summary--meta-tags",
-      "applies": ".s-post-summary--meta",
-      "description": "A container for tags and other taxonomy."
+      "class": ".s-post-summary--content-meta-views",
+      "applies": ".s-post-summary--content-meta",
+      "description": "A container for views and other meta data."
+    },
+    {
+      "class": ".s-post-summary--content-excerpt",
+      "applies": ".s-post-summary--content",
+      "description": "Container for the post summary excerpt"
+    },
+    {
+      "class": ".s-post-summary--stats",
+      "applies": ".s-post-summary",
+      "description": "Container for the post summary stats"
+    },
+    {
+      "class": ".s-post-summary--stats-answers",
+      "applies": ".s-post-summary--stats",
+      "description": "Container for the post summary answers"
+    },
+    {
+      "class": ".s-post-summary--stats-bounty",
+      "applies": ".s-post-summary--stats",
+      "description": "Container for the post summary bounty"
+    },
+    {
+      "class": ".s-post-summary--stats-votes",
+      "applies": ".s-post-summary--stats",
+      "description": "Container for the post summary votes"
+    },
+    {
+      "class": ".s-post-summary--tags",
+      "applies": ".s-post-summary",
+      "description": "Container for the post summary tags"
+    },
+    {
+      "class": ".s-post-summary--title",
+      "applies": ".s-post-summary",
+      "description": "Container for the post summary title"
+    },
+    {
+      "class": ".s-post-summary--title-link",
+      "applies": ".s-post-summary--title",
+      "description": "Link styling for the post summary title"
     }
   ],
-  "examples": [
+  "base": [
     {
-      "type": "Default",
       "title": "How to reduce hallucinations and improve source relevance in a RAG pipeline?",
       "excerpt": "I have built a Retrieval-Augmented Generation (RAG) system using LangChain, a vector database, and an open-source LLM. While it works reasonably well, the model often hallucinates answers or cites sources that are only tangentially related to the user's query. My chunking strategy is set to a chunk size of 1000 tokens, which seems to be the sweet spot for the model.",
       "tags": ["retrieval-augmented-generation", "langchain", "llm", "vector-database", "ai"],
@@ -135,7 +114,9 @@
         "text": "review",
         "icon": "Eye16"
       }
-    },
+    }
+  ],
+  "states": [
     {
       "type": "Ignored",
       "title": "How to reduce hallucinations and improve source relevance in a RAG pipeline?",
