@@ -38,3 +38,6 @@ export { default as TextArea } from "./TextArea/TextArea.svelte";
 export { default as TextInput } from "./TextInput/TextInput.svelte";
 export { default as Toaster, showToast, hideToast } from "./Toast/Toast.svelte";
 export { default as UserCard } from "./UserCard/UserCard.svelte";
+export { default as UserCardBadge } from "./UserCard/UserCardBadge.svelte";
+export { default as UserCardBling } from "./UserCard/UserCardBling.svelte";
+export { default as UserCardTime } from "./UserCard/UserCardTime.svelte";
