@@ -20,11 +20,11 @@
         y="1.44543"
         width="45.1091"
         height="45.1091"
-        stroke="#A8ABB0"
+        stroke="var(--black-300)"
         stroke-width="2.89086"
         stroke-dasharray="5.78 5.78"
     />
-    <rect x="10" y="14" width="12" height="3.12" fill="#46484D" />
-    <rect x="26" y="14" width="12" height="3.12" fill="#46484D" />
-    <rect x="14" y="31.12" width="20" height="3.12" fill="#46484D" />
+    <rect x="10" y="14" width="12" height="3.12" fill="var(--black-500)" />
+    <rect x="26" y="14" width="12" height="3.12" fill="var(--black-500)" />
+    <rect x="14" y="31.12" width="20" height="3.12" fill="var(--black-500)" />
 </svg>

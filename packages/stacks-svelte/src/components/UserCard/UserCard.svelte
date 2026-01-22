@@ -173,7 +173,7 @@
                     <Popover id="user-card-original-poster-popover" tooltip>
                         <PopoverReference>
                             <span
-                                class="s-user-card--username s-user-card--original-poster"
+                                class="s-user-card--username s-user-card--username__op"
                                 >{name}</span
                             >
                         </PopoverReference>
