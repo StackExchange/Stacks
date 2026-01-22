@@ -1,5 +1,11 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.21
+
+### Patch Changes
+
+- [#2138](https://github.com/StackExchange/Stacks/pull/2138) [`fcd06fb`](https://github.com/StackExchange/Stacks/commit/fcd06fbf72597029e500dfeb08ecdc7080fb5f70) Thanks [@dancormier](https://github.com/dancormier)! - Export user card child components
+
 ## 1.0.0-beta.20
 
 ### Patch Changes
