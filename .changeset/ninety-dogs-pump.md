@@ -3,7 +3,7 @@
 "@stackoverflow/stacks-svelte": minor
 ---
 
-Add .is-loading delete skeleton
+Add .bg-loading delete skeleton
 
 BREAKING CHANGES:
 
