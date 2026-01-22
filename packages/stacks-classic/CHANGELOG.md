@@ -1,5 +1,19 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.19
+
+### Minor Changes
+
+- [#2136](https://github.com/StackExchange/Stacks/pull/2136) [`d75d9d4`](https://github.com/StackExchange/Stacks/commit/d75d9d475b596f96442b6badeb9ff5a390796267) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Add .bg-loading delete skeleton
+
+    BREAKING CHANGES:
+
+    Skeleton component deleted
+
+### Patch Changes
+
+- [#2140](https://github.com/StackExchange/Stacks/pull/2140) [`70cfb92`](https://github.com/StackExchange/Stacks/commit/70cfb925f2821a4a8897698e915431efaf2075a9) Thanks [@dancormier](https://github.com/dancormier)! - Nudge light high contrast mode black 400, 500 for improved contrast
+
 ## 3.0.0-beta.18
 
 ### Minor Changes
