@@ -1,0 +1,45 @@
+<script module lang="ts">
+    export type Size = "" | "sm" | "lg";
+    export type Variant = "block";
+</script>
+
+<script lang="ts">
+    interface Props {
+        /**
+         * The accessible label for screen readers
+         */
+        label?: string;
+
+        /**
+         * The size of the spinner
+         */
+        size?: Size;
+
+        /**
+         * The variant of the loader
+         */
+        variant?: Variant;
+    }
+
+    const {
+        label = "Loading…",
+        size = "",
+        variant = "block",
+    }: Props = $props();
+
+    const getClasses = (variant: Variant, size: Size) => {
+        const base = `s-loader--${variant}`;
+        let classes = base;
+
+        if (size) {
+            classes += ` ${base}__${size}`;
+        }
+        return classes;
+    };
+
+    const classes = $derived(getClasses(variant, size));
+</script>
+
+<div class={classes}>
+    <div class="v-visible-sr">{label}</div>
+</div>

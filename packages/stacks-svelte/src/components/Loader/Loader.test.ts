@@ -2,7 +2,7 @@ import { tick } from "svelte";
 import { expect } from "@open-wc/testing";
 import { render, screen } from "@testing-library/svelte";
 
-import Spinner from "./Spinner.svelte";
+import Spinner from "./Loader.svelte";
 
 describe("Spinner", () => {
     it("should render the spinner at the specified size", async () => {
