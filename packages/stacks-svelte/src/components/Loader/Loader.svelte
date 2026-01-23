@@ -1,5 +1,5 @@
 <script module lang="ts">
-    export type Size = "" | "sm" | "lg";
+    export type Size = undefined | "sm" | "lg";
     export type Variant = "block";
 </script>
 
@@ -23,7 +23,7 @@
 
     const {
         label = "Loading…",
-        size = "",
+        size = undefined,
         variant = "block",
     }: Props = $props();
 
