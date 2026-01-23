@@ -19,7 +19,7 @@
 </script>
 
 <li>
-    {#if tooltip && type === "new"}
+    {#if tooltip}
         <Popover id="user-card-badge-new-popover" tooltip>
             <PopoverReference>
                 <Badge text={type} type="user" userType={type} size="sm" />

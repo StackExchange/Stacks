@@ -1,6 +1,5 @@
 <script lang="ts" module>
     export type Size = "sm" | "lg" | undefined;
-    export type AwardBlings = "first" | "second" | "third" | undefined;
 </script>
 
 <script lang="ts">
