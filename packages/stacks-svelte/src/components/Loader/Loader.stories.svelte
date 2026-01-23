@@ -2,7 +2,7 @@
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import Loader, { type Size, type Variant } from "./Loader.svelte";
 
-    const LoaderSizes: Size[] = ["", "sm", "lg"];
+    const LoaderSizes: Size[] = [undefined, "sm", "lg"];
     const LoaderVariants: Variant[] = ["block"];
 
     const { Story } = defineMeta({
