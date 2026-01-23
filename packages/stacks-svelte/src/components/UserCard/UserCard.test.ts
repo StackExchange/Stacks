@@ -765,6 +765,15 @@ describe("UserCardBling", () => {
 });
 
 describe("UserCard states", () => {
+    let clock: sinon.SinonFakeTimers | null = null;
+
+    afterEach(() => {
+        if (clock) {
+            clock.restore();
+            clock = null;
+        }
+    });
+
     describe("Original Poster", () => {
         it("should render the original poster class on the username", () => {
             const { container } = render(UserCard, {
@@ -773,14 +782,14 @@ describe("UserCard states", () => {
                 originalPoster: true,
             });
             const username = container.querySelector(
-                ".s-user-card--username.s-user-card--original-poster"
+                ".s-user-card--username.s-user-card--username__op"
             );
             expect(username).to.exist;
             expect(username?.textContent).to.equal("John Doe");
         });
 
         it("should show tooltip when hovering over the username", async () => {
-            const clock = sinon.useFakeTimers({
+            clock = sinon.useFakeTimers({
                 shouldAdvanceTime: true,
                 shouldClearNativeTimers: true,
             });
@@ -792,7 +801,7 @@ describe("UserCard states", () => {
             });
 
             const username = container.querySelector(
-                ".s-user-card--username.s-user-card--original-poster"
+                ".s-user-card--username.s-user-card--username__op"
             );
             expect(username).to.exist;
 
@@ -801,11 +810,10 @@ describe("UserCard states", () => {
             await tick();
 
             expect(screen.getByText(/is the original poster/)).to.exist;
-            clock.restore();
         });
 
         it("should show custom tooltip text when i18nOpTooltipText is provided", async () => {
-            const clock = sinon.useFakeTimers({
+            clock = sinon.useFakeTimers({
                 shouldAdvanceTime: true,
                 shouldClearNativeTimers: true,
             });
@@ -818,7 +826,7 @@ describe("UserCard states", () => {
             });
 
             const username = container.querySelector(
-                ".s-user-card--username.s-user-card--original-poster"
+                ".s-user-card--username.s-user-card--username__op"
             );
             expect(username).to.exist;
 
@@ -827,13 +835,12 @@ describe("UserCard states", () => {
             await tick();
 
             expect(screen.getByText(/est l'auteur original/)).to.exist;
-            clock.restore();
         });
     });
 
     describe("New Contributor", () => {
         it("should render the new contributor badge with tooltip", async () => {
-            const clock = sinon.useFakeTimers({
+            clock = sinon.useFakeTimers({
                 shouldAdvanceTime: true,
                 shouldClearNativeTimers: true,
             });
@@ -879,7 +886,6 @@ describe("UserCard states", () => {
             await tick();
 
             expect(screen.getByText("New contributor tooltip")).to.exist;
-            clock.restore();
         });
     });
 
@@ -954,7 +960,7 @@ describe("UserCard states", () => {
         });
 
         it("should show popover tooltip when hovering over deleted avatar", async () => {
-            const clock = sinon.useFakeTimers({
+            clock = sinon.useFakeTimers({
                 shouldAdvanceTime: true,
                 shouldClearNativeTimers: true,
             });
@@ -971,11 +977,10 @@ describe("UserCard states", () => {
             await tick();
 
             expect(screen.getByText("Deleted user")).to.exist;
-            clock.restore();
         });
 
         it("should show custom tooltip text when i18nDeletedTooltipText is provided", async () => {
-            const clock = sinon.useFakeTimers({
+            clock = sinon.useFakeTimers({
                 shouldAdvanceTime: true,
                 shouldClearNativeTimers: true,
             });
@@ -993,7 +998,6 @@ describe("UserCard states", () => {
             await tick();
 
             expect(screen.getByText("Utilisateur supprimé")).to.exist;
-            clock.restore();
         });
     });
 
@@ -1033,7 +1037,7 @@ describe("UserCard states", () => {
         });
 
         it("should show popover tooltip when hovering over additional bling", async () => {
-            const clock = sinon.useFakeTimers({
+            clock = sinon.useFakeTimers({
                 shouldAdvanceTime: true,
                 shouldClearNativeTimers: true,
             });
@@ -1075,7 +1079,6 @@ describe("UserCard states", () => {
 
             expect(screen.getByText("This user is recognized by AudioBubble"))
                 .to.exist;
-            clock.restore();
         });
     });
 
@@ -1263,7 +1266,7 @@ describe("UserCard states", () => {
         });
 
         it("should show popover tooltip when hovering over additionalBlings", async () => {
-            const clock = sinon.useFakeTimers({
+            clock = sinon.useFakeTimers({
                 shouldAdvanceTime: true,
                 shouldClearNativeTimers: true,
             });
@@ -1307,7 +1310,6 @@ describe("UserCard states", () => {
                     "This user is first on the weekly leaderboard."
                 )
             ).to.exist;
-            clock.restore();
         });
 
         it("should not render additionalBlings when not provided", () => {
