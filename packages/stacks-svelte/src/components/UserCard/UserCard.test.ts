@@ -1005,7 +1005,7 @@ describe("UserCard states", () => {
                     const instance = mount(UserCardAdditionalBling, {
                         target,
                         props: {
-                            type: "recognized member",
+                            class: "s-user-card--recognition-additional-bling",
                             tooltipText:
                                 "This user is recognized by AudioBubble",
                             id: "user-card-recognized-member-popover",
@@ -1043,7 +1043,7 @@ describe("UserCard states", () => {
                     const instance = mount(UserCardAdditionalBling, {
                         target,
                         props: {
-                            type: "recognized member",
+                            class: "s-user-card--recognition-additional-bling",
                             tooltipText:
                                 "This user is recognized by AudioBubble",
                             id: "user-card-recognized-member-popover",
@@ -1143,7 +1143,7 @@ describe("UserCard states", () => {
                     const instance = mount(UserCardAdditionalBling, {
                         target,
                         props: {
-                            type: "first",
+                            class: "fc-yellow-400",
                             tooltipText:
                                 "This user is first on the weekly leaderboard.",
                             id: "user-card-award-popover-first",
@@ -1164,12 +1164,12 @@ describe("UserCard states", () => {
             });
 
             const awardedFirst = container.querySelector(
-                ".s-user-card--awarded-first"
+                ".s-user-card--group.fc-yellow-400"
             );
             expect(awardedFirst).to.exist;
         });
 
-        it("should apply awarded-first class when using UserCardAdditionalBling with first type", () => {
+        it("should apply fc-yellow-400 class when using UserCardAdditionalBling with first class", () => {
             const { container } = render(UserCard, {
                 name: "John Doe",
                 avatar: "https://picsum.photos/128",
@@ -1195,12 +1195,12 @@ describe("UserCard states", () => {
             });
 
             const awardedFirst = container.querySelector(
-                ".s-user-card--awarded-first"
+                ".s-user-card--group.fc-yellow-400"
             );
             expect(awardedFirst).to.exist;
         });
 
-        it("should apply awarded-second class when using UserCardAdditionalBling with second type", () => {
+        it("should apply fc-blue-400 class when using UserCardAdditionalBling with second class", () => {
             const { container } = render(UserCard, {
                 name: "John Doe",
                 avatar: "https://picsum.photos/128",
@@ -1210,7 +1210,7 @@ describe("UserCard states", () => {
                         const instance = mount(UserCardAdditionalBling, {
                             target,
                             props: {
-                                type: "second",
+                                class: "fc-blue-400",
                                 tooltipText:
                                     "This user is second on the weekly leaderboard.",
                                 id: "user-card-award-popover-second",
@@ -1226,12 +1226,12 @@ describe("UserCard states", () => {
             });
 
             const awardedSecond = container.querySelector(
-                ".s-user-card--awarded-second"
+                ".s-user-card--group.fc-blue-400"
             );
             expect(awardedSecond).to.exist;
         });
 
-        it("should apply awarded-third class when using UserCardAdditionalBling with third type", () => {
+        it("should apply fc-orange-400 class when using UserCardAdditionalBling with third class", () => {
             const { container } = render(UserCard, {
                 name: "John Doe",
                 avatar: "https://picsum.photos/128",
@@ -1241,7 +1241,7 @@ describe("UserCard states", () => {
                         const instance = mount(UserCardAdditionalBling, {
                             target,
                             props: {
-                                type: "third",
+                                class: "fc-orange-400",
                                 tooltipText:
                                     "This user is third on the weekly leaderboard.",
                                 id: "user-card-award-popover-third",
@@ -1257,7 +1257,7 @@ describe("UserCard states", () => {
             });
 
             const awardedThird = container.querySelector(
-                ".s-user-card--awarded-third"
+                ".s-user-card--group.fc-orange-400"
             );
             expect(awardedThird).to.exist;
         });
@@ -1273,7 +1273,7 @@ describe("UserCard states", () => {
                     const instance = mount(UserCardAdditionalBling, {
                         target,
                         props: {
-                            type: "first",
+                            class: "fc-yellow-400",
                             tooltipText:
                                 "This user is first on the weekly leaderboard.",
                             id: "user-card-award-popover-first",
@@ -1294,7 +1294,7 @@ describe("UserCard states", () => {
             });
 
             const awardedFirst = container.querySelector(
-                ".s-user-card--awarded-first"
+                ".s-user-card--group.fc-yellow-400"
             );
             expect(awardedFirst).to.exist;
 
@@ -1317,7 +1317,7 @@ describe("UserCard states", () => {
             });
 
             const awardedFirst = document.querySelector(
-                ".s-user-card--awarded-first"
+                ".s-user-card--group.fc-yellow-400"
             );
             expect(awardedFirst).not.to.exist;
         });

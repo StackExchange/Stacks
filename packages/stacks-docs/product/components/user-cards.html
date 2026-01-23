@@ -800,7 +800,11 @@ tags: components
                 {% for bling in user-card.additional-bling %}
                     <tr>
                         <th scope="row">{{ bling.name }}</th>
-                        <td class="p8"> <code class="docs-code">{{ bling.class }}</code></td>
+                        {% if bling.class == "N/A" %}
+                            <td class="p8"><em class="fc-black-350">{{ bling.class }}</em></td>
+                        {% else %}
+                            <td class="p8"> <code class="docs-code">{{ bling.class }}</code></td>
+                        {% endif %}
                         <td class="p8">{{ bling.description }}</td>
                     </tr>
                 {% endfor %}
@@ -1028,7 +1032,7 @@ tags: components
             </span>
             <span class="s-user-card--username">…</span>
         </a>
-        <a class="s-user-card--group s-user-card--awarded-third" href="…" title="…" data-controller="s-tooltip">
+        <a class="s-user-card--group fc-orange-400" href="…" title="…" data-controller="s-tooltip">
             @Svg.Icon.AchievementsSm.With("native")
         </a>
         <div class="s-user-card--group">
@@ -1085,7 +1089,7 @@ tags: components
                             {% endfor %}
                         </div>
                     {% endif %}
-            <a class="s-user-card--group s-user-card--awarded-{{user.award}}" href="…" title="This user is {{user.award}} on the weekly R Language leaderboard." data-controller="s-tooltip">
+            <a class="s-user-card--group {{user.award}}" href="…" title="This user is {{user.award}} on the weekly R Language leaderboard." data-controller="s-tooltip">
                 {% icon "AchievementsSm", native %}
             </a>
                     {% if user.reputation or user.gold or user.silver or user.bronze %}

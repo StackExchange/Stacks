@@ -1,11 +1,3 @@
-<script lang="ts" module>
-    export type AdditionalBlingType =
-        | "first"
-        | "second"
-        | "third"
-        | "recognized member";
-</script>
-
 <script lang="ts">
     import Icon from "../Icon/Icon.svelte";
 
@@ -14,12 +6,6 @@
     import PopoverReference from "../Popover/PopoverReference.svelte";
 
     interface Props {
-        /**
-         * The type of additional bling
-         * @type {"first" | "second" | "third" | "recognized member"}
-         */
-        type: AdditionalBlingType;
-
         /**
          * The text for the tooltip
          */
@@ -39,33 +25,33 @@
          * Link for the additional bling element (e.g. leaderboard or collective landing page)
          */
         href?: string;
+
+        /**
+         * Additional CSS classes added to the element
+         */
+        class?: string;
     }
 
-    const { type, tooltipText, id, icon, href }: Props = $props();
+    const {
+        tooltipText,
+        id,
+        icon,
+        href,
+        class: className = "",
+    }: Props = $props();
 
-    const getClasses = (type: AdditionalBlingType) => {
+    const getClasses = (className: string) => {
         const base = "s-user-card--group";
         let classes = base;
 
-        switch (type) {
-            case "first":
-                classes += " s-user-card--awarded-first";
-                break;
-            case "second":
-                classes += " s-user-card--awarded-second";
-                break;
-            case "third":
-                classes += " s-user-card--awarded-third";
-                break;
-            case "recognized member":
-                classes += " s-user-card--recognition-additional-bling";
-                break;
+        if (className) {
+            classes += " " + className;
         }
 
         return classes;
     };
 
-    const classes = $derived(getClasses(type));
+    const classes = $derived(getClasses(className));
 </script>
 
 <Popover {id} tooltip>

@@ -4,17 +4,13 @@
     import UserCardTime from "./UserCardTime.svelte";
     import UserCardBadge from "./UserCardBadge.svelte";
     import UserCardBling from "./UserCardBling.svelte";
-    import type { AwardBlings } from "./UserCard.svelte";
-    import UserCardAdditionalBling, {
-        type AdditionalBlingType,
-    } from "./UserCardAdditionalBling.svelte";
+    import UserCardAdditionalBling from "./UserCardAdditionalBling.svelte";
     import {
         IconAchievementsSm,
         IconStarVerifiedSm,
     } from "@stackoverflow/stacks-icons-legacy/icons";
 
     const UserCardSizes: (Size | undefined)[] = [undefined, "sm", "lg"];
-    const UserCardAwardBlings: AwardBlings[] = ["first", "second", "third"];
     const baseArgs = {
         avatar: "https://picsum.photos/128",
         profileUrl: "/",
@@ -222,23 +218,51 @@
                 </tr>
             </thead>
             <tbody>
-                {#each UserCardAwardBlings as award (award)}
-                    {#snippet additionalBlings()}
-                        <UserCardAdditionalBling
-                            type={award as AdditionalBlingType}
-                            tooltipText="This user is {award} on the weekly leaderboard."
-                            id="user-card-award-popover-{award}"
-                            icon={IconAchievementsSm}
-                            href="/"
-                        />
-                    {/snippet}
-                    <tr>
-                        <th scope="row" class="va-middle">{award}</th>
-                        <td class="va-middle px4">
-                            <UserCard {...baseArgs} {additionalBlings} />
-                        </td>
-                    </tr>
-                {/each}
+                <tr>
+                    <th scope="row" class="va-middle">first</th>
+                    <td class="va-middle px4">
+                        {#snippet additionalBlings()}
+                            <UserCardAdditionalBling
+                                class="fc-yellow-400"
+                                tooltipText="This user is first on the weekly leaderboard."
+                                id="user-card-award-popover-first"
+                                icon={IconAchievementsSm}
+                                href="/"
+                            />
+                        {/snippet}
+                        <UserCard {...baseArgs} {additionalBlings} />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row" class="va-middle">second</th>
+                    <td class="va-middle px4">
+                        {#snippet additionalBlings()}
+                            <UserCardAdditionalBling
+                                class="fc-blue-400"
+                                tooltipText="This user is second on the weekly leaderboard."
+                                id="user-card-award-popover-second"
+                                icon={IconAchievementsSm}
+                                href="/"
+                            />
+                        {/snippet}
+                        <UserCard {...baseArgs} {additionalBlings} />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row" class="va-middle">third</th>
+                    <td class="va-middle px4">
+                        {#snippet additionalBlings()}
+                            <UserCardAdditionalBling
+                                class="fc-orange-400"
+                                tooltipText="This user is third on the weekly leaderboard."
+                                id="user-card-award-popover-third"
+                                icon={IconAchievementsSm}
+                                href="/"
+                            />
+                        {/snippet}
+                        <UserCard {...baseArgs} {additionalBlings} />
+                    </td>
+                </tr>
                 <tr>
                     <th scope="row" class="va-middle"
                         >Recognized Member (small)</th
@@ -246,7 +270,7 @@
                     <td class="va-middle px4">
                         {#snippet additionalBlings()}
                             <UserCardAdditionalBling
-                                type="recognized member"
+                                class="s-user-card--recognition-additional-bling"
                                 tooltipText="This user is recognized by AudioBubble"
                                 id="user-card-recognized-member-popover"
                                 icon={IconStarVerifiedSm}
