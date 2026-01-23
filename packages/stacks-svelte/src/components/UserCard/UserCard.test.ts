@@ -1179,7 +1179,7 @@ describe("UserCard states", () => {
                         const instance = mount(UserCardAdditionalBling, {
                             target,
                             props: {
-                                type: "first",
+                                class: "fc-yellow-400",
                                 tooltipText:
                                     "This user is first on the weekly leaderboard.",
                                 id: "user-card-award-popover-first",
