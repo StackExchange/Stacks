@@ -16,11 +16,6 @@
       "description": "Adds the styling necessary for a deleted post"
     },
     {
-      "class": ".s-post-summary__ignored",
-      "applies": ".s-post-summary",
-      "description": "Adds the styling necessary for an ignored post"
-    },
-    {
       "class": ".s-post-summary--sm-hide",
       "applies": ".s-post-summary",
       "description": "Hides the stats container on small screens"
@@ -29,6 +24,16 @@
       "class": ".s-post-summary--sm-show",
       "applies": ".s-post-summary",
       "description": "Shows the stats container on small screens"
+    },
+    {
+      "class": ".s-post-summary--answers",
+      "applies": ".s-post-summary",
+      "description": "Container for the post summary answers"
+    },
+    {
+      "class": ".s-post-summary--answer",
+      "applies": ".s-post-summary--answers",
+      "description": "Container for the post summary answer"
     },
     {
       "class": ".s-post-summary--content",
@@ -92,66 +97,132 @@
     }
   ],
   "base": [
+    {},
     {
-      "title": "How to reduce hallucinations and improve source relevance in a RAG pipeline?",
-      "excerpt": "I have built a Retrieval-Augmented Generation (RAG) system using LangChain, a vector database, and an open-source LLM. While it works reasonably well, the model often hallucinates answers or cites sources that are only tangentially related to the user's query. My chunking strategy is set to a chunk size of 1000 tokens, which seems to be the sweet spot for the model.",
-      "tags": ["retrieval-augmented-generation", "langchain", "llm", "vector-database", "ai"],
-      "user": {
-        "avatar": "/assets/img/avatar-disgusted-16.svg",
-        "href": "#",
-        "reputation": 1,
-        "time": "2 hours ago",
-        "tooltip": "2026-01-09 12:15:39Z",
-        "username": "SofiaAlc"
-      },
+      "answered": true
+    },
+    {
+      "bounty": 50
+    }
+  ],
+  "small": [
+    {
+      "excerptLines": 2
+    },
+    {
       "answered": true,
-      "answers": 1,
+      "excerptLines": 2
+    },
+    {
       "bounty": 50,
-      "views": 98,
-      "votes": "24",
+      "excerptLines": 2
+    }
+  ],
+  "ignored":     {
+    "tags": [
+      {
+        "text": "retrieval-augmented-generation",
+        "ignored": true
+      },
+      "langchain",
+      "llm",
+      "vector-database",
+      "ai"
+    ],
+    "answered": true,
+    "bounty": 50
+  },
+  "watched": {
+    "tags": [
+      {
+        "text": "retrieval-augmented-generation",
+        "watched": true
+      },
+      "langchain",
+      "llm",
+      "vector-database",
+      "ai"
+    ],
+    "answered": true
+  },
+  "deleted": {
+    "answered": true,
+    "modifier": "s-post-summary__deleted"
+  },
+  "states": [
+    {
+      "badge": {
+        "class": "s-badge__info",
+        "text": "Draft",
+        "icon": "Compose"
+      }
+    },
+    {
       "badge": {
         "class": "s-badge__warning",
-        "text": "review",
-        "icon": "Eye16"
+        "text": "Review",
+        "icon": "Eye"
+      }
+    },
+    {
+      "badge": {
+        "class": "s-badge__danger",
+        "text": "Closed",
+        "icon": "Flag"
+      }
+    },
+    {
+      "badge": {
+        "text": "Archived",
+        "icon": "Document"
+      }
+    },
+    {
+      "badge": {
+        "class": "s-badge__tonal",
+        "text": "Pinned",
+        "icon": "Key"
       }
     }
   ],
-  "states": [
+  "contentTypes": [
     {
-      "type": "Ignored",
-      "title": "How to reduce hallucinations and improve source relevance in a RAG pipeline?",
-      "excerpt": "I have built a Retrieval-Augmented Generation (RAG) system using LangChain, a vector database, and an open-source LLM. While it works reasonably well, the model often hallucinates answers or cites sources that are only tangentially related to the user's query. My chunking strategy is set to a chunk size of 1000 tokens, which seems to be the sweet spot for the model.",
-      "tags": ["retrieval-augmented-generation", "langchain", "llm", "vector-database", "ai"],
-      "user": {
-        "avatar": "/assets/img/avatar-disgusted-16.svg",
-        "href": "#",
-        "reputation": 1,
-        "time": "2 hours ago",
-        "tooltip": "2026-01-09 12:15:39Z",
-        "username": "SofiaAlc"
-      },
-      "answered": true,
-      "answers": 1,
-      "views": 98,
-      "votes": "24"
+      "type": "Announcement"
     },
     {
-      "type": "Deleted",
-      "title": "How to reduce hallucinations and improve source relevance in a RAG pipeline?",
-      "excerpt": "I have built a Retrieval-Augmented Generation (RAG) system using LangChain, a vector database, and an open-source LLM. While it works reasonably well, the model often hallucinates answers or cites sources that are only tangentially related to the user's query. My chunking strategy is set to a chunk size of 1000 tokens, which seems to be the sweet spot for the model.",
-      "tags": ["retrieval-augmented-generation", "langchain", "llm", "vector-database", "ai"],
-      "user": {
-        "avatar": "/assets/img/avatar-disgusted-16.svg",
-        "href": "#",
-        "reputation": 1,
-        "time": "2 hours ago",
-        "tooltip": "2026-01-09 12:15:39Z",
-        "username": "SofiaAlc"
-      },
+      "type": "How to guide"
+    },
+    {
+      "type": "Knowledge article"
+    },
+    {
+      "type": "Policy"
+    }
+  ],
+  "excerptSizes": [
+    {
+      "excerptLines": 0
+    },
+    {
+      "excerptLines": 1
+    },
+    {
+      "excerptLines": 2
+    },
+    {
+      "excerptLines": 3
+    }
+  ],
+  "answered": [
+    {
       "answered": true,
-      "answers": 1,
-      "views": 98,
-      "votes": "24"
+      "answerCount": 2,
+      "answers": [
+        {
+          "accepted": true
+        },
+        {}
+      ]
     }
   ]
 }

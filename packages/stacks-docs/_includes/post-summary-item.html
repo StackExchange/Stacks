@@ -1,0 +1,191 @@
+{% comment %}
+    This partial renders a post summary item.
+    
+    Parameters:
+    - data (required): The post summary data object.
+        - answered (optional): Whether the post is answered.
+        - bounty (optional): The bounty amount.
+        - modifier (optional): The modifier to apply to the post summary.
+        - tags (optional): The tags to display.
+        - user (optional): The user to display.
+            - avatar (optional): The avatar image source.
+            - href (optional): The href of the user.
+            - reputation (optional): The reputation of the user.
+            - time (optional): The time of the user.
+            - tooltip (optional): The tooltip of the user.
+            - username (optional): The username of the user.
+        - votes (optional): The number of votes.
+        - answerCount (optional): The number of answers.
+        - views (optional): The number of views.
+        - excerpt (optional): The excerpt of the post.
+        - excerptLength (optional): The length of the excerpt.
+{% endcomment %}
+
+{% assign defaultExcerpt = "I have built a Retrieval-Augmented Generation (RAG) system using LangChain, a vector database, and an open-source LLM. While it works reasonably well, the model often hallucinates answers or cites sources that are only tangentially related to the user's query. My chunking strategy is set to a chunk size of 1000 tokens, which seems to be the sweet spot for the model." %}
+{% assign defaultTags = "retrieval-augmented-generation, langchain, llm, vector-database" | split: ", " %}
+<div class="s-post-summary {% if data.answered %}s-post-summary__answered{% endif %} {{ data.modifier }}" {{ rootAttributes }}>
+    <div class="s-post-summary--stats s-post-summary--sm-hide">
+        <div class="s-post-summary--stats-votes">+{{ data.votes | default: 24 }}</div>
+        <div class="s-post-summary--stats-answers">
+            {% if data.answered %}
+                {% icon "Answer16Fill" %}
+            {% else %}
+                {% icon "Answer16" %}
+            {% endif %}
+            {{ data.answerCount | default: 1 }}
+        </div>
+        {% if data.bounty %}
+            <div class="s-post-summary--stats-bounty">
+                <span>+</span>
+                {{ data.bounty }}
+            </div>
+        {% endif %}
+    </div>
+    <div class="s-post-summary--content">
+        <div class="s-post-summary--sm-show">
+            {% if data.badge %}
+                <span class="s-badge s-badge__sm {{ data.badge.class }}">
+                    {% if data.badge.icon %}
+                        {% icon data.badge.icon %}
+                    {% endif %}
+                    {{ data.badge.text }}
+                </span>
+            {% endif %}
+        </div>
+        <div class="s-post-summary--content-meta">
+            <div class="s-user-card s-user-card__sm">
+                <a class="s-user-card--group" href="{{ data.user.href | default: "#" }}">
+                    <span class="s-avatar">
+                        <img class="s-avatar--image" alt="{{ data.user.username | default: "SofiaAlc" }}" src="{{ data.user.avatar | default: "/assets/img/avatar-disgusted-16.svg" }}" />
+                    </span>
+                    <span class="s-user-card--username">{{ data.user.username | default: "SofiaAlc" }}</span>
+                </a>
+                <ul class="s-user-card--group">
+                    <li class="s-user-card--rep">
+                        <span class="s-bling s-bling__sm">
+                            <span class="v-visible-sr">reputation bling</span>
+                        </span>
+                        {{ data.user.reputation | default: 1 }}
+                    </li>
+                </ul>
+                <a class="s-user-card--time" href="#" title="{{ data.user.tooltip | default: "2026-01-09 12:15:39Z" }}" data-controller="s-tooltip">
+                    <time>asked {{ data.user.time | default: "2 hours ago" }}</time>
+                </a>
+            </div>
+            <!-- Stats (sm) -->
+            <div class="s-post-summary--stats s-post-summary--sm-show g6">
+                <!-- Votes -->
+                <div class="s-post-summary--stats-votes">
+                    {% icon "Vote16Up" %}
+                    {{ data.votes | default: 24 }}
+                </div>
+                <!-- Answers -->
+                <div class="s-post-summary--stats-answers">
+                    {% if data.answered %}
+                        {% icon "Answer16Fill", "s-post-summary--stats-answers--icon" %}
+                    {% else %}
+                        {% icon "Answer16" %}
+                    {% endif %}
+                    {{ data.answers | default: 1 }}
+                </div>
+                <!-- Bounty -->
+                {% if data.bounty %}
+                    <div class="s-post-summary--stats-bounty">
+                        <span>+</span>
+                        {{ data.bounty }}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="s-post-summary--content-meta-views">
+                {{ data.views | default: 98 }} views
+            </div>
+            {% if data.badge %}
+                <span class="s-badge {{ data.badge.class }} ml-auto s-post-summary--sm-hide">
+                    {% if data.badge.icon %}
+                        {% icon data.badge.icon %}
+                    {% endif %}
+                    {{ data.badge.text }}
+                </span>
+            {% endif %}
+        </div>
+        <div class="s-post-summary--title">
+            <a class="s-post-summary--title-link" href="#">
+                <!-- TODO SHINE include badge icon -->
+                {{ data.title | default: "How to reduce hallucinations and improve source relevance in a RAG pipeline?" }}
+            </a>
+        </div>
+        {% if data.excerptLines != 0 %}
+            <div class="s-post-summary--excerpt v-truncate{{ data.excerptLines | default: 3 }}">
+                {{ data.excerpt | default: defaultExcerpt }}
+            </div>
+        {% endif %}
+        <div class="s-post-summary--tags">
+            {% if data.type %}
+                <a class="s-post-summary--content-type" href="#">
+                    {% icon "Document" %}
+                    {{ data.type }}
+                </a>
+            {% endif %}
+            {% if data.tags.size > 0 %}
+                {% for tag in data.tags %}
+                    <a class="s-tag {% if tag.ignored %}s-tag__ignored{% endif %} {% if tag.watched %}s-tag__watched{% endif %}" href="#">
+                        {% if tag.ignored %}<div class="v-visible-sr">Ignored tag</div>{% endif %}
+                        {% if tag.watched %}<div class="v-visible-sr">Watched tag</div>{% endif %}
+                        {{ tag.text | default: tag }}
+                    </a>
+                {% endfor %}
+            {% else %}
+                {% for tag in defaultTags %}
+                    <a class="s-tag" href="#">{{ tag }}</a>
+                {% endfor %}
+            {% endif %}
+        </div>
+        {% if data.answerCount > 0 %}
+            <div class="s-post-summary--answers">
+                {% for answer in data.answers %}
+                    <div class="s-post-summary--answer {% if answer.accepted %}s-post-summary--answer__accepted{% endif %}">
+                        <div class="s-post-summary--content-meta">
+                            <div class="s-user-card s-user-card__sm">
+                                <a class="s-user-card--group" href="{{ data.user.href | default: "#" }}">
+                                    <span class="s-avatar">
+                                        <img class="s-avatar--image" alt="{{ data.user.username | default: "SofiaAlc" }}" src="{{ data.user.avatar | default: "/assets/img/avatar-disgusted-16.svg" }}" />
+                                    </span>
+                                    <span class="s-user-card--username">{{ data.user.username | default: "SofiaAlc" }}</span>
+                                </a>
+                                <ul class="s-user-card--group">
+                                    <li class="s-user-card--rep">
+                                        <span class="s-bling s-bling__sm">
+                                            <span class="v-visible-sr">reputation bling</span>
+                                        </span>
+                                        {{ data.user.reputation | default: 1 }}
+                                    </li>
+                                </ul>
+                                <a class="s-user-card--time" href="#" title="{{ data.user.tooltip | default: "2026-01-09 12:15:39Z" }}" data-controller="s-tooltip">
+                                    <time>asked {{ data.user.time | default: "2 hours ago" }}</time>
+                                </a>
+                            </div>
+                            <!-- Stats (sm) -->
+                            <div class="s-post-summary--stats g6">
+                                <!-- Votes -->
+                                <div class="s-post-summary--stats-votes">
+                                    {% icon "Vote16Up" %}
+                                    {{ data.votes | default: 24 }}
+                                </div>
+                                <!-- Answers -->
+                                {% if answer.accepted %}
+                                    <div class="s-post-summary--stats-answers">
+                                        {% icon "Answer16Fill", "s-post-summary--stats-answers--icon" %}
+                                        Accepted answer
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="s-post-summary--excerpt v-truncate{{ answer.excerptLines | default: 3 }}">
+                            {{ answer.excerpt | default: defaultExcerpt }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>

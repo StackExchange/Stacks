@@ -1,5 +1,9 @@
 .s-post-summary {
     @psx-container-sm: 28rem;
+    --_ps-answer-icon-fc: unset;
+    --_ps-content-type-bc: var(--black-200);
+    --_ps-content-type-bg: var(--black-050);
+    --_ps-content-type-fc: var(--black-600);
     --_ps-stats-answers-bg: unset;
     --_ps-stats-answers-fc: unset;
     --_ps-stats-answers-fw: unset;
@@ -35,7 +39,7 @@
     }
 
     &&__deleted,
-    &&__ignored {
+    &:has(.s-tag.s-tag__ignored) {
         --_ps-ignored-bg: var(--black-100);
         --_ps-ignored-fc: var(--black-400);
         
@@ -72,6 +76,38 @@
     }
 
     // Child components
+    .s-tag.s-tag__watched {
+        --_ta-bc: var(--yellow-200);
+        --_ta-bg: var(--yellow-200);
+        --_ta-fc: var(--yellow-600);
+        --_ta-bc-hover: var(--yellow-200);
+        --_ta-bg-hover: var(--yellow-200);
+    }
+
+    // TODO SHINE complete answers styling
+    & &--answers {
+        display: flex;
+        flex-direction: column;
+        gap: var(--su16);
+        padding-top: calc(var(--su8) + var(--su2)); // 10px
+    }
+
+    & &--answer {
+        &__accepted {
+            --_ps-answer-icon-fc: var(--green-400);
+        }
+
+        .s-post-summary--stats-answers--icon {
+            color: var(--_ps-answer-icon-fc);
+        }
+
+        border-left: var(--su4) solid var(--black-150);
+        display: flex;
+        flex-direction: column;
+        gap: var(--su6);
+        padding-left: var(--su8);
+    }
+
     & &--content {
         display: flex;
         flex-direction: column;
@@ -99,6 +135,28 @@
         align-items: center;
         display: flex;
         gap: var(--su6);
+    }
+
+    & &--content-type {
+        &:focus-visible {
+            .focus-styles();
+        }
+
+        &:hover {
+            --_ps-content-type-bc: var(--black-150);
+            --_ps-content-type-bg: var(--black-100);
+            --_ps-content-type-fc: var(--black-600);
+        }
+
+        border: var(--su-static1) solid var(--_ps-content-type-bc);
+        background-color: var(--_ps-content-type-bg);
+        color: var(--_ps-content-type-fc);
+
+        display: flex;
+        align-items: center;
+        gap: var(--su4);
+        padding: 0 var(--su4);
+        font-size: var(--fs-caption);
     }
 
     & &--stats {
@@ -188,6 +246,8 @@
         }
 
         // TODO: Since custom property is not being applied for some reason, we're changing the color directly. Remove this once the custom property is fixed.
+        // I suspect this is because of restrictions on the `:visited` pseudo-class.
+        // See https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:visited#privacy_restrictions
         &:visited {
             color: var(--theme-secondary-400);
         }
