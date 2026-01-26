@@ -54,6 +54,16 @@ describe("UserCard", () => {
         ).to.have.class("s-user-card__sm");
     });
 
+    it("should render the avatar and name as links", () => {
+    render(UserCard, {
+            name: "John Doe",
+            avatar: "https://picsum.photos/128",
+            profileUrl: "#",
+        });
+        const nameLink = screen.getByRole("link", { name: "John Doe" });
+        expect(nameLink).to.have.attr("href", "#");
+    });
+
     it("should render the user card with arbitrary classes", () => {
         render(UserCard, {
             name: "John Doe",
