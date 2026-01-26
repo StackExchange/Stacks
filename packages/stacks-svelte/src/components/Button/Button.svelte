@@ -183,11 +183,7 @@
     disabled={(!href && disabled) || null}
     aria-disabled={href && disabled ? "true" : null}
     {...restProps}
->
-    {#if loader}
-        {@render loader()}
-    {/if}
-    {#if !badge}
+    >{#if loader}{@render loader()}{/if}{#if !badge}
         {@render children()}
     {:else}
         {@render children()}
@@ -196,5 +192,5 @@
                 {@render badge()}
             </span>
         </span>
-    {/if}
-</svelte:element>
+    {/if}</svelte:element
+>
