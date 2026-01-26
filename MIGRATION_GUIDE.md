@@ -16,6 +16,10 @@
 - `.blr-sm` removed
 - `.blr-lg` removed
 
+#### Background
+- Add `.bg-loading`
+- Skeleton component deleted
+
 #### Colors
 - `gold`, `silver`, `bronze` colors removed
 

@@ -1,5 +1,37 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.19
+
+### Minor Changes
+
+- [#2136](https://github.com/StackExchange/Stacks/pull/2136) [`d75d9d4`](https://github.com/StackExchange/Stacks/commit/d75d9d475b596f96442b6badeb9ff5a390796267) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Add .bg-loading delete skeleton
+
+    BREAKING CHANGES:
+
+    Skeleton component deleted
+
+### Patch Changes
+
+- [#2140](https://github.com/StackExchange/Stacks/pull/2140) [`70cfb92`](https://github.com/StackExchange/Stacks/commit/70cfb925f2821a4a8897698e915431efaf2075a9) Thanks [@dancormier](https://github.com/dancormier)! - Nudge light high contrast mode black 400, 500 for improved contrast
+
+## 3.0.0-beta.18
+
+### Minor Changes
+
+- [#2132](https://github.com/StackExchange/Stacks/pull/2132) [`4d3ad74`](https://github.com/StackExchange/Stacks/commit/4d3ad7496141352af80d23297ff985f86ad67a6b) Thanks [@giamir](https://github.com/giamir)! - adjust breakpoints to the new SHINE spec
+
+## 3.0.0-beta.17
+
+### Patch Changes
+
+- [#2130](https://github.com/StackExchange/Stacks/pull/2130) [`e2dea15`](https://github.com/StackExchange/Stacks/commit/e2dea15216568555cd1562dc65e5ff7477372a47) Thanks [@giamir](https://github.com/giamir)! - dependencies upgrade
+
+## 3.0.0-beta.16
+
+### Patch Changes
+
+- [#2122](https://github.com/StackExchange/Stacks/pull/2122) [`93ae01b`](https://github.com/StackExchange/Stacks/commit/93ae01bdec7c120cb77f98b9bcf0e718642c9552) Thanks [@dancormier](https://github.com/dancormier)! - Updated size scale plus many under-the-hood improvements
+
 ## 3.0.0-beta.15
 
 ### Minor Changes

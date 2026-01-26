@@ -5,9 +5,9 @@ description: Stacks provides atomic sizing classes for widths using pixel, rem, 
 tags: base
 ---
 <!-- Pixel width (.w) -->
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Pixel width" %}
-    <p class="stacks-copy">Pixel width classes allow you to set the width of an element to a specific pixel value.</p>
+    <p class="docs-copy">Pixel width classes allow you to set the width of an element to a specific pixel value.</p>
 
     {% header "h3", "Pixel width classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
@@ -23,7 +23,7 @@ tags: base
             <tbody>
                 {% for size in atomics.sizing.px %}
                     <tr class="ff-mono fs-caption">
-                        <th scope="row"><code class="stacks-code">.w{{ size.px }}</code></th>
+                        <th scope="row"><code class="docs-code">.w{{ size.px }}</code></th>
                         <td class="p8">width: {{ size.px }}px;</td>
                         <td class="p8">{{ size.rem }}rem</td>
                         <td class="ta-center">
@@ -38,7 +38,7 @@ tags: base
     </div>
 
     {% header "h3", "Pixel width examples" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="w0">…</div>
 <div class="w1">…</div>
@@ -55,11 +55,11 @@ tags: base
 <div class="w96">…</div>
 <div class="w128">…</div>
 {% endhighlight %}
-        <div class="stacks-preview--example d-flex g8 fd-column fs-caption ff-mono">
+        <div class="docs-preview--example d-flex g8 fd-column fs-caption ff-mono">
             {% for size in atomics.sizing.px %}
                 <div class="d-grid grid__12 g4">
                     <div class="grid--col1">.w{{ size.px }}</div>
-                    <div class="w{{ size.px }} bg-black-200 h24 {% if size.px == 0 %}{% else %} ba bc-black-225{% endif %}"></div>
+                    <div class="w{{ size.px }} h24 {% if size.px is not 0 %} docs-box p0{% endif %}"></div>
                 </div>
             {% endfor %}
         </div>
@@ -67,9 +67,9 @@ tags: base
 </section>
 
 <!-- Sizing units width (.ws) -->
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Sizing units width" %}
-    <p class="stacks-copy">Sizing units width classes allow you to set the width of an element according to a predefined set of 12 common values in used in Stacks.</p>
+    <p class="docs-copy">Sizing units width classes allow you to set the width of an element according to a predefined set of 12 common values in used in Stacks.</p>
 
     {% header "h3", "Sizing units width classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
@@ -85,7 +85,7 @@ tags: base
             <tbody>
                 {% for size in atomics.sizing.sizing-units %}
                     <tr class="ff-mono fs-caption">
-                        <th scope="row"><code class="stacks-code">.ws{{ size.level }}</code></th>
+                        <th scope="row"><code class="docs-code">.ws{{ size.level }}</code></th>
                         <td class="p8">width: {{ size.px }}px;</td>
                         <td class="p8">{{ size.rem }}rem</td>
                         <td class="ta-center">
@@ -100,7 +100,7 @@ tags: base
     </div>
 
     {% header "h3", "Sizing units width examples" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="ws1">…</div>
 <div class="ws2">…</div>
@@ -115,9 +115,9 @@ tags: base
 <div class="ws11">…</div>
 <div class="ws12">…</div>
 {% endhighlight %}
-        <div class="stacks-preview--example d-flex g4 fd-column fs-caption ff-mono overflow-x-auto">
+        <div class="docs-preview--example d-flex g4 fd-column fs-caption ff-mono overflow-x-auto">
             {% for size in atomics.sizing.sizing-units %}
-                <div class="ws{{ size.level }} ai-center bg-black-200 ba bc-black-225 d-flex h48 p6">
+                <div class="docs-box p0 ws{{ size.level }} ai-center d-flex h48">
                     <div>.ws{{ size.level }}</div>
                 </div>
             {% endfor %}
@@ -126,9 +126,9 @@ tags: base
 </section>
 
 <!-- Fluid width classes (.w) -->
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Fluid width" %}
-    <p class="stacks-copy">Fluid width classes allow you to set the width of an element to a percentage of the parent element's width or to the full width of the viewport.</p>
+    <p class="docs-copy">Fluid width classes allow you to set the width of an element to a percentage of the parent element's width or to the full width of the viewport.</p>
 
     {% header "h3", "Fluid width classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
@@ -143,7 +143,7 @@ tags: base
             <tbody>
                 {% for size in atomics.sizing.percent %}
                     <tr class="ff-mono fs-caption">
-                        <th scope="row"><code class="stacks-code">.w{{ size.percentage }}</code></th>
+                        <th scope="row"><code class="docs-code">.w{{ size.percentage }}</code></th>
                         <td class="p8">width: {{ size.percentage }}%</td>
                         <td class="ta-center">
                             {% if size.responsive %}
@@ -153,14 +153,14 @@ tags: base
                     </tr>
                 {% endfor %}
                 <tr class="ff-mono fs-caption">
-                    <th scope="row"><code class="stacks-code">.w-screen</code></th>
+                    <th scope="row"><code class="docs-code">.w-screen</code></th>
                     <td class="p8">width: 100vw;</td>
                     <td class="ta-center">
                         {% icon "Checkmark", "fc-green-400" %}
                     </td>
                 </tr>
                 <tr class="ff-mono fs-caption">
-                    <th scope="row"><code class="stacks-code">.w-auto</code></th>
+                    <th scope="row"><code class="docs-code">.w-auto</code></th>
                     <td class="p8">width: auto;</td>
                     <td class="ta-center">
                         {% icon "Checkmark", "fc-green-400" %}
@@ -171,7 +171,7 @@ tags: base
     </div>
 
     {% header "h3", "Fluid width examples" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="w10">…</div>
 <div class="w20">…</div>
@@ -188,11 +188,11 @@ tags: base
 <div class="w90">…</div>
 <div class="w100">…</div>
 {% endhighlight %}
-        <div class="stacks-preview--example fs-caption ff-mono">
+        <div class="docs-preview--example fs-caption ff-mono">
             <div class="d-flex fd-column g4">
                 {% for size in atomics.sizing.percent %}
-                    <div class="ba bc-black-225 bg-black-100">
-                        <div class="w{{ size.percentage }} ai-center bg-black-200 br bc-black-225 d-flex h24 p6">
+                    <div class="docs-box p0 bg-black-100">
+                        <div class="docs-box w{{ size.percentage }} ai-center py4">
                             <div>.w{{ size.percentage }}</div>
                         </div>
                     </div>
@@ -203,9 +203,9 @@ tags: base
 </section>
 
 <!-- Min width classes (.wmn) -->
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Min width" %}
-    <p class="stacks-copy">Min width classes allow you to set the minimum width of an element.</p>
+    <p class="docs-copy">Min width classes allow you to set the minimum width of an element.</p>
 
     {% header "h3", "Min width classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
@@ -220,7 +220,7 @@ tags: base
             </thead>
             <tbody>
                 <tr class="ff-mono fs-caption">
-                    <th scope="row"><code class="stacks-code">.wmn0</code></th>
+                    <th scope="row"><code class="docs-code">.wmn0</code></th>
                     <td class="p8">min-width: 0;</td>
                     <td class="p8">-</td>
                     <td class="ta-center">
@@ -229,7 +229,7 @@ tags: base
                 </tr>
                 {% for size in atomics.sizing.sizing-units %}
                     <tr class="ff-mono fs-caption">
-                        <th scope="row"><code class="stacks-code">.wmn{{ size.level }}</code></th>
+                        <th scope="row"><code class="docs-code">.wmn{{ size.level }}</code></th>
                         <td class="p8">min-width: {{ size.px }}px;</td>
                         <td class="p8">{{ size.rem }}rem</td>
                         <td class="ta-center">
@@ -244,7 +244,7 @@ tags: base
                 {% assign percentItems = percentItems | split: "," %}
                 {% for size in percentItems %}
                     <tr class="ff-mono fs-caption">
-                        <th scope="row"><code class="stacks-code">.wmn{{ size }}</code></th>
+                        <th scope="row"><code class="docs-code">.wmn{{ size }}</code></th>
                         <td class="p8">min-width: {{ size }}%;</td>
                         <td class="p8">-</td>
                         <td class="ta-center">
@@ -255,7 +255,7 @@ tags: base
                     </tr>
                 {% endfor %}
                 <tr class="ff-mono fs-caption">
-                    <th scope="row"><code class="stacks-code">.wmn-screen</code></th>
+                    <th scope="row"><code class="docs-code">.wmn-screen</code></th>
                     <td class="p8">min-width: 100vh;</td>
                     <td class="p8">-</td>
                     <td class="ta-center">
@@ -263,7 +263,7 @@ tags: base
                     </td>
                 </tr>
                 <tr class="ff-mono fs-caption">
-                    <th scope="row"><code class="stacks-code">.wmn-initial</code></th>
+                    <th scope="row"><code class="docs-code">.wmn-initial</code></th>
                     <td class="p8">min-width: initial;</td>
                     <td class="p8">-</td>
                     <td class="ta-center">
@@ -276,9 +276,9 @@ tags: base
 </section>
 
 <!-- Max width classes (.wmx) -->
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Max width" %}
-    <p class="stacks-copy">Max width classes allow you to set the maximum width of an element.</p>
+    <p class="docs-copy">Max width classes allow you to set the maximum width of an element.</p>
 
     {% header "h3", "Max width classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
@@ -294,7 +294,7 @@ tags: base
             <tbody>
                 {% for size in atomics.sizing.sizing-units %}
                     <tr class="ff-mono fs-caption">
-                        <th scope="row"><code class="stacks-code">.wmx{{ size.level }}</code></th>
+                        <th scope="row"><code class="docs-code">.wmx{{ size.level }}</code></th>
                         <td class="p8">max-width: {{ size.px }}px;</td>
                         <td class="p8">{{ size.rem }}rem</td>
                         <td class="ta-center">
@@ -309,7 +309,7 @@ tags: base
                 {% assign percentItems = percentItems | split: "," %}
                 {% for size in percentItems %}
                     <tr class="ff-mono fs-caption">
-                        <th scope="row"><code class="stacks-code">.wmx{{ size }}</code></th>
+                        <th scope="row"><code class="docs-code">.wmx{{ size }}</code></th>
                         <td class="p8">max-width: {{ size }}%;</td>
                         <td class="p8">-</td>
                         <td class="ta-center">
@@ -321,7 +321,7 @@ tags: base
                 {% endfor %}
 
                 <tr class="ff-mono fs-caption">
-                    <th scope="row"><code class="stacks-code">.wmx-screen</code></th>
+                    <th scope="row"><code class="docs-code">.wmx-screen</code></th>
                     <td class="p8">max-width: 100vh;</td>
                     <td class="p8">-</td>
                     <td class="ta-center">
@@ -329,7 +329,7 @@ tags: base
                     </td>
                 </tr>
                 <tr class="ff-mono fs-caption">
-                    <th scope="row"><code class="stacks-code">.wmx-initial</code></th>
+                    <th scope="row"><code class="docs-code">.wmx-initial</code></th>
                     <td class="p8">max-width: initial;</td>
                     <td class="p8">-</td>
                     <td class="ta-center">

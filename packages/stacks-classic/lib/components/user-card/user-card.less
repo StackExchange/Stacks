@@ -5,6 +5,12 @@
     --_uc-group-gap: var(--su4);
     --_uc-row-gap: var(--su6);
     --_uc-username-fs: unset;
+    --_uc-username-p: unset;
+    --_uc-username-bl: unset;
+    --_uc-username-bg: unset;
+    --_uc-username-fc: unset;
+    --_uc-username-d: unset;
+    --_uc-username-ai: unset;
 
     // VARIANTS
     // SIZES
@@ -26,6 +32,10 @@
         --_uc-username-fs: var(--fs-body3);
     }
 
+    &&__deleted {
+        --_uc-username-fc: var(--black-400);
+    }
+
     // CHILD ELEMENTS
     & &--bio {
         .truncation(3);
@@ -35,6 +45,13 @@
     & &--recognition {
         --_uc-row-gap: var(--su4);
 
+        &,
+        & a {
+            color: var(--theme-primary);
+        }
+    }
+
+    & &--recognition-additional-bling {
         &,
         & a {
             color: var(--theme-primary);
@@ -51,11 +68,28 @@
     }
 
     & &--username {
+        align-items: var(--_uc-username-ai);
+        background-color: var(--_uc-username-bg);
+        border-left: var(--_uc-username-bl);
+        color: var(--_uc-username-fc);
+        display: var(--_uc-username-d);
         font-size: var(--_uc-username-fs);
         font-weight: 500;
         min-width: 0;
         overflow-wrap: break-word;
+        padding: var(--_uc-username-p);
         word-break: break-all;
+    }
+
+    &--username__op {
+        --_uc-username-p: calc(var(--su4) - var(--su1)) var(--su4) calc(var(--su4) - var(--su1)) var(--su4);
+        --_uc-username-bg: var(--blue-100);
+        --_uc-username-bl: var(--su4) solid var(--blue-300);
+        --_uc-username-d: flex;
+        --_uc-username-ai: center;
+        .s-user-card__sm & {
+            --_uc-username-p: 0 var(--su4);
+        }
     }
 
     // Layout specific

@@ -5,7 +5,7 @@ js: true
 description: The Stacks uploader is a custom-styled file input with added functionality to preview the file or files the user is uploading.
 tags: components
 ---
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
@@ -19,7 +19,7 @@ tags: components
             <tbody class="fs-caption">
                 {% for item in uploader-component.classes %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <th scope="row"><code class="docs-code">{{ item.class }}</code></th>
                         <td>{{ item.applies }}</td>
                         <td class="p8">{{ item.description }}</td>
                     </tr>
@@ -40,48 +40,48 @@ tags: components
             </thead>
             <tbody class="fs-caption">
                 <tr>
-                    <th scope="row"><code class="stacks-code">data-controller="s-uploader"</code></th>
+                    <th scope="row"><code class="docs-code">data-controller="s-uploader"</code></th>
                     <td>Controller element</td>
-                    <td>Wires up the element to the uploader controller. This may be a <code class="stacks-code">.s-uploader</code> element or a wrapper element.</td>
+                    <td>Wires up the element to the uploader controller. This may be a <code class="docs-code">.s-uploader</code> element or a wrapper element.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="stacks-code">data-target="s-uploader.uploader"</code></th>
-                    <td><code class="stacks-code">.s-uploader</code></td>
+                    <th scope="row"><code class="docs-code">data-target="s-uploader.uploader"</code></th>
+                    <td><code class="docs-code">.s-uploader</code></td>
                     <!-- TODO: Rewrite this. It's really not dependant on it being the parent of these targets -->
-                    <td>Wires up the element containing <code class="stacks-code">input</code>, <code class="stacks-code">previews</code>, and <code class="stacks-code">reset</code> targets.</td>
+                    <td>Wires up the element containing <code class="docs-code">input</code>, <code class="docs-code">previews</code>, and <code class="docs-code">reset</code> targets.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="stacks-code">data-s-uploader-target="input"</code></th>
-                    <td><code class="stacks-code">.s-uploader--input</code></td>
+                    <th scope="row"><code class="docs-code">data-s-uploader-target="input"</code></th>
+                    <td><code class="docs-code">.s-uploader--input</code></td>
                     <td>Designates the file input element.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="stacks-code">data-target="s-uploader.previews"</code></th>
-                    <td><code class="stacks-code">.s-uploader--previews</code></td>
+                    <th scope="row"><code class="docs-code">data-target="s-uploader.previews"</code></th>
+                    <td><code class="docs-code">.s-uploader--previews</code></td>
                     <td>Designates the element to act as a container to file preview(s).</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="stacks-code">data-action="input->s-uploader#handleInput"</code></th>
-                    <td><code class="stacks-code">input[type=file]</code> element</td>
+                    <th scope="row"><code class="docs-code">data-action="input->s-uploader#handleInput"</code></th>
+                    <td><code class="docs-code">input[type=file]</code> element</td>
                     <td>Wires up the element to provide files for preview on change.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="stacks-code">data-action="click->s-uploader#reset"</code></th>
+                    <th scope="row"><code class="docs-code">data-action="click->s-uploader#reset"</code></th>
                     <td>Any child element</td>
                     <td>Wires up the element to reset the uploader to its initial state.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="stacks-code">data-s-uploader-show-on-input</code></th>
+                    <th scope="row"><code class="docs-code">data-s-uploader-show-on-input</code></th>
                     <td>Any child element</td>
                     <td>Toggles element visibility. Shows when input has value.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="stacks-code">data-s-uploader-hide-on-input</code></th>
+                    <th scope="row"><code class="docs-code">data-s-uploader-hide-on-input</code></th>
                     <td>Any child element</td>
                     <td>Toggles element visibility. Hides when input has value.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="stacks-code">data-s-uploader-enable-on-input</code></th>
+                    <th scope="row"><code class="docs-code">data-s-uploader-enable-on-input</code></th>
                     <td>Any child element</td>
                     <td>Toggles element disabled state. Disables when input has no value.</td>
                 </tr>
@@ -89,13 +89,13 @@ tags: components
         </table>
     </div>
 </section>
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Examples" %}
-    <p class="stacks-copy">Including a file input with the class <code class="stacks-code">s-uploader--input</code> within <code class="stacks-code">s-uploader</code> will provide the correct styling for an upload section.</p>
+    <p class="docs-copy">Including a file input with the class <code class="docs-code">s-uploader--input</code> within <code class="docs-code">s-uploader</code> will provide the correct styling for an upload section.</p>
 
     {% header "h3", "Profile picture" %}
-    <p class="stacks-copy">In this example, we’re showing a single file input with an image as the example’s placeholder illustration.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">In this example, we’re showing a single file input with an image as the example’s placeholder illustration.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <label class="d-block s-label mb4" for="uploader">Upload a profile picture</label>
 <div data-controller="s-uploader">
@@ -123,10 +123,10 @@ tags: components
         </div>
     </div>
     <div>
-        <button class="s-btn s-btn__filled" data-s-uploader-enable-on-input disabled>
+        <button class="s-btn" data-s-uploader-enable-on-input disabled>
             Upload
         </button>
-        <button class="s-btn d-none"
+        <button class="s-btn s-btn__clear d-none"
                 data-action="click->s-uploader#reset"
                 data-s-uploader-show-on-input>
             Cancel
@@ -134,7 +134,7 @@ tags: components
     </div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example overflow-x-auto">
+        <div class="docs-preview--example overflow-x-auto">
             <label class="d-block s-label mb4" for="uploader1">Upload a profile picture</label>
             <div data-controller="s-uploader">
                 <div class="s-uploader mb24 wmx3" data-target="s-uploader.uploader">
@@ -163,12 +163,12 @@ tags: components
                     </div>
                 </div>
                 <div>
-                    <button class="s-btn s-btn__filled"
+                    <button class="s-btn"
                             data-s-uploader-enable-on-input
                             disabled>
                         Upload
                     </button>
-                    <button class="s-btn d-none"
+                    <button class="s-btn s-btn__clear d-none"
                             data-action="click->s-uploader#reset"
                             data-s-uploader-show-on-input>
                         Cancel
@@ -179,8 +179,8 @@ tags: components
     </div>
 
     {% header "h3", "Multiple files" %}
-    <p class="stacks-copy">In this example, this uploader accepts multiple documents so we’ve swapped <code class="stacks-code">@Svg.Spot.Image</code> for <code class="stacks-code">@Svg.Spot.DocumentAlt</code> and changed the input’s description and attributes to allow for multiples.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">In this example, this uploader accepts multiple documents so we’ve swapped <code class="docs-code">@Svg.Spot.Image</code> for <code class="docs-code">@Svg.Spot.DocumentAlt</code> and changed the input’s description and attributes to allow for multiples.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <label class="d-block s-label mb4" for="uploader">Choose your files</label>
 <div data-controller="s-uploader">
@@ -209,10 +209,10 @@ tags: components
         </div>
     </div>
     <div>
-        <button class="s-btn s-btn__filled" data-s-uploader-enable-on-input disabled>
+        <button class="s-btn" data-s-uploader-enable-on-input disabled>
             Upload
         </button>
-        <button class="s-btn d-none"
+        <button class="s-btn s-btn__clear d-none"
                 data-action="click->s-uploader#reset"
                 data-s-uploader-show-on-input>
             Cancel
@@ -220,7 +220,7 @@ tags: components
     </div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example overflow-x-auto">
+        <div class="docs-preview--example overflow-x-auto">
             <label class="d-block s-label mb4" for="uploader2">Choose your files</label>
             <div data-controller="s-uploader">
                 <div class="s-uploader mb24 wmx3" data-target="s-uploader.uploader">
@@ -250,12 +250,12 @@ tags: components
                     </div>
                 </div>
                 <div>
-                    <button class="s-btn s-btn__filled"
+                    <button class="s-btn"
                             data-s-uploader-enable-on-input
                             disabled>
                         Upload
                     </button>
-                    <button class="s-btn d-none"
+                    <button class="s-btn s-btn__clear d-none"
                             data-action="click->s-uploader#reset"
                             data-s-uploader-show-on-input>
                         Cancel

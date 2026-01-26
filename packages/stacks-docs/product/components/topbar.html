@@ -5,7 +5,7 @@ description: The topbar component is a navigation bar that is placed at the top 
 tags: components
 ---
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
         <table class="wmn4 s-table s-table__bx-simple">
@@ -19,7 +19,7 @@ tags: components
             <tbody class="fs-caption">
                 {% for item in topbar %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
+                        <th scope="row"><code class="docs-code">{{ item.class }}</code></th>
                         <td>{{ item.applies | default: "N/A" | markdown | newline_to_br }}</td>
                         <td>{{ item.description | markdown }}</td>
                     </tr>
@@ -29,10 +29,10 @@ tags: components
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Basic usage" %}
-    <p class="stacks-copy">At their most basic, our topbar component provides branding and context for the user. In this example, we have a scaled back version showing some global navigation, user settings & preferences, and notifications.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">At their most basic, our topbar component provides branding and context for the user. In this example, we have a scaled back version showing some global navigation, user settings & preferences, and notifications.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <header class="s-topbar">
     <a href="#content" class="s-topbar--skip-link">Skip to main content</a>
@@ -55,45 +55,45 @@ tags: components
     </div>
 </header>
 {% endhighlight %}
-        <div class="stacks-preview--example bg-black-100">
+        <div class="docs-preview--example bg-black-100">
             {% render 'topbar.html', hideNavigation: true, hideSearch: true, showMenu: true %}
         </div>
     </div>
 
     {% header "h3", "Skip Link" %}
-    <p class="stacks-copy">All topbars must include a skip link.
+    <p class="docs-copy">All topbars must include a skip link.
         Usually a skip link should be the first focusable element of a page (with the expection of cookie consent dialogs).
         Skip links are a mechanism to bypass blocks of content that are repeated on multiple web pages and comply with <a class="s-link" href="https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks">WCAG SC 2.4.1</a>.</p>
 
-        {% tip, "info", "mb24" %}
-        <strong>Note:</strong> Skip links become visible only when focused via keyboard navigation and they are announced by screen readers. In the example below hit <code class="stacks-code">Tab</code> on your keyboard to see it appearing when in focus.
+        {% tip, "info" %}
+            <strong>Note:</strong> Skip links become visible only when focused via keyboard navigation and they are announced by screen readers. In the example below hit <code>Tab</code> on your keyboard to see it appearing when in focus.
         {% endtip %}
-        <div class="stacks-preview">
+        <div class="docs-preview">
 {% highlight html %}
 <header class="s-topbar">
     <a href="#content" class="s-topbar--skip-link">Skip to main content</a>
     <div class="s-topbar--container">…</div>
 </header>
 {% endhighlight %}
-        <div class="stacks-preview--example bg-black-100">
+        <div class="docs-preview--example bg-black-100">
             {% render 'topbar.html', hideNavigation: true, hideSearch: true %}
         </div>
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Advanced usage" %}
-    <p class="stacks-copy">Depending on the user's authentication levels, we may need to include lots of options and menus. The topbar can include new marketing notifications, marketing navigation, a search bar, user details, moderator tools, review queues, achievements, inbox, help, and various bits of navigation.</p>
+    <p class="docs-copy">Depending on the user's authentication levels, we may need to include lots of options and menus. The topbar can include new marketing notifications, marketing navigation, a search bar, user details, moderator tools, review queues, achievements, inbox, help, and various bits of navigation.</p>
 
     {% header "h3", "Theming" %}
-    <p class="stacks-copy">By default, the topbar automatically switches between light and dark modes as expected. In specific products like Teams, we choose to force a dark version to help the user differentiate between contexts. You can choose either light or dark by applying their respective classes to the main component.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">By default, the topbar automatically switches between light and dark modes as expected. In specific products like Teams, we choose to force a dark version to help the user differentiate between contexts. You can choose either light or dark by applying their respective classes to the main component.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <header class="s-topbar">…</header>
 <header class="s-topbar s-topbar__dark">…</header>
 <header class="s-topbar s-topbar__light">…</header>
 {% endhighlight %}
-        <div class="stacks-preview--example bg-black-100">
+        <div class="docs-preview--example bg-black-100">
             {% assign variations = "s-topbar__auto,s-topbar__dark,s-topbar__light" | split: "," %}
             <div class="d-grid g24 grid__1">
                 {% for variation in variations %}
@@ -107,8 +107,8 @@ tags: components
     </div>
 
     {% header "h3", "Search bar" %}
-    <p class="stacks-copy">The topbar can also include a search bar. Depending on the user’s products, it may be appropriate to add a select menu to choose the context for their search.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">The topbar can also include a search bar. Depending on the user’s products, it may be appropriate to add a select menu to choose the context for their search.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <header class="s-topbar">
     <a href="#content" class="s-topbar--skip-link">Skip to main content</a>
@@ -131,23 +131,23 @@ tags: components
     </div>
 </header>
 {% endhighlight %}
-        <div class="stacks-preview--example bg-black-100">
+        <div class="docs-preview--example bg-black-100">
             <div class="d-grid g24 grid__1">
                 <div class="grid--item">
                     <h4 class="fs-body2 mb8">With select</h4>
-                    {% render 'topbar.html', showNavigation: false, hideUserCard: true %}
+                    {% render 'topbar.html', showNavigation: false, hideUserAvatar: true %}
                 </div>
                 <div class="grid--item">
                     <h4 class="fs-body2 mb8">Input only</h4>
-                    {% render 'topbar.html', showNavigation: false, hideUserCard: true, hideSelect: true %}
+                    {% render 'topbar.html', showNavigation: false, hideUserAvatar: true, hideSelect: true %}
                 </div>
             </div>
         </div>
     </div>
 
     {% header "h3", "Navigation / Notices / CTAs" %}
-    <p class="stacks-copy">If a user is logged out, or is anonymous, we provide a container for various calls to actions. This is a less opinionated container that only provides layout without styling of the individual children.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">If a user is logged out, or is anonymous, we provide a container for various calls to actions. This is a less opinionated container that only provides layout without styling of the individual children.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <header class="s-topbar">
     <a href="#content" class="s-topbar--skip-link">Skip to main content</a>
@@ -182,32 +182,32 @@ tags: components
         <nav class="s-topbar--navigation" aria-label="Log in or sign up">
             <ol class="s-topbar--content">
                 <li>
-                    <a href="…" class="s-topbar--item s-topbar--item__unset s-btn s-btn__filled">Log in</a>
+                    <a href="…" class="s-topbar--item s-topbar--item__unset s-btn s-btn__clear">Log in</a>
                 </li>
                 <li>
-                    <a href="…" class="s-topbar--item s-topbar--item__unset ml4 s-btn s-btn__filled">Sign up</a>
+                    <a href="…" class="s-topbar--item s-topbar--item__unset ml4 s-btn">Sign up</a>
                 </li>
             </ol>
         </nav>
     </div>
 </header>
 {% endhighlight %}
-        <div class="stacks-preview--example bg-black-100">
+        <div class="docs-preview--example bg-black-100">
             {% render 'topbar.html', showNotices: true, showFullNavigation: true, hideSearch: true, showCtas: true  %}
         </div>
     </div>
 
     {% header "h3", "Variable content width" %}
-    <p class="stacks-copy">By default, the topbar has a container that is full width, up to our widest point as defined by our global variables. If you need to override this, you can apply any combination of atomic base classes to the container.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">By default, the topbar has a container that is full width, up to our widest point as defined by our global variables. If you need to override this, you can apply any combination of atomic base classes to the container.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <header class="s-topbar">
     <a href="#content" class="s-topbar--skip-link">Skip to main content</a>
     <div class="s-topbar--container wmx75">…</div>
 </header>
 {% endhighlight %}
-        <div class="stacks-preview--example bg-black-100">
-            {% render 'topbar.html', containerClass: "wmx75", hideUserCard: true  %}
+        <div class="docs-preview--example bg-black-100">
+            {% render 'topbar.html', containerClass: "wmx75", hideUserAvatar: true  %}
         </div>
     </div>
 </section>

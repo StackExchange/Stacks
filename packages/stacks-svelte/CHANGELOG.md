@@ -1,5 +1,44 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.22
+
+### Minor Changes
+
+- [#2136](https://github.com/StackExchange/Stacks/pull/2136) [`d75d9d4`](https://github.com/StackExchange/Stacks/commit/d75d9d475b596f96442b6badeb9ff5a390796267) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Add .bg-loading delete skeleton
+
+    BREAKING CHANGES:
+
+    Skeleton component deleted
+
+## 1.0.0-beta.21
+
+### Patch Changes
+
+- [#2138](https://github.com/StackExchange/Stacks/pull/2138) [`fcd06fb`](https://github.com/StackExchange/Stacks/commit/fcd06fbf72597029e500dfeb08ecdc7080fb5f70) Thanks [@dancormier](https://github.com/dancormier)! - Export user card child components
+
+## 1.0.0-beta.20
+
+### Patch Changes
+
+- [#2130](https://github.com/StackExchange/Stacks/pull/2130) [`e2dea15`](https://github.com/StackExchange/Stacks/commit/e2dea15216568555cd1562dc65e5ff7477372a47) Thanks [@giamir](https://github.com/giamir)! - dependencies upgrade
+
+- Updated dependencies [[`e2dea15`](https://github.com/StackExchange/Stacks/commit/e2dea15216568555cd1562dc65e5ff7477372a47)]:
+    - @stackoverflow/stacks-utils@1.0.0-beta.1
+
+## 1.0.0-beta.19
+
+### Patch Changes
+
+- [#2128](https://github.com/StackExchange/Stacks/pull/2128) [`d60aa26`](https://github.com/StackExchange/Stacks/commit/d60aa261b6bfa53ad4fc5761921c02d1cec2aecd) Thanks [@giamir](https://github.com/giamir)! - Adjust stacks svelte peer deps
+
+## 1.0.0-beta.18
+
+### Patch Changes
+
+- Updated dependencies [[`93ae01b`](https://github.com/StackExchange/Stacks/commit/93ae01bdec7c120cb77f98b9bcf0e718642c9552), [`65938dd`](https://github.com/StackExchange/Stacks/commit/65938dd760fdc6d2e4cff71ac5c67d3582e02cd4)]:
+    - @stackoverflow/stacks@3.0.0-beta.16
+    - @stackoverflow/stacks-utils@1.0.0-beta.0
+
 ## 1.0.0-beta.17
 
 ### Minor Changes

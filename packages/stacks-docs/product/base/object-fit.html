@@ -1,10 +1,10 @@
 ---
 layout: page
 title: Object fit
-description: Atomic classes that control the sizing of an <code class="stacks-code">img</code> or <code class="stacks-code">video</code> relative to its container.
+description: Atomic classes that control the sizing of an <code class="docs-code">img</code> or <code class="docs-code">video</code> relative to its container.
 tags: base
 ---
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb48" tabindex="0">
         <table class="wmn3 s-table s-table__bx-simple">
@@ -18,8 +18,8 @@ tags: base
             <tbody>
                 {% for atomic in atomics.object-fit %}
                     <tr class="fs-caption">
-                        <th scope="row"><code class="stacks-code">{{ atomic.class }}</code></th>
-                        <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
+                        <th scope="row"><code class="docs-code">.{{ atomic.class }}</code></th>
+                        <td><code class="docs-code bg-white">{{ atomic.output }}</code></td>
                         <td>{{ atomic.define }}</td>
                     </tr>
                 {% endfor %}
@@ -28,7 +28,7 @@ tags: base
     </div>
 
     {% header "h2", "Examples" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <img class="of-contain" src="…" />
 <img class="of-cover" src="…" />
@@ -37,86 +37,32 @@ tags: base
 <img class="of-scale-down" src="…" />
 <img class="of-none op-center" src="…" />
 {% endhighlight %}
-        <div class="stacks-preview--example ff-mono">
-            <div class="d-flex g32 fw-wrap">
-                <div class="flex--item">
-                    <div class="mb8 ff-mono">.of-contain</div>
-                    <img
-                        class="of-contain ba bc-black-225 hs1 ws1"
-                        src="https://fakeimg.pl/400x240/e4e6e8"
-                        alt="placeholder for .of-contain"
-                    />
-                    <img
-                        class="of-contain ba bc-black-225 hs1 ws1"
-                        src="https://fakeimg.pl/90x60/e4e6e8"
-                        alt="placeholder for .of-contain"
-                    />
-                </div>
-                <div class="flex--item">
-                    <div class="mb8 ff-mono">.of-cover</div>
-                    <img
-                        class="of-cover ba bc-black-225 hs1 ws1"
-                        src="https://fakeimg.pl/400x240/e4e6e8"
-                        alt="placeholder for .of-cover"
-                    />
-                    <img
-                        class="of-cover ba bc-black-225 hs1 ws1"
-                        src="https://fakeimg.pl/90x60/e4e6e8"
-                        alt="placeholder for .of-cover"
-                    />
-                </div>
-                <div class="flex--item">
-                    <div class="mb8 ff-mono">.of-fill</div>
-                    <img
-                        class="of-fill ba bc-black-225 hs1 ws1"
-                        src="https://fakeimg.pl/400x240/e4e6e8"
-                        alt="placeholder for .of-fill"
-                    />
-                    <img
-                        class="of-fill ba bc-black-225 hs1 ws1"
-                        src="https://fakeimg.pl/90x60/e4e6e8"
-                        alt="placeholder for .of-fill"
-                    />
-                </div>
-                <div class="flex--item">
-                    <div class="mb8 ff-mono">.of-none</div>
-                    <img
-                        class="of-none ba bc-black-225 hs1 ws1"
-                        src="https://fakeimg.pl/400x240/e4e6e8"
-                        alt="placeholder for .of-none"
-                    />
-                    <img
-                        class="of-none ba bc-black-225 hs1 ws1"
-                        src="https://fakeimg.pl/90x60/e4e6e8"
-                        alt="placeholder for .of-none"
-                    />
-                </div>
-                <div class="flex--item">
-                    <div class="mb8 ff-mono">.of-scale-down</div>
-                    <img
-                        class="of-scale-down ba bc-black-225 hs1 ws1"
-                        src="https://fakeimg.pl/400x240/e4e6e8"
-                        alt="placeholder for .of-scale-down"
-                    />
-                    <img
-                        class="of-scale-down ba bc-black-225 hs1 ws1"
-                        src="https://fakeimg.pl/90x60/e4e6e8"
-                        alt="placeholder for .of-scale-down"
-                    />
-                </div>
-                <div class="flex--item">
-                    <div class="mb8 ff-mono">.op-center.of-none</div>
-                    <img
-                        class="op-center of-none ba bc-black-225 hs1 ws1"
-                        src="https://fakeimg.pl/400x240/e4e6e8"
-                        alt="placeholder for .op-center.of-none"
-                    />
-                    <img
-                        class="op-center of-none ba bc-black-225 hs1 ws1"
-                        src="https://fakeimg.pl/90x60/e4e6e8"
-                        alt="placeholder for .op-center.of-none"
-                    />
-                </div>
+        <div class="docs-preview--example ff-mono">
+            <div class="d-flex fd-column g16 fw-wrap">
+                {% for atomic in atomics.object-fit %}
+                    {% assign atomicClass = atomic.class %}
+                    {% if atomic.class == 'op-center' %}
+                        {% assign atomicClass = atomicClass | append: ' op-none' %}
+                    {% endif %}
+                    <div class="d-flex g16">
+                        <div>
+                            <div class="mb4">.{{ atomicClass | replace: " ", "." }}</div>
+                            <img
+                                class="{{ atomicClass }} docs-box p0 hs1 ws1"
+                                src="https://placeholdit.com/400x240/fff/333"
+                                alt="placeholder for .{{ atomicClass | replace: " ", "." }}"
+                            />
+                        </div>
+                        <div>
+                            <div class="mb4">.{{ atomicClass | replace: " ", "." }}</div>
+                            <img
+                                class="{{ atomicClass }} docs-box p0 hs1 ws1"
+                                src="https://placeholdit.com/90x60/fff/333"
+                                alt="placeholder for .{{ atomicClass | replace: " ", "." }}"
+                            />
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>

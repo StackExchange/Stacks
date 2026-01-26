@@ -67,6 +67,26 @@
 //  ----------------------------------------------------------------------------
 .bg-image-none { background-image: none !important; }
 
+.bg-loading {
+    animation: loadingBgAnimation 1.5s ease-out infinite;
+    animation-delay: 1ms;
+}
+
+@keyframes loadingBgAnimation {
+    0% {
+        background-color: var(--black-150);
+        opacity: 1;
+    }
+    50% {
+        background-color: var(--black-100);
+        opacity: 0.7;
+    }
+    100% {
+        background-color: var(--black-150);
+        opacity: 1;
+    }
+}
+
 .bg-confetti-animated {
     background-repeat: repeat-x;
     background-position: top -10px center;
@@ -156,21 +176,6 @@
 }
 
 //  ============================================================================
-//  $  USER DRAG
-//  ----------------------------------------------------------------------------
-.ud-auto {
-    -webkit-user-drag: auto !important;
-    -moz-user-drag: auto !important;
-    -ms-user-drag: auto !important;
-}
-
-.ud-none {
-    -webkit-user-drag: none !important;
-    -moz-user-drag: none !important;
-    -ms-user-drag: none !important;
-}
-
-//  ============================================================================
 //  $  VISIBILITY
 //  ----------------------------------------------------------------------------
 .v-visible { visibility: visible !important; }
@@ -179,6 +184,7 @@
     // Borrowed from Wordpress
     // https://make.wordpress.org/accessibility/2015/02/09/hiding-text-for-screen-readers-with-wordpress-core/
     border: 0;
+    /* stylelint-disable-next-line property-no-deprecated -- clip is kept for older browser compatibility alongside clip-path */
     clip: rect(var(--su-static1), var(--su-static1), var(--su-static1), var(--su-static1)); // rect(1px, 1px, 1px, 1px)
     clip-path: inset(50%);
     height: var(--su-static1);

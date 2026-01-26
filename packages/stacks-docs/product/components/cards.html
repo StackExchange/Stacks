@@ -5,59 +5,59 @@ figma: https://svelte.stackoverflow.design/figma/cards
 description: Cards are used to group similar concepts and tasks together to make information easier to scan, read, and act on. Cards should use a heading that sets clear expectations about the card’s purpose, paragraphs that put the most critical information first, and (optionally) calls to action on the bottom to direct user action.
 tags: components
 ---
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Base" %}
-    <p class="stacks-copy">The base card styling applies a border and padding to the card.</p>
-    <p class="stacks-copy">Cards can be any size and it’s ok to increase the body text size for larger cards.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">The base card styling applies a border and padding to the card.</p>
+    <p class="docs-copy">Cards can be any size and it’s ok to increase the body text size for larger cards.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <div class="s-card">
     <h2 class="fs-body3 lh-sm fc-dark">…</h2>
     <p class="fs-body1 fc-medium">…</p>
-    <button class="s-btn s-btn__filled s-btn__sm">…</button>
+    <button class="s-btn s-btn__sm">…</button>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="s-card wmx3 mb12">
                 <h2 class="fs-body3 lh-sm fc-dark">Base card title</h2>
                 <p class="fs-body1 fc-medium">This is a description of the card’s content.</p>
                 <div class="d-flex gx4">
-                    <button class="flex--item s-btn s-btn__filled s-btn__sm">Call to action</button>
-                    <button class="flex--item s-btn s-btn__sm">Cancel</button>
+                    <button class="s-btn s-btn__sm">Call to action</button>
+                    <button class="s-btn s-btn__clear s-btn__sm">Cancel</button>
                 </div>
             </div>
             <div class="s-card">
                 <h2 class="fs-body3 lh-sm fc-dark">Base card title</h2>
                 <p class="fs-body2 fc-medium">This is a description of the card’s content. Sometimes the description is two or three sentences.</p>
                 <div class="d-flex gx4">
-                    <button class="flex--item s-btn s-btn__filled s-btn__sm">Call to action</button>
-                    <button class="flex--item s-btn s-btn__sm">Cancel</button>
+                    <button class="s-btn s-btn__sm">Call to action</button>
+                    <button class="s-btn s-btn__clear s-btn__sm">Cancel</button>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Box shadows" %}
-    <p class="stacks-copy">Applying <a href="{{ "/product/base/box-shadow/" | url }}">a <a href="{{ "/product/base/box-shadow/" | url }}"><code class="stacks-code">.bs-*</code> class</a> adds a box shadow to a card. Useful when giving users the impression they can interact with the card.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">Applying <a href="{{ "/product/base/box-shadow/" | url }}">a <a href="{{ "/product/base/box-shadow/" | url }}"><code class="docs-code">.bs-*</code> class</a> adds a box shadow to a card. Useful when giving users the impression they can interact with the card.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <div class="s-card bs-sm">…</div>
 <div class="s-card bs-md">…</div>
 <div class="s-card bs-lg">…</div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex flex__allitems4 md:fd-column g12">
-                <div class="flex--item s-card bs-sm">
+                <div class="s-card bs-sm">
                     <h2 class="fs-body3 lh-sm fc-dark">Small box shadow</h2>
                     <p class="fs-body1 fc-medium">This adds a small box shadow.</p>
                 </div>
-                <div class="flex--item s-card bs-md">
+                <div class="s-card bs-md">
                     <h2 class="fs-body3 lh-sm fc-dark">Medium box shadow</h2>
                     <p class="fs-body1 fc-medium">This adds medium box shadow.</p>
                 </div>
-                <div class="flex--item s-card bs-lg">
+                <div class="s-card bs-lg">
                     <h2 class="fs-body3 lh-sm fc-dark">Large box shadow</h2>
                     <p class="fs-body1 fc-medium">This is the largest box shadow.</p>
                 </div>
@@ -66,11 +66,11 @@ tags: components
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Linked cards" %}
-    <p class="stacks-copy">The <code class="stacks-code">.s-card</code> class can be applied to an <code class="stacks-code">&lt;a&gt;</code> tag for instances where a whole card should link somewhere. If possible, linked cards should visually indication that they’re interactive (ex. including an <code class="stacks-code">.s-btn</code> or <code class="stacks-code">.s-link</code> somewhere).</p>
-    <p class="stacks-copy">A <code class="stacks-code">:hover</code> style for border color is automatically added to all linked cards. For linked cards with a box shadow (<code class="stacks-code">.bs-*</code>), adding <a href="{{ "/product/base/box-shadow/" | url }}">a <code class="stacks-code">.h:bs-*</code> class</a> will apply a hover style to the box shadow as well. Increasing the <code class="stacks-code">.bs-</code> size by <strong>a factor of one</strong> is usually best.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">The <code class="docs-code">.s-card</code> class can be applied to an <code class="docs-code">&lt;a&gt;</code> tag for instances where a whole card should link somewhere. If possible, linked cards should visually indication that they’re interactive (ex. including an <code class="docs-code">.s-btn</code> or <code class="docs-code">.s-link</code> somewhere).</p>
+    <p class="docs-copy">A <code class="docs-code">:hover</code> style for border color is automatically added to all linked cards. For linked cards with a box shadow (<code class="docs-code">.bs-*</code>), adding <a href="{{ "/product/base/box-shadow/" | url }}">a <code class="docs-code">.h:bs-*</code> class</a> will apply a hover style to the box shadow as well. Increasing the <code class="docs-code">.bs-</code> size by <strong>a factor of one</strong> is usually best.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <a href="…" class="s-card">
     <h2 class="fs-body3 lh-sm fc-dark">…</h2>
@@ -84,32 +84,32 @@ tags: components
     <p class="fs-body1 s-link">…</p>
 </a>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex flex__allitems4 fw-wrap ai-stretch md:fd-column g12">
-                <a href="#" class="flex--item s-card">
+                <a href="#" class="s-card">
                     <h2 class="fs-body3 lh-sm fc-dark">Linked card title</h2>
                     <p class="fs-body1 fc-medium">This is a description of the card’s content.</p>
                     <p class="fs-body1 s-link">Learn more</p>
                 </a>
-                <a href="#" class="flex--item s-card">
+                <a href="#" class="s-card">
                     <h2 class="fs-body3 lh-sm fc-dark">Linked card title</h2>
                     <p class="fs-body1 fc-medium">When vertical space is an issue, the CTA can be moved inline with paragraph text. <span class="s-link">Learn more</span></p>
                 </a>
-                <a href="#" class="flex--item s-card">
+                <a href="#" class="s-card">
                     <h2 class="fs-body3 lh-sm fc-dark">Linked card title</h2>
                     <p class="fs-body1 fc-medium">When a card’s content is visually complex (ex. a graph) or having extra decoration is visually distracting.</p>
                 </a>
-                <a href="#" class="flex--item s-card h:bs-sm">
+                <a href="#" class="s-card h:bs-sm">
                     <h2 class="fs-body3 lh-sm fc-dark">Small box shadow on :hover</h2>
                     <p class="fs-body1 fc-medium">This is a description of the card’s content.</p>
                     <p class="fs-body1 s-link">Learn more</p>
                 </a>
-                <a href="#" class="flex--item s-card bs-sm h:bs-md">
+                <a href="#" class="s-card bs-sm h:bs-md">
                     <h2 class="fs-body3 lh-sm fc-dark">Medium box shadow on :hover</h2>
                     <p class="fs-body1 fc-medium">This is a description of the card’s content.</p>
                     <p class="fs-body1 s-link">Learn more</p>
                 </a>
-                <a href="#" class="flex--item s-card bs-md h:bs-lg">
+                <a href="#" class="s-card bs-md h:bs-lg">
                     <h2 class="fs-body3 lh-sm fc-dark">Large box shadow on :hover</h2>
                     <p class="fs-body1 fc-medium">This is a description of the card’s content.</p>
                     <p class="fs-body1 s-link">Learn more</p>
@@ -119,23 +119,23 @@ tags: components
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Muted" %}
-    <p class="stacks-copy">When a card is disabled or considered completed, apply the muted modifier to visually dim the card.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">When a card is disabled or considered completed, apply the muted modifier to visually dim the card.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <div class="s-card s-card__muted">
     <h1 class="fs-body3 fc-dark">…</h1>
     <p class="fs-body1 fc-light">…</p>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex flex__allitems4 md:fd-column g12">
-                <div class="flex--item s-card s-card__muted">
+                <div class="s-card s-card__muted">
                     <h2 class="fs-body3 lh-sm fc-dark">Base card title</h2>
                     <p class="fs-body1 fc-medium">This is a description of the card’s content.</p>
                 </div>
-                <a href="#" class="flex--item s-card s-card__muted">
+                <a href="#" class="s-card s-card__muted">
                     <h2 class="fs-body3 lh-sm fc-dark">Linked card title</h2>
                     <p class="fs-body1 fc-medium">This is a description of the card’s content.</p>
                 </a>
@@ -144,10 +144,10 @@ tags: components
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Stacked" %}
-    <p class="stacks-copy">First introduced for our collections feature in Teams, cards can also be stacked to imply multiple sections or items. No need to overthink it, we can just nest our cards. Note: You’ll need to compensate for the <code class="stacks-code">4px</code> of nesting on that right edge to keep things equidistant.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">First introduced for our collections feature in Teams, cards can also be stacked to imply multiple sections or items. No need to overthink it, we can just nest our cards. Note: You’ll need to compensate for the <code class="docs-code">4px</code> of nesting on that right edge to keep things equidistant.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <div class="s-card p0">
     <div class="s-card ps-relative b4 l4">
@@ -155,7 +155,7 @@ tags: components
     </div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="pr4">
                 <div class="s-card p0">
                     <div class="s-card ps-relative b4 l4">
