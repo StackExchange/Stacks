@@ -7,6 +7,10 @@
     import Icon from "../Icon/Icon.svelte";
     import { IconStarVerifiedSm } from "@stackoverflow/stacks-icons-legacy/icons";
     import type { Snippet } from "svelte";
+    import Popover from "../Popover/Popover.svelte";
+    import PopoverReference from "../Popover/PopoverReference.svelte";
+    import PopoverContent from "../Popover/PopoverContent.svelte";
+    import AvatarDeleted from "./AvatarDeleted.svelte";
 
     interface Props {
         /**
@@ -65,6 +69,30 @@
         bio?: Snippet;
 
         /**
+         * Snippet used to display user additional blings
+         */
+        additionalBlings?: Snippet;
+
+        /**
+         * Identifies if the user card is the original poster
+         */
+        originalPoster?: boolean;
+
+        /**
+         * The text for the original poster tooltip
+         */
+        i18nOpTooltipText?: string;
+
+        /**
+         * The text for the deleted user tooltip
+         */
+        i18nDeletedTooltipText?: string;
+
+        /**
+         * Identifies if the user has been deleted
+         */
+        deleted?: boolean;
+        /**
          * Additional CSS classes added to the element
          */
         class?: string;
@@ -82,10 +110,15 @@
         location,
         designation,
         bio,
+        additionalBlings,
+        originalPoster,
+        i18nOpTooltipText = "is the original poster.",
+        i18nDeletedTooltipText = "Deleted user",
+        deleted,
         class: className = "",
     }: Props = $props();
 
-    const getClasses = (className: string, size?: Size) => {
+    const getClasses = (className: string, size?: Size, deleted?: boolean) => {
         const base = "s-user-card";
         let classes = base;
 
@@ -95,6 +128,10 @@
 
         if (size) {
             classes += ` ${base}__${size}`;
+        }
+
+        if (deleted) {
+            classes += ` ${base}__deleted`;
         }
 
         return classes;
@@ -111,7 +148,7 @@
         }
     };
 
-    const classes = $derived(getClasses(className, size));
+    const classes = $derived(getClasses(className, size, deleted));
     const avatarSize = $derived(getAvatarSize(size));
 </script>
 
@@ -131,27 +168,83 @@
                 />
             {/if}
             {#if name}
-                <span class="s-user-card--username">{name}</span>
+                {#if originalPoster}
+                    <Popover id="user-card-original-poster-popover" tooltip>
+                        <PopoverReference>
+                            <span
+                                class="s-user-card--username s-user-card--username__op"
+                                >{name}</span
+                            >
+                        </PopoverReference>
+                        <PopoverContent>
+                            <span>
+                                <a
+                                    href={profileUrl}
+                                    class="s-link s-link__underlined">{name}</a
+                                >
+                                {i18nOpTooltipText}
+                            </span>
+                        </PopoverContent>
+                    </Popover>
+                {:else}
+                    <span class="s-user-card--username">{name}</span>
+                {/if}
             {/if}
         </svelte:element>
     {/if}
 {/snippet}
 
+{#snippet userCardMainContent()}
+    {@render avatarAndName()}
+    {#if badges}
+        <ul class="s-user-card--group">
+            {@render badges()}
+        </ul>
+    {/if}
+    {#if additionalBlings}
+        {@render additionalBlings()}
+    {/if}
+    {#if blings}
+        <ul class="s-user-card--group">
+            {@render blings()}
+        </ul>
+    {/if}
+    {#if time}
+        {@render time()}
+    {/if}
+{/snippet}
+
 <div class={classes}>
-    {#if size !== "lg"}
-        {@render avatarAndName()}
-        {#if badges}
-            <ul class="s-user-card--group">
-                {@render badges()}
-            </ul>
-        {/if}
-        {#if blings}
-            <ul class="s-user-card--group">
-                {@render blings()}
-            </ul>
-        {/if}
+    {#if deleted}
+        <div class="s-user-card--group">
+            <Popover id="user-card-deleted-popover" tooltip>
+                <PopoverReference>
+                    <AvatarDeleted size={size === "sm" ? 16 : 24} />
+                </PopoverReference>
+                <PopoverContent>
+                    <span>{i18nDeletedTooltipText}</span>
+                </PopoverContent>
+            </Popover>
+            <span class="s-user-card--username s-user-card--deleted"
+                >{name}</span
+            >
+        </div>
         {#if time}
             {@render time()}
+        {/if}
+    {:else if size !== "lg"}
+        {#if recognition && size === undefined}
+            <div class="s-user-card--column">
+                <div class="s-user-card--row">
+                    {@render userCardMainContent()}
+                </div>
+                <div class="s-user-card--row s-user-card--recognition">
+                    <Icon src={IconStarVerifiedSm} />
+                    {@render recognition()}
+                </div>
+            </div>
+        {:else}
+            {@render userCardMainContent()}
         {/if}
     {:else}
         <div class="s-user-card--row">

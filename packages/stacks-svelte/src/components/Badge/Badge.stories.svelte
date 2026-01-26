@@ -39,6 +39,7 @@
         "staff",
         "ai",
         "bot",
+        "new",
     ] as const;
 
     const { Story } = defineMeta({
