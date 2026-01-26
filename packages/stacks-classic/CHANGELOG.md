@@ -1,5 +1,15 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.20
+
+### Minor Changes
+
+- [#2123](https://github.com/StackExchange/Stacks/pull/2123) [`dcac9bf`](https://github.com/StackExchange/Stacks/commit/dcac9bf76c55203c39495ac29d1724365d83c115) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update User Card to new SHINE design (part 2)
+
+### Patch Changes
+
+- [#2144](https://github.com/StackExchange/Stacks/pull/2144) [`04b0c7e`](https://github.com/StackExchange/Stacks/commit/04b0c7eec416cb54c7478dbfb8df2fccbddfa46a) Thanks [@dancormier](https://github.com/dancormier)! - add support for a tag having both a dismiss button and linked tag text simultaneously
+
 ## 3.0.0-beta.19
 
 ### Minor Changes
