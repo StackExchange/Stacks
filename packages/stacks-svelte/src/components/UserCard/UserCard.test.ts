@@ -55,7 +55,7 @@ describe("UserCard", () => {
     });
 
     it("should render the avatar and name as links", () => {
-    render(UserCard, {
+        render(UserCard, {
             name: "John Doe",
             avatar: "https://picsum.photos/128",
             profileUrl: "#",
