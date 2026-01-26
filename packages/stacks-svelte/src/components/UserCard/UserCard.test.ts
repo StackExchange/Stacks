@@ -60,8 +60,15 @@ describe("UserCard", () => {
             avatar: "https://picsum.photos/128",
             profileUrl: "#",
         });
-        const nameLink = screen.getByRole("link", { name: "John Doe" });
-        expect(nameLink).to.have.attr("href", "#");
+        // The avatar and name are now wrapped in a single link element
+        // The accessible name is "John Doe John Doe" (avatar screen reader text + username)
+        const link = screen.getByRole("link", { name: /John Doe/ });
+        expect(link).to.have.attr("href", "#");
+        // Verify both avatar and name are inside the same link
+        const avatarImg = screen.getByRole("presentation");
+        expect(avatarImg.closest("a")).to.equal(link);
+        const username = document.querySelector(".s-user-card--username");
+        expect(username?.closest("a")).to.equal(link);
     });
 
     it("should render the user card with arbitrary classes", () => {
