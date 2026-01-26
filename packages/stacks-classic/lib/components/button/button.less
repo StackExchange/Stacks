@@ -6,6 +6,8 @@
     --_bu-g: var(--su8);
     --_bu-px: var(--su16);
     --_bu-py: calc(var(--su8) + var(--su2)); // 10px
+    --_bu-badge-px: var(--su6);
+    --_bu-badge-py: var(--su2);
     --_bu-dropdown-bw: var(--su-static4);
 
     // VARIANTS
@@ -16,10 +18,10 @@
         --_bu-bg-hover: var(--theme-button-hover-background-color, var(--theme-secondary-500));
         --_bu-fc: var(--white);
         --_bu-fc-hover: var(--theme-button-hover-color, var(--white));
-        --_bu-badge-bg: var(--theme-secondary-200);
-        --_bu-badge-fc: var(--theme-secondary-600);
-        --_bu-badge-bg-disabled: var(--theme-secondary-200);
-        --_bu-badge-fc-disabled: var(--theme-secondary-300);
+        --_bu-badge-bg: var(--theme-secondary-500);
+        --_bu-badge-fc: var(--white);
+        --_bu-badge-bg-disabled: var(--theme-secondary-300);
+        --_bu-badge-fc-disabled: var(--white);
 
         &.s-btn__clear {
             --_bu-bg: transparent;
@@ -29,10 +31,10 @@
             --_bu-fc: var(--theme-secondary-600);
             --_bu-fc-disabled: var(--theme-secondary-300);
             --_bu-fc-hover: var(--_bu-fc);
-            --_bu-badge-bg: var(--theme-secondary-500);
-            --_bu-badge-fc: var(--white);
-            --_bu-badge-bg-disabled: var(--theme-secondary-300);
-            --_bu-badge-fc-disabled: var(--white);
+            --_bu-badge-bg: var(--theme-secondary-100);
+            --_bu-badge-fc: var(--theme-secondary-500);
+            --_bu-badge-bg-disabled: var(--theme-secondary-100);
+            --_bu-badge-fc-disabled: var(--theme-secondary-300);
 
             .highcontrast-mode({
                 --_bu-bc: var(--theme-secondary-600);
@@ -47,10 +49,10 @@
         --_bu-bg-hover: var(--red-500);
         --_bu-bg-selected: var(--red-500);
         --_bu-fc-selected: var(--_bu-fc);
-        --_bu-badge-bg: var(--red-100);
-        --_bu-badge-fc: var(--red-400);
-        --_bu-badge-bg-disabled: var(--white);
-        --_bu-badge-fc-disabled: var(--red-200);
+        --_bu-badge-bg: var(--red-500);
+        --_bu-badge-fc: var(--black-050);
+        --_bu-badge-bg-disabled: var(--red-200);
+        --_bu-badge-fc-disabled: var(--black-050);
 
         &.s-btn__clear {
             --_bu-bg: transparent;
@@ -61,11 +63,10 @@
             --_bu-fc-disabled: var(--red-200);
             --_bu-fc-hover: var(--red-500);
             --_bu-fc-selected: var(--red-500);
-            --_bu-badge-bg: var(--red-400);
-            --_bu-badge-bg-selected: var(--red-400);
-            --_bu-badge-fc: var(--red-100);
-            --_bu-badge-bg-disabled: var(--red-200);
-            --_bu-badge-fc-disabled: var(--white);
+            --_bu-badge-bg: var(--red-100);
+            --_bu-badge-fc: var(--red-500);
+            --_bu-badge-bg-disabled: var(--red-100);
+            --_bu-badge-fc-disabled: var(--red-200);
 
             .highcontrast-mode({
                 --_bu-bc: var(--red-600);
@@ -81,10 +82,10 @@
         --_bu-bg-selected: var(--purple-500);
         --_bu-fc: var(--white);
         --_bu-fc-selected: var(--_bu-fc);
-        --_bu-badge-bg: var(--purple-100);
-        --_bu-badge-fc: var(--purple-400);
-        --_bu-badge-bg-disabled: var(--white);
-        --_bu-badge-fc-disabled: var(--purple-200);
+        --_bu-badge-bg: var(--purple-500);
+        --_bu-badge-fc: var(--black-050);
+        --_bu-badge-bg-disabled: var(--purple-200);
+        --_bu-badge-fc-disabled: var(--black-050);
     }
 
     &&__tonal {
@@ -94,10 +95,10 @@
         --_bu-fc: var(--black);
         --_bu-fc-disabled: var(--black-300);
         --_bu-fc-selected: var(--_bu-fc);
-        --_bu-badge-bg: var(--black-500);
-        --_bu-badge-fc: var(--white);
-        --_bu-badge-bg-disabled: var(--black-300);
-        --_bu-badge-fc-disabled: var(--white);
+        --_bu-badge-bg: var(--black-200);
+        --_bu-badge-fc: var(--black-600);
+        --_bu-badge-bg-disabled: var(--black-150);
+        --_bu-badge-fc-disabled: var(--black-300);
 
         .highcontrast-mode({
             --_bu-bc: var(--black-300);
@@ -237,7 +238,8 @@
         font-size: var(--fs-caption);
         line-height: inherit;
         opacity: var(--_bu-badge-o);
-        padding: var(--su1) var(--su4) 0;
+        padding: var(--_bu-badge-py) var(--_bu-badge-px);
+        margin-block: calc(var(--_bu-badge-py) * -1);
     }
 
     & &--number {
@@ -264,6 +266,8 @@
     &&__sm {
         --_bu-lh: var(--lh-sm);
         --_bu-px: var(--su12);
+        --_bu-badge-py: var(--su1);
+        --_bu-badge-px: var(--su2);
     }
     &&__xs {
         --_bu-g: var(--su4);
