@@ -5,10 +5,8 @@ import { sveltekitCookies } from "better-auth/svelte-kit";
 import { env } from "$env/dynamic/private";
 import { getRequestEvent } from "$app/server";
 
-// https://docs.netlify.com/build/configure-builds/environment-variables/#deploy-urls-and-metadata
-// DEPLOY_PRIME_URL includes branch subdomains (e.g., alpha.stackoverflow.design)
-// URL is always the primary site URL
-const baseURL = env.DEPLOY_PRIME_URL || env.URL || "http://localhost:5173";
+// TODO: Make dynamic once we figure out Netlify env vars at runtime
+const baseURL = "https://alpha.stackoverflow.design";
 
 export const auth = betterAuth({
     baseURL,
