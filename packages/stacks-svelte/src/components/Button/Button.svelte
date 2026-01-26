@@ -60,11 +60,6 @@
         link?: boolean;
 
         /**
-         * Modifier describing if a loading spinner should be showed
-         */
-        loading?: boolean;
-
-        /**
          * Modifier describing if the button is selected
          */
         selected?: boolean;
@@ -88,6 +83,11 @@
          * Optional badge to display on the button
          */
         badge?: Snippet;
+
+        /**
+         * Optional loader to display on the button
+         */
+        loader?: Snippet;
     }
 </script>
 
@@ -102,12 +102,12 @@
         dropdown = false,
         icon = false,
         link = false,
-        loading = false,
         selected = false,
         unset = false,
         class: className = "",
         children,
         badge,
+        loader,
         ...restProps
     }: Props = $props();
 
@@ -121,7 +121,6 @@
         link: boolean,
         icon: boolean,
         unset: boolean,
-        loading: boolean,
         selected: boolean
     ) => {
         const base = "s-btn";
@@ -154,10 +153,6 @@
             classes += ` ${base}__unset`;
         }
 
-        if (loading) {
-            classes += ` is-loading`;
-        }
-
         if (selected) {
             classes += ` is-selected`;
         }
@@ -176,7 +171,6 @@
             link,
             icon,
             unset,
-            loading,
             selected
         )
     );
@@ -190,6 +184,9 @@
     aria-disabled={href && disabled ? "true" : null}
     {...restProps}
 >
+    {#if loader}
+        {@render loader()}
+    {/if}
     {#if !badge}
         {@render children()}
     {:else}
