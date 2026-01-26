@@ -21,7 +21,6 @@ describe("Tag", () => {
         expect(screen.getByRole("link").textContent?.trim()).to.equal(
             "test snippet"
         );
-        expect(screen.getByRole("link")).not.to.have.attribute("tabindex"); // we only append tabindex when we use spans
     });
 
     it("should render the appropriate size class", () => {
@@ -50,14 +49,13 @@ describe("Tag", () => {
         );
     });
 
-    it("should render the dismiss element as span", () => {
+    it("should render the tag as a span when dismissable is true", () => {
         render(Tag, { dismissable: true, children: snippet });
         const childElement = screen.getByText("test snippet");
         expect(childElement).to.exist;
 
         const tagElement = childElement.parentElement;
         expect(tagElement?.tagName).to.equal("SPAN");
-        expect(tagElement).to.have.attribute("tabindex", "0");
 
         expect(screen.getByRole("button")).to.have.class("s-tag--dismiss");
         expect(screen.getByText("Dismiss tag")).to.exist.and.have.class(
@@ -65,9 +63,20 @@ describe("Tag", () => {
         );
     });
 
-    it("should not render the dismiss element if href prop is set", () => {
-        render(Tag, { href: "#", dismissable: true, children: snippet });
-        expect(screen.queryByRole("button")).to.be.null;
+    it("should render the tag as a span when both href has value and dismissable is true", () => {
+        render(Tag, { href: "#link", dismissable: true, children: snippet });
+        const childElement = screen.getByText("test snippet");
+        expect(childElement).to.exist;
+
+        const tagElement = childElement.closest(".s-tag");
+        expect(tagElement?.tagName).to.equal("SPAN");
+        expect(tagElement).not.to.have.attribute("href", "#link");
+        expect(tagElement).not.to.have.attribute("role", "link");
+
+        const anchorElement = tagElement?.querySelector("a");
+        expect(anchorElement).to.have.attribute("href", "#link");
+
+        expect(screen.getByRole("button")).to.have.class("s-tag--dismiss");
     });
 
     it("should render including the ignored class", () => {
