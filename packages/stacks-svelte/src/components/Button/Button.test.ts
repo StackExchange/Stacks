@@ -152,7 +152,8 @@ describe("Button", () => {
             children,
         });
         expect(screen.getByText("Loading…")).to.exist;
-        expect(screen.getByText("Loading…").closest(".s-loader--block")).to.exist;
+        expect(screen.getByText("Loading…").closest(".s-loader--block")).to
+            .exist;
     });
 
     it("should render including the selected class", () => {
