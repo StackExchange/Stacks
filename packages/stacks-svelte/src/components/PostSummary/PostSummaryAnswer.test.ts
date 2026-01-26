@@ -61,7 +61,10 @@ describe("PostSummaryAnswer", () => {
         const avatar = avatarImg?.parentElement;
         expect(avatarImg).to.have.attr("src", baseArgs.userAvatar);
         expect(avatar).to.have.class("s-avatar");
-        expect(avatar?.parentElement).to.have.attr("href", baseArgs.userProfileUrl);
+        expect(avatar?.parentElement).to.have.attr(
+            "href",
+            baseArgs.userProfileUrl
+        );
 
         const reputation = screen.getByText(baseArgs.userReputation);
         expect(reputation).to.exist;
