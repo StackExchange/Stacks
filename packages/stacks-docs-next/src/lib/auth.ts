@@ -8,7 +8,7 @@ import { getRequestEvent } from "$app/server";
 // https://docs.netlify.com/build/configure-builds/environment-variables/#deploy-urls-and-metadata
 // DEPLOY_PRIME_URL includes branch subdomains (e.g., alpha.stackoverflow.design)
 // URL is always the primary site URL
-const baseURL = process.env.DEPLOY_PRIME_URL || process.env.URL || "http://localhost:5173";
+const baseURL = env.DEPLOY_PRIME_URL || env.URL || "http://localhost:5173";
 
 export const auth = betterAuth({
     baseURL,
