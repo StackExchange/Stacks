@@ -3,7 +3,7 @@ import htmlToMd from "$src/lib/htmlToMd";
 
 export async function GET() {
     const baseUrl = "http://beta.stackoverflow.design/";
-    const mdFiles = import.meta.glob("$docs/public/system/**/*.md");
+    const mdFiles = import.meta.glob("$docs/public/**/**/*.md");
 
     let groupedDocs = {};
 
@@ -36,7 +36,7 @@ export async function GET() {
             const page = await doc();
 
             output += `
-      
+
 ### Page: ${page.metadata?.title ?? path}
 URL: ${baseUrl}${getSlug(path)}
 Date: ${new Date().toISOString()}
