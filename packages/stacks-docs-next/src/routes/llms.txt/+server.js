@@ -2,7 +2,7 @@ import { render } from "svelte/server";
 import htmlToMd from "$src/lib/htmlToMd";
 
 export async function GET() {
-    const baseUrl = "http://alpha.stackoverflow.design/";
+    const baseUrl = "https://alpha.stackoverflow.design/";
     const mdFiles = import.meta.glob("$docs/public/**/**/*.md");
 
     let groupedDocs = {};
