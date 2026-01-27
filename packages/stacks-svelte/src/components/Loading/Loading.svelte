@@ -36,5 +36,4 @@
 <div class={classes}>
     <div class="s-loading--block"></div>
     <div class="v-visible-sr">{label}</div>
-    <Icon src={SpotLoading} native />
 </div>

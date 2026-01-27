@@ -1,6 +1,7 @@
 <script module lang="ts">
     import type { HTMLButtonAttributes } from "svelte/elements";
     import type { Snippet } from "svelte";
+    import Loading from "../Loading/Loading.svelte";
 
     export type Brand = "" | "facebook" | "github" | "google";
     export type Size = "" | "xs" | "sm" | "lg";
@@ -87,7 +88,7 @@
         /**
          * Optional loading component to display on the button
          */
-        loading?: Snippet;
+        loading?: boolean;
     }
 </script>
 
@@ -107,7 +108,7 @@
         class: className = "",
         children,
         badge,
-        loading,
+        loading = false,
         ...restProps
     }: Props = $props();
 
@@ -185,7 +186,7 @@
     {...restProps}
 >
     {#if loading}
-        {@render loading()}
+        <Loading size="sm" />
     {/if}
     {#if !badge}
         {@render children()}
