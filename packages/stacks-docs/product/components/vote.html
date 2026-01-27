@@ -84,7 +84,7 @@ tags: components
 
     <div class="docs-preview mb24">
 {% highlight html %}
-<div class="s-vote">
+<div class="s-vote s-vote__expanded">
     <button class="s-vote--btn">
         @Svg.Vote16Up
         <span class="v-visible-sr">upvote</span>
@@ -135,12 +135,26 @@ tags: components
         @Svg.Vote16Up
         <span class="v-visible-sr">upvote</span>
         <span class="s-vote--votes">
-            <span class="s-vote--total">12</span>
+            <span class="s-vote--total">5</span>
         </span>
     </button>
 </div>
+
+<div class="s-vote s-vote__horizontal">
+    <button class="s-vote--btn">
+        @Svg.Vote16Up
+        <span class="v-visible-sr">upvote</span>
+    </button>
+    <span class="s-vote--votes">
+        <span class="s-vote--total">10</span>
+    </span>
+    <button class="s-vote--btn">
+        @Svg.Vote16Down
+        <span class="v-visible-sr">downvote</span>
+    </button>
+</div>
 {% endhighlight %}
-        <div class="docs-preview--example d-flex ai-start fw-wrap g64">
+        <div class="docs-preview--example d-flex ai-start fw-wrap g16">
             {% for vote in vote.groups.horizontal %}
                 <div class="d-flex fd-column ai-center g16">
                     {% if vote.description %}
@@ -150,10 +164,21 @@ tags: components
                         <button class="s-vote--btn">
                             {% icon "Vote16Up" %}
                             <span class="v-visible-sr">upvote</span>
+                            {% if not vote.downvote %}
+                                <span class="s-vote--votes">
+                                    <span class="s-vote--total">{{ vote.count }}</span>
+                                </span>
+                            {% endif %}
+                        </button>
+                        {% if vote.downvote %}
                             <span class="s-vote--votes">
                                 <span class="s-vote--total">{{ vote.count }}</span>
                             </span>
-                        </button>
+                            <button class="s-vote--btn">
+                                {% icon "Vote16Down" %}
+                                <span class="v-visible-sr">downvote</span>
+                            </button>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}
@@ -170,8 +195,8 @@ tags: components
 {% highlight html %}
 <div class="s-vote s-vote__horizontal">
     <button class="s-vote--btn">
-        @Svg.Vote16Up
-        <span class="v-visible-sr">upvote</span>
+        @Svg.Vote16UpFill
+        <span class="v-visible-sr">upvoted</span>
     </button>
     <span class="s-vote--votes">
         <span class="s-vote--total">12</span>
