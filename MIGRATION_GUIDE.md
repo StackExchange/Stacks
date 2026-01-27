@@ -67,8 +67,8 @@
 - `s-input__xl` removed
 - **Nested inputs** html will require slight tweaking on consumers' side
 
-#### Loader
-- `Spinner` component replaced with new `Loader` component
+#### Loading
+- `Spinner` component replaced with new `Loading` component
 
 #### Menu
 

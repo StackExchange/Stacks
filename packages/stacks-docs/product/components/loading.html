@@ -1,0 +1,94 @@
+---
+layout: page
+title: Loading
+svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-loading--docs
+description: "The loading component indicates an active wait state for a page, section, or interactive element."
+tags: components
+---
+<section class="docs-section">
+    {% header "h2", "Classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Applied to</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in loading.classes %}
+                    <tr>
+                        <td><code class="docs-code ws-nowrap">{{ item.class }}</code></td>
+                        <td>{% if item.applies == "N/A" %}<em class="fc-black-350">{{ item.applies }}</em>{% else %}<code class="docs-code">{{ item.applies }}</code>{% endif %}</td>
+                        <td>{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="docs-section">
+    {% header "h2", "Examples" %}
+    {% header "h3", "Base" %}
+    <p class="docs-copy">The base loading component displays three animated squares.</p>
+    <div class="docs-preview">
+{% highlight html %}
+<div class="s-loading">
+    <div class="s-loading--block"></div>
+    <div class="v-visible-sr">Loading…</div>
+</div>
+{% endhighlight %}
+        <div class="docs-preview--example">
+            <div class="d-flex g16 fw-wrap ai-center">
+                <div class="s-loading">
+                    <div class="s-loading--block"></div>
+                    <div class="v-visible-sr">Loading…</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="docs-section">
+    {% header "h3", "Sizes" %}
+    <table class="s-table s-table__bx-simple">
+        <thead>
+            <tr>
+                <th class="s-table--cell3" scope="col">Class</th>
+                <th class="s-table--cell3" scope="col">Applied to</th>
+                <th scope="col">Example</th>
+            </tr>
+        </thead>
+        <tbody class="fs-caption">
+            {% for size in loading.sizes %}
+                <tr>
+                    <th scope="row">
+                        <code class="docs-code">
+                            {% if size == "" %}
+                                .s-loading
+                            {% else %}
+                                .{{ size }}
+                            {% endif %}
+                        </code>
+                    </th>
+                    <td>
+                        <code class="docs-code bg-white">
+                            {% if size == "" %}
+                                <em class="fc-black-400">N/A</em>
+                            {% else %}
+                                .s-loading
+                            {% endif %}
+                        </code>
+                    </td>
+                    <td class="p8">
+                        <div class="s-loading {{ size }}">
+                            <div class="s-loading--block"></div>
+                            <div class="v-visible-sr">Loading…</div>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
