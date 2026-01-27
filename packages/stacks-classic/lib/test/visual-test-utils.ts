@@ -62,10 +62,13 @@ const runVisualTests = (args: VisualTestArgs) => {
     testVariations.forEach(scheduleVisualTest);
 };
 
-const replaceHtml = (componentTemplateResult: unknown, textToReplace: string, replacementHtml: string) => {
-    var component = (componentTemplateResult as any);
-    if (!Array.isArray(component.strings) || !Array.isArray(component.values))
-    {
+const replaceHtml = (
+    componentTemplateResult: unknown,
+    textToReplace: string,
+    replacementHtml: string
+) => {
+    var component = componentTemplateResult as any;
+    if (!Array.isArray(component.strings) || !Array.isArray(component.values)) {
         throw new Error("Expected Lit TemplateResult type");
     }
 
@@ -75,15 +78,15 @@ const replaceHtml = (componentTemplateResult: unknown, textToReplace: string, re
         str.replace(textToReplace, replacementHtml)
     );
     // Create a proper TemplateStringsArray with raw property
-    Object.defineProperty(updatedStrings, 'raw', {
+    Object.defineProperty(updatedStrings, "raw", {
         value: updatedStrings.map((str: string) => str),
-        enumerable: false
+        enumerable: false,
     });
     // Reconstruct the template with updated strings and original values
     const updatedComponent = {
         ...component,
         strings: updatedStrings,
-        values: component.values
+        values: component.values,
     };
     return updatedComponent;
 };

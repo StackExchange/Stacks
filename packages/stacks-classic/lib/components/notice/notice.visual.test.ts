@@ -17,10 +17,17 @@ const variantIconMap: Record<string, string> = {
     warning: IconAlert,
     danger: IconAlertFill,
     activity: IconNotification,
-    featured: IconStar
+    featured: IconStar,
 };
 
-const variants: string[] = ["info", "success", "warning", "danger", "activity", "featured"];
+const variants: string[] = [
+    "info",
+    "success",
+    "warning",
+    "danger",
+    "activity",
+    "featured",
+];
 
 describe("notice", () => {
     runVisualTests({
@@ -43,7 +50,11 @@ describe("notice", () => {
 
             //Determine icon and swap
             const icon = variant ? variantIconMap[variant] : IconHelp;
-            const updatedComponent = replaceHtml(component, "ICON_PLACEHOLDER", icon);
+            const updatedComponent = replaceHtml(
+                component,
+                "ICON_PLACEHOLDER",
+                icon
+            );
 
             return html`
                 <div
@@ -53,7 +64,7 @@ describe("notice", () => {
                 >
                     ${updatedComponent}
                 </div>
-                `;
+            `;
         },
     });
 });

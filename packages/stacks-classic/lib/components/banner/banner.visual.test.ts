@@ -15,7 +15,14 @@ const bannerChildren = `
 describe("banner", () => {
     runVisualTests({
         baseClass: "s-banner",
-        variants: ["info", "success", "warning", "danger", "activity", "featured"],
+        variants: [
+            "info",
+            "success",
+            "warning",
+            "danger",
+            "activity",
+            "featured",
+        ],
         modifiers: {
             primary: ["important"],
         },

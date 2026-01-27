@@ -12,8 +12,14 @@ import {
 } from "@stackoverflow/stacks-icons/icons";
 import "../../index";
 
-
-const variants: string[] = ["info", "success", "warning", "danger", "activity", "featured"];
+const variants: string[] = [
+    "info",
+    "success",
+    "warning",
+    "danger",
+    "activity",
+    "featured",
+];
 
 const variantIconMap: Record<string, string> = {
     info: IconInfo,
@@ -21,7 +27,7 @@ const variantIconMap: Record<string, string> = {
     warning: IconAlert,
     danger: IconAlertFill,
     activity: IconNotification,
-    featured: IconStar
+    featured: IconStar,
 };
 
 // s-toast is an <aside></aside> wrapped around s-notice.
@@ -52,17 +58,22 @@ describe("toast > notice", () => {
 
             //Determine icon and swap
             const icon = variant ? variantIconMap[variant] : IconHelp;
-            const updatedComponent = replaceHtml(component, "ICON_PLACEHOLDER", icon);
+            const updatedComponent = replaceHtml(
+                component,
+                "ICON_PLACEHOLDER",
+                icon
+            );
 
             return html`
-            <div
-                class="s-toast"
-                role="alertdialog"
-                aria-hidden="false"
-                data-testid="${testid}"
-            >
-                ${updatedComponent}
-            </div>
-        `}
+                <div
+                    class="s-toast"
+                    role="alertdialog"
+                    aria-hidden="false"
+                    data-testid="${testid}"
+                >
+                    ${updatedComponent}
+                </div>
+            `;
+        },
     });
 });

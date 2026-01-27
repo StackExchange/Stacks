@@ -8,14 +8,21 @@ const bannerChildren = `
         <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
     </span>
     <div class="s-banner--actions">
-        <button class="s-link s-banner--dismiss">${IconCross}</button>
+        <button class="s-link s-banner--dismiss" aria-label="Dismiss">${IconCross}</button>
     </div>
 `;
 
 describe("banner", () => {
     runA11yTests({
         baseClass: "s-banner",
-        variants: ["info", "success", "warning", "danger", "activity", "featured"],
+        variants: [
+            "info",
+            "success",
+            "warning",
+            "danger",
+            "activity",
+            "featured",
+        ],
         modifiers: {
             primary: ["important"],
         },
