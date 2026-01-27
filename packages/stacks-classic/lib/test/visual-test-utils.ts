@@ -62,4 +62,30 @@ const runVisualTests = (args: VisualTestArgs) => {
     testVariations.forEach(scheduleVisualTest);
 };
 
-export { runVisualTests };
+const replaceHtml = (componentTemplateResult: unknown, textToReplace: string, replacementHtml: string) => {
+    var component = (componentTemplateResult as any);
+    if (!Array.isArray(component.strings) || !Array.isArray(component.values))
+    {
+        throw new Error("Expected Lit TemplateResult type");
+    }
+
+    // Replace placeholder with actual icon in the Lit template
+    const originalStrings = (component as any).strings;
+    const updatedStrings = originalStrings.map((str: string) =>
+        str.replace(textToReplace, replacementHtml)
+    );
+    // Create a proper TemplateStringsArray with raw property
+    Object.defineProperty(updatedStrings, 'raw', {
+        value: updatedStrings.map((str: string) => str),
+        enumerable: false
+    });
+    // Reconstruct the template with updated strings and original values
+    const updatedComponent = {
+        ...(component as any),
+        strings: updatedStrings,
+        values: (component as any).values
+    };
+    return updatedComponent;
+};
+
+export { runVisualTests, replaceHtml };

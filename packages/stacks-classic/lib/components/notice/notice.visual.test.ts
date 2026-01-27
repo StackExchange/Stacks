@@ -1,5 +1,5 @@
-import { runVisualTests } from "../../test/visual-test-utils";
-import { html, unsafeStatic } from "@open-wc/testing";
+import { runVisualTests, replaceHtml } from "../../test/visual-test-utils";
+import { html } from "@open-wc/testing";
 import {
     IconHelp,
     IconInfo,
@@ -20,10 +20,12 @@ const variantIconMap: Record<string, string> = {
     featured: IconStar
 };
 
+const variants: string[] = ["info", "success", "warning", "danger", "activity", "featured"];
+
 describe("notice", () => {
     runVisualTests({
         baseClass: "s-notice",
-        variants: ["info", "success", "warning", "danger", "activity", "featured"],
+        variants: variants,
         modifiers: {
             primary: ["important"],
         },
@@ -36,30 +38,22 @@ describe("notice", () => {
         },
         tag: "div",
         template: ({ component, testid }) => {
-            // Extract variant from testid
-            const variant = ["info", "success", "warning", "danger", "activity", "featured"]
-                .find((v) => testid.includes(v));
+            //Determine variant from testid
+            const variant = variants.find((v) => testid.includes(v));
+
+            //Determine icon and swap
             const icon = variant ? variantIconMap[variant] : IconHelp;
+            const updatedComponent = replaceHtml(component, "ICON_PLACEHOLDER", icon);
 
-            // Get the component HTML string and replace placeholder with actual icon
-            const componentElement = component as ReturnType<typeof html>;
-            const values = (componentElement as any).values || [];
-            const strings = (componentElement as any).strings || [];
-
-            // Reconstruct the HTML string from the template literal
-            let htmlString = "";
-            for (let i = 0; i < strings.length; i++) {
-                htmlString += strings[i];
-                if (i < values.length) {
-                    htmlString += values[i];
-                }
-            }
-
-            // Replace placeholder with actual icon
-            const updatedHtml = htmlString.replace(/ICON_PLACEHOLDER/g, icon);
-
-            // Return as unsafe HTML using unsafeStatic
-            return html`${unsafeStatic(updatedHtml)}`;
+            return html`
+                <div
+                    class="s-notice"
+                    role="presentation"
+                    data-testid="${testid}"
+                >
+                    ${updatedComponent}
+                </div>
+                `;
         },
     });
 });
