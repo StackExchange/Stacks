@@ -67,7 +67,8 @@ const replaceHtml = (
     textToReplace: string,
     replacementHtml: string
 ) => {
-    var component = componentTemplateResult as any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const component = componentTemplateResult as any;
     if (!Array.isArray(component.strings) || !Array.isArray(component.values)) {
         throw new Error("Expected Lit TemplateResult type");
     }
