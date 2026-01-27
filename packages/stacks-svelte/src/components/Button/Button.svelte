@@ -85,9 +85,9 @@
         badge?: Snippet;
 
         /**
-         * Optional loader to display on the button
+         * Optional loading component to display on the button
          */
-        loader?: Snippet;
+        loading?: Snippet;
     }
 </script>
 
@@ -107,7 +107,7 @@
         class: className = "",
         children,
         badge,
-        loader,
+        loading,
         ...restProps
     }: Props = $props();
 
@@ -183,7 +183,11 @@
     disabled={(!href && disabled) || null}
     aria-disabled={href && disabled ? "true" : null}
     {...restProps}
-    >{#if loader}{@render loader()}{/if}{#if !badge}
+>
+    {#if loading}
+        {@render loading()}
+    {/if}
+    {#if !badge}
         {@render children()}
     {:else}
         {@render children()}
@@ -192,5 +196,5 @@
                 {@render badge()}
             </span>
         </span>
-    {/if}</svelte:element
->
+    {/if}
+</svelte:element>

@@ -268,10 +268,16 @@ tags: components
 
 <section class="docs-section">
     {% header "h2", "Loading" %}
-    <p class="docs-copy">Any button can have a loading state applied by adding the <code class="docs-code">.s-loader--block .s-loader--block__sm</code> state class.</p>
+    <p class="docs-copy">Indicate a loading state by adding a <a href="/product/components/loading/"><code class="docs-code">.s-loading</code></a> component to a button.</p>
     <div class="docs-preview">
 {% highlight html %}
-<button class="s-btn .s-loader--block .s-loader--block__sm" type="button">…</button>
+<button class="s-btn" type="button">
+    <div class="s-loading s-loading__sm">
+        <div class="s-loading--block"></div>
+        <div class="v-visible-sr">Loading…</div>
+    </div>
+    Ask question
+</button>
 {% endhighlight %}
         <div class="docs-preview--example">
             <table class="wmn5 s-table s-table__bx-simple">
@@ -285,6 +291,7 @@ tags: components
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- TODO SHINE add loading state to buttons -->
                     {% for btn in buttons.variants %}
                         <tr>
                             <th scope="row" class="va-middle">{{ btn.title }}</th>
