@@ -70,7 +70,7 @@ const replaceHtml = (componentTemplateResult: unknown, textToReplace: string, re
     }
 
     // Replace placeholder with actual icon in the Lit template
-    const originalStrings = (component as any).strings;
+    const originalStrings = component.strings;
     const updatedStrings = originalStrings.map((str: string) =>
         str.replace(textToReplace, replacementHtml)
     );
@@ -81,9 +81,9 @@ const replaceHtml = (componentTemplateResult: unknown, textToReplace: string, re
     });
     // Reconstruct the template with updated strings and original values
     const updatedComponent = {
-        ...(component as any),
+        ...component,
         strings: updatedStrings,
-        values: (component as any).values
+        values: component.values
     };
     return updatedComponent;
 };
