@@ -60,10 +60,12 @@ describe("UserCard", () => {
             avatar: "https://picsum.photos/128",
             profileUrl: "#",
         });
-        const avatarLink = screen.getByRole("presentation").parentElement;
-        const nameLink = screen.getByRole("link", { name: "John Doe" });
-        expect(avatarLink).to.have.attr("href", "#");
-        expect(nameLink).to.have.attr("href", "#");
+        const link = screen.getByRole("link", { name: /John Doe/ });
+        expect(link).to.have.attr("href", "#");
+        const avatarImg = screen.getByRole("presentation");
+        expect(avatarImg.closest("a")).to.equal(link);
+        const username = document.querySelector(".s-user-card--username");
+        expect(username?.closest("a")).to.equal(link);
     });
 
     it("should render the user card with arbitrary classes", () => {

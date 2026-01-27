@@ -156,20 +156,31 @@
 </script>
 
 <svelte:element
-    this={href ? "a" : "span"}
+    this={href && !dismissable ? "a" : "span"}
     class={classes}
-    {href}
-    role={role || (href && "link")}
-    tabindex={href ? undefined : 0}
+    href={href && !dismissable ? href : undefined}
+    role={role || (href && !dismissable ? "link" : undefined)}
     {...restProps}
 >
-    {#if sponsor}
-        <span class="s-tag--sponsor">
-            {@render sponsor()}
-        </span>
-    {/if}
+    {#if href && dismissable}
+        <a {href}>
+            {#if sponsor}
+                <span class="s-tag--sponsor">
+                    {@render sponsor()}
+                </span>
+            {/if}
 
-    {@render children()}
+            {@render children()}
+        </a>
+    {:else}
+        {#if sponsor}
+            <span class="s-tag--sponsor">
+                {@render sponsor()}
+            </span>
+        {/if}
+
+        {@render children()}
+    {/if}
 
     {#if sponsor}
         <div class="v-visible-sr">{i18nSponsorTagText}</div>
@@ -191,7 +202,7 @@
         <div class="v-visible-sr">{i18nRequiredTagText}</div>
     {/if}
 
-    {#if dismissable && !href}
+    {#if dismissable}
         <button class="s-tag--dismiss" type="button" onclick={ondismiss}>
             <span class="v-visible-sr">{i18nDismissButtonText}</span><Icon
                 src={IconCross16}
