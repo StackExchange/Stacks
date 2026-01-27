@@ -184,13 +184,9 @@
     disabled={(!href && disabled) || null}
     aria-disabled={href && disabled ? "true" : null}
     {...restProps}
->
-    {#if loading}
-        <Loading size="sm" />
-    {/if}
-    {#if !badge}
-        {@render children()}
-    {:else}
+    >{#if loading}<Loading
+            size="sm"
+        />{/if}{#if !badge}{@render children()}{:else}
         {@render children()}
         <span class="s-btn--badge">
             <span class="s-btn--number">
