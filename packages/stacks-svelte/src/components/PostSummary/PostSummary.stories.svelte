@@ -4,7 +4,7 @@
     import PostSummaryAnswer from "./PostSummaryAnswer.svelte";
     import type {
         ContentTypeName,
-        ExcerptSize,
+        ExcerptLines,
         State,
     } from "./PostSummary.svelte";
     import Answer from "./PostSummaryAnswer.svelte";
@@ -17,12 +17,13 @@
         userAvatar: "https://avatars.githubusercontent.com/u/1",
         userName: "John Doe",
         userProfileUrl: "#john-doe",
-        userReputation: "1,000",
+        userReputation: 1000,
         views: 100,
         votes: 10,
         title: "Network graph of popular tags on Stack Overflow",
         excerpt:
             "I wanted to see how different tags related to each other. The below graph depicts associations between popular tags on our site. Description of analysis: I started looking at the 1000 most popular tags on questions in 2021. I created a list of tags cross joined by the question ID (so if a question contains tags for both Python and Numpy, it would show up in my list). I scaled up by the number of answers each question received (noting that some tag combos had 0 answers) -and then counted each distinct combination of each tag. Due to limitations in graphing, I only displayed the top ~2500 tag combinations - which accounts for tags combos that had more than 40 answers over the entire year.",
+        tags: tags,
     };
     const answerArgs = {
         excerpt: baseArgs.excerpt,
@@ -31,7 +32,7 @@
         userAvatar: "https://avatars.githubusercontent.com/u/2",
         userName: "Jane Smith",
         userProfileUrl: "#jane-smith",
-        userReputation: "1,000",
+        userReputation: 1000,
     };
 
     const contentTypeOptions = {
@@ -59,7 +60,7 @@
         "knowledge-article",
         "policy",
     ];
-    const ExcerptSizeTypes: ExcerptSize[] = ["none", "sm", "md", "lg"];
+    const ExcerptLinesTypes: ExcerptLines[] = [0, 1, 2, 3];
     const StateTypes: State[] = [
         undefined,
         "archived",
@@ -95,9 +96,9 @@
                     type: "select",
                 },
             },
-            excerptSize: {
+            excerptLines: {
                 control: "select",
-                options: ExcerptSizeTypes,
+                options: ExcerptLinesTypes,
             },
             state: {
                 control: "select",
@@ -107,28 +108,21 @@
     });
 </script>
 
+{#snippet tags()}
+    <Tag href="#">retrieval-augmented-generation</Tag>
+    <Tag href="#">langchain</Tag>
+    <Tag href="#">llm</Tag>
+    <Tag href="#">vector-database</Tag>
+    <Tag href="#">ai</Tag>
+{/snippet}
+
 <Story name="Base" args={baseArgs}>
     {#snippet template(args)}
-        <PostSummary {...baseArgs} {...args}>
-            <svelte:fragment slot="tags">
-                <Tag href="#">data</Tag>
-                <Tag href="#">data-insights</Tag>
-            </svelte:fragment>
-        </PostSummary>
+        <PostSummary {...baseArgs} {...args} />
     {/snippet}
 </Story>
 
-<Story name="Minimal" asChild>
-    <!-- `minimal` prop is true -->
-    <PostSummary {...baseArgs} minimal>
-        <svelte:fragment slot="tags">
-            <Tag href="#">data</Tag>
-            <Tag href="#">data-insights</Tag>
-        </svelte:fragment>
-    </PostSummary>
-</Story>
-
-<Story name="Excerpt Size" asChild>
+<Story name="Excerpt Lines" asChild>
     <div class="d-flex fd-column g64">
         <table class="s-table s-table__bx-simple">
             <thead>
@@ -139,18 +133,13 @@
             </thead>
 
             <tbody>
-                {#each ExcerptSizeTypes as excerptSize (excerptSize)}
+                {#each ExcerptLinesTypes as excerptLines (excerptLines)}
                     <tr>
                         <th scope="row" class="va-middle">
-                            {excerptSize}
+                            {excerptLines}
                         </th>
                         <td class="va-middle px4">
-                            <PostSummary {...baseArgs} {excerptSize}>
-                                <svelte:fragment slot="tags">
-                                    <Tag href="#">data</Tag>
-                                    <Tag href="#">data-insights</Tag>
-                                </svelte:fragment>
-                            </PostSummary>
+                            <PostSummary {...baseArgs} {excerptLines} />
                         </td>
                     </tr>
                 {/each}
@@ -159,85 +148,30 @@
     </div>
 </Story>
 
-<Story name="New activity" asChild>
-    <!-- `activityIndicator` prop is true -->
-    <PostSummary {...baseArgs} activityIndicator>
-        <svelte:fragment slot="tags">
-            <Tag href="#">data</Tag>
-            <Tag href="#">data-insights</Tag>
-        </svelte:fragment>
-    </PostSummary>
-</Story>
-
+<!-- TODO SHINE update gated story -->
 <Story name="Gated" asChild>
     <!-- `gated` prop is true -->
-    <PostSummary {...baseArgs} gated>
-        <svelte:fragment slot="tags">
-            <Tag href="#">data</Tag>
-            <Tag href="#">data-insights</Tag>
-        </svelte:fragment>
-    </PostSummary>
+    <PostSummary {...baseArgs} gated />
 </Story>
 
 <Story name="Answered" asChild>
     <!-- `bounty` prop included -->
-    <PostSummary {...baseArgs} acceptedAnswer>
-        <svelte:fragment slot="tags">
-            <Tag href="#">data</Tag>
-            <Tag href="#">data-insights</Tag>
-        </svelte:fragment>
-    </PostSummary>
+    <PostSummary {...baseArgs} acceptedAnswer />
 </Story>
 
 <Story name="Bounty" asChild>
     <!-- `bounty` prop included -->
-    <PostSummary {...baseArgs} bounty={50}>
-        <svelte:fragment slot="tags">
-            <Tag href="#">data</Tag>
-            <Tag href="#">data-insights</Tag>
-        </svelte:fragment>
-    </PostSummary>
+    <PostSummary {...baseArgs} bounty={50} />
+</Story>
+
+<Story name="Comments" asChild>
+    <!-- `comments` prop included -->
+    <PostSummary {...baseArgs} comments={10} />
 </Story>
 
 <Story name="Read Time" asChild>
     <!-- `readTime` prop included -->
-    <PostSummary {...baseArgs} readTime="5 minute read">
-        <svelte:fragment slot="tags">
-            <Tag href="#">data</Tag>
-            <Tag href="#">data-insights</Tag>
-        </svelte:fragment>
-    </PostSummary>
-</Story>
-
-<Story name="Hotness" asChild>
-    <div class="d-flex fd-column g64">
-        <table class="s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col">Hotness</th>
-                    <th scope="col" class="s-table--cell10">Example</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {#each HotnessTypes as hotness (hotness)}
-                    <tr>
-                        <th scope="row" class="va-middle">
-                            {hotness || "default"}
-                        </th>
-                        <td class="va-middle px4">
-                            <PostSummary {...baseArgs} {hotness}>
-                                <svelte:fragment slot="tags">
-                                    <Tag href="#">data</Tag>
-                                    <Tag href="#">data-insights</Tag>
-                                </svelte:fragment>
-                            </PostSummary>
-                        </td>
-                    </tr>
-                {/each}
-            </tbody>
-        </table>
-    </div>
+    <PostSummary {...baseArgs} readTime="5 minute read" />
 </Story>
 
 <Story name="Content Type" asChild>
@@ -263,12 +197,7 @@
                                     name: contentTypeName,
                                     url: "#",
                                 }}
-                            >
-                                <svelte:fragment slot="tags">
-                                    <Tag href="#">data</Tag>
-                                    <Tag href="#">data-insights</Tag>
-                                </svelte:fragment>
-                            </PostSummary>
+                            />
                         </td>
                     </tr>
                 {/each}
@@ -278,22 +207,29 @@
 </Story>
 
 <Story name="Ignored" asChild>
-    <!-- `ignored` prop is true -->
-    <PostSummary {...baseArgs} ignored>
-        <svelte:fragment slot="tags">
-            <Tag href="#" ignored>data</Tag>
-            <Tag href="#">data-insights</Tag>
-        </svelte:fragment>
+    <!-- `ignored` tag included in tags snippet -->
+    <PostSummary {...baseArgs}>
+        {#snippet tags()}
+            <Tag href="#" ignored>retrieval-augmented-generation</Tag>
+            <Tag href="#">langchain</Tag>
+            <Tag href="#">llm</Tag>
+            <Tag href="#">vector-database</Tag>
+            <Tag href="#">ai</Tag>
+        {/snippet}
     </PostSummary>
 </Story>
 
 <Story name="Watched" asChild>
-    <!-- `watched` prop is true -->
-    <PostSummary {...baseArgs} watched>
-        <svelte:fragment slot="tags">
-            <Tag href="#" watched>data</Tag>
+    <!-- `watched` tag included in tags snippet -->
+    <PostSummary {...baseArgs}>
+        {#snippet tags()}
+            <Tag href="#" watched>retrieval-augmented-generation</Tag>
+            <Tag href="#">langchain</Tag>
+            <Tag href="#">llm</Tag>
+            <Tag href="#">vector-database</Tag>
+            <Tag href="#">ai</Tag>
             <Tag href="#">data-insights</Tag>
-        </svelte:fragment>
+        {/snippet}
     </PostSummary>
 </Story>
 
@@ -314,12 +250,7 @@
                             {state || "default"}
                         </th>
                         <td class="va-middle px4">
-                            <PostSummary {...baseArgs} {state}>
-                                <svelte:fragment slot="tags">
-                                    <Tag href="#">data</Tag>
-                                    <Tag href="#">data-insights</Tag>
-                                </svelte:fragment>
-                            </PostSummary>
+                            <PostSummary {...baseArgs} {state} />
                         </td>
                     </tr>
                 {/each}
@@ -341,41 +272,19 @@
             <tbody>
                 <tr>
                     <th scope="row" class="va-middle">answerPreviews</th>
-                    <td class="va-middle px4">
-                        <PostSummary {...baseArgs}>
-                            <svelte:fragment slot="answerPreviews">
+                    <td class="va-middle p16">
+                        <PostSummary {...baseArgs} acceptedAnswer>
+                            {#snippet answerPreviews()}
                                 <Answer {...answerArgs} accepted votes={5} />
                                 <Answer {...answerArgs} votes={1} />
-                            </svelte:fragment>
-                        </PostSummary>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row" class="va-middle">actionMenu</th>
-                    <td class="va-middle px4">
-                        <PostSummary {...baseArgs}>
-                            <div slot="actionMenu">
-                                <ul class="s-menu" role="menu">
-                                    <li class="s-menu--item" role="menuitem">
-                                        <button
-                                            class="s-menu--action s-menu--action__danger"
-                                            >Delete</button
-                                        >
-                                    </li>
-                                </ul>
-                            </div>
+                            {/snippet}
                         </PostSummary>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row" class="va-middle">tags</th>
-                    <td class="va-middle px4">
-                        <PostSummary {...baseArgs}>
-                            <svelte:fragment slot="tags">
-                                <Tag href="#">data</Tag>
-                                <Tag href="#">data-insights</Tag>
-                            </svelte:fragment>
-                        </PostSummary>
+                    <td class="va-middle p16">
+                        <PostSummary {...baseArgs} />
                     </td>
                 </tr>
             </tbody>

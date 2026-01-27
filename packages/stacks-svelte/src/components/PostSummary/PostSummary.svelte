@@ -10,7 +10,7 @@
               url: string;
           }
         | undefined;
-    export type ExcerptSize = "none" | "sm" | "md" | "lg";
+    export type ExcerptLines = 0 | 1 | 2 | 3;
     export type State =
         | "archived"
         | "closed"
@@ -30,10 +30,7 @@
     import UserCard from "../UserCard/UserCard.svelte";
     import UserCardTime from "../UserCard/UserCardTime.svelte";
     import UserCardBling from "../UserCard/UserCardBling.svelte";
-    // import {
-    //     IconShield,
-    //     IconEllipsisVertical,
-    // } from "@stackoverflow/stacks-icons-legacy/icons";
+    import { IconShield } from "@stackoverflow/stacks-icons-legacy/icons";
     import {
         IconAnswer16,
         IconAnswer16Fill,
@@ -74,28 +71,27 @@
         /**
          * The reputation of the post author
          */
-        userReputation: string | number;
+        userReputation: number;
 
         /**
          * Apply styling to the "answers" stats item to indicate the post has an accepted answer
          */
         acceptedAnswer?: boolean;
 
-        // TODO SHINE add activity indicator to less, classic docs
-        /**
-         * Show an activity indicator before the title
-         */
-        activityIndicator?: boolean;
-
         /**
          * Count of answers on the post
          */
-        answers?: number | string;
+        answers?: number;
 
         /**
          * The bounty placed on the post
          */
         bounty?: number;
+
+        /**
+         * Count of comments on the post
+         */
+        comments?: number;
 
         /**
          * The content type of the post to be indicated on the post summary
@@ -109,17 +105,15 @@
 
         /**
          * The size of the excerpt text
-         * @type {"none" | "sm" | "md" | "lg"} ExcerptSize
+         * @type {0 | 1 | 2 | 3} ExcerptLines
          */
-        excerptSize?: ExcerptSize;
+        excerptLines?: ExcerptLines;
 
-        // TODO SHINE add gated icon to less, classic docs
         /**
          * Indicate a post is by displaying a shield icon before the title
          */
         gated?: boolean;
 
-        // TODO SHINE add read time to less, classic docs (or remove it?)
         /**
          * The readtime on the post
          */
@@ -134,22 +128,17 @@
         /**
          * Count of views on the post
          */
-        views?: number | string;
+        views?: number;
 
         /**
          * Count of votes on the post
          */
-        votes?: number | string;
+        votes?: number;
 
         /**
          * Label to be provided for the "accepted answer" checkmark icon on the "answers" stats item
          */
         i18nAcceptedAnswerIconTitle?: string;
-
-        /**
-         * Text for the activity indicator
-         */
-        i18nActivityIndicatorText?: string;
 
         /**
          * Text for the views stats item unit
@@ -160,6 +149,11 @@
          * Text for the bounty stats item unit
          */
         i18nBountyUnit?: string;
+
+        /**
+         * Text for the comments stats item unit
+         */
+        i18nCommentsUnit?: string;
 
         /**
          * Text for the content type
@@ -211,23 +205,23 @@
         userProfileUrl,
         userReputation,
         acceptedAnswer = false,
-        // activityIndicator = false,
-        answers = "0",
+        answers = undefined,
         bounty = undefined,
+        comments = undefined,
         contentType = undefined,
         excerpt = "",
-        excerptSize = "lg",
-        // gated = false,
-        // readTime = undefined,
+        excerptLines = 3,
+        gated = false,
+        readTime = undefined,
         state = undefined,
         views = undefined,
-        votes = "0",
-        // i18nAcceptedAnswerIconTitle = "Has accepted answer",
-        // i18nActivityIndicatorText = "New activity",
+        votes = undefined,
+        i18nAcceptedAnswerIconTitle = "Has accepted answer",
         i18nAnswersUnit: providedI18nAnswersUnit,
         i18nBountyUnit = "bounty",
+        i18nCommentsUnit: providedI18nCommentsUnit = undefined,
         i18nContentTypeText = undefined,
-        // i18nGatedTitle = undefined,
+        i18nGatedTitle = undefined,
         i18nStateBadgeText = undefined,
         i18nViewsUnit: providedI18nViewsUnit = undefined,
         i18nVotesUnit: providedI18nVotesUnit = undefined,
@@ -237,16 +231,19 @@
     }: Props = $props();
 
     const i18nAnswersUnit = $derived(
-        providedI18nAnswersUnit ??
-            (Number(answers) === 1 ? "answer" : "answers")
+        providedI18nAnswersUnit ?? (answers === 1 ? "answer" : "answers")
+    );
+
+    const i18nCommentsUnit = $derived(
+        providedI18nCommentsUnit ?? (comments === 1 ? "comment" : "comments")
     );
 
     const i18nViewsUnit = $derived(
-        providedI18nViewsUnit ?? (Number(views) === 1 ? "view" : "views")
+        providedI18nViewsUnit ?? (views === 1 ? "view" : "views")
     );
 
     const i18nVotesUnit = $derived(
-        providedI18nVotesUnit ?? (Number(votes) === 1 ? "vote" : "votes")
+        providedI18nVotesUnit ?? (votes === 1 ? "vote" : "votes")
     );
 
     const getClasses = (
@@ -283,7 +280,10 @@
         </div>
         <div class="s-post-summary--stats-answers">
             {#if acceptedAnswer}
-                <Icon src={IconAnswer16Fill} />
+                <Icon
+                    src={IconAnswer16Fill}
+                    title={i18nAcceptedAnswerIconTitle}
+                />
             {:else}
                 <Icon src={IconAnswer16} />
             {/if}
@@ -315,19 +315,18 @@
                     />
                 {/if}
             {/snippet}
-            {#snippet userTime()}
-                <!-- TODO SHINE add prop for non-readable timestamp -->
-                <UserCardTime text={timestamp} />
-            {/snippet}
             <UserCard
                 profileUrl={userProfileUrl}
                 size="sm"
                 avatar={userAvatar}
                 name={userName}
                 blings={userBling}
-                time={userTime}
-            />
-            <div class="s-post-summary--stats s-post-summary--sm-show g6">
+            >
+                {#snippet time()}
+                    <UserCardTime text={timestamp} {timestamp} />
+                {/snippet}
+            </UserCard>
+            <div class="s-post-summary--stats s-post-summary--sm-show">
                 <div class="s-post-summary--stats-votes">
                     <Icon src={IconVote16Up} />
                     {votes || "0"}
@@ -348,10 +347,21 @@
                     </div>
                 {/if}
             </div>
-            <div class="s-post-summary--content-meta-views">
+            <div class="s-post-summary--content-meta-item">
                 {views || "0"}
                 {i18nViewsUnit}
             </div>
+            {#if comments}
+                <div class="s-post-summary--content-meta-item">
+                    {comments}
+                    {i18nCommentsUnit}
+                </div>
+            {/if}
+            {#if readTime}
+                <div class="s-post-summary--content-meta-item">
+                    {readTime}
+                </div>
+            {/if}
             {#if state && state !== "deleted"}
                 <div class="s-post-summary--sm-hide ml-auto">
                     <PostSummaryStateBadge
@@ -362,28 +372,39 @@
             {/if}
         </div>
         <div class="s-post-summary--title">
+            {#if gated}
+                <Icon
+                    src={IconShield}
+                    class="s-post-summary--title-icon"
+                    title={i18nGatedTitle}
+                />
+            {/if}
             <a class="s-post-summary--title-link" {href}>
                 <!-- TODO SHINE include badge icon -->
                 {title}
             </a>
         </div>
         {#if excerpt}
-            <Excerpt {excerpt} size={excerptSize} />
+            <Excerpt {excerpt} lines={excerptLines} />
         {/if}
-        <div class="s-post-summary--tags">
-            {#if contentType}
-                <PostSummaryContentType
-                    name={contentType.name}
-                    href={contentType.url}
-                    {i18nContentTypeText}
-                />
-            {/if}
-            {#if tags}
-                {@render tags()}
-            {/if}
-        </div>
+        {#if contentType || tags}
+            <div class="s-post-summary--tags">
+                {#if contentType}
+                    <PostSummaryContentType
+                        name={contentType.name}
+                        href={contentType.url}
+                        {i18nContentTypeText}
+                    />
+                {/if}
+                {#if tags}
+                    {@render tags()}
+                {/if}
+            </div>
+        {/if}
         {#if answerPreviews}
-            {@render answerPreviews()}
+            <div class="s-post-summary--answers">
+                {@render answerPreviews()}
+            </div>
         {/if}
     </div>
 </div>

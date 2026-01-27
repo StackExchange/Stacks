@@ -100,7 +100,7 @@
                     </div>
                 {% endif %}
             </div>
-            <div class="s-post-summary--content-meta-views">
+            <div class="s-post-summary--content-meta-item">
                 {{ data.views | default: 98 }} views
             </div>
             {% if data.badge %}
@@ -113,15 +113,18 @@
             {% endif %}
         </div>
         <div class="s-post-summary--title">
+            {% if data.gated %}
+                {% icon "Shield16", "s-post-summary--title-icon" %}
+            {% endif %}
             <a class="s-post-summary--title-link" href="#">
                 <!-- TODO SHINE include badge icon -->
                 {{ data.title | default: "How to reduce hallucinations and improve source relevance in a RAG pipeline?" }}
             </a>
         </div>
         {% if data.excerptLines != 0 %}
-            <div class="s-post-summary--excerpt v-truncate{{ data.excerptLines | default: 3 }}">
+            <p class="s-post-summary--excerpt v-truncate{{ data.excerptLines | default: 3 }}">
                 {{ data.excerpt | default: defaultExcerpt }}
-            </div>
+            </p>
         {% endif %}
         <div class="s-post-summary--tags">
             {% if data.type %}
@@ -169,7 +172,7 @@
                                 </a>
                             </div>
                             <!-- Stats (sm) -->
-                            <div class="s-post-summary--stats g6">
+                            <div class="s-post-summary--stats">
                                 <!-- Votes -->
                                 <div class="s-post-summary--stats-votes">
                                     {% icon "Vote16Up" %}

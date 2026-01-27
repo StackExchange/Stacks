@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { ExcerptSize } from "./PostSummary.svelte";
+    import type { ExcerptLines } from "./PostSummary.svelte";
 
     /**
      * The excerpt text to be displayed
@@ -7,22 +7,27 @@
     export let excerpt: string;
 
     /**
-     * The size of the excerpt text
-     * @type {"none" | "sm" | "md" | "lg"} ExcerptSize
+     * The number of lines to truncate the excerpt text
      */
-    export let size: ExcerptSize = "lg";
+    export let lines: ExcerptLines = 3;
 
-    $: classes = getClasses(size);
+    /**
+     * Whether to truncate the excerpt text
+     */
+    export let truncate: boolean = true;
 
-    const getClasses = (size: ExcerptSize) => {
-        const base = "s-post-summary--content-excerpt";
+    $: classes = getClasses(lines, truncate);
+
+    const getClasses = (lines: ExcerptLines, truncate: boolean) => {
+        const base = "s-post-summary--excerpt";
         let classes = base;
 
-        if (size === "sm" || size === "md" || size === "lg") {
-            const lineCount = size === "sm" ? 1 : size === "md" ? 2 : 3;
-            classes += ` v-truncate${lineCount}`;
-        } else if (size === "none") {
+        if (lines === 0) {
             classes = "d-none";
+        } else {
+            if (truncate) {
+                classes += ` v-truncate${lines}`;
+            }
         }
 
         return classes;
