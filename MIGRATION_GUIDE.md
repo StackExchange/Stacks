@@ -69,6 +69,7 @@
 
 #### Loading
 - `Spinner` component replaced with new `Loading` component
+- `xs` and `xl` sized have been removed, leaving only the default, `sm`, and `lg` sizes
 
 #### Menu
 
