@@ -160,12 +160,7 @@
             href={profileUrl}
         >
             {#if avatar}
-                <Avatar
-                    {name}
-                    href={profileUrl}
-                    src={avatar}
-                    size={avatarSize}
-                />
+                <Avatar {name} src={avatar} size={avatarSize} />
             {/if}
             {#if name}
                 {#if originalPoster}
