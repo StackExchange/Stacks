@@ -25,7 +25,10 @@
 {% assign defaultTags = "retrieval-augmented-generation, langchain, llm, vector-database" | split: ", " %}
 <div class="s-post-summary {% if data.answered %}s-post-summary__answered{% endif %} {{ data.modifier }}" {{ rootAttributes }}>
     <div class="s-post-summary--stats s-post-summary--sm-hide">
-        <div class="s-post-summary--stats-votes">+{{ data.votes | default: 24 }}</div>
+        <div class="s-post-summary--stats-votes">
+            +{{ data.votes | default: 24 }}
+            <span class="v-visible-sr">votes</span>
+        </div>
         <div class="s-post-summary--stats-answers">
             {% if data.answered %}
                 {% icon "Answer16Fill" %}
@@ -33,6 +36,7 @@
                 {% icon "Answer16" %}
             {% endif %}
             {{ data.answerCount | default: 1 }}
+            <span class="v-visible-sr">answers</span>
         </div>
         {% if data.bounty %}
             <div class="s-post-summary--stats-bounty">
