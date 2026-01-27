@@ -23,13 +23,13 @@
 
 <script lang="ts">
     import type { Snippet } from "svelte";
-    import PostSummaryContentType from "./PostSummaryContentType.svelte";
-    import PostSummaryStateBadge from "./PostSummaryStateBadge.svelte";
-    import Icon from "../Icon/Icon.svelte";
+    import ContentTypeBadge from "./PostSummaryContentType.svelte";
     import Excerpt from "./PostSummaryExcerpt.svelte";
+    import StateBadge from "./PostSummaryStateBadge.svelte";
     import UserCard from "../UserCard/UserCard.svelte";
     import UserCardTime from "../UserCard/UserCardTime.svelte";
     import UserCardBling from "../UserCard/UserCardBling.svelte";
+    import Icon from "../Icon/Icon.svelte";
     import { IconShield } from "@stackoverflow/stacks-icons-legacy/icons";
     import {
         IconAnswer16,
@@ -301,7 +301,7 @@
     <div class="s-post-summary--content">
         <div class="s-post-summary--sm-show">
             {#if state && state !== "deleted"}
-                <PostSummaryStateBadge {state} i18nText={i18nStateBadgeText} />
+                <StateBadge {state} i18nText={i18nStateBadgeText} />
             {/if}
         </div>
         <div class="s-post-summary--content-meta">
@@ -364,10 +364,7 @@
             {/if}
             {#if state && state !== "deleted"}
                 <div class="s-post-summary--sm-hide ml-auto">
-                    <PostSummaryStateBadge
-                        {state}
-                        i18nText={i18nStateBadgeText}
-                    />
+                    <StateBadge {state} i18nText={i18nStateBadgeText} />
                 </div>
             {/if}
         </div>
@@ -390,7 +387,7 @@
         {#if contentType || tags}
             <div class="s-post-summary--tags">
                 {#if contentType}
-                    <PostSummaryContentType
+                    <ContentTypeBadge
                         name={contentType.name}
                         href={contentType.url}
                         {i18nContentTypeText}
