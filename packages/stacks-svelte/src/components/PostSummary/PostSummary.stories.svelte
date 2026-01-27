@@ -5,7 +5,6 @@
     import type {
         ContentTypeName,
         ExcerptSize,
-        Hotness,
         State,
     } from "./PostSummary.svelte";
     import Answer from "./PostSummaryAnswer.svelte";
@@ -60,8 +59,7 @@
         "knowledge-article",
         "policy",
     ];
-    const ExcerptSizeTypes: ExcerptSize[] = [undefined, "sm", "md", "lg"];
-    const HotnessTypes: Hotness[] = [undefined, "warm", "hot", "supernova"];
+    const ExcerptSizeTypes: ExcerptSize[] = ["none", "sm", "md", "lg"];
     const StateTypes: State[] = [
         undefined,
         "archived",
@@ -100,10 +98,6 @@
             excerptSize: {
                 control: "select",
                 options: ExcerptSizeTypes,
-            },
-            hotness: {
-                control: "select",
-                options: HotnessTypes,
             },
             state: {
                 control: "select",
@@ -148,7 +142,7 @@
                 {#each ExcerptSizeTypes as excerptSize (excerptSize)}
                     <tr>
                         <th scope="row" class="va-middle">
-                            {excerptSize || "default"}
+                            {excerptSize}
                         </th>
                         <td class="va-middle px4">
                             <PostSummary {...baseArgs} {excerptSize}>

@@ -9,7 +9,6 @@
 </script>
 
 <script lang="ts">
-    import type { Hotness } from "./PostSummary.svelte";
     /**
      * Number to be displayed
      */
@@ -19,12 +18,6 @@
      * Label to be displayed as the unit of the number
      */
     export let unit: string;
-
-    /**
-     * Apply hotness styling
-     * @type {"warm" | "hot" | "supernova" | undefined} Hotness
-     */
-    export let hotness: Hotness = undefined;
 
     /**
      * The variant of the stats item
@@ -38,13 +31,9 @@
     let className = "";
     export { className as class };
 
-    $: classes = getClasses(className, hotness, variant);
+    $: classes = getClasses(className, variant);
 
-    const getClasses = (
-        className: string,
-        hotness: Hotness,
-        variant: Variant
-    ) => {
+    const getClasses = (className: string, variant: Variant) => {
         const base = "s-post-summary--stats-item";
         let classes = base;
 
@@ -54,10 +43,6 @@
 
         if (variant === "answers" && number && Number(number) > 0) {
             classes += ` has-answers`;
-        }
-
-        if (hotness) {
-            classes += ` is-${hotness}`;
         }
 
         if (variant === "bounty") {
