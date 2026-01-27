@@ -61,6 +61,11 @@
         link?: boolean;
 
         /**
+         * Modifier describing if a loading spinner should be showed
+         */
+        loading?: boolean;
+
+        /**
          * Modifier describing if the button is selected
          */
         selected?: boolean;
@@ -84,11 +89,6 @@
          * Optional badge to display on the button
          */
         badge?: Snippet;
-
-        /**
-         * Optional loading component to display on the button
-         */
-        loading?: boolean;
     }
 </script>
 
@@ -103,12 +103,12 @@
         dropdown = false,
         icon = false,
         link = false,
+        loading = false,
         selected = false,
         unset = false,
         class: className = "",
         children,
         badge,
-        loading = false,
         ...restProps
     }: Props = $props();
 
