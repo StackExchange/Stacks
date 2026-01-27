@@ -4,6 +4,9 @@
 </script>
 
 <script lang="ts">
+    import Icon from "../Icon/Icon.svelte";
+    import { SpotLoading } from "@stackoverflow/stacks-icons/spots";
+
     interface Props {
         /**
          * The accessible label for screen readers
@@ -42,4 +45,5 @@
 
 <div class={classes}>
     <div class="v-visible-sr">{label}</div>
+    <Icon src={SpotLoading} native />
 </div>
