@@ -271,7 +271,13 @@ tags: components
     <p class="docs-copy">Any button can have a loading state applied by adding the <code class="docs-code">.s-loader--block .s-loader--block__sm</code> state class.</p>
     <div class="docs-preview">
 {% highlight html %}
-<button class="s-btn .s-loader--block .s-loader--block__sm" type="button">…</button>
+<button class="s-btn .s-loader--block .s-loader--block__sm" type="button"
+    <div class="s-loader--block s-loader--block__sm">
+        <div class="v-visible-sr">Loading…</div>
+        @Svg.Spot.Loading.With("native")
+    </div>
+    Ask question
+</button>
 {% endhighlight %}
         <div class="docs-preview--example">
             <table class="wmn5 s-table s-table__bx-simple">
@@ -303,18 +309,21 @@ tags: components
                             <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }}" type="button">
                                 <div class="s-loader--block s-loader--block__sm">
                                     <div class="v-visible-sr">Loading…</div>
+                                    {% spot "Loading", "native" %}
                                 </div>
                                 Ask question
                             </button></td>
                             <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }} is-selected" type="button" aria-pressed="true">
                                 <div class="s-loader--block s-loader--block__sm">
                                     <div class="v-visible-sr">Loading…</div>
+                                    {% spot "Loading", "native" %}
                                 </div>
                                 Ask question
                             </button></td>
                             <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }}" type="button" disabled>
                                 <div class="s-loader--block s-loader--block__sm">
                                     <div class="v-visible-sr">Loading…</div>
+                                    {% spot "Loading", "native" %}
                                 </div>
                                 Ask question
                             </button></td>
