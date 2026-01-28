@@ -6,6 +6,7 @@
     --_bu-g: var(--su8);
     --_bu-px: var(--su16);
     --_bu-py: calc(var(--su8) + var(--su2)); // 10px
+    --_bu-badge-fs: var(--fs-caption);
     --_bu-badge-px: var(--su6);
     --_bu-badge-py: var(--su2);
     --_bu-dropdown-bw: var(--su-static4);
@@ -232,12 +233,11 @@
     }
 
     // CHILD ELEMENTS
-    // TODO SHINE fine-tune badge styles
     & &--badge {
         background-color: var(--_bu-badge-bg);
         border-radius: var(--br-pill);
         display: inline-block;
-        font-size: var(--fs-caption);
+        font-size: var(--_bu-badge-fs);
         line-height: inherit;
         opacity: var(--_bu-badge-o);
         padding: var(--_bu-badge-py) var(--_bu-badge-px);
@@ -268,8 +268,9 @@
     &&__sm {
         --_bu-lh: var(--lh-sm);
         --_bu-px: var(--su12);
+        --_bu-badge-fs: var(--fs-fine);
         --_bu-badge-py: var(--su1);
-        --_bu-badge-px: var(--su2);
+        --_bu-badge-px: calc(var(--su2) + var(--su1)); // 3px
     }
     &&__xs {
         --_bu-g: var(--su4);
@@ -285,6 +286,7 @@
         --_bu-fs: var(--fs-body2);
         --_bu-px: var(--su24);
         --_bu-py: calc(var(--su12) + var(--su1)); // 13px
+        --_bu-badge-py: calc(var(--su2) + var(--su1)); // 3px
     }
 
     // INTERACTION
