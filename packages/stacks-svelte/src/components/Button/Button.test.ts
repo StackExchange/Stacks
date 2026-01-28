@@ -129,7 +129,7 @@ describe("Button", () => {
         expect(screen.getByRole("button")).to.have.class("s-btn__link");
     });
 
-    it("should render the loading component when loading prop is provided", () => {
+    it("should render the loader component when loading prop is provided", () => {
         render(Button, {
             loading: true,
             children,
