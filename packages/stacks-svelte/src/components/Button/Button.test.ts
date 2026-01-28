@@ -1,11 +1,10 @@
-import { createRawSnippet, mount, unmount, tick } from "svelte";
+import { createRawSnippet, tick } from "svelte";
 import { expect } from "@open-wc/testing";
 import { render, screen } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import sinon from "sinon";
 
 import Button from "./Button.svelte";
-import Loader from "../Loader/Loader.svelte";
 
 const children = createRawSnippet(() => ({
     render: () => "<span>test btn</span>",
@@ -131,28 +130,12 @@ describe("Button", () => {
     });
 
     it("should render the loading component when loading prop is provided", () => {
-        const loadingSnippet = createRawSnippet(() => ({
-            render: () => "<span></span>",
-            setup: (target) => {
-                const instance = mount(Loader, {
-                    target,
-                    props: {
-                        size: "sm",
-                    },
-                });
-                return () => {
-                    unmount(instance);
-                };
-            },
-        }));
-
         render(Button, {
-            loading: loadingSnippet,
+            loading: true,
             children,
         });
         expect(screen.getByText("Loading…")).to.exist;
-        expect(screen.getByText("Loading…").closest(".s-loader")).to
-            .exist;
+        expect(screen.getByText("Loading…").closest(".s-loader")).to.exist;
     });
 
     it("should render including the selected class", () => {
