@@ -1,5 +1,14 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.24
+
+### Patch Changes
+
+- [#2148](https://github.com/StackExchange/Stacks/pull/2148) [`fc1517b`](https://github.com/StackExchange/Stacks/commit/fc1517b4a2a91ffbe1dec376b5488f6f46f75844) Thanks [@giamir](https://github.com/giamir)! - vote component: allow downvoting for horizontal layout
+
+- Updated dependencies [[`f59b762`](https://github.com/StackExchange/Stacks/commit/f59b762834d6891a1885459354d0ccc06739fb6d)]:
+    - @stackoverflow/stacks-utils@1.0.0-beta.2
+
 ## 1.0.0-beta.23
 
 ### Minor Changes
