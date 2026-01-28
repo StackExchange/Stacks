@@ -31,6 +31,7 @@ export const auth = betterAuth({
                     clientId: env.AUTH_OKTA_ID || "",
                     clientSecret: env.AUTH_OKTA_SECRET || "",
                     issuer: env.AUTH_OKTA_ISSUER || "",
+                    scopes: ["openid", "email", "profile"],
                 }),
             ],
         }),
