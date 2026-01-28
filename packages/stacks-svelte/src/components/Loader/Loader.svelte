@@ -1,6 +1,5 @@
 <script module lang="ts">
     export type Size = undefined | "sm" | "lg";
-    export type Variant = "block";
 </script>
 
 <script lang="ts">
@@ -17,21 +16,12 @@
          * The size of the spinner
          */
         size?: Size;
-
-        /**
-         * The variant of the loader
-         */
-        variant?: Variant;
     }
 
-    const {
-        label = "Loading…",
-        size = undefined,
-        variant = "block",
-    }: Props = $props();
+    const { label = "Loading…", size = undefined }: Props = $props();
 
-    const getClasses = (variant: Variant, size: Size) => {
-        const base = `s-loader--${variant}`;
+    const getClasses = (size: Size) => {
+        const base = `s-loader`;
         let classes = base;
 
         if (size) {
@@ -40,10 +30,10 @@
         return classes;
     };
 
-    const classes = $derived(getClasses(variant, size));
+    const classes = $derived(getClasses(size));
 </script>
 
 <div class={classes}>
+    <div class="s-loader--block"></div>
     <div class="v-visible-sr">{label}</div>
-    <Icon src={SpotLoading} native />
 </div>

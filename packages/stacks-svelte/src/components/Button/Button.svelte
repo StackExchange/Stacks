@@ -1,6 +1,7 @@
 <script module lang="ts">
     import type { HTMLButtonAttributes } from "svelte/elements";
     import type { Snippet } from "svelte";
+    import Loader from "../Loader/Loader.svelte";
 
     export type Brand = "" | "facebook" | "github" | "google";
     export type Size = "" | "xs" | "sm" | "lg";
@@ -60,6 +61,11 @@
         link?: boolean;
 
         /**
+         * Modifier describing if a loading spinner should be showed
+         */
+        loading?: boolean;
+
+        /**
          * Modifier describing if the button is selected
          */
         selected?: boolean;
@@ -83,11 +89,6 @@
          * Optional badge to display on the button
          */
         badge?: Snippet;
-
-        /**
-         * Optional loader to display on the button
-         */
-        loader?: Snippet;
     }
 </script>
 
@@ -102,12 +103,12 @@
         dropdown = false,
         icon = false,
         link = false,
+        loading = false,
         selected = false,
         unset = false,
         class: className = "",
         children,
         badge,
-        loader,
         ...restProps
     }: Props = $props();
 
@@ -183,14 +184,14 @@
     disabled={(!href && disabled) || null}
     aria-disabled={href && disabled ? "true" : null}
     {...restProps}
-    >{#if loader}{@render loader()}{/if}{#if !badge}
-        {@render children()}
-    {:else}
+    >{#if loading}<Loader
+            size="sm"
+        />{/if}{#if !badge}{@render children()}{:else}
         {@render children()}
         <span class="s-btn--badge">
             <span class="s-btn--number">
                 {@render badge()}
             </span>
         </span>
-    {/if}</svelte:element
->
+    {/if}
+</svelte:element>

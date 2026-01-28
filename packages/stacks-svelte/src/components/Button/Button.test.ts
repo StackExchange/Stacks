@@ -130,14 +130,13 @@ describe("Button", () => {
         expect(screen.getByRole("button")).to.have.class("s-btn__link");
     });
 
-    it("should render the loader when loader is provided", () => {
-        const loaderSnippet = createRawSnippet(() => ({
+    it("should render the loading component when loading prop is provided", () => {
+        const loadingSnippet = createRawSnippet(() => ({
             render: () => "<span></span>",
             setup: (target) => {
                 const instance = mount(Loader, {
                     target,
                     props: {
-                        variant: "block",
                         size: "sm",
                     },
                 });
@@ -148,11 +147,11 @@ describe("Button", () => {
         }));
 
         render(Button, {
-            loader: loaderSnippet,
+            loading: loadingSnippet,
             children,
         });
         expect(screen.getByText("Loading…")).to.exist;
-        expect(screen.getByText("Loading…").closest(".s-loader--block")).to
+        expect(screen.getByText("Loading…").closest(".s-loader")).to
             .exist;
     });
 

@@ -14,31 +14,23 @@ describe("Loader", () => {
         expect(screen.getByText("Please wait...")).to.exist;
     });
 
-    it("should render the loader with the block variant class when variant is provided", () => {
-        render(Loader, { variant: "block" });
-        const loader = screen.getByText("Loading…").closest(".s-loader--block");
-        expect(loader).to.exist;
-    });
-
     it("should render the loader without size modifier class when size is undefined", () => {
-        render(Loader, { size: undefined });
-        const loader = screen.getByText("Loading…").closest(".s-loader--block");
+        render(Loader);
+        const loader = screen.getByText("Loading…").closest(".s-loader");
         expect(loader).to.exist;
-        expect(loader).not.to.have.class("s-loader--block__sm");
-        expect(loader).not.to.have.class("s-loader--block__lg");
     });
 
     it("should render the loader with the small size class", () => {
         render(Loader, { size: "sm" });
-        const loader = screen.getByText("Loading…").closest(".s-loader--block");
+        const loader = screen.getByText("Loading…").closest(".s-loader");
         expect(loader).to.exist;
-        expect(loader).to.have.class("s-loader--block__sm");
+        expect(loader).to.have.class("s-loader__sm");
     });
 
     it("should render the loader with the large size class", () => {
         render(Loader, { size: "lg" });
-        const loader = screen.getByText("Loading…").closest(".s-loader--block");
+        const loader = screen.getByText("Loading…").closest(".s-loader");
         expect(loader).to.exist;
-        expect(loader).to.have.class("s-loader--block__lg");
+        expect(loader).to.have.class("s-loader__lg");
     });
 });

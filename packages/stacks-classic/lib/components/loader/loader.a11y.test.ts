@@ -1,9 +1,9 @@
 import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
-describe("loading", () => {
+describe("loader", () => {
     runA11yTests({
-        baseClass: "s-loading",
+        baseClass: "s-loader",
         modifiers: {
             primary: ["sm", "lg"],
         },

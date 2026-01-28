@@ -4,7 +4,6 @@
     import type { Brand, Size, Variant, Weight } from "./Button.svelte";
     import Icon from "../Icon/Icon.svelte";
     import { IconTrash } from "@stackoverflow/stacks-icons/icons";
-    import Loader from "../Loader/Loader.svelte";
 
     const ButtonBrands: Brand[] = ["", "facebook", "github", "google"];
     const ButtonSizes: Size[] = ["", "xs", "sm", "lg"];
@@ -115,9 +114,6 @@
                     {#each ButtonVariants as variant (variant)}
                         {#each ButtonWeights as weight (weight)}
                             {#if !(weight === "clear" && (variant === "featured" || variant === "tonal"))}
-                                {#snippet loader()}
-                                    <Loader variant="block" size="sm" />
-                                {/snippet}
                                 <tr>
                                     <th scope="row" class="va-middle">
                                         {titleCase(variant || "secondary")}
@@ -128,7 +124,7 @@
                                     {#each [null, "selected", "disabled"] as state (state)}
                                         <td class="va-middle ta-center px4">
                                             <Button
-                                                {loader}
+                                                loading={true}
                                                 {weight}
                                                 selected={state === "selected"}
                                                 disabled={state === "disabled"}
