@@ -27,6 +27,10 @@ formatCount(9999); // "9,999"
 formatCount(10000); // "10k"
 formatCount(12345); // "12.3k"
 formatCount(1234567); // "1.2m"
+
+// Negative numbers
+formatCount(-1234); // "-1,234"
+formatCount(-12345); // "-12.3k"
 ```
 
 You can also import from the class:
