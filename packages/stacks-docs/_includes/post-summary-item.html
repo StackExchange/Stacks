@@ -77,7 +77,7 @@
                 </a>
             </div>
             <!-- Stats (sm) -->
-            <div class="s-post-summary--stats s-post-summary--sm-show g6">
+            <div class="s-post-summary--stats s-post-summary--sm-show">
                 <!-- Votes -->
                 <div class="s-post-summary--stats-votes">
                     {% icon "Vote16Up" %}
@@ -91,6 +91,7 @@
                         {% icon "Answer16" %}
                     {% endif %}
                     {{ data.answers | default: 1 }}
+                    <span class="v-visible-sr">answers</span>
                 </div>
                 <!-- Bounty -->
                 {% if data.bounty %}
@@ -100,7 +101,7 @@
                     </div>
                 {% endif %}
             </div>
-            <div class="s-post-summary--content-meta-item">
+            <div class="s-post-summary--stats-item">
                 {{ data.views | default: 98 }} views
             </div>
             {% if data.badge %}

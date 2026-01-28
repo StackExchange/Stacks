@@ -347,18 +347,18 @@
                     </div>
                 {/if}
             </div>
-            <div class="s-post-summary--content-meta-item">
+            <div class="s-post-summary--stats-item">
                 {views || "0"}
                 {i18nViewsUnit}
             </div>
             {#if comments}
-                <div class="s-post-summary--content-meta-item">
+                <div class="s-post-summary--stats-item">
                     {comments}
                     {i18nCommentsUnit}
                 </div>
             {/if}
             {#if readTime}
-                <div class="s-post-summary--content-meta-item">
+                <div class="s-post-summary--stats-item">
                     {readTime}
                 </div>
             {/if}
