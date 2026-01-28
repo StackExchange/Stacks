@@ -18,18 +18,21 @@ export class NumberFormatter {
      * @param count - The number to format
      * @param compactThreshold - (Optional) The number at which to switch from standard to compact format
      * @returns A formatted string:
-     *   - Less than 10,000: standard format with commas (e.g., "1,234", "999")
-     *   - 10,000 or more: compact format with lowercase suffixes (e.g., "10k", "1.2m")
+     *   - Less than 10,000: standard format with commas (e.g., "1,234", "999", "-1,234")
+     *   - 10,000 or more: compact format with lowercase suffixes (e.g., "10k", "1.2m", "-10k")
      */
     public static formatCount(
         count: number,
         compactThreshold: number = 10000
     ): string {
+        const absoluteValue = Math.abs(count);
+        const sign = count < 0 ? "-" : "";
+
         for (const formatter of NumberFormatter.getFormatters(
             compactThreshold
         )) {
-            if (formatter.condition(count)) {
-                return formatter.format(count);
+            if (formatter.condition(absoluteValue)) {
+                return sign + formatter.format(absoluteValue);
             }
         }
         return count.toString(); // should never reach here

@@ -45,6 +45,11 @@
 - `.s-badge__new` renamed to `.s-badge__featured`
 - `.s-award-bling` renamed to `.s-bling` (used in some badge templates)
 
+#### Banners
+
+- Banner markup has changed. New markup and icons should be applied.
+- `.s-banner--btn` has been replaced with `.s-banner--dismiss`
+
 #### Bling (previously *Award Bling*)
 - The Award Bling component has been renamed to Bling.
 - Bling no longer accepts children elements besides those for screen readers. Please include any visually represented strings (such as counts) as siblings to the bling component.

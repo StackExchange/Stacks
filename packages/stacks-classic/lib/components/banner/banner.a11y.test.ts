@@ -1,37 +1,37 @@
-// TODO SPARK reinstate accessibility tests once component styles are updated
-// import { runA11yTests } from "../../test/a11y-test-utils";
-// import "../../index";
+import { runA11yTests } from "../../test/a11y-test-utils";
+import { IconAlert, IconCross } from "@stackoverflow/stacks-icons/icons";
+import "../../index";
 
-// const bannerChild = `
-//     <div
-//         class="d-flex flex__center jc-space-between s-banner--container"
-//         role="alertdialog"
-//         aria-labelledby="banner-title"
-//         aria-describedby="banner-description"
-//     >
-//         <div aria-label="banner message">
-//             <h2 id="banner-title">Banner heading</h2>
-//             <p id="banner-description">Banner description</p>
-//         </div>
-//         <div class="ml-auto myn8">
-//             <span class="s-btn s-banner--btn">Close</span>
-//         </div>
-//     </div>
-// `;
+const bannerChildren = `
+    <span class="s-banner--icon">${IconAlert}</span>    
+    <span>
+        <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
+    </span>
+    <div class="s-banner--actions">
+        <button class="s-link s-banner--dismiss" aria-label="Dismiss">${IconCross}</button>
+    </div>
+`;
 
-// describe("banner", () => {
-//     runA11yTests({
-//         baseClass: "s-banner",
-//         variants: ["info", "success", "warning", "danger"],
-//         modifiers: {
-//             primary: ["important"],
-//         },
-//         attributes: {
-//             role: "alert",
-//             ariaHidden: "false",
-//         },
-//         children: {
-//             default: bannerChild,
-//         },
-//     });
-// });
+describe("banner", () => {
+    runA11yTests({
+        baseClass: "s-banner",
+        variants: [
+            "info",
+            "success",
+            "warning",
+            "danger",
+            "activity",
+            "featured",
+        ],
+        modifiers: {
+            primary: ["important"],
+        },
+        attributes: {
+            role: "alert",
+            ariaHidden: "false",
+        },
+        children: {
+            default: bannerChildren,
+        },
+    });
+});

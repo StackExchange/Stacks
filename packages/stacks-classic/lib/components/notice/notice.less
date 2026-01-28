@@ -27,8 +27,9 @@
 /**
  * Generate styles for a notice-based component
  *
- * Usage example:
+ * Usage examples:
  * .construct-notice-component(s-banner);
+ * .construct-notice-component(s-notice);
  *
  * @baseClass - The base class name for the notice component
  */
@@ -110,7 +111,6 @@
     &__warning {
         &:not(.@{baseClass}__important) {
             .generate-variant-variables(yellow);
-            
         }
 
         &.@{baseClass}__important {
@@ -164,14 +164,24 @@
             background-color: var(--_no-fc);
             color: var(--_no-bg);
         }
+        color: var(--_no-fc);
     }
 
-    :has(>button&--dismiss) {
+    &--actions {
+        display: flex;
+        margin-left: auto;
+        align-self: flex-start;
         padding-left: var(--su24);
-        //Add spacing between multiple notice actions
+        color: var(--_no-fc);
         gap: calc(var(--su24) - var(--su2)); //22px
+        
         //Fix css issue caused by svelte-sonner-toast in the NoticeAction svelte component
         overflow-wrap: initial !important;
+    }
+
+    //Fix notice action color for __important variant
+    &--actions > .s-link:not(&--dismiss) {
+        color: var(--_no-fc);
     }
 
     // STYLES MODIFIED BY COMPONENT-SPECIFIC CUSTOM PROPERTIES
@@ -194,10 +204,6 @@
         padding: var(--_no-pd);
         margin-right: var(--su12);
         align-self: stretch;
-
-        //Position the svg icon
-        display: flex;
-        align-items: top;
 
         //Negative margin to make up for s-notice's padding
         margin-top: calc(var(--_no-pd) * -1);
