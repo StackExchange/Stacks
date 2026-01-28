@@ -31,19 +31,7 @@ export const auth = betterAuth({
                     clientId: env.AUTH_OKTA_ID || "",
                     clientSecret: env.AUTH_OKTA_SECRET || "",
                     issuer: env.AUTH_OKTA_ISSUER || "",
-                    scopes: ["openid"],
-                    getUserInfo: async (tokens) => {
-                        const [, payload] = tokens.idToken?.split(".") ?? [];
-                        if (!payload) return null;
-                        const decoded = JSON.parse(atob(payload));
-                        if (!decoded.sub) return null;
-                        return {
-                            id: decoded.sub,
-                            email: `${decoded.sub}@okta.local`,
-                            name: decoded.sub,
-                            emailVerified: true,
-                        };
-                    },
+                    scopes: ["openid", "email", "profile"],
                 }),
             ],
         }),
