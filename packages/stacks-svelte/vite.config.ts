@@ -17,7 +17,11 @@ export default defineConfig({
             "@testing-library/svelte",
             "@testing-library/user-event",
             "@stackoverflow/stacks-icons/icons",
+            "@stackoverflow/stacks-icons/spots",
             "@stackoverflow/stacks-icons-legacy/icons",
+            "dayjs",
+            "dayjs/plugin/relativeTime",
+            "dayjs/plugin/updateLocale",
             // svelte-sonner must be pre-bundled to ensure its virtual CSS modules
             // (from <style global> blocks) are properly resolved during test execution.
             // Without pre-bundling, CI environments may trigger mid-test re-optimization,
