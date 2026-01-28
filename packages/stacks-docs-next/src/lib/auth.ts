@@ -1,5 +1,5 @@
 import { betterAuth } from "better-auth";
-import { genericOAuth, okta } from "better-auth/plugins";
+import { genericOAuth } from "better-auth/plugins";
 import { sveltekitCookies } from "better-auth/svelte-kit";
 
 import { env } from "$env/dynamic/private";
@@ -27,12 +27,13 @@ export const auth = betterAuth({
         // Okta OAuth via genericOAuth plugin
         genericOAuth({
             config: [
-                okta({
+{
+                    providerId: "okta",
                     clientId: env.AUTH_OKTA_ID || "",
                     clientSecret: env.AUTH_OKTA_SECRET || "",
-                    issuer: env.AUTH_OKTA_ISSUER || "",
+                    discoveryUrl: `${env.AUTH_OKTA_ISSUER}/.well-known/openid-configuration`,
                     scopes: ["openid", "email", "profile"],
-                }),
+                },
             ],
         }),
 
