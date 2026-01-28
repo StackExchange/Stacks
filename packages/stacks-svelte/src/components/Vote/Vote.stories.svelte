@@ -66,7 +66,6 @@
 <Story name="Upvote only">
     {#snippet template()}
         <div class="d-flex ai-center g64 fw-wrap">
-            <Vote total={13} upvoteOnly />
             <Vote total={13} upvoteOnly horizontal />
         </div>
     {/snippet}
