@@ -62,4 +62,34 @@ const runVisualTests = (args: VisualTestArgs) => {
     testVariations.forEach(scheduleVisualTest);
 };
 
-export { runVisualTests };
+const replaceHtml = (
+    componentTemplateResult: unknown,
+    textToReplace: string,
+    replacementHtml: string
+) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const component = componentTemplateResult as any;
+    if (!Array.isArray(component.strings) || !Array.isArray(component.values)) {
+        throw new Error("Expected Lit TemplateResult type");
+    }
+
+    // Replace placeholder with actual icon in the Lit template
+    const originalStrings = component.strings;
+    const updatedStrings = originalStrings.map((str: string) =>
+        str.replace(textToReplace, replacementHtml)
+    );
+    // Create a proper TemplateStringsArray with raw property
+    Object.defineProperty(updatedStrings, "raw", {
+        value: updatedStrings.map((str: string) => str),
+        enumerable: false,
+    });
+    // Reconstruct the template with updated strings and original values
+    const updatedComponent = {
+        ...component,
+        strings: updatedStrings,
+        values: component.values,
+    };
+    return updatedComponent;
+};
+
+export { runVisualTests, replaceHtml };
