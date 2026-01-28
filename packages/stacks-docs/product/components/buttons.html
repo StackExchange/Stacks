@@ -280,58 +280,59 @@ tags: components
 </button>
 {% endhighlight %}
         <div class="docs-preview--example">
-            <table class="wmn5 s-table s-table__bx-simple">
-                <thead>
-                    <tr>
-                        <th scope="col">Type</th>
-                        <th scope="col" class="s-table--cell4">Class</th>
-                        <th scope="col" class="ta-center">Default State</th>
-                        <th scope="col" class="ta-center">Selected State</th>
-                        <th scope="col" class="ta-center">Disabled State</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- TODO SHINE add loading state to buttons -->
-                    {% for btn in buttons.variants %}
+            <div class="overflow-x-auto">
+                <table class="wmn5 s-table s-table__bx-simple">
+                    <thead>
                         <tr>
-                            <th scope="row" class="va-middle">{{ btn.title }}</th>
-                            <td class="va-middle">
-                                <div class="d-flex g4 fw-wrap">
-                                    <code class="docs-code">.s-btn</code>
-                                    {% if btn.variant != nil %}
-                                        <code class="docs-code">.{{ btn.variant }}</code>
-                                    {% endif %}
-                                    {% if btn.modifier != nil %}
-                                        <code class="docs-code">.{{ btn.modifier }}</code>
-                                    {% endif %}
-                                    <code class="docs-code">.s-loader--block .s-loader--block__sm</code>
-                                </div>
-                            </td>
-                            <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }}" type="button">
-                                <div class="s-loader--block s-loader--block__sm">
-                                    <div class="v-visible-sr">Loading…</div>
-                                    {% spot "Loading", "native" %}
-                                </div>
-                                Ask question
-                            </button></td>
-                            <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }} is-selected" type="button" aria-pressed="true">
-                                <div class="s-loader--block s-loader--block__sm">
-                                    <div class="v-visible-sr">Loading…</div>
-                                    {% spot "Loading", "native" %}
-                                </div>
-                                Ask question
-                            </button></td>
-                            <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }}" type="button" disabled>
-                                <div class="s-loader--block s-loader--block__sm">
-                                    <div class="v-visible-sr">Loading…</div>
-                                    {% spot "Loading", "native" %}
-                                </div>
-                                Ask question
-                            </button></td>
+                            <th scope="col">Type</th>
+                            <th scope="col" class="s-table--cell4">Class</th>
+                            <th scope="col" class="ta-center">Default State</th>
+                            <th scope="col" class="ta-center">Selected State</th>
+                            <th scope="col" class="ta-center">Disabled State</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for btn in buttons.variants %}
+                            <tr>
+                                <th scope="row" class="va-middle">{{ btn.title }}</th>
+                                <td class="va-middle">
+                                    <div class="d-flex g4 fw-wrap">
+                                        <code class="docs-code">.s-btn</code>
+                                        {% if btn.variant != nil %}
+                                            <code class="docs-code">.{{ btn.variant }}</code>
+                                        {% endif %}
+                                        {% if btn.modifier != nil %}
+                                            <code class="docs-code">.{{ btn.modifier }}</code>
+                                        {% endif %}
+                                        <code class="docs-code">.s-loader s-loader__sm</code>
+                                    </div>
+                                </td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }}" type="button">
+                                    <div class="s-loader s-loader__sm">
+                                        <div class="s-loader--block"></div>
+                                        <div class="v-visible-sr">Loading…</div>
+                                    </div>
+                                    Ask question
+                                </button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }} is-selected" type="button" aria-pressed="true">
+                                    <div class="s-loader s-loader__sm">
+                                        <div class="s-loader--block"></div>
+                                        <div class="v-visible-sr">Loading…</div>
+                                    </div>
+                                    Ask question
+                                </button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }}" type="button" disabled>
+                                    <div class="s-loader s-loader__sm">
+                                        <div class="s-loader--block"></div>
+                                        <div class="v-visible-sr">Loading…</div>
+                                    </div>
+                                    Ask question
+                                </button></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
 </section>
 

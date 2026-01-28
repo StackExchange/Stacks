@@ -66,6 +66,11 @@
         loading?: boolean;
 
         /**
+         * The i18n loading text
+         */
+        i18nLoadingText?: string;
+
+        /**
          * Modifier describing if the button is selected
          */
         selected?: boolean;
@@ -104,6 +109,7 @@
         icon = false,
         link = false,
         loading = false,
+        i18nLoadingText = "Loading…",
         selected = false,
         unset = false,
         class: className = "",
@@ -186,6 +192,7 @@
     {...restProps}
     >{#if loading}<Loader
             size="sm"
+            label={i18nLoadingText}
         />{/if}{#if !badge}{@render children()}{:else}
         {@render children()}
         <span class="s-btn--badge">
