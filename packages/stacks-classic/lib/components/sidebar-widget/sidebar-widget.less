@@ -1,13 +1,6 @@
 @headings: h1, h2, h3, h4, h5, h6;
 
 .s-sidebarwidget {
-    // COMPONENT-SPECIFIC CUSTOM PROPERTIES
-    --_sw-bc: var(--bc-medium);
-
-    & &--action:is(a, button) {
-        white-space: nowrap;
-    }
-
     // VARIANTS
     .alternate-color(blue);
     .alternate-color(yellow);
@@ -132,29 +125,16 @@
         padding-left: 0;
     }
 
+    & &--action:is(a, button) {
+        white-space: nowrap;
+    }
+
     font-size: var(--fs-body1);
 }
 
 // COLOR ALTERNATIVES
 .alternate-color(@name) {
     &.s-sidebarwidget__@{name} {
-        --_sw-bc: var(~"--@{name}-300");
-
-        .highcontrast-mode({
-            --_sw-bc: var(~"--@{name}-500");
-        });
-
-        &:after,
-        .s-sidebarwidget--content + .s-sidebarwidget--content,
-        .s-sidebarwidget--header {
-            border-color: var(--_sw-bc);
-        }
-
-        .s-sidebarwidget--header {
-            color: var(--fc-medium);
-        }
-
         background-color: var(~"--@{name}-100");
-        border-color: var(--_sw-bc);
     }
 }
