@@ -62,9 +62,9 @@ const testArgs: TestVariationArgs = {
         global: ["ws3"],
     },
     children: {
-        "default": getChild(),
-        "basic": getChild("basic"),
-        "nav": getChild("nav"),
+        default: getChild(),
+        basic: getChild("basic"),
+        nav: getChild("nav"),
     },
     options: {
         includeNullModifier: false,
