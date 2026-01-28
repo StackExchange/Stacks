@@ -7,7 +7,6 @@ import path from "path";
 export default defineConfig({
     plugins: [svelte(svelteConfig), svelteTesting(), svelteInlineComponent()],
     optimizeDeps: {
-        exclude: ["svelte-sonner"],
         //without the following explicit includes, test runs fail on the first run because these dependencies don't get pre-optimized properly
         include: [
             "@web/test-runner-commands",
@@ -19,6 +18,11 @@ export default defineConfig({
             "@testing-library/user-event",
             "@stackoverflow/stacks-icons/icons",
             "@stackoverflow/stacks-icons-legacy/icons",
+            // svelte-sonner must be pre-bundled to ensure its virtual CSS modules
+            // (from <style global> blocks) are properly resolved during test execution.
+            // Without pre-bundling, CI environments may trigger mid-test re-optimization,
+            // causing "failed to load virtual css module" errors.
+            "svelte-sonner",
         ],
     },
     resolve: {
