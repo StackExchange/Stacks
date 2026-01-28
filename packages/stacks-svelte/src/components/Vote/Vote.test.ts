@@ -28,8 +28,8 @@ describe("Vote", () => {
         expect(buttons).to.have.lengthOf(2);
     });
 
-    it("should render only upvote button when horizontal is true", () => {
-        render(Vote, { total: 12, horizontal: true });
+    it("should render only upvote button when upvoteOnly is true", () => {
+        render(Vote, { total: 12, upvoteOnly: true });
         const buttons = screen.getAllByRole("button");
         expect(buttons).to.have.lengthOf(1);
     });
