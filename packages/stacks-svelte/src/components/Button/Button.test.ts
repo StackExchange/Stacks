@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import sinon from "sinon";
 
 import Button from "./Button.svelte";
-import Loading from "../Loading/Loading.svelte";
+import Loader from "../Loader/Loader.svelte";
 
 const children = createRawSnippet(() => ({
     render: () => "<span>test btn</span>",
@@ -134,7 +134,7 @@ describe("Button", () => {
         const loadingSnippet = createRawSnippet(() => ({
             render: () => "<span></span>",
             setup: (target) => {
-                const instance = mount(Loading, {
+                const instance = mount(Loader, {
                     target,
                     props: {
                         size: "sm",
@@ -151,7 +151,7 @@ describe("Button", () => {
             children,
         });
         expect(screen.getByText("Loading…")).to.exist;
-        expect(screen.getByText("Loading…").closest(".s-loading")).to
+        expect(screen.getByText("Loading…").closest(".s-loader")).to
             .exist;
     });
 

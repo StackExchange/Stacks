@@ -1,4 +1,4 @@
-.s-loading {
+.s-loader {
     --_ld-color: var(--black-600);
     --_ld-gap: calc(var(--_ld-size) / 2);
     --_ld-size: calc(var(--su4) + var(--su1)); // 5px
@@ -25,7 +25,7 @@
         height: var(--_ld-size);
         width: var(--_ld-size);
         
-        animation: loading-animation .8s cubic-bezier(1, 1, 0, 1) infinite;
+        animation: loader-animation .8s cubic-bezier(1, 1, 0, 1) infinite;
     }
 
     & &--block {
@@ -42,16 +42,16 @@
 }
 
 @media (prefers-reduced-motion:reduce){
-    .s-loading {
+    .s-loader {
         & &--block,
         &:before,
         &:after {
-            animation: loading-animation-reduced-motion 2s ease-in-out infinite;
+            animation: loader-animation-reduced-motion 2s ease-in-out infinite;
         }
     }
 }
 
-@keyframes loading-animation {
+@keyframes loader-animation {
     0%,1%,99%,to{
         opacity: 0.2;
         transform: translateY(0);
@@ -66,7 +66,7 @@
     }
 }
 
-@keyframes loading-animation-reduced-motion {
+@keyframes loader-animation-reduced-motion {
     0%,to{
         opacity: 0.3;
         transform: none;

@@ -1,16 +1,16 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
-    import Loading, { type Size } from "./Loading.svelte";
+    import Loader, { type Size } from "./Loader.svelte";
 
-    const LoadingSizes: Size[] = [undefined, "sm", "lg"];
+    const LoaderSizes: Size[] = [undefined, "sm", "lg"];
 
     const { Story } = defineMeta({
-        title: "Components/Loading",
-        component: Loading,
+        title: "Components/Loader",
+        component: Loader,
         argTypes: {
             size: {
                 control: "select",
-                options: LoadingSizes,
+                options: LoaderSizes,
             },
         },
     });
@@ -29,14 +29,14 @@
             </thead>
 
             <tbody>
-                {#each LoadingSizes as size (size)}
+                {#each LoaderSizes as size (size)}
                     <tr>
                         <th scope="row" class="va-middle">
                             {size || "default"}
                         </th>
                         <td class="va-middle px4">
                             <div class="d-inline-flex">
-                                <Loading {size} />
+                                <Loader {size} />
                             </div>
                         </td>
                     </tr>

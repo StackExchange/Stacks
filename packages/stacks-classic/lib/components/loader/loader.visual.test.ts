@@ -6,10 +6,10 @@ import "../../index";
 const template = ({ component, testid }: any) => html`
     <div class="d-inline-block p8" data-testid="${testid}">${component}</div>
 `;
-describe("loading", () => {
+describe("loader", () => {
     // default, sizes
     runVisualTests({
-        baseClass: "s-loading",
+        baseClass: "s-loader",
         modifiers: {
             primary: ["sm", "lg"],
         },
@@ -20,7 +20,7 @@ describe("loading", () => {
     });
     // applied font color
     runVisualTests({
-        baseClass: "s-loading",
+        baseClass: "s-loader",
         modifiers: {
             global: ["fc-theme-primary"],
         },

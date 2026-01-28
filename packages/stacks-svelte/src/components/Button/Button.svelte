@@ -1,7 +1,7 @@
 <script module lang="ts">
     import type { HTMLButtonAttributes } from "svelte/elements";
     import type { Snippet } from "svelte";
-    import Loading from "../Loading/Loading.svelte";
+    import Loader from "../Loader/Loader.svelte";
 
     export type Brand = "" | "facebook" | "github" | "google";
     export type Size = "" | "xs" | "sm" | "lg";
@@ -184,7 +184,7 @@
     disabled={(!href && disabled) || null}
     aria-disabled={href && disabled ? "true" : null}
     {...restProps}
-    >{#if loading}<Loading
+    >{#if loading}<Loader
             size="sm"
         />{/if}{#if !badge}{@render children()}{:else}
         {@render children()}

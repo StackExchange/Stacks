@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Loading
-svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-loading--docs
-description: "The loading component indicates an active wait state for a page, section, or interactive element."
+title: Loader
+svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-loader--docs
+description: "The loader component indicates an active wait state for a page, section, or interactive element."
 tags: components
 ---
 <section class="docs-section">
@@ -17,7 +17,7 @@ tags: components
                 </tr>
             </thead>
             <tbody class="fs-caption">
-                {% for item in loading.classes %}
+                {% for item in loader.classes %}
                     <tr>
                         <td><code class="docs-code ws-nowrap">{{ item.class }}</code></td>
                         <td>{% if item.applies == "N/A" %}<em class="fc-black-350">{{ item.applies }}</em>{% else %}<code class="docs-code">{{ item.applies }}</code>{% endif %}</td>
@@ -31,18 +31,18 @@ tags: components
 <section class="docs-section">
     {% header "h2", "Examples" %}
     {% header "h3", "Base" %}
-    <p class="docs-copy">The base loading component displays three animated squares.</p>
+    <p class="docs-copy">The base loader component displays three animated squares.</p>
     <div class="docs-preview">
 {% highlight html %}
-<div class="s-loading">
-    <div class="s-loading--block"></div>
+<div class="s-loader">
+    <div class="s-loader--block"></div>
     <div class="v-visible-sr">Loading…</div>
 </div>
 {% endhighlight %}
         <div class="docs-preview--example">
             <div class="d-flex g16 fw-wrap ai-center">
-                <div class="s-loading">
-                    <div class="s-loading--block"></div>
+                <div class="s-loader">
+                    <div class="s-loader--block"></div>
                     <div class="v-visible-sr">Loading…</div>
                 </div>
             </div>
@@ -61,12 +61,12 @@ tags: components
             </tr>
         </thead>
         <tbody class="fs-caption">
-            {% for size in loading.sizes %}
+            {% for size in loader.sizes %}
                 <tr>
                     <th scope="row">
                         <code class="docs-code">
                             {% if size == "" %}
-                                .s-loading
+                                .s-loader
                             {% else %}
                                 .{{ size }}
                             {% endif %}
@@ -77,13 +77,13 @@ tags: components
                             {% if size == "" %}
                                 <em class="fc-black-400">N/A</em>
                             {% else %}
-                                .s-loading
+                                .s-loader
                             {% endif %}
                         </code>
                     </td>
                     <td class="p8">
-                        <div class="s-loading {{ size }}">
-                            <div class="s-loading--block"></div>
+                        <div class="s-loader {{ size }}">
+                            <div class="s-loader--block"></div>
                             <div class="v-visible-sr">Loading…</div>
                         </div>
                     </td>

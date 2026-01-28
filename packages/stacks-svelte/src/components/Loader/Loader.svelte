@@ -21,7 +21,7 @@
     const { label = "Loading…", size = undefined }: Props = $props();
 
     const getClasses = (size: Size) => {
-        const base = `s-loading`;
+        const base = `s-loader`;
         let classes = base;
 
         if (size) {
@@ -34,6 +34,6 @@
 </script>
 
 <div class={classes}>
-    <div class="s-loading--block"></div>
+    <div class="s-loader--block"></div>
     <div class="v-visible-sr">{label}</div>
 </div>
