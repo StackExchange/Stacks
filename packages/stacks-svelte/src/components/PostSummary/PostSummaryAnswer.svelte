@@ -95,7 +95,10 @@
     <div class="s-post-summary--meta">
         <Link {href}>{i18nViewAnswersText}</Link>
         {#snippet time()}
-            <UserCardTime text={timestamp} />
+            <UserCardTime
+                id={Math.random().toString(36).slice(2)}
+                text={timestamp}
+            />
         {/snippet}
         {#snippet blings()}
             {#if userReputation}
