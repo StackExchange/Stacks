@@ -3,9 +3,6 @@
 </script>
 
 <script lang="ts">
-    import Icon from "../Icon/Icon.svelte";
-    import { SpotLoading } from "@stackoverflow/stacks-icons/spots";
-
     interface Props {
         /**
          * The accessible label for screen readers
