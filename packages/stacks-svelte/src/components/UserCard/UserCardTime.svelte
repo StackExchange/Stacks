@@ -5,6 +5,11 @@
 
     interface Props {
         /**
+         * Unique id for the popover
+         */
+        id: string;
+
+        /**
          * Text to display in the user card time e.g. asked 2h ago
          */
         text: string;
@@ -20,10 +25,10 @@
         href?: string;
     }
 
-    const { text, timestamp, href }: Props = $props();
+    const { id, text, timestamp, href }: Props = $props();
 </script>
 
-<Popover id="user-card-time-popover" tooltip>
+<Popover {id} tooltip>
     <PopoverReference>
         <a {href} class="s-user-card--time">
             <time>

@@ -43,6 +43,7 @@
     {#snippet template(args)}
         {#snippet time()}
             <UserCardTime
+                id="user-card-time-popover"
                 text="asked 2 hr ago"
                 href="/"
                 timestamp="2026-01-09 12:15:39Z"
@@ -54,7 +55,7 @@
             <UserCardBling name="silver bling" type="silver" text={8} />
             <UserCardBling name="bronze bling" type="bronze" text={4} />
         {/snippet}
-        <UserCard {...args} {time} {blings} />
+        <UserCard {...baseArgs} {...args} {time} {blings} />
     {/snippet}
 </Story>
 

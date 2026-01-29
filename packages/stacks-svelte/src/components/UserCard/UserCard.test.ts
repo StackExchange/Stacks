@@ -97,6 +97,7 @@ describe("UserCard", () => {
                 const instance = mount(UserCardTime, {
                     target,
                     props: {
+                        id: "user-card-time-popover",
                         text: "asked 2 hr ago",
                         href: "#",
                         timestamp: "2026-01-09 12:15:39Z",
@@ -628,6 +629,7 @@ describe("UserCard", () => {
 describe("UserCardTime", () => {
     it("should render the time text", () => {
         render(UserCardTime, {
+            id: "user-card-time-popover",
             text: "asked 2 hr ago",
         });
         expect(screen.getByText("asked 2 hr ago")).to.exist;
@@ -635,6 +637,7 @@ describe("UserCardTime", () => {
 
     it("should render the time as a link when href is provided", () => {
         render(UserCardTime, {
+            id: "user-card-time-popover",
             text: "asked 2 hr ago",
             href: "#",
         });
@@ -649,6 +652,7 @@ describe("UserCardTime", () => {
             shouldClearNativeTimers: true,
         });
         render(UserCardTime, {
+            id: "user-card-time-popover",
             text: "asked 2 hr ago",
             timestamp: "2026-01-09 12:15:39Z",
         });
@@ -943,6 +947,7 @@ describe("UserCard states", () => {
                     const instance = mount(UserCardTime, {
                         target,
                         props: {
+                            id: "user-card-time-popover",
                             text: "asked 2 hr ago",
                             href: "#",
                         },
