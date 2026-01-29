@@ -1,5 +1,11 @@
 # @stackoverflow/stacks-utils
 
+## 1.0.0-beta.2
+
+### Patch Changes
+
+- [#2153](https://github.com/StackExchange/Stacks/pull/2153) [`f59b762`](https://github.com/StackExchange/Stacks/commit/f59b762834d6891a1885459354d0ccc06739fb6d) Thanks [@giamir](https://github.com/giamir)! - formatCount support for negative values
+
 ## 1.0.0-beta.1
 
 ### Patch Changes
