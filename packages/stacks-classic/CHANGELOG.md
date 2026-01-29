@@ -1,5 +1,17 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.21
+
+### Patch Changes
+
+- [#2118](https://github.com/StackExchange/Stacks/pull/2118) [`a60053d`](https://github.com/StackExchange/Stacks/commit/a60053dd3b695964750dd3f680898e1d5ce7d11b) Thanks [@mukunku](https://github.com/mukunku)! - feat(banner): update styles for SHINE
+
+    BREAKING CHANGES:
+    - Banner markup has changed. New markup and icons should be applied.
+    - `.s-banner--btn` has been replaced with `.s-banner--dismiss`
+
+- [#2145](https://github.com/StackExchange/Stacks/pull/2145) [`721511f`](https://github.com/StackExchange/Stacks/commit/721511f3c155e5a47b4269c5019a75bec248a0dd) Thanks [@giamir](https://github.com/giamir)! - button: adjust badge variant
+
 ## 3.0.0-beta.20
 
 ### Minor Changes
