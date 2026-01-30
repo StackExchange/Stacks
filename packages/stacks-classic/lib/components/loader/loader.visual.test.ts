@@ -14,7 +14,7 @@ describe("loader", () => {
             primary: ["sm", "lg"],
         },
         children: {
-            default: `<div class="v-visible-sr">Loading…</div>`,
+            default: `<div class="s-loader--sr-text">Loading…</div>`,
         },
         template,
     });
@@ -25,15 +25,7 @@ describe("loader", () => {
             global: ["fc-theme-primary"],
         },
         children: {
-            default: `<div class="v-visible-sr">Loading…</div>`,
-        },
-        template,
-    });
-    // .is-loading
-    runVisualTests({
-        baseClass: "is-loading",
-        children: {
-            default: `Loading…`,
+            default: `<div class="s-loader--sr-text">Loading…</div>`,
         },
         template,
     });

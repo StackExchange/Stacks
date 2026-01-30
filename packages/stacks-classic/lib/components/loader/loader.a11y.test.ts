@@ -8,7 +8,7 @@ describe("loader", () => {
             primary: ["sm", "lg"],
         },
         children: {
-            default: `<div class="v-visible-sr">Loading…</div>`,
+            default: `<div class="s-loader--sr-text">Loading…</div>`,
         },
     });
 });
