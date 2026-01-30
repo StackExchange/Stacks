@@ -52,5 +52,4 @@
     icon={STATE_ICON_MAP[state]}
     state={STATE_BADGE_MAP[state]}
     important={state === "pinned"}
-    class="s-post-summary--stats-item"
 />

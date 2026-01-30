@@ -23,6 +23,7 @@
 
 <script lang="ts">
     import type { Snippet } from "svelte";
+    import type { SvelteDate } from "svelte/reactivity";
     import ContentTypeBadge from "./PostSummaryContentType.svelte";
     import Excerpt from "./PostSummaryExcerpt.svelte";
     import StateBadge from "./PostSummaryStateBadge.svelte";
@@ -36,6 +37,7 @@
         IconAnswer16Fill,
         IconVote16Up,
     } from "@stackoverflow/stacks-icons/icons";
+    import { formatCount } from "@stackoverflow/stacks-utils";
 
     export interface Props {
         /**
@@ -49,9 +51,11 @@
         title: string;
 
         /**
+         /**
          * The timestamp for the post
+         * Should be a valid Date, ISO string, or timestamp number.
          */
-        timestamp: string;
+        timestamp: Date | SvelteDate | string;
 
         /**
          * Avatar image source of post author
@@ -105,7 +109,6 @@
 
         /**
          * The size of the excerpt text
-         * @type {0 | 1 | 2 | 3} ExcerptLines
          */
         excerptLines?: ExcerptLines;
 
@@ -121,7 +124,6 @@
 
         /**
          * The state of the post which affects its styling
-         * @type {"archived" | "closed" | "draft" | "deleted" | "pinned" | "review" | undefined} State
          */
         state?: State;
 
@@ -164,6 +166,11 @@
          * Text on gated posts for the shield icon that preceeds the post title
          */
         i18nGatedTitle?: string;
+
+        /**
+         * Text for the reputation bling name
+         */
+        i18nReputationBlingName?: string;
 
         /**
          * Text for the state badge
@@ -222,6 +229,7 @@
         i18nCommentsUnit: providedI18nCommentsUnit = undefined,
         i18nContentTypeText = undefined,
         i18nGatedTitle = undefined,
+        i18nReputationBlingName = "reputation bling",
         i18nStateBadgeText = undefined,
         i18nViewsUnit: providedI18nViewsUnit = undefined,
         i18nVotesUnit: providedI18nVotesUnit = undefined,
@@ -272,6 +280,16 @@
     const classes = $derived(getClasses(className, state, acceptedAnswer));
 </script>
 
+{#snippet userBling()}
+    {#if userReputation}
+        <UserCardBling
+            name={i18nReputationBlingName}
+            type="rep"
+            text={userReputation}
+        />
+    {/if}
+{/snippet}
+
 <div class={classes}>
     <div class="s-post-summary--stats s-post-summary--sm-hide">
         <div class="s-post-summary--stats-votes">
@@ -287,13 +305,13 @@
             {:else}
                 <Icon src={IconAnswer16} />
             {/if}
-            {answers || "0"}
+            {formatCount(answers || 0)}
             <span class="v-visible-sr">{i18nAnswersUnit}</span>
         </div>
         {#if bounty}
             <div class="s-post-summary--stats-bounty">
                 <span>+</span>
-                {bounty}
+                {formatCount(bounty || 0)}
                 <span class="v-visible-sr">{i18nBountyUnit}</span>
             </div>
         {/if}
@@ -305,16 +323,6 @@
             {/if}
         </div>
         <div class="s-post-summary--content-meta">
-            {#snippet userBling()}
-                {#if userReputation}
-                    <!-- TODO add i18n text for reputation bling name -->
-                    <UserCardBling
-                        name="reputation bling"
-                        type="rep"
-                        text={userReputation}
-                    />
-                {/if}
-            {/snippet}
             <UserCard
                 profileUrl={userProfileUrl}
                 size="sm"
@@ -323,13 +331,13 @@
                 blings={userBling}
             >
                 {#snippet time()}
-                    <UserCardTime text={timestamp} {timestamp} />
+                    <UserCardTime {timestamp} />
                 {/snippet}
             </UserCard>
             <div class="s-post-summary--stats s-post-summary--sm-show">
                 <div class="s-post-summary--stats-votes">
                     <Icon src={IconVote16Up} />
-                    {votes || "0"}
+                    {formatCount(votes || 0)}
                 </div>
                 <div class="s-post-summary--stats-answers">
                     {#if acceptedAnswer}
@@ -337,23 +345,24 @@
                     {:else}
                         <Icon src={IconAnswer16} />
                     {/if}
-                    {answers || "0"}
+                    {formatCount(answers || 0)}
                     <span class="v-visible-sr">{i18nAnswersUnit}</span>
                 </div>
                 {#if bounty}
                     <div class="s-post-summary--stats-bounty">
                         <span>+</span>
-                        {bounty}
+                        {formatCount(bounty || 0)}
+                        <span class="v-visible-sr">{i18nBountyUnit}</span>
                     </div>
                 {/if}
             </div>
             <div class="s-post-summary--stats-item">
-                {views || "0"}
+                {formatCount(views || 0)}
                 {i18nViewsUnit}
             </div>
             {#if comments}
                 <div class="s-post-summary--stats-item">
-                    {comments}
+                    {formatCount(comments || 0)}
                     {i18nCommentsUnit}
                 </div>
             {/if}
@@ -369,15 +378,14 @@
             {/if}
         </div>
         <div class="s-post-summary--title">
-            {#if gated}
-                <Icon
-                    src={IconShield}
-                    class="s-post-summary--title-icon"
-                    title={i18nGatedTitle}
-                />
-            {/if}
             <a class="s-post-summary--title-link" {href}>
-                <!-- TODO SHINE include badge icon -->
+                {#if gated}
+                    <Icon
+                        src={IconShield}
+                        class="s-post-summary--title-icon"
+                        title={i18nGatedTitle}
+                    />
+                {/if}
                 {title}
             </a>
         </div>

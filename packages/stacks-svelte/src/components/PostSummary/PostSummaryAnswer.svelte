@@ -4,19 +4,17 @@
 </script>
 
 <script lang="ts">
-    import PostSummaryStatsItem from "./PostSummaryStatsItem.svelte";
+    import type { SvelteDate } from "svelte/reactivity";
     import Excerpt from "./PostSummaryExcerpt.svelte";
     import {
         IconAnswer16Fill,
-        IconCheck,
         IconVote16Up,
     } from "@stackoverflow/stacks-icons/icons";
-    import Badge from "../Badge/Badge.svelte";
-    import Link from "../Link/Link.svelte";
     import UserCard from "../UserCard/UserCard.svelte";
     import UserCardTime from "../UserCard/UserCardTime.svelte";
-    import UserCardBling from "../UserCard/UserCardBling.svelte";
     import Icon from "../Icon/Icon.svelte";
+    import UserCardBling from "../UserCard/UserCardBling.svelte";
+    import { formatCount } from "@stackoverflow/stacks-utils";
 
     export interface Props {
         /**
@@ -30,9 +28,10 @@
         href: string;
 
         /**
+        /**
          * The timestamp for the answer
          */
-        timestamp: string;
+        timestamp: Date | SvelteDate | string;
 
         /**
          * Avatar image source of answer's author
@@ -57,7 +56,7 @@
         /**
          * Count of votes on the answer
          */
-        votes: number | string;
+        votes: number;
 
         /**
          * Display the "Accepted answer" stats item
@@ -72,17 +71,11 @@
         /**
          * Text for the votes stats item unit
          */
-        i18nVotesUnit?: string;
-
-        /**
-         * The text for "View answers" link
-         */
-        i18nViewAnswersText?: string;
+        i18nReputationBlingName?: string;
     }
 
     const {
         excerpt,
-        href,
         timestamp,
         userAvatar,
         userName,
@@ -91,8 +84,7 @@
         votes,
         accepted = false,
         i18nAcceptedAnswerText = "Accepted answer",
-        i18nVotesUnit: providedI18nVotesUnit,
-        i18nViewAnswersText = "View answers",
+        i18nReputationBlingName = "reputation bling",
     }: Props = $props();
 
     const getClasses = (accepted: boolean) => {
@@ -106,31 +98,36 @@
         return classes;
     };
 
-    const i18nVotesUnit = $derived(
-        providedI18nVotesUnit ?? (Number(votes) === 1 ? "vote" : "votes")
-    );
-
     const classes = $derived(getClasses(accepted));
 </script>
 
+{#snippet userBling()}
+    {#if userReputation}
+        <UserCardBling
+            name={i18nReputationBlingName}
+            type="rep"
+            text={userReputation}
+        />
+    {/if}
+{/snippet}
+
 <div class={classes}>
     <div class="s-post-summary--content-meta">
-        <!-- User card -->
         <UserCard
             profileUrl={userProfileUrl}
             size="sm"
             avatar={userAvatar}
             name={userName}
+            blings={userBling}
         >
             {#snippet time()}
-                <UserCardTime text={timestamp} />
+                <UserCardTime {timestamp} />
             {/snippet}
         </UserCard>
-        <!-- Stats (sm) -->
         <div class="s-post-summary--stats">
             <div class="s-post-summary--stats-votes">
                 <Icon src={IconVote16Up} />
-                {votes || "0"}
+                {formatCount(votes || 0)}
             </div>
             {#if accepted}
                 <div class="s-post-summary--stats-answers">

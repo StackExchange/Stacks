@@ -10,25 +10,31 @@
     import Answer from "./PostSummaryAnswer.svelte";
     import Tag from "../Tag/Tag.svelte";
 
+    import { SvelteDate } from "svelte/reactivity";
+
+    const dateNow = new SvelteDate();
+    const dateTwoHoursAgo = new SvelteDate(
+        dateNow.setHours(dateNow.getHours() - 2)
+    );
     const baseArgs = {
         answers: 1,
         href: "#",
-        timestamp: "1 hour ago",
+        timestamp: dateTwoHoursAgo.toISOString(),
         userAvatar: "https://avatars.githubusercontent.com/u/1",
         userName: "John Doe",
         userProfileUrl: "#john-doe",
-        userReputation: 1000,
-        views: 100,
+        userReputation: 1000, // TODO SHINE does formatCount need to add commas/periods?
+        views: 12345,
         votes: 10,
         title: "Network graph of popular tags on Stack Overflow",
         excerpt:
             "I wanted to see how different tags related to each other. The below graph depicts associations between popular tags on our site. Description of analysis: I started looking at the 1000 most popular tags on questions in 2021. I created a list of tags cross joined by the question ID (so if a question contains tags for both Python and Numpy, it would show up in my list). I scaled up by the number of answers each question received (noting that some tag combos had 0 answers) -and then counted each distinct combination of each tag. Due to limitations in graphing, I only displayed the top ~2500 tag combinations - which accounts for tags combos that had more than 40 answers over the entire year.",
-        tags: tags,
+        tags,
     };
     const answerArgs = {
         excerpt: baseArgs.excerpt,
         href: "#",
-        timestamp: "10 minutes ago",
+        timestamp: dateTwoHoursAgo.toISOString(),
         userAvatar: "https://avatars.githubusercontent.com/u/2",
         userName: "Jane Smith",
         userProfileUrl: "#jane-smith",
@@ -148,7 +154,6 @@
     </div>
 </Story>
 
-<!-- TODO SHINE update gated story -->
 <Story name="Gated" asChild>
     <!-- `gated` prop is true -->
     <PostSummary {...baseArgs} gated />
