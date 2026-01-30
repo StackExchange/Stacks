@@ -11,6 +11,12 @@
     --_ps-title-link-fc: var(--theme-secondary-600);
 
     // Conditional styles
+    .highcontrast-mode({
+        &__deleted * {
+            --_ps-ignored-fc: var(--black-500);
+        }
+    });
+
     // Note: we cannot use CSS custom properties for container query values
     @container post-summary (width <= @psx-container-sm) {
         .s-post-summary--sm-hide {

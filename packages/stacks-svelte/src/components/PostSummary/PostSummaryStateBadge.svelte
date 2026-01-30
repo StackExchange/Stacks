@@ -51,5 +51,4 @@
     type="state"
     icon={STATE_ICON_MAP[state]}
     state={STATE_BADGE_MAP[state]}
-    important={state === "pinned"}
 />
