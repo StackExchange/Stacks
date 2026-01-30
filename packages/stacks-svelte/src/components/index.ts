@@ -40,3 +40,5 @@ export { default as UserCard } from "./UserCard/UserCard.svelte";
 export { default as UserCardBadge } from "./UserCard/UserCardBadge.svelte";
 export { default as UserCardBling } from "./UserCard/UserCardBling.svelte";
 export { default as UserCardTime } from "./UserCard/UserCardTime.svelte";
+export { default as Vote } from "./Vote/Vote.svelte";
+export { createVoteState } from "./Vote/vote-state.svelte";
