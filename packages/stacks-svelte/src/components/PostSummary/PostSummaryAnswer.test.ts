@@ -6,7 +6,7 @@ const baseArgs = {
     href: "#",
     excerpt:
         "I wanted to see how different tags related to each other. The below graph depicts associations between popular tags on our site.",
-    timestamp: "10 minutes ago",
+    timestamp: "2024-01-15T12:00:00.000Z",
     userAvatar: "https://avatars.githubusercontent.com/u/2",
     userName: "Jane Smith",
     userReputation: "1,000",
@@ -20,29 +20,19 @@ describe("PostSummaryAnswer", () => {
 
         const excerpt = screen.getByText(baseArgs.excerpt);
         expect(excerpt).to.exist;
-        expect(excerpt).to.have.class("s-post-summary--answer-excerpt");
+        expect(excerpt).to.have.class("s-post-summary--excerpt");
         expect(excerpt).to.have.text(baseArgs.excerpt);
     });
 
-    it("should render the view answers link with the passed href", () => {
-        render(PostSummaryAnswer, { ...baseArgs });
-
-        const viewAnswersLink = screen.getByRole("link", {
-            name: "View answers",
-        });
-        expect(viewAnswersLink).to.exist;
-        expect(viewAnswersLink).to.have.attr("href", baseArgs.href);
-    });
-
-    it("should render the accepted answer badge when accepted is true", () => {
+    it("should render the accepted answer stats when accepted is true", () => {
         render(PostSummaryAnswer, { ...baseArgs, accepted: true });
 
         const acceptedItem = screen.getByText("Accepted answer", {
-            selector: ".s-post-summary--stats-item",
+            selector: ".s-post-summary--stats-answers",
         });
         expect(acceptedItem).to.exist;
         expect(acceptedItem?.textContent?.trim()).to.equal("Accepted answer");
-        expect(acceptedItem).to.have.class("s-post-summary--stats-item");
+        expect(acceptedItem).to.have.class("s-post-summary--stats-answers");
     });
 
     it("should render the user card with the correct props", () => {
@@ -66,35 +56,31 @@ describe("PostSummaryAnswer", () => {
         const reputation = screen.getByText(baseArgs.userReputation);
         expect(reputation).to.exist;
 
-        const timestamp = screen.getByText(baseArgs.timestamp);
-        expect(timestamp).to.exist;
+        const timeLink = document.querySelector(".s-user-card--time");
+        expect(timeLink).to.exist;
+        expect(timeLink?.querySelector("time")).to.exist;
+    });
+
+    it("should render the votes count", () => {
+        render(PostSummaryAnswer, { ...baseArgs });
+
+        const votesEl = document.querySelector(".s-post-summary--stats-votes");
+        expect(votesEl).to.exist;
+        expect(votesEl?.textContent?.trim()).to.include("5");
     });
 
     // i18n
-    it("should render the accepted answer badge with the localized text", () => {
+    it("should render the accepted answer stats with the localized text", () => {
         render(PostSummaryAnswer, {
             ...baseArgs,
             accepted: true,
             i18nAcceptedAnswerText: "Respuesta aceptada",
         });
 
-        const acceptedBadge = screen.getByText("Respuesta aceptada", {
-            selector: ".s-badge",
+        const acceptedStats = screen.getByText("Respuesta aceptada", {
+            selector: ".s-post-summary--stats-answers",
         });
-        expect(acceptedBadge).to.exist;
-        expect(acceptedBadge).to.have.class("s-post-summary--stats-item");
-    });
-
-    it("should render the view answers link with the localized text", () => {
-        render(PostSummaryAnswer, {
-            ...baseArgs,
-            i18nViewAnswersText: "Ver respuestas",
-        });
-
-        const viewAnswersLink = screen.getByRole("link", {
-            name: "Ver respuestas",
-        });
-        expect(viewAnswersLink).to.exist;
-        expect(viewAnswersLink).to.have.attr("href", baseArgs.href);
+        expect(acceptedStats).to.exist;
+        expect(acceptedStats).to.have.class("s-post-summary--stats-answers");
     });
 });

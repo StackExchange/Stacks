@@ -7,6 +7,11 @@
 
     interface Props {
         /**
+         * Text to display instead of the formatted time
+         */
+        text?: string;
+
+        /**
          * Precise date and time of the post in ISO format
          */
         timestamp: Date | SvelteDate | string;
@@ -17,18 +22,19 @@
         href?: string;
     }
 
-    const { timestamp, href }: Props = $props();
+    const { text, timestamp, href }: Props = $props();
 </script>
 
 <Popover id="user-card-time-popover" tooltip>
     <PopoverReference>
         <a {href} class="s-user-card--time">
             <time>
-                {formatTime(
-                    typeof timestamp === "string"
-                        ? timestamp
-                        : (timestamp as Date).toISOString()
-                )}
+                {text ||
+                    formatTime(
+                        typeof timestamp === "string"
+                            ? timestamp
+                            : (timestamp as Date).toISOString()
+                    )}
             </time>
         </a>
     </PopoverReference>

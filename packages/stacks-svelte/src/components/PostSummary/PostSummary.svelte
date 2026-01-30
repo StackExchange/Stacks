@@ -389,7 +389,7 @@
                 {title}
             </a>
         </div>
-        {#if excerpt}
+        {#if excerpt && excerptLines > 0}
             <Excerpt {excerpt} lines={excerptLines} />
         {/if}
         {#if contentType || tags}

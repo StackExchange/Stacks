@@ -1,22 +1,17 @@
-import { createRawSnippet } from "svelte";
 import { expect } from "@open-wc/testing";
 import { render, screen } from "@testing-library/svelte";
 import PostSummaryContentType from "./PostSummaryContentType.svelte";
-
-const snippet = createRawSnippet(() => ({
-    render: () => "<span>test content</span>",
-}));
 
 describe("PostSummaryContentType", () => {
     it("should render the content type", () => {
         render(PostSummaryContentType, {
             href: "#",
             name: "announcement",
-            // @ts-expect-error $$slots is used to pass children while component is still using Svelte 4 syntax
-            $$slots: { default: snippet },
         });
 
-        const contentType = screen.getByText("Announcement").parentElement;
+        const contentType = screen
+            .getByText("Announcement")
+            .closest(".s-post-summary--content-type");
         expect(contentType).to.exist;
         expect(contentType).to.have.class("s-post-summary--content-type");
     });
