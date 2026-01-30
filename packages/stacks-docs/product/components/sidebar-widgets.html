@@ -18,12 +18,20 @@ tags: components
         <span>By default the content is a flex container. If you require <code class="docs-code">display: block</code> instead, add the <code class="docs-code">d-block</code> class.</span>
     </div>
 
+    <div class="s-notice s-notice__warning mb16" role="status">
+        <span class="s-notice--icon">{% icon "Alert" %}</span>
+        <span>
+            The examples of s-sidebarwidget--header are shown with h2 elements, but the appropriate heading level may differ depending on context. 
+            Please use the appropriate heading level for your context to ensure heading levels only increase by 1.
+        </span>
+    </div>
+
     <div class="docs-preview">
 {% highlight html %}
 <div class="s-sidebarwidget">
     <div class="s-sidebarwidget--header">
         <h2>…</h2>
-        <a class="s-sidebarwidget--action">…</a>
+        <a class="s-btn s-btn__xs s-btn__clear s-sidebarwidget--action">…</a>
     </div>
     <div class="s-sidebarwidget--content">
         …
@@ -37,13 +45,14 @@ tags: components
         <div class="docs-preview--example overflow-x-auto d-flex fd-column">
             <div class="s-sidebarwidget wmx3 as-center">
                 <div class="s-sidebarwidget--header">
-                    <h2>{% icon "Award", "mr8" %} Community Achievements</h2>
-                    <a href="#" class="s-sidebarwidget--action">
+                    <div class="mr8">{% icon "Award" %}</div>
+                    <h2>Community Achievements</h2>
+                    <a href="#" class="s-btn s-btn__xs s-btn__clear s-sidebarwidget--action">
                         {% icon "Plus", "mr4" %}Track
                     </a>
                 </div>
                 <div class="s-sidebarwidget--content">
-                    You’ve earned 3 new badges this week! Keep contributing to unlock more achievements and privileges within the community.
+                    <span>You’ve earned 3 new badges this week! Keep contributing to unlock more achievements and privileges within the community.</span>
                     <button class="s-btn s-btn__tonal s-sidebarwidget--action">View all badges</button>
                 </div>
                 <div class="s-sidebarwidget--footer">
@@ -51,14 +60,6 @@ tags: components
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="s-notice s-notice__warning mb16 mtn24" role="status">
-        <span class="s-notice--icon">{% icon "Alert" %}</span>
-        <span>
-            The examples of s-sidebarwidget--header are shown with h2 elements, but the appropriate heading level may differ depending on context. 
-            Please use the appropriate heading level for your context to ensure heading levels only increase by 1.
-        </span>
     </div>
 
 <script type="text/javascript">
