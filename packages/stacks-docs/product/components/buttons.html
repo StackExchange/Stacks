@@ -268,10 +268,15 @@ tags: components
 
 <section class="docs-section">
     {% header "h2", "Loading" %}
-    <p class="docs-copy">Any button can have a loading state applied by adding the <code class="docs-code">.is-loading</code> state class.</p>
+    <p class="docs-copy">Indicate a loading state by adding a <a href="/product/components/loader/"><code class="docs-code">.s-loader</code></a> component to a button.</p>
     <div class="docs-preview">
 {% highlight html %}
-<button class="s-btn is-loading" type="button">…</button>
+<button class="s-btn" type="button">
+    <div class="s-loader s-loader__sm">
+        <div class="s-loader--sr-text">Loading…</div>
+    </div>
+    Ask question
+</button>
 {% endhighlight %}
         <div class="docs-preview--example">
             <div class="overflow-x-auto">
@@ -298,12 +303,27 @@ tags: components
                                         {% if btn.modifier != nil %}
                                             <code class="docs-code">.{{ btn.modifier }}</code>
                                         {% endif %}
-                                        <code class="docs-code">.is-loading</code>
+                                        <code class="docs-code">.s-loader s-loader__sm</code>
                                     </div>
                                 </td>
-                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }} is-loading" type="button">Ask question</button></td>
-                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }} is-selected is-loading" type="button" aria-pressed="true">Ask question</button></td>
-                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }} is-loading" type="button" disabled>Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }}" type="button">
+                                    <div class="s-loader s-loader__sm">
+                                        <div class="s-loader--sr-text">Loading…</div>
+                                    </div>
+                                    Ask question
+                                </button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }} is-selected" type="button" aria-pressed="true">
+                                    <div class="s-loader s-loader__sm">
+                                        <div class="s-loader--sr-text">Loading…</div>
+                                    </div>
+                                    Ask question
+                                </button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }}" type="button" disabled>
+                                    <div class="s-loader s-loader__sm">
+                                        <div class="s-loader--sr-text">Loading…</div>
+                                    </div>
+                                    Ask question
+                                </button></td>
                             </tr>
                         {% endfor %}
                     </tbody>

@@ -1,6 +1,7 @@
 <script module lang="ts">
     import type { HTMLButtonAttributes } from "svelte/elements";
     import type { Snippet } from "svelte";
+    import Loader from "../Loader/Loader.svelte";
 
     export type Brand = "" | "facebook" | "github" | "google";
     export type Size = "" | "xs" | "sm" | "lg";
@@ -65,6 +66,11 @@
         loading?: boolean;
 
         /**
+         * The i18n loading text
+         */
+        i18nLoadingText?: string;
+
+        /**
          * Modifier describing if the button is selected
          */
         selected?: boolean;
@@ -103,6 +109,7 @@
         icon = false,
         link = false,
         loading = false,
+        i18nLoadingText = "Loading…",
         selected = false,
         unset = false,
         class: className = "",
@@ -121,7 +128,6 @@
         link: boolean,
         icon: boolean,
         unset: boolean,
-        loading: boolean,
         selected: boolean
     ) => {
         const base = "s-btn";
@@ -154,10 +160,6 @@
             classes += ` ${base}__unset`;
         }
 
-        if (loading) {
-            classes += ` is-loading`;
-        }
-
         if (selected) {
             classes += ` is-selected`;
         }
@@ -176,7 +178,6 @@
             link,
             icon,
             unset,
-            loading,
             selected
         )
     );
@@ -189,10 +190,10 @@
     disabled={(!href && disabled) || null}
     aria-disabled={href && disabled ? "true" : null}
     {...restProps}
->
-    {#if !badge}
-        {@render children()}
-    {:else}
+    >{#if loading}<Loader
+            size="sm"
+            label={i18nLoadingText}
+        />{/if}{#if !badge}{@render children()}{:else}
         {@render children()}
         <span class="s-btn--badge">
             <span class="s-btn--number">
