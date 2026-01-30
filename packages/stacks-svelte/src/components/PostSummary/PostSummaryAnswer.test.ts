@@ -6,7 +6,8 @@ const baseArgs = {
     href: "#",
     excerpt:
         "I wanted to see how different tags related to each other. The below graph depicts associations between popular tags on our site.",
-    timestamp: "2024-01-15T12:00:00.000Z",
+    readableTimestamp: "answered 2 hr ago",
+    utcTimestamp: "2024-01-15T12:00:00.000Z",
     userAvatar: "https://avatars.githubusercontent.com/u/2",
     userName: "Jane Smith",
     userReputation: "1,000",

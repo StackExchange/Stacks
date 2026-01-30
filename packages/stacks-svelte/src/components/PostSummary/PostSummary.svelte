@@ -51,11 +51,16 @@
         title: string;
 
         /**
+         * The human readable timestamp of the post including any verb describing the action associated with the post (e.g. "asked", "answered", etc.)
+         */
+        readableTimestamp: string;
+
+        /**
          /**
-         * The timestamp for the post
+         * The UTC timestamp of the post
          * Should be a valid Date, ISO string, or timestamp number.
          */
-        timestamp: Date | SvelteDate | string;
+        utcTimestamp: Date | SvelteDate | string;
 
         /**
          * Avatar image source of post author
@@ -206,7 +211,8 @@
     const {
         href,
         title,
-        timestamp,
+        readableTimestamp,
+        utcTimestamp,
         userAvatar,
         userName,
         userProfileUrl,
@@ -331,7 +337,10 @@
                 blings={userBling}
             >
                 {#snippet time()}
-                    <UserCardTime {timestamp} />
+                    <UserCardTime
+                        text={readableTimestamp}
+                        timestamp={utcTimestamp}
+                    />
                 {/snippet}
             </UserCard>
             <div class="s-post-summary--stats s-post-summary--sm-show">

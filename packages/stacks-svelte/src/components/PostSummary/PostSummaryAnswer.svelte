@@ -29,9 +29,15 @@
 
         /**
         /**
-         * The timestamp for the answer
+         * The human readable timestamp of the answer including any verb describing the action associated with the answer (e.g. "answered", "commented", etc.)
          */
-        timestamp: Date | SvelteDate | string;
+        readableTimestamp: string;
+
+        /**
+         * The UTC timestamp of the answer
+         * Should be a valid Date, ISO string, or timestamp number.
+         */
+        utcTimestamp: Date | SvelteDate | string;
 
         /**
          * Avatar image source of answer's author
@@ -76,7 +82,8 @@
 
     const {
         excerpt,
-        timestamp,
+        readableTimestamp,
+        utcTimestamp,
         userAvatar,
         userName,
         userProfileUrl,
@@ -121,7 +128,10 @@
             blings={userBling}
         >
             {#snippet time()}
-                <UserCardTime {timestamp} />
+                <UserCardTime
+                    text={readableTimestamp}
+                    timestamp={utcTimestamp}
+                />
             {/snippet}
         </UserCard>
         <div class="s-post-summary--stats">

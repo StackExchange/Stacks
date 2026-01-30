@@ -9,17 +9,21 @@
     } from "./PostSummary.svelte";
     import Answer from "./PostSummaryAnswer.svelte";
     import Tag from "../Tag/Tag.svelte";
-
     import { SvelteDate } from "svelte/reactivity";
+    import { formatTime } from "@stackoverflow/stacks-utils";
 
     const dateNow = new SvelteDate();
     const dateTwoHoursAgo = new SvelteDate(
         dateNow.setHours(dateNow.getHours() - 2)
     );
+    const readableTimestamp = `asked ${formatTime(dateTwoHoursAgo.toISOString())}`;
+    const utcTimestamp = dateTwoHoursAgo.toISOString();
+
     const baseArgs = {
         answers: 1,
         href: "#",
-        timestamp: dateTwoHoursAgo.toISOString(),
+        readableTimestamp,
+        utcTimestamp,
         userAvatar: "https://avatars.githubusercontent.com/u/1",
         userName: "John Doe",
         userProfileUrl: "#john-doe",
@@ -34,7 +38,8 @@
     const answerArgs = {
         excerpt: baseArgs.excerpt,
         href: "#",
-        timestamp: dateTwoHoursAgo.toISOString(),
+        utcTimestamp,
+        readableTimestamp,
         userAvatar: "https://avatars.githubusercontent.com/u/2",
         userName: "Jane Smith",
         userProfileUrl: "#jane-smith",

@@ -6,7 +6,8 @@ import PostSummary from "./PostSummary.svelte";
 const baseArgs = {
     answers: 10,
     href: "#",
-    timestamp: "2024-01-15T12:00:00.000Z",
+    readableTimestamp: "asked 2 hr ago",
+    utcTimestamp: "2024-01-15T12:00:00.000Z",
     title: "Network graph of popular tags on Stack Overflow",
     userAvatar: "https://avatars.githubusercontent.com/u/1",
     userName: "Jane Smith",
