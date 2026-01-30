@@ -1,22 +1,8 @@
 @headings: h1, h2, h3, h4, h5, h6;
 
 .s-sidebarwidget {
-    // VARIANTS
-    .alternate-color(blue);
-    .alternate-color(yellow);
-    .alternate-color(green);
-
     // CHILD ELEMENTS
     & &--content {
-        &.s-sidebarwidget__items {
-            &,
-            &.s-sidebarwidget__block-items .s-sidebarwidget--item {
-                display: block;
-            }
-
-            padding: var(--su6) var(--su16); // the items themselves provide part of the spacing, so the content padding needs to account for that
-        }
-
         &:active {
             outline: none;
         }
@@ -24,6 +10,7 @@
         .s-sidebarwidget--action {
             font-size: var(--fs-fine);
             margin-left: var(--su16);
+            align-self: flex-start;
         }
 
         display: flex;
@@ -59,83 +46,9 @@
         font-size: var(--fs-body2);
     }
 
-    & &--items {
-        .s-sidebarwidget--item {
-            &,
-            & > :first-child {
-                &[aria-current="true"],
-                &[aria-current="page"] {    
-                    &:before {
-                        border-left-color: var(--theme-primary);
-                        border-left-style: solid;
-                        border-left-width: calc(var(--su-static1) * 3); // 3px
-                        content: '';
-                        height: calc(100% + var(--su16));
-                        left: 0;
-                        margin-left: var(--sun16); // the orange selection indicator overlaps with the widget border
-                        margin-top: var(--sun8);
-                        position: absolute;
-                    }
-
-                    a { // TODO: this isn't the best way to go about this. There should be a "is current" highlight without font modification for more complex cases
-                        &,
-                        &:visited {
-                            color: inherit;
-                        }
-                    }
-
-                    color: var(--black);
-                    font-weight: bold;
-                    position: relative;
-                }
-            }
-
-            margin: var(--su12) 0;
-        }
-
-        margin: 0;
-        list-style: none;
-    }
-
-    & &--subnav {
-        li {
-            &[aria-current="page"],
-            &[aria-current="true"] {
-                a {
-                    &,
-                    &:visited {
-                        color: inherit;
-                    }
-                }
-
-                #stacks-internals #bullet-arrow(var(--theme-primary));
-                color: var(--black);
-                font-weight: bold;
-            }
-
-            #stacks-internals #bullet-arrow(var(--black-225));
-            background-position: 0 calc((1.2em - calc(var(--su-static8) + var(--su-static2))) / 2); // 0 ((1.2em - 10) / 2)
-            background-repeat: no-repeat;
-            background-size: auto calc(var(--su-static8) + var(--su-static2)); // auto 10px
-            margin-top: var(--su-static12);
-            padding-left: var(--su-static16);
-        }
-
-        list-style-type: none;
-        margin-left: var(--su8);
-        padding-left: 0;
-    }
-
     & &--action:is(a, button) {
         white-space: nowrap;
     }
 
     font-size: var(--fs-body1);
-}
-
-// COLOR ALTERNATIVES
-.alternate-color(@name) {
-    &.s-sidebarwidget__@{name} {
-        background-color: var(~"--@{name}-100");
-    }
 }
