@@ -29,9 +29,14 @@
         downvotes?: number;
 
         /**
-         * Display the vote component in horizontal layout. When true, hides the downvote button.
+         * Display the vote component in horizontal layout.
          */
         horizontal?: boolean;
+
+        /**
+         * Display the vote component with only upvote button.
+         */
+        upvoteOnly?: boolean;
 
         /**
          * Current vote status. Use "upvoted" or "downvoted" to show filled icons, or null for no vote.
@@ -74,15 +79,13 @@
         i18nExpanded?: string | undefined;
         /**
          * Callback fired when the upvote button is clicked.
-         * Should return a promise that resolves on success.
          */
-        onupvote?: () => Promise<void>;
+        onupvoteclick?: () => void;
 
         /**
          * Callback fired when the downvote button is clicked.
-         * Should return a promise that resolves on success.
          */
-        ondownvote?: () => Promise<void>;
+        ondownvoteclick?: () => void;
 
         /**
          * Additional CSS classes added to the element
@@ -92,9 +95,10 @@
 
     const {
         total,
-        upvotes = undefined,
-        downvotes = undefined,
+        upvotes,
+        downvotes,
         horizontal,
+        upvoteOnly = false,
         status = null,
         i18nVote = "Vote",
         i18nUpvote = "Upvote",
@@ -103,8 +107,8 @@
         i18nDownvoted = "Downvoted",
         i18nExpand = "Show vote details",
         i18nExpanded = "Hide vote details",
-        onupvote = () => Promise.resolve(),
-        ondownvote = () => Promise.resolve(),
+        onupvoteclick = () => {},
+        ondownvoteclick = () => {},
         class: className = "",
     }: Props = $props();
 
@@ -134,93 +138,52 @@
     let expandable = $derived(
         upvotes !== undefined && downvotes !== undefined && !horizontal
     );
-    // svelte-ignore state_referenced_locally
-    // Props are intentionally captured as initial values. The component uses optimistic updates
-    // for vote actions, so local state may temporarily diverge from props during async operations.
-    let currentCount = $state(total || 0);
-    // svelte-ignore state_referenced_locally
-    let currentStatus = $state(status);
     const classes = $derived(getClasses(className, expanded, horizontal));
-
-    async function handleVote(
-        type: "upvoted" | "downvoted",
-        callback: () => Promise<void>
-    ) {
-        const previousCount = currentCount;
-        const previousStatus = currentStatus;
-        const increment = type === "upvoted" ? 1 : -1;
-
-        if (currentStatus === type) {
-            currentStatus = null;
-            currentCount -= increment;
-        } else {
-            currentCount += currentStatus ? increment * 2 : increment;
-            currentStatus = type;
-        }
-
-        try {
-            await callback();
-        } catch {
-            // Revert on failure
-            currentCount = previousCount;
-            currentStatus = previousStatus;
-            // Don't re-throw - the error should be handled by the callback if needed
-        }
-    }
 </script>
 
+{#snippet votes()}
+    <svelte:element
+        this={expandable ? "button" : "span"}
+        class="s-vote--votes"
+        role={expandable ? "button" : undefined}
+        onclick={() => (expandable ? (expanded = !expanded) : null)}
+    >
+        {#if upvotes !== undefined}
+            <span class="s-vote--upvotes">+{formatCount(upvotes, 1000)}</span>
+        {/if}
+        <span class="s-vote--total">
+            {total !== 0 ? formatCount(total, 1000) : i18nVote}
+        </span>
+        {#if downvotes !== undefined}
+            <span class="s-vote--downvotes"
+                >-{formatCount(downvotes, 1000)}</span
+            >
+        {/if}
+        {#if expandable}
+            <span class="v-visible-sr">
+                {expanded ? i18nExpanded : i18nExpand}
+            </span>
+        {/if}
+    </svelte:element>
+{/snippet}
+
 <div class={classes}>
-    <button class="s-vote--btn" onclick={() => handleVote("upvoted", onupvote)}>
-        {#if currentStatus === "upvoted"}
+    <button class="s-vote--btn" onclick={onupvoteclick}>
+        {#if status === "upvoted"}
             <Icon src={IconVote16UpFill} />
             <span class="v-visible-sr">{i18nUpvoted}</span>
         {:else}
             <Icon src={IconVote16Up} />
             <span class="v-visible-sr">{i18nUpvote}</span>
         {/if}
-        {#if horizontal}
-            <span class="s-vote--votes">
-                <span class="s-vote--total">
-                    {currentCount !== 0 || currentStatus !== null
-                        ? formatCount(currentCount)
-                        : i18nVote}
-                </span>
-            </span>
+        {#if upvoteOnly}
+            {@render votes()}
         {/if}
     </button>
-    {#if !horizontal}
-        <svelte:element
-            this={expandable ? "button" : "span"}
-            class="s-vote--votes"
-            role={expandable ? "button" : undefined}
-            onclick={() => (expandable ? (expanded = !expanded) : null)}
-        >
-            {#if upvotes !== undefined}
-                <span class="s-vote--upvotes"
-                    >+{formatCount(upvotes, 1000)}</span
-                >
-            {/if}
-            <span class="s-vote--total">
-                {currentCount !== 0 || currentStatus !== null
-                    ? formatCount(currentCount, 1000)
-                    : i18nVote}
-            </span>
-            {#if downvotes !== undefined}
-                <span class="s-vote--downvotes"
-                    >-{formatCount(downvotes, 1000)}</span
-                >
-            {/if}
-            {#if expandable}
-                <span class="v-visible-sr">
-                    {expanded ? i18nExpanded : i18nExpand}
-                </span>
-            {/if}
-        </svelte:element>
-        <button
-            class="s-vote--btn"
-            onclick={() => handleVote("downvoted", ondownvote)}
-        >
-            {#if currentStatus === "downvoted"}
+    {#if !upvoteOnly}
+        {@render votes()}
+        <button class="s-vote--btn" onclick={ondownvoteclick}>
+            {#if status === "downvoted"}
                 <Icon src={IconVote16DownFill} />
                 <span class="v-visible-sr">{i18nDownvoted}</span>
             {:else}

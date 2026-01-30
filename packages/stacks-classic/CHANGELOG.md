@@ -1,5 +1,41 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.21
+
+### Patch Changes
+
+- [#2118](https://github.com/StackExchange/Stacks/pull/2118) [`a60053d`](https://github.com/StackExchange/Stacks/commit/a60053dd3b695964750dd3f680898e1d5ce7d11b) Thanks [@mukunku](https://github.com/mukunku)! - feat(banner): update styles for SHINE
+
+    BREAKING CHANGES:
+    - Banner markup has changed. New markup and icons should be applied.
+    - `.s-banner--btn` has been replaced with `.s-banner--dismiss`
+
+- [#2145](https://github.com/StackExchange/Stacks/pull/2145) [`721511f`](https://github.com/StackExchange/Stacks/commit/721511f3c155e5a47b4269c5019a75bec248a0dd) Thanks [@giamir](https://github.com/giamir)! - button: adjust badge variant
+
+## 3.0.0-beta.20
+
+### Minor Changes
+
+- [#2123](https://github.com/StackExchange/Stacks/pull/2123) [`dcac9bf`](https://github.com/StackExchange/Stacks/commit/dcac9bf76c55203c39495ac29d1724365d83c115) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update User Card to new SHINE design (part 2)
+
+### Patch Changes
+
+- [#2144](https://github.com/StackExchange/Stacks/pull/2144) [`04b0c7e`](https://github.com/StackExchange/Stacks/commit/04b0c7eec416cb54c7478dbfb8df2fccbddfa46a) Thanks [@dancormier](https://github.com/dancormier)! - add support for a tag having both a dismiss button and linked tag text simultaneously
+
+## 3.0.0-beta.19
+
+### Minor Changes
+
+- [#2136](https://github.com/StackExchange/Stacks/pull/2136) [`d75d9d4`](https://github.com/StackExchange/Stacks/commit/d75d9d475b596f96442b6badeb9ff5a390796267) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Add .bg-loading delete skeleton
+
+    BREAKING CHANGES:
+
+    Skeleton component deleted
+
+### Patch Changes
+
+- [#2140](https://github.com/StackExchange/Stacks/pull/2140) [`70cfb92`](https://github.com/StackExchange/Stacks/commit/70cfb925f2821a4a8897698e915431efaf2075a9) Thanks [@dancormier](https://github.com/dancormier)! - Nudge light high contrast mode black 400, 500 for improved contrast
+
 ## 3.0.0-beta.18
 
 ### Minor Changes

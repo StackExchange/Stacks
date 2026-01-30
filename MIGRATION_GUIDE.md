@@ -16,6 +16,10 @@
 - `.blr-sm` removed
 - `.blr-lg` removed
 
+#### Background
+- Add `.bg-loading`
+- Skeleton component deleted
+
 #### Colors
 - `gold`, `silver`, `bronze` colors removed
 
@@ -41,6 +45,11 @@
 - `.s-badge__new` renamed to `.s-badge__featured`
 - `.s-award-bling` renamed to `.s-bling` (used in some badge templates)
 
+#### Banners
+
+- Banner markup has changed. New markup and icons should be applied.
+- `.s-banner--btn` has been replaced with `.s-banner--dismiss`
+
 #### Bling (previously *Award Bling*)
 - The Award Bling component has been renamed to Bling.
 - Bling no longer accepts children elements besides those for screen readers. Please include any visually represented strings (such as counts) as siblings to the bling component.
@@ -62,6 +71,10 @@
 - `s-input__md` removed
 - `s-input__xl` removed
 - **Nested inputs** html will require slight tweaking on consumers' side
+
+#### Loader
+- `Spinner` component replaced with new `Loader` component
+- `xs` and `xl` sized have been removed, leaving only the default, `sm`, and `lg` sizes
 
 #### Menu
 

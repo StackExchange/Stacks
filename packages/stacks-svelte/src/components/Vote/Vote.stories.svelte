@@ -1,6 +1,7 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import Vote, { type Status } from "./Vote.svelte";
+    import { createVoteState } from "./vote-state.svelte";
 
     const VoteStatuses: Status[] = [null, "upvoted", "downvoted"];
 
@@ -17,8 +18,8 @@
 </script>
 
 <Story name="Base">
-    {#snippet template(args)}
-        <Vote {...args} />
+    {#snippet template({ total, ...args })}
+        <Vote total={total ?? 0} {...args} />
     {/snippet}
 </Story>
 
@@ -61,4 +62,56 @@
             <Vote total={13} status="upvoted" horizontal />
         </div>
     {/snippet}
+</Story>
+
+<Story name="Upvote only">
+    {#snippet template()}
+        <div class="d-flex ai-center g64 fw-wrap">
+            <Vote total={13} upvoteOnly horizontal />
+        </div>
+    {/snippet}
+</Story>
+
+<Story name="With State Utility" asChild>
+    {@const voteState = createVoteState({
+        total: 42,
+        upvotes: 50,
+        downvotes: 8,
+        onUpvote: async () => {
+            // Simulate server delay
+            await new Promise((resolve) => setTimeout(resolve, 300));
+            console.log("Upvote sent to server");
+        },
+        onDownvote: async () => {
+            await new Promise((resolve) => setTimeout(resolve, 300));
+            console.log("Downvote sent to server");
+        },
+    })}
+    <div class="d-flex fd-column g16">
+        <Vote {...voteState} />
+        <p class="fs-caption fc-medium">
+            Click the vote buttons - state is managed automatically with
+            optimistic updates
+        </p>
+    </div>
+</Story>
+
+<Story name="With Error Rollback" asChild>
+    {@const voteState = createVoteState({
+        total: 10,
+        onUpvote: async () => {
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            throw new Error("Server error - vote rolled back");
+        },
+        onDownvote: async () => {
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            throw new Error("Server error - vote rolled back");
+        },
+    })}
+    <div class="d-flex fd-column g16">
+        <Vote {...voteState} />
+        <p class="fs-caption fc-medium">
+            Votes will rollback after 500ms (simulated server error)
+        </p>
+    </div>
 </Story>

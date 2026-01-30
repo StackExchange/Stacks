@@ -105,6 +105,15 @@
     }
 
     // CHILD ELEMENTS
+    a {
+        &:focus-visible {
+            .focus-styles();
+        }
+
+        color: var(--_ta-fc) !important;
+        margin: calc(var(--_ta-pt) * -1) calc(var(--_ta-pr) * -1) calc(var(--_ta-pb) * -1) calc(var(--_ta-pl) * -1);
+        padding: var(--_ta-pt) var(--_ta-pr) var(--_ta-pb) var(--_ta-pl);
+    }
     // Dismiss
     &:has(> &--dismiss) {
         --_ta-pr: var(--su2);
@@ -164,7 +173,7 @@
     color: var(--_ta-fc);
     font-size: var(--_ta-fs);
     padding: var(--_ta-pt) var(--_ta-pr) var(--_ta-pb) var(--_ta-pl);
-
+    
     align-items: center;
     display: inline-flex;
     gap: var(--su4);

@@ -1,5 +1,48 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.25
+
+### Patch Changes
+
+- [#2152](https://github.com/StackExchange/Stacks/pull/2152) [`cd866c7`](https://github.com/StackExchange/Stacks/commit/cd866c7dcfdc13df3f83e49992d561a47527f60a) Thanks [@giamir](https://github.com/giamir)! - extract the vote state logic in an opt in svelte module
+
+## 1.0.0-beta.24
+
+### Patch Changes
+
+- [#2148](https://github.com/StackExchange/Stacks/pull/2148) [`fc1517b`](https://github.com/StackExchange/Stacks/commit/fc1517b4a2a91ffbe1dec376b5488f6f46f75844) Thanks [@giamir](https://github.com/giamir)! - vote component: allow downvoting for horizontal layout
+
+- Updated dependencies [[`f59b762`](https://github.com/StackExchange/Stacks/commit/f59b762834d6891a1885459354d0ccc06739fb6d)]:
+    - @stackoverflow/stacks-utils@1.0.0-beta.2
+
+## 1.0.0-beta.23
+
+### Minor Changes
+
+- [#2123](https://github.com/StackExchange/Stacks/pull/2123) [`dcac9bf`](https://github.com/StackExchange/Stacks/commit/dcac9bf76c55203c39495ac29d1724365d83c115) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update User Card to new SHINE design (part 2)
+
+### Patch Changes
+
+- [#2146](https://github.com/StackExchange/Stacks/pull/2146) [`d3ddae4`](https://github.com/StackExchange/Stacks/commit/d3ddae4b8146803defa5e3bb8bafd38669069175) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Remove nested <a> tag in UserCard to fix node_invalid_placement_ssr warning
+
+- [#2144](https://github.com/StackExchange/Stacks/pull/2144) [`04b0c7e`](https://github.com/StackExchange/Stacks/commit/04b0c7eec416cb54c7478dbfb8df2fccbddfa46a) Thanks [@dancormier](https://github.com/dancormier)! - add support for a tag having both a dismiss button and linked tag text simultaneously
+
+## 1.0.0-beta.22
+
+### Minor Changes
+
+- [#2136](https://github.com/StackExchange/Stacks/pull/2136) [`d75d9d4`](https://github.com/StackExchange/Stacks/commit/d75d9d475b596f96442b6badeb9ff5a390796267) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Add .bg-loading delete skeleton
+
+    BREAKING CHANGES:
+
+    Skeleton component deleted
+
+## 1.0.0-beta.21
+
+### Patch Changes
+
+- [#2138](https://github.com/StackExchange/Stacks/pull/2138) [`fcd06fb`](https://github.com/StackExchange/Stacks/commit/fcd06fbf72597029e500dfeb08ecdc7080fb5f70) Thanks [@dancormier](https://github.com/dancormier)! - Export user card child components
+
 ## 1.0.0-beta.20
 
 ### Patch Changes

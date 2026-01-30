@@ -45,6 +45,21 @@ describe("NumberFormatter.formatCount", () => {
         });
     });
 
+    describe("negative numbers", () => {
+        it("should format negative numbers in standard format", () => {
+            expect(NumberFormatter.formatCount(-42)).toBe("-42");
+            expect(NumberFormatter.formatCount(-999)).toBe("-999");
+            expect(NumberFormatter.formatCount(-1234)).toBe("-1,234");
+            expect(NumberFormatter.formatCount(-9999)).toBe("-9,999");
+        });
+
+        it("should format negative numbers in compact format", () => {
+            expect(NumberFormatter.formatCount(-10000)).toBe("-10k");
+            expect(NumberFormatter.formatCount(-12345)).toBe("-12.3k");
+            expect(NumberFormatter.formatCount(-1234567)).toBe("-1.2m");
+        });
+    });
+
     describe("convenience function export", () => {
         it("should work with the exported formatCount function", () => {
             expect(formatCount(1234)).toBe("1,234");
