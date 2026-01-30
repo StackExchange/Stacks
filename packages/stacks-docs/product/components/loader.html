@@ -5,6 +5,7 @@ svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-loader--
 description: "The loader component indicates an active wait state for a page, section, or interactive element."
 tags: components
 ---
+
 <section class="docs-section">
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
@@ -18,32 +19,41 @@ tags: components
             </thead>
             <tbody class="fs-caption">
                 {% for item in loader.classes %}
-                    <tr>
-                        <td><code class="docs-code ws-nowrap">{{ item.class }}</code></td>
-                        <td>{% if item.applies == "N/A" %}<em class="fc-black-350">{{ item.applies }}</em>{% else %}<code class="docs-code">{{ item.applies }}</code>{% endif %}</td>
-                        <td>{{ item.description }}</td>
-                    </tr>
+                <tr>
+                    <td>
+                        <code class="docs-code ws-nowrap"
+                            >{{ item.class }}</code
+                        >
+                    </td>
+                    <td>
+                        {% if item.applies == "N/A" %}<em class="fc-black-350"
+                            >{{ item.applies }}</em
+                        >{% else %}<code class="docs-code"
+                            >{{ item.applies }}</code
+                        >{% endif %}
+                    </td>
+                    <td>{{ item.description }}</td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 </section>
 <section class="docs-section">
-    {% header "h2", "Examples" %}
-    {% header "h3", "Base" %}
-    <p class="docs-copy">The base loader component displays three animated squares.</p>
+    {% header "h2", "Examples" %} {% header "h3", "Base" %}
+    <p class="docs-copy">
+        The base loader component displays three animated squares.
+    </p>
     <div class="docs-preview">
-{% highlight html %}
-<div class="s-loader">
-    <div class="s-loader--block"></div>
-    <div class="v-visible-sr">Loading…</div>
-</div>
-{% endhighlight %}
+        {% highlight html %}
+        <div class="s-loader">
+            <div class="s-loader--sr-text">Loading…</div>
+        </div>
+        {% endhighlight %}
         <div class="docs-preview--example">
             <div class="d-flex g16 fw-wrap ai-center">
                 <div class="s-loader">
-                    <div class="s-loader--block"></div>
-                    <div class="v-visible-sr">Loading…</div>
+                    <div class="s-loader--sr-text">Loading…</div>
                 </div>
             </div>
         </div>
@@ -62,32 +72,26 @@ tags: components
         </thead>
         <tbody class="fs-caption">
             {% for size in loader.sizes %}
-                <tr>
-                    <th scope="row">
-                        <code class="docs-code">
-                            {% if size == "" %}
-                                .s-loader
-                            {% else %}
-                                .{{ size }}
-                            {% endif %}
-                        </code>
-                    </th>
-                    <td>
-                        <code class="docs-code bg-white">
-                            {% if size == "" %}
-                                <em class="fc-black-400">N/A</em>
-                            {% else %}
-                                .s-loader
-                            {% endif %}
-                        </code>
-                    </td>
-                    <td class="p8">
-                        <div class="s-loader {{ size }}">
-                            <div class="s-loader--block"></div>
-                            <div class="v-visible-sr">Loading…</div>
-                        </div>
-                    </td>
-                </tr>
+            <tr>
+                <th scope="row">
+                    <code class="docs-code">
+                        {% if size == "" %} .s-loader {% else %} .{{ size }} {%
+                        endif %}
+                    </code>
+                </th>
+                <td>
+                    <code class="docs-code bg-white">
+                        {% if size == "" %}
+                        <em class="fc-black-400">N/A</em>
+                        {% else %} .s-loader {% endif %}
+                    </code>
+                </td>
+                <td class="p8">
+                    <div class="s-loader {{ size }}">
+                        <div class="s-loader--sr-text">Loading…</div>
+                    </div>
+                </td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>

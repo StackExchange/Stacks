@@ -31,6 +31,5 @@
 </script>
 
 <div class={classes}>
-    <div class="s-loader--block"></div>
-    <div class="v-visible-sr">{label}</div>
+    <div class="s-loader--sr-text">{label}</div>
 </div>

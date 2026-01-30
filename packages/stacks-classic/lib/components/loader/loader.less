@@ -15,20 +15,30 @@
         --_ld-size: var(--su8);
     }
 
-    // CHILD ELEMENTS
-    & &--block,
+    // CHILD ELEMENTS – three blocks via pseudo-elements (::before, --sr-text::before, ::after)
     &:before,
+    & &--sr-text:before,
     &:after {
         background-color: currentColor;
         content: "";
         display: block;
         height: var(--_ld-size);
         width: var(--_ld-size);
-        
+
         animation: loader-animation .8s cubic-bezier(1, 1, 0, 1) infinite;
     }
 
-    & &--block {
+    & &--sr-text {
+        // Visible flex item so its ::before (middle block) shows; overflow visible so translateY isn't clipped
+        display: block;
+        flex-shrink: 0;
+        height: var(--_ld-size);
+        width: var(--_ld-size);
+        font-size: 0;
+        overflow: visible;
+    }
+
+    & &--sr-text:before {
         animation-delay: .25s;
     }
 
@@ -43,8 +53,8 @@
 
 @media (prefers-reduced-motion:reduce){
     .s-loader {
-        & &--block,
         &:before,
+        & &--sr-text:before,
         &:after {
             animation: loader-animation-reduced-motion 2s ease-in-out infinite;
         }
