@@ -1,7 +1,7 @@
 // TODO we *really* shouldn't be apply styles directly onto `<a>` like this, but
 // it's tech debt that'll take some doing in consumer's code to pay down.
 a {
-    // We're target these specific selectors to avoid affecting the visited state of stacks components
+    // We're targeting these specific selectors to avoid affecting the visited state of stacks components
     // not specified here. See for https://github.com/StackExchange/Stacks/pull/1740#discussion_r1698389312
     // TODO remove .post-tag, .badge, .badge-tag reference once core no longer requires them
     &:not([class*="s-"]):not(.post-tag):not(.badge):not(.badge-tag),
@@ -12,7 +12,7 @@ a {
         &:active,
         &:hover {
             color: var(--_an-a-fc-hover, var(--_li-fc-hover));
-        }    
+        }
 
         &:visited {
             color: var(--_an-a-fc-visited, var(--_li-fc-visited));
@@ -29,7 +29,7 @@ a,
     --_li-fc: var(--theme-link-color, var(--black-600));
     --_li-fc-hover: var(--theme-link-color-hover, var(--blue-400));
     --_li-fc-visited: var(--theme-link-color-visited, var(--black-500));
-    --_li-fc-hover-visited: var(--theme-link-color-visited, var(--purple-600));
+    --_li-fc-hover-visited: var(--theme-link-color-visited, var(--black-500));
 
     // CONTEXTUAL STYLES
     .highcontrast-mode({
@@ -63,10 +63,10 @@ a,
         }
 
         &__visited { // TODO can we get rid of this? It's only in 3 places in Core and seems to me it doesn't even serve a purpose.
-            --_li-fc: var(--theme-link-color-visited, var(--purple-500));
-            --_li-fc-hover: var(--theme-link-color-hover, var(--purple-600));
-            --_li-fc-visited: var(--theme-link-color-visited, var(--purple-500));
-            --_li-fc-hover-visited: var(--theme-link-color-visited, var(--purple-600));
+            --_li-fc: var(--theme-link-color-visited, var(--black-500));
+            --_li-fc-hover: var(--theme-link-color-hover, var(--black-600));
+            --_li-fc-visited: var(--theme-link-color-visited, var(--black-500));
+            --_li-fc-hover-visited: var(--theme-link-color-visited, var(--black-500));
         }
 
         // VARIANTS
@@ -97,8 +97,8 @@ a,
 
         &__muted {
             --_li-fc: var(--black-400);
-            --_li-fc-hover: var(--black-500);
-            --_li-fc-visited: var(--black-600);
+            --_li-fc-hover: var(--blue-400);
+            --_li-fc-visited: var(--black-500);
         }
     }
 
@@ -146,5 +146,6 @@ a,
 
     &:hover:visited {
         color: var(--_li-fc-hover-visited);
+        text-decoration: underline !important;
     }
 }
