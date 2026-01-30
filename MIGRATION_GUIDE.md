@@ -72,6 +72,10 @@
 - `s-input__xl` removed
 - **Nested inputs** html will require slight tweaking on consumers' side
 
+#### Loader
+- `Spinner` component replaced with new `Loader` component
+- `xs` and `xl` sized have been removed, leaving only the default, `sm`, and `lg` sizes
+
 #### Menu
 
 The menu component has been updated to use new class names and structure. The following changes are breaking:

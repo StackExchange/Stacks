@@ -6,34 +6,26 @@ import "../../index";
 const template = ({ component, testid }: any) => html`
     <div class="d-inline-block p8" data-testid="${testid}">${component}</div>
 `;
-describe("spinner", () => {
+describe("loader", () => {
     // default, sizes
     runVisualTests({
-        baseClass: "s-spinner",
+        baseClass: "s-loader",
         modifiers: {
-            primary: ["xs", "sm", "md", "lg"],
+            primary: ["sm", "lg"],
         },
         children: {
-            default: `<div class="v-visible-sr">Loading…</div>`,
+            default: `<div class="s-loader--sr-text">Loading…</div>`,
         },
         template,
     });
     // applied font color
     runVisualTests({
-        baseClass: "s-spinner",
+        baseClass: "s-loader",
         modifiers: {
             global: ["fc-theme-primary"],
         },
         children: {
-            default: `<div class="v-visible-sr">Loading…</div>`,
-        },
-        template,
-    });
-    // .is-loading
-    runVisualTests({
-        baseClass: "is-loading",
-        children: {
-            default: `Loading…`,
+            default: `<div class="s-loader--sr-text">Loading…</div>`,
         },
         template,
     });

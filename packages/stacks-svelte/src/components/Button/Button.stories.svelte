@@ -124,7 +124,7 @@
                                     {#each [null, "selected", "disabled"] as state (state)}
                                         <td class="va-middle ta-center px4">
                                             <Button
-                                                loading
+                                                loading={true}
                                                 {weight}
                                                 selected={state === "selected"}
                                                 disabled={state === "disabled"}
