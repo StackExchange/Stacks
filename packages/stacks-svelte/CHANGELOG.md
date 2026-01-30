@@ -1,5 +1,11 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.25
+
+### Patch Changes
+
+- [#2152](https://github.com/StackExchange/Stacks/pull/2152) [`cd866c7`](https://github.com/StackExchange/Stacks/commit/cd866c7dcfdc13df3f83e49992d561a47527f60a) Thanks [@giamir](https://github.com/giamir)! - extract the vote state logic in an opt in svelte module
+
 ## 1.0.0-beta.24
 
 ### Patch Changes
