@@ -147,6 +147,13 @@ The menu component has been updated to use new class names and structure. The fo
 #### Select
 - `md` and `xl` sizes removed
 
+#### Sidebar Widget
+- `s-sidebarwidget__items` renamed to `s-sidebarwidget--items` and must be nested inside `s-sidebarwidget--content` now
+- `s-sidebarwidget--item` is only supported for navigation items now
+- `s-sidebarwidget__small-bold-text` class removed
+- Table layout support removed
+- Expandable sidebar support removed
+
 #### Tags
 - `.s-tag__xs` removed
 - `.s-tag__md` removed

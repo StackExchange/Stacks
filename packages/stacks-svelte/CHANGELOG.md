@@ -1,5 +1,14 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.26
+
+### Minor Changes
+
+- [#2142](https://github.com/StackExchange/Stacks/pull/2142) [`041f1dd`](https://github.com/StackExchange/Stacks/commit/041f1dd06c2ceec0c8fb45fb99040c87b53de0e0) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update Loader (formerly known as Spinner) component to SHINE designs
+
+    BREAKING CHANGES:
+    - Spinner component has been replace with the Loader component
+
 ## 1.0.0-beta.25
 
 ### Patch Changes
