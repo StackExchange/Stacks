@@ -6,7 +6,7 @@ tags: base
 ---
 <section class="docs-section">
     {% tip, "warning" %}
-        <strong>Warning:</strong> <code>.outline-ring</code> does not meet our accessibility standards for focus state styling and should be used for decorative purposes only.
+        <strong>Warning:</strong> Atomic outline classes mimic or remove default Stacks focus styles. They should only be applied when absolutely necessary.
     {% endtip %}
 
     {% header "h2", "Classes" %}
@@ -38,8 +38,9 @@ tags: base
 <div class="outline-ring">…</div>
 {% endhighlight %}
         <div class="docs-preview--example fs-caption ff-mono">
-            <div class="outline-none d-inline-block docs-box">.outline-none</div>
-            <div class="outline-ring d-inline-block docs-box">.outline-ring</div>
+            {% for atomic in atomics.outline %}
+                <div class="{{ atomic.class }} d-inline-block docs-box">.{{ atomic.class }}</div>
+            {% endfor %}
         </div>
     </div>
 </section>
