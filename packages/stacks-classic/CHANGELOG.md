@@ -1,5 +1,20 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.22
+
+### Minor Changes
+
+- [#2142](https://github.com/StackExchange/Stacks/pull/2142) [`041f1dd`](https://github.com/StackExchange/Stacks/commit/041f1dd06c2ceec0c8fb45fb99040c87b53de0e0) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update Loader (formerly known as Spinner) component to SHINE designs
+
+    BREAKING CHANGES:
+    - Spinner component has been replace with the Loader component
+
+### Patch Changes
+
+- [#2155](https://github.com/StackExchange/Stacks/pull/2155) [`9f65cf9`](https://github.com/StackExchange/Stacks/commit/9f65cf9c297119cd52a1bb6650a7fd6c4b442c20) Thanks [@mukunku](https://github.com/mukunku)! - feat(sidebar-widget): initial SHINE design changes
+
+- [#2158](https://github.com/StackExchange/Stacks/pull/2158) [`99ebaef`](https://github.com/StackExchange/Stacks/commit/99ebaeff07f3af1a974e0ff941e77bc5b361185b) Thanks [@giamir](https://github.com/giamir)! - button: adjust selected variant styles
+
 ## 3.0.0-beta.21
 
 ### Patch Changes
