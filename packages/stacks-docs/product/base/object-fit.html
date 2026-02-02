@@ -16,7 +16,7 @@ tags: base
                 </tr>
             </thead>
             <tbody>
-                {% for atomic in atomics.object-fit %}
+                {% for atomic in object-fit.classes %}
                     <tr class="fs-caption">
                         <th scope="row"><code class="docs-code">.{{ atomic.class }}</code></th>
                         <td><code class="docs-code bg-white">{{ atomic.output }}</code></td>
@@ -39,7 +39,7 @@ tags: base
 {% endhighlight %}
         <div class="docs-preview--example ff-mono">
             <div class="d-flex fd-column g16 fw-wrap">
-                {% for atomic in atomics.object-fit %}
+                {% for atomic in object-fit.classes %}
                     {% assign atomicClass = atomic.class %}
                     {% if atomic.class == 'op-center' %}
                         {% assign atomicClass = atomicClass | append: ' op-none' %}
