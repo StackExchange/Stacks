@@ -5,13 +5,13 @@
     --_se-select-br: var(--br-md);
     --_se-select-fc: var(--black);
     --_se-select-px: 0.7em;
-    --_se-select-py: var(--su-static8);
+    --_se-select-py: var(--su8);
     --_se-select-fs: var(--fs-body1);
     --_se-select-lh: var(--lh-base);
 
     // CONTEXTUAL STYLES
     @supports (-webkit-overflow-scrolling: touch) {
-        --_se-select-fs: var(--su-static16); // Increase font size for mobile safari. This keeps our inputs from zooming the page while focused
+        --_se-select-fs: var(--su16); // Increase font size for mobile safari. This keeps our inputs from zooming the page while focused
         --_se-select-px: 0.55em; // Compensate for the larger font size so we generally keep the input the same size
         --_se-select-py: 0.4em; // Compensate for the larger font size so we generally keep the input the same size
     }
@@ -24,36 +24,52 @@
     .validation-states(se-select);
 
     &&__sm {
-        .size-styles(sm; se-select; @styles: fs);
+        --_se-select-fs: var(--fs-caption);
         --_se-select-lh: var(--lh-sm);
-        --_se-select-py: calc(var(--su6) - var(--su-static1) / 2);
+        --_se-select-py: calc(var(--su6) - var(--su1) / 2);
     }
 
     &&__lg {
-        .size-styles(md; se-select; @styles: fs);
+        --_se-select-fs: var(--fs-title);
         --_se-select-lh: var(--lh-lg);
     }
 
     // CHILD ELEMENTS
     select&,
     & > select {
-        .webkit-autofill();
+        // TODO: Investigate if this is still needed.
+        &:-webkit-autofill {
+            &:focus {
+                border-color: var(--blue-400);
+                // Since the box shadow is overwritten to show a background, we have to re-add the focus outline
+                -webkit-box-shadow: 0 0 0 1000px var(--blue-200) inset, 0 0 0 var(--su4) var(--focus-ring);
+            }
+    
+            -webkit-box-shadow: 0 0 0 1000px var(--theme-secondary-200) inset; // This acts as a background color by stretching an inset box shadow across the input
+            -webkit-text-fill-color: var(--black);
+            border-color: var(--blue-400);
+            transition: background-color 0s 50000s; // A hack to infinitely delay background styles that come from the browser.
+        }
+    
+        &::-webkit-contacts-auto-fill-button {
+            background-color: var(--black); // In Safari, make the autocomplete button darkmode-aware
+        }
     }
 
     &:after { // Chevron16UpDown icon
         background-color: currentColor;
         content: "";
-        height: var(--su-static16);
+        height: var(--su16);
         mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='M13.06 10 8 15.06 2.94 10 4 8.94l.53.53L8 12.94l3.47-3.47.53-.53zm0-4L12 7.06l-.53-.53L8 3.06 4.53 6.53 4 7.06 2.94 6 8 .94z'/%3E%3C/svg%3E");
         mask-repeat: no-repeat;
         mask-position: center;
         mask-size: contain;
         pointer-events: none;
         position: absolute;
-        right: calc(var(--su32) - var(--su-static24));
+        right: calc(var(--su32) - var(--su24));
         top: 50%;
         transform: translateY(-50%);
-        width: var(--su-static16);
+        width: var(--su16);
         z-index: var(--zi-selected);
     }
 
@@ -98,7 +114,7 @@
         }
 
         background-color: var(--_se-select-bg);
-        border: var(--su-static1) solid var(--_se-select-bc);
+        border: var(--su1) solid var(--_se-select-bc);
         border-radius: var(--_se-select-br);
         color: var(--_se-select-fc);
         font-size: var(--_se-select-fs);

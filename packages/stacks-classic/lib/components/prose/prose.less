@@ -4,7 +4,7 @@
     @pr-spacing-condensed: calc(@pr-spacing / 2); // Reduce the base spacing by half in the context of lists, etc.
     @pr-spoiler-transition: opacity 0.1s ease-in-out;
     // COMPONENT-SPECIFIC CUSTOM PROPERTIES
-    --_pr-fs: calc(var(--su-static16) - var(--su-static1)); // Force a font size that doesn’t change at the smallest breakpoint;
+    --_pr-fs: unset;
     --_pr-lh: 1.5;
     --_pr-blockquote-ml: 1em;
     --_pr-blockquote-mt: 0;
@@ -19,7 +19,7 @@
     --_pr-hr-bg: var(--black-225); // used for both background-color and color properties
     --_pr-img-mb: @pr-spacing;
     --_pr-kbd-bc: var(--black-300);
-    --_pr-kbd-bs: 0 var(--su-static1) var(--su-static1) hsla(210, 8%, 5%, 0.15), inset 0 1px 0 0 var(--_white-static);
+    --_pr-kbd-bs: 0 var(--su1) var(--su1) hsla(210, 8%, 5%, 0.15), inset 0 1px 0 0 var(--_white-static);
     --_pr-spoiler-cursor: pointer;
     --_pr-spoiler-after-t: 1em;
     --_pr-soiler-after-o: unset;
@@ -33,7 +33,7 @@
     .dark-mode({
         --_pr-kbd-bc: transparent;
         --_pr-kbd-btc: var(--black-400);
-        --_pr-kbd-bs: 0 var(--su-static1) var(--su-static1) hsla(210, 8%, 5%, 0.8);
+        --_pr-kbd-bs: 0 var(--su1) var(--su1) hsla(210, 8%, 5%, 0.8);
     });
 
     .highcontrast-mode({
@@ -247,7 +247,7 @@
         &:before {
             background: var(--_pr-blockquote-before-bg);
 
-            border-radius: var(--su-static8);
+            border-radius: var(--su8);
             bottom: 0;
             content: "";
             display: block;
@@ -299,7 +299,7 @@
         color: var(--_pr-hr-bg); // value set for background-color reused for color intentionally
 
         border: 0;
-        height: var(--su-static1);
+        height: var(--su1);
         margin-bottom: @pr-spacing;
     }
 
@@ -311,7 +311,7 @@
     }
 
     kbd {
-        border: var(--su-static1) solid var(--_pr-kbd-bc);
+        border: var(--su1) solid var(--_pr-kbd-bc);
         border-top-color: var(--_pr-kbd-btc, var(--_pr-kbd-bc));
         box-shadow: var(--_pr-kbd-bs);
 
@@ -325,7 +325,7 @@
         margin: 0 0.1em;
         overflow-wrap: break-word;
         padding: 0.1em 0.6em;
-        text-shadow: 0 var(--su-static1) 0 var(--white);
+        text-shadow: 0 var(--su1) 0 var(--white);
     }
 
     li {
@@ -412,7 +412,7 @@
         background: var(--black-150);
         border-radius: var(--br-md);
         color: var(--black-600);
-        min-height: var(--su-static48); // TODO: Let's find a solution that doesn't have a magic number
+        min-height: var(--su48); // TODO: Let's find a solution that doesn't have a magic number
     }
 
     .youtube-embed { // [2]
@@ -434,7 +434,7 @@
         width: 100%;
     }
 
-    font-size: var(--_pr-fs); // Force a font size that doesn’t change at the smallest breakpoint
+    font-size: var(--_pr-fs);
     line-height: var(--_pr-lh);
 
     overflow-wrap: break-word;
