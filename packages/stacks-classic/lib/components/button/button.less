@@ -15,15 +15,19 @@
     // Base
     &:not(&__danger):not(&__featured):not(&__tonal):not(&__link):not(&__unset):not(&__facebook):not(&__github):not(&__google) { // Exclude default styles from impacting these variants
         --_bu-bg: var(--theme-button-color, var(--theme-secondary));
-        --_bu-bg-disabled: var(--black-350);
+        --_bu-bg-disabled: var(--theme-secondary-300);
         --_bu-bg-hover: var(--theme-button-hover-background-color, var(--theme-secondary-500));
         --_bu-fc: var(--white);
-        --_bu-fc-disabled: var(--black-050);
+        --_bu-fc-disabled: var(--theme-secondary-100);
         --_bu-fc-hover: var(--theme-button-hover-color, var(--white));
         --_bu-badge-bg: var(--theme-secondary-500);
         --_bu-badge-fc: var(--white);
-        --_bu-badge-bg-disabled: var(--black-250);
-        --_bu-badge-fc-disabled: var(--black-050);
+        --_bu-badge-bg-disabled: var(--theme-secondary-300);
+        --_bu-badge-fc-disabled: var(--theme-secondary-100);
+
+        .highcontrast-mode({
+            --_bu-bg-disabled: var(--theme-secondary-300);
+        });
 
         &.s-btn__clear {
             --_bu-bg: transparent;
@@ -35,11 +39,15 @@
             --_bu-fc-hover: var(--_bu-fc);
             --_bu-badge-bg: var(--theme-secondary-100);
             --_bu-badge-fc: var(--theme-secondary-500);
-            --_bu-badge-bg-disabled: var(--black-100);
-            --_bu-badge-fc-disabled: var(--black-350);
+            --_bu-badge-bg-disabled: var(--theme-secondary-100);
+            --_bu-badge-fc-disabled: var(--theme-secondary-300);
 
             .highcontrast-mode({
-                --_bu-bc: var(--theme-secondary-600);
+                --_bu-bc: var(--theme-secondary-400);
+                --_bu-bc-disabled: var(--theme-secondary-300);
+                --_bu-bg-disabled: var(--white);
+                --_bu-badge-bg-disabled: var(--theme-secondary-100);
+                --_bu-badge-fc-disabled: var(--theme-secondary-300);
             });
         }
     }
@@ -57,6 +65,25 @@
         --_bu-badge-bg-disabled: var(--red-300);
         --_bu-badge-fc-disabled: var(--black-100);
 
+        .dark-mode({
+            --_bu-bg-disabled: var(--red-300);
+            --_bu-badge-fc-disabled: var(--black-050);
+            --_bu-badge-bg-disabled: var(--red-400);
+        });
+
+        .highcontrast-mode({
+            --_bu-fc-disabled: var(--black-300);
+            --_bu-badge-bg-disabled: var(--red-100);
+            --_bu-badge-fc-disabled: var(--black-300);
+        });
+
+        .highcontrast-dark-mode({
+            --_bu-bg-disabled: var(--red-300);
+            --_bu-fc-disabled: var(--black-050);
+            --_bu-badge-fc-disabled: var(--black-050);
+            --_bu-badge-bg-disabled: var(--red-400);
+        });
+
         &.s-btn__clear {
             --_bu-bg: transparent;
             --_bu-bg-disabled: var(--_bu-bg);
@@ -71,9 +98,23 @@
             --_bu-badge-bg-disabled: var(--red-100);
             --_bu-badge-fc-disabled: var(--red-300);
 
+            .dark-mode({
+                --_bu-bg-disabled: var(--_bu-bg);
+                --_bu-fc-disabled: var(--red-300);
+                --_bu-badge-bg-disabled: var(--red-100);
+                --_bu-badge-fc-disabled: var(--red-400);
+            });
+
             .highcontrast-mode({
                 --_bu-bc: var(--red-600);
-                --_bu-bc-disabled: var(--red-300);
+                --_bu-bc-disabled: var(--black-300);
+            });
+
+            .highcontrast-dark-mode({
+                --_bu-bg-disabled: var(--black-050);
+                --_bu-fc-disabled: var(--red-300);
+                --_bu-badge-bg-disabled: var(--red-100);
+                --_bu-badge-fc-disabled: var(--red-300);
             });
         }
     }
@@ -89,6 +130,25 @@
         --_bu-badge-fc: var(--black-050);
         --_bu-badge-bg-disabled: var(--purple-300);
         --_bu-badge-fc-disabled: var(--black-100);
+
+        .dark-mode({
+            --_bu-bg-disabled: var(--purple-100);
+            --_bu-fc-disabled: var(--purple-400);
+            --_bu-badge-fc-disabled: var(--purple-400);
+            --_bu-badge-bg-disabled: var(--purple-200);
+        });
+
+        .highcontrast-mode({
+            --_bu-fc-disabled: var(--black-300);
+            --_bu-badge-fc-disabled: var(--black-300);
+            --_bu-badge-bg-disabled: var(--purple-200);
+        });
+
+        .highcontrast-dark-mode({
+            --_bu-fc-disabled: var(--purple-400);
+            --_bu-badge-bg-disabled: var(--purple-200);
+            --_bu-badge-fc-disabled: var(--purple-400);
+        });
     }
 
     &&__tonal {
@@ -102,10 +162,11 @@
         --_bu-badge-bg: var(--black-200);
         --_bu-badge-fc: var(--black-600);
         --_bu-badge-bg-disabled: var(--black-100);
-        --_bu-badge-fc-disabled: var(--black-350);
+        --_bu-badge-fc-disabled: var(--black-300);
 
         .highcontrast-mode({
-            --_bu-bc: var(--black-300);
+            --_bu-bc: var(--black-400);
+            --_bu-bc-disabled: var(--black-300);
         });
     }
 
