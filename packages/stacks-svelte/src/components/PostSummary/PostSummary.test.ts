@@ -46,7 +46,9 @@ describe("PostSummary", () => {
     it("should not render the excerpt when excerptLines is 0", () => {
         render(PostSummary, { ...baseArgs, excerptLines: 0 });
 
-        const excerptContainer = document.querySelector(".s-post-summary--excerpt");
+        const excerptContainer = document.querySelector(
+            ".s-post-summary--excerpt"
+        );
         expect(excerptContainer).not.to.exist;
     });
 
@@ -87,7 +89,9 @@ describe("PostSummary", () => {
     it("should render the votes stats item", () => {
         render(PostSummary, { ...baseArgs });
 
-        const votesContainer = document.querySelector(".s-post-summary--stats-votes");
+        const votesContainer = document.querySelector(
+            ".s-post-summary--stats-votes"
+        );
         expect(votesContainer).to.exist;
         expect(votesContainer?.textContent).to.include("1");
         expect(votesContainer?.textContent).to.include("vote");
@@ -96,7 +100,9 @@ describe("PostSummary", () => {
     it("should render the answers stats item", () => {
         render(PostSummary, { ...baseArgs });
 
-        const answersContainers = document.querySelectorAll(".s-post-summary--stats-answers");
+        const answersContainers = document.querySelectorAll(
+            ".s-post-summary--stats-answers"
+        );
         expect(answersContainers.length).to.be.at.least(1);
         expect(answersContainers[0]?.textContent).to.include("10");
         expect(answersContainers[0]?.textContent).to.include("answers");
@@ -106,7 +112,10 @@ describe("PostSummary", () => {
         render(PostSummary, { ...baseArgs });
 
         const viewsItem = screen.getByText((content, el) => {
-            return el?.classList.contains("s-post-summary--stats-item") === true && content.includes("views");
+            return (
+                el?.classList.contains("s-post-summary--stats-item") === true &&
+                content.includes("views")
+            );
         });
         expect(viewsItem).to.exist;
         expect(viewsItem.textContent).to.include("100");
@@ -123,7 +132,9 @@ describe("PostSummary", () => {
     it("should render the bounty", () => {
         render(PostSummary, { ...baseArgs, bounty: 50 });
 
-        const bountyContainer = document.querySelector(".s-post-summary--stats-bounty");
+        const bountyContainer = document.querySelector(
+            ".s-post-summary--stats-bounty"
+        );
         expect(bountyContainer).to.exist;
         expect(bountyContainer?.textContent).to.include("+");
         expect(bountyContainer?.textContent).to.include("50");
@@ -133,7 +144,10 @@ describe("PostSummary", () => {
         render(PostSummary, { ...baseArgs, comments: 5 });
 
         const commentsItem = screen.getByText((content, el) => {
-            return el?.classList.contains("s-post-summary--stats-item") === true && content.includes("comments");
+            return (
+                el?.classList.contains("s-post-summary--stats-item") === true &&
+                content.includes("comments")
+            );
         });
         expect(commentsItem).to.exist;
         expect(commentsItem.textContent).to.include("5");
@@ -160,7 +174,9 @@ describe("PostSummary", () => {
         });
 
         const contentTypeLink = screen.getByText("Announcement");
-        const contentType = contentTypeLink.closest(".s-post-summary--content-type");
+        const contentType = contentTypeLink.closest(
+            ".s-post-summary--content-type"
+        );
         expect(contentType).to.exist;
         expect(contentTypeLink).to.have.attr("href", "#announcement");
     });
@@ -170,15 +186,19 @@ describe("PostSummary", () => {
         const answerPreviewsSnippet = createRawSnippet(() => ({
             render: () => `<div id="answerPreviews">answers</div>`,
         }));
-        render(PostSummary, { ...baseArgs, answerPreviews: answerPreviewsSnippet });
+        render(PostSummary, {
+            ...baseArgs,
+            answerPreviews: answerPreviewsSnippet,
+        });
 
-        const answerPreviewsContainer = document.querySelector(".s-post-summary--answers");
+        const answerPreviewsContainer = document.querySelector(
+            ".s-post-summary--answers"
+        );
         expect(answerPreviewsContainer).to.exist;
         const answerPreviews = document.querySelector("#answerPreviews");
         expect(answerPreviews).to.exist;
         expect(answerPreviews).to.have.text("answers");
     });
-
 
     it("should render the tags snippet", () => {
         render(PostSummary, { ...baseArgs, tags: snippet });
@@ -229,7 +249,10 @@ describe("PostSummary", () => {
         });
 
         const commentsItem = screen.getByText((content, el) => {
-            return el?.classList.contains("s-post-summary--stats-item") === true && content.includes("comentarios");
+            return (
+                el?.classList.contains("s-post-summary--stats-item") === true &&
+                content.includes("comentarios")
+            );
         });
         expect(commentsItem).to.exist;
         expect(commentsItem?.textContent).to.include("comentarios");
@@ -288,7 +311,10 @@ describe("PostSummary", () => {
         });
 
         const viewsUnit = screen.getByText((content, el) => {
-            return el?.classList.contains("s-post-summary--stats-item") === true && content.includes("vistas");
+            return (
+                el?.classList.contains("s-post-summary--stats-item") === true &&
+                content.includes("vistas")
+            );
         });
         expect(viewsUnit).to.exist;
         expect(viewsUnit?.textContent).to.include("vistas");

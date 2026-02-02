@@ -14,7 +14,7 @@
         /**
          * Precise date and time of the post in ISO format
          */
-        timestamp: Date | SvelteDate | string;
+        timestamp?: Date | SvelteDate | string;
 
         /**
          * Link to post activity
@@ -28,17 +28,17 @@
 <Popover id="user-card-time-popover" tooltip>
     <PopoverReference>
         <a {href} class="s-user-card--time">
-            <time>
-                {text ||
-                    formatTime(
-                        typeof timestamp === "string"
-                            ? timestamp
-                            : (timestamp as Date).toISOString()
-                    )}
-            </time>
+            {text ||
+                formatTime(
+                    typeof timestamp === "string"
+                        ? timestamp
+                        : (timestamp as Date).toISOString()
+                )}
         </a>
     </PopoverReference>
-    <PopoverContent>
-        {timestamp}
-    </PopoverContent>
+    {#if timestamp}
+        <PopoverContent>
+            <time>{timestamp}</time>
+        </PopoverContent>
+    {/if}
 </Popover>

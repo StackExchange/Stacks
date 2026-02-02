@@ -6,7 +6,11 @@ import {
 } from "@stackoverflow/stacks-icons-legacy";
 import type { TestVariationArgs } from "../../test/test-utils";
 import "../../index";
-import { IconAnswer16, IconAnswer16Fill, IconCompose } from "@stackoverflow/stacks-icons/icons";
+import {
+    IconAnswer16,
+    IconAnswer16Fill,
+    IconCompose,
+} from "@stackoverflow/stacks-icons/icons";
 
 // ISO timestamp used for the user time tooltip (title)
 const USER_TIME_ISO = "2026-01-15T12:00:00.000Z";
@@ -30,12 +34,7 @@ const getBadge = () => {
 };
 
 // Stats block for wide containers
-const getStatsSmHide = ({
-    votes,
-    answers,
-    accepted,
-    bounty,
-}: Stats) => `
+const getStatsSmHide = ({ votes, answers, accepted, bounty }: Stats) => `
     <div class="s-post-summary--stats s-post-summary--sm-hide">
         <div class="s-post-summary--stats-votes">
             ${Number(votes) > 0 ? "+" : ""}${votes}
@@ -46,13 +45,17 @@ const getStatsSmHide = ({
             ${answers}
             <span class="v-visible-sr">${answers === 1 ? "answer" : "answers"}</span>
         </div>
-        ${bounty ? `
+        ${
+            bounty
+                ? `
             <div class="s-post-summary--stats-bounty">
                 <span>+</span>
                 ${bounty}
                 <span class="v-visible-sr">bounty</span>
             </div>
-        ` : ""}
+        `
+                : ""
+        }
     </div>
 `;
 
@@ -68,13 +71,17 @@ const getStatsSmShow = ({ votes, answers, accepted, bounty }: Stats) => `
             ${answers}
             <span class="v-visible-sr">${answers === 1 ? "answer" : "answers"}</span>
         </div>
-        ${bounty ? `
+        ${
+            bounty
+                ? `
             <div class="s-post-summary--stats-bounty">
                 <span>+</span>
                 ${bounty}
                 <span class="v-visible-sr">bounty</span>
             </div>
-        ` : ""}
+        `
+                : ""
+        }
     </div>
 `;
 
@@ -120,14 +127,18 @@ const getAnswerBlock = ({
             ${getUser()}
             <div class="s-post-summary--stats">
                 <div class="s-post-summary--stats-votes">24</div>
-                ${accepted ? `
+                ${
+                    accepted
+                        ? `
                     <div class="s-post-summary--stats-answers">
                         <span class="s-post-summary--stats-answers--icon">
                             ${IconAnswer16Fill}
                         </span>
                         Accepted answer
                     </div>
-                ` : ""}
+                `
+                        : ""
+                }
             </div>
         </div>
         <p class="s-post-summary--excerpt v-truncate3">${excerpt}</p>
@@ -265,7 +276,14 @@ const fullBaseOptions = {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const template = ({ component, testid }: any) => html`
-    <div class="d-flex ai-center jc-center p8 ws6 ${(testid as string).includes("small-container") ? "wmx3" : ""}" data-testid="${testid}">
+    <div
+        class="d-flex ai-center jc-center p8 ws6 ${(testid as string).includes(
+            "small-container"
+        )
+            ? "wmx3"
+            : ""}"
+        data-testid="${testid}"
+    >
         ${component}
     </div>
 `;
@@ -277,8 +295,8 @@ const testArgs: TestVariationArgs = {
         global: [""],
     },
     children: {
-        default: getChildren(fullBaseOptions),
-        bounty: getChildren({
+        "default": getChildren(fullBaseOptions),
+        "bounty": getChildren({
             ...fullBaseOptions,
             stats: { ...fullBaseOptions.stats, bounty: 50 },
         }),
@@ -303,7 +321,7 @@ const testArgs: TestVariationArgs = {
             ...fullBaseOptions,
             answers: true,
         }),
-        gated: getChildren({
+        "gated": getChildren({
             ...fullBaseOptions,
             gated: true,
         }),
