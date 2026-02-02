@@ -400,7 +400,30 @@ tags: components
 <!-- Excerpt sizes -->
 {% header "h3", "Excerpt sizes" %}
 <section class="docs-section">
-    <p class="docs-copy">Post summaries can be shown without an excerpt or with an excerpt with one, two, or three lines of text. Exclude the excerpt container to hide the excerpt or apply the appropriate truncation class to the excerpt container.</p>
+    {% header "h4", "Classes" %}
+    <p class="docs-copy">Post summaries can be shown without an excerpt or with an excerpt with one, two, or three lines of text. Exclude the excerpt container to hide the excerpt or apply the appropriate truncation class to the excerpt container. See also <a href="/product/base/truncation/">Truncation</a>.</p>
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="wmn4 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell4" scope="col">Class</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody class="fs-caption">
+                {% for item in post-summary.excerptSizes %}
+                    {% if item.excerptLines > 0 %}
+                    <tr>
+                            <th scope="row"><code class="docs-code">.v-truncate{{ item.excerptLines }}</code></th>
+                            <td class="p8">Truncates the excerpt to {{ item.excerptLines }} lines of text.</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% header "h4", "Examples" %}
     <div class="docs-preview">
 {% highlight html %}
 <!-- No excerpt -->

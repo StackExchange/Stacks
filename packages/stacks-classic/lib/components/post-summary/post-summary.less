@@ -5,7 +5,7 @@
     --_ps-content-type-bg: var(--black-050);
     --_ps-content-type-fc: var(--black-600);
     --_ps-stats-answers-bg: unset;
-    --_ps-stats-answers-fc: unset;
+    --_ps-stats-answers-fc: var(--black-400);
     --_ps-stats-answers-fw: unset;
     --_ps-stats-answers-icon-fc: unset;
     --_ps-title-link-fc: var(--theme-secondary-600);
@@ -107,7 +107,7 @@
             color: var(--_ps-answer-icon-fc);
         }
 
-        border-left: var(--su4) solid var(--black-150);
+        border-left: var(--su4) solid var(--black-200);
         display: flex;
         flex-direction: column;
         gap: var(--su6);
@@ -117,7 +117,7 @@
     & &--content {
         display: flex;
         flex-direction: column;
-        gap: var(--su6);
+        gap: var(--su4);
         width: 100%;
     }
 
@@ -128,20 +128,7 @@
         flex-wrap: wrap;
         font-size: var(--fs-caption);
         gap: var(--su6);
-    }
-
-    & &--stats-item {
-        &:before {
-            aspect-ratio: 1/1;
-            background-color: var(--black-300);
-            content: "";
-            display: block;
-            height: var(--su4);
-        }
-
-        align-items: center;
-        display: flex;
-        gap: var(--su6);
+        margin-bottom: var(--su4);
     }
 
     & &--content-type {
@@ -203,6 +190,7 @@
                 justify-content: center;
                 font-size: var(--fs-body2);
                 font-weight: 600;
+                margin-bottom: var(--su2);
                 padding: var(--su4);
                 width: calc(var(--su48) + var(--su8)); // 3.5rem
             }
@@ -235,11 +223,25 @@
         font-size: var(--fs-caption);
     }
 
+    & &--stats-item {
+        &:before {
+            aspect-ratio: 1/1;
+            background-color: var(--black-300);
+            content: "";
+            display: block;
+            height: var(--su4);
+        }
+
+        align-items: center;
+        display: flex;
+        gap: var(--su6);
+    }
+
     & &--tags {
         display: flex;
         flex-wrap: wrap;
-        gap: var(--su4);
-        margin-top: var(--su2);
+        gap: var(--su8);
+        margin-top: var(--su6);
     }
 
     & &--title {
@@ -268,7 +270,6 @@
         font-size: var(--fs-body3);
         font-weight: 600;
         gap: var(--su4);
-        line-height: var(--lh-sm);
         margin-top: var(--su2);
     }
 
