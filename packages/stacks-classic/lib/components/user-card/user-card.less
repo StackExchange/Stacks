@@ -8,9 +8,16 @@
     --_uc-username-p: unset;
     --_uc-username-bl: unset;
     --_uc-username-bg: unset;
-    --_uc-username-fc: unset;
+    --_uc-username-fc: var(--black-600);
     --_uc-username-d: unset;
     --_uc-username-ai: unset;
+
+    // CONTEXTUAL STYLES
+    .highcontrast-mode({
+        a[href] {
+            text-decoration: underline;
+        }
+    });
 
     // VARIANTS
     // SIZES
@@ -37,6 +44,10 @@
     }
 
     // CHILD ELEMENTS
+    a {
+        text-decoration: none;
+    }
+
     & &--bio {
         .truncation(3);
         color: var(--black-400);
