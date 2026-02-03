@@ -5,7 +5,7 @@ description: This page provides some common typography patterns for email.
 ---
 <section class="docs-section">
     <p class="docs-copy">
-        It’s safe and accessible to use semantic HTML tags like <code class="docs-code">&lt;h&gt;</code>, <code class="docs-code">&lt;p&gt;</code>, and <code class="docs-code">&lt;ul&gt;</code> for text in email just as we do for the web. The main difference in email is that <a href="{{ "/email/guidelines/faq#why-do-we-have-to-write-css-inline?" | url }}">CSS should be written inline</a> to specify intended styles (like the color of an anchor tag) and zero out unintended defaults (like the margin around a <code class="docs-code">&lt;p&gt;</code> tag).
+        It’s safe and accessible to use semantic HTML tags like <code class="docs-code">&lt;h&gt;</code>, <code class="docs-code">&lt;p&gt;</code>, and <code class="docs-code">&lt;ul&gt;</code> for text in email just as we do for the web. The main difference in email is that <a class="s-link" href="{{ "/email/guidelines/faq#why-do-we-have-to-write-css-inline?" | url }}">CSS should be written inline</a> to specify intended styles (like the color of an anchor tag) and zero out unintended defaults (like the margin around a <code class="docs-code">&lt;p&gt;</code> tag).
     </p>
 </section>
 <section class="docs-section">
@@ -71,15 +71,15 @@ description: This page provides some common typography patterns for email.
     {% header "h2", "Links" %}
     <div class="docs-preview">
 {% highlight html %}
-<a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">Go to the homepage</a>
+<a class="s-link" href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">Go to the homepage</a>
 {% endhighlight %}
         <div class="docs-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
-            <a href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">Go to the homepage</a>
+            <a class="s-link" href="https://stackoverflow.com/" style="color: #0077CC; text-decoration: none;">Go to the homepage</a>
         </div>
     </div>
     {% header "h3", "Links in Markdown" %}
     <p class="docs-copy">
-        If email content is written in Markdown, we can’t write inline CSS into link tags. Left unstyled, <a href="#" style="color: blue; text-decoration: underline;">links will appear like this</a>. To style links contained in Markdown text, add a <code class="docs-code">class="has-markdown"</code> to any parent tag that might contain a Markdown link.
+        If email content is written in Markdown, we can’t write inline CSS into link tags. Left unstyled, <a class="s-link" href="#" style="color: blue; text-decoration: underline;">links will appear like this</a>. To style links contained in Markdown text, add a <code class="docs-code">class="has-markdown"</code> to any parent tag that might contain a Markdown link.
     </p>
     <div class="docs-preview mb24">
 {% highlight html %}
@@ -88,12 +88,12 @@ description: This page provides some common typography patterns for email.
 {% endhighlight %}
         <div class="docs-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
             <p style="margin: 0 0 15px 0;">I’m a text string in markdown.</p>
-            <p style="margin: 0;">I’m a <strong>bold</strong> <a href="https://www.stackoverflow.com" style="color: #0077CC; text-decoration: none;">text link</a> in markdown.</p>
+            <p style="margin: 0;">I’m a <strong>bold</strong> <a class="s-link" href="https://www.stackoverflow.com" style="color: #0077CC; text-decoration: none;">text link</a> in markdown.</p>
         </div>
     </div>
 
     {% tip %}
-        <strong>Note:</strong> Using <code>class="has-markdown"</code> applies styles defined in the <code>&lt;style&gt;</code> tag. Only <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support</a> <code>&lt;style&gt;</code> in <code>&lt;head&gt;</code> will render <code>has-markdown</code> links properly.
+        <strong>Note:</strong> Using <code>class="has-markdown"</code> applies styles defined in the <code>&lt;style&gt;</code> tag. Only <a class="s-link" href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support</a> <code>&lt;style&gt;</code> in <code>&lt;head&gt;</code> will render <code>has-markdown</code> links properly.
     {% endtip %}
 
     {% header "h3", "Auto-detected links" %}
@@ -106,13 +106,13 @@ description: This page provides some common typography patterns for email.
 <p style="margin: 0 0 15px 0;">On <span class="unstyle-auto-detected-links">Thursday</span> we’ll be doing on planned maintenance on our <span class="unstyle-auto-detected-links">New York</span> server, so the parts of the site might be unavailable.</p>
 {% endhighlight %}
         <div class="docs-preview--example" style="font-family: arial, sans-serif; font-size: 15px; line-height: 19px; color: #54595F; text-align: left;">
-            <p style="margin: 0 0 15px 0;">On <a href="https://stackoverflow.com/" style="color: blue; text-decoration: none; border-bottom: 1px dashed;">Thursday</a> we’ll be doing on planned maintenance on our <a href="https://stackoverflow.com/" style="color: blue; text-decoration: none; border-bottom: 1px dashed;">New York</a> server, so the parts of the site might be unavailable.</p>
-            <p style="margin: 0 0 15px 0;">On <a href="https://stackoverflow.com/" style="border-bottom: 0 !important; cursor: default !important; color: inherit !important; text-decoration: none !important; font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important; line-height: inherit !important;">Thursday</a> we’ll be doing on planned maintenance on our <a href="https://stackoverflow.com/" style="border-bottom: 0 !important; cursor: default !important; color: inherit !important; text-decoration: none !important; font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important; line-height: inherit !important;">New York</a> server, so the parts of the site might be unavailable.</p>
+            <p style="margin: 0 0 15px 0;">On <a class="s-link" href="https://stackoverflow.com/" style="color: blue; text-decoration: none; border-bottom: 1px dashed;">Thursday</a> we’ll be doing on planned maintenance on our <a class="s-link" href="https://stackoverflow.com/" style="color: blue; text-decoration: none; border-bottom: 1px dashed;">New York</a> server, so the parts of the site might be unavailable.</p>
+            <p style="margin: 0 0 15px 0;">On <a class="s-link" href="https://stackoverflow.com/" style="border-bottom: 0 !important; cursor: default !important; color: inherit !important; text-decoration: none !important; font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important; line-height: inherit !important;">Thursday</a> we’ll be doing on planned maintenance on our <a class="s-link" href="https://stackoverflow.com/" style="border-bottom: 0 !important; cursor: default !important; color: inherit !important; text-decoration: none !important; font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important; line-height: inherit !important;">New York</a> server, so the parts of the site might be unavailable.</p>
         </div>
     </div>
 
     {% tip %}
-        <strong>Note:</strong> Using <code>class="unstyle-auto-detected-links"</code> applies styles defined in the <code>&lt;style&gt;</code> tag. Only <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support</a> <code>&lt;style&gt;</code> in <code>&lt;head&gt;</code> will render <code>has-markdown</code> links properly.
+        <strong>Note:</strong> Using <code>class="unstyle-auto-detected-links"</code> applies styles defined in the <code>&lt;style&gt;</code> tag. Only <a class="s-link" href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support</a> <code>&lt;style&gt;</code> in <code>&lt;head&gt;</code> will render <code>has-markdown</code> links properly.
     {% endtip %}
 </section>
 <section class="docs-section">
@@ -138,7 +138,7 @@ console.log("request body: " + pm.globals.get("switch_json"));</code></pre>
         </div>
     </div>
     {% tip %}
-        <strong>Known Issue:</strong> in Windows Outlook 2003 - 2019, preformatted code blocks <a href="https://i.stack.imgur.com/OCP1l.png">appear like this</a>.
+        <strong>Known Issue:</strong> in Windows Outlook 2003 - 2019, preformatted code blocks <a class="s-link" href="https://i.stack.imgur.com/OCP1l.png">appear like this</a>.
     {% endtip %}
 </section>
 <section class="docs-section">
@@ -158,7 +158,7 @@ console.log("request body: " + pm.globals.get("switch_json"));</code></pre>
         </div>
     </div>
     {% tip %}
-        <strong>Known Issue:</strong> in Windows Outlook 2003 - 2019, blockquotes <a href="https://i.stack.imgur.com/8yz38.png">appear like this</a>.
+        <strong>Known Issue:</strong> in Windows Outlook 2003 - 2019, blockquotes <a class="s-link" href="https://i.stack.imgur.com/8yz38.png">appear like this</a>.
     {% endtip %}
 </section>
 <section class="docs-section">
@@ -183,7 +183,7 @@ console.log("request body: " + pm.globals.get("switch_json"));</code></pre>
 <section class="docs-section">
     {% header "h2", "Web fonts" %}
     <p class="docs-copy">
-        Sometimes we use web fonts in emails to match the aesthetic of a marketing campaign or announcement. Web fonts <a href="https://www.campaignmonitor.com/css/text-fonts/font-face/">don’t have great support in email clients</a>, so here’s how we ensure our web font displays in as many email clients as possible:
+        Sometimes we use web fonts in emails to match the aesthetic of a marketing campaign or announcement. Web fonts <a class="s-link" href="https://www.campaignmonitor.com/css/text-fonts/font-face/">don’t have great support in email clients</a>, so here’s how we ensure our web font displays in as many email clients as possible:
     </p>
     <ol class="docs-copy">
         <li>Include an external stylesheet at the top of the email’s <code class="docs-code">&lt;head&gt;</code> tag. Sites like Google Fonts provide this code.</li>
