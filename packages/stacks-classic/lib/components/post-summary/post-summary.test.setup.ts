@@ -1,6 +1,5 @@
 import { html } from "@open-wc/testing";
 import {
-    IconArchiveSm,
     IconDocumentAlt,
     IconShield,
 } from "@stackoverflow/stacks-icons-legacy";
@@ -185,29 +184,15 @@ const getUser = () => `
 `;
 
 const getChildren = ({
-    show = {
-        stats: false,
-        tags: false,
-        title: false,
-        user: false,
-    },
     stats: statsParam,
     tags,
-    title,
     badge,
     contentType,
     gated = false,
     answers: includeAnswers = false,
 }: {
-    show?: {
-        stats?: boolean;
-        tags?: boolean;
-        title?: boolean;
-        user?: boolean;
-    };
     stats?: Stats;
     tags?: Tags;
-    title?: string;
     badge?: boolean;
     contentType?: string;
     gated?: boolean;
@@ -260,12 +245,6 @@ const getChildren = ({
 
 // Full base
 const fullBaseOptions = {
-    show: {
-        stats: true,
-        tags: true,
-        title: true,
-        user: true,
-    },
     stats: {
         votes: 95,
         views: "104,123",
