@@ -5,6 +5,7 @@ import userEvent from "@testing-library/user-event";
 import sinon from "sinon";
 
 import Vote from "./Vote.svelte";
+import { createVoteState } from "./vote-state.svelte";
 
 describe("Vote", () => {
     it("should render the vote component", () => {
@@ -88,9 +89,9 @@ describe("Vote", () => {
         expect(svg).to.exist;
     });
 
-    it("should call onupvote handler when upvote button is clicked", async () => {
-        const onupvote = sinon.stub().resolves();
-        render(Vote, { total: 12, onupvote });
+    it("should call onupvoteclick handler when upvote button is clicked", async () => {
+        const onupvoteclick = sinon.stub();
+        render(Vote, { total: 12, onupvoteclick });
 
         const user = userEvent.setup();
         const upvoteBtn = screen.getAllByRole("button")[0];
@@ -98,12 +99,12 @@ describe("Vote", () => {
         await user.click(upvoteBtn);
         await tick();
 
-        expect(onupvote).to.have.been.calledOnce;
+        expect(onupvoteclick).to.have.been.calledOnce;
     });
 
-    it("should call ondownvote handler when downvote button is clicked", async () => {
-        const ondownvote = sinon.stub().resolves();
-        render(Vote, { total: 12, ondownvote });
+    it("should call ondownvoteclick handler when downvote button is clicked", async () => {
+        const ondownvoteclick = sinon.stub();
+        render(Vote, { total: 12, ondownvoteclick });
 
         const user = userEvent.setup();
         const downvoteBtn = screen.getAllByRole("button")[1];
@@ -111,12 +112,13 @@ describe("Vote", () => {
         await user.click(downvoteBtn);
         await tick();
 
-        expect(ondownvote).to.have.been.calledOnce;
+        expect(ondownvoteclick).to.have.been.calledOnce;
     });
 
-    it("should update count when upvoting", async () => {
-        const onupvote = sinon.stub().resolves();
-        render(Vote, { total: 12, onupvote });
+    it("should update count when upvoting with state utility", async () => {
+        const onUpvote = sinon.stub().resolves();
+        const voteState = createVoteState({ total: 12, onUpvote });
+        render(Vote, voteState);
 
         const user = userEvent.setup();
         const upvoteBtn = screen.getAllByRole("button")[0];
@@ -124,12 +126,14 @@ describe("Vote", () => {
         await user.click(upvoteBtn);
         await tick();
 
-        expect(screen.getByText("13")).to.exist;
+        expect(voteState.total).to.equal(13);
+        expect(voteState.status).to.equal("upvoted");
     });
 
-    it("should update count when downvoting", async () => {
-        const ondownvote = sinon.stub().resolves();
-        render(Vote, { total: 12, ondownvote });
+    it("should update count when downvoting with state utility", async () => {
+        const onDownvote = sinon.stub().resolves();
+        const voteState = createVoteState({ total: 12, onDownvote });
+        render(Vote, voteState);
 
         const user = userEvent.setup();
         const downvoteBtn = screen.getAllByRole("button")[1];
@@ -137,12 +141,14 @@ describe("Vote", () => {
         await user.click(downvoteBtn);
         await tick();
 
-        expect(screen.getByText("11")).to.exist;
+        expect(voteState.total).to.equal(11);
+        expect(voteState.status).to.equal("downvoted");
     });
 
-    it("should revert count on error", async () => {
-        const onupvote = sinon.stub().rejects(new Error("Failed"));
-        render(Vote, { total: 12, onupvote });
+    it("should revert count on error with state utility", async () => {
+        const onUpvote = sinon.stub().rejects(new Error("Failed"));
+        const voteState = createVoteState({ total: 12, onUpvote });
+        render(Vote, voteState);
 
         const user = userEvent.setup();
         const upvoteBtn = screen.getAllByRole("button")[0];
@@ -150,12 +156,14 @@ describe("Vote", () => {
         await user.click(upvoteBtn);
         await tick();
 
-        expect(screen.getByText("12")).to.exist;
+        expect(voteState.total).to.equal(12);
+        expect(voteState.status).to.equal(null);
     });
 
-    it("should toggle vote when clicking same button again", async () => {
-        const onupvote = sinon.stub().resolves();
-        render(Vote, { total: 12, onupvote });
+    it("should toggle vote when clicking same button again with state utility", async () => {
+        const onUpvote = sinon.stub().resolves();
+        const voteState = createVoteState({ total: 12, onUpvote });
+        render(Vote, voteState);
 
         const user = userEvent.setup();
         const upvoteBtn = screen.getAllByRole("button")[0];
@@ -163,18 +171,21 @@ describe("Vote", () => {
         // First click - upvote
         await user.click(upvoteBtn);
         await tick();
-        expect(screen.getByText("13")).to.exist;
+        expect(voteState.total).to.equal(13);
+        expect(voteState.status).to.equal("upvoted");
 
         // Second click - remove upvote
         await user.click(upvoteBtn);
         await tick();
-        expect(screen.getByText("12")).to.exist;
+        expect(voteState.total).to.equal(12);
+        expect(voteState.status).to.equal(null);
     });
 
-    it("should switch from upvote to downvote", async () => {
-        const onupvote = sinon.stub().resolves();
-        const ondownvote = sinon.stub().resolves();
-        render(Vote, { total: 12, onupvote, ondownvote });
+    it("should switch from upvote to downvote with state utility", async () => {
+        const onUpvote = sinon.stub().resolves();
+        const onDownvote = sinon.stub().resolves();
+        const voteState = createVoteState({ total: 12, onUpvote, onDownvote });
+        render(Vote, voteState);
 
         const user = userEvent.setup();
         const upvoteBtn = screen.getAllByRole("button")[0];
@@ -183,12 +194,14 @@ describe("Vote", () => {
         // Upvote
         await user.click(upvoteBtn);
         await tick();
-        expect(screen.getByText("13")).to.exist;
+        expect(voteState.total).to.equal(13);
+        expect(voteState.status).to.equal("upvoted");
 
         // Downvote (should change by 2)
         await user.click(downvoteBtn);
         await tick();
-        expect(screen.getByText("11")).to.exist;
+        expect(voteState.total).to.equal(11);
+        expect(voteState.status).to.equal("downvoted");
     });
 
     it("should apply custom class", () => {
@@ -219,9 +232,10 @@ describe("Vote", () => {
         expect(screen.getByText("Expand votes")).to.exist;
     });
 
-    it("should show count instead of 'Vote' text after voting on 0 count", async () => {
-        const onupvote = sinon.stub().resolves();
-        render(Vote, { total: 0, onupvote });
+    it("should show count instead of 'Vote' text after voting on 0 count with state utility", async () => {
+        const onUpvote = sinon.stub().resolves();
+        const voteState = createVoteState({ total: 0, onUpvote });
+        render(Vote, voteState);
 
         const user = userEvent.setup();
         const upvoteBtn = screen.getAllByRole("button")[0];
@@ -229,7 +243,7 @@ describe("Vote", () => {
         await user.click(upvoteBtn);
         await tick();
 
-        expect(screen.getByText("1")).to.exist;
-        expect(screen.queryByText("Vote")).to.not.exist;
+        expect(voteState.total).to.equal(1);
+        expect(voteState.status).to.equal("upvoted");
     });
 });

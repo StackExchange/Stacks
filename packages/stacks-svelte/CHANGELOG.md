@@ -1,5 +1,29 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.26
+
+### Minor Changes
+
+- [#2142](https://github.com/StackExchange/Stacks/pull/2142) [`041f1dd`](https://github.com/StackExchange/Stacks/commit/041f1dd06c2ceec0c8fb45fb99040c87b53de0e0) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update Loader (formerly known as Spinner) component to SHINE designs
+
+    BREAKING CHANGES:
+    - Spinner component has been replace with the Loader component
+
+## 1.0.0-beta.25
+
+### Patch Changes
+
+- [#2152](https://github.com/StackExchange/Stacks/pull/2152) [`cd866c7`](https://github.com/StackExchange/Stacks/commit/cd866c7dcfdc13df3f83e49992d561a47527f60a) Thanks [@giamir](https://github.com/giamir)! - extract the vote state logic in an opt in svelte module
+
+## 1.0.0-beta.24
+
+### Patch Changes
+
+- [#2148](https://github.com/StackExchange/Stacks/pull/2148) [`fc1517b`](https://github.com/StackExchange/Stacks/commit/fc1517b4a2a91ffbe1dec376b5488f6f46f75844) Thanks [@giamir](https://github.com/giamir)! - vote component: allow downvoting for horizontal layout
+
+- Updated dependencies [[`f59b762`](https://github.com/StackExchange/Stacks/commit/f59b762834d6891a1885459354d0ccc06739fb6d)]:
+    - @stackoverflow/stacks-utils@1.0.0-beta.2
+
 ## 1.0.0-beta.23
 
 ### Minor Changes
