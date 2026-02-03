@@ -58,7 +58,7 @@ tags: components
 
     {% header "h3", "Accessibility" %}
 
-    <p class="docs-copy">Any link with adjacent static text cannot use color alone to differentiate it as a link. If a link is next to static text and the only visual indication that it’s a link is the color of the text (often <code class="docs-code">blue-400</code>), it will require an underline in addition to the color. Reference <a href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F73">WCAG SC 1.4.1</a> for more details.</p>
+    <p class="docs-copy">Any link with adjacent static text cannot use color alone to differentiate it as a link. If a link is next to static text and the only visual indication that it’s a link is the color of the text, it will require an underline in addition to the color. Reference <a href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F73">WCAG SC 1.4.1</a> for more details.</p>
 
 </section>
 
@@ -88,14 +88,14 @@ tags: components
     {% header "h3", "Descendent anchor examples" %}
     <p class="docs-copy">Sometimes you need to give all <code class="docs-code">&lt;a&gt;</code> elements inside a container or component the same color, even
         when it&lsquo;s impractical or even impossible to give each anchor element an <code class="docs-code">s-link</code> class (e.g. because the markup is generated from Markdown).</p>
-    <p class="docs-copy">In this case, you can add the <code class="docs-code">s-anchors</code> class together with one of the modifiers
-        <code class="docs-code">s-anchors__default</code>, <code class="docs-code">s-anchors__grayscale</code>, <code class="docs-code">s-anchors__muted</code>,
+    <p class="docs-copy">In this case, you can use the <code class="docs-code">s-anchors</code> class together with one of the optional modifiers
+        <code class="docs-code">s-anchors__grayscale</code>, <code class="docs-code">s-anchors__muted</code>,
         <code class="docs-code">s-anchors__danger</code>, or <code class="docs-code">s-anchors__inherit</code> to the container.
     </p>
 
     <div class="docs-preview">
 {% highlight html %}
-<div class="s-anchors s-anchors__default">…</div>
+<div class="s-anchors">…</div>
 <div class="s-anchors s-anchors__grayscale">…</div>
 <div class="s-anchors s-anchors__muted">…</div>
 <div class="s-anchors s-anchors__danger">…</div>
@@ -106,7 +106,7 @@ tags: components
             {% for item in links.descendent-anchors %}
                 {% if item.name != "base" %}
                     <div class="s-anchors s-anchors__{{ item.name }} s-card mb8 {{ item.exampleClasses }}">
-                        <p>There is a <a href="#">{{ item.name }} link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="https://stackoverflow.design/404-unvisited">another one</a>.</p>
+                        There is a <a href="#">{{ item.name }} link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="https://stackoverflow.design/404-unvisited">another one</a>.
                     </div>
                 {% endif %}
             {% endfor %}
@@ -118,29 +118,21 @@ tags: components
     <div class="docs-preview">
 {% highlight html %}
 <div class="s-anchors s-anchors__danger s-card">
-    <p>
-        All <a href="#">links</a> in this <a href="#">outer box</a>
-        are <a href="#">dangerous</a>.
-    </p>
+    All <a href="#">links</a> in this <a href="#">outer box</a>
+    are <a href="#">dangerous</a>.
     <div class="s-anchors s-anchors__default s-card w70 mt8">
-        <p>
-            But all <a href="#">links</a> in this <a href="#">inner box</a>
-            have the <a href="#">default</a> link color.
-        </p>
+        But all <a href="#">links</a> in this <a href="#">inner box</a>
+        have the <a href="#">default</a> link color.
     </div>
 </div>
 {% endhighlight %}
         <div class="docs-preview--example">
             <div class="s-anchors s-anchors__danger s-card">
-                <p>
-                    All <a href="#">links</a> in this <a href="#">outer box</a>
-                    are <a href="#">dangerous</a>.
-                </p>
+                All <a href="#">links</a> in this <a href="#">outer box</a>
+                are <a href="#">dangerous</a>.
                 <div class="s-anchors s-anchors__default s-card w70 mt8">
-                    <p>
-                        But all <a href="#">links</a> in this <a href="#">inner box</a>
-                        have the <a href="#">default</a> link color.
-                    </p>
+                    But all <a href="#">links</a> in this <a href="#">inner box</a>
+                    have the <a href="#">default</a> link color.
                 </div>
             </div>
         </div>
