@@ -6,13 +6,7 @@ describe("link", () => {
     runA11yTests({
         baseClass: "s-link",
         modifiers: {
-            primary: [
-                "grayscale",
-                "muted",
-                "danger",
-                "inherit",
-                "underlined",
-            ],
+            primary: ["grayscale", "muted", "danger", "inherit", "underlined"],
             secondary: ["dropdown"],
         },
         children: {
