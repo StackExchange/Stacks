@@ -12,7 +12,6 @@ describe("anchors", () => {
         baseClass: "s-anchors",
         modifiers: {
             primary: [
-                "default",
                 "grayscale",
                 "muted",
                 "danger",
@@ -27,9 +26,6 @@ describe("anchors", () => {
                 "unvisited link",
                 false
             )}.`,
-        },
-        options: {
-            includeNullModifier: false,
         },
     });
 });
