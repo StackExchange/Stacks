@@ -158,6 +158,10 @@ The menu component has been updated to use new class names and structure. The fo
 - `s-textarea__md` removed
 - `s-textarea__xl` removed
 
+#### Toggle Switch
+
+- `s-toggle-switch--label-off` removed
+
 #### User Card
 
 Markup for the User Card has changed significantly. Please refer to the [docs](https://beta.stackoverflow.design/product/components/user-cards) for full guidance. Here are the most notable class changes:

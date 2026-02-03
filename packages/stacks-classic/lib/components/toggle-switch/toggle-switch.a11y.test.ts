@@ -1,5 +1,6 @@
 import { html } from "@open-wc/testing";
 import { runA11yTests } from "../../test/a11y-test-utils";
+import { IconCross, IconCalendar, IconClock } from "@stackoverflow/stacks-icons/icons";
 import "../../index";
 
 describe("toggle-switch", () => {
@@ -43,16 +44,16 @@ describe("toggle-switch", () => {
             },
             children: {
                 default: `
-                    <input type="radio" name="group" id="four" ${
-                        offChecked ? 'checked=""' : ""
+                    <input type="radio" name="group" id="off" ${
+                        offChecked ? 'checked' : ""
                     }>
-                    <label for="four" class="s-toggle-switch--label-off">Off</label>
+                    <label for="off" aria-label="Off">${IconCross}</label>
                     <input type="radio" name="group" id="one" ${
-                        !offChecked ? 'checked=""' : ""
+                        !offChecked ? 'checked' : ""
                     }>
-                    <label for="one">one</label>
+                    <label for="one" aria-label="Weekly">${IconCalendar}</label>
                     <input type="radio" name="group" id="two">
-                    <label for="two">two</label>
+                    <label for="two" aria-label="Daily">${IconClock}</label>
                 `,
             },
             options: {
