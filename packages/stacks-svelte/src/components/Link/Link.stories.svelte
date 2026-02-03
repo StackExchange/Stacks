@@ -64,7 +64,9 @@
                             {variant || "default"}
                         </th>
                         <td class="va-middle px4">
-                            <Link {variant} href="#">{variant || "default"}</Link>
+                            <Link {variant} href="#"
+                                >{variant || "default"}</Link
+                            >
                         </td>
                     </tr>
                 {/each}
