@@ -9,7 +9,10 @@
         HTMLButtonAttributes,
     } from "svelte/elements";
 
-    interface Props extends Omit<HTMLAnchorAttributes & HTMLButtonAttributes, "href" | "class"> {
+    interface Props extends Omit<
+        HTMLAnchorAttributes & HTMLButtonAttributes,
+        "href" | "class"
+    > {
         /**
          * The href of the link. When not provided, renders the component as a `button` element.
          */
