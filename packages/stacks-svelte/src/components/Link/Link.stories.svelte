@@ -43,10 +43,6 @@
     <Link href="#" underlined>Underlined</Link>
 </Story>
 
-<Story name="Visited" asChild>
-    <Link href="#" visited>Visited</Link>
-</Story>
-
 <Story name="Variants" asChild>
     <div class="d-flex fd-column g64">
         <table class="s-table s-table__bx-simple wmx7">

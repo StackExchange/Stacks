@@ -34,15 +34,6 @@ describe("Link", () => {
         expect(screen.getByRole("link")).to.have.class("s-link__underlined");
     });
 
-    it("should render including the visited class", () => {
-        render(Link, {
-            visited: true,
-            href: "#",
-            children,
-        });
-        expect(screen.getByRole("link")).to.have.class("s-link__visited");
-    });
-
     it("should render the appropriate variant class", () => {
         render(Link, {
             variant: "muted",

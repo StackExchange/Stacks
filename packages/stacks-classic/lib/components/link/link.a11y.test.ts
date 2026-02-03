@@ -12,7 +12,6 @@ describe("link", () => {
                 "danger",
                 "inherit",
                 "underlined",
-                "visited",
             ],
             secondary: ["dropdown"],
         },
