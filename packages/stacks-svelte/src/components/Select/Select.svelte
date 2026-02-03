@@ -31,6 +31,7 @@
     } from "@stackoverflow/stacks-icons/icons";
     import { setContext } from "svelte";
     import type { Snippet } from "svelte";
+    import type { BadgeState } from "../Badge/Badge.svelte";
     import type { HTMLSelectAttributes } from "svelte/elements";
 
     // @ts-expect-error - HTMLSelectAttributes size is not compatible with our custom Size type.
@@ -46,6 +47,16 @@
          * The label associated with the select element
          */
         label: string;
+
+        /**
+         * The optional status type of the label
+         */
+        labelStatus?: BadgeState;
+
+        /**
+         * The optional text to display for the label status
+         */
+        labelStatusText?: string;
 
         /**
          * Specify the initial selected item value
@@ -101,6 +112,8 @@
     let {
         id,
         label,
+        labelStatus,
+        labelStatusText,
         selected = $bindable(undefined),
         disabled = false,
         hideLabel = false,
@@ -157,7 +170,17 @@
     class:has-success={vState === "success"}
     class:has-warning={vState === "warning"}
 >
-    <Label {id} class={hideLabel ? "v-visible-sr" : ""} {size}>
+    <Label
+        {id}
+        class={hideLabel
+            ? "v-visible-sr"
+            : labelPlacement === "left"
+              ? "pb0"
+              : ""}
+        {size}
+        status={labelStatus}
+        statusText={labelStatusText}
+    >
         {label}
     </Label>
     {#if description && !hideLabel && labelPlacement === "top"}

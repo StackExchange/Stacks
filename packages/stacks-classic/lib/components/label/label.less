@@ -1,6 +1,7 @@
 .s-label {
     --_la-c: unset;
-    --_la-fs: var(--fs-body3); // 16
+    --_la-fs: var(--fs-body2); // 16
+    --_la-pb: 0;
 
     // CONTEXTUAL STYLES
     &[for] {
@@ -29,6 +30,9 @@
     // Sizes
     &&__sm {
         --_la-fs: var(--fs-body1); // 14
+        .has-form-input({
+            --_la-pb: var(--su4);
+        });
     }
 
     &&__lg {
@@ -36,15 +40,28 @@
     }
 
     // CHILD ELEMENTS
-    > .s-badge {
+    .s-badge {
         font-weight: 400;
         margin-left: var(--su6);
         vertical-align: middle;
     }
 
-    // Reduce bottom padding when followed by a description
+    // TODO we shouldn't support descriptions and messages within labels
+    .s-description,
+    .s-input-message {
+        font-size: var(--fs-caption);
+        font-weight: normal;
+        margin-bottom: 0;
+        margin-top: var(--su4);
+        padding: 0;
+    }
+
+    .has-form-input({
+        --_la-pb: var(--su8);
+    });
+
     &:has(+ .s-description) {
-        padding-bottom: var(--su4);
+        --_la-pb: var(--su4);
     }
 
     cursor: var(--_la-c);
@@ -53,7 +70,7 @@
     color: var(--black-500);
     font-family: inherit;
     font-weight: 600;
-    padding: 0 var(--su2) var(--su8); // Helps the label visually line up with inputs
+    padding: 0 var(--su2) var(--_la-pb); // Helps the label visually line up with inputs
 }
 
 .s-required-symbol {
@@ -62,4 +79,19 @@
     font-weight: normal;
     line-height: 0;
     text-decoration: none !important;
+}
+
+// Helper mixin to apply styles to elements
+// that have a form input sibling
+.has-form-input(@rules) {
+    &:has(
+        ~ .s-input,
+        ~ * .s-input,
+        ~ .s-select,
+        ~ * .s-select,
+        ~ .s-textarea,
+        ~ * .s-textarea
+    ) {
+        @rules();
+    }
 }
