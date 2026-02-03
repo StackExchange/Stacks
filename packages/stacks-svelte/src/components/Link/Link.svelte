@@ -107,7 +107,7 @@
 </script>
 
 <!-- eslint-disable-next-line svelte/no-unused-svelte-ignore -->
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- Event propagating click events on the underlying element -->
 <svelte:element
     this={href ? "a" : "button"}
