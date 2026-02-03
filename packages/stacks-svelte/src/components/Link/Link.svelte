@@ -3,44 +3,70 @@
 </script>
 
 <script lang="ts">
-    /**
-     * The href of the link. When not provided, renders the component as a `button` element.
-     */
-    export let href: string | undefined = undefined;
+    import type { Snippet } from "svelte";
+    import type {
+        HTMLAnchorAttributes,
+        HTMLButtonAttributes,
+    } from "svelte/elements";
 
-    /**
-     * The weight of the link
-     * @type {"" | "grayscale" | "muted" | "danger" | "inherit"}
-     */
-    export let variant: Variant = "";
+    interface Props
+        extends Omit<
+            HTMLAnchorAttributes & HTMLButtonAttributes,
+            "href" | "class"
+        > {
+        /**
+         * The href of the link. When not provided, renders the component as a `button` element.
+         */
+        href?: string | undefined;
 
-    /**
-     * Boolean describing if the link is disabled
-     */
-    export let disabled = false;
+        /**
+         * The weight of the link
+         * @type {"" | "grayscale" | "muted" | "danger" | "inherit"}
+         */
+        variant?: Variant;
 
-    /**
-     * Modifier describing if the link should include an appropriately-styled caret
-     */
-    export let dropdown = false;
+        /**
+         * Boolean describing if the link is disabled
+         */
+        disabled?: boolean;
 
-    /**
-     * Modifier describing if the link should be underlined
-     */
-    export let underlined = false;
+        /**
+         * Modifier describing if the link should include an appropriately-styled caret
+         */
+        dropdown?: boolean;
 
-    /**
-     * Modifier describing if the link should apply a visited state style
-     */
-    export let visited = false;
+        /**
+         * Modifier describing if the link should be underlined
+         */
+        underlined?: boolean;
 
-    /**
-     * Additional CSS classes added to the element
-     */
-    let className = "";
-    export { className as class };
+        /**
+         * Modifier describing if the link should apply a visited state style
+         */
+        visited?: boolean;
 
-    $: classes = getClasses(className, variant, dropdown, underlined, visited);
+        /**
+         * Additional CSS classes added to the element
+         */
+        class?: string;
+
+        /**
+         * Snippet for the link content
+         */
+        children: Snippet;
+    }
+
+    const {
+        href = undefined,
+        variant = "",
+        disabled = false,
+        dropdown = false,
+        underlined = false,
+        visited = false,
+        class: className = "",
+        children,
+        ...restProps
+    }: Props = $props();
 
     const getClasses = (
         className: string,
@@ -74,6 +100,10 @@
 
         return classes;
     };
+
+    const classes = $derived(
+        getClasses(className, variant, dropdown, underlined, visited)
+    );
 </script>
 
 <!-- eslint-disable-next-line svelte/no-unused-svelte-ignore -->
@@ -85,9 +115,7 @@
     class={classes}
     disabled={(!href && disabled) || null}
     aria-disabled={href && disabled ? "true" : null}
-    on:click
-    {...$$restProps}
+    {...restProps}
 >
-    <!-- Default slot -->
-    <slot /></svelte:element
->
+    {@render children()}
+</svelte:element>
