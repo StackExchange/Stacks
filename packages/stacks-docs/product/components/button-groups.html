@@ -2,13 +2,13 @@
 layout: page
 title: Button groups
 figma: https://svelte.stackoverflow.design/figma/button-groups
-description: Button groups are a collection of buttons. This component is used in our questions view, and is frequently used in conjunction with other form elements such as search fields and sorting dropdowns. If the content you’re interacting with is a simple paring down or filter of the current view, it’s appropriate to use the <code class="docs-code">.s-btn-group</code> component. Add the class <code class="docs-code">.is-selected</code> and the <code class="docs-code">aria-current</code> attribute with the <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current#values">appropriate value</a> to show the currently selected button.
+description: Button groups are a collection of buttons. This component is used in our questions view, and is frequently used in conjunction with other form elements such as search fields and sorting dropdowns. If the content you’re interacting with is a simple paring down or filter of the current view, it’s appropriate to use the <code>.s-btn-group</code> component. Add the class <code>.is-selected</code> and the <code>aria-current</code> attribute with the <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current#values">appropriate value</a> to show the currently selected button.
 tags: components
 ---
 <section class="docs-section">
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell3" scope="col">Class</th>
@@ -19,8 +19,8 @@ tags: components
             <tbody class="fs-caption">
                 {% for item in button-groups.classes %}
                     <tr>
-                        <th scope="row"><code class="docs-code">{{ item.class }}</code></th>
-                        <td><code class="docs-code bg-white">{{ item.applies }}</td>
+                        <th scope="row"><code>{{ item.class }}</code></th>
+                        <td><code>{{ item.applies }}</td>
                         <td class="p8">{{ item.description }}</td>
                     </tr>
                 {% endfor %}
@@ -36,7 +36,7 @@ tags: components
         <p class="docs-copy">{{item.description}}</p>
 
         <div class="overflow-x-auto mb32" tabindex="0">
-            <table class="wmn4 s-table s-table__bx-simple">
+            <table class="docs-table s-table s-table__bx-simple">
                 <thead>
                     <tr>
                         <th scope="col" class="s-table--cell3">Item</th>
@@ -47,8 +47,8 @@ tags: components
                 <tbody>
                     {% for attribute in item.attributes %}
                         <tr>
-                            <th scope="row"><code class="docs-code">{{ attribute.attribute }}</code></th>
-                            <td><code class="docs-code">{{ attribute.applies }}</td>
+                            <th scope="row"><code>{{ attribute.attribute }}</code></th>
+                            <td><code>{{ attribute.applies }}</td>
                             <td class="p8">{{ attribute.description }}</td>
                         </tr>
                     {% endfor %}
@@ -158,7 +158,7 @@ tags: components
 <section class="docs-section">
     {% header "h2", "Radio" %}
     <p class="docs-copy">
-        Button groups can be implemented using radio elements with the class <code class="docs-code">.s-btn--radio</code> on the radio input element. This class assumes all buttons are styled <code class="docs-code">label</code> elements.
+        Button groups can be implemented using radio elements with the class <code>.s-btn--radio</code> on the radio input element. This class assumes all buttons are styled <code>label</code> elements.
     </p>
     <div class="docs-preview">
 {% highlight html %}
@@ -200,7 +200,7 @@ tags: components
     {% header "h2", "Links" %}
     <p class="docs-copy">
         In some cases items in the button groups let users navigate between related sections of content, displaying one section at a time.
-        In those cases an <code class="docs-code">a</code> tag should be prefferred over the <code class="docs-code">button</code>.
+        In those cases an <code>a</code> tag should be prefferred over the <code>button</code>.
     </p>
     <div class="docs-preview">
 {% highlight html %}

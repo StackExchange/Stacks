@@ -7,7 +7,7 @@ tags: base
 
 <section class="docs-section">
     {% header "h2", "Basic flex layout" %}
-    <p class="docs-copy">A flex layout is initiated with the <code class="docs-code">.d-flex</code> class. By default, <code class="docs-code">display: flex;</code> starts a non-wrapping row. To convert it to a column, apply the <code class="docs-code">.fd-column</code> atomic class.</p>
+    <p class="docs-copy">A flex layout is initiated with the <code>.d-flex</code> class. By default, <code>display: flex;</code> starts a non-wrapping row. To convert it to a column, apply the <code>.fd-column</code> atomic class.</p>
     <div class="docs-preview">
 {% highlight html %}
 <div class="d-flex">
@@ -40,7 +40,7 @@ tags: base
 
 <section class="docs-section">
     {% header "h2", "Fluid" %}
-    <p class="docs-copy">By default, all flex items will only be as wide as their content. If you would like a flex item or all the flex items to fill the remaining space, apply the <code class="docs-code">.fl-grow1</code> to the individual item, or <code class="docs-code">.flex__fl-equal</code> to the parent to apply to all children.</p>
+    <p class="docs-copy">By default, all flex items will only be as wide as their content. If you would like a flex item or all the flex items to fill the remaining space, apply the <code>.fl-grow1</code> to the individual item, or <code>.flex__fl-equal</code> to the parent to apply to all children.</p>
 
     {% header "h3", "Fluid examples" %}
     <div class="docs-preview">
@@ -91,9 +91,9 @@ tags: base
             <tbody>
                 {% for item in flex.flex-item %}
                   <tr>
-                      <td><code class="docs-code">{{ item.class }}</code></td>
-                      <td><code class="docs-code">{{ item.all }}</code></td>
-                      <td><code class="docs-code bg-white">{{ item.output }}</code></td>
+                      <td><code>{{ item.class }}</code></td>
+                      <td><code>{{ item.all }}</code></td>
+                      <td><code>{{ item.output }}</code></td>
                   </tr>
                 {% endfor %}
             </tbody>
@@ -158,14 +158,14 @@ tags: base
 
 <section class="docs-section">
     {% header "h2", "Helpers" %}
-    <p class="docs-copy">We have a few helper classes you can add to a <code class="docs-code">.d-flex</code> container that affect the child <code class="docs-code">.flex--item</code>s.</p>
+    <p class="docs-copy">We have a few helper classes you can add to a <code>.d-flex</code> container that affect the child <code>.flex--item</code>s.</p>
 
     {% header "h3", "Helper classes" %}
     <div class="overflow-x-auto mb48" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Class</th>
                     <th scope="col">Definition</th>
                     <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/develop/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
@@ -173,7 +173,7 @@ tags: base
             <tbody>
                 {% for item in flex.helpers %}
                   <tr>
-                        <td><code class="docs-code ws-nowrap">{{ item.class }}</code></td>
+                        <td><code>{{ item.class }}</code></td>
                         <td>{{ item.define }}</td>
                         <td class="ta-center">
                             {% if item.responsive %}
@@ -272,7 +272,7 @@ tags: base
 
     {% header "h3", "Gutter classes" %}
     <div class="overflow-x-auto mb48" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
@@ -282,7 +282,7 @@ tags: base
             <tbody>
                 {% for item in flex.gutter %}
                   <tr>
-                      <td><code class="docs-code">{{ item.class }}</code></td>
+                      <td><code>{{ item.class }}</code></td>
                       <td>{{ item.output }}</code></td>
                   </tr>
                 {% endfor %}
@@ -340,7 +340,7 @@ tags: base
     {% tip, "warning" %}
         <strong>Note:</strong> Nested flex layouts with <a href="#gutters">gutter spacing</a> will conflict with each other in unpredictable ways. <strong>TL;DR?</strong> Don’t stick a <code>.d-flex</code> directly into a <code>.d-flex</code>, instead stick a <code>.d-flex</code> into a <code>.flex--item</code> like so:
     {% endtip %}
-    <p class="docs-copy">If you are nesting a flex layout with gutter spacing into another flex layout that also has gutter spacing, the child’s parent wrapper margins will be overwritten by the parent. To have the child flex layout’s gutter spacing honored, you have to put the child flex layout within a <code class="docs-code">.flex--item</code> wrapper first. This allows the parent and child flex layout gutter spacing to act correctly without interfering with each other.</p>
+    <p class="docs-copy">If you are nesting a flex layout with gutter spacing into another flex layout that also has gutter spacing, the child’s parent wrapper margins will be overwritten by the parent. To have the child flex layout’s gutter spacing honored, you have to put the child flex layout within a <code>.flex--item</code> wrapper first. This allows the parent and child flex layout gutter spacing to act correctly without interfering with each other.</p>
 
     <div class="fc-green-400 fs-body1 fw-bold mb8">{% icon "Checkmark", "mtn1 mbn1" %} Do</div>
     <div class="docs-preview">
@@ -397,10 +397,10 @@ tags: base
 
     {% header "h3", "Flex direction classes" %}
     <div class="overflow-x-auto mb48" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Class</th>
                     <th scope="col">Definition</th>
                     <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/develop/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
@@ -408,7 +408,7 @@ tags: base
             <tbody>
                 {% for item in flex.flex-direction %}
                   <tr>
-                        <td><code class="docs-code ws-nowrap">{{ item.class }}</code></td>
+                        <td><code>{{ item.class }}</code></td>
                         <td>{{ item.define }}</td>
                         <td class="ta-center">
                             {% if item.responsive %}
@@ -493,10 +493,10 @@ tags: base
 
     {% header "h3", "Flex wrap classes" %}
     <div class="overflow-x-auto mb48" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Class</th>
                     <th scope="col">Definition</th>
                     <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/develop/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
@@ -504,7 +504,7 @@ tags: base
             <tbody>
                 {% for item in flex.flex-wrap %}
                   <tr>
-                        <td><code class="docs-code ws-nowrap">{{ item.class }}</code></td>
+                        <td><code>{{ item.class }}</code></td>
                         <td>{{ item.define }}</td>
                         <td class="ta-center">
                             {% if item.responsive %}
@@ -588,14 +588,14 @@ tags: base
 
 <section class="docs-section">
     {% header "h2", "Justify content" %}
-    <p class="docs-copy">Flex items can be controlled with atomic classes on the container’s main axis. This means controlling how a <code class="docs-code">.flex--item</code> is aligned left to right when in an <code class="docs-code">.fd-row</code>, and top and bottom in an <code class="docs-code">.fd-column</code>.</p>
+    <p class="docs-copy">Flex items can be controlled with atomic classes on the container’s main axis. This means controlling how a <code>.flex--item</code> is aligned left to right when in an <code>.fd-row</code>, and top and bottom in an <code>.fd-column</code>.</p>
 
     {% header "h3", "Justify content classes" %}
     <div class="overflow-x-auto mb48" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Class</th>
                     <th scope="col">Definition</th>
                     <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/develop/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
@@ -603,7 +603,7 @@ tags: base
             <tbody>
                 {% for item in flex.justification %}
                   <tr>
-                        <td><code class="docs-code ws-nowrap">{{ item.class }}</code></td>
+                        <td><code>{{ item.class }}</code></td>
                         <td>{{ item.define }}</td>
                         <td class="ta-center">
                             {% if item.responsive %}
@@ -710,14 +710,14 @@ tags: base
 
 <section class="docs-section">
     {% header "h2", "Align items" %}
-    <p class="docs-copy">Flex items can be controlled with atomic classes on the container’s cross axis. This means controlling how a <code class="docs-code">.flex--item</code> is aligned top to bottom when in an <code class="docs-code">.fd-row</code>, and left to right in an <code class="docs-code">.fd-column</code>.</p>
+    <p class="docs-copy">Flex items can be controlled with atomic classes on the container’s cross axis. This means controlling how a <code>.flex--item</code> is aligned top to bottom when in an <code>.fd-row</code>, and left to right in an <code>.fd-column</code>.</p>
 
     {% header "h3", "Align items classes" %}
     <div class="overflow-x-auto mb48" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Class</th>
                     <th scope="col">Definition</th>
                     <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/develop/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
@@ -725,7 +725,7 @@ tags: base
             <tbody>
                 {% for item in flex.align-items %}
                   <tr>
-                        <td><code class="docs-code ws-nowrap">{{ item.class }}</code></td>
+                        <td><code>{{ item.class }}</code></td>
                         <td>{{ item.define }}</td>
                         <td class="ta-center">
                             {% if item.responsive %}
@@ -823,10 +823,10 @@ tags: base
 
     {% header "h3", "Align content classes" %}
     <div class="overflow-x-auto mb48" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Class</th>
                     <th scope="col">Definition</th>
                     <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/develop/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
@@ -834,7 +834,7 @@ tags: base
             <tbody>
                 {% for item in flex.align-content %}
                   <tr>
-                        <td><code class="docs-code ws-nowrap">{{ item.class }}</code></td>
+                        <td><code>{{ item.class }}</code></td>
                         <td>{{ item.define }}</td>
                         <td class="ta-center">
                             {% if item.responsive %}
@@ -973,14 +973,14 @@ tags: base
 
 <section class="docs-section">
     {% header "h2", "Align self" %}
-    <p class="docs-copy">A flex container’s <code class="docs-code">align-items</code> can be overridden on individual items within a flex layout.</p>
+    <p class="docs-copy">A flex container’s <code>align-items</code> can be overridden on individual items within a flex layout.</p>
 
     {% header "h3", "Align self classes" %}
     <div class="overflow-x-auto mb48" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Class</th>
                     <th scope="col">Definition</th>
                     <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/develop/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
@@ -988,7 +988,7 @@ tags: base
             <tbody>
                 {% for item in flex.align-self %}
                   <tr>
-                        <td><code class="docs-code ws-nowrap">{{ item.class }}</code></td>
+                        <td><code>{{ item.class }}</code></td>
                         <td>{{ item.define }}</td>
                         <td class="ta-center">
                             {% if item.responsive %}
@@ -1099,7 +1099,7 @@ tags: base
 
     {% header "h3", "Order classes" %}
     <div class="overflow-x-auto mb48" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
@@ -1110,7 +1110,7 @@ tags: base
             <tbody>
                 {% for item in flex.order %}
                   <tr>
-                        <td><code class="docs-code ws-nowrap">{{ item.class }}</code></td>
+                        <td><code>{{ item.class }}</code></td>
                         <td>{{ item.define }}</td>
                         <td class="ta-center">
                             {% if item.responsive %}
@@ -1166,10 +1166,10 @@ tags: base
 
     {% header "h3", "Flex classes" %}
     <div class="overflow-x-auto mb48" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th class="s-table--cell2" scope="col">Class</th>
+                    <th class="s-table--cell3" scope="col">Class</th>
                     <th scope="col">Definition</th>
                     <th class="s-table--cell2 ta-center" scope="col"><a class="s-link s-link__inherit" href="{{ "/product/develop/conditional-classes#responsive" | url }}">Responsive?</a></th>
                 </tr>
@@ -1177,7 +1177,7 @@ tags: base
             <tbody>
                 {% for item in flex.flex %}
                   <tr>
-                        <td><code class="docs-code ws-nowrap">{{ item.class }}</code></td>
+                        <td><code>{{ item.class }}</code></td>
                         <td>{{ item.define }}</td>
                         <td class="ta-center">
                             {% if item.responsive %}

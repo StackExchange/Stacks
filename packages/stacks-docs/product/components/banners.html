@@ -21,10 +21,10 @@ tags: components
 <section class="docs-section">
     <p class="docs-copy">System banners are used for <strong>system</strong> messaging. They are full-width notices placed in one of two locations:</p>
     <ol class="docs-copy">
-        <li><strong>Above everything else:</strong> If the system banner is related to the entire website (e.g. the website is in read-only), place the banner first. <em>These cannot be dismissed until the issue is resolved.</em> To pin a system banner to the top of the browser window, add <code class="docs-code">.is-pinned</code>.</li>
+        <li><strong>Above everything else:</strong> If the system banner is related to the entire website (e.g. the website is in read-only), place the banner first. <em>These cannot be dismissed until the issue is resolved.</em> To pin a system banner to the top of the browser window, add <code>.is-pinned</code>.</li>
         <li><strong>Below the top navigation bar:</strong> This is the default location for all system banners. Use these banners when it affects only a particular area of the product (e.g. when a product subscription is about to expire).</li>
     </ol>
-    <p class="docs-copy">Since system banners are a type of notice, you can use the following <a href="{{ "/product/components/notices#visual-styles" | url }}">notice visual styles</a> in conjunction with <code class="docs-code">.s-banner</code>:</p>
+    <p class="docs-copy">Since system banners are a type of notice, you can use the following <a href="{{ "/product/components/notices#visual-styles" | url }}">notice visual styles</a> in conjunction with <code>.s-banner</code>:</p>
 </section>
 
 <section class="docs-section">
@@ -41,8 +41,8 @@ tags: components
             <tbody>
                 {% for item in banners.system %}
                 <tr>
-                    <td><code class="docs-code">{{ item.class }}</code></td>
-                    <td>{% if item.applies == "N/A" %}<em class="fc-black-350">{{ item.applies }}</em>{% else %}<code class="docs-code">{{ item.applies }}</code>{% endif %}</td>
+                    <td><code>{{ item.class }}</code></td>
+                    <td>{% if item.applies == "N/A" %}<em class="fc-black-350">{{ item.applies }}</em>{% else %}<code>{{ item.applies }}</code>{% endif %}</td>
                     <td>{{ item.description }}</td>
                 </tr>
                 {% endfor %}
@@ -50,11 +50,11 @@ tags: components
         </table>
     </div>
     {% header "h2", "JavaScript" %}
-    <p class="docs-copy">The <code class="docs-code">.s-banner</code> component includes a controller to show and hide the banner programitically. While it is optional, at least including the functionality to close the banner is recommended.</p>
+    <p class="docs-copy">The <code>.s-banner</code> component includes a controller to show and hide the banner programitically. While it is optional, at least including the functionality to close the banner is recommended.</p>
 
     {% header "h3", "Attributes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell5" scope="col">Attribute</th>
@@ -64,17 +64,17 @@ tags: components
             </thead>
             <tbody class="fs-caption">
                 <tr>
-                    <th scope="row"><code class="docs-code">data-controller="s-banner"</code></th>
+                    <th scope="row"><code>data-controller="s-banner"</code></th>
                     <td>Controller element</td>
-                    <td class="p8">Wires up the element to the banner controller. This may be a <code class="docs-code">.s-banner</code> element or a wrapper element.</td>
+                    <td class="p8">Wires up the element to the banner controller. This may be a <code>.s-banner</code> element or a wrapper element.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">data-s-banner-target="banner"</code></th>
+                    <th scope="row"><code>data-s-banner-target="banner"</code></th>
                     <td>.s-banner element</td>
                     <td class="p8">Wires up the element that is to be shown/hidden</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">data-s-banner-remove-when-hidden="true"</code></th>
+                    <th scope="row"><code>data-s-banner-remove-when-hidden="true"</code></th>
                     <td>Controller element</td>
                     <td class="p8"><span class="s-label--status ml0">Optional</span> Removes the banner from the DOM entirely when it is hidden</td>
                 </tr>
@@ -83,7 +83,7 @@ tags: components
     </div>
     {% header "h3", "Events" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell5" scope="col">Event</th>
@@ -93,22 +93,22 @@ tags: components
             </thead>
             <tbody class="fs-caption">
                 <tr>
-                    <th scope="row"><code class="docs-code">s-banner:show</code></th>
+                    <th scope="row"><code>s-banner:show</code></th>
                     <td>Banner target</td>
-                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before showing the banner. Calling <code class="docs-code">.preventDefault()</code> cancels the display of the banner.</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before showing the banner. Calling <code>.preventDefault()</code> cancels the display of the banner.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">s-banner:shown</code></th>
+                    <th scope="row"><code>s-banner:shown</code></th>
                     <td>Banner target</td>
                     <td>Fires after the banner has been visually shown</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">s-banner:hide</code></th>
+                    <th scope="row"><code>s-banner:hide</code></th>
                     <td>Banner target</td>
-                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before hiding the banner. Calling <code class="docs-code">.preventDefault()</code> cancels the removal of the banner.</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before hiding the banner. Calling <code>.preventDefault()</code> cancels the removal of the banner.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">s-banner:hidden</code></th>
+                    <th scope="row"><code>s-banner:hidden</code></th>
                     <td>Banner target</td>
                     <td>Fires after the banner has been visually hidden</td>
                 </tr>
@@ -116,7 +116,7 @@ tags: components
         </table>
     </div>
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell5" scope="col">event.detail</th>
@@ -126,16 +126,16 @@ tags: components
             </thead>
             <tbody class="fs-caption">
                 <tr>
-                    <th scope="row"><code class="docs-code">dispatcher</code></th>
-                    <td><code class="docs-code">s-banner:*</code></td>
-                    <td>Contains the <code class="docs-code">Element</code> that initiated the event. For instance, the button clicked to show, the element clicked outside the banner that caused it to hide, etc.</td>
+                    <th scope="row"><code>dispatcher</code></th>
+                    <td><code>s-banner:*</code></td>
+                    <td>Contains the <code>Element</code> that initiated the event. For instance, the button clicked to show, the element clicked outside the banner that caused it to hide, etc.</td>
                 </tr>
             </tbody>
         </table>
     </div>
     {% header "h3", "Helpers" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell2" scope="col">Function</th>
@@ -145,16 +145,16 @@ tags: components
             </thead>
             <tbody class="fs-caption">
                 <tr>
-                    <th scope="row"><code class="docs-code">Stacks.showBanner</code></th>
+                    <th scope="row"><code>Stacks.showBanner</code></th>
                     <td>
-                        <code class="docs-code">element</code>: the element the <code class="docs-code">data-controller="s-banner"</code> attribute is on <br><br>
+                        <code>element</code>: the element the <code>data-controller="s-banner"</code> attribute is on <br><br>
                     </td>
                     <td>Helper to manually show an s-banner element via external JS</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">Stacks.hideBanner</code></th>
+                    <th scope="row"><code>Stacks.hideBanner</code></th>
                     <td>
-                        <code class="docs-code">element</code>: the element the <code class="docs-code">data-controller="s-banner"</code> attribute is on <br><br>
+                        <code>element</code>: the element the <code>data-controller="s-banner"</code> attribute is on <br><br>
                     </td>
                     <td>Helper to manually hide an s-banner element via external JS</td>
                 </tr>

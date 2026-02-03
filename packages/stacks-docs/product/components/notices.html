@@ -43,7 +43,7 @@ tags: components
             <tbody>
                 {% for item in notices.access %}
                 <tr>
-                    <td><code class="docs-code">{{ item.item }}</code></td>
+                    <td><code>{{ item.item }}</code></td>
                     <td>
                         {% if item.applies == "N/A" %}
                             <em class="fc-black-350">{{ item.applies }}</em>
@@ -51,7 +51,7 @@ tags: components
                             {% assign class = item.applies | split: " " %}
 
                             {% for name in class %}
-                                <code class="docs-code">{{ name }}</code>
+                                <code>{{ name }}</code>
                             {% endfor %}
                         {% endif %}
                     </td>
@@ -67,7 +67,7 @@ tags: components
     {% header "h2", "JavaScript" %}
     {% header "h3", "Attributes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell5" scope="col">Attribute</th>
@@ -77,32 +77,32 @@ tags: components
             </thead>
             <tbody class="fs-caption">
                 <tr>
-                    <th scope="row"><code class="docs-code">data-controller="s-toast"</code></th>
+                    <th scope="row"><code>data-controller="s-toast"</code></th>
                     <td>Controller element</td>
-                    <td class="p8">Wires up the element to the toast controller. This may be a <code class="docs-code">.s-toast</code> element or a wrapper element.</td>
+                    <td class="p8">Wires up the element to the toast controller. This may be a <code>.s-toast</code> element or a wrapper element.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">data-s-toast-target="toast"</code></th>
+                    <th scope="row"><code>data-s-toast-target="toast"</code></th>
                     <td>.s-toast element</td>
                     <td class="p8">Wires up the element that is to be shown/hidden</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">data-s-toast-target="initialFocus"</code></th>
+                    <th scope="row"><code>data-s-toast-target="initialFocus"</code></th>
                     <td>Any child focusable element</td>
                     <td class="p8"><span class="s-label--status ml0">Optional</span> Designates which element to focus on toast show. If absent, defaults to the first focusable element within the toast.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">data-action="s-toast#toggle"</code></th>
+                    <th scope="row"><code>data-action="s-toast#toggle"</code></th>
                     <td>Toggling element</td>
                     <td class="p8">Wires up the element to toggle the visibility of a toast</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">data-s-toast-return-element="[css selector]"</code></th>
+                    <th scope="row"><code>data-s-toast-return-element="[css selector]"</code></th>
                     <td>Controller element</td>
                     <td class="p8"><span class="s-label--status ml0">Optional</span> Designates the element to return focus to when the toast is closed. If left unset, focus is not altered on close.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">data-s-toast-remove-when-hidden="true"</code></th>
+                    <th scope="row"><code>data-s-toast-remove-when-hidden="true"</code></th>
                     <td>Controller element</td>
                     <td class="p8"><span class="s-label--status ml0">Optional</span> Removes the toast from the DOM entirely when it is hidden</td>
                 </tr>
@@ -111,7 +111,7 @@ tags: components
     </div>
     {% header "h3", "Events" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell5" scope="col">Event</th>
@@ -121,22 +121,22 @@ tags: components
             </thead>
             <tbody class="fs-caption">
                 <tr>
-                    <th scope="row"><code class="docs-code">s-toast:show</code></th>
+                    <th scope="row"><code>s-toast:show</code></th>
                     <td>Toast target</td>
-                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before showing the toast. Calling <code class="docs-code">.preventDefault()</code> cancels the display of the toast.</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before showing the toast. Calling <code>.preventDefault()</code> cancels the display of the toast.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">s-toast:shown</code></th>
+                    <th scope="row"><code>s-toast:shown</code></th>
                     <td>Toast target</td>
                     <td>Fires after the toast has been visually shown</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">s-toast:hide</code></th>
+                    <th scope="row"><code>s-toast:hide</code></th>
                     <td>Toast target</td>
-                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before hiding the toast. Calling <code class="docs-code">.preventDefault()</code> cancels the removal of the toast.</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before hiding the toast. Calling <code>.preventDefault()</code> cancels the removal of the toast.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">s-toast:hidden</code></th>
+                    <th scope="row"><code>s-toast:hidden</code></th>
                     <td>Toast target</td>
                     <td>Fires after the toast has been visually hidden</td>
                 </tr>
@@ -144,7 +144,7 @@ tags: components
         </table>
     </div>
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell5" scope="col">event.detail</th>
@@ -154,23 +154,23 @@ tags: components
             </thead>
             <tbody class="fs-caption">
                 <tr>
-                    <th scope="row"><code class="docs-code">dispatcher</code></th>
-                    <td><code class="docs-code">s-toast:*</code></td>
-                    <td>Contains the <code class="docs-code">Element</code> that initiated the event. For instance, the button clicked to show, the element clicked outside the toast that caused it to hide, etc.</td>
+                    <th scope="row"><code>dispatcher</code></th>
+                    <td><code>s-toast:*</code></td>
+                    <td>Contains the <code>Element</code> that initiated the event. For instance, the button clicked to show, the element clicked outside the toast that caused it to hide, etc.</td>
                 </tr>
             </tbody>
             <tbody class="fs-caption">
                 <tr>
-                    <th scope="row"><code class="docs-code">returnElement</code></th>
-                    <td><code class="docs-code">s-toast:show</code>, <code class="docs-code">s-toast:hide</code></td>
-                    <td>Contains the <code class="docs-code">Element</code> to return focus to on hide. If a value is set to this property inside an event listener, it will be updated on the controller as well.</td>
+                    <th scope="row"><code>returnElement</code></th>
+                    <td><code>s-toast:show</code>, <code>s-toast:hide</code></td>
+                    <td>Contains the <code>Element</code> to return focus to on hide. If a value is set to this property inside an event listener, it will be updated on the controller as well.</td>
                 </tr>
             </tbody>
         </table>
     </div>
     {% header "h3", "Helpers" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell2" scope="col">Function</th>
@@ -180,16 +180,16 @@ tags: components
             </thead>
             <tbody class="fs-caption">
                 <tr>
-                    <th scope="row"><code class="docs-code">Stacks.showToast</code></th>
+                    <th scope="row"><code>Stacks.showToast</code></th>
                     <td>
-                        <code class="docs-code">element</code>: the element the <code class="docs-code">data-controller="s-toast"</code> attribute is on <br><br>
+                        <code>element</code>: the element the <code>data-controller="s-toast"</code> attribute is on <br><br>
                     </td>
                     <td>Helper to manually show an s-toast element via external JS</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">Stacks.hideToast</code></th>
+                    <th scope="row"><code>Stacks.hideToast</code></th>
                     <td>
-                        <code class="docs-code">element</code>: the element the <code class="docs-code">data-controller="s-toast"</code> attribute is on <br><br>
+                        <code>element</code>: the element the <code>data-controller="s-toast"</code> attribute is on <br><br>
                     </td>
                     <td>Helper to manually hide an s-toast element via external JS</td>
                 </tr>
@@ -213,7 +213,7 @@ tags: components
             <tbody>
                 {% for item in notices.visual %}
                 <tr>
-                    <td><code class="docs-code">{{ item.class }}</code></td>
+                    <td><code>{{ item.class }}</code></td>
                     <td>
                         {% if item.applies == "N/A" %}
                             <em class="fc-black-350">{{ item.applies }}</em>
@@ -221,7 +221,7 @@ tags: components
                             {% assign class = item.applies | split: " " %}
 
                             {% for name in class %}
-                                <code class="docs-code">{{ name }}</code>
+                                <code>{{ name }}</code>
                             {% endfor %}
                         {% endif %}
                     </td>
@@ -340,7 +340,7 @@ tags: components
     </div>
 
         {% header "h3", "Styling child links" %}
-    <p class="docs-copy">We recommend using <a href="{{ "/product/components/links/#descendent-anchors" | url }}"><b>descendent anchor</b> classes</a>, typically <code class="docs-code">.s-anchors.s-anchors__inherit.s-anchors__underlined</code> for notices containing links generated from markdown when you cannot manually generate the inner html.</p>
+    <p class="docs-copy">We recommend using <a href="{{ "/product/components/links/#descendent-anchors" | url }}"><b>descendent anchor</b> classes</a>, typically <code>.s-anchors.s-anchors__inherit.s-anchors__underlined</code> for notices containing links generated from markdown when you cannot manually generate the inner html.</p>
     <div class="docs-preview">
 {% highlight html %}
 <div class="s-notice s-notice__info" role="presentation">
@@ -373,7 +373,7 @@ tags: components
 <section class="docs-section">
     {% header "h2", "Behaviors" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th scope="col" class="s-table--cell2">Behavior</th>
@@ -386,7 +386,7 @@ tags: components
                 {% for item in notices.behavior %}
                 <tr>
                     <td>{{ item.type }}
-                    <td><code class="docs-code">{{ item.class }}</code></td>
+                    <td><code>{{ item.class }}</code></td>
                     <td>
                         {% if item.applies == "N/A" %}
                             <em class="fc-black-350">{{ item.applies }}</em>
@@ -394,7 +394,7 @@ tags: components
                             {% assign class = item.applies | split: " " %}
 
                             {% for name in class %}
-                                <code class="docs-code">{{ name }}</code>
+                                <code>{{ name }}</code>
                             {% endfor %}
                         {% endif %}
                     </td>
@@ -408,8 +408,8 @@ tags: components
     {% header "h3", "Toast" %}
     <p class="docs-copy">
         Floating notices, but aligned to the top and center of the page and they disappear after a set time. 
-        Visibility is changed with animation by toggling between <code class="docs-code">aria-hidden="true"</code> and <code class="docs-code">aria-hidden="false"</code>. 
-        When including a dismiss button the <code class="docs-code">.s-notice--dismiss</code> class should be applied to the button for toast-specific styling.
+        Visibility is changed with animation by toggling between <code>aria-hidden="true"</code> and <code>aria-hidden="false"</code>. 
+        When including a dismiss button the <code>.s-notice--dismiss</code> class should be applied to the button for toast-specific styling.
     </p>
 
     <div class="docs-preview bs-none mb12">

@@ -26,121 +26,7 @@ h2, h3 {
     scroll-margin-top: calc(var(--theme-topbar-height) + var(--su24));
 }
 
-.docs-bg-checkered { // Checkered background
-    background-color: var(--white);
-    background-image: url("data:image/svg+xml;,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%23e4e6e8' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
-}
-
-.docs-bg-img { // Background image utility class
-    background-image: url("../img/illustrationBgImage.svg");
-}
-
-.docs-box { // Box utility class
-    & & {
-        background-color: var(--black-150);
-        border-color: var(--black-300);
-    }
-
-    &,
-    .s-table td& {
-        background-color: var(--black-200);
-        border: var(--su1) solid var(--black-225);
-        box-sizing: border-box;
-        color: var(--black-600);
-        font-family: var(--ff-mono);
-        font-size: var(--fs-caption);
-        padding: var(--su8);
-    }
-}
-
-.docs-code { // Code block style
-    background-color: var(--black-200);
-    border-radius: var(--br-md);
-    color: var(--black-600);
-    font-family: var(--ff-mono);
-    font-size: var(--fs-caption);
-    line-height: var(--lh-xs);
-    overflow-wrap: break-word;
-    padding: var(--su4);
-    vertical-align: middle;
-    white-space: normal;
-}
-
-.docs-copy { // General typography style
-    strong {
-        color: var(--black-600);
-    }
-
-    a:not([class]),
-    .s-link {
-        text-decoration: underline;
-    }
-
-    color: var(--black-500);
-    font-size: var(--fs-body3);
-    line-height: var(--lh-lg);
-    margin-bottom: var(--su16);
-    margin-top: 0;
-}
-
-.docs-section { // Section layout
-    margin-bottom: var(--su48);
-}
-
-.docs-sidebar,
-.docs-toc {
-    max-height: calc(100vh - var(--theme-topbar-height));
-    top: var(--theme-topbar-height);
-}
-
-#stacks-internals #screen-md({
-    .docs-sidebar {
-        box-shadow: 3px 0 3px 0 hsla(0, 0, 0, 0.02), 7px 0 6px 0 hsla(0, 0, 0, 0.03), 13px 0 11px 0 hsla(0, 0, 0, 0.04), 22px 0 20px 0 hsla(0, 0, 0, 0.04), 42px 0 37px 0 hsla(0, 0, 0, 0.05);
-    }
-}, @force-selector: true);
-
-#stacks-internals #screen-sm({
-    .docs-sidebar {
-        box-shadow: 0 3px 3px hsla(0, 0, 0, 0.2);
-    }
-}, @force-selector: true);
-
-.docs-preview { // Preview container styles
-    .highcontrast-mode({
-        box-shadow: none;
-    });
-
-    > pre.s-code-block {
-        .dark-mode({
-            border-color: var(--black-150);
-        });
-
-        border-radius: var(--br-md) var(--br-md) 0 0;
-        border: var(--su1) solid var(--black-225);
-        max-height: var(--su344);
-    }
-
-    &._preview-none pre.s-code-block {
-        .bar-md;
-    }
-
-    &--example {
-        padding: var(--su16);
-        border-bottom-left-radius: var(--br-md);
-        border-bottom-right-radius: var(--br-md);
-        border: var(--su1) solid var(--black-225);
-        border-top-width: 0;
-        font-size: var(--fs-body1);
-    
-        .dark-mode({
-            border-color: var(--black-150);
-        });
-    }
-
-    margin-bottom: var(--su48);
-}
-
-// Algolia search -------------------------------------------------------------
+// Algolia search
 .algolia-autocomplete {
     display: block !important;
     width: 100% !important;
@@ -199,5 +85,129 @@ h2, h3 {
         }
     }
 }
+
+// Docs utility classes
+.docs-copy,
+.docs-table {
+    code {
+        background-color: var(--black-150);
+        border: var(--su1) solid var(--black-200);
+        border-radius: var(--su2);
+        color: var(--green-600);
+        font-family: var(--ff-mono);
+        overflow-wrap: break-word;
+        margin: var(--sun1);
+        padding: 0.125em 0.1875em 0.0625em;
+        white-space: normal;
+    }
+}
+
+.docs-sidebar,
+.docs-toc {
+    max-height: calc(100vh - var(--theme-topbar-height));
+    top: var(--theme-topbar-height);
+}
+
+
+.docs-bg-checkered { // Checkered background
+    background-color: var(--white);
+    background-image: url("data:image/svg+xml;,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%23e4e6e8' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.docs-bg-img { // Background image utility class
+    background-image: url("../img/illustrationBgImage.svg");
+}
+
+.docs-box { // Box utility class
+    & & {
+        background-color: var(--black-150);
+        border-color: var(--black-300);
+    }
+
+    &,
+    .s-table td& {
+        background-color: var(--black-200);
+        border: var(--su1) solid var(--black-225);
+        box-sizing: border-box;
+        color: var(--black-600);
+        font-family: var(--ff-mono);
+        font-size: var(--fs-caption);
+        padding: var(--su8);
+    }
+}
+
+.docs-copy { // General typography style
+    a:not([class]),
+    .s-link {
+        text-decoration: underline;
+    }
+
+    code {
+        font-size: .875em;
+    }
+
+    strong {
+        color: var(--black-600);
+    }
+
+
+    color: var(--black-500);
+    font-size: var(--fs-body3);
+    line-height: var(--lh-lg);
+    margin-bottom: var(--su16);
+    margin-top: 0;
+}
+
+.docs-preview { // Preview container styles
+    .highcontrast-mode({
+        box-shadow: none;
+    });
+
+    > pre.s-code-block {
+        .dark-mode({
+            border-color: var(--black-150);
+        });
+
+        border: var(--su1) solid var(--black-225);
+        max-height: var(--su344);
+    }
+
+    &--example {
+        padding: var(--su16);
+        border: var(--su1) solid var(--black-225);
+        border-top-width: 0;
+        font-size: var(--fs-body1);
+    
+        .dark-mode({
+            border-color: var(--black-150);
+        });
+    }
+
+    margin-bottom: var(--su48);
+}
+
+.docs-section { // Section layout
+    margin-bottom: var(--su48);
+}
+
+.docs-table {
+    code {
+        font-size: 1em;
+    }
+
+    min-width: var(--su344);
+}
+
+#stacks-internals #screen-md({
+    .docs-sidebar {
+        box-shadow: 3px 0 3px 0 hsla(0, 0, 0, 0.02), 7px 0 6px 0 hsla(0, 0, 0, 0.03), 13px 0 11px 0 hsla(0, 0, 0, 0.04), 22px 0 20px 0 hsla(0, 0, 0, 0.04), 42px 0 37px 0 hsla(0, 0, 0, 0.05);
+    }
+}, @force-selector: true);
+
+#stacks-internals #screen-sm({
+    .docs-sidebar {
+        box-shadow: 0 3px 3px hsla(0, 0, 0, 0.2);
+    }
+}, @force-selector: true);
 
 @import (inline) "~@stackoverflow/stacks-editor/dist/styles.css";

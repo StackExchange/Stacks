@@ -21,17 +21,8 @@ module.exports = {
 
     // customize markdown-it rendering to add our classes
     markdownIt.use(function (md) {
-      // mapping of tag: classes
-      const customClasses = {
-        "code": "docs-code"
-      }
-
       const addClasses = function (tokens) {
         tokens.forEach(function (token) {
-          if (token.tag in customClasses) {
-            token.attrJoin("class", customClasses[token.tag]);
-          }
-
           if (token.children) {
             addClasses(token.children);
           }

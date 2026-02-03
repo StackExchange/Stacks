@@ -9,7 +9,7 @@ tags: components
 <section class="docs-section">
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell3" scope="col">Class</th>
@@ -20,8 +20,8 @@ tags: components
             <tbody class="fs-caption">
                 {% for item in tags-component.classes %}
                     <tr>
-                        <th scope="row"><code class="docs-code">{{ item.class }}</code></th>
-                        <td><code class="docs-code bg-white">{{ item.applies }}</td>
+                        <th scope="row"><code>{{ item.class }}</code></th>
+                        <td><code>{{ item.applies }}</td>
                         <td class="p8">{{ item.description }}</td>
                     </tr>
                 {% endfor %}
@@ -32,7 +32,7 @@ tags: components
     <p class="docs-copy">
         Tags should be focusable and navigable with the keyboard. 
         The various tag states (Required, Moderator, Watched, Ignored) are visually distinct but do not include any text indicators for screen readers. 
-        For that reason it is recommended to provide additional context using hidden text elements with the <code class="docs-code">v-visible-sr</code> class.
+        For that reason it is recommended to provide additional context using hidden text elements with the <code>v-visible-sr</code> class.
     </p>
 </section>
 
@@ -133,8 +133,8 @@ tags: components
         <tbody class="fs-caption">
             {% for item in tags-component.sizes %}
                 <tr>
-                    <th scope="row"><code class="docs-code">{% if item.class == "N/A" %}.s-tag{% else %}.{{ item.class }}{% endif %}</code></th>
-                    <td><code class="docs-code bg-white">{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}.s-tag{% endif %}</td>
+                    <th scope="row"><code>{% if item.class == "N/A" %}.s-tag{% else %}.{{ item.class }}{% endif %}</code></th>
+                    <td><code>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}.s-tag{% endif %}</td>
                     <td class="p8"><span class="s-tag {{ item.class }}">css</span></td>
                 </tr>
             {% endfor %}

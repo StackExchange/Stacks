@@ -67,17 +67,17 @@ tags: components
     {% header "h2", "Accessibility" %}
     <p class="docs-copy">The best accessibility is semantic HTML. Most screen readers understand how to parse inputs if they're correctly formatted. When it comes to inputs, there are a few things to keep in mind:</p>
     <ul class="docs-copy">
-        <li>All inputs should have an <code class="docs-code">id</code> attribute.</li>
-        <li>Be sure to associate the input’s label by using the <code class="docs-code">for</code> attribute. The value here is the input’s <code class="docs-code">id</code>.</li>
-        <li>If you have a group of related inputs, use the <code class="docs-code">fieldset</code> and <code class="docs-code">legend</code> to group them together.</li>
+        <li>All inputs should have an <code>id</code> attribute.</li>
+        <li>Be sure to associate the input’s label by using the <code>for</code> attribute. The value here is the input’s <code>id</code>.</li>
+        <li>If you have a group of related inputs, use the <code>fieldset</code> and <code>legend</code> to group them together.</li>
     </ul>
     <p class="docs-copy">For more information, please read Gov.UK's article, <a href="https://accessibility.blog.gov.uk/2016/07/22/using-the-fieldset-and-legend-elements/" target="_blank"><em>"Using the fieldset and legend elements"</em></a>.</p>
 
     {% header "h3", "Required input fields" %}
-    <p class="docs-copy">Labels or instructions must be provided when content requires user input. For any input field within a form that is required for successful data submission, provide the asterisk <code class="docs-code">*</code> as a symbol and a legend advising the meaning of the symbol before the first use.</p>
-    <p class="docs-copy">Stacks includes a special <code class="docs-code">.s-required-symbol</code> class to ensure the symbol (asterisk) is clearly visible.</p>
+    <p class="docs-copy">Labels or instructions must be provided when content requires user input. For any input field within a form that is required for successful data submission, provide the asterisk <code>*</code> as a symbol and a legend advising the meaning of the symbol before the first use.</p>
+    <p class="docs-copy">Stacks includes a special <code>.s-required-symbol</code> class to ensure the symbol (asterisk) is clearly visible.</p>
 
-    <table class="wmn4 s-table s-table__bx-simple mb16">
+    <table class="docs-table s-table s-table__bx-simple mb16">
         <thead>
             <tr>
                 <th class="s-table--cell2" scope="col">Class</th>
@@ -87,8 +87,8 @@ tags: components
         </thead>
         <tbody>
             <tr>
-                <th scope="row"><code class="docs-code">.s-required-symbol</code></th>
-                <td><code class="docs-code">abbr</code> element enclosing the asterisk</td>
+                <th scope="row"><code>.s-required-symbol</code></th>
+                <td><code>abbr</code> element enclosing the asterisk</td>
                 <td>Used to style the asterisk indicating that a specific field is required.</td>
             </tr>
         </tbody>
@@ -153,7 +153,7 @@ tags: components
 
     {% header "h3", "Validation classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
@@ -164,7 +164,7 @@ tags: components
             <tbody>
                 {% for state in inputs.validation %}
                     <tr>
-                        <th scope="row"><code class="docs-code">{{ state.class }}</code></th>
+                        <th scope="row"><code>{{ state.class }}</code></th>
                         <td>Parent wrapper for input</td>
                         <td>{{ state.description }}</td>
                     </tr>
@@ -181,7 +181,7 @@ tags: components
         Once the user is presented validation states, they can be cleared as soon as the user interacts with the form field. For example, the error state for an incorrect password should be cleared as soon as the user focuses the input to re-enter their password.
     </p>
     <p class="docs-copy mb32">
-        Similarly to using <code class="docs-code">for</code> with labels, validation messages below inputs should be associated with their respective fields using the <code class="docs-code">aria-describedby</code> attribute for accessible behavior.
+        Similarly to using <code>for</code> with labels, validation messages below inputs should be associated with their respective fields using the <code>aria-describedby</code> attribute for accessible behavior.
     </p>
 
     {% header "h3", "Validation examples" %}
@@ -271,7 +271,7 @@ tags: components
 <section class="docs-section">
     {% header "h2", "Icons" %}
     {% header "h3", "Search" %}
-    <p class="docs-copy">Stacks provides helper classes to consistently style an input used for search. First, wrap your search input in an element with relative positioning. Then, and add <code class="docs-code">s-input__search</code> to the input itself. Finally, be sure to add <code class="docs-code">s-input-icon</code> and <code class="docs-code">s-input-icon__search</code> to the search icon.</p>
+    <p class="docs-copy">Stacks provides helper classes to consistently style an input used for search. First, wrap your search input in an element with relative positioning. Then, and add <code>s-input__search</code> to the input itself. Finally, be sure to add <code>s-input-icon</code> and <code>s-input-icon__search</code> to the search icon.</p>
 
     <div class="docs-preview">
 {% highlight html %}
@@ -328,7 +328,7 @@ tags: components
                     <tr>
                         <th scope="row">{{ item.name }}</th>
                         <td>{{ item.size }}</td>
-                        <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code class="docs-code">.{{ item.class }}</code>{% endif %}</td>
+                        <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code>.{{ item.class }}</code>{% endif %}</td>
                         <td><input type="text" class="s-input {{ item.class }}" placeholder="e.g. What is Stacks?"></td>
                     </tr>
                     {% endfor %}
@@ -412,7 +412,7 @@ tags: components
 <section class="docs-section">
 
     {% header "h2", "Nested inputs" %}
-    <p class="docs-copy">An input can be nested within a container that has the <code class="docs-code">.s-input</code> class applied to display styled elements as if they're within an input.</p>
+    <p class="docs-copy">An input can be nested within a container that has the <code>.s-input</code> class applied to display styled elements as if they're within an input.</p>
 
     <div class="docs-preview">
 {% highlight html %}

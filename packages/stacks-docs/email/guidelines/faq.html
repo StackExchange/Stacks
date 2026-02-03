@@ -5,14 +5,14 @@ title: Frequently asked questions
 <section class="docs-section">
     {% header "h2", "Why do we have to write CSS inline?" %}
     <p class="docs-copy">
-        It’s still the safest way to ensure CSS styles are applied in email clients. Referencing external stylesheets isn’t well-supported in email. Embedded CSS in a <span class="docs-code">&lt;style&gt;</span> tag <em>does</em> have decent support, and there are a few holdouts like <a href="https://emails.hteumeuleu.com/trying-to-make-sense-of-gmail-css-support-after-the-2016-update-53c15151063a" target="_blank">a few Gmail clients</a> and a <a href="https://emails.hteumeuleu.com/should-we-stop-inlining-styles-in-emails-8c3b64f0d407" target="_blank">smattering of mostly non-US mobile clients</a>. Given Stack Overflow’s volume and reach, we choose to support as many email clients as we can, even ones that don’t support the <span class="docs-code">&lt;style&gt;</span> tag. So we opt for writing CSS inline, which is supported everywhere.
+        It’s still the safest way to ensure CSS styles are applied in email clients. Referencing external stylesheets isn’t well-supported in email. Embedded CSS in a <code>&lt;style&gt;</code> tag <em>does</em> have decent support, and there are a few holdouts like <a href="https://emails.hteumeuleu.com/trying-to-make-sense-of-gmail-css-support-after-the-2016-update-53c15151063a" target="_blank">a few Gmail clients</a> and a <a href="https://emails.hteumeuleu.com/should-we-stop-inlining-styles-in-emails-8c3b64f0d407" target="_blank">smattering of mostly non-US mobile clients</a>. Given Stack Overflow’s volume and reach, we choose to support as many email clients as we can, even ones that don’t support the <code>&lt;style&gt;</code> tag. So we opt for writing CSS inline, which is supported everywhere.
     </p>
 </section>
 
 <section class="docs-section">
     {% header "h2", "If CSS is inline, why do we need a style tag?" %}
     <p class="docs-copy">
-        Inline CSS is a sure-fire way to style an email’s layout at a granular level. For the same reason it’s done on the web, adding a CSS reset to an email’s <span class="docs-code">&lt;head&gt;</span> helps to normalize how the code gets rendered in email clients that <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">support the <span class="docs-code">&lt;style&gt;</span> tag</a>.
+        Inline CSS is a sure-fire way to style an email’s layout at a granular level. For the same reason it’s done on the web, adding a CSS reset to an email’s <code>&lt;head&gt;</code> helps to normalize how the code gets rendered in email clients that <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">support the <code>&lt;style&gt;</code> tag</a>.
     </p>
     <p class="docs-copy">
         Each template contains a breakdown, element by element, of what each reset style is actually doing.
@@ -22,12 +22,12 @@ title: Frequently asked questions
 <section class="docs-section">
     {% header "h2", "Can we use a CSS inliner?" %}
     <p class="docs-copy">
-        CSS inliners promise to take CSS written in the <span class="docs-code">&lt;head&gt;</span> and automatically move CSS <strong>inline</strong> in the appropriate locations in the <span class="docs-code">&lt;body&gt;</span>. However we <strong>recommend against</strong> using a CSS inliners with these templates. Here’s why:
+        CSS inliners promise to take CSS written in the <code>&lt;head&gt;</code> and automatically move CSS <strong>inline</strong> in the appropriate locations in the <code>&lt;body&gt;</code>. However we <strong>recommend against</strong> using a CSS inliners with these templates. Here’s why:
     </p>
     <ul class="docs-copy">
         <li>These templates should not require a dependency to author CSS.</li>
-        <li>The placement of the templates CSS is already optimized. The CSS in the <span class="docs-code">&lt;head&gt;</span> is meant only for email clients that parse CSS in this location. It doesn’t need to be inlined.</li>
-        <li>There are some CSS selectors like <span class="docs-code">:hover</span> that throw errors in some CSS inliners.</li>
+        <li>The placement of the templates CSS is already optimized. The CSS in the <code>&lt;head&gt;</code> is meant only for email clients that parse CSS in this location. It doesn’t need to be inlined.</li>
+        <li>There are some CSS selectors like <code>:hover</code> that throw errors in some CSS inliners.</li>
         <li>Inlining leads to code bloat. Not only does this impact download speeds, but some email clients like Gmail and iOS Outlook truncate messages after they exceed a certain file size.</li>
     </ul>
 </section>
@@ -71,10 +71,10 @@ title: Frequently asked questions
 <section class="docs-section">
     {% header "h2", "How do margin and padding work in email?" %}
     <p class="docs-copy">
-        Use <strong>margin</strong> block-level typography tags like <span class="docs-code">&lt;h&gt;</span>, <span class="docs-code">&lt;p&gt;</span>, <span class="docs-code">&lt;ul&gt;</span>, and <span class="docs-code">&lt;li&gt;</span>... and use <strong>padding</strong> on <span class="docs-code">&lt;td&gt;</span>s.
+        Use <strong>margin</strong> block-level typography tags like <code>&lt;h&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;ul&gt;</code>, and <code>&lt;li&gt;</code>... and use <strong>padding</strong> on <code>&lt;td&gt;</code>s.
     </p>
     <p class="docs-copy">
-        Outlook only honors margins on typography tags, and only honors padding on <span class="docs-code">&lt;td&gt;</span> tags. Its interpretation of spacing on other tags like <span class="docs-code">&lt;table&gt;</span>, <span class="docs-code">&lt;div&gt;</span>, and <span class="docs-code">&lt;img&gt;</span> tags is sketchy, so it’s best to avoid spacing with those.
+        Outlook only honors margins on typography tags, and only honors padding on <code>&lt;td&gt;</code> tags. Its interpretation of spacing on other tags like <code>&lt;table&gt;</code>, <code>&lt;div&gt;</code>, and <code>&lt;img&gt;</code> tags is sketchy, so it’s best to avoid spacing with those.
     </p>
     <p class="fc-green-400 fw-bold fs-body1 tt-uppercase mb0 pb8">
         {% icon "Checkmark", "mr4" %} Do
@@ -106,7 +106,7 @@ title: Frequently asked questions
 <section class="docs-section">
     {% header "h2", "What is the best &lt;doctype&gt; for email?" %}
     <p class="docs-copy">
-        Use the HTML5 doctype <code class="docs-code">&lt;!doctype html&gt;</code>. It’s the shortest and easiest to remember, and it’s enough to trigger standards mode on supported clients. <a href="https://emails.hteumeuleu.com/which-doctype-should-you-use-in-html-emails-cd323fdb793c" target="_blank">This article</a> goes into more detail. There’s no need to close <code class="docs-code">&lt;img&gt;</code> tags with trailing <code class="docs-code">/</code> (XHTML style).
+        Use the HTML5 doctype <code>&lt;!doctype html&gt;</code>. It’s the shortest and easiest to remember, and it’s enough to trigger standards mode on supported clients. <a href="https://emails.hteumeuleu.com/which-doctype-should-you-use-in-html-emails-cd323fdb793c" target="_blank">This article</a> goes into more detail. There’s no need to close <code>&lt;img&gt;</code> tags with trailing <code>/</code> (XHTML style).
     </p>
 </section>
 
@@ -130,7 +130,7 @@ title: Frequently asked questions
 <section class="docs-section">
     {% header "h2", "How wide should an email be?" %}
     <p class="docs-copy">
-        Our default email templates are <code class="docs-code">680px</code> wide. Our hybrid math, the code that makes emails responsive without media queries, is built on that number.
+        Our default email templates are <code>680px</code> wide. Our hybrid math, the code that makes emails responsive without media queries, is built on that number.
     </p>
     <p class="docs-copy">
         This is more a guideline than a rule. If the situation calls for it, an email can have any width. Examples might be...
@@ -144,10 +144,10 @@ title: Frequently asked questions
 <section class="docs-section">
     {% header "h2", "What is conversation threading?" %}
     <p class="docs-copy">
-        When creating emails, Gmail may attempt to highlight portions of the email body that it thinks are important parts of a previous conversation thread. It does this by applying an <code class="docs-code">.im</code> class to portions of the email, which makes text purple.
+        When creating emails, Gmail may attempt to highlight portions of the email body that it thinks are important parts of a previous conversation thread. It does this by applying an <code>.im</code> class to portions of the email, which makes text purple.
     </p>
     <p class="docs-copy">
-        To defend against this unwanted styling, our templates include a CSS reset in the <code class="docs-code">&lt;head&gt;</code>, though this will only be applied in <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support</a> CSS styles in the <code class="docs-code">&lt;head&gt;</code>.
+        To defend against this unwanted styling, our templates include a CSS reset in the <code>&lt;head&gt;</code>, though this will only be applied in <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support</a> CSS styles in the <code>&lt;head&gt;</code>.
     </p>
 </section>
 
