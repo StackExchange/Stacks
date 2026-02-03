@@ -1,68 +1,14 @@
-// // TODO we *really* shouldn't be apply styles directly onto `<a>` like this, but
-// // it's tech debt that'll take some doing in consumer's code to pay down.
-// a {
-//     // We're target these specific selectors to avoid affecting the visited state of stacks components
-//     // not specified here. See for https://github.com/StackExchange/Stacks/pull/1740#discussion_r1698389312
-//     // TODO remove .post-tag, .badge, .badge-tag reference once core no longer requires them
-//     &:not([class*="s-"]):not(.post-tag):not(.badge):not(.badge-tag),
-//     &.s-sidebarwidget--action {
-//         // Use --_an-a-* (.s-anchors a) custom properties when they're defined.
-//         // Otherwise, use the default link colors.
-//         &:active,
-//         &:hover {
-//             color: var(--_an-a-fc-hover, var(--_li-fc-hover));
-//         }    
-
-//         &:visited {
-//             color: var(--_an-a-fc-visited, var(--_li-fc-visited));
-//         }
-
-//         &:hover:visited {
-//             color: var(--_an-a-fc-hover-visited, var(--_li-fc-hover-visited));
-//         }
-//     }
-// }
-
-// Reset browser default underline for Stacks component anchors (e.g. .s-navigation--item).
-// Without this components that use <a> but don't use .s-link would inherit underline.
-a[class*="s-"] {
-    text-decoration: none;
-}
-
-// Base link styles shared by .s-link and by bare <a> inside .s-prose.
-.s-link,
-.s-prose a:not([class*="s-"]) {
+.s-link {
     --_li-fc: var(--theme-link-color, var(--black-600));
     --_li-fc-hover: var(--theme-link-color-hover, var(--blue-400));
     --_li-fc-visited: var(--theme-link-color-visited, var(--black-500));
     --_li-fc-hover-visited: var(--theme-link-color-visited, var(--black-500));
 
+    // CONTEXTUAL STYLES
     .highcontrast-mode({
         text-decoration: underline;
     });
 
-    color: var(--_li-fc);
-    cursor: pointer;
-    text-decoration: none;
-    user-select: auto;
-
-    // INTERACTION
-    &:active,
-    &:hover {
-        --_li-fc: var(--_li-fc-hover);
-        text-decoration: underline !important;
-    }
-    &:visited {
-        color: var(--_li-fc-visited);
-    }
-
-    &:hover:visited {
-        color: var(--_li-fc-hover-visited);
-        text-decoration: underline !important;
-    }
-}
-
-.s-link {
     // MODIFIERS
     &__dropdown {
         &:after {
@@ -126,11 +72,17 @@ a[class*="s-"] {
         --_li-fc-visited: var(--black-500);
     }
 
+    // MODIFIERS
     fieldset[disabled] & {
         box-shadow: none !important;
         opacity: var(--_o-disabled-static);
         pointer-events: none;
     }
+
+    color: var(--_li-fc);
+    cursor: pointer;
+    text-decoration: none;
+    user-select: auto;
 
     button& {
         &:focus {
@@ -144,5 +96,24 @@ a[class*="s-"] {
         line-height: inherit;
         padding: 0;
         user-select: auto;
+    }
+
+    p & {
+        text-decoration: underline;
+    }
+
+    // INTERACTION
+    &:active,
+    &:hover {
+        --_li-fc: var(--_li-fc-hover);
+        text-decoration: underline !important;
+    }
+    &:visited {
+        color: var(--_li-fc-visited);
+    }
+
+    &:hover:visited {
+        color: var(--_li-fc-hover-visited);
+        text-decoration: underline !important;
     }
 }
