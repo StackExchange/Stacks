@@ -7,6 +7,14 @@
         --_fg-gap: 0;
     }
 
+    &:has(.s-input__sm, .s-textarea__sm, .s-select__sm) {
+        --_fg-gap: var(--su6);
+    }
+
+    &:has(.s-input__lg, .s-textarea__lg, .s-select__lg) {
+        --_fg-gap: calc(var(--su8) + var(--su2));
+    }
+
     // MODIFIERS
     &&__horizontal {
         --_fg-fd: row;
@@ -16,7 +24,12 @@
     legend.s-label {
         margin-bottom: var(--su8);
     }
-    
+
+    &:has(.s-input, .s-textarea, .s-select) {
+        .s-label + .s-description {
+            margin-top: var(--sun4);
+        }
+    }
 
     flex-direction: var(--_fg-fd);
 

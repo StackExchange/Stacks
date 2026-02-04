@@ -107,6 +107,38 @@
     </div>
 </Story>
 
+<Story name="Label status" asChild>
+    <div class="d-grid g32">
+        <TextArea
+            id="label-status-danger-input"
+            placeholder="Placeholder text should not replace labels"
+            label="Question title"
+            labelStatus="danger"
+            labelStatusText="Required"
+        />
+        <TextArea
+            id="label-status-tonal-input"
+            placeholder="Placeholder text should not replace labels"
+            label="Question tags"
+            labelStatusText="Optional"
+        />
+        <TextArea
+            id="label-status-saved-input"
+            placeholder="Placeholder text should not replace labels"
+            label="What is your favourite animal?"
+            labelStatus="info"
+            labelStatusText="Saved for later"
+        />
+        <TextArea
+            id="label-status-info-input"
+            placeholder="e.g. user@example.com"
+            label="Notify people"
+            labelStatus="featured"
+            labelStatusText="New feature"
+        />
+    </div>
+</Story>
+
 <Story name="Disabled and readonly" asChild>
     <p class="s-description mb24">
         `disabled` and `readonly` props add a custom style to the textarea. All

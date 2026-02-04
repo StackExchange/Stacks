@@ -72,6 +72,10 @@
 - `s-input__xl` removed
 - **Nested inputs** html will require slight tweaking on consumers' side
 
+#### Labels
+- `s-label__md`, `s-label__xl` removed
+- `s-label--status`, `s-label--status__required`, `s-label--status__new`, `s-label--status__beta` removed. Use the new `s-badge` states instead.
+
 #### Loader
 - `Spinner` component replaced with new `Loader` component
 - `xs` and `xl` sized have been removed, leaving only the default, `sm`, and `lg` sizes
@@ -136,6 +140,9 @@ The menu component has been updated to use new class names and structure. The fo
 
 #### Pagination
 - The next and previous button now uses an `ArrowRight` and `ArrowLeft` icon instead of text. To apply the new styling, use the class `.s-pagination--item__nav`. Since these buttons use icons to represent their behavior, make sure to include descriptive text for screen readers.
+
+#### Post Summary
+The Post Summary component has changed dramatically. Please refer to the docs for complete guidance.
 
 #### Popover
 - The new popovers no longer include an arrow element. The `s-popover--arrow` css class has been removed, and any markup using it (e.g. `<div class="s-popover--arrow"></div>`) should be deleted from the codebases as part of the migration.
