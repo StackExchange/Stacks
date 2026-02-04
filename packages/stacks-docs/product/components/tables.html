@@ -8,7 +8,7 @@ tags: components
 
 <section class="docs-section">
     {% header "h2", "Default style" %}
-    <p class="docs-copy">Tables should be wrapped in a container, <code class="docs-code">.s-table-container</code>. This provides horizontal scrolling when necessary in the smallest breakpoints. The default table style is a bordered cell layout with a stylized header row.</p>
+    <p class="docs-copy">Tables should be wrapped in a container, <code>.s-table-container</code>. This provides horizontal scrolling when necessary in the smallest breakpoints. The default table style is a bordered cell layout with a stylized header row.</p>
     <div class="docs-preview">
 {% highlight html %}
 <div class="s-table-container">
@@ -507,7 +507,7 @@ tags: components
 <section class="docs-section">
     {% header "h2", "Alignment" %}
     {% header "h3", "Vertical alignment" %}
-    <p class="docs-copy">The default vertical alignment is <code class="docs-code">middle</code>. You change a table’s or a specific cell’s vertical alignment by using the <a href="{{ "/product/base/vertical-alignment#classes" | url }}">Vertical Alignment atomic classes</a>.</p>
+    <p class="docs-copy">The default vertical alignment is <code>middle</code>. You change a table’s or a specific cell’s vertical alignment by using the <a href="{{ "/product/base/vertical-alignment#classes" | url }}">Vertical Alignment atomic classes</a>.</p>
     <div class="docs-preview">
 {% highlight html %}
 <div class="s-table-container">
@@ -614,8 +614,8 @@ tags: components
 </section>
 <section class="docs-section">
     {% header "h2", "Sortable tables" %}
-    <p class="docs-copy">To indicate that the user can sort a table by different columns, add the <code class="docs-code">s-table__sortable</code> class to the table.</p>
-    <p class="docs-copy">The <code class="docs-code">&lt;th&gt;</code> cells should include arrows to indicate sortability or the currently applied sorting. In addition, the column that is currently sorted should be indicated with the <code class="docs-code">is-sorted</code> class on its <code class="docs-code">&lt;th&gt;</code>.</p>
+    <p class="docs-copy">To indicate that the user can sort a table by different columns, add the <code>s-table__sortable</code> class to the table.</p>
+    <p class="docs-copy">The <code>&lt;th&gt;</code> cells should include arrows to indicate sortability or the currently applied sorting. In addition, the column that is currently sorted should be indicated with the <code>is-sorted</code> class on its <code>&lt;th&gt;</code>.</p>
     <div class="docs-preview">
 {% highlight html %}
 <div class="s-table-container">
@@ -715,10 +715,10 @@ tags: components
 
     <ol class="docs-copy">
         <li>Style the table as sortable as explained in the section above.</li>
-        <li>Set <code class="docs-code">data-controller="s-table"</code> on the <code class="docs-code">&lt;table&gt;</code> element.</li>
-        <li>Set <code class="docs-code">data-s-table-target="column"</code> and <code class="docs-code">data-action="click->s-table#sort"</code> on each of the <code class="docs-code">&lt;th&gt;</code> elements that control sorting.</li>
+        <li>Set <code>data-controller="s-table"</code> on the <code>&lt;table&gt;</code> element.</li>
+        <li>Set <code>data-s-table-target="column"</code> and <code>data-action="click->s-table#sort"</code> on each of the <code>&lt;th&gt;</code> elements that control sorting.</li>
         <li>
-            Add the three icons for showing <i>ascending sort</i>, <i>descending sort</i>, and <i>unsorted</i> to each of these header cells, hiding the first two with a <code class="docs-code">d-none</code> class. Add the <code class="docs-code">js-sorting-indicator</code> class to each of the icons, and add <code class="docs-code">js-sorting-indicator-asc</code>, <code class="docs-code">js-sorting-indicator-desc</code>, and <code class="docs-code">js-sorting-indicator-none</code> to the appropriate icon.
+            Add the three icons for showing <i>ascending sort</i>, <i>descending sort</i>, and <i>unsorted</i> to each of these header cells, hiding the first two with a <code>d-none</code> class. Add the <code>js-sorting-indicator</code> class to each of the icons, and add <code>js-sorting-indicator-asc</code>, <code>js-sorting-indicator-desc</code>, and <code>js-sorting-indicator-none</code> to the appropriate icon.
         </li>
     </ol>
 
@@ -726,15 +726,15 @@ tags: components
         <strong>Note:</strong> Using <code>js-…</code> classes is not really the optimal way of doing this, and will probably replaced with something better eventually. When that happens, the <code>js-…</code> mechanism will be deprecated but continue to be supported for a while, so you have ample time to update things.
     {% endtip %}
 
-    <p class="docs-copy">By default, the data is sorted by the content of the cell. If you need to use a different value, for example because your cell contains a human-readable date, add a <code class="docs-code">data-s-table-sort-val</code> attribute to the cell.</p>
+    <p class="docs-copy">By default, the data is sorted by the content of the cell. If you need to use a different value, for example because your cell contains a human-readable date, add a <code>data-s-table-sort-val</code> attribute to the cell.</p>
 
     <p class="docs-copy">If a column contains any data that is not an integer, the data will be sorted lexicographically. Otherwise it will be sorted numerically, with empty cells being considered the lowest number.</p>
 
-    <p class="docs-copy">If the table contains rows that should not be sorted, but rather always be at the top or always be at the bottom, add <code class="docs-code">data-s-table-sort-to="top"</code> or <code class="docs-code">data-s-table-sort-to="bottom"</code> to the <code class="docs-code">&lt;tr&gt;</code> element.</p>
+    <p class="docs-copy">If the table contains rows that should not be sorted, but rather always be at the top or always be at the bottom, add <code>data-s-table-sort-to="top"</code> or <code>data-s-table-sort-to="bottom"</code> to the <code>&lt;tr&gt;</code> element.</p>
 
     {% header "h3", "JavaScript data attributes" %}
     <div class="s-table-container">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th scope="col" class="s-table--cell5">Attribute</th>
@@ -745,8 +745,8 @@ tags: components
             <tbody class="fs-caption">
                 {% for item in tables.data-attributes %}
                     <tr>
-                        <th scope="row"><code class="docs-code">{{ item.attribute }}</code></th>
-                        <td><code class="docs-code">{{ item.applies }}</code></td>
+                        <th scope="row"><code>{{ item.attribute }}</code></th>
+                        <td><code>{{ item.applies }}</code></td>
                         <td class="p8">{{ item.description }}</td>
                     </tr>
                 {% endfor %}
@@ -1121,7 +1121,7 @@ tags: components
 </section>
 <section class="docs-section">
     {% header "h2", "Inactive rows" %}
-    <p class="docs-copy">For tables that include inactive or disabled rows, such as inactive users or teams, <code class="docs-code">.is-disabled</code> can be applied to any <code class="docs-code">&lt;tr&gt;</code>. Additionally, <code class="docs-code">.is-enabled</code> can be applied to any <code class="docs-code">&lt;th&gt;</code> or <code class="docs-code">&lt;td&gt;</code> that you’d like to ignoring the parent disabled styling (such as a persistent link to reactivate a disabled account).</p>
+    <p class="docs-copy">For tables that include inactive or disabled rows, such as inactive users or teams, <code>.is-disabled</code> can be applied to any <code>&lt;tr&gt;</code>. Additionally, <code>.is-enabled</code> can be applied to any <code>&lt;th&gt;</code> or <code>&lt;td&gt;</code> that you’d like to ignoring the parent disabled styling (such as a persistent link to reactivate a disabled account).</p>
     <div class="docs-preview">
 {% highlight html %}
 <div class="s-table-container">
@@ -1187,7 +1187,7 @@ tags: components
     </div>
 
     {% header "h2", "Atomic classes" %}
-    <p class="docs-copy">Further control of table behavior is possible with atomic classes. For example, you can make non-table markup display as a table layout by pairing <code class="docs-code">.d-table</code>, <code class="docs-code">.d-table-cell</code> and <code class="docs-code">.tl-fixed</code>.</p>
+    <p class="docs-copy">Further control of table behavior is possible with atomic classes. For example, you can make non-table markup display as a table layout by pairing <code>.d-table</code>, <code>.d-table-cell</code> and <code>.tl-fixed</code>.</p>
     <div class="s-table-container">
         <table class="s-table s-table__bx-simple">
             <thead>
@@ -1199,7 +1199,7 @@ tags: components
             <tbody>
                 {% for item in tables.atomic %}
                 <tr>
-                    <td><code class="docs-code">{{ item.class }}</code></td>
+                    <td><code>{{ item.class }}</code></td>
                     <td class="ff-mono">{{ item.output }}</td>
                 </tr>
                 {% endfor %}

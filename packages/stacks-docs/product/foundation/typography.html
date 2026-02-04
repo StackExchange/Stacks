@@ -7,11 +7,11 @@ tags: foundation
 ---
 <section class="docs-section">
     {% header "h2", "Basic" %}
-    <p class="docs-copy">These styles should only be used as overrides. They shouldn’t replace standard semantic uses of <code class="docs-code">strong</code> or <code class="docs-code">em</code> tags.</p>
+    <p class="docs-copy">These styles should only be used as overrides. They shouldn’t replace standard semantic uses of <code>strong</code> or <code>em</code> tags.</p>
 
     {% header "h3", "Basic classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn5 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
@@ -22,8 +22,8 @@ tags: foundation
             <tbody>
                 {% for basic in typography.type-basic %}
                     <tr class="fs-caption">
-                        <th scope="row"><code class="docs-code">.{{ basic.class }}</code></th>
-                        <td><code class="docs-code bg-white">{{ basic.output }}</code></td>
+                        <th scope="row"><code>.{{ basic.class }}</code></th>
+                        <td><code>{{ basic.output }}</code></td>
                         <td>{{ basic.define }}</td>
                     </tr>
                 {% endfor %}
@@ -73,7 +73,7 @@ tags: foundation
     {% header "h2", "Layout" %}
     {% header "h3", "Layout classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn5 s-table s-table__bx-simple va-middle">
+        <table class="docs-table s-table s-table__bx-simple va-middle">
             <thead>
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
@@ -85,8 +85,8 @@ tags: foundation
             <tbody>
                 {% for layout in typography.type-layout %}
                     <tr class="fs-caption">
-                        <th scope="row"><code class="docs-code">.{{ layout.class }}</code></th>
-                        <td><code class="docs-code bg-white">{{ layout.output }}</code></td>
+                        <th scope="row"><code>.{{ layout.class }}</code></th>
+                        <td><code>{{ layout.output }}</code></td>
                         <td><p class="m0">{{ layout.define }}</p></td>
                         <td class="ta-center">
                             {% if layout.responsive %}
@@ -165,11 +165,11 @@ tags: foundation
 <section class="docs-section">
     {% header "h2", "Sizes" %}
     <p class="docs-copy">
-        Fonts larger than <code class="docs-code">.fs-body1</code> are reduced in size at the smallest responsive breakpoint. <code class="docs-code">.fs-body1</code> or smaller remain fixed at their initial pixel values.
+        Fonts larger than <code>.fs-body1</code> are reduced in size at the smallest responsive breakpoint. <code>.fs-body1</code> or smaller remain fixed at their initial pixel values.
     </p>
     {% header "h3", "Size classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th scope="col">Class</th>
@@ -181,10 +181,10 @@ tags: foundation
             <tbody>
                 {% for term in typography.fontsize %}
                     <tr>
-                        <th scope="row"><code class="docs-code">.fs-{{ term.term }}</code></th>
-                        <td><code class="docs-code bg-white">{{ term.define }}</code></td>
-                        <td><code class="docs-code bg-white">{{ term.line-height }}</code></td>
-                        <td><code class="docs-code bg-white">{{ term.responsive }}</code></td>
+                        <th scope="row"><code>.fs-{{ term.term }}</code></th>
+                        <td><code>{{ term.define }}</code></td>
+                        <td><code>{{ term.line-height }}</code></td>
+                        <td><code>{{ term.responsive }}</code></td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -234,13 +234,13 @@ tags: foundation
 <p class="lh-unset">…</p>
 {% endhighlight %}
         <div class="docs-preview--example">
-            <p class="lh-xs"><strong>Line Height XS:</strong> This sets the <code class="docs-code">line-height</code> value to <code class="docs-code">1</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p class="lh-sm"><strong>Line Height SM:</strong> This sets the <code class="docs-code">line-height</code> value to <code class="docs-code">1.15</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p class="lh-md"><strong>Line Height MD:</strong> This sets the <code class="docs-code">line-height</code> value to <code class="docs-code">1.3</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p class="lh-lg"><strong>Line Height LG:</strong> This sets the <code class="docs-code">line-height</code> value to <code class="docs-code">1.6</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p class="lh-xl"><strong>Line Height XL:</strong> This sets the <code class="docs-code">line-height</code> value to <code class="docs-code">1.92</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p class="lh-xxl"><strong>Line Height XXL:</strong> This sets the <code class="docs-code">line-height</code> value to <code class="docs-code">2</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p class="lh-unset"><strong>Line Height Unset:</strong> This sets the <code class="docs-code">line-height</code> value to <code class="docs-code">initial</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="lh-xs"><strong>Line Height XS:</strong> This sets the <code>line-height</code> value to <code>1</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="lh-sm"><strong>Line Height SM:</strong> This sets the <code>line-height</code> value to <code>1.15</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="lh-md"><strong>Line Height MD:</strong> This sets the <code>line-height</code> value to <code>1.3</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="lh-lg"><strong>Line Height LG:</strong> This sets the <code>line-height</code> value to <code>1.6</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="lh-xl"><strong>Line Height XL:</strong> This sets the <code>line-height</code> value to <code>1.92</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="lh-xxl"><strong>Line Height XXL:</strong> This sets the <code>line-height</code> value to <code>2</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="lh-unset"><strong>Line Height Unset:</strong> This sets the <code>line-height</code> value to <code>initial</code>. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
     </div>
 </section>
@@ -255,10 +255,10 @@ tags: foundation
 {% endhighlight %}
         <div class="docs-preview--example d-flex">
             <div class="docs-box hyphens-none ow-break-word w96 mr16">
-                This text will not be hyphenated when large words break—longer words are broken by <code class="docs-code bg-black-250">.ow-break-word</code>.
+                This text will not be hyphenated when large words break—longer words are broken by <code class="bg-black-250">.ow-break-word</code>.
             </div>
             <div class="docs-box hyphens-auto w96">
-                This text will be hyphenated when large words break. <code class="docs-code bg-black-250">.ow-break-word</code> shouldn’t be necessary since breaks are implied by hyphenation rules.
+                This text will be hyphenated when large words break. <code class="bg-black-250">.ow-break-word</code> shouldn’t be necessary since breaks are implied by hyphenation rules.
             </div>
         </div>
     </div>

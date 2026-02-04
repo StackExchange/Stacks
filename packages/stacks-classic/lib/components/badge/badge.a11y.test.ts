@@ -14,7 +14,7 @@ const variants = {
         "success",
         "featured",
     ],
-    users: ["admin", "moderator", "staff", "ai", "bot"],
+    users: ["admin", "moderator", "staff", "ai", "bot", "new"],
 };
 
 describe("badge", () => {

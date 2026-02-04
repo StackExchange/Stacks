@@ -1,9 +1,9 @@
 .s-table {
-    @ta-cell-border: var(--su-static1) solid var(--bc-medium);
+    @ta-cell-border: var(--su1) solid var(--bc-medium);
     @ta-columns: (100% / 12);
 
     --_ta-tbody-tbody-bc: var(--bc-medium);
-    --_ta-tbody-tbody-bw: var(--su-static2);
+    --_ta-tbody-tbody-bw: var(--su2);
     --_ta-tbody-tr-even-bg: unset;
     --_ta-td-bbw: 0;
     --_ta-td-bc: var(--bc-medium);
@@ -75,7 +75,7 @@
         --_ta-td-bc: transparent;
         --_ta-th-bc: transparent;
         --_ta-tbody-tbody-bc: transparent; // [1]
-        --_ta-tbody-tbody-bw: var(--su-static12); // [1]
+        --_ta-tbody-tbody-bw: var(--su12); // [1]
         --_ta-thead-th-bg: transparent;
 
         thead th {
@@ -142,7 +142,7 @@
                 border: 0;
                 cursor: pointer;
                 display: flex;
-                gap: var(--su-static4);
+                gap: var(--su4);
                 font-weight: inherit;
                 margin: calc(var(--_ta-th-p) * -1);
                 padding: var(--_ta-th-p);
@@ -244,14 +244,14 @@
         &.s-table--progress-bar {
             --_ta-td-blw: 0;
             --_ta-td-pl: 0;
-            --_ta-td-w: calc(var(--su-static12) * 10); // 120px
+            --_ta-td-w: calc(var(--su12) * 10); // 120px
         }
 
-        border: var(--su-static1) solid var(--_ta-td-bc);
-        border-bottom-width: var(--_ta-td-bbw, var(--su-static1));
-        border-left-width: var(--_ta-td-blw, var(--su-static1));
-        border-right-width: var(--_ta-td-brw, var(--su-static1));
-        border-top-width: var(--_ta-td-btw, var(--su-static1));
+        border: var(--su1) solid var(--_ta-td-bc);
+        border-bottom-width: var(--_ta-td-bbw, var(--su1));
+        border-left-width: var(--_ta-td-blw, var(--su1));
+        border-right-width: var(--_ta-td-brw, var(--su1));
+        border-top-width: var(--_ta-td-btw, var(--su1));
         font-size: var(--_ta-td-fs);
         font-weight: var(--_ta-td-fw);
         padding: var(--_ta-td-p);
@@ -279,8 +279,8 @@
             --_ta-th-w: calc(var(--su32) - var(--su2)); // 30px
         }
 
-        border: var(--su-static1) solid var(--_ta-th-bc);
-        border-width: var(--su-static1) var(--su-static1) var(--_ta-th-bbw);
+        border: var(--su1) solid var(--_ta-th-bc);
+        border-width: var(--su1) var(--su1) var(--_ta-th-bbw);
         font-size: var(--_ta-th-fs);
         padding: var(--_ta-th-p);
         padding-top: var(--_ta-th-pt, var(--_ta-th-p));
@@ -304,8 +304,8 @@
 
     tr {
         &:last-of-type {
-            --_ta-td-bbw: var(--su-static1);
-            --_ta-th-bbw: var(--su-static1);
+            --_ta-td-bbw: var(--su1);
+            --_ta-th-bbw: var(--su1);
         }
 
         &.is-disabled {
@@ -326,6 +326,10 @@
     max-width: 100%;
     width: 100%;
 }
+
+// TABLE LAYOUT ATOMIC CLASSES
+.tl-fixed { table-layout: fixed !important; }
+.tl-auto { table-layout: auto !important; }
 
 // [1]  This makes the border transparent, so we need to use whitespace
 //      to achieve the same effect a 2px gray border achieves.
