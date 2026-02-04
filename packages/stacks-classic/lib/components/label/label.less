@@ -1,6 +1,6 @@
 .s-label {
     --_la-c: unset;
-    --_la-fs: var(--fs-body2);
+    --_la-fs: var(--fs-body2); // 16
 
     // CONTEXTUAL STYLES
     &[for] {
@@ -28,65 +28,27 @@
     // MODIFIERS
     // Sizes
     &&__sm {
-        .size-styles(sm; la; @styles: fs);
-    }
-
-    &&__md {
-        .size-styles(md; la; @styles: fs);
+        --_la-fs: var(--fs-body1); // 14
     }
 
     &&__lg {
-        .size-styles(lg; la; @styles: fs);
-    }
-
-    &&__xl {
-        .size-styles(xl; la; @styles: fs);
+        --_la-fs: calc(var(--su16) + var(--su6)); // 22
     }
 
     // CHILD ELEMENTS
-    // Label status flag
-    // Is this form item required or optional? Flag the status for users.
-    // Default styling is optional.
-    &--status { // TODO convert to require parent class for styling [1]
-        --_la-status-b: none;
-        --_la-status-bg: var(--black-150);
-        --_la-status-fc: var(--fc-medium);
-
-        .highcontrast-mode({
-            --_la-status-b: var(--su-static1) solid currentColor;
-        });
-
-        // TODO: include child component class (without variant) on selector
-        &__beta {
-            --_la-status-bg: var(--blue-200);
-            --_la-status-fc: var(--blue-500);
-        }
-
-        &__new {
-            --_la-status-bg: var(--green-200);
-            --_la-status-fc: var(--green-500);
-        }
-
-        &__required {
-            --_la-status-bg: var(--red-200);
-            --_la-status-fc: var(--red-500);
-        }
-
-        background-color: var(--_la-status-bg);
-        border: var(--_la-status-b);
-        color: var(--_la-status-fc);
-
-        border-radius: 1000px;
-        font-size: var(--fs-caption);
+    .s-badge {
         font-weight: 400;
-        margin-left: var(--su4);
-        padding: var(--su2) var(--su8);
-        vertical-align: text-bottom;
+        margin-left: var(--su6);
+    }
+    &:has(.s-badge) {
+        display: flex;
+        align-items: center;
     }
 
     // TODO we shouldn't support descriptions and messages within labels
     .s-description,
     .s-input-message {
+        font-size: var(--fs-caption);
         font-weight: normal;
         margin-bottom: 0;
         margin-top: var(--su4);
@@ -95,10 +57,9 @@
 
     cursor: var(--_la-c);
     font-size: var(--_la-fs);
-
-    color: var(--fc-medium);
+    color: var(--black-500);
     font-family: inherit;
-    font-weight: 700;
+    font-weight: 600;
     padding: 0 var(--su2); // Helps the label visually line up with inputs
 }
 
@@ -109,8 +70,3 @@
     line-height: 0;
     text-decoration: none !important;
 }
-
-// [1] In Core, we have *many* instances of `.s-label--status` used without the `.s-label` parent.
-//     While I'd prefer to enforce the requirement of the parent class, it's too much of a lift at this moment.
-//     We'll come back to it, hopefully when we have a pill component to replace the current usage of `.s-label--status`
-//     without the base label class.

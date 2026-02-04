@@ -72,6 +72,10 @@
 - `s-input__xl` removed
 - **Nested inputs** html will require slight tweaking on consumers' side
 
+#### Labels
+- `s-label__md`, `s-label__xl` removed
+- `s-label--status`, `s-label--status__required`, `s-label--status__new`, `s-label--status__beta` removed. Use the new `s-badge` states instead.
+
 #### Loader
 - `Spinner` component replaced with new `Loader` component
 - `xs` and `xl` sized have been removed, leaving only the default, `sm`, and `lg` sizes
