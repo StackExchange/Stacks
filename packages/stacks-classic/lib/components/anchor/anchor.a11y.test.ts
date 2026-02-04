@@ -11,13 +11,7 @@ describe("anchors", () => {
     runA11yTests({
         baseClass: "s-anchors",
         modifiers: {
-            primary: [
-                "grayscale",
-                "muted",
-                "danger",
-                "inherit",
-                "underlined",
-            ],
+            primary: ["grayscale", "muted", "danger", "inherit", "underlined"],
         },
         children: {
             default: `A ${link(

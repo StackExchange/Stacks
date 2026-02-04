@@ -18,13 +18,7 @@ describe("anchors", () => {
     runVisualTests({
         baseClass: "s-anchors",
         modifiers: {
-            primary: [
-                "grayscale",
-                "muted",
-                "danger",
-                "inherit",
-                "underlined",
-            ],
+            primary: ["grayscale", "muted", "danger", "inherit", "underlined"],
         },
         children: {
             // children include nested anchors block to test for appropriate nested styling
