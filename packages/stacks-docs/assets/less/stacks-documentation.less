@@ -77,24 +77,24 @@ h2, h3 {
     }
 
     a:not([class]) {
-        // INTERACTION
+        // INTERACTION — use theme/fallback directly so hover/visited colors apply
         &:active,
         &:hover {
-            --_li-fc: var(--_li-fc-hover);
+            color: var(--theme-link-color-hover, var(--blue-400));
             text-decoration: underline !important;
         }
         &:visited {
-            color: var(--_li-fc-visited);
+            color: var(--theme-link-color-visited, var(--black-400));
         }
 
         &:hover:visited {
-            color: var(--_li-fc-hover);
+            color: var(--theme-link-color-hover, var(--blue-400));
             text-decoration: underline !important;
         }
 
-        color: var(--_li-fc);
+        color: var(--theme-link-color, var(--black-600));
         cursor: pointer;
-        user-select: auto;    
+        user-select: auto;
     }
 
     color: var(--black-500);
