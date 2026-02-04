@@ -141,6 +141,9 @@ The menu component has been updated to use new class names and structure. The fo
 #### Pagination
 - The next and previous button now uses an `ArrowRight` and `ArrowLeft` icon instead of text. To apply the new styling, use the class `.s-pagination--item__nav`. Since these buttons use icons to represent their behavior, make sure to include descriptive text for screen readers.
 
+#### Post Summary
+The Post Summary component has changed dramatically. Please refer to the docs for complete guidance.
+
 #### Popover
 - The new popovers no longer include an arrow element. The `s-popover--arrow` css class has been removed, and any markup using it (e.g. `<div class="s-popover--arrow"></div>`) should be deleted from the codebases as part of the migration.
 
