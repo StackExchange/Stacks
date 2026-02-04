@@ -178,7 +178,7 @@
 </script>
 
 <div
-    class="d-flex fd-column gy4"
+    class="s-form-group"
     class:has-error={state === "error"}
     class:has-success={state === "success"}
     class:has-warning={state === "warning"}
@@ -197,7 +197,7 @@
 
     {#if description}
         <!-- Renders a description between the label and input. -->
-        <p class="s-description mb0 mtn2" id={`${id}-description`}>
+        <p class="s-description" id={`${id}-description`}>
             {@render description()}
         </p>
     {/if}
