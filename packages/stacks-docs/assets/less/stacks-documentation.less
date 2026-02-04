@@ -191,6 +191,30 @@ h2, h3 {
 }
 
 .docs-table {
+    & &--context,
+    & &--do,
+    & &--dont {
+        border-color: var(--_dt-bc, var(--_dt-c));
+        color: var(--_dt-c);
+
+        background-color: transparent;
+        border-width: 0 0 var(--su3) 0;
+        border-style: solid;
+    }
+
+    & &--context {
+        --_dt-bc: var(--black-225);
+        --_dt-c: var(--black-500);
+    }
+
+    & &--dont {
+        --_dt-c: var(--red-400);
+    }
+
+    & &--do {
+        --_dt-c: var(--green-400);
+    }
+
     code {
         font-size: 1em;
     }
