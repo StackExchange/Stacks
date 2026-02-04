@@ -1,5 +1,15 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.23
+
+### Minor Changes
+
+- [#2137](https://github.com/StackExchange/Stacks/pull/2137) [`83464cd`](https://github.com/StackExchange/Stacks/commit/83464cd33e9c52393010ed44cae423583d21e5a1) Thanks [@dancormier](https://github.com/dancormier)! - Update Post Summary to SHINE styles
+
+### Patch Changes
+
+- [#2160](https://github.com/StackExchange/Stacks/pull/2160) [`e28cc80`](https://github.com/StackExchange/Stacks/commit/e28cc80685d91a4e636b850f9ecbe2ab2c1291b0) Thanks [@giamir](https://github.com/giamir)! - adjust button disabled state styles in HC modes
+
 ## 3.0.0-beta.22
 
 ### Minor Changes
