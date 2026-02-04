@@ -28,13 +28,14 @@ describe("Label", () => {
         expect(label).to.have.class("s-label__sm");
     });
 
-    it("should render the status element", () => {
+    it("should render the status badge when status and statusText are provided", () => {
         render(Label, {
             id: "example-input",
-            optional: true,
+            status: "warning",
+            statusText: "Draft",
             children,
         });
-        expect(screen.getByText("Optional")).to.have.class("s-label--status");
+        expect(screen.getByText("Draft")).to.exist;
     });
 
     it("should render the required status class on the status element", () => {
@@ -102,13 +103,21 @@ describe("Label", () => {
         expect(requiredSymbol).to.have.attr("title", "Obbligatorio");
     });
 
-    it("should localize the optional label status text when dedicated prop is specified", () => {
+    it("should not render the status badge when only status is provided", () => {
         render(Label, {
             id: "example-input",
-            optional: true,
-            i18nOptionalText: "Facoltativo",
+            status: "warning",
             children,
         });
-        expect(screen.getByText("Facoltativo")).to.exist;
+        expect(screen.queryByText("Draft")).to.be.null;
+    });
+
+    it("should render the status badge when only statusText is provided", () => {
+        render(Label, {
+            id: "example-input",
+            statusText: "Draft",
+            children,
+        });
+        expect(screen.getByText("Draft")).to.exist;
     });
 });
