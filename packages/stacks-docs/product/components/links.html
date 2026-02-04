@@ -40,7 +40,6 @@ tags: components
 <a class="s-link s-link__inherit" href="#">Inherit</a>
 <a class="s-link s-link__underlined" href="#">Underlined</a>
 <button class="s-link">Button Link</button>
-<a class="s-link s-link__visited" href="#">Visited</a>
 <a class="s-link s-link__dropdown" href="#">Links</a>
 {% endhighlight %}
         <div class="docs-preview--example">
@@ -52,16 +51,13 @@ tags: components
                 <a class="s-link s-link__inherit" href="#">Inherit</a>
                 <a class="s-link s-link__underlined" href="#">Underlined</a>
                 <button class="s-link">Button Link</button>
-                <a class="s-link s-link__visited" href="#">Visited</a>
                 <a class="s-link s-link__dropdown" href="#">Links</a>
             </div>
         </div>
     </div>
 
     {% header "h3", "Accessibility" %}
-
-    <p class="docs-copy">Any link with adjacent static text cannot use color alone to differentiate it as a link. If a link is next to static text and the only visual indication that it’s a link is the color of the text (often <code>blue-400</code>), it will require an underline in addition to the color. Reference <a href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F73">WCAG SC 1.4.1</a> for more details.</p>
-
+    <p class="docs-copy">Any link with adjacent static text cannot use color alone to differentiate it as a link. If a link is next to static text and the only visual indication that it’s a link is the color of the text, it will require an underline in addition to the color. Reference <a href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F73">WCAG SC 1.4.1</a> for more details.</p>
 </section>
 
 <section class="docs-section">
@@ -97,7 +93,7 @@ tags: components
 
     <div class="docs-preview">
 {% highlight html %}
-<div class="s-anchors s-anchors__default">…</div>
+<div class="s-anchors">…</div>
 <div class="s-anchors s-anchors__grayscale">…</div>
 <div class="s-anchors s-anchors__muted">…</div>
 <div class="s-anchors s-anchors__danger">…</div>
@@ -108,7 +104,7 @@ tags: components
             {% for item in links.descendent-anchors %}
                 {% if item.name != "base" %}
                     <div class="s-anchors s-anchors__{{ item.name }} s-card mb8 {{ item.exampleClasses }}">
-                        <p>There is a <a href="#">{{ item.name }} link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="https://stackoverflow.design/404-unvisited">another one</a>.</p>
+                        There is a <a href="#">{{ item.name }} link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="https://stackoverflow.design/404-unvisited">another one</a>.
                     </div>
                 {% endif %}
             {% endfor %}
@@ -120,29 +116,21 @@ tags: components
     <div class="docs-preview">
 {% highlight html %}
 <div class="s-anchors s-anchors__danger s-card">
-    <p>
-        All <a href="#">links</a> in this <a href="#">outer box</a>
-        are <a href="#">dangerous</a>.
-    </p>
+    All <a href="#">links</a> in this <a href="#">outer box</a>
+    are <a href="#">dangerous</a>.
     <div class="s-anchors s-anchors__default s-card w70 mt8">
-        <p>
-            But all <a href="#">links</a> in this <a href="#">inner box</a>
-            have the <a href="#">default</a> link color.
-        </p>
+        But all <a href="#">links</a> in this <a href="#">inner box</a>
+        have the <a href="#">default</a> link color.
     </div>
 </div>
 {% endhighlight %}
         <div class="docs-preview--example">
             <div class="s-anchors s-anchors__danger s-card">
-                <p>
-                    All <a href="#">links</a> in this <a href="#">outer box</a>
-                    are <a href="#">dangerous</a>.
-                </p>
+                All <a href="#">links</a> in this <a href="#">outer box</a>
+                are <a href="#">dangerous</a>.
                 <div class="s-anchors s-anchors__default s-card w70 mt8">
-                    <p>
-                        But all <a href="#">links</a> in this <a href="#">inner box</a>
-                        have the <a href="#">default</a> link color.
-                    </p>
+                    But all <a href="#">links</a> in this <a href="#">inner box</a>
+                    have the <a href="#">default</a> link color.
                 </div>
             </div>
         </div>
@@ -167,76 +155,3 @@ tags: components
         </div>
     </div>
 </section>
-
-<section class="docs-section">
-    {% header "h2", "Block link" %}
-    {% header "h3", "Block link classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col" class="s-table--cell3">Class</th>
-                    <th scope="col" class="s-table--cell2">Applied to</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                {% for item in links.block-links %}
-                    <tr>
-                        <th scope="row"><code>{{ item.class }}</code></th>
-                        <td><code>{{ item.applies }}</td>
-                        <td class="p8">{{ item.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</section>
-<section class="docs-section">
-    {% header "h3", "Block link examples" %}
-    <div class="docs-preview">
-{% highlight html %}
-<a class="s-block-link" href="#">…</a>
-<a class="s-block-link is-selected" href="#">…</a>
-{% endhighlight %}
-        <div class="docs-preview--example">
-            <div class="d-flex g16 fd-column ws3">
-                <a class="s-block-link s-block-link__left" href="#">Block link</a>
-                <a class="s-block-link is-selected" href="#">Selected block link</a>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="docs-section">
-    {% header "h3", "Block link right/left examples" %}
-    <div class="docs-preview">
-{% highlight html %}
-<a class="s-block-link s-block-link__right is-selected" href="#">…</a>
-<a class="s-block-link s-block-link__left is-selected" href="#">…</a>
-{% endhighlight %}
-        <div class="docs-preview--example">
-            <div class="d-flex g16 fd-column ws3">
-                <a class="s-block-link s-block-link__right is-selected" href="#">Selected block link right</a>
-                <a class="s-block-link s-block-link__left is-selected" href="#">Selected block link left</a>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="docs-section">
-    {% header "h3", "Block link danger examples" %}
-    <div class="docs-preview">
-{% highlight html %}
-<a class="s-block-link s-block-link__danger" href="#">…</a>
-<a class="s-block-link s-block-link__danger is-selected" href="#">…</a>
-<a class="s-block-link s-block-link__danger s-block-link__right is-selected" href="#">…</a>
-<a class="s-block-link s-block-link__danger s-block-link__left is-selected" href="#">…</a>
-{% endhighlight %}
-        <div class="docs-preview--example">
-            <div class="d-flex g16 fd-column ws3">
-                <a class="s-block-link s-block-link__danger" href="#">Block danger link</a>
-                <a class="s-block-link s-block-link__danger is-selected" href="#">Selected block danger link</a>
-                <a class="s-block-link s-block-link__danger s-block-link__right is-selected" href="#">Selected block danger link right</a>
-                <a class="s-block-link s-block-link__danger s-block-link__left is-selected" href="#">Selected block danger link left</a>
-            </div>
-        </div>
-    </div>
