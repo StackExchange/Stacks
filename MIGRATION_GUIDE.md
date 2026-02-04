@@ -78,6 +78,9 @@
 - `s-input__xl` removed
 - **Nested inputs** html will require slight tweaking on consumers' side
 
+#### Link
+- <a> elements no longer automatically have s-link styling, `s-link` needs to be an explict class of any <a> element that needs the styling
+
 #### Loader
 - `Spinner` component replaced with new `Loader` component
 - `xs` and `xl` sized have been removed, leaving only the default, `sm`, and `lg` sizes
