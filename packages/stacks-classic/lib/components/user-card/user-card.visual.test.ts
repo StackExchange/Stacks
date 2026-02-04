@@ -152,12 +152,12 @@ describe("user-card", () => {
         baseClass: "s-user-card",
         variants: ["sm", "lg"],
         children: {
-            base: getChild(),
+            "base": getChild(),
             "original-poster": getChild("original-poster"),
             "with-badges": getChild("with-badges"),
             "new-contributor": getChild("new-contributor"),
-            deleted: getChild("deleted"),
-            large: getChild("large"),
+            "deleted": getChild("deleted"),
+            "large": getChild("large"),
             "recognized-member": getChild("recognized-member"),
         },
         template: ({ component, testid }) => html`
