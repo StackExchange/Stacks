@@ -3,40 +3,39 @@
     import type { BadgeState } from "../Badge/Badge.svelte";
     import type { State } from "./PostSummary.svelte";
     import {
-        IconArchiveSm,
-        IconEyeSm,
-        IconNotInterestedSm,
-        IconPencilSm,
-        IconTackSm,
-        IconTrashSm,
-    } from "@stackoverflow/stacks-icons-legacy/icons";
+        IconCompose,
+        IconDocument,
+        IconEye,
+        IconFlag,
+        IconKey,
+    } from "@stackoverflow/stacks-icons/icons";
 
-    type PostSummaryState = Exclude<State, undefined>;
+    type PostSummaryStateBadge = Exclude<State, "deleted" | undefined>;
 
     /**
      * The state of the post, which affects its styling
-     * @type {"archived" | "closed" | "deleted" | "draft" | "deleted" | "pinned" | "review"} State
      */
-    export let state: PostSummaryState;
+    export let state: PostSummaryStateBadge;
 
     /**
      * Text to display in the badge
      */
     export let i18nText: string | undefined = undefined;
 
-    const STATE_ICON_MAP = {
-        archived: IconArchiveSm,
-        closed: IconNotInterestedSm,
-        deleted: IconTrashSm,
-        draft: IconPencilSm,
-        pinned: IconTackSm,
-        review: IconEyeSm,
+    const STATE_ICON_MAP: Record<PostSummaryStateBadge, string> = {
+        archived: IconDocument,
+        closed: IconFlag,
+        draft: IconCompose,
+        pinned: IconKey,
+        review: IconEye,
     };
 
-    const STATE_BADGE_MAP: Record<PostSummaryState, BadgeState> = {
-        archived: "tonal",
+    const STATE_BADGE_MAP: Record<
+        PostSummaryStateBadge,
+        BadgeState | undefined
+    > = {
+        archived: undefined,
         closed: "danger",
-        deleted: "danger",
         draft: "info",
         pinned: "tonal",
         review: "warning",
@@ -52,7 +51,4 @@
     type="state"
     icon={STATE_ICON_MAP[state]}
     state={STATE_BADGE_MAP[state]}
-    squared
-    important={state === "deleted" || state === "pinned"}
-    class="s-post-summary--stats-item"
 />

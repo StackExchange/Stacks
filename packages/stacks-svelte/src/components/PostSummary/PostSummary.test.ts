@@ -6,12 +6,13 @@ import PostSummary from "./PostSummary.svelte";
 const baseArgs = {
     answers: 10,
     href: "#",
-    timestamp: "10 minutes ago",
+    readableTimestamp: "asked 2 hr ago",
+    utcTimestamp: "2024-01-15T12:00:00.000Z",
     title: "Network graph of popular tags on Stack Overflow",
     userAvatar: "https://avatars.githubusercontent.com/u/1",
     userName: "Jane Smith",
     userProfileUrl: "#jane-smith",
-    userReputation: "1,000",
+    userReputation: 1000,
     views: 100,
     votes: 1,
     excerpt:
@@ -24,238 +25,308 @@ const snippet = createRawSnippet(() => ({
 
 describe("PostSummary", () => {
     it("should render the title as a link with the passed href", () => {
-        render(PostSummary, { props: baseArgs });
+        render(PostSummary, { ...baseArgs });
 
         const titleLink = screen.getByRole("link", { name: baseArgs.title });
         expect(titleLink).to.exist;
         expect(titleLink).to.have.attr("href", baseArgs.href);
-        expect(titleLink).to.have.text(` ${baseArgs.title}`);
+        expect(titleLink.textContent?.trim()).to.equal(baseArgs.title);
     });
 
     // classes
-    it("should render the excerpt with the appropriate size class", () => {
-        render(PostSummary, { props: { ...baseArgs, excerptSize: "md" } });
+    it("should render the excerpt with expected number of lines", () => {
+        render(PostSummary, { ...baseArgs, excerptLines: 2 });
 
         const excerpt = screen.getByText(baseArgs.excerpt);
         expect(excerpt).to.exist;
-        expect(excerpt).to.have.class("s-post-summary--content-excerpt__md");
-        expect(excerpt).to.have.text(`${baseArgs.excerpt}`);
+        expect(excerpt).to.have.class("s-post-summary--excerpt");
+        expect(excerpt).to.have.class("v-truncate2");
     });
 
-    it("should include the minimal class", () => {
-        render(PostSummary, { props: { ...baseArgs, minimal: true } });
+    it("should not render the excerpt when excerptLines is 0", () => {
+        render(PostSummary, { ...baseArgs, excerptLines: 0 });
+
+        const excerptContainer = document.querySelector(
+            ".s-post-summary--excerpt"
+        );
+        expect(excerptContainer).not.to.exist;
+    });
+
+    it("should include the answered class when acceptedAnswer is true", () => {
+        render(PostSummary, { ...baseArgs, acceptedAnswer: true });
 
         const postSummary = document.querySelector(".s-post-summary");
         expect(postSummary).to.exist;
-        expect(postSummary).to.have.class("s-post-summary__minimal");
+        expect(postSummary).to.have.class("s-post-summary__answered");
     });
 
-    it("should include the appropriate state class", () => {
-        render(PostSummary, { props: { ...baseArgs, state: "deleted" } });
+    it("should include the appropriate state class when state is deleted", () => {
+        render(PostSummary, { ...baseArgs, state: "deleted" });
 
         const postSummary = document.querySelector(".s-post-summary");
         expect(postSummary).to.exist;
         expect(postSummary).to.have.class("s-post-summary__deleted");
     });
 
-    it("should include the watched class when ignored is true", () => {
-        render(PostSummary, { props: { ...baseArgs, ignored: true } });
+    it("should apply the class prop to the root element", () => {
+        render(PostSummary, { ...baseArgs, class: "my-custom-class" });
 
         const postSummary = document.querySelector(".s-post-summary");
         expect(postSummary).to.exist;
-        expect(postSummary).to.have.class("s-post-summary__ignored");
-    });
-
-    it("should include the watched class when watched is true", () => {
-        render(PostSummary, { props: { ...baseArgs, watched: true } });
-
-        const postSummary = document.querySelector(".s-post-summary");
-        expect(postSummary).to.exist;
-        expect(postSummary).to.have.class("s-post-summary__watched");
-    });
-
-    it("should render the views stats item with the appropriate hotness class", () => {
-        render(PostSummary, {
-            props: { ...baseArgs, hotness: "hot" },
-        });
-
-        const views = document.querySelector(".is-hot");
-        expect(views).to.exist;
+        expect(postSummary).to.have.class("s-post-summary");
+        expect(postSummary).to.have.class("my-custom-class");
     });
 
     // stats items
     it("should render the state badge", () => {
-        render(PostSummary, { props: { ...baseArgs, state: "pinned" } });
+        render(PostSummary, { ...baseArgs, state: "pinned" });
 
-        const stateBadge = screen.getByText("Pinned");
-        expect(stateBadge).to.exist;
+        const stateBadges = screen.getAllByText("Pinned");
+        expect(stateBadges.length).to.be.at.least(1);
+        expect(stateBadges[0]).to.exist;
     });
 
     it("should render the votes stats item", () => {
-        render(PostSummary, { props: baseArgs });
+        render(PostSummary, { ...baseArgs });
 
-        const votes = screen.getByText("vote").parentElement;
-        expect(votes).to.have.text("1 vote");
+        const votesContainer = document.querySelector(
+            ".s-post-summary--stats-votes"
+        );
+        expect(votesContainer).to.exist;
+        expect(votesContainer?.textContent).to.include("1");
+        expect(votesContainer?.textContent).to.include("vote");
     });
 
     it("should render the answers stats item", () => {
-        render(PostSummary, { props: baseArgs });
+        render(PostSummary, { ...baseArgs });
 
-        const answers = screen.getByText("answers").parentElement;
-        expect(answers).to.have.text("10 answers");
+        const answersContainers = document.querySelectorAll(
+            ".s-post-summary--stats-answers"
+        );
+        expect(answersContainers.length).to.be.at.least(1);
+        expect(answersContainers[0]?.textContent).to.include("10");
+        expect(answersContainers[0]?.textContent).to.include("answers");
     });
 
     it("should render the views stats item", () => {
-        render(PostSummary, { props: baseArgs });
+        render(PostSummary, { ...baseArgs });
 
-        const views = screen.getByText("views").parentElement;
-        expect(views).to.have.text("100 views");
+        const viewsItem = screen.getByText((content, el) => {
+            return (
+                el?.classList.contains("s-post-summary--stats-item") === true &&
+                content.includes("views")
+            );
+        });
+        expect(viewsItem).to.exist;
+        expect(viewsItem.textContent).to.include("100");
+        expect(viewsItem.textContent).to.include("views");
     });
 
     it("should render the read time", () => {
-        render(PostSummary, { props: { ...baseArgs, readTime: "5 min read" } });
+        render(PostSummary, { ...baseArgs, readTime: "5 min read" });
 
         const readTime = screen.getByText("5 min read");
         expect(readTime).to.exist;
     });
 
     it("should render the bounty", () => {
-        render(PostSummary, { props: { ...baseArgs, bounty: 50 } });
+        render(PostSummary, { ...baseArgs, bounty: 50 });
 
-        const bounty = screen.getByText("+50");
-        expect(bounty).to.exist;
-    });
-
-    // title-adjacent
-    it("should render the activity indicator before the title", () => {
-        render(PostSummary, {
-            props: { ...baseArgs, activityIndicator: true },
-        });
-
-        const title = document.querySelector("h3");
-        const activityIndicator = title?.querySelector(".s-activity-indicator");
-        expect(activityIndicator).to.exist;
-        expect(activityIndicator).to.have.text(`New activity`);
-    });
-
-    it("should render the shield icon before the title", () => {
-        render(PostSummary, {
-            props: { ...baseArgs, gated: true },
-        });
-
-        const title = document.querySelector("h3");
-        const shield = title?.querySelector(".iconShield");
-        expect(shield).to.exist;
-    });
-
-    // slots
-    it("should render the tags slot", () => {
-        // @ts-expect-error $$slots is used to pass children while component is still using Svelte 4 syntax
-        render(PostSummary, { ...baseArgs, $$slots: { tags: snippet } });
-
-        const tags = document.querySelector(".s-post-summary--meta-tags");
-        expect(tags).to.exist;
-        expect(tags).to.have.text(`test snippet`);
-    });
-
-    it("should render the actionMenu slot", () => {
-        // @ts-expect-error $$slots is used to pass children while component is still using Svelte 4 syntax
-        render(PostSummary, { ...baseArgs, $$slots: { actionMenu: snippet } });
-
-        const contentMenuBtn = document.querySelector(
-            ".s-post-summary--content-menu-button"
+        const bountyContainer = document.querySelector(
+            ".s-post-summary--stats-bounty"
         );
-        expect(contentMenuBtn).to.exist;
+        expect(bountyContainer).to.exist;
+        expect(bountyContainer?.textContent).to.include("+");
+        expect(bountyContainer?.textContent).to.include("50");
     });
 
-    it("should render the answer previews slot", () => {
+    it("should render the comments stats item when comments is provided", () => {
+        render(PostSummary, { ...baseArgs, comments: 5 });
+
+        const commentsItem = screen.getByText((content, el) => {
+            return (
+                el?.classList.contains("s-post-summary--stats-item") === true &&
+                content.includes("comments")
+            );
+        });
+        expect(commentsItem).to.exist;
+        expect(commentsItem.textContent).to.include("5");
+        expect(commentsItem.textContent).to.include("comments");
+    });
+
+    // gated
+    it("should render the shield icon before the title when gated", () => {
+        render(PostSummary, { ...baseArgs, gated: true });
+
+        const titleLink = screen.getByRole("link", { name: baseArgs.title });
+        const icon = titleLink.querySelector("svg");
+        expect(icon).to.exist;
+    });
+
+    // content type
+    it("should render the content type with the correct props", () => {
         render(PostSummary, {
             ...baseArgs,
-            // @ts-expect-error $$slots is used to pass children while component is still using Svelte 4 syntax
-            $$slots: {
-                answerPreviews: createRawSnippet(() => ({
-                    render: () => `<div id="answerPreviews">answers</div>`,
-                })),
-            },
-        });
-
-        const answerPreviews = document.querySelector("#answerPreviews");
-        expect(answerPreviews).to.exist;
-        expect(answerPreviews).to.have.text(`answers`);
-    });
-
-    // i18n
-    it("should render the activity indicator with the localized text", () => {
-        render(PostSummary, {
-            props: {
-                ...baseArgs,
-                activityIndicator: true,
-                i18nActivityIndicatorText: "Nueva actividad",
-            },
-        });
-
-        const activityIndicator = screen.getByText("Nueva actividad");
-        expect(activityIndicator).to.exist;
-    });
-
-    it("should render the action menu button with the localized text", () => {
-        render(PostSummary, {
-            ...baseArgs,
-            i18nActionMenuButtonText: "Menú",
-            // @ts-expect-error $$slots is used to pass children while component is still using Svelte 4 syntax
-            $$slots: {
-                actionMenu: snippet,
-            },
-        });
-
-        const menuButton = screen.getByRole("button", { name: "Menú" });
-        expect(menuButton).to.exist;
-    });
-
-    it("should render the shield icon with the localized text", () => {
-        render(PostSummary, {
-            props: {
-                ...baseArgs,
-                gated: true,
-                i18nGatedTitle: "bloqueado",
-            },
-        });
-
-        const shield = screen.getByText("bloqueado");
-        expect(shield).to.exist;
-    });
-
-    it("should render the content type component with the correct props", () => {
-        render(PostSummary, {
-            props: {
-                ...baseArgs,
-                contentType: {
-                    name: "announcement",
-                    url: "#announcement",
-                },
+            contentType: {
+                name: "announcement",
+                url: "#announcement",
             },
         });
 
         const contentTypeLink = screen.getByText("Announcement");
-        const contentType = contentTypeLink.parentElement;
+        const contentType = contentTypeLink.closest(
+            ".s-post-summary--content-type"
+        );
         expect(contentType).to.exist;
-        expect(contentType).to.have.class("s-post-summary--content-type");
         expect(contentTypeLink).to.have.attr("href", "#announcement");
     });
 
-    it("should render the content type with the localized text", () => {
+    // snippets
+    it("should render the answerPreviews snippet", () => {
+        const answerPreviewsSnippet = createRawSnippet(() => ({
+            render: () => `<div id="answerPreviews">answers</div>`,
+        }));
         render(PostSummary, {
-            props: {
-                ...baseArgs,
-                contentType: {
-                    name: "announcement",
-                    url: "#announcement",
-                },
-                i18nContentTypeText: "Anuncio",
+            ...baseArgs,
+            answerPreviews: answerPreviewsSnippet,
+        });
+
+        const answerPreviewsContainer = document.querySelector(
+            ".s-post-summary--answers"
+        );
+        expect(answerPreviewsContainer).to.exist;
+        const answerPreviews = document.querySelector("#answerPreviews");
+        expect(answerPreviews).to.exist;
+        expect(answerPreviews).to.have.text("answers");
+    });
+
+    it("should render the tags snippet", () => {
+        render(PostSummary, { ...baseArgs, tags: snippet });
+
+        const tagsContainer = document.querySelector(".s-post-summary--tags");
+        expect(tagsContainer).to.exist;
+        expect(tagsContainer?.textContent?.trim()).to.include("test snippet");
+    });
+
+    // i18n
+    it("should render the accepted answer icon with i18nAcceptedAnswerIconTitle", () => {
+        render(PostSummary, {
+            ...baseArgs,
+            acceptedAnswer: true,
+            i18nAcceptedAnswerIconTitle: "Respuesta aceptada",
+        });
+
+        const titleText = screen.getByText("Respuesta aceptada");
+        expect(titleText).to.exist;
+    });
+
+    it("should render the answers unit with i18nAnswersUnit", () => {
+        render(PostSummary, {
+            ...baseArgs,
+            i18nAnswersUnit: "respuestas",
+        });
+
+        const answersUnit = screen.getAllByText("respuestas");
+        expect(answersUnit.length).to.be.at.least(1);
+    });
+
+    it("should render the bounty unit with i18nBountyUnit", () => {
+        render(PostSummary, {
+            ...baseArgs,
+            bounty: 50,
+            i18nBountyUnit: "recompensa",
+        });
+
+        const bountyUnits = screen.getAllByText("recompensa");
+        expect(bountyUnits.length).to.be.at.least(1);
+    });
+
+    it("should render the comments unit with i18nCommentsUnit", () => {
+        render(PostSummary, {
+            ...baseArgs,
+            comments: 5,
+            i18nCommentsUnit: "comentarios",
+        });
+
+        const commentsItem = screen.getByText((content, el) => {
+            return (
+                el?.classList.contains("s-post-summary--stats-item") === true &&
+                content.includes("comentarios")
+            );
+        });
+        expect(commentsItem).to.exist;
+        expect(commentsItem?.textContent).to.include("comentarios");
+    });
+
+    it("should render the content type with i18nContentTypeText", () => {
+        render(PostSummary, {
+            ...baseArgs,
+            contentType: {
+                name: "announcement",
+                url: "#announcement",
             },
+            i18nContentTypeText: "Anuncio",
         });
 
         const contentTypeLink = screen.getByText("Anuncio");
         expect(contentTypeLink).to.exist;
+    });
+
+    it("should render the shield icon with i18nGatedTitle", () => {
+        render(PostSummary, {
+            ...baseArgs,
+            gated: true,
+            i18nGatedTitle: "bloqueado",
+        });
+
+        const titleText = screen.getByText("bloqueado");
+        expect(titleText).to.exist;
+    });
+
+    it("should render the reputation bling with i18nReputationBlingName", () => {
+        render(PostSummary, {
+            ...baseArgs,
+            i18nReputationBlingName: "puntos de reputación",
+        });
+
+        const blingName = screen.getByText("puntos de reputación");
+        expect(blingName).to.exist;
+    });
+
+    it("should render the state badge with i18nStateBadgeText", () => {
+        render(PostSummary, {
+            ...baseArgs,
+            state: "pinned",
+            i18nStateBadgeText: "Fijado",
+        });
+
+        const stateBadgeText = screen.getAllByText("Fijado");
+        expect(stateBadgeText.length).to.be.at.least(1);
+    });
+
+    it("should render the views unit with i18nViewsUnit", () => {
+        render(PostSummary, {
+            ...baseArgs,
+            i18nViewsUnit: "vistas",
+        });
+
+        const viewsUnit = screen.getByText((content, el) => {
+            return (
+                el?.classList.contains("s-post-summary--stats-item") === true &&
+                content.includes("vistas")
+            );
+        });
+        expect(viewsUnit).to.exist;
+        expect(viewsUnit?.textContent).to.include("vistas");
+    });
+
+    it("should render the votes unit with i18nVotesUnit", () => {
+        render(PostSummary, {
+            ...baseArgs,
+            i18nVotesUnit: "voto",
+        });
+
+        const votesUnit = screen.getByText("voto");
+        expect(votesUnit).to.exist;
     });
 });
