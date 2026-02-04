@@ -10,7 +10,7 @@ tags: components
 <section class="docs-section">
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell4" scope="col">Class</th>
@@ -21,7 +21,7 @@ tags: components
             <tbody class="fs-caption">
                 {% for item in popovers.automatic %}
                     <tr>
-                        <th scope="row"><code class="docs-code">{{ item.class }}</code></th>
+                        <th scope="row"><code>{{ item.class }}</code></th>
                         <td>{{ item.applies }}</td>
                         <td class="p8">{{ item.description }}</td>
                     </tr>
@@ -37,7 +37,7 @@ tags: components
 
     {% header "h3", "Interactive Attributes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell5" scope="col">Attribute</th>
@@ -47,56 +47,56 @@ tags: components
             </thead>
             <tbody class="fs-caption">
                 <tr>
-                    <th scope="row"><code class="docs-code">id="{POPOVER_ID}"</code></th>
-                    <td><code class="docs-code">.s-popover</code></td>
-                    <td class="p8">A unique id that the popover’s toggling element can target. Matches the value of <code class="docs-code">[aria-controls]</code> on the toggling element.</td>
+                    <th scope="row"><code>id="{POPOVER_ID}"</code></th>
+                    <td><code>.s-popover</code></td>
+                    <td class="p8">A unique id that the popover’s toggling element can target. Matches the value of <code>[aria-controls]</code> on the toggling element.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">data-controller="s-popover"</code></th>
+                    <th scope="row"><code>data-controller="s-popover"</code></th>
                     <td>Controller element</td>
                     <td class="p8">Wires up the element to the popover controller. This may be a toggling element or a wrapper element.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">data-s-popover-reference-selector="[css selector]"</code></th>
+                    <th scope="row"><code>data-s-popover-reference-selector="[css selector]"</code></th>
                     <td>Controller element</td>
                     <td class="p8"><span class="s-label--status ml0">Optional</span> Designates the element to use as the popover reference. If left unset, the value defaults to the controller element.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">aria-controls="{POPOVER_ID}"</code></th>
+                    <th scope="row"><code>aria-controls="{POPOVER_ID}"</code></th>
                     <td>Reference element</td>
                     <td class="p8">Associates the element to the desired popover element.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">data-action="s-popover#toggle"</code></th>
+                    <th scope="row"><code>data-action="s-popover#toggle"</code></th>
                     <td>Toggling element</td>
                     <td class="p8">Wires up the element to toggle the visibility of a generic popover.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">data-s-popover-toggle-class="[class list]"</code></th>
+                    <th scope="row"><code>data-s-popover-toggle-class="[class list]"</code></th>
                     <td>Controller element</td>
                     <td class="p8">Adds an optional space-delineated list of classes to be toggled on the originating element when the popover is shown or hidden.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">data-s-popover-placement="<a href="https://popper.js.org/popper-documentation.html#Popper.placements">[placement]</a>"</code></th>
+                    <th scope="row"><code>data-s-popover-placement="<a href="https://popper.js.org/popper-documentation.html#Popper.placements">[placement]</a>"</code></th>
                     <td>Controller element</td>
-                    <td class="p8 lh-lg">Dictates where to place the popover in relation to the reference element. By default, the placement value is <code class="docs-code">bottom</code>. Accepted placements are <code class="docs-code">auto</code>, <code class="docs-code">top</code>, <code class="docs-code">right</code>, <code class="docs-code">bottom</code>, <code class="docs-code">left</code>. Each placement can take an additional <code class="docs-code">-start</code> and <code class="docs-code">-end</code> variation.</td>
+                    <td class="p8 lh-lg">Dictates where to place the popover in relation to the reference element. By default, the placement value is <code>bottom</code>. Accepted placements are <code>auto</code>, <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>. Each placement can take an additional <code>-start</code> and <code>-end</code> variation.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">data-s-popover-auto-show="[true|false]"</code></th>
+                    <th scope="row"><code>data-s-popover-auto-show="[true|false]"</code></th>
                     <td>Controller element</td>
-                    <td class="p8 lh-lg"><span class="s-label--status ml0">Optional</span> If <code class="docs-code">true</code>, the popover will appear immediately when the Stacks controller is first connected.  This should be used in place of <code class="docs-code">.is-visible</code> for displaying popovers on load as it will prevent the popover from appearing before it has been correctly positioned.</td>
+                    <td class="p8 lh-lg"><span class="s-label--status ml0">Optional</span> If <code>true</code>, the popover will appear immediately when the Stacks controller is first connected.  This should be used in place of <code>.is-visible</code> for displaying popovers on load as it will prevent the popover from appearing before it has been correctly positioned.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code lh-lg">data-s-popover-hide-on-outside-click="[always|never|if-in-viewport|after-dismissal]"</code></th>
+                    <th scope="row"><code>data-s-popover-hide-on-outside-click="[always|never|if-in-viewport|after-dismissal]"</code></th>
                     <td>Controller element</td>
                     <td class="p8 lh-lg"><span class="s-label--status ml0">Optional</span>
                         <ul>
-                            <li>If <code class="docs-code">always</code>, the popover will appear disappear when outside clicks occur.</li>
-                            <li>If <code class="docs-code">if-in-viewport</code>, the popover will appear disappear when outside clicks occur and the popover is currently in the browser's visible viewport.</li>
-                            <li>If <code class="docs-code">never</code>, the popover will not disappear on outside clicks and will only be dismissed through other means, e.g. <code class="docs-code">data-target="s-popover#hide"</code>.</li>
-                            <li>If <code class="docs-code">after-dismissal</code>, the popover will not disappear on outside clicks unless it has been dismissed some other way at least once.</li>
+                            <li>If <code>always</code>, the popover will appear disappear when outside clicks occur.</li>
+                            <li>If <code>if-in-viewport</code>, the popover will appear disappear when outside clicks occur and the popover is currently in the browser's visible viewport.</li>
+                            <li>If <code>never</code>, the popover will not disappear on outside clicks and will only be dismissed through other means, e.g. <code>data-target="s-popover#hide"</code>.</li>
+                            <li>If <code>after-dismissal</code>, the popover will not disappear on outside clicks unless it has been dismissed some other way at least once.</li>
                         </ul>
-                        <p>If left unset, defaults to <code class="docs-code">always</code>.</p>
+                        <p>If left unset, defaults to <code>always</code>.</p>
                     </td>
                 </tr>
             </tbody>
@@ -105,7 +105,7 @@ tags: components
 
     {% header "h3", "Interactive Events" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell5" scope="col">Event</th>
@@ -115,22 +115,22 @@ tags: components
             </thead>
             <tbody class="fs-caption">
                 <tr>
-                    <th scope="row"><code class="docs-code">s-popover:show</code></th>
+                    <th scope="row"><code>s-popover:show</code></th>
                     <td>Controller element</td>
-                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before showing and positioning the popover. This fires before the popover is first displayed to the user, and can be used to create or initialize the popover element. Calling <code class="docs-code">.preventDefault()</code> cancels the display of the popover.</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before showing and positioning the popover. This fires before the popover is first displayed to the user, and can be used to create or initialize the popover element. Calling <code>.preventDefault()</code> cancels the display of the popover.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">s-popover:shown</code></th>
+                    <th scope="row"><code>s-popover:shown</code></th>
                     <td>Controller element</td>
                     <td>Fires immediately after showing the popover.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">s-popover:hide</code></th>
+                    <th scope="row"><code>s-popover:hide</code></th>
                     <td>Controller element</td>
-                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before hiding the popover.  Calling <code class="docs-code">.preventDefault()</code> prevents the removal of the popover.</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before hiding the popover.  Calling <code>.preventDefault()</code> prevents the removal of the popover.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">s-popover:hidden</code></th>
+                    <th scope="row"><code>s-popover:hidden</code></th>
                     <td>Controller element</td>
                     <td>Fires immediately after hiding the popover.</td>
                 </tr>
@@ -138,7 +138,7 @@ tags: components
         </table>
     </div>
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell5" scope="col">event.detail</th>
@@ -148,9 +148,9 @@ tags: components
             </thead>
             <tbody class="fs-caption">
                 <tr>
-                    <th scope="row"><code class="docs-code">dispatcher</code></th>
-                    <td><code class="docs-code">s-popover:*</code></td>
-                    <td>Contains the <code class="docs-code">Element</code> that initiated the event. For instance, the button clicked to show, the element clicked outside the popover that caused it to hide, etc.</td>
+                    <th scope="row"><code>dispatcher</code></th>
+                    <td><code>s-popover:*</code></td>
+                    <td>Contains the <code>Element</code> that initiated the event. For instance, the button clicked to show, the element clicked outside the popover that caused it to hide, etc.</td>
                 </tr>
             </tbody>
         </table>
@@ -222,7 +222,7 @@ tags: components
     </div>
 
     {% header "h4", "Default interactivity" %}
-    <p class="docs-copy">To enable interactive popovers, you will need to add the above attributes to the popover’s originating button. Custom positioning can be specified using the <code class="docs-code">data-s-popover-placement</code>. In the following example, we’ve chosen <code class="docs-code">bottom-start</code>. No positioning classes need to be added to your markup, only the data attributes.</p>
+    <p class="docs-copy">To enable interactive popovers, you will need to add the above attributes to the popover’s originating button. Custom positioning can be specified using the <code>data-s-popover-placement</code>. In the following example, we’ve chosen <code>bottom-start</code>. No positioning classes need to be added to your markup, only the data attributes.</p>
     <p class="docs-copy">To promote being able to tab to an open popover, it’s best to place the popover immediately after the toggling button in the markup as siblings.</p>
 
     <div class="docs-preview">
@@ -265,7 +265,7 @@ tags: components
     </div>
 
     {% header "h4", "Dismissible" %}
-    <p class="docs-copy">In the case of new feature callouts, it may be appropriate to include an explicit dismiss button. You can add one using the styling provided by <code class="docs-code">.s-popover--close</code>.</p>
+    <p class="docs-copy">In the case of new feature callouts, it may be appropriate to include an explicit dismiss button. You can add one using the styling provided by <code>.s-popover--close</code>.</p>
     <p class="docs-copy">In order for to close the popover with an explicit close button, you’ll need to add the controller to a parent as illustrated in the following example code:</p>
     <div class="docs-preview">
  {% highlight html %}
@@ -351,7 +351,7 @@ Stacks.application.register("section", class extends Stacks.StacksController {
 
     {% header "h4", "JavaScript configuration (popovers)" %}
     <p class="docs-copy">Situations may also arise where popovers need to be attached to an element after the document is rendered. For example, a button could have a contextual menu that is too expensive to serve up on every page load.</p>
-    <p class="docs-copy">Popovers can be attached to an element after the fact using <code class="docs-code">Stacks.attachPopover</code>.</p>
+    <p class="docs-copy">Popovers can be attached to an element after the fact using <code>Stacks.attachPopover</code>.</p>
     <p class="docs-copy">This method takes three parameters, the element to attach the popover to, the popover either as an element or an HTML string, and optional options for displaying the popover.</p>
 
     <div class="docs-preview">
@@ -382,11 +382,11 @@ Stacks.application.register("actions", class extends Stacks.StacksController {
 <section class="docs-section">
     {% header "h2", "Hover tooltips" %}
 
-    <p class="docs-copy">When a popover is intended only for display as an on-hover tooltip and contains no interactive text, the <code class="docs-code">s-tooltip</code> controller can be used in place of <code class="docs-code">s-popover</code>. This is a separate controller that can be used alongside <code class="docs-code">s-popover</code> on a single target element.</p>
+    <p class="docs-copy">When a popover is intended only for display as an on-hover tooltip and contains no interactive text, the <code>s-tooltip</code> controller can be used in place of <code>s-popover</code>. This is a separate controller that can be used alongside <code>s-popover</code> on a single target element.</p>
 
     {% header "h3", "Hover attributes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell5" scope="col">Attribute</th>
@@ -396,46 +396,46 @@ Stacks.application.register("actions", class extends Stacks.StacksController {
             </thead>
             <tbody class="fs-caption">
                 <tr>
-                    <th scope="row"><code class="docs-code">id="{POPOVER_ID}"</code></th>
-                    <td><code class="docs-code">.s-popover</code></td>
-                    <td class="p8">A unique id that the popover’s toggling element can target. Matches the value of <code class="docs-code">[aria-describedby]</code> on the toggling element.</td>
+                    <th scope="row"><code>id="{POPOVER_ID}"</code></th>
+                    <td><code>.s-popover</code></td>
+                    <td class="p8">A unique id that the popover’s toggling element can target. Matches the value of <code>[aria-describedby]</code> on the toggling element.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">data-controller="s-tooltip"</code></th>
+                    <th scope="row"><code>data-controller="s-tooltip"</code></th>
                     <td>Controller element</td>
                     <td class="p8">Wires up the element to the tooltip controller.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">data-s-tooltip-reference-selector="[css selector]"</code></th>
+                    <th scope="row"><code>data-s-tooltip-reference-selector="[css selector]"</code></th>
                     <td>Controller element</td>
                     <td class="p8"><span class="s-label--status ml0">Optional</span> Designates the element to use as the tooltip reference. If left unset, the value defaults to the controller element.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">aria-describedby="{POPOVER_ID}"</code></th>
+                    <th scope="row"><code>aria-describedby="{POPOVER_ID}"</code></th>
                     <td>Reference element</td>
                     <td class="p8">Associates the element to the desired popover element.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">title="{TITLE}"</code></th>
+                    <th scope="row"><code>title="{TITLE}"</code></th>
                     <td>Controller element</td>
-                    <td class="p8">If <code class="docs-code">aria-describedby</code> is not present or valid, and the title attribute exists, the title will be removed from the element and be used to create a popover immediately after the element. All content will be escaped and inserted as text.</td>
+                    <td class="p8">If <code>aria-describedby</code> is not present or valid, and the title attribute exists, the title will be removed from the element and be used to create a popover immediately after the element. All content will be escaped and inserted as text.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">data-s-tooltip-html-title="{TITLE}"</code></th>
+                    <th scope="row"><code>data-s-tooltip-html-title="{TITLE}"</code></th>
                     <td>Controller element</td>
-                    <td class="p8">Acts the exact same as the <code class="docs-code">title</code> attribute, but inserts the raw text directly as html. If both this and the <code class="docs-code">title</code> attribute exist on the element, this attribute will be used.</td>
+                    <td class="p8">Acts the exact same as the <code>title</code> attribute, but inserts the raw text directly as html. If both this and the <code>title</code> attribute exist on the element, this attribute will be used.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">data-s-tooltip-placement="<a href="https://popper.js.org/popper-documentation.html#Popper.placements">[placement]</a>"</code></th>
+                    <th scope="row"><code>data-s-tooltip-placement="<a href="https://popper.js.org/popper-documentation.html#Popper.placements">[placement]</a>"</code></th>
                     <td>Controller element</td>
-                    <td class="p8 lh-lg">Dictates where to place the popover in relation to the reference element. By default, the placement value is <code class="docs-code">bottom</code>. Accepted placements are <code class="docs-code">auto</code>, <code class="docs-code">top</code>, <code class="docs-code">right</code>, <code class="docs-code">bottom</code>, <code class="docs-code">left</code>. Each placement can take an additional <code class="docs-code">-start</code> and <code class="docs-code">-end</code> variation.</td>
+                    <td class="p8 lh-lg">Dictates where to place the popover in relation to the reference element. By default, the placement value is <code>bottom</code>. Accepted placements are <code>auto</code>, <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>. Each placement can take an additional <code>-start</code> and <code>-end</code> variation.</td>
                 </tr>
             </tbody>
         </table>
     </div>
     {% header "h3", "Hover events" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell5" scope="col">Event</th>
@@ -445,22 +445,22 @@ Stacks.application.register("actions", class extends Stacks.StacksController {
             </thead>
             <tbody class="fs-caption">
                 <tr>
-                    <th scope="row"><code class="docs-code">s-tooltip:show</code></th>
+                    <th scope="row"><code>s-tooltip:show</code></th>
                     <td>Controller element</td>
-                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before showing and positioning the tooltip. This fires before the tooltip is first displayed to the user, and can be used to create or initialize the tooltip element. Calling <code class="docs-code">.preventDefault()</code> cancels the display of the popover.</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before showing and positioning the tooltip. This fires before the tooltip is first displayed to the user, and can be used to create or initialize the tooltip element. Calling <code>.preventDefault()</code> cancels the display of the popover.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">s-tooltip:shown</code></th>
+                    <th scope="row"><code>s-tooltip:shown</code></th>
                     <td>Controller element</td>
                     <td>Fires immediately after showing the tooltip.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">s-tooltip:hide</code></th>
+                    <th scope="row"><code>s-tooltip:hide</code></th>
                     <td>Controller element</td>
-                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before hiding the tooltip.  Calling <code class="docs-code">.preventDefault()</code> prevents the removal of the tooltip.</td>
+                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before hiding the tooltip.  Calling <code>.preventDefault()</code> prevents the removal of the tooltip.</td>
                 </tr>
                 <tr>
-                    <th scope="row"><code class="docs-code">s-tooltip:hidden</code></th>
+                    <th scope="row"><code>s-tooltip:hidden</code></th>
                     <td>Controller element</td>
                     <td>Fires immediately after hiding the tooltip.</td>
                 </tr>
@@ -468,7 +468,7 @@ Stacks.application.register("actions", class extends Stacks.StacksController {
         </table>
     </div>
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell5" scope="col">event.detail</th>
@@ -478,18 +478,18 @@ Stacks.application.register("actions", class extends Stacks.StacksController {
             </thead>
             <tbody class="fs-caption">
                 <tr>
-                    <th scope="row"><code class="docs-code">dispatcher</code></th>
-                    <td><code class="docs-code">s-tooltip:*</code></td>
-                    <td>Contains the <code class="docs-code">Element</code> that initiated the event. For instance, the element hovered over to show, etc.</td>
+                    <th scope="row"><code>dispatcher</code></th>
+                    <td><code>s-tooltip:*</code></td>
+                    <td>Contains the <code>Element</code> that initiated the event. For instance, the element hovered over to show, etc.</td>
                 </tr>
             </tbody>
         </table>
     </div>
     {% header "h3", "Hover examples" %}
-    <p class="docs-copy">If the user doesn’t need to interact with the <em>contents</em> of the popover, it may be appropriate to only show it on hover. This will make popovers feel like a tooltip. To do so, we provide an alternative controller, <code class="docs-code">s-tooltip</code>, that shows the tooltip only on hover.</p>
+    <p class="docs-copy">If the user doesn’t need to interact with the <em>contents</em> of the popover, it may be appropriate to only show it on hover. This will make popovers feel like a tooltip. To do so, we provide an alternative controller, <code>s-tooltip</code>, that shows the tooltip only on hover.</p>
 
     {% header "h4", "Title attribute" %}
-    <p class="docs-copy">In the simple case where no markup is needed in the tooltip, the popover element can be omitted and automatically generated using the <code class="docs-code">title</code> attribute.</p>
+    <p class="docs-copy">In the simple case where no markup is needed in the tooltip, the popover element can be omitted and automatically generated using the <code>title</code> attribute.</p>
 
     <div class="docs-preview">
 {% highlight html %}
@@ -537,7 +537,7 @@ Stacks.setTooltipHtml(el,
     </div>
 
     {% header "h4", "Rich tooltips" %}
-    <p class="docs-copy">When a rich tooltip is required, a popover element can be configured in much the same way as an <code class="docs-code">s-popover</code> controller, with the most notable difference being the use of <code class="docs-code">aria-describedby</code> instead of <code class="docs-code">aria-controls</code>.</p>
+    <p class="docs-copy">When a rich tooltip is required, a popover element can be configured in much the same way as an <code>s-popover</code> controller, with the most notable difference being the use of <code>aria-describedby</code> instead of <code>aria-controls</code>.</p>
 
     <div class="docs-preview">
 {% highlight html %}
@@ -638,8 +638,8 @@ Stacks.setTooltipHtml(el,
         Our Stimulus popover controller handles the positioning of popovers for you. Popovers <em>can</em> be positioned manually for various legacy reasons, but we recommend using the <code>s-popover</code> controller's <code>placement</code> property instead.
     {% endtip %}
     {% header "h3", "Manual examples" %}
-    <p class="docs-copy">Popovers can also be positioned manually if you aren’t using the built-in JavaScript interactivity. Practically, this might look like adding something like <code class="docs-code">t8 l8</code> to <code class="docs-code">.s-popover</code>.</p>
-    <p class="docs-copy">By default, popovers are hidden and positioned absolutely. Adding the class <code class="docs-code">.is-visible</code> will show the popover.</p>
+    <p class="docs-copy">Popovers can also be positioned manually if you aren’t using the built-in JavaScript interactivity. Practically, this might look like adding something like <code>t8 l8</code> to <code>.s-popover</code>.</p>
+    <p class="docs-copy">By default, popovers are hidden and positioned absolutely. Adding the class <code>.is-visible</code> will show the popover.</p>
 
     <div class="docs-preview">
 {% highlight html %}

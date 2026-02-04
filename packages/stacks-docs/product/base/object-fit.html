@@ -1,13 +1,13 @@
 ---
 layout: page
 title: Object fit
-description: Atomic classes that control the sizing of an <code class="docs-code">img</code> or <code class="docs-code">video</code> relative to its container.
+description: Atomic classes that control the sizing of an <code>img</code> or <code>video</code> relative to its container.
 tags: base
 ---
 <section class="docs-section">
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb48" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
@@ -16,10 +16,10 @@ tags: base
                 </tr>
             </thead>
             <tbody>
-                {% for atomic in atomics.object-fit %}
+                {% for atomic in object-fit.classes %}
                     <tr class="fs-caption">
-                        <th scope="row"><code class="docs-code">.{{ atomic.class }}</code></th>
-                        <td><code class="docs-code bg-white">{{ atomic.output }}</code></td>
+                        <th scope="row"><code>.{{ atomic.class }}</code></th>
+                        <td><code>{{ atomic.output }}</code></td>
                         <td>{{ atomic.define }}</td>
                     </tr>
                 {% endfor %}
@@ -39,7 +39,7 @@ tags: base
 {% endhighlight %}
         <div class="docs-preview--example ff-mono">
             <div class="d-flex fd-column g16 fw-wrap">
-                {% for atomic in atomics.object-fit %}
+                {% for atomic in object-fit.classes %}
                     {% assign atomicClass = atomic.class %}
                     {% if atomic.class == 'op-center' %}
                         {% assign atomicClass = atomicClass | append: ' op-none' %}

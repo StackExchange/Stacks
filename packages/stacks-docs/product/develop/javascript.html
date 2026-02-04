@@ -14,7 +14,7 @@ tags: develop
     <p class="docs-copy">To include Stacks JavaScript in other projects, do the following.</p>
 
     <ul class="docs-copy">
-        <li>Include the file <code class="docs-code">dist/js/stacks.min.js</code> in your page. For example, if you use the unpkg CDN, add the tag <code class="docs-code">&lt;script src="https://unpkg.com/@stackoverflow/stacks/dist/js/stacks.min.js"&gt;&lt;/script&gt;</code> to your HTML. See <a href="{{ "/product/develop/using-stacks" | url }}">Using Stacks</a> for more information on Unpkg and installing Stacks via NPM.</li>
+        <li>Include the file <code>dist/js/stacks.min.js</code> in your page. For example, if you use the unpkg CDN, add the tag <code>&lt;script src="https://unpkg.com/@stackoverflow/stacks/dist/js/stacks.min.js"&gt;&lt;/script&gt;</code> to your HTML. See <a href="{{ "/product/develop/using-stacks" | url }}">Using Stacks</a> for more information on Unpkg and installing Stacks via NPM.</li>
     </ul>
 </section>
 
@@ -25,9 +25,9 @@ tags: develop
 
     <p class="docs-copy">Stimulus allows you to add functionality to your markup in a way that is similar to how you add styling to your markup: by modifying HTML attributes.</p>
 
-    <p class="docs-copy">Just as you style components by adding classes to the <code class="docs-code">class</code> attribute, with Stacks JavaScript, you’ll give components optional functionality by adding <code class="docs-code">data-…</code> attributes to the HTML.</p>
+    <p class="docs-copy">Just as you style components by adding classes to the <code>class</code> attribute, with Stacks JavaScript, you’ll give components optional functionality by adding <code>data-…</code> attributes to the HTML.</p>
 
-    <p class="docs-copy">The basic functional unit of Stimulus, and of a Stacks JavaScript component, is a <b>controller</b>. Controllers are identified by their name, and all Stacks-provided controller names are prefixed with <code class="docs-code">s-…</code>, just like component CSS classes. You give functionality to an HTML element by setting its <code class="docs-code">data-controller</code> attribute.</p>
+    <p class="docs-copy">The basic functional unit of Stimulus, and of a Stacks JavaScript component, is a <b>controller</b>. Controllers are identified by their name, and all Stacks-provided controller names are prefixed with <code>s-…</code>, just like component CSS classes. You give functionality to an HTML element by setting its <code>data-controller</code> attribute.</p>
 
     <div class="docs-preview _preview-none mb16">
 {% highlight html %}
@@ -45,7 +45,7 @@ tags: develop
 
     <p class="docs-copy">For general information about writing code with Stimulus, refer to the <a href="https://stimulusjs.org/handbook/introduction">official documentation</a>. That documentation generally assumes that you’re writing ES6 code. In order to make it useful without ES6-to-ES5 transpilation, Stacks provides a helper that allows you to write controllers using old-fashioned JavaScript syntax.</p>
 
-    <p class="docs-copy">This helper is called <code class="docs-code">Stacks.addController</code> and takes two arguments: The name (&ldquo;identifier&rdquo;) of the controller, and an object that is analogous to the ES6 class that you would write for your controller, except that it's a plain JavaScript object. All own enumerable properties of that object will be made available on the controller prototype, with the exception of the <code class="docs-code">targets</code> property, which will be available on the controller constructor itself, i.e. statically.</p>
+    <p class="docs-copy">This helper is called <code>Stacks.addController</code> and takes two arguments: The name (&ldquo;identifier&rdquo;) of the controller, and an object that is analogous to the ES6 class that you would write for your controller, except that it's a plain JavaScript object. All own enumerable properties of that object will be made available on the controller prototype, with the exception of the <code>targets</code> property, which will be available on the controller constructor itself, i.e. statically.</p>
 
     <p class="docs-copy">With that, you can create and register the final <a href="https://stimulusjs.org/handbook/hello-stimulus#controllers-simplify-refactoring">Hello World controller example</a> from the official documentation like this:</p>
 
@@ -68,8 +68,8 @@ Stacks.addController("greeter", {
 
 <section class="docs-section">
     {% header "h2", "JavaScript classnames" %}
-    <p class="docs-copy">We prefix our JavaScript target classes with <code class="docs-code">.js-</code> so that changing or adding a class name for styling purposes doesn’t inadvertently break our JS. This allows us to style elements with any chain of atomic or component classes from Stacks without breaking any additional JavaScript interactivity.</p>
-    <p class="docs-copy">We also try to avoid IDs for <em>both</em> visual styling and JavaScript targeting. They aren’t reusable, visual styling can’t be overwritten by atomic classes, and, like non-<code class="docs-code">.js-</code> classes, we can’t tell if there is JavaScript interactivity attached at a glance.</p>
+    <p class="docs-copy">We prefix our JavaScript target classes with <code>.js-</code> so that changing or adding a class name for styling purposes doesn’t inadvertently break our JS. This allows us to style elements with any chain of atomic or component classes from Stacks without breaking any additional JavaScript interactivity.</p>
+    <p class="docs-copy">We also try to avoid IDs for <em>both</em> visual styling and JavaScript targeting. They aren’t reusable, visual styling can’t be overwritten by atomic classes, and, like non-<code>.js-</code> classes, we can’t tell if there is JavaScript interactivity attached at a glance.</p>
 
     <div class="fc-green-400 fs-body1 fw-bold mb8">{% icon "Checkmark", "mtn1 mbn1" %} Do</div>
     <div class="docs-preview _preview-none mb12">

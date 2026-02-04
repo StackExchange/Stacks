@@ -1,12 +1,12 @@
 .s-topbar {
     --_tb-bt: var(--theme-topbar-accent-border, 3px solid var(--theme-primary));
-    --_tb-h: var(--theme-topbar-height, calc(var(--su-static48) + var(--su-static8)));
+    --_tb-h: var(--theme-topbar-height, calc(var(--su48) + var(--su8)));
     // CHILD COMPONENT CUSTOM PROPERTIES
     // Item
     --_tb-item-bg: unset;
     --_tb-item-fc: var(--theme-topbar-item-color, var(--black-400));
     // Item s-activity-indicator
-    --_tb-item-ai-bs: 0 0 0 var(--su-static2)  var(--theme-topbar-background-color, var(--white));
+    --_tb-item-ai-bs: 0 0 0 var(--su2)  var(--theme-topbar-background-color, var(--white));
     --_tb-item-ai-t: calc(50% - calc(var(--su12) + var(--su2))); // 50% - 14px;
     // Logo
     --_tb-logo-bg: transparent;
@@ -16,9 +16,9 @@
     --_tb-menu-btn-fc-hover: unset;
     --_tb-menu-btn-span-bg: var(--theme-topbar-item-color, var(--black-400));
     --_tb-menu-btn-span-fc: unset;
-    --_tb-menu-btn-span-after-t: calc(var(--su-static6) - var(--su-static1)); // 5px;
+    --_tb-menu-btn-span-after-t: calc(var(--su6) - var(--su1)); // 5px;
     --_tb-menu-btn-span-after-rotate: 0deg;
-    --_tb-menu-btn-span-before-t: calc(var(--su-static1) - var(--su-static6)); // -5px;
+    --_tb-menu-btn-span-before-t: calc(var(--su1) - var(--su6)); // -5px;
     --_tb-menu-btn-span-before-rotate: 0deg;
     // Notice
     --_tb-notice-bg: transparent;
@@ -84,7 +84,7 @@
         --theme-topbar-item-background-hover: var(--black-300);
         --theme-topbar-item-color-current: var(--black);
 
-        border-bottom: var(--su-static1) solid currentColor;
+        border-bottom: var(--su1) solid currentColor;
     });
 
     .highcontrast-dark-mode({
@@ -179,7 +179,7 @@
                 --_tb-item-bg: var(--theme-topbar-item-background-hover, var(--black-200));
                 --_tb-item-fc: var(--theme-topbar-item-color-hover, var(--black-600));
 
-                --_tb-item-ai-bs: 0 0 0 var(--su-static2) var(--theme-topbar-item-background-hover, var(--black-200));
+                --_tb-item-ai-bs: 0 0 0 var(--su2) var(--theme-topbar-item-background-hover, var(--black-200));
                 --_tb-item-ai-t: calc(50% - calc(var(--su16) + var(--su2))); // 50% - 18px
 
                 outline: none;
@@ -190,7 +190,7 @@
                 top: var(--_tb-item-ai-t);
 
                 position: absolute;
-                right: var(--su-static2);
+                right: var(--su2);
                 transition: top var(--te-smooth) 0.15s;
             }
 
@@ -247,9 +247,9 @@
             &,
             &:after,
             &:before {
-                height: var(--su-static2);
+                height: var(--su2);
                 position: relative;
-                width: var(--su-static16);
+                width: var(--su16);
             }
 
             &:after,
@@ -319,7 +319,7 @@
         }
 
         background-color: var(--_tb-notice-bg);
-        border: var(--su-static1) solid var(--_tb-notice-bg); // notice border-color matches background-color
+        border: var(--su1) solid var(--_tb-notice-bg); // notice border-color matches background-color
         color: var(--_tb-notice-fc);
         text-decoration: var(--_tb-notice-td);
 
@@ -474,7 +474,7 @@
 
     align-items: center;
     background-color: var(--theme-topbar-background-color, var(--white));
-    border-bottom: var(--theme-topbar-bottom-border, var(--su-static1) solid var(--black-225));
+    border-bottom: var(--theme-topbar-bottom-border, var(--su1) solid var(--black-225));
     border-top: var(--_tb-bt);
     display: flex;
     height: var(--_tb-h);
@@ -501,7 +501,7 @@
     #calc-topbar-lightness-increase();
 
     --theme-topbar-background-color: @topbar-actual-background;
-    --theme-topbar-bottom-border: var(--su-static1) solid @topbar-actual-background;
+    --theme-topbar-bottom-border: var(--su1) solid @topbar-actual-background;
 
     // Search input
     --theme-topbar-search-color: lighten(@topbar-actual-background, 80% + @topbar-search-lightness-increase);
@@ -531,7 +531,7 @@
     // TODO extend forced light mode instead of overriding
 
     --theme-topbar-background-color: var(--_white-static);
-    --theme-topbar-bottom-border: var(--su-static1) solid .set-black()[225];
+    --theme-topbar-bottom-border: var(--su1) solid .set-black()[225];
 
     // Search input
     --theme-topbar-search-color: .set-black()[500];
