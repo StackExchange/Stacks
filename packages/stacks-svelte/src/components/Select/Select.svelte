@@ -165,7 +165,9 @@
 </script>
 
 <div
-    class={`d-flex ${labelPlacement === "top" ? " fd-column gy4" : "ai-center"}`}
+    class="s-form-group"
+    class:s-form-group__horizontal={labelPlacement === "left"}
+    class:ai-center={labelPlacement === "left"}
     class:has-error={vState === "error"}
     class:has-success={vState === "success"}
     class:has-warning={vState === "warning"}
