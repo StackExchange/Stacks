@@ -9,8 +9,9 @@
     --_ba-wmn: 0;
     --_ba-bl: 0;
     --_ba-fw: unset;
-    --_ba-sq-bg: var(--black-200);
     --_ba-g: unset;
+    --_ba-svg-p: var(--su2);
+    --_ba-sq-bg: var(--black-200);
     
     // CONTEXTUAL STYLES
     .highcontrast-mode({
@@ -41,13 +42,34 @@
     &:has(> .s-bling__filled),
     &&__squared,
     &:has(> svg) {
+        &,
+        &.s-badge__lg,
+        &.s-badge__sm {
+            --_ba-px: 0;
+            --_ba-py: 0;
+        }
+
+        &.s-badge__lg {
+            --_ba-pr: var(--su8);
+        }
+
+        &.s-badge__sm {
+            --_ba-pr: var(--su4);
+        }
+
         --_ba-pr: var(--su6);
-        --_ba-px: 0;
-        --_ba-py: 0;
     }
 
     &:has(> .s-bling__filled),
     &&__squared {
+        &.s-badge__lg {
+            --_ba-g: var(--su8);
+        }
+
+        &.s-badge__sm {
+            --_ba-g: var(--su4);
+        }
+
         --_ba-g: var(--su6);
     }
 
@@ -67,16 +89,18 @@
 
     // SIZES
     &&__sm {
-        --_ba-wmn: calc(var(--su16) + var(--su2));
         --_ba-fs: var(--fs-fine);
         --_ba-px: var(--su4);
         --_ba-py: var(--su1);
+        --_ba-wmn: calc(var(--su16) + var(--su2));
+        --_ba-svg-p: var(--_ba-py);
     }
 
     &&__lg {
         --_ba-fs: var(--fs-body1);
         --_ba-px: var(--su8);
         --_ba-py: calc(var(--su4) + var(--su1));
+        --_ba-svg-p: var(--_ba-py);
     }
 
     // TAG
@@ -277,7 +301,7 @@
         box-sizing: content-box;
         display: block;
         height: calc(var(--su16) + var(--su4));
-        padding: var(--su2);
+        padding: var(--_ba-svg-p);
     }
 
     // INTERACTION
@@ -302,6 +326,4 @@
     text-decoration: none;
     vertical-align: middle;
     white-space: nowrap;
-
-    // box-shadow: 0 0 0 2px red;
 }
