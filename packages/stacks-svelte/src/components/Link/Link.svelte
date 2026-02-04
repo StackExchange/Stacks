@@ -20,7 +20,6 @@
 
         /**
          * The weight of the link
-         * @type {"" | "grayscale" | "muted" | "danger" | "inherit"}
          */
         variant?: Variant;
 
