@@ -15,7 +15,7 @@ const variants = {
         "success",
         "featured",
     ],
-    users: ["admin", "moderator", "staff", "ai", "bot"],
+    users: ["admin", "moderator", "staff", "ai", "bot", "new"],
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
