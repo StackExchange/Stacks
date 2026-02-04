@@ -11,21 +11,15 @@
     // MODIFIERS
     &__dropdown {
         &:after {
-            border-width: var(--su4); // this needs to come before any below border modifications
-            border-bottom-width: 0;
             border-color: currentColor transparent;
             border-style: solid;
-            border-top-width: var(--su4);
+            border-width: var(--su4) var(--su4) 0 var(--su4);
             content: "";
-            pointer-events: none;
-            position: absolute;
-            right: 0;
-            top: calc(50% - var(--su2));
-            z-index: var(--zi-active);
         }
 
-        padding-right: 0.9em;
-        position: relative;
+        align-items: center;
+        display: inline-flex;
+        gap: var(--su4);
     }
 
     &__underlined {
