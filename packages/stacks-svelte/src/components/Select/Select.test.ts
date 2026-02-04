@@ -93,6 +93,20 @@ describe("Select", () => {
         expect(selectWrapper).to.have.class("s-select__sm");
     });
 
+    it("should render a label status badge when labelStatus and labelStatusText are provided", () => {
+        render(Select, {
+            id: "example-select",
+            label: "example label",
+            labelStatus: "warning",
+            labelStatusText: "Beta",
+        });
+
+        const badge = screen.getByText("Beta");
+        expect(badge).to.exist;
+        expect(badge).to.have.class("s-badge");
+        expect(badge).to.have.class("s-badge__warning");
+    });
+
     it("should render the appropriate state class and icon", () => {
         render(Select, {
             id: "example-select",

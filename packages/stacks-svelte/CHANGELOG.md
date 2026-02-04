@@ -1,5 +1,11 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.27
+
+### Minor Changes
+
+- [#2137](https://github.com/StackExchange/Stacks/pull/2137) [`83464cd`](https://github.com/StackExchange/Stacks/commit/83464cd33e9c52393010ed44cae423583d21e5a1) Thanks [@dancormier](https://github.com/dancormier)! - Update Post Summary to SHINE styles
+
 ## 1.0.0-beta.26
 
 ### Minor Changes
