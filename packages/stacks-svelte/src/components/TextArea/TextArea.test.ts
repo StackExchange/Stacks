@@ -72,6 +72,20 @@ describe("TextArea", () => {
         expect(requiredSymbol).to.have.attr("title", "Required");
     });
 
+    it("should render a label status badge when labelStatus and labelStatusText are provided", () => {
+        render(TextArea, {
+            id: "example-input",
+            label: "example label",
+            labelStatus: "warning",
+            labelStatusText: "Beta",
+        });
+
+        const badge = screen.getByText("Beta");
+        expect(badge).to.exist;
+        expect(badge).to.have.class("s-badge");
+        expect(badge).to.have.class("s-badge__warning");
+    });
+
     it("should render the disabled attribute on the input", () => {
         render(TextArea, {
             id: "example-input",
