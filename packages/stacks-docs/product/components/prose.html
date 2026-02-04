@@ -79,60 +79,27 @@ tags: components
 
 <section class="docs-section">
     {% header "h2", "Sizing" %}
-    {% header "h3", "Extra Small" %}
-    <div class="docs-preview">
-{% highlight html %}
-<div class="s-prose s-prose__xs">
-    …
-</div>
-{% endhighlight %}
-        <div class="docs-preview--example d:bg-white">
-            <div class="s-prose s-prose__xs" role="presentation">
-                {% markdown '/_includes/markdown-readme.md' %}
-            </div>
-        </div>
-    </div>
-
     {% header "h3", "Small" %}
     <p class="docs-copy">In ancilliary content like comments or side-discussions, it may be appropriate to add the small variation.</p>
-    <div class="docs-preview">
+    <div class="docs-preview d-flex fd-column">
+        <div class="{{ expandBtnContainerClasses }} mbn1">
+            <button class="s-btn s-btn__tonal"
+                aria-expanded="false"
+                aria-controls="prose-example-small"
+                data-expanded-text="Collapse example"
+                data-collapsed-text="Expand example"
+                >
+                Expand example
+            </button>
+        </div>
 {% highlight html %}
 <div class="s-prose s-prose__sm">
     …
 </div>
 {% endhighlight %}
-        <div class="docs-preview--example d:bg-white">
+        <div id="prose-example-small" class="docs-preview--example hmx4 overflow-scroll js-expandable">
             <div class="s-prose s-prose__sm" role="presentation">
-                {% markdown '/_includes/markdown-readme.md' %}
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "Default" %}
-    <div class="docs-preview">
-{% highlight html %}
-<div class="s-prose">
-    …
-</div>
-{% endhighlight %}
-        <div class="docs-preview--example d:bg-white">
-            <div class="s-prose" role="presentation">
-                {% markdown '/_includes/markdown-readme.md' %}
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "Medium" %}
-    <p class="docs-copy">Depending on the context for displaying the prose component, it may be appropriate to size text up to maintain readability.</p>
-    <div class="docs-preview">
-{% highlight html %}
-<div class="s-prose s-prose__md">
-    …
-</div>
-{% endhighlight %}
-        <div class="docs-preview--example d:bg-white">
-            <div class="s-prose s-prose__md" role="presentation">
-                {% markdown '/_includes/markdown-readme.md' %}
+                {% markdown '/_includes/markdown-prose.md' %}
             </div>
         </div>
     </div>
