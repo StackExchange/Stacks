@@ -1,5 +1,5 @@
 import { expect } from "@open-wc/testing";
-import { render, screen } from "@testing-library/svelte";
+import { render, screen, within } from "@testing-library/svelte";
 import PostSummaryAnswer from "./PostSummaryAnswer.svelte";
 
 const baseArgs = {
@@ -37,18 +37,19 @@ describe("PostSummaryAnswer", () => {
     });
 
     it("should render the user card with the correct props", () => {
-        render(PostSummaryAnswer, { ...baseArgs });
+        const { container } = render(PostSummaryAnswer, { ...baseArgs });
+        const scope = within(container);
 
-        const userCard = document.querySelector(".s-user-card");
+        const userCard = container.querySelector(".s-user-card");
         expect(userCard).to.exist;
 
-        const name = document.querySelector(".s-user-card--username");
+        const name = container.querySelector(".s-user-card--username");
         expect(name?.parentElement).to.have.attr(
             "href",
             baseArgs.userProfileUrl
         );
 
-        const avatarImg = screen.getByRole("presentation");
+        const avatarImg = scope.getByRole("presentation");
         const avatar = avatarImg?.parentElement;
         expect(avatarImg).to.have.attr("src", baseArgs.userAvatar);
         expect(avatar).to.have.class("s-avatar");
@@ -57,12 +58,13 @@ describe("PostSummaryAnswer", () => {
             baseArgs.userProfileUrl
         );
 
-        const reputation = screen.getByText(baseArgs.userReputation);
+        const reputation = scope.getByText(baseArgs.userReputation);
         expect(reputation).to.exist;
 
-        const timeLink = document.querySelector(".s-user-card--time");
+        const timeLink = container.querySelector(".s-user-card--time");
         expect(timeLink).to.exist;
-        expect(timeLink?.querySelector("time")).to.exist;
+        // Machine-readable time is in the popover content (sibling), not inside the link
+        expect(container.querySelector("time")).to.exist;
     });
 
     it("should render the votes count", () => {
