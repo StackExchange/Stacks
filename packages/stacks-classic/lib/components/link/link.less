@@ -1,5 +1,7 @@
 .s-link {
-    // Defaults inherit from body (base/body.less); variants below override.
+    --_li-fc: var(--theme-link-color, var(--black-600));
+    --_li-fc-hover: var(--theme-link-color-hover, var(--blue-400));
+    --_li-fc-visited: var(--theme-link-color-visited, var(--black-400));
 
     // CONTEXTUAL STYLES
     .highcontrast-mode({
@@ -43,16 +45,9 @@
     }
 
     &__inherit {
-        color: inherit !important;
-
-        &:visited {
-            color: inherit !important;
-        }
-
-        &:active,
-        &:hover {
-            color: inherit !important;
-        }
+        --_li-fc: inherit !important;
+        --_li-fc-hover: inherit !important;
+        --_li-fc-visited: inherit !important;
     }
 
     &__muted {
