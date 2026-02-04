@@ -1,10 +1,12 @@
 <!-- NOTE: This component is not currently exposed to the consumer and is only used internally. -->
 <script module lang="ts">
-    export type Size = "" | "sm" | "md" | "lg" | "xl";
+    export type Size = "" | "sm" | "lg";
 </script>
 
 <script lang="ts">
     import type { Snippet } from "svelte";
+    import type { BadgeState } from "../Badge/Badge.svelte";
+    import Badge from "../Badge/Badge.svelte";
 
     interface Props {
         /**
@@ -18,24 +20,24 @@
         size?: Size;
 
         /**
-         * Shows optional status
-         */
-        optional?: boolean;
-
-        /**
-         * Shows required status
+         * Shows required symbol
          */
         required?: boolean;
+
+        /**
+         * The type of status to display
+         */
+        status?: BadgeState;
+
+        /**
+         * The text to display for the status
+         */
+        statusText?: string;
 
         /**
          * Additional CSS classes added to the element
          */
         class?: string;
-
-        /**
-         * Localized translation for the optional text
-         */
-        i18nOptionalText?: string;
 
         /**
          * Localized translation for the required text
@@ -51,10 +53,10 @@
     const {
         id,
         size = "",
-        optional = false,
         required = false,
+        status,
+        statusText = undefined,
         class: className = "",
-        i18nOptionalText = "Optional",
         i18nRequiredText = "Required",
         children,
     }: Props = $props();
@@ -79,9 +81,10 @@
 
 <label class={classes} for={id}>
     {@render children()}
-    {#if optional}
-        <span class="s-label--status">{i18nOptionalText}</span>
-    {/if}{#if required}
+    {#if required}
         <abbr class="s-required-symbol" title={i18nRequiredText}>*</abbr>
+    {/if}
+    {#if statusText}
+        <Badge type="state" state={status} text={statusText} />
     {/if}
 </label>

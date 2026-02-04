@@ -103,5 +103,5 @@
 <Toaster
     position="top-center"
     class="wmn6 sm:wmn-initial"
-    style="z-index: calc(var(--zi-modals) + 1); top: calc(var(--theme-topbar-height, calc(var(--su-static48) + var(--su-static8))) + var(--su-static16))"
+    style="z-index: calc(var(--zi-modals) + 1); top: calc(var(--theme-topbar-height, calc(var(--su48) + var(--su8))) + var(--su16))"
 />

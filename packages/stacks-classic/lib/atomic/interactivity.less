@@ -1,0 +1,45 @@
+@import (reference) "../exports/mixins.less";
+
+// FOCUS
+.focus,
+.f\:focus:focus,
+.f\:focus:focus-within {
+    .focus-styles();
+}
+
+.focus-inset,
+.f\:focus-inset:focus,
+.f\:focus-inset:focus-within {
+    .focus-styles(true);
+}
+
+.focus-bordered,
+.f\:focus-bordered:focus,
+.f\:focus-bordered:focus-within {
+    .focus-styles(false, true);
+}
+
+.focus-inset-bordered,
+.f\:focus-inset-bordered:focus,
+.f\:focus-inset-bordered:focus-within {
+    .focus-styles(true, true);
+}
+
+// POINTER EVENTS
+.pe-auto { pointer-events: auto !important; }
+.pe-none { pointer-events: none !important; }
+
+// USER SELECT
+.us-auto {
+    -webkit-user-select: auto !important;
+    -moz-user-select: auto !important;
+    -ms-user-select: auto !important;
+    user-select: auto !important;
+}
+
+.us-none {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}

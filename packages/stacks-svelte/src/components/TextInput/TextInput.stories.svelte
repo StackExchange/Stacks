@@ -143,6 +143,38 @@
     </div>
 </Story>
 
+<Story name="Label status" asChild>
+    <div class="d-grid g32">
+        <TextInput
+            id="label-status-danger-input"
+            placeholder="Placeholder text should not replace labels"
+            label="Question title"
+            labelStatus="danger"
+            labelStatusText="Required"
+        />
+        <TextInput
+            id="label-status-tonal-input"
+            placeholder="Placeholder text should not replace labels"
+            label="Question tags"
+            labelStatusText="Optional"
+        />
+        <TextInput
+            id="label-status-saved-input"
+            placeholder="Placeholder text should not replace labels"
+            label="What is your favourite animal?"
+            labelStatus="info"
+            labelStatusText="Saved for later"
+        />
+        <TextInput
+            id="label-status-info-input"
+            placeholder="e.g. user@example.com"
+            label="Notify people"
+            labelStatus="featured"
+            labelStatusText="New feature"
+        />
+    </div>
+</Story>
+
 <Story name="Types" asChild>
     <div class="d-grid g16">
         {#each TextInputTypes as type (type)}
