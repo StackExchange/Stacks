@@ -78,12 +78,13 @@
 - `s-input__xl` removed
 - **Nested inputs** html will require slight tweaking on consumers' side
 
-#### Link
-- <a> elements no longer automatically have s-link styling, `s-link` needs to be an explict class of any <a> element that needs the styling
-
 #### Labels
 - `s-label__md`, `s-label__xl` removed
 - `s-label--status`, `s-label--status__required`, `s-label--status__new`, `s-label--status__beta` removed. Use the new `s-badge` states instead.
+
+#### Link
+- <a> elements no longer automatically have s-link styling, `s-link` needs to be an explict class of any <a> element that needs the styling
+- `s-link__visited` Removed 
 
 #### Loader
 - `Spinner` component replaced with new `Loader` component
