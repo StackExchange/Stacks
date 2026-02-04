@@ -40,11 +40,6 @@
         underlined?: boolean;
 
         /**
-         * Modifier describing if the link should apply a visited state style
-         */
-        visited?: boolean;
-
-        /**
          * Additional CSS classes added to the element
          */
         class?: string;
@@ -61,7 +56,6 @@
         disabled = false,
         dropdown = false,
         underlined = false,
-        visited = false,
         class: className = "",
         children,
         ...restProps
@@ -71,8 +65,7 @@
         className: string,
         variant: Variant,
         dropdown: boolean,
-        underlined: boolean,
-        visited: boolean
+        underlined: boolean
     ) => {
         const base = "s-link";
         let classes = base;
@@ -93,15 +86,11 @@
             classes += ` ${base}__underlined`;
         }
 
-        if (visited) {
-            classes += ` ${base}__visited`;
-        }
-
         return classes;
     };
 
     const classes = $derived(
-        getClasses(className, variant, dropdown, underlined, visited)
+        getClasses(className, variant, dropdown, underlined)
     );
 </script>
 

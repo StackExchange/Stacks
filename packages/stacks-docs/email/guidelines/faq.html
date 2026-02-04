@@ -5,14 +5,14 @@ title: Frequently asked questions
 <section class="docs-section">
     {% header "h2", "Why do we have to write CSS inline?" %}
     <p class="docs-copy">
-        It’s still the safest way to ensure CSS styles are applied in email clients. Referencing external stylesheets isn’t well-supported in email. Embedded CSS in a <span class="docs-code">&lt;style&gt;</span> tag <em>does</em> have decent support, and there are a few holdouts like <a class="s-link" href="https://emails.hteumeuleu.com/trying-to-make-sense-of-gmail-css-support-after-the-2016-update-53c15151063a" target="_blank">a few Gmail clients</a> and a <a class="s-link" href="https://emails.hteumeuleu.com/should-we-stop-inlining-styles-in-emails-8c3b64f0d407" target="_blank">smattering of mostly non-US mobile clients</a>. Given Stack Overflow’s volume and reach, we choose to support as many email clients as we can, even ones that don’t support the <span class="docs-code">&lt;style&gt;</span> tag. So we opt for writing CSS inline, which is supported everywhere.
+        It’s still the safest way to ensure CSS styles are applied in email clients. Referencing external stylesheets isn’t well-supported in email. Embedded CSS in a <span class="docs-code">&lt;style&gt;</span> tag <em>does</em> have decent support, and there are a few holdouts like <a href="https://emails.hteumeuleu.com/trying-to-make-sense-of-gmail-css-support-after-the-2016-update-53c15151063a" target="_blank">a few Gmail clients</a> and a <a href="https://emails.hteumeuleu.com/should-we-stop-inlining-styles-in-emails-8c3b64f0d407" target="_blank">smattering of mostly non-US mobile clients</a>. Given Stack Overflow’s volume and reach, we choose to support as many email clients as we can, even ones that don’t support the <span class="docs-code">&lt;style&gt;</span> tag. So we opt for writing CSS inline, which is supported everywhere.
     </p>
 </section>
 
 <section class="docs-section">
     {% header "h2", "If CSS is inline, why do we need a style tag?" %}
     <p class="docs-copy">
-        Inline CSS is a sure-fire way to style an email’s layout at a granular level. For the same reason it’s done on the web, adding a CSS reset to an email’s <span class="docs-code">&lt;head&gt;</span> helps to normalize how the code gets rendered in email clients that <a class="s-link" href="https://www.campaignmonitor.com/css/style-element/style-in-head/">support the <span class="docs-code">&lt;style&gt;</span> tag</a>.
+        Inline CSS is a sure-fire way to style an email’s layout at a granular level. For the same reason it’s done on the web, adding a CSS reset to an email’s <span class="docs-code">&lt;head&gt;</span> helps to normalize how the code gets rendered in email clients that <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">support the <span class="docs-code">&lt;style&gt;</span> tag</a>.
     </p>
     <p class="docs-copy">
         Each template contains a breakdown, element by element, of what each reset style is actually doing.
@@ -106,7 +106,7 @@ title: Frequently asked questions
 <section class="docs-section">
     {% header "h2", "What is the best &lt;doctype&gt; for email?" %}
     <p class="docs-copy">
-        Use the HTML5 doctype <code class="docs-code">&lt;!doctype html&gt;</code>. It’s the shortest and easiest to remember, and it’s enough to trigger standards mode on supported clients. <a class="s-link" href="https://emails.hteumeuleu.com/which-doctype-should-you-use-in-html-emails-cd323fdb793c" target="_blank">This article</a> goes into more detail. There’s no need to close <code class="docs-code">&lt;img&gt;</code> tags with trailing <code class="docs-code">/</code> (XHTML style).
+        Use the HTML5 doctype <code class="docs-code">&lt;!doctype html&gt;</code>. It’s the shortest and easiest to remember, and it’s enough to trigger standards mode on supported clients. <a href="https://emails.hteumeuleu.com/which-doctype-should-you-use-in-html-emails-cd323fdb793c" target="_blank">This article</a> goes into more detail. There’s no need to close <code class="docs-code">&lt;img&gt;</code> tags with trailing <code class="docs-code">/</code> (XHTML style).
     </p>
 </section>
 
@@ -119,7 +119,7 @@ title: Frequently asked questions
         <img src="{{ '/assets/img/figure-preview-text.png' | url }}" width="720" alt="Diagram of email subject line, sender, and preview text in mobile inbox" class="mx-auto wmx100">
     </p>
     <p class="docs-copy">
-        Preview text is optional. If preview text is short or omitted, email clients will fill the space with text from the email body (including alt attributes). You can avoid unwanted text coming in from your email’s body by <a class="s-link" href="https://litmus.com/blog/the-little-known-preview-text-hack-you-may-want-to-use-in-every-email" target="_blank">using this hack</a>.
+        Preview text is optional. If preview text is short or omitted, email clients will fill the space with text from the email body (including alt attributes). You can avoid unwanted text coming in from your email’s body by <a href="https://litmus.com/blog/the-little-known-preview-text-hack-you-may-want-to-use-in-every-email" target="_blank">using this hack</a>.
     </p>
 
     {% tip %}
@@ -147,13 +147,13 @@ title: Frequently asked questions
         When creating emails, Gmail may attempt to highlight portions of the email body that it thinks are important parts of a previous conversation thread. It does this by applying an <code class="docs-code">.im</code> class to portions of the email, which makes text purple.
     </p>
     <p class="docs-copy">
-        To defend against this unwanted styling, our templates include a CSS reset in the <code class="docs-code">&lt;head&gt;</code>, though this will only be applied in <a class="s-link" href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support</a> CSS styles in the <code class="docs-code">&lt;head&gt;</code>.
+        To defend against this unwanted styling, our templates include a CSS reset in the <code class="docs-code">&lt;head&gt;</code>, though this will only be applied in <a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">email clients that support</a> CSS styles in the <code class="docs-code">&lt;head&gt;</code>.
     </p>
 </section>
 
 <section class="docs-section">
     {% header "h2", "When should I deviate from these guidelines?" %}
     <p class="docs-copy">
-        The template in this repo is not the only way to design HTML emails at Stack Overflow. It’s possible to deviate and create a custom design with new components. In fact, we’d encourage it for major announcements, big product updates, and anything that requires a more eye-catching email UX! <a class="s-link" href="https://reallygoodemails.com/" target="_blank">Really Good Emails</a> and <a class="s-link" href="https://dribbble.com/search?q=email+template" target="_blank">Dribbble</a> are good sources of design inspiration.
+        The template in this repo is not the only way to design HTML emails at Stack Overflow. It’s possible to deviate and create a custom design with new components. In fact, we’d encourage it for major announcements, big product updates, and anything that requires a more eye-catching email UX! <a href="https://reallygoodemails.com/" target="_blank">Really Good Emails</a> and <a href="https://dribbble.com/search?q=email+template" target="_blank">Dribbble</a> are good sources of design inspiration.
     </p>
 </section>

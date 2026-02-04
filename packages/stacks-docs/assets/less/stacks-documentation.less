@@ -71,13 +71,35 @@ h2, h3 {
         color: var(--black-600);
     }
 
-    a:not([class]) {
+    a:not([class]),
+    .s-link {
         text-decoration: underline;
+    }
+
+    a:not([class]) {
+        // INTERACTION
+        &:active,
+        &:hover {
+            --_li-fc: var(--_li-fc-hover);
+            text-decoration: underline !important;
+        }
+        &:visited {
+            color: var(--_li-fc-visited);
+        }
+
+        &:hover:visited {
+            color: var(--_li-fc-hover-visited);
+            text-decoration: underline !important;
+        }
+
+        color: var(--_li-fc);
+        cursor: pointer;
+        user-select: auto;    
     }
 
     color: var(--black-500);
     font-size: var(--fs-body3);
-    line-height: var(--lh-lg);
+    line-height: 1.5;
     margin-bottom: var(--su16);
     margin-top: 0;
 }

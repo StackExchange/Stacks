@@ -1,43 +1,13 @@
-// Reset browser default underline for Stacks component anchors (e.g. .s-navigation--item).
-// Without this components that use <a> but don't use .s-link would inherit underline.
-a[class*="s-"] {
-    text-decoration: none;
-}
-
-// Base link styles shared by .s-link and by bare <a> inside .s-prose.
-.s-link,
-.s-prose a:not([class*="s-"]) {
+.s-link {
     --_li-fc: var(--theme-link-color, var(--black-600));
     --_li-fc-hover: var(--theme-link-color-hover, var(--blue-400));
     --_li-fc-visited: var(--theme-link-color-visited, var(--black-400));
-    --_li-fc-hover-visited: var(--theme-link-color-visited, var(--black-400));
 
+    // CONTEXTUAL STYLES
     .highcontrast-mode({
         text-decoration: underline;
     });
 
-    color: var(--_li-fc);
-    cursor: pointer;
-    text-decoration: none;
-    user-select: auto;
-
-    // INTERACTION
-    &:active,
-    &:hover {
-        --_li-fc: var(--_li-fc-hover);
-        text-decoration: underline !important;
-    }
-    &:visited {
-        color: var(--_li-fc-visited);
-    }
-
-    &:hover:visited {
-        color: var(--_li-fc-hover-visited);
-        text-decoration: underline !important;
-    }
-}
-
-.s-link {
     // MODIFIERS
     &__dropdown {
         &:after {
@@ -62,21 +32,7 @@ a[class*="s-"] {
         text-decoration: underline !important;
     }
 
-    &__visited { // TODO can we get rid of this? It's only in 3 places in Core and seems to me it doesn't even serve a purpose.
-        --_li-fc: var(--theme-link-color-visited, var(--black-500));
-        --_li-fc-hover: var(--theme-link-color-hover, var(--black-600));
-        --_li-fc-visited: var(--theme-link-color-visited, var(--black-500));
-        --_li-fc-hover-visited: var(--theme-link-color-visited, var(--black-500));
-    }
-
     // VARIANTS
-    &__danger,
-    &__grayscale,
-    &__inherit,
-    &__muted {
-        --_li-fc-hover-visited: var(--_li-fc-visited);
-    }
-
     &__danger {
         --_li-fc: var(--red-400);
         --_li-fc-hover: var(--red-500);
@@ -86,7 +42,6 @@ a[class*="s-"] {
     &__grayscale {
         --_li-fc: var(--black-500);
         --_li-fc-hover: var(--black-600);
-        --_li-fc-visited: var(--black-400);
     }
 
     &__inherit {
@@ -97,10 +52,9 @@ a[class*="s-"] {
 
     &__muted {
         --_li-fc: var(--black-400);
-        --_li-fc-hover: var(--blue-400);
-        --_li-fc-visited: var(--black-400);
     }
 
+    // MODIFIERS
     fieldset[disabled] & {
         box-shadow: none !important;
         opacity: var(--_o-disabled-static);
@@ -120,4 +74,28 @@ a[class*="s-"] {
         padding: 0;
         user-select: auto;
     }
+
+    p & {
+        text-decoration: underline;
+    }
+
+    // INTERACTION
+    &:active,
+    &:hover {
+        --_li-fc: var(--_li-fc-hover);
+        text-decoration: underline;
+    }
+
+    &:visited {
+        &:hover {
+            color: var(--_li-fc-hover);
+        }
+
+        color: var(--_li-fc-visited);
+    }
+
+    color: var(--_li-fc);
+    cursor: pointer;
+    text-decoration: none;
+    user-select: auto;
 }

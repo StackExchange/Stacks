@@ -16,6 +16,11 @@
 
     // CONTEXTUAL STYLES
     .highcontrast-mode({
+        &:is(a),
+        a[href] {
+            text-decoration: underline;
+        }
+
         &:not(&__moderator):not(&__required) {
             --_ta-bc: var(--theme-tag-border-color, var(--black-300));
             --_ta-bc-hover: var(--theme-tag-hover-border-color, var(--black-300));
@@ -155,7 +160,12 @@
     }
 
     // INTERACTION
-    a& {
+    &:has([href]),
+    a {
+        text-decoration: none;
+    }
+
+    a:not([class]) {
         &:hover,
         &:active {
             background-color: var(--_ta-bg-hover);

@@ -33,6 +33,9 @@
 
 ### Components
 
+#### Anchors
+- Removed `.s-anchors__default` in favor of appling those styles as the default for `.s-anchors`
+
 #### Badge
 - `.s-badge__xs` removed
 - `.s-badge__filled` removed
@@ -53,6 +56,9 @@
 #### Bling (previously *Award Bling*)
 - The Award Bling component has been renamed to Bling.
 - Bling no longer accepts children elements besides those for screen readers. Please include any visually represented strings (such as counts) as siblings to the bling component.
+
+#### Block Link
+- The Block Link component has been removed.
 
 #### Buttons
 - The secondary style `outlined` has been removed i.e. `.s-btn__outlined`
