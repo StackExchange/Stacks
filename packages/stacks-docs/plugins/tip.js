@@ -14,7 +14,7 @@ module.exports = {
         }
 
         if (classes == null) {
-          classes = "mb24";
+          classes = "mb16";
         }
 
         var output = '';
