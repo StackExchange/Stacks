@@ -1,5 +1,31 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.25
+
+### Patch Changes
+
+- [#2166](https://github.com/StackExchange/Stacks/pull/2166) [`c8fb945`](https://github.com/StackExchange/Stacks/commit/c8fb945af04e5b554ae585c834a8e21d4657d052) Thanks [@mukunku](https://github.com/mukunku)! - patch(toggle-switch): update to SHINE styles
+
+## 3.0.0-beta.24
+
+### Minor Changes
+
+- [#2164](https://github.com/StackExchange/Stacks/pull/2164) [`a710c69`](https://github.com/StackExchange/Stacks/commit/a710c69a5214b7deee41f181ad3a8b2762f6822a) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update link component to new SHINE designs
+
+    BREAKING CHANGES:
+    - <a> elements no longer automatically have s-link styling, `s-link` needs to be an explict class of any <a> element that needs the styling
+    - `block-link` component deleted
+
+- [#2163](https://github.com/StackExchange/Stacks/pull/2163) [`9000f2e`](https://github.com/StackExchange/Stacks/commit/9000f2eb6b2ca40b0e8a4dd4ffd95a6c9748f5c5) Thanks [@giamir](https://github.com/giamir)! - update label component to new SHINE specs
+
+### Patch Changes
+
+- [#2168](https://github.com/StackExchange/Stacks/pull/2168) [`c903ff0`](https://github.com/StackExchange/Stacks/commit/c903ff08d009a4165631a9b3b25e184924363c8a) Thanks [@mukunku](https://github.com/mukunku)! - patch(badges): Add star icon for new user badges
+
+- [#2172](https://github.com/StackExchange/Stacks/pull/2172) [`92cd983`](https://github.com/StackExchange/Stacks/commit/92cd98363e36ffc1133bae2b67e276dc1d057444) Thanks [@dancormier](https://github.com/dancormier)! - Replace all static size variables (`--su-static*`) with dynamic ones (`--su*`)
+
+- [#2171](https://github.com/StackExchange/Stacks/pull/2171) [`c122d46`](https://github.com/StackExchange/Stacks/commit/c122d463b0ca08c928aaeb43b20c99d5144d16a6) Thanks [@mukunku](https://github.com/mukunku)! - patch(navigation): Update vertical nav text color
+
 ## 3.0.0-beta.23
 
 ### Minor Changes

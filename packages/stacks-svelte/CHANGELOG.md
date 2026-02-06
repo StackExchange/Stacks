@@ -1,5 +1,30 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.29
+
+### Patch Changes
+
+- [#2177](https://github.com/StackExchange/Stacks/pull/2177) [`a035461`](https://github.com/StackExchange/Stacks/commit/a035461505a1199bde96063e26ed7da97edc5934) Thanks [@giamir](https://github.com/giamir)! - ensure correct module resolution in nodejs
+
+- Updated dependencies [[`a035461`](https://github.com/StackExchange/Stacks/commit/a035461505a1199bde96063e26ed7da97edc5934)]:
+    - @stackoverflow/stacks-utils@1.0.0-beta.3
+
+## 1.0.0-beta.28
+
+### Minor Changes
+
+- [#2164](https://github.com/StackExchange/Stacks/pull/2164) [`a710c69`](https://github.com/StackExchange/Stacks/commit/a710c69a5214b7deee41f181ad3a8b2762f6822a) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update link component to new SHINE designs
+
+    BREAKING CHANGES:
+    - <a> elements no longer automatically have s-link styling, `s-link` needs to be an explict class of any <a> element that needs the styling
+    - `block-link` component deleted
+
+- [#2163](https://github.com/StackExchange/Stacks/pull/2163) [`9000f2e`](https://github.com/StackExchange/Stacks/commit/9000f2eb6b2ca40b0e8a4dd4ffd95a6c9748f5c5) Thanks [@giamir](https://github.com/giamir)! - update label component to new SHINE specs
+
+### Patch Changes
+
+- [#2172](https://github.com/StackExchange/Stacks/pull/2172) [`92cd983`](https://github.com/StackExchange/Stacks/commit/92cd98363e36ffc1133bae2b67e276dc1d057444) Thanks [@dancormier](https://github.com/dancormier)! - Replace all static size variables (`--su-static*`) with dynamic ones (`--su*`)
+
 ## 1.0.0-beta.27
 
 ### Minor Changes
