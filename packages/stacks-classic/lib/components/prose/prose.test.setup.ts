@@ -22,7 +22,7 @@ const sampleListItems = `
 
 export default `
 <h4>Code block</h4>
-<pre class="language-html s-code-block"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">article</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-prose"</span>&gt;</span>
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">article</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-prose"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Garlic bread with cheese: What the science tells us<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
     For years parents have espoused the health benefits of eating garlic bread with cheese to their
