@@ -157,6 +157,9 @@ The Post Summary component has changed dramatically. Please refer to the docs fo
 #### Popover
 - The new popovers no longer include an arrow element. The `s-popover--arrow` css class has been removed, and any markup using it (e.g. `<div class="s-popover--arrow"></div>`) should be deleted from the codebases as part of the migration.
 
+#### Prose
+- `xs` and `md` sizes removed
+
 #### Select
 - `md` and `xl` sizes removed
 
