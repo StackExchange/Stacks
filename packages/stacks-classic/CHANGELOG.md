@@ -1,5 +1,11 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.25
+
+### Patch Changes
+
+- [#2166](https://github.com/StackExchange/Stacks/pull/2166) [`c8fb945`](https://github.com/StackExchange/Stacks/commit/c8fb945af04e5b554ae585c834a8e21d4657d052) Thanks [@mukunku](https://github.com/mukunku)! - patch(toggle-switch): update to SHINE styles
+
 ## 3.0.0-beta.24
 
 ### Minor Changes

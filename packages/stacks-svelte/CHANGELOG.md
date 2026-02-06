@@ -1,5 +1,14 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.29
+
+### Patch Changes
+
+- [#2177](https://github.com/StackExchange/Stacks/pull/2177) [`a035461`](https://github.com/StackExchange/Stacks/commit/a035461505a1199bde96063e26ed7da97edc5934) Thanks [@giamir](https://github.com/giamir)! - ensure correct module resolution in nodejs
+
+- Updated dependencies [[`a035461`](https://github.com/StackExchange/Stacks/commit/a035461505a1199bde96063e26ed7da97edc5934)]:
+    - @stackoverflow/stacks-utils@1.0.0-beta.3
+
 ## 1.0.0-beta.28
 
 ### Minor Changes
