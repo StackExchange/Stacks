@@ -1,8 +1,8 @@
 .s-prose {
     // CONSTANTS
-    --_pr-spacing: 1.1em;
-    --_pr-spacing-condensed: calc(var(--_pr-spacing) / 2); // Reduce the base spacing by half in the context of lists, etc.
-    --_pr-spoiler-transition: opacity 0.1s ease-in-out;
+    @pr-spacing: 1.1em;
+    @pr-spacing-condensed: calc(@pr-spacing / 2); // Reduce the base spacing by half in the context of lists, etc.
+    @pr-spoiler-transition: opacity 0.1s ease-in-out;
     // COMPONENT-SPECIFIC CUSTOM PROPERTIES
     --_pr-fs: unset;
     --_pr-lh: 1.5;
@@ -17,7 +17,7 @@
     --_pr-h5-fs: var(--fs-body2);
     --_pr-h6-fs: var(--fs-body1);
     --_pr-hr-bg: var(--black-225); // used for both background-color and color properties
-    --_pr-img-mb: var(--_pr-spacing);
+    --_pr-img-mb: @pr-spacing;
     --_pr-kbd-bc: var(--black-300);
     --_pr-kbd-bs: 0 var(--su1) var(--su1) hsla(210, 8%, 5%, 0.15), inset 0 1px 0 0 var(--_white-static);
     --_pr-spoiler-cursor: pointer;
@@ -26,8 +26,8 @@
     --_pr-soiler-child-o: 0;
     --_pr-soiler-child-visibility: hidden;
     // TEMP HOT FIX FOR .s-editor [1]
-    --s-prose-spacing: var(--_pr-spacing); // TODO remove once addressed in StackExchange/Stacks-Editor
-    --s-prose-spacing-condensed: var(--_pr-spacing-condensed); // TODO remove once addressed in StackExchange/Stacks-Editor
+    --s-prose-spacing: var(@pr-spacing); // TODO remove once addressed in StackExchange/Stacks-Editor
+    --s-prose-spacing-condensed: var(@pr-spacing-condensed); // TODO remove once addressed in StackExchange/Stacks-Editor
 
     // CONDITIONAL STYLES
     .dark-mode({
@@ -197,7 +197,7 @@
     dl,
     .s-table-container,
     .s-link-preview {
-        margin-bottom: var(--_pr-spacing); // TODO: make sure this overrides margin set on dd
+        margin-bottom: @pr-spacing; // TODO: make sure this overrides margin set on dd
     }
 
     ol,
@@ -224,7 +224,7 @@
         p,
         table,
         ul {
-            margin-bottom: var(--_pr-spacing-condensed); // Within lists, we shouldn't have so much spacing  in between block-level elements.
+            margin-bottom: @pr-spacing-condensed; // Within lists, we shouldn't have so much spacing  in between block-level elements.
         }
 
         li {
@@ -234,15 +234,15 @@
 
             ol,
             ul {
-                margin-top: var(--_pr-spacing-condensed);
+                margin-top: @pr-spacing-condensed;
             }
         }
 
         pre {
-            margin-bottom: calc(var(--_pr-spacing-condensed) + 0.1em); // Add some more spacing on the bottom for a little extra optical alignment
+            margin-bottom: calc(@pr-spacing-condensed + 0.1em); // Add some more spacing on the bottom for a little extra optical alignment
         }
 
-        margin-bottom:var(--_pr-spacing);
+        margin-bottom: @pr-spacing;
         margin-top: 0;
     }
 
@@ -276,7 +276,7 @@
         }
 
         color: var(--black-500);
-        margin: var(--_pr-blockquote-mt) 1em var(--_pr-spacing) var(--_pr-blockquote-ml);
+        margin: var(--_pr-blockquote-mt) 1em @pr-spacing var(--_pr-blockquote-ml);
         padding: 0.8em 0.8em 0.8em 1em;
         position: relative;
     }
@@ -310,7 +310,7 @@
 
         border: 0;
         height: var(--su1);
-        margin-bottom: var(--_pr-spacing);
+        margin-bottom: @pr-spacing;
     }
 
     img {
@@ -339,7 +339,7 @@
     }
 
     li {
-        --_pr-blockquote-mt: var(--_pr-spacing-condensed);
+        --_pr-blockquote-mt: @pr-spacing-condensed;
         --_pr-img-mb: 0;
 
         pre {
@@ -352,7 +352,7 @@
     p {
         --_pr-img-mb: 0;
 
-        margin-bottom: var(--_pr-spacing);
+        margin-bottom: @pr-spacing;
     }
 
     pre {
@@ -376,7 +376,7 @@
         }
 
         margin-top: 0;
-        margin-bottom: calc(var(--_pr-spacing) + 0.4em); // Increase this spacing for better optical alignment
+        margin-bottom: calc(@pr-spacing + 0.4em); // Increase this spacing for better optical alignment
         overflow-wrap: normal;
     }
 
@@ -390,7 +390,7 @@
         &:after {
             opacity: var(--_pr-soiler-after-o);
             top: var(--_pr-spoiler-after-t);
-            transition: var(--_pr-spoiler-transition);
+            transition: @pr-spoiler-transition;
 
             background-image: url("data:image/svg+xml;,%3Csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' fill='rgb(132, 141, 149)' width='18' height='18' viewBox='0 0 18 18'%3E%3Cpath d='M9 17A8 8 0 119 1a8 8 0 010 16zM8 4v6h2V4H8zm0 8v2h2v-2H8z'%3E%3C/path%3E%3C/svg%3E");
             background-position: center right;
