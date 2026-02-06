@@ -7,14 +7,7 @@ describe("link", () => {
     runVisualTests({
         baseClass: "s-link",
         modifiers: {
-            primary: [
-                "grayscale",
-                "muted",
-                "danger",
-                "inherit",
-                "underlined",
-                "visited",
-            ],
+            primary: ["grayscale", "muted", "danger", "inherit", "underlined"],
             secondary: ["dropdown"],
         },
         children: {
@@ -33,14 +26,7 @@ describe("link", () => {
     runVisualTests({
         baseClass: "s-link",
         modifiers: {
-            primary: [
-                "grayscale",
-                "muted",
-                "danger",
-                "inherit",
-                "underlined",
-                "visited",
-            ],
+            primary: ["grayscale", "muted", "danger", "inherit", "underlined"],
             secondary: ["dropdown"],
         },
         children: {

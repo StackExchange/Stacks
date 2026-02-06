@@ -166,6 +166,28 @@
     }
 
     // Others child elements
+    // Base anchor styles match .s-link; use theme/fallback directly for color so hover/visited apply
+    // (see lib/components/link/link.less)
+    a:not([class]) {
+        &:active,
+        &:hover {
+            color: var(--theme-link-color-hover, var(--blue-400));
+            text-decoration: underline !important;
+        }
+        &:visited {
+            color: var(--theme-link-color-visited, var(--black-400));
+        }
+
+        &:hover:visited {
+            color: var(--theme-link-color-hover, var(--blue-400));
+            text-decoration: underline !important;
+        }
+
+        color: var(--theme-link-color, var(--black-600));
+        cursor: pointer;
+        user-select: auto;
+    }
+
     blockquote,
     q {
         quotes: none;

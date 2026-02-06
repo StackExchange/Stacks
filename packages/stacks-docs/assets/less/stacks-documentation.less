@@ -142,6 +142,26 @@ h2, h3 {
         text-decoration: underline;
     }
 
+    a:not([class]) {
+        &:active,
+        &:hover {
+            color: var(--theme-link-color-hover, var(--blue-400));
+            text-decoration: underline !important;
+        }
+        &:visited {
+            color: var(--theme-link-color-visited, var(--black-400));
+        }
+
+        &:hover:visited {
+            color: var(--theme-link-color-hover, var(--blue-400));
+            text-decoration: underline !important;
+        }
+
+        color: var(--theme-link-color, var(--black-600));
+        cursor: pointer;
+        user-select: auto;
+    }
+
     code {
         font-size: .875em;
     }
@@ -153,7 +173,7 @@ h2, h3 {
 
     color: var(--black-500);
     font-size: var(--fs-body3);
-    line-height: var(--lh-lg);
+    line-height: 1.5;
     margin-bottom: var(--su16);
     margin-top: 0;
 }
