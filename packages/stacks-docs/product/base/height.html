@@ -11,7 +11,7 @@ tags: base
 
     {% header "h3", "Pixel height classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell3" scope="col">Class</th>
@@ -21,9 +21,9 @@ tags: base
                 </tr>
             </thead>
             <tbody>
-                {% for size in atomics.sizing.px %}
+                {% for size in sizing.px %}
                     <tr class="ff-mono fs-caption">
-                        <th scope="row"><code class="docs-code">.h{{ size.px }}</code></th>
+                        <th scope="row"><code>.h{{ size.px }}</code></th>
                         <td class="p8">height: {{ size.px }}px;</td>
                         <td class="p8">{{ size.rem }}rem</td>
                         <td class="ta-center">
@@ -54,7 +54,7 @@ tags: base
 <div class="h128">…</div>
 {% endhighlight %}
         <div class="docs-preview--example d-flex fd-column g16 fs-caption ff-mono">
-            {% for size in atomics.sizing.px %}
+            {% for size in sizing.px %}
                 <div class="d-flex fd-column g4">
                     <div>.h{{ size.px }}</div>
                     <div class="h{{ size.px }} {% if size.px is not 0 %} docs-box p0{% endif %}"></div>
@@ -71,7 +71,7 @@ tags: base
 
     {% header "h3", "Sizing units height classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell3" scope="col">Class</th>
@@ -81,9 +81,9 @@ tags: base
                 </tr>
             </thead>
             <tbody>
-                {% for size in atomics.sizing.sizing-units %}
+                {% for size in sizing.sizing-units %}
                     <tr class="ff-mono fs-caption">
-                        <th scope="row"><code class="docs-code">.hs{{ size.level }}</code></th>
+                        <th scope="row"><code>.hs{{ size.level }}</code></th>
                         <td class="p8">height: {{ size.px }}px;</td>
                         <td class="p8">{{ size.rem }}rem</td>
                         <td class="ta-center">
@@ -115,7 +115,7 @@ tags: base
 {% endhighlight %}
         <div class="docs-preview--example d-flex g4 hmx6 fs-caption ff-mono overflow-auto">
             <div class="d-flex g6 hs12 w100 overflow-x-auto">
-                {% for size in atomics.sizing.sizing-units %}
+                {% for size in sizing.sizing-units %}
                     <div class="docs-box px4 hs{{ size.level }} ai-start d-flex fl-shrink0 w48" style="min-width: calc(100% / 12 - 6px);">
                         <div>.hs{{ size.level }}</div>
                     </div>
@@ -132,7 +132,7 @@ tags: base
 
     {% header "h3", "Fluid height classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell3" scope="col">Class</th>
@@ -142,21 +142,21 @@ tags: base
             </thead>
             <tbody>
                 <tr class="ff-mono fs-caption">
-                    <th scope="row"><code class="docs-code">.h100</code></th>
+                    <th scope="row"><code>.h100</code></th>
                     <td class="p8">height: 100%;</td>
                     <td class="ta-center">
                         {% icon "Checkmark", "fc-green-400" %}
                     </td>
                 </tr>
                 <tr class="ff-mono fs-caption">
-                    <th scope="row"><code class="docs-code">.h-screen</code></th>
+                    <th scope="row"><code>.h-screen</code></th>
                     <td class="p8">height: 100vh;</td>
                     <td class="ta-center">
                         {% icon "Checkmark", "fc-green-400" %}
                     </td>
                 </tr>
                 <tr class="ff-mono fs-caption">
-                    <th scope="row"><code class="docs-code">.h-auto</code></th>
+                    <th scope="row"><code>.h-auto</code></th>
                     <td class="p8">height: auto;</td>
                     <td class="ta-center">
                         {% icon "Checkmark", "fc-green-400" %}
@@ -190,7 +190,7 @@ tags: base
 
     {% header "h3", "Min height classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell3" scope="col">Class</th>
@@ -201,16 +201,16 @@ tags: base
             </thead>
             <tbody>
                 <tr class="ff-mono fs-caption">
-                    <th scope="row"><code class="docs-code">.hmn0</code></th>
+                    <th scope="row"><code>.hmn0</code></th>
                     <td class="p8">min-height: 0;</td>
                     <td class="p8">-</td>
                     <td class="ta-center">
                         {% icon "Checkmark", "fc-green-400" %}
                     </td>
                 </tr>
-                {% for size in atomics.sizing.sizing-units %}
+                {% for size in sizing.sizing-units %}
                     <tr class="ff-mono fs-caption">
-                        <th scope="row"><code class="docs-code">.hmn{{ size.level }}</code></th>
+                        <th scope="row"><code>.hmn{{ size.level }}</code></th>
                         <td class="p8">min-height: {{ size.px }}px;</td>
                         <td class="p8">{{ size.rem }}rem</td>
                         <td class="ta-center">
@@ -221,7 +221,7 @@ tags: base
                     </tr>
                 {% endfor %}
                 <tr class="ff-mono fs-caption">
-                    <th scope="row"><code class="docs-code">.hmn100</code></th>
+                    <th scope="row"><code>.hmn100</code></th>
                     <td class="p8">min-height: 100%;</td>
                     <td class="p8">-</td>
                     <td class="ta-center">
@@ -229,7 +229,7 @@ tags: base
                     </td>
                 </tr>
                 <tr class="ff-mono fs-caption">
-                    <th scope="row"><code class="docs-code">.hmn-screen</code></th>
+                    <th scope="row"><code>.hmn-screen</code></th>
                     <td class="p8">min-height: 100vh;</td>
                     <td class="p8">-</td>
                     <td class="ta-center">
@@ -237,7 +237,7 @@ tags: base
                     </td>
                 </tr>
                 <tr class="ff-mono fs-caption">
-                    <th scope="row"><code class="docs-code">.hmn-initial</code></th>
+                    <th scope="row"><code>.hmn-initial</code></th>
                     <td class="p8">min-height: initial;</td>
                     <td class="p8">-</td>
                     <td class="ta-center">
@@ -256,7 +256,7 @@ tags: base
 
     {% header "h3", "Max height classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell3" scope="col">Class</th>
@@ -266,9 +266,9 @@ tags: base
                 </tr>
             </thead>
             <tbody>
-                {% for size in atomics.sizing.sizing-units %}
+                {% for size in sizing.sizing-units %}
                     <tr class="ff-mono fs-caption">
-                        <th scope="row"><code class="docs-code">.hmx{{ size.level }}</code></th>
+                        <th scope="row"><code>.hmx{{ size.level }}</code></th>
                         <td class="p8">max-height: {{ size.px }}px;</td>
                         <td class="p8">{{ size.rem }}rem</td>
                         <td class="ta-center">
@@ -279,7 +279,7 @@ tags: base
                     </tr>
                 {% endfor %}
                 <tr class="ff-mono fs-caption">
-                    <th scope="row"><code class="docs-code">.hmx100</code></th>
+                    <th scope="row"><code>.hmx100</code></th>
                     <td class="p8">max-height: 100%;</td>
                     <td class="p8">-</td>
                     <td class="ta-center">
@@ -287,7 +287,7 @@ tags: base
                     </td>
                 </tr>
                 <tr class="ff-mono fs-caption">
-                    <th scope="row"><code class="docs-code">.hmx-screen</code></th>
+                    <th scope="row"><code>.hmx-screen</code></th>
                     <td class="p8">max-height: 100vh;</td>
                     <td class="p8">-</td>
                     <td class="ta-center">
@@ -295,7 +295,7 @@ tags: base
                     </td>
                 </tr>
                 <tr class="ff-mono fs-caption">
-                    <th scope="row"><code class="docs-code">.hmx-initial</code></th>
+                    <th scope="row"><code>.hmx-initial</code></th>
                     <td class="p8">max-height: initial;</td>
                     <td class="p8">-</td>
                     <td class="ta-center">

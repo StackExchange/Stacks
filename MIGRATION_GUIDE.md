@@ -33,6 +33,9 @@
 
 ### Components
 
+#### Anchors
+- Removed `.s-anchors__default` in favor of appling those styles as the default for `.s-anchors`
+
 #### Badge
 - `.s-badge__xs` removed
 - `.s-badge__filled` removed
@@ -53,6 +56,9 @@
 #### Bling (previously *Award Bling*)
 - The Award Bling component has been renamed to Bling.
 - Bling no longer accepts children elements besides those for screen readers. Please include any visually represented strings (such as counts) as siblings to the bling component.
+
+#### Block Link
+- The Block Link component has been removed.
 
 #### Buttons
 - The secondary style `outlined` has been removed i.e. `.s-btn__outlined`
@@ -75,6 +81,10 @@
 #### Labels
 - `s-label__md`, `s-label__xl` removed
 - `s-label--status`, `s-label--status__required`, `s-label--status__new`, `s-label--status__beta` removed. Use the new `s-badge` states instead.
+
+#### Link
+- <a> elements no longer automatically have s-link styling, `s-link` needs to be an explict class of any <a> element that needs the styling
+- `s-link__visited` Removed 
 
 #### Loader
 - `Spinner` component replaced with new `Loader` component
@@ -164,6 +174,10 @@ The Post Summary component has changed dramatically. Please refer to the docs fo
 #### Textarea
 - `s-textarea__md` removed
 - `s-textarea__xl` removed
+
+#### Toggle Switch
+
+- `s-toggle-switch--label-off` removed
 
 #### User Card
 

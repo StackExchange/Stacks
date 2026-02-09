@@ -12,7 +12,7 @@ const children = createRawSnippet(() => ({
 
 describe("Link", () => {
     it("should render the link", () => {
-        render(Link, { href: "#", $$slots: { default: children } });
+        render(Link, { href: "#", children });
         expect(screen.getByRole("link")).to.have.text("test link");
     });
 
@@ -20,7 +20,7 @@ describe("Link", () => {
         render(Link, {
             dropdown: true,
             href: "#",
-            $$slots: { default: children },
+            children,
         });
         expect(screen.getByRole("link")).to.have.class("s-link__dropdown");
     });
@@ -29,25 +29,16 @@ describe("Link", () => {
         render(Link, {
             underlined: true,
             href: "#",
-            $$slots: { default: children },
+            children,
         });
         expect(screen.getByRole("link")).to.have.class("s-link__underlined");
-    });
-
-    it("should render including the visited class", () => {
-        render(Link, {
-            visited: true,
-            href: "#",
-            $$slots: { default: children },
-        });
-        expect(screen.getByRole("link")).to.have.class("s-link__visited");
     });
 
     it("should render the appropriate variant class", () => {
         render(Link, {
             variant: "muted",
             href: "#",
-            $$slots: { default: children },
+            children,
         });
         expect(screen.getByRole("link")).to.have.class("s-link__muted");
     });
@@ -55,7 +46,7 @@ describe("Link", () => {
     it("should render with the disabled attribute", () => {
         render(Link, {
             disabled: true,
-            $$slots: { default: children },
+            children,
         });
         expect(screen.getByRole("button")).to.have.attribute("disabled");
     });
@@ -64,7 +55,7 @@ describe("Link", () => {
         render(Link, {
             disabled: true,
             href: "#",
-            $$slots: { default: children },
+            children,
         });
         expect(screen.getByRole("link")).to.have.attribute(
             "aria-disabled",
@@ -76,15 +67,18 @@ describe("Link", () => {
         render(Link, {
             download: true,
             href: "#",
-            $$slots: { default: children },
+            children,
         });
 
         expect(screen.getByRole("link")).to.have.attribute("download", "true");
     });
 
     it("should adjust the classes on prop updates", async () => {
-        const { rerender } = render(Link, { class: "fc-theme-primary-400" });
-        rerender({ class: "fc-theme-secondary-400" });
+        const { rerender } = render(Link, {
+            class: "fc-theme-primary-400",
+            children,
+        });
+        rerender({ class: "fc-theme-secondary-400", children });
         await tick();
         expect(screen.getByRole("button")).not.to.have.class(
             "fc-theme-primary-400"
@@ -96,7 +90,7 @@ describe("Link", () => {
 
     it("should call the on:click callback when the user clicks on it", async () => {
         const onClickSpy = sinon.spy();
-        render(Link, { onclick: onClickSpy });
+        render(Link, { onclick: onClickSpy, children });
         await userEvent.click(screen.getByRole("button"));
         expect(onClickSpy).to.have.been.calledOnce;
     });

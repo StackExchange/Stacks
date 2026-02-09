@@ -7,7 +7,7 @@ tags: base
 <section class="docs-section">
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb48" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th scope="col">Class</th>
@@ -17,10 +17,10 @@ tags: base
                 </tr>
             </thead>
             <tbody>
-                {% for atomic in atomics.opacity %}
+                {% for atomic in opacity.classes %}
                     <tr class="fs-caption">
-                        <th scope="row"><code class="docs-code">.{{ atomic.class }}</code></th>
-                        <td><code class="docs-code bg-white">{{ atomic.output }}</code></td>
+                        <th scope="row"><code>.{{ atomic.class }}</code></th>
+                        <td><code>{{ atomic.output }}</code></td>
                         <td class="ta-center">
                             {% if atomic.hover %}
                                 {% icon "Checkmark", "fc-green-400" %}
@@ -54,7 +54,7 @@ tags: base
 <div class="o100">…</div>
 {% endhighlight %}
         <div class="docs-preview--example d-flex fd-column g16 fs-caption ff-mono">
-            {% for atomic in atomics.opacity %}
+            {% for atomic in opacity.classes %}
                 <div>
                     <div class="mb4">.{{ atomic.class }}</div>
                     <div class="docs-box bg-theme-secondary h32 {{ atomic.class }}"></div>
