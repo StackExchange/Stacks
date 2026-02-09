@@ -1,5 +1,19 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.26
+
+### Minor Changes
+
+- [#2174](https://github.com/StackExchange/Stacks/pull/2174) [`df11fb5`](https://github.com/StackExchange/Stacks/commit/df11fb5110ba06123905cd6e6b576b6dca710df3) Thanks [@dancormier](https://github.com/dancormier)! - Update prose component to SHINE styles
+
+### Patch Changes
+
+- [#2173](https://github.com/StackExchange/Stacks/pull/2173) [`8ac82b8`](https://github.com/StackExchange/Stacks/commit/8ac82b87daab1bebf4241b0e733caf009a126526) Thanks [@dancormier](https://github.com/dancormier)! - Improve badge layout
+
+- [#2178](https://github.com/StackExchange/Stacks/pull/2178) [`66498cc`](https://github.com/StackExchange/Stacks/commit/66498ccb6b12e2d99620dfaaf3b47b3058a29050) Thanks [@mukunku](https://github.com/mukunku)! - patch(avatars): Use black background in dark mode for avatars
+
+- [#2176](https://github.com/StackExchange/Stacks/pull/2176) [`79d687d`](https://github.com/StackExchange/Stacks/commit/79d687d5abf9e04ecc32617da567dc5187a69683) Thanks [@mukunku](https://github.com/mukunku)! - patch(buttons) - Add notice for xs size
+
 ## 3.0.0-beta.25
 
 ### Patch Changes
