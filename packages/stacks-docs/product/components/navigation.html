@@ -9,26 +9,10 @@ tags: components
 ---
 <section class="docs-section">
     {% header "h2", "Classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell4" scope="col">Class</th>
-                    <th class="s-table--cell3" scope="col">Applies to</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                {% for item in navigation.classes %}
-                    <tr>
-                        <th scope="row"><code>{{ item.class }}</code></th>
-                        <td>{{ item.applies }}</td>
-                        <td class="p8">{{ item.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    {% assign docsClasses = navigation.classes %}
+    {% assign col1Classes = "s-table--cell4" %}
+    {% assign col2Classes = "s-table--cell3" %}
+    {% include "docs-table.html" %}
 
     {% for item in navigation.navigation-attributes %}
         {% header "h3", item.title %}

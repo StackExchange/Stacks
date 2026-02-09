@@ -6,29 +6,14 @@ figma: https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Produ
 description: Avatars are used to quickly identify users or teams.
 tags: components
 ---
+
 <section class="docs-section">
     {% header "h2", "Classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="ws2" scope="col">Class</th>
-                    <th class="ws2" scope="col">Applied to</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                {% for item in avatars-component.classes %}
-                    <tr>
-                        <th scope="row"><code>{{ item.class }}</code></th>
-                        <td><code>{{ item.applies }}</td>
-                        <td class="p8">{{ item.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    {% assign docsClasses = avatars.classes %}
+    {% assign expandableClassesTable = true %}
+    {% include "docs-table.html" %}
 </section>
+
 <section class="docs-section">
     {% header "h2", "Examples" %}
     {% header "h3", "Users" %}
@@ -64,85 +49,31 @@ tags: components
 </a>
 {% endhighlight %}
         <div class="docs-preview--example overflow-x-auto">
-
             <table class="docs-table s-table s-table__b0 s-table__sm">
-                <tr>
-                    <td class="ws2">
-                        <code>16px</code>
-                        <code>default</code>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar">
-                            <img class="s-avatar--image" alt="demo avatar" src="https://picsum.photos/32" />
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ws2">
-                        <code>24px</code>
-                        <code>.s-avatar__24</code>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar s-avatar__24">
-                            <img class="s-avatar--image" alt="demo avatar" src="https://picsum.photos/48" />
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ws2">
-                        <code>32px</code>
-                        <code>.s-avatar__32</code>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar s-avatar__32">
-                            <img class="s-avatar--image" alt="demo avatar" src="https://picsum.photos/64" />
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ws2">
-                        <code>48px</code>
-                        <code>.s-avatar__48</code>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar s-avatar__48">
-                            <img class="s-avatar--image" alt="demo avatar" src="https://picsum.photos/96" />
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ws2">
-                        <code>64px</code>
-                        <code>.s-avatar__64</code>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar s-avatar__64">
-                            <img class="s-avatar--image" alt="demo avatar" src="https://picsum.photos/128" />
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ws2">
-                        <code>96px</code>
-                        <code>.s-avatar__96</code>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar s-avatar__96">
-                            <img class="s-avatar--image" alt="demo avatar" src="https://picsum.photos/192" />
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ws2">
-                        <code>128px</code>
-                        <code>.s-avatar__128</code>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar s-avatar__128">
-                            <img class="s-avatar--image" alt="demo avatar" src="https://picsum.photos/256" />
-                        </a>
-                    </td>
-                </tr>
+                    <thead>
+                        <tr>
+                            <th class="s-table--cell1"></th>
+                            <th class="s-table--cell3"></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for example in avatars.examples %}
+                        <tr>
+                            <td>
+                                <code class="ws-nowrap">{{ example }}px</code>
+                            </td>
+                            <td>
+                                <code class="ws-nowrap">{% if example == "16" %}default{% else %}.s-avatar__{{ example }}{% endif %}</code>
+                            </td>
+                            <td>
+                                <a href="#" class="s-avatar {% if example != 16 %}s-avatar__{{ example }}{% endif %}">
+                                    <img class="s-avatar--image" alt="demo avatar" src="https://picsum.photos/{{ example | times: 2 }}" />
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
             </table>
         </div>
     </div>
@@ -170,34 +101,35 @@ tags: components
 {% endhighlight %}
         <div class="docs-preview--example overflow-x-auto">
             <table class="docs-table s-table s-table__b0 s-table__sm">
-                <tr>
-                    <td class="ws2">
-                        <code>16px</code>
-                        <code>default</code>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar">
-                            <div class="s-avatar--indicator s-activity-indicator s-activity-indicator__sm s-activity-indicator__success">
-                                <div class="v-visible-sr">Online</div>
-                            </div>
-                            <img class="s-avatar--image" alt="demo avatar" src="https://picsum.photos/32" />
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ws2">
-                        <code>24px</code>
-                        <code>.s-avatar__24</code>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar s-avatar__24">
-                            <div class="s-avatar--indicator s-activity-indicator s-activity-indicator__sm s-activity-indicator__success">
-                                <div class="v-visible-sr">Online</div>
-                            </div>
-                            <img class="s-avatar--image" alt="demo avatar" src="https://picsum.photos/48" />
-                        </a>
-                    </td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th class="s-table--cell1"></th>
+                        <th class="s-table--cell3"></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for example in avatars.examples %}
+                        {% if example == 16 or example == 24 %}
+                            <tr>
+                                <td>
+                                    <code class="ws-nowrap">{{ example }}px</code>
+                                </td>
+                                <td>
+                                    <code class="ws-nowrap">{% if example == 16 %}default{% else %}.s-avatar__{{ example }}{% endif %}</code>
+                                </td>
+                                <td>
+                                    <a href="#" class="s-avatar {% if example == 24 %}s-avatar__24{% endif %}">
+                                        <div class="s-avatar--indicator s-activity-indicator s-activity-indicator__sm s-activity-indicator__success">
+                                            <div class="v-visible-sr">Online</div>
+                                        </div>
+                                        <img class="s-avatar--image" alt="demo avatar" src="https://picsum.photos/{{ example | times: 2 }}" />
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
             </table>
         </div>
     </div>
@@ -254,202 +186,55 @@ tags: components
 </a>
 {% endhighlight %}
         <div class="docs-preview--example overflow-x-auto">
-            <table class="docs-table s-table s-table__b0">
-                <tr>
-                    <td class="ws2">
-                        <code>16px</code>
-                        <code>default</code>
-                    </td>
-                    <td>
-                        <a href="#" class="s-link s-link__muted">
-                            <div class="bg-blue-400 s-avatar">
-                                <div class="s-avatar--letter" aria-hidden="true">H</div>
-                                {% icon "ShieldXSm", "native s-avatar--badge" %}
-                            </div>
-                            <span class="pl4">Hum</span>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" class="s-link s-link__muted">
-                            <div class="s-avatar bg-theme-primary">
-                                <div class="s-avatar--letter" aria-hidden="true">H</div>
-                                {% icon "ShieldXSm", "native s-avatar--badge" %}
-                            </div>
-                            <span class="pl4">Hum</span>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" class="s-link s-link__muted">
-                            <div class="s-avatar">
-                                <img class="s-avatar--image" src="/assets/img/team-avatar.png" />
-                                {% icon "ShieldXSm", "native s-avatar--badge" %}
-                            </div>
-                            <span class="pl4">Hum</span>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ws2">
-                        <code>24px</code>
-                        <code>.s-avatar__24</code>
-                    </td>
-                    <td>
-                        <a href="#" class="bg-blue-400 s-avatar s-avatar__24">
-                            <div class="s-avatar--letter" aria-hidden="true">H</div>
-                            <span class="v-visible-sr">Hum</span>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar s-avatar__24 bg-theme-primary">
-                            <div class="s-avatar--letter" aria-hidden="true">H</div>
-                            <span class="v-visible-sr">Hum</span>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar s-avatar__24">
-                            <img class="s-avatar--image" src="/assets/img/team-avatar.png" />
-                            <span class="v-visible-sr">Hum</span>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ws2">
-                        <code>32px</code>
-                        <code>.s-avatar__32</code>
-                    </td>
-                    <td>
-                        <a href="#" class="bg-blue-400 s-avatar s-avatar__32">
-                            <div class="s-avatar--letter" aria-hidden="true">H</div>
-                            <span class="v-visible-sr">Hum</span>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar s-avatar__32 bg-theme-primary">
-                            <div class="s-avatar--letter" aria-hidden="true">H</div>
-                            <span class="v-visible-sr">Hum</span>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar s-avatar__32">
-                            <img class="s-avatar--image" src="/assets/img/team-avatar.png" />
-                            <span class="v-visible-sr">Hum</span>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ws2">
-                        <code>48px</code>
-                        <code>.s-avatar__48</code>
-                    </td>
-                    <td>
-                        <a href="#" class="bg-blue-400 s-avatar s-avatar__48">
-                            <div class="s-avatar--letter" aria-hidden="true">H</div>
-                            <span class="v-visible-sr">Hum</span>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar s-avatar__48 bg-theme-primary">
-                            <div class="s-avatar--letter" aria-hidden="true">H</div>
-                            <span class="v-visible-sr">Hum</span>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar s-avatar__48">
-                            <img class="s-avatar--image" src="/assets/img/team-avatar.png" />
-                            <span class="v-visible-sr">Hum</span>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ws2">
-                        <code>64px</code>
-                        <code>.s-avatar__64</code>
-                    </td>
-                    <td>
-                        <a href="#" class="bg-blue-400 s-avatar s-avatar__64">
-                            <div class="s-avatar--letter" aria-hidden="true">H</div>
-                            <span class="v-visible-sr">Hum</span>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar s-avatar__64 bg-theme-primary">
-                            <div class="s-avatar--letter" aria-hidden="true">H</div>
-                            <span class="v-visible-sr">Hum</span>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar s-avatar__64">
-                            <img class="s-avatar--image" src="/assets/img/team-avatar.png" />
-                            <span class="v-visible-sr">Hum</span>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ws2">
-                        <code>96px</code>
-                        <code>.s-avatar__96</code>
-                    </td>
-                    <td>
-                        <a href="#" class="bg-blue-400 s-avatar s-avatar__96">
-                            <div class="s-avatar--letter" aria-hidden="true">H</div>
-                            <span class="v-visible-sr">Hum</span>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar s-avatar__96 bg-theme-primary">
-                            <div class="s-avatar--letter" aria-hidden="true">H</div>
-                            <span class="v-visible-sr">Hum</span>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar s-avatar__96">
-                            <img class="s-avatar--image" src="/assets/img/team-avatar.png" />
-                            <span class="v-visible-sr">Hum</span>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ws2">
-                        <code>128px</code>
-                        <code>.s-avatar__128</code>
-                    </td>
-                    <td>
-                        <a href="#" class="bg-blue-400 s-avatar s-avatar__128">
-                            <div class="s-avatar--letter" aria-hidden="true">H</div>
-                            <span class="v-visible-sr">Hum</span>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar s-avatar__128 bg-theme-primary">
-                            <div class="s-avatar--letter" aria-hidden="true">H</div>
-                            <span class="v-visible-sr">Hum</span>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#" class="s-avatar s-avatar__128">
-                            <img class="s-avatar--image" src="/assets/img/team-avatar.png" />
-                            <span class="v-visible-sr">Hum</span>
-                            {% icon "ShieldXSm", "native s-avatar--badge" %}
-                        </a>
-                    </td>
-                </tr>
+            <table class="docs-table s-table s-table__b0 s-table__sm">
+                <thead>
+                    <tr>
+                        <th class="s-table--cell1"></th>
+                        <th class="s-table--cell3"></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for example in avatars.examples %}
+                        <tr>
+                            <td>
+                                <code class="ws-nowrap">{{ example }}px</code>
+                            </td>
+                            <td>
+                                <code class="ws-nowrap">{% if example == "16" %}default{% else %}.s-avatar__{{ example }}{% endif %}</code>
+                            </td>
+                            {% for bgColor in avatars.teamBgs %}
+                                <td>
+                                    {% if example == 16 %}
+                                        <a href="#" class="s-link s-link__muted">
+                                            <div class="bg-{{ bgColor }} s-avatar">
+                                                {% if bgColor == "png" %}
+                                                    <img class="s-avatar--image" src="/assets/img/team-avatar.png" />
+                                                {% else %}
+                                                    <div class="s-avatar--letter" aria-hidden="true">H</div>
+                                                {% endif %}
+                                                {% icon "ShieldXSm", "native s-avatar--badge" %}
+                                            </div>
+                                            <span class="pl4">Hum</span>
+                                        </a>
+                                    {% else %}
+                                        <a href="#" class="s-avatar s-avatar__{{ example }} bg-{{ bgColor }}">
+                                            {% if bgColor == "png" %}
+                                                <img class="s-avatar--image" src="/assets/img/team-avatar.png" />
+                                            {% else %}
+                                                <div class="s-avatar--letter" aria-hidden="true">H</div>
+                                                <span class="v-visible-sr">Hum</span>
+                                            {% endif %}
+                                            {% icon "ShieldXSm", "native s-avatar--badge" %}
+                                        </a>
+                                    {% endif %}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
             </table>
         </div>
     </div>

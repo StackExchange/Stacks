@@ -1,0 +1,95 @@
+{% comment %}
+  Reusable classes reference table (Class | Applied to | Description).
+  Set docsClasses in parent scope. Column header classes default as below; override by
+  setting classColClasses, appliesColClasses, or descriptionColClasses before including.
+
+  Usage:
+    {% assign docsClasses = badges.classes %}
+    {% include "docs-table.html" %}
+    Override one column: {% assign appliesColClasses = "s-table--cell4" %}
+{% endcomment %}
+{% assign tableId = tableId | default: "docs-table" %}
+{% assign col1Classes = col1Classes | default: "s-table--cell3" %}
+{% assign col2Classes = col2Classes | default: "s-table--cell2" %}
+{% assign col3Classes = col3Classes | default: "" %}
+{% assign col1Text = col1Text | default: "Class" %}
+{% assign col2Text = col2Text | default: "Modifies" %}
+{% assign col3Text = col3Text | default: "Description" %}
+{% assign expandableBtnText = expandableBtnText | default: "Show all classes" %}
+{% assign expandableClassesTable = expandableClassesTable | default: false %}
+<div
+    id="{{ tableId }}"
+    class="{% if expandableClassesTable %}overflow-auto v-truncate v-truncate-fade{% else %}overflow-x-auto{% endif %}"
+    tabindex="0">
+    <table class="docs-table s-table s-table__bx-simple">
+        <thead>
+            <tr>
+                <th scope="col" class="{{ col1Classes }}">
+                    {{ col1Text }}
+                </th>
+                <th scope="col" class="{{ col2Classes }}">
+                    {{ col2Text }}
+                </th>
+                <th scope="col" class="{{ col3Classes }}">
+                    {{ col3Text }}
+                </th>
+            </tr>
+        </thead>
+        <tbody class="fs-caption">
+            {% for item in docsClasses %}
+                <tr>
+                    <td>
+                        <code>{{ item.class | default: item.item }}</code>
+                    </td>
+                    <td>
+                        {% if item.appliesText or item.applies %}
+                            {% if item.appliesText %}
+                                <span class="ff-mono fs-fine">{{ item.appliesText }}</span>
+                            {% endif %}
+                            {% if item.applies %}
+                                <code>{{ item.applies }}</code>
+                            {% endif %}
+                        {% else %}
+                            <em class="fc-black-350">N/A</em>
+                        {% endif %}
+                    </td>
+                    <td>{{ item.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% if expandableClassesTable %}
+    <button
+        id="show-{{ tableId }}-button"
+        class="s-btn s-btn__tonal s-btn__sm w100"
+        aria-expanded="false"
+        aria-controls="docs-table">
+        {{ expandableBtnText}}
+    </button>
+{% endif %}
+
+{% if expandableClassesTable %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const button = document.querySelector('#show-{{ tableId }}-button');
+            const table = document.querySelector('#{{ tableId }}');
+            button.addEventListener('click', function() {
+                button.classList.add("d-none");
+                table.classList.remove("v-truncate", "v-truncate-fade", "overflow-auto");
+                table.classList.add("overflow-x-auto");
+            });
+        });
+    </script>
+{% endif %}
+
+<!-- Reset all default values -->
+{% assign tableId = nil %}
+{% assign col1Classes = nil %}
+{% assign col2Classes = nil %}
+{% assign col3Classes = nil %}
+{% assign col1Text = nil %}
+{% assign col2Text = nil %}
+{% assign col3Text = nil %}
+{% assign expandableBtnText = nil %}
+{% assign expandableClassesTable = nil %}

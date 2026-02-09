@@ -5,30 +5,14 @@ svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-link--do
 description: Links are lightly styled via the <code>a</code> element by default. In addition, we provide <code>.s-link</code> and its variations. In rare situations, <code>.s-link</code> can be applied to n <code>button</code> while maintaining the look of an anchor.
 tags: components
 ---
+
+{% header "h2", "Links" %}
 <section class="docs-section">
-    {% header "h2", "Single link" %}
-    {% header "h3", "Single link classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col">Class</th>
-                    <th scope="col">Applied to</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                {% for item in links.single-links %}
-                    <tr>
-                        <th scope="row"><code>{{ item.class }}</code></th>
-                        <td><code>{{ item.applies }}</td>
-                        <td class="p8">{{ item.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    {% header "h3", "Link classes" %}
+    {% assign docsClasses = links.link-classes %}
+    {% include "docs-table.html" %}
 </section>
+
 <section class="docs-section">
     {% header "h3", "Single link examples" %}
     <div class="docs-preview">
@@ -60,30 +44,17 @@ tags: components
     <p class="docs-copy">Any link with adjacent static text cannot use color alone to differentiate it as a link. If a link is next to static text and the only visual indication that it’s a link is the color of the text, it will require an underline in addition to the color. Reference <a href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F73">WCAG SC 1.4.1</a> for more details.</p>
 </section>
 
+{% header "h2", "Anchors" %}
 <section class="docs-section">
-    {% header "h2", "Descendent anchors" %}
-    {% header "h3", "Descendent anchor classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell3" scope="col">Class</th>
-                    <th class="s-table--cell2" scope="col">Applied to</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                {% for item in links.descendent-anchors %}
-                    <tr>
-                        <th scope="row"><code>{{ item.class }}</code></th>
-                        <td><code>{{ item.applies }}</td>
-                        <td class="p8">{{ item.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    {% header "h3", "Descendent anchor examples" %}
+    {% header "h3", "Anchor classes" %}
+    {% assign docsClasses = links.anchors-classes %}
+    {% assign col1Classes = "s-table--cell3" %}
+    {% assign col2Classes = "s-table--cell2" %}
+    {% include "docs-table.html" %}
+</section>
+
+<section class="docs-section">
+    {% header "h3", "Anchor examples" %}
     <p class="docs-copy">Sometimes you need to give all <code>&lt;a&gt;</code> elements inside a container or component the same color, even
         when it&lsquo;s impractical or even impossible to give each anchor element an <code>s-link</code> class (e.g. because the markup is generated from Markdown).</p>
     <p class="docs-copy">In this case, you can add the <code>s-anchors</code> class together with one of the modifiers
@@ -101,7 +72,7 @@ tags: components
 <div class="s-anchors s-anchors__inherit">…</div>
 {% endhighlight %}
         <div class="docs-preview--example">
-            {% for item in links.descendent-anchors %}
+            {% for item in links.anchors-classes %}
                 {% if item.name != "base" %}
                     <div class="s-anchors s-anchors__{{ item.name }} s-card mb8 {{ item.exampleClasses }}">
                         There is a <a href="#">{{ item.name }} link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="https://stackoverflow.design/404-unvisited">another one</a>.
