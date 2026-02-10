@@ -181,16 +181,16 @@ describe("user-card", () => {
         baseClass: "s-user-card",
         variants: ["sm", "lg", "deleted"],
         children: {
-            base: getChild("base"),
-            small: getChild("small"),
+            "base": getChild("base"),
+            "small": getChild("small"),
             "with-badges": getChild("with-badges"),
             "original-poster": getChild("original-poster"),
             "new-contributor": getChild("new-contributor"),
-            deleted: getChild("deleted"),
-            large: getChild("large"),
+            "deleted": getChild("deleted"),
+            "large": getChild("large"),
             "recognized-member": getChild("recognized-member"),
             "recognized-member-sm": getChild("recognized-member-sm"),
-            awarded: getChild("awarded"),
+            "awarded": getChild("awarded"),
         },
         excludedTestids: [
             /^s-user-card-(?=.*-large$)(?!.*-lg-).*$/, // large child only with lg variant
