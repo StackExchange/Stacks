@@ -5,7 +5,6 @@ import {
 import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
-// Same as packages/stacks-docs/assets/img/avatar-disgusted-24.svg, as data URL for img src
 const avatarDisgusted24Svg = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24.0006" fill="#FF5E00"/><rect width="5.42018" height="6.01141" transform="translate(5.39673 6.18628)" fill="#EEEEEE"/><path d="M9.489 6.18628H6.64893V8.86966H9.489V6.18628Z" fill="#31070F"/><rect width="5.42018" height="6.01141" transform="translate(13.3613 6.18628)" fill="#EEEEEE"/><path d="M17.4536 6.18628H14.6135V8.86966H17.4536V6.18628Z" fill="#31070F"/><path d="M15.6151 16.9882L8.92792 18.6686L8.56311 17.2169L15.2503 15.5367L15.6151 16.9882Z" fill="#31070F"/></svg>`;
 const avatarImageSrc = `data:image/svg+xml,${encodeURIComponent(avatarDisgusted24Svg)}`;
 
