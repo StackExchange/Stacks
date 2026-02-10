@@ -1,22 +1,19 @@
 import { html } from "@open-wc/testing";
+import {
+    IconAchievementsSm,
+    IconStarVerifiedSm,
+} from "@stackoverflow/stacks-icons-legacy/icons";
 import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
-const base64Image =
-    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATwAAAE8CAMAAABq2/00AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABhQTFRF/3IA/////44y/8OS/+fU//Xs/6tn/9e2EhvbMQAABH9JREFUeNrs3e1y2ygAhWELJHH/d7zuJpN1XAnxoe408Ly/6xnnHXEOIEwfDwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/gbAGEhrZl2VloY20PIk8tAzZbfkXA7eeuHyysVfdFMsXiY66ptiWF8Re05BdxF7HkBV7PUNW7FVx4E7sVSwrDjBw2+pC7NWwHtkTe3ULM7En9v6O2ONF7Ik9sSf2IPbEntgTexB7t8feTsynniD2Oh6tXex1hFoUe02kaxVi72JMZs+Rib0LLdkXFGLvaECWjkOxdxVmUex1rB6S2Kss2lcytSH2LnVkakPsXQ7E8xwTe5fuMrUh9vKj8CP4xN7lNOXc3mnwib1M2X7Z28VeS93mg0/sFZTG6WCMVSE51fqsYL4s9jpqQ+yV1caxErHXUxtir6c2xF5HbYRF7LXXhtjrqQ2x11MbYu9tLG4VtSH2empD7BUNxpPaSGKvPPh2sdcxX45i78baEHs18+X32hB7NfPl99oQex21MVHsxViaR8W1MU3s/XpMSvWF0tqYJfY+BmMq01dcG+scP6/6enTK9BW+1J0j9l5aYN0rP5BzM0XsbSUnAlpqY4LYezexFeRSbpslH3uDXdF64OG6est258PohXE8BK+7o6g29rJTQsPt1F3qK9qdTwMP2Wz2X1Vv0UvdbeQ53nl2Xesr2Z0Pww7Zs5lsafWW1MY+6JDNxv5/+kLb5/fXfzLirRdhKSGnr6A2tkGvJoxLGZnqva6NkAbdgA+pUN9a+QuWYYPu+98ee/W1/PJgoMG7lek7nW3UHiEdbKpcqu+kO2L9b4aG0rcWjt5jfWf2Z7kCeE891XtSG/O86A5d+tbZj1h0VW+c/ja90FG9uxMCFdWb/+SkZ1Oaq/d1vjzvXfvF+tLp+aiZT5S1Vm90lrFj02B3bW1d9X7T92u+7Aq9qk2D+Fob/v/Myu7YostC76xe9K966evfr5+7ekuXHVy1V6+R275pEMd3kPbGB+Syeod/8D7Sf41NBvPdMf7a4uXpaTGY0zd+4r0vDlKtwdPqHf/BOzzf8zQYqvRtcz54mXfUNUVyUL0T7AhcrBbKY/C36p1geVEy1y00+F3fBA9eKFxnlRXJa/XOcKxnqeF6Pv1VvTPc7RuXai6K5LN6Z9hQSUsb2Rh86pviUultaScTg/sMD15YeqmcT8/bFx1Foi/umk9P3hcMfqTenrabBT5j8DGTwHivwelOCTwNrnfJm/Ol2U0GZ74WdE+dBn9+Z/z2J9UZ7IjB7dZv8gPl9RRJIq89BiN57QZ38trn04G8k62E6xjcHuQ1D+JEXrvBnbz2+XQgr30+/SCveT69ktceg4m8doOBvDG/CXnkkTezvOXPQB555JFHHnnkkUceeeSRRx555JFHHnnkkWcnmTzyyCOPPPLII4888sgjjzzfhDzyyCOPPPL+9Ff+eyCPPPLII4888sgjjzzyyCOPPPLII4888sgDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPy//CPAAPiZOI3BPDFQAAAAAElFTkSuQmCC";
+// Same as packages/stacks-docs/assets/img/avatar-disgusted-24.svg, as data URL for img src
+const avatarDisgusted24Svg = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24.0006" fill="#FF5E00"/><rect width="5.42018" height="6.01141" transform="translate(5.39673 6.18628)" fill="#EEEEEE"/><path d="M9.489 6.18628H6.64893V8.86966H9.489V6.18628Z" fill="#31070F"/><rect width="5.42018" height="6.01141" transform="translate(13.3613 6.18628)" fill="#EEEEEE"/><path d="M17.4536 6.18628H14.6135V8.86966H17.4536V6.18628Z" fill="#31070F"/><path d="M15.6151 16.9882L8.92792 18.6686L8.56311 17.2169L15.2503 15.5367L15.6151 16.9882Z" fill="#31070F"/></svg>`;
+const avatarImageSrc = `data:image/svg+xml,${encodeURIComponent(avatarDisgusted24Svg)}`;
 
-const getChild = (child?: string): string => {
-    const groupWithAvatar = `
-        <a class="s-user-card--group" href="#">
-            <span class="s-avatar s-avatar__24">
-                <img class="s-avatar--image" alt="User avatar" src="${base64Image}" />
-            </span>
-            <span class="s-user-card--username">Tracy Smith</span>
-        </a>`;
-    const repAndTime = `
+const repList = `
         <ul class="s-user-card--group">
             <li class="s-user-card--rep">
-                <span class="s-bling s-bling__rep s-bling__sm">
+                <span class="s-bling s-bling__sm">
                     <span class="v-visible-sr">reputation bling</span>
                 </span>
                 1350
@@ -39,127 +36,144 @@ const getChild = (child?: string): string => {
                 </span>
                 4
             </li>
-        </ul>
-        <a class="s-user-card--time" href="#" title="2026-01-15T12:00:00.000Z">
+        </ul>`;
+
+const timeLink = (title = "2026-01-09 12:15:39Z") =>
+    `<a class="s-user-card--time" href="#" title="${title}" data-controller="s-tooltip">
             <time>asked 2 hours ago</time>
         </a>`;
+
+const deletedAvatarSvg = `<svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="deleted avatar"><rect x="1.44543" y="1.44543" width="45.1091" height="45.1091" stroke="var(--black-300)" stroke-width="2.89086" stroke-dasharray="5.78 5.78"/><rect x="10" y="14" width="12" height="3.12" fill="var(--black-500)"/><rect x="26" y="14" width="12" height="3.12" fill="var(--black-500)"/><rect x="14" y="31.12" width="20" height="3.12" fill="var(--black-500)"/></svg>`;
+
+const getChild = (child?: string): string => {
+    const groupWithAvatar = `
+        <a class="s-user-card--group" href="#">
+            <span class="s-avatar s-avatar__24">
+                <img class="s-avatar--image" alt="User avatar" src="${avatarImageSrc}" />
+            </span>
+            <span class="s-user-card--username">Tracy Smith</span>
+        </a>`;
+    const groupWithAvatarSm = `
+        <a class="s-user-card--group" href="#">
+            <span class="s-avatar">
+                <img class="s-avatar--image" alt="User avatar" src="${avatarImageSrc}" />
+            </span>
+            <span class="s-user-card--username">Tracy Smith</span>
+        </a>`;
+
     switch (child) {
+        case "base":
+            return `${groupWithAvatar}${repList}${timeLink()}`;
+
+        case "small":
+            return `${groupWithAvatarSm}
+        ${repList}${timeLink()}`;
+
+        case "with-badges":
+            return `${groupWithAvatar}
+        <div class="s-user-card--group">
+            <span class="s-badge s-badge__sm s-badge__moderator">Mod</span>
+        </div>
+        ${repList}${timeLink()}`;
+
         case "original-poster":
             return `
         <a class="s-user-card--group" href="#">
             <span class="s-avatar s-avatar__24">
-                <img class="s-avatar--image" alt="User avatar" src="${base64Image}" />
+                <img class="s-avatar--image" alt="User avatar" src="${avatarImageSrc}" />
             </span>
             <span class="s-user-card--username s-user-card--username__op">Tracy Smith</span>
         </a>
-        <ul class="s-user-card--group">
-            <li class="s-user-card--rep">
-                <span class="s-bling s-bling__rep s-bling__sm">
-                    <span class="v-visible-sr">reputation bling</span>
-                </span>
-                1350
-            </li>
-        </ul>
-        <a class="s-user-card--time" href="#" title="2026-01-15T12:00:00.000Z">
-            <time>asked 2 hours ago</time>
-        </a>`;
-        case "with-badges":
-            return `${groupWithAvatar}
-        <div class="s-user-card--group">
-            <span class="s-badge s-badge__moderator">Mod</span>
-        </div>
-        <ul class="s-user-card--group">
-            <li class="s-user-card--rep">
-                <span class="s-bling s-bling__sm">
-                    <span class="v-visible-sr">reputation bling</span>
-                </span>
-                1350
-            </li>
-        </ul>
-        <a class="s-user-card--time" href="#" title="2026-01-15T12:00:00.000Z">
-            <time>asked 2 hours ago</time>
-        </a>`;
+        ${repList}${timeLink("Show activity on this post")}`;
+
         case "new-contributor":
             return `${groupWithAvatar}
         <div class="s-user-card--group">
-            <span class="s-badge s-badge__new">New</span>
+            <span class="s-badge s-badge__sm s-badge__new">New</span>
         </div>
-        <ul class="s-user-card--group">
-            <li class="s-user-card--rep">
-                <span class="s-bling s-bling__sm">
-                    <span class="v-visible-sr">reputation bling</span>
-                </span>
-                1350
-            </li>
-        </ul>
-        <a class="s-user-card--time" href="#" title="2026-01-15T12:00:00.000Z">
-            <time>asked 2 hours ago</time>
-        </a>`;
+        ${repList}${timeLink("Show activity on this post")}`;
+
         case "deleted":
-            return `${groupWithAvatar}
-        <a class="s-user-card--time" href="#" title="2026-01-15T12:00:00.000Z">
-            <time>asked 2 hours ago</time>
-        </a>`;
+            return `
+        <div class="s-user-card--group">
+            ${deletedAvatarSvg}
+            <span class="s-user-card--username">Tracy Smith</span>
+        </div>
+        ${timeLink("Show activity on this post")}`;
+
         case "large":
             return `
-        <a class="s-user-card--group" href="#">
-            <span class="s-avatar s-avatar__48">
-                <img class="s-avatar--image" alt="User avatar" src="${base64Image}" />
-            </span>
-            <span class="s-user-card--username">Tracy Smith</span>
-        </a>
+        <div class="s-user-card--row">
+            <a class="s-avatar s-avatar__48" href="#">
+                <img class="s-avatar--image" alt="User avatar" src="${avatarImageSrc}" />
+            </a>
+            <div class="s-user-card--column">
+                <div class="s-user-card--row">
+                    <a class="s-user-card--username" href="#">Tracy Smith</a>
+                    <div class="s-user-card--group">
+                        <span class="s-badge s-badge__sm s-badge__staff">Staff</span>
+                        <span class="s-badge s-badge__sm s-badge__moderator">Mod</span>
+                    </div>
+                </div>
+                ${repList}
+            </div>
+        </div>
         <div class="s-user-card--column">
-            <p class="s-user-card--bio">Developer who believes in clean code and the occasional snake pun.</p>
-            <div class="s-user-card--recognition">
-                <a href="#">Recognized by AudioBubble</a>
+            <div class="s-user-card--row s-user-card--recognition">
+                ${IconStarVerifiedSm}
+                <span>Recognized by <a href="#">AudioBubble</a></span>
             </div>
             <ul class="s-user-card--group s-user-card--group__split">
                 <li>Senior Product Designer</li>
                 <li>Vancouver, Canada</li>
             </ul>
-        </div>
-        <ul class="s-user-card--group">
-            <li class="s-user-card--rep">
-                <span class="s-bling s-bling__sm">
-                    <span class="v-visible-sr">reputation bling</span>
-                </span>
-                1350
-            </li>
-        </ul>`;
+            <div class="s-user-card--bio">Developer who believes in clean code, clear coffee, and the occasional snake pun.</div>
+        </div>`;
+
         case "recognized-member":
             return `${groupWithAvatar}
         <div class="s-user-card--recognition-additional-bling">
+            ${IconStarVerifiedSm}
             <a href="#">Recognized Member</a>
         </div>
-        <ul class="s-user-card--group">
-            <li class="s-user-card--rep">
-                <span class="s-bling s-bling__sm">
-                    <span class="v-visible-sr">reputation bling</span>
-                </span>
-                1350
-            </li>
-        </ul>
-        <a class="s-user-card--time" href="#" title="2026-01-15T12:00:00.000Z">
-            <time>asked 2 hours ago</time>
-        </a>`;
+        ${repList}${timeLink()}`;
+
+        case "awarded":
+            return `${groupWithAvatar}
+        <a class="s-user-card--group fc-orange-400" href="#" title="Awarded" data-controller="s-tooltip">
+            ${IconAchievementsSm}
+        </a>
+        <div class="s-user-card--group">
+            <span class="s-badge s-badge__sm s-badge__moderator">Mod</span>
+        </div>
+        ${repList}${timeLink()}`;
+
         default:
-            return `${groupWithAvatar}${repAndTime}`;
+            return `${groupWithAvatar}${repList}${timeLink()}`;
     }
 };
 
 describe("user-card", () => {
     runVisualTests({
         baseClass: "s-user-card",
-        variants: ["sm", "lg"],
+        variants: ["sm", "lg", "deleted"],
         children: {
-            "base": getChild(),
-            "original-poster": getChild("original-poster"),
+            base: getChild("base"),
+            small: getChild("small"),
             "with-badges": getChild("with-badges"),
+            "original-poster": getChild("original-poster"),
             "new-contributor": getChild("new-contributor"),
-            "deleted": getChild("deleted"),
-            "large": getChild("large"),
+            deleted: getChild("deleted"),
+            large: getChild("large"),
             "recognized-member": getChild("recognized-member"),
+            awarded: getChild("awarded"),
         },
+        excludedTestids: [
+            /^s-user-card-(?=.*-large$)(?!.*-lg-).*$/, // large child only with lg variant
+            /^s-user-card-(?=.*-small$)(?!.*-sm-).*$/, // small child only with sm variant
+            /^s-user-card-(?!.*-deleted-).*-deleted$/, // deleted child only with deleted variant
+            /^s-user-card-.+-deleted-(?!deleted$).+$/, // deleted variant only with deleted child
+        ],
         template: ({ component, testid }) => html`
             <div
                 data-testid="${testid}"
