@@ -10,27 +10,19 @@ tags: components
         <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th scope="col">Class</th>
-                    <th scope="col" class="s-table--cell2">Applies to</th>
+                    <th scope="col" class="s-table--cell2">Class</th>
+                    <th scope="col" class="s-table--cell3">Applies to</th>
                     <th scope="col">Output</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row"><code>.s-code-block</code></th>
-                    <td class="ff-mono"><code>pre</code></td>
-                    <td class="ff-mono">Adds proper styling to pre-formatted code.</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code>.linenums</code></th>
-                    <td class="ff-mono"><code>.s-code-block</code></td>
-                    <td class="ff-mono">Adds a line numbers column to the code block.</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code>.linenums:&lt;n&gt;</code></th>
-                    <td class="ff-mono"><code>.s-code-block</code></td>
-                    <td class="ff-mono">Adds a line numbers column to the code block starting at a number <code>&lt;n&gt;</code>.</td>
-                </tr>
+                {% for item in code-blocks.classes %}
+                    <tr>
+                        <th scope="row"><code>{{ item.class }}</code></th>
+                        <td class="ff-mono"><code>{{ item.applies }}</code></td>
+                        <td>{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
