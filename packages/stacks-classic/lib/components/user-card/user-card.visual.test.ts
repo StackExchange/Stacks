@@ -131,10 +131,37 @@ const getChild = (child?: string): string => {
         </div>`;
 
         case "recognized-member":
-            return `${groupWithAvatar}
-        <div class="s-user-card--recognition-additional-bling">
+            // Default variant: column layout with recognition in second row (per docs)
+            return `
+        <div class="s-user-card--column">
+            <div class="s-user-card--row">
+                <a class="s-avatar s-avatar__24" href="#">
+                    <img class="s-avatar--image" alt="User avatar" src="${avatarImageSrc}" />
+                </a>
+                <a class="s-user-card--group" href="#">
+                    <span class="s-user-card--username">SofiaAlc</span>
+                </a>
+                <div class="s-user-card--group">
+                    <span class="s-badge s-badge__sm s-badge__moderator">Mod</span>
+                </div>
+                ${repList}${timeLink()}
+            </div>
+            <div class="s-user-card--row">
+                <div class="s-user-card--row s-user-card--recognition">
+                    ${IconStarVerifiedSm}
+                    <span>Recognized by <a href="#">AudioBubble</a></span>
+                </div>
+            </div>
+        </div>`;
+
+        case "recognized-member-sm":
+            // Small variant: inline recognition link with icon only (per docs)
+            return `${groupWithAvatarSm}
+        <a href="#" class="s-user-card--group s-user-card--recognition" title="Recognized by Audiobubble" data-controller="s-tooltip">
             ${IconStarVerifiedSm}
-            <a href="#">Recognized Member</a>
+        </a>
+        <div class="s-user-card--group">
+            <span class="s-badge s-badge__sm s-badge__moderator">Mod</span>
         </div>
         ${repList}${timeLink()}`;
 
@@ -166,11 +193,16 @@ describe("user-card", () => {
             deleted: getChild("deleted"),
             large: getChild("large"),
             "recognized-member": getChild("recognized-member"),
+            "recognized-member-sm": getChild("recognized-member-sm"),
             awarded: getChild("awarded"),
         },
         excludedTestids: [
             /^s-user-card-(?=.*-large$)(?!.*-lg-).*$/, // large child only with lg variant
             /^s-user-card-(?=.*-small$)(?!.*-sm-).*$/, // small child only with sm variant
+            /^s-user-card-.+-lg-(?!large$).+$/, // lg variant only with large child
+            /^s-user-card-.+-sm-(?!small$).+$/, // sm variant only with small child
+            /^s-user-card-.+-sm-recognized-member$/, // recognized-member only with default (not sm)
+            /^s-user-card-(?!.*-sm-).*-recognized-member-sm$/, // recognized-member-sm only with sm variant
             /^s-user-card-(?!.*-deleted-).*-deleted$/, // deleted child only with deleted variant
             /^s-user-card-.+-deleted-(?!deleted$).+$/, // deleted variant only with deleted child
         ],
