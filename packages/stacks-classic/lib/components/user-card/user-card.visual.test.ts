@@ -131,7 +131,6 @@ const getChild = (child?: string): string => {
         </div>`;
 
         case "recognized-member":
-            // Default variant: column layout with recognition in second row (per docs)
             return `
         <div class="s-user-card--column">
             <div class="s-user-card--row">
@@ -155,7 +154,6 @@ const getChild = (child?: string): string => {
         </div>`;
 
         case "recognized-member-sm":
-            // Small variant: inline recognition link with icon only (per docs)
             return `${groupWithAvatarSm}
         <a href="#" class="s-user-card--group s-user-card--recognition" title="Recognized by Audiobubble" data-controller="s-tooltip">
             ${IconStarVerifiedSm}
