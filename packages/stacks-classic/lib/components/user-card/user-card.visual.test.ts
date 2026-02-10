@@ -51,14 +51,14 @@ const getChild = (child?: string): string => {
             <span class="s-avatar s-avatar__24">
                 <img class="s-avatar--image" alt="User avatar" src="${avatarImageSrc}" />
             </span>
-            <span class="s-user-card--username">Tracy Smith</span>
+            <span class="s-user-card--username">SofiaAlc</span>
         </a>`;
     const groupWithAvatarSm = `
         <a class="s-user-card--group" href="#">
             <span class="s-avatar">
                 <img class="s-avatar--image" alt="User avatar" src="${avatarImageSrc}" />
             </span>
-            <span class="s-user-card--username">Tracy Smith</span>
+            <span class="s-user-card--username">SofiaAlc</span>
         </a>`;
 
     switch (child) {
@@ -82,7 +82,7 @@ const getChild = (child?: string): string => {
             <span class="s-avatar s-avatar__24">
                 <img class="s-avatar--image" alt="User avatar" src="${avatarImageSrc}" />
             </span>
-            <span class="s-user-card--username s-user-card--username__op">Tracy Smith</span>
+            <span class="s-user-card--username s-user-card--username__op">SofiaAlc</span>
         </a>
         ${repList}${timeLink("Show activity on this post")}`;
 
@@ -97,7 +97,7 @@ const getChild = (child?: string): string => {
             return `
         <div class="s-user-card--group">
             ${deletedAvatarSvg}
-            <span class="s-user-card--username">Tracy Smith</span>
+            <span class="s-user-card--username">SofiaAlc</span>
         </div>
         ${timeLink("Show activity on this post")}`;
 
@@ -109,7 +109,7 @@ const getChild = (child?: string): string => {
             </a>
             <div class="s-user-card--column">
                 <div class="s-user-card--row">
-                    <a class="s-user-card--username" href="#">Tracy Smith</a>
+                    <a class="s-user-card--username" href="#">SofiaAlc</a>
                     <div class="s-user-card--group">
                         <span class="s-badge s-badge__sm s-badge__staff">Staff</span>
                         <span class="s-badge s-badge__sm s-badge__moderator">Mod</span>
