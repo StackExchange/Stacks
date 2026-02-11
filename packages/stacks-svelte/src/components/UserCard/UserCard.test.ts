@@ -1038,6 +1038,43 @@ describe("UserCard states", () => {
             expect(recognitionBling).to.exist;
         });
 
+        it("should set aria-label on the additional bling from tooltipText", () => {
+            const tooltipText = "This user is recognized by AudioBubble";
+            const additionalBlingsSnippet = createRawSnippet(() => ({
+                render: () => "<span></span>",
+                setup: (target) => {
+                    const instance = mount(UserCardAdditionalBling, {
+                        target,
+                        props: {
+                            class: "s-user-card--recognition-additional-bling",
+                            tooltipText,
+                            id: "user-card-recognized-member-popover",
+                            icon: IconStarVerifiedSm,
+                            href: "#",
+                        },
+                    });
+                    return () => {
+                        unmount(instance);
+                    };
+                },
+            }));
+
+            const { container } = render(UserCard, {
+                name: "John Doe",
+                avatar: "https://picsum.photos/128",
+                size: "sm",
+                additionalBlings: additionalBlingsSnippet,
+            });
+
+            const recognitionBling = container.querySelector(
+                ".s-user-card--recognition-additional-bling"
+            );
+            expect(recognitionBling).to.exist;
+            expect(recognitionBling?.getAttribute("aria-label")).to.equal(
+                tooltipText
+            );
+        });
+
         it("should show popover tooltip when hovering over additional bling", async () => {
             clock = sinon.useFakeTimers({
                 shouldAdvanceTime: true,
