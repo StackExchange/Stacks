@@ -164,7 +164,7 @@ const getChild = (child?: string): string => {
 
         case "awarded":
             return `${groupWithAvatar}
-        <a class="s-user-card--group fc-orange-400" href="#" title="Awarded" data-controller="s-tooltip">
+        <a class="s-user-card--group fc-orange-400" href="#" title="Awarded" aria-label="Awarded" data-controller="s-tooltip">
             ${IconAchievementsSm}
         </a>
         <div class="s-user-card--group">

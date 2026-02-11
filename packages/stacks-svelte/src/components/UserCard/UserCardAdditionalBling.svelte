@@ -56,7 +56,12 @@
 
 <Popover {id} tooltip>
     <PopoverReference>
-        <svelte:element this={href ? "a" : "div"} {href} class={classes}>
+        <svelte:element
+            this={href ? "a" : "div"}
+            {href}
+            aria-label={tooltipText}
+            class={classes}
+        >
             <Icon src={icon} />
         </svelte:element>
     </PopoverReference>
