@@ -37,16 +37,19 @@
         trailing,
         children,
     }: Props = $props();
+
+    // Generate a unique ID for accessibility
+    const uniqueId = `s-nav-${crypto.randomUUID()}`;
 </script>
 
 <li class={className}>
     <div class={["s-navigation--title", "d-flex", titleClass]}>
-        <svelte:element this={titleTag} class="mb0 fw-normal">
+        <svelte:element this={titleTag} class="mb0 fw-normal" id={uniqueId}>
             {title}
         </svelte:element>
         {@render trailing?.()}
     </div>
-    <ul>
+    <ul aria-labelledby={uniqueId}>
         {@render children?.()}
     </ul>
 </li>
