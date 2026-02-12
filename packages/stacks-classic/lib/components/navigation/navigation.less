@@ -1,4 +1,5 @@
-.s-navigation {
+.s-navigation,
+.s-navigation ul {
     --_na-fd: row;
     --_na-fw: wrap;
     --_na-p: var(--su2) 0;
@@ -15,7 +16,6 @@
     --_na-item-selected-bg-hover: var(--_na-item-bg-hover);
     --_na-item-selected-h: var(--su2);
     --_na-item-text-ta: center;
-    --_na-title-mt: var(--su24);
     --_na-after-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M11.35 4.35 6 9.71.65 4.35l.7-.7L6 8.29l4.65-4.64z'/%3E%3C/svg%3E");
     --_na-after-bg-color: var(--black-400);
 
@@ -42,7 +42,8 @@
         --_na-item-p: var(--su6) var(--su4);
     }
 
-    &&__vertical {
+    &&__vertical,
+    &&__vertical ul {
         --_na-fd: column;
         --_na-gap: 0;
         --_na-p: 0;
@@ -51,6 +52,7 @@
         --_na-item-selected-h: 0;
         --_na-item-p: var(--su6) var(--su8);
         --_na-item-fc: var(--black-600);
+        
         & .s-navigation--item {
             &.is-selected {
                 --_na-item-bg: var(--black-150);
@@ -151,18 +153,20 @@
     }
 
     & &--title {
-        &:first-child {
-            --_na-title-mt: 0;
-        }
-
         & .s-btn {
             color: var(--black-400);
         }
 
-        margin-top: var(--_na-title-mt);
+        margin-bottom: 0;
         font-size: var(--fs-fine);
+        font-weight: normal;
         color: var(--black-400);
         padding: calc(var(--su16) + var(--su2)) var(--su8);
+    }
+
+    //Add top margin to titles except the first one
+    & > li ~ li .s-navigation--title {
+        margin-top: var(--su24);
     }
 
     & &--icon {
