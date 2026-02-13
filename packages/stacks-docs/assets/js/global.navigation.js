@@ -8,6 +8,19 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
+    // Docs table "Show all classes" - use delegation so it works after sidebar nav AJAX load
+    $(document).on("click", ".js-docs-table-expand", function() {
+        var button = $(this);
+        var tableId = button.attr("aria-controls");
+        var table = tableId ? document.getElementById(tableId) : null;
+        if (table) {
+            button.addClass("d-none");
+            button.attr("aria-expanded", "true");
+            table.classList.remove("v-truncate", "v-truncate-fade", "overflow-auto");
+            table.classList.add("overflow-x-auto");
+        }
+    });
+
     function regenerateMenu () {
         // Hide the navigation if we've opened it
         hamburgerBtn.removeClass("is-selected");

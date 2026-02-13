@@ -62,25 +62,12 @@
 {% if expandableClassesTable %}
     <button
         id="show-{{ tableId }}-button"
-        class="s-btn s-btn__tonal s-btn__sm w100"
+        class="js-docs-table-expand s-btn s-btn__tonal s-btn__sm w100"
+        type="button"
         aria-expanded="false"
-        aria-controls="docs-table">
+        aria-controls="{{ tableId }}">
         {{ expandableBtnText}}
     </button>
-{% endif %}
-
-{% if expandableClassesTable %}
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const button = document.querySelector('#show-{{ tableId }}-button');
-            const table = document.querySelector('#{{ tableId }}');
-            button.addEventListener('click', function() {
-                button.classList.add("d-none");
-                table.classList.remove("v-truncate", "v-truncate-fade", "overflow-auto");
-                table.classList.add("overflow-x-auto");
-            });
-        });
-    </script>
 {% endif %}
 
 <!-- Reset all default values -->
