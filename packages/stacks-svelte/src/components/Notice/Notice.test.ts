@@ -55,7 +55,9 @@ describe("Notice", () => {
     it("should render dismissable notice", async () => {
         const onDismissMock = sinon.spy();
         render(Notice, {
-            children,
+            children: createRawSnippet(() => ({
+                render: () => `<span>Dismiss Me</span>`,
+            })),
             dismissible: true,
             onDismiss: onDismissMock,
             i18nDismissButtonLabel: "Chiudi",
@@ -73,7 +75,7 @@ describe("Notice", () => {
         expect(closeButton).to.have.class("s-notice--dismiss");
 
         // Confirm the text is on-screen
-        expect(screen.getByText(text)).to.be.visible;
+        expect(screen.getByText("Dismiss Me")).to.be.visible;
 
         // Check dismiss is clicked correctly
         await userEvent.click(closeButton);

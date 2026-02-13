@@ -2,7 +2,14 @@ import { html } from "@open-wc/testing";
 import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
-const items = [
+interface NavigationItem {
+    label: string;
+    title?: boolean;
+    selected?: boolean;
+    dropdown?: boolean;
+}
+
+const items: NavigationItem[] = [
     {
         label: "Group 1",
         title: true,
@@ -38,20 +45,43 @@ const items = [
     },
 ];
 
-const getChildren = (includeTitles = false): string =>
-    items
-        .map((item) => {
+const getChildren = (includeTitles = false): string => {
+    const getClasses = function (item: NavigationItem) {
+        return `s-navigation--item${
+            item.selected ? " is-selected" : ""
+        }${item.dropdown ? " s-navigation--item__dropdown" : ""}`;
+    };
+
+    if (!includeTitles) {
+        return items
+            .map((item) => {
+                if (item.title) {
+                    return ""; //don't print title
+                }
+                return `<li><a href="#" class="${getClasses(item)}">${item.label}</a></li>`;
+            })
+            .join("");
+    } else {
+        //Vertical nav
+        let html = "";
+        for (const item of items) {
             if (item.title) {
-                return includeTitles
-                    ? `<li class="s-navigation--title">${item.label}</li>`
-                    : "";
+                if (html.length > 0) {
+                    html += "</ul></li>";
+                }
+                const groupName = item.label.replace(" ", "");
+                html += `<li>
+                <h4 class="s-navigation--title" id="nav-${groupName}">${item.label}</h4>
+                <ul aria-labelledby="nav-${groupName}">
+                `;
+            } else {
+                html += `<li><a href="#" class="${getClasses(item)}">${item.label}</a></li>`;
             }
-            const classes = `s-navigation--item${
-                item.selected ? " is-selected" : ""
-            }${item.dropdown ? " s-navigation--item__dropdown" : ""}`;
-            return `<li><a href="#" class="${classes}">${item.label}</a></li>`;
-        })
-        .join("");
+        }
+        html += "</ul></li>";
+        return html;
+    }
+};
 
 describe("navigation", () => {
     runA11yTests({

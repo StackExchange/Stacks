@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { Snippet } from "svelte";
+    import type { ClassValue } from "svelte/elements";
 
     type Orientation = "horizontal" | "vertical";
     type Overflow = "wrap" | "scroll";
@@ -22,9 +23,13 @@
          */
         size?: "" | "sm";
         /**
-         * Additional CSS classes added to the navigation list element
+         * Additional CSS classes added to the outer navigation element
          */
-        class?: string;
+        class?: ClassValue;
+        /**
+         * Additional CSS classes added to the inner list element
+         */
+        listClass?: ClassValue;
         /**
          * Snippet for the navigation children
          */
@@ -36,10 +41,10 @@
         overflow = "wrap",
         size = "",
         class: className = "",
+        listClass = "",
         children,
     }: Props = $props();
     const getClasses = (
-        className: string,
         orientation: Orientation,
         overflow: Overflow,
         size: Size
@@ -55,18 +60,13 @@
         if (size) {
             classes += ` ${base}__${size}`;
         }
-        if (className) {
-            classes += ` ${className}`;
-        }
         return classes;
     };
-    const classes = $derived(
-        getClasses(className, orientation, overflow, size)
-    );
+    const classes = $derived(getClasses(orientation, overflow, size));
 </script>
 
-<nav aria-label={label}>
-    <ul class={classes}>
+<nav aria-label={label} class={className}>
+    <ul class={[listClass, classes]}>
         {@render children()}
     </ul>
 </nav>

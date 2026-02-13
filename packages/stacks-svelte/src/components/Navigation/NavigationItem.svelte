@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { Snippet } from "svelte";
     import type {
+        ClassValue,
         HTMLAnchorAttributes,
         HTMLButtonAttributes,
     } from "svelte/elements";
@@ -39,7 +40,7 @@
         /**
          * Additional CSS classes added to the element
          */
-        class?: string;
+        class?: ClassValue;
         /**
          * If true, applies a slide animation to the navigation item.
          */
@@ -66,11 +67,7 @@
         trailing,
         ...restProps
     }: Props = $props();
-    const getClasses = (
-        className: string,
-        selected: boolean,
-        dropdown: boolean
-    ) => {
+    const getClasses = (selected: boolean, dropdown: boolean) => {
         const base = "s-navigation--item";
         let classes = "w100 " + base;
         if (dropdown) {
@@ -79,12 +76,9 @@
         if (selected) {
             classes += ` is-selected`;
         }
-        if (className) {
-            classes += ` ${className}`;
-        }
         return classes;
     };
-    const classes = $derived(getClasses(className, selected, !!dropdown));
+    const classes = $derived(getClasses(selected, !!dropdown));
 
     const maybeslide = (node: Element) => (animate ? slide(node) : {});
 </script>
@@ -93,7 +87,7 @@
     <svelte:element
         this={href ? "a" : "button"}
         {href}
-        class={classes}
+        class={[className, classes]}
         aria-current={selected ? "true" : undefined}
         {...restProps}
     >
