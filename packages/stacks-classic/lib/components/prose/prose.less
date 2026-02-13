@@ -46,29 +46,15 @@
     });
 
     // MODIFIERS
-    &&__xs,
-    &&__sm,
-    &&__md {
+    &&__sm {
         --_pr-h1-fs: 1.75em;
         --_pr-h2-fs: 1.375em;
         --_pr-h3-fs: 1.25em;
         --_pr-h4-fs: 1.125em;
         --_pr-h5-fs: 1em;
-    }
-
-    &&__xs {
         --_pr-fs: var(--fs-caption);
-        --_pr-lh: var(--lh-sm);
-    }
-
-    &&__sm {
-        --_pr-fs: var(--fs-body1);
         --_pr-lh: var(--lh-md);
-    }
-
-    &&__md {
-        --_pr-fs: var(--fs-body3);
-        --_pr-lh: var(--lh-xl);
+        --_pr-code-fs: var(--fs-caption);
     }
 
     // CHILD ELEMENTS
@@ -77,11 +63,13 @@
             color: var(--theme-link-color, var(--theme-secondary-400)); // When contained within a link, we want the code to be link-colored
         }
 
+        // Code blocks use ems to maintain sizes relative to the surrounding text
         > code {
-            padding: var(--su2) var(--su4);
-            color: var(--black-600);
             background-color: var(--black-200);
-            border-radius: var(--br-md);
+            color: var(--black-600);
+            // TODO verify this font size is appropriate with a Windows font stack
+            font-size: .875em;
+            padding: 0.1875em 0.375em;
         }
     }
 
@@ -254,7 +242,7 @@
             margin-bottom: calc(@pr-spacing-condensed + 0.1em); // Add some more spacing on the bottom for a little extra optical alignment
         }
 
-        margin-bottom:@pr-spacing;
+        margin-bottom: @pr-spacing;
         margin-top: 0;
     }
 
@@ -364,7 +352,7 @@
     p {
         --_pr-img-mb: 0;
 
-        a {
+        a:not([class]) {
             text-decoration: underline;
         }
 
@@ -429,7 +417,7 @@
 
         > * {
             opacity: var(--_pr-soiler-child-o);
-            transition: @pr-spoiler-transition;
+            transition: var(--_pr-spoiler-transition);
             visibility: var(--_pr-soiler-child-visibility); // hidden elements don't respond to mouse events, but still retain their space
         }
 

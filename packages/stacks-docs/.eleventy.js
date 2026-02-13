@@ -59,15 +59,19 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addLiquidFilter("extractHeadings", function(content) {
     const $ = cheerio.load(content);
     const headings = [];
-    
+
     $('h2, h3').each((i, el) => {
+      // Exclude headings inside presentational areas (e.g. examples, demos)
+      if ($(el).closest('[role="presentation"]').length > 0) {
+        return;
+      }
       headings.push({
         level: parseInt(el.tagName[1]),
         text: $(el).text(),
         id: $(el).attr('id')
       });
     });
-    
+
     return headings;
   });
 

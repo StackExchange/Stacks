@@ -4,33 +4,26 @@ title: Prose
 description: The prose component provides proper styling for rendered Markdown.
 tags: components
 ---
+
+{% assign expandBtnContainerClasses = "ps-sticky bg-white z-popover py16 t64 bb bc-black-200 sm:py8" %}
+
 <section class="docs-section">
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
         <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th scope="col">Class</th>
+                    <th scope="col" class="s-table--cell3">Class</th>
                     <th scope="col">Output</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row"><code>.s-prose</code></th>
-                    <td class="ff-mono">Adds proper styling for rendered Markdown.</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code>.s-prose__xs</code></th>
-                    <td class="ff-mono">Our most compact version with the smallest font size and line height.</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code>.s-prose__sm</code></th>
-                    <td class="ff-mono">Decreases the base font size and line height.</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code>.s-prose__md</code></th>
-                    <td class="ff-mono">Increases the base font size and line height.</td>
-                </tr>
+                {% for item in components.prose.classes %}
+                    <tr>
+                        <th scope="row"><code>{{ item.class }}</code></th>
+                        <td>{{ item.description }}</td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
@@ -39,82 +32,44 @@ tags: components
     {% header "h2", "Examples" %}
     {% header "h3", "Minimal" %}
     <p class="docs-copy">We modified this test document from the folks at <a href="https://github.com/tailwindcss/typography/blob/master/README.md">Tailwind</a> to demonstrate and explain our design choices.</p>
-    <div class="docs-preview">
-        <div class="docs-preview--example d:bg-white bar-md btw1">
+
+    <div class="docs-preview d-flex fd-column">
+        <div class="{{ expandBtnContainerClasses }} mbn1">
+            <button class="s-btn s-btn__tonal"
+                aria-expanded="false"
+                aria-controls="prose-example-minimal"
+                data-expanded-text="Collapse example"
+                data-collapsed-text="Expand example"
+                >
+                Expand example
+            </button>
+        </div>
+{% highlight html %}
+<div class="s-prose">
+    …
+</div>
+{% endhighlight %}
+        <div id="prose-example-minimal" class="docs-preview--example hmx4 overflow-scroll js-expandable">
             <div class="s-prose" role="presentation">
                 {% markdown '/_includes/markdown-prose.md' %}
             </div>
         </div>
     </div>
 
-    {% header "h3", "Answer" %}
-    <p class="docs-copy">The following is a <a href="https://stackoverflow.com/a/2003515/2804712">real-world answer</a> taken from Stack Overflow</p>
-    <div class="docs-preview">
-        <div class="docs-preview--example d:bg-white bar-md btw1">
-            <div class="s-prose" role="presentation">
-                {% markdown '/_includes/markdown-post.md' %}
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "Link preview" %}
-    <p class="docs-copy">Let’s see what a link preview looks like within the prose component.</p>
-    <div class="docs-preview">
-        <div class="docs-preview--example d:bg-white bar-md btw1">
-            <div class="s-prose">
-                <div class="s-link-preview">
-                    <div class="s-link-preview--header">
-                        <div class="s-link-preview--icon">
-                            {% icon "GitHub" %}
-                        </div>
-                        <div>
-                            <a href="https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js" class="s-link-preview--title">
-                                Gruntfile.js
-                            </a>
-                            <div class="s-link-preview--details">
-                                Located in <a href="https://github.com/StackExchange/Stacks/">StackExchange / Stacks</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="s-link-preview--code">
-{% highlight js %}
-linenums'use strict';
-
-module.exports = function(grunt) {
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-        version: '<%= pkg.version %>',
-
-        // Shell commands for use in Grunt tasks
-        shell: {
-            eleventyBuild: {
-                command: 'npx @11ty/eleventy',
-                options: {
-                    stderr: false,
-                    execOptions: {
-                        cwd: 'docs'
-                    }
-                }
-{% endhighlight %}
-                    </div>
-                    <div class="s-link-preview--footer">
-                        <a href="https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js" class="s-link-preview--url">https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js</a>
-                        <div class="s-link-preview--misc">(truncated)</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     {% header "h3", "Full Markdown spec" %}
     <p class="docs-copy">This example includes the full kitchen-sink collection of everything the Markdown spec includes.</p>
-    <div class="docs-preview">
-{% highlight html %}
-<div class="s-prose">
-    …
-</div>
-{% endhighlight %}
-        <div class="docs-preview--example d:bg-white">
+    <div class="docs-preview d-flex fd-column">
+        <div class="{{ expandBtnContainerClasses }}">
+            <button class="s-btn s-btn__tonal"
+                aria-expanded="false"
+                aria-controls="prose-example-full"
+                data-expanded-text="Collapse example"
+                data-collapsed-text="Expand example"
+                >
+                Expand example
+            </button>
+        </div>
+        <div id="prose-example-full" class="docs-preview--example hmx4 overflow-scroll js-expandable">
             <div class="s-prose" role="presentation">
                 {% markdown '/_includes/markdown-sandbox.md' %}
             </div>
@@ -124,63 +79,52 @@ module.exports = function(grunt) {
 
 <section class="docs-section">
     {% header "h2", "Sizing" %}
-    {% header "h3", "Extra Small" %}
-    <div class="docs-preview">
-{% highlight html %}
-<div class="s-prose s-prose__xs">
-    …
-</div>
-{% endhighlight %}
-        <div class="docs-preview--example d:bg-white">
-            <div class="s-prose s-prose__xs" role="presentation">
-                {% markdown '/_includes/markdown-readme.md' %}
-            </div>
-        </div>
-    </div>
-
     {% header "h3", "Small" %}
     <p class="docs-copy">In ancilliary content like comments or side-discussions, it may be appropriate to add the small variation.</p>
-    <div class="docs-preview">
+    <div class="docs-preview d-flex fd-column">
+        <div class="{{ expandBtnContainerClasses }} mbn1">
+            <button class="s-btn s-btn__tonal"
+                aria-expanded="false"
+                aria-controls="prose-example-small"
+                data-expanded-text="Collapse example"
+                data-collapsed-text="Expand example"
+                >
+                Expand example
+            </button>
+        </div>
 {% highlight html %}
 <div class="s-prose s-prose__sm">
     …
 </div>
 {% endhighlight %}
-        <div class="docs-preview--example d:bg-white">
+        <div id="prose-example-small" class="docs-preview--example hmx4 overflow-scroll js-expandable">
             <div class="s-prose s-prose__sm" role="presentation">
-                {% markdown '/_includes/markdown-readme.md' %}
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "Default" %}
-    <div class="docs-preview">
-{% highlight html %}
-<div class="s-prose">
-    …
-</div>
-{% endhighlight %}
-        <div class="docs-preview--example d:bg-white">
-            <div class="s-prose" role="presentation">
-                {% markdown '/_includes/markdown-readme.md' %}
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "Medium" %}
-    <p class="docs-copy">Depending on the context for displaying the prose component, it may be appropriate to size text up to maintain readability.</p>
-    <div class="docs-preview">
-{% highlight html %}
-<div class="s-prose s-prose__md">
-    …
-</div>
-{% endhighlight %}
-        <div class="docs-preview--example d:bg-white">
-            <div class="s-prose s-prose__md" role="presentation">
-                {% markdown '/_includes/markdown-readme.md' %}
+                {% markdown '/_includes/markdown-prose.md' %}
             </div>
         </div>
     </div>
 </section>
 
 <!-- Additional javascript -->
+<script>
+    document.querySelectorAll('.js-expandable').forEach((expandable) => {
+        const id = expandable.id;
+        if (!id) return;
+
+        const button = document.querySelector(`[aria-controls="${id}"]`);
+        if (!button) return;
+
+        const expandedText = button.getAttribute('data-expanded-text');
+        const collapsedText = button.getAttribute('data-collapsed-text');
+
+        button.addEventListener('click', () => {
+            expandable.classList.toggle('hmx4');
+            expandable.classList.toggle('overflow-scroll');
+            const isExpanded = !expandable.classList.contains('hmx4');
+            button.setAttribute('aria-expanded', isExpanded);
+            button.classList.toggle('is-selected', isExpanded);
+            const newText = isExpanded ? expandedText : collapsedText;
+            if (newText !== null) button.textContent = newText;
+        });
+    });
+</script>
