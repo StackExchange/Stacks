@@ -1,28 +1,164 @@
 {
-  "automatic": [
+  "classes": [
     {
       "class": ".s-popover",
       "description": "Base parent container for popovers"
     },
     {
       "class": ".s-popover__tooltip",
-      "applies": "<code>.s-popover</code>",
+      "applies": ".s-popover",
       "description": "Removes minimum size constraints to support shorter tooltip text"
     },
     {
       "class": ".is-visible",
-      "applies": "<code>.s-popover</code>",
+      "applies": ".s-popover",
       "description": "This class toggles the popover visibility"
     },
     {
       "class": ".s-popover--close",
-      "applies": "Child of <code>.s-popover</code>",
-      "description": "Used to dismiss a popover"
+      "description": "Child of <code>.s-popover</code>. Used to dismiss a popover"
     },
     {
         "class": ".s-popover--content",
-        "applies": "Child of <code>.s-popover</code>",
-        "description": "Wrapper around the popover content to apply appropriate overflow styles"
+        "description": "Child of <code>.s-popover</code>. Wrapper around the popover content to apply appropriate overflow styles"
+    }
+  ],
+  "interactiveAttributes": [
+    {
+      "item": "id=\"{POPOVER_ID}\"",
+      "applies": ".s-popover",
+      "description": "A unique id that the popover’s toggling element can target. Matches the value of <code>[aria-controls]</code> on the toggling element."
+    },
+    {
+      "item": "data-controller=\"s-popover\"",
+      "appliesText": "Controller element",
+      "description": "Wires up the element to the popover controller. This may be a toggling element or a wrapper element."
+    },
+    {
+      "item": "data-s-popover-reference-selector=\"[css selector]\"",
+      "appliesText": "Controller element",
+      "description": "(optional) Designates the element to use as the popover reference. If left unset, the value defaults to the controller element."
+    },
+    {
+      "item": "aria-controls=\"{POPOVER_ID}\"",
+      "appliesText": "Reference element",
+      "description": "Associates the element to the desired popover element."
+    },
+    {
+      "item": "data-action=\"s-popover#toggle\"",
+      "appliesText": "Toggling element",
+      "description": "Wires up the element to toggle the visibility of a generic popover."
+    },
+    {
+      "item": "data-s-popover-toggle-class=\"[class list]\"",
+      "appliesText": "Controller element",
+      "description": "Adds an optional space-delineated list of classes to be toggled on the originating element when the popover is shown or hidden."
+    },
+    {
+      "item": "data-s-popover-placement=\"<a href=\"https://popper.js.org/popper-documentation.html#Popper.placements\">[placement]</a>\"",
+      "appliesText": "Controller element",
+      "description": "Dictates where to place the popover in relation to the reference element. By default, the placement value is <code>bottom</code>. Accepted placements are <code>auto</code>, <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>. Each placement can take an additional <code>-start</code> and <code>-end</code> variation."
+    },
+    {
+      "item": "data-s-popover-auto-show=\"[true|false]\"",
+      "appliesText": "Controller element",
+      "description": "(optional) If <code>true</code>, the popover will appear immediately when the Stacks controller is first connected. This should be used in place of <code>.is-visible</code> for displaying popovers on load as it will prevent the popover from appearing before it has been correctly positioned."
+    },
+    {
+      "item": "data-s-popover-hide-on-outside-click=\"[always|never|if-in-viewport|after-dismissal]\"",
+      "appliesText": "Controller element",
+      "description": "(optional) Default: <code>always</code><ul><li>If <code>always</code>, the popover will appear disappear when outside clicks occur.</li><li>If <code>if-in-viewport</code>, the popover will only disappear when outside clicks occur if the popover is in the viewport.</li><li>If <code>never</code>, the popover will not disappear on outside clicks and will only be dismissed through other means, e.g. <code>data-target=\"s-popover#hide\"</code>.</li><li>If <code>after-dismissal</code>, the popover will not disappear on outside clicks unless it has been dismissed some other way at least once.</li></ul>"
+    }
+  ],
+  "interactiveEvents": [
+    {
+      "item": "s-popover:show",
+      "description": "Fires immediately before showing and positioning the popover. This fires before the popover is first displayed to the user, and can be used to create or initialize the popover element. Calling .preventDefault() cancels the display of the popover."
+    },
+    {
+      "item": "s-popover:shown",
+      "description": "Fires immediately after showing the popover."
+    },
+    {
+      "item": "s-popover:hide",
+      "description": "Fires immediately before hiding the popover. Calling .preventDefault() prevents the removal of the popover."
+    },
+    {
+      "item": "s-popover:hidden",
+      "description": "Fires immediately after hiding the popover."
+    }
+  ],
+  "dispatchedEvents": [
+    {
+      "item": "dispatcher",
+      "applies": "s-popover:*",
+      "description": "Contains the <code>Element</code> that initiated the event. For instance, the button clicked to show, the element clicked outside the popover that caused it to hide, etc."
+    }
+  ],
+  "tooltipHoverAttributes": [
+    {
+      "item": "id=\"{POPOVER_ID}\"",
+      "applies": ".s-popover",
+      "description": "A unique id that the popover’s toggling element can target. Matches the value of <code>[aria-describedby]</code> on the toggling element."
+    },
+    {
+      "item": "data-controller=\"s-tooltip\"",
+      "appliesText": "Controller element",
+      "description": "Wires up the element to the tooltip controller."
+    },
+    {
+      "item": "data-s-tooltip-reference-selector=\"[css selector]\"",
+      "appliesText": "Controller element",
+      "description": "(optional) Designates the element to use as the tooltip reference. If left unset, the value defaults to the controller element."
+    },
+    {
+      "item": "aria-describedby=\"{POPOVER_ID}\"",
+      "appliesText": "Reference element",
+      "description": "Associates the element to the desired popover element."
+    },
+    {
+      "item": "title=\"{TITLE}\"",
+      "appliesText": "Controller element",
+      "description": "If <code>aria-describedby</code> is not present or valid, and the title attribute exists, the title will be removed from the element and be used to create a popover immediately after the element. All content will be escaped and inserted as text."
+    },
+    {
+      "item": "data-s-tooltip-html-title=\"{TITLE}\"",
+      "appliesText": "Controller element",
+      "description": "Acts the exact same as the <code>title</code> attribute, but inserts the raw text directly as html. If both this and the <code>title</code> attribute exist on the element, this attribute will be used."
+    },
+    {
+      "item": "data-s-tooltip-placement=\"<a href=\"https://popper.js.org/popper-documentation.html#Popper.placements\">[placement]</a>\"",
+      "appliesText": "Controller element",
+      "description": "Dictates where to place the tooltip in relation to the reference element. By default, the placement value is <code>bottom</code>. Accepted placements are <code>auto</code>, <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>. Each placement can take an additional <code>-start</code> and <code>-end</code> variation."
+    }
+  ],
+  "tooltipHoverEvents": [
+    {
+      "item": "s-tooltip:show",
+      "appliesText": "Controller element",
+      "description": "Default preventable</span> Fires immediately before showing and positioning the tooltip. This fires before the tooltip is first displayed to the user, and can be used to create or initialize the tooltip element. Calling <code>.preventDefault()</code> cancels the display of the popover."
+    },
+    {
+      "item": "s-tooltip:shown",
+      "appliesText": "Controller element",
+      "description": "Fires immediately after showing the tooltip."
+    },
+    {
+      "item": "s-tooltip:hide",
+      "appliesText": "Controller element",
+      "description": "Default preventable Fires immediately before hiding the tooltip. Calling <code>.preventDefault()</code> prevents the removal of the tooltip."
+    },
+    {
+      "item": "s-tooltip:hidden",
+      "appliesText": "Controller element",
+      "description": "Fires immediately after hiding the tooltip."
+    }
+  ],
+  "tooltipDispatchedEvents": [
+    {
+      "item": "dispatcher",
+      "applies": "s-tooltip:*",
+      "description": "Contains the <code>Element</code> that initiated the event. For instance, the element hovered over to show, etc."
     }
   ]
 }

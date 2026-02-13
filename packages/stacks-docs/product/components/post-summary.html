@@ -8,33 +8,22 @@ tags: components
 <!-- Classes table -->
 <section class="docs-section">
     {% header "h2", "Classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell4" scope="col">Class</th>
-                    <th class="s-table--cell3" scope="col">Parent</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                {% for item in post-summary.classes %}
-                    <tr>
-                        <th scope="row"><code>{{ item.class }}</code></th>
-                        <td><code>{{ item.applies }}</td>
-                        <td class="p8">{{ item.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    {% assign tableId = "post-summary-classes-table" %}
+    {% assign docsClasses = post-summary.classes %}
+    {% assign col1Classes = "s-table--cell4" %}
+    {% assign col2Classes = "s-table--cell4" %}
+    {% assign expandableClassesTable = true %}
+    {% include "docs-table.html" %}
 </section>
 
-{% header "h2", "Examples" %}
-{% header "h3", "Base" %}
 <section class="docs-section">
-    <p class="docs-copy">Use the post summary component to provide a concise summary of a question, article, or other content.</p>
-    <div class="docs-preview">
+    {% header "h2", "Examples" %}
+
+    <section class="docs-section">
+        {% header "h3", "Base" %}
+
+        <p class="docs-copy">Use the post summary component to provide a concise summary of a question, article, or other content.</p>
+        <div class="docs-preview">
 {% highlight html %}
 <div class="s-post-summary">
     <div class="s-post-summary--stats s-post-summary--sm-hide">
@@ -89,33 +78,35 @@ tags: components
     </div>
 </div>
 {% endhighlight %}
-    <div class="docs-preview--example d-flex fd-column g32">
-        {% render 'post-summary-item.html' %}
-    </div>
-</section>
+        <div class="docs-preview--example d-flex fd-column g32">
+            {% render 'post-summary-item.html' %}
+        </div>
+    </section>
 
-{% header "h3", "Answered" %}
-<section class="docs-section">
-    <p class="docs-copy">
-        Add the <code>.s-post-summary__answered</code> modifier class to indicate that the post has an accepted answer.
-    </p>
-    <div class="docs-preview">
+    <section class="docs-section">
+        {% header "h3", "Answered" %}
+
+        <p class="docs-copy">
+            Add the <code>.s-post-summary__answered</code> modifier class to indicate that the post has an accepted answer.
+        </p>
+        <div class="docs-preview">
 {% highlight html %}
 <div class="s-post-summary s-post-summary__answered">
     …
 </div>
 {% endhighlight %}
-    <div class="docs-preview--example d-flex fd-column g32">
-        {% render 'post-summary-item.html', data: post-summary.answered %}
-    </div>
-</section>
+        <div class="docs-preview--example d-flex fd-column g32">
+            {% render 'post-summary-item.html', data: post-summary.answered %}
+        </div>
+    </section>
 
-<section class="docs-section">
-    {% header "h3", "Bountied" %}
-    <p class="docs-copy">
-        Include the <code>.s-post-summary--stats-bounty</code> element to indicate that the post has a bounty.
-    </p>
-    <div class="docs-preview">
+    <section class="docs-section">
+        {% header "h3", "Bountied" %}
+
+        <p class="docs-copy">
+            Include the <code>.s-post-summary--stats-bounty</code> element to indicate that the post has a bounty.
+        </p>
+        <div class="docs-preview">
 {% highlight html %}
 <div class="s-post-summary">
     <div class="s-post-summary--stats s-post-summary--sm-hide">
@@ -142,15 +133,16 @@ tags: components
     …
 </div>
 {% endhighlight %}
-    <div class="docs-preview--example d-flex fd-column g32">
-        {% render 'post-summary-item.html', data: post-summary.bountied %}
-    </div>
-</section>
+        <div class="docs-preview--example d-flex fd-column g32">
+            {% render 'post-summary-item.html', data: post-summary.bountied %}
+        </div>
+    </section>
 
-{% header "h3", "Ignored" %}
-<section class="docs-section">
-    <p class="docs-copy">Including an ignored tag will automatically apply custom ignored styling to the post summary.</p>
-    <div class="docs-preview">
+    <section class="docs-section">
+        {% header "h3", "Ignored" %}
+
+        <p class="docs-copy">Including an ignored tag will automatically apply custom ignored styling to the post summary.</p>
+        <div class="docs-preview">
 {% highlight html %}
 <div class="s-post-summary">
     …
@@ -163,18 +155,19 @@ tags: components
     </div>
 </div>
 {% endhighlight %}
-        <div class="docs-preview--example">
-            {% render 'post-summary-item.html',
-                data: post-summary.ignored
-            %}
+            <div class="docs-preview--example">
+                {% render 'post-summary-item.html',
+                    data: post-summary.ignored
+                %}
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-{% header "h3", "Watched" %}
-<section class="docs-section">
-    <p class="docs-copy">Including a watched tag will automatically apply custom watched styling to the post summary.</p>
-    <div class="docs-preview">
+    <section class="docs-section">
+        {% header "h3", "Watched" %}
+
+        <p class="docs-copy">Including a watched tag will automatically apply custom watched styling to the post summary.</p>
+        <div class="docs-preview">
 {% highlight html %}
 <div class="s-post-summary">
     …
@@ -187,35 +180,37 @@ tags: components
     </div>
 </div>
 {% endhighlight %}
-        <div class="docs-preview--example">
-            {% render 'post-summary-item.html',
-                data: post-summary.watched
-            %}
+            <div class="docs-preview--example">
+                {% render 'post-summary-item.html',
+                    data: post-summary.watched
+                %}
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-{% header "h3", "Deleted" %}
-<section class="docs-section">
-    <p class="docs-copy">Include the <code>.s-post-summary__deleted</code> modifier class applies custom deleted styling to the post summary.</p>
-    <div class="docs-preview">
+    <section class="docs-section">
+        {% header "h3", "Deleted" %}
+
+        <p class="docs-copy">Include the <code>.s-post-summary__deleted</code> modifier class applies custom deleted styling to the post summary.</p>
+        <div class="docs-preview">
 {% highlight html %}
 <div class="s-post-summary s-post-summary__deleted">
     …
 </div>
 {% endhighlight %}
-        <div class="docs-preview--example">
-            {% render 'post-summary-item.html',
-                data: post-summary.deleted
-            %}
+            <div class="docs-preview--example">
+                {% render 'post-summary-item.html',
+                    data: post-summary.deleted
+                %}
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-{% header "h3", "State badges" %}
-<section class="docs-section">
-    <p class="docs-copy">Include the appropriate state badge to indicate the current state of the post.</p>
-    <div class="docs-preview">
+    <section class="docs-section">
+        {% header "h3", "State badges" %}
+
+        <p class="docs-copy">Include the appropriate state badge to indicate the current state of the post.</p>
+        <div class="docs-preview">
 {% highlight html %}
 <!-- Draft -->
 <div class="s-post-summary">
@@ -322,20 +317,20 @@ tags: components
     </div>
 </div>
 {% endhighlight %}
-        <div class="docs-preview--example d-flex fd-column g32">
-            {% for data in post-summary.states %}
-                {% render 'post-summary-item.html',
-                    data: data
-                %}
-            {% endfor %}
+            <div class="docs-preview--example d-flex fd-column g32">
+                {% for data in post-summary.states %}
+                    {% render 'post-summary-item.html',
+                        data: data
+                    %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-{% header "h3", "Content types" %}
-<section class="docs-section">
-    <p class="docs-copy">Include the appropriate content type badge to indicate the type of content the post represents.</p>
-    <div class="docs-preview">
+    <section class="docs-section">
+        {% header "h3", "Content types" %}
+        <p class="docs-copy">Include the appropriate content type badge to indicate the type of content the post represents.</p>
+        <div class="docs-preview">
 {% highlight html %}
 <!-- Announcement -->
 <div class="s-post-summary">
@@ -389,42 +384,43 @@ tags: components
     </div>
 </div>
 {% endhighlight %}
-        <div class="docs-preview--example d-flex fd-column g32">
-            {% for data in post-summary.contentTypes %}
-                {% render 'post-summary-item.html', data: data %}
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-<!-- Excerpt sizes -->
-{% header "h3", "Excerpt sizes" %}
-<section class="docs-section">
-    {% header "h4", "Classes" %}
-    <p class="docs-copy">Post summaries can be shown without an excerpt or with an excerpt with one, two, or three lines of text. Exclude the excerpt container to hide the excerpt or apply the appropriate truncation class to the excerpt container. See also <a href="/product/base/truncation/">Truncation</a>.</p>
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell4" scope="col">Class</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                {% for item in post-summary.excerptSizes %}
-                    {% if item.excerptLines > 0 %}
-                    <tr>
-                            <th scope="row"><code>.v-truncate{{ item.excerptLines }}</code></th>
-                            <td class="p8">Truncates the excerpt to {{ item.excerptLines }} lines of text.</td>
-                        </tr>
-                    {% endif %}
+            <div class="docs-preview--example d-flex fd-column g32">
+                {% for data in post-summary.contentTypes %}
+                    {% render 'post-summary-item.html', data: data %}
                 {% endfor %}
-            </tbody>
-        </table>
-    </div>
+            </div>
+        </div>
+    </section>
 
-    {% header "h4", "Examples" %}
-    <div class="docs-preview">
+    <section class="docs-section">
+        {% header "h3", "Excerpt sizes" %}
+
+        {% header "h4", "Classes" %}
+        <p class="docs-copy">Post summaries can be shown without an excerpt or with an excerpt with one, two, or three lines of text. Exclude the excerpt container to hide the excerpt or apply the appropriate truncation class to the excerpt container. See also <a href="/product/base/truncation/">Truncation</a>.</p>
+
+        <div class="overflow-x-auto mb32" tabindex="0">
+            <table class="docs-table s-table s-table__bx-simple">
+                <thead>
+                    <tr>
+                        <th class="s-table--cell4" scope="col">Class</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody class="fs-caption">
+                    {% for item in post-summary.excerptSizes %}
+                        {% if item.excerptLines > 0 %}
+                        <tr>
+                                <th scope="row"><code>.v-truncate{{ item.excerptLines }}</code></th>
+                                <td class="p8">Truncates the excerpt to {{ item.excerptLines }} lines of text.</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% header "h4", "Examples" %}
+        <div class="docs-preview">
 {% highlight html %}
 <!-- No excerpt -->
 <div class="s-post-summary">
@@ -462,39 +458,39 @@ tags: components
     </div>
 </div>
 {% endhighlight %}
-        <div class="docs-preview--example d-flex fd-column g32">
-            {% for data in post-summary.excerptSizes %}
-                {% render 'post-summary-item.html',
-                    data: data
-                %}
-            {% endfor %}
+            <div class="docs-preview--example d-flex fd-column g32">
+                {% for data in post-summary.excerptSizes %}
+                    {% render 'post-summary-item.html',
+                        data: data
+                    %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-{% header "h3", "Small container" %}
-<section class="docs-section">
-    <p class="docs-copy">Post summaries adapt to their container size. When shown with a container smaller than 448px, the post summary renders with a compact layout.</p>
-    <div class="docs-preview">
+    <section class="docs-section">
+        {% header "h3", "Small container" %}
+
+        <p class="docs-copy">Post summaries adapt to their container size. When shown with a container smaller than 448px, the post summary renders with a compact layout.</p>
+        <div class="docs-preview">
 {% highlight html %}
 <div class="s-post-summary">…</div>
 {% endhighlight %}
-    <div class="docs-preview--example">
-        <div class="s-card d-flex fd-column g32 wmx3">
-            {% for data in post-summary.small %}
-                {% render 'post-summary-item.html', data: data %}
-            {% endfor %}
+        <div class="docs-preview--example">
+            <div class="s-card d-flex fd-column g32 wmx3">
+                {% for data in post-summary.small %}
+                    {% render 'post-summary-item.html', data: data %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- With answers -->
-{% header "h3", "Answers" %}
-<section class="docs-section">
-    <!-- TODO SHINE add description -->
-    <p class="docs-copy">Answers to a question can be shown in a post summary. Include the <code>.s-post-summary--answers</code> container to show the answers.</p>
-    <p class="docs-copy">For accepted answers, add the <code>.s-post-summary--answer__accepted</code> modifier class and display the <code>Accepted answer</code> text and icon as shown in the example below.</p>
-    <div class="docs-preview">
+    <section class="docs-section">
+        {% header "h3", "Answers" %}
+
+        <p class="docs-copy">Answers to a question can be shown in a post summary. Include the <code>.s-post-summary--answers</code> container to show the answers.</p>
+        <p class="docs-copy">For accepted answers, add the <code>.s-post-summary--answer__accepted</code> modifier class and display the <code>Accepted answer</code> text and icon as shown in the example below.</p>
+        <div class="docs-preview">
 {% highlight html %}
 <div class="s-post-summary">
     <div class="s-post-summary--stats s-post-summary--sm-hide">…</div>
@@ -578,10 +574,11 @@ tags: components
     </div>
 </div>
 {% endhighlight %}
-        <div class="docs-preview--example d-flex fd-column g32">
-            {% for data in post-summary.withAnswers %}
-                {% render 'post-summary-item.html', data: data %}
-            {% endfor %}
+            <div class="docs-preview--example d-flex fd-column g32">
+                {% for data in post-summary.withAnswers %}
+                    {% render 'post-summary-item.html', data: data %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
+    </section>
 </section>

@@ -2,11 +2,118 @@
     "classes": [
         {
             "class": ".s-progress",
-            "description": "Base class for the progress bar component."
+            "description": "The parent class for all progress bars."
         },
         {
             "class": ".s-progress--bar",
-            "description": "Child of <code>.s-progress</code>. A child element that shows the user’s current progress to accomplishing a goal with a background color."
+            "description": "A child element of <code>.s-progress</code>. It shows the user’s current progress to accomplishing a goal with a background color."
+        },
+        {
+            "class": ".s-progress--label",
+            "description": "A child element of <code>.s-progress</code>. It’s used to describe what progress bar is tracking."
+        },
+        {
+            "class": ".s-progress__brand",
+            "applies": ".s-progress",
+            "description": "A modifying class applied to <code>.s-progress</code>. It changes the bar color from green to orange."
+        },
+        {
+            "class": ".s-progress__info",
+            "applies": ".s-progress",
+            "description": "Modifier for an info progress bar. It changes the bar color from green to blue."
+        },
+        {
+            "class": ".s-progress__circular",
+            "applies": ".s-progress",
+            "description": "Modifier for a circular progress bar. It changes the bar to be a percentage of a circle."
+        },
+        {
+            "class": ".s-progress__privilege",
+            "applies": ".s-progress",
+            "description": "Modifier for a privilege progress bar. It changes the bar color from green to a lighter green (for legibility reasons)."
+        },
+        {
+            "class": ".s-progress__badge",
+            "applies": ".s-progress",
+            "description": "Modifier for a badge progress bar."
+        },
+        {
+            "class": ".s-progress__gold",
+            "applies": ".s-progress__badge",
+            "description": "Modifier for a gold badge progress bar. Applied to <code>.s-progress__badge</code>."
+        },
+        {
+            "class": ".s-progress__silver",
+            "applies": ".s-progress__badge",
+            "description": "Modifier for a silver badge progress bar. Applied to <code>.s-progress__badge</code>."
+        },
+        {
+            "class": ".s-progress__bronze",
+            "applies": ".s-progress__badge",
+            "description": "Modifier for a bronze badge progress bar. Applied to <code>.s-progress__badge</code>."
+        },
+        {
+            "class": ".s-progress__segmented",
+            "applies": ".s-progress",
+            "description": "Modifier for a segmented progress bar"
+        },
+        {
+            "class": ".s-progress__stepped",
+            "applies": ".s-progress",
+            "description": "Modifier for a stepped progress bar"
+        },
+        {
+            "class": ".s-progress--step",
+            "description": "A child of <code>.s-progress--stepped</code> that’s a wrapper for each individual step."
+        },
+        {
+            "class": ".is-active",
+            "applies": ".s-progress--step",
+            "description": "A modifier <code>.s-progress__step</code> that adds visual styling to the active step."
+        },
+        {
+            "class": ".is-completed",
+            "applies": ".s-progress--step",
+            "description": "A modifier <code>.s-progress__step</code> that adds visual styling to a completed step."
+        },
+        {
+            "class": ".s-progress--stop",
+            "description": "A child of <code>.s-progress--step</code>, the circle that might contain a checkmark if the step’s been completed."
+        },
+        {
+            "class": ".s-progress--bar__left",
+            "description": "A child of <code>.s-progress--step</code> that draws a line on the left side of a step."
+        },
+        {
+            "class": ".s-progress--bar__right",
+            "description": "A child of <code>.s-progress--step</code> that draws a line on the right side of a step."
+        }
+    ],
+    "parameters": [
+        {
+            "item": "role=\"progressbar\"",
+            "applies": ".s-progress--bar",
+            "description": "This parameter communicates that element is displaying progress status that takes a long time or consists of several steps. (<a href=\"https://www.w3.org/TR/wai-aria-1.1/#progressbar\" target=\"_blank\">Source</a>)"
+        },
+        {
+            "item": "aria-valuemin",
+            "applies": ".s-progress--bar",
+            "description": "This parameter defines the minimum allowed value for the progress bar. (<a href=\"https://www.w3.org/TR/wai-aria-1.1/#aria-valuemin\" target=\"_blank\">Source</a>)"
+        },
+        {
+            "item": "aria-valuemax",
+            "applies": ".s-progress--bar",
+            "description": "This parameter defines the maximum allowed value for the progress bar. (<a href=\"https://www.w3.org/TR/wai-aria-1.1/#aria-valuemax\" target=\"_blank\">Source</a>)"
+        },
+        {
+            "item": "aria-valuenow",
+            "applies": ".s-progress--bar",
+            "description": "This parameter defines the current value for the progress bar. (<a href=\"https://www.w3.org/TR/wai-aria-1.1/#aria-valuenow\" target=\"_blank\">Source</a>)"
+        },
+        {
+            "item": "style=\"width: [value]%\"",
+            "applies": ".s-progress--bar",
+            "description": "This parameter sets the width of the progress bar as a percentage. The value is the <code>aria-valuenow</code> value displayed as a percentage."
         }
     ]
 }

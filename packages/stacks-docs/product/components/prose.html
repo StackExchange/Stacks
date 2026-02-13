@@ -8,26 +8,13 @@ tags: components
 {% assign expandBtnContainerClasses = "ps-sticky bg-white z-popover py16 t64 bb bc-black-200 sm:py8" %}
 
 <section class="docs-section">
-    {% header "h2", "Classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col" class="s-table--cell3">Class</th>
-                    <th scope="col">Output</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in components.prose.classes %}
-                    <tr>
-                        <th scope="row"><code>{{ item.class }}</code></th>
-                        <td>{{ item.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    {% header "h2", "Parameters" %}
+    {% assign docsClasses = prose.classes %}
+    {% assign col1Classes = "s-table--cell4" %}
+    {% assign col2Classes = "s-table--cell3" %}
+    {% include "docs-table.html" %}
 </section>
+
 <section class="docs-section">
     {% header "h2", "Examples" %}
     {% header "h3", "Minimal" %}

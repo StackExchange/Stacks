@@ -7,6 +7,14 @@ tags: components
 ---
 
 <section class="docs-section">
+    {% header "h2", "Classes" %}
+    {% assign docsClasses = tables.classes %}
+    {% assign col1Classes = "s-table--cell4" %}
+    {% assign col2Classes = "s-table--cell3" %}
+    {% include "docs-table.html" %}
+</section>
+
+<section class="docs-section">
     {% header "h2", "Default style" %}
     <p class="docs-copy">Tables should be wrapped in a container, <code>.s-table-container</code>. This provides horizontal scrolling when necessary in the smallest breakpoints. The default table style is a bordered cell layout with a stylized header row.</p>
     <div class="docs-preview">
@@ -733,26 +741,10 @@ tags: components
     <p class="docs-copy">If the table contains rows that should not be sorted, but rather always be at the top or always be at the bottom, add <code>data-s-table-sort-to="top"</code> or <code>data-s-table-sort-to="bottom"</code> to the <code>&lt;tr&gt;</code> element.</p>
 
     {% header "h3", "JavaScript data attributes" %}
-    <div class="s-table-container">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col" class="s-table--cell5">Attribute</th>
-                    <th scope="col" class="s-table--cell2">Applied to</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                {% for item in tables.data-attributes %}
-                    <tr>
-                        <th scope="row"><code>{{ item.attribute }}</code></th>
-                        <td><code>{{ item.applies }}</code></td>
-                        <td class="p8">{{ item.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    {% assign docsClasses = tables.data-attributes %}
+    {% assign col1Classes = "s-table--cell5" %}
+    {% assign col2Classes = "s-table--cell2" %}
+    {% include "docs-table.html" %}
 
     {% header "h3", "JavaScript example" %}
     <div class="docs-preview">
