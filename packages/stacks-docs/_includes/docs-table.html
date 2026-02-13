@@ -1,10 +1,10 @@
 {% comment %}
   Reusable classes reference table (Class | Applied to | Description).
-  Set docsClasses in parent scope. Column header classes default as below; override by
+  Set docsItems in parent scope. Column header classes default as below; override by
   setting classColClasses, appliesColClasses, or descriptionColClasses before including.
 
   Usage:
-    {% assign docsClasses = badges.classes %}
+    {% assign docsItems = itemType.items %}
     {% include "docs-table.html" %}
     Override one column: {% assign appliesColClasses = "s-table--cell4" %}
 {% endcomment %}
@@ -36,7 +36,7 @@
             </tr>
         </thead>
         <tbody class="fs-caption">
-            {% for item in docsClasses %}
+            {% for item in docsItems %}
                 <tr>
                     <td>
                         <code>{{ item.class | default: item.item }}</code>
