@@ -234,7 +234,8 @@ tags: components
     {% header "h3", "Sizes" %}
     {% assign docsItems = user-cards.sizes %}
     {% assign tableId = "user-cards-sizes-table" %}
-    {% assign col2Text = "Size" %}
+    {% assign col2Heading = "" %}
+    {% assign col3Heading = "Size" %}
     {% include "docs-table.html" %}
 
     {% header "h4", "Small" %}
@@ -401,7 +402,7 @@ tags: components
 </div>
 {% endhighlight %}
         <div class="docs-preview--example d-flex g32 fw-wrap">
-            {% for user in user-card.large %}
+            {% for user in user-cards.large %}
                 <div class="s-user-card s-user-card__lg wmx3">
                     <div class="s-user-card--row">
                         <a class="s-avatar s-avatar__48" href="#">
@@ -543,7 +544,7 @@ tags: components
 </div>
 {% endhighlight %}
         <div class="docs-preview--example d-flex fd-column g8">
-            {% for user in user-card.original-poster %}
+            {% for user in user-cards.original-poster %}
                 <div class="s-user-card{% if user.size == 'small' %} s-user-card__sm{% endif %}">
                     <a class="s-user-card--group" href="#">
                         <span class="s-avatar{% if user.size != 'small' %} s-avatar__24{% endif %}">
@@ -652,7 +653,7 @@ tags: components
 </div>
 {% endhighlight %}
         <div class="docs-preview--example d-flex fd-column g8">
-            {% for user in user-card.new-contributor %}
+            {% for user in user-cards.new-contributor %}
                 <div class="s-user-card{% if user.size == 'small' %} s-user-card__sm{% endif %}">
                     <a class="s-user-card--group" href="#">
                         <span class="s-avatar{% if user.size != 'small' %} s-avatar__24{% endif %}">
@@ -730,7 +731,7 @@ tags: components
 </div>
 {% endhighlight %}
         <div class="docs-preview--example d-flex fd-column g8">
-            {% for user in user-card.deleted-user %}
+            {% for user in user-cards.deleted-user %}
                 <div class="s-user-card s-user-card__deleted{% if user.size == 'small' %} s-user-card__sm{% endif %}">
                     <div class="s-user-card--group">
                             {% if user.size == 'small' %}
@@ -764,7 +765,7 @@ tags: components
                 </tr>
             </thead>
             <tbody class="fs-caption">
-                {% for bling in user-card.additional-bling %}
+                {% for bling in user-cards.additional-bling %}
                     <tr>
                         <th scope="row">{{ bling.name }}</th>
                         {% if bling.class == "N/A" %}
@@ -879,7 +880,7 @@ tags: components
         </div>
         {% endhighlight %}
         <div class="docs-preview--example d-flex fd-column g8">
-            {% for user in user-card.recognized-member %}
+            {% for user in user-cards.recognized-member %}
                 <div class="s-user-card{% if user.size == 'small' %} s-user-card__sm{% endif %}">
                     {% if user.size != 'small' %}
                         <div class="s-user-card--column">
@@ -1037,7 +1038,7 @@ tags: components
     </div>
     {% endhighlight %}
     <div class="docs-preview--example d-flex fd-column g8">
-        {% for user in user-card.awarded %}
+        {% for user in user-cards.awarded %}
         <div class="s-user-card{% if user.size == 'small' %} s-user-card__sm{% endif %}">
             <a href="#" class="s-user-card--group">
                 <span class="s-avatar{% if user.size != 'small' %} s-avatar__24{% endif %}">

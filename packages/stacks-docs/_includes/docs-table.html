@@ -8,14 +8,36 @@
     {% include "docs-table.html" %}
     Override one column: {% assign appliesColClasses = "s-table--cell4" %}
 {% endcomment %}
-{% assign tableId = tableId | default: "docs-table" %}
-{% assign col1Classes = col1Classes | default: "s-table--cell3" %}
-{% assign col2Classes = col2Classes | default: "s-table--cell2" %}
-{% assign col3Classes = col3Classes | default: "" %}
-{% assign col1Text = col1Text | default: "Class" %}
-{% assign col2Text = col2Text | default: "Modifies" %}
-{% assign col3Text = col3Text | default: "Description" %}
-{% assign expandableBtnText = expandableBtnText | default: "Show all classes" %}
+{% if tableId == nil %}
+    {% assign tableId = "docs-table" %}
+{% endif %}
+{% if col1Classes == nil %}
+    {% assign col1Classes = "s-table--cell3" %}
+{% endif %}
+{% if col2Classes == nil %}
+    {% assign col2Classes = "s-table--cell2" %}
+{% endif %}
+{% if col3Classes == nil %}
+    {% assign col3Classes = "s-table--cell2" %}
+{% endif %}
+{% if col4Classes == nil %}
+    {% assign col4Classes = "" %}
+{% endif %}
+{% if col1Heading == nil %}
+    {% assign col1Heading = "Class" %}
+{% endif %}
+{% if col2Heading == nil %}
+    {% assign col2Heading = "Parent" %}
+{% endif %}
+{% if col3Heading == nil %}
+    {% assign col3Heading = "Modifies" %}
+{% endif %}
+{% if col4Heading == nil %}
+    {% assign col4Heading = "Description" %}
+{% endif %}
+{% if expandableBtnText == nil %}
+    {% assign expandableBtnText = "Show all classes" %}
+{% endif %}
 {% assign expandableClassesTable = expandableClassesTable | default: false %}
 <div
     id="{{ tableId }}"
@@ -24,36 +46,67 @@
     <table class="docs-table s-table s-table__bx-simple">
         <thead>
             <tr>
-                <th scope="col" class="{{ col1Classes }}">
-                    {{ col1Text }}
-                </th>
-                <th scope="col" class="{{ col2Classes }}">
-                    {{ col2Text }}
-                </th>
-                <th scope="col" class="{{ col3Classes }}">
-                    {{ col3Text }}
-                </th>
+                {% if col1Heading != "" %}
+                    <th scope="col" class="{{ col1Classes }}">
+                        {{ col1Heading }}
+                    </th>
+                {% endif %}
+                {% if col2Heading != "" %}
+                    <th scope="col" class="{{ col2Classes }}">
+                        {{ col2Heading }}
+                    </th>
+                {% endif %}
+                {% if col3Heading != "" %}
+                    <th scope="col" class="{{ col3Classes }}">
+                        {{ col3Heading }}
+                    </th>
+                {% endif %}
+                {% if col4Heading != "" %}
+                    <th scope="col" class="{{ col4Classes }}">
+                        {{ col4Heading }}
+                    </th>
+                {% endif %}
             </tr>
         </thead>
         <tbody class="fs-caption">
             {% for item in docsItems %}
                 <tr>
-                    <td>
-                        <code>{{ item.class | default: item.item }}</code>
-                    </td>
-                    <td>
-                        {% if item.appliesText or item.applies %}
-                            {% if item.appliesText %}
-                                <span class="ff-mono fs-fine">{{ item.appliesText }}</span>
+                    {% if col1Heading != "" %}
+                        <td>
+                            <code>{{ item.class | default: item.item }}</code>
+                        </td>
+                    {% endif %}
+                    {% if col2Heading != "" %}
+                        <td>
+                            {% if item.context or item.parent %}
+                                {% if item.context %}
+                                    <span class="ff-mono fs-fine">{{ item.context }}</span>
+                                {% endif %}
+                                {% if item.parent %}
+                                    <code>{{ item.parent }}</code>
+                                {% endif %}
+                            {% else %}
+                                <em class="fc-black-350">N/A</em>
                             {% endif %}
-                            {% if item.applies %}
-                                <code>{{ item.applies }}</code>
+                        </td>
+                    {% endif %}
+                    {% if col3Heading != "" %}
+                        <td>
+                            {% if item.appliesText or item.applies %}
+                                {% if item.appliesText %}
+                                    <span class="ff-mono fs-fine">{{ item.appliesText }}</span>
+                                {% endif %}
+                                {% if item.applies %}
+                                    <code>{{ item.applies }}</code>
+                                {% endif %}
+                            {% else %}
+                                <em class="fc-black-350">N/A</em>
                             {% endif %}
-                        {% else %}
-                            <em class="fc-black-350">N/A</em>
-                        {% endif %}
-                    </td>
-                    <td>{{ item.description }}</td>
+                        </td>
+                    {% endif %}
+                    {% if col4Heading != "" %}
+                        <td>{{ item.description }}</td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         </tbody>
@@ -75,8 +128,10 @@
 {% assign col1Classes = nil %}
 {% assign col2Classes = nil %}
 {% assign col3Classes = nil %}
-{% assign col1Text = nil %}
-{% assign col2Text = nil %}
-{% assign col3Text = nil %}
+{% assign col4Classes = nil %}
+{% assign col1Heading = nil %}
+{% assign col2Heading = nil %}
+{% assign col3Heading = nil %}
+{% assign col4Heading = nil %}
 {% assign expandableBtnText = nil %}
 {% assign expandableClassesTable = nil %}
