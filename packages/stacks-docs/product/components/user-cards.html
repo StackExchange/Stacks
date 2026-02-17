@@ -482,26 +482,14 @@ tags: components
 
 <section class="docs-section">
     {% header "h3", "States" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell3" scope="col">State</th>
-                    <th class="s-table--cell3" scope="col">Class</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                {% for state in user-cards.states %}
-                    <tr>
-                        <th scope="row">{{ state.name }}</th>
-                        <td><code>{{ state.class }}</code></td>
-                        <td class="p8">{{ state.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    {% assign docsItems = user-cards.states %}
+    {% assign col1Heading = "Class" %}
+    {% assign col2Heading = "State" %}
+    {% assign col1Classes = "s-table--cell4" %}
+    {% assign col3Heading = "" %}
+    {% assign tableId = "user-cards-states-table" %}
+    {% include "docs-table.html" %}
+
     {% header "h4", "Original Poster" %}
     <div class="docs-preview">
 {% highlight html %}
@@ -753,32 +741,14 @@ tags: components
 </section>
 
 <section class="docs-section">
-    {% header "h3", "Additional bling" %}
     <p class="docs-copy">Use to display a specialized icon alongside the username, highlighting unique achievements. This style is additive and can be combined with any of the usercard variants listed above.</p>
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell3" scope="col">Name</th>
-                    <th class="s-table--cell3" scope="col">Class</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                {% for bling in user-cards.additional-bling %}
-                    <tr>
-                        <th scope="row">{{ bling.name }}</th>
-                        {% if bling.class == "N/A" %}
-                            <td class="p8"><em class="fc-black-350">{{ bling.class }}</em></td>
-                        {% else %}
-                            <td class="p8"> <code>{{ bling.class }}</code></td>
-                        {% endif %}
-                        <td class="p8">{{ bling.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    {% header "h3", "Additional bling" %}
+    {% assign docsItems = user-cards.additional-bling %}
+    {% assign col2Heading = "Name" %}
+    {% assign col3Heading = "" %}
+    {% assign col1Classes = "s-table--cell4" %}
+    {% include "docs-table.html" %}
+
     {% header "h4", "Recognized Member" %}
     <div class="docs-preview">
         {% highlight html %}
