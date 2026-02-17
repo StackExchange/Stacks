@@ -96,26 +96,10 @@ tags: components
     <p class="docs-copy">Validation states provides the user feedback based on their interaction (or lack of interaction) with a select menu. These styles are applied by applying the appropriate class to the wrapping parent container.</p>
 
     {% header "h3", "Validation classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell3" scope="col">Class</th>
-                    <th class="s-table--cell3" scope="col">Applies</th>
-                    <th scope="col">Definition</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for state in inputs.validation %}
-                    <tr>
-                        <th scope="row"><code>{{ state.class }}</code></th>
-                        <td>Parent wrapper for select</td>
-                        <td>{{ state.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    {% assign docsItems = validation-classes %}
+    {% assign col2Heading = "Applies to" %}
+    {% assign col3Heading = "" %}
+    {% include "docs-table.html" %}
 
     {% header "h3", "Validation examples" %}
     {% header "h4", "Warning" %}
@@ -247,29 +231,11 @@ tags: components
 
 <section class="docs-section">
     {% header "h2", "Sizes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple va-middle">
-            <thead>
-                <tr>
-                    <th scope="col" class="s-table--cell2">Name</th>
-                    <th scope="col" class="s-table--cell1">Size</th>
-                    <th scope="col" class="s-table--cell2">Class</th>
-                    <th scope="col">Example</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in inputs.select %}
-                    {% assign size = item.sizes %}
-                    {% for item in size %}
-                    <tr>
-                        <th scope="row">{{ item.name }}</th>
-                        <td>{{ item.size }}</td>
-                        <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code>.{{ item.class }}</code>{% endif %}</td>
-                        <td><div class="d-flex s-select {{ item.class }}"><select aria-label="demo select {{ item.class }}"><option>1 Example</option><option>2 Options</option></select></div></td>
-                    </tr>
-                    {% endfor %}
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+
+    {% assign docsItems = select.sizes %}
+    {% assign col2Heading = "Name" %}
+    {% assign col3Heading = "Size" %}
+    {% assign col4Heading = "Example" %}
+    {% assign tableId = "select-sizes-table" %}
+    {% include "docs-table.html" %}
 </section>

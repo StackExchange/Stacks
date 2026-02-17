@@ -211,24 +211,10 @@ tags: components
     <p class="docs-copy">Checkboxes use the same validation states as <a href="{{ "/product/components/inputs" | url }}">inputs</a>.</p>
 
     {% header "h3", "Validation classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col" class="s-table--cell2">Class</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for state in inputs.validation %}
-                    <tr>
-                        <th scope="row"><code>{{ state.class }}</code></th>
-                        <td>{{ state.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    {% assign docsItems = validation-classes %}
+    {% assign col2Heading = "Applies to" %}
+    {% assign col3Heading = "" %}
+    {% include "docs-table.html" %}
 
     {% header "h3", "Validation examples" %}
     <div class="docs-preview">

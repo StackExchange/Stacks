@@ -5,6 +5,16 @@ figma: https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Produ
 description: Labels are used to describe inputs, select menus, textareas, radio buttons, and checkboxes.
 tags: components
 ---
+
+<section class="docs-section">
+    {% header "h2", "Classes" %}
+    {% assign docsItems = labels.classes %}
+    {% assign col2Heading = "" %}
+    {% assign col1Classes = "s-table--cell4" %}
+    {% assign col3Classes = "s-table--cell3" %}
+    {% include "docs-table.html" %}
+</section>
+
 <section class="docs-section">
     <p class="docs-copy">Labels inform users what information is being asked of them. They should be written in sentence case.</p>
     {% tip %}
@@ -35,31 +45,13 @@ tags: components
 
 <section class="docs-section">
     {% header "h2", "Sizes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple va-middle">
-            <thead>
-                <tr>
-                    <th scope="col" class="s-table--cell2">Name</th>
-                    <th scope="col" class="s-table--cell1">Size</th>
-                    <th scope="col" class="s-table--cell2">Class</th>
-                    <th scope="col">Example</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in inputs.label %}
-                    {% assign size = item.sizes %}
-                    {% for item in size %}
-                    <tr>
-                        <th scope="row">{{ item.name }}</th>
-                        <td>{{ item.size }}</td>
-                        <td>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}<code>.{{ item.class }}</code>{% endif %}</td>
-                        <td><label class="s-label {% if item.class != "N/A" %}{{ item.class }}{% endif %}">Question title</label></td>
-                    </tr>
-                    {% endfor %}
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+
+    {% assign docsItems = labels.sizes %}
+    {% assign col2Heading = "Name" %}
+    {% assign col3Heading = "Size" %}
+    {% assign col4Heading = "Example" %}
+    {% assign tableId = "label-sizes-table" %}
+    {% include "docs-table.html" %}
 </section>
 
 <section class="docs-section">
