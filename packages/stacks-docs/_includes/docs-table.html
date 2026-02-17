@@ -73,7 +73,16 @@
                 <tr>
                     {% if col1Heading != "" %}
                         <td>
-                            <code>{{ item.class | default: item.item }}</code>
+                            {% if item.code or item.text %}
+                                {% if item.code %}
+                                    <code>{{ item.code }}</code>
+                                {% endif %}
+                                {% if item.text %}
+                                    <span class="ff-mono fs-fine">{{ item.text }}</span>
+                                {% endif %}
+                            {% else %}
+                                <em class="fc-black-350">N/A</em>
+                            {% endif %}
                         </td>
                     {% endif %}
                     {% if col2Heading != "" %}
