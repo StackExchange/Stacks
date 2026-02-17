@@ -146,7 +146,10 @@ tags: components
             </div>
         </div>
 
-    {% header "h2", "JavaScript Example" %}
+    {% header "h2", "JavaScript" %}
+    <p class="docs-copy">The <code>.s-banner</code> component includes a controller to show and hide the banner programitically. While it is optional, at least including the functionality to close the banner is recommended.</p>
+
+    {% header "h3", "Example" %}
     <div class="docs-preview _preview-none">
 {% highlight html %}
 <div
@@ -180,118 +183,46 @@ document.querySelector(".js-banner-toggle").addEventListener("click", function(e
 
 
 <section class="docs-section">
-    {% header "h2", "JavaScript" %}
-    <p class="docs-copy">The <code>.s-banner</code> component includes a controller to show and hide the banner programitically. While it is optional, at least including the functionality to close the banner is recommended.</p>
-
     {% header "h3", "Attributes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell5" scope="col">Attribute</th>
-                    <th class="s-table--cell2" scope="col">Applied to</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                <tr>
-                    <th scope="row"><code>data-controller="s-banner"</code></th>
-                    <td>Controller element</td>
-                    <td class="p8">Wires up the element to the banner controller. This may be a <code>.s-banner</code> element or a wrapper element.</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code>data-s-banner-target="banner"</code></th>
-                    <td>.s-banner element</td>
-                    <td class="p8">Wires up the element that is to be shown/hidden</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code>data-s-banner-remove-when-hidden="true"</code></th>
-                    <td>Controller element</td>
-                    <td class="p8"><span class="s-label--status ml0">Optional</span> Removes the banner from the DOM entirely when it is hidden</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    {% assign docsItems = banners.attributes %}
+    {% assign col1Classes = "s-table--cell5" %}
+    {% assign col1Heading = "Attribute" %}
+    {% assign col2Heading = "Applies to" %}
+    {% assign col3Heading = "" %}
+    {% assign tableId = "banners-attributes-table" %}
+    {% include "docs-table.html" %}
+</section>
+
+<section class="docs-section">
     {% header "h3", "Events" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell5" scope="col">Event</th>
-                    <th class="s-table--cell2" scope="col">Element</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                <tr>
-                    <th scope="row"><code>s-banner:show</code></th>
-                    <td>Banner target</td>
-                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before showing the banner. Calling <code>.preventDefault()</code> cancels the display of the banner.</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code>s-banner:shown</code></th>
-                    <td>Banner target</td>
-                    <td>Fires after the banner has been visually shown</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code>s-banner:hide</code></th>
-                    <td>Banner target</td>
-                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before hiding the banner. Calling <code>.preventDefault()</code> cancels the removal of the banner.</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code>s-banner:hidden</code></th>
-                    <td>Banner target</td>
-                    <td>Fires after the banner has been visually hidden</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell5" scope="col">event.detail</th>
-                    <th class="s-table--cell2" scope="col">Applicable events</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                <tr>
-                    <th scope="row"><code>dispatcher</code></th>
-                    <td><code>s-banner:*</code></td>
-                    <td>Contains the <code>Element</code> that initiated the event. For instance, the button clicked to show, the element clicked outside the banner that caused it to hide, etc.</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    {% assign docsItems = banners.events %}
+    {% assign col1Heading = "Event" %}
+    {% assign col2Heading = "Applies to" %}
+    {% assign col3Heading = "" %}
+    {% assign tableId = "banners-events-table" %}
+    {% include "docs-table.html" %}
+</section>
+
+<section class="docs-section">
+    {% header "h3", "Event details" %}
+    {% assign docsItems = banners.eventDetails %}
+    {% assign col1Heading = "event.detail" %}
+    {% assign col2Heading = "" %}
+    {% assign col3Heading = "Applicable events" %}
+    {% assign tableId = "banners-event-details-table" %}
+    {% include "docs-table.html" %}
+</section>
+
+<section class="docs-section">
     {% header "h3", "Helpers" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell2" scope="col">Function</th>
-                    <th class="s-table--cell4" scope="col">Parameters</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                <tr>
-                    <th scope="row"><code>Stacks.showBanner</code></th>
-                    <td>
-                        <code>element</code>: the element the <code>data-controller="s-banner"</code> attribute is on <br><br>
-                    </td>
-                    <td>Helper to manually show an s-banner element via external JS</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code>Stacks.hideBanner</code></th>
-                    <td>
-                        <code>element</code>: the element the <code>data-controller="s-banner"</code> attribute is on <br><br>
-                    </td>
-                    <td>Helper to manually hide an s-banner element via external JS</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    {% assign docsItems = banners.helpers %}
+    {% assign col1Classes = "s-table--cell3" %}
+    {% assign col2Classes = "s-table--cell4" %}
+    {% assign col1Heading = "Function" %}
+    {% assign col2Heading = "Parameters" %}
+    {% assign col3Heading = "" %}
+    {% assign tableId = "banners-helpers-table" %}
+    {% include "docs-table.html" %}
 </section>
 
 <!-- Additional javascript -->
