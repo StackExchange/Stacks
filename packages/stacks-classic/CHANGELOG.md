@@ -1,5 +1,15 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.27
+
+### Patch Changes
+
+- [#2181](https://github.com/StackExchange/Stacks/pull/2181) [`dc4fa17`](https://github.com/StackExchange/Stacks/commit/dc4fa1713110dfd914f8a204a6671c854e59f383) Thanks [@mukunku](https://github.com/mukunku)! - fix(navigation): make vertical navigation more accessible
+
+    BREAKING CHANGES:
+    - Navigation markup has been updated
+    - Svelte NavigationTitle component has been renamed to NavigationGroup
+
 ## 3.0.0-beta.26
 
 ### Minor Changes
