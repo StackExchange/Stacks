@@ -2,7 +2,7 @@
   "classes": [
     {
       "code": ".s-notice",
-      "context": "<code>.s-toast</code> when rendered as a toast",
+      "primaryContext": "<code>.s-toast</code> when rendered as a toast",
       "description": "Base notice parent class."
     },
     {
@@ -127,54 +127,54 @@
     "attributes": [
       {
         "code": "data-controller=\"s-toast\"",
-        "appliesText": "Controller element",
+        "secondaryContext": "Controller element",
         "description": "Wires up the element to the toast controller. This may be a <code>.s-toast</code> element or a wrapper element."
       },
       {
         "code": "data-s-toast-target=\"toast\"",
-        "appliesText": "Controller element",
+        "secondaryContext": "Controller element",
         "description": "Wires up the element that is to be shown/hidden"
       },
       {
         "code": "data-s-toast-target=\"initialFocus\"",
-        "appliesText": "Any child focusable element",
+        "secondaryContext": "Any child focusable element",
         "description": "Designates which element to focus on toast show. If absent, defaults to the first focusable element within the toast."
       },
       {
         "code": "data-action=\"s-toast#toggle\"",
-        "appliesText": "Toggling element",
+        "secondaryContext": "Toggling element",
         "description": "Wires up the element to toggle the visibility of a toast"
       },
       {
         "code": "data-s-toast-return-element=\"[css selector]\"",
-        "appliesText": "Controller element",
+        "secondaryContext": "Controller element",
         "description": "<em>(optional)</em> Designates the element to return focus to when the toast is closed. If left unset, focus is not altered on close."
       },
       {
         "code": "data-s-toast-remove-when-hidden=\"true\"",
-        "appliesText": "Controller element",
+        "secondaryContext": "Controller element",
         "description": "<em>(optional)</em> Removes the toast from the DOM entirely when it is hidden"
       }
     ],
     "events": [
       {
         "code": "s-toast:show",
-        "appliesText": "Toast target",
+        "secondaryContext": "Toast target",
         "description": "Fires immediately before showing the toast. Calling <code>.preventDefault()</code> cancels the display of the toast."
       },
       {
         "code": "s-toast:shown",
-        "appliesText": "Toast target",
+        "secondaryContext": "Toast target",
         "description": "Fires after the toast has been visually shown"
       },
       {
         "code": "s-toast:hide",
-        "appliesText": "Toast target",
+        "secondaryContext": "Toast target",
         "description": "Fires immediately before hiding the toast. Calling <code>.preventDefault()</code> cancels the removal of the toast."
       },
       {
         "code": "s-toast:hidden",
-        "appliesText": "Toast target",
+        "secondaryContext": "Toast target",
         "description": "Fires after the toast has been visually hidden"
       }
     ],
@@ -193,12 +193,12 @@
     "helpers": [
       {
         "code": "Stacks.showToast",
-        "appliesText": "element",
+        "secondaryContext": "element",
         "description": "Helper to manually show an s-toast element via external JS"
       },
       {
         "code": "Stacks.hideToast",
-        "appliesText": "element",
+        "secondaryContext": "element",
         "description": "Helper to manually hide an s-toast element via external JS"
       }
     ]

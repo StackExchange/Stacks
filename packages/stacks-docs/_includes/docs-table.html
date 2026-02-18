@@ -8,9 +8,12 @@
     {% include "docs-table.html" %}
     Override one column: {% assign appliesColClasses = "s-table--cell4" %}
 {% endcomment %}
+
 {% if tableId == nil %}
     {% assign tableId = "docs-table" %}
 {% endif %}
+
+{% comment %}Default column th classes{% endcomment %}
 {% if col1Classes == nil %}
     {% assign col1Classes = "s-table--cell3" %}
 {% endif %}
@@ -23,6 +26,8 @@
 {% if col4Classes == nil %}
     {% assign col4Classes = "" %}
 {% endif %}
+
+{% comment %}Default column th headings{% endcomment %}
 {% if col1Heading == nil %}
     {% assign col1Heading = "Class" %}
 {% endif %}
@@ -35,6 +40,7 @@
 {% if col4Heading == nil %}
     {% assign col4Heading = "Description" %}
 {% endif %}
+
 {% if expandableBtnText == nil %}
     {% assign expandableBtnText = "Show all classes" %}
 {% endif %}
@@ -87,9 +93,9 @@
                     {% endif %}
                     {% if col2Heading != "" %}
                         <td>
-                            {% if item.context or item.parent %}
-                                {% if item.context %}
-                                    <span class="ff-mono fs-fine">{{ item.context }}</span>
+                            {% if item.primaryContext or item.parent %}
+                                {% if item.primaryContext %}
+                                    <span class="ff-mono fs-fine">{{ item.primaryContext }}</span>
                                 {% endif %}
                                 {% if item.parent %}
                                     <code>{{ item.parent }}</code>
@@ -101,9 +107,9 @@
                     {% endif %}
                     {% if col3Heading != "" %}
                         <td>
-                            {% if item.appliesText or item.applies %}
-                                {% if item.appliesText %}
-                                    <span class="ff-mono fs-fine">{{ item.appliesText }}</span>
+                            {% if item.secondaryContext or item.applies %}
+                                {% if item.secondaryContext %}
+                                    <span class="ff-mono fs-fine">{{ item.secondaryContext }}</span>
                                 {% endif %}
                                 {% if item.applies %}
                                     <code>{{ item.applies }}</code>
