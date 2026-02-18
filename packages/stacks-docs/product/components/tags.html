@@ -108,22 +108,9 @@ tags: components
 
 <section class="docs-section">
     {% header "h2", "Sizes" %}
-    <table class="docs-table s-table s-table__bx-simple">
-        <thead>
-            <tr>
-                <th class="s-table--cell2" scope="col">Class</th>
-                <th class="s-table--cell2" scope="col">Applied to</th>
-                <th scope="col">Example</th>
-            </tr>
-        </thead>
-        <tbody class="fs-caption">
-            {% for item in tags-component.sizes %}
-                <tr>
-                    <th scope="row"><code>{% if item.class == "N/A" %}.s-tag{% else %}.{{ item.class }}{% endif %}</code></th>
-                    <td><code>{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}.s-tag{% endif %}</td>
-                    <td class="p8"><span class="s-tag {{ item.class }}">css</span></td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% assign docsItems = tags-component.sizes %}
+    {% assign col2Heading = "" %}
+    {% assign col3Heading = "Applied to" %}
+    {% assign col4Heading = "Example" %}
+    {% include "docs-table.html" %}
 </section>
