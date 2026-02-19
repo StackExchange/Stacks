@@ -8,37 +8,19 @@ tags: components
 ---
 <section class="docs-section">
     {% header "h2", "Classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell4" scope="col">Class</th>
-                    <th class="s-table--cell3" scope="col">Parent</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                {% for item in menu.classes %}
-                    <tr>
-                        <th scope="row"><code>{{ item.class }}</code></th>
-                        <td><code>{{ item.applies }}</td>
-                        <td class="p8">{{ item.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    {% assign docsItems = menus.classes %}
+    {% assign col2Classes = "s-table--cell3" %}
+    {% assign col3Classes = "s-table--cell3" %}
+    {% include "docs-table.html" %}
 </section>
+
 <section class="docs-section">
     {% header "h2", "Examples" %}
-    <p class="docs-copy">
-        A menu displays a list of choices temporarily, and usually represent tasks or actions. Don’t confuse menus for <a href="{{ '/product/components/navigation' | url }}">navigation</a>.
-    </p>
+    <p class="docs-copy">A menu displays a list of choices temporarily, and usually represent tasks or actions. Don’t confuse menus for <a href="{{ '/product/components/navigation' | url }}">navigation</a>.</p>
 
     {% header "h3", "Basic" %}
-    <p class="docs-copy">
-        At its most basic, a menu is a simple styled list of contextual actions. Because they’re contextual, it’s strongly recommended that a menu is contained within a <a href="{{ '/product/components/popovers' | url }}">popover</a> or a <a href="{{ '/product/components/cards' | url }}">card</a>. When placed in various containers, you’ll need to either account for the padding on the container, or use negative margins on the menu component itself.
-    </p>
+    <p class="docs-copy">At its most basic, a menu is a simple styled list of contextual actions. Because they’re contextual, it’s strongly recommended that a menu is contained within a <a href="{{ '/product/components/popovers' | url }}">popover</a> or a <a href="{{ '/product/components/cards' | url }}">card</a>. When placed in various containers, you’ll need to either account for the padding on the container, or use negative margins on the menu component itself.</p>
+
     <div class="docs-preview">
 {% highlight html %}
 <div class="s-popover p8">

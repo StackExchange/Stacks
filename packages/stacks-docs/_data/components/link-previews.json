@@ -1,59 +1,81 @@
 {
   "classes": [
     {
-      "class": ".s-link-preview",
-      "parent": "N/A",
+      "code": ".s-link-preview",
       "description": "Base parent container for link previews"
     },
     {
-      "class": ".s-link-preview--header",
+      "code": ".s-link-preview--header",
       "parent": ".s-link-preview",
       "description": "Top section containing the title and details"
     },
     {
-      "class": ".s-link-preview--icon",
-      "parent": ".s-link-preview--header",
-      "description": "Logo of the third party link. Use <a href='/product/foundation/icons/'>the @Svg.Helper</a>."
-    },
-    {
-      "class": ".s-link-preview--title",
-      "parent": ".s-link-preview--header",
-      "description": "Title of the linked file"
-    },
-    {
-      "class": ".s-link-preview--details",
-      "parent": ".s-link-preview--header",
-      "description": "Details and meta data of the linked file"
-    },
-    {
-      "class": ".s-link-preview--body",
+      "code": ".s-link-preview--body",
       "parent": ".s-link-preview",
       "description": "Middle section containing the body of the linked file whose expected content is rich text or markdown"
     },
     {
-      "class": ".s-link-preview--code",
+      "code": ".s-link-preview--code",
       "parent": ".s-link-preview",
       "description": "Middle section containing the body of the linked file whose expected content is code"
     },
     {
-      "class": ".s-link-preview--footer",
+      "code": ".s-link-preview--footer",
       "parent": ".s-link-preview",
       "description": "Bottom section containing URL details"
     },
     {
-      "class": ".s-link-preview--url",
-      "parent": ".s-link-preview--footer",
-      "description": "URL of the linked file"
+      "code": ".s-link-preview--icon",
+      "parent": ".s-link-preview--header",
+      "description": "Logo of the third party link. Use <a href='/product/foundation/icons/'>the @Svg.Helper</a>."
     },
     {
-      "class": ".s-link-preview--misc",
+      "code": ".s-link-preview--title",
+      "parent": ".s-link-preview--header",
+      "description": "Title of the linked file."
+    },
+    {
+      "code": ".s-link-preview--details",
+      "parent": ".s-link-preview--header",
+      "description": "Details and meta data of the linked file."
+    },
+    {
+      "code": ".s-link-preview--url",
+      "parent": ".s-link-preview--footer",
+      "description": "URL of the linked file."
+    },
+    {
+      "code": ".s-link-preview--misc",
       "parent": ".s-link-preview--footer",
       "description": "(optional) A small catch-all for anything you might need. This page contains a few use cases."
     },
     {
-      "class": ".linenums",
+      "code": ".linenums",
       "parent": ".s-link-preview--code",
       "description": "Added to the <code>pre</code> of the preview block to properly display line numbers"
     }
-  ]
+  ],
+  "examples": {
+    "base": {
+      "title": "Using hooks for a simple fetch request and breaking the rules of hooks, unsure how?",
+      "description": "Use for links whose expected body is rich text or markdown like Jira issues or Slack messages. Wherever possible, it’s best practice to support basic markdown formatting (bold, italics, line breaks, lists, etc.)",
+      "details": "Issue submitted by Ricky Otero on <relative-time datetime=\"2019-08-12T04:05:22Z\" title=\"Aug 12, 2019, 12:05 AM EDT\">Aug 12, 2019</relative-time> &bull; <strong>RESOLVED</strong>",
+      "body": [
+        "I'm trying to create a simple fetch with hooks from an AWS database. At the moment it errors out and the only reason I can see is because it breaks the rules of hooks but I'm not sure how. It's at the top level of this functional component and it's not called inside an event handler.",
+        "The result of this call (an array of user data), needs to be exported as a function and called in another file.",
+        "If anyone can spot something I have missed and can highlighted how I'm breaking the rules of hooks I'd be grateful!",
+        "Thanks!"
+      ],
+      "url": "https://stackoverflow.atlassian.net/projects/SREREQ/queues/custom/1",
+      "misc": "Privacy notice"
+    },
+    "code": {
+      "title": "Gruntfile.js",
+      "description": "Use for links whose expected body is code like code files or GitHub Gists. In these scenarios, replace <code>s-link-preview--body</code> class with <code>s-link-preview--code</code>.",
+      "details": "Located in <a href='https://github.com/StackExchange/Stacks/'>StackExchange / Stacks</a>",
+      "code": "use strict;\n\nmodule.exports = function(grunt) {\n    grunt.initConfig({\n        pkg: grunt.file.readJSON('package.json'),\n        version: '<%= pkg.version %>',\n\n        // Shell commands for use in Grunt tasks\n        shell: {\n            eleventyBuild: {\n                command: 'npx @11ty/eleventy',\n                options: {\n                    stderr: false,\n                    execOptions: {\n                        cwd: 'docs'\n                    }\n                }\n            }\n        }\n    });\n\n    grunt.loadNpmTasks('grunt-contrib-uglify');\n\n    grunt.registerTask('default', ['uglify']);\n};",
+      "url": "https://github.com/StackExchange/Stacks/blob/develop/Gruntfile.js",
+      "misc": "(truncated)"
+    }
+  }
 }

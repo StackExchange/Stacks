@@ -6,6 +6,15 @@ figma: https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Produ
 description: Badges are labels used for flags, earned achievements, and number totals.
 tags: components
 ---
+
+<section class="docs-section">
+    {% header "h2", "Classes" %}
+    {% assign docsItems = badges.classes %}
+    {% assign col2Heading = "" %}
+    {% assign expandableClassesTable = true %}
+    {% include "docs-table.html" %}
+</section>
+
 <section class="docs-section">
     {% header "h2", "Styles" %}
     {% header "h3", "Default" %}
@@ -115,7 +124,6 @@ tags: components
                     <thead>
                         <tr>
                             <th scope="col">Example</th>
-                            <th scope="col" class="s-table--cell4">Class</th>
                             <th scope="col">Description</th>
                         </tr>
                     </thead>
@@ -131,14 +139,6 @@ tags: components
                                             </span>
                                             {{ type.label }}
                                         </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            <code>.s-badge</code> >
-                                            {% if type.class != nil %}
-                                                <code>.{{ type.class }}</code>
-                                            {% endif %}
-                                        </div>
                                     </td>
                                     <td class="va-middle">{{ type.description }}</td>
                                 </tr>
@@ -179,7 +179,7 @@ tags: components
                     <thead>
                         <tr>
                             <th scope="col">Example</th>
-                            <th scope="col" class="s-table--cell4">Class</th>
+                            <th scope="col" class="s-table--cell4">Modifier class</th>
                             <th scope="col">Description</th>
                         </tr>
                     </thead>
@@ -198,9 +198,10 @@ tags: components
                                     </td>
                                     <td class="va-middle">
                                         <div class="d-flex g4 fw-wrap">
-                                            <code>.s-badge</code>
-                                            {% if type.class != nil %}
-                                                <code>.{{ type.class }}</code>
+                                            {% if type.code != nil %}
+                                                <code>.{{ type.code }}</code>
+                                            {% else %}
+                                                <em class="fc-black-350">N/A</em>
                                             {% endif %}
                                         </div>
                                     </td>
@@ -262,7 +263,7 @@ tags: components
                     <thead>
                         <tr>
                             <th scope="col" class="s-table--cell4">Example</th>
-                            <th scope="col" class="s-table--cell4">Class</th>
+                            <th scope="col" class="s-table--cell4">Modifier class</th>
                             <th scope="col">Description</th>
                         </tr>
                     </thead>
@@ -282,12 +283,10 @@ tags: components
                                     </td>
                                     <td class="va-middle">
                                         <div class="d-flex g4 fw-wrap">
-                                            <code>.s-badge</code>
-                                            {% if type.class != nil %}
-                                                <code>.{{ type.class }}</code>
-                                            {% endif %}
-                                            {% if badge.class != nil %}
-                                                <code>.{{ badge.class }}</code>
+                                            {% if type.code != nil %}
+                                                <code>.{{ type.code }}</code>
+                                            {% else %}
+                                                <em class="fc-black-350">N/A</em>
                                             {% endif %}
                                         </div>
                                     </td>
@@ -320,7 +319,7 @@ tags: components
                     <thead>
                         <tr>
                             <th scope="col">Example</th>
-                            <th scope="col" class="s-table--cell4">Class</th>
+                            <th scope="col" class="s-table--cell4">Modifier classes</th>
                             <th scope="col">Description</th>
                         </tr>
                     </thead>
@@ -337,12 +336,15 @@ tags: components
                                     </td>
                                     <td class="va-middle">
                                         <div class="d-flex g4 fw-wrap">
-                                            <code>.s-badge</code>
-                                            {% if type.class != nil %}
-                                                <code>.{{ type.class }}</code>
+                                            {% if badge.code != nil %}
+                                                <code>.{{ badge.code }}</code>
+                                            {% else %}
+                                                <em class="fc-black-350">N/A</em>
                                             {% endif %}
-                                            {% if badge.class != nil %}
-                                                <code>.{{ badge.class }}</code>
+                                            {% if type.code != nil %}
+                                                <code>.{{ type.code }}</code>
+                                            {% else %}
+                                                <em class="fc-black-350">N/A</em>
                                             {% endif %}
                                         </div>
                                     </td>
@@ -381,7 +383,7 @@ tags: components
                     <thead>
                         <tr>
                             <th scope="col">Example</th>
-                            <th scope="col" class="s-table--cell4">Class</th>
+                            <th scope="col" class="s-table--cell4">Modifier classes</th>
                             <th scope="col">Description</th>
                         </tr>
                     </thead>
@@ -391,7 +393,7 @@ tags: components
                             {% for type in types %}
                                 <tr>
                                     <td class="va-middle pr8">
-                                        <span class="{{ type.html }}">
+                                        <span class="s-badge {{ type.classes }}">
                                             {% if type.icon != nil %}
                                                 {% icon type.icon %}
                                                 {{ type.label }}
@@ -402,7 +404,7 @@ tags: components
                                     </td>
                                     <td class="va-middle">
                                         <div class="d-flex g4 fw-wrap">
-                                            {% assign classes = type.html | split: " " %}
+                                            {% assign classes = type.classes | split: " " %}
                                             {% for class in classes %}
                                                 <code>.{{ class }}</code>
                                             {% endfor %}
@@ -444,13 +446,12 @@ tags: components
                             {% for type in types %}
                                 <tr>
                                     <td class="va-middle pr8">
-                                        <span class="{{ type.html }}">{{ type.label }}</span>
+                                        <span class="s-badge s-badge__{{ type.modifier }}">{{ type.label }}</span>
                                     </td>
                                     <td class="va-middle">
                                         <div class="d-flex g4 fw-wrap">
-                                            <code>.s-badge</code>
-                                            {% if type.class != nil %}
-                                                <code>.{{ type.class }}</code>
+                                            {% if type.modifier != nil %}
+                                                <code>.s-badge__{{ type.modifier }}</code>
                                             {% endif %}
                                         </div>
                                     </td>
@@ -484,7 +485,7 @@ tags: components
                     <thead>
                         <tr>
                             <th scope="col">Examples</th>
-                            <th scope="col" class="s-table--cell4">Class</th>
+                            <th scope="col" class="s-table--cell4">Modifier class</th>
                             <th scope="col">Description</th>
                         </tr>
                     </thead>
@@ -494,15 +495,14 @@ tags: components
                             {% for type in types %}
                                 <tr>
                                     <td class="va-middle pr8">
-                                        <span class="{{ type.html }}">
+                                        <span class="s-badge s-badge__{{ type.modifier }}">
                                             {{ type.label }}
                                         </span>
                                     </td>
                                     <td class="va-middle">
                                         <div class="d-flex g4 fw-wrap">
-                                            <code>.s-badge</code>
-                                            {% if type.class != nil %}
-                                                <code>.{{ type.class }}</code>
+                                            {% if type.modifier != nil %}
+                                                <code>.s-badge__{{ type.modifier }}</code>
                                             {% endif %}
                                         </div>
                                     </td>

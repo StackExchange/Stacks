@@ -6,8 +6,16 @@ svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-radiogro
 description: Checkable inputs that visually allow for single selection from multiple options.
 tags: components
 ---
-<section class="docs-section">
 
+<section class="docs-section">
+    {% header "h2", "Classes" %}
+    {% assign docsItems = checkbox_radio.radio-classes %}
+    {% assign col1Classes = "s-table--cell4" %}
+    {% assign col2Heading = "" %}
+    {% include "docs-table.html" %}
+</section>
+
+<section class="docs-section">
     {% header "h2", "Base" %}
     <p class="docs-copy">Use the <code>.s-radio</code> to wrap <code>input[type="radio"]</code> elements to apply radio styles.</p>
 
@@ -281,24 +289,10 @@ tags: components
     <p class="docs-copy">Radios use the same validation states as <a href="{{ "/product/components/inputs" | url }}">inputs</a>.</p>
 
     {% header "h3", "Validation classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col" class="s-table--cell2">Class</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for state in inputs.validation %}
-                    <tr>
-                        <th scope="row"><code>{{ state.class }}</code></th>
-                        <td>{{ state.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    {% assign docsItems = validation-classes %}
+    {% assign col2Heading = "Applies to" %}
+    {% assign col3Heading = "" %}
+    {% include "docs-table.html" %}
 
     {% header "h3", "Validation examples" %}
     <div class="docs-preview">

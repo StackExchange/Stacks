@@ -7,31 +7,14 @@ description: Stacks provides a small jewel for indicating new activity.
 tags: components
 ---
 
-{% assign examples = " ,3,12,370,new" | split: "," %}
-
 <section class="docs-section">
     {% header "h2", "Classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col">Class</th>
-                    <th scope="col">Applied to</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                {% for item in activity-indicator.indicator %}
-                    <tr>
-                        <td><code>{{ item.class }}</code></td>
-                        <td>{% if item.applies == "N/A" %}<em class="fc-black-350">{{ item.applies }}</em>{% else %}<code>{{ item.applies }}</code>{% endif %}</td>
-                        <td>{{ item.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    {% assign docsItems = activity-indicator.classes %}
+    {% assign col3Classes = "s-table--cell4" %}
+    {% assign col2Heading = "" %}
+    {% include "docs-table.html" %}
 </section>
+
 <section class="docs-section">
     {% header "h2", "Examples" %}
     {% header "h3", "Default" %}
@@ -92,7 +75,7 @@ tags: components
 {% endhighlight %}
         <div class="docs-preview--example">
             <div class="d-flex g24 ai-center fw-wrap">
-                {% for example in examples %}
+                {% for example in activity-indicator.examples %}
                     <div class="s-activity-indicator">
                         {{ example }}
                         <div class="v-visible-sr">New activity</div>
@@ -146,11 +129,10 @@ tags: components
 </div>
 {% endhighlight %}
         <div class="docs-preview--example">
-            {% assign variants = "success,warning,danger" | split: "," %}
             <div class="d-flex fd-column g24">
-                {% for variant in variants %}
+                {% for variant in activity-indicator.variants %}
                     <div class="d-flex g24 ai-center fw-wrap">
-                        {% for example in examples %}
+                        {% for example in activity-indicator.examples %}
                             <div class="s-activity-indicator s-activity-indicator__{{variant}}">
                                 {{ example }}
                                 <div class="v-visible-sr">New activity</div>
