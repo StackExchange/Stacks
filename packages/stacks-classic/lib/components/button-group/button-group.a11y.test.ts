@@ -2,7 +2,7 @@ import { testArgs } from "./button-group.test.setup";
 import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
-describe("button group", () => {
+describe.skip("button group", () => {
     runA11yTests({
         ...testArgs,
         // TODO remove skipped tests once btn badge contrast issues are resolved

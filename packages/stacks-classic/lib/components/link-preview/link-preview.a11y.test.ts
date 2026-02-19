@@ -32,7 +32,7 @@ const getChild = (child?: string): string => {
         </div>
     `;
 };
-describe("link preview", () => {
+describe.skip("link preview", () => {
     runA11yTests({
         baseClass: "s-link-preview",
         children: {

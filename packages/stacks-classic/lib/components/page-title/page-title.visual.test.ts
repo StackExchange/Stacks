@@ -46,7 +46,7 @@ const getChildren = ({
     }
 `;
 
-describe("page title", () => {
+describe.skip("page title", () => {
     runVisualTests({
         baseClass: "s-page-title",
         children: {

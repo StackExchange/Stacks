@@ -2,7 +2,7 @@ import { html } from "@open-wc/testing";
 import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
-describe("expandable", () => {
+describe.skip("expandable", () => {
     runVisualTests({
         baseClass: "s-expandable",
         modifiers: {

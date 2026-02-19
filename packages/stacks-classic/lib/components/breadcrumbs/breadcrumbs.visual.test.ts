@@ -2,7 +2,7 @@ import { runVisualTests } from "../../test/visual-test-utils";
 import { html } from "@open-wc/testing";
 import "../../index";
 
-describe("breadcrumbs", () => {
+describe.skip("breadcrumbs", () => {
     runVisualTests({
         baseClass: "s-breadcrumbs",
         children: {

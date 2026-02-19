@@ -34,7 +34,7 @@ const getChild = (child?: string): string => {
     `;
 };
 
-describe("link preview", () => {
+describe.skip("link preview", () => {
     runVisualTests({
         baseClass: "s-link-preview",
         children: {

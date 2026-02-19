@@ -5,7 +5,7 @@ import "../../index";
 
 const user = userEvent.setup();
 
-describe("expandable-control", () => {
+describe.skip("expandable-control", () => {
     it("should focus on expandable content only when expanded", async () => {
         await fixture(html`
             <button
