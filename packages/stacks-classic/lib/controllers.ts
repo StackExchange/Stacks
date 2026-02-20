@@ -4,7 +4,6 @@ export {
     hideBanner,
     showBanner,
 } from "./components/banner/banner";
-export { ExpandableController } from "./components/expandable/expandable";
 export {
     ModalController,
     hideModal,
