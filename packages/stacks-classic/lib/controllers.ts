@@ -30,4 +30,3 @@ export {
     setTooltipText,
     TooltipController,
 } from "./components/popover/tooltip";
-export { UploaderController } from "./components/uploader/uploader";
