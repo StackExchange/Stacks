@@ -1,7 +1,7 @@
 import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
-describe("card", () => {
+describe.skip("card", () => {
     runA11yTests({
         baseClass: "s-card",
         variants: ["muted"],

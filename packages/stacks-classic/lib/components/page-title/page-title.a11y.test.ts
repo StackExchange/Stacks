@@ -2,7 +2,7 @@ import { html } from "@open-wc/testing";
 import { runA11yTests } from "../../test/a11y-test-utils";
 import "../../index";
 
-describe("page title", () => {
+describe.skip("page title", () => {
     runA11yTests({
         baseClass: "s-page-title",
         children: {

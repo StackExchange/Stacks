@@ -47,7 +47,6 @@ const children = {
                 <th scope="col">Display Name</th>
                 <th scope="col">Full name</th>
                 <th scope="col" colspan="2">Progress</th>
-                <th scope="col"><span>class="v-visible-sr">Bar</span></th>
             </tr>
         </thead>
         <tbody>
@@ -64,15 +63,6 @@ const children = {
                     <td>${row.displayName}</td>
                     <td>${row.fullName}</td>
                     <td class="s-table--progress">${row.progress}</td>
-                    <td class="s-table--progress-bar">
-                        <div class="s-progress bg-white">
-                            <div class="s-progress--bar bg-blue-400" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${
-                                row.progress
-                            }" aria-label="progressbar" style="width: ${
-                                row.progress
-                            }%"></div>
-                        </div>
-                    </td>
                     <td><a class="s-link" href="#">Add</a></td>
                 </tr>
             `

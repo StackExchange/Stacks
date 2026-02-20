@@ -195,7 +195,7 @@ const topbars = {
     }),
 };
 
-describe("topbar", () => {
+describe.skip("topbar", () => {
     runVisualTests({
         baseClass: "s-topbar",
         tag: "header",

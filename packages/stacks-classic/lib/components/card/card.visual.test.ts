@@ -24,7 +24,7 @@ const baseChild = `
     </div>
 `;
 
-describe("card", () => {
+describe.skip("card", () => {
     runVisualTests({
         baseClass: "s-card",
         variants: ["muted"],

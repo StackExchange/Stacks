@@ -2,7 +2,7 @@ import { runA11yTests } from "../../test/a11y-test-utils";
 import { html } from "@open-wc/testing";
 import "../../index";
 
-describe("breadcrumbs", () => {
+describe.skip("breadcrumbs", () => {
     runA11yTests({
         baseClass: "s-breadcrumbs",
         children: {

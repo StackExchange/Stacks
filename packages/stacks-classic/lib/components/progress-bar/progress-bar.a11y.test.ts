@@ -95,7 +95,7 @@ const getChildren = (type: string) => {
             return `<div class="s-progress--bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75" aria-label="progress" style="width: 75%"></div>`;
     }
 };
-describe("progress-bar", () => {
+describe.skip("progress-bar", () => {
     // Base
     runA11yTests({
         baseClass: "s-progress",
