@@ -31,6 +31,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.setQuietMode(true); // Reduce the console output
   eleventyConfig.addLayoutAlias('home', 'layouts/home.html');
   eleventyConfig.addLayoutAlias('page', 'layouts/page.html');
+  eleventyConfig.addLayoutAlias('removed', 'layouts/removed.html');
 
   registerSubfolderData(eleventyConfig, 'atomic');
   registerSubfolderData(eleventyConfig, 'components');
