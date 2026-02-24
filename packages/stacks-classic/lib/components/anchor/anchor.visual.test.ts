@@ -24,12 +24,12 @@ describe("anchors", () => {
             // children include nested anchors block to test for appropriate nested styling
             default: `
                 ${links}
-                <div class="ba bc-black-225 p12 s-anchors s-anchors__danger">Danger: ${links}</div>
-                <div class="ba bc-black-225 p12 s-anchors s-anchors__muted mt4">Muted: ${links}</div>
+                <div class="ba bc-black-225 p8 s-anchors s-anchors__danger mt4">Danger: ${links}</div>
+                <div class="ba bc-black-225 p8 s-anchors s-anchors__muted mt4">Muted: ${links}</div>
             `,
         },
         template: ({ component, testid }) => html`
-            <div data-testid="${testid}" class="ba bc-black-225 p12 ws3 fc-green-500">
+            <div data-testid="${testid}" class="p8 ws3 fc-green-500">
                 ${testid}: ${component}
             </div>
         `,
