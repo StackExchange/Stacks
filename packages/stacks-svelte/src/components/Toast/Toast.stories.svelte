@@ -14,11 +14,8 @@
     let toastId: string | number = $state("");
 </script>
 
-<header class="s-topbar">
-    <a href="#content" class="s-topbar--skip-link">Skip to main content</a>
-    <div class="s-topbar--container">
-        <Icon src={IconWave} class="mr12" /> Sample Topbar
-    </div>
+<header class="d-flex px16 h48 bb bc-black-225 ps-sticky t0 z-nav">
+    <Icon src={IconWave} class="mr12" /> Sample Topbar
 </header>
 
 <Toaster />
