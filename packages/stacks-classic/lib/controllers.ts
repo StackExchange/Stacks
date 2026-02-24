@@ -4,6 +4,8 @@ export {
     hideBanner,
     showBanner,
 } from "./components/banner/banner";
+// NOTE: The ExpandableController is deprecated and is only kept for backwards compatibility. It will be removed in a future version.
+export { ExpandableController } from "./components/expandable/expandable";
 export {
     ModalController,
     hideModal,

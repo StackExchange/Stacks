@@ -1,3 +1,4 @@
+// NOTE: This controller is deprecated and is only kept for backwards compatibility. It will be removed in a future version.
 import * as Stacks from "../../stacks";
 
 // Radio buttons only trigger a change event when they're *checked*, but not when
