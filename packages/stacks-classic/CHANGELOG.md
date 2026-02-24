@@ -1,5 +1,15 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.28
+
+### Minor Changes
+
+- [#2187](https://github.com/StackExchange/Stacks/pull/2187) [`34a2cd1`](https://github.com/StackExchange/Stacks/commit/34a2cd155b76d1b65af1c24f266cb68e3e27f382) Thanks [@dancormier](https://github.com/dancormier)! - Remove deprecated components (breadcrumbs, button groups, cards, expandable, link previews, page titles, progress bars, topbar, uploader)
+
+### Patch Changes
+
+- [#2192](https://github.com/StackExchange/Stacks/pull/2192) [`fb19fe6`](https://github.com/StackExchange/Stacks/commit/fb19fe69b960e00a9813eae83380695fdbe263cb) Thanks [@dancormier](https://github.com/dancormier)! - Wrap long post-summary titles
+
 ## 3.0.0-beta.27
 
 ### Patch Changes
