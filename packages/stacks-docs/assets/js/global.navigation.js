@@ -78,9 +78,13 @@ $(document).ready(function() {
                 $('#content').html(content)
 
                 // Update the TOC from new content headings
-                var toc = $(html).find('.js-toc').html()
-                if (toc) {
-                    $('.js-toc').html(toc)
+                var $newToc = $(html).find(".js-toc");
+                var tocContent = $newToc.html();
+
+                if ($newToc.length > 0 && tocContent.trim() !== "") {
+                    $(".js-toc").html(tocContent).show();
+                } else {
+                    $(".js-toc").html("").hide();
                 }
 
                 // Scroll to the top of the page
