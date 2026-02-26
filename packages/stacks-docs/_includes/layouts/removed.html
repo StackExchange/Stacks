@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-us">
+{% include 'head.html' %}
+
+<body class="theme-system d-flex fd-column h100">
+    {% include 'theme.html' %}
+    {% include 'header.html' %}
+
+    <div class="d-flex fl-grow1 g16 mx-auto px8 ps-relative wmx100 ws12">
+        <!-- Site navigation -->
+        {% if site-navigation %}
+            {% for section in site-navigation.sections %}
+                {% assign slug = page.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
+                {% assign url = section.url | replace:'/',' ' | truncatewords: 2 | remove:'...' %}
+
+                {% if url == slug %}
+                    {% if section.sections %}
+                        <div
+                            class="
+                                js-navigation docs-sidebar
+                                as-start bg-white fl-shrink0 fw-nowrap hmn100 overflow-y-auto pr16 py24 ps-sticky ws2 wmx2 z-popover
+                                md:d-none md:ps-fixed md:b0 md:l0 md:pl16 md:pt64 sm:w100 sm:wmx100 print:d-none
+                            ">
+                            <nav id="nav" class="s-navigation s-navigation__vertical" aria-label="Main">
+                                {% for section in section.sections %}
+                                    <div class="s-navigation--title">
+                                        {{ section.title }}
+                                    </div>
+                                    {% if section.links %}
+                                        {% for link in section.links %}
+                                            <a class="s-navigation--item d-flex jc-space-between ps-relative {% if page.url == link.url %}is-selected{% endif %}" href="{{ link.url | url }}" {% if page.url == link.url %}aria-current="page"{% endif %}>
+                                                <span class="s-navigation--item-text" data-text="{{ link.title }}">{{ link.title }}</span>
+                                                {% if link.new %}
+                                                    <span class="s-activity-indicator s-activity-indicator__sm">
+                                                        <span class="v-visible-sr">new</span>
+                                                    </span>
+                                                {% endif %}
+                                            </a>
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            </nav>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        <!-- Main content -->
+        <main id="content" class="g16 pt24 wmn0 wmx7 w100 md:px16 md:pt16 md:wmx100">
+            <div class="d-flex fd-column g16 jc-space-between">
+                <h1 class="fs-display1 mb0">{{ title }}</h1>
+
+                <section class="docs-section">
+                    {% tip, "warning" %}
+                        This component has been removed in Stacks v3. If using Stacks v2, please refer to the <a href="https://stackoverflow.design/product">v2 documentation</a> for more information.
+                    {% endtip %}
+                </section>
+            </div>
+
+            <div class="d-flex jc-end">
+                <a href="https://www.netlify.com"><img src="https://www.netlify.com/v3/img/components/netlify-color-accent.svg" alt="Deploys by Netlify" /></a>
+            </div>
+        </main>
+    </div>
+    {% include 'scripts.html' %}
+</body>
+</html>
