@@ -1,5 +1,11 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.29
+
+### Patch Changes
+
+- [#2196](https://github.com/StackExchange/Stacks/pull/2196) [`a2365c0`](https://github.com/StackExchange/Stacks/commit/a2365c067d39a9ebf35c784993c6acb8ef0aedf3) Thanks [@giamir](https://github.com/giamir)! - fix wrapping behavior of post-summary titles
+
 ## 3.0.0-beta.28
 
 ### Minor Changes
