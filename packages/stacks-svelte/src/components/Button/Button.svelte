@@ -93,7 +93,7 @@
         /**
          * Optional badge to display on the button
          */
-        badge?: Snippet;
+        badge?: `${number}`;
     }
 </script>
 
@@ -197,7 +197,7 @@
         {@render children()}
         <span class="s-btn--badge">
             <span class="s-btn--number">
-                {@render badge()}
+                {badge}
             </span>
         </span>
     {/if}

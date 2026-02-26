@@ -24,15 +24,11 @@ describe("Button", () => {
     it("should render the badge within the button", () => {
         render(Button, {
             children,
-            badge: createRawSnippet(() => ({
-                render: () => "<span>123</span>",
-            })),
+            badge: "123",
         });
         render(Button, {
             children,
-            badge: createRawSnippet(() => ({
-                render: () => "<span>456</span>",
-            })),
+            badge: "456",
         });
 
         // Default button
@@ -46,9 +42,7 @@ describe("Button", () => {
             children: createRawSnippet(() => ({
                 render: () => "<span>test</span>",
             })),
-            badge: createRawSnippet(() => ({
-                render: () => "<span>198</span>",
-            })),
+            badge: "198",
         });
 
         expect(screen.getByRole("button")).to.have.text("test 198");
