@@ -1,44 +1,43 @@
 <script lang="ts">
     import Badge from "../Badge/Badge.svelte";
-    import type { Variant as BadgeVariant } from "../Badge/Badge.svelte";
+    import type { BadgeState } from "../Badge/Badge.svelte";
     import type { State } from "./PostSummary.svelte";
     import {
-        IconArchiveSm,
-        IconEyeSm,
-        IconNotInterestedSm,
-        IconPencilSm,
-        IconTackSm,
-        IconTrashSm,
-    } from "@stackoverflow/stacks-icons-legacy/icons";
+        IconCompose,
+        IconDocument,
+        IconEye,
+        IconFlag,
+        IconKey,
+    } from "@stackoverflow/stacks-icons/icons";
 
-    type BadgeState = Exclude<State, undefined>;
+    type PostSummaryStateBadge = Exclude<State, "deleted" | undefined>;
 
     /**
      * The state of the post, which affects its styling
-     * @type {"archived" | "closed" | "deleted" | "draft" | "deleted" | "pinned" | "review"} State
      */
-    export let state: BadgeState;
+    export let state: PostSummaryStateBadge;
 
     /**
      * Text to display in the badge
      */
     export let i18nText: string | undefined = undefined;
 
-    const STATE_ICON_MAP = {
-        archived: IconArchiveSm,
-        closed: IconNotInterestedSm,
-        deleted: IconTrashSm,
-        draft: IconPencilSm,
-        pinned: IconTackSm,
-        review: IconEyeSm,
+    const STATE_ICON_MAP: Record<PostSummaryStateBadge, string> = {
+        archived: IconDocument,
+        closed: IconFlag,
+        draft: IconCompose,
+        pinned: IconKey,
+        review: IconEye,
     };
 
-    const STATE_VARIANT_MAP: Record<BadgeState, BadgeVariant> = {
-        archived: "muted",
+    const STATE_BADGE_MAP: Record<
+        PostSummaryStateBadge,
+        BadgeState | undefined
+    > = {
+        archived: undefined,
         closed: "danger",
-        deleted: "danger",
         draft: "info",
-        pinned: "muted",
+        pinned: "tonal",
         review: "warning",
     };
 
@@ -48,10 +47,8 @@
 </script>
 
 <Badge
-    class="s-post-summary--stats-item"
-    filled={state === "deleted" || state === "pinned"}
+    text={i18nText || capitalizeFirstLetter(state)}
+    type="state"
     icon={STATE_ICON_MAP[state]}
-    variant={STATE_VARIANT_MAP[state]}
->
-    {i18nText || capitalizeFirstLetter(state)}
-</Badge>
+    state={STATE_BADGE_MAP[state]}
+/>

@@ -1,38 +1,36 @@
 <script lang="ts">
     import type { Snippet } from "svelte";
     import Button from "../Button/Button.svelte";
-    import Icon from "../Icon/Icon.svelte";
-    import { IconClear } from "@stackoverflow/stacks-icons-legacy/icons";
     import type { Props as ButtonProps } from "../Button/Button.svelte";
+    import type { ClassValue } from "svelte/elements";
 
     interface Props {
         /**
-         * Type of notice action
-         */
-        type?: "close";
-        /**
-         * Title for the icon
-         */
-        i18nCloseButtonLabel?: string;
-        /**
          * Snippet for the button content
          */
-        children?: Snippet;
+        children: Snippet;
+
+        /**
+         * Modifier describing if the button should be styled as a link
+         */
+        link?: boolean;
+
+        /**
+         * Additional CSS class for the button
+         */
+        class?: ClassValue;
     }
 
     const {
         children,
-        type,
-        i18nCloseButtonLabel = "Close",
+        link = true,
         class: className = "",
         ...restProps
-    }: Omit<ButtonProps, "children" | "type"> & Props = $props();
+    }: Omit<ButtonProps, "children"> & Props = $props();
+
+    const underlineLinksClass = $derived(link ? " s-link__underlined" : "");
 </script>
 
-<Button class={"s-notice--btn " + className} {...restProps}>
-    {#if type === "close"}
-        <Icon src={IconClear} title={i18nCloseButtonLabel}></Icon>
-    {:else if children}
-        {@render children()}
-    {/if}
+<Button {link} class={className + underlineLinksClass} {...restProps}>
+    {@render children()}
 </Button>

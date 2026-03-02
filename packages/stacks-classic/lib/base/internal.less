@@ -164,12 +164,10 @@
     //  ---------------------------------------------------------------------------
 
 
-    #build-classes(@class-prefix, @rules, @values) {
-        #stacks-internals #build-classes-with-start-index(@class-prefix, @rules, 1, false, @values);
+    #build-classes(@class-prefix, @rules, @values, @responsive: false) {
+        #stacks-internals #build-classes-with-start-index(@class-prefix, @rules, 1, @responsive, @values);
     }
-    #build-classes(responsive, @class-prefix, @rules, @values) {
-        #stacks-internals #build-classes-with-start-index(@class-prefix, @rules, 1, true, @values);
-    }
+
     #build-classes-with-start-index(@class-prefix, @rules, @start-index, @responsive, @values) when (@start-index <= length(@values)) {
         @val: extract(@values, @start-index);
         & when (isnumber(@val)) {

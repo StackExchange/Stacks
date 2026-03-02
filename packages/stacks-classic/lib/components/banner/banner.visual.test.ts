@@ -1,27 +1,28 @@
 import { runVisualTests } from "../../test/visual-test-utils";
+import { IconAlert, IconCross } from "@stackoverflow/stacks-icons/icons";
 import "../../index";
 
-const bannerChild = `
-    <div
-        class="d-flex flex__center jc-space-between s-banner--container"
-        role="alertdialog"
-        aria-labelledby="banner-title"
-        aria-describedby="banner-description"
-    >
-        <div aria-label="banner message">
-            <h2 id="banner-title">Banner heading</h2>
-            <p id="banner-description">Banner description</p>
-        </div>
-        <div class="ml-auto myn8">
-            <span class="s-btn s-banner--btn">Close</span>
-        </div>
+const bannerChildren = `
+    <span class="s-banner--icon">${IconAlert}</span>    
+    <span>
+        <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
+    </span>
+    <div class="s-banner--actions">
+        <button class="s-link s-banner--dismiss">${IconCross}</button>
     </div>
 `;
 
 describe("banner", () => {
     runVisualTests({
         baseClass: "s-banner",
-        variants: ["info", "success", "warning", "danger"],
+        variants: [
+            "info",
+            "success",
+            "warning",
+            "danger",
+            "activity",
+            "featured",
+        ],
         modifiers: {
             primary: ["important"],
         },
@@ -30,7 +31,7 @@ describe("banner", () => {
             ariaHidden: "false",
         },
         children: {
-            default: bannerChild,
+            default: bannerChildren,
         },
     });
 });

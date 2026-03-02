@@ -1,8 +1,7 @@
 <script module lang="ts">
     import { toast, Toaster } from "svelte-sonner";
     import Notice from "../Notice/Notice.svelte";
-    import NoticeAction from "../Notice/NoticeAction.svelte";
-    import { createRawSnippet, mount, unmount, type Snippet } from "svelte";
+    import { createRawSnippet, type Snippet } from "svelte";
 
     export type Variant =
         | ""
@@ -15,7 +14,6 @@
     export type ToastOptions = {
         variant?: Variant;
         important?: boolean;
-        icon?: string;
         iconTitle?: string;
         transient?: boolean;
         dismissible?: boolean;
@@ -32,8 +30,7 @@
     ) {
         const {
             variant,
-            important,
-            icon,
+            important = false,
             iconTitle,
             duration = 10000,
             dismissible = true,
@@ -51,40 +48,17 @@
                   }))
                 : message;
 
-        const closeSnip = createRawSnippet(() => ({
-            render: () => "<span />",
-            setup: (target) => {
-                const comp = mount(NoticeAction, {
-                    target,
-                    props: {
-                        type: "close",
-                        onclick: () => {
-                            toast.dismiss(toastId);
-                            onUserClose();
-                            onClose();
-                        },
-                    },
-                });
-                return () => unmount(comp);
-            },
-        }));
-
-        const actionsSnip =
-            actions || dismissible
-                ? createRawSnippet(() => ({
-                      render: () => "<span />",
-                      setup: (target) => {
-                          if (actions) {
-                              // @ts-expect-error this is the only way I found to render a Snippet (in the context of a function)
-                              actions(target);
-                          }
-                          if (dismissible) {
-                              // @ts-expect-error this is the only way I found to render a Snippet (in the context of a function)
-                              closeSnip(target);
-                          }
-                      },
-                  }))
-                : undefined;
+        const actionsSnip = actions
+            ? createRawSnippet(() => ({
+                  render: () => '<span class="d-none" />', // d-none here hides the empty span we end up with which breaks css
+                  setup: (target) => {
+                      if (actions) {
+                          // @ts-expect-error this is the only way I found to render a Snippet (in the context of a function)
+                          actions(target);
+                      }
+                  },
+              }))
+            : undefined;
 
         let role: string;
         if (variant === "danger") {
@@ -97,10 +71,15 @@
 
         const toastId = toast.custom(Notice, {
             componentProps: {
-                icon,
                 iconTitle,
                 variant,
                 important,
+                dismissible,
+                onDismiss: () => {
+                    toast.dismiss(toastId);
+                    onUserClose();
+                    onClose();
+                },
                 role,
                 children: messageSnip,
                 actions: actionsSnip,
@@ -124,5 +103,5 @@
 <Toaster
     position="top-center"
     class="wmn6 sm:wmn-initial"
-    style="z-index: calc(var(--zi-modals) + 1); top: calc(var(--theme-topbar-height, calc(var(--su-static48) + var(--su-static8))) + var(--su-static16))"
+    style="z-index: calc(var(--zi-modals) + 1); top: calc(var(--theme-topbar-height, calc(var(--su48) + var(--su8))) + var(--su16))"
 />

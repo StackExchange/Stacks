@@ -1,3 +1,7 @@
+<script module lang="ts">
+    export type Type = "fieldset" | "ul";
+</script>
+
 <script lang="ts">
     import type { Snippet } from "svelte";
 
@@ -8,12 +12,17 @@
         class?: string;
 
         /**
+         * Sets whether the menu is rendered within a fieldset
+         */
+        type?: Type;
+
+        /**
          * Snippet for the menu content
          */
         children: Snippet;
     }
 
-    let { class: className = "", children }: Props = $props();
+    let { class: className = "", type = "ul", children }: Props = $props();
 
     const getClasses = (className: string) => {
         const base = "s-menu";
@@ -29,6 +38,10 @@
     const classes = $derived(getClasses(className));
 </script>
 
-<ul class={classes} role="menu">
+<svelte:element
+    this={type}
+    class={classes}
+    role={type !== "fieldset" ? "menu" : undefined}
+>
     {@render children()}
-</ul>
+</svelte:element>

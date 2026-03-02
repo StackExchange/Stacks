@@ -17,7 +17,7 @@ import { createSvelteComponentsSnippet } from "../../../test-utils";
 
 import Navigation from "./Navigation.svelte";
 import NavigationItem from "./NavigationItem.svelte";
-import NavigationTitle from "./NavigationTitle.svelte";
+import NavigationGroup from "./NavigationGroup.svelte";
 
 describe("Navigation", () => {
     it("should render navigation with multiple items and handle selection with links", async () => {
@@ -228,40 +228,44 @@ describe("Navigation", () => {
                 orientation: "vertical",
                 children: createSvelteComponentsSnippet([
                     {
-                        component: NavigationTitle,
+                        component: NavigationGroup,
                         props: {
                             title: "Group 1",
+                            children: createSvelteComponentsSnippet([
+                                {
+                                    component: NavigationItem,
+                                    props: {
+                                        text: "Item 1",
+                                        selected: true,
+                                    },
+                                },
+                            ]),
                         },
                     },
                     {
-                        component: NavigationItem,
-                        props: {
-                            text: "Item 1",
-                            selected: true,
-                        },
-                    },
-                    {
-                        component: NavigationTitle,
+                        component: NavigationGroup,
                         props: {
                             title: "Group 2",
-                        },
-                    },
-                    {
-                        component: NavigationItem,
-                        props: {
-                            text: "Item 2",
+                            children: createSvelteComponentsSnippet([
+                                {
+                                    component: NavigationItem,
+                                    props: {
+                                        text: "Item 2",
+                                        selected: true,
+                                    },
+                                },
+                            ]),
                         },
                     },
                 ]),
             },
         });
 
-        // TODO: is role separator semantically correct here? should titles be heading instead?
-        const separators = screen.getAllByRole("separator");
+        const separators = screen.getAllByRole("heading");
         expect(separators.length).to.equal(2);
 
-        expect(separators[0]).to.have.text("Group 1 ");
-        expect(separators[1]).to.have.text("Group 2 ");
+        expect(separators[0]).to.have.text("Group 1");
+        expect(separators[1]).to.have.text("Group 2");
     });
 
     it("should render navigation items and navigation titles with trailing content", () => {
@@ -271,24 +275,26 @@ describe("Navigation", () => {
                 orientation: "vertical",
                 children: createSvelteComponentsSnippet([
                     {
-                        component: NavigationTitle,
+                        component: NavigationGroup,
                         props: {
                             title: "Title",
                             trailing: createRawSnippet(() => ({
                                 render: () => "<button>Toggle</button>",
                             })),
-                        },
-                    },
-                    {
-                        component: NavigationItem,
-                        props: {
-                            text: "Home",
-                            icon: IconHome,
-                            iconSelected: IconHomeFill,
-                            selected: true,
-                            trailing: createRawSnippet(() => ({
-                                render: () => "<span>New</span>",
-                            })),
+                            children: createSvelteComponentsSnippet([
+                                {
+                                    component: NavigationItem,
+                                    props: {
+                                        text: "Home",
+                                        icon: IconHome,
+                                        iconSelected: IconHomeFill,
+                                        selected: true,
+                                        trailing: createRawSnippet(() => ({
+                                            render: () => "<span>New</span>",
+                                        })),
+                                    },
+                                },
+                            ]),
                         },
                     },
                 ]),
@@ -378,29 +384,31 @@ describe("Navigation", () => {
                 class: "custom-nav-class",
                 children: createSvelteComponentsSnippet([
                     {
-                        component: NavigationTitle,
+                        component: NavigationGroup,
                         props: {
                             title: "Title",
-                            class: "custom-title-class",
-                        },
-                    },
-                    {
-                        component: NavigationItem,
-                        props: {
-                            text: "Item",
-                            class: "custom-item-class",
-                            selected: true,
+                            titleClass: "custom-title-class",
+                            children: createSvelteComponentsSnippet([
+                                {
+                                    component: NavigationItem,
+                                    props: {
+                                        text: "Item",
+                                        class: "custom-item-class",
+                                        selected: true,
+                                    },
+                                },
+                            ]),
                         },
                     },
                 ]),
             },
         });
 
-        const list = screen.getByRole("list");
-        expect(list).to.have.class("custom-nav-class");
+        const nav = screen.getByRole("navigation");
+        expect(nav).to.have.class("custom-nav-class");
 
         const title = screen.getByText("Title");
-        expect(title).to.have.class("custom-title-class");
+        expect(title.parentElement).to.have.class("custom-title-class");
 
         const item = screen.getByRole("button", { name: "Item" });
         expect(item).to.have.class("custom-item-class");

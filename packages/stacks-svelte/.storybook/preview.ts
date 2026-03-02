@@ -1,10 +1,13 @@
 import type { Preview } from "@storybook/svelte";
-import WithMode from "./decorators/with-mode";
 import "@stackoverflow/stacks/lib/stacks.less";
 
 const preview: Preview = {
     parameters: {
-        actions: { argTypesRegex: "^on[A-Z].*" },
+        //Don't inject event handlers to storybook code previews since
+        //there are no user controls for the user to interact with them.
+        //Fixes: https://github.com/storybook-eol/addon-smart-knobs/issues/63#issuecomment-995798227
+        actions: { argTypesRegex: null },
+
         controls: {
             matchers: {
                 color: /(background|color)$/i,
@@ -19,43 +22,9 @@ const preview: Preview = {
         },
         docs: {
             controls: { sort: "requiredFirst" },
-            story: {
-                inline: false,
-                iframeHeight: "auto",
-            },
-        },
-        backgrounds: {
-            disable: true,
-        },
-    },
-    globalTypes: {
-        mode: {
-            name: "Mode",
-            description: "Global mode for components",
-            defaultValue: "light",
-            toolbar: {
-                icon: "circlehollow",
-                items: [
-                    { value: "light", title: "Light", icon: "circlehollow" },
-                    { value: "dark", title: "Dark", icon: "circle" },
-                    {
-                        value: "highcontrast",
-                        title: "High Contrast",
-                        icon: "contrast",
-                    },
-                    {
-                        value: "highcontrast-dark",
-                        title: "High Contrast Dark",
-                        icon: "contrast",
-                    },
-                ],
-                showName: true,
-                dynamicTitle: true,
-            },
         },
     },
     tags: ["autodocs"],
-    decorators: [WithMode],
 };
 
 export default preview;

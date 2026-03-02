@@ -53,6 +53,8 @@
             },
         },
     });
+
+    let bindableValue = $state("Change me");
 </script>
 
 <Story name="Base" args={{ id: "base-example-input", label: "Username" }} />
@@ -141,6 +143,38 @@
     </div>
 </Story>
 
+<Story name="Label status" asChild>
+    <div class="d-grid g32">
+        <TextInput
+            id="label-status-danger-input"
+            placeholder="Placeholder text should not replace labels"
+            label="Question title"
+            labelStatus="danger"
+            labelStatusText="Required"
+        />
+        <TextInput
+            id="label-status-tonal-input"
+            placeholder="Placeholder text should not replace labels"
+            label="Question tags"
+            labelStatusText="Optional"
+        />
+        <TextInput
+            id="label-status-saved-input"
+            placeholder="Placeholder text should not replace labels"
+            label="What is your favourite animal?"
+            labelStatus="info"
+            labelStatusText="Saved for later"
+        />
+        <TextInput
+            id="label-status-info-input"
+            placeholder="e.g. user@example.com"
+            label="Notify people"
+            labelStatus="featured"
+            labelStatusText="New feature"
+        />
+    </div>
+</Story>
+
 <Story name="Types" asChild>
     <div class="d-grid g16">
         {#each TextInputTypes as type (type)}
@@ -208,6 +242,22 @@
                     <span>https://</span>
                 {/snippet}
             </TextInput>
+        </div>
+    </div>
+</Story>
+
+<Story name="Bindable Value" asChild>
+    <div class="d-grid g16">
+        <div class="d-flex fd-column">
+            <TextInput
+                id="binding-input"
+                label="Bindable input"
+                bind:value={bindableValue}
+            />
+            <p class="mt24">
+                <span class="fw-bold">Bound value:</span>
+                {bindableValue}
+            </p>
         </div>
     </div>
 </Story>

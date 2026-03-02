@@ -2,36 +2,21 @@
 layout: page
 title: Links
 svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-link--docs
-description: Links are lightly styled via the <code class="stacks-code">a</code> element by default. In addition, we provide <code class="stacks-code">.s-link</code> and its variations. In rare situations, <code class="stacks-code">.s-link</code> can be applied to n <code class="stacks-code">button</code> while maintaining the look of an anchor.
+description: Links are lightly styled via the <code>a</code> element by default. In addition, we provide <code>.s-link</code> and its variations. In rare situations, <code>.s-link</code> can be applied to n <code>button</code> while maintaining the look of an anchor.
 tags: components
 ---
-<section class="stacks-section">
-    {% header "h2", "Single link" %}
-    {% header "h3", "Single link classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col">Class</th>
-                    <th scope="col">Applied to</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                {% for item in links.single-links %}
-                    <tr>
-                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
-                        <td><code class="stacks-code bg-white">{{ item.applies }}</td>
-                        <td class="p8">{{ item.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+
+{% header "h2", "Links" %}
+<section class="docs-section">
+    {% header "h3", "Link classes" %}
+    {% assign docsItems = links.link-classes %}
+    {% assign col2Heading = "" %}
+    {% include "docs-table.html" %}
 </section>
-<section class="stacks-section">
+
+<section class="docs-section">
     {% header "h3", "Single link examples" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <a class="s-link" href="#">Default</a>
 <a class="s-link s-link__grayscale" href="#">Grayscale</a>
@@ -40,117 +25,93 @@ tags: components
 <a class="s-link s-link__inherit" href="#">Inherit</a>
 <a class="s-link s-link__underlined" href="#">Underlined</a>
 <button class="s-link">Button Link</button>
-<a class="s-link s-link__visited" href="#">Visited</a>
 <a class="s-link s-link__dropdown" href="#">Links</a>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex g16 fw-wrap">
-                <a class="flex--item s-link" href="#">Default</a>
-                <a class="flex--item s-link s-link__grayscale" href="#">Grayscale</a>
-                <a class="flex--item s-link s-link__muted" href="#">Muted</a>
-                <a class="flex--item s-link s-link__danger" href="#">Danger</a>
-                <a class="flex--item s-link s-link__inherit" href="#">Inherit</a>
-                <a class="flex--item s-link s-link__underlined" href="#">Underlined</a>
-                <button class="flex--item s-link">Button Link</button>
-                <a class="flex--item s-link s-link__visited" href="#">Visited</a>
-                <a class="flex--item s-link s-link__dropdown" href="#">Links</a>
+                <a class="s-link" href="#">Default</a>
+                <a class="s-link s-link__grayscale" href="#">Grayscale</a>
+                <a class="s-link s-link__muted" href="#">Muted</a>
+                <a class="s-link s-link__danger" href="#">Danger</a>
+                <a class="s-link s-link__inherit" href="#">Inherit</a>
+                <a class="s-link s-link__underlined" href="#">Underlined</a>
+                <button class="s-link">Button Link</button>
+                <a class="s-link s-link__dropdown" href="#">Links</a>
             </div>
         </div>
     </div>
 
     {% header "h3", "Accessibility" %}
-
-    <p class="stacks-copy">Any link with adjacent static text cannot use color alone to differentiate it as a link. If a link is next to static text and the only visual indication that it’s a link is the color of the text (often <code class="stacks-code">blue-400</code>), it will require an underline in addition to the color. Reference <a href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F73">WCAG SC 1.4.1</a> for more details.</p>
-
+    <p class="docs-copy">Any link with adjacent static text cannot use color alone to differentiate it as a link. If a link is next to static text and the only visual indication that it’s a link is the color of the text, it will require an underline in addition to the color. Reference <a href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F73">WCAG SC 1.4.1</a> for more details.</p>
 </section>
 
-<section class="stacks-section">
-    {% header "h2", "Descendent anchors" %}
-    {% header "h3", "Descendent anchor classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell3" scope="col">Class</th>
-                    <th class="s-table--cell2" scope="col">Applied to</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                {% for item in links.descendent-anchors %}
-                    <tr>
-                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
-                        <td><code class="stacks-code bg-white">{{ item.applies }}</td>
-                        <td class="p8">{{ item.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    {% header "h3", "Descendent anchor examples" %}
-    <p class="stacks-copy">Sometimes you need to give all <code class="stacks-code">&lt;a&gt;</code> elements inside a container or component the same color, even
-        when it&lsquo;s impractical or even impossible to give each anchor element an <code class="stacks-code">s-link</code> class (e.g. because the markup is generated from Markdown).</p>
-    <p class="stacks-copy">In this case, you can add the <code class="stacks-code">s-anchors</code> class together with one of the modifiers
-        <code class="stacks-code">s-anchors__default</code>, <code class="stacks-code">s-anchors__grayscale</code>, <code class="stacks-code">s-anchors__muted</code>,
-        <code class="stacks-code">s-anchors__danger</code>, or <code class="stacks-code">s-anchors__inherit</code> to the container.
+{% header "h2", "Anchors" %}
+<section class="docs-section">
+    {% header "h3", "Anchor classes" %}
+    {% assign docsItems = links.anchors-classes %}
+    {% assign col1Classes = "s-table--cell3" %}
+    {% assign col3Classes = "s-table--cell2" %}
+    {% assign col2Heading = "" %}
+    {% include "docs-table.html" %}
+</section>
+
+<section class="docs-section">
+    {% header "h3", "Anchor examples" %}
+    <p class="docs-copy">Sometimes you need to give all <code>&lt;a&gt;</code> elements inside a container or component the same color, even
+        when it&lsquo;s impractical or even impossible to give each anchor element an <code>s-link</code> class (e.g. because the markup is generated from Markdown).</p>
+    <p class="docs-copy">In this case, you can add the <code>s-anchors</code> class together with one of the modifiers
+        <code>s-anchors__default</code>, <code>s-anchors__grayscale</code>, <code>s-anchors__muted</code>,
+        <code>s-anchors__danger</code>, or <code>s-anchors__inherit</code> to the container.
     </p>
 
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
-<div class="s-anchors s-anchors__default">…</div>
+<div class="s-anchors">…</div>
 <div class="s-anchors s-anchors__grayscale">…</div>
 <div class="s-anchors s-anchors__muted">…</div>
 <div class="s-anchors s-anchors__danger">…</div>
 <div class="s-anchors s-anchors__underlined">…</div>
 <div class="s-anchors s-anchors__inherit">…</div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
-            {% for item in links.descendent-anchors %}
+        <div class="docs-preview--example">
+            {% for item in links.anchors-classes %}
                 {% if item.name != "base" %}
-                    <div class="s-anchors s-anchors__{{ item.name }} s-card mb8 {{ item.exampleClasses }}">
-                        <p>There is a <a href="#">{{ item.name }} link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="https://stackoverflow.design/404-unvisited">another one</a>.</p>
+                    <div class="s-anchors s-anchors__{{ item.name }} docs-card mb8 {{ item.exampleClasses }}">
+                        There is a <a href="#">{{ item.name }} link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="https://stackoverflow.design/404-unvisited">another one</a>.
                     </div>
                 {% endif %}
             {% endfor %}
         </div>
     </div>
 
-    <p class="stacks-copy">One additional level of nesting is supported, but even that should be exceedingly rare. More than that is not supported.</p>
+    <p class="docs-copy">One additional level of nesting is supported, but even that should be exceedingly rare. More than that is not supported.</p>
 
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="s-anchors s-anchors__danger s-card">
-    <p>
-        All <a href="#">links</a> in this <a href="#">outer box</a>
-        are <a href="#">dangerous</a>.
-    </p>
+    All <a href="#">links</a> in this <a href="#">outer box</a>
+    are <a href="#">dangerous</a>.
     <div class="s-anchors s-anchors__default s-card w70 mt8">
-        <p>
-            But all <a href="#">links</a> in this <a href="#">inner box</a>
-            have the <a href="#">default</a> link color.
-        </p>
+        But all <a href="#">links</a> in this <a href="#">inner box</a>
+        have the <a href="#">default</a> link color.
     </div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="s-anchors s-anchors__danger s-card">
-                <p>
-                    All <a href="#">links</a> in this <a href="#">outer box</a>
-                    are <a href="#">dangerous</a>.
-                </p>
+                All <a href="#">links</a> in this <a href="#">outer box</a>
+                are <a href="#">dangerous</a>.
                 <div class="s-anchors s-anchors__default s-card w70 mt8">
-                    <p>
-                        But all <a href="#">links</a> in this <a href="#">inner box</a>
-                        have the <a href="#">default</a> link color.
-                    </p>
+                    But all <a href="#">links</a> in this <a href="#">inner box</a>
+                    have the <a href="#">default</a> link color.
                 </div>
             </div>
         </div>
     </div>
 
-    <p class="stacks-copy">An explicit <code class="stacks-code">s-link</code> on an anchor overrides any <code class="stacks-code">s-anchors</code> setting:</p>
+    <p class="docs-copy">An explicit <code>s-link</code> on an anchor overrides any <code>s-anchors</code> setting:</p>
 
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="s-anchors s-anchors__danger s-card">
     All <a href="#">links</a> in this <a href="#">box</a> are <a href="#">dangerous</a>,
@@ -158,7 +119,7 @@ tags: components
     <a class="s-link s-link__muted">this muted link</a>.
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="s-anchors s-anchors__danger s-card">
                 All <a href="#">links</a> in this <a href="#">box</a> are <a href="#">dangerous</a>,
                 except for <a class="s-link">this one</a> which uses the default color, and
@@ -167,76 +128,3 @@ tags: components
         </div>
     </div>
 </section>
-
-<section class="stacks-section">
-    {% header "h2", "Block link" %}
-    {% header "h3", "Block link classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col" class="s-table--cell3">Class</th>
-                    <th scope="col" class="s-table--cell2">Applied to</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                {% for item in links.block-links %}
-                    <tr>
-                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
-                        <td><code class="stacks-code bg-white">{{ item.applies }}</td>
-                        <td class="p8">{{ item.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</section>
-<section class="stacks-section">
-    {% header "h3", "Block link examples" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<a class="s-block-link" href="#">…</a>
-<a class="s-block-link is-selected" href="#">…</a>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex g16 fd-column ws3">
-                <a class="flex--item s-block-link s-block-link__left" href="#">Block link</a>
-                <a class="flex--item s-block-link is-selected" href="#">Selected block link</a>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="stacks-section">
-    {% header "h3", "Block link right/left examples" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<a class="s-block-link s-block-link__right is-selected" href="#">…</a>
-<a class="s-block-link s-block-link__left is-selected" href="#">…</a>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex g16 fd-column ws3">
-                <a class="flex--item s-block-link s-block-link__right is-selected" href="#">Selected block link right</a>
-                <a class="flex--item s-block-link s-block-link__left is-selected" href="#">Selected block link left</a>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="stacks-section">
-    {% header "h3", "Block link danger examples" %}
-    <div class="stacks-preview">
-{% highlight html %}
-<a class="s-block-link s-block-link__danger" href="#">…</a>
-<a class="s-block-link s-block-link__danger is-selected" href="#">…</a>
-<a class="s-block-link s-block-link__danger s-block-link__right is-selected" href="#">…</a>
-<a class="s-block-link s-block-link__danger s-block-link__left is-selected" href="#">…</a>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex g16 fd-column ws3">
-                <a class="flex--item s-block-link s-block-link__danger" href="#">Block danger link</a>
-                <a class="flex--item s-block-link s-block-link__danger is-selected" href="#">Selected block danger link</a>
-                <a class="flex--item s-block-link s-block-link__danger s-block-link__right is-selected" href="#">Selected block danger link right</a>
-                <a class="flex--item s-block-link s-block-link__danger s-block-link__left is-selected" href="#">Selected block danger link left</a>
-            </div>
-        </div>
-    </div>

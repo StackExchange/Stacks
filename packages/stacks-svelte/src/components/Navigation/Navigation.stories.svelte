@@ -2,7 +2,7 @@
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import Navigation from "./Navigation.svelte";
     import NavigationItem from "./NavigationItem.svelte";
-    import NavigationTitle from "./NavigationTitle.svelte";
+    import NavigationGroup from "./NavigationGroup.svelte";
     import Icon from "../Icon/Icon.svelte";
     import Button from "../Button/Button.svelte";
     import ActivityIndicator from "../ActivityIndicator/ActivityIndicator.svelte";
@@ -46,7 +46,7 @@
         title: "Components/Navigation",
         component: Navigation,
         // @ts-expect-error: subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
-        subcomponents: { NavigationItem, NavigationTitle },
+        subcomponents: { NavigationItem, NavigationGroup },
     });
 
     const horizontalItems = [
@@ -282,22 +282,24 @@
 
 <Story name="Titles" asChild>
     <Navigation class="ws2" label="Titles" orientation="vertical">
-        <NavigationTitle title="Group 1" />
-        {#each ["Label 1", "Label 2", "Label 3"] as label (label)}
-            <NavigationItem
-                text={label}
-                selected={base === label}
-                onclick={() => (base = label)}
-            />
-        {/each}
-        <NavigationTitle title="Group 2" />
-        {#each ["Label 4", "Label 5", "Label 6"] as label (label)}
-            <NavigationItem
-                text={label}
-                selected={base === label}
-                onclick={() => (base = label)}
-            />
-        {/each}
+        <NavigationGroup title="Group 1">
+            {#each ["Label 1", "Label 2", "Label 3"] as label (label)}
+                <NavigationItem
+                    text={label}
+                    selected={base === label}
+                    onclick={() => (base = label)}
+                />
+            {/each}
+        </NavigationGroup>
+        <NavigationGroup title="Group 2">
+            {#each ["Label 4", "Label 5", "Label 6"] as label (label)}
+                <NavigationItem
+                    text={label}
+                    selected={base === label}
+                    onclick={() => (base = label)}
+                />
+            {/each}
+        </NavigationGroup>
     </Navigation>
 </Story>
 
@@ -319,7 +321,11 @@
 </Story>
 
 <Story name="Trailing" asChild>
-    <Navigation class="ws2 hs6" label="Trailing" orientation="vertical">
+    <Navigation
+        class="ws2 hs6 overflow-y-auto"
+        label="Trailing"
+        orientation="vertical"
+    >
         <NavigationItem
             text="Home"
             icon={IconHome}
@@ -335,7 +341,7 @@
             onclick={() => (tSelected = "AI Assist")}
         >
             {#snippet trailing()}
-                <Badge variant="new" size="sm">New</Badge>
+                <Badge text="New" type="state" state="featured" size="sm" />
             {/snippet}
         </NavigationItem>
         {#each groups as group (group)}
@@ -346,9 +352,10 @@
             {@const selectedItem = groupItems.find(
                 (item) => tSelected === item.text
             )}
-            <NavigationTitle
+            <NavigationGroup
                 title={group}
-                class={`bc-black-200 bt ps-relative ${isCollapsed && !selectedItem ? "mbn24" : ""}`}
+                class={`ps-relative ${isCollapsed && !selectedItem ? "mbn24" : ""}`}
+                titleClass="bt bc-black-200 "
             >
                 {#snippet trailing()}
                     <div class="ps-absolute r0 as-center d-flex ai-center">
@@ -385,76 +392,77 @@
                         </Button>
                     </div>
                 {/snippet}
-            </NavigationTitle>
+                {@const selectedIndex = groupItems.findIndex(
+                    (item) => tSelected === item.text
+                )}
+                {@const itemsBefore =
+                    selectedIndex >= 0
+                        ? groupItems.slice(0, selectedIndex)
+                        : groupItems}
+                {@const itemsAfter =
+                    selectedIndex >= 0
+                        ? groupItems.slice(selectedIndex + 1)
+                        : []}
 
-            {@const selectedIndex = groupItems.findIndex(
-                (item) => tSelected === item.text
-            )}
-            {@const itemsBefore =
-                selectedIndex >= 0
-                    ? groupItems.slice(0, selectedIndex)
-                    : groupItems}
-            {@const itemsAfter =
-                selectedIndex >= 0 ? groupItems.slice(selectedIndex + 1) : []}
-
-            {#each itemsBefore as item (item.text)}
-                {#if !isCollapsed}
+                {#each itemsBefore as item (item.text)}
+                    {#if !isCollapsed}
+                        <NavigationItem
+                            icon={item.icon}
+                            iconSelected={item.iconSelected}
+                            text={item.text}
+                            onclick={() => (tSelected = item.text)}
+                            animate
+                        >
+                            {#snippet trailing()}
+                                {#if item.activity}
+                                    <ActivityIndicator
+                                        content={item.activity.content}
+                                        label={item.activity.label}
+                                    />
+                                {/if}
+                            {/snippet}
+                        </NavigationItem>
+                    {/if}
+                {/each}
+                {#if selectedItem}
                     <NavigationItem
-                        icon={item.icon}
-                        iconSelected={item.iconSelected}
-                        text={item.text}
-                        onclick={() => (tSelected = item.text)}
-                        animate
+                        icon={selectedItem.icon}
+                        iconSelected={selectedItem.iconSelected}
+                        text={selectedItem.text}
+                        selected
+                        onclick={() => (tSelected = selectedItem.text)}
                     >
                         {#snippet trailing()}
-                            {#if item.activity}
+                            {#if selectedItem.activity}
                                 <ActivityIndicator
-                                    content={item.activity.content}
-                                    label={item.activity.label}
+                                    content={selectedItem.activity.content}
+                                    label={selectedItem.activity.label}
                                 />
                             {/if}
                         {/snippet}
                     </NavigationItem>
                 {/if}
-            {/each}
-            {#if selectedItem}
-                <NavigationItem
-                    icon={selectedItem.icon}
-                    iconSelected={selectedItem.iconSelected}
-                    text={selectedItem.text}
-                    selected
-                    onclick={() => (tSelected = selectedItem.text)}
-                >
-                    {#snippet trailing()}
-                        {#if selectedItem.activity}
-                            <ActivityIndicator
-                                content={selectedItem.activity.content}
-                                label={selectedItem.activity.label}
-                            />
-                        {/if}
-                    {/snippet}
-                </NavigationItem>
-            {/if}
-            {#each itemsAfter as item (item.text)}
-                {#if !isCollapsed}
-                    <NavigationItem
-                        icon={item.icon}
-                        iconSelected={item.iconSelected}
-                        text={item.text}
-                        onclick={() => (tSelected = item.text)}
-                        animate
-                    >
-                        {#snippet trailing()}
-                            {#if item.activity}
-                                <ActivityIndicator
-                                    content={item.activity.content}
-                                    label={item.activity.label}
-                                />
-                            {/if}
-                        {/snippet}
-                    </NavigationItem>
-                {/if}
-            {/each}
+                {#each itemsAfter as item (item.text)}
+                    {#if !isCollapsed}
+                        <NavigationItem
+                            icon={item.icon}
+                            iconSelected={item.iconSelected}
+                            text={item.text}
+                            onclick={() => (tSelected = item.text)}
+                            animate
+                        >
+                            {#snippet trailing()}
+                                {#if item.activity}
+                                    <ActivityIndicator
+                                        content={item.activity.content}
+                                        label={item.activity.label}
+                                    />
+                                {/if}
+                            {/snippet}
+                        </NavigationItem>
+                    {/if}
+                {/each}
+            </NavigationGroup>
         {/each}
     </Navigation>
 </Story>
