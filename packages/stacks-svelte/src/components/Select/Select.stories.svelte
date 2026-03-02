@@ -7,7 +7,7 @@
     } from "./Select.svelte";
     import SelectItem from "./SelectItem.svelte";
 
-    const SelectSizes: Size[] = ["", "sm", "md", "lg", "xl"];
+    const SelectSizes: Size[] = ["", "sm", "lg"];
     const SelectStates: State[] = ["", "error", "success", "warning"];
     const SelectLabelPlacement: LabelPlacement[] = ["top", "left"];
 
@@ -44,7 +44,7 @@
 </Story>
 
 <Story name="Label placement" asChild>
-    <div class="d-flex fd-column g16">
+    <div class="d-flex fd-column g32 wmx3">
         {#each SelectLabelPlacement as labelPlacement (labelPlacement)}
             <div>
                 <Select
@@ -59,6 +59,34 @@
                 </Select>
             </div>
         {/each}
+    </div>
+</Story>
+
+<Story name="Label status" asChild>
+    <div class="d-flex fd-column g32 wmx3">
+        <Select
+            id="select-label-status-danger"
+            label="Sort"
+            labelStatus="danger"
+            labelStatusText="Required"
+        >
+            <SelectItem value="relevance" text="Relevance" />
+            <SelectItem value="newest" text="Newest" />
+            <SelectItem value="active" text="Active" />
+            <SelectItem value="score" text="Score" />
+        </Select>
+        <Select
+            id="select-label-status-featured"
+            label="Sort"
+            labelStatus="featured"
+            labelStatusText="New"
+            labelPlacement="left"
+        >
+            <SelectItem value="relevance" text="Relevance" />
+            <SelectItem value="newest" text="Newest" />
+            <SelectItem value="active" text="Active" />
+            <SelectItem value="score" text="Score" />
+        </Select>
     </div>
 </Story>
 

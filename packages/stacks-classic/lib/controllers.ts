@@ -4,7 +4,6 @@ export {
     hideBanner,
     showBanner,
 } from "./components/banner/banner";
-export { ExpandableController } from "./components/expandable/expandable";
 export {
     ModalController,
     hideModal,
@@ -30,4 +29,3 @@ export {
     setTooltipText,
     TooltipController,
 } from "./components/popover/tooltip";
-export { UploaderController } from "./components/uploader/uploader";

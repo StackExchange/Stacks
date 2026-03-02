@@ -4,7 +4,7 @@
 
 <script lang="ts">
     import type { Snippet } from "svelte";
-    import { IconClear } from "@stackoverflow/stacks-icons/icons";
+    import { IconCross } from "@stackoverflow/stacks-icons/icons";
 
     import { Button, Icon } from "../../components";
     import { clickOutside, focusTrap } from "../../actions";
@@ -129,13 +129,13 @@
         {/if}
         {#if !hideCloseButton}
             <Button
-                variant="muted"
+                weight="clear"
                 icon
                 aria-label={i18nCloseButtonLabel}
                 class="s-modal--close"
                 onclick={close}
             >
-                <Icon src={IconClear} class="modal-close" />
+                <Icon src={IconCross} class="modal-close" />
             </Button>
         {/if}
     </div>

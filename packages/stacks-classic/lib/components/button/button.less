@@ -1,151 +1,204 @@
 .s-btn {
-    // BASE COMPONENT-SPECIFIC CUSTOM PROPERTIES
-    --_bu-baw: var(--su-static1);
-    --_bu-bc: transparent;
-    // --_bu-bg: inherit; // [1]
-    --_bu-br: var(--br-md);
-    --_bu-fc: var(--theme-button-color, var(--theme-secondary-400));
+    --_bu-baw: var(--su1);
+    --_bu-br: var(--br-pill);
     --_bu-fs: var(--fs-body1);
-    --_bu-p: 0.8em;
+    --_bu-lh: var(--lh-base);
+    --_bu-g: var(--su8);
+    --_bu-px: var(--su16);
+    --_bu-py: calc(var(--su8) + var(--su2)); // 10px
+    --_bu-badge-fs: var(--fs-caption);
+    --_bu-badge-px: var(--su6);
+    --_bu-badge-py: var(--su2);
+    --_bu-dropdown-bw: var(--su4);
 
-    // Active
-    --_bu-bc-active: var(--_bu-bc);
-    --_bu-bg-active: var(--theme-button-active-background-color, var(--theme-secondary-300));
-    --_bu-fc-active: var(--theme-button-hover-color, var(--theme-secondary-500)); // Note: hover color used on purpose
+    // VARIANTS
+    // Base
+    &:not(&__danger):not(&__featured):not(&__tonal):not(&__link):not(&__unset):not(&__facebook):not(&__github):not(&__google) { // Exclude default styles from impacting these variants
+        --_bu-bg: var(--theme-button-color, var(--theme-secondary));
+        --_bu-bg-disabled: var(--theme-secondary-300);
+        --_bu-bg-hover: var(--theme-button-hover-background-color, var(--theme-secondary-500));
+        --_bu-fc: var(--white);
+        --_bu-fc-disabled: var(--theme-secondary-100);
+        --_bu-fc-hover: var(--theme-button-hover-color, var(--white));
+        --_bu-badge-bg: var(--theme-secondary-500);
+        --_bu-badge-fc: var(--white);
+        --_bu-badge-bg-disabled: var(--theme-secondary-300);
+        --_bu-badge-fc-disabled: var(--theme-secondary-100);
 
-    // Hover
-    --_bu-bc-hover: var(--_bu-bc);
-    --_bu-bg-hover: var(--theme-button-hover-background-color, var(--theme-secondary-200));
-    --_bu-fc-hover: var(--theme-button-hover-color, var(--theme-secondary-500));
+        .highcontrast-mode({
+            --_bu-bg-disabled: var(--theme-secondary-300);
+        });
 
-    // BASE SELECTED MODIFIER
-    --_bu-bg-selected: var(--theme-button-selected-background-color, var(--theme-secondary-300));
-    --_bu-fc-selected: var(--theme-button-selected-color, var(--theme-secondary-600));
+        &.s-btn__clear {
+            --_bu-bg: transparent;
+            --_bu-bg-disabled: var(--_bu-bg);
+            --_bu-bg-hover: var(--theme-secondary-100);
+            --_bu-bg-selected: var(--theme-secondary-100);
+            --_bu-fc: var(--theme-secondary-600);
+            --_bu-fc-disabled: var(--theme-secondary-300);
+            --_bu-fc-hover: var(--_bu-fc);
+            --_bu-badge-bg: var(--theme-secondary-100);
+            --_bu-badge-fc: var(--theme-secondary-500);
+            --_bu-badge-bg-disabled: var(--theme-secondary-100);
+            --_bu-badge-fc-disabled: var(--theme-secondary-300);
 
-    // FILLED VARIANT
-    --_bu-filled-bc: transparent;
-    --_bu-filled-bg: var(--theme-button-primary-background-color, var(--theme-secondary-400));
-    --_bu-filled-fc: var(--theme-button-primary-color, var(--white));
-    // Filled + Selected
-    --_bu-filled-bc-selected: transparent;
-    --_bu-filled-bg-selected: var(--theme-button-primary-selected-background-color, var(--theme-secondary-500));
-    --_bu-filled-fc-selected: var(--theme-button-primary-selected-color, var(--white));
-    // Filled + Active
-    --_bu-filled-bc-active: var(--_bu-filled-bc);
-    --_bu-filled-bg-active: var(--theme-button-primary-active-background-color, var(--theme-secondary-600));
-    --_bu-filled-fc-active: var(--theme-button-primary-hover-color, var(--white));
-    // Filled + Hover
-    --_bu-filled-bc-hover: var(--_bu-filled-bc);
-    --_bu-filled-bg-hover: var(--theme-button-primary-hover-background-color, var(--theme-secondary-500));
-    --_bu-filled-fc-hover: var(--theme-button-primary-hover-color, var(--white));
-
-    // OUTLINED VARIANT
-    --_bu-outlined-bc: var(--theme-button-outlined-border-color, var(--theme-secondary-400));
-    --_bu-outlined-bg: var(--theme-button-outlined-background-color);
-    --_bg-outlined-fc: var(--theme-button-outlined-color, var(--theme-secondary-400));
-    // Outlined + Selected
-    --_bu-outlined-bc-selected: var(--theme-button-outlined-selected-border-color, var(--theme-secondary-400));
-    --_bu-outlined-bg-selected: var(--theme-button-selected-background-color, var(--theme-secondary-300));
-    --_bu-outlined-fc-selected: var(--theme-button-selected-color, var(--theme-secondary-600));
-
-    // CHILD COMPONENT CUSTOM PROPERTIES
-    --_bu-badge-o: 0.5;
-    --_bu-dropdown-bw: var(--su-static4);
-    --_bu-number-fc: var(--white);
-    --_bu-number-fc-filled: var(--theme-button-primary-number-color, var(--theme-secondary-600));
-    --_bu-number-fc-selected: var(--white);
-
-    // CONTEXTUAL STYLES
-    .highcontrast-mode({
-        --_bu-bc: currentColor;
-        --_bu-outlined-bc: var(--_bu-bc);
-        --_bu-fc-selected: var(--white);
-        --_bu-outlined-fc-selected: var(--white);
-        --_bu-badge-o: 0.8;
-        --_bu-number-fc-selected: var(--theme-button-primary-number-color, var(--theme-secondary-600));
-    });
-
-    // STATES
-    fieldset[disabled] &,
-    &[disabled],
-    &[aria-disabled="true"] {
-        opacity: var(--_o-disabled-static);
-        pointer-events: none;
-        text-decoration: none;
+            .highcontrast-mode({
+                --_bu-bc: var(--theme-secondary-400);
+                --_bu-bc-disabled: var(--theme-secondary-300);
+                --_bu-bg-disabled: var(--white);
+                --_bu-badge-bg-disabled: var(--theme-secondary-100);
+                --_bu-badge-fc-disabled: var(--theme-secondary-300);
+            });
+        }
     }
 
-    button &,
-    button[type="submit"] &,
-    button[type="reset"] & {
-        -webkit-appearance: button; // [2]
+    &&__danger {
+        --_bu-bg: var(--red-400);
+        --_bu-fc: var(--white);
+        --_bu-bg-disabled: var(--red-200);
+        --_bu-fc-disabled: var(--black-050);
+        --_bu-bg-hover: var(--red-500);
+        --_bu-bg-selected: var(--red-500);
+        --_bu-fc-selected: var(--_bu-fc);
+        --_bu-badge-bg: var(--red-500);
+        --_bu-badge-fc: var(--black-050);
+        --_bu-badge-bg-disabled: var(--red-300);
+        --_bu-badge-fc-disabled: var(--black-100);
+
+        .dark-mode({
+            --_bu-bg-disabled: var(--red-300);
+            --_bu-badge-fc-disabled: var(--black-050);
+            --_bu-badge-bg-disabled: var(--red-400);
+        });
+
+        .highcontrast-mode({
+            --_bu-fc-disabled: var(--black-300);
+            --_bu-badge-bg-disabled: var(--red-100);
+            --_bu-badge-fc-disabled: var(--black-300);
+        });
+
+        .highcontrast-dark-mode({
+            --_bu-bg-disabled: var(--red-300);
+            --_bu-fc-disabled: var(--black-050);
+            --_bu-badge-fc-disabled: var(--black-050);
+            --_bu-badge-bg-disabled: var(--red-400);
+        });
+
+        &.s-btn__clear {
+            --_bu-bg: transparent;
+            --_bu-bg-disabled: var(--_bu-bg);
+            --_bu-bg-hover: var(--red-100);
+            --_bu-bg-selected: var(--red-100);
+            --_bu-fc: var(--red-400);
+            --_bu-fc-disabled: var(--red-200);
+            --_bu-fc-hover: var(--red-500);
+            --_bu-fc-selected: var(--red-500);
+            --_bu-badge-bg: var(--red-100);
+            --_bu-badge-fc: var(--red-500);
+            --_bu-badge-bg-disabled: var(--red-100);
+            --_bu-badge-fc-disabled: var(--red-300);
+
+            .dark-mode({
+                --_bu-bg-disabled: var(--_bu-bg);
+                --_bu-fc-disabled: var(--red-300);
+                --_bu-badge-bg-disabled: var(--red-100);
+                --_bu-badge-fc-disabled: var(--red-400);
+            });
+
+            .highcontrast-mode({
+                --_bu-bc: var(--red-600);
+                --_bu-bc-disabled: var(--black-300);
+            });
+
+            .highcontrast-dark-mode({
+                --_bu-bg-disabled: var(--black-050);
+                --_bu-fc-disabled: var(--red-300);
+                --_bu-badge-bg-disabled: var(--red-100);
+                --_bu-badge-fc-disabled: var(--red-300);
+            });
+        }
     }
 
-    &.grid {
-        display: flex; // Override &&__danger buttons having inline-block by default
+    &&__featured {
+        --_bu-bg: var(--purple-400);
+        --_bu-bg-disabled: var(--purple-200);
+        --_bu-bg-hover: var(--purple-500);
+        --_bu-bg-selected: var(--purple-500);
+        --_bu-fc: var(--white);
+        --_bu-fc-selected: var(--_bu-fc);
+        --_bu-badge-bg: var(--purple-500);
+        --_bu-badge-fc: var(--black-050);
+        --_bu-badge-bg-disabled: var(--purple-300);
+        --_bu-badge-fc-disabled: var(--black-100);
+
+        .dark-mode({
+            --_bu-bg-disabled: var(--purple-100);
+            --_bu-fc-disabled: var(--purple-400);
+            --_bu-badge-fc-disabled: var(--purple-400);
+            --_bu-badge-bg-disabled: var(--purple-200);
+        });
+
+        .highcontrast-mode({
+            --_bu-fc-disabled: var(--black-300);
+            --_bu-badge-fc-disabled: var(--black-300);
+            --_bu-badge-bg-disabled: var(--purple-200);
+        });
+
+        .highcontrast-dark-mode({
+            --_bu-fc-disabled: var(--purple-400);
+            --_bu-badge-bg-disabled: var(--purple-200);
+            --_bu-badge-fc-disabled: var(--purple-400);
+        });
     }
 
-    &.is-loading {
-        .svg-icon:first-child {
-            margin-left: calc((var(--su-static24) - var(--su-static1)) * -1); // -23px
-            opacity: 0; // [3]
-        }
+    &&__tonal {
+        --_bu-bg: var(--black-150);
+        --_bu-bg-disabled: var(--black-100);
+        --_bu-bg-hover: var(--black-200);
+        --_bu-bg-selected: var(--black-200);
+        --_bu-fc: var(--black);
+        --_bu-fc-disabled: var(--black-300);
+        --_bu-fc-selected: var(--_bu-fc);
+        --_bu-badge-bg: var(--black-200);
+        --_bu-badge-fc: var(--black-600);
+        --_bu-badge-bg-disabled: var(--black-100);
+        --_bu-badge-fc-disabled: var(--black-300);
 
-        padding-left: 2.2em;
+        .highcontrast-mode({
+            --_bu-bc: var(--black-400);
+            --_bu-bc-disabled: var(--black-300);
+        });
     }
 
-    &.is-selected,
-    &--radio:checked + & {
-        background-color: var(--_bu-bg-selected);
-        border-color: var(--_bu-bc-selected, transparent);
-        color: var(--_bu-fc-selected);
+    // Social
+    &&__facebook {
+        @_fb-brand: #1877F2;
+        --_bu-bg: @_fb-brand;
+        --_bu-bg-hover: darken(@_fb-brand, 5%);
+        --_bu-fc: #fff;
+        --_bu-fc-hover: var(--_bu-fc);
+    }
 
-        .s-btn--number {
-            color: var(--_bu-number-fc-selected);
-        }
+    &&__google {
+        --_bu-bg: var(--black-150);
+        --_bu-bg-hover: var(--black-200);
+        --_bu-fc: var(--black-600);
+    }
 
-        &.s-btn__filled { // this needs to live here to adapt to radio button-group
-            border-color: var(--_bu-filled-bc-selected);
-            background-color: var(--_bu-filled-bg-selected);
-            color: var(--_bu-filled-fc-selected);
-        }
-        &.s-btn__outlined { // this needs to live here to adapt to radio button-group
-            border-color: var(--_bu-outlined-bc-selected);
-            background-color: var(--_bu-outlined-bg-selected);
-            color: var(--_bu-outlined-fc-selected);
-
-            &.s-btn__muted {
-                .highcontrast-mode({
-                    --_bu-outlined-bc-selected: var(--_bu-filled-bc-selected);
-                    --_bu-outlined-bg-selected: var(--_bu-filled-bg-selected);
-                    --_bu-outlined-fc-selected: var(--_bu-filled-fc-selected);
-                    --_bu-number-fc-selected: var(--_bu-filled-bg-selected);
-                });
-            }
-        }
+    &&__github {
+        --_bu-bg: var(--black-600);
+        --_bu-bg-hover: var(--black-500);
+        --_bu-fc: var(--white);
     }
 
     // MODIFIERS
-    &&__filled {
-        .s-btn--number {
-            color: var(--_bu-number-fc-filled);
-        }
-
-        border-color: var(--_bu-filled-bc);
-        background-color: var(--_bu-filled-bg);
-        color: var(--_bu-filled-fc);
-    }
-
-    &&__outlined {
-        border-color: var(--_bu-outlined-bc);
-        background-color: var(--_bu-outlined-bg, inherit);
-    }
-
     // Resets
     &&__link,
     &&__unset {
         --_bu-baw: 0;
         --_bu-br: 0;
-        --_bu-p: 0;
+        --_bu-px: 0;
+        --_bu-py: 0;
 
         &:focus,
         &:focus-visible {
@@ -179,8 +232,13 @@
         &:hover,
         &:active,
         &:focus {
+            --_bu-baw: 0;
             --_bu-bg: none;
+            --_bu-br: unset;
             --_bu-fc: unset;
+            --_bu-fs: inherit;
+            --_bu-g: unset;
+            --_bu-lh: inherit;
 
             cursor: default;
             font: unset;
@@ -190,7 +248,6 @@
         outline: initial;
     }
 
-    // Pseudo-elements and child-based modifiers
     &&__dropdown {
         &:after {
             border-color: currentColor transparent;
@@ -198,307 +255,170 @@
             border-width: var(--_bu-dropdown-bw);
             border-bottom-width: 0;
             content: "";
-            pointer-events: none;
-            position: absolute;
-            right: var(--_bu-px, var(--_bu-p));
-            top: calc(50% - var(--su-static2));
-            z-index: var(--zi-active);
-        }
-
-        padding-right: calc(var(--_bu-px, var(--_bu-p)) * 2.5);
-    }
-
-    &&__icon {
-        .svg-icon {
-            vertical-align: baseline;
-            margin-top: -0.3em; // [4]
-            margin-bottom: -0.3em; // [4]
-            transition: opacity 200ms var(--te-smooth); // Animate the transition to .is-loading
         }
     }
 
-    // Size
-    &&__xs {
-        .size-styles(xs; bu; @styles: fs);
-        --_bu-dropdown-bw: calc(var(--su-static4) - var(--su-static1));
-        --_bu-p: 0.6em;
-    }
+    &.is-selected,
+    .s-btn--radio:checked + & {
+        --_bu-bg-selected-overlay-o: 20%;
+        --_bu-bg-selected-overlay: color-mix(
+            in srgb,
+            var(--_bu-bg-selected, var(--_bu-bg)),
+            var(--white) var(--_bu-bg-selected-overlay-o)
+        );
+        --_bu-bg-gradient-top: var(--_bu-bg-selected-overlay, var(--_bu-bg));
+        --_bu-bg-gradient-bottom:  var(--_bu-bg-selected, var(--_bu-bg));
 
-    &&__sm {
-        .size-styles(sm; bu; @styles: fs);
-    }
 
-    &&__md {
-        .size-styles(md; bu; @styles: br, fs);
-        --_bu-p: 0.7em;
-    }
-
-    // VARIANTS
-    &&__danger,
-    &&__featured,
-    &&__muted {
-        .highcontrast-mode({
-            --_bu-filled-bc: transparent;
+        .dark-mode({
+            --_bu-bg-selected-overlay-o: 13%;
+            --_bu-bg-gradient-top: var(--_bu-bg-selected-overlay, var(--_bu-bg));
+            --_bu-bg-gradient-bottom: var(--_bu-bg-selected, var(--_bu-bg));
         });
-    }
 
-    &&__danger {
-        --_bu-bg-active: var(--red-300);
-        --_bu-bg-hover: var(--red-200);
-        --_bu-bg-selected: var(--red-300);
-        --_bu-fc: var(--red-500);
-        --_bu-fc-active: var(--_bu-fc);
-        --_bu-fc-hover: var(--red-500);
-        --_bu-fc-selected: var(--red-600);
-        --_bu-filled-bc: transparent;
-        --_bu-filled-bc-selected: var(--_bu-filled-bc);
-        --_bu-filled-bg: var(--red-400);
-        --_bu-filled-bg-active: var(--red-500);
-        --_bu-filled-bg-hover: var(--red-500);
-        --_bu-filled-bg-selected: var(--red-600);
-        --_bu-filled-fc: var(--white);
-        --_bu-filled-fc-active: var(--_bu-filled-fc);
-        --_bu-filled-fc-hover: var(--_bu-filled-fc);
-        --_bu-filled-fc-selected: var(--_bu-filled-fc);
-        --_bu-outlined-bc: var(--red-400);
-        --_bu-outlined-bc-selected: var(--red-500);
-        --_bu-outlined-bg-selected: var(--_bu-bg-selected);
-        --_bu-outlined-fc-selected: var(--_bu-fc-selected);
-        --_bu-number-fc: var(--white);
-        --_bu-number-fc-filled: var(--black);
-    }
+        .s-btn--badge {
+            .s-btn--number {
+                color: var(--_bu-badge-fc, var(--_bu-fc));
+            }
 
-    &&__featured {
-        --_bu-bg-active: var(--purple-300);
-        --_bu-bg-hover: var(--purple-200);
-        --_bu-bg-selected: var(--purple-300);
-        --_bu-fc: var(--purple-500);
-        --_bu-fc-active: var(--_bu-fc);
-        --_bu-fc-hover: var(--purple-500);
-        --_bu-fc-selected: var(--purple-600);
-        --_bu-filled-bc: transparent;
-        --_bu-filled-bc-selected: var(--_bu-filled-bc);
-        --_bu-filled-bg: var(--purple-400);
-        --_bu-filled-bg-active: var(--purple-500);
-        --_bu-filled-bg-hover: var(--purple-500);
-        --_bu-filled-bg-selected: var(--purple-600);
-        --_bu-filled-fc: var(--white);
-        --_bu-filled-fc-active: var(--_bu-filled-fc);
-        --_bu-filled-fc-hover: var(--_bu-filled-fc);
-        --_bu-filled-fc-selected: var(--_bu-filled-fc);
-        --_bu-outlined-bc: var(--purple-400);
-        --_bu-outlined-bc-selected: var(--purple-500);
-        --_bu-outlined-bg-selected: var(--_bu-bg-selected);
-        --_bu-outlined-fc-selected: var(--_bu-fc-selected);
-        --_bu-number-fc: var(--white);
-        --_bu-number-fc-filled: var(--black);
-    }
+            background-color: var(--_bu-badge-bg);
+        }
 
-    &&__muted {
-        --_bu-bc-hover: var(--black-300);
-        --_bu-bg-active: var(--black-150);
-        --_bu-bg-hover: var(--black-100);
-        --_bu-bg-selected: var(--black-200);
-        --_bu-fc: var(--black-500);
-        --_bu-fc-active: var(--_bu-fc);
-        --_bu-fc-hover: var(--black-500);
-        --_bu-fc-selected: var(--black-500);
-        // The filled modifier on the muted button is deprecated and is to be
-        // removed in Stacks Classic v2
-        --_bu-filled-bc: transparent;
-        --_bu-filled-bc-selected: var(--_bu-filled-bc);
-        --_bu-filled-bg: var(--black-225);
-        --_bu-filled-bg-active: var(--black-300);
-        --_bu-filled-bg-hover: var(--black-250);
-        --_bu-filled-bg-selected: var(--black-350);
-        --_bu-filled-fc: var(--black-500);
-        --_bu-filled-fc-active: var(--_bu-filled-fc);
-        --_bu-filled-fc-hover: var(--_bu-filled-fc);
-        --_bu-filled-fc-selected: var(--black-600);
-        --_bu-outlined-bc: var(--black-300);
-        --_bu-outlined-bc-selected: var(--black-300);
-        --_bu-outlined-bg-selected: var(--_bu-bg-selected);
-        --_bu-outlined-fc-selected: var(--_bu-fc-selected);
-        --_bu-number-fc-filled: var(--white);
-        --_bu-number-fc-selected: var(--white);
-        --_bu-bg-focus: var(--black-400);
-        --_bu-fc-focus: var(--white);
-        --_bu-number-fc-focus: var(--black-500);
-
-        .highcontrast-mode({
-            --_bu-bc-hover: currentColor;
-            --_bu-bg-hover: var(--black-225);
-            // // The filled modifier on the muted button is deprecated and is to be
-            // // removed in Stacks Classic v2
-            --_bu-filled-bg: var(--black-400);
-            --_bu-filled-bg-active: var(--black-500);
-            --_bu-filled-bg-hover: var(--black-400);
-            --_bu-filled-bg-selected: var(--black-500);
-            --_bu-filled-fc: var(--white);
-            --_bu-filled-fc-selected: var(--_bu-filled-fc);
-            --_bu-bc-selected: currentColor;
-            --_bu-fc-selected: var(--black);
-            --_bu-number-fc: var(--white);
-            --_bu-number-fc-filled: var(--black);
-            --_bu-number-fc-selected: var(--white);
-        });
-    }
-
-    // Social
-    &&__facebook,
-    &&__github {
-        .highcontrast-mode({
-            --_bu-bc: transparent;
-        });
-    }
-
-    &&__facebook {
-        @_fb-brand: #385499;
-        --_bu-bc: transparent;
-        --_bu-bg: @_fb-brand;
-        --_bu-bg-active: darken(@_fb-brand, 10%);
-        --_bu-bg-hover: darken(@_fb-brand, 5%);
-        --_bu-fc: #fff;
-        --_bu-fc-active: var(--_bu-fc);
-        --_bu-fc-hover: var(--_bu-fc);
-        --_bu-hc-bc: transparent;
-    }
-
-    &&__google {
-        --_bu-bc: var(--bc-medium);
-        --_bu-bg: var(--white);
-        --_bu-bg-active: var(--black-150);
-        --_bu-bg-hover: var(--black-100);
-        --_bu-fc: var(--fc-medium);
-        --_bu-fc-active: var(--fc-dark);
-        --_bu-fc-hover: var(--black-600);
-    }
-
-    &&__github {
-        --_bu-bg: var(--black-600);
-        --_bu-bg-active: var(--black);
-        --_bu-bg-hover: var(--black-600);
-        --_bu-fc: var(--white);
-        --_bu-fc-active: var(--white);
-        --_bu-fc-hover: var(--white);
-        --_bu-hc-bc: transparent;
+        background: linear-gradient(0deg,
+                var(--_bu-bg-gradient-top) 50%,
+                var(--_bu-bg-gradient-bottom) 50%
+            ) padding-box,
+            linear-gradient(0deg,
+                var(--_bu-bg-gradient-top) 50%,
+                var(--_bu-bg-gradient-bottom) 50%
+            ) border-box;
+        color: var(--_bu-fc-selected, var(--_bu-fc));
     }
 
     // CHILD ELEMENTS
     & &--badge {
-        opacity: var(--_bu-badge-o);
+        background-color: var(--_bu-badge-bg);
+        border-radius: var(--br-pill);
         display: inline-block;
-        border-radius: var(--br-sm);
-        padding: var(--su2) calc(var(--su4) - var(--su1));
-        font-size: var(--fs-caption);
-        line-height: var(--lh-xs);
-        background-color: currentColor;
+        font-size: var(--_bu-badge-fs);
+        line-height: inherit;
+        opacity: var(--_bu-badge-o);
+        padding: var(--_bu-badge-py) var(--_bu-badge-px);
+        margin-block: calc(var(--_bu-badge-py) * -1);
     }
 
     & &--number {
-        color: var(--_bu-number-fc);
+        color: var(--_bu-badge-fc, var(--_bu-fc));
     }
 
+    // TODO SHINE do we still need this?
     &--radio { // This lives alongside a .s-btn element. These styles are the equivelent of `.v-visible-sr`
         border: 0;
         clip-path: inset(50%);
-        clip: rect(var(--su-static1), var(--su-static1), var(--su-static1), var(--su-static1)); // rect(1px, 1px, 1px, 1px)
-        height: var(--su-static1);
-        margin: calc(var(--su-static1) * -1); // -1px
+        /* stylelint-disable-next-line property-no-deprecated -- clip is kept for older browser compatibility alongside clip-path */
+        clip: rect(var(--su1), var(--su1), var(--su1), var(--su1)); // rect(1px, 1px, 1px, 1px)
+        height: var(--su1);
+        margin: var(--sun1);
         overflow-wrap: normal;
         overflow: hidden;
         padding: 0;
         position: absolute;
-        width: var(--su-static1);
+        width: var(--su1);
+    }
+
+    // Sizes
+    &&__xs,
+    &&__sm {
+        --_bu-lh: var(--lh-sm);
+        --_bu-px: var(--su12);
+        --_bu-badge-fs: var(--fs-fine);
+        --_bu-badge-py: var(--su1);
+        --_bu-badge-px: var(--su3);
+    }
+    &&__xs {
+        --_bu-g: var(--su4);
+        --_bu-fs: var(--fs-fine);
+        --_bu-py: var(--su6);
+    }
+    &&__sm {
+        --_bu-g: var(--su6);
+        --_bu-fs: var(--fs-caption);
+        --_bu-py: var(--su8);
+    }
+    &&__lg {
+        --_bu-fs: var(--fs-body2);
+        --_bu-px: var(--su24);
+        --_bu-py: calc(var(--su12) + var(--su1)); // 13px
+        --_bu-badge-py: var(--su3); // 3px
     }
 
     // INTERACTION
     &:not(&__link):not(&__unset):focus-visible,
     &--radio:focus-visible + & {
-        .focus-styles(true, true);
+        .focus-styles(false, true);
     }
 
-    &:not(&--radio:checked + label):not(&__link):not(&__unset):not(&__facebook):not(&__github):not(&__google):not(.is-selected) {
-        &:focus-visible,
-        &.focus-inset-bordered {
-            &:not(:hover) .s-btn--number {
-                color: var(--_bu-number-fc-focus, var(--_bu-number-fc-filled));
-            }
+    &:not(.is-selected):hover {
+        background:
+            linear-gradient(0deg,
+                var(--_bu-bg-selected-overlay, var(--_bu-bg-hover, var(--_bu-bg))) 50%,
+                var(--_bu-bg-hover, var(--_bu-bg-selected, var(--_bu-bg))) 50%
+            ) padding-box,
+            linear-gradient(0deg,
+                var(--_bu-bg-selected-overlay, var(--_bu-bg-hover, var(--_bu-bg))) 50%,
+                var(--_bu-bg-hover, var(--_bu-bg-selected, var(--_bu-bg))) 50%
+            ) border-box;
+        color: var(--_bu-fc-hover, var(--_bu-fc));
+    }
 
-            background-color: var(--_bu-bg-focus, var(--_bu-filled-bg));
-            color: var(--_bu-fc-focus, var(--_bu-filled-fc));
-        }
-
+    fieldset[disabled] &,
+    &[disabled],
+    &[aria-disabled="true"] {
+        &,
         &:hover {
-            &.s-btn__filled {
-                background-color: var(--_bu-filled-bg-hover);
-                border-color: var(--_bu-filled-bc-hover);
-                color: var(--_bu-filled-fc-hover);
-            }
-
-            &:not(.s-btn__outlined):not(.s-btn__filled) {
-                border-color: var(--_bu-bc-hover);
-            }
-
-            &:visited:not(:active):not(:focus) {
-                &:not(.s-btn__outlined) {
-                    &.s-btn__filled {
-                        background-color: var(--_bu-filled-bg-hover);
-                        border-color: var(--_bu-filled-bc-hover);
-                        color: var(--_bu-filled-fc-hover);
-                    }
-
-                    background-color: var(--_bu-bg);
-                    border-color: var(--_bu-bc);
-                    color: var(--_bu-fc);
+            .s-btn--badge {
+                .s-btn--number {
+                    color: var(--_bu-badge-fc-disabled);
                 }
+
+                background-color: var(--_bu-badge-bg-disabled);
             }
 
-            background-color: var(--_bu-bg-hover);
-            color: var(--_bu-fc-hover);
+            background: var(--_bu-bg-disabled, var(--theme-secondary-400));
+            border-color: var(--_bu-bc-disabled, var(--_bu-bc, transparent));
+            color: var(--_bu-fc-disabled, var(--_bu-fc));
         }
 
-        &:active {
-            &.s-btn__filled {
-                background-color: var(--_bu-filled-bg-active);
-                border-color: var(--_bu-filled-bc-active);
-                color: var(--_bu-filled-fc-active);
-            }
-
-            background-color: var(--_bu-bg-active);
-            border-color: var(--_bu-bc-active);
-            color: var(--_bu-fc-active);
-        }
+        cursor: auto;
     }
 
-    background-color: var(--_bu-bg, inherit); // [1]
-    border: var(--_bu-baw) solid var(--_bu-bc);
-    border-radius: var(--_bu-br);
-    box-shadow: none;
+    background:
+        linear-gradient(0deg,
+            var(--_bu-bg-selected-overlay, var(--_bu-bg)) 50%,
+            var(--_bu-bg) 50%
+        ) padding-box,
+        linear-gradient(0deg,
+            var(--_bu-bg-selected-overlay, var(--_bu-bg)) 50%,
+            var(--_bu-bg) 50%
+        ) border-box;
+    border: var(--_bu-baw) solid var(--_bu-bc, transparent);
     color: var(--_bu-fc);
     font-size: var(--_bu-fs);
-    padding: var(--_bu-py, var(--_bu-p)) var(--_bu-px, var(--_bu-p));
+    gap: var(--_bu-g);
+    padding: var(--_bu-py) var(--_bu-px);
 
+    align-items: center;
+    align-self: center;
+    border-radius: var(--_bu-br);
+    border-style: solid;
     cursor: pointer;
-    display: inline-block;
+    display: inline-flex;
     font-family: inherit;
-    font-weight: normal;
-    line-height: var(--lh-sm);
+    font-weight: 600; // TODO SHINE verify weight
+    justify-content: center;
+    line-height: var(--_bu-lh);
     position: relative;
-    outline: none;
     text-align: center;
     text-decoration: none;
     user-select: none;
 }
-
-//  [1] Passing `inherit` as a custom property value has no effect, instead we
-//      provide it as a fallback value for when --_bu-bg is not defined
-//      For more info, see https://stackoverflow.com/a/53239881/652353
-//  [2] Guard against the difference in configurable resets
-//      Eric Meyer's reset does not include this, while normalize.css does
-//      Correct the inability to style buttons in iOS and Safari.
-//  [3] If the first thing in the button is an icon, let's hide it on loading
-//      We only want to modify the visibility, since we still want it to have shape and keep the same layout.
-//  [4] Most svg icons are 18px tall, but the button's line-height is 1 (13px).
-//      This means we need to off set the margin y-axis so we don't add
-//      additional height to the button.

@@ -1,39 +1,41 @@
 ---
 layout: page
 title: Buttons
-razor: https://razor.stackoverflow.design/components/button
+svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-button--docs
 figma: https://svelte.stackoverflow.design/figma/buttons
 description: Buttons are user interface elements which allows users to take actions throughout the project. It is important that they have ample click space and help communicate the importance of their actions.
 tags: components
 ---
-<section class="stacks-section">
+
+<section class="docs-section">
+    {% header "h2", "Classes" %}
+    {% assign docsItems = buttons.classes %}
+    {% assign expandableClassesTable = true %}
+    {% include "docs-table.html" %}
+</section>
+
+<section class="docs-section">
     {% header "h2", "Styles" %}
-    <p class="stacks-copy">Stacks provides 3 different button styles:</p>
-    <ol class="stacks-list">
+    <p class="docs-copy">Stacks provides 3 different button styles:</p>
+    <ol class="docs-copy">
         <li><a href="#base">Base</a></li>
         <li><a href="#danger">Danger</a></li>
         <li><a href="#featured">Featured</a></li>
-        <li><a href="#muted">Muted</a></li>
+        <li><a href="#tonal">Tonal</a></li>
     </ol>
-    <p class="stacks-copy">Each style is explained below, detailing how and where to use these styles.</p>
+    <p class="docs-copy">Each style is explained below, detailing how and where to use these styles.</p>
 
     {% header "h3", "Base" %}
-    <p class="stacks-copy">All buttons, by default, are base buttons. There are three, graduating secondary styles:</p>
-    <ol class="stacks-list">
-        <li>Clear <em>(default)</em></li>
-        <li>Outlined</li>
-        <li>Filled</li>
-    </ol>
-    <p class="stacks-copy">A button’s visual weight should correspond to the importance of the button’s action. The more important the action, the heavier the button’s visual weight.</p>
-    <div class="stacks-preview">
+    <!-- TODO SHINE update this copy -->
+    <p class="docs-copy">Base buttons can gain clear styling with the <code>.s-btn__clear</code> class.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <button class="s-btn" type="button">…</button>
-<button class="s-btn s-btn__outlined" type="button">…</button>
-<button class="s-btn s-btn__filled" type="button">…</button>
+<button class="s-btn s-btn__clear" type="button">…</button>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="overflow-x-auto">
-                <table class="wmn5 s-table s-table__bx-simple">
+                <table class="docs-table s-table s-table__bx-simple">
                     <thead>
                         <tr>
                             <th scope="col">Type</th>
@@ -51,12 +53,12 @@ tags: components
                                 <th scope="row" class="va-middle">{{ class.title }}</th>
                                 <td class="va-middle">
                                     <div class="d-flex g4 fw-wrap">
-                                        <code class="flex--item stacks-code">.s-btn</code>
+                                        <code>.s-btn</code>
                                         {% if btn.class != nil %}
-                                            <code class="flex--item stacks-code">.{{ btn.class }}</code>
+                                            <code>.{{ btn.class }}</code>
                                         {% endif %}
                                         {% if class.class != nil %}
-                                            <code class="flex--item stacks-code">.{{ class.class }}</code>
+                                            <code>.{{ class.class }}</code>
                                         {% endif %}
                                     </div>
                                 </td>
@@ -73,16 +75,16 @@ tags: components
     </div>
 
     {% header "h3", "Danger" %}
-    <p class="stacks-copy">Danger buttons are a secondary button style, used to visually communicate destructive actions such as deleting content, accounts, or canceling services.</p>
-    <div class="stacks-preview">
+    <!-- TODO SHINE update this copy -->
+    <p class="docs-copy">Danger buttons are a secondary button style, used to visually communicate destructive actions such as deleting content, accounts, or canceling services.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <button class="s-btn s-btn__danger" type="button">…</button>
-<button class="s-btn s-btn__outlined s-btn__danger" type="button">…</button>
-<button class="s-btn s-btn__filled s-btn__danger" type="button">…</button>
+<button class="s-btn  s-btn__danger s-btn__clear" type="button">…</button>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="overflow-x-auto">
-                <table class="wmn5 s-table s-table__bx-simple">
+                <table class="docs-table s-table s-table__bx-simple">
                     <thead>
                         <tr>
                             <th scope="col">Type</th>
@@ -100,12 +102,12 @@ tags: components
                                 <th scope="row" class="va-middle">{{ class.title }}</th>
                                 <td class="va-middle">
                                     <div class="d-flex g4 fw-wrap">
-                                        <code class="flex--item stacks-code">.s-btn</code>
+                                        <code>.s-btn</code>
                                         {% if btn.class != nil %}
-                                            <code class="flex--item stacks-code">.{{ btn.class }}</code>
+                                            <code>.{{ btn.class }}</code>
                                         {% endif %}
                                         {% if class.class != nil %}
-                                            <code class="flex--item stacks-code">.{{ class.class }}</code>
+                                            <code>.{{ class.class }}</code>
                                         {% endif %}
                                     </div>
                                 </td>
@@ -123,18 +125,16 @@ tags: components
 
 
     {% header "h3", "Featured" %}
-    <!-- TODO add featured button description -->
-    <p class="stacks-copy">Featured buttons are a secondary button style, used to visually draw attention to something new or temporary, usually as part of onboarding or to announce a new feature. These should be used sparingly, and permanent placements should be avoided.</p>
+    <p class="docs-copy">Featured buttons are a secondary button style, used to visually draw attention to something new or temporary, usually as part of onboarding or to announce a new feature. These should be used sparingly, and permanent placements should be avoided.</p>
 
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <button class="s-btn s-btn__featured" type="button">…</button>
-<button class="s-btn s-btn__outlined s-btn__featured" type="button">…</button>
-<button class="s-btn s-btn__filled s-btn__featured" type="button">…</button>
+<button class="s-btn s-btn__featured s-btn__clear" type="button">…</button>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="overflow-x-auto">
-                <table class="wmn5 s-table s-table__bx-simple">
+                <table class="docs-table s-table s-table__bx-simple">
                     <thead>
                         <tr>
                             <th scope="col">Type</th>
@@ -154,12 +154,10 @@ tags: components
                                 </th>
                                 <td class="va-middle">
                                     <div class="d-flex g4 fw-wrap">
-                                        <code class="flex--item stacks-code">.s-btn</code>
-                                        {% if btn.class != nil %}
-                                            <code class="flex--item stacks-code">.{{ btn.class }}</code>
-                                        {% endif %}
+                                        <code>.s-btn</code>
+                                        <code>.s-btn__featured</code>
                                         {% if class.class != nil %}
-                                            <code class="flex--item stacks-code">.{{ class.class }}</code>
+                                            <code>.{{ class.class }}</code>
                                         {% endif %}
                                     </div>
                                 </td>
@@ -176,22 +174,17 @@ tags: components
     </div>
 </section>
 
-    {% header "h3", "Muted" %}
-    <p class="stacks-copy">Muted buttons are a secondary button style, a grayscale visual treatment. Used in layouts for the least important items or currently inactive actions.</p>
-
-    {% tip, "warning", "mb24" %}
-        <strong>Note:</strong> The <code class="stacks-code">.s-btn__filled</code> class has been deprecated on the muted button style. Expect it to be fully removed in the next major release.
-    {% endtip %}
-
-    <div class="stacks-preview">
+    {% header "h3", "Tonal" %}
+    <!-- TODO SHINE rewrite copy to provide tonal variant guidance -->
+    <p class="docs-copy">Tonal buttons are a secondary button style, a grayscale visual treatment. Used in layouts for the least important items or currently inactive actions.</p>
+    <div class="docs-preview">
 {% highlight html %}
-<button class="s-btn s-btn__muted" type="button">…</button>
-<button class="s-btn s-btn__outlined s-btn__muted" type="button">…</button>
-<button class="s-btn s-btn__filled s-btn__muted" type="button">…</button>
+<button class="s-btn s-btn__tonal" type="button">…</button>
+<button class="s-btn s-btn__clear s-btn__tonal" type="button">…</button>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="overflow-x-auto">
-                <table class="wmn5 s-table s-table__bx-simple">
+                <table class="docs-table s-table s-table__bx-simple">
                     <thead>
                         <tr>
                             <th scope="col">Type</th>
@@ -202,26 +195,21 @@ tags: components
                         </tr>
                     </thead>
                     <tbody>
-                        {% for btn in buttons.muted %}
+                        {% for btn in buttons.tonal %}
                             {% assign types = btn.classes %}
                             {% for class in types %}
                             <tr>
                                 <th scope="row" class="va-middle">
                                     {{ class.title }}
-                                    {% if class.title == "Filled" %}
-                                        <div class="s-activity-indicator s-activity-indicator__warning ml4 mt4">
-                                            Deprecated
-                                        </div>
-                                    {% endif %}
                                 </th>
                                 <td class="va-middle">
                                     <div class="d-flex g4 fw-wrap">
-                                        <code class="flex--item stacks-code">.s-btn</code>
+                                        <code>.s-btn</code>
                                         {% if btn.class != nil %}
-                                            <code class="flex--item stacks-code">.{{ btn.class }}</code>
+                                            <code>.{{ btn.class }}</code>
                                         {% endif %}
                                         {% if class.class != nil %}
-                                            <code class="flex--item stacks-code">.{{ class.class }}</code>
+                                            <code>.{{ class.class }}</code>
                                         {% endif %}
                                     </div>
                                 </td>
@@ -239,17 +227,17 @@ tags: components
 </section>
 
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Anchors" %}
-    <p class="stacks-copy">Anchors can be rendered with the <code class="stacks-code">.s-btn</code> to adopt a button-like visual style for a link.</p>
+    <p class="docs-copy">Anchors can be rendered with the <code>.s-btn</code> to adopt a button-like visual style for a link.</p>
 
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <a href="#" class="s-btn">Ask question</a>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="overflow-x-auto">
-                <table class="wmn5 s-table s-table__bx-simple">
+                <table class="docs-table s-table s-table__bx-simple">
                     <thead>
                         <tr>
                             <th scope="col">Type</th>
@@ -260,30 +248,24 @@ tags: components
                         </tr>
                     </thead>
                     <tbody>
-                        {% for btn in buttons.anchor %}
-                            {% assign types = btn.classes %}
-                            {% for class in types %}
+                        {% for btn in buttons.variants %}
                             <tr>
-                                <th scope="row" class="va-middle">{{ class.title }}</th>
+                                <th scope="row" class="va-middle">{{ btn.title }}</th>
                                 <td class="va-middle">
                                     <div class="d-flex g4 fw-wrap">
-                                        <code class="flex--item stacks-code">.s-btn</code>
-                                        {% if class.class != nil %}
-                                            <code class="flex--item stacks-code">.{{ class.class }}</code>
+                                        <code>.s-btn</code>
+                                        {% if btn.variant != nil %}
+                                            <code>.{{ btn.variant }}</code>
                                         {% endif %}
-                                        {% if class.class2 != nil %}
-                                            <code class="flex--item stacks-code">.{{ class.class2 }}</code>
-                                        {% endif %}
-                                        {% if btn.class != nil %}
-                                            <code class="flex--item stacks-code">.{{ btn.class }}</code>
+                                        {% if btn.modifier != nil %}
+                                            <code>.{{ btn.modifier }}</code>
                                         {% endif %}
                                     </div>
                                 </td>
-                                <td class="va-middle ta-center px4"><a href="#" class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %}">Ask question</a></td>
-                                <td class="va-middle ta-center px4"><a href="#" class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} is-selected" aria-pressed="true">Ask question</a></td>
-                                <td class="va-middle ta-center px4"><a href="#" class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %}" disabled>Ask question</a></td>
+                                <td class="va-middle ta-center px4"><a href="#" class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }}">Ask question</a></td>
+                                <td class="va-middle ta-center px4"><a href="#" class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }} is-selected" aria-pressed="true">Ask question</a></td>
+                                <td class="va-middle ta-center px4"><a href="#" class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }}" aria-disabled="true">Ask question</a></td>
                             </tr>
-                            {% endfor %}
                         {% endfor %}
                     </tbody>
                 </table>
@@ -292,16 +274,21 @@ tags: components
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Loading" %}
-    <p class="stacks-copy">Any button can have a loading state applied by adding the <code class="stacks-code">.is-loading</code> state class.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">Indicate a loading state by adding a <a href="/product/components/loader/"><code>.s-loader</code></a> component to a button.</p>
+    <div class="docs-preview">
 {% highlight html %}
-<button class="s-btn is-loading" type="button">…</button>
+<button class="s-btn" type="button">
+    <div class="s-loader s-loader__sm">
+        <div class="s-loader--sr-text">Loading…</div>
+    </div>
+    Ask question
+</button>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="overflow-x-auto">
-                <table class="wmn5 s-table s-table__bx-simple">
+                <table class="docs-table s-table s-table__bx-simple">
                     <thead>
                         <tr>
                             <th scope="col">Type</th>
@@ -312,30 +299,40 @@ tags: components
                         </tr>
                     </thead>
                     <tbody>
-                        {% for btn in buttons.loading %}
-                            {% assign types = btn.classes %}
-                            {% for class in types %}
+                        {% for btn in buttons.variants %}
                             <tr>
-                                <th scope="row" class="va-middle">{{ class.title }}</th>
+                                <th scope="row" class="va-middle">{{ btn.title }}</th>
                                 <td class="va-middle">
                                     <div class="d-flex g4 fw-wrap">
-                                        <code class="flex--item stacks-code">.s-btn</code>
-                                        {% if class.class != nil %}
-                                            <code class="flex--item stacks-code">.{{ class.class }}</code>
+                                        <code>.s-btn</code>
+                                        {% if btn.variant != nil %}
+                                            <code>.{{ btn.variant }}</code>
                                         {% endif %}
-                                        {% if class.class2 != nil %}
-                                            <code class="flex--item stacks-code">.{{ class.class2 }}</code>
+                                        {% if btn.modifier != nil %}
+                                            <code>.{{ btn.modifier }}</code>
                                         {% endif %}
-                                        {% if btn.class != nil %}
-                                            <code class="flex--item stacks-code">.{{ btn.class }}</code>
-                                        {% endif %}
+                                        <code>.s-loader s-loader__sm</code>
                                     </div>
                                 </td>
-                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button">Ask question</button></td>
-                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }} is-selected" type="button" aria-pressed="true">Ask question</button></td>
-                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" disabled>Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }}" type="button">
+                                    <div class="s-loader s-loader__sm">
+                                        <div class="s-loader--sr-text">Loading…</div>
+                                    </div>
+                                    Ask question
+                                </button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }} is-selected" type="button" aria-pressed="true">
+                                    <div class="s-loader s-loader__sm">
+                                        <div class="s-loader--sr-text">Loading…</div>
+                                    </div>
+                                    Ask question
+                                </button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }}" type="button" disabled>
+                                    <div class="s-loader s-loader__sm">
+                                        <div class="s-loader--sr-text">Loading…</div>
+                                    </div>
+                                    Ask question
+                                </button></td>
                             </tr>
-                            {% endfor %}
                         {% endfor %}
                     </tbody>
                 </table>
@@ -343,17 +340,17 @@ tags: components
         </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Dropdowns" %}
-    <p class="stacks-copy">Adding the class <code class="stacks-code">.s-btn__dropdown</code> to any button style will add an appropriately-styled caret. These should be paired with a menu or popover.</p>
+    <p class="docs-copy">Adding the class <code>.s-btn__dropdown</code> to any button style will add an appropriately-styled caret. These should be paired with a menu or popover.</p>
 
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <button class="s-btn s-btn__dropdown" type="button">Dropdown</button>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="overflow-x-auto">
-                <table class="wmn5 s-table s-table__bx-simple">
+                <table class="docs-table s-table s-table__bx-simple">
                     <thead>
                         <tr>
                             <th scope="col">Type</th>
@@ -364,30 +361,25 @@ tags: components
                         </tr>
                     </thead>
                     <tbody>
-                        {% for btn in buttons.dropdown %}
-                            {% assign types = btn.classes %}
-                            {% for class in types %}
+                        {% for btn in buttons.variants %}
                             <tr>
-                                <th scope="row" class="va-middle">{{ class.title }}</th>
+                                <th scope="row" class="va-middle">{{ btn.title }}</th>
                                 <td class="va-middle">
                                     <div class="d-flex g4 fw-wrap">
-                                        <code class="flex--item stacks-code">.s-btn</code>
-                                        {% if class.class != nil %}
-                                            <code class="flex--item stacks-code">.{{ class.class }}</code>
+                                        <code>.s-btn</code>
+                                        {% if btn.variant != nil %}
+                                            <code>.{{ btn.variant }}</code>
                                         {% endif %}
-                                        {% if class.class2 != nil %}
-                                            <code class="flex--item stacks-code">.{{ class.class2 }}</code>
+                                        {% if btn.modifier != nil %}
+                                            <code>.{{ btn.modifier }}</code>
                                         {% endif %}
-                                        {% if btn.class != nil %}
-                                            <code class="flex--item stacks-code">.{{ btn.class }}</code>
-                                        {% endif %}
+                                        <code>.s-btn__dropdown</code>
                                     </div>
                                 </td>
-                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button">Ask question</button></td>
-                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }} is-selected" type="button" aria-pressed="true">Ask question</button></td>
-                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} {{ btn.class }}" type="button" disabled>Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }} s-btn__dropdown" type="button">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }} s-btn__dropdown is-selected" type="button" aria-pressed="true">Ask question</button></td>
+                                <td class="va-middle ta-center px4"><button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }} s-btn__dropdown" type="button" disabled>Ask question</button></td>
                             </tr>
-                            {% endfor %}
                         {% endfor %}
                     </tbody>
                 </table>
@@ -396,11 +388,11 @@ tags: components
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Badges" %}
-    <p class="stacks-copy">Adding an <code class="stacks-code">.s-btn--badge</code> to any button will add an appropriately-styled badge.</p>
+    <p class="docs-copy">Adding an <code>.s-btn--badge</code> to any button will add an appropriately-styled badge.</p>
 
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <button class="s-btn" type="button">
     Badge
@@ -409,9 +401,9 @@ tags: components
     </span>
 </button>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="overflow-x-auto">
-                <table class="wmn5 s-table s-table__bx-simple">
+                <table class="docs-table s-table s-table__bx-simple">
                     <thead>
                         <tr>
                             <th scope="col">Type</th>
@@ -422,42 +414,37 @@ tags: components
                         </tr>
                     </thead>
                     <tbody>
-                        {% for btn in buttons.badges %}
-                            {% assign types = btn.classes %}
-                            {% for class in types %}
+                        {% for btn in buttons.variants %}
                             <tr>
-                                <th scope="row" class="va-middle">{{ class.title }}</th>
+                                <th scope="row" class="va-middle">{{ btn.title }}</th>
                                 <td class="va-middle">
                                     <div class="d-flex g4 fw-wrap">
-                                        <code class="flex--item stacks-code">.s-btn</code>
-                                        {% if class.class != nil %}
-                                            <code class="flex--item stacks-code">.{{ class.class }}</code>
+                                        <code>.s-btn</code>
+                                        {% if btn.variant != nil %}
+                                            <code>.{{ btn.variant }}</code>
                                         {% endif %}
-                                        {% if class.class2 != nil %}
-                                            <code class="flex--item stacks-code">.{{ class.class2 }}</code>
+                                        {% if btn.modifier != nil %}
+                                            <code>.{{ btn.modifier }}</code>
                                         {% endif %}
-                                        {% if btn.class != nil %}
-                                            <code class="flex--item stacks-code">.{{ btn.class }}</code>
-                                        {% endif %}
+                                        <code>.s-btn--badge</code>
                                     </div>
                                 </td>
                                 <td class="va-middle ta-center px4">
-                                    <button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %}" type="button">
-                                        Active <span class="{{ btn.class }}"><span class="s-btn--number">198</span></span>
+                                    <button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }}" type="button">
+                                        Badge <span class="s-btn--badge"><span class="s-btn--number">198</span></span>
                                     </button>
                                 </td>
                                 <td class="va-middle ta-center px4">
-                                    <button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %} is-selected" type="button" aria-pressed="true">
-                                        Active <span class="{{ btn.class }}"><span class="s-btn--number">198</span></span>
+                                    <button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }} is-selected" type="button" aria-pressed="true">
+                                        Badge <span class="s-btn--badge"><span class="s-btn--number">198</span></span>
                                     </button>
                                 </td>
                                 <td class="va-middle ta-center px4">
-                                    <button class="ws-nowrap s-btn {{ class.class }} {% if class.class2 %}{{ class.class2 }}{% endif %}" type="button" disabled>
-                                        Active <span class="{{ btn.class }}"><span class="s-btn--number">198</span></span>
+                                    <button class="ws-nowrap s-btn {{ btn.variant }} {{ btn.modifier }}" type="button" disabled>
+                                        Badge <span class="s-btn--badge"><span class="s-btn--number">198</span></span>
                                     </button>
                                 </td>
                             </tr>
-                            {% endfor %}
                         {% endfor %}
                     </tbody>
                 </table>
@@ -466,18 +453,24 @@ tags: components
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Sizes" %}
-    <p class="stacks-copy">A button’s default font-size is determined by the <code class="stacks-code">@body-fs</code> variable. To change the button’s font-size, use the following classes with <code class="stacks-code">.s-btn</code>:</p>
+    <p class="docs-copy">A button’s default font-size is determined by the <code>@body-fs</code> variable. To change the button’s font-size, use the following classes with <code>.s-btn</code>:</p>
+    
+    {% tip, "warning" %}
+        <span>
+            <b>Note:</b> Avoid using icons within the extra small button size. This variant is designed for tight spaces, and standard icons are too large to fit without breaking the button's height and layout.
+        </span>
+    {% endtip %}
 
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th scope="col">Type</th>
                     <th scope="col">Class</th>
                     <th scope="col">Size</th>
-                    <th scope="col" class="s-table--cell8">Example</th>
+                    <th scope="col">Example</th>
                 </tr>
             </thead>
             <tbody>
@@ -488,11 +481,11 @@ tags: components
                         {% if size.class == "N/A" %}
                             <em class="fc-black-350">{{ size.class }}</em>
                         {% else %}
-                            <code class="flex--item stacks-code">{{ size.class }}</code>
+                            <code>{{ size.class }}</code>
                         {% endif %}
                     </td>
                     <td class="va-middle">{{ size.fs }}</td>
-                    <td class="va-middle"><button class="s-btn s-btn__filled ws-nowrap {{ size.class }}" type="button">Ask question</button></td>
+                    <td class="va-middle"><button class="s-btn ws-nowrap {{ size.class }}" type="button">Ask question</button></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -500,11 +493,11 @@ tags: components
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Toggle buttons" %}
-    <p class="stacks-copy">Each button class has a selected state which can be visually activated by applying the <code class="stacks-code">.is-selected</code> class. When a button can switch between selected and unselected states, it is important to also annotate the button with the <code class="stacks-code">aria-pressed</code> attribute for accessibility. A <code class="stacks-code">title</code> attribute may also be appropriate to describe what will happen when pressing the button.</p>
+    <p class="docs-copy">Each button class has a selected state which can be visually activated by applying the <code>.is-selected</code> class. When a button can switch between selected and unselected states, it is important to also annotate the button with the <code>aria-pressed</code> attribute for accessibility. A <code>title</code> attribute may also be appropriate to describe what will happen when pressing the button.</p>
 
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <button class="s-btn" type="button" aria-pressed="false" title="…">…</button>
 <button class="s-btn is-selected" type="button" aria-pressed="true" title="…">…</button>
@@ -519,27 +512,27 @@ tags: components
     });
 </script>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex g4 fw-wrap">
-                <button class="flex--item s-btn s-btn__filled js-toggle-button" type="button" aria-pressed="false" title="Click to toggle this button’s state">Initially unselected toggle button</button>
-                <button class="flex--item s-btn s-btn__filled js-toggle-button is-selected" type="button" aria-pressed="true" title="Click to toggle this button’s state">Initially selected toggle button</button>
+                <button class="s-btn js-toggle-button" type="button" aria-pressed="false" title="Click to toggle this button’s state">Initially unselected toggle button</button>
+                <button class="s-btn js-toggle-button is-selected" type="button" aria-pressed="true" title="Click to toggle this button’s state">Initially selected toggle button</button>
             </div>
         </div>
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Additional styles" %}
-    <p class="stacks-copy">Stacks provides additional classes for cases that are a bit more rare.
+    <p class="docs-copy">Stacks provides additional classes for cases that are a bit more rare.
 
     {% header "h3", "Disabled" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th scope="col">Type</th>
-                    <th scope="col">Class</th>
-                    <th scope="col" class="s-table-cell5">Definition</th>
+                    <th scope="col" class="s-table--cell3">Attribute</th>
+                    <th scope="col">Definition</th>
                     <th scope="col">Example</th>
                 </tr>
             </thead>
@@ -547,10 +540,10 @@ tags: components
                 <tr>
                     <th scope="row" class="va-middle">Disabled</th>
                     <td class="va-middle">
-                        <code class="stacks-code">[aria-disabled="true"]</code>
+                        <code>[aria-disabled="true"]</code>
                     </td>
-                    <td class="va-middle">Adds disabled styling to any element with <code class="stacks-code">.s-btn</code> applied.</td>
-                    <td class="va-middle"><a class="s-btn s-btn__filled" href="#" aria-disabled="true">Ask question</button></td>
+                    <td class="va-middle">Adds disabled styling to any element with <code>.s-btn</code> applied.</td>
+                    <td class="va-middle"><a class="s-btn s-btn__clear" href="#" aria-disabled="true">Ask question</button></td>
                 </tr>
             </tbody>
         </table>
@@ -558,12 +551,12 @@ tags: components
 
     {% header "h3", "Resets" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th scope="col">Type</th>
-                    <th scope="col">Class</th>
-                    <th scope="col" class="s-table-cell5">Definition</th>
+                    <th scope="col" class="s-table--cell3">Class</th>
+                    <th scope="col">Definition</th>
                     <th scope="col">Example</th>
                 </tr>
             </thead>
@@ -571,7 +564,7 @@ tags: components
                 <tr>
                     <th scope="row" class="va-middle">Unset</th>
                     <td class="va-middle">
-                        <code class="flex--item stacks-code">.s-btn__unset</code>
+                        <code>.s-btn__unset</code>
                     </td>
                     <td class="va-middle">Removes all styling from a button and reverts focus states to browser default.</td>
                     <td class="va-middle"><button class="s-btn s-btn__unset ws-nowrap" type="button">Unset button</button></td>
@@ -579,9 +572,9 @@ tags: components
                 <tr>
                     <th scope="row" class="va-middle">Link</th>
                     <td class="va-middle">
-                        <code class="flex--item stacks-code">.s-btn__link</code>
+                        <code>.s-btn__link</code>
                     </td>
-                    <td class="va-middle">Styles a button element as though it were a link. Instead of transforming an <code class="stacks-code">s-btn</code> to a link, you most likely want to style a <code class="stacks-code">button</code> as a <a href="{{ "/product/components/links/#single-link-examples" | url }}">link</a>.</td>
+                    <td class="va-middle">Styles a button element as though it were a link. Instead of transforming an <code>s-btn</code> to a link, you most likely want to style a <code>button</code> as a <a href="{{ "/product/components/links/#single-link-examples" | url }}">link</a>.</td>
                     <td class="va-middle"><button class="s-btn s-btn__link ws-nowrap" type="button">Link button</button></td>
                 </tr>
             </tbody>
@@ -590,12 +583,12 @@ tags: components
 
     {% header "h3", "Icons" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th scope="col">Type</th>
-                    <th scope="col">Class</th>
-                    <th scope="col" class="s-table-cell5">Definition</th>
+                    <th scope="col" class="s-table--cell3">Class</th>
+                    <th scope="col">Definition</th>
                     <th scope="col">Examples</th>
                 </tr>
             </thead>
@@ -603,12 +596,12 @@ tags: components
                 <tr>
                     <th scope="row" class="va-middle">Icon</th>
                     <td class="va-middle">
-                        <code class="flex--item stacks-code">.s-btn__icon</code>
+                        <code>.s-btn__icon</code>
                     </td>
                     <td class="va-middle">Adds some margin overrides that apply to an icon within a button</td>
                     <td class="va-middle d-flex ai-center">
-                        <button class="flex--item s-btn s-btn__danger s-btn__icon ws-nowrap mr8" type="button">{% icon "Trash" %} Delete</button>
-                        <button class="flex--item s-btn s-btn__icon s-btn__link" type="button">
+                        <button class="s-btn s-btn__danger s-btn__icon ws-nowrap mr8" type="button">{% icon "Trash" %} Delete</button>
+                        <button class="s-btn s-btn__icon s-btn__link" type="button">
                             {% icon "ArrowUpLg" %}
                             <span class="v-visible-sr">up</span>
                         </button>
@@ -620,12 +613,12 @@ tags: components
 
     {% header "h3", "Social" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th scope="col">Type</th>
-                    <th scope="col">Class</th>
-                    <th scope="col" class="s-table-cell5">Definition</th>
+                    <th scope="col" class="s-table--cell3">Class</th>
+                    <th scope="col">Definition</th>
                     <th scope="col">Examples</th>
                 </tr>
             </thead>
@@ -633,31 +626,31 @@ tags: components
                 <tr>
                     <th scope="row" class="va-middle">Facebook</th>
                     <td class="va-middle">
-                        <code class="flex--item stacks-code">.s-btn__facebook</code>
+                        <code>.s-btn__facebook</code>
                     </td>
                     <td class="va-middle">Styles a button consistent with Facebook’s branding</td>
                     <td class="va-middle d-flex ai-center">
-                        <button class="flex--item s-btn s-btn__icon s-btn__facebook ws-nowrap mr8" type="button">{% icon "Facebook" %} Facebook</button>
+                        <button class="s-btn s-btn__icon s-btn__facebook ws-nowrap mr8" type="button">{% icon "Facebook" %} Facebook</button>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row" class="va-middle">Google</th>
                     <td class="va-middle">
-                        <code class="flex--item stacks-code">.s-btn__google</code>
+                        <code>.s-btn__google</code>
                     </td>
                     <td class="va-middle">Styles a button consistent with Google’s branding</td>
                     <td class="va-middle d-flex ai-center">
-                        <button class="flex--item s-btn s-btn__icon s-btn__google ws-nowrap mr8" type="button">{% icon "Google", "native" %} Google</button>
+                        <button class="s-btn s-btn__icon s-btn__google ws-nowrap mr8" type="button">{% icon "Google", "native" %} Google</button>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row" class="va-middle">GitHub</th>
                     <td class="va-middle">
-                        <code class="flex--item stacks-code">.s-btn__github</code>
+                        <code>.s-btn__github</code>
                     </td>
                     <td class="va-middle">Styles a button consistent with GitHub’s branding</td>
                     <td class="va-middle d-flex ai-center">
-                        <button class="flex--item s-btn s-btn__icon s-btn__github ws-nowrap mr8" type="button">{% icon "GitHub" %} GitHub</button>
+                        <button class="s-btn s-btn__icon s-btn__github ws-nowrap mr8" type="button">{% icon "GitHub" %} GitHub</button>
                     </td>
                 </tr>
             </tbody>
@@ -665,70 +658,64 @@ tags: components
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Ordering" %}
-    <p class="stacks-copy">To maintain product consistency, buttons should maintain the following layout ordering:</p>
+    <p class="docs-copy">To maintain product consistency, buttons should maintain the following layout ordering:</p>
 
     {% header "h3", "Within a row" %}
-    <p class="stacks-copy">Most button groups should be ordered from the most important to the least important action, left to right.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">Most button groups should be ordered from the most important to the least important action, left to right.</p>
+    <div class="docs-preview">
 {% highlight html %}
-<button class="s-btn s-btn__filled" type="button">Post answer</button>
-<button class="s-btn s-btn__outlined" type="button">Preview answer</button>
-<button class="s-btn" type="button">Cancel</button>
+<button class="s-btn" type="button">Post answer</button>
+<button class="s-btn s-btn__clear" type="button">Cancel</button>
 {% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex g4 fw-wrap">
-                <button class="flex--item s-btn s-btn__filled" type="button">Post answer</button>
-                <button class="flex--item s-btn s-btn__outlined" type="button">Preview answer</button>
-                <button class="flex--item s-btn" type="button">Cancel</button>
+        <div class="docs-preview--example">
+            <div class="docs-card bs-sm d-flex g4 fw-wrap">
+                <button class="s-btn" type="button">Post answer</button>
+                <button class="s-btn s-btn__clear" type="button">Cancel</button>
             </div>
         </div>
     </div>
 
     {% header "h3", "Within a column" %}
-    <p class="stacks-copy">Sometimes the layout dictates that buttons need to be stacked on top of each other. Again, these buttons should be stacked from the most important to the least important, top to bottom.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">Sometimes the layout dictates that buttons need to be stacked on top of each other. Again, these buttons should be stacked from the most important to the least important, top to bottom.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <div class="d-flex g4 fd-column">
-    <button class="flex--item s-btn s-btn__filled" type="button">Post answer</button>
-    <button class="flex--item s-btn s-btn__outlined" type="button">Preview answer</button>
-    <button class="flex--item s-btn" type="button">Cancel</button>
+    <button class="s-btn" type="button">Post answer</button>
+    <button class="s-btn s-btn__clear" type="button">Cancel</button>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex g4 fd-column wmx2">
-                <button class="flex--item s-btn s-btn__filled" type="button">Post answer</button>
-                <button class="flex--item s-btn s-btn__outlined" type="button">Preview answer</button>
-                <button class="flex--item s-btn" type="button">Cancel</button>
+        <div class="docs-preview--example">
+            <div class="docs-card bs-sm d-flex g4 fd-column wmx2">
+                <button class="s-btn" type="button">Post answer</button>
+                <button class="s-btn s-btn__clear" type="button">Cancel</button>
             </div>
         </div>
     </div>
 
     {% header "h3", "Within a header" %}
-    <p class="stacks-copy">Sometimes the best place for a series of actions is in the same area as the title. In these cases, the buttons should be pulled to the right. Within this instance, the button order should be reversed with the most important action to the far right and the least important action to the far left.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">Sometimes the best place for a series of actions is in the same area as the title. In these cases, the buttons should be pulled to the right. Within this instance, the button order should be reversed with the most important action to the far right and the least important action to the far left.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <div class="d-flex g4">
     <div class="d-flex ai-center sm:fd-column sm:ai-start">
-        <h3 class="flex--item mb0 sm:mb16 mr-auto fs-title fw-normal">Write your response</h3>
+        <h3 class="mb0 sm:mb16 mr-auto fs-title fw-normal">Write your response</h3>
 
         <div class="d-flex g4 sm:fd-row-reverse sm:jc-end">
-            <button class="flex--item s-btn" type="button">Cancel</button>
-            <button class="flex--item s-btn s-btn__outlined" type="button">Preview answer</button>
-            <button class="flex--item s-btn s-btn__filled" type="button">Post answer</button>
+            <button class="s-btn s-btn__clear" type="button">Cancel</button>
+            <button class="s-btn" type="button">Post answer</button>
         </div>
     </div>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex ai-center sm:fd-column sm:ai-start">
-                <h3 class="flex--item mb0 sm:mb16 mr-auto fs-title fw-normal">Write your response</h3>
+                <h3 class="mb0 sm:mb16 mr-auto fs-title fw-normal">Write your response</h3>
 
                 <div class="d-flex g4 sm:fd-row-reverse sm:jc-end">
-                    <button class="flex--item s-btn" type="button">Cancel</button>
-                    <button class="flex--item s-btn s-btn__outlined" type="button">Preview answer</button>
-                    <button class="flex--item s-btn s-btn__filled" type="button">Post answer</button>
+                    <button class="s-btn" type="button">Cancel</button>
+                    <button class="s-btn s-btn__clear" type="button">Post answer</button>
                 </div>
             </div>
         </div>

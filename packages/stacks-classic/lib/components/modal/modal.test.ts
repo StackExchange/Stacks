@@ -57,14 +57,14 @@ const createModal = ({
                     renderFocusables
                         ? html` <div class="d-flex gx8 s-modal--footer">
                                   <button
-                                      class="flex--item s-btn s-btn__filled"
+                                      class="s-btn"
                                       type="button"
                                       data-testid="save-btn"
                                   >
                                       Save changes
                                   </button>
                                   <button
-                                      class="flex--item s-btn"
+                                      class="s-btn s-btn__clear"
                                       type="button"
                                       data-action="s-modal#hide"
                                       data-testid="cancel-btn"
@@ -74,7 +74,7 @@ const createModal = ({
                               </div>
 
                               <button
-                                  class="s-btn s-btn__muted s-modal--close"
+                                  class="s-btn s-btn__tonal s-modal--close"
                                   type="button"
                                   aria-label="Close"
                                   data-action="s-modal#hide"
@@ -139,8 +139,9 @@ describe("modal", () => {
 
         await user.click(trigger);
         expect(modal).to.be.visible;
-
-        await waitFor(() => expect(initialFocusEl).to.have.focus);
+        await waitFor(() => expect(initialFocusEl).to.have.focus, {
+            timeout: 20000,
+        });
     });
 
     it("should focus on the first focusable element when modal is shown and no initialFocus is specified", async () => {

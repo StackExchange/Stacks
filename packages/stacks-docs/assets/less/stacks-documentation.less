@@ -3,352 +3,39 @@
 //  ----------------------------------------------------------------------------
 @import (reference) "../../../stacks-classic/lib/stacks.less"; //  These are actual styles used in SO projects
 
-.stacks-section {
-    margin-top: var(--su48);
-    margin-bottom: var(--su48);
-}
-
-.stacks-header {
-    margin-bottom: 0.75em;
-}
-
-.stacks-intro-crane {
-    position: absolute;
-    top: -15%;
-    left: 17%;
-}
-
-.stacks-intro-field {
-    position: absolute;
-    bottom: 5%;
-    right: 9%;
-}
-
-.stacks-home-nav {
-    margin-bottom: 316px;
-}
-
-#stacks-internals #screen-md({
-    .stacks-intro-crane {
-        width: 135px;
-        height: 327px;
-        top: -8%;
-        left: 12%;
-    }
-
-    .stacks-intro-field {
-        width: 537px;
-        height: 390px;
-    }
-}, @force-selector: true);
-
-#stacks-internals #screen-md({
-    .stacks-navigation-shadow {
-        box-shadow: 3px 0 3px 0 hsla(0, 0, 0, 0.02), 7px 0 6px 0 hsla(0, 0, 0, 0.03), 13px 0 11px 0 hsla(0, 0, 0, 0.04), 22px 0 20px 0 hsla(0, 0, 0, 0.04), 42px 0 37px 0 hsla(0, 0, 0, 0.05);
-    }
-}, @force-selector: true);
-
-#stacks-internals #screen-sm({
-    .stacks-navigation-shadow {
-        box-shadow: none;
-    }
-}, @force-selector: true);
-
-#stacks-internals #screen-sm({
-    .stacks-home-nav {
-        margin-bottom: 170px;
-    }
-
-    .stacks-intro-crane {
-        width: 90px;
-        height: 218px;
-
-        top: 0;
-        left: 12%;
-    }
-
-    .stacks-intro-field {
-        width: 358px;
-        height: 260px;
-        bottom: 20%;
-    }
-}, @force-selector: true);
-
-@media (max-width: 320px) {
-    html .stacks-home-nav {
-        margin-bottom: 230px;
-    }
-
-    html .stacks-intro-crane {
-        background-position: top 0 left 15%, bottom 50% right 0;
-        background-size: 69px 166px, 272px 197px;
-    }
-
-    html .stacks-intro-field {
-        width: 272px;
-        height: 197px;
-        bottom: 33%;
-    }
-}
-
-//  $$  BACKGROUNDS EXAMPLE
-//  ----------------------------------------------------------------------------
-.stacks-bg-img {
-    background-image: url("../img/illustrationBgImage.svg");
-}
-
-//  $$  NAV SECONDARY SUBNAV
-//  ----------------------------------------------------------------------------
-.toc {
-    ol {
-        .list-reset;
-        .d-flex;
-        .fd-column;
-
-        li {
-            .mb8;
-        }
-
-        li a {
-            .d-block;
-            .fs-body1;
-            .lh-sm;
-            .py2;
-        }
-
-        ol {
-            .pt6;
-
-            li {
-                .p2;
-                .pl12;
-                .mb0;
-            }
+body {
+    &.theme-custom {
+        &.themed {
+            // v2 colors and theming
+            .create-custom-theme-hsl-variables(hsl(170, 37%, 48%), primary, base);
+            .create-custom-theme-hsl-variables(hsl(260, 29%, 55%), secondary, base);
+            .create-custom-theme-hsl-variables(hsl(170, 50%, 60%), primary, dark);
+            .create-custom-theme-hsl-variables(hsl(260, 70%, 70%), secondary, dark);
         }
     }
-}
 
-
-//  ============================================================================
-//  $   TYPE STYLES
-//  ============================================================================
-//  $$  TITLES
-//  ----------------------------------------------------------------------------
-.stacks-title {
-    text-shadow: 0 0 10px var(--theme-primary-400), 0 0 10px var(--theme-primary-400), 0 0 10px var(--theme-primary-400);
-    text-rendering: optimizeLegibility;
-}
-
-.stacks-h1,
-.stacks-h2,
-.stacks-h3,
-.stacks-h4 {
-    margin-bottom: 0;
-    font-weight: 700;
-    line-height: var(--lh-sm);
-    color: var(--fc-dark);
-    text-rendering: optimizeLegibility;
-}
-
-//  --  Page Title
-.stacks-h1 {
-    font-size: var(--fs-display1);
-    margin-bottom: 0.5em;
-}
-
-//  --  Page Title Badged
-.stacks-badged {
-    margin-bottom: 0.5em;
-}
-
-//  --  Section Title
-.stacks-h2 {
-    font-size: var(--fs-headline1);
-    padding-top: calc(var(--su96) - var(--su8)); // Hack for #anchor positioning
-    margin-top: calc((var(--su96) - var(--su8)) * -1); // Hack for #anchor positioning
-}
-
-//  --  Sub-section Title
-.stacks-h3 {
-    font-size: var(--fs-subheading);
-    color: var(--fc-medium);
-    padding-top: calc(var(--su96) - var(--su8)); // Hack for #anchor positioning
-    margin-top: calc((var(--su96) - var(--su8)) * -1); // Hack for #anchor positioning
-}
-
-.stacks-h4 {
-    font-size: var(--fs-body3);
-    color: var(--fc-light);
-}
-
-// -- Custom dotnet badge colors
-// follows the dotnet brand guidelines at https://github.com/dotnet/brand/blob/main/dotnet-brand-guidelines.pdf
-.stacks-badge-dotnet--icon {
-    background-color: #2b0b98;
-    .dark-mode({
-        background-color: #dfd8f7;
-    });
-}
-.stacks-badge-dotnet--text {
-    background-color: #512bd4;
-    .dark-mode({
-        background-color: #9e92c7;
-    });
-}
-
-//  $$  PARAGRAPHS
-//  ----------------------------------------------------------------------------
-.stacks-copy {
-    margin-top: 0;
-    margin-bottom: 1em;
-    font-size: var(--fs-body3);
-    line-height: var(--lh-lg);
-    color: var(--fc-medium);
-
-    strong {
-        color: var(--fc-dark);
+    &.theme-system {
+        --theme-topbar-height: var(--su64);
+        --theme-topbar-accent-border: var(--su2) solid var(--theme-primary);
     }
-
-    a:not([class]),
-    .s-link {
-        text-decoration: underline;
-    }
+    
+    --docs-layout-section-padding-top: var(--su24);
+    --theme-topbar-height: var(--su64);
 }
 
-.stacks-copy__lg {
-    font-size: var(--fs-title);
+h2, h3 {
+    scroll-margin-top: calc(var(--theme-topbar-height) + var(--su24));
 }
 
-
-//  --   Code Tag
-//  ----------------------------------------------------------------------------
-.stacks-code {
-    padding: 3px 5px var(--su2) var(--su4);
-    border-radius: var(--br-sm);
-    background-color: var(--black-200);
-    font-size: var(--fs-caption);
-    font-family: var(--ff-mono);
-    color: var(--fc-dark);
-    line-height: var(--lh-xs);
-    vertical-align: middle;
-    overflow-wrap: break-word;
-    white-space: normal;
-}
-
-
-//  ============================================================================
-//  $  LISTS
-//  ----------------------------------------------------------------------------
-.stacks-list {
-    margin-bottom: 1em;
-    font-size: var(--fs-body3);
-    line-height: var(--lh-lg);
-    color: var(--fc-medium);
-
-    a:not([class]),
-    .s-link {
-        text-decoration: underline;
-    }
-}
-
-
-//  ============================================================================
-//  $   CODE STYLES
-//  ----------------------------------------------------------------------------
-.stacks-preview {
-    margin-bottom: var(--su48);
-    border-radius: var(--br-md);
-    box-shadow: var(--bs-sm);
-
-    .highcontrast-mode({
-        box-shadow: none;
-    });
-
-    > pre.s-code-block {
-        border-radius: var(--br-md) var(--br-md) 0 0;
-        border: 1px solid var(--bc-medium);
-        max-height: 24rem;
-
-        .dark-mode({
-            border-color: var(--bc-lighter);
-        });
-    }
-
-    &._preview-none pre.s-code-block {
-        .bar-md;
-    }
-}
-
-//  Preview area
-.stacks-preview--example {
-    padding: var(--su16);
-    border-bottom-left-radius: var(--br-md);
-    border-bottom-right-radius: var(--br-md);
-    border: 1px solid var(--bc-medium);
-    border-top-width: 0;
-    font-size: var(--fs-body1);
-
-    .dark-mode({
-        border-color: var(--bc-lighter);
-    });
-}
-
-// Checkered background
-.bg-checkered {
-    background-color: var(--white);
-    background-image: url("data:image/svg+xml;,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%23e4e6e8' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
-}
-
-//  ============================================================================
-//  $   ICON PRESENTATION
-//  ----------------------------------------------------------------------------
-.stacks-icon-container {
-    scroll-margin-top: 150px;
-}
-
-//  --   Preview Area
-.stacks-icon-preview {
-    padding: var(--su8);
-    min-height: 4em;
-    border-top-left-radius: var(--br-sm);
-    border-top-right-radius: var(--br-sm);
-    background-color: var(--black-100);
-    box-shadow: inset 0 -1px 0 var(--black-200);
-    color: var(--fc-medium);
-
-    .dark-mode({
-        fill: var(--black);
-    });
-}
-
-//  ============================================================================
-//  $   GRID
-//      Used to showcase grid layouts and cells
-//  ----------------------------------------------------------------------------
-
-.stacks-flex-example--item {
-    &,
-    .s-table td& {
-        background-color: var(--black-200);
-        border: var(--su-static1) solid var(--bc-medium);
-        color: var(--fc-dark);
-        font-family: var(--ff-mono);
-        font-size: var(--fs-caption);
-        padding: var(--su8);
-    }
-}
-
-//  ============================================================================
-//  $   Search Customization
-//  ----------------------------------------------------------------------------
+// Algolia search
 .algolia-autocomplete {
     display: block !important;
     width: 100% !important;
 
     [class^="ds-dataset-"] {
         .algolia-docsearch-suggestion--highlight {
-            color: var(--fc-medium);
-            background: var(--orange-300);
+            background: var(--theme-primary-200);
+            color: var(--theme-primary-600);
         }
 
         .algolia-docsearch-suggestion--text {
@@ -357,13 +44,13 @@
             }
         }
 
-        max-height: var(--_tb-searchbar-popover-content-mxh);
+        max-height: calc(100vh - var(--theme-topbar-height) - var(--su16));
     }
 
     .ds-dropdown-menu {
         width: 100% !important;
         max-width: 100% !important;
-        min-width: calc(var(--s-step) * 3);
+        min-width: var(--su344);
     }
 
     .algolia-docsearch-footer {
@@ -373,7 +60,7 @@
         padding: 5px 8px;
         font-size: var(--fs-caption) !important;
         line-height: 1 !important;
-        color: var(--fc-light) !important;
+        color: var(--black-400) !important;
     }
 
     .algolia-docsearch-footer--logo {
@@ -400,55 +87,376 @@
     }
 }
 
-//  ============================================================================
-//  $   Theming
-//  ----------------------------------------------------------------------------
-body.theme-system {
-    --theme-topbar-height: var(--su64);
-}
-
-.theme-custom {
-    &.themed {
-        // v2 colors and theming
-        .create-custom-theme-hsl-variables(hsl(170, 37%, 48%), primary, base);
-        .create-custom-theme-hsl-variables(hsl(260, 29%, 55%), secondary, base);
-        .create-custom-theme-hsl-variables(hsl(170, 50%, 60%), primary, dark);
-        .create-custom-theme-hsl-variables(hsl(260, 70%, 70%), secondary, dark);
+// Docs utility classes
+.docs-copy,
+.docs-table {
+    code {
+        background-color: var(--black-150);
+        border: var(--su1) solid var(--black-200);
+        border-radius: var(--su2);
+        font-family: var(--ff-mono);
+        overflow-wrap: break-word;
+        margin: var(--sun1);
+        padding: 0.125em 0.1875em 0.0625em;
+        white-space: normal;
     }
 }
 
-.team-avatar {
-    background-image: url("../img/team-avatar.png");
+.docs-sidebar,
+.docs-toc {
+    max-height: calc(100vh - var(--theme-topbar-height));
+    top: var(--theme-topbar-height);
 }
 
-//  ============================================================================
-//  $   Highlighting
-//  ----------------------------------------------------------------------------
-#stacks-internals #screen-lg({
-    .lg\:highlight {
-        padding: 3px 8px;
-        background-color: var(--highlight-variable);
-        border-radius: 40px;
-        color: var(--highlight-bg);
+
+.docs-bg-checkered { // Checkered background
+    background-color: var(--white);
+    background-image: url("data:image/svg+xml;,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%23e4e6e8' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.docs-bg-img { // Background image utility class
+    background-image: url("../img/illustrationBgImage.svg");
+}
+
+.docs-box { // Box utility class
+    & & {
+        background-color: var(--black-150);
+        border-color: var(--black-300);
     }
-});
+
+    &,
+    .s-table td& {
+        background-color: var(--black-200);
+        border: var(--su1) solid var(--black-225);
+        box-sizing: border-box;
+        color: var(--black-600);
+        font-family: var(--ff-mono);
+        font-size: var(--fs-caption);
+        padding: var(--su8);
+    }
+}
+
+.docs-card {
+    background-color: var(--white);
+    border: var(--su1) solid var(--black-225);
+    border-radius: var(--br-md);
+    padding: var(--su12);
+}
+
+.docs-copy { // General typography style
+    a:not([class]),
+    .s-link {
+        text-decoration: underline;
+    }
+
+    a:not([class]) {
+        &:active,
+        &:hover {
+            color: var(--theme-link-color-hover, var(--blue-400));
+            text-decoration: underline !important;
+        }
+        &:visited {
+            color: var(--theme-link-color-visited, var(--black-400));
+        }
+
+        &:hover:visited {
+            color: var(--theme-link-color-hover, var(--blue-400));
+            text-decoration: underline !important;
+        }
+
+        color: var(--theme-link-color, var(--black-600));
+        cursor: pointer;
+        user-select: auto;
+    }
+
+    code {
+        font-size: .875em;
+    }
+
+    strong {
+        color: var(--black-600);
+    }
+
+
+    color: var(--black-500);
+    font-size: var(--fs-body2);
+    line-height: 1.5;
+    margin-bottom: var(--su16);
+    margin-top: 0;
+}
+
+.docs-preview { // Preview container styles
+    .highcontrast-mode({
+        box-shadow: none;
+    });
+
+    > pre.s-code-block {
+        .dark-mode({
+            border-color: var(--black-150);
+        });
+
+        border: var(--su1) solid var(--black-225);
+        max-height: var(--su344);
+    }
+
+    &--example {
+        padding: var(--su16);
+        border: var(--su1) solid var(--black-225);
+        border-top-width: 0;
+        font-size: var(--fs-body1);
+    
+        .dark-mode({
+            border-color: var(--black-150);
+        });
+    }
+
+    margin-bottom: var(--su48);
+}
+
+.docs-section { // Section layout
+    margin-bottom: var(--su48);
+}
+
+.docs-table {
+    & &--context,
+    & &--do,
+    & &--dont {
+        border-color: var(--_dt-bc, var(--_dt-c));
+        color: var(--_dt-c);
+
+        background-color: transparent;
+        border-width: 0 0 var(--su3) 0;
+        border-style: solid;
+    }
+
+    & &--context {
+        --_dt-bc: var(--black-225);
+        --_dt-c: var(--black-500);
+    }
+
+    & &--dont {
+        --_dt-c: var(--red-400);
+    }
+
+    & &--do {
+        --_dt-c: var(--green-400);
+    }
+
+    min-width: var(--su344);
+}
+
+// Docs site header (header.html)
+.docs-topbar {
+    &:has(> &--skip-link:focus) {
+        display: block;
+    }
+
+    & &--container {
+        align-items: center;
+        display: flex;
+        height: var(--theme-topbar-height);
+        margin: 0 auto;
+        max-width: 100%;
+        width: var(--su-max);
+    }
+
+    & &--item {
+        .svg-icon {
+            vertical-align: text-top;
+        }
+
+        a,
+        button {
+            &:focus-visible {
+                .focus-styles(true);
+            }
+
+            &:hover,
+            &.is-selected,
+            &.is-selected:hover {
+                background-color: var(--black-150);
+                color: var(--theme-secondary-500);
+                outline: none;
+            }
+
+            align-items: center;
+            display: inline-flex;
+            height: 100%;
+            padding: 0 var(--su8);
+        }
+
+        align-items: stretch;
+        height: 100%;
+    }
+
+    & &--logo {
+        &:is(a) {
+            &:focus-visible {
+                .focus-styles(true);
+            }
+    
+            &:hover,
+            &.is-selected {
+                background-color: var(--black-150);
+            }
+        }
+
+        align-self: stretch;
+        align-items: center;
+        color: var(--theme-secondary);
+        display: flex;
+        padding: 0 var(--su8);
+    }
+
+    // TODO revisit
+    & &--menu-btn {
+        &.is-selected {
+            span {
+                background-color: transparent;
+                &:after { top: 0; transform: rotate(45deg); }
+                &:before { top: 0; transform: rotate(-45deg); }
+            }
+        }
+
+        span {
+            &, &:after, &:before {
+                height: var(--su3);
+                position: relative;
+                width: var(--su16);
+            }
+
+            &:after, &:before {
+                background-color: var(--theme-secondary);
+                content: '';
+                left: 0;
+                position: absolute;
+                transition: top, transform;
+                transition-duration: 0.1s;
+                transition-timing-function: ease-in-out;
+            }
+
+            &:after {
+                top: var(--su6);
+                transform: rotate(0deg);
+            }
+
+            &:before {
+                top: var(--sun6);
+                transform: rotate(0deg);
+            }
+
+            background-color: var(--theme-secondary);
+        }
+
+        border-radius: 0;
+        height: 100%;
+        justify-content: center;
+        padding: 0 var(--su16);
+    }
+
+    & &--searchbar {
+        #stacks-internals #screen-sm({
+            .s-popover {
+                .s-popover--content {
+                    max-height: calc(100vh - var(--theme-topbar-height) - var(--su48) - var(--su12));
+                }
+
+                min-width: initial;
+            }
+
+            display: none;
+            padding: var(--su8) var(--su12);
+            background: var(--theme-topbar-item-background-hover, var(--black-200));
+            left: 0;
+            max-width: 100%;
+            position: absolute;
+            right: 0;
+            top: 100%;
+        });
+
+        &--input-group {
+            .s-input {
+                &::placeholder {
+                    color: var(--black-400);
+                    font-style: normal;
+                }
+
+                background-color: var(--white);
+                border-color: var(--black-300);
+                color: var(--black-500);
+                display: block;
+                line-height: var(--lh-sm);
+            }
+
+            .s-input-icon {
+                color: var(--black-400);
+            }
+
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .s-popover {
+            max-width: 100%;
+            min-width: var(--su448);
+            padding: 0;
+            .s-popover--content {
+                max-height: calc(100vh - var(--theme-topbar-height) - var(--su16));
+            }
+        }
+
+        &.docs-topbar--searchbar__open {
+            #stacks-internals #screen-sm({
+                background: var(--white);
+                border: var(--su1) solid var(--black-300);
+                border-width: var(--su1) 0;
+                display: flex;
+                max-width: 100%;
+            });
+        }
+
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        flex-shrink: 10000;
+        max-width: var(--su344);
+        padding: 0 var(--su8);
+        width: 100%;
+    }
+
+    & &--skip-link {
+        &:not(:focus) {
+            &:extend(.v-visible-sr);
+        }
+
+        border-bottom: var(--su2) solid var(--theme-secondary);
+        color: var(--theme-secondary);
+        display: block;
+        outline: none;
+        padding: var(--su12);
+        text-align: center;
+    }
+
+    align-items: center;
+    background-color: var(--white);
+    border-bottom: var(--su1) solid var(--black-200);
+    display: flex;
+    min-width: auto;
+    position: relative;
+    width: 100%;
+    z-index: var(--zi-navigation-fixed);
+}
 
 #stacks-internals #screen-md({
-    .md\:highlight {
-        padding: 3px 8px;
-        background-color: var(--highlight-variable);
-        border-radius: 40px;
-        color: var(--highlight-bg);
+    .docs-sidebar {
+        box-shadow: 3px 0 3px 0 hsla(0, 0, 0, 0.02), 7px 0 6px 0 hsla(0, 0, 0, 0.03), 13px 0 11px 0 hsla(0, 0, 0, 0.04), 22px 0 20px 0 hsla(0, 0, 0, 0.04), 42px 0 37px 0 hsla(0, 0, 0, 0.05);
     }
-});
+}, @force-selector: true);
 
 #stacks-internals #screen-sm({
-    .sm\:highlight {
-        padding: 3px 8px;
-        background-color: var(--highlight-variable);
-        border-radius: 40px;
-        color: var(--highlight-bg);
+    .docs-sidebar {
+        box-shadow: 0 3px 3px hsla(0, 0, 0, 0.2);
     }
-});
+}, @force-selector: true);
 
 @import (inline) "~@stackoverflow/stacks-editor/dist/styles.css";

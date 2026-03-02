@@ -1,39 +1,31 @@
 ---
 layout: page
 title: Pagination
-razor: https://razor.stackoverflow.design/components/pagination
+svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-paginationcontroller--docs
+figma: https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=1189-2035&t=JFrmhokx3ZOeRP9b-0
 description: Pagination splits content into pages, as seen on questions, tags, users, and jobs listings.
 tags: components
 ---
-<section class="stacks-section">
+
+<section class="docs-section">
     {% header "h2", "Classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell3" scope="col">Class</th>
-                    <th class="s-table--cell3" scope="col">Applied to</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                {% for item in pagination-component.classes %}
-                    <tr>
-                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
-                        <td><code class="stacks-code bg-white">{{ item.applies }}</td>
-                        <td class="p8">{{ item.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    {% assign docsItems = pagination-component.classes %}
+    {% assign col3Classes = "s-table--cell3" %}
+    {% include "docs-table.html" %}
 </section>
-<section class="stacks-section">
+
+<section class="docs-section">
     {% header "h2", "Example" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <nav class="s-pagination" aria-label="pagination">
     <ul>
+        <li>
+            <a class="s-pagination--item s-pagination--item__nav" href="#">
+                @Svg.ArrowLeft
+                <span class="v-visible-sr">previous page</span>
+            </a>
+        </li>
         <li>
             <a class="s-pagination--item is-selected" href="…" aria-current="page">
                 <span class="v-visible-sr">page</span>
@@ -74,141 +66,50 @@ tags: components
             </a>
         </li>
         <li>
-            <a class="s-pagination--item" href="…">
-                Next
-                <span class="v-visible-sr">page</span>
+            <a class="s-pagination--item s-pagination--item__nav" href="…">
+                @Svg.ArrowRight
+                <span class="v-visible-sr">next page</span>
             </a>
         </li>
     </ul>
 </nav>
 {% endhighlight %}
-        <div class="stacks-preview--example overflow-x-auto">
+        <div class="docs-preview--example overflow-x-auto">
             <nav class="s-pagination" role="presentation">
+                {% assign example = pagination-component.examples.base %}
                 <ul>
-                    <li>
-                        <a class="s-pagination--item is-selected" href="#" aria-current="page">
-                            <span class="v-visible-sr">page</span>
-                            1
-                        </a>
-                    </li>
-                    <li>
-                        <a class="s-pagination--item" href="#">
-                            <span class="v-visible-sr">page</span>
-                            2
-                        </a>
-                    </li>
-                    <li>
-                        <a class="s-pagination--item" href="#">
-                            <span class="v-visible-sr">page</span>
-                            3
-                        </a>
-                    </li>
-                    <li>
-                        <a class="s-pagination--item" href="#">
-                            <span class="v-visible-sr">page</span>
-                            4
-                        </a>
-                    </li>
-                    <li>
-                        <a class="s-pagination--item" href="#">
-                            <span class="v-visible-sr">page</span>
-                            5
-                        </a>
-                    </li>
-                    <li>
-                        <span class="s-pagination--item s-pagination--item__clear">…</span>
-                    </li>
-                    <li>
-                        <a class="s-pagination--item" href="#">
-                            <span class="v-visible-sr">page</span>
-                            122386
-                        </a>
-                    </li>
-                    <li>
-                        <a class="s-pagination--item" href="#">
-                            Next
-                            <span class="v-visible-sr">page</span>
-                        </a>
-                    </li>
+                    {% if example.previousButton %}
+                        <li>
+                            <a class="s-pagination--item s-pagination--item__nav" href="#">
+                                {% icon "ArrowLeft" %}
+                                <span class="v-visible-sr">previous page</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% for item in example.items %}
+                        {% if item.page == "…" %}
+                            <li>
+                                <span class="s-pagination--item s-pagination--item__clear">…</span>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a class="s-pagination--item {{ item.classes }}" href="#">
+                                    <span class="v-visible-sr">{{ item.screenReaderText }}</span>
+                                    {{ item.page }}
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if example.nextButton %}
+                        <li>
+                            <a class="s-pagination--item s-pagination--item__nav" href="#">
+                                {% icon "ArrowRight" %}
+                                <span class="v-visible-sr">next page</span>
+                            </a>
+                        </li>
+                    {% endif %}
                 </ul>
             </nav>
-        </div>
-    </div>
-</section>
-
-<section class="stacks-section">
-    {% header "h2", "Legacy example" %}
-
-    {% tip, "warning", "mb24" %}
-        <strong>Note:</strong>The below markup has been deprecated due to insufficient accessibility. Please use the new markup above.
-    {% endtip %}
-
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="s-pagination">
-    <a class="s-pagination--item is-selected" href="…" aria-current="page">
-        <span class="v-visible-sr">page</span>
-        1
-    </a>
-    <a class="s-pagination--item" href="…">
-        <span class="v-visible-sr">page</span>
-        2
-    </a>
-    <a class="s-pagination--item" href="…">
-        <span class="v-visible-sr">page</span>
-        3
-    </a>
-    <a class="s-pagination--item" href="…">
-        <span class="v-visible-sr">page</span>
-        4
-    </a>
-    <a class="s-pagination--item" href="…">
-        <span class="v-visible-sr">page</span>
-        5
-    </a>
-    <span class="s-pagination--item s-pagination--item__clear">…</span>
-    <a class="s-pagination--item" href="…">
-        <span class="v-visible-sr">page</span>
-        122386
-    </a>
-    <a class="s-pagination--item" href="…">
-        Next
-        <span class="v-visible-sr">page</span>
-    </a>
-</div>
-{% endhighlight %}
-        <div class="stacks-preview--example overflow-x-auto">
-            <div class="s-pagination" role="presentation">
-                <a class="s-pagination--item is-selected" href="#" aria-current="page">
-                    <span class="v-visible-sr">page</span>
-                    1
-                </a>
-                <a class="s-pagination--item" href="#">
-                    <span class="v-visible-sr">page</span>
-                    2
-                </a>
-                <a class="s-pagination--item" href="#">
-                    <span class="v-visible-sr">page</span>
-                    3
-                </a>
-                <a class="s-pagination--item" href="#">
-                    <span class="v-visible-sr">page</span>
-                    4
-                </a>
-                <a class="s-pagination--item" href="#">
-                    <span class="v-visible-sr">page</span>
-                    5
-                </a>
-                <span class="s-pagination--item s-pagination--item__clear">…</span>
-                <a class="s-pagination--item" href="#">
-                    <span class="v-visible-sr">page</span>
-                    122386
-                </a>
-                <a class="s-pagination--item" href="#">
-                    Next
-                    <span class="v-visible-sr">page</span>
-                </a>
-            </div>
         </div>
     </div>
 </section>

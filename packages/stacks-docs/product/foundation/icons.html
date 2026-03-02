@@ -1,121 +1,107 @@
 ---
 layout: page
 title: Icons
-razor: https://razor.stackoverflow.design/components/icon
-figma: https://svelte.stackoverflow.design/figma/icons
+svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-icon--docs
+figma: https://www.figma.com/design/Z5yoO4WH58QDHvmxwMWhr0
 description: Stacks provides a complete icon set, managed separately in the <a href="https://github.com/StackExchange/Stacks-Icons">Stacks-Icons</a> repository. There you’ll find deeper documentation on the various uses as well as the icons’ source in our design tool Figma.
 tags: foundation
 ---
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Usage" %}
-    <p class="stacks-copy">Stacks icons are designed to be directly injected into the markup as an <code class="stacks-code">svg</code> element. This allows us to color them on the fly using any of our atomic classes. We have different helpers in different environments.</p>
+    <p class="docs-copy">Stacks icons are designed to be directly injected into the markup as an <code>svg</code> element. This allows us to color them on the fly using any of our atomic classes. We have different helpers in different environments.</p>
 
-    {% header "h3", "Production" %}
-    <p class="stacks-copy">If you’re in Stack Overflow’s production environment, we have a helper that can be called with <code class="stacks-code">@Svg.</code> and the icon name, eg. <code class="stacks-code">@Svg.Alert</code>. By default, any icon will inherit the text color of the parent element. Optionally, you can pass the class <code class="stacks-code">native</code> to the icon to render any native colors that are included eg. <code class="stacks-code">@Svg.Ballon.With("native")</code>. This same syntax allows you to pass additional arbitrary classes like atomic helpers, or <code class="stacks-code">js-</code> prefixed classes.</p>
-    <div class="stacks-preview">
-{% highlight java %}
-@Svg.Wave
-@Svg.Wave.With("native")
-@Svg.Wave.With("fc-black-350 float-right js-dropdown-target")
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex g24 fw-wrap ff-mono">
-                <div class="flex--item">
-                    <div class="fc-medium mb12">Default</div>
-                    {% icon "Wave" %}
-                </div>
-                <div class="flex--item">
-                    <div class="fc-medium mb12">With native colors</div>
-                    {% icon "Wave", "native" %}
-                </div>
-                <div class="flex--item ml-auto">
-                    <div class="fc-medium mb12">With arbitrary classes</div>
-                    {% icon "Wave", "fc-black-350 float-right js-dropdown-target" %}
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "Prototypes" %}
-    <p class="stacks-copy">Our icon set also includes a JavaScript library for use in prototypes outside our production environment. This JavaScript is loaded in our Stacks playground in <a href="https://codepen.io/pen?template=wvmRgdp">Codepen</a>. When using <code>data-icon</code> attributes, you need to prefix the icon names with <code>Icon</code> (e.g. <code>IconWave</code>). If you’re building a prototype in your own environment, you’ll need to include Stacks as a dependency as well as the <a href="https://github.com/StackExchange/Stacks-Icons#using-the-front-end-helper-for-prototyping">icons library</a>.</p>
-    <div class="stacks-preview">
+    {% header "h3", "Svelte" %}
+    <p class="docs-copy">
+        If you are working in a Svelte project, you can use the <code>Icon</code> component to render an icon.
+        This component will render the icon as an <code>svg</code> element with the appropriate classes and attributes (<a href="https://svelte.stackoverflow.design/?path=/docs/components-icon--docs">docs</a>).
+    </p>
+    <div class="docs-preview">
 {% highlight html %}
-<svg data-icon="IconWave"></svg>
-<svg data-icon="IconWave" class="native"></svg>
-<svg data-icon="IconWave" class="fc-black-350 float-right js-dropdown-target"></svg>
+<script lang="ts">
+    import { IconServiceCCPA } from "@stackoverflow/stacks-icons/icons";
+</script>
+
+<Icon src="IconServiceCCPA" />
+<Icon src="IconServiceCCPA" class="native" />
+<Icon src="IconServiceCCPA" class="fc-black-350 float-right" />
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex g24 fw-wrap ff-mono">
-                <div class="flex--item">
+                <div>
                     <div class="fc-medium mb12">Default</div>
-                    {% icon "Wave" %}
+                    {% icon "ServiceCCPA" %}
                 </div>
-                <div class="flex--item">
+                <div>
                     <div class="fc-medium mb12">With native colors</div>
-                    {% icon "Wave", "native" %}
+                    {% icon "ServiceCCPA", "native" %}
                 </div>
-                <div class="flex--item ml-auto">
+                <div class="ml-auto">
                     <div class="fc-medium mb12">With arbitrary classes</div>
-                    {% icon "Wave", "fc-black-350 float-right js-dropdown-target" %}
+                    {% icon "ServiceCCPA", "fc-black-350 float-right" %}
                 </div>
             </div>
         </div>
     </div>
 
-    {% header "h3", "Documentation" %}
-    <p class="stacks-copy">For use within our documentation, we’ve also included a Liquid helper.</p>
-    <div class="stacks-preview">
+    {% header "h3", "Dotnet" %}
+    <p class="docs-copy">If you’re working in a dotnet project, we have a helper that can be called with <code>@Svg.</code> and the icon name, eg. <code>@Svg.Answer</code>. By default, any icon will inherit the text color of the parent element. Optionally, you can pass the class <code>native</code> to the icon to render any native colors that are included eg. <code>@Svg.ServiceCCPA.With("native")</code>. This same syntax allows you to pass additional arbitrary classes like atomic helpers, or <code>js-</code> prefixed classes.</p>
+    <div class="docs-preview">
 {% highlight java %}
-{% icon "Wave" %}
-{% icon "Wave", "native" %}
-{% icon "Wave", "fc-black-350 float-right js-dropdown-target" %}
+@Svg.ServiceCCPA
+@Svg.ServiceCCPA.With("native")
+@Svg.ServiceCCPA.With("fc-black-350 float-right js-dropdown-target")
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex g24 fw-wrap ff-mono">
-                <div class="flex--item">
+                <div >
                     <div class="fc-medium mb12">Default</div>
-                    {% icon "Wave" %}
+                    {% icon "ServiceCCPA" %}
                 </div>
-                <div class="flex--item">
+                <div >
                     <div class="fc-medium mb12">With native colors</div>
-                    {% icon "Wave", "native" %}
+                    {% icon "ServiceCCPA", "native" %}
                 </div>
-                <div class="flex--item ml-auto">
+                <div class="ml-auto">
                     <div class="fc-medium mb12">With arbitrary classes</div>
-                    {% icon "Wave", "fc-black-350 float-right js-dropdown-target" %}
+                    {% icon "ServiceCCPA", "fc-black-350 float-right js-dropdown-target" %}
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Requesting an icon" %}
-    <p class="stacks-copy">If an icon you need isn’t here, please do one of the following two options:</p>
-    <ol class="stacks-list">
+    <p class="docs-copy">If an icon you need isn’t here, please do one of the following two options:</p>
+    <ol class="docs-copy">
         <li><a href="https://github.com/StackExchange/Stacks-Icons/issues/new">Submit a request</a> outlining the desired icon, the icon’s intended purposed, and where it will be used.</li>
         <li>If the icon is ready, <a href="https://github.com/StackExchange/Stacks-Icons/compare">submit a pull request</a> to have it to be reviewed. Please be sure to provide the same information as above.</li>
     </ol>
 </section>
 
-<section class="stacks-section mb32" id="js-sortable-list">
+<section class="docs-section mb32" id="js-sortable-list">
     {% header "h2", "Icon set" %}
     <div class="ps-sticky z-nav t64 bb bc-black-225 bg-white py16 mtn8 mb16 d-flex jc-space-between">
-        <input type="text" class="flex--item fuzzy-search s-input s-input__search" placeholder="Search icons…" />
-        <button class="s-btn s-btn__filled ws-nowrap js-color-toggle-btn ml8">Toggle native colors</button>
+        <input type="text" class="fuzzy-search s-input s-input__search" placeholder="Search icons…" />
+        <button class="s-btn ws-nowrap js-color-toggle-btn ml8">Toggle native colors</button>
         {% icon "Search", "s-input-icon s-input-icon__search" %}
     </div>
-    <div class="d-flex fw-wrap sm:fd-column g16 flex__allitems4 list js-icon-list">
+    <!-- .list is necessary for search functionality -->
+    <div class="d-grid grid__3 lg:grid__2 md:grid__3 sm:grid__2 g16 js-icon-list list">
         {% for iconName in stacks-icons.icons %}
-            <div class="flex--item">
-                <div id="{{ iconName | downcase }}" class="d-flex fd-column p0 s-card stacks-icon-container">
-                    <div class="d-flex fl-grow1 flex__center stacks-icon-preview">
+            <div >
+                <div
+                    id="{{ iconName | downcase }}"
+                    class="d-flex fd-column p0 docs-card h100"
+                    style="scroll-margin-top: calc(var(--theme-topbar-height) + var(--su64) + var(--su12));"
+                >
+                    <div class="d-flex fl-grow1 flex__center bg-black-100 bb bc-black-225 p16 btr-md">
                         {% icon iconName, "native js-svg" %}
                     </div>
                     <div class="d-flex ai-center jc-space-between p8">
-                        <code class="flex--item fs-caption py8 ff-mono ow-break-word js-name">@Svg.{{ iconName }}</code>
-                        <a class="d-flex flex__center s-btn s-btn__muted fc-black-400 p2" href="#{{ iconName | downcase }}">
+                        <code class="fs-caption py8 ff-mono ow-break-word js-name">{{ iconName }}</code>
+                        <a class="d-flex flex__center s-btn s-btn__clear s-btn__icon s-btn__xs px4 py2" href="#{{ iconName | downcase }}">
                             {% icon "Link" %}
                             <span class="v-visible-sr">{{ iconName }} icon</span>
                         </a>

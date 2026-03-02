@@ -1,27 +1,27 @@
 .s-input,
-.s-textarea {
-    --_in-bc: var(--bc-darker);
+.s-textarea,
+//The :has selector here allows us to use these vars for sibling icons in textarea components (See .s-textarea -> ~ .s-input-icon)
+:has(> .s-textarea) { 
+    --_in-ai: unset;
+    --_in-bc: var(--black-300);
     --_in-bg: var(--white);
     --_in-br: var(--br-md);
+    --_in-bw: var(--su1);
     --_in-c: unset;
-    --_in-fc: var(--fc-dark);
+    --_in-d: unset;
+    --_in-fc: var(--black-600);
     --_in-fs: var(--fs-body1);
-    --_in-o: unset;
-    --_in-px: 0.7em;
-    --_in-py: 0.6em;
+    --_in-fw: unset;
+    --_in-g: unset;
+    --_in-lh: var(--lh-base);
+    --_in-px: calc(var(--su12) - var(--su1)); // 11px
+    --_in-py: var(--su8);
     --_in-placeholder-fc: var(--black-300);
+}
 
+.s-input,
+.s-textarea {
     // CONTEXTUAL STYLES
-    @supports (-webkit-overflow-scrolling: touch) {
-        --_in-fs: var(--su-static16); // 16px — Increase font size for mobile safari. This keeps our inputs from zooming the page while focused.
-        --_in-px: 0.55em;
-        --_in-py: 0.36em;
-
-        &::-webkit-input-placeholder {
-            line-height: normal !important;
-        }
-    }
-
     .highcontrast-mode({
         --_in-bc: var(--black);
         --_in-placeholder-fc: var(--black-400);
@@ -31,17 +31,16 @@
     fieldset[disabled] &,
     &[disabled] {
         --_in-c: not-allowed;
-        --_in-o: var(--_o-disabled-static);
     }
 
     &[readonly],
     .is-readonly & {
         .highcontrast-mode({
-            --_in-fc: var(--fc-medium);
+            --_in-fc: var(--black-500);
         });
 
         --_in-bg: var(--black-150);
-        --_in-bc: var(--bc-light);
+        --_in-bc: var(--black-200);
         --_in-c: default;
         --_in-fc: var(--black-400);
     }
@@ -55,45 +54,27 @@
 
     // Sizes
     &&__sm {
-        .size-styles(sm; in; @styles: fs);
-    }
-
-    &&__md {
-        @supports (-webkit-overflow-scrolling: touch) {
-            --_in-fs: calc(var(--su-static16) + var(--su-static1)); // 17px
-            --_in-py: 0.4em;
-        }
-
-        .size-styles(md; in; @styles: br, fs);
+        --_in-fs: var(--fs-caption);
+        --_in-lh: var(--lh-sm);
+        --_in-px: calc(var(--su12) - var(--su2)); // 10px
+        --_in-py: calc(var(--su4) + var(--su1)); // 5px
     }
 
     &&__lg {
-        .size-styles(lg; in; @styles: br, fs);
-        --_in-px: 0.6em;
-        --_in-py: 0.45em;
+        --_in-fs: var(--fs-body3);
+        --_in-lh: var(--lh-lg);
+        --_in-px: calc(var(--su12) + var(--su1)); // 13px
     }
-
-    &&__xl {
-        .size-styles(xl; in; @styles: br, fs);
-        --_in-px: 0.5em;
-        --_in-py: 0.4em;
-    }
-
+    
     // CHILD ELEMENTS
-    .webkit-autofill();
-
-    &::placeholder,
-    &::-webkit-input-placeholder {
-        color: var(--_in-placeholder-fc);
-    }
-
     &::placeholder {
+        color: var(--_in-placeholder-fc);
         opacity: 1;
     }
 
     &&__creditcard,
     &&__search {
-        --_in-pl: var(--su-static32);
+        --_in-pl: calc(var(--su32) + var(--su4)); // 36px
     }
 
     // INTERACTION
@@ -104,16 +85,19 @@
     }
 
     @scrollbar-styles();
+    align-items: var(--_in-ai);
     background-color: var(--_in-bg);
-    border: var(--su-static1) solid var(--_in-bc);
-    border-radius: var(--_in-br);
+    border: var(--_in-bw) solid var(--_in-bc);
     color: var(--_in-fc);
     cursor: var(--_in-c);
+    display: var(--_in-d);
+    flex-wrap: var(--_in-fw);
     font-size: var(--_in-fs);
-    opacity: var(--_in-o);
+    gap: var(--_in-g);
+    line-height: var(--_in-lh);
     padding: var(--_in-py) var(--_in-px) var(--_in-py) var(--_in-pl, var(--_in-px));
-
-    -webkit-appearance: none; // Removes shadows we don't want in mobile Safari
+    
+    border-radius: var(--br-md);
     font-family: inherit;
     margin: 0; // A guard against Core's default margins
     width: 100%;
@@ -124,8 +108,23 @@
         padding-right: var(--su32);
     });
 
-    &&__md {
-        --_in-py: 0.5em;
+    // Nested Inputs
+    & & {
+        --_in-bg: transparent;
+        --_in-bw: 0;
+        --_in-px: 0;
+
+        box-shadow: none;
+        flex: 1 1 0;
+        margin: calc(var(--_in-py) * -1) 0;
+    }
+
+    &:has(&) {
+        --_in-ai: center;
+        --_in-d: flex;
+        --_in-fw: nowrap;
+        --_in-px: var(--_in-py);
+        --_in-g: var(--su8);
     }
 }
 
@@ -134,12 +133,26 @@
         padding-right: var(--su48);
     });
 
-    &&__md {
-        --_in-py: 0.72em;
+    --_in-py: var(--su8);
+    --_te-hmn: calc(var(--su32) + var(--su4)); // 36px
+    --_te-h: calc(var(--su64) + var(--su6)); // 70px
+
+    &&__sm {
+        --_te-hmn: calc(var(--su32) - var(--su4)); // 28px
+        --_te-h: calc(var(--su48) + var(--su6)); // 54px
     }
 
+    &&__lg {
+        --_te-hmn: calc(var(--su48) - var(--su4)); // 44px
+        --_te-h: calc(var(--su64) + var(--su32)); // 96px
+    }
+
+    min-height: var(--_te-hmn);
+    height: var(--_te-h); //set initial height
+
     ~ .s-input-icon {
-        right: 1.5em;
-        top: 1.5em;
+        right: var(--_in-px);
+        top: var(--_in-py);
+        margin-top: 0;
     }
 }

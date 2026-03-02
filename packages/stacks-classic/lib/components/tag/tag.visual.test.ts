@@ -1,5 +1,5 @@
 import { html } from "@open-wc/testing";
-import { IconClearSm } from "@stackoverflow/stacks-icons/icons";
+import { IconClearSm } from "@stackoverflow/stacks-icons-legacy/icons";
 import { runVisualTests } from "../../test/visual-test-utils";
 import "../../index";
 
@@ -37,7 +37,7 @@ describe("tag", () => {
     runVisualTests({
         baseClass: "s-tag",
         modifiers: {
-            primary: ["xs", "sm", "md", "lg"],
+            primary: ["sm", "lg"],
         },
         children: {
             default: `default`,

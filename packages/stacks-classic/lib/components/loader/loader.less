@@ -1,0 +1,88 @@
+.s-loader {
+    --_ld-color: var(--black-600);
+    --_ld-gap: calc(var(--_ld-size) / 2);
+    --_ld-size: calc(var(--su4) + var(--su1)); // 5px
+    --_ld-offset: calc(calc(var(--_ld-size) / 8) * -5); // -5/8ths of the size
+
+    // MODIFIERS
+    &__sm {
+        --_ld-size: calc(calc(var(--su8) - var(--su1)) / 2); // 3.5px
+        margin-left: var(--su1);
+        margin-right: var(--su1);
+    }
+
+    &__lg {
+        --_ld-size: var(--su8);
+    }
+
+    // CHILD ELEMENTS – three blocks via pseudo-elements (::before, --sr-text::before, ::after)
+    &:before,
+    & &--sr-text:before,
+    &:after {
+        background-color: currentColor;
+        content: "";
+        display: block;
+        height: var(--_ld-size);
+        width: var(--_ld-size);
+
+        animation: loader-animation .8s cubic-bezier(1, 1, 0, 1) infinite;
+    }
+
+    & &--sr-text {
+        // Visible flex item so its ::before (middle block) shows; overflow visible so translateY isn't clipped
+        display: block;
+        flex-shrink: 0;
+        height: var(--_ld-size);
+        width: var(--_ld-size);
+        font-size: 0;
+        overflow: visible;
+    }
+
+    & &--sr-text:before {
+        animation-delay: .25s;
+    }
+
+    &:after {
+        animation-delay: .5s;
+    }
+
+    display: flex;
+    gap: var(--_ld-gap);
+    margin-top: var(--_ld-gap);
+}
+
+@media (prefers-reduced-motion:reduce){
+    .s-loader {
+        &:before,
+        & &--sr-text:before,
+        &:after {
+            animation: loader-animation-reduced-motion 2s ease-in-out infinite;
+        }
+    }
+}
+
+@keyframes loader-animation {
+    0%,1%,99%,to{
+        opacity: 0.2;
+        transform: translateY(0);
+    }
+    49%,50%{
+        opacity: 1;
+        transform: translateY(var(--_ld-offset));
+    }
+    51%{
+        opacity: 0.2;
+        transform: translateY(var(--_ld-offset));
+    }
+}
+
+@keyframes loader-animation-reduced-motion {
+    0%,to{
+        opacity: 0.3;
+        transform: none;
+    }
+    50%{
+        opacity: 1;
+        transform: none;
+    }
+}

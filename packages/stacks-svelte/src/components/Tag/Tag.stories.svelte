@@ -3,9 +3,10 @@
     import { createRawSnippet, type Snippet } from "svelte";
     import Tag, { type Size, type Variant } from "./Tag.svelte";
     import Icon from "../Icon/Icon.svelte";
-    import { IconMicrosoft, IconWave } from "@stackoverflow/stacks-icons/icons";
+    import { IconWave } from "@stackoverflow/stacks-icons-legacy/icons";
+    import { IconServiceMicrosoft } from "@stackoverflow/stacks-icons/icons";
 
-    const TagSizes: Size[] = ["", "xs", "sm", "md", "lg"];
+    const TagSizes: Size[] = ["", "sm", "lg"];
     const TagVariants: Variant[] = ["", "moderator", "required"];
 
     const createSnippet = (markup = "") =>
@@ -110,7 +111,7 @@
     <Tag>
         microsoft
         {#snippet sponsor()}
-            <Icon src={IconMicrosoft} native class="as-center w16" />
+            <Icon src={IconServiceMicrosoft} native class="as-center w16" />
         {/snippet}
     </Tag>
 </Story>

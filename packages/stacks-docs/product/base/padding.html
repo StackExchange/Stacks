@@ -1,0 +1,85 @@
+---
+layout: page
+title: Padding
+description: Stacks provides atomic classes to override padding.
+tags: base
+---
+
+<section class="docs-section">
+    {% header "h2", "Padding" %}
+    <p class="docs-copy">Immutable padding utilities are based on a global white space scale defined with custom properties. These can dramatically help reduce the size of large stylesheets and allow for greater flexibility and quicker iteration when designing in the browser.</p>
+    <p class="docs-copy">Padding should never be declared outside of these utilities. This is meant to help create consistency and avoid magic numbers. If, for some reason, the default white space scale does not suit your design, customize and extend it before use.</p>
+
+    {% header "h3", "Padding class abbreviations" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="docs-table s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Abbreviation</th>
+                    <th scope="col">Property</th>
+                    <th class="s-table--cell2 ta-center" scope="col">Responsive?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prefix in padding.prefixes %}
+                    <tr>
+                        <th scope="row">{{ prefix.prefix }}</th>
+                        <td>{{ prefix.property }}</td>
+                        <td class="ta-center">
+                            {% if prefix.responsive %}
+                                {% icon "Checkmark", "fc-green-400" %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% header "h3", "Padding classes" %}
+{% assign padding-properties = padding.properties | split: ", " %}
+{% assign padding-values = padding.values | split: ", " %}
+
+<div class="docs-preview">
+{% highlight html %}
+<div class="pt4 pr64 pb64 pl64">
+    …
+</div>
+{% endhighlight %}
+        <div class="docs-preview--example">
+            <div class="pt4 pr64 pb64 pl64 bg-black-200 p12 ba bc-black-225">
+                Example div with different paddings applied
+            </div>
+        </div>
+    </div>
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="docs-table s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    {% for value in padding-values %}
+                        <th scope="col" class="ta-center ff-mono">{{ value }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for prefix in padding.prefixes %}
+                    <tr>
+                        <th scope="row">{{ prefix.prefix }}</th>
+                        {% for value in padding-values %}
+                            {% if prefix.prefix == "px" or prefix.prefix == "py" %}
+                                {% if value == "0" or value == "50%" or value == "100%" %}
+                                    <td>-</td>
+                                {% else %}
+                                    <td><code>.{{ prefix.prefix }}{{ value | replace: "px", "" }}</code></td>
+                                {% endif %}
+                            {% else %}
+                                <td><code>.{{ prefix.prefix }}{{ value | replace: "px", "" | replace: "%", "" }}</code></td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>

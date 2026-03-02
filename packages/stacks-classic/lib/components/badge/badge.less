@@ -1,245 +1,307 @@
 .s-badge {
-    --_ba-as: unset;
-    --_ba-bc: var(--bc-medium);
-    --_ba-bg: var(--black-150);
+    --_ba-bc: transparent;
+    --_ba-bg: var(--black-100);
     --_ba-fc: var(--black-500);
     --_ba-fs: var(--fs-caption);
-    --_ba-fw: normal;
-    --_ba-g: 0.3em;
-    --_ba-lh: 2;
     --_ba-px: var(--su6);
-    --_ba-py: 0;
+    --_ba-py: var(--su4);
     --_ba-tt: unset;
     --_ba-wmn: 0;
-
+    --_ba-bl: 0;
+    --_ba-fw: unset;
+    --_ba-g: unset;
+    --_ba-svg-p: var(--su2);
+    --_ba-sq-bg: var(--black-200);
+    
     // CONTEXTUAL STYLES
     .highcontrast-mode({
-        // Badge counts
-        &__gold,
-        &__silver,
-        &__bronze,
-        // Number counts
-        &__rep,
-        &__rep-down,
-        &__votes:not(.s-badge__answered),
-        // Users
-        &__admin,
-        &__moderator,
-        &__staff {
-            --_ba-bc: currentColor;
+        --_ba-bx-sh-w: var(--su1);
+
+        &.s-badge__sm {
+            --_ba-bx-sh-w: 0;
         }
 
-        &__new {
-            --_ba-fc: var(--purple-600);
+        &.s-badge__lg {
+            --_ba-bx-sh-w: var(--su4);
+        }
+
+        &:not(.s-badge__important) > svg { 
+            //Add border around the square in high contrast mode
+            box-shadow: 0 0 0 calc(var(--_ba-bx-sh-w) - var(--su1)) var(--_ba-sq-bg), 
+                0 0 0 max(var(--su1), var(--_ba-bx-sh-w)) currentcolor inset;
+        }
+
+        a[href] {
+            &,
+            &:hover {
+                text-decoration: underline !important;
+            }
         }
     });
 
-    // MODIFIERS
-    // Sizes
-    &&__xs,
-    &&__sm {
-        --_ba-as: flex-start;
-        --_ba-fs: var(--fs-fine);
-    }
+    &:has(> .s-bling__filled),
+    &&__squared,
+    &:has(> svg) {
+        &,
+        &.s-badge__lg,
+        &.s-badge__sm {
+            --_ba-px: 0;
+            --_ba-py: 0;
+        }
 
-    &&__xs {
-        --_ba-lh: 1.5;
-        --_ba-px: var(--su2);
-        --_ba-wmn: calc(var(--su-static16) + var(--su-static2));
-    }
-
-    &&__sm {
-        --_ba-lh: 1.8;
-        --_ba-px: var(--su4);
-        --_ba-wmn: calc(var(--su-static16) + var(--su-static2));
-    }
-
-    // Badge counts
-    &&__gold,
-    &&__silver,
-    &&__bronze {
-        --_ba-fc: var(--black-500);
-    }
-
-    &&__gold {
-        --_ba-bc: var(--gold-300);
-        --_ba-bg: var(--gold-100);
-    }
-
-    &&__silver {
-        --_ba-bc: var(--silver-300);
-        --_ba-bg: var(--silver-100);
-    }
-
-    &&__bronze {
-        --_ba-bc: var(--bronze-300);
-        --_ba-bg: var(--bronze-100);
-    }
-
-    // Number counts
-    &&__answered,
-    &&__bounty,
-    &&__important {
-        --_ba-bc: transparent;
-        --_ba-fc: var(--white);
-    }
-
-    &&__rep,
-    &&__rep-down,
-    &&__votes:not(&__answered) {
-        --_ba-bg: var(--white);
-    }
-
-    &&__answered {
-        --_ba-bg: var(--green-400);
-    }
-
-    &&__bounty {
-        --_ba-bg: var(--blue-400);
-    }
-
-    &&__important {
-        --_ba-bg: var(--red-400);
-    }
-
-    &&__rep {
-        --_ba-bc: var(--green-300);
-        --_ba-fc: var(--green-400);
-    }
-
-    &&__rep-down {
-        --_ba-bc: var(--red-300);
-        --_ba-fc: var(--red-400);
-    }
-
-    &&__votes:not(&__answered) {
-        --_ba-bc: var(--black-250);
-        --_ba-fc: var(--black-500);
-    }
-
-    // Users
-    &&__admin {
-        --_ba-bc: var(--theme-primary-200);
-        --_ba-bg: var(--theme-primary-100);
-        --_ba-fc: var(--theme-primary-500);
-    }
-
-    &&__moderator {
-        --_ba-bc: var(--theme-secondary-300);
-        --_ba-bg: var(--theme-secondary-200);
-        --_ba-fc: var(--theme-secondary-600);
-        --_ba-g:  calc(var(--su-static4) - var(--su-static1)); // 3px
-        // :before icon
-        --_ba-before-h: calc(var(--su-static16) - var(--su-static2)); // 14px
-        --_ba-before-icon: url("data:image/svg+xml;,%3Csvg width='12' height='14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.528.746c.257-.329.675-.327.93 0l4.42 5.66c.258.329.257.864 0 1.192l-4.42 5.66c-.256.328-.674.327-.93 0l-4.42-5.66c-.257-.329-.256-.865 0-1.192l4.42-5.66z' fill='%23fff'/%3E%3C/svg%3E");
-        --_ba-before-mt:  calc(var(--su-static1) * -1); // -1px
-        --_ba-before-w: var(--su-static12);
-
-        // Sizes
-        &.s-badge__xs {
-            --_ba-before-h: calc(var(--su-static8) + var(--su-static1)); // 9px
-            --_ba-before-icon: url("data:image/svg+xml;,%3Csvg width='7' height='9' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 .246c.3-.329.701-.327 1 0L6.776 4c.3.329.298.672 0 1L4 8.75c-.299.329-.702.327-1 0L.224 5c-.284-.324-.285-.675 0-1L3 .246z' fill='%23fff'/%3E%3C/svg%3E");
-            --_ba-before-mt: 0;
-            --_ba-before-w: calc(var(--su-static8) - var(--su-static1)); // 7px
+        &.s-badge__lg {
+            --_ba-pr: var(--su8);
         }
 
         &.s-badge__sm {
-            --_ba-g: var(--su-static2);
-            --_ba-before-h: calc(var(--su-static12) - var(--su-static1)); // 11px
-            --_ba-before-icon: url("data:image/svg+xml;,%3Csvg width='9' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.55.246c.257-.329.647-.327.903 0l3.36 4.66c.256.329.256.864 0 1.192L4.45 10.75c-.257.329-.644.327-.9 0L.192 6.098c-.256-.329-.256-.865 0-1.192L3.55.246z' fill='%23fff'/%3E%3C/svg%3E");
-            --_ba-before-mt: 0;
-            --_ba-before-w: calc(var(--su-static8) + var(--su-static1)); // 9px
+            --_ba-pr: var(--su4);
         }
 
-        &:before {
-            height: var(--_ba-before-h);
-            margin-top: var(--_ba-before-mt);
-            width: var(--_ba-before-w);
+        --_ba-pr: var(--su6);
+    }
 
-            content: "";
-            display: inline-block;
-            background-color: currentColor;
+    &:has(> .s-bling__filled),
+    &&__squared {
+        &.s-badge__lg {
+            --_ba-g: var(--su8);
+        }
+
+        &.s-badge__sm {
+            --_ba-g: var(--su4);
+        }
+
+        --_ba-g: var(--su6);
+    }
+
+    &:not(&__squared):has(> svg){
+        --_ba-g: var(--su2);
+    }
+
+
+    &:has(.s-bling__rep) {
+        --_ba-fw: 600;
+        --_ba-fc: var(--black-600);
+    }
+
+    &:has(.s-bling) {
+        --_ba-bg: var(--black-150);
+    }
+
+    // SIZES
+    &&__sm {
+        --_ba-fs: var(--fs-fine);
+        --_ba-px: var(--su4);
+        --_ba-py: var(--su1);
+        --_ba-wmn: calc(var(--su16) + var(--su2));
+        --_ba-svg-p: var(--_ba-py);
+    }
+
+    &&__lg {
+        --_ba-fs: var(--fs-body1);
+        --_ba-px: var(--su8);
+        --_ba-py: calc(var(--su4) + var(--su1));
+        --_ba-svg-p: var(--_ba-py);
+    }
+
+    // TAG
+    &&__gold,
+    &&__silver,
+    &&__bronze {
+        --_ba-bl: var(--su4);
+
+        & .s-bling__gold,
+        & .s-bling__silver,
+        & .s-bling__bronze {
+            margin-left: -2px;
+        }
+    }
+
+    &&__gold {
+        --_ba-bc: var(--yellow-300);
+    }
+    &&__silver {
+        --_ba-bc: var(--blue-300);
+    }
+    &&__bronze {
+        --_ba-bc: var(--orange-300);
+    }
+
+    // USER
+    &&__admin,
+    &&__moderator,
+    &&__staff,
+    &&__ai,
+    &&__bot,
+    &&__new {
+        --_ba-bl: var(--su4);
+        --_ba-bg: var(--black-150);
+        --_ba-fc: var(--black-600);
+    }
+
+    &&__moderator,
+    &&__new {
+        &:before {
+            background-color: var(--_ba-bc);
+            height: var(--_ba-before-h);
+            width: var(--_ba-before-w);
             -webkit-mask: var(--_ba-before-icon) no-repeat center;
             mask: var(--_ba-before-icon) no-repeat center;
+            
+            content: "";
+            display: inline-block;
             -webkit-mask-size: contain;
             mask-size: contain;
         }
     }
 
-    &&__staff {
-        // Staff badges are always "Stack Overflow Orange"
-        --_ba-bc: var(--orange-300);
-        --_ba-bg: var(--orange-200);
-        --_ba-fc: var(--orange-600);
+    &&__moderator {
+        --_ba-bc: var(--blue-500);
+        --_ba-before-h: calc(var(--su12) + var(--su1)); // 13px
+        --_ba-before-w: calc(var(--su12) - var(--su1)); // 11px
+        --_ba-before-icon: url("data:image/svg+xml;,%3Csvg width='11' height='13' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.528.746c.257-.329.675-.327.93 0l4.42 5.66c.258.329.257.864 0 1.192l-4.42 5.66c-.256.328-.674.327-.93 0l-4.42-5.66c-.257-.329-.256-.865 0-1.192l4.42-5.66z' fill='%23fff'/%3E%3C/svg%3E");
+
+        &.s-badge__sm {
+            --_ba-before-h: calc(var(--su12) - var(--su1)); // 11px
+            --_ba-before-w: calc(var(--su8) + var(--su1)); // 9px
+            --_ba-before-icon: url("data:image/svg+xml;,%3Csvg width='9' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.55.246c.257-.329.647-.327.903 0l3.36 4.66c.256.329.256.864 0 1.192L4.45 10.75c-.257.329-.644.327-.9 0L.192 6.098c-.256-.329-.256-.865 0-1.192L3.55.246z' fill='%23fff'/%3E%3C/svg%3E");
+        }
+
+        &:before {
+            margin-top: var(--sun1);
+        }
     }
 
-    // VARIANTS
+    &&__staff {
+        --_ba-bc: var(--orange-400);
+    }
+
+    &&__admin {
+        --_ba-bc: var(--theme-primary-500, var(--orange-500));
+    }
+
     &&__ai {
-        --_ba-bc: var(--_ba-fc);
-        --_ba-bg: var(--black-050);
-        --_ba-fc: var(--orange-500);
-        --_ba-tt: uppercase;
+        --_ba-bc: var(--purple-400);
     }
 
     &&__bot {
-        --_ba-bc: var(--black-300);
+        --_ba-bc: var(--black-400);
     }
 
-    &&__danger,
-    &&__muted {
-        &.s-badge__filled {
-            --_ba-bc: transparent;
+    // TODO reassess if we need this modifier or should rely on embedding an svg (our `__featured` example is the same as this badge)
+    &&__new {
+        --_ba-bg: var(--purple-100);
+        --_ba-fc: var(--purple-500);
+        --_ba-sq-bg: var(--purple-200);
+        --_ba-bc: var(--purple-400);
+        --_ba-gap: var(--su2);
+        --_ba-before-h: calc(var(--su12) + var(--su2));
+        --_ba-before-w: calc(var(--su12) + var(--su2));
+        --_ba-before-icon: url("data:image/svg+xml;,%3Csvg width='14' height='14' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1m0 1.25a5.75 5.75 0 1 0 0 11.5 5.75 5.75 0 0 0 0-11.5m1 10.06H7V10.6h2zM8.14 4c1.78 0 2.77.96 2.77 2.5 0 1.79-2.1 2.2-2.1 3.25h-1.6c0-2 2-2.08 2-3.26 0-.54-.27-.96-1.02-.96-.7 0-1.03.46-1.1 1.23H5.4A2.75 2.75 0 0 1 8.13 4' fill='%23fff'/%3E%3C/svg%3E");
+
+        &:before {
+            margin-left: var(--sun2);
+            margin-top: 0;
+        }
+    }
+
+    // STATES
+    &&__info {
+        --_ba-bg: var(--blue-100);
+        --_ba-fc: var(--blue-500);
+        --_ba-sq-bg: var(--blue-200);
+
+        &.s-badge__important {
+            --_ba-bg: var(--blue-400);
+            --_ba-sq-bg: var(--blue-500);
+        }
+    }
+
+    &&__warning {
+        --_ba-bg: var(--yellow-100);
+        --_ba-fc: var(--yellow-500);
+        --_ba-sq-bg: var(--yellow-200);
+
+        &.s-badge__important {
+            --_ba-bg: var(--yellow-400);
+            --_ba-sq-bg: var(--yellow-500);
         }
     }
 
     &&__danger {
-        --_ba-bc: var(--red-300);
+        --_ba-bg: var(--red-100);
+        --_ba-fc: var(--red-500);
+        --_ba-sq-bg: var(--red-200);
+
+        &.s-badge__important {
+            --_ba-bg: var(--red-400);
+            --_ba-sq-bg: var(--red-500);
+        }
+    }
+
+    &&__critical {
         --_ba-bg: var(--red-200);
         --_ba-fc: var(--red-600);
+        --_ba-sq-bg: var(--red-300);
 
-        &.s-badge__filled {
-            --_ba-bg: var(--red-400);
-            --_ba-fc: var(--white);
+        &.s-badge__important {
+            --_ba-bg: var(--red-500);
+            --_ba-sq-bg: var(--red-600);
         }
     }
-    &&__info {
-        --_ba-bc: var(--blue-300);
-        --_ba-bg: var(--blue-200);
-        --_ba-fc: var(--blue-600);
-    }
 
-    &&__warning {
-        --_ba-bc: var(--yellow-300);
-        --_ba-bg: var(--yellow-200);
-        --_ba-fc: var(--yellow-600);
-    }
-
-    &&__muted {
-        --_ba-bc: var(--black-300);
+    &&__tonal {
         --_ba-bg: var(--black-200);
-        --_ba-fc: var(--black-500);
+        --_ba-fc: var(--black-600);
+        --_ba-sq-bg: var(--black-300);
 
-        &.s-badge__filled {
+        &.s-badge__important {
             --_ba-bg: var(--black-500);
-            --_ba-fc: var(--white);
+            --_ba-sq-bg: var(--black-600);
         }
     }
 
-    &&__new {
-        --_ba-bc: var(--_ba-bg);
+    &&__success {
+        --_ba-bg: var(--green-100);
+        --_ba-fc: var(--green-600);
+        --_ba-sq-bg: var(--green-200);
+
+        &.s-badge__important {
+            --_ba-bg: var(--green-500);
+            --_ba-sq-bg: var(--green-600);
+        }
+    }
+
+    &&__featured {
         --_ba-bg: var(--purple-100);
-        --_ba-fc: var(--purple-400);
-        --_ba-fw: bold;
-        --_ba-tt: uppercase;
+        --_ba-fc: var(--purple-500);
+        --_ba-sq-bg: var(--purple-200);
+
+        &.s-badge__important {
+            --_ba-bg: var(--purple-400);
+            --_ba-sq-bg: var(--purple-500);
+        }
+    }
+
+    // SQUARED
+    &&__squared svg {
+        background-color: var(--_ba-sq-bg);
+    }
+
+    // IMPORTANT
+    &&__important {
+        --_ba-bg: var(--black-400);
+        --_ba-fc: var(--black-050);
+        --_ba-fw: 600;
+        --_ba-sq-bg: var(--black-500);
     }
 
     // CHILD ELEMENTS
-    &--image, // Included with no base class to account for usage in .s-progress__badge
-    & &--image {
-        align-self: center;
-        display: inline-flex;
-        margin-right: var(--su1);
-        margin-left: calc((var(--su4) + var(--su1)) * -1);
+    svg {
+        aspect-ratio: 1 / 1;
+        box-sizing: content-box;
+        display: block;
+        height: calc(var(--su16) + var(--su4));
+        padding: var(--_ba-svg-p);
     }
 
     // INTERACTION
@@ -247,22 +309,20 @@
         text-decoration: none;
     }
 
-    align-self: var(--_ba-as);
     background-color: var(--_ba-bg);
-    border: var(--su-static1) solid var(--_ba-bc);
+    border-left: var(--_ba-bl) solid var(--_ba-bc);
     color: var(--_ba-fc);
     font-size: var(--_ba-fs);
-    gap: var(--_ba-g);
     font-weight: var(--_ba-fw);
-    line-height: var(--_ba-lh);
+    gap: var(--_ba-g, var(--_ba-px));
+    padding: var(--_ba-py) var(--_ba-pr, var(--_ba-px)) var(--_ba-py) var(--_ba-px);
     min-width: var(--_ba-wmn);
-    padding: var(--_ba-py) var(--_ba-px);
     text-transform: var(--_ba-tt);
-
+    
     align-items: center;
-    border-radius: var(--br-sm);
     display: inline-flex;
     justify-content: center;
+    line-height: var(--lh-md);
     text-decoration: none;
     vertical-align: middle;
     white-space: nowrap;

@@ -10,20 +10,37 @@
          */
         role?: string | null;
         /**
-         * Additional CSS classes added to the element
+         * Accessible label for the popover
+         */
+        ariaLabel?: string;
+        /**
+         * ID of an element that labels the popover
+         */
+        ariaLabelledby?: string;
+        /**
+         * Additional CSS classes added to the s-popover element
          */
         class?: string;
+        /**
+         * Additional CSS classes added to the s-popover--content element
+         */
+        contentClass?: string;
         /**
          * Children snippet
          */
         children?: Snippet;
     }
 
-    let { role = null, class: className = "", children }: Props = $props();
+    let {
+        role = null,
+        ariaLabel,
+        ariaLabelledby,
+        class: className = "",
+        contentClass = "",
+        children,
+    }: Props = $props();
 
     let pstate = usePopoverContext("PopoverContent");
-
-    const arrowEl = pstate.arrowEl;
 
     let classes = $derived.by(() => {
         let result = "s-popover";
@@ -32,6 +49,14 @@
         }
         if (className) {
             result += " " + className;
+        }
+        return result;
+    });
+
+    let contentClasses = $derived.by(() => {
+        let result = "s-popover--content";
+        if (contentClass) {
+            result += " " + contentClass;
         }
         return result;
     });
@@ -50,6 +75,8 @@
     id={`${pstate.id}-popover`}
     class={computedClass}
     role={computedRole}
+    aria-label={ariaLabel}
+    aria-labelledby={ariaLabelledby}
     use:pstate.floatingContent
     use:focusTrap={{ active: pstate.trapFocus && !!pstate.visible }}
     use:clickOutside
@@ -60,8 +87,7 @@
     onfocusout={pstate.closeTooltip}
     data-popper-placement={pstate.computedPlacement}
 >
-    <div class="s-popover--arrow" bind:this={$arrowEl}></div>
-    <div class="s-popover--content p12 mn12">
+    <div class={contentClasses}>
         <div class="ps-relative">
             {@render children?.()}
         </div>

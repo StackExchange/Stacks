@@ -1,6 +1,6 @@
 <script module lang="ts">
     import { getContext } from "svelte";
-    export type Size = "" | "sm" | "md" | "lg" | "xl";
+    export type Size = "" | "sm" | "lg";
     export type State = "" | "error" | "success" | "warning";
     export type LabelPlacement = "top" | "left";
 
@@ -26,11 +26,12 @@
     import Label from "../Label/Label.svelte";
     import {
         IconAlert,
-        IconAlertCircle,
-        IconCheckmark,
+        IconAlertFill,
+        IconCheck,
     } from "@stackoverflow/stacks-icons/icons";
     import { setContext } from "svelte";
     import type { Snippet } from "svelte";
+    import type { BadgeState } from "../Badge/Badge.svelte";
     import type { HTMLSelectAttributes } from "svelte/elements";
 
     // @ts-expect-error - HTMLSelectAttributes size is not compatible with our custom Size type.
@@ -46,6 +47,16 @@
          * The label associated with the select element
          */
         label: string;
+
+        /**
+         * The optional status type of the label
+         */
+        labelStatus?: BadgeState;
+
+        /**
+         * The optional text to display for the label status
+         */
+        labelStatusText?: string;
 
         /**
          * Specify the initial selected item value
@@ -101,6 +112,8 @@
     let {
         id,
         label,
+        labelStatus,
+        labelStatusText,
         selected = $bindable(undefined),
         disabled = false,
         hideLabel = false,
@@ -152,12 +165,24 @@
 </script>
 
 <div
-    class={`d-flex ${labelPlacement === "top" ? " fd-column gy4" : "ai-center"}`}
+    class="s-form-group"
+    class:s-form-group__horizontal={labelPlacement === "left"}
+    class:ai-center={labelPlacement === "left"}
     class:has-error={vState === "error"}
     class:has-success={vState === "success"}
     class:has-warning={vState === "warning"}
 >
-    <Label {id} class={hideLabel ? "v-visible-sr" : ""} {size}>
+    <Label
+        {id}
+        class={hideLabel
+            ? "v-visible-sr"
+            : labelPlacement === "left"
+              ? "pb0"
+              : ""}
+        {size}
+        status={labelStatus}
+        statusText={labelStatusText}
+    >
         {label}
     </Label>
     {#if description && !hideLabel && labelPlacement === "top"}
@@ -184,9 +209,9 @@
         {#if vState}
             <div class="s-input-icon">
                 {#if vState === "error"}
-                    <Icon src={IconAlertCircle} />
+                    <Icon src={IconAlertFill} />
                 {:else if vState === "success"}
-                    <Icon src={IconCheckmark} />
+                    <Icon src={IconCheck} />
                 {:else}
                     <Icon src={IconAlert} />
                 {/if}

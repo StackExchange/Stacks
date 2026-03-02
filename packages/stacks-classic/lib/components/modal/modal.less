@@ -3,18 +3,17 @@
     --_mo-bg: fade(.set-black()[600], 50%); // Background remains fixed
     --_mo-hmx: unset;
     --_mo-wmx: unset;
-    --_mo-close-t: var(--su8);
     --_mo-dialog-bg: var(--white);
     --_mo-dialog-pt: var(--su24);
-    --_mo-header-fc: var(--fc-dark);
+    --_mo-dialog-ou: 0;
 
     // CONTEXTUAL STYLES
     .dark-mode({
-        --_mo-dialog-bg: var(--black-225);
+        --_mo-dialog-bg: var(--black-100);
     });
 
-    .highcontrast-dark-mode({
-        --_mo-dialog-bg: var(--black-200);
+    .highcontrast-mode({
+        --_mo-dialog-ou: var(--su2) solid var(--black-500);
     });
 
     &[aria-hidden="false"] {
@@ -46,7 +45,6 @@
     &.has-danger,
     &&__danger {
         --_mo-bg: darken(fade(.set-red()[600], 50%), 18%);
-        --_mo-header-fc: var(--red-500);
     }
 
     // CHILD ELEMENTS
@@ -61,19 +59,20 @@
             margin: 0 !important;
         }
 
-        padding: var(--su12) !important; // [1]
+        padding: var(--su6) !important; // [1]
         position: absolute !important; // [1]
-        right: var(--su8);
-        top: var(--_mo-close-t);
+        right: var(--su16);
+        top: var(--su16);
     }
 
     & &--dialog {
         padding: var(--_mo-dialog-pt) var(--su24) var(--su24);
 
         @scrollbar-styles();
+        position: relative;
         backface-visibility: hidden;
         background-color: var(--_mo-dialog-bg);
-        border-radius: var(--br-lg);
+        border-radius: var(--br-md);
         box-shadow: var(--bs-lg);
         max-height: 100%;
         max-width: 600px;
@@ -83,6 +82,7 @@
         transition: opacity 200ms var(--te-smooth) 0s, z-index 0s 100ms, visibility 0s 100ms, transform 100ms var(--te-smooth) 0s, transform 100ms var(--te-smooth) 0s; // Transition out
         visibility: hidden;
         z-index: var(--zi-hide); // Make sure it's also below everything so we can't interact with it.
+        outline: var(--_mo-dialog-ou);
     }
 
     & &--footer {
@@ -90,7 +90,7 @@
     }
 
     & &--header {
-        color: var(--_mo-header-fc);
+        color: var(--fc-dark);
 
         font-size: var(--fs-headline1);
         font-weight: normal;

@@ -4,7 +4,7 @@
     @pr-spacing-condensed: calc(@pr-spacing / 2); // Reduce the base spacing by half in the context of lists, etc.
     @pr-spoiler-transition: opacity 0.1s ease-in-out;
     // COMPONENT-SPECIFIC CUSTOM PROPERTIES
-    --_pr-fs: calc(var(--su-static16) - var(--su-static1)); // Force a font size that doesn’t change at the smallest breakpoint;
+    --_pr-fs: unset;
     --_pr-lh: 1.5;
     --_pr-blockquote-ml: 1em;
     --_pr-blockquote-mt: 0;
@@ -19,7 +19,7 @@
     --_pr-hr-bg: var(--black-225); // used for both background-color and color properties
     --_pr-img-mb: @pr-spacing;
     --_pr-kbd-bc: var(--black-300);
-    --_pr-kbd-bs: 0 var(--su-static1) var(--su-static1) hsla(210, 8%, 5%, 0.15), inset 0 1px 0 0 var(--_white-static);
+    --_pr-kbd-bs: 0 var(--su1) var(--su1) hsla(210, 8%, 5%, 0.15), inset 0 1px 0 0 var(--_white-static);
     --_pr-spoiler-cursor: pointer;
     --_pr-spoiler-after-t: 1em;
     --_pr-soiler-after-o: unset;
@@ -33,7 +33,7 @@
     .dark-mode({
         --_pr-kbd-bc: transparent;
         --_pr-kbd-btc: var(--black-400);
-        --_pr-kbd-bs: 0 var(--su-static1) var(--su-static1) hsla(210, 8%, 5%, 0.8);
+        --_pr-kbd-bs: 0 var(--su1) var(--su1) hsla(210, 8%, 5%, 0.8);
     });
 
     .highcontrast-mode({
@@ -46,29 +46,15 @@
     });
 
     // MODIFIERS
-    &&__xs,
-    &&__sm,
-    &&__md {
-        --_pr-h1-fs: var(--fs-headline1-relative);
-        --_pr-h2-fs: var(--fs-title-relative);
-        --_pr-h3-fs: var(--fs-subheading-relative);
-        --_pr-h4-fs: var(--fs-body3-relative);
-        --_pr-h5-fs: var(--fs-body2-relative);
-    }
-
-    &&__xs {
-        --_pr-fs: var(--fs-caption);
-        --_pr-lh: var(--lh-sm);
-    }
-
     &&__sm {
-        --_pr-fs: var(--fs-body1);
+        --_pr-h1-fs: 1.75em;
+        --_pr-h2-fs: 1.375em;
+        --_pr-h3-fs: 1.25em;
+        --_pr-h4-fs: 1.125em;
+        --_pr-h5-fs: 1em;
+        --_pr-fs: var(--fs-caption);
         --_pr-lh: var(--lh-md);
-    }
-
-    &&__md {
-        --_pr-fs: var(--fs-body3);
-        --_pr-lh: var(--lh-xl);
+        --_pr-code-fs: var(--fs-caption);
     }
 
     // CHILD ELEMENTS
@@ -77,11 +63,13 @@
             color: var(--theme-link-color, var(--theme-secondary-400)); // When contained within a link, we want the code to be link-colored
         }
 
+        // Code blocks use ems to maintain sizes relative to the surrounding text
         > code {
-            padding: var(--su2) var(--su4);
-            color: var(--black-600);
             background-color: var(--black-200);
-            border-radius: var(--br-sm);
+            color: var(--black-600);
+            // TODO verify this font size is appropriate with a Windows font stack
+            font-size: .875em;
+            padding: 0.1875em 0.375em;
         }
     }
 
@@ -178,6 +166,28 @@
     }
 
     // Others child elements
+    // Base anchor styles match .s-link; use theme/fallback directly for color so hover/visited apply
+    // (see lib/components/link/link.less)
+    a:not([class]) {
+        &:active,
+        &:hover {
+            color: var(--theme-link-color-hover, var(--blue-400));
+            text-decoration: underline !important;
+        }
+        &:visited {
+            color: var(--theme-link-color-visited, var(--black-400));
+        }
+
+        &:hover:visited {
+            color: var(--theme-link-color-hover, var(--blue-400));
+            text-decoration: underline !important;
+        }
+
+        color: var(--theme-link-color, var(--black-600));
+        cursor: pointer;
+        user-select: auto;
+    }
+
     blockquote,
     q {
         quotes: none;
@@ -232,7 +242,7 @@
             margin-bottom: calc(@pr-spacing-condensed + 0.1em); // Add some more spacing on the bottom for a little extra optical alignment
         }
 
-        margin-bottom:@pr-spacing;
+        margin-bottom: @pr-spacing;
         margin-top: 0;
     }
 
@@ -247,7 +257,7 @@
         &:before {
             background: var(--_pr-blockquote-before-bg);
 
-            border-radius: var(--su-static8);
+            border-radius: var(--su8);
             bottom: 0;
             content: "";
             display: block;
@@ -299,7 +309,7 @@
         color: var(--_pr-hr-bg); // value set for background-color reused for color intentionally
 
         border: 0;
-        height: var(--su-static1);
+        height: var(--su1);
         margin-bottom: @pr-spacing;
     }
 
@@ -311,12 +321,12 @@
     }
 
     kbd {
-        border: var(--su-static1) solid var(--_pr-kbd-bc);
+        border: var(--su1) solid var(--_pr-kbd-bc);
         border-top-color: var(--_pr-kbd-btc, var(--_pr-kbd-bc));
         box-shadow: var(--_pr-kbd-bs);
 
         background-color: var(--black-200);
-        border-radius: var(--br-sm);
+        border-radius: var(--br-md);
         color: var(--black-600);
         display: inline-block;
         font-family: var(--ff-sans);
@@ -325,7 +335,7 @@
         margin: 0 0.1em;
         overflow-wrap: break-word;
         padding: 0.1em 0.6em;
-        text-shadow: 0 var(--su-static1) 0 var(--white);
+        text-shadow: 0 var(--su1) 0 var(--white);
     }
 
     li {
@@ -341,6 +351,10 @@
 
     p {
         --_pr-img-mb: 0;
+
+        a:not([class]) {
+            text-decoration: underline;
+        }
 
         margin-bottom: @pr-spacing;
     }
@@ -403,7 +417,7 @@
 
         > * {
             opacity: var(--_pr-soiler-child-o);
-            transition: @pr-spoiler-transition;
+            transition: var(--_pr-spoiler-transition);
             visibility: var(--_pr-soiler-child-visibility); // hidden elements don't respond to mouse events, but still retain their space
         }
 
@@ -412,7 +426,7 @@
         background: var(--black-150);
         border-radius: var(--br-md);
         color: var(--black-600);
-        min-height: var(--su-static48); // TODO: Let's find a solution that doesn't have a magic number
+        min-height: var(--su48); // TODO: Let's find a solution that doesn't have a magic number
     }
 
     .youtube-embed { // [2]
@@ -434,7 +448,7 @@
         width: 100%;
     }
 
-    font-size: var(--_pr-fs); // Force a font size that doesn’t change at the smallest breakpoint
+    font-size: var(--_pr-fs);
     line-height: var(--_pr-lh);
 
     overflow-wrap: break-word;

@@ -11,6 +11,10 @@
          */
         selected?: boolean;
         /**
+         * Whether this pagination item is the next page
+         */
+        itemNav?: boolean;
+        /**
          * Callback fired when the pagination item is clicked
          */
         onclick?: (e: MouseEvent) => void;
@@ -20,13 +24,20 @@
         children?: Snippet;
     }
 
-    let { url, selected = false, onclick, children }: Props = $props();
+    let {
+        url,
+        selected = false,
+        itemNav = false,
+        onclick,
+        children,
+    }: Props = $props();
 </script>
 
 <li>
     <a
         class="s-pagination--item"
         class:is-selected={selected}
+        class:s-pagination--item__nav={itemNav}
         aria-current={selected ? "page" : undefined}
         href={url}
         {onclick}

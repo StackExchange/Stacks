@@ -1,46 +1,25 @@
 ---
 layout: page
 title: Toggle switch
-razor: https://razor.stackoverflow.design/components/toggle
-figma: https://svelte.stackoverflow.design/figma/toggle-switches
-description: A toggle is used to quickly switch between two or more possible states. They are most commonly used for simple “on/off” switches, but can contain multiple options.
+figma: https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=1943-848
+description: A toggle is used to quickly switch between two or more possible states. They are most commonly used for simple “on/off” switches.
 tags: components
 ---
-<section class="stacks-section">
+
+<section class="docs-section">
     {% header "h2", "Classes" %}
-    <div class="overflow-x-auto">
-        <table class="wmn4 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell4" scope="col">Class</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                <tr>
-                    <th scope="row"><code class="stacks-code">.s-toggle-switch</code></th>
-                    <td>Class to apply toggle switch styling to <code class="stacks-code">input[type="checkbox"]</code> or on a parent of multiple <code class="stacks-code">input[type="radio"]</code> elements.</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code class="stacks-code">.s-toggle-switch__multiple</code></th>
-                    <td>Modifies the base container to accept multiple options.</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code class="stacks-code">.s-toggle-switch--label-off</code></th>
-                    <td>Apply to the “Off” or “None” option so it’s highlighted state isn’t lit up green.</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    {% assign docsItems = toggle-switch.classes %}
+    {% assign col2Heading = "" %}
+    {% assign col1Classes = "s-table--cell4" %}
+    {% assign col3Classes = "s-table--cell3" %}
+    {% include "docs-table.html" %}
 </section>
-<section class="stacks-section">
-    {% tip, "warning", "mb24" %}
-        <strong>Deprecation:</strong> <a href="https://github.com/StackExchange/Stacks/pull/1121#issue-1381594434">the markup for toggle switches has changed</a>. Please update your toggle switches to match the markup structure detailed on this page.
-    {% endtip %}
-    {% header "h2", "Examples" %}
-    {% header "h3", "Single" %}
-    <p class="stacks-copy">A single toggle is appropriate for simple “on/off” states eg. enabling emails, markdown editing, or various cookies. Toggle switches take up less space than an “on/off” radio button group and communicate their intended purpose more clearly than a checkbox that toggles functionality. They also provide consistency between desktop and mobile experiences.</p>
-    <div class="stacks-preview">
+
+<section class="docs-section">
+    {% header "h2", "Styles" %}
+    {% header "h3", "Basic toggle" %}
+    <p class="docs-copy">Toggle switches take up less space than an “on/off” radio button group and communicate their intended purpose more clearly than a checkbox that toggles functionality. They also provide consistency between desktop and mobile experiences.</p>
+    <div class="docs-preview">
     {% highlight html %}
 <div class="d-flex ai-center g8">
     <label class="s-label" for="toggle-example-default">…</label>
@@ -59,7 +38,7 @@ tags: components
     <input class="s-toggle-switch" id="toggle-example-checked-disabled" type="checkbox" disabled checked>
 </div>
     {% endhighlight %}
-        <div class="stacks-preview--example d-flex fw-wrap g16">
+        <div class="docs-preview--example d-flex fw-wrap g16">
             <div class="d-flex ai-center g8">
                 <label class="s-label" for="toggle-example-default">Default</label>
                 <input class="s-toggle-switch" id="toggle-example-default" type="checkbox">
@@ -79,49 +58,49 @@ tags: components
         </div>
     </div>
 
-    {% header "h3", "3 or more options" %}
-    <p class="stacks-copy">Toggles switches can be extended to choose between three or more states—in this case, the user is setting the frequency of an email digest. Use the multiple toggle instead of a radio group when unifying the aesthetics is important.</p>
-    <div class="stacks-preview">
+    {% header "h3", "Two or more options with icons" %}
+    <p class="docs-copy">Toggles switches can be extended to choose between two or more states where each state is represented by an icon. Using the <code>__multiple</code> toggle instead of a radio group and making sure labels follow their inputs in this case is important.</p>
+    <div class="docs-preview">
     {% highlight html %}
-<div class="d-flex ai-center g8">
-    <label class="s-label c-default">…</label>
-    <div class="s-toggle-switch s-toggle-switch__multiple">
-        <input type="radio" name="group" id="four" checked>
-        <label for="four" class="s-toggle-switch--label-off">Off</label>
-        <input type="radio" name="group" id="one">
-        <label for="one">Weekly</label>
-        <input type="radio" name="group" id="two">
-        <label for="two">Daily</label>
-        <input type="radio" name="group" id="three">
-        <label for="three">3 hrs</label>
+<fieldset>
+    <div class="d-flex ai-center g8">
+        <legend class="s-label c-default">…</legend>
+        <div class="s-toggle-switch s-toggle-switch__multiple">
+            <input type="radio" name="group1" id="input-1" checked value="value1">
+            <label for="input-1" aria-label="First value" title="First value">@Svg.Icon1</label>
+            <input type="radio" name="group1" id="input-2" value="value2">
+            <label for="input-2" aria-label="Second value" title="Second value">@Svg.Icon2</label>
+            <input type="radio" name="group1" id="input-3" value="value3">
+            <label for="input-3" aria-label="Third value" title="Third value">@Svg.Icon3</label>
+        </div>
     </div>
-</div>
+</fieldset>
     {% endhighlight %}
-        <div class="stacks-preview--example d-flex fd-column g24">
-            <div class="d-flex ai-center g8">
-                <label class="c-default s-label">Email frequency</label>
-                <div class="s-toggle-switch s-toggle-switch__multiple">
-                    <input type="radio" name="example2" id="example2-off" checked value="Off">
-                    <label for="example2-off" class="s-toggle-switch--label-off">Off</label>
-                    <input type="radio" name="example2" id="example2-w" value="Weekly">
-                    <label for="example2-w">Weekly</label>
-                    <input type="radio" name="example2" id="example2-d" value="Daily">
-                    <label for="example2-d">Daily</label>
-                    <input type="radio" name="example2" id="example2-3" value="3 hrs">
-                    <label for="example2-3">3 hrs</label>
+        <div class="docs-preview--example d-flex fd-column g24">
+            <fieldset>
+                <div class="d-flex ai-center g8">
+                    <legend class="c-default s-label">Search Style</legend>
+                    <div class="s-toggle-switch s-toggle-switch__multiple">
+                        <input type="radio" name="example1" id="assistant" checked value="ai">
+                        <label for="assistant" aria-label="AI Search" title="AI Search">{% icon "Assistant" %}</label>
+                        <input type="radio" name="example1" id="search" value="lexical">
+                        <label for="search" aria-label="Lexical Search" title="Lexical Search">{% icon "Search" %}</label>
+                    </div>
                 </div>
-            </div>
-            <div class="d-flex ai-center g8">
-                <label class="c-default s-label">Encryption</label>
-                <div class="s-toggle-switch s-toggle-switch__multiple">
-                    <input type="radio" name="example3" id="example3-off" value="Off">
-                    <label for="example3-off" class="s-toggle-switch--label-off">Off</label>
-                    <input type="radio" name="example3" id="example3-a" value="Automatic" checked>
-                    <label for="example3-a">Automatic</label>
-                    <input type="radio" name="example3" id="example3-m" value="Manual">
-                    <label for="example3-m">Manual</label>
+            </fieldset>
+            <fieldset>
+                <div class="d-flex ai-center g8">
+                    <legend class="c-default s-label">Export Type</legend>
+                    <div class="s-toggle-switch s-toggle-switch__multiple">
+                        <input type="radio" name="example2" id="xml" value="xml">
+                        <label for="xml" aria-label="XML" title="XML">{% icon "CodeDocument" %}</label>
+                        <input type="radio" name="example2" id="pdf" checked value="pdf">
+                        <label for="pdf" aria-label="PDF" title="PDF">{% icon "Document" %}</label>
+                        <input type="radio" name="example2" id="json" value="json">
+                        <label for="json" aria-label="JSON" title="JSON">{% icon "ComposeDocument" %}</label>
+                    </div>
                 </div>
-            </div>
+            </fieldset>
         </div>
     </div>
 </section>
