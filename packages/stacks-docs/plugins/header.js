@@ -1,12 +1,12 @@
 
-const { Icons } = require("@stackoverflow/stacks-icons-legacy");
+const { Icons } = require("@stackoverflow/stacks-icons");
+const linkIcon = Icons.IconLink;
 
 module.exports = {
   configFunction(eleventyConfig) {
     // Header shortcode
     eleventyConfig.addLiquidShortcode("header", function(tag, text) {
       var slug = text.replace(/\s+/g, '-').toLowerCase();
-      var linkIcon = Icons.IconLink;
 
       var baseHeadingClasses = "fl-grow1 mb0 lh-sm";
       var headingClasses = "fs-display1 mb8";
