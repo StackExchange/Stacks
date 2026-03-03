@@ -120,7 +120,7 @@ This motion behavior uses a subtle overshoot, then a held keyframe, and a final 
 This should never be longer than 20 frames to keep the final movement as a snap and not a bounce. This is in the context of 30fps.
 
 <Grid>
-  <GridColumn padding={false} extraClasses="bg-brand-blue-light">
+  <GridColumn padding={false} style="background:#cdd6e4 !important">
     <div class="bg-black ps-absolute fs-fine fc-white t0 l0 px6 py4">Snapback</div>
     <iframe class="w100 d-block" style="aspect-ratio: 16/9" src="https://fast.wistia.net/embed/iframe/ue7m1oqrud?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
   </GridColumn>
@@ -158,7 +158,7 @@ This should never be longer than 20 frames to keep the final movement as a snap 
   </GridColumn>
 </Grid>
 
-## Logo Animations
+## Logo animations
 
 The symbol and lockup animations utilize a combination of the behaviors above.
 
@@ -167,13 +167,13 @@ The symbol and lockup animations utilize a combination of the behaviors above.
     <div class="bg-black ps-absolute fs-fine fc-white t0 l0 px6 py4">Primary lockup</div>
     <iframe class="w100 d-block" style="aspect-ratio: 16/9" src="https://fast.wistia.net/embed/iframe/2q9lik1lub?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
   </GridColumn>
-  <GridColumn padding={false}>
+  <GridColumn padding={false} extraClasses="bg-white">
     <div class="bg-black ps-absolute fs-fine fc-white t0 l0 px6 py4">Symbol</div>
     <iframe class="w100 d-block" style="aspect-ratio: 16/9" src="https://fast.wistia.net/embed/iframe/6o2q3yxa0t?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
   </GridColumn>
 </Grid>
 
-## Type Animations
+## Type animations
 
 Type animations utilize the Click behavior. While headlines animate word-by-word, body copy should animate paragraph by paragraph. When animating two or more lines of text there is a subtle horizontal movement to emulate tabulating mechanics.
 
@@ -185,9 +185,9 @@ Type animations utilize the Click behavior. While headlines animate word-by-word
     <iframe class="w100 d-block" style="aspect-ratio: 16/9" src="https://fast.wistia.net/embed/iframe/y94ibtjy0q?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
 
   </GridColumn>
-  <GridColumn padding={false} extraClasses="bg-brand-blue-light">
+  <GridColumn padding={false} style="background:#cdd6e4 !important">
     <div class="bg-black ps-absolute fs-fine fc-white t0 l0 px6 py4">Body copy</div>
-    <iframe class="w100 d-block" style="aspect-ratio: 1/1" src="https://fast.wistia.net/embed/iframe/y1u9b8p9qt?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
+    <iframe class="w100 d-block" style="aspect-ratio: 1/1.15" src="https://fast.wistia.net/embed/iframe/y1u9b8p9qt?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
   </GridColumn>
 </Grid>
 
@@ -218,8 +218,8 @@ The above transitions can also be applied to more complex layouts.
     <iframe class="w100 d-block" style="aspect-ratio: 16/9" src="https://fast.wistia.net/embed/iframe/gkqcf0z5bv?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
 
   </GridColumn>
-  <GridColumn padding={false} extraClasses="bg-brand-blue-light">
-    <iframe class="w100 d-block" style="aspect-ratio: 4/5" src="https://fast.wistia.net/embed/iframe/8mv15a6lln?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
+  <GridColumn padding={false} extraClasses="bg-white">
+    <iframe class="w100 d-block" style="aspect-ratio: 1/1.59" src="https://fast.wistia.net/embed/iframe/8mv15a6lln?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
   </GridColumn>
 </Grid>
 
@@ -300,18 +300,17 @@ Our core motion principles can also be applied to UI when showing digital intera
   </GridColumn>
   <GridColumn padding={false} extraClasses="bg-white">
     <div class="bg-black ps-absolute fs-fine fc-white t0 l0 px6 py4">Headlines</div>
-    <iframe class="w100 d-block" style="aspect-ratio: 16/9" src="https://fast.wistia.net/embed/iframe/s4ljdixhzq?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
-
-    <Grid>
-      <GridColumn padding={false} extraClasses="bg-white">
-        <iframe class="w100 d-block" style="aspect-ratio: 1/1" src="https://fast.wistia.net/embed/iframe/cxm024kmq4?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
-      </GridColumn>
-
-      <GridColumn padding={false} extraClasses="bg-white">
-        <iframe class="w100 d-block" style="aspect-ratio: 1/1" src="https://fast.wistia.net/embed/iframe/yn4pqdd1s6?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
-      </GridColumn>
-    </Grid>
-
+    <iframe class="w100 d-block" style="aspect-ratio: 1/1" src="https://fast.wistia.net/embed/iframe/s4ljdixhzq?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
+  </GridColumn>
+</Grid>
+<Grid>
+  <GridColumn padding={false} extraClasses="bg-white">
+    <div class="bg-black ps-absolute fs-fine fc-white t0 l0 px6 py4">Buttons</div>
+    <iframe class="w100 d-block" style="aspect-ratio: 1/1" src="https://fast.wistia.net/embed/iframe/cxm024kmq4?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
+  </GridColumn>
+  <GridColumn padding={false} extraClasses="bg-white">
+    <div class="bg-black ps-absolute fs-fine fc-white t0 l0 px6 py4">Hero buttons</div>
+    <iframe class="w100 d-block" style="aspect-ratio: 1/1" src="https://fast.wistia.net/embed/iframe/yn4pqdd1s6?seo=false&videoFoam=true&doNotTrack=true&seo=false&videoFoam=false&fitStrategy=fill&autoPlay=true&muted=true&controlsVisibleOnLoad=false&playbar=false&volumeControl=false&fullscreenButton=false&silentAutoPlay=true&settingsControl=false&plugin[captions-v1]=false&smallPlayButton=false&endVideoBehavior=loop" frameborder="0" scrolling="no" allow="autoplay" loading="lazy"/>
   </GridColumn>
 </Grid>
 
