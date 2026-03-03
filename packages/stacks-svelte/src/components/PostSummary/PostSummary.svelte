@@ -10,8 +10,7 @@
               url: string;
           }
         | undefined;
-    export type ExcerptSize = "sm" | "md" | "lg" | undefined;
-    export type Hotness = "warm" | "hot" | "supernova" | undefined;
+    export type ExcerptLines = 0 | 1 | 2 | 3;
     export type State =
         | "archived"
         | "closed"
@@ -23,203 +22,248 @@
 </script>
 
 <script lang="ts">
-    import PostSummaryContentType from "./PostSummaryContentType.svelte";
-    import PostSummaryStateBadge from "./PostSummaryStateBadge.svelte";
-    import PostSummaryStatsItem from "./PostSummaryStatsItem.svelte";
-    import Badge from "../Badge/Badge.svelte";
-    import Button from "../Button/Button.svelte";
-    import Icon from "../Icon/Icon.svelte";
+    import type { Snippet } from "svelte";
+    import type { SvelteDate } from "svelte/reactivity";
+    import ContentTypeBadge from "./PostSummaryContentType.svelte";
     import Excerpt from "./PostSummaryExcerpt.svelte";
-    import Link from "../Link/Link.svelte";
-    import Popover from "../Popover/Popover.svelte";
-    import PopoverContent from "../Popover/PopoverContent.svelte";
-    import PopoverReference from "../Popover/PopoverReference.svelte";
+    import StateBadge from "./PostSummaryStateBadge.svelte";
     import UserCard from "../UserCard/UserCard.svelte";
+    import UserCardTime from "../UserCard/UserCardTime.svelte";
+    import UserCardBling from "../UserCard/UserCardBling.svelte";
+    import Icon from "../Icon/Icon.svelte";
+    import { IconShield } from "@stackoverflow/stacks-icons-legacy/icons";
     import {
-        IconEllipsisVertical,
-        IconShield,
-    } from "@stackoverflow/stacks-icons-legacy/icons";
-    import { IconCheck } from "@stackoverflow/stacks-icons/icons";
+        IconAnswer16,
+        IconAnswer16Fill,
+        IconVote16Up,
+    } from "@stackoverflow/stacks-icons/icons";
+    import { formatCount } from "@stackoverflow/stacks-utils";
 
-    /**
-     * The URL to navigate to when the post title is clicked
-     */
-    export let href: string;
+    export interface Props {
+        /**
+         * The URL to navigate to when the post title is clicked
+         */
+        href: string;
 
-    /**
-     * The title of the post
-     */
-    export let title: string;
+        /**
+         * The title of the post
+         */
+        title: string;
 
-    /**
-     * The timestamp for the post
-     */
-    export let timestamp: string;
+        /**
+         * The human readable timestamp of the post including any verb describing the action associated with the post (e.g. "asked", "answered", etc.)
+         */
+        readableTimestamp: string;
 
-    /**
-     * Avatar image source of post author
-     */
-    export let userAvatar: string;
+        /**
+         /**
+         * The UTC timestamp of the post
+         * Should be a valid Date, ISO string, or timestamp number.
+         */
+        utcTimestamp: Date | SvelteDate | string;
 
-    /**
-     * The display name of the post author
-     */
-    export let userName: string;
+        /**
+         * Avatar image source of post author
+         */
+        userAvatar: string;
 
-    /**
-     * Link to the post author's profile
-     */
-    export let userProfileUrl: string;
+        /**
+         * The display name of the post author
+         */
+        userName: string;
 
-    /**
-     * The reputation of the post author
-     */
-    export let userReputation: string | number;
+        /**
+         * Link to the post author's profile
+         */
+        userProfileUrl: string;
 
-    /**
-     * Apply styling to the "answers" stats item to indicate the post has an accepted answer
-     */
-    export let acceptedAnswer: boolean = false;
+        /**
+         * The reputation of the post author
+         */
+        userReputation: number;
 
-    /**
-     * Show an activity indicator before the title
-     */
-    export let activityIndicator: boolean = false;
+        /**
+         * Apply styling to the "answers" stats item to indicate the post has an accepted answer
+         */
+        acceptedAnswer?: boolean;
 
-    /**
-     * Count of answers on the post
-     */
-    export let answers: number | string | undefined = undefined;
+        /**
+         * Count of answers on the post
+         */
+        answers?: number;
 
-    /**
-     * The bounty placed on the post
-     */
-    export let bounty: number | undefined = undefined;
+        /**
+         * The bounty placed on the post
+         */
+        bounty?: number;
 
-    /**
-     * The content type of the post to be indicated on the post summary
-     */
-    export let contentType: ContentType = undefined;
+        /**
+         * Count of comments on the post
+         */
+        comments?: number;
 
-    /**
-     * A brief excerpt of the post content
-     */
-    export let excerpt: string | undefined = "";
+        /**
+         * The content type of the post to be indicated on the post summary
+         */
+        contentType?: ContentType;
 
-    /**
-     * The size of the excerpt text
-     * @type {"sm" | "md" | "lg" | undefined} ExcerptSize
-     */
-    export let excerptSize: ExcerptSize = undefined;
+        /**
+         * A brief excerpt of the post content
+         */
+        excerpt?: string;
 
-    /**
-     * Indicate a post is by displaying a shield icon before the title
-     */
-    export let gated: boolean = false;
+        /**
+         * The size of the excerpt text
+         */
+        excerptLines?: ExcerptLines;
 
-    /**
-     * Applies a "hot" styling to the views stats item
-     * @type {"warm" | "hot" | "supernova" | undefined} Hotness
-     */
-    export let hotness: Hotness = undefined;
+        /**
+         * Indicate a post is by displaying a shield icon before the title
+         */
+        gated?: boolean;
 
-    /**
-     * Apply "ignored" styling
-     */
-    export let ignored: boolean = false;
+        /**
+         * The readtime on the post
+         */
+        readTime?: string;
 
-    /**
-     * Apply "minimal" styling
-     */
-    export let minimal: boolean = false;
+        /**
+         * The state of the post which affects its styling
+         */
+        state?: State;
 
-    /**
-     * The readtime on the post
-     */
-    export let readTime: string | undefined = undefined;
+        /**
+         * Count of views on the post
+         */
+        views?: number;
 
-    /**
-     * The state of the post which affects its styling
-     * @type {"archived" | "closed" | "draft" | "deleted" | "pinned" | "review" | undefined} State
-     */
-    export let state: State = undefined;
+        /**
+         * Count of votes on the post
+         */
+        votes?: number;
 
-    /**
-     * Count of views on the post
-     */
-    export let views: number | string | undefined = undefined;
+        /**
+         * Label to be provided for the "accepted answer" checkmark icon on the "answers" stats item
+         */
+        i18nAcceptedAnswerIconTitle?: string;
 
-    /**
-     * Count of votes on the post
-     */
-    export let votes: number | string | undefined = undefined;
+        /**
+         * Text for the views stats item unit
+         */
+        i18nAnswersUnit?: string;
 
-    /**
-     * Apply "watched" styling
-     */
-    export let watched: boolean = false;
+        /**
+         * Text for the bounty stats item unit
+         */
+        i18nBountyUnit?: string;
 
-    /**
-     * Label to be provided for the "accepted answer" checkmark icon on the "answers" stats item
-     */
-    export let i18nAcceptedAnswerIconTitle: string | undefined =
-        "Has accepted answer";
+        /**
+         * Text for the comments stats item unit
+         */
+        i18nCommentsUnit?: string;
 
-    /**
-     * Text for the activity indicator
-     */
-    export let i18nActivityIndicatorText: string = "New activity";
+        /**
+         * Text for the content type
+         */
+        i18nContentTypeText?: string;
 
-    /**
-     * Text for the views stats item unit
-     */
-    export let i18nAnswersUnit: string =
-        Number(answers) === 1 ? "answer" : "answers";
+        /**
+         * Text on gated posts for the shield icon that preceeds the post title
+         */
+        i18nGatedTitle?: string;
 
-    /**
-     * Text for the action menu button
-     */
-    export let i18nActionMenuButtonText: string = "Menu";
+        /**
+         * Text for the reputation bling name
+         */
+        i18nReputationBlingName?: string;
 
-    /**
-     * Text for the content type
-     */
-    export let i18nContentTypeText: string | undefined = undefined;
+        /**
+         * Text for the state badge
+         */
+        i18nStateBadgeText?: string;
 
-    /**
-     * Text on gated posts for the shield icon that preceeds the post title
-     */
-    export let i18nGatedTitle: string | undefined = undefined;
+        /**
+         * Text for the views stats item unit
+         */
+        i18nViewsUnit?: string;
 
-    /**
-     * Text for the state badge
-     */
-    export let i18nStateBadgeText: string | undefined = undefined;
+        /**
+         * Text for the votes stats item unit
+         */
+        i18nVotesUnit?: string;
 
-    /**
-     * Text for the views stats item unit
-     */
-    export let i18nViewsUnit: string = Number(views) === 1 ? "view" : "views";
+        /**
+         * Additional CSS classes added to the element
+         */
+        class?: string;
 
-    /**
-     * Text for the votes stats item unit
-     */
-    export let i18nVotesUnit: string = Number(votes) === 1 ? "vote" : "votes";
+        /**
+         * Snippet for tags
+         */
+        tags?: Snippet | undefined;
 
-    /**
-     * Additional CSS classes added to the element
-     */
-    let className = "";
-    export { className as class };
+        /**
+         * Snippet for answer previews
+         */
+        answerPreviews?: Snippet | undefined;
+    }
 
-    $: classes = getClasses(className, ignored, minimal, state, watched);
+    const {
+        href,
+        title,
+        readableTimestamp,
+        utcTimestamp,
+        userAvatar,
+        userName,
+        userProfileUrl,
+        userReputation,
+        acceptedAnswer = false,
+        answers = undefined,
+        bounty = undefined,
+        comments = undefined,
+        contentType = undefined,
+        excerpt = "",
+        excerptLines = 3,
+        gated = false,
+        readTime = undefined,
+        state = undefined,
+        views = undefined,
+        votes = undefined,
+        i18nAcceptedAnswerIconTitle = "Has accepted answer",
+        i18nAnswersUnit: providedI18nAnswersUnit,
+        i18nBountyUnit = "bounty",
+        i18nCommentsUnit: providedI18nCommentsUnit = undefined,
+        i18nContentTypeText = undefined,
+        i18nGatedTitle = undefined,
+        i18nReputationBlingName = "reputation bling",
+        i18nStateBadgeText = undefined,
+        i18nViewsUnit: providedI18nViewsUnit = undefined,
+        i18nVotesUnit: providedI18nVotesUnit = undefined,
+        class: className = "",
+        tags,
+        answerPreviews,
+    }: Props = $props();
+
+    const i18nAnswersUnit = $derived(
+        providedI18nAnswersUnit ?? (answers === 1 ? "answer" : "answers")
+    );
+
+    const i18nCommentsUnit = $derived(
+        providedI18nCommentsUnit ?? (comments === 1 ? "comment" : "comments")
+    );
+
+    const i18nViewsUnit = $derived(
+        providedI18nViewsUnit ?? (views === 1 ? "view" : "views")
+    );
+
+    const i18nVotesUnit = $derived(
+        providedI18nVotesUnit ?? (votes === 1 ? "vote" : "votes")
+    );
 
     const getClasses = (
         className: string,
-        ignored: boolean,
-        minimal: boolean,
         state: State,
-        watched: boolean
+        acceptedAnswer: boolean
     ) => {
         const base = "s-post-summary";
         let classes = base;
@@ -228,16 +272,8 @@
             classes += ` ${className}`;
         }
 
-        if (ignored) {
-            classes += ` ${base}__ignored`;
-        }
-
-        if (minimal) {
-            classes += ` ${base}__minimal`;
-        }
-
-        if (watched) {
-            classes += ` ${base}__watched`;
+        if (acceptedAnswer) {
+            classes += ` ${base}__answered`;
         }
 
         if (state === "deleted") {
@@ -246,123 +282,143 @@
 
         return classes;
     };
+
+    const classes = $derived(getClasses(className, state, acceptedAnswer));
 </script>
 
+{#snippet userBling()}
+    {#if userReputation}
+        <UserCardBling
+            name={i18nReputationBlingName}
+            type="rep"
+            text={userReputation}
+        />
+    {/if}
+{/snippet}
+
 <div class={classes}>
-    <div class="s-post-summary--stats">
-        {#if state}
-            <PostSummaryStateBadge {state} i18nText={i18nStateBadgeText} />
-        {/if}
-        {#if votes || votes === 0}
-            <PostSummaryStatsItem
-                variant="votes"
-                unit={i18nVotesUnit}
-                number={votes}
-            />
-        {/if}
-        {#if answers || answers === 0}
+    <div class="s-post-summary--stats s-post-summary--sm-hide">
+        <div class="s-post-summary--stats-votes">
+            {#if Number(votes) > 0}+{/if}{votes || "0"}
+            <span class="v-visible-sr">{i18nVotesUnit}</span>
+        </div>
+        <div class="s-post-summary--stats-answers">
             {#if acceptedAnswer}
-                <span class="v-visible-sr">{i18nAcceptedAnswerIconTitle}</span>
-                <Badge
-                    text={`${answers} ${i18nAnswersUnit}`}
-                    type="state"
-                    state="success"
-                    icon={IconCheck}
-                    squared
-                    class="s-post-summary--stats-item"
+                <Icon
+                    src={IconAnswer16Fill}
+                    title={i18nAcceptedAnswerIconTitle}
                 />
             {:else}
-                <PostSummaryStatsItem
-                    variant="answers"
-                    unit={i18nAnswersUnit}
-                    number={answers}
-                />
+                <Icon src={IconAnswer16} />
             {/if}
-        {/if}
-        {#if views || views === 0}
-            <PostSummaryStatsItem
-                variant="views"
-                unit={i18nViewsUnit}
-                number={views}
-                {hotness}
-            />
-        {/if}
-        {#if readTime}
-            <PostSummaryStatsItem unit={readTime} number="" />
-        {/if}
+            {formatCount(answers || 0)}
+            <span class="v-visible-sr">{i18nAnswersUnit}</span>
+        </div>
         {#if bounty}
-            <Badge
-                text={`+${bounty}`}
-                type="state"
-                state="info"
-                important
-                class="s-post-summary--stats-item"
-            />
+            <div class="s-post-summary--stats-bounty">
+                <span>+</span>
+                {formatCount(bounty || 0)}
+                <span class="v-visible-sr">{i18nBountyUnit}</span>
+            </div>
         {/if}
     </div>
     <div class="s-post-summary--content">
-        {#if contentType}
-            <PostSummaryContentType
-                name={contentType.name}
-                href={contentType.url}
-                {i18nContentTypeText}
-            />
-        {/if}
-        <h3 class="s-post-summary--content-title">
-            {#if activityIndicator}
-                <div class="s-activity-indicator">
-                    <div class="v-visible-sr">{i18nActivityIndicatorText}</div>
-                </div>
+        <div class="s-post-summary--sm-show">
+            {#if state && state !== "deleted"}
+                <StateBadge {state} i18nText={i18nStateBadgeText} />
             {/if}
-            <Link {href}>
-                {#if gated}
-                    <Icon src={IconShield} title={i18nGatedTitle} />
-                {/if}
-                {title}
-            </Link>
-        </h3>
-        {#if excerpt}
-            <Excerpt {excerpt} size={excerptSize} />
-        {/if}
-        <div class="s-post-summary--meta">
-            {#if $$slots.tags}
-                <div class="s-post-summary--meta-tags">
-                    <!-- (Optional) Tags associated with the post -->
-                    <slot name="tags" />
-                </div>
-            {/if}
+        </div>
+        <div class="s-post-summary--content-meta">
             <UserCard
-                href={userProfileUrl}
-                size="minimal"
+                profileUrl={userProfileUrl}
+                size="sm"
                 avatar={userAvatar}
                 name={userName}
-                reputation={userReputation}
-                {timestamp}
-            />
-        </div>
-        <!-- (Optional) Answer previews on the post -->
-        <slot name="answerPreviews" />
-        {#if $$slots.actionMenu}
-            <Popover
-                id={Math.random().toString(36).slice(2)}
-                placement="bottom-end"
+                blings={userBling}
             >
-                <PopoverReference>
-                    <Button
-                        class="s-post-summary--content-menu-button"
-                        variant="tonal"
-                    >
-                        <Icon src={IconEllipsisVertical} />
-                        <span class="v-visible-sr"
-                            >{i18nActionMenuButtonText}</span
-                        >
-                    </Button>
-                </PopoverReference>
-                <PopoverContent class="px0 py4 wmx2">
-                    <!-- (Optional) Menu to be displayed when the content menu button is clicked -->
-                    <slot name="actionMenu" />
-                </PopoverContent>
-            </Popover>
+                {#snippet time()}
+                    <UserCardTime
+                        text={readableTimestamp}
+                        timestamp={utcTimestamp}
+                    />
+                {/snippet}
+            </UserCard>
+            <div class="s-post-summary--stats s-post-summary--sm-show">
+                <div class="s-post-summary--stats-votes">
+                    <Icon src={IconVote16Up} />
+                    {formatCount(votes || 0)}
+                </div>
+                <div class="s-post-summary--stats-answers">
+                    {#if acceptedAnswer}
+                        <Icon src={IconAnswer16Fill} />
+                    {:else}
+                        <Icon src={IconAnswer16} />
+                    {/if}
+                    {formatCount(answers || 0)}
+                    <span class="v-visible-sr">{i18nAnswersUnit}</span>
+                </div>
+                {#if bounty}
+                    <div class="s-post-summary--stats-bounty">
+                        <span>+</span>
+                        {formatCount(bounty || 0)}
+                        <span class="v-visible-sr">{i18nBountyUnit}</span>
+                    </div>
+                {/if}
+            </div>
+            <div class="s-post-summary--stats-item">
+                {formatCount(views || 0)}
+                {i18nViewsUnit}
+            </div>
+            {#if comments}
+                <div class="s-post-summary--stats-item">
+                    {formatCount(comments || 0)}
+                    {i18nCommentsUnit}
+                </div>
+            {/if}
+            {#if readTime}
+                <div class="s-post-summary--stats-item">
+                    {readTime}
+                </div>
+            {/if}
+            {#if state && state !== "deleted"}
+                <div class="s-post-summary--sm-hide ml-auto">
+                    <StateBadge {state} i18nText={i18nStateBadgeText} />
+                </div>
+            {/if}
+        </div>
+        <div class="s-post-summary--title">
+            <a class="s-post-summary--title-link" {href}>
+                {#if gated}
+                    <Icon
+                        src={IconShield}
+                        class="s-post-summary--title-icon"
+                        title={i18nGatedTitle}
+                    />
+                {/if}
+                {title}
+            </a>
+        </div>
+        {#if excerpt && excerptLines > 0}
+            <Excerpt {excerpt} lines={excerptLines} />
+        {/if}
+        {#if contentType || tags}
+            <div class="s-post-summary--tags">
+                {#if contentType}
+                    <ContentTypeBadge
+                        name={contentType.name}
+                        href={contentType.url}
+                        {i18nContentTypeText}
+                    />
+                {/if}
+                {#if tags}
+                    {@render tags()}
+                {/if}
+            </div>
+        {/if}
+        {#if answerPreviews}
+            <div class="s-post-summary--answers">
+                {@render answerPreviews()}
+            </div>
         {/if}
     </div>
 </div>

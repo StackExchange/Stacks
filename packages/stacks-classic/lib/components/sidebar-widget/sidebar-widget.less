@@ -1,218 +1,48 @@
+@headings: h1, h2, h3, h4, h5, h6;
+
 .s-sidebarwidget {
-    // COMPONENT-SPECIFIC CUSTOM PROPERTIES
-    --_sw-bc: var(--bc-medium);
-
-    // MODIFIERS
-    &:not(.s-anchors) {
-        a:not(.button):not(.s-tag):not(.post-tag):not(.s-btn):not(.s-sidebarwidget--action):not(.s-user-card--link) {
-            &,
-            &:visited {
-                color: var(--black-600);
-            }
-        }
-    }
-
-    // VARIANTS
-    .alternate-color(blue);
-    .alternate-color(yellow);
-    .alternate-color(green);
-
     // CHILD ELEMENTS
-    & &--action {
-        color: var(--blue-400);
-        font-size: var(--fs-body1);
-        font-weight: normal;
-        margin-left: auto;
-    }
-
-    & &--content {
-        &:not(table) {
-            &:not(.s-sidebarwidget__items),
-            &:not(.s-sidebarwidget__block-items) .s-sidebarwidget--item {
-                display: flex;
-            }
+    & &--content {        
+        .s-sidebarwidget--action {
+            font-size: var(--fs-fine);
+            margin-left: var(--su16);
+            align-self: flex-start;
         }
 
-        + .s-sidebarwidget--content {
-            border-top: var(--su-static1) solid var(--bc-light);
-        }
-
-        &.s-sidebarwidget__items {
-            &,
-            &.s-sidebarwidget__block-items .s-sidebarwidget--item {
-                display: block;
-            }
-
-            padding: var(--su6) var(--su16); // the items themselves provide part of the spacing, so the content padding needs to account for that
-        }
-
-        &:active {
-            outline: none;
-        }
-        
-
-        margin: 0;
-        padding: var(--su16);
+        display: flex;
+        padding: var(--su12) 0 var(--su16) 0;
+        font-size: var(--fs-body2);
     }
 
     & &--header {
-        &:first-child {
-            border-top: none;
+        > @{headings} {
+            margin: 0;
+            padding-right: var(--su6);
+            font-size: var(--fs-body1);
+            font-weight: 500;
         }
 
-        + .s-expandable:not(.is-expanded) {
-            margin-bottom: var(--su16);
-        }
-
-        &.s-sidebarwidget {
-            &__expanding-control {
-                &:before {
-                    border: calc(var(--su-static4) + var(--su-static1)) solid transparent;
-                    border-left-color: var(--black-400);
-                    border-right-width: 0;
-                    content: '';
-                    float: left;
-                    margin-right: var(--su12);
-                    margin-top: calc(calc(var(--lh-base) * 1em) / 2 - 5px); // 1.3 is our standard line height
-                    transition: transform 0.3s cubic-bezier(0.4, 0.4, 0.6, 1);
-                }
-
-                &[aria-expanded='true']:before {
-                    transform: rotate(90deg);
-                }
-
-                cursor: pointer;
-            }
-
-            &__small-bold-text {
-                .s-sidebarwidget--action {
-                    font-weight: normal;
-                    line-height: calc(var(--lh-base) * var(--fs-caption)); // line-height should be the same as in the outside element, so the header and action baselines line up
-                }
-
-                font-size: var(--fs-caption);
-                font-weight: bold;
-            }
-        }
-
-        &:active {
-            outline: none;
+        .s-sidebarwidget--action {
+            margin-left: auto;
         }
 
         align-items: center;
-        border-top: var(--su-static1) solid var(--bc-light);
-        color: var(--black-600);
+        display: flex;
+        padding: var(--su4) 0;
+    }
+
+    & &--footer {
+        .s-sidebarwidget--action {
+            flex: 1;
+        }
+        
         display: flex;
         font-size: var(--fs-body2);
-        font-weight: bold;
-        justify-content: flex-start;
-        line-height: var(--lh-xs);
-        margin: 0;
-        padding: var(--su16) var(--su16) 0;
     }
 
-    & &--item {
-        &,
-        & > :first-child {
-            &[aria-current="true"],
-            &[aria-current="page"] {
-                &:before {
-                    border-left-color: var(--theme-primary);
-                    border-left-style: solid;
-                    border-left-width: calc(var(--su-static1) * 3); // 3px
-                    content: '';
-                    height: calc(100% + var(--su16));
-                    left: 0;
-                    margin-left: calc(var(--su16) * -1 - var(--su-static1)); // the orange selection indicator overlaps with the widget border
-                    margin-top: calc(var(--su16) / 2 * -1);
-                    position: absolute;
-                }
-
-                a { // TODO: this isn't the best way to go about this. There should be a "is current" highlight without font modification for more complex cases
-                    &,
-                    &:visited {
-                        color: inherit;
-                    }
-                }
-
-                color: var(--black);
-                font-weight: bold;
-                position: relative;
-            }
-        }
-
-        margin: var(--su12) 0;
+    & &--action:is(a, button) {
+        white-space: nowrap;
     }
 
-    & &--subnav {
-        li {
-            &[aria-current="page"],
-            &[aria-current="true"] {
-                a {
-                    &,
-                    &:visited {
-                        color: inherit;
-                    }
-                }
-
-                #stacks-internals #bullet-arrow(var(--theme-primary));
-                color: var(--black);
-                font-weight: bold;
-            }
-
-            #stacks-internals #bullet-arrow(var(--black-225));
-            background-position: 0 calc((1.2em - calc(var(--su-static8) + var(--su-static2))) / 2); // 0 ((1.2em - 10) / 2)
-            background-repeat: no-repeat;
-            background-size: auto calc(var(--su-static8) + var(--su-static2)); // auto 10px
-            margin-top: var(--su-static12);
-            padding-left: var(--su-static16);
-        }
-
-        list-style-type: none;
-        margin-left: var(--su8);
-        padding-left: 0;
-    }
-
-    & table&--content&__items {
-        tr.s-sidebarwidget--item {
-            td {
-                padding: 0;
-            }
-
-            display: table-row;
-        }
-
-        border-collapse: separate;
-        border-spacing: var(--su16) var(--su12);
-        padding: var(--su6) 0 0;
-    }
-
-    background-color: var(--white);
-    border: var(--su-static1) solid var(--_sw-bc);
-    border-radius: var(--br-md);
     font-size: var(--fs-body1);
-}
-
-// COLOR ALTERNATIVES
-.alternate-color(@name) {
-    &.s-sidebarwidget__@{name} {
-        --_sw-bc: var(~"--@{name}-300");
-
-        .highcontrast-mode({
-            --_sw-bc: var(~"--@{name}-500");
-        });
-
-        &:after,
-        .s-sidebarwidget--content + .s-sidebarwidget--content,
-        .s-sidebarwidget--header {
-            border-color: var(--_sw-bc);
-        }
-
-        .s-sidebarwidget--header {
-            color: var(--fc-medium);
-        }
-
-        background-color: var(~"--@{name}-100");
-        border-color: var(--_sw-bc);
-    }
 }

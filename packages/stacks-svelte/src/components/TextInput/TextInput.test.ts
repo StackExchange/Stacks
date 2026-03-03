@@ -3,6 +3,7 @@ import { expect } from "@open-wc/testing";
 import { render, screen } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import sinon from "sinon";
+import { createRawComponent } from "../../../test-utils";
 
 import TextInput from "./TextInput.svelte";
 
@@ -98,6 +99,20 @@ describe("TextInput", () => {
         expect(requiredSymbol).to.have.attr("title", "Required");
     });
 
+    it("should render a label status badge when labelStatus and labelStatusText are provided", () => {
+        render(TextInput, {
+            id: "example-input",
+            label: "example label",
+            labelStatus: "warning",
+            labelStatusText: "Beta",
+        });
+
+        const badge = screen.getByText("Beta");
+        expect(badge).to.exist;
+        expect(badge).to.have.class("s-badge");
+        expect(badge).to.have.class("s-badge__warning");
+    });
+
     it("should render the disabled attribute on the input", () => {
         render(TextInput, {
             id: "example-input",
@@ -171,6 +186,39 @@ describe("TextInput", () => {
         expect(screen.getByRole("textbox")).to.have.class(
             "fc-theme-secondary-400"
         );
+    });
+
+    it("should render with an initial value", async () => {
+        render(TextInput, {
+            id: "example-input",
+            label: "example label",
+            value: "initial",
+        });
+        expect(screen.getByRole("textbox")).to.have.value("initial");
+    });
+
+    it("should support bind:value", async () => {
+        const component = await createRawComponent(`
+            <script>
+                import TextInput from "$root/components/TextInput/TextInput.svelte";
+                let value = $state("initial");
+            </script>
+            <TextInput id="bind-test" label="bindable input" bind:value />
+            <div data-testid="output">{value}</div>
+        `);
+
+        render(component);
+
+        const input = screen.getByRole("textbox");
+        const output = screen.getByTestId("output");
+
+        expect(input).to.have.value("initial");
+        expect(output).to.have.text("initial");
+
+        await user.type(input, " (edited)");
+
+        expect(input).to.have.value("initial (edited)");
+        expect(output).to.have.text("initial (edited)");
     });
 
     // slots

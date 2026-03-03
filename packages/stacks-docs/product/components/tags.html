@@ -6,62 +6,56 @@ figma: https://svelte.stackoverflow.design/figma/tags
 description: Tags are an interactive, community-generated keyword that allow communities to label, organize, and discover related content. Tags are maintained by their respective communities
 tags: components
 ---
-<section class="stacks-section">
+
+<section class="docs-section">
     {% header "h2", "Classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell3" scope="col">Class</th>
-                    <th class="s-table--cell2" scope="col">Applied to</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                {% for item in tags-component.classes %}
-                    <tr>
-                        <th scope="row"><code class="stacks-code">{{ item.class }}</code></th>
-                        <td><code class="stacks-code bg-white">{{ item.applies }}</td>
-                        <td class="p8">{{ item.description }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    {% assign docsItems = tags-component.classes %}
+    {% include "docs-table.html" %}
+</section>
+
+<section class="docs-section">
     {% header "h2", "Accessibility" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         Tags should be focusable and navigable with the keyboard. 
         The various tag states (Required, Moderator, Watched, Ignored) are visually distinct but do not include any text indicators for screen readers. 
-        For that reason it is recommended to provide additional context using hidden text elements with the <code class="stacks-code">v-visible-sr</code> class.
+        For that reason it is recommended to provide additional context using hidden text elements with the <code>v-visible-sr</code> class.
     </p>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Examples" %}
     {% header "h3", "Default tag" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
-<a class="s-tag" href="#">jquery</a>
-<span class="s-tag">javascript <button class="s-tag--dismiss"><span class="v-visible-sr">Dismiss javascript tag</span>@Svg.ClearSm</button></span>
-<a class="s-tag" href="#"><img class="s-tag--sponsor" src="https://i.stack.imgur.com/tKsDb.png" width="16" height="18" alt="Google Android"> android <div class="v-visible-sr">Sponsored tag</div></a>
+<a class="s-tag" href="#">…</a>
+<span class="s-tag">… <button class="s-tag--dismiss"><span class="v-visible-sr">Dismiss … tag</span>@Svg.ClearSm</button></span>
+<a class="s-tag" href="…"><img class="s-tag--sponsor" src="…" …> … <div class="v-visible-sr">Sponsored tag</div></a>
+<span class="s-tag">
+    <a href="…">…</a>
+    <button class="s-tag--dismiss"><span class="v-visible-sr">Dismiss … tag</span>@Svg.ClearSm</button>
+</span>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex g4 fw-wrap">
                 <a class="s-tag" href="#">jquery</a>
                 <span class="s-tag">javascript <button class="s-tag--dismiss"><span class="v-visible-sr">Dismiss javascript tag</span>{% icon "ClearSm" %}</button></span>
                 <a class="s-tag" href="#"><img class="s-tag--sponsor" src="https://i.stack.imgur.com/tKsDb.png" width="16" height="18" alt="Google Android"> android <div class="v-visible-sr">Sponsored tag</div></a>
+                <span class="s-tag">
+                    <a href="#">javascript</a>
+                    <button class="s-tag--dismiss"><span class="v-visible-sr">Dismiss javascript tag</span>{% icon "ClearSm" %}</button>
+                </span>
             </div>
         </div>
     </div>
 
 {% header "h3", "Moderator" %}
-<div class="stacks-preview">
+<div class="docs-preview">
 {% highlight html %}
 <a class="s-tag s-tag__moderator" href="#">status-completed <div class="v-visible-sr">Moderator tag</div></a>
 <span class="s-tag s-tag__moderator">status-bydesign <div class="v-visible-sr">Moderator tag</div><button class="s-tag--dismiss"><span class="v-visible-sr">Dismiss status-bydesign tag</span>@Svg.ClearSm</button></span>
 <a class="s-tag s-tag__moderator" href="#">status-planned <div class="v-visible-sr">Moderator tag</div></a>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex g4 fw-wrap">
                 <a class="s-tag s-tag__moderator" href="#">status-completed <div class="v-visible-sr">Moderator tag</div></a>
                 <span class="s-tag s-tag__moderator">status-bydesign <div class="v-visible-sr">Moderator tag</div><button class="s-tag--dismiss"><span class="v-visible-sr">Dismiss status-bydesign tag</span>{% icon "ClearSm" %}</button></span>
@@ -71,13 +65,13 @@ tags: components
     </div>
 
 {% header "h3", "Required" %}
-<div class="stacks-preview">
+<div class="docs-preview">
 {% highlight html %}
 <a class="s-tag s-tag__required" href="#">discussion <div class="v-visible-sr">Required tag</div></a>
 <span class="s-tag s-tag__required">feature-request <div class="v-visible-sr">Required tag</div><button class="s-tag--dismiss"><span class="v-visible-sr">Dismiss feature-request tag</span>@Svg.ClearSm</button></span>
 <a class="s-tag s-tag__required" href="#">bug <div class="v-visible-sr">Required tag</div></a>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex g4 fw-wrap">
                 <a class="s-tag s-tag__required" href="#">discussion <div class="v-visible-sr">Required tag</div></a>
                 <span class="s-tag s-tag__required">feature-request <div class="v-visible-sr">Required tag</div><button class="s-tag--dismiss"><span class="v-visible-sr">Dismiss feature-request tag</span>{% icon "ClearSm" %}</button></span>
@@ -87,11 +81,11 @@ tags: components
     </div>
 
 {% header "h3", "Watched" %}
-<div class="stacks-preview">
+<div class="docs-preview">
 {% highlight html %}
 <a class="s-tag s-tag__watched" href="#">asp-net <div class="v-visible-sr">Watched tag</div></a>
 {% endhighlight %}
-    <div class="stacks-preview--example">
+    <div class="docs-preview--example">
         <div class="d-flex g4 fw-wrap">
             <a class="s-tag s-tag__watched" href="#">asp-net <div class="v-visible-sr">Watched tag</div></a>
         </div>
@@ -99,11 +93,11 @@ tags: components
 </div>
 
 {% header "h3", "Ignored" %}
-<div class="stacks-preview">
+<div class="docs-preview">
 {% highlight html %}
 <a class="s-tag s-tag__ignored" href="#">netscape <div class="v-visible-sr">Ignored tag</div></a>
 {% endhighlight %}
-    <div class="stacks-preview--example">
+    <div class="docs-preview--example">
         <div class="d-flex g4 fw-wrap">
             <a class="s-tag s-tag__ignored" href="#">netscape <div class="v-visible-sr">Ignored tag</div></a>
         </div>
@@ -112,24 +106,11 @@ tags: components
 
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Sizes" %}
-    <table class="s-table s-table__bx-simple">
-        <thead>
-            <tr>
-                <th class="s-table--cell2" scope="col">Class</th>
-                <th class="s-table--cell2" scope="col">Applied to</th>
-                <th scope="col">Example</th>
-            </tr>
-        </thead>
-        <tbody class="fs-caption">
-            {% for item in tags-component.sizes %}
-                <tr>
-                    <th scope="row"><code class="stacks-code">{% if item.class == "N/A" %}.s-tag{% else %}.{{ item.class }}{% endif %}</code></th>
-                    <td><code class="stacks-code bg-white">{% if item.class == "N/A" %}<em class="fc-light">{{ item.class }}</em>{% else %}.s-tag{% endif %}</td>
-                    <td class="p8"><span class="s-tag {{ item.class }}">css</span></td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% assign docsItems = tags-component.sizes %}
+    {% assign col2Heading = "" %}
+    {% assign col3Heading = "Applied to" %}
+    {% assign col4Heading = "Example" %}
+    {% include "docs-table.html" %}
 </section>

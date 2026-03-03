@@ -4,16 +4,16 @@ title: Responsiveness
 description: All email templates use a hybrid approach to reconfigure the layout for different screen sizes in all email clients (regardless of media query support). Once a mobile-friendly baseline is set, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries">media queries</a> can be used to progressively enhance emails further in clients that support them.
 ---
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Stacking columns" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         Media queries are a standard way to optimize layouts for small screen sizes on the web. In the email world, though, there are some “small screen scenarios” where media queries aren’t supported (eg. <a href="https://cdn-images-1.medium.com/max/2000/1*JGe_A7b8LiHZfeSGzNZE9w.png">some Gmail Apps</a>) or only partially supported (eg. some Android device native mail apps).
     </p>
     {% header "h3", "Hybrid design" %}
-    <p class="stacks-copy">
-        Hybrid design uses <code class="stacks-code">inline-block</code>, <code class="stacks-code">max-width</code>, <code class="stacks-code">min-width</code>, and <a href="/email/base/mso#ghost-tables">ghost tables</a> stack columns without media queries while imposing a fixed, desktop width for Outlook.
+    <p class="docs-copy">
+        Hybrid design uses <code>inline-block</code>, <code>max-width</code>, <code>min-width</code>, and <a href="/email/base/mso#ghost-tables">ghost tables</a> stack columns without media queries while imposing a fixed, desktop width for Outlook.
     </p>
-    <div class="stacks-preview _preview-none mb24">
+    <div class="docs-preview _preview-none mb24">
 {% highlight html %}
 <tr>
     <td>
@@ -41,105 +41,106 @@ description: All email templates use a hybrid approach to reconfigure the layout
 </tr>
 {% endhighlight %}
     </div>
-    <p class="stacks-copy">
+    <p class="docs-copy">
          In this example, the two columns will display side-by-side on wide, desktop displays and stack on top of each other in narrow, mobile displays. The <a href="/email/templates/promotional">promotional email template</a> uses this technique in a few places.
     </p>
     {% header "h3", "Media queries" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
          Once a hybrid baseline is set, media queries can be used to fine-tune a responsive email layout. Since columns are (hopefully) already stacked, media queries can be used to change the width and text alignment in small viewports.
     </p>
-    <table class="s-table s-table__bx-simple mb32">
+    <table class="docs-table s-table s-table__bx-simple mb32">
         <thead>
             <tr>
-                <th class="s-table--cell3" scope="col">Class</th>
+                <th class="s-table--cell4" scope="col">Class</th>
                 <th scope="col">Description</th>
            </tr>
         </thead>
         <tbody>
             <tr>
-                <th class="ff-mono">stack-column</th>
+                <th><code>stack-column</code></th>
                 <td>Makes table columns 100% wide and stacks them in source order.</td>
             </tr>
             <tr>
-                <th class="ff-mono">stack-column-center</th>
+                <th><code>stack-column-center</code></th>
                 <td>Makes table columns 100% wide, stacks them in source order, and centers everything inside.</td>
             </tr>
         </tbody>
     </table>
     {% include 'notice-email-head-support.html' %}
 </section>
-<section class="stacks-section">
+
+<section class="docs-section">
     {% header "h2", "Responsive spacing" %}
-    <p class="stacks-copy">
+    <p class="docs-copy">
         Default desktop padding for email templates is <strong>30px</strong>. Utility classes can be used to reduce spacing to <strong>20px</strong> or <strong>remove padding</strong> on smaller viewports. Useful for tightening up email layouts on mobile.
     </p>
-    <table class="s-table s-table__bx-simple mb32">
+    <table class="docs-table s-table s-table__bx-simple mb32">
         <thead>
             <tr>
-                <th class="s-table--cell2" scope="col">Class</th>
+                <th class="s-table--cell3" scope="col">Class</th>
                 <th scope="col">Output</th>
            </tr>
         </thead>
         <tbody>
             <tr class="ff-mono">
-                <th>.sm-p-none</th>
+                <th><code>.sm-p-none</code></th>
                 <td>padding: 0;</td>
             </tr>
             <tr class="ff-mono">
-                <th>.sm-pt-none</th>
+                <th><code>.sm-pt-none</code></th>
                 <td>padding-top: 0;</td>
             </tr>
             <tr class="ff-mono">
-                <th>.sm-pb-none</th>
+                <th><code>.sm-pb-none</code></th>
                 <td>padding-bottom: 0;</td>
             </tr>
             <tr class="ff-mono">
-                <th>.sm-pr-none</th>
+                <th><code>.sm-pr-none</code></th>
                 <td>padding-right: 0;</td>
             </tr>
             <tr class="ff-mono">
-                <th>.sm-pl-none</th>
+                <th><code>.sm-pl-none</code></th>
                 <td>padding-left: 0;</td>
             </tr>
             <tr class="ff-mono">
-                <th>.sm-py-none</th>
+                <th><code>.sm-py-none</code></th>
                 <td>padding-top: 0; padding-bottom: 0;</td>
             </tr>
             <tr class="ff-mono">
-                <th>.sm-px-none</th>
+                <th><code>.sm-px-none</code></th>
                 <td>padding-right: 0; padding-left: 0;</td>
             </tr>
 
             <tr class="ff-mono">
-                <th>.sm-p</th>
+                <th><code>.sm-p</code></th>
                 <td>padding: 20px;</td>
             </tr>
             <tr class="ff-mono">
-                <th>.sm-pt</th>
+                <th><code>.sm-pt</code></th>
                 <td>padding-top: 20px;</td>
             </tr>
             <tr class="ff-mono">
-                <th>.sm-pb</th>
+                <th><code>.sm-pb</code></th>
                 <td>padding-bottom: 20px;</td>
             </tr>
             <tr class="ff-mono">
-                <th>.sm-pr</th>
+                <th><code>.sm-pr</code></th>
                 <td>padding-right: 20px;</td>
             </tr>
             <tr class="ff-mono">
-                <th>.sm-pl</th>
+                <th><code>.sm-pl</code></th>
                 <td>padding-left: 20px;</td>
             </tr>
             <tr class="ff-mono">
-                <th>.sm-py</th>
+                <th><code>.sm-py</code></th>
                 <td>padding-top: 20px; padding-bottom: 20px;</td>
             </tr>
             <tr class="ff-mono">
-                <th>.sm-px</th>
+                <th><code>.sm-px</code></th>
                 <td>padding-right: 20px; padding-left: 20px;</td>
             </tr>
             <tr class="ff-mono">
-                <th>.sm-mb</th>
+                <th><code>.sm-mb</code></th>
                 <td>margin-bottom: 20px;</td>
             </tr>
         </tbody>

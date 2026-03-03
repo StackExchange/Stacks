@@ -13,7 +13,7 @@ describe("tooltip", () => {
     it("should make the tooltip element visible on hover (after a delay)", async () => {
         const trigger = await fixture(html`
             <button
-                class="s-btn s-btn__filled"
+                class="s-btn"
                 role="button"
                 data-controller="s-tooltip"
                 title="tooltip content"
@@ -67,7 +67,7 @@ describe("tooltip", () => {
     it("should continue to show the tooltip if focus is moved to an element within the tooltip", async () => {
         await fixture(html`
             <button
-                class="s-btn s-btn__filled"
+                class="s-btn"
                 role="button"
                 aria-describedby="tooltip-example"
                 data-controller="s-tooltip"
@@ -99,7 +99,7 @@ describe("tooltip", () => {
     it("should hide the tooltip if focus is moved to an element outside the tooltip and trigger", async () => {
         await fixture(html`
             <button
-                class="s-btn s-btn__filled"
+                class="s-btn"
                 role="button"
                 aria-describedby="tooltip-example"
                 data-controller="s-tooltip"

@@ -16,6 +16,11 @@
 
     // CONTEXTUAL STYLES
     .highcontrast-mode({
+        &:is(a),
+        a[href] {
+            text-decoration: underline;
+        }
+
         &:not(&__moderator):not(&__required) {
             --_ta-bc: var(--theme-tag-border-color, var(--black-300));
             --_ta-bc-hover: var(--theme-tag-hover-border-color, var(--black-300));
@@ -49,10 +54,10 @@
             background-color: currentColor;
             content: "";
             display: block;
-            height: calc(var(--su-static16) - var(--su-static2));
+            height: calc(var(--su16) - var(--su2));
             -webkit-mask-size: contain;
             mask-size: contain;            
-            width: calc(var(--su-static16) - var(--su-static2));
+            width: calc(var(--su16) - var(--su2));
         }
     }
 
@@ -105,6 +110,15 @@
     }
 
     // CHILD ELEMENTS
+    a {
+        &:focus-visible {
+            .focus-styles();
+        }
+
+        color: var(--_ta-fc) !important;
+        margin: calc(var(--_ta-pt) * -1) calc(var(--_ta-pr) * -1) calc(var(--_ta-pb) * -1) calc(var(--_ta-pl) * -1);
+        padding: var(--_ta-pt) var(--_ta-pr) var(--_ta-pb) var(--_ta-pl);
+    }
     // Dismiss
     &:has(> &--dismiss) {
         --_ta-pr: var(--su2);
@@ -141,12 +155,17 @@
             height: 100%;
         }
 
-        max-width: calc(var(--su-static16) + var(--su-static2));
+        max-width: calc(var(--su16) + var(--su2));
         margin: calc(var(--_ta-pt) * -1) 0 calc(var(--_ta-pb) * -1) 0;
     }
 
     // INTERACTION
-    a& {
+    &:has([href]),
+    a {
+        text-decoration: none;
+    }
+
+    a:not([class]) {
         &:hover,
         &:active {
             background-color: var(--_ta-bg-hover);
@@ -160,11 +179,11 @@
     }
 
     background-color: var(--_ta-bg);
-    border: var(--su-static1) solid var(--_ta-bc);
+    border: var(--su1) solid var(--_ta-bc);
     color: var(--_ta-fc);
     font-size: var(--_ta-fs);
     padding: var(--_ta-pt) var(--_ta-pr) var(--_ta-pb) var(--_ta-pl);
-
+    
     align-items: center;
     display: inline-flex;
     gap: var(--su4);

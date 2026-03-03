@@ -6,69 +6,67 @@
 <script lang="ts">
     import type { HTMLTextareaAttributes } from "svelte/elements";
     import type { Snippet } from "svelte";
+    import type { BadgeState } from "../Badge/Badge.svelte";
     import Icon from "../Icon/Icon.svelte";
     import Label from "../Label/Label.svelte";
     import {
         IconAlert,
-        IconAlertCircle,
-        IconCheckmark,
-    } from "@stackoverflow/stacks-icons-legacy/icons";
+        IconAlertFill,
+        IconCheck,
+    } from "@stackoverflow/stacks-icons/icons";
 
     interface Props extends Omit<HTMLTextareaAttributes, "size"> {
         /**
          * `id` attribute of the text input
-         * @type {string}
          */
         id: string;
         /**
          * The label associated with the input
-         * @type {string}
          */
         label: string;
         /**
+         * The optional status type of the label
+         */
+        labelStatus?: BadgeState;
+        /**
+         * The optional text to display for the label status
+         */
+        labelStatusText?: string;
+        /**
          * Sets the disabled state of the input
-         * @type {boolean}
          */
         disabled?: boolean;
         /**
          * The visiblity of the label element
-         * @type {boolean}
          */
         hideLabel?: boolean;
         /**
          * Name attribute of the textarea
-         * @type {string | undefined}
          */
         name?: string | undefined;
         /**
          * Placeholder text for the input
-         * @type {string}
          */
         placeholder?: string;
         /**
          * Sets the readonly state of the input
-         * @type {boolean}
          */
         readonly?: boolean;
         /**
          * Make the input required and show required label status
-         * @type {boolean}
          */
         required?: boolean;
         /**
          * The size of the text input
-         * @type {"" | "sm" | "lg"} Size
          */
         size?: Size;
         /**
          * The size of the text input
-         * @type {"" | "error" | "success" | "warning"} State
          */
         state?: State;
 
         /**
          * Additional CSS classes added to the underlying HTML input element
-         * @type {string}
          */
         class?: string;
         /**
@@ -90,6 +88,8 @@
     let {
         id,
         label,
+        labelStatus,
+        labelStatusText,
         disabled = false,
         hideLabel = false,
         name = undefined,
@@ -123,7 +123,7 @@
 </script>
 
 <div
-    class="d-flex fd-column gy4"
+    class="s-form-group"
     class:has-error={state === "error"}
     class:has-success={state === "success"}
     class:has-warning={state === "warning"}
@@ -134,13 +134,15 @@
         {size}
         {required}
         {i18nRequiredText}
+        status={labelStatus}
+        statusText={labelStatusText}
     >
         {label}
     </Label>
 
     {#if description}
         <!-- Renders a description between the label and input. -->
-        <p class="s-description mb0 mtn2" id={`${id}-description`}>
+        <p class="s-description" id={`${id}-description`}>
             {@render description()}
         </p>
     {/if}
@@ -166,9 +168,9 @@
         {#if state}
             <div class="s-input-icon">
                 {#if state === "error"}
-                    <Icon src={IconAlertCircle} />
+                    <Icon src={IconAlertFill} />
                 {:else if state === "success"}
-                    <Icon src={IconCheckmark} />
+                    <Icon src={IconCheck} />
                 {:else}
                     <Icon src={IconAlert} />
                 {/if}

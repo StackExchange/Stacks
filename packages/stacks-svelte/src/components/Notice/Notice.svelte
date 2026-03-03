@@ -5,18 +5,31 @@
         | "info"
         | "success"
         | "warning"
+        | "featured"
+        | "activity"
         | undefined;
 </script>
 
 <script lang="ts">
     import type { Snippet } from "svelte";
     import Icon from "../Icon/Icon.svelte";
+    import Link from "../Link/Link.svelte";
+    import {
+        IconAlert,
+        IconAlertFill,
+        IconInfo,
+        IconCheck,
+        IconStar,
+        IconNotification,
+        IconHelp,
+        IconCross,
+    } from "@stackoverflow/stacks-icons/icons";
     import type { AriaRole } from "svelte/elements";
 
     interface Props {
         /**
          * The variant of the notice
-         * @type {"" | "danger" | "info" | "success" | "warning"}
+         * @type {"" | "danger" | "info" | "success" | "warning" | "featured" | "activity"}
          */
         variant?: Variant;
 
@@ -31,10 +44,6 @@
         role?: AriaRole | undefined | null;
 
         /**
-         * The icon to display within the badge
-         */
-        icon?: string | undefined;
-        /**
          * The title attribute for the icon
          */
         iconTitle?: string | undefined;
@@ -43,6 +52,21 @@
          * Additional CSS classes added to the element
          */
         class?: string;
+
+        /**
+         * Whether to include a dismiss button on the notice or not
+         */
+        dismissible?: boolean;
+
+        /**
+         * Optional dismiss event handler
+         */
+        onDismiss?: () => void;
+
+        /**
+         * Dismiss button label override
+         */
+        i18nDismissButtonLabel?: string;
 
         /**
          * Snippet for the button content
@@ -56,15 +80,24 @@
     }
 
     const {
-        variant = undefined,
+        variant = "",
         important = false,
         role = "status",
-        icon = undefined,
-        iconTitle = undefined,
+        iconTitle,
         class: className = "",
+        dismissible = false,
+        onDismiss = () => {},
         children,
         actions,
+        i18nDismissButtonLabel = "Dismiss",
     }: Props = $props();
+
+    let visible = $state(true);
+
+    const handleDismiss = () => {
+        visible = false;
+        onDismiss?.();
+    };
 
     const getClasses = (
         className: string,
@@ -86,28 +119,73 @@
             classes += ` ${base}__important`;
         }
 
-        if (icon || actions) {
-            classes += ` d-flex ai-center gx8`;
-        }
-
-        if (actions) {
-            classes += `  p8 pl16`;
-        }
-
         return classes;
     };
 
+    const getIcon = (variant?: Variant) => {
+        if (variant == "danger") {
+            return {
+                icon: IconAlertFill,
+                title: iconTitle || "Danger",
+            };
+        } else if (variant == "warning") {
+            return {
+                icon: IconAlert,
+                title: iconTitle || "Warning",
+            };
+        } else if (variant == "info") {
+            return {
+                icon: IconInfo,
+                title: iconTitle || "Information",
+            };
+        } else if (variant == "success") {
+            return {
+                icon: IconCheck,
+                title: iconTitle || "Success",
+            };
+        } else if (variant == "featured") {
+            return {
+                icon: IconStar,
+                title: iconTitle || "Featured",
+            };
+        } else if (variant == "activity") {
+            return {
+                icon: IconNotification,
+                title: iconTitle || "Activity",
+            };
+        } else {
+            return {
+                icon: IconHelp,
+                title: iconTitle || "Help",
+            };
+        }
+    };
+
     const classes = $derived(getClasses(className, variant, important));
+    const iconInfo = $derived(getIcon(variant));
 </script>
 
-<div class={classes} {role}>
-    {#if icon}
-        <Icon src={icon} title={iconTitle} />
-    {/if}
-    <p class="m0 fl-grow1">{@render children()}</p>
-    {#if actions}
-        <div class="d-flex">
-            {@render actions()}
-        </div>
-    {/if}
-</div>
+{#if visible}
+    <div class={classes} {role}>
+        <span class="s-notice--icon">
+            <Icon src={iconInfo.icon} title={iconInfo.title} />
+        </span>
+        {@render children()}
+        {#if actions || dismissible}
+            <div class="s-notice--actions">
+                {#if actions}
+                    {@render actions()}
+                {/if}
+                {#if dismissible}
+                    <Link
+                        class="s-notice--dismiss"
+                        onclick={handleDismiss}
+                        aria-label={i18nDismissButtonLabel}
+                    >
+                        <Icon src={IconCross} />
+                    </Link>
+                {/if}
+            </div>
+        {/if}
+    </div>
+{/if}

@@ -129,12 +129,13 @@ describe("Button", () => {
         expect(screen.getByRole("button")).to.have.class("s-btn__link");
     });
 
-    it("should render including the loading class", () => {
+    it("should render the loader component when loading prop is provided", () => {
         render(Button, {
             loading: true,
             children,
         });
-        expect(screen.getByRole("button")).to.have.class("is-loading");
+        expect(screen.getByText("Loading…")).to.exist;
+        expect(screen.getByText("Loading…").closest(".s-loader")).to.exist;
     });
 
     it("should render including the selected class", () => {

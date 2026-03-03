@@ -1,5 +1,167 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.30
+
+### Patch Changes
+
+- [#2181](https://github.com/StackExchange/Stacks/pull/2181) [`dc4fa17`](https://github.com/StackExchange/Stacks/commit/dc4fa1713110dfd914f8a204a6671c854e59f383) Thanks [@mukunku](https://github.com/mukunku)! - fix(navigation): make vertical navigation more accessible
+
+    BREAKING CHANGES:
+    - Navigation markup has been updated
+    - Svelte NavigationTitle component has been renamed to NavigationGroup
+
+## 1.0.0-beta.29
+
+### Patch Changes
+
+- [#2177](https://github.com/StackExchange/Stacks/pull/2177) [`a035461`](https://github.com/StackExchange/Stacks/commit/a035461505a1199bde96063e26ed7da97edc5934) Thanks [@giamir](https://github.com/giamir)! - ensure correct module resolution in nodejs
+
+- Updated dependencies [[`a035461`](https://github.com/StackExchange/Stacks/commit/a035461505a1199bde96063e26ed7da97edc5934)]:
+    - @stackoverflow/stacks-utils@1.0.0-beta.3
+
+## 1.0.0-beta.28
+
+### Minor Changes
+
+- [#2164](https://github.com/StackExchange/Stacks/pull/2164) [`a710c69`](https://github.com/StackExchange/Stacks/commit/a710c69a5214b7deee41f181ad3a8b2762f6822a) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update link component to new SHINE designs
+
+    BREAKING CHANGES:
+    - <a> elements no longer automatically have s-link styling, `s-link` needs to be an explict class of any <a> element that needs the styling
+    - `block-link` component deleted
+
+- [#2163](https://github.com/StackExchange/Stacks/pull/2163) [`9000f2e`](https://github.com/StackExchange/Stacks/commit/9000f2eb6b2ca40b0e8a4dd4ffd95a6c9748f5c5) Thanks [@giamir](https://github.com/giamir)! - update label component to new SHINE specs
+
+### Patch Changes
+
+- [#2172](https://github.com/StackExchange/Stacks/pull/2172) [`92cd983`](https://github.com/StackExchange/Stacks/commit/92cd98363e36ffc1133bae2b67e276dc1d057444) Thanks [@dancormier](https://github.com/dancormier)! - Replace all static size variables (`--su-static*`) with dynamic ones (`--su*`)
+
+## 1.0.0-beta.27
+
+### Minor Changes
+
+- [#2137](https://github.com/StackExchange/Stacks/pull/2137) [`83464cd`](https://github.com/StackExchange/Stacks/commit/83464cd33e9c52393010ed44cae423583d21e5a1) Thanks [@dancormier](https://github.com/dancormier)! - Update Post Summary to SHINE styles
+
+## 1.0.0-beta.26
+
+### Minor Changes
+
+- [#2142](https://github.com/StackExchange/Stacks/pull/2142) [`041f1dd`](https://github.com/StackExchange/Stacks/commit/041f1dd06c2ceec0c8fb45fb99040c87b53de0e0) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update Loader (formerly known as Spinner) component to SHINE designs
+
+    BREAKING CHANGES:
+    - Spinner component has been replace with the Loader component
+
+## 1.0.0-beta.25
+
+### Patch Changes
+
+- [#2152](https://github.com/StackExchange/Stacks/pull/2152) [`cd866c7`](https://github.com/StackExchange/Stacks/commit/cd866c7dcfdc13df3f83e49992d561a47527f60a) Thanks [@giamir](https://github.com/giamir)! - extract the vote state logic in an opt in svelte module
+
+## 1.0.0-beta.24
+
+### Patch Changes
+
+- [#2148](https://github.com/StackExchange/Stacks/pull/2148) [`fc1517b`](https://github.com/StackExchange/Stacks/commit/fc1517b4a2a91ffbe1dec376b5488f6f46f75844) Thanks [@giamir](https://github.com/giamir)! - vote component: allow downvoting for horizontal layout
+
+- Updated dependencies [[`f59b762`](https://github.com/StackExchange/Stacks/commit/f59b762834d6891a1885459354d0ccc06739fb6d)]:
+    - @stackoverflow/stacks-utils@1.0.0-beta.2
+
+## 1.0.0-beta.23
+
+### Minor Changes
+
+- [#2123](https://github.com/StackExchange/Stacks/pull/2123) [`dcac9bf`](https://github.com/StackExchange/Stacks/commit/dcac9bf76c55203c39495ac29d1724365d83c115) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update User Card to new SHINE design (part 2)
+
+### Patch Changes
+
+- [#2146](https://github.com/StackExchange/Stacks/pull/2146) [`d3ddae4`](https://github.com/StackExchange/Stacks/commit/d3ddae4b8146803defa5e3bb8bafd38669069175) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Remove nested <a> tag in UserCard to fix node_invalid_placement_ssr warning
+
+- [#2144](https://github.com/StackExchange/Stacks/pull/2144) [`04b0c7e`](https://github.com/StackExchange/Stacks/commit/04b0c7eec416cb54c7478dbfb8df2fccbddfa46a) Thanks [@dancormier](https://github.com/dancormier)! - add support for a tag having both a dismiss button and linked tag text simultaneously
+
+## 1.0.0-beta.22
+
+### Minor Changes
+
+- [#2136](https://github.com/StackExchange/Stacks/pull/2136) [`d75d9d4`](https://github.com/StackExchange/Stacks/commit/d75d9d475b596f96442b6badeb9ff5a390796267) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Add .bg-loading delete skeleton
+
+    BREAKING CHANGES:
+
+    Skeleton component deleted
+
+## 1.0.0-beta.21
+
+### Patch Changes
+
+- [#2138](https://github.com/StackExchange/Stacks/pull/2138) [`fcd06fb`](https://github.com/StackExchange/Stacks/commit/fcd06fbf72597029e500dfeb08ecdc7080fb5f70) Thanks [@dancormier](https://github.com/dancormier)! - Export user card child components
+
+## 1.0.0-beta.20
+
+### Patch Changes
+
+- [#2130](https://github.com/StackExchange/Stacks/pull/2130) [`e2dea15`](https://github.com/StackExchange/Stacks/commit/e2dea15216568555cd1562dc65e5ff7477372a47) Thanks [@giamir](https://github.com/giamir)! - dependencies upgrade
+
+- Updated dependencies [[`e2dea15`](https://github.com/StackExchange/Stacks/commit/e2dea15216568555cd1562dc65e5ff7477372a47)]:
+    - @stackoverflow/stacks-utils@1.0.0-beta.1
+
+## 1.0.0-beta.19
+
+### Patch Changes
+
+- [#2128](https://github.com/StackExchange/Stacks/pull/2128) [`d60aa26`](https://github.com/StackExchange/Stacks/commit/d60aa261b6bfa53ad4fc5761921c02d1cec2aecd) Thanks [@giamir](https://github.com/giamir)! - Adjust stacks svelte peer deps
+
+## 1.0.0-beta.18
+
+### Patch Changes
+
+- Updated dependencies [[`93ae01b`](https://github.com/StackExchange/Stacks/commit/93ae01bdec7c120cb77f98b9bcf0e718642c9552), [`65938dd`](https://github.com/StackExchange/Stacks/commit/65938dd760fdc6d2e4cff71ac5c67d3582e02cd4)]:
+    - @stackoverflow/stacks@3.0.0-beta.16
+    - @stackoverflow/stacks-utils@1.0.0-beta.0
+
+## 1.0.0-beta.17
+
+### Minor Changes
+
+- [#2092](https://github.com/StackExchange/Stacks/pull/2092) [`c1443ec`](https://github.com/StackExchange/Stacks/commit/c1443ecfc69784be393fa26edefb63cca24a80f2) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update User card to new SHINE design (part 1)
+
+- [#2109](https://github.com/StackExchange/Stacks/pull/2109) [`96224f0`](https://github.com/StackExchange/Stacks/commit/96224f0bdf3c9208489c4053d34af86df9ffe25b) Thanks [@mukunku](https://github.com/mukunku)! - feat(notice): update styles for SHINE
+  feat(toast): update styles for SHINE
+
+    BREAKING CHANGES
+    - Markup for notices has been updated
+
+### Patch Changes
+
+- Updated dependencies [[`c1443ec`](https://github.com/StackExchange/Stacks/commit/c1443ecfc69784be393fa26edefb63cca24a80f2), [`85c14d4`](https://github.com/StackExchange/Stacks/commit/85c14d41a33f36cadc338d1f83b166b8ba1ff01f), [`96224f0`](https://github.com/StackExchange/Stacks/commit/96224f0bdf3c9208489c4053d34af86df9ffe25b)]:
+    - @stackoverflow/stacks@3.0.0-beta.15
+
+## 1.0.0-beta.16
+
+### Minor Changes
+
+- [#2062](https://github.com/StackExchange/Stacks/pull/2062) [`83d21b8`](https://github.com/StackExchange/Stacks/commit/83d21b8cc89fdc8ad2fe4e43ad39fd07a1eca8a0) Thanks [@dancormier](https://github.com/dancormier)! - Add Vote component
+
+- [#2060](https://github.com/StackExchange/Stacks/pull/2060) [`d53cdd1`](https://github.com/StackExchange/Stacks/commit/d53cdd189e6b831ea2db442068b26ab7c281f3b8) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Updated checkbox and radio styling in Stacks Classic and documentation for SHINE
+  `.s-check-control` has been removed
+  Renamed `.s-check-group` to `.s-form-group`
+  `.s-checkbox` and `.s-radio` are now expected to be on the container where `.s-check-control` would previously be applied. They are no longer needed on the input itself
+  Added `.s-checkbox__checkmark` and `.s-radio__checkmark` to Stacks Classic
+  Added `Checkbox`, `CheckboxGroup`, `Radio`, `RadioGroup` components to Stacks Svelte
+
+- [#2100](https://github.com/StackExchange/Stacks/pull/2100) [`1407fb5`](https://github.com/StackExchange/Stacks/commit/1407fb512458203d5f9d4dbf40efb0d2b0426062) Thanks [@mukunku](https://github.com/mukunku)! - feat(empty-state): new SHINE styles and Svelte Component
+  fix(expanding-input): expands correctly now after textarea update
+
+- [#2113](https://github.com/StackExchange/Stacks/pull/2113) [`0b92e2c`](https://github.com/StackExchange/Stacks/commit/0b92e2cc63ce005f75724f6983898b7548c34d7e) Thanks [@chris-doucette-stack](https://github.com/chris-doucette-stack)! - Added aria-label and aria-labelledby props to PopoverContent
+
+### Patch Changes
+
+- Updated dependencies [[`83d21b8`](https://github.com/StackExchange/Stacks/commit/83d21b8cc89fdc8ad2fe4e43ad39fd07a1eca8a0), [`d53cdd1`](https://github.com/StackExchange/Stacks/commit/d53cdd189e6b831ea2db442068b26ab7c281f3b8), [`1407fb5`](https://github.com/StackExchange/Stacks/commit/1407fb512458203d5f9d4dbf40efb0d2b0426062)]:
+    - @stackoverflow/stacks@3.0.0-beta.14
+
+## 1.0.0-beta.15
+
+### Minor Changes
+
+- [#2107](https://github.com/StackExchange/Stacks/pull/2107) [`c130895`](https://github.com/StackExchange/Stacks/commit/c1308950616e7950c3fb5dc0257fa6572e0f6c66) Thanks [@chris-doucette-stack](https://github.com/chris-doucette-stack)! - Made TextInputs value prop bindable
+
 ## 1.0.0-beta.14
 
 ### Major Changes

@@ -1,12 +1,15 @@
 .s-btn {
-    --_bu-baw: var(--su-static1);
+    --_bu-baw: var(--su1);
     --_bu-br: var(--br-pill);
     --_bu-fs: var(--fs-body1);
     --_bu-lh: var(--lh-base);
     --_bu-g: var(--su8);
     --_bu-px: var(--su16);
     --_bu-py: calc(var(--su8) + var(--su2)); // 10px
-    --_bu-dropdown-bw: var(--su-static4);
+    --_bu-badge-fs: var(--fs-caption);
+    --_bu-badge-px: var(--su6);
+    --_bu-badge-py: var(--su2);
+    --_bu-dropdown-bw: var(--su4);
 
     // VARIANTS
     // Base
@@ -15,11 +18,16 @@
         --_bu-bg-disabled: var(--theme-secondary-300);
         --_bu-bg-hover: var(--theme-button-hover-background-color, var(--theme-secondary-500));
         --_bu-fc: var(--white);
+        --_bu-fc-disabled: var(--theme-secondary-100);
         --_bu-fc-hover: var(--theme-button-hover-color, var(--white));
-        --_bu-badge-bg: var(--theme-secondary-200);
-        --_bu-badge-fc: var(--theme-secondary-600);
-        --_bu-badge-bg-disabled: var(--theme-secondary-200);
-        --_bu-badge-fc-disabled: var(--theme-secondary-300);
+        --_bu-badge-bg: var(--theme-secondary-500);
+        --_bu-badge-fc: var(--white);
+        --_bu-badge-bg-disabled: var(--theme-secondary-300);
+        --_bu-badge-fc-disabled: var(--theme-secondary-100);
+
+        .highcontrast-mode({
+            --_bu-bg-disabled: var(--theme-secondary-300);
+        });
 
         &.s-btn__clear {
             --_bu-bg: transparent;
@@ -29,13 +37,17 @@
             --_bu-fc: var(--theme-secondary-600);
             --_bu-fc-disabled: var(--theme-secondary-300);
             --_bu-fc-hover: var(--_bu-fc);
-            --_bu-badge-bg: var(--theme-secondary-500);
-            --_bu-badge-fc: var(--white);
-            --_bu-badge-bg-disabled: var(--theme-secondary-300);
-            --_bu-badge-fc-disabled: var(--white);
+            --_bu-badge-bg: var(--theme-secondary-100);
+            --_bu-badge-fc: var(--theme-secondary-500);
+            --_bu-badge-bg-disabled: var(--theme-secondary-100);
+            --_bu-badge-fc-disabled: var(--theme-secondary-300);
 
             .highcontrast-mode({
-                --_bu-bc: var(--theme-secondary-600);
+                --_bu-bc: var(--theme-secondary-400);
+                --_bu-bc-disabled: var(--theme-secondary-300);
+                --_bu-bg-disabled: var(--white);
+                --_bu-badge-bg-disabled: var(--theme-secondary-100);
+                --_bu-badge-fc-disabled: var(--theme-secondary-300);
             });
         }
     }
@@ -44,13 +56,33 @@
         --_bu-bg: var(--red-400);
         --_bu-fc: var(--white);
         --_bu-bg-disabled: var(--red-200);
+        --_bu-fc-disabled: var(--black-050);
         --_bu-bg-hover: var(--red-500);
         --_bu-bg-selected: var(--red-500);
         --_bu-fc-selected: var(--_bu-fc);
-        --_bu-badge-bg: var(--red-100);
-        --_bu-badge-fc: var(--red-400);
-        --_bu-badge-bg-disabled: var(--white);
-        --_bu-badge-fc-disabled: var(--red-200);
+        --_bu-badge-bg: var(--red-500);
+        --_bu-badge-fc: var(--black-050);
+        --_bu-badge-bg-disabled: var(--red-300);
+        --_bu-badge-fc-disabled: var(--black-100);
+
+        .dark-mode({
+            --_bu-bg-disabled: var(--red-300);
+            --_bu-badge-fc-disabled: var(--black-050);
+            --_bu-badge-bg-disabled: var(--red-400);
+        });
+
+        .highcontrast-mode({
+            --_bu-fc-disabled: var(--black-300);
+            --_bu-badge-bg-disabled: var(--red-100);
+            --_bu-badge-fc-disabled: var(--black-300);
+        });
+
+        .highcontrast-dark-mode({
+            --_bu-bg-disabled: var(--red-300);
+            --_bu-fc-disabled: var(--black-050);
+            --_bu-badge-fc-disabled: var(--black-050);
+            --_bu-badge-bg-disabled: var(--red-400);
+        });
 
         &.s-btn__clear {
             --_bu-bg: transparent;
@@ -61,15 +93,28 @@
             --_bu-fc-disabled: var(--red-200);
             --_bu-fc-hover: var(--red-500);
             --_bu-fc-selected: var(--red-500);
-            --_bu-badge-bg: var(--red-400);
-            --_bu-badge-bg-selected: var(--red-400);
-            --_bu-badge-fc: var(--red-100);
-            --_bu-badge-bg-disabled: var(--red-200);
-            --_bu-badge-fc-disabled: var(--white);
+            --_bu-badge-bg: var(--red-100);
+            --_bu-badge-fc: var(--red-500);
+            --_bu-badge-bg-disabled: var(--red-100);
+            --_bu-badge-fc-disabled: var(--red-300);
+
+            .dark-mode({
+                --_bu-bg-disabled: var(--_bu-bg);
+                --_bu-fc-disabled: var(--red-300);
+                --_bu-badge-bg-disabled: var(--red-100);
+                --_bu-badge-fc-disabled: var(--red-400);
+            });
 
             .highcontrast-mode({
                 --_bu-bc: var(--red-600);
-                --_bu-bc-disabled: var(--red-300);
+                --_bu-bc-disabled: var(--black-300);
+            });
+
+            .highcontrast-dark-mode({
+                --_bu-bg-disabled: var(--black-050);
+                --_bu-fc-disabled: var(--red-300);
+                --_bu-badge-bg-disabled: var(--red-100);
+                --_bu-badge-fc-disabled: var(--red-300);
             });
         }
     }
@@ -81,26 +126,47 @@
         --_bu-bg-selected: var(--purple-500);
         --_bu-fc: var(--white);
         --_bu-fc-selected: var(--_bu-fc);
-        --_bu-badge-bg: var(--purple-100);
-        --_bu-badge-fc: var(--purple-400);
-        --_bu-badge-bg-disabled: var(--white);
-        --_bu-badge-fc-disabled: var(--purple-200);
+        --_bu-badge-bg: var(--purple-500);
+        --_bu-badge-fc: var(--black-050);
+        --_bu-badge-bg-disabled: var(--purple-300);
+        --_bu-badge-fc-disabled: var(--black-100);
+
+        .dark-mode({
+            --_bu-bg-disabled: var(--purple-100);
+            --_bu-fc-disabled: var(--purple-400);
+            --_bu-badge-fc-disabled: var(--purple-400);
+            --_bu-badge-bg-disabled: var(--purple-200);
+        });
+
+        .highcontrast-mode({
+            --_bu-fc-disabled: var(--black-300);
+            --_bu-badge-fc-disabled: var(--black-300);
+            --_bu-badge-bg-disabled: var(--purple-200);
+        });
+
+        .highcontrast-dark-mode({
+            --_bu-fc-disabled: var(--purple-400);
+            --_bu-badge-bg-disabled: var(--purple-200);
+            --_bu-badge-fc-disabled: var(--purple-400);
+        });
     }
 
     &&__tonal {
         --_bu-bg: var(--black-150);
         --_bu-bg-disabled: var(--black-100);
         --_bu-bg-hover: var(--black-200);
+        --_bu-bg-selected: var(--black-200);
         --_bu-fc: var(--black);
         --_bu-fc-disabled: var(--black-300);
         --_bu-fc-selected: var(--_bu-fc);
-        --_bu-badge-bg: var(--black-500);
-        --_bu-badge-fc: var(--white);
-        --_bu-badge-bg-disabled: var(--black-300);
-        --_bu-badge-fc-disabled: var(--white);
+        --_bu-badge-bg: var(--black-200);
+        --_bu-badge-fc: var(--black-600);
+        --_bu-badge-bg-disabled: var(--black-100);
+        --_bu-badge-fc-disabled: var(--black-300);
 
         .highcontrast-mode({
-            --_bu-bc: var(--black-300);
+            --_bu-bc: var(--black-400);
+            --_bu-bc-disabled: var(--black-300);
         });
     }
 
@@ -200,8 +266,9 @@
             var(--_bu-bg-selected, var(--_bu-bg)),
             var(--white) var(--_bu-bg-selected-overlay-o)
         );
-        --_bu-bg-gradient-top: var(--_bu-bg-selected, var(--_bu-bg));
-        --_bu-bg-gradient-bottom: var(--_bu-bg-selected-overlay, var(--_bu-bg));
+        --_bu-bg-gradient-top: var(--_bu-bg-selected-overlay, var(--_bu-bg));
+        --_bu-bg-gradient-bottom:  var(--_bu-bg-selected, var(--_bu-bg));
+
 
         .dark-mode({
             --_bu-bg-selected-overlay-o: 13%;
@@ -229,15 +296,15 @@
     }
 
     // CHILD ELEMENTS
-    // TODO SHINE fine-tune badge styles
     & &--badge {
         background-color: var(--_bu-badge-bg);
         border-radius: var(--br-pill);
         display: inline-block;
-        font-size: var(--fs-caption);
+        font-size: var(--_bu-badge-fs);
         line-height: inherit;
         opacity: var(--_bu-badge-o);
-        padding: var(--su1) var(--su4) 0;
+        padding: var(--_bu-badge-py) var(--_bu-badge-px);
+        margin-block: calc(var(--_bu-badge-py) * -1);
     }
 
     & &--number {
@@ -248,14 +315,15 @@
     &--radio { // This lives alongside a .s-btn element. These styles are the equivelent of `.v-visible-sr`
         border: 0;
         clip-path: inset(50%);
-        clip: rect(var(--su-static1), var(--su-static1), var(--su-static1), var(--su-static1)); // rect(1px, 1px, 1px, 1px)
-        height: var(--su-static1);
-        margin: calc(var(--su-static1) * -1); // -1px
+        /* stylelint-disable-next-line property-no-deprecated -- clip is kept for older browser compatibility alongside clip-path */
+        clip: rect(var(--su1), var(--su1), var(--su1), var(--su1)); // rect(1px, 1px, 1px, 1px)
+        height: var(--su1);
+        margin: var(--sun1);
         overflow-wrap: normal;
         overflow: hidden;
         padding: 0;
         position: absolute;
-        width: var(--su-static1);
+        width: var(--su1);
     }
 
     // Sizes
@@ -263,6 +331,9 @@
     &&__sm {
         --_bu-lh: var(--lh-sm);
         --_bu-px: var(--su12);
+        --_bu-badge-fs: var(--fs-fine);
+        --_bu-badge-py: var(--su1);
+        --_bu-badge-px: var(--su3);
     }
     &&__xs {
         --_bu-g: var(--su4);
@@ -278,6 +349,7 @@
         --_bu-fs: var(--fs-body2);
         --_bu-px: var(--su24);
         --_bu-py: calc(var(--su12) + var(--su1)); // 13px
+        --_bu-badge-py: var(--su3); // 3px
     }
 
     // INTERACTION

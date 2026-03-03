@@ -1,3 +1,7 @@
+<script module lang="ts">
+    export type Tag = "div" | "li";
+</script>
+
 <script lang="ts">
     import type { Snippet } from "svelte";
     import type {
@@ -6,11 +10,10 @@
     } from "svelte/elements";
     import Icon from "../Icon/Icon.svelte";
 
-    interface Props
-        extends Omit<
-            HTMLAnchorAttributes & HTMLButtonAttributes,
-            "href" | "class"
-        > {
+    interface Props extends Omit<
+        HTMLAnchorAttributes & HTMLButtonAttributes,
+        "href" | "type" | "class"
+    > {
         /**
          * If provided, renders as an anchor tag with this href
          */
@@ -22,14 +25,14 @@
         danger?: boolean;
 
         /**
-         * If true, applies selected styling
-         */
-        selected?: boolean;
-
-        /**
-         * The icon source to display before the menu link content
+         * The icon source to display before the menu item content
          */
         icon?: string | undefined;
+
+        /**
+         * If true, marks the menu item as selected
+         */
+        selected?: boolean;
 
         /**
          * Additional CSS classes added to the element
@@ -37,24 +40,19 @@
         class?: string;
 
         /**
-         * Snippet for the menu link content
+         * Snippet for the menu item content
          */
         children: Snippet;
-
-        /**
-         * Localized translation for the selected label
-         */
-        i18nSelectedLabel?: string;
     }
 
     let {
-        href = undefined,
+        href,
         danger = false,
+        icon,
         selected = false,
-        icon = undefined,
         class: className = "",
+        onclick,
         children,
-        i18nSelectedLabel = "Selected",
         ...restProps
     }: Props = $props();
 
@@ -74,12 +72,12 @@
             classes += ` ${base}__danger`;
         }
 
-        if (selected) {
-            classes += ` is-selected`;
-        }
-
         if (className) {
             classes += ` ${className}`;
+        }
+
+        if (selected) {
+            classes += ` is--selected`;
         }
 
         return classes;
@@ -93,6 +91,7 @@
     <svelte:element
         this={href ? "a" : "button"}
         {href}
+        {onclick}
         class={linkClasses}
         {...restProps}
     >
@@ -100,8 +99,5 @@
             <Icon src={icon} class="s-menu--icon" />
         {/if}
         {@render children()}
-        {#if selected}
-            <span class="v-visible-sr">{i18nSelectedLabel}</span>
-        {/if}
     </svelte:element>
 </li>

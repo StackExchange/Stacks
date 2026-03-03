@@ -1,0 +1,172 @@
+---
+layout: page
+title: Margin
+description: Stacks provides atomic classes to override margin.
+tags: base
+---
+<section class="docs-section">
+    {% header "h2", "Base" %}
+    <p class="docs-copy">Immutable margin utilities are based on our global white space scale. These can dramatically help reduce the size of large stylesheets and allow for greater flexibility and quicker iteration when designing in the browser.</p>
+
+    {% header "h3", "Abbreviations" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="docs-table s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Abbreviation</th>
+                    <th scope="col">Property</th>
+                    <th class="s-table--cell2 ta-center" scope="col">Responsive?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prefix in margin.prefixes %}
+                    <tr>
+                        <th class="ff-mono" scope="row">{{ prefix.prefix }}</th>
+                        <td>{{ prefix.property }}</td>
+                        <td class="ta-center">
+                            {% icon "Checkmark", "fc-green-400" %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% header "h3", "Base examples" %}
+{% assign margin-properties = margin.properties | split: ", " %}
+{% assign margin-values = margin.values | split: ", " %}
+<div class="docs-preview">
+{% highlight html %}
+<div class="mt8 mr4 mb32 ml64">
+    …
+</div>
+{% endhighlight %}
+        <div class="docs-preview--example">
+            <div class="docs-box bg-black-100">
+                <div class="docs-box mt8 mr4 mb32 ml64">
+                    Example div with different margins applied
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Base classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="docs-table s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    {% for value in margin-values %}
+                        <th scope="col" class="ta-center ff-mono">{{ value }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for prefix in margin.prefixes %}
+                    <tr>
+                        <th scope="row">{{ prefix.prefix }}</th>
+                        {% for value in margin-values %}
+                            <td><code>.{{ prefix.prefix }}{{ value | replace: "px", "" | replace: "%", "" }}</code></td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="docs-section">
+    {% header "h2", "Negative" %}
+    <p class="docs-copy">Immutable margin utilities are based on our global white space scale. These can dramatically help reduce the size of large stylesheets and allow for greater flexibility and quicker iteration when designing in the browser.</p>
+
+    {% header "h3", "Abbreviations" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="docs-table s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell2" scope="col">Abbreviation</th>
+                    <th scope="col">Property</th>
+                    <th class="s-table--cell2 ta-center" scope="col">Responsive?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prefix in margin.prefixes %}
+                    <tr>
+                        <th class="ff-mono" scope="row">{{ prefix.prefix }}n</th>
+                        <td>{{ prefix.property }}</td>
+                        <td class="ta-center">
+                            {% icon "Checkmark", "fc-green-400" %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% header "h3", "Negative examples" %}
+<div class="docs-preview">
+{% highlight html %}
+<div class="mtn8 mrn4 mbn32 mln64">
+    …
+</div>
+{% endhighlight %}
+        <div class="docs-preview--example">
+            <div class="docs-box bg-black-100 p48">
+                <div class="docs-box mtn8 mrn4 mbn32 mln64">
+                    Example div with different margins applied
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% header "h3", "Negative classes" %}
+    {% assign margin-values-negative = margin.values | replace: "0, ", "" | split: ", " %}
+
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="docs-table s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    {% for value in margin-values-negative %}
+                        <th scope="col" class="ta-center ff-mono">{{ value }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for prefix in margin.prefixes %}
+                    <tr>
+                        <th scope="row">{{ prefix.prefix }}n</th>
+                        {% for value in margin-values-negative %}
+                            <td><code>.{{ prefix.prefix }}n{{ value | replace: "px", "" | replace: "%", "" }}</code></td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="docs-section">
+    {% header "h2", "Auto" %}
+    <p class="docs-copy">Stacks provides additional automatic margin classes. These come in handy when positioning individual flex items within flex layouts, or horizontally centering a block-level element.</p>
+    
+    {% header "h3", "Auto classes" %}
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="docs-table s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Property</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for auto in margin.auto %}
+                    <tr>
+                        <td class="ff-mono">.{{ auto.class }}</td>
+                        <td>{{ auto.property }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>

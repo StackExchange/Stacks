@@ -4,14 +4,14 @@ title: Outline
 description: 
 tags: base
 ---
-<section class="stacks-section">
-    {% tip, "warning", "mb24" %}
-        <strong>Warning:</strong> <code>.outline-ring</code> does not meet our accessibility standards for focus state styling and should be used for decorative purposes only.
+<section class="docs-section">
+    {% tip, "warning" %}
+        <strong>Warning:</strong> Atomic outline classes mimic or remove default Stacks focus styles. They should only be applied when absolutely necessary.
     {% endtip %}
 
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb48" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
@@ -20,10 +20,10 @@ tags: base
                 </tr>
             </thead>
             <tbody>
-                {% for atomic in atomics.outline %}
+                {% for atomic in outline.classes %}
                     <tr class="fs-caption">
-                        <th scope="row"><code class="stacks-code">.{{ atomic.class }}</code></th>
-                        <td><code class="stacks-code bg-white">{{ atomic.output }}</code></td>
+                        <th scope="row"><code>.{{ atomic.class }}</code></th>
+                        <td><code>{{ atomic.output }}</code></td>
                         <td>{{ atomic.define }}</td>
                     </tr>
                 {% endfor %}
@@ -32,14 +32,15 @@ tags: base
     </div>
 
     {% header "h2", "Examples" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="outline-none">…</div>
 <div class="outline-ring">…</div>
 {% endhighlight %}
-        <div class="stacks-preview--example fs-caption ff-mono">
-            <div class="outline-none d-inline-block bg-black-200 p12 ba bc-black-225">.outline-none</div>
-            <div class="outline-ring d-inline-block bg-black-200 p12 ba bc-black-225">.outline-ring</div>
+        <div class="docs-preview--example fs-caption ff-mono">
+            {% for atomic in outline.classes %}
+                <div class="{{ atomic.class }} d-inline-block docs-box">.{{ atomic.class }}</div>
+            {% endfor %}
         </div>
     </div>
 </section>

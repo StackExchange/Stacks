@@ -2,13 +2,17 @@
 .s-textarea,
 //The :has selector here allows us to use these vars for sibling icons in textarea components (See .s-textarea -> ~ .s-input-icon)
 :has(> .s-textarea) { 
+    --_in-ai: unset;
     --_in-bc: var(--black-300);
     --_in-bg: var(--white);
     --_in-br: var(--br-md);
-    --_in-bw: var(--su-static1);
+    --_in-bw: var(--su1);
     --_in-c: unset;
+    --_in-d: unset;
     --_in-fc: var(--black-600);
     --_in-fs: var(--fs-body1);
+    --_in-fw: unset;
+    --_in-g: unset;
     --_in-lh: var(--lh-base);
     --_in-px: calc(var(--su12) - var(--su1)); // 11px
     --_in-py: var(--su8);
@@ -70,7 +74,7 @@
 
     &&__creditcard,
     &&__search {
-        --_in-pl: calc(var(--su-static32) + var(--su-static4)); // 36px
+        --_in-pl: calc(var(--su32) + var(--su4)); // 36px
     }
 
     // INTERACTION
@@ -81,11 +85,15 @@
     }
 
     @scrollbar-styles();
+    align-items: var(--_in-ai);
     background-color: var(--_in-bg);
     border: var(--_in-bw) solid var(--_in-bc);
     color: var(--_in-fc);
     cursor: var(--_in-c);
+    display: var(--_in-d);
+    flex-wrap: var(--_in-fw);
     font-size: var(--_in-fs);
+    gap: var(--_in-g);
     line-height: var(--_in-lh);
     padding: var(--_in-py) var(--_in-px) var(--_in-py) var(--_in-pl, var(--_in-px));
     
@@ -93,15 +101,6 @@
     font-family: inherit;
     margin: 0; // A guard against Core's default margins
     width: 100%;
-}
-
-//Nested inputs (E.g. Tag selection control) need a flex layout.
-.s-input:has(> input.s-input) {
-    display: flex;
-    align-items: center;
-    input.s-input {
-         flex: 1 1 0;
-    }
 }
 
 .s-input {
@@ -116,14 +115,16 @@
         --_in-px: 0;
 
         box-shadow: none;
+        flex: 1 1 0;
         margin: calc(var(--_in-py) * -1) 0;
     }
 
     &:has(&) {
+        --_in-ai: center;
+        --_in-d: flex;
+        --_in-fw: nowrap;
         --_in-px: var(--_in-py);
-
-        flex-wrap: wrap;
-        gap: var(--su8);
+        --_in-g: var(--su8);
     }
 }
 

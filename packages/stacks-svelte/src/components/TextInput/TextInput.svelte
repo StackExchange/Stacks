@@ -21,92 +21,92 @@
 <script lang="ts">
     import type { HTMLInputAttributes } from "svelte/elements";
     import type { Snippet } from "svelte";
+    import type { BadgeState } from "../Badge/Badge.svelte";
     import Icon from "../Icon/Icon.svelte";
     import Label from "../Label/Label.svelte";
 
     import {
         IconAlert,
-        IconAlertCircle,
-        IconCheckmark,
-        IconCreditCard,
+        IconAlertFill,
+        IconCheck,
         IconSearch,
-    } from "@stackoverflow/stacks-icons-legacy/icons";
+    } from "@stackoverflow/stacks-icons/icons";
+
+    import { IconCreditCard } from "@stackoverflow/stacks-icons-legacy/icons";
 
     interface Props extends Omit<HTMLInputAttributes, "size" | "type"> {
         /**
          * `id` attribute of the text input
-         * @type {string}
          */
         id: string;
 
         /**
          * The label associated with the input
-         * @type {string}
          */
         label: string;
 
         /**
+         * The optional status type of the label
+         */
+        labelStatus?: BadgeState;
+
+        /**
+         * The optional text to display for the label status
+         */
+        labelStatusText?: string;
+
+        /**
          * Sets the disabled state of the input
-         * @type {boolean}
          */
         disabled?: boolean;
 
         /**
          * The visiblity of the label element
-         * @type {boolean}
          */
         hideLabel?: boolean;
 
         /**
          * Where to place the input fill element
-         * @type {"prepend" | "append"} FillSide
          */
         fillSide?: FillSide;
 
         /**
          * Name attribute of the input
-         * @type {string | undefined}
          */
         name?: string | undefined;
+
         /**
          * Placeholder text for the input
-         * @type {string}
          */
         placeholder?: string;
 
         /**
          * Sets the readonly state of the input
-         * @type {boolean}
          */
         readonly?: boolean;
 
         /**
          * Make the input required and show required label status
-         * @type {boolean}
          */
         required?: boolean;
 
         /**
          * The size of the text input
-         * @type {"" | "sm" | "lg"} Size
          */
         size?: Size;
 
         /**
          * The size of the text input
-         * @type {"" | "error" | "success" | "warning"} State
          */
         state?: State;
 
         /**
          * The type of the text input
-         * @type {"credit-card" | "date" | "datetime-local" | "email" | "month" | "number" | "password" | "search" | "tel" | "text" | "time" | "url" | "week"}
          */
         type?: Type;
 
         /**
          * Additional CSS classes added to the underlying HTML input element
-         * @type {string}
          */
         class?: string;
 
@@ -129,11 +129,18 @@
          * Optional message snippet rendered after the input.
          */
         message?: Snippet;
+
+        /**
+         * value of the text input.
+         */
+        value?: string;
     }
 
     let {
         id,
         label,
+        labelStatus,
+        labelStatusText,
         disabled = false,
         hideLabel = false,
         fillSide = "prepend",
@@ -149,6 +156,7 @@
         description,
         fill,
         message,
+        value = $bindable(undefined),
         ...rest
     }: Props = $props();
 
@@ -170,7 +178,7 @@
 </script>
 
 <div
-    class="d-flex fd-column gy4"
+    class="s-form-group"
     class:has-error={state === "error"}
     class:has-success={state === "success"}
     class:has-warning={state === "warning"}
@@ -181,13 +189,15 @@
         {size}
         {required}
         {i18nRequiredText}
+        status={labelStatus}
+        statusText={labelStatusText}
     >
         {label}
     </Label>
 
     {#if description}
         <!-- Renders a description between the label and input. -->
-        <p class="s-description mb0 mtn2" id={`${id}-description`}>
+        <p class="s-description" id={`${id}-description`}>
             {@render description()}
         </p>
     {/if}
@@ -239,15 +249,16 @@
                 {placeholder}
                 {readonly}
                 {required}
+                bind:value
                 {...rest}
             />
 
             {#if state}
                 <div class="s-input-icon">
                     {#if state === "error"}
-                        <Icon src={IconAlertCircle} />
+                        <Icon src={IconAlertFill} />
                     {:else if state === "success"}
-                        <Icon src={IconCheckmark} />
+                        <Icon src={IconCheck} />
                     {:else}
                         <Icon src={IconAlert} />
                     {/if}

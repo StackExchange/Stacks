@@ -2,13 +2,22 @@
 layout: page
 title: Bling
 svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-bling--docs
-description: Bling is used to indicate award type in badges, topbar, and user cards.
+description: Bling is used to indicate award type in badges and user cards.
 tags: components
 ---
-<section class="stacks-section">
+
+<section class="docs-section">
+    {% header "h2", "Classes" %}
+    {% assign docsItems = bling.classes %}
+    {% assign col2Heading = "" %}
+    {% assign expandableClassesTable = true %}
+    {% include "docs-table.html" %}
+</section>
+
+<section class="docs-section">
     {% header "h2", "Types" %}
-    <p class="stacks-copy">Use the clear bling variant only when its associated color is already present in the component, such as within a colored tag badge or alongside a filled element.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">Use the clear bling variant only when its associated color is already present in the component, such as within a colored tag badge or alongside a filled element.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <span class="s-bling">
     <span class="v-visible-sr">…</span>
@@ -23,9 +32,9 @@ tags: components
     <span class="v-visible-sr">…</span>
 </span>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="overflow-x-auto" tabindex="0">
-                <table class="wmn5 s-table s-table__bx-simple">
+                <table class="docs-table s-table s-table__bx-simple">
                     <thead>
                         <tr>
                             <th scope="col">Example</th>
@@ -44,9 +53,9 @@ tags: components
                                     </td>
                                     <td class="va-middle">
                                         <div class="d-flex g4 fw-wrap">
-                                            <code class="stacks-code">.s-bling</code>
+                                            <code>.s-bling</code>
                                             {% if bling.name != "default" %}
-                                                <code class="stacks-code">.s-bling__{{ bling.modifier }}</code>
+                                                <code>.s-bling__{{ bling.modifier }}</code>
                                             {% endif %}
                                         </div>
                                     </td>
@@ -61,10 +70,10 @@ tags: components
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Filled" %}
-    <p class="stacks-copy">Use the filled bling style to represent a specific achievement badge or to display the total count of badges a user has earned.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">Use the filled bling style to represent a specific achievement badge or to display the total count of badges a user has earned.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <span class="s-bling s-bling__filled">…</span>
 <span class="s-bling s-bling__filled s-bling__rep">…</span>
@@ -73,9 +82,9 @@ tags: components
 <span class="s-bling s-bling__filled s-bling__silver">…</span>
 <span class="s-bling s-bling__filled s-bling__bronze">…</span>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="overflow-x-auto" tabindex="0">
-                <table class="wmn5 s-table s-table__bx-simple">
+                <table class="docs-table s-table s-table__bx-simple">
                     <thead>
                         <tr>
                             <th scope="col">Example</th>
@@ -93,10 +102,10 @@ tags: components
                                 </td>
                                 <td class="va-middle">
                                     <div class="d-flex g4 fw-wrap">
-                                        <code class="stacks-code">.s-bling</code>
-                                        <code class="stacks-code">.s-bling__filled</code>
+                                        <code>.s-bling</code>
+                                        <code>.s-bling__filled</code>
                                         {% if bling.name != "default" %}
-                                            <code class="stacks-code">.s-bling__{{ bling.modifier }}</code>
+                                            <code>.s-bling__{{ bling.modifier }}</code>
                                         {% endif %}
                                     </div>
                                 </td>
@@ -110,18 +119,18 @@ tags: components
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Sizes" %}
-    <p class="stacks-copy">A bling component has a default size. To change the bling’s size, apply one of the following sizing classes along with the base <code class="stacks-code">.s-bling</code> class.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">A bling component has a default size. To change the bling’s size, apply one of the following sizing classes along with the base <code>.s-bling</code> class.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <span class="s-bling s-bling__filled s-bling__sm">…</span>
 <span class="s-bling s-bling__filled">…</span>
 <span class="s-bling s-bling__filled s-bling__lg">…</span>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="overflow-x-auto" tabindex="0">
-                <table class="wmn5 s-table s-table__bx-simple">
+                <table class="docs-table s-table s-table__bx-simple">
                     <thead>
                         <tr>
                             <th scope="col">Example</th>
@@ -139,9 +148,9 @@ tags: components
                                 </td>
                                 <td class="va-middle">
                                     <div class="d-flex g4 fw-wrap">
-                                        <code class="stacks-code">.s-bling</code>
+                                        <code>.s-bling</code>
                                         {% if size != "default" %}
-                                            <code class="stacks-code">.s-bling__{{ size }}</code>
+                                            <code>.s-bling__{{ size }}</code>
                                         {% endif %}
                                     </div>
                                 </td>

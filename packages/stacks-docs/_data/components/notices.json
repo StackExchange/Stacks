@@ -1,0 +1,206 @@
+{
+  "classes": [
+    {
+      "code": ".s-notice",
+      "primaryContext": "<code>.s-toast</code> when rendered as a toast",
+      "description": "Base notice parent class."
+    },
+    {
+      "code": ".s-notice--actions",
+      "parent": ".s-notice",
+      "description": "Container styling for notice actions including the dismiss button."
+    },
+    {
+      "code": ".s-notice--dismiss",
+      "parent": ".s-notice",
+      "description": "Applies to child button element within the notice to position it appropriately."
+    },
+    {
+      "code": ".s-notice__activity",
+      "applies": ".s-notice",
+      "description": "Applies activity (pink) visual styles."
+    },
+    {
+      "code": ".s-notice__danger",
+      "applies": ".s-notice",
+      "description": "Applies danger (red) visual styles."
+    },
+    {
+      "code": ".s-notice__featured",
+      "applies": ".s-notice",
+      "description": "Applies featured (purple) visual styles."
+    },
+    {
+      "code": ".s-notice__important",
+      "applies": ".s-notice",
+      "description": "Applies an important visual style. This should be used for time-sensitive, pressing information that needs to be noticed by the user."
+    },
+    {
+      "code": ".s-notice__info",
+      "applies": ".s-notice",
+      "description": "Applies info (blue) visual styles."
+    },
+    {
+      "code": ".s-notice__success",
+      "applies": ".s-notice",
+      "description": "Applies success (green) visual styles."
+    },
+    {
+      "code": ".s-notice__warning",
+      "applies": ".s-notice",
+      "description": "Applies warning (yellow) visual styles."
+    },
+    {
+      "code": ".s-toast",
+      "description": "Parent of <code>.s-notice</code>. See the <a href=\"#toast\">Toast section</a> for more information."
+    }
+  ],
+  "base": [
+    {
+      "type": "default",
+      "icon": "Help"
+    },
+    {
+      "type": "info",
+      "icon": "Info"
+    },
+    {
+      "type": "success",
+      "icon": "Check"
+    },
+    {
+      "type": "warning",
+      "icon": "Alert"
+    },
+    {
+      "type": "danger",
+      "icon": "AlertFill"
+    },
+    {
+      "type": "featured",
+      "icon": "Star"
+    },
+    {
+      "type": "activity",
+      "icon": "Notification"
+    }
+  ],
+  "accessibility": [
+    {
+      "code": "aria-labelledby=\"[id]\"",
+      "applies": ".s-toast",
+      "description": "Used to reference the alert message within the dialog. If you are using <code>.s-toast</code>, <strong>this must be applied.</strong>",
+      "url": "https://www.w3.org/TR/wai-aria-1.1/#aria-labelledby"
+    },
+    {
+      "code": "aria-hidden=\"[state]\"",
+      "applies": ".s-toast",
+      "description": "Informs assistive technologies (such as screen readers) if they should ignore the element. When applied to <code>.s-toast</code>, Stacks will use this attribute to show or hide the toast.",
+      "url": "https://www.w3.org/TR/wai-aria-1.1/#aria-hidden"
+    },
+    {
+      "code": "aria-label=\"[text]\"",
+      "applies": ".s-btn",
+      "description": "Labels the element for assistive technologies (such as screen readers).  This should be used on any button that does not contain text content.",
+      "url": "https://www.w3.org/TR/wai-aria-1.1/#aria-label"
+    },
+    {
+      "code": "role=\"alert\"",
+      "applies": ".s-notice",
+      "description": "A form of live region which contains important, usually time-sensitive, information. Elements with an alert role have an implicit <code>aria-live</code> value of <code>assertive</code> and implicit <code>aria-atomic</code> value of <code>true</code>.",
+      "url": "https://www.w3.org/TR/wai-aria-1.1/#alert"
+    },
+    {
+      "code": "role=\"alertdialog\"",
+      "applies": ".s-toast",
+      "description": "The wrapping content area of an <code>alert</code>. Elements with the <code>alertdialog</code> role <strong>must</strong> use the <code>aria-describedby</code> attribute to reference the alert message within the dialog.",
+      "url": "https://www.w3.org/TR/wai-aria-1.1/#alertdialog"
+    },
+    {
+      "code": "role=\"status\"",
+      "applies": ".s-notice",
+      "description": "A form of live region which contains advisory information but isn't important enough to justify an alert role. Elements with a status role have an implicit <code>aria-live</code> value of <code>polite</code> and implicit <code>aria-atomic</code> value of <code>true</code>. If the element controlling the status appears in a different area of the page, you <strong>must make the relationship explicit</strong> with the <code>aria-controls</code> attribute.",
+      "url": "https://www.w3.org/TR/wai-aria-1.1/#status"
+    }
+  ],
+  "javascript": {
+    "attributes": [
+      {
+        "code": "data-controller=\"s-toast\"",
+        "secondaryContext": "Controller element",
+        "description": "Wires up the element to the toast controller. This may be a <code>.s-toast</code> element or a wrapper element."
+      },
+      {
+        "code": "data-s-toast-target=\"toast\"",
+        "secondaryContext": "Controller element",
+        "description": "Wires up the element that is to be shown/hidden"
+      },
+      {
+        "code": "data-s-toast-target=\"initialFocus\"",
+        "secondaryContext": "Any child focusable element",
+        "description": "Designates which element to focus on toast show. If absent, defaults to the first focusable element within the toast."
+      },
+      {
+        "code": "data-action=\"s-toast#toggle\"",
+        "secondaryContext": "Toggling element",
+        "description": "Wires up the element to toggle the visibility of a toast"
+      },
+      {
+        "code": "data-s-toast-return-element=\"[css selector]\"",
+        "secondaryContext": "Controller element",
+        "description": "<em>(optional)</em> Designates the element to return focus to when the toast is closed. If left unset, focus is not altered on close."
+      },
+      {
+        "code": "data-s-toast-remove-when-hidden=\"true\"",
+        "secondaryContext": "Controller element",
+        "description": "<em>(optional)</em> Removes the toast from the DOM entirely when it is hidden"
+      }
+    ],
+    "events": [
+      {
+        "code": "s-toast:show",
+        "secondaryContext": "Toast target",
+        "description": "Fires immediately before showing the toast. Calling <code>.preventDefault()</code> cancels the display of the toast."
+      },
+      {
+        "code": "s-toast:shown",
+        "secondaryContext": "Toast target",
+        "description": "Fires after the toast has been visually shown"
+      },
+      {
+        "code": "s-toast:hide",
+        "secondaryContext": "Toast target",
+        "description": "Fires immediately before hiding the toast. Calling <code>.preventDefault()</code> cancels the removal of the toast."
+      },
+      {
+        "code": "s-toast:hidden",
+        "secondaryContext": "Toast target",
+        "description": "Fires after the toast has been visually hidden"
+      }
+    ],
+    "eventDetails": [
+      {
+        "code": "dispatcher",
+        "applies": "s-toast:*",
+        "description": "Contains the <code>Element</code> that initiated the event. For instance, the button clicked to show, the element clicked outside the toast that caused it to hide, etc."
+      },
+      {
+        "code": "returnElement",
+        "applies": "s-toast:show,<br>s-toast:hide",
+        "description": "Contains the <code>Element</code> to return focus to on hide. If a value is set to this property inside an event listener, it will be updated on the controller as well."
+      }
+    ],
+    "helpers": [
+      {
+        "code": "Stacks.showToast",
+        "secondaryContext": "element",
+        "description": "Helper to manually show an s-toast element via external JS"
+      },
+      {
+        "code": "Stacks.hideToast",
+        "secondaryContext": "element",
+        "description": "Helper to manually hide an s-toast element via external JS"
+      }
+    ]
+  }
+}

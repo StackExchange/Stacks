@@ -2,8 +2,6 @@ import { html } from "@open-wc/testing";
 import type { TestVariationArgs } from "../../test/test-utils";
 import "../../index";
 
-type StatusType = "base" | "beta" | "new" | "required";
-
 const labelTemplate = ({
     component,
     testid,
@@ -24,11 +22,8 @@ const labelTemplate = ({
     `;
 };
 
-const getStatus = (status: StatusType | undefined) => {
-    if (!status) return "";
-    const statusTypeClass =
-        status !== "base" ? `s-label--status__${status}` : "";
-    return `<span class="s-label--status ${statusTypeClass}">${status}</span>`;
+const getStatus = (status: boolean) => {
+    return status ? `<span class="s-badge">Optional</span>` : "";
 };
 
 const getRequiredSymbol = (required: boolean | undefined) => {
@@ -37,7 +32,7 @@ const getRequiredSymbol = (required: boolean | undefined) => {
         : "";
 };
 
-const getChildren = (text: string, status?: StatusType, required?: boolean) => {
+const getChildren = (text: string, status: boolean, required?: boolean) => {
     return `${text}${getRequiredSymbol(required)} ${getStatus(status)}`;
 };
 
@@ -48,15 +43,12 @@ const getTestArgs = (disabled = false): TestVariationArgs => {
     return {
         baseClass: `s-label`,
         modifiers: {
-            primary: ["sm", "md", "lg", "xl"],
+            primary: ["sm", "lg"],
         },
         children: {
-            [`${prefix}default`]: getChildren(text),
-            [`${prefix}required`]: getChildren(text, undefined, true),
-            [`${prefix}status`]: getChildren(text, "base"),
-            [`${prefix}status-beta`]: getChildren(text, "beta"),
-            [`${prefix}status-new`]: getChildren(text, "new"),
-            [`${prefix}status-required`]: getChildren(text, "required"),
+            [`${prefix}default`]: getChildren(text, false, false),
+            [`${prefix}required`]: getChildren(text, false, true),
+            [`${prefix}status`]: getChildren(text, true, false),
         },
         tag: "label",
         template: ({ component, testid }) =>

@@ -3,7 +3,7 @@
     @ts-bg-image-fill-dark: .set-white-dark()[default];
     @ts-bg-image-fill-esc: escape("@{ts-bg-image-fill}"); // color escaped for URL usage
     @ts-bg-image-fill-dark-esc: escape("@{ts-bg-image-fill-dark}"); // color escaped for URL usage
-    --_ts-bg: var(--black-350);
+    --_ts-bg: var(--black-300);
     --_ts-bg-image: url("data:image/svg+xml;,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='@{ts-bg-image-fill-esc}'/%3e%3c/svg%3e");
     --_ts-bg-ps: left center;
     --_ts-multiple-bg: unset;
@@ -22,21 +22,15 @@
         }
     }
 
-    &&__multiple { // TODO split single and multiple toggle into two seperate components
+    &&__multiple {
         input[type="radio"] {
-            &:checked {
-                + label {
-                    &.s-toggle-switch--label-off {
-                        --_ts-multiple-bg: var(--black-400);
-                        --_ts-multiple-fc: var(--white);
-                    }
+            &:checked + label {
+                --_ts-multiple-bg: var(--black-050);
+                --_ts-multiple-fc: var(--black);
+            }
 
-                    &:not(.s-toggle-switch--label-off) {
-                        --_ts-multiple-bg: var(--green-400);
-                        --_ts-multiple-fc: var(--white);
-                    }
-                }
-
+            &:not(:checked) + label {
+                --_ts-multiple-fc: var(--black-400);
             }
 
             &:focus-visible + label {
@@ -53,13 +47,13 @@
             background-color: var(--_ts-multiple-bg);
             color: var(--_ts-multiple-fc);
 
-            border-radius: 1000px;
+            border-radius: var(--br-pill);
             cursor: pointer;
             font-size: var(--fs-body1);
             font-weight: 400;
             line-height: 1;
             margin: 0;
-            padding: 0.5em 0.7em;
+            padding: calc(var(--su4) + var(--su1)) calc(var(--su8) + var(--su2)); //5px 10px
             text-align: center;
             white-space: nowrap;
             width: 100%;
@@ -70,9 +64,11 @@
 
         align-items: stretch;
         display: flex;
+        border: var(--su2) solid var(--black-150);
+        border-radius: var(--br-pill);
+        background-color: var(--black-150);
     }
 
-    input[type="checkbox"], // TODO DEPRECATED: drop support for nested input[type="checkbox"]
     input[type="checkbox"]& {
         &:checked {
             --_ts-bg: var(--green-400);
@@ -97,10 +93,10 @@
         border-radius: 1000px;
         cursor: pointer;
         flex-shrink: 0;
-        height: var(--su-static24);
+        height: var(--su24);
         margin: 0; // guard against production adding 5px of margin to these
         transition: background-position 0.2s ease;
         vertical-align: top;
-        width: calc(var(--su-static48) - var(--su-static4));
+        width: calc(var(--su48) - var(--su4));
     }
 }

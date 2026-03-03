@@ -6,15 +6,15 @@ figma: https://svelte.stackoverflow.design/figma/editor
 description: The Stacks editor adds “what you see is what you get” and Markdown capabilities to textareas. It is available as a separate <a href="https://github.com/StackExchange/Stacks-Editor">Editor</a> repository, but requires Stacks’ CSS for styling.
 tags: components
 ---
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Installation" %}
-    <p class="stacks-copy">Because of its size, the Stacks editor is bundled independently of Stacks. You can install it a few ways:</p>
+    <p class="docs-copy">Because of its size, the Stacks editor is bundled independently of Stacks. You can install it a few ways:</p>
 
     {% header "h3", "NPM" %}
-    <p class="stacks-copy mb48">The Stacks Editor is available as an NPM package. To make it available in your node modules, <code class="stacks-code">npm install @stackoverflow/stacks-editor</code></p>
+    <p class="docs-copy mb48">The Stacks Editor is available as an NPM package. To make it available in your node modules, <code>npm install @stackoverflow/stacks-editor</code></p>
 
     {% header "h3", "Import via Modules or CommonJS" %}
-    <div class="stacks-preview _preview-none">
+    <div class="docs-preview _preview-none">
 {% highlight js %}
 import { StacksEditor } from "@stackoverflow/stacks-editor";
 // Don’t forget to include the styles as well
@@ -28,7 +28,7 @@ new StacksEditor(
     </div>
 
     {% header "h3", "Import via script tag" %}
-    <div class="stacks-preview _preview-none">
+    <div class="docs-preview _preview-none">
 {% highlight html %}
 <!-- Include the bundled styles -->
 <link rel="stylesheet" src="path/to/node_modules/@stackoverflow/stacks-editor/dist/styles.css"
@@ -55,16 +55,17 @@ new StacksEditor(
 </section>
 
 <!-- TODO add the configuration options for the editor
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Configuration" %}
-    <p class="stacks-copy">There are several options you can pass to the Stacks Editor.</p>
+    <p class="docs-copy">There are several options you can pass to the Stacks Editor.</p>
 </section>
 -->
 
-<section class="stacks-section">
+<!-- TODO SHINE fix editor button styling in external package -->
+<section class="docs-section">
     {% header "h2", "Examples" %}
     {% header "h3", "Empty" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div id="editor-example-1"></div>
 
@@ -76,13 +77,13 @@ new StacksEditor(
     );
 </script>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div id="editor-example-1"></div>
         </div>
     </div>
 
     {% header "h3", "Textarea content with tables enabled" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <textarea id="editor-content-2" class="d-none">
    …
@@ -101,7 +102,7 @@ new StacksEditor(
     );
 </script>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <textarea id="editor-content-2" class="d-none">
 {% include 'markdown-prose.md' %}
             </textarea>

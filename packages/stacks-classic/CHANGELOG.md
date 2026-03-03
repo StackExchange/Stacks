@@ -1,5 +1,198 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.29
+
+### Patch Changes
+
+- [#2196](https://github.com/StackExchange/Stacks/pull/2196) [`a2365c0`](https://github.com/StackExchange/Stacks/commit/a2365c067d39a9ebf35c784993c6acb8ef0aedf3) Thanks [@giamir](https://github.com/giamir)! - fix wrapping behavior of post-summary titles
+
+## 3.0.0-beta.28
+
+### Minor Changes
+
+- [#2187](https://github.com/StackExchange/Stacks/pull/2187) [`34a2cd1`](https://github.com/StackExchange/Stacks/commit/34a2cd155b76d1b65af1c24f266cb68e3e27f382) Thanks [@dancormier](https://github.com/dancormier)! - Remove deprecated components (breadcrumbs, button groups, cards, expandable, link previews, page titles, progress bars, topbar, uploader)
+
+### Patch Changes
+
+- [#2192](https://github.com/StackExchange/Stacks/pull/2192) [`fb19fe6`](https://github.com/StackExchange/Stacks/commit/fb19fe69b960e00a9813eae83380695fdbe263cb) Thanks [@dancormier](https://github.com/dancormier)! - Wrap long post-summary titles
+
+## 3.0.0-beta.27
+
+### Patch Changes
+
+- [#2181](https://github.com/StackExchange/Stacks/pull/2181) [`dc4fa17`](https://github.com/StackExchange/Stacks/commit/dc4fa1713110dfd914f8a204a6671c854e59f383) Thanks [@mukunku](https://github.com/mukunku)! - fix(navigation): make vertical navigation more accessible
+
+    BREAKING CHANGES:
+    - Navigation markup has been updated
+    - Svelte NavigationTitle component has been renamed to NavigationGroup
+
+## 3.0.0-beta.26
+
+### Minor Changes
+
+- [#2174](https://github.com/StackExchange/Stacks/pull/2174) [`df11fb5`](https://github.com/StackExchange/Stacks/commit/df11fb5110ba06123905cd6e6b576b6dca710df3) Thanks [@dancormier](https://github.com/dancormier)! - Update prose component to SHINE styles
+
+### Patch Changes
+
+- [#2173](https://github.com/StackExchange/Stacks/pull/2173) [`8ac82b8`](https://github.com/StackExchange/Stacks/commit/8ac82b87daab1bebf4241b0e733caf009a126526) Thanks [@dancormier](https://github.com/dancormier)! - Improve badge layout
+
+- [#2178](https://github.com/StackExchange/Stacks/pull/2178) [`66498cc`](https://github.com/StackExchange/Stacks/commit/66498ccb6b12e2d99620dfaaf3b47b3058a29050) Thanks [@mukunku](https://github.com/mukunku)! - patch(avatars): Use black background in dark mode for avatars
+
+- [#2176](https://github.com/StackExchange/Stacks/pull/2176) [`79d687d`](https://github.com/StackExchange/Stacks/commit/79d687d5abf9e04ecc32617da567dc5187a69683) Thanks [@mukunku](https://github.com/mukunku)! - patch(buttons) - Add notice for xs size
+
+## 3.0.0-beta.25
+
+### Patch Changes
+
+- [#2166](https://github.com/StackExchange/Stacks/pull/2166) [`c8fb945`](https://github.com/StackExchange/Stacks/commit/c8fb945af04e5b554ae585c834a8e21d4657d052) Thanks [@mukunku](https://github.com/mukunku)! - patch(toggle-switch): update to SHINE styles
+
+## 3.0.0-beta.24
+
+### Minor Changes
+
+- [#2164](https://github.com/StackExchange/Stacks/pull/2164) [`a710c69`](https://github.com/StackExchange/Stacks/commit/a710c69a5214b7deee41f181ad3a8b2762f6822a) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update link component to new SHINE designs
+
+    BREAKING CHANGES:
+    - <a> elements no longer automatically have s-link styling, `s-link` needs to be an explict class of any <a> element that needs the styling
+    - `block-link` component deleted
+
+- [#2163](https://github.com/StackExchange/Stacks/pull/2163) [`9000f2e`](https://github.com/StackExchange/Stacks/commit/9000f2eb6b2ca40b0e8a4dd4ffd95a6c9748f5c5) Thanks [@giamir](https://github.com/giamir)! - update label component to new SHINE specs
+
+### Patch Changes
+
+- [#2168](https://github.com/StackExchange/Stacks/pull/2168) [`c903ff0`](https://github.com/StackExchange/Stacks/commit/c903ff08d009a4165631a9b3b25e184924363c8a) Thanks [@mukunku](https://github.com/mukunku)! - patch(badges): Add star icon for new user badges
+
+- [#2172](https://github.com/StackExchange/Stacks/pull/2172) [`92cd983`](https://github.com/StackExchange/Stacks/commit/92cd98363e36ffc1133bae2b67e276dc1d057444) Thanks [@dancormier](https://github.com/dancormier)! - Replace all static size variables (`--su-static*`) with dynamic ones (`--su*`)
+
+- [#2171](https://github.com/StackExchange/Stacks/pull/2171) [`c122d46`](https://github.com/StackExchange/Stacks/commit/c122d463b0ca08c928aaeb43b20c99d5144d16a6) Thanks [@mukunku](https://github.com/mukunku)! - patch(navigation): Update vertical nav text color
+
+## 3.0.0-beta.23
+
+### Minor Changes
+
+- [#2137](https://github.com/StackExchange/Stacks/pull/2137) [`83464cd`](https://github.com/StackExchange/Stacks/commit/83464cd33e9c52393010ed44cae423583d21e5a1) Thanks [@dancormier](https://github.com/dancormier)! - Update Post Summary to SHINE styles
+
+### Patch Changes
+
+- [#2160](https://github.com/StackExchange/Stacks/pull/2160) [`e28cc80`](https://github.com/StackExchange/Stacks/commit/e28cc80685d91a4e636b850f9ecbe2ab2c1291b0) Thanks [@giamir](https://github.com/giamir)! - adjust button disabled state styles in HC modes
+
+## 3.0.0-beta.22
+
+### Minor Changes
+
+- [#2142](https://github.com/StackExchange/Stacks/pull/2142) [`041f1dd`](https://github.com/StackExchange/Stacks/commit/041f1dd06c2ceec0c8fb45fb99040c87b53de0e0) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update Loader (formerly known as Spinner) component to SHINE designs
+
+    BREAKING CHANGES:
+    - Spinner component has been replace with the Loader component
+
+### Patch Changes
+
+- [#2155](https://github.com/StackExchange/Stacks/pull/2155) [`9f65cf9`](https://github.com/StackExchange/Stacks/commit/9f65cf9c297119cd52a1bb6650a7fd6c4b442c20) Thanks [@mukunku](https://github.com/mukunku)! - feat(sidebar-widget): initial SHINE design changes
+
+- [#2158](https://github.com/StackExchange/Stacks/pull/2158) [`99ebaef`](https://github.com/StackExchange/Stacks/commit/99ebaeff07f3af1a974e0ff941e77bc5b361185b) Thanks [@giamir](https://github.com/giamir)! - button: adjust selected variant styles
+
+## 3.0.0-beta.21
+
+### Patch Changes
+
+- [#2118](https://github.com/StackExchange/Stacks/pull/2118) [`a60053d`](https://github.com/StackExchange/Stacks/commit/a60053dd3b695964750dd3f680898e1d5ce7d11b) Thanks [@mukunku](https://github.com/mukunku)! - feat(banner): update styles for SHINE
+
+    BREAKING CHANGES:
+    - Banner markup has changed. New markup and icons should be applied.
+    - `.s-banner--btn` has been replaced with `.s-banner--dismiss`
+
+- [#2145](https://github.com/StackExchange/Stacks/pull/2145) [`721511f`](https://github.com/StackExchange/Stacks/commit/721511f3c155e5a47b4269c5019a75bec248a0dd) Thanks [@giamir](https://github.com/giamir)! - button: adjust badge variant
+
+## 3.0.0-beta.20
+
+### Minor Changes
+
+- [#2123](https://github.com/StackExchange/Stacks/pull/2123) [`dcac9bf`](https://github.com/StackExchange/Stacks/commit/dcac9bf76c55203c39495ac29d1724365d83c115) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update User Card to new SHINE design (part 2)
+
+### Patch Changes
+
+- [#2144](https://github.com/StackExchange/Stacks/pull/2144) [`04b0c7e`](https://github.com/StackExchange/Stacks/commit/04b0c7eec416cb54c7478dbfb8df2fccbddfa46a) Thanks [@dancormier](https://github.com/dancormier)! - add support for a tag having both a dismiss button and linked tag text simultaneously
+
+## 3.0.0-beta.19
+
+### Minor Changes
+
+- [#2136](https://github.com/StackExchange/Stacks/pull/2136) [`d75d9d4`](https://github.com/StackExchange/Stacks/commit/d75d9d475b596f96442b6badeb9ff5a390796267) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Add .bg-loading delete skeleton
+
+    BREAKING CHANGES:
+
+    Skeleton component deleted
+
+### Patch Changes
+
+- [#2140](https://github.com/StackExchange/Stacks/pull/2140) [`70cfb92`](https://github.com/StackExchange/Stacks/commit/70cfb925f2821a4a8897698e915431efaf2075a9) Thanks [@dancormier](https://github.com/dancormier)! - Nudge light high contrast mode black 400, 500 for improved contrast
+
+## 3.0.0-beta.18
+
+### Minor Changes
+
+- [#2132](https://github.com/StackExchange/Stacks/pull/2132) [`4d3ad74`](https://github.com/StackExchange/Stacks/commit/4d3ad7496141352af80d23297ff985f86ad67a6b) Thanks [@giamir](https://github.com/giamir)! - adjust breakpoints to the new SHINE spec
+
+## 3.0.0-beta.17
+
+### Patch Changes
+
+- [#2130](https://github.com/StackExchange/Stacks/pull/2130) [`e2dea15`](https://github.com/StackExchange/Stacks/commit/e2dea15216568555cd1562dc65e5ff7477372a47) Thanks [@giamir](https://github.com/giamir)! - dependencies upgrade
+
+## 3.0.0-beta.16
+
+### Patch Changes
+
+- [#2122](https://github.com/StackExchange/Stacks/pull/2122) [`93ae01b`](https://github.com/StackExchange/Stacks/commit/93ae01bdec7c120cb77f98b9bcf0e718642c9552) Thanks [@dancormier](https://github.com/dancormier)! - Updated size scale plus many under-the-hood improvements
+
+## 3.0.0-beta.15
+
+### Minor Changes
+
+- [#2092](https://github.com/StackExchange/Stacks/pull/2092) [`c1443ec`](https://github.com/StackExchange/Stacks/commit/c1443ecfc69784be393fa26edefb63cca24a80f2) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update User card to new SHINE design (part 1)
+
+- [#2109](https://github.com/StackExchange/Stacks/pull/2109) [`96224f0`](https://github.com/StackExchange/Stacks/commit/96224f0bdf3c9208489c4053d34af86df9ffe25b) Thanks [@mukunku](https://github.com/mukunku)! - feat(notice): update styles for SHINE
+  feat(toast): update styles for SHINE
+
+    BREAKING CHANGES
+    - Markup for notices has been updated
+
+### Patch Changes
+
+- [#2119](https://github.com/StackExchange/Stacks/pull/2119) [`85c14d4`](https://github.com/StackExchange/Stacks/commit/85c14d41a33f36cadc338d1f83b166b8ba1ff01f) Thanks [@dancormier](https://github.com/dancormier)! - Fix rem font size values
+
+## 3.0.0-beta.14
+
+### Minor Changes
+
+- [#2062](https://github.com/StackExchange/Stacks/pull/2062) [`83d21b8`](https://github.com/StackExchange/Stacks/commit/83d21b8cc89fdc8ad2fe4e43ad39fd07a1eca8a0) Thanks [@dancormier](https://github.com/dancormier)! - Add Vote component
+
+- [#2060](https://github.com/StackExchange/Stacks/pull/2060) [`d53cdd1`](https://github.com/StackExchange/Stacks/commit/d53cdd189e6b831ea2db442068b26ab7c281f3b8) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Updated checkbox and radio styling in Stacks Classic and documentation for SHINE
+  `.s-check-control` has been removed
+  Renamed `.s-check-group` to `.s-form-group`
+  `.s-checkbox` and `.s-radio` are now expected to be on the container where `.s-check-control` would previously be applied. They are no longer needed on the input itself
+  Added `.s-checkbox__checkmark` and `.s-radio__checkmark` to Stacks Classic
+  Added `Checkbox`, `CheckboxGroup`, `Radio`, `RadioGroup` components to Stacks Svelte
+
+### Patch Changes
+
+- [#2100](https://github.com/StackExchange/Stacks/pull/2100) [`1407fb5`](https://github.com/StackExchange/Stacks/commit/1407fb512458203d5f9d4dbf40efb0d2b0426062) Thanks [@mukunku](https://github.com/mukunku)! - feat(empty-state): new SHINE styles and Svelte Component
+  fix(expanding-input): expands correctly now after textarea update
+
+## 3.0.0-beta.13
+
+### Patch Changes
+
+- [#2108](https://github.com/StackExchange/Stacks/pull/2108) [`d91d8c8`](https://github.com/StackExchange/Stacks/commit/d91d8c82059b949758a82612feff4fc81f1a2291) Thanks [@giamir](https://github.com/giamir)! - Make avatar background in navigation components transparent
+
+## 3.0.0-beta.12
+
+### Patch Changes
+
+- [#2103](https://github.com/StackExchange/Stacks/pull/2103) [`2bea67e`](https://github.com/StackExchange/Stacks/commit/2bea67ed467ab879b630e22ab21501e56a186f23) Thanks [@mukunku](https://github.com/mukunku)! - chore(inputs): adjust alert icon
+
+- [#2104](https://github.com/StackExchange/Stacks/pull/2104) [`258abee`](https://github.com/StackExchange/Stacks/commit/258abee7efeb8e317aba9e6e8bad0d575f79edbd) Thanks [@giamir](https://github.com/giamir)! - Add predefined line-height to font size atomic classes (.fs-fine, .fs-caption, etc...)
+
 ## 3.0.0-beta.11
 
 ### Major Changes
