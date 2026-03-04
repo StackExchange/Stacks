@@ -88,8 +88,6 @@
     {/if}
     <span class="v-visible-sr">{name}</span>
     {#if badge}
-        <!-- TODO This badge is not purely decorative, so it should include descriptive text
-        (see https://stackoverflow.atlassian.net/browse/A11Y-126) -->
-        <Icon class="s-avatar--badge" src={IconShieldXSm} native />
+        <Icon class="s-avatar--badge" src={IconShieldXSm} native title="Private" />
     {/if}
 </svelte:element>
