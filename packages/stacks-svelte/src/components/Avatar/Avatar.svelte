@@ -82,12 +82,24 @@
     {...restProps}
 >
     {#if src}
-        <img class="s-avatar--image" {src} alt="" role="presentation" width={size} height={size} />
+        <img
+            class="s-avatar--image"
+            {src}
+            alt=""
+            role="presentation"
+            width={size}
+            height={size}
+        />
     {:else if letter}
         <span class="s-avatar--letter" aria-hidden="true">{letter}</span>
     {/if}
     <span class="v-visible-sr">{name}</span>
     {#if badge}
-        <Icon class="s-avatar--badge" src={IconShieldXSm} native title="Private" />
+        <Icon
+            class="s-avatar--badge"
+            src={IconShieldXSm}
+            native
+            title="Private"
+        />
     {/if}
 </svelte:element>
