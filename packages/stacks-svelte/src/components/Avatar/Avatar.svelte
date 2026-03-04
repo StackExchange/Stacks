@@ -82,7 +82,7 @@
     {...restProps}
 >
     {#if src}
-        <img class="s-avatar--image" {src} alt="" role="presentation" />
+        <img class="s-avatar--image" {src} alt="" role="presentation" width={size} height={size} />
     {:else if letter}
         <span class="s-avatar--letter" aria-hidden="true">{letter}</span>
     {/if}
