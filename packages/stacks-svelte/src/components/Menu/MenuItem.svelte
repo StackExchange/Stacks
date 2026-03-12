@@ -40,6 +40,11 @@
         class?: string;
 
         /**
+         * Additional CSS classes added to the link element
+         */
+        linkClass?: string;
+
+        /**
          * Snippet for the menu item content
          */
         children: Snippet;
@@ -51,6 +56,7 @@
         icon,
         selected = false,
         class: className = "",
+        linkClass = "",
         onclick,
         children,
         ...restProps
@@ -84,7 +90,7 @@
     };
 
     const itemClasses = $derived(getItemClasses(className));
-    const linkClasses = $derived(getLinkClasses("", danger, selected));
+    const linkClasses = $derived(getLinkClasses(linkClass, danger, selected));
 </script>
 
 <li class={itemClasses} role="menuitem">

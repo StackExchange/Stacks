@@ -125,6 +125,21 @@ describe("Menu", () => {
         expect(link).to.have.class("s-menu--action__danger");
     });
 
+    it("should render with arbitrary link classes", () => {
+        const menuItems = createSvelteComponentsSnippet([
+            createMenuItem({
+                href: "#",
+                linkClass: "custom-link-class",
+                children: children("Delete"),
+            }),
+        ]);
+
+        render(Menu, { children: menuItems });
+
+        const link =screen.getByRole("menuitem").querySelector("a");
+        expect(link).to.have.class("custom-link-class");
+    });
+
     // Menu Check Item
     it("should render menu check item with required props", () => {
         const menuCheckItems = createSvelteComponentsSnippet([
