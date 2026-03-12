@@ -136,7 +136,7 @@ describe("Menu", () => {
 
         render(Menu, { children: menuItems });
 
-        const link =screen.getByRole("menuitem").querySelector("a");
+        const link = screen.getByRole("menuitem").querySelector("a");
         expect(link).to.have.class("custom-link-class");
     });
 
