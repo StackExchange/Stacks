@@ -115,11 +115,12 @@
     border-radius: 4px;
   }
   .s-navigation--item:hover {
-    background: var(--orange-400);
-    color: var(--white);
+    background: var(--orange-400) !important;
+    color: var(--white) !important;
   }
-	.s-navigation--item.is-selected {
-		background: var(--black-600);
-    color: var(--white);
+	.s-navigation--item.is-selected,
+  .s-navigation--item.is-selected:hover {
+		background: var(--black-600) !important;
+    color: var(--white) !important;
 	}
 </style>

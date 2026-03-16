@@ -48,7 +48,7 @@
   <div class="d-grid grid__12 g16">
     {#each data.structure?.navigation as category, index}
       <a
-        class={`grid--col4 md:grid--col6 sm:grid--col12 d-flex fd-column p24 bg-black fc-white d:bg-black-100 d:fc-black hmn2`}
+        class="td-none h:bg-black-600 grid--col4 md:grid--col6 sm:grid--col12 d-flex fd-column p24 bg-black fc-white d:bg-black-100 d:fc-black hmn2"
         href={category.slug}
       >
         <Icon src={icons[category.title]} />
