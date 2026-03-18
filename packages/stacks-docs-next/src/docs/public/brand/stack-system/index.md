@@ -7,7 +7,7 @@ updated: 2025-12-10
   import GridColumn from '$components/GridColumn.svelte'
 </script>
 
-Our stack system is at the heart of our brand identity. Stacks bringenergy and rhythm to layouts in ways that color and type can’t on their own. This section outlines the types of stacks we use, along with guidance on how to apply them, build them, and how not to use them.
+Our stack system is at the heart of our brand identity. Stacks bring energy and rhythm to layouts in ways that color and type can’t on their own. This section outlines the types of stacks we use, along with guidance on how to apply them, build them, and how not to use them.
 
 ## Graphics overview
 
