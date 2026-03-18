@@ -112,7 +112,7 @@
 <style>
   .s-navigation--item {
     transition: font-weight 0.1s;
-    border-radius: 4px;
+    border-radius: 6px !important;
   }
   .s-navigation--item:hover {
     background: var(--orange-400) !important;
