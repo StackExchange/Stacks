@@ -6,6 +6,13 @@
   import { IconLock, IconChevron16Up, IconArrowUpRightBox } from '@stackoverflow/stacks-icons'
 
   let { navigation } = $props();
+
+  // Derive path segments from pathname so selection works for both dynamic
+  // routes (/[category]/[section]/[subsection]) and static routes (/resources/icons)
+  let segments = $derived(page.url.pathname.split('/').filter(Boolean));
+  let categorySlug = $derived(segments[0] ?? '');
+  let sectionSlug = $derived(segments[1] ?? '');
+  let subsectionSlug = $derived(segments[2] ?? '');
 </script>
 
 {#snippet dropdown(isSelected: boolean, level: number = 1)}
@@ -26,13 +33,13 @@
       <a
         class="s-navigation--item mb1"
         href="/"
-        class:is-selected={!page.params.category}
+        class:is-selected={!categorySlug}
       >
         <span>Home</span>
       </a>
     </li>
     {#each navigation as category}
-      {@const isSelected = category.slug === page.params.category}
+      {@const isSelected = category.slug === categorySlug}
 
       <li>
         <a
@@ -54,7 +61,7 @@
                 <li>
                   <a
                     class="s-navigation--item jc-space-between mb1"
-                    class:is-selected={page.params.section === subsection.slug || page.params.subsection === subsection.slug}
+                    class:is-selected={sectionSlug === subsection.slug || subsectionSlug === subsection.slug}
                     href={subsection.externalUrl || `/${category.slug}/${subsection.slug}/${subsection?.items ? subsection?.items[0]?.slug : ''}`}
                     data-sveltekit-reload={subsection.private ? true : undefined}
                   >
@@ -68,7 +75,7 @@
                           <Icon src={IconLock} />
                         {/if}
                         {#if subsection?.items}
-                          {@render dropdown(page.params.section === subsection.slug, 2)}
+                          {@render dropdown(sectionSlug === subsection.slug, 2)}
                         {/if}
                         {#if subsection.externalUrl}
                           <Icon src={IconArrowUpRightBox} />
@@ -77,14 +84,14 @@
                     {/if}
                   </a>
 
-                  {#if subsection?.items && page.params.section === subsection.slug}
+                  {#if subsection?.items && sectionSlug === subsection.slug}
                     <div transition:slide={{ duration: 200 }}>
                       <ul class="s-navigation s-navigation__vertical ml24">
                         {#each subsection?.items as item}
                           <li>
                             <a
                               class="s-navigation--item jc-space-between mb1"
-                              class:is-selected={page.params.subsection === item.slug}
+                              class:is-selected={subsectionSlug === item.slug}
                               href={item.externalUrl || `/${category.slug}/${subsection.slug}/${item.slug}/`}
                               data-sveltekit-reload={item.private ? true : undefined}
                             >
