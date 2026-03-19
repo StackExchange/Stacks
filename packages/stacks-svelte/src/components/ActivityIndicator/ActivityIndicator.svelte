@@ -43,7 +43,11 @@
         class: className = "",
     }: Props = $props();
 
-    const getClasses = (className: ClassValue, variant: Variant, size: Size) => {
+    const getClasses = (
+        className: ClassValue,
+        variant: Variant,
+        size: Size
+    ) => {
         const base = "s-activity-indicator";
         const classes = [variant, size]
             .filter(Boolean)

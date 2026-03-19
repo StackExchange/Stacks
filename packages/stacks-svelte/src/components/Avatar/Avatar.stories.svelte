@@ -32,7 +32,9 @@
     {#snippet template({ class: classArg, ...args })}
         <Avatar
             {...args}
-            class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+            class={parseClassValue(
+                typeof classArg === "string" ? classArg : undefined
+            )}
         />
     {/snippet}
 </Story>

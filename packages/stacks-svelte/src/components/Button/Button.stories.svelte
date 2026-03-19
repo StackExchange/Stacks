@@ -43,7 +43,7 @@
             class: {
                 control: "text",
             },
-        }
+        },
     });
 </script>
 
@@ -51,7 +51,9 @@
     {#snippet template({ children, class: classArg, ...args })}
         <Button
             {...args}
-            class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+            class={parseClassValue(
+                typeof classArg === "string" ? classArg : undefined
+            )}
         >
             {children ?? "Ask question"}
         </Button>

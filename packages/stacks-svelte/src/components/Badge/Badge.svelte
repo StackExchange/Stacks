@@ -138,7 +138,16 @@
     };
 
     const classes = $derived(
-        getClasses(className, size, squared, important, type, state, userType, award)
+        getClasses(
+            className,
+            size,
+            squared,
+            important,
+            type,
+            state,
+            userType,
+            award
+        )
     );
 
     const needsBling = $derived(() => {

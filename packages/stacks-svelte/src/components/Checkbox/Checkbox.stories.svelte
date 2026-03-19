@@ -70,7 +70,9 @@
         <div class="wmx2">
             <Checkbox
                 {...args}
-                class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+                class={parseClassValue(
+                    typeof classArg === "string" ? classArg : undefined
+                )}
             />
         </div>
     {/snippet}
