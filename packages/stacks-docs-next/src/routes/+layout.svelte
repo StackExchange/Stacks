@@ -69,11 +69,13 @@
 		{/if}
 	</div>
 
-	<footer class="d-flex ai-center ml32 py32 fc-black-400">
-		<Icon src={IconGlyph24} />
-		<div class="footer__blurb ml12">
-			© {year} Stack Exchange Inc.
-			All rights reserved.
-		</div>
-	</footer>
+	{#if !page.data.hideFooter}
+		<footer class="d-flex ai-center ml32 py32 fc-black-400">
+			<Icon src={IconGlyph24} />
+			<div class="footer__blurb ml12">
+				© {year} Stack Exchange Inc.
+				All rights reserved.
+			</div>
+		</footer>
+	{/if}
 </main>
