@@ -1,5 +1,6 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
+    import { parseClassValue } from "../../storybook-utils";
     import Checkbox, { type Checked, type State } from "./Checkbox.svelte";
     import CheckboxGroup, { type CheckboxOption } from "./CheckboxGroup.svelte";
 
@@ -9,6 +10,23 @@
     const { Story } = defineMeta({
         title: "Components/Checkbox",
         component: Checkbox,
+        argTypes: {
+            checkmark: {
+                control: "boolean",
+            },
+            state: {
+                control: "select",
+                options: CheckboxStates,
+            },
+            class: {
+                control: "text",
+            },
+        },
+        args: {
+            name: "Checkbox",
+            id: "Checkbox-1",
+            label: "Checkbox label",
+        },
     });
 
     // For bindable value and onchange story
@@ -47,17 +65,13 @@
     };
 </script>
 
-<Story
-    name="Base"
-    args={{
-        name: "Checkbox",
-        id: "Checkbox-1",
-        label: "Checkbox label",
-    }}
->
-    {#snippet template(args)}
+<Story name="Base">
+    {#snippet template({ class: classArg, ...args })}
         <div class="wmx2">
-            <Checkbox {...args} />
+            <Checkbox
+                {...args}
+                class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+            />
         </div>
     {/snippet}
 </Story>

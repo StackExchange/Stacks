@@ -1,5 +1,6 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
+    import { parseClassValue } from "../../storybook-utils";
     import Button from "./Button.svelte";
     import type { Brand, Size, Variant, Weight } from "./Button.svelte";
     import Icon from "../Icon/Icon.svelte";
@@ -39,13 +40,21 @@
             children: {
                 control: "text",
             },
-        },
+            class: {
+                control: "text",
+            },
+        }
     });
 </script>
 
 <Story name="Base">
-    {#snippet template({ children, ...args })}
-        <Button {...args}>{children ?? "Ask question"}</Button>
+    {#snippet template({ children, class: classArg, ...args })}
+        <Button
+            {...args}
+            class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+        >
+            {children ?? "Ask question"}
+        </Button>
     {/snippet}
 </Story>
 

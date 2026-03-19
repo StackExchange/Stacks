@@ -4,6 +4,9 @@
 </script>
 
 <script lang="ts">
+    import clsx from "clsx";
+    import type { ClassValue } from "svelte/elements";
+
     interface Props {
         /**
          * The accessible text provided for screen readers
@@ -28,36 +31,25 @@
         /**
          * Additional CSS classes added to the element
          */
-        class?: string;
+        class?: ClassValue;
     }
 
     const { type, filled, size, name, class: className = "" }: Props = $props();
 
     const getClasses = (
-        className: string,
+        className: ClassValue,
         type?: Type,
         size?: Size,
         filled?: boolean
     ) => {
-        let classes = "s-bling";
-
-        if (className) {
-            classes += " " + className;
-        }
-
-        if (type) {
-            classes += " s-bling__" + type;
-        }
-
+        const base = "s-bling";
+        const classes = [type, size]
+            .filter(Boolean)
+            .map((modifier) => `${base}__${modifier}`);
         if (filled) {
-            classes += " s-bling__filled";
+            classes.push(`${base}__filled`);
         }
-
-        if (size) {
-            classes += " s-bling__" + size;
-        }
-
-        return classes;
+        return clsx(base, className, classes);
     };
 
     const classes = $derived(getClasses(className, type, size, filled));

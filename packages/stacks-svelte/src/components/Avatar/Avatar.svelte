@@ -3,10 +3,11 @@
 </script>
 
 <script lang="ts">
+    import clsx from "clsx";
     import Icon from "../Icon/Icon.svelte";
     import ActivityIndicator from "../ActivityIndicator/ActivityIndicator.svelte";
     import { IconShieldXSm } from "@stackoverflow/stacks-icons-legacy/icons";
-    import type { HTMLAnchorAttributes } from "svelte/elements";
+    import type { ClassValue, HTMLAnchorAttributes } from "svelte/elements";
 
     interface Props {
         /**
@@ -47,7 +48,7 @@
         /**
          * Additional CSS classes added to the element
          */
-        class?: string;
+        class?: ClassValue;
     }
 
     const {
@@ -63,19 +64,10 @@
         ...restProps
     }: Props & HTMLAnchorAttributes = $props();
 
-    const getClasses = (className: string, size: Size): string => {
+    const getClasses = (className: ClassValue, size: Size) => {
         const base = "s-avatar";
-        let classes = base;
-
-        if (className) {
-            classes += ` ${className}`;
-        }
-
-        if (size !== 16) {
-            classes += ` ${base}__${size}`;
-        }
-
-        return classes;
+        const classes = size === 16 ? [] : [`${base}__${size}`];
+        return clsx(base, className, classes);
     };
 
     const classes = $derived(getClasses(className, size));

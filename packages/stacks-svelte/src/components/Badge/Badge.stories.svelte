@@ -1,5 +1,6 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
+    import { parseClassValue } from "../../storybook-utils";
     import {
         IconDocument,
         IconCompose,
@@ -73,13 +74,20 @@
             important: {
                 control: "boolean",
             },
+            class: {
+                control: "text",
+            },
         },
     });
 </script>
 
 <Story name="Base">
-    {#snippet template({ text, ...args })}
-        <Badge text={text ?? "1.23k"} {...args} />
+    {#snippet template({ text, class: classArg, ...args })}
+        <Badge
+            text={text ?? "1.23k"}
+            {...args}
+            class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+        />
     {/snippet}
 </Story>
 

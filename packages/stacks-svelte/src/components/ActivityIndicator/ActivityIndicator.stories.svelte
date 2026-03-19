@@ -1,5 +1,6 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
+    import { parseClassValue } from "../../storybook-utils";
     import Icon from "../Icon/Icon.svelte";
     import Button from "../Button/Button.svelte";
     import { IconNotification } from "@stackoverflow/stacks-icons/icons";
@@ -28,11 +29,25 @@
                 control: "select",
                 options: ActivityIndicatorSizes,
             },
+            class: {
+                control: "text",
+            },
+        },
+        args: {
+            label: "New activities",
+            content: 99,
         },
     });
 </script>
 
-<Story name="Base" args={{ label: "New activities", content: 99 }} />
+<Story name="Base">
+    {#snippet template({ class: classArg, ...args })}
+        <ActivityIndicator
+            {...args}
+            class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+        />
+    {/snippet}
+</Story>
 
 <Story name="Variants" asChild>
     <div class="d-flex fd-column g64">

@@ -4,10 +4,12 @@
 </script>
 
 <script lang="ts">
+    import clsx from "clsx";
     import Checkbox from "../Checkbox/Checkbox.svelte";
     import Radio from "../RadioGroup/Radio.svelte";
     import type { Props as CheckboxProps } from "../Checkbox/Checkbox.svelte";
     import type { Props as RadioProps } from "../RadioGroup/Radio.svelte";
+    import type { ClassValue } from "svelte/elements";
 
     export type CheckboxOption = Omit<CheckboxProps, "name" | "id"> & {
         id?: string;
@@ -60,7 +62,7 @@
         /**
          * Additional CSS classes
          */
-        class?: string;
+        class?: ClassValue;
 
         /**
          * Callback function called when the value changes
@@ -118,26 +120,19 @@
     };
 
     const getClasses = (
-        className: string,
+        className: ClassValue,
         horizontal: boolean,
         state: State
     ) => {
         const base = "s-form-group";
-        let classes = base;
-
-        if (className) {
-            classes += " " + className;
-        }
-
+        const classes: string[] = [];
         if (horizontal) {
-            classes += ` ${base}__horizontal`;
+            classes.push(`${base}__horizontal`);
         }
-
         if (state) {
-            classes += ` has-${state}`;
+            classes.push(`has-${state}`);
         }
-
-        return classes;
+        return clsx(base, className, classes);
     };
 
     const classes = $derived(getClasses(className, horizontal, state));

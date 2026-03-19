@@ -1,6 +1,8 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
+    import { parseClassValue } from "../../storybook-utils";
     import Avatar, { type Size } from "./Avatar.svelte";
+
     const AvatarSizes: Size[] = [16, 24, 32, 48, 64, 96, 128];
 
     const { Story } = defineMeta({
@@ -15,14 +17,25 @@
                 control: "select",
                 options: AvatarSizes,
             },
+            class: {
+                control: "text",
+            },
+        },
+        args: {
+            name: "example",
+            src: "https://picsum.photos/128",
         },
     });
 </script>
 
-<Story
-    name="Base"
-    args={{ name: "example", src: "https://picsum.photos/128" }}
-/>
+<Story name="Base">
+    {#snippet template({ class: classArg, ...args })}
+        <Avatar
+            {...args}
+            class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+        />
+    {/snippet}
+</Story>
 
 <Story name="Sizes" asChild>
     <div class="d-flex fd-column g64">

@@ -1,6 +1,8 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
+    import { parseClassValue } from "../../storybook-utils";
     import Bling, { type Type, type Size } from "./Bling.svelte";
+
     const BlingSizes: Size[] = ["sm", "", "lg"];
     const BlingTypes: Type[] = [
         "",
@@ -14,21 +16,33 @@
     const { Story } = defineMeta({
         title: "Components/Bling",
         component: Bling,
+        argTypes: {
+            type: {
+                control: "select",
+                options: BlingTypes,
+            },
+            size: {
+                control: "select",
+                options: BlingSizes,
+            },
+            filled: {
+                control: "boolean",
+            },
+            class: {
+                control: "text",
+            },
+        },
+        args: {
+            name: "Bling",
+        },
     });
 </script>
 
-<Story
-    name="Base"
-    args={{
-        name: "Bling",
-    }}
->
-    {#snippet template(args)}
+<Story name="Base">
+    {#snippet template({ class: classArg, ...args })}
         <Bling
-            type={args.type}
-            name={args.name}
-            size={args.size}
-            filled={args.filled}
+            {...args}
+            class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
         />
     {/snippet}
 </Story>

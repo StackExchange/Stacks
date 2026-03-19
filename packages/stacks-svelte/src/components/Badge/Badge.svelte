@@ -27,8 +27,11 @@
 </script>
 
 <script lang="ts">
+    import clsx from "clsx";
     import Bling from "../Bling/Bling.svelte";
     import Icon from "../Icon/Icon.svelte";
+    import type { ClassValue } from "svelte/elements";
+
     interface Props {
         /**
          * The text content of the badge
@@ -87,7 +90,7 @@
         /**
          * Additional CSS classes added to the badge element
          */
-        class?: string;
+        class?: ClassValue;
     }
 
     const {
@@ -104,36 +107,39 @@
         class: className = "",
     }: Props = $props();
 
-    const classes = $derived(() => {
+    const getClasses = (
+        className: ClassValue,
+        size: BadgeSize,
+        squared: boolean,
+        important: boolean,
+        type: BadgeType | undefined,
+        state: BadgeState | undefined,
+        userType: UserType | undefined,
+        award: Award | undefined
+    ) => {
         const base = "s-badge";
-        let classes = base;
-
-        if (className) {
-            classes += ` ${className}`;
-        }
-
-        if (size) {
-            classes += ` ${base}__${size}`;
-        }
-
+        const classes: string[] = [size]
+            .filter(Boolean)
+            .map((modifier) => `${base}__${modifier}`);
         if (squared) {
-            classes += ` ${base}__squared`;
+            classes.push(`${base}__squared`);
         }
-
         if (important) {
-            classes += ` ${base}__important`;
+            classes.push(`${base}__important`);
         }
-
         if (type === "state" && state) {
-            classes += ` ${base}__${state}`;
+            classes.push(`${base}__${state}`);
         } else if (type === "user" && userType) {
-            classes += ` ${base}__${userType}`;
+            classes.push(`${base}__${userType}`);
         } else if (type === "tag" && award) {
-            classes += ` ${base}__${award}`;
+            classes.push(`${base}__${award}`);
         }
+        return clsx(base, className, classes);
+    };
 
-        return classes;
-    });
+    const classes = $derived(
+        getClasses(className, size, squared, important, type, state, userType, award)
+    );
 
     const needsBling = $derived(() => {
         return (
@@ -166,7 +172,7 @@
     });
 </script>
 
-<span class={classes()}>
+<span class={classes}>
     {#if needsBling()}
         <Bling
             type={blingType()}
