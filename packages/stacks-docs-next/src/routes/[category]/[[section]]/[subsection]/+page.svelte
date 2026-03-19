@@ -48,7 +48,7 @@
         {/each}
       </nav>
 
-      <button title="Copy to Markdown" class="s-btn s-btn__sm s-btn__clear s-btn__icon" use:copyToClipboard={data.markdown}>
+      <button type="button" title="Copy to Markdown" class="s-btn s-btn__sm s-btn__clear s-btn__icon" use:copyToClipboard={data.markdown}>
         {#if copiedMd}
           <Icon src={IconCheckFillCircle} class="fc-green-400" />
           <span class="sm:d-none">Copied!</span>
