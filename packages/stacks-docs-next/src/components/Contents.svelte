@@ -132,7 +132,7 @@
 
 <aside class="flex--item3 md:order-first ml32 md:ml0">
   {#if toc.length > 0}
-    <div class="ps-sticky t0 py32 mt6 pr24 md:pb0 overflow-auto hmx-screen md:hmx-initial">
+    <div class="ps-sticky t0 py24 mt6 pr24 md:pb0 overflow-auto hmx-screen md:hmx-initial">
       <button
         class="d-none md:d-block s-btn s-btn__tonal s-btn__icon w100 mb12 d-flex jc-space-between"
         onclick={() => isOpen = !isOpen}

@@ -234,6 +234,36 @@ const backgroundImage = [
 
 ## Background utilities
 
+### Loading
+
+Adding the `.bg-loading` class applies a shimmering gradient animation to a container's background. Use it to create flexible skeleton placeholders that mimic the shape and layout of content while it loads.
+
+```html
+<div class="p16">
+    <div class="ws3 d-flex g16">
+        <div class="v-visible-sr">Loading…</div>
+        <div class="bg-loading s-avatar s-avatar__96 fl-shrink0"></div>
+        <div class="d-flex fd-column g8 jc-space-between w100">
+            <div class="bg-loading bar-md h24"></div>
+            <div class="bg-loading bar-md h24"></div>
+            <div class="bg-loading bar-md h24 w70"></div>
+        </div>
+    </div>
+</div>
+```
+
+<div class="p16">
+  <div class="ws3 d-flex g16">
+    <div class="v-visible-sr">Loading…</div>
+    <div class="bg-loading s-avatar s-avatar__96 fl-shrink0"></div>
+    <div class="d-flex fd-column g8 jc-space-between w100">
+      <div class="bg-loading bar-md h24"></div>
+      <div class="bg-loading bar-md h24"></div>
+      <div class="bg-loading bar-md h24 w70"></div>
+    </div>
+  </div>
+</div>
+
 ### Confetti
 
 Adding the confetti background utility adds confetti to any block-level element. You can choose the animated version, or static version. The animated version respects `prefers-reduced-motion` and displays the static version of the background when necessary. No JavaScript required.

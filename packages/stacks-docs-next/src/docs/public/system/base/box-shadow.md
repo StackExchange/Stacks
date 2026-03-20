@@ -55,7 +55,7 @@ updated: 2025-12-16
     },
     {
       class: 'bs-ring',
-      output: 'box-shadow: 0 0 0 var(--su-static4) var(--focus-ring);',
+      output: 'box-shadow: 0 0 0 var(--su4) var(--focus-ring);',
       hover: true,
       focus: true,
       responsive: false

@@ -57,9 +57,9 @@
 </header>
 
 <main class="main bg-white d-flex fd-column t24 sm:t0 ps-relative">
-	<div class="bg-blue-400 fc-white px24 py12">
+	<!-- <div class="bg-blue-400 fc-white px24 py12">
 		This is a brand focused preview – for developer reference please see <a href="https://stackoverflow.design" class="s-link fc-white s-link__underlined">the current docs</a> or <a href="https://beta.stackoverflow.design" class="s-link fc-white s-link__underlined">the beta release</a>.
-	</div>
+	</div> -->
 
 	<div class="my-auto">
 		{#if data.needsAuth}

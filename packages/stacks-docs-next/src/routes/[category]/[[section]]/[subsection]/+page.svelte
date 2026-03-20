@@ -40,7 +40,7 @@
 {/if}
 
 <article class="d-flex md:fd-column mx-auto pl32 md:pr32 sm:pl24 sm:pr24">
-  <div class="doc flex--item9 wmn1 s-prose fs-body2 pt32">
+  <div class="doc flex--item9 wmn1 s-prose fs-body2 pt24">
     <div class="d-flex gs4 ai-center mb128">
       <nav class="flex--item fs-body2 mr-auto" aria-label="breadcrumb">
         {#each data.breadcrumb as crumb, index}
@@ -99,6 +99,8 @@
 
     {#if data.source === 'md'}
       <data.Content />
+    {:else if data.source === 'legacy'}
+      {@html data.html}
     {/if}
   </div>
 

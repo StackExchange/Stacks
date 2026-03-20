@@ -76,6 +76,24 @@ module.exports = function(eleventyConfig) {
     return headings;
   });
 
+  // After build: extract <main id="content"> from each page and write a fragment.html
+  // alongside it — used by stacks-docs-next as a legacy content stopgap.
+  eleventyConfig.on('eleventy.after', ({ results }) => {
+    for (const result of results) {
+      if (!result.outputPath || !result.outputPath.endsWith('/index.html')) continue;
+      try {
+        const html = fs.readFileSync(result.outputPath, 'utf8');
+        const $ = cheerio.load(html);
+        const main = $('#content');
+        if (!main.length) continue;
+        const fragmentPath = path.join(path.dirname(result.outputPath), 'fragment.html');
+        fs.writeFileSync(fragmentPath, main.html());
+      } catch {
+        // skip pages that can't be processed
+      }
+    }
+  });
+
   // Copy these files over to _site
   eleventyConfig.addPassthroughCopy('assets/dist');
   eleventyConfig.addPassthroughCopy('assets/img');

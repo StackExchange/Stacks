@@ -15,7 +15,7 @@ updated: 2025-12-16
     },
     {
       class: 'outline-ring',
-      output: 'outline: solid var(--su-static4) var(--translucent-secondary);',
+      output: 'outline: solid var(--su4) var(--translucent-secondary);',
       define: 'Adds an outline using our translucent secondary color.'
     }
   ];
