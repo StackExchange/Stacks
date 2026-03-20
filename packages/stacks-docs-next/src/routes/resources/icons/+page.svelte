@@ -1,40 +1,31 @@
-<script lang="ts">
+<script>
   import manifest from './manifest.json';
   import { copyToClipboard } from '$src/lib/copyToClipboard';
 
   import { IconServiceFigma, IconCheckFillCircle, IconStackCards } from '@stackoverflow/stacks-icons/icons';
-  import { Icon, Button, Navigation, NavigationItem } from '@stackoverflow/stacks-svelte';
+  import { Icon, Button, Navigation, NavigationItem, TextInput } from '@stackoverflow/stacks-svelte';
 
-  type Variant = {
-    key: string;
-    variantProps: Record<string, string> | null;
-    figmaUrl: string;
-    description: string;
-    svg: string;
-  };
+  let search = $state('');
+  let selected = $state(null);
+  let selectedProps = $state({});
+  let copied = $state('');
+  let activeCodeTab = $state('Svelte');
 
-  type Entry = {
-    name: string;
-    figmaName: string;
-    variants: Variant[];
-    isSpot: boolean;
-  };
-
-  const icons: Entry[] = Object.entries(manifest.icons).map(([name, data]) => ({
+  const icons = Object.entries(manifest.icons).map(([name, data]) => ({
     name,
     figmaName: data.figmaName,
-    variants: data.variants as Variant[],
+    variants: data.variants,
     isSpot: false,
   }));
 
-  const spots: Entry[] = Object.entries(manifest.spots).map(([name, data]) => ({
+  const spots = Object.entries(manifest.spots).map(([name, data]) => ({
     name,
     figmaName: data.figmaName,
-    variants: data.variants as Variant[],
+    variants: data.variants,
     isSpot: true,
   }));
 
-  function getDefaultVariant(entry: Entry): Variant {
+  function getDefaultVariant(entry) {
     return (
       entry.variants.find(v => v.variantProps?.Size === 'Default' && v.variantProps?.Style === 'Default') ??
       entry.variants.find(v => v.variantProps?.Size === 'Default') ??
@@ -42,13 +33,6 @@
     );
   }
 
-  let search = $state('');
-  let selected: Entry | null = $state(null);
-  let selectedProps = $state<Record<string, string>>({});
-  let copied = $state(false);
-  let activeCodeTab = $state('Svelte');
-
-  // For searching
   let filteredIcons = $derived(
     search.trim() === ''
       ? icons
@@ -61,7 +45,7 @@
       : spots.filter(e => e.name.toLowerCase().includes(search.trim().toLowerCase()))
   );
 
-  function sortValues(values: string[]): string[] {
+  function sortValues(values) {
     return [...values].sort((a, b) => {
       if (a === 'Default') return -1;
       if (b === 'Default') return 1;
@@ -71,8 +55,8 @@
 
   // Variants: unique keys with >1 possible value, all values sorted
   let variants = $derived.by(() => {
-    if (!selected) return [] as { key: string; values: string[] }[];
-    const allKeys = new Set<string>();
+    if (!selected) return [];
+    const allKeys = new Set();
 
     for (const v of selected.variants) {
       if (v.variantProps) Object.keys(v.variantProps).forEach(k => allKeys.add(k));
@@ -80,15 +64,15 @@
 
     return [...allKeys].flatMap(key => {
       const allValues = [...new Set(
-        selected!.variants.map(v => v.variantProps?.[key]).filter(Boolean) as string[]
+        selected.variants.map(v => v.variantProps?.[key]).filter(Boolean)
       )];
       return allValues.length > 1 ? [{ key, values: sortValues(allValues) }] : [];
     });
   });
 
   // Check if a value is compatible with current selectedProps for all OTHER dimensions
-  function isCompatible(key: string, val: string): boolean {
-    return selected!.variants.some(v => {
+  function isCompatible(key, val) {
+    return selected.variants.some(v => {
       if (v.variantProps?.[key] !== val) return false;
       return Object.entries(selectedProps).every(([k, selectedVal]) =>
         k === key || v.variantProps?.[k] === selectedVal
@@ -100,7 +84,6 @@
   let selectedVariant = $derived.by(() => {
     if (!selected) return null;
 
-    // Score each variant by how many props match selectedProps
     let best = selected.variants[0];
     let bestScore = -1;
 
@@ -113,25 +96,25 @@
     return best;
   });
 
-  function selectEntry(entry: Entry) {
+  function selectEntry(entry) {
     selected = entry;
     const def = getDefaultVariant(entry);
     selectedProps = { ...(def.variantProps ?? {}) };
-    copied = false;
+    copied = '';
   }
 
-  function setDimension(key: string, value: string) {
+  function setDimension(key, value) {
     const newProps = { ...selectedProps, [key]: value };
 
     // For each other dimension, check if its current value is still compatible
     // with the newly set key/value. If not, reset it to 'Default' or first available.
-    const compatibleVariants = selected!.variants.filter(v => v.variantProps?.[key] === value);
+    const compatibleVariants = selected.variants.filter(v => v.variantProps?.[key] === value);
     for (const k of Object.keys(newProps)) {
       if (k === key) continue;
       const stillValid = compatibleVariants.some(v => v.variantProps?.[k] === newProps[k]);
       if (!stillValid) {
         const available = sortValues([...new Set(
-          compatibleVariants.map(v => v.variantProps?.[k]).filter(Boolean) as string[]
+          compatibleVariants.map(v => v.variantProps?.[k]).filter(Boolean)
         )]);
         newProps[k] = available[0] ?? newProps[k];
       }
@@ -140,9 +123,9 @@
     selectedProps = newProps;
   }
 
-  function copySuccess() {
-    copied = true;
-    setTimeout(() => { copied = false; }, 2000);
+  function copySuccess(e) {
+    copied = e.detail?.dataset?.copyId ?? '';
+    setTimeout(() => { copied = ''; }, 2000);
   }
 
   // Export name for usage tabs
@@ -153,22 +136,22 @@
 
 <div class="d-flex">
   <div class="fl-grow1 p24 wmn0">
-    <div class="mb24">
-      <input
-        class="s-input"
-        type="search"
-        placeholder="Search icons and spots…"
-        bind:value={search}
-      />
-    </div>
+    <TextInput
+      id="icon-search"
+      label="Search icons and spots"
+      hideLabel
+      type="search"
+      placeholder="Search icons and spots…"
+      bind:value={search}
+    />
 
-    {#snippet section(label: string, entries: Entry[])}
+    {#snippet section(label, entries)}
       {#if entries.length > 0}
-        <h2 class="fs-title fw-bold mb4">
+        <h2 class="fs-title fw-bold mt32 mb12">
           {label} <span class="s-badge ml4">{entries.length}</span>
         </h2>
 
-        <div class="icons-grid mb32">
+        <div class="icons-grid">
           {#each entries as entry (entry.name)}
             {@const def = getDefaultVariant(entry)}
             <button
@@ -176,7 +159,7 @@
               onclick={() => selectEntry(entry)}
             >
               <div class="d-flex ai-center jc-center my-auto h100">
-                {@html def.svg.replace('class="', `class="w100 h-auto wmx100 ${label === 'Spots' ? 'native' : '' } `)}
+                {@html def.svg.replace('class="', `class="w100 h-auto wmx100 ${label === 'Spots' ? 'native' : ''} `)}
               </div>
               <div class="fs-caption mt-auto pt8">
                 {entry.name}
@@ -191,53 +174,40 @@
     {@render section('Spots', filteredSpots)}
   </div>
 
-  <aside class="ws3 ps-sticky t0 overflow-y-scroll fl-shrink0 d-flex fd-column bl bc-black-200 h-screen">
+  <aside class="ws3 ps-sticky t0 overflow-y-scroll fl-shrink0 bl bc-black-200 h-screen">
     {#if selected && selectedVariant}
       <div class="d-flex fd-column bb bc-black-200 hs3">
-        <p class="fs-title fw-bold mb4 ta-center lh-sm mt16">
-          {selected.name}
-        </p>
-
-        {#if selectedVariant.description}
-          <p class="fs-caption fc-light ta-center mb4">
-            {selectedVariant.description}
-          </p>
-        {/if}
-
-        <p class="ff-mono fs-caption fc-light ta-center">
-          {exportName}
-        </p>
-
-        <div class="h100 d-flex ai-center jc-center bg-white d:bg-black">
-          {@html selectedVariant.svg.replace('class="', 'class="native my-auto ')}
-        </div>
-
-        <div class="px16 py12 d-flex">
-          <button type="button" title="Copy SVG" class="s-btn s-btn__sm s-btn__clear s-btn__icon" use:copyToClipboard={selectedVariant.svg}>
-            {#if copied}
+        <div class="d-flex jc-space-between ai-center p6">
+          <button type="button" title="Copy SVG" data-copy-id="svg" class="s-btn s-btn__sm s-btn__clear s-btn__icon" use:copyToClipboard={selectedVariant.svg}>
+            {#if copied === 'svg'}
               <Icon src={IconCheckFillCircle} class="fc-green-400" />
             {:else}
               <Icon src={IconStackCards} />
             {/if}
           </button>
-
+          <h3 class="fs-title fw-bold mb4 ta-center lh-sm mt8">
+            {selected.name}
+          </h3>
           <Button title="Open in Figma" size="sm" weight="clear" icon href={selectedVariant.figmaUrl} class="flex--item">
             <Icon src={IconServiceFigma} class="native" />
           </Button>
-
-          <div class="fs-caption ml-auto ta-right fc-black-400">
-            <b>Last updated</b><br/>
-            <time datetime={selectedVariant.updatedAt}>
-              {new Date(selectedVariant.updatedAt).toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'short', 
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-              })}
-            </time> 
-          </div>
         </div>
+
+        <div class="h100 d-flex bg-white d:bg-black">
+          {@html selectedVariant.svg.replace('class="', 'class="native m-auto ')}
+        </div>
+      </div>
+
+      <div class="d-flex jc-space-between ai-center bg-black-100 bb bc-black-200 py6 px16">
+        {exportName}
+
+        <button type="button" title="Copy name" data-copy-id="name" class="s-btn s-btn__sm s-btn__clear s-btn__icon" use:copyToClipboard={exportName}>
+          {#if copied === 'name'}
+            <Icon src={IconCheckFillCircle} class="fc-green-400" />
+          {:else}
+            <Icon src={IconStackCards} />
+          {/if}
+        </button>
       </div>
 
       {#each variants as variant}
@@ -280,9 +250,9 @@
           </code>
 
           <p class="m16 fs-caption">Import this icon</p>
-          
+
           <code class="d-block bg-black-100 ow-anywhere py12 px16 fs-caption">
-            import &#123; Icon{exportName} &#125; from "@stackoverflow/stacks-icons/icons";
+            import &#123; Icon{exportName} &#125; from "@stackoverflow/stacks-icons/{selected?.isSpot ? 'spots' : 'icons'}";
           </code>
 
           <p class="m16 fs-caption">Render the icon</p>
@@ -291,7 +261,7 @@
             &lt;Icon src=&#123;Icon{exportName}&#125; /&gt;
           </code>
         {:else}
-          <p class="m16 fs-caption">If you’re working in a dotnet project, we have a helper that can be called with <code>@Svg.</code> and the icon name. By default, any icon will inherit the text color of the parent element.</p>
+          <p class="m16 fs-caption">If you're working in a dotnet project, we have a helper that can be called with <code>@Svg.</code> and the icon name. By default, any icon will inherit the text color of the parent element.</p>
 
           <p class="m16 fs-caption">Add the helper</p>
 
@@ -317,6 +287,19 @@
             @Svg.{selectedVariant.key}.With(cssClass: "fc-danger", title: "foo")
           </code>
         {/if}
+      </div>
+
+      <div class="fs-caption px16 pb16 fc-black-400">
+        <b>Asset last updated:</b><br/>
+        <time datetime={selectedVariant.updatedAt}>
+          {new Date(selectedVariant.updatedAt).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+          })}
+        </time>
       </div>
     {/if}
   </aside>
