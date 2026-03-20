@@ -1,5 +1,6 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
+    import { parseClassValue } from "../../storybook-utils";
     import TextArea from "./TextArea.svelte";
     import type { Size, State } from "./TextArea.svelte";
 
@@ -39,7 +40,14 @@
         placeholder:
             "e.g. The Stack Overflow glyph used to have 6 bars, but now…",
     }}
-/>
+>
+    {#snippet template({ class: classArg, ...args })}
+        <TextArea
+            {...args}
+            class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+        />
+    {/snippet}
+</Story>
 
 <Story name="Label visibility" asChild>
     <div class="d-grid g16">

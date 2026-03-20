@@ -1,5 +1,6 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
+    import { parseClassValue } from "../../storybook-utils";
     import * as Icons from "@stackoverflow/stacks-icons/icons";
     import * as Spots from "@stackoverflow/stacks-icons/spots";
     import Icon from "./Icon.svelte";
@@ -16,11 +17,24 @@
                 options: [...IconsNames, ...SpotsNames],
                 mapping: { ...Icons, ...Spots },
             },
+            class: {
+                control: "text",
+            },
+        },
+        args: {
+            src: Icons.IconServiceCCPA,
         },
     });
 </script>
 
-<Story name="Base" args={{ src: Icons.IconServiceCCPA }} />
+<Story name="Base">
+    {#snippet template({ class: classArg, ...args })}
+        <Icon
+            {...args}
+            class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+        />
+    {/snippet}
+</Story>
 <Story name="Title" args={{ src: Icons.IconServiceCCPA, title: "CCPA" }} />
 <Story name="Native" args={{ src: Icons.IconServiceCCPA, native: true }} />
 <Story

@@ -1,5 +1,6 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
+    import { parseClassValue } from "../../storybook-utils";
     import Vote, { type Status } from "./Vote.svelte";
     import { createVoteState } from "./vote-state.svelte";
 
@@ -18,8 +19,14 @@
 </script>
 
 <Story name="Base">
-    {#snippet template({ total, ...args })}
-        <Vote total={total ?? 0} {...args} />
+    {#snippet template({ class: classArg, total, ...args })}
+        <Vote
+            total={total ?? 0}
+            {...args}
+            class={parseClassValue(
+                typeof classArg === "string" ? classArg : undefined
+            )}
+        />
     {/snippet}
 </Story>
 

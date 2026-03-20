@@ -1,5 +1,6 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
+    import { parseClassValue } from "../../storybook-utils";
     import Menu from "./Menu.svelte";
     import MenuCheckItem from "./MenuCheckItem.svelte";
     import type { Type as MenuCheckItemType } from "./MenuCheckItem.svelte";
@@ -29,6 +30,11 @@
             MenuDivider,
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any,
+        argTypes: {
+            class: {
+                control: "text",
+            },
+        },
     });
 </script>
 
@@ -39,10 +45,13 @@
 {/snippet}
 
 <Story name="Base">
-    {#snippet template()}
+    {#snippet template({ class: classArg, children: _storyChildren, ...args })}
         <Popover id="base-popover" visible>
             <PopoverContent class="ps-relative is-visible p8 ws2">
-                <Menu>
+                <Menu
+                    {...args}
+                    class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+                >
                     {@render basicChildren()}
                 </Menu>
             </PopoverContent>

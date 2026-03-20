@@ -1,5 +1,6 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
+    import { parseClassValue } from "../../storybook-utils";
     import Modal, { type State } from "./Modal.svelte";
     import { Button } from "../../components";
 
@@ -13,6 +14,9 @@
                 control: "select",
                 options: ModalState,
             },
+            class: {
+                control: "text",
+            },
         },
     });
 </script>
@@ -23,7 +27,7 @@
 </script>
 
 <Story name="Base" args={{ id: "base-modal" }}>
-    {#snippet template(args)}
+    {#snippet template({ class: classArg, ...args })}
         <div class="hmn4">
             <Button
                 variant={args.state === "danger" ? "danger" : ""}
@@ -36,7 +40,7 @@
             id={args.id}
             visible={visible || args.visible}
             state={args.state}
-            class={args.class}
+            class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
             onclose={() => (visible = false)}
             preventCloseOnClickOutside={args.preventCloseOnClickOutside}
             hideCloseButton={args.hideCloseButton}

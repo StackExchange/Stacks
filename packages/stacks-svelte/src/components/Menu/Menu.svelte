@@ -3,13 +3,15 @@
 </script>
 
 <script lang="ts">
+    import clsx from "clsx";
     import type { Snippet } from "svelte";
+    import type { ClassValue } from "svelte/elements";
 
     interface Props {
         /**
          * Additional CSS classes added to the element
          */
-        class?: string;
+        class?: ClassValue;
 
         /**
          * Sets whether the menu is rendered within a fieldset
@@ -24,15 +26,9 @@
 
     let { class: className = "", type = "ul", children }: Props = $props();
 
-    const getClasses = (className: string) => {
+    const getClasses = (className: ClassValue) => {
         const base = "s-menu";
-        let classes = base;
-
-        if (className) {
-            classes += ` ${className}`;
-        }
-
-        return classes;
+        return clsx(base, className);
     };
 
     const classes = $derived(getClasses(className));

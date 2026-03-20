@@ -3,7 +3,9 @@
 </script>
 
 <script lang="ts">
+    import clsx from "clsx";
     import type { Snippet } from "svelte";
+    import type { ClassValue } from "svelte/elements";
     import { IconCross } from "@stackoverflow/stacks-icons/icons";
 
     import { Button, Icon } from "../../components";
@@ -25,7 +27,7 @@
         /**
          * Additional CSS classes added to the element
          */
-        class?: string;
+        class?: ClassValue;
         /**
          * Localized translation for the close button aria label
          */
@@ -72,14 +74,8 @@
         footer,
     }: Props = $props();
 
-    const getClasses = (className: string) => {
-        let classes = "s-modal--dialog";
-
-        if (className) {
-            classes += " " + className;
-        }
-
-        return classes;
+    const getClasses = (className: ClassValue) => {
+        return clsx("s-modal--dialog", className);
     };
     const modalClasses = $derived(getClasses(className));
 

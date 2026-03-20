@@ -19,7 +19,8 @@
 </script>
 
 <script lang="ts">
-    import type { HTMLInputAttributes } from "svelte/elements";
+    import clsx from "clsx";
+    import type { ClassValue, HTMLInputAttributes } from "svelte/elements";
     import type { Snippet } from "svelte";
     import type { BadgeState } from "../Badge/Badge.svelte";
     import Icon from "../Icon/Icon.svelte";
@@ -34,7 +35,7 @@
 
     import { IconCreditCard } from "@stackoverflow/stacks-icons-legacy/icons";
 
-    interface Props extends Omit<HTMLInputAttributes, "size" | "type"> {
+    interface Props extends Omit<HTMLInputAttributes, "size" | "type" | "class"> {
         /**
          * `id` attribute of the text input
          */
@@ -108,7 +109,7 @@
         /**
          * Additional CSS classes added to the underlying HTML input element
          */
-        class?: string;
+        class?: ClassValue;
 
         /**
          * Localized translation for the required label status text
@@ -160,19 +161,12 @@
         ...rest
     }: Props = $props();
 
-    const getClasses = (className: string, size: Size) => {
+    const getClasses = (className: ClassValue, size: Size) => {
         const base = "s-input";
-        let classes = base;
-
-        if (className) {
-            classes += " " + className;
-        }
-
-        if (size) {
-            classes += ` ${base}__${size}`;
-        }
-
-        return classes;
+        const classes = [size]
+            .filter(Boolean)
+            .map((modifier) => `${base}__${modifier}`);
+        return clsx(base, className, classes);
     };
     let classes = $derived(getClasses(className, size));
 </script>

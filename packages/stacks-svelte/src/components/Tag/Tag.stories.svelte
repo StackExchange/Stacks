@@ -1,5 +1,6 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
+    import { parseClassValue } from "../../storybook-utils";
     import { createRawSnippet, type Snippet } from "svelte";
     import Tag, { type Size, type Variant } from "./Tag.svelte";
     import Icon from "../Icon/Icon.svelte";
@@ -35,6 +36,9 @@
                     "sponsor": IconWave,
                 },
             },
+            class: {
+                control: "text"
+            },
         },
     });
 </script>
@@ -46,11 +50,12 @@
     }}
 >
     {#snippet template(args)}
-        {@const { children, sponsor, ...restArgs } = args}
+        {@const { children, sponsor, class: classArg, ...restArgs } = args}
         <Tag
             sponsor={sponsor && createSnippet(sponsor as unknown as string)}
             children={createSnippet(children as unknown as string)}
             {...restArgs}
+            class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
         />
     {/snippet}
 </Story>

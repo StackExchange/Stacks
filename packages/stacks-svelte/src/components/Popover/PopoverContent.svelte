@@ -1,5 +1,7 @@
 <script lang="ts">
+    import clsx from "clsx";
     import type { Snippet } from "svelte";
+    import type { ClassValue } from "svelte/elements";
     import { usePopoverContext } from "./Popover.svelte";
     import { clickOutside, focusTrap } from "../../actions";
 
@@ -20,11 +22,11 @@
         /**
          * Additional CSS classes added to the s-popover element
          */
-        class?: string;
+        class?: ClassValue;
         /**
          * Additional CSS classes added to the s-popover--content element
          */
-        contentClass?: string;
+        contentClass?: ClassValue;
         /**
          * Children snippet
          */
@@ -42,28 +44,24 @@
 
     let pstate = usePopoverContext("PopoverContent");
 
-    let classes = $derived.by(() => {
-        let result = "s-popover";
+    let popoverClasses = $derived.by(() => {
+        const base = "s-popover";
+        const modifiers: string[] = [];
         if (pstate.tooltip) {
-            result += " s-popover__tooltip";
+            modifiers.push(`${base}__tooltip`);
         }
-        if (className) {
-            result += " " + className;
-        }
-        return result;
+        // Order matches legacy: base → BEM modifiers → user class → visibility
+        return clsx(
+            base,
+            modifiers,
+            className,
+            pstate.visible ? "is-visible" : false
+        );
     });
 
     let contentClasses = $derived.by(() => {
-        let result = "s-popover--content";
-        if (contentClass) {
-            result += " " + contentClass;
-        }
-        return result;
+        return clsx("s-popover--content", contentClass);
     });
-
-    let computedClass = $derived(
-        `${classes}${pstate.visible ? " is-visible" : ""}`
-    );
 
     let computedRole = $derived(
         role || (pstate.tooltip ? "tooltip" : "dialog")
@@ -73,7 +71,7 @@
 <!-- data-popper-placement is needed for compatibility with stacks classic popover styles -->
 <div
     id={`${pstate.id}-popover`}
-    class={computedClass}
+    class={popoverClasses}
     role={computedRole}
     aria-label={ariaLabel}
     aria-labelledby={ariaLabelledby}

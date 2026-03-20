@@ -22,7 +22,9 @@
 </script>
 
 <script lang="ts">
+    import clsx from "clsx";
     import type { Snippet } from "svelte";
+    import type { ClassValue } from "svelte/elements";
     import type { SvelteDate } from "svelte/reactivity";
     import ContentTypeBadge from "./PostSummaryContentType.svelte";
     import Excerpt from "./PostSummaryExcerpt.svelte";
@@ -195,7 +197,7 @@
         /**
          * Additional CSS classes added to the element
          */
-        class?: string;
+        class?: ClassValue;
 
         /**
          * Snippet for tags
@@ -261,26 +263,19 @@
     );
 
     const getClasses = (
-        className: string,
+        className: ClassValue,
         state: State,
         acceptedAnswer: boolean
     ) => {
         const base = "s-post-summary";
-        let classes = base;
-
-        if (className) {
-            classes += ` ${className}`;
-        }
-
+        const modifiers: string[] = [];
         if (acceptedAnswer) {
-            classes += ` ${base}__answered`;
+            modifiers.push(`${base}__answered`);
         }
-
         if (state === "deleted") {
-            classes += ` ${base}__${state}`;
+            modifiers.push(`${base}__${state}`);
         }
-
-        return classes;
+        return clsx(base, className, modifiers);
     };
 
     const classes = $derived(getClasses(className, state, acceptedAnswer));

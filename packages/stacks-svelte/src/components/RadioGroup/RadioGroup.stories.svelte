@@ -1,5 +1,6 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
+    import { parseClassValue } from "../../storybook-utils";
     import Radio from "./Radio.svelte";
     import RadioGroup, {
         type State,
@@ -11,6 +12,11 @@
     const { Story } = defineMeta({
         title: "Components/RadioGroup",
         component: RadioGroup,
+        argTypes: {
+            class: {
+                control: "text",
+            },
+        },
     });
 
     const baseOptions: RadioOption[] = [
@@ -47,9 +53,12 @@
         options: baseOptions,
     }}
 >
-    {#snippet template(args)}
+    {#snippet template({ class: classArg, ...args })}
         <div class="wmx2">
-            <RadioGroup {...args} />
+            <RadioGroup
+                {...args}
+                class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+            />
         </div>
     {/snippet}
 </Story>

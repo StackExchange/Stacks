@@ -1,5 +1,6 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
+    import { parseClassValue } from "../../storybook-utils";
     import Link, { type Variant } from "./Link.svelte";
 
     const LinkVariants: Variant[] = [
@@ -21,13 +22,21 @@
             children: {
                 control: "text",
             },
+            class: {
+                control: "text",
+            },
         },
     });
 </script>
 
 <Story name="Base">
-    {#snippet template({ children, ...args })}
-        <Link {...args}>{children ?? "Click me"}</Link>
+    {#snippet template({ children, class: classArg, ...args })}
+        <Link
+            {...args}
+            class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+        >
+            {children ?? "Click me"}
+        </Link>
     {/snippet}
 </Story>
 

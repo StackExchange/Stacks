@@ -1,4 +1,7 @@
 <script lang="ts">
+    import clsx from "clsx";
+    import type { ClassValue } from "svelte/elements";
+
     interface Props {
         /**
          * The source of the SVG
@@ -18,7 +21,7 @@
         /**
          * Additional CSS classes added to the SVG element
          */
-        class?: string;
+        class?: ClassValue;
     }
 
     const {
@@ -32,7 +35,7 @@
         src: string,
         title: string,
         native: boolean,
-        className: string
+        className: ClassValue
     ) => {
         let svg = src;
 
@@ -49,7 +52,7 @@
 
         // prepend custom classes to the classes the SVG already had
         if (className) {
-            svg = svg.replace(/class="/, 'class="' + className + " ");
+            svg = svg.replace(/class="/, 'class="' + clsx(className) + " ");
         }
 
         return svg;

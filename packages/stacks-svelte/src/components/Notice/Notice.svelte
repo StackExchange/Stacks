@@ -11,7 +11,9 @@
 </script>
 
 <script lang="ts">
+    import clsx from "clsx";
     import type { Snippet } from "svelte";
+    import type { AriaRole, ClassValue } from "svelte/elements";
     import Icon from "../Icon/Icon.svelte";
     import Link from "../Link/Link.svelte";
     import {
@@ -24,7 +26,6 @@
         IconHelp,
         IconCross,
     } from "@stackoverflow/stacks-icons/icons";
-    import type { AriaRole } from "svelte/elements";
 
     interface Props {
         /**
@@ -51,7 +52,7 @@
         /**
          * Additional CSS classes added to the element
          */
-        class?: string;
+        class?: ClassValue;
 
         /**
          * Whether to include a dismiss button on the notice or not
@@ -100,26 +101,18 @@
     };
 
     const getClasses = (
-        className: string,
+        className: ClassValue,
         variant: Variant,
         important: boolean
     ) => {
         const base = "s-notice";
-        let classes = base;
-
-        if (className) {
-            classes += ` ${className}`;
-        }
-
-        if (variant) {
-            classes += ` ${base}__${variant}`;
-        }
-
+        const classes = [variant]
+            .filter(Boolean)
+            .map((modifier) => `${base}__${modifier}`);
         if (important) {
-            classes += ` ${base}__important`;
+            classes.push(`${base}__important`);
         }
-
-        return classes;
+        return clsx(base, className, classes);
     };
 
     const getIcon = (variant?: Variant) => {

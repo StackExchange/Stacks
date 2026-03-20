@@ -1,5 +1,6 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
+    import { parseClassValue } from "../../storybook-utils";
     import PostSummary from "./PostSummary.svelte";
     import PostSummaryAnswer from "./PostSummaryAnswer.svelte";
     import type {
@@ -115,6 +116,9 @@
                 control: "select",
                 options: StateTypes,
             },
+            class: {
+                control: "text",
+            },
         },
     });
 </script>
@@ -128,8 +132,12 @@
 {/snippet}
 
 <Story name="Base" args={baseArgs}>
-    {#snippet template(args)}
-        <PostSummary {...baseArgs} {...args} />
+    {#snippet template({ class: classArg, ...args })}
+        <PostSummary
+            {...baseArgs}
+            {...args}
+            class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+        />
     {/snippet}
 </Story>
 

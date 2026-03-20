@@ -1,6 +1,7 @@
 <script lang="ts" module>
     import Notice, { type Variant } from "./Notice.svelte";
     import { defineMeta } from "@storybook/addon-svelte-csf";
+    import { parseClassValue } from "../../storybook-utils";
     import NoticeAction from "./NoticeAction.svelte";
 
     const NoticeVariants: Variant[] = [
@@ -35,6 +36,9 @@
             onDismiss: {
                 control: false,
             },
+            class: {
+                control: "text",
+            },
         },
     });
 </script>
@@ -48,15 +52,20 @@
 {/snippet}
 
 <Story name="Base">
-    {#snippet template(args)}
-        <Notice {...args} children={content} />
+    {#snippet template({ class: classArg, children: _storyChildren, ...args })}
+        <Notice
+            {...args}
+            class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+            children={content}
+        />
     {/snippet}
 </Story>
 
 <Story name="Dismissible">
-    {#snippet template(args)}
+    {#snippet template({ class: classArg, children: _storyChildren, ...args })}
         <Notice
             {...args}
+            class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
             dismissible
             onDismiss={() => {
                 alert("You clicked dismiss");

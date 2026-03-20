@@ -3,8 +3,10 @@
 </script>
 
 <script lang="ts">
+    import clsx from "clsx";
     import type { Snippet } from "svelte";
     import type {
+        ClassValue,
         HTMLAnchorAttributes,
         HTMLButtonAttributes,
     } from "svelte/elements";
@@ -41,7 +43,7 @@
         /**
          * Additional CSS classes added to the element
          */
-        class?: string;
+        class?: ClassValue;
 
         /**
          * Snippet for the link content
@@ -61,31 +63,22 @@
     }: Props = $props();
 
     const getClasses = (
-        className: string,
+        className: ClassValue,
         variant: Variant,
         dropdown: boolean,
         underlined: boolean
     ) => {
         const base = "s-link";
-        let classes = base;
-
-        if (className) {
-            classes += ` ${className}`;
-        }
-
-        if (variant) {
-            classes += ` ${base}__${variant}`;
-        }
-
+        const classes = [variant]
+            .filter(Boolean)
+            .map((modifier) => `${base}__${modifier}`);
         if (dropdown) {
-            classes += ` ${base}__dropdown`;
+            classes.push(`${base}__dropdown`);
         }
-
         if (underlined) {
-            classes += ` ${base}__underlined`;
+            classes.push(`${base}__underlined`);
         }
-
-        return classes;
+        return clsx(base, className, classes);
     };
 
     const classes = $derived(
