@@ -14,6 +14,9 @@
                 control: { type: "select" },
                 options: VoteStatuses,
             },
+            class: {
+                control: "text"
+            }
         },
     });
 </script>
