@@ -1,9 +1,10 @@
 <script>
   import manifest from './manifest.json';
+  // import manifest from '.@stackoverflow/stacks-icons/manifest';
   import { copyToClipboard } from '$src/lib/copyToClipboard';
 
-  import { IconServiceFigma, IconCheckFillCircle, IconStackCards } from '@stackoverflow/stacks-icons/icons';
-  import { Icon, Button, Navigation, NavigationItem, TextInput } from '@stackoverflow/stacks-svelte';
+  import { IconServiceFigma, IconCheckFillCircle, IconStackCards, IconCross } from '@stackoverflow/stacks-icons/icons';
+  import { Icon, Button, Navigation, NavigationItem, TextInput, TextArea } from '@stackoverflow/stacks-svelte';
 
   let search = $state('');
   let selected = $state(null);
@@ -11,26 +12,12 @@
   let copied = $state('');
   let activeCodeTab = $state('Svelte');
 
-  const icons = Object.entries(manifest.icons).map(([name, data]) => ({
-    name,
-    figmaName: data.figmaName,
-    variants: data.variants,
-    isSpot: false,
-  }));
+  const icons = manifest.icons;
+  const spots = manifest.spots;
 
-  const spots = Object.entries(manifest.spots).map(([name, data]) => ({
-    name,
-    figmaName: data.figmaName,
-    variants: data.variants,
-    isSpot: true,
-  }));
-
+  // variants[0] is pre-sorted to be the default by the build script
   function getDefaultVariant(entry) {
-    return (
-      entry.variants.find(v => v.variantProps?.Size === 'Default' && v.variantProps?.Style === 'Default') ??
-      entry.variants.find(v => v.variantProps?.Size === 'Default') ??
-      entry.variants[0]
-    );
+    return entry.variants[0];
   }
 
   let filteredIcons = $derived(
@@ -45,30 +32,8 @@
       : spots.filter(e => e.name.toLowerCase().includes(search.trim().toLowerCase()))
   );
 
-  function sortValues(values) {
-    return [...values].sort((a, b) => {
-      if (a === 'Default') return -1;
-      if (b === 'Default') return 1;
-      return a.localeCompare(b, undefined, { numeric: true });
-    });
-  }
-
-  // Variants: unique keys with >1 possible value, all values sorted
-  let variants = $derived.by(() => {
-    if (!selected) return [];
-    const allKeys = new Set();
-
-    for (const v of selected.variants) {
-      if (v.variantProps) Object.keys(v.variantProps).forEach(k => allKeys.add(k));
-    }
-
-    return [...allKeys].flatMap(key => {
-      const allValues = [...new Set(
-        selected.variants.map(v => v.variantProps?.[key]).filter(Boolean)
-      )];
-      return allValues.length > 1 ? [{ key, values: sortValues(allValues) }] : [];
-    });
-  });
+  // dimensions are pre-computed and sorted by the build script
+  let variants = $derived(selected?.dimensions ?? []);
 
   // Check if a value is compatible with current selectedProps for all OTHER dimensions
   function isCompatible(key, val) {
@@ -80,43 +45,35 @@
     });
   }
 
-  // The currently active variant, matching selectedProps as closely as possible
-  let selectedVariant = $derived.by(() => {
-    if (!selected) return null;
-
-    let best = selected.variants[0];
-    let bestScore = -1;
-
-    for (const v of selected.variants) {
-      if (!v.variantProps) return v;
-      const score = Object.entries(selectedProps).filter(([k, val]) => v.variantProps?.[k] === val).length;
-      if (score > bestScore) { bestScore = score; best = v; }
-    }
-
-    return best;
-  });
+  // setDimension keeps selectedProps valid, so an exact match always exists
+  let selectedVariant = $derived(
+    selected?.variants.find(v =>
+      !v.variantProps || Object.entries(selectedProps).every(([k, val]) => v.variantProps[k] === val)
+    ) ?? selected?.variants[0] ?? null
+  );
 
   function selectEntry(entry) {
     selected = entry;
     const def = getDefaultVariant(entry);
-    selectedProps = { ...(def.variantProps ?? {}) };
+    const props = { ...(def.variantProps ?? {}) };
+    for (const dim of entry.dimensions) {
+      if (!(dim.key in props)) props[dim.key] = dim.values[0];
+    }
+    selectedProps = props;
     copied = '';
   }
 
   function setDimension(key, value) {
     const newProps = { ...selectedProps, [key]: value };
+    const compatible = selected.variants.filter(v => v.variantProps?.[key] === value);
 
-    // For each other dimension, check if its current value is still compatible
-    // with the newly set key/value. If not, reset it to 'Default' or first available.
-    const compatibleVariants = selected.variants.filter(v => v.variantProps?.[key] === value);
     for (const k of Object.keys(newProps)) {
       if (k === key) continue;
-      const stillValid = compatibleVariants.some(v => v.variantProps?.[k] === newProps[k]);
-      if (!stillValid) {
-        const available = sortValues([...new Set(
-          compatibleVariants.map(v => v.variantProps?.[k]).filter(Boolean)
-        )]);
-        newProps[k] = available[0] ?? newProps[k];
+
+      if (!compatible.some(v => v.variantProps?.[k] === newProps[k])) {
+        const dim = selected.dimensions.find(d => d.key === k)?.values ?? [];
+
+        newProps[k] = dim.find(v => compatible.some(cv => cv.variantProps?.[k] === v)) ?? newProps[k];
       }
     }
 
@@ -161,7 +118,7 @@
               <div class="d-flex ai-center jc-center my-auto h100">
                 {@html def.svg.replace('class="', `class="w100 h-auto wmx100 ${label === 'Spots' ? 'native' : ''} `)}
               </div>
-              <div class="fs-caption mt-auto pt8">
+              <div class="fs-fine mt-auto pt8">
                 {entry.name}
               </div>
             </button>
@@ -174,23 +131,15 @@
     {@render section('Spots', filteredSpots)}
   </div>
 
-  <aside class="ws3 ps-sticky t0 overflow-y-scroll fl-shrink0 bl bc-black-200 h-screen">
+  <aside class="ws3 ps-sticky md:ps-fixed z-nav bg-white t0 r0 overflow-y-scroll fl-shrink0 bl bc-black-200 h-screen {!(selected && selectedVariant) ? 'md:d-none' : ''} ">
     {#if selected && selectedVariant}
       <div class="d-flex fd-column bb bc-black-200 hs3">
-        <div class="d-flex jc-space-between ai-center p6">
-          <button type="button" title="Copy SVG" data-copy-id="svg" class="s-btn s-btn__sm s-btn__clear s-btn__icon" use:copyToClipboard={selectedVariant.svg}>
-            {#if copied === 'svg'}
-              <Icon src={IconCheckFillCircle} class="fc-green-400" />
-            {:else}
-              <Icon src={IconStackCards} />
-            {/if}
+        <div class="d-flex jc-space-between px12">
+          <button onclick={() => selected = null} type="button" title="Close inspector" class="d-none md:d-block px4 s-btn s-btn__sm s-btn__clear s-btn__icon">
+            <Icon src={IconCross} />
           </button>
-          <h3 class="fs-title fw-bold mb4 ta-center lh-sm mt8">
-            {selected.name}
-          </h3>
-          <Button title="Open in Figma" size="sm" weight="clear" icon href={selectedVariant.figmaUrl} class="flex--item">
-            <Icon src={IconServiceFigma} class="native" />
-          </Button>
+
+          <h3 class="fs-title fw-bold lh-sm mb0 p16 ta-center fl1 md:ta-left">{selected.name}</h3>
         </div>
 
         <div class="h100 d-flex bg-white d:bg-black">
@@ -201,18 +150,22 @@
       <div class="d-flex jc-space-between ai-center bg-black-100 bb bc-black-200 py6 px16">
         {exportName}
 
-        <button type="button" title="Copy name" data-copy-id="name" class="s-btn s-btn__sm s-btn__clear s-btn__icon" use:copyToClipboard={exportName}>
+        <button type="button" title="Copy name" data-copy-id="name" class="px4 ml-auto s-btn s-btn__sm s-btn__clear s-btn__icon" use:copyToClipboard={exportName}>
           {#if copied === 'name'}
             <Icon src={IconCheckFillCircle} class="fc-green-400" />
           {:else}
             <Icon src={IconStackCards} />
           {/if}
         </button>
+
+        <Button title="Open in Figma" size="sm" weight="clear" icon href={selectedVariant.figmaUrl} class="flex--item px4">
+          <Icon src={IconServiceFigma} class="native" />
+        </Button>
       </div>
 
       {#each variants as variant}
         <div class="py16 px16 bb bc-black-200">
-          <p class="section-label mb8 fl1">{variant.key}</p>
+          <p class="section-label tt-uppercase fw-semibold fc-black-400 mb8 fl1">{variant.key}</p>
           <div class="d-flex g4 fw-wrap">
             {#each variant.values as val}
               {@const isActive = selectedProps[variant.key] === val}
@@ -230,10 +183,10 @@
       {/each}
 
       <div class="mb16">
-        <p class="section-label mb8 pt16 px16">Usage</p>
+        <p class="section-label tt-uppercase fw-semibold fc-black-400 mb8 pt16 px16">Usage</p>
 
         <Navigation label="Base">
-          {#each ["Svelte", ".NET"] as label (label)}
+          {#each ["Svelte", ".NET", "SVG"] as label (label)}
             <NavigationItem
               text={label}
               selected={activeCodeTab === label}
@@ -243,25 +196,26 @@
         </Navigation>
 
         {#if activeCodeTab === 'Svelte'}
-          <p class="m16 fs-caption">If you are working in a Svelte project, you can use the <code>Icon</code> component to render an icon. This component will render the icon as an <code>svg</code> element with the appropriate classes and attributes (<a href="https://svelte.stackoverflow.design/?path=/docs/components-icon--docs" class="s-link">docs</a>).</p>
+          <p class="m16 fs-caption">If you are working in a Svelte project, you can use the <code>Icon</code> component to render the asset as an <code>svg</code> element with the appropriate classes and attributes (<a href="https://svelte.stackoverflow.design/?path=/docs/components-icon--docs" class="s-link">docs</a>).</p>
 
           <code class="d-block bg-black-100 ow-anywhere py12 px16 fs-caption">
             import &#123; Icon &#125; from '@stackoverflow/stacks-svelte';
           </code>
 
-          <p class="m16 fs-caption">Import this icon</p>
+          <p class="m16 fs-caption">Import this asset</p>
 
           <code class="d-block bg-black-100 ow-anywhere py12 px16 fs-caption">
-            import &#123; Icon{exportName} &#125; from "@stackoverflow/stacks-icons/{selected?.isSpot ? 'spots' : 'icons'}";
+            import &#123; {selected?.isSpot ? 'Spot' : 'Icon'}{exportName} &#125; from "@stackoverflow/stacks-icons/{selected?.isSpot ? 'spots' : 'icons'}";
           </code>
 
-          <p class="m16 fs-caption">Render the icon</p>
+          <p class="m16 fs-caption">Render this asset</p>
 
           <code class="d-block bg-black-100 ow-anywhere py12 px16 fs-caption">
-            &lt;Icon src=&#123;Icon{exportName}&#125; /&gt;
+            &lt;Icon src=&#123;{selected?.isSpot ? 'Spot' : 'Icon'}{exportName}&#125; /&gt;
           </code>
-        {:else}
-          <p class="m16 fs-caption">If you're working in a dotnet project, we have a helper that can be called with <code>@Svg.</code> and the icon name. By default, any icon will inherit the text color of the parent element.</p>
+        {/if}
+        {#if activeCodeTab === '.NET'}
+          <p class="m16 fs-caption">If you’re working in a .NET project, we have a helper that can be called with <code>@Svg.</code> and the icon name. By default, any icon will inherit the text color of the parent element.</p>
 
           <p class="m16 fs-caption">Add the helper</p>
 
@@ -269,7 +223,7 @@
             @inject IModuleSvg Svg
           </code>
 
-          <p class="m16 fs-caption">Render the icon</p>
+          <p class="m16 fs-caption">Render the asset</p>
 
           <code class="d-block bg-black-100 ow-anywhere py12 px16 fs-caption">
             @Svg.{selectedVariant.key}
@@ -278,14 +232,25 @@
           <p class="m16 fs-caption">Add CSS classes as a string:</p>
 
           <code class="d-block bg-black-100 ow-anywhere py12 px16 fs-caption">
-            @Svg.{selectedVariant.key}.With("native fc-black-300")
+            @Svg.{selected?.isSpot ? 'Spot' : ''}{selectedVariant.key}.With("native fc-black-300")
           </code>
 
           <p class="m16 fs-caption">You can also add a <code>title</code> prop, which also removes <code>aria-hidden</code>.</p>
 
           <code class="d-block bg-black-100 ow-anywhere py12 px16 fs-caption">
-            @Svg.{selectedVariant.key}.With(cssClass: "fc-danger", title: "foo")
+            @Svg.{selected?.isSpot ? 'Spot' : ''}{selectedVariant.key}.With(cssClass: "fc-danger", title: "foo")
           </code>
+        {/if}
+        {#if activeCodeTab === 'SVG'}
+          <button type="button" title="Copy SVG" data-copy-id="svg" class="m12 mb0 s-btn s-btn__sm s-btn__clear s-btn__icon" use:copyToClipboard={selectedVariant.svg}>
+            {#if copied === 'svg'}
+              <Icon src={IconCheckFillCircle} class="fc-green-400" /> Copied SVG!
+            {:else}
+              <Icon src={IconStackCards} /> Copy SVG
+            {/if}
+          </button>
+
+          <TextArea size="sm" class="m12 hs2" id="asset-svg-code" label="SVG" hideLabel readonly value={selectedVariant.svg} />
         {/if}
       </div>
 
@@ -311,17 +276,8 @@
     grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
     gap: 4px;
   }
-
-  .icon-cell {
-    gap: 6px;
-    outline: 0;
-  }
-
   .section-label {
     font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--theme-secondary-font-color, #6a737c);
   }
 </style>
