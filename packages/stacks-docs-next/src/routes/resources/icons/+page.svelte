@@ -112,7 +112,7 @@
           {#each entries as entry (entry.name)}
             {@const def = getDefaultVariant(entry)}
             <button
-              class="flex--item icon-cell c-pointer h:bg-black-100 s-btn s-btn__unset p12 d-flex fd-column h100 {selected?.name === entry.name ? 'bg-blue-100' : ''}"
+              class="flex--item c-pointer h:bg-black-100 s-btn s-btn__unset p12 d-flex fd-column h100 {selected?.name === entry.name ? 'bg-blue-100' : ''}"
               onclick={() => selectEntry(entry)}
             >
               <div class="d-flex ai-center jc-center my-auto h100">
@@ -250,7 +250,7 @@
             {/if}
           </button>
 
-          <TextArea size="sm" class="m12 hs2" id="asset-svg-code" label="SVG" hideLabel readonly value={selectedVariant.svg} />
+          <TextArea size="sm" class="m12 hs2 ff-mono" id="asset-svg-code" label="SVG" hideLabel readonly value={selectedVariant.svg} />
         {/if}
       </div>
 
