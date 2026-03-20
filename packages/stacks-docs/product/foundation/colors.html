@@ -60,13 +60,17 @@ tags: foundation
 <section class="docs-section">
     {% header "h2", "Brand" %}
 
-    <p class="docs-copy">Please see <a href="https://alpha.stackoverflow.design/brand/color">the brand guidlines for color use</a>, these should not be used without prior direction from the brand team.</p>
+    <p class="docs-copy">
+        {% tip, "warning" %}
+            Please see <a href="https://alpha.stackoverflow.design/brand/color">the brand guidlines for color use</a>, these should not be used without prior direction from the brand team.
+        {% endtip %}
+    </p>
 
     <div class="d-grid g24 mt16 mb32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
         {% for set in colors[0].brand %}
             {% assign setClasses = "" %}
             <div>
-                <div class="ba bc-black-400 overflow-hidden">
+                <div class="ba bc-black-400 overflow-hidden theme-light__forced">
                     {% for stop in set.stops %}
                         {% assign name = set.name | replace: " ", "-" %}
 
@@ -79,11 +83,7 @@ tags: foundation
                             {% assign stopFc = "fc-white" %}
                         {% endif %}
 
-                        {% assign style = "background-color: var(--brand-" | append: stop | append: ")" %}
-                        {% if stop == "" %}
-                            {% assign style = "background-color: var(--brand)" %}
-                        {% endif %}
-                        <div class="p12 {{ stopFc }}" style="{{ style }}">
+                        <div class="p12 {{ stopFc }} bg-{{ name }}">
                             {{ name }}
                         </div>
                     {% endfor %}
