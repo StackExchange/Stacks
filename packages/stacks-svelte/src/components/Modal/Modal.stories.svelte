@@ -40,7 +40,9 @@
             id={args.id}
             visible={visible || args.visible}
             state={args.state}
-            class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+            class={parseClassValue(
+                typeof classArg === "string" ? classArg : undefined
+            )}
             onclose={() => (visible = false)}
             preventCloseOnClickOutside={args.preventCloseOnClickOutside}
             hideCloseButton={args.hideCloseButton}

@@ -33,7 +33,9 @@
     {#snippet template({ children, class: classArg, ...args })}
         <Link
             {...args}
-            class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+            class={parseClassValue(
+                typeof classArg === "string" ? classArg : undefined
+            )}
         >
             {children ?? "Click me"}
         </Link>

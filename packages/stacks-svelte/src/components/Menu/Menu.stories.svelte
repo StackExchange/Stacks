@@ -50,7 +50,9 @@
             <PopoverContent class="ps-relative is-visible p8 ws2">
                 <Menu
                     {...args}
-                    class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+                    class={parseClassValue(
+                        typeof classArg === "string" ? classArg : undefined
+                    )}
                 >
                     {@render basicChildren()}
                 </Menu>

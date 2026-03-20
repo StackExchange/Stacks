@@ -57,7 +57,9 @@
         <div class="wmx2">
             <RadioGroup
                 {...args}
-                class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+                class={parseClassValue(
+                    typeof classArg === "string" ? classArg : undefined
+                )}
             />
         </div>
     {/snippet}

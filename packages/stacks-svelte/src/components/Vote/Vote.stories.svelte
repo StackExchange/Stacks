@@ -15,8 +15,8 @@
                 options: VoteStatuses,
             },
             class: {
-                control: "text"
-            }
+                control: "text",
+            },
         },
     });
 </script>

@@ -55,7 +55,9 @@
     {#snippet template({ class: classArg, children: _storyChildren, ...args })}
         <Notice
             {...args}
-            class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+            class={parseClassValue(
+                typeof classArg === "string" ? classArg : undefined
+            )}
             children={content}
         />
     {/snippet}
@@ -65,7 +67,9 @@
     {#snippet template({ class: classArg, children: _storyChildren, ...args })}
         <Notice
             {...args}
-            class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+            class={parseClassValue(
+                typeof classArg === "string" ? classArg : undefined
+            )}
             dismissible
             onDismiss={() => {
                 alert("You clicked dismiss");

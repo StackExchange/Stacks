@@ -37,7 +37,7 @@
                 },
             },
             class: {
-                control: "text"
+                control: "text",
             },
         },
     });
@@ -55,7 +55,9 @@
             sponsor={sponsor && createSnippet(sponsor as unknown as string)}
             children={createSnippet(children as unknown as string)}
             {...restArgs}
-            class={parseClassValue(typeof classArg === "string" ? classArg : undefined)}
+            class={parseClassValue(
+                typeof classArg === "string" ? classArg : undefined
+            )}
         />
     {/snippet}
 </Story>

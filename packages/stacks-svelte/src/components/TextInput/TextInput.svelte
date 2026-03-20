@@ -35,7 +35,10 @@
 
     import { IconCreditCard } from "@stackoverflow/stacks-icons-legacy/icons";
 
-    interface Props extends Omit<HTMLInputAttributes, "size" | "type" | "class"> {
+    interface Props extends Omit<
+        HTMLInputAttributes,
+        "size" | "type" | "class"
+    > {
         /**
          * `id` attribute of the text input
          */
