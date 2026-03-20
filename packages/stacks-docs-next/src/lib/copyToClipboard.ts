@@ -1,6 +1,8 @@
 export function copyToClipboard(node: HTMLElement, value: string) {
+    let current = value;
+
     async function copyText() {
-        let text: string = value || node.textContent;
+        let text: string = current || node.textContent;
 
         try {
             await navigator.clipboard.writeText(text);
@@ -24,6 +26,9 @@ export function copyToClipboard(node: HTMLElement, value: string) {
     node.addEventListener("click", copyText);
 
     return {
+        update(newValue: string) {
+            current = newValue;
+        },
         destroy() {
             node.removeEventListener("click", copyText);
         },
