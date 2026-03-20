@@ -45,7 +45,8 @@
 {/snippet}
 
 <Story name="Base">
-    {#snippet template({ class: classArg, children: _storyChildren, ...args }) /* eslint-disable-line @typescript-eslint/no-unused-vars */}
+    <!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
+    {#snippet template({ class: classArg, children: _storyChildren, ...args })}
         <Popover id="base-popover" visible>
             <PopoverContent class="ps-relative is-visible p8 ws2">
                 <Menu

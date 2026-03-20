@@ -52,7 +52,8 @@
 {/snippet}
 
 <Story name="Base">
-    {#snippet template({ class: classArg, children: _storyChildren, ...args }) /* eslint-disable-line @typescript-eslint/no-unused-vars */}
+    <!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
+    {#snippet template({ class: classArg, children: _storyChildren, ...args })}
         <Notice
             {...args}
             class={parseClassValue(
@@ -64,7 +65,8 @@
 </Story>
 
 <Story name="Dismissible">
-    {#snippet template({ class: classArg, children: _storyChildren, ...args }) /* eslint-disable-line @typescript-eslint/no-unused-vars */}
+    <!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
+    {#snippet template({ class: classArg, children: _storyChildren, ...args })}
         <Notice
             {...args}
             class={parseClassValue(
