@@ -42,6 +42,11 @@
          * Additional CSS classes added to the element
          */
         class?: string;
+
+        /**
+         * Localized translation for private communities icon title tag
+         */
+        i18nPrivateIconTitle?: string;
     }
 
     const {
@@ -53,6 +58,7 @@
         badge = false,
         class: className = "",
         role,
+        i18nPrivateIconTitle = "Private",
         ...restProps
     }: Props & HTMLAnchorAttributes = $props();
 
@@ -99,7 +105,7 @@
             class="s-avatar--badge"
             src={IconShieldXSm}
             native
-            title="Private"
+            title={i18nPrivateIconTitle}
         />
     {/if}
 </svelte:element>
