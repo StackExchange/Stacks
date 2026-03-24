@@ -1,5 +1,12 @@
 # @stackoverflow/stacks-svelte
 
+## 0.6.1
+
+### Patch Changes
+
+- [#2206](https://github.com/StackExchange/Stacks/pull/2206) [`a9d6edf`](https://github.com/StackExchange/Stacks/commit/a9d6edf80a51869139b67e2047c56b057a3bad38) Thanks [@abovedave](https://github.com/abovedave)! - \* `<Avatar>` nested `<img>` dimensions.
+    - Screen reader text for the private badge variant.
+
 ## 0.6.0
 
 ### Minor Changes
