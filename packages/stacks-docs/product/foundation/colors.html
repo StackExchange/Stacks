@@ -58,6 +58,42 @@ tags: foundation
 </section>
 
 <section class="docs-section">
+    {% header "h2", "Brand" %}
+
+    <p class="docs-copy">
+        {% tip, "warning" %}
+            Please see <a href="https://alpha.stackoverflow.design/brand/color">the brand guidlines for color use</a>, these should not be used without prior direction from the brand team.
+        {% endtip %}
+    </p>
+
+    <div class="d-grid g24 mt16 mb32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+        {% for set in colors[0].brand %}
+            {% assign setClasses = "" %}
+            <div>
+                <div class="ba bc-black-400 overflow-hidden theme-light__forced">
+                    {% for stop in set.stops %}
+                        {% assign name = set.name | replace: " ", "-" %}
+
+                        {% if stop != "" %}
+                            {% assign name = set.name | append: "-" | append: stop | replace: " ", "-" %}
+                        {% endif %}
+
+                        {% assign stopFc = "fc-black" %}
+                        {% if set.invert contains stop %}
+                            {% assign stopFc = "fc-white" %}
+                        {% endif %}
+
+                        <div class="p12 {{ stopFc }} bg-{{ name }}">
+                            {{ name }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="stacks-section">
     {% header "h2", "Classes" %}
 
     <p class="docs-copy">
