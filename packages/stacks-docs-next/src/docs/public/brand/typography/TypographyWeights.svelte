@@ -14,7 +14,7 @@
 </script>
 
 <Navigation class="ws-nowrap" label="Font weight" overflow="scroll">
-  {#each weights as weight}
+  {#each weights as weight (weight)}
     <NavigationItem
       text={weight}
       selected={selected === weight}

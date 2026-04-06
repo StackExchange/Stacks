@@ -10,8 +10,6 @@
     YAML.parse(colorsRaw).colors.map(color => [color.cssVar, color])
   );
 
-  let selected = $state(0);
-
   const themes = [
     {
       "background": "--brand-color-black",
@@ -60,7 +58,7 @@
       </div>
     </div>
 
-    {#each themes as theme}
+    {#each themes as theme (theme.background)}
       <div class="d-flex gs16 gsx flex__fl-equal mt16">
         <div class="flex--item">
           <svg class="d-block w100 h-auto" viewBox="0 0 328 94">

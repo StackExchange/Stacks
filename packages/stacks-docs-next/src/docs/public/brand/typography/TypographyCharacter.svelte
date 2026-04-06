@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
+  import { SvelteSet } from 'svelte/reactivity';
 
   import Grid from '$components/Grid.svelte';
   import GridColumn from '$components/GridColumn.svelte';
@@ -23,7 +24,6 @@
   let loading = $state(true);
   let switching = $state(false);
   let selectedGlyph = $state(null);
-  let glyphIndex = $state(-1);
   let showPoints = $state(false);
   let showMetrics = $state(true);
 
@@ -37,7 +37,7 @@
     if (!font) return;
 
     const chars = [];
-    const seen = new Set();
+    const seen = new SvelteSet();
 
     // Iterate through all glyphs in the font
     for (let i = 0; i < font.numGlyphs; i++) {
@@ -120,7 +120,7 @@
     if (!glyph) return;
 
     selectedGlyph = glyph;
-    glyphIndex = glyph.index;
+    _glyphIndex = glyph.index;
   }
 
   function formatUnicode(unicode) {
@@ -252,7 +252,7 @@
 
       <GridColumn extraClasses="bg-white" padding={false}>
         <div class="d-flex ff-row-wrap ai-start jc-start">
-          {#each availableChars as { char, code }}
+          {#each availableChars as { char, code } (code)}
             <button
               class="char-cell h:bg-black-200 fc-black"
               class:is-selected={selectedGlyph?.unicode === code}

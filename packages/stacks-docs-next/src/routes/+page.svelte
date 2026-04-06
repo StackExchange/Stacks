@@ -2,6 +2,7 @@
   let { data } = $props();
 
   import { Icon } from '@stackoverflow/stacks-svelte';
+  import { resolve } from '$app/paths';
 
   import IconProduct from '$lib/assets/icons/product.svg?raw'
   import IconCopywriting from '$lib/assets/icons/copywriting.svg?raw'
@@ -46,10 +47,10 @@
   </p>
 
   <div class="d-grid grid__12 g16">
-    {#each data.structure?.navigation as category, index}
+    {#each data.structure?.navigation as category (category.slug)}
       <a
         class="td-none h:bg-black-600 grid--col4 md:grid--col6 sm:grid--col12 d-flex fd-column p24 bg-black fc-white d:bg-black-100 d:fc-black hmn2"
-        href={category.slug}
+        href={resolve(category.slug)}
       >
         <Icon src={icons[category.title]} />
         <h2 class="mt-auto fs-headline1 mb12">{category.title}</h2>

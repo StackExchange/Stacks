@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Button } from '@stackoverflow/stacks-svelte';
-  import type { Variant, Weight } from '@stackoverflow/stacks-svelte';
+  import type { Weight } from '@stackoverflow/stacks-svelte';
 
   let { variant = "" } = $props();
 
@@ -25,7 +25,7 @@
       </tr>
     </thead>
     <tbody>
-      {#each weights as weight}
+      {#each weights as weight (weight)}
         {@const variantClass = getVariantClass(variant)}
         {@const weightClass = getWeightClass(weight)}
         <tr>

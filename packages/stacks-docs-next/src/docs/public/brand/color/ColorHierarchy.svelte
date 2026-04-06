@@ -6,7 +6,7 @@
 </script>
 
 <div class="colors wmx100">
-  {#each colors as color}
+  {#each colors as color (color.name)}
     <div class={`color color--weight-${color.weight}`}  style={`background: ${color.hex}; color: ${color.invertLabel ? '#fff' : '#000'}`}>
       <div class="color__name">{color.name}</div>
     </div>

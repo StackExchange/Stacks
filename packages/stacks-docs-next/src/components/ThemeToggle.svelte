@@ -1,7 +1,6 @@
 <script lang="ts">
   import { browser } from '$app/environment';
-  import { Popover, PopoverReference, PopoverContent, Button, Icon } from '@stackoverflow/stacks-svelte';
-  import { IconArrowUpRight } from '@stackoverflow/stacks-icons'
+  import { Popover, PopoverReference, PopoverContent, Button } from '@stackoverflow/stacks-svelte';
 
   // State for theme toggles
   let darkMode = $state(false);

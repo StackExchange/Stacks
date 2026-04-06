@@ -144,7 +144,7 @@
   </GridColumn>
   <GridColumn padding={false} extraClasses="bg-white mbn12">
     <div class="d-flex gs12 ff-row-wrap h100 ">
-      {#each backgroundColors as color, index}
+      {#each backgroundColors as color, index (color.cssVar)}
         <ColorSwatch
           {color}
           showHex={true}

@@ -1,7 +1,7 @@
 import type { PageServerLoad } from "./$types";
 import { error } from "@sveltejs/kit";
+import type { Component } from "svelte";
 import { render } from "svelte/server";
-import htmlToMd from "$src/lib/htmlToMd";
 import fs from "fs";
 import path from "path";
 
@@ -47,7 +47,7 @@ export const load: PageServerLoad = async (event) => {
 
     if (found) {
         const [filename, doc] = found;
-        const loader: any = await doc();
+        const loader = (await doc()) as { default: Component; metadata: Record<string, unknown> };
 
         const markdown = turndownService.turndown(render(loader.default).body);
 

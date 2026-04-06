@@ -61,7 +61,7 @@
 
 
 <Navigation class="mbn24" label="Theme" overflow="scroll">
-  {#each themes as theme, index}
+  {#each themes as theme, index (theme.name)}
     <NavigationItem 
       onclick={() => selected = index}
       selected={selected === index}

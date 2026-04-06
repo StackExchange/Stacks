@@ -22,7 +22,7 @@
 </script>
 
 <Navigation class="ws-nowrap" label="Font weight" overflow="scroll">
-  {#each controls as item, i}
+  {#each controls as item, i (i)}
     <NavigationItem
       text={item}
       selected={index === i}
