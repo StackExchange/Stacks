@@ -35,6 +35,33 @@ describe("Avatar", () => {
         expect(screen.getByText("test avatar")).to.exist;
     });
 
+    it("should set width and height on the image from size", () => {
+        const { container } = render(Avatar, {
+            name: "test avatar",
+            src: "https://picsum.photos/128",
+            size: 48,
+        });
+        const imageElement = container.querySelector(
+            ".s-avatar--image"
+        ) as HTMLImageElement | null;
+        expect(imageElement).to.exist;
+        expect(imageElement).to.have.attr("width", "48");
+        expect(imageElement).to.have.attr("height", "48");
+    });
+
+    it("should default image width and height to 16 when size is omitted", () => {
+        const { container } = render(Avatar, {
+            name: "test avatar",
+            src: "https://picsum.photos/128",
+        });
+        const imageElement = container.querySelector(
+            ".s-avatar--image"
+        ) as HTMLImageElement | null;
+        expect(imageElement).to.exist;
+        expect(imageElement).to.have.attr("width", "16");
+        expect(imageElement).to.have.attr("height", "16");
+    });
+
     it("should render the avatar with the provided letter", () => {
         render(Avatar, {
             name: "test avatar",
@@ -55,6 +82,27 @@ describe("Avatar", () => {
             .getByText("test avatar")
             .parentElement?.querySelector(".s-avatar--badge");
         expect(badgeElement).to.exist;
+    });
+
+    it("should use default i18nPrivateIconTitle for the badge icon", () => {
+        const { container } = render(Avatar, {
+            name: "test avatar",
+            badge: true,
+        });
+        const title = container.querySelector(".s-avatar--badge title");
+        expect(title).to.exist;
+        expect(title?.textContent).to.equal("Private");
+    });
+
+    it("should use custom i18nPrivateIconTitle for the badge icon", () => {
+        const { container } = render(Avatar, {
+            name: "test avatar",
+            badge: true,
+            i18nPrivateIconTitle: "Community privée",
+        });
+        const title = container.querySelector(".s-avatar--badge title");
+        expect(title).to.exist;
+        expect(title?.textContent).to.equal("Community privée");
     });
 
     it("should render the avatar with artbirary classes", () => {
