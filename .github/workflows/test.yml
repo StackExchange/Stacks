@@ -45,6 +45,8 @@ jobs:
 
       - name: ▶️ ${{ inputs.command_description }}
         run: ${{ inputs.command }}
+        env:
+          BETTER_AUTH_SECRET: ${{ secrets.AUTH_SECRET || 'ci-build-placeholder-secret' }}
 
       - name: ⬆️ Upload Visual Regression Test Results
         uses: actions/upload-artifact@v4
