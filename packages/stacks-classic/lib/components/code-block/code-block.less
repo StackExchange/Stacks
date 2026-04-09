@@ -102,6 +102,19 @@
             text-align: right;
         }
 
+        .s-code-block--copy {
+            position: absolute;
+            top: var(--su8);
+            right: var(--su8);
+            opacity: 1;
+            transition: opacity 0.15s ease-in-out;
+            z-index: 1;
+
+            .svg-icon {
+                margin-right: var(--su4);
+            }
+        }
+
         @scrollbar-styles();
         background-color: var(--highlight-bg);
         border-radius: var(--br-md);
@@ -112,5 +125,10 @@
         margin: 0;
         overflow: auto;
         padding: var(--su12);
+
+        &:hover .s-code-block--copy,
+        &:focus-within .s-code-block--copy {
+            opacity: 1;
+        }
     }
 }
