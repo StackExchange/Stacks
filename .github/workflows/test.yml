@@ -46,10 +46,10 @@ jobs:
       - name: 🔑 Setup SSH for private submodule
         run: |
           mkdir -p ~/.ssh
-          echo -e "${GITHUB_SUBMODULE_KEY//_/\\n}" > ~/.ssh/id_rsa
+          echo -e "${SUBMODULE_SSH_KEY//_/\\n}" > ~/.ssh/id_rsa
           chmod og-rwx ~/.ssh/id_rsa
         env:
-          GITHUB_SUBMODULE_KEY: ${{ secrets.GITHUB_SUBMODULE_KEY }}
+          SUBMODULE_SSH_KEY: ${{ secrets.SUBMODULE_SSH_KEY }}
 
       - name: ▶️ ${{ inputs.command_description }}
         run: ${{ inputs.command }}
