@@ -32,6 +32,9 @@
 <svelte:head>
   <title>{pageTitle}</title>
   <meta name="description" content={pageDescription} />
+  {#if data.source === 'legacy'}
+    <script src="/legacy-docs.js"></script>
+  {/if}
 </svelte:head>
 
 <svelte:window on:copysuccess={copySuccess} />

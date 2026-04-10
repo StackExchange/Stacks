@@ -17,6 +17,15 @@ export default defineConfig({
                 });
             },
         },
+        {
+            name: "copy-legacy-js",
+            buildStart() {
+                const src = "../stacks-docs/assets/dist/docs.js";
+                if (fs.existsSync(src)) {
+                    fs.copyFileSync(src, "static/legacy-docs.js");
+                }
+            },
+        },
     ],
     define: {
         __APP_VERSION__: JSON.stringify(pkgMain.version),
