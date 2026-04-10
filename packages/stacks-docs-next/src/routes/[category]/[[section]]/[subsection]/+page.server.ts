@@ -49,7 +49,8 @@ export const load: PageServerLoad = async (event) => {
         const legacyRoot = path.resolve(process.cwd(), "../stacks-docs/_site");
         const fragmentPath = path.join(legacyRoot, parent.active.legacy, "fragment.html");
         try {
-            const html = fs.readFileSync(fragmentPath, "utf8");
+            const html = fs.readFileSync(fragmentPath, "utf8")
+                .replace(/="\/assets\//g, '="/legacy-assets/');
             return {
                 source: "legacy" as const,
                 filename: null,
