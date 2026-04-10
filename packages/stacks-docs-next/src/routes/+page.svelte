@@ -55,7 +55,7 @@
     {#each data.structure?.navigation as category (category.slug)}
       <a
         class="td-none h:bg-black-600 grid--col4 md:grid--col6 sm:grid--col12 d-flex fd-column p24 bg-black fc-white d:bg-black-100 d:fc-black hmn2"
-        href={resolve(category.slug)}
+        href={resolve(`/${category.slug}`)}
       >
         <Icon src={icons[category.title]} />
         <h2 class="mt-auto fs-headline1 mb12">{category.title}</h2>
