@@ -2,6 +2,7 @@
   let { data } = $props();
 
   import { Icon } from '@stackoverflow/stacks-svelte';
+  import { IconArrowUpRightBox, IconServiceSvelte } from '@stackoverflow/stacks-icons/icons';
   import { resolve } from '$app/paths';
 
   import IconProduct from '$lib/assets/icons/product.svg?raw'
@@ -36,9 +37,11 @@
 </svelte:head>
 
 <div class="page p32">
-  <p>
-    <span class="s-badge s-badge__new">v{__APP_VERSION__}</span>
-  </p>
+  <div class="d-flex gs4 ai-center">
+    <span class="flex--item s-badge fc-purple-500 bg-purple-100">v{__APP_VERSION__}</span>
+    <Icon src={IconServiceSvelte} class="native ml12" />
+    <span class="flex--item s-badge">v{__SVELTE_VERSION__}</span>
+  </div>
 
   <h1 class="mt24 mb12">Stacks</h1>
 
@@ -57,5 +60,14 @@
         <p class="mb0 fs-body2 fc-black-300">{category.description}</p>
       </a>
     {/each}
+
+    <a
+      class="td-none h:bg-white h:fc-black grid--col4 md:grid--col6 sm:grid--col12 d-flex fd-column p24 bg-yellow-100 fc-black d:fc-black hmn2"
+      href="https://v2.stackoverflow.design/"
+    >
+      <Icon src={IconArrowUpRightBox} />
+      <h2 class="mt-auto fs-headline1 lh-sm mb12">Looking for Stacks classic?</h2>
+      <p class="mb0 fs-body2 fc-black-400">This is the latest guidence, if you are working on a classic experience you can visit the v2 documentation.</p>
+    </a>
   </div>
 </div>
