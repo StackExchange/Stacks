@@ -6,9 +6,9 @@
 # Check if we’re running in a Netlify environment
 # See https://www.netlify.com/docs/continuous-deployment/#environment-variables
 if [ ! -z "${DEPLOY_PRIME_URL}" ]; then
-    # Init .ssh dir and expand $SUBMODULE_SSH_KEY
+    # Init .ssh dir and expand $GITHUB_SUBMODULE_KEY
     mkdir -p ~/.ssh
-    echo -e "${SUBMODULE_SSH_KEY//_/\\n}" > ~/.ssh/id_rsa
+    echo -e "${GITHUB_SUBMODULE_KEY//_/\\n}" > ~/.ssh/id_rsa
     chmod og-rwx ~/.ssh/id_rsa
 
     # Add host keys
