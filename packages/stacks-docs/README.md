@@ -1,3 +1,6 @@
+> [!NOTE]  
+> This is the classic version of Stacks documentation avalable at [v2.stackoverflow.design](https://v2.stackoverflow.design/).
+
 # Stacks Docs
 
 This workspace contains the Stacks documentation project that’s hosted on: https://stackoverflow.design/
