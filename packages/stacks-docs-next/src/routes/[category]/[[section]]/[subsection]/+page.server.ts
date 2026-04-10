@@ -45,20 +45,6 @@ export const load: PageServerLoad = async (event) => {
         possiblePaths.includes(path)
     );
 
-    if (found) {
-        const [filename, doc] = found;
-        const loader = (await doc()) as { default: Component; metadata: Record<string, unknown> };
-
-        const markdown = turndownService.turndown(render(loader.default).body);
-
-        return {
-            source: "md",
-            filename,
-            metadata: loader.metadata,
-            markdown,
-        };
-    }
-
     if (parent.active?.legacy) {
         const legacyRoot = path.resolve(process.cwd(), "../stacks-docs/_site");
         const fragmentPath = path.join(legacyRoot, parent.active.legacy, "fragment.html");
@@ -74,6 +60,20 @@ export const load: PageServerLoad = async (event) => {
         } catch {
             // fragment not found, fall through to 404
         }
+    }
+
+    if (found) {
+        const [filename, doc] = found;
+        const loader = (await doc()) as { default: Component; metadata: Record<string, unknown> };
+
+        const markdown = turndownService.turndown(render(loader.default).body);
+
+        return {
+            source: "md",
+            filename,
+            metadata: loader.metadata,
+            markdown,
+        };
     }
 
     throw error(404, `No content found for ${slug}`);
