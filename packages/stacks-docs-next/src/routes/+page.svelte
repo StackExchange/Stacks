@@ -68,8 +68,8 @@
       href="https://v2.stackoverflow.design/"
     >
       <Icon src={IconArrowUpRightBox} />
-      <h2 class="mt-auto fs-headline1 lh-sm mb12">Looking for Stacks classic?</h2>
-      <p class="mb0 fs-body2 fc-black-400">This is the latest guidence, if you are working on a classic experience you can visit the v2 documentation.</p>
+      <h2 class="mt-auto fs-headline1 lh-sm mb12">Looking for the previous version of Stacks?</h2>
+      <p class="mb0 fs-body2 fc-black-400">If you are working on a classic experience you can visit the v2 documentation.</p>
     </a>
   </div>
 </div>
