@@ -35,6 +35,33 @@ describe("Avatar", () => {
         expect(screen.getByText("test avatar")).to.exist;
     });
 
+    it("should set width and height on the image from size", () => {
+        const { container } = render(Avatar, {
+            name: "test avatar",
+            src: "https://picsum.photos/128",
+            size: 48,
+        });
+        const imageElement = container.querySelector(
+            ".s-avatar--image"
+        ) as HTMLImageElement | null;
+        expect(imageElement).to.exist;
+        expect(imageElement).to.have.attr("width", "48");
+        expect(imageElement).to.have.attr("height", "48");
+    });
+
+    it("should default image width and height to 16 when size is omitted", () => {
+        const { container } = render(Avatar, {
+            name: "test avatar",
+            src: "https://picsum.photos/128",
+        });
+        const imageElement = container.querySelector(
+            ".s-avatar--image"
+        ) as HTMLImageElement | null;
+        expect(imageElement).to.exist;
+        expect(imageElement).to.have.attr("width", "16");
+        expect(imageElement).to.have.attr("height", "16");
+    });
+
     it("should render the avatar with the provided letter", () => {
         render(Avatar, {
             name: "test avatar",
@@ -57,31 +84,25 @@ describe("Avatar", () => {
         expect(badgeElement).to.exist;
     });
 
-    it("should render the online status small indicator when status is online and size is 16 or 24", () => {
-        render(Avatar, {
+    it("should use default i18nPrivateIconTitle for the badge icon", () => {
+        const { container } = render(Avatar, {
             name: "test avatar",
-            status: "online",
+            badge: true,
         });
-        const smallIndicatorEl = screen
-            .getByText("test avatar")
-            .parentElement?.querySelector(".s-avatar--indicator");
-        expect(smallIndicatorEl).to.exist;
-        expect(smallIndicatorEl).to.have.class("s-activity-indicator__sm");
-        expect(screen.getByText("Online")).to.exist;
+        const title = container.querySelector(".s-avatar--badge title");
+        expect(title).to.exist;
+        expect(title?.textContent).to.equal("Private");
     });
 
-    it("should render the online status large indicator when status is online and size is above 24", () => {
-        render(Avatar, {
+    it("should use custom i18nPrivateIconTitle for the badge icon", () => {
+        const { container } = render(Avatar, {
             name: "test avatar",
-            status: "online",
-            size: 32,
+            badge: true,
+            i18nPrivateIconTitle: "Community privée",
         });
-        const largeIndicatorEl = screen
-            .getByText("test avatar")
-            .parentElement?.querySelector(".s-avatar--indicator");
-        expect(largeIndicatorEl).to.exist;
-        expect(largeIndicatorEl).not.to.have.class("s-activity-indicator__sm");
-        expect(screen.getByText("Online")).to.exist;
+        const title = container.querySelector(".s-avatar--badge title");
+        expect(title).to.exist;
+        expect(title?.textContent).to.equal("Community privée");
     });
 
     it("should render the avatar with artbirary classes", () => {
