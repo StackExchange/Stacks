@@ -20,8 +20,6 @@
 		container.style.display = 'none';
 		document.body.appendChild(container);
 
-		_hiddenContainer = container;
-
 		try {
 			docsearch({
 				container,
