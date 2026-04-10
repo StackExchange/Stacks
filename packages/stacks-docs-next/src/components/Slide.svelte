@@ -1,6 +1,6 @@
 <script lang="ts">
   import { getContext } from 'svelte';
-  let { extraClasses, children } = $props();
+  let { children } = $props();
 
   const gallery = getContext('gallery');
 

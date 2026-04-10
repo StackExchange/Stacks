@@ -9,7 +9,7 @@
 </script>
 
 <div class="colors overflow-auto">
-  {#each colors as color}
+  {#each colors as color (color.cssVar)}
     <ColorSwatch
       {color}
       showHex={true}

@@ -1,4 +1,4 @@
-import type { LayoutServerData } from "./$types";
+import type { LayoutServerLoad } from "./$types";
 import YAML from "yaml";
 import structureRaw from "$src/structure.yaml?raw";
 
@@ -9,9 +9,9 @@ function findByPath({ navigation }, path) {
     );
 }
 
-export const load: LayoutServerData = async (event: any) => {
+export const load: LayoutServerLoad = async (event) => {
     // Load the navigation structure from the structure.yaml
-    let structure: any = {};
+    let structure: Record<string, unknown> = {};
 
     try {
         structure = YAML.parse(structureRaw);

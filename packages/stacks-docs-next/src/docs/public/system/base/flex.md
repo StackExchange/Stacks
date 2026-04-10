@@ -368,7 +368,7 @@ updated: 2025-12-05
 <style>
   .stacks-flex-example--item {
     background-color: var(--black-200);
-    border: var(--su-static1) solid var(--bc-medium);
+    border: var(--su1) solid var(--bc-medium);
     color: var(--fc-dark);
     font-family: var(--ff-mono);
     font-size: var(--fs-caption);

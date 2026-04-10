@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { SvelteMap } from 'svelte/reactivity';
   import { Icon } from '@stackoverflow/stacks-svelte';
   import { IconChevron16Down, IconChevron16Up } from '@stackoverflow/stacks-icons'
 
@@ -15,7 +16,7 @@
   let indicatorTop = $state(0);
   let indicatorHeight = $state(0);
   let navElement: HTMLElement | null = null;
-  let linkElements: Map<string, HTMLElement> = new Map();
+  let linkElements: Map<string, HTMLElement> = new SvelteMap();
   let isOpen = $state(false);
 
   // Flatten toc to get all items including children
@@ -132,7 +133,7 @@
 
 <aside class="flex--item3 md:order-first ml32 md:ml0">
   {#if toc.length > 0}
-    <div class="ps-sticky t0 py32 mt6 pr24 md:pb0 overflow-auto hmx-screen md:hmx-initial">
+    <div class="ps-sticky t0 py24 mt6 pr24 md:pb0 overflow-auto hmx-screen md:hmx-initial">
       <button
         class="d-none md:d-block s-btn s-btn__tonal s-btn__icon w100 mb12 d-flex jc-space-between"
         onclick={() => isOpen = !isOpen}
@@ -150,7 +151,7 @@
         ></div>
 
         <ul class="s-navigation s-navigation__vertical">
-          {#each toc as item, index}
+          {#each toc as item, index (item.id)}
             <li>
               <a
                 href="#{item.id}"
@@ -164,7 +165,7 @@
               </a>
               {#if item.children && item.children.length > 0}
                 <ul class="s-navigation s-navigation__vertical">
-                  {#each item.children as child}
+                  {#each item.children as child (child.id)}
                     <li>
                       <a
                         href="#{child.id}"

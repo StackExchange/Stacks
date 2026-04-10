@@ -46,6 +46,7 @@ export default (_, argv) => {
         },
         plugins: [new MiniCssExtractPlugin()],
         resolve: commonResolve,
+        performance: false,
         devServer: {
             webSocketURL: {
                 // 11ty/browsersync steal the default port (8080), so set it to something else

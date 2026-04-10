@@ -1,7 +1,9 @@
 import type { PageServerLoad } from "./$types";
 import { error } from "@sveltejs/kit";
+import type { Component } from "svelte";
 import { render } from "svelte/server";
-import htmlToMd from "$src/lib/htmlToMd";
+import fs from "fs";
+import path from "path";
 
 import TurndownService from "turndown";
 const turndownService = new TurndownService({
@@ -45,7 +47,7 @@ export const load: PageServerLoad = async (event) => {
 
     if (found) {
         const [filename, doc] = found;
-        const loader: any = await doc();
+        const loader = (await doc()) as { default: Component; metadata: Record<string, unknown> };
 
         const markdown = turndownService.turndown(render(loader.default).body);
 
@@ -55,6 +57,23 @@ export const load: PageServerLoad = async (event) => {
             metadata: loader.metadata,
             markdown,
         };
+    }
+
+    if (parent.active?.legacy) {
+        const legacyRoot = path.resolve(process.cwd(), "../stacks-docs/_site");
+        const fragmentPath = path.join(legacyRoot, parent.active.legacy, "fragment.html");
+        try {
+            const html = fs.readFileSync(fragmentPath, "utf8");
+            return {
+                source: "legacy" as const,
+                filename: null,
+                metadata: null,
+                markdown: null,
+                html,
+            };
+        } catch {
+            // fragment not found, fall through to 404
+        }
     }
 
     throw error(404, `No content found for ${slug}`);

@@ -116,6 +116,7 @@
               onclick={() => selectEntry(entry)}
             >
               <div class="d-flex ai-center jc-center my-auto h100">
+                <!-- eslint-disable-next-line svelte/no-at-html-tags -->
                 {@html def.svg.replace('class="', `class="w100 h-auto wmx100 ${label === 'Spots' ? 'native' : ''} `)}
               </div>
               <div class="fs-fine mt-auto pt8">
@@ -143,6 +144,7 @@
         </div>
 
         <div class="h100 d-flex bg-white d:bg-black">
+          <!-- eslint-disable-next-line svelte/no-at-html-tags -->
           {@html selectedVariant.svg.replace('class="', 'class="native m-auto ')}
         </div>
       </div>
@@ -163,11 +165,11 @@
         </Button>
       </div>
 
-      {#each variants as variant}
+      {#each variants as variant (variant.key)}
         <div class="py16 px16 bb bc-black-200">
           <p class="section-label tt-uppercase fw-semibold fc-black-400 mb8 fl1">{variant.key}</p>
           <div class="d-flex g4 fw-wrap">
-            {#each variant.values as val}
+            {#each variant.values as val (val)}
               {@const isActive = selectedProps[variant.key] === val}
               {@const compatible = isCompatible(variant.key, val)}
 

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { IconServiceGitHub, IconServiceFigma, IconServiceSvelte, IconCheckFillCircle, IconStackCards } from '@stackoverflow/stacks-icons/icons';
   import { Icon, Button } from '@stackoverflow/stacks-svelte';
+  import { resolve } from '$app/paths';
 
   import { copyToClipboard } from '$src/lib/copyToClipboard';
   import Contents from '$components/Contents.svelte';
@@ -40,11 +41,11 @@
 {/if}
 
 <article class="d-flex md:fd-column mx-auto pl32 md:pr32 sm:pl24 sm:pr24">
-  <div class="doc flex--item9 wmn1 s-prose fs-body2 pt32">
+  <div class="doc flex--item9 wmn1 s-prose fs-body2 pt24">
     <div class="d-flex gs4 ai-center mb128">
       <nav class="flex--item fs-body2 mr-auto" aria-label="breadcrumb">
-        {#each data.breadcrumb as crumb, index}
-          <a href={crumb.path} class="pr6 s-link">{crumb.label}</a>{#if index !== data.breadcrumb.length - 1}<span class="fc-black-300 mr6">/</span>{/if}
+        {#each data.breadcrumb as crumb, index (crumb.path)}
+          <a href={resolve(crumb.path)} class="pr6 s-link">{crumb.label}</a>{#if index !== data.breadcrumb.length - 1}<span class="fc-black-300 mr6">/</span>{/if}
         {/each}
       </nav>
 
@@ -92,6 +93,7 @@
 
       {#if data?.metadata?.description}
         <p class="fc-dark fs-body3 mtn16 wmx5">
+          <!-- eslint-disable-next-line svelte/no-at-html-tags -->
           {@html data.metadata.description}
         </p>
       {/if}
@@ -99,6 +101,9 @@
 
     {#if data.source === 'md'}
       <data.Content />
+    {:else if data.source === 'legacy'}
+      <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+      {@html data.html}
     {/if}
   </div>
 

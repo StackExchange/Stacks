@@ -48,8 +48,13 @@
 
         <!-- Main content -->
         <main id="content" class="g16 pt24 wmn0 wmx7 w100 md:px16 md:pt16 md:wmx100">
-            <div class="d-flex ai-center jc-space-between">
-                <h1 class="fs-display1 mb0">{{ title }}</h1>
+            <div class="d-flex ai-start jc-space-between">
+                <!-- <h1 class="fs-display1 mb0">{{ title }}</h1> -->
+
+                {% if description %}
+                    <p class="docs-copy fc-black-500 fs-title mb0">{{ description }}</p>
+                {% endif %}
+                
                 {% if js or figma or svelte %}
                     <div class="d-flex g8 ai-center">
 
@@ -82,14 +87,10 @@
                     </div>
                 {% endif %}
             </div>
-
-            {% if description %}
-                <p class="docs-copy fc-black-500 fs-title mb0">{{ description }}</p>
-            {% endif %}
             
             <div class="mt32">{{ content }}</div>
 
-            <div class="d-flex my48 pt24">
+            <!-- <div class="d-flex my48 pt24">
                 <div class="mr16">
                     {% comment %}
                         Since the vote component relies on DOM order to style the buttons, we need to create the forms and tooltips outside of the vote component.
@@ -198,11 +199,11 @@
                         </div>
                     </fieldset>
                 </form>
-            </div>
+            </div> -->
 
-            <div class="ta-right">
+            <!-- <div class="ta-right">
                 <a href="https://www.netlify.com"><img src="https://www.netlify.com/v3/img/components/netlify-color-accent.svg" alt="Deploys by Netlify" /></a>
-            </div>
+            </div> -->
         </main>
 
         <!-- Page table of contents -->

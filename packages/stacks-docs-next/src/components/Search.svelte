@@ -8,7 +8,6 @@
 	import { Button, Icon } from '@stackoverflow/stacks-svelte';
 	import { IconSearch } from '@stackoverflow/stacks-icons';
 
-	let hiddenContainer = $state();
 	let docSearchButton = $state();
 
 	// Check if all required env vars are available
@@ -21,7 +20,7 @@
 		container.style.display = 'none';
 		document.body.appendChild(container);
 
-		hiddenContainer = container;
+		_hiddenContainer = container;
 
 		try {
 			docsearch({

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { resolve } from '$app/paths';
 	import '../app.css';
 
 	import { Icon, Button } from '@stackoverflow/stacks-svelte';
@@ -26,7 +27,7 @@
 
 <header class="d-flex fd-column w20 sm:w100 hmx100 h-screen sm:h-auto overflow-auto ps-fixed z-nav sm:ps-static">
 	<div class="d-flex ai-center bg-black-100 pt16 px24 sm:pr6 sm:pb12 sm:pt12">
-		<a href="/" title="Home" class="fc-brand-orange mr-auto">
+		<a href={resolve('/')} title="Home" class="fc-brand-orange mr-auto">
 			<Icon src={IconLogo} />
 		</a>
 
@@ -57,9 +58,9 @@
 </header>
 
 <main class="main bg-white d-flex fd-column t24 sm:t0 ps-relative">
-	<div class="bg-blue-400 fc-white px24 py12">
-		This is a brand focused preview – for developer reference please see <a href="https://stackoverflow.design" class="s-link fc-white s-link__underlined">the current docs</a> or <a href="https://beta.stackoverflow.design" class="s-link fc-white s-link__underlined">the beta release</a>.
-	</div>
+	<!-- <div class="bg-blue-400 fc-white px24 py12">
+		This is a brand focused preview – for developer reference please see <a href="https://stackoverflow.design" class="s-link fc-white s-link__underlined">the current docs</a> or <a href="https://beta.stackoverflow.design" class="s-link fc-white s-link__underlined">the beta release</a>.
+	</div> -->
 
 	<div class="my-auto">
 		{#if data.needsAuth}

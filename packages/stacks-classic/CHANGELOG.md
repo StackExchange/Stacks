@@ -1,5 +1,15 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.30
+
+### Minor Changes
+
+- [#2214](https://github.com/StackExchange/Stacks/pull/2214) [`97d31ab`](https://github.com/StackExchange/Stacks/commit/97d31ab9e0a66ae231fdfea534849101e447f165) Thanks [@dancormier](https://github.com/dancormier)! - Add brand color set
+
+### Patch Changes
+
+- [#2191](https://github.com/StackExchange/Stacks/pull/2191) [`2ccdfaf`](https://github.com/StackExchange/Stacks/commit/2ccdfaf1a83469347a6ad678445fa1709e28e363) Thanks [@dancormier](https://github.com/dancormier)! - Fully remove cruft from removed components
+
 ## 3.0.0-beta.29
 
 ### Patch Changes

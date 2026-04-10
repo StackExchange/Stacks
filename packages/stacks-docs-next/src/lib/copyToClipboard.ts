@@ -2,7 +2,7 @@ export function copyToClipboard(node: HTMLElement, value: string) {
     let current = value;
 
     async function copyText() {
-        let text: string = current || node.textContent;
+        const text: string = current || node.textContent;
 
         try {
             await navigator.clipboard.writeText(text);

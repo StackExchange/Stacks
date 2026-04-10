@@ -1,10 +1,7 @@
 <script lang="ts">
   import { Button } from '@stackoverflow/stacks-svelte';
-  import type { Size } from '@stackoverflow/stacks-svelte';
 
   let { sizes } = $props();
-
-  const titleCase = (str) => str.toLowerCase().replace(/(?:^|\s)\w/g, (match) => match.toUpperCase());
 
   const getSizeInfo = (size) => {
     const sizeMap = {
@@ -28,7 +25,7 @@
       </tr>
     </thead>
     <tbody>
-      {#each sizes as size}
+      {#each sizes as size (size)}
         {@const sizeInfo = getSizeInfo(size)}
         <tr>
           <th scope="row" class="va-middle">{sizeInfo.name}</th>

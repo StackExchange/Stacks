@@ -16,7 +16,7 @@
 </script>
 
 <Gallery controls={gallery}>
-  {#each gallery as item}
+  {#each gallery as item (item)}
     <Slide>
       <div class="opt ba-color" style={`background: var(--brand-color-${item}); color: var(--brand-color-${item === 'black' ? 'white': 'black'}`}>
        <Icon class="logo" src={IconLogo} />

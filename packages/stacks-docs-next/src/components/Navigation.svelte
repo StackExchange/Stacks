@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from '$app/state';
+  import { resolve } from '$app/paths';
   import { slide } from 'svelte/transition';
 
   import { Icon } from '@stackoverflow/stacks-svelte';
@@ -15,7 +16,8 @@
   let subsectionSlug = $derived(segments[2] ?? '');
 </script>
 
-{#snippet dropdown(isSelected: boolean, level: number = 1)}
+<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
+{#snippet dropdown(isSelected: boolean, _level: number = 1)}
   <span
     style:display="inline-block"
     style:transform="rotate({!isSelected
@@ -32,20 +34,20 @@
     <li>
       <a
         class="s-navigation--item mb1"
-        href="/"
+        href={resolve('/')}
         class:is-selected={!categorySlug}
       >
         <span>Home</span>
       </a>
     </li>
-    {#each navigation as category}
+    {#each navigation as category (category.slug)}
       {@const isSelected = category.slug === categorySlug}
 
       <li>
         <a
           class="s-navigation--item jc-space-between mb1"
           class:is-selected={isSelected}
-          href={`/${category.slug}/`}
+          href={resolve(`/${category.slug}/`)}
           data-sveltekit-reload={category.private ? true : undefined}
         >
           <span>{category.title}</span>
@@ -57,12 +59,12 @@
         {#if category.items && isSelected}
           <div transition:slide={{ duration: 200 }}>
             <ul class="s-navigation s-navigation__vertical pl24">
-              {#each category.items as subsection}
+              {#each category.items as subsection (subsection.slug)}
                 <li>
                   <a
                     class="s-navigation--item jc-space-between mb1"
                     class:is-selected={sectionSlug === subsection.slug || subsectionSlug === subsection.slug}
-                    href={subsection.externalUrl || `/${category.slug}/${subsection.slug}/${subsection?.items ? subsection?.items[0]?.slug : ''}`}
+                    href={resolve(subsection.externalUrl || `/${category.slug}/${subsection.slug}/${subsection?.items ? subsection?.items[0]?.slug : ''}`)}
                     data-sveltekit-reload={subsection.private ? true : undefined}
                   >
                     <span>{subsection.title}</span>
@@ -87,12 +89,12 @@
                   {#if subsection?.items && sectionSlug === subsection.slug}
                     <div transition:slide={{ duration: 200 }}>
                       <ul class="s-navigation s-navigation__vertical ml24">
-                        {#each subsection?.items as item}
+                        {#each subsection?.items as item (item.slug)}
                           <li>
                             <a
                               class="s-navigation--item jc-space-between mb1"
                               class:is-selected={subsectionSlug === item.slug}
-                              href={item.externalUrl || `/${category.slug}/${subsection.slug}/${item.slug}/`}
+                              href={resolve(item.externalUrl || `/${category.slug}/${subsection.slug}/${item.slug}/`)}
                               data-sveltekit-reload={item.private ? true : undefined}
                             >
                               <span>{item.title}</span>

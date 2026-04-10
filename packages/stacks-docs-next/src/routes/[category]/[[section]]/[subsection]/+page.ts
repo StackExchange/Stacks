@@ -1,3 +1,4 @@
+import type { Component } from "svelte";
 import type { PageLoad } from "./$types";
 
 const mdFiles = import.meta.glob("$docs/**/*.md");
@@ -9,7 +10,7 @@ export const load: PageLoad = async (event) => {
     if (!serverData.filename) return { ...layoutData, ...serverData };
 
     const doc = mdFiles[serverData.filename];
-    const loader: any = await doc();
+    const loader = (await doc()) as { default: Component };
 
     return {
         ...layoutData,

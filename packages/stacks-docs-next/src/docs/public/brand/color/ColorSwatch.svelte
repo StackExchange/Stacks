@@ -65,7 +65,7 @@
       { label: 'RGB', field: 'rgb', value: color.rgb },
       { label: 'CSS', field: 'css', value: color.cssVar },
       { label: 'Pantone', field: 'pantone', value: color.pantone },
-    ] as row, i}
+    ] as row, i (row.field)}
       {#if row.value}
         <div class="fs-body1 px16 d-flex jc-space-between py8 {i !== 0 ? 'bt bc-black-150' : ''}">
           <div>{row.label}</div>
