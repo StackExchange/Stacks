@@ -60,7 +60,7 @@
       </button>
 
       {#if data.filename}
-        <Button title="Edit on GitHub" size="sm" weight="clear" href={`https://github.com/StackExchange/Stacks/edit/alpha/packages/stacks-docs-next${data.filename}`} class="flex--item">
+        <Button title="Edit on GitHub" size="sm" weight="clear" href={`https://github.com/StackExchange/Stacks/edit/main/packages/stacks-docs-next${data.filename}`} class="flex--item">
           <Icon src={IconServiceGitHub} />
           <span class="sm:d-none">Edit</span>
         </Button>
