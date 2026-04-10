@@ -27,7 +27,7 @@
     main {
       background-image: url(/images/heros/home.svg);
       background-repeat: no-repeat;
-      background-position: calc(100% + 100px) 0%;
+      background-position: calc(100% + 120px) 0%;
       background-size: 55% auto;
       display: flex;
       flex-direction: column;
@@ -36,16 +36,18 @@
   </style>
 </svelte:head>
 
-<div class="page p32">
+<div class="page p32 sm:p24">
   <div class="d-flex gs4 ai-center">
     <span class="flex--item s-badge fc-purple-500 bg-purple-100">v{__APP_VERSION__}</span>
-    <Icon src={IconServiceSvelte} class="native ml12" />
-    <span class="flex--item s-badge">v{__SVELTE_VERSION__}</span>
+    <a href="https://beta.svelte.stackoverflow.design/" class="flex--item s-badge">
+      <Icon src={IconServiceSvelte} class="native" />
+      v{__SVELTE_VERSION__}
+    </a>
   </div>
 
   <h1 class="mt24 mb12">Stacks</h1>
 
-  <p class="fs-body3 w50 mb32">
+  <p class="fs-body3 w50 sm:w100 sm:pr32 mb32">
     The Stack Overflow Design System – resources for product designers, developers, marketers and everyone who works with Stack Overflow.
   </p>
 

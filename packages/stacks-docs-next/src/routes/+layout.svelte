@@ -71,9 +71,9 @@
 	</div>
 
 	{#if !page.data.hideFooter}
-		<footer class="d-flex ai-center ml32 py32 fc-black-400">
+		<footer class="d-flex sm:fd-column ai-center sm:ai-start ml32 sm:ml24 py32 fc-black-400">
 			<Icon src={IconGlyph24} />
-			<div class="footer__blurb ml12">
+			<div class="footer__blurb ml12 sm:ml0 sm:mt12">
 				© {year} Stack Exchange Inc.
 				All rights reserved.
 			</div>
