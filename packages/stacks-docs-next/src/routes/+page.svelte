@@ -47,7 +47,7 @@
 
   <h1 class="mt24 mb12">Stacks</h1>
 
-  <p class="fs-body3 w50 sm:w100 sm:pr32 mb32">
+  <p class="fs-body3 w50 sm:w100 sm:pr32 mb32 wmx5">
     The Stack Overflow Design System – resources for product designers, developers, marketers and everyone who works with Stack Overflow.
   </p>
 
