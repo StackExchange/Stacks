@@ -17,11 +17,7 @@ Our documentation is built with Stacks itself, using its [immutable, atomic clas
 - [License](#license)
 
 # Using Stacks
-Using Stacks is outlined in our [usage guidelines](https://stackoverflow.design/product/develop/using-stacks).
-
-## Migrating from v1 to v2
-
-To migrate from Stacks v1 to v2, see our [migration guide](/MIGRATION_GUIDE.md).
+Using Stacks is outlined in our [usage guidelines](https://stackoverflow.design/system/develop/using-stacks).
 
 # Local Development
 
@@ -42,7 +38,7 @@ To contribute to Stacks documentation you can build locally via:
 ```sh
 npm start
 ```
-This command will pull up the local dev server at http://localhost:8080. You can also view our [building guidelines](https://stackoverflow.design/product/develop/building).
+This command will pull up the local dev server at http://localhost:5173/. You can also view our [building guidelines](https://stackoverflow.design/system/develop/building).
 
 ## Stacks Classic 
 
