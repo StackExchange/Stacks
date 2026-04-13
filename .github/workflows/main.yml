@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [develop, beta]
+    branches: [v2, main]
   pull_request:
-    branches: [develop, beta]
+    branches: [v2, main]
 
 jobs:
   build-and-test:
@@ -50,7 +50,7 @@ jobs:
 
   release:
     name: Release (latest or beta)
-    if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/beta'
+    if: github.ref == 'refs/heads/v2' || github.ref == 'refs/heads/main'
     needs: [build-and-test]
     runs-on: ubuntu-latest
     outputs:
@@ -74,8 +74,8 @@ jobs:
           publish: npm run release
           title: "chore(new-release)"
           commit: "chore(new-release)"
-          branch: ${{ github.ref == 'refs/heads/beta' && 'beta' || null }}
-          createGithubReleases: ${{ github.ref == 'refs/heads/develop' }}
+          branch: ${{ github.ref == 'refs/heads/main' && 'main' || null }}
+          createGithubReleases: ${{ github.ref == 'refs/heads/v2' }}
         env:
           GITHUB_TOKEN: ${{ secrets.STACKS_TOOLING_GH_RW_PAT }}
           NPM_TOKEN: ${{ secrets.NPM_API_KEY }}
@@ -94,7 +94,7 @@ jobs:
 
   update-docs:
     name: Update main site stackoverflow.design
-    if: ${{ needs.release.outputs.published == 'true' && github.ref == 'refs/heads/develop' }}
+    if: ${{ needs.release.outputs.published == 'true' && github.ref == 'refs/heads/v2' }}
     needs: [build-and-test, release]
     runs-on: ubuntu-latest
     steps:
@@ -105,7 +105,7 @@ jobs:
             git config --global user.email 'github-actions[bot]@users.noreply.github.com'
             git fetch origin
             git checkout production
-            git merge --no-ff --allow-unrelated-histories origin/develop -m "chore: merge develop into production"
+            git merge --no-ff --allow-unrelated-histories origin/v2 -m "chore: merge v2 into production"
             git push origin production
         env:
             GITHUB_TOKEN: ${{ secrets.STACKS_TOOLING_GH_RW_PAT }}
