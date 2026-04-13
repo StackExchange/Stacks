@@ -1,4 +1,6 @@
-const pluginTOC = require("eleventy-plugin-nesting-toc");
+const fs = require('fs');
+const path = require('path');
+const cheerio = require('cheerio');
 const llmsTxtPlugin = require("eleventy-plugin-llms-txt");
 const { version } = require("../stacks-classic/package.json");
 
@@ -9,10 +11,30 @@ const bannerExamplePlugin = require("./plugins/banner-example");
 const tipPlugin = require("./plugins/tip");
 const markdownPlugin = require("./plugins/markdown");
 
+const dataDir = path.join(__dirname, '_data');
+
+// Re-expose JSON from _data/atomic/ and _data/components/ as top-level keys so
+// templates keep using the same names (e.g. atomics, padding, buttons).
+function registerSubfolderData(eleventyConfig, subdir) {
+  const dir = path.join(dataDir, subdir);
+  if (!fs.existsSync(dir)) return;
+  fs.readdirSync(dir)
+    .filter((f) => f.endsWith('.json'))
+    .forEach((file) => {
+      const key = path.basename(file, '.json');
+      const filePath = path.join(dir, file);
+      eleventyConfig.addGlobalData(key, () => require(filePath));
+    });
+}
+
 module.exports = function(eleventyConfig) {
   eleventyConfig.setQuietMode(true); // Reduce the console output
   eleventyConfig.addLayoutAlias('home', 'layouts/home.html');
   eleventyConfig.addLayoutAlias('page', 'layouts/page.html');
+  eleventyConfig.addLayoutAlias('removed', 'layouts/removed.html');
+
+  registerSubfolderData(eleventyConfig, 'atomic');
+  registerSubfolderData(eleventyConfig, 'components');
 
   eleventyConfig.addPlugin(bannerExamplePlugin);
   eleventyConfig.addPlugin(iconPlugin);
@@ -34,8 +56,43 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addPlugin(markdownPlugin);
 
-  // Add submenu generation
-  eleventyConfig.addPlugin(pluginTOC, {tags: ['h2', 'h3'], wrapper: 'nav aria-label="Table of contents"', wrapperClass: 'toc s-anchors s-anchors__muted'});
+  // Create page table of contents data
+  eleventyConfig.addLiquidFilter("extractHeadings", function(content) {
+    const $ = cheerio.load(content);
+    const headings = [];
+
+    $('h2, h3').each((i, el) => {
+      // Exclude headings inside presentational areas (e.g. examples, demos)
+      if ($(el).closest('[role="presentation"]').length > 0) {
+        return;
+      }
+      headings.push({
+        level: parseInt(el.tagName[1]),
+        text: $(el).text(),
+        id: $(el).attr('id')
+      });
+    });
+
+    return headings;
+  });
+
+  // After build: extract <main id="content"> from each page and write a fragment.html
+  // alongside it — used by stacks-docs-next as a legacy content stopgap.
+  eleventyConfig.on('eleventy.after', ({ results }) => {
+    for (const result of results) {
+      if (!result.outputPath || !result.outputPath.endsWith('/index.html')) continue;
+      try {
+        const html = fs.readFileSync(result.outputPath, 'utf8');
+        const $ = cheerio.load(html);
+        const main = $('#content');
+        if (!main.length) continue;
+        const fragmentPath = path.join(path.dirname(result.outputPath), 'fragment.html');
+        fs.writeFileSync(fragmentPath, main.html());
+      } catch {
+        // skip pages that can't be processed
+      }
+    }
+  });
 
   // Copy these files over to _site
   eleventyConfig.addPassthroughCopy('assets/dist');

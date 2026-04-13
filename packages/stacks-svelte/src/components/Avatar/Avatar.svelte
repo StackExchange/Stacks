@@ -4,7 +4,8 @@
 
 <script lang="ts">
     import Icon from "../Icon/Icon.svelte";
-    import { IconShieldXSm } from "@stackoverflow/stacks-icons/icons";
+    import ActivityIndicator from "../ActivityIndicator/ActivityIndicator.svelte";
+    import { IconShieldXSm } from "@stackoverflow/stacks-icons-legacy/icons";
     import type { HTMLAnchorAttributes } from "svelte/elements";
 
     interface Props {
@@ -34,6 +35,11 @@
         letter?: string;
 
         /**
+         * User status
+         */
+        status?: "online";
+
+        /**
          * Boolean to show the shield badge on the avatar
          */
         badge?: boolean;
@@ -55,6 +61,7 @@
         href,
         src,
         letter,
+        status,
         badge = false,
         class: className = "",
         role,
@@ -100,6 +107,14 @@
         <span class="s-avatar--letter" aria-hidden="true">{letter}</span>
     {/if}
     <span class="v-visible-sr">{name}</span>
+    {#if status === "online"}
+        <ActivityIndicator
+            label="Online"
+            variant="success"
+            size={size <= 24 ? "sm" : ""}
+            class="s-avatar--indicator"
+        />
+    {/if}
     {#if badge}
         <Icon
             class="s-avatar--badge"

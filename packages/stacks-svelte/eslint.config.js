@@ -10,7 +10,7 @@ import pluginChaiFriendly from "eslint-plugin-chai-friendly";
 export default [
     eslint.configs.recommended,
     {
-        files: ["**/*.svelte", "*.svelte"],
+        files: ["**/*.svelte", "*.svelte", "**/*.svelte.ts", "*.svelte.ts"],
         languageOptions: {
             parser: svelteParser,
             parserOptions: {
@@ -38,6 +38,11 @@ export default [
                 ...globals.mocha,
                 ...globals.chai,
             },
+        },
+    },
+    {
+        rules: {
+            "svelte/no-navigation-without-resolve": "off",
         },
     },
     {

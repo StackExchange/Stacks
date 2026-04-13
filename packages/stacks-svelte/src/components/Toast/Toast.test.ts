@@ -1,6 +1,5 @@
 import { expect } from "@open-wc/testing";
 import { render, screen, waitFor } from "@testing-library/svelte";
-import { IconAlert } from "@stackoverflow/stacks-icons/icons";
 import userEvent from "@testing-library/user-event";
 import sinon from "sinon";
 import { createRawSnippet, mount, unmount } from "svelte";
@@ -38,17 +37,11 @@ describe("showToast", () => {
         expect(toastEl).to.have.class("s-notice__important");
     });
 
-    it("should render a toast with an Icon when an icon is set", async () => {
-        render(Toaster);
-        showToast("Test Toast", { icon: IconAlert, iconTitle: "Alert" });
-        await waitFor(() => expect(screen.getByTitle("Alert")).to.exist);
-    });
-
     it("should render the close button by default", async () => {
         render(Toaster);
         showToast("Test Toast");
         const closeButton = await screen.findByRole("button", {
-            name: "Close",
+            name: "Dismiss",
         });
         expect(closeButton).to.exist;
     });
@@ -169,7 +162,7 @@ describe("showToast", () => {
             onAutoClose: onAutoCloseSpy,
         });
         await waitFor(() => expect(screen.getByText("Test Toast")).to.exist);
-        const closeButton = screen.getByRole("button", { name: "Close" });
+        const closeButton = screen.getByRole("button", { name: "Dismiss" });
         expect(closeButton).to.exist;
         await userEvent.click(closeButton);
         await waitFor(

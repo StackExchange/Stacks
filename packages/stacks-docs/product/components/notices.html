@@ -1,428 +1,182 @@
 ---
 layout: page
 title: Notices
-figma: https://svelte.stackoverflow.design/figma/notices
+svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-notice--docs
+figma: https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=612-18813&p=f&m=dev
 description: Notices deliver <strong>System</strong> and <strong>Engagement</strong> messaging, informing the user about product or account statuses and related actions.
 tags: components
 ---
 <!-- TODO: Add accessibility section with differences between <aside> and status/alert roles and when to use them -->
-<!-- Example notice content -->
-<script src="{{ "/assets/dist/entry.toasts.js" | url }}" defer></script>
 
-{% assign variants = "default, info, success, warning, danger" | split: ", " %}
+<section class="docs-section">
+    {% header "h2", "Classes" %}
+    {% assign docsItems = notices.classes %}
+    {% assign expandableClassesTable = true %}
+    {% include "docs-table.html" %}
+</section>
 
-<aside
-    class="s-toast"
-    id="launch-toast-base"
-    aria-hidden="true"
-    aria-labelledby="toast-message"
-    role="alertdialog"
-    data-controller="s-toast"
-    data-s-toast-target="toast"
-    data-s-toast-return-element=".js-toast-open[data-target='#launch-toast-base']">
-    <div class="s-notice s-notice__info d-flex ai-center gx16 jc-space-between p8 pl16 wmn4">
-        <p class="m0">
-            Info toast with an undo button.
-        </p>
-        <div class="d-flex">
-            <button type="button" class="s-btn s-notice--btn">Undo</button>
-            <button
-                type="button"
-                class="s-btn s-notice--btn js-toast-close"
-                aria-label="Dismiss"
-                data-action="s-toast#hide">
-                {% icon "ClearSm", "m0" %}
-            </button>
-        </div>
-    </div>
-</aside>
-
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Accessibility" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn5 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col" class="s-table--cell3">Item</th>
-                    <th scope="col" class="s-table--cell2">Applied to</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in notices.access %}
-                <tr>
-                    <td><code class="stacks-code">{{ item.item }}</code></td>
-                    <td>
-                        {% if item.applies == "N/A" %}
-                            <em class="fc-black-350">{{ item.applies }}</em>
-                        {% else %}
-                            {% assign class = item.applies | split: " " %}
-
-                            {% for name in class %}
-                                <code class="stacks-code">{{ name }}</code>
-                            {% endfor %}
-                        {% endif %}
-                    </td>
-                    <td>{{ item.description }} (<a href="{{ item.url }}" target="_blank">Source</a>)</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    {% assign tableId = "docs-accessibility-table" %}
+    {% assign docsItems = notices.accessibility %}
+    {% assign expandableClassesTable = true %}
+    {% assign col1Heading = "Item" %}
+    {% assign col1Classes = "s-table--cell4" %}
+    {% assign col2Heading = "" %}
+    {% assign expandableBtnText = "Show all accessibility items" %}
+    {% include "docs-table.html" %}
 </section>
 
-<section class="stacks-section">
-    {% header "h2", "JavaScript" %}
-    {% header "h3", "Attributes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell5" scope="col">Attribute</th>
-                    <th class="s-table--cell2" scope="col">Applied to</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                <tr>
-                    <th scope="row"><code class="stacks-code">data-controller="s-toast"</code></th>
-                    <td>Controller element</td>
-                    <td class="p8">Wires up the element to the toast controller. This may be a <code class="stacks-code">.s-toast</code> element or a wrapper element.</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code class="stacks-code">data-s-toast-target="toast"</code></th>
-                    <td>.s-toast element</td>
-                    <td class="p8">Wires up the element that is to be shown/hidden</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code class="stacks-code">data-s-toast-target="initialFocus"</code></th>
-                    <td>Any child focusable element</td>
-                    <td class="p8"><span class="s-label--status ml0">Optional</span> Designates which element to focus on toast show. If absent, defaults to the first focusable element within the toast.</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code class="stacks-code">data-action="s-toast#toggle"</code></th>
-                    <td>Toggling element</td>
-                    <td class="p8">Wires up the element to toggle the visibility of a toast</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code class="stacks-code">data-s-toast-return-element="[css selector]"</code></th>
-                    <td>Controller element</td>
-                    <td class="p8"><span class="s-label--status ml0">Optional</span> Designates the element to return focus to when the toast is closed. If left unset, focus is not altered on close.</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code class="stacks-code">data-s-toast-remove-when-hidden="true"</code></th>
-                    <td>Controller element</td>
-                    <td class="p8"><span class="s-label--status ml0">Optional</span> Removes the toast from the DOM entirely when it is hidden</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    {% header "h3", "Events" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell5" scope="col">Event</th>
-                    <th class="s-table--cell2" scope="col">Element</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                <tr>
-                    <th scope="row"><code class="stacks-code">s-toast:show</code></th>
-                    <td>Toast target</td>
-                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before showing the toast. Calling <code class="stacks-code">.preventDefault()</code> cancels the display of the toast.</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code class="stacks-code">s-toast:shown</code></th>
-                    <td>Toast target</td>
-                    <td>Fires after the toast has been visually shown</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code class="stacks-code">s-toast:hide</code></th>
-                    <td>Toast target</td>
-                    <td><span class="s-label--status ml0">Default preventable</span> Fires immediately before hiding the toast. Calling <code class="stacks-code">.preventDefault()</code> cancels the removal of the toast.</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code class="stacks-code">s-toast:hidden</code></th>
-                    <td>Toast target</td>
-                    <td>Fires after the toast has been visually hidden</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell5" scope="col">event.detail</th>
-                    <th class="s-table--cell2" scope="col">Applicable events</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                <tr>
-                    <th scope="row"><code class="stacks-code">dispatcher</code></th>
-                    <td><code class="stacks-code">s-toast:*</code></td>
-                    <td>Contains the <code class="stacks-code">Element</code> that initiated the event. For instance, the button clicked to show, the element clicked outside the toast that caused it to hide, etc.</td>
-                </tr>
-            </tbody>
-            <tbody class="fs-caption">
-                <tr>
-                    <th scope="row"><code class="stacks-code">returnElement</code></th>
-                    <td><code class="stacks-code">s-toast:show</code>, <code class="stacks-code">s-toast:hide</code></td>
-                    <td>Contains the <code class="stacks-code">Element</code> to return focus to on hide. If a value is set to this property inside an event listener, it will be updated on the controller as well.</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    {% header "h3", "Helpers" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell2" scope="col">Function</th>
-                    <th class="s-table--cell4" scope="col">Parameters</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody class="fs-caption">
-                <tr>
-                    <th scope="row"><code class="stacks-code">Stacks.showToast</code></th>
-                    <td>
-                        <code class="stacks-code">element</code>: the element the <code class="stacks-code">data-controller="s-toast"</code> attribute is on <br><br>
-                    </td>
-                    <td>Helper to manually show an s-toast element via external JS</td>
-                </tr>
-                <tr>
-                    <th scope="row"><code class="stacks-code">Stacks.hideToast</code></th>
-                    <td>
-                        <code class="stacks-code">element</code>: the element the <code class="stacks-code">data-controller="s-toast"</code> attribute is on <br><br>
-                    </td>
-                    <td>Helper to manually hide an s-toast element via external JS</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</section>
+<section class="docs-section">
+    {% header "h2", "Examples" %}
 
-<section class="stacks-section">
-    {% header "h2", "Visual styles" %}
-    {% header "h3", "Classes" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn5 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col" class="s-table--cell3">Class</th>
-                    <th scope="col" class="s-table--cell2">Applied to</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in notices.visual %}
-                <tr>
-                    <td><code class="stacks-code">{{ item.class }}</code></td>
-                    <td>
-                        {% if item.applies == "N/A" %}
-                            <em class="fc-black-350">{{ item.applies }}</em>
-                        {% else %}
-                            {% assign class = item.applies | split: " " %}
-
-                            {% for name in class %}
-                                <code class="stacks-code">{{ name }}</code>
-                            {% endfor %}
-                        {% endif %}
-                    </td>
-                    <td>{{ item.description }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
-
-    {% header "h3", "Filled" %}
-    <p class="stacks-copy">Default style used to separate notices from the main content</p>
-    <div class="stacks-preview">
+    {% header "h3", "Base" %}
+    <div class="docs-preview">
 {% highlight html %}
-<div class="s-notice" role="status">…</div>
-<div class="s-notice s-notice__info" role="status">…</div>
-<div class="s-notice s-notice__success s-anchors s-anchors__inherit s-anchors__underlined" role="status">
-    … <a href="…">…</a>
+<div class="s-notice" role="status">
+    <span class="s-notice--icon">@Svg.Help</span>
+    <span>…</span>
 </div>
-<div class="s-notice s-notice__warning" role="status">…</div>
-<div class="s-notice s-notice__danger" role="status">…</div>
+<div class="s-notice s-notice__info" role="status">
+    <span class="s-notice--icon">@Svg.Info</span>
+    <span>…</span>
+</div>
+<div class="s-notice s-notice__success" role="status">
+    <span class="s-notice--icon">@Svg.Check</span>
+    <span>… <a href="…">…</a></span>
+</div>
+<div class="s-notice s-notice__warning" role="status">
+    <span class="s-notice--icon">@Svg.Alert</span>
+    <span>…</span>
+</div>
+<div class="s-notice s-notice__danger" role="status">
+    <span class="s-notice--icon">@Svg.AlertFill</span>
+    <span>…</span>
+</div>
+<div class="s-notice s-notice__featured" role="status">
+    <span class="s-notice--icon">@Svg.Star</span>
+    <span>…</span>
+</div>
+<div class="s-notice s-notice__activity" role="status">
+    <span class="s-notice--icon">@Svg.Notification</span>
+    <span>…</span>
+</div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex g8 fd-column">
-                {% for variant in variants %}
-                    {% assign variantCapitalized = variant | capitalize %}
-                    {% assign variantClass = " s-notice__" | append: variant %}
+                {% for variant in notices.base %}
+                    {% assign variantClass = " s-notice__" | append: variant.type %}
                     {% if variant == "default" %}
                         {% assign variantClass = "" %}
                     {% endif %}
 
                     <div class="s-notice{{variantClass}} s-anchors s-anchors__inherit s-anchors__underlined" role="presentation">
-                        <p class="m0">
-                            {{variantCapitalized}} filled message style
+                        <span class="s-notice--icon">{% icon variant.icon %}</span>
+                        <span>
+                            {{variant.type | capitalize}} filled message style
                             <code>and some code</code> notice. <a href="#">Link</a>
-                        </p>
+                        </span>
                     </div>
                 {% endfor %}
             </div>
         </div>
     </div>
 
-    {% header "h3", "Filled important" %}
-    <p class="stacks-copy">Used sparingly for when an important notice needs to be noticed</p>
-    <div class="stacks-preview">
+    {% header "h3", "Important" %}
+    <p class="docs-copy">Used sparingly for when an important notice needs to be noticed</p>
+    <div class="docs-preview">
 {% highlight html %}
-<div class="s-notice s-notice__important" role="alert">…</div>
-<div class="s-notice s-notice__info s-notice__important" role="alert">…</div>
-<div class="s-notice s-notice__success s-notice__important s-anchors s-anchors__inherit s-anchors__underlined" role="alert">
-    … <a href="…">…</a>
+<div class="s-notice s-notice__important" role="alert">
+    <span class="s-notice--icon">@Svg.Help</span>
+    <span>…</span>
 </div>
-<div class="s-notice s-notice__warning s-notice__important" role="alert">…</div>
-<div class="s-notice s-notice__danger s-notice__important" role="alert">…</div>
+<div class="s-notice s-notice__info s-notice__important" role="alert">
+    <span class="s-notice--icon">@Svg.Info</span>
+    <span>…</span>
+</div>
+<div class="s-notice s-notice__success s-notice__important" role="alert">
+    <span class="s-notice--icon">@Svg.Info</span>
+    <span>… <a href="…">…</a></span>
+</div>
+<div class="s-notice s-notice__warning s-notice__important" role="alert">
+    <span class="s-notice--icon">@Svg.Alert</span>
+    <span>…</span>
+</div>
+<div class="s-notice s-notice__danger s-notice__important" role="alert">
+    <span class="s-notice--icon">@Svg.AlertFill</span>
+    <span>…</span>
+</div>
+<div class="s-notice s-notice__featured s-notice__important" role="alert">
+    <span class="s-notice--icon">@Svg.Star</span>
+    <span>…</span>
+</div>
+<div class="s-notice s-notice__activity s-notice__important" role="alert">
+    <span class="s-notice--icon">@Svg.Notification</span>
+    <span>…</span>
+</div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex g8 fd-column">
-                {% for variant in variants %}
-                    {% assign variantCapitalized = variant | capitalize %}
-                    {% assign variantClass = " s-notice__" | append: variant %}
-                    {% if variant == "default" %}
+                {% for variant in notices.base %}
+                    {% assign variantClass = " s-notice__" | append: variant.type %}
+                    {% if variant.type == "default" %}
                         {% assign variantClass = "" %}
                     {% endif %}
 
                     <div class="s-notice{{variantClass}} s-notice__important s-anchors s-anchors__inherit s-anchors__underlined" role="presentation">
-                        <p class="m0">
-                            {{variantCapitalized}} important message style
+                        <span class="s-notice--icon">{% icon variant.icon %}</span>
+                        <span>
+                            {{variant.type | capitalize}} filled message style
                             <code>and some code</code> notice. <a href="#">Link</a>
-                        </p>
+                        </span>
                     </div>
                 {% endfor %}
             </div>
         </div>
     </div>
 
-        {% header "h3", "Styling child links" %}
-    <p class="stacks-copy">We recommend using <a href="{{ "/product/components/links/#descendent-anchors" | url }}"><b>descendent anchor</b> classes</a>, typically <code class="stacks-code">.s-anchors.s-anchors__inherit.s-anchors__underlined</code> for notices containing links generated from markdown when you cannot manually generate the inner html.</p>
-    <div class="stacks-preview">
+    {% header "h3", "Styling child links" %}
+    <p class="docs-copy">We recommend using <a href="{{ "/product/components/links/#descendent-anchors" | url }}"><b>descendent anchor</b> classes</a>, typically <code>.s-anchors.s-anchors__inherit.s-anchors__underlined</code> for notices containing links generated from markdown when you cannot manually generate the inner html.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <div class="s-notice s-notice__info" role="presentation">
-    Notice with <a href="#" class="s-link">default link style</a>
-</div>  
+    <span>Notice with <a href="#" class="s-link">default link style</a></span>
+</div>
 <div class="s-notice s-notice__info s-anchors s-anchors__inherit s-anchors__underlined" role="presentation">
-    Notice with <a href="#">custom link style</a>
+    <span>Notice with <a href="#">custom link style</a></span>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="d-flex fd-column g8">
-
                 <div class="s-notice s-notice__info" role="presentation">
-                    <p class="m0">
-                        Notice with <a href="#" class="s-link">default link style</a>
-                    </p>
-                </div>   
-                
+                    <span class="s-notice--icon">{% icon "Info" %}</span>
+                    <span>Notice with <a href="#" class="s-link">default link style</a></span>
+                </div>
                 <div class="s-notice s-notice__info s-anchors s-anchors__inherit s-anchors__underlined" role="presentation">
-                    <p class="m0">
-                        Notice with 
+                    <span class="s-notice--icon">{% icon "Info" %}</span>
+                    <span>
+                        Notice with
                         <code>.s-anchors</code> <code>.s-anchors__inherit</code> <code>.s-anchors__underlined</code> and <a href="#">custom link style</a>
-                    </p>
-                </div>   
-
+                    </span>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="stacks-section">
-    {% header "h2", "Behaviors" %}
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col" class="s-table--cell2">Behavior</th>
-                    <th scope="col" class="s-table--cell3">Class</th>
-                    <th scope="col" class="s-table--cell2">Applied to</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in notices.behavior %}
-                <tr>
-                    <td>{{ item.type }}
-                    <td><code class="stacks-code">{{ item.class }}</code></td>
-                    <td>
-                        {% if item.applies == "N/A" %}
-                            <em class="fc-black-350">{{ item.applies }}</em>
-                        {% else %}
-                            {% assign class = item.applies | split: " " %}
+<section class="docs-section">
+    {% header "h2", "Toast" %}
+    {% tip "warning" %}
+        We are phasing out Toasts due to significant accessibility barriers. Avoid this component for new features. Instead, prioritize integrated alternatives—such as component state changes or inline messages—to provide accessible feedback directly where the user is focused.
+    {% endtip %}
 
-                            {% for name in class %}
-                                <code class="stacks-code">{{ name }}</code>
-                            {% endfor %}
-                        {% endif %}
-                    </td>
-                    <td>{{ item.description }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    <p class="docs-copy">
+        Toasts are floating notices that are aligned to the center top of the page. They disappear after a set time. 
+        Visibility is changed with animation by toggling between <code>aria-hidden="true"</code> and <code>aria-hidden="false"</code>. 
+        When including a dismiss button the <code>.s-notice--dismiss</code> class should be applied to the button for toast-specific styling.
+    </p>    
 
-    {% header "h3", "Inline" %}
-    <p class="stacks-copy">Default behavior for notices that are inserted within the content area</p>
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="s-notice s-notice__info" role="status">…</div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="ps-relative d-flex gy8 fd-column jc-center">
-                <div class="s-notice s-notice__info" role="status">
-                    <p class="m0">Inline notice message style</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "With an Icon" %}
-    <p class="stacks-copy">Notices are often accompanied by an icon.</p>
-    <div class="stacks-preview">
-{% highlight html %}
-<div class="d-flex s-notice s-notice__info" role="status">
-    <div class="mr8">
-        @Svg.Alert
-    </div>
-    <div class="lh-lg">
-        …
-    </div>
-</div>
-{% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex s-notice s-notice__info" role="status">
-                <div class="mr8">
-                    {% icon "Alert" %}
-                </div>
-                <div class="lh-lg">
-                    This question and its answers are locked because the question is off-topic but has historical significance. It is not currently accepting new answers or interactions.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {% header "h3", "Toast" %}
-    <p class="stacks-copy">Floating notices, but aligned to the top and center of the page and they disappear after a set time.  Visibility is changed with animation by toggling between <code class="stacks-code">aria-hidden="true"</code> and <code class="stacks-code">aria-hidden="false"</code>. When including buttons, you can apply <code class="stacks-code">.s-notice--btn</code> to buttons to apply a toast-specific color.</p>
-
-    <!-- TODO: document controller attributes -->
-    <div class="stacks-preview bs-none">
-        <div class="stacks-preview--example ba bar-sm bg-black-100 d-flex g8 fw-wrap">
-            <button class="s-btn s-btn__filled js-toast-open" data-toggle="s-toast" data-target="#launch-toast-base">Launch example toast notice</button>
-        </div>
-    </div>
-
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div
     role="alertdialog"
@@ -433,43 +187,104 @@ tags: components
     data-controller="s-toast"
     data-s-toast-target="toast"
     data-s-toast-return-element=".js-example-toast-open[data-target='#example-toast']">
-    <aside class="s-notice d-flex ai-center gx16 jc-space-between p8 pl16 wmn4">
-        <div id="notice-message">
-            Toast notice message with an undo button
-        </div>
-        <div class="d-flex">
-            <button type="button" class="s-btn s-notice--btn">
-                Undo
-            </button>
-            <button type="button" class="s-btn s-notice--btn" aria-label="Dismiss">
-                @Svg.ClearSm
-            </button>
+    <aside class="s-notice d-flex wmn4">
+        <span class="s-notice--icon">@Svg.Info</span>
+        <span>Toast notice message with an undo button</span>
+        <div class="s-notice--actions">
+            <button type="button" class="s-link s-link__underlined">Undo</button>
+            <button type="button" class="s-link s-notice--dismiss js-toast-close" aria-label="Dismiss">@Svg.Cross</button>
         </div>
     </aside>
 </div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="ps-relative d-flex flex__center gy8 fd-column jc-center">
-                {% for variant in variants %}
-                    {% assign variantCapitalized = variant | capitalize %}
-                    {% assign variantClass = " s-notice__" | append: variant %}
-                    {% if variant == "default" %}
+                {% for variant in notices.base %}
+                    {% assign variantClass = " s-notice__" | append: variant.type %}
+                    {% if variant.type == "default" %}
                         {% assign variantClass = "" %}
                     {% endif %}
 
                     <div class="s-toast ps-static" aria-hidden="false" role="presentation">
-                        <div class="s-notice{{variantClass}} d-flex ai-center gx16 jc-space-between p8 pl16 wmn4">
-                            <p class="m0">
-                                {{variantCapitalized}} toast with an undo button.
-                            </p>
-                            <div class="d-flex">
-                                <button type="button" class="s-btn s-notice--btn">Undo</button>
-                                <button type="button" class="s-btn s-notice--btn">{% icon "ClearSm" %}</button>
+                        <div class="s-notice{{variantClass}} d-flex wmn4">
+                            <span class="s-notice--icon">{% icon variant.icon %}</span>
+                            <span>{{variant.type | capitalize}} toast with an undo button.</span>
+                            <div class="s-notice--actions">
+                                <button type="button" class="s-link s-link__underlined">Undo</button>
+                                <button type="button" class="s-link s-notice--dismiss">{% icon "Cross" %}</button>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
             </div>
         </div>
+        <div class="bg-black-150 ba bc-black-200 btw0 p16">
+            <button class="s-btn js-toast-open" data-toggle="s-toast" data-target="#launch-toast-base">Launch example toast notice</button>
+        </div>
+    
     </div>
+
+    {% header "h3", "JavaScript" %}
+
+    {% header "h4", "Attributes" %}
+    {% assign docsItems = notices.javascript.attributes %}
+    {% assign col1Heading = "Attribute" %}
+    {% assign col1Classes = "s-table--cell5" %}
+    {% assign col2Heading = "" %}
+    {% assign tableId = "docs-javascript-attributes-table" %}
+    <div class="mb32">
+        {% include "docs-table.html" %}
+    </div>
+
+    {% header "h4", "Events" %}
+    {% assign docsItems = notices.javascript.events %}
+    {% assign col1Heading = "Event" %}
+    {% assign col2Heading = "" %}
+    {% assign tableId = "docs-javascript-events-table" %}
+    <div class="mb32">
+        {% include "docs-table.html" %}
+    </div>
+
+    {% header "h4", "Event details" %}
+    {% assign docsItems = notices.javascript.eventDetails %}
+    {% assign col1Heading = "event.detail" %}
+    {% assign col2Heading = "" %}
+    {% assign col3Heading = "Applicable events" %}
+    {% assign tableId = "docs-javascript-event-details-table" %}
+    <div class="mb32">
+        {% include "docs-table.html" %}
+    </div>
+
+    {% header "h4", "Helpers" "mt48" %}
+    <p class="docs-copy">
+        The following helpers are available to manually show and hide a toast notice.
+    </p>
+    {% assign docsItems = notices.javascript.helpers %}
+    {% assign col1Heading = "Function" %}
+    {% assign col2Heading = "" %}
+    {% assign col3Heading = "Parameters" %}
+    {% assign tableId = "docs-javascript-helpers-table" %}
+    {% include "docs-table.html" %}
 </section>
+
+<!-- Example notice content -->
+<script src="{{ "/assets/dist/entry.toasts.js" | url }}" defer></script>
+
+<aside
+    class="s-toast"
+    id="launch-toast-base"
+    aria-hidden="true"
+    aria-labelledby="toast-message"
+    role="alertdialog"
+    data-controller="s-toast"
+    data-s-toast-target="toast"
+    data-s-toast-return-element=".js-toast-open[data-target='#launch-toast-base']">
+    <div class="s-notice s-notice__info">
+        <span class="s-notice--icon">{% icon "Info" %}</span>
+        Toast notice message with an undo button
+        <div class="s-notice--actions">
+            <button type="button" class="s-link s-link__underlined">Undo</button>
+            <button type="button" class="s-link s-notice--dismiss js-toast-close" aria-label="Dismiss" data-action="s-toast#hide">{% icon "Cross" %}</button>
+        </div>
+    </div>
+</aside>

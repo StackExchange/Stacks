@@ -28,9 +28,9 @@ $(document).ready(function () {
 
         searchIcon.toggleClass("d-none");
         searchCloseIcon.toggleClass("d-none");
-        searchContainer.toggleClass("s-topbar--searchbar__open");
+        searchContainer.toggleClass("docs-topbar--searchbar__open");
 
-        if (searchContainer.hasClass("s-topbar--searchbar__open")) {
+        if (searchContainer.hasClass("docs-topbar--searchbar__open")) {
             searchContainer.find("input").focus();
         }
     });

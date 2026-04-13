@@ -91,18 +91,18 @@ describe("Button", () => {
 
     it("should render the appropriate variant class", () => {
         render(Button, {
-            variant: "muted",
+            variant: "tonal",
             children,
         });
-        expect(screen.getByRole("button")).to.have.class("s-btn__muted");
+        expect(screen.getByRole("button")).to.have.class("s-btn__tonal");
     });
 
     it("should render the appropriate weight class", () => {
         render(Button, {
-            weight: "filled",
+            weight: "clear",
             children,
         });
-        expect(screen.getByRole("button")).to.have.class("s-btn__filled");
+        expect(screen.getByRole("button")).to.have.class("s-btn__clear");
     });
 
     it("should render including the dropdown class", () => {
@@ -129,12 +129,13 @@ describe("Button", () => {
         expect(screen.getByRole("button")).to.have.class("s-btn__link");
     });
 
-    it("should render including the loading class", () => {
+    it("should render the loader component when loading prop is provided", () => {
         render(Button, {
             loading: true,
             children,
         });
-        expect(screen.getByRole("button")).to.have.class("is-loading");
+        expect(screen.getByText("Loading…")).to.exist;
+        expect(screen.getByText("Loading…").closest(".s-loader")).to.exist;
     });
 
     it("should render including the selected class", () => {

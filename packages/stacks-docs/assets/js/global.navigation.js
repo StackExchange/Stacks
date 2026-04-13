@@ -8,6 +8,19 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
+    // Docs table "Show all classes" - use delegation so it works after sidebar nav AJAX load
+    $(document).on("click", ".js-docs-table-expand", function() {
+        var button = $(this);
+        var tableId = button.attr("aria-controls");
+        var table = tableId ? document.getElementById(tableId) : null;
+        if (table) {
+            button.addClass("d-none");
+            button.attr("aria-expanded", "true");
+            table.classList.remove("v-truncate", "v-truncate-fade", "overflow-auto");
+            table.classList.add("overflow-x-auto");
+        }
+    });
+
     function regenerateMenu () {
         // Hide the navigation if we've opened it
         hamburgerBtn.removeClass("is-selected");
@@ -63,6 +76,16 @@ $(document).ready(function() {
                 $('head title').text(title)
                 $('#nav').html(nav)
                 $('#content').html(content)
+
+                // Update the TOC from new content headings
+                var $newToc = $(html).find(".js-toc");
+                var tocContent = $newToc.html();
+
+                if ($newToc.length > 0 && tocContent.trim() !== "") {
+                    $(".js-toc").html(tocContent).show();
+                } else {
+                    $(".js-toc").html("").hide();
+                }
 
                 // Scroll to the top of the page
                 $(document).scrollTop(0)

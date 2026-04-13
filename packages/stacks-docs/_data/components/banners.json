@@ -1,0 +1,116 @@
+{
+  "classes": [
+    {
+      "code": ".s-banner",
+      "description": "Base banner parent class. This defaults to a system banner style."
+    },
+    {
+      "code": ".s-banner--actions",
+      "parent": ".s-banner",
+      "description": "Container styling for banner actions including the dismiss button."
+    },
+    {
+      "code": ".s-banner--dismiss",
+      "parent": ".s-banner",
+      "description": "Applies to child button element within the banner to position it appropriately."
+    },
+    {
+      "code": ".s-banner__important",
+      "applies": ".s-banner",
+      "description": "Applies an important visual style. This should be used for time-sensitive, pressing information that needs to be noticed by the user."
+    },
+    {
+      "code": ".s-banner__info",
+      "applies": ".s-banner",
+      "description": "Applies info (blue) visual styles."
+    },
+    {
+      "code": ".s-banner__success",
+      "applies": ".s-banner",
+      "description": "Applies success (green) visual styles."
+    },
+    {
+      "code": ".s-banner__warning",
+      "applies": ".s-banner",
+      "description": "Applies warning (yellow) visual styles."
+    },
+    {
+      "code": ".s-banner__danger",
+      "applies": ".s-banner",
+      "description": "Applies danger (red) visual styles."
+    },
+    {
+      "code": ".s-banner__featured",
+      "applies": ".s-banner",
+      "description": "Applies featured (purple) visual styles."
+    },
+    {
+      "code": ".s-banner__activity",
+      "applies": ".s-banner",
+      "description": "Applies activity (pink) visual styles."
+    },
+    {
+      "code": ".is-pinned",
+      "applies": ".s-banner",
+      "description": "Pins the banner to the top of the browser window."
+    }
+  ],
+  "attributes": [
+    {
+      "code": "data-controller=\"s-banner\"",
+      "primaryContext": "Controller element",
+      "description": "Wires up the element to the banner controller. This may be a <code>.s-banner</code> element or a wrapper element."
+    },
+    {
+      "code": "data-s-banner-target=\"banner\"",
+      "primaryContext": ".s-banner element",
+      "description": "Wires up the element that is to be shown/hidden"
+    },
+    {
+      "code": "data-s-banner-remove-when-hidden=\"true\"",
+      "primaryContext": "Controller element",
+      "description": "(optional) Removes the banner from the DOM entirely when it is hidden"
+    }
+  ],
+  "events": [
+    {
+      "code": "s-banner:show",
+      "primaryContext": "Banner target",
+      "description": "Fires immediately before showing the banner. Calling <code>.preventDefault()</code> cancels the display of the banner."
+    },
+    {
+      "code": "s-banner:shown",
+      "primaryContext": "Banner target",
+      "description": "Fires after the banner has been visually shown"
+    },
+    {
+      "code": "s-banner:hide",
+      "primaryContext": "Banner target",
+      "description": "Fires immediately before hiding the banner. Calling <code>.preventDefault()</code> cancels the removal of the banner."
+    },
+    {
+      "code": "s-banner:hidden",
+      "primaryContext": "Banner target",
+      "description": "Fires after the banner has been visually hidden"
+    }
+  ],
+  "eventDetails": [
+    {
+      "code": "dispatcher",
+      "primaryContext": "Banner target",
+      "description": "Contains the <code>Element</code> that initiated the event. For instance, the button clicked to show, the element clicked outside the banner that caused it to hide, etc."
+    }
+  ],
+  "helpers": [
+    {
+      "code": "Stacks.showBanner",
+      "primaryContext": "<code>Element</code>: the element the <code>data-controller=\"s-banner\"</code> attribute is on",
+      "description": "Helper to manually show an s-banner element via external JS"
+    },
+    {
+      "code": "Stacks.hideBanner",
+      "primaryContext": "<code>Element</code>: the element the <code>data-controller=\"s-banner\"</code> attribute is on",
+      "description": "Helper to manually hide an s-banner element via external JS"
+    }
+  ]
+}

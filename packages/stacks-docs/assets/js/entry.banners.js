@@ -8,7 +8,7 @@ $(document).ready(function() {
     var sysStyleMenu = $(".js-sys-banner-style-menu");
     var sysType = $(".js-sys-banner-type");
     var sysPos = $(".js-sys-banner-position");
-    var typeClasses = ["info", "success", "warning", "danger", "dark", "important"].map(suffix => `s-banner__${suffix}`).join(" ") + " is-pinned";
+    var typeClasses = ["info", "success", "warning", "danger", "featured", "activity", "important"].map(suffix => `s-banner__${suffix}`).join(" ") + " is-pinned";
 
     function setShowHideBtns(show) {
         if (show) {

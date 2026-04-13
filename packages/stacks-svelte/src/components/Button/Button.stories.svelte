@@ -6,9 +6,9 @@
     import { IconTrash } from "@stackoverflow/stacks-icons/icons";
 
     const ButtonBrands: Brand[] = ["", "facebook", "github", "google"];
-    const ButtonSizes: Size[] = ["", "xs", "sm", "md"];
-    const ButtonVariants: Variant[] = ["", "danger", "featured", "muted"];
-    const ButtonWeights: Weight[] = ["", "outlined", "filled"];
+    const ButtonSizes: Size[] = ["", "xs", "sm", "lg"];
+    const ButtonVariants: Variant[] = ["", "danger", "featured", "tonal"];
+    const ButtonWeights: Weight[] = ["", "clear"];
 
     const titleCase = (str: string) => {
         return str.toLowerCase().replace(/(?:^|\s)\w/g, (match) => {
@@ -54,7 +54,7 @@
         {#each ButtonVariants as variant (variant)}
             <div>
                 <h2 class="fs-title ff-mono mb16">
-                    {titleCase(variant || "Secondary")}
+                    {titleCase(variant || "Base")}
                 </h2>
 
                 <table class="s-table s-table__bx-simple wmx7">
@@ -69,23 +69,25 @@
 
                     <tbody>
                         {#each ButtonWeights as weight (weight)}
-                            <tr>
-                                <th scope="row" class="va-middle">
-                                    {titleCase(weight || "default")}
-                                </th>
-                                {#each [null, "selected", "disabled"] as state (state)}
-                                    <td class="va-middle ta-center px4">
-                                        <Button
-                                            {weight}
-                                            selected={state === "selected"}
-                                            disabled={state === "disabled"}
-                                            {variant}
-                                        >
-                                            Ask question
-                                        </Button>
-                                    </td>
-                                {/each}
-                            </tr>
+                            {#if !(weight === "clear" && (variant === "featured" || variant === "tonal"))}
+                                <tr>
+                                    <th scope="row" class="va-middle">
+                                        {titleCase(weight || "default")}
+                                    </th>
+                                    {#each [null, "selected", "disabled"] as state (state)}
+                                        <td class="va-middle ta-center px4">
+                                            <Button
+                                                {weight}
+                                                selected={state === "selected"}
+                                                disabled={state === "disabled"}
+                                                {variant}
+                                            >
+                                                Ask question
+                                            </Button>
+                                        </td>
+                                    {/each}
+                                </tr>
+                            {/if}
                         {/each}
                     </tbody>
                 </table>
@@ -111,27 +113,29 @@
                 <tbody>
                     {#each ButtonVariants as variant (variant)}
                         {#each ButtonWeights as weight (weight)}
-                            <tr>
-                                <th scope="row" class="va-middle">
-                                    {titleCase(variant || "secondary")}
-                                </th>
-                                <th scope="row" class="va-middle">
-                                    {titleCase(weight || "base")}
-                                </th>
-                                {#each [null, "selected", "disabled"] as state (state)}
-                                    <td class="va-middle ta-center px4">
-                                        <Button
-                                            loading
-                                            {weight}
-                                            selected={state === "selected"}
-                                            disabled={state === "disabled"}
-                                            {variant}
-                                        >
-                                            Ask question
-                                        </Button>
-                                    </td>
-                                {/each}
-                            </tr>
+                            {#if !(weight === "clear" && (variant === "featured" || variant === "tonal"))}
+                                <tr>
+                                    <th scope="row" class="va-middle">
+                                        {titleCase(variant || "base")}
+                                    </th>
+                                    <th scope="row" class="va-middle">
+                                        {titleCase(weight || "default")}
+                                    </th>
+                                    {#each [null, "selected", "disabled"] as state (state)}
+                                        <td class="va-middle ta-center px4">
+                                            <Button
+                                                loading={true}
+                                                {weight}
+                                                selected={state === "selected"}
+                                                disabled={state === "disabled"}
+                                                {variant}
+                                            >
+                                                Ask question
+                                            </Button>
+                                        </td>
+                                    {/each}
+                                </tr>
+                            {/if}
                         {/each}
                     {/each}
                 </tbody>
@@ -157,39 +161,41 @@
                 <tbody>
                     {#each ButtonVariants as variant (variant)}
                         {#each ButtonWeights as weight (weight)}
-                            <tr>
-                                <th scope="row" class="va-middle">
-                                    {titleCase(variant || "secondary")}
-                                </th>
-                                <th scope="row" class="va-middle">
-                                    {titleCase(weight || "base")}
-                                </th>
-                                <td class="va-middle ta-center px4">
-                                    <Button dropdown {weight} {variant}>
-                                        Ask question
-                                    </Button>
-                                </td>
-                                <td class="va-middle ta-center px4">
-                                    <Button
-                                        dropdown
-                                        {weight}
-                                        selected
-                                        {variant}
-                                    >
-                                        Ask question
-                                    </Button>
-                                </td>
-                                <td class="va-middle ta-center px4">
-                                    <Button
-                                        dropdown
-                                        {weight}
-                                        disabled
-                                        {variant}
-                                    >
-                                        Ask question
-                                    </Button>
-                                </td>
-                            </tr>
+                            {#if !(weight === "clear" && (variant === "featured" || variant === "tonal"))}
+                                <tr>
+                                    <th scope="row" class="va-middle">
+                                        {titleCase(variant || "base")}
+                                    </th>
+                                    <th scope="row" class="va-middle">
+                                        {titleCase(weight || "default")}
+                                    </th>
+                                    <td class="va-middle ta-center px4">
+                                        <Button dropdown {weight} {variant}>
+                                            Ask question
+                                        </Button>
+                                    </td>
+                                    <td class="va-middle ta-center px4">
+                                        <Button
+                                            dropdown
+                                            {weight}
+                                            selected
+                                            {variant}
+                                        >
+                                            Ask question
+                                        </Button>
+                                    </td>
+                                    <td class="va-middle ta-center px4">
+                                        <Button
+                                            dropdown
+                                            {weight}
+                                            disabled
+                                            {variant}
+                                        >
+                                            Ask question
+                                        </Button>
+                                    </td>
+                                </tr>
+                            {/if}
                         {/each}
                     {/each}
                 </tbody>
@@ -200,50 +206,61 @@
 
 <Story name="Badges" asChild>
     <div class="d-flex fd-column g64">
-        <div>
-            <table class="s-table s-table__bx-simple wmx7">
-                <thead>
-                    <tr>
-                        <th scope="col" class="s-table--cell2">Variant</th>
-                        <th scope="col" class="s-table--cell2">Weight</th>
-                        <th scope="col" class="ta-center">Default</th>
-                        <th scope="col" class="ta-center">Selected</th>
-                        <th scope="col" class="ta-center">Disabled</th>
-                    </tr>
-                </thead>
+        {#each ButtonSizes as size (size)}
+            <div>
+                <h2 class="fs-title ff-mono mb16">
+                    {titleCase(size || "default")}
+                </h2>
 
-                <tbody>
-                    {#each ButtonVariants as variant (variant)}
-                        {#each ButtonWeights as weight (weight)}
-                            {#snippet badge()}
-                                198
-                            {/snippet}
-                            <tr>
-                                <th scope="row" class="va-middle">
-                                    {titleCase(variant || "secondary")}
-                                </th>
-                                <th scope="row" class="va-middle">
-                                    {titleCase(weight || "base")}
-                                </th>
-                                {#each [null, "selected", "disabled"] as state (state)}
-                                    <td class="va-middle ta-center px4">
-                                        <Button
-                                            {weight}
-                                            selected={state === "selected"}
-                                            disabled={state === "disabled"}
-                                            {variant}
-                                            {badge}
-                                        >
-                                            Ask question
-                                        </Button>
-                                    </td>
-                                {/each}
-                            </tr>
+                <table class="s-table s-table__bx-simple wmx7">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="s-table--cell2">Variant</th>
+                            <th scope="col" class="s-table--cell2">Weight</th>
+                            <th scope="col" class="ta-center">Default</th>
+                            <th scope="col" class="ta-center">Selected</th>
+                            <th scope="col" class="ta-center">Disabled</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {#each ButtonVariants as variant (variant)}
+                            {#each ButtonWeights as weight (weight)}
+                                {#if !(weight === "clear" && (variant === "featured" || variant === "tonal"))}
+                                    {#snippet badge()}
+                                        198
+                                    {/snippet}
+                                    <tr>
+                                        <th scope="row" class="va-middle">
+                                            {titleCase(variant || "base")}
+                                        </th>
+                                        <th scope="row" class="va-middle">
+                                            {titleCase(weight || "default")}
+                                        </th>
+                                        {#each [null, "selected", "disabled"] as state (state)}
+                                            <td class="va-middle ta-center px4">
+                                                <Button
+                                                    {weight}
+                                                    selected={state ===
+                                                        "selected"}
+                                                    disabled={state ===
+                                                        "disabled"}
+                                                    {variant}
+                                                    {badge}
+                                                    {size}
+                                                >
+                                                    Badge
+                                                </Button>
+                                            </td>
+                                        {/each}
+                                    </tr>
+                                {/if}
+                            {/each}
                         {/each}
-                    {/each}
-                </tbody>
-            </table>
-        </div>
+                    </tbody>
+                </table>
+            </div>
+        {/each}
     </div>
 </Story>
 
@@ -261,7 +278,7 @@
                 {#each ButtonSizes as size (size)}
                     <tr>
                         <th scope="row" class="va-middle">
-                            {titleCase(size || "base")}
+                            {titleCase(size || "default")}
                         </th>
                         <td class="va-middle px4">
                             <Button {size}>Ask question</Button>

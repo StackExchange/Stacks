@@ -39,13 +39,14 @@ const children = {
         <thead>
             <tr>
                 <th scope="col" class="s-table--bulk">
-                    <label class="v-visible-sr" for="check">bulk action</label>
-                    <input type="checkbox" class="s-checkbox" id="check">
+                    <div class="s-checkbox">
+                        <input type="checkbox" id="check">
+                        <label class="v-visible-sr" for="check">bulk action</label>
+                    </div>
                 </th>
                 <th scope="col">Display Name</th>
                 <th scope="col">Full name</th>
                 <th scope="col" colspan="2">Progress</th>
-                <th scope="col"><span>class="v-visible-sr">Bar</span></th>
             </tr>
         </thead>
         <tbody>
@@ -54,21 +55,14 @@ const children = {
                     (row, i) => `
                 <tr class="${row.active ? "" : "is-disabled"}">
                     <th scope="row">
-                        <label class="v-visible-sr" for="check-${i}">bulk</label>
-                        <input type="checkbox" class="s-checkbox" id="check-${i}">
+                        <div class="s-checkbox">
+                            <input type="checkbox" id="check-${i}">
+                            <label class="v-visible-sr" for="check-${i}">bulk</label>
+                        </div>
                     </th>
                     <td>${row.displayName}</td>
                     <td>${row.fullName}</td>
                     <td class="s-table--progress">${row.progress}</td>
-                    <td class="s-table--progress-bar">
-                        <div class="s-progress bg-white">
-                            <div class="s-progress--bar bg-blue-400" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${
-                                row.progress
-                            }" aria-label="progressbar" style="width: ${
-                                row.progress
-                            }%"></div>
-                        </div>
-                    </td>
                     <td><a class="s-link" href="#">Add</a></td>
                 </tr>
             `

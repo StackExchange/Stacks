@@ -1,13 +1,16 @@
 <script lang="ts" module>
-    export type Award = string | number | undefined;
-    export type Size = "full" | "small" | "minimal";
+    export type Size = "sm" | "lg" | undefined;
 </script>
 
 <script lang="ts">
-    import type { Snippet } from "svelte";
     import Avatar, { type Size as AvatarSize } from "../Avatar/Avatar.svelte";
     import Icon from "../Icon/Icon.svelte";
-    import { IconPerson } from "@stackoverflow/stacks-icons/icons";
+    import { IconStarVerifiedSm } from "@stackoverflow/stacks-icons-legacy/icons";
+    import type { Snippet } from "svelte";
+    import Popover from "../Popover/Popover.svelte";
+    import PopoverReference from "../Popover/PopoverReference.svelte";
+    import PopoverContent from "../Popover/PopoverContent.svelte";
+    import AvatarDeleted from "./AvatarDeleted.svelte";
 
     interface Props {
         /**
@@ -21,19 +24,19 @@
         avatar?: string;
 
         /**
-         * Apply styling indicating the user has been deleted
+         * Link to the user's profile
          */
-        deleted?: boolean;
+        profileUrl?: string;
+        /**
+         * The size of the user card
+         * @type {undefined | "sm" | "lg"} Size
+         */
+        size?: Size;
 
         /**
-         * Add a highlight to the user card
+         * Job designation of the user
          */
-        highlighted?: boolean;
-
-        /**
-         * Link to be used for the username
-         */
-        href?: string;
+        designation?: string;
 
         /**
          * Location of the user
@@ -41,102 +44,81 @@
         location?: string;
 
         /**
-         * The reputation of the user
+         * Snippet used to display post activity time
          */
-        reputation?: string | number;
+        time?: Snippet;
 
         /**
-         * The user's role (such as job title)
+         * Snippet used to display user blings
          */
-        role?: string;
+        blings?: Snippet;
 
         /**
-         * The size of the user card
-         * @type {undefined | "full" | "small" | "minimal"} Size
+         * Snippet used to display user badges
          */
-        size?: Size;
+        badges?: Snippet;
 
         /**
-         * Timestamp displayed in the user card generally used to indicate when a comment was posted
+         * Snippet used to display user recognition
          */
-        timestamp?: string;
-
-        // Awards
-        /**
-         * Count of gold award badges to display
-         */
-        gold?: Award;
+        recognition?: Snippet;
 
         /**
-         * Count of silver award badges to display
+         * Snippet used to display user bio
          */
-        silver?: Award;
+        bio?: Snippet;
 
         /**
-         * Count of bronze award badges to display
+         * Snippet used to display user additional blings
          */
-        bronze?: Award;
-
-        // Badges
-        /**
-         * Display a badge indicating the user is an admin
-         */
-        admin?: boolean;
+        additionalBlings?: Snippet;
 
         /**
-         * Display a badge indicating the user is a moderator
+         * Identifies if the user card is the original poster
          */
-        moderator?: boolean;
+        originalPoster?: boolean;
 
         /**
-         * Display a badge indicating the user is a staff member
+         * The text for the original poster tooltip
          */
-        staff?: boolean;
+        i18nOpTooltipText?: string;
 
+        /**
+         * The text for the deleted user tooltip
+         */
+        i18nDeletedTooltipText?: string;
+
+        /**
+         * Identifies if the user has been deleted
+         */
+        deleted?: boolean;
         /**
          * Additional CSS classes added to the element
          */
         class?: string;
-
-        /**
-         * Optional snippet to showcase user’s most popular tags (e.g. `<Tag href="#" size="xs">css</Tag>`)
-         */
-        tags?: Snippet;
-
-        /**
-         * Optional snippet to showcase user’s type or affiliate badge
-         */
-        type?: Snippet;
     }
 
     const {
         name,
         avatar,
-        deleted = false,
-        highlighted = false,
-        href,
-        location,
-        reputation,
-        role,
+        profileUrl,
         size,
-        timestamp,
-        gold,
-        silver,
-        bronze,
-        admin = false,
-        moderator = false,
-        staff = false,
+        time,
+        blings,
+        badges,
+        recognition,
+        location,
+        designation,
+        bio,
+        additionalBlings,
+        originalPoster,
+        i18nOpTooltipText = "is the original poster.",
+        i18nDeletedTooltipText = "Deleted user",
+        deleted,
         class: className = "",
-        tags,
-        type,
     }: Props = $props();
 
-    const getClasses = (
-        className: string,
-        deleted: boolean,
-        highlighted: boolean,
-        size?: Size
-    ) => {
+    const getClasses = (className: string, size?: Size, deleted?: boolean) => {
         const base = "s-user-card";
         let classes = base;
 
@@ -144,16 +126,12 @@
             classes += ` ${className}`;
         }
 
-        if (deleted) {
-            classes += ` ${base}__deleted`;
-        }
-
-        if (highlighted) {
-            classes += ` ${base}__highlighted`;
-        }
-
         if (size) {
             classes += ` ${base}__${size}`;
+        }
+
+        if (deleted) {
+            classes += ` ${base}__deleted`;
         }
 
         return classes;
@@ -161,110 +139,164 @@
 
     const getAvatarSize = (size?: Size): AvatarSize => {
         switch (size) {
-            case "full":
-                return 48;
-            case "small":
-                return 24;
-            case "minimal":
+            case "sm":
                 return 16;
+            case "lg":
+                return 48;
             default:
-                return 32;
+                return 24;
         }
     };
 
-    const classes = $derived(getClasses(className, deleted, highlighted, size));
+    const classes = $derived(getClasses(className, size, deleted));
     const avatarSize = $derived(getAvatarSize(size));
-    const iconSizeClasses = $derived(`w${avatarSize} h${avatarSize}`);
 </script>
 
+{#snippet avatarAndName()}
+    {#if avatar || name}
+        <svelte:element
+            this={profileUrl ? "a" : "div"}
+            class="s-user-card--group"
+            href={profileUrl}
+        >
+            {#if avatar}
+                <Avatar {name} src={avatar} size={avatarSize} />
+            {/if}
+            {#if name}
+                {#if originalPoster}
+                    <Popover id="user-card-original-poster-popover" tooltip>
+                        <PopoverReference>
+                            <span
+                                class="s-user-card--username s-user-card--username__op"
+                                >{name}</span
+                            >
+                        </PopoverReference>
+                        <PopoverContent>
+                            <span>
+                                <a
+                                    href={profileUrl}
+                                    class="s-link s-link__underlined">{name}</a
+                                >
+                                {i18nOpTooltipText}
+                            </span>
+                        </PopoverContent>
+                    </Popover>
+                {:else}
+                    <span class="s-user-card--username">{name}</span>
+                {/if}
+            {/if}
+        </svelte:element>
+    {/if}
+{/snippet}
+
+{#snippet userCardMainContent()}
+    {@render avatarAndName()}
+    {#if badges}
+        <ul class="s-user-card--group">
+            {@render badges()}
+        </ul>
+    {/if}
+    {#if additionalBlings}
+        {@render additionalBlings()}
+    {/if}
+    {#if blings}
+        <ul class="s-user-card--group">
+            {@render blings()}
+        </ul>
+    {/if}
+    {#if time}
+        {@render time()}
+    {/if}
+{/snippet}
+
 <div class={classes}>
-    {#if timestamp && size !== "minimal" && size !== "small"}
-        <time class="s-user-card--time">{timestamp}</time>
-    {/if}
-
     {#if deleted}
-        <Icon
-            src={IconPerson}
-            class="bar-md fc-white bg-black-225 s-user-card--avatar {iconSizeClasses}"
-            title={name}
-        />
-    {:else}
-        <Avatar
-            class="s-user-card--avatar"
-            {name}
-            href={!deleted && href ? href : undefined}
-            src={avatar}
-            size={avatarSize}
-        />
-    {/if}
-
-    <div class="s-user-card--info as-stretch">
-        {#if name}
-            <svelte:element
-                this={href && !deleted ? "a" : "div"}
-                class="s-user-card--link"
-                href={deleted ? null : href}
+        <div class="s-user-card--group">
+            <Popover id="user-card-deleted-popover" tooltip>
+                <PopoverReference>
+                    <AvatarDeleted size={size === "sm" ? 16 : 24} />
+                </PopoverReference>
+                <PopoverContent>
+                    <span>{i18nDeletedTooltipText}</span>
+                </PopoverContent>
+            </Popover>
+            <span class="s-user-card--username s-user-card--deleted"
+                >{name}</span
             >
-                {name}
-                {#if !deleted && moderator}
-                    <div class="s-badge s-badge__xs s-badge__moderator">
-                        Mod
+        </div>
+        {#if time}
+            {@render time()}
+        {/if}
+    {:else if size !== "lg"}
+        {#if recognition && size === undefined}
+            <div class="s-user-card--column">
+                <div class="s-user-card--row">
+                    {@render userCardMainContent()}
+                </div>
+                <div class="s-user-card--row s-user-card--recognition">
+                    <Icon src={IconStarVerifiedSm} />
+                    {@render recognition()}
+                </div>
+            </div>
+        {:else}
+            {@render userCardMainContent()}
+        {/if}
+    {:else}
+        <div class="s-user-card--row">
+            {#if avatar}
+                <Avatar
+                    {name}
+                    href={profileUrl}
+                    src={avatar}
+                    size={avatarSize}
+                />
+            {/if}
+            <div class="s-user-card--column">
+                <div class="s-user-card--row">
+                    {#if name}
+                        <svelte:element
+                            this={profileUrl ? "a" : "div"}
+                            class="s-user-card--username"
+                            href={profileUrl}
+                        >
+                            {name}
+                        </svelte:element>
+                    {/if}
+                    {#if badges}
+                        <ul class="s-user-card--group">
+                            {@render badges()}
+                        </ul>
+                    {/if}
+                </div>
+                {#if blings}
+                    <ul class="s-user-card--group">
+                        {@render blings()}
+                    </ul>
+                {/if}
+            </div>
+        </div>
+        {#if recognition || designation || location || bio}
+            <div class="s-user-card--column">
+                {#if recognition}
+                    <div class="s-user-card--row s-user-card--recognition">
+                        <Icon src={IconStarVerifiedSm} />
+                        {@render recognition()}
                     </div>
                 {/if}
-                {#if !deleted && staff}
-                    <div class="s-badge s-badge__xs s-badge__staff">Staff</div>
+                {#if designation || location}
+                    <ul class="s-user-card--group s-user-card--group__split">
+                        {#if designation}
+                            <li>{designation}</li>
+                        {/if}
+                        {#if location}
+                            <li>{location}</li>
+                        {/if}
+                    </ul>
                 {/if}
-                {#if !deleted && admin}
-                    <div class="s-badge s-badge__xs s-badge__admin">Admin</div>
+                {#if bio}
+                    {@render bio()}
                 {/if}
-            </svelte:element>
-        {/if}
-
-        {#if !deleted && (reputation || gold || silver || bronze)}
-            <ul class="s-user-card--awards">
-                {#if reputation}
-                    <li class="s-user-card--rep">{reputation}</li>
-                {/if}
-                {#if gold}
-                    <li class="s-award-bling s-award-bling__gold">
-                        {gold}
-                    </li>
-                {/if}
-                {#if silver}
-                    <li class="s-award-bling s-award-bling__silver">
-                        {silver}
-                    </li>
-                {/if}
-                {#if bronze}
-                    <li class="s-award-bling s-award-bling__bronze">
-                        {bronze}
-                    </li>
-                {/if}
-            </ul>
-        {/if}
-
-        {#if !deleted && role}
-            <div class="s-user-card--role">{role}</div>
-        {/if}
-
-        {#if !deleted && location}
-            <div class="s-user-card--location">{location}</div>
-        {/if}
-
-        {#if timestamp && (size === "minimal" || size === "small")}
-            <time class="s-user-card--time">{timestamp}</time>
-        {/if}
-
-        {#if !deleted && tags}
-            <div class="s-user-card--tags d-flex g4">
-                {@render tags()}
             </div>
         {/if}
-    </div>
-
-    {#if !deleted && type}
-        <div class="s-user-card--type">
-            {@render type()}
-        </div>
     {/if}
 </div>

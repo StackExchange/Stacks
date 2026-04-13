@@ -1,159 +1,243 @@
 .s-checkbox,
 .s-radio {
-    --_ch-baw: var(--su-static1);
-    --_ch-bc: var(--bc-dark);
-    --_ch-bg: var(--white);
-    --_ch-bg-image: unset;
+    --_ch-ai: center;
+    --_ch-fc: unset;
+    --_ch-after-fc: unset;
+    --_ch-cursor: pointer;
+    --_ch-label-fc: var(--_ch-fc);
+    --_ch-gap: var(--su8);
 
-    // CONTEXTUAL STYLES
-    fieldset[disabled] &,
-    &[disabled] {
-        cursor: not-allowed;
-        opacity: var(--_o-disabled-static);
-    }
+    // inputs
+    --_ch-input-baw: var(--su1);
+    --_ch-input-bc: var(--black-350);
+    --_ch-input-bg: var(--white);
+    --_ch-input-bg-image: unset;
+    --_ch-input-br: var(--su1);
+    --_ch-input-cursor: pointer;
+    --_ch-input-h: calc(var(--su12) + var(--su2)); // 14px
 
-    .s-check-control & {
-        &[disabled] + .s-label {
-            &:extend(.is-disabled .s-label);
-        }
-    }
-
-    .s-check-group & {
-        margin-top: calc(var(--su2) + var(--su1)); // 3px
-    }
-
-    input& {
-        flex-shrink: 0;
-    }
-
-    // INTERACTION
-    &:focus {
-        .focus-styles();
-    }
-
-    background-color: var(--_ch-bg);
-    border: var(--_ch-baw) solid var(--_ch-bc);
-
-    appearance: none;
-    cursor: pointer;
-    font-size: inherit;
-    height: 1em;
-    margin: 0; // A guard against Core's default margins
-    outline: 0;
-    vertical-align: middle;
-    width: 1em;
-}
-
-.s-checkbox {
-    // Less variables for check svg fill color
-    @ch-bg-image-fill: .set-white()[default];
-    @ch-bg-image-fill-dark: .set-white-dark()[default];
-
-    // CONTEXTUAL STYLES
-    .dark-mode({
-        &:checked {
-            --_ch-bg-image: url("data:image/svg+xml;,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='@{ch-bg-image-fill-dark}'/%3E%3C/svg%3E");
-        }
-        &:indeterminate {
-            --_ch-bg-image: url("data:image/svg+xml;,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4.5 h7 v2 h-7 z' fill='@{ch-bg-image-fill-dark}'/%3E%3C/svg%3E");
-        }
-    });
-
-    .highcontrast-dark-mode({
-        &:checked, &:indeterminate {
-            --_ch-bc: var(--blue-500) !important;
-            --_ch-bg: var(--blue-400);
-        }
-    });
-
-    @media (forced-colors: active) {
+    @media (forced-colors: active) { // This is for Windows High Contrast Mode
         &:checked,
         &:indeterminate {
-            --_ch-bg: ButtonText !important;
+            --_ch-input-bg: ButtonText !important;
         }
     }
 
-    // STATES
-    &:checked, &:indeterminate {
-        --_ch-bc: var(--theme-secondary-400) !important;
-        --_ch-bg: var(--theme-secondary-400);
+    fieldset[disabled] &,
+    &:has(> input[disabled]) {
+        --_ch-fc: var(--black-300);
+        --_ch-input-bc: var(--black-300);
+        --_ch-input-cursor: not-allowed;
     }
 
-    &:checked {
-        --_ch-bg-image: url("data:image/svg+xml;,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='@{ch-bg-image-fill}'/%3E%3C/svg%3E");
+    &:has(> input[disabled]:checked) {
+        --_ch-input-bc: var(--theme-secondary-300);
     }
 
-    &:indeterminate {
-        --_ch-bg-image: url("data:image/svg+xml;,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4.5 h7 v2 h-7 z' fill='@{ch-bg-image-fill}'/%3E%3C/svg%3E");
-    }
+    // MODIFIERS
+    &&__checkmark {
+        --_ch-fc: var(--theme-secondary);
+        --_ch-gap: var(--su4);
+        --_ch-after-fc: unset;      
 
-    background-image: var(--_ch-bg-image);
-
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    border-radius: var(--br-sm);
-}
-
-.s-radio {
-
-    // CONTEXTUAL STYLES
-    .highcontrast-dark-mode({
-        &:checked {
-            --_ch-bc: var(--blue-400);
-            outline: var(--su-static1) solid var(--black);
+        // CONTEXTUAL STYLES
+        &:has(> input:focus-visible) {
+            .focus-styles(true, false);
         }
-    });
 
-    // STATES
-    &:checked {
-        --_ch-baw: 0.30769231em;
-        --_ch-bc: var(--theme-secondary-400);
-        --_ch-bg: var(--white);
-    }
+        &:has(> input:checked) {
+            --_ch-after-fc: var(--_ch-fc);
+        }
 
-    border-radius: var(--br-circle);
-}
+        &:has(> input[disabled]) {
+            --_ch-cursor: not-allowed;
+        }
 
-.s-checkbox,
-.s-radio:not(:checked) {
-    .validation-states(ch);
-}
+        &:has(> input:checked[disabled]) {
+            --_ch-fc: var(--theme-secondary-300);
+        }
 
-.s-check-control { // TODO would _love_ to use .s-check instead, with no class on the input itself
-    --_cc-ai: center;
+        // CHILD ELEMENTS
+        input,
+        &:after {
+            height: var(--su16);
+            margin-left: 100%;
+            width: var(--su16);
+        }
 
-    // CONTEXTUAL STYLES
-    .s-check-group & {
-        --_cc-ai: flex-start; // manually align the checkboxes and radios to the top of the group
+        &:after {
+            background-color: var(--_ch-after-fc);
+            content: "";
+            flex-shrink: 0;
+            margin-left: auto;
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m14 3.88-.44.44-7.34 7.35-.44.44-.44-.44-2.9-2.9L2 8.34l.89-.88.44.44 2.45 2.45 6.9-6.9.44-.44z'/%3E%3C/svg%3E"); // check16
+            mask-size: contain;
+            mask-repeat: no-repeat;
+        }
+
+        input {
+            appearance: none;
+            opacity: 0;
+            position: absolute;
+            right: 0;
+            z-index: -1;
+        }
+
+        .s-description {
+            margin: var(--su2) 0 0;
+            padding: 0;
+        }
+
+        .s-label {
+            flex-grow: 1;
+        }
+
+        border-radius: var(--br-md);
+        color: var(--_ch-fc);
+        cursor: var(--_ch-cursor);
+
+        width: 100%;
     }
 
     // CHILD ELEMENTS
+    &:has(> input[disabled]) {
+        .s-label {
+            --_ch-label-fc: var(--black-300);
+        }
+    }
+
+    &:not(> input[disabled]) {
+        &:has(input:checked),
+        &:has(input:indeterminate) {
+            .s-label {
+                --_ch-label-fc: var(--black-600);
+            }
+        }
+    }
+
+    &:has(> .s-label .s-description),
+    &:has(> .s-label .s-input-message) {
+        --_ch-ai: flex-start;
+
+        input {
+            margin-top: var(--su2);
+        }
+    }
+
+    // Validation states
+    &:has(> input:not(:checked)) {
+        &.has-error {
+            --_ch-input-bc: var(--red-400);
+        }
+        &.has-success {
+            --_ch-input-bc: var(--green-400);
+        }
+        &.has-warning {
+            --_ch-input-bc: var(--yellow-400);
+        }
+    }
+
+    input {
+        &:focus-visible {
+            .focus-styles();
+        }
+
+        &:not(:checked) {
+            .validation-states(ch-input);
+        }
+
+        appearance: none;
+        background-color: var(--_ch-input-bg);
+        border: var(--_ch-input-baw) solid var(--_ch-input-bc);
+        border-radius: var(--_ch-input-br);
+        cursor: var(--_ch-input-cursor);
+        height: var(--_ch-input-h);
+        
+        aspect-ratio: 1 / 1;
+        flex-shrink: 0;
+        font-size: inherit;
+        margin: 0; // A guard against Core's default margins
+        outline: 0;
+        vertical-align: middle;
+    }
+
+
     .s-label {
+        color: var(--_ch-label-fc);
+        font-size: var(--fs-body1);
         font-weight: normal;
     }
 
-    align-items: var(--_cc-ai);
+    align-items: var(--_ch-ai);
     display: flex;
-    gap: var(--su8);
+    gap: var(--_ch-gap);
 }
 
-.s-check-group {
-    --_cg-fd: column;
+.s-checkbox{
+    // Less variables for check svg fill color
+    @ch-bg-image-fill: .set-white()[default];
+    @ch-bg-image-fill-dark: .set-white-dark()[default];
+    @ch-bg-image-fill-esc: escape("@{ch-bg-image-fill}"); // color escaped for URL usage
+    @ch-bg-image-fill-dark-esc: escape("@{ch-bg-image-fill-dark}"); // color escaped for URL usage
 
-    // MODIFIERS
-    &&__horizontal {
-        --_cg-fd: row;
-    }
+    // CONTEXTUAL STYLES
+    .dark-mode({
+        input {
+            &:checked {
+                --_ch-input-bg-image: url("data:image/svg+xml;,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='@{ch-bg-image-fill-dark-esc}'/%3E%3C/svg%3E");
+            }
+            &:indeterminate {
+                --_ch-input-bg-image: url("data:image/svg+xml;,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4.5 h7 v2 h-7 z' fill='@{ch-bg-image-fill-dark-esc}'/%3E%3C/svg%3E");
+            }
+        }
+    });
 
     // CHILD ELEMENTS
-    // TODO HACK? <legend> isn't respecting gap...
-    legend.s-label {
-        margin-bottom: var(--su8);
+    input {
+        fieldset[disabled] &,
+        &[disabled] {
+            &:checked, &:indeterminate {
+                --_ch-input-bc: var(--theme-secondary-300);
+                --_ch-input-bg: var(--theme-secondary-300);
+            }
+        }
+
+        &:checked, &:indeterminate {
+            --_ch-input-bc: var(--theme-secondary);
+            --_ch-input-bg: var(--theme-secondary);
+        }
+
+        &:checked {
+            --_ch-input-bg-image: url("data:image/svg+xml;,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.41L8.59 2 4 6.59 2.41 5 1 6.41l3 3z' fill='@{ch-bg-image-fill-esc}'/%3E%3C/svg%3E");
+        }
+
+        &:indeterminate {
+            --_ch-input-bg-image: url("data:image/svg+xml;,%3Csvg width='11' height='11' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4.5 h7 v2 h-7 z' fill='@{ch-bg-image-fill-esc}'/%3E%3C/svg%3E");
+        }
+
+        background-image: var(--_ch-input-bg-image);
+
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;
     }
+}
 
-    flex-direction: var(--_cg-fd);
+.s-radio {
+    input {
+        fieldset[disabled] &,
+        &[disabled] {
+            &:checked {
+                --_ch-input-bc: var(--theme-secondary-300);
+            }
+        }
 
-    display: flex;
-    gap: var(--su8);
+        --_ch-input-br: var(--br-circle);
+
+        &:checked {
+            --_ch-input-baw: calc(var(--_ch-input-h) / 3); // 14px / 3 = ~4.67px
+            --_ch-input-bc: var(--theme-secondary);
+            --_ch-input-bg: var(--white);
+        }
+    }
 }

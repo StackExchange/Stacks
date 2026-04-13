@@ -5,11 +5,11 @@ description: Atomic classes for controlling the background properties of an elem
 tags: base
 ---
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Background size" %}
     {% header "h3", "Background size classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th scope="col">Class</th>
@@ -19,7 +19,7 @@ tags: base
             <tbody>
                 {% for background-size in backgrounds.background-size %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ background-size.class }}</code></th>
+                        <th scope="row"><code>.{{ background-size.class }}</code></th>
                         <td class="ff-mono">{{ background-size.output }}</td>
                     </tr>
                 {% endfor %}
@@ -28,11 +28,11 @@ tags: base
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Background repeat" %}
     {% header "h3", "Background repeat classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th scope="col">Class</th>
@@ -42,7 +42,7 @@ tags: base
             <tbody>
                 {% for background-repeat in backgrounds.background-repeat %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ background-repeat.class }}</code></th>
+                        <th scope="row"><code>.{{ background-repeat.class }}</code></th>
                         <td class="ff-mono">{{ background-repeat.output }}</td>
                     </tr>
                 {% endfor %}
@@ -51,11 +51,11 @@ tags: base
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Background position" %}
     {% header "h3", "Background position classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th scope="col">Class</th>
@@ -65,7 +65,7 @@ tags: base
             <tbody>
                 {% for background-position in backgrounds.background-position %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ background-position.class }}</code></th>
+                        <th scope="row"><code>.{{ background-position.class }}</code></th>
                         <td class="ff-mono">{{ background-position.output }}</td>
                     </tr>
                 {% endfor %}
@@ -74,7 +74,7 @@ tags: base
     </div>
 
     {% header "h3", "Background position examples" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="bg-no-repeat bg-bottom">…</div>
 <div class="bg-no-repeat bg-center">…</div>
@@ -86,27 +86,28 @@ tags: base
 <div class="bg-no-repeat bg-right-top">…</div>
 <div class="bg-no-repeat bg-top">…</div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
-            <div class="d-flex flex__allitems3 w100 g8 fc-black-600 ff-mono fw-wrap">
-                <div class="flex--item p12 bg-black-200 hs1 ba bc-black-225 stacks-bg-img bg-no-repeat bg-bottom">.bg-bottom</div>
-                <div class="flex--item p12 bg-black-200 hs1 ba bc-black-225 stacks-bg-img bg-no-repeat bg-center">.bg-center</div>
-                <div class="flex--item p12 bg-black-200 hs1 ba bc-black-225 stacks-bg-img bg-no-repeat bg-left">.bg-left</div>
-                <div class="flex--item p12 bg-black-200 hs1 ba bc-black-225 stacks-bg-img bg-no-repeat bg-left-bottom">.bg-left-bottom</div>
-                <div class="flex--item p12 bg-black-200 hs1 ba bc-black-225 stacks-bg-img bg-no-repeat bg-left-top">.bg-left-top</div>
-                <div class="flex--item p12 bg-black-200 hs1 ba bc-black-225 stacks-bg-img bg-no-repeat bg-right">.bg-right</div>
-                <div class="flex--item p12 bg-black-200 hs1 ba bc-black-225 stacks-bg-img bg-no-repeat bg-right-bottom">.bg-right-bottom</div>
-                <div class="flex--item p12 bg-black-200 hs1 ba bc-black-225 stacks-bg-img bg-no-repeat bg-right-top">.bg-right-top</div>
-                <div class="flex--item p12 bg-black-200 hs1 ba bc-black-225 stacks-bg-img bg-no-repeat bg-top">.bg-top</div>
+        <div class="docs-preview--example">
+            <div class="d-grid grid__3 sm:grid__2 w100 g8 fc-black-600 ff-mono fw-wrap">
+                {% for background-position in backgrounds.background-position %}
+                <div class="d-flex fd-column g4 p8">
+                    <code>.{{ background-position.class }}</code>
+                    <div
+                        class="docs-bg-img docs-box hs1 w100 bg-no-repeat {{ background-position.class }}"
+                        style="background-image: url(/assets/img/illustrationBgImage.svg);"
+                    >
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Background attachment" %}
     {% header "h3", "Background attachment classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th scope="col">Class</th>
@@ -116,7 +117,7 @@ tags: base
             <tbody>
                 {% for background-attachment in backgrounds.background-attachment %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ background-attachment.class }}</code></th>
+                        <th scope="row"><code>.{{ background-attachment.class }}</code></th>
                         <td class="ff-mono">{{ background-attachment.output }}</td>
                     </tr>
                 {% endfor %}
@@ -125,11 +126,11 @@ tags: base
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Background image" %}
     {% header "h3", "Background image classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn3 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th scope="col">Class</th>
@@ -139,7 +140,7 @@ tags: base
             <tbody>
                 {% for background-image in backgrounds.background-image %}
                     <tr>
-                        <th scope="row"><code class="stacks-code">{{ background-image.class }}</code></th>
+                        <th scope="row"><code>.{{ background-image.class }}</code></th>
                         <td class="ff-mono">{{ background-image.output }}</td>
                     </tr>
                 {% endfor %}
@@ -148,17 +149,48 @@ tags: base
     </div>
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Background utilities" %}
 
+    {% header "h3", "Loading" %}
+    <p class="docs-copy">The Loading utility applies a shimmering gradient animation to a container's background. Use this class to create flexible 'skeleton' placeholders that mimic the shape and layout of content while it loads.</p>
+    <div class="docs-preview">
+{% highlight html %}
+<div class="p16">
+    <div class="ws3 d-flex g16">
+        <div class="v-visible-sr">Loading…</div>
+        <div class="bg-loading s-avatar s-avatar__96 fl-shrink0"></div>
+        <div class="d-flex fd-column g8 jc-space-between w100">
+            <div class="bg-loading bar-md h24"></div>
+            <div class="bg-loading bar-md h24"></div>
+            <div class="bg-loading bar-md h24 w70"></div>
+        </div>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="docs-preview--example">
+            <div class="p16">
+                <div class="ws3 d-flex g16">
+                    <div class="v-visible-sr">Loading…</div>
+                    <div class="bg-loading s-avatar s-avatar__96 fl-shrink0"></div>
+                    <div class="d-flex fd-column g8 jc-space-between w100">
+                        <div class="bg-loading bar-md h24"></div>
+                        <div class="bg-loading bar-md h24"></div>
+                        <div class="bg-loading bar-md h24 w70"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {% header "h3", "Confetti" %}
-    <p class="stacks-copy">Adding the confetti background utility adds confetti to any block-level element. You can choose the animated version, or static version. The animated version respects <code class="stacks-code">prefers-reduced-motion</code> and displays the static version of the background when necessary. No JavaScript required.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">Adding the confetti background utility adds confetti to any block-level element. You can choose the animated version, or static version. The animated version respects <code>prefers-reduced-motion</code> and displays the static version of the background when necessary. No JavaScript required.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <div class="bg-confetti-animated">…</div>
 <div class="bg-confetti-static">…</div>
 {% endhighlight %}
-        <div class="stacks-preview--example">
+        <div class="docs-preview--example">
             <div class="ff-mono mb4">Animated</div>
             <div class="bg-confetti-animated hs1"></div>
 

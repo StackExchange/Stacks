@@ -17,11 +17,7 @@ Our documentation is built with Stacks itself, using its [immutable, atomic clas
 - [License](#license)
 
 # Using Stacks
-Using Stacks is outlined in our [usage guidelines](https://stackoverflow.design/product/develop/using-stacks).
-
-## Migrating from v1 to v2
-
-To migrate from Stacks v1 to v2, see our [migration guide](/MIGRATION_GUIDE.md).
+Using Stacks is outlined in our [usage guidelines](https://stackoverflow.design/system/develop/using-stacks).
 
 # Local Development
 
@@ -42,7 +38,7 @@ To contribute to Stacks documentation you can build locally via:
 ```sh
 npm start
 ```
-This command will pull up the local dev server at http://localhost:8080. You can also view our [building guidelines](https://stackoverflow.design/product/develop/building).
+This command will pull up the local dev server at http://localhost:5173/. You can also view our [building guidelines](https://stackoverflow.design/system/develop/building).
 
 ## Stacks Classic 
 
@@ -179,7 +175,7 @@ This repo uses [Semantic Versioning](https://semver.org/) to distribute Stacks C
 
 We use [changesets](https://github.com/changesets/changesets) to automatize the steps necessary to publish to NPM, create GH releases and a changelog.
 
-- Every time you do work that requires a new release to be published, [add a changesets entry](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) by running `npx chageset` and follow the instructions on screen. (changes that do not require a new release - e.g. changing a test file - don’t need a changeset).
+- Every time you do work that requires a new release to be published, [add a changesets entry](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) by running `npx changeset` and follow the instructions on screen. (changes that do not require a new release - e.g. changing a test file - don’t need a changeset).
     - When opening a PR without a corresponding changeset the [changesets-bot](https://github.com/apps/changeset-bot) will remind you to do so. It generally makes sense to have one changeset for PR (if the PR changes do not require a new release to be published the bot message can be safely ignored)
 - The [release github workflow](.github/workflows/release.yml) continuosly check if there are new pending changesets in the main branch, if there are it creates a GH PR (`chore(release)` [see example](https://github.com/StackExchange/apca-check/pull/2)) and continue updating it as more changesets are potentially pushed/merged to the main branch.
 - When we are ready to cut a release we need to simply merge the `chore(release)` PR back to main and the release github workflow will take care of publishing the changes to NPM and create a GH release for us. The `chore(release)` PR also give us an opportunity to adjust the automatically generated changelog when necessary (the entry in the changelog file is also what will end up in the GH release notes).
@@ -189,6 +185,22 @@ _The release github workflow only run if the CI workflow (running linter, format
 _Despite using changesets to communicate the intent of creating releases in a more explicit way, we still follow [conventional commits standards](https://www.conventionalcommits.org/en/v1.0.0/) for keeping our git history easily parseable by the human eye._
 
 Successful releases trigger automatically a new deployment to stackoverflow.design by merging the `develop` branch into the `production` branch.
+
+## Beta publishing
+We use Changesets in prerelease mode to manage publishing to the beta branch. For more information, please refer to the official [Changesets prerelease documentation](https://github.com/changesets/changesets/blob/main/docs/prereleases.md).
+
+To prepare a beta release, follow these steps:
+
+1. Create a pull request (PR) targeting the beta branch.
+
+2. Ensure your PR includes a changeset.
+
+3. Merging the PR will trigger the `release` job. This job creates or updates a chore(new-beta-release) PR.
+
+4. To cut a new beta release, merge the `chore(new-release) (beta)` PR and wait for the `Release (latest or beta)` job to complete.
+
+Consumers can install the beta package by targeting the beta tag:
+`npm install @stackoverflow/stacks@beta` or `npm install @stackoverflow/stacks-svelte@beta`
 
 ## Bugs and feature requests
 Have a bug or feature request? First search existing or closed issues to make sure the issue hasn’t been noted yet. If not, review our [issue guidelines](/CONTRIBUTING.md#open-an-issue) for submitting [a bug report](/CONTRIBUTING.md#reporting-bugs) or [feature request](/CONTRIBUTING.md#feature-requests).

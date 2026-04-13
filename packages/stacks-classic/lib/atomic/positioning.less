@@ -1,0 +1,41 @@
+@import (reference) "../base/internal.less";
+@import (reference) "../exports/mixins.less";
+
+@px-values: 0 1 2 4 6 8 12 16 24 32 48 64 96 128;
+@px-values-negative: 1 2 4 6 8 12 16 24 32 48 64 96 128;
+@percent-values: 50 100;
+
+// POSITIONING
+#stacks-internals #responsify('.ps-absolute', { position: absolute !important; });
+#stacks-internals #responsify('.ps-fixed', { position: fixed !important; });
+#stacks-internals #responsify('.ps-relative', { position: relative !important; });
+#stacks-internals #responsify('.ps-static', { position: static !important; });
+#stacks-internals #responsify('.ps-sticky', { position: sticky !important; });
+.ps-unset { position: unset !important; }
+
+// Inset
+.generate-sizing('.i', inset, @px-values, 'px');
+
+//  Top
+.generate-sizing('.t', top, @px-values, 'px', true);
+.generate-sizing('.tn', top, @px-values-negative, 'px', true, true);
+.generate-sizing('.t', top, @percent-values, 'percent', true);
+.generate-sizing('.tn', top, @percent-values, 'percent', true, true);
+
+// Right
+.generate-sizing('.r', right, @px-values, 'px', true);
+.generate-sizing('.rn', right, @px-values-negative, 'px', true, true);
+.generate-sizing('.r', right, @percent-values, 'percent', true);
+.generate-sizing('.rn', right, @percent-values, 'percent', true, true);
+
+// Bottom
+.generate-sizing('.b', bottom, @px-values, 'px', true);
+.generate-sizing('.bn', bottom, @px-values-negative, 'px', true, true);
+.generate-sizing('.b', bottom, @percent-values, 'percent', true);
+.generate-sizing('.bn', bottom, @percent-values, 'percent', true, true);
+
+// Left
+.generate-sizing('.l', left, @px-values, 'px', true);
+.generate-sizing('.ln', left, @px-values-negative, 'px', true, true);
+.generate-sizing('.l', left, @percent-values, 'percent', true);
+.generate-sizing('.ln', left, @percent-values, 'percent', true, true);

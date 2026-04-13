@@ -3,8 +3,15 @@
 // This would reduce the amount of CSS we ship to the client and simplify our codebase
 .s-banner {
     --_no-ty-offset: 0;
-    --_no-ty: var(--theme-topbar-height, calc(var(--su-static48) + var(--su-static8)));
+    --_no-ty: var(--theme-topbar-height, calc(var(--su48) + var(--su8)));
     .construct-notice-component(s-banner);
+    
+    &--icon {
+        //Remove the icon backgound color
+        --_no-icon-bg: transparent;
+        margin-right: var(--su8);
+        align-self: flex-start;
+    }
 
     &[aria-hidden="true"] { // If you want to hide and reveal the banner
         --_no-ty-offset: -1;
@@ -27,16 +34,10 @@
         padding-top: 93px;
     }
 
-    & &--container { // When we want to keep hero content capped
-        margin: 0 auto;
-        max-width: calc(var(--s-step) * 10);
-        position: relative;
-        width: 100%;
-    }
-
-    border-width: 0 0 var(--su-static1);
+    display: flex;
+    align-items: center;
+    padding: var(--su16);
     inset: 0 0 auto 0;
-    padding: var(--su12);
     position: fixed;
     transform: translate3d(0, calc(var(--_no-ty) * var(--_no-ty-offset)), 0);
     width: 100%;

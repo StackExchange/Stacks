@@ -5,10 +5,10 @@ figma: https://svelte.stackoverflow.design/figma/box-shadows
 description: Box shadow atomic classes allow you to change an element’s box shadow quickly.
 tags: base
 ---
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Classes" %}
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn5 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
                     <th class="s-table--cell2" scope="col">Class</th>
@@ -19,10 +19,10 @@ tags: base
                 </tr>
             </thead>
             <tbody>
-                {% for atomic in atomics.box-shadow %}
+                {% for atomic in box-shadow.classes %}
                     <tr class="fs-caption">
-                        <th scope="row"><code class="stacks-code">.{{ atomic.class }}</code></th>
-                        <td><code class="stacks-code bg-white pl0">{{ atomic.output }}</code></td>
+                        <th scope="row"><code>.{{ atomic.class }}</code></th>
+                        <td><code>{{ atomic.output }}</code></td>
                         <td class="ta-center">
                             {% if atomic.hover %}
                                 {% icon "Checkmark", "fc-green-400" %}
@@ -45,7 +45,7 @@ tags: base
     </div>
 
     {% header "h2", "Examples" %}
-    <div class="stacks-preview">
+    <div class="docs-preview">
 {% highlight html %}
 <div class="bs-sm">…</div>
 <div class="bs-md">…</div>
@@ -53,23 +53,16 @@ tags: base
 <div class="bs-xl">…</div>
 <div class="bs-ring">…</div>
 {% endhighlight %}
-        <div class="stacks-preview--example fs-caption ff-mono">
+        <div class="docs-preview--example fs-caption ff-mono">
             <div class="d-grid grid__4 lg:grid__3 sm:grid__2 g16">
-                <div class="flex--item fd-column p12 bs-sm bar-sm h96">
-                    .bs-sm
-                </div>
-                <div class="flex--item fd-column p12 bs-md bar-sm h96">
-                    .bs-md
-                </div>
-                <div class="flex--item fd-column p12 bs-lg bar-sm h96">
-                    .bs-lg
-                </div>
-                <div class="flex--item fd-column p12 bs-xl bar-sm h96">
-                    .bs-xl
-                </div>
-                <div class="flex--item fd-column p12 bs-ring bar-sm h96">
-                    .bs-ring
-                </div>
+                {% for atomic in box-shadow.classes %}
+                    {% if atomic.class != "bs-none" %}
+                        <div class="d-flex fd-column g4">
+                            .{{ atomic.class }}
+                            <div class="docs-box bg-black-100 baw0 {{ atomic.class }} h96"></div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>

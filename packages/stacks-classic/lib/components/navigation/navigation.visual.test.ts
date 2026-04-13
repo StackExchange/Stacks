@@ -1,8 +1,22 @@
 import { html } from "@open-wc/testing";
 import { runVisualTests } from "../../test/visual-test-utils";
+import { IconHome, IconHomeFill } from "@stackoverflow/stacks-icons/icons";
 import "../../index";
 
-const items = [
+const outlineIcon = IconHome.replace('class="', 'class="s-navigation--icon ');
+const filledIcon = IconHomeFill.replace(
+    'class="',
+    'class="s-navigation--icon '
+);
+
+interface NavigationItem {
+    label: string;
+    title?: boolean;
+    selected?: boolean;
+    dropdown?: boolean;
+}
+
+const items: NavigationItem[] = [
     {
         label: "Group 1",
         title: true,
@@ -38,31 +52,58 @@ const items = [
     },
 ];
 
-const getChildren = (includeTitles = false): string =>
-    items
-        .map((item) => {
+const getChildren = (includeTitles = false, includeIcons = false): string => {
+    const getClasses = function (item: NavigationItem) {
+        return `s-navigation--item${
+            item.selected ? " is-selected" : ""
+        }${item.dropdown ? " s-navigation--item__dropdown" : ""}`;
+    };
+
+    const getIcon = function (item: NavigationItem) {
+        return includeIcons ? (item.selected ? filledIcon : outlineIcon) : "";
+    };
+
+    if (!includeTitles) {
+        return items
+            .map((item) => {
+                if (item.title) {
+                    return ""; //don't print title
+                }
+                return `<li><a href="#" class="${getClasses(item)}">${getIcon(item)}${item.label}</a></li>`;
+            })
+            .join("");
+    } else {
+        //Vertical nav
+        let html = "";
+        for (const item of items) {
             if (item.title) {
-                return includeTitles
-                    ? `<li class="s-navigation--title">${item.label}</li>`
-                    : "";
+                if (html.length > 0) {
+                    html += "</ul></li>";
+                }
+                const groupName = item.label.replace(" ", "");
+                html += `<li>
+                <h4 class="s-navigation--title" id="nav-${groupName}">${item.label}</h4>
+                <ul aria-labelledby="nav-${groupName}">
+                `;
+            } else {
+                html += `<li><a href="#" class="${getClasses(item)}">${getIcon(item)}${item.label}</a></li>`;
             }
-            const classes = `s-navigation--item${
-                item.selected ? " is-selected" : ""
-            }${item.dropdown ? " s-navigation--item__dropdown" : ""}`;
-            return `<li><a href="#" class="${classes}">${item.label}</a></li>`;
-        })
-        .join("");
+        }
+        html += "</ul></li>";
+        return html;
+    }
+};
 
 describe("navigation", () => {
     runVisualTests({
         baseClass: "s-navigation",
-        variants: ["muted"],
         modifiers: {
             primary: ["scroll", "sm"],
         },
         tag: "ul",
         children: {
             default: getChildren(),
+            icon: getChildren(false, true),
         },
         template: ({ component, testid }) => html`
             <nav
@@ -73,14 +114,21 @@ describe("navigation", () => {
                 ${component}
             </nav>
         `,
+        excludedTestids: [
+            /^s-navigation-(?=.*sm).*icon$/, // s-navigation with icon and sm modifier not supported
+        ],
     });
 
     runVisualTests({
         baseClass: "s-navigation",
         variants: ["vertical"],
+        modifiers: {
+            primary: ["sm"],
+        },
         tag: "ul",
         children: {
             default: getChildren(true),
+            icon: getChildren(true, true),
         },
         template: ({ component, testid }) => html`
             <nav
@@ -91,6 +139,9 @@ describe("navigation", () => {
                 ${component}
             </nav>
         `,
+        excludedTestids: [
+            /^s-navigation-(?=.*sm).*icon$/, // s-navigation with icon and sm modifier not supported
+        ],
         options: {
             includeNullVariant: false,
         },

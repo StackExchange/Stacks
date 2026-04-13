@@ -31,10 +31,12 @@ body {
     --zi-modals:             9000;   //  Modals
 
     // Border Radius
-    --br-sm:                 calc(var(--su-static4));
-    --br-md:                 calc(var(--su-static6));
-    --br-lg:                 calc(var(--su-static8));
+    --br-md:                 calc(var(--su4) + var(--su6)); // 10px
     --br-circle:             50%;
+    --br-pill:               1000px;
+    // TODO SHINE Retaining legacy border radius for backward compatibility
+    --br-sm:                var(--br-md); // Retaining legacy border radius for backward compatibility
+    --br-lg:                var(--br-md); // Retaining legacy border radius for backward compatibility
 
     // Transition easings
     --te-smooth-slow:        cubic-bezier(0.25, 0.46, 0.45, 0.94);       // easeOutQuad
@@ -48,36 +50,32 @@ body {
 
     --default-transition-duration:       0.1s;
     --transition-time:                   var(--default-transition-duration);
-
-    // Sizing
-    --s-full: 97.2307692rem; // Based on a pixel size of 1264px;
-    --s-step: calc(var(--s-full) / 12);
 }
 
 //  ============================================================================
 //  $   RESPONSIVE BREAKPOINTS
 //  ----------------------------------------------------------------------------
-@breakpoint-lg: 1264px;
-@breakpoint-md: 980px;
-@breakpoint-sm: 640px;
+@breakpoint-lg: 92.25rem; // 1476px
+@breakpoint-md: 71.875rem; // 1150px
+@breakpoint-sm: 48.75rem; // 780px
 
 //  ============================================================================
 //  $   SCROLLBAR STYLING
 //  ----------------------------------------------------------------------------
 @scrollbar-styles: {
     &::-webkit-scrollbar {
-        width: calc(var(--su-static12) - var(--su-static2));
-        height: calc(var(--su-static12) - var(--su-static2));
+        width: calc(var(--su12) - var(--su2));
+        height: calc(var(--su12) - var(--su2));
         background-color: transparent;
     }
 
     &::-webkit-scrollbar-track {
-        border-radius: calc(var(--su-static12) - var(--su-static2));
+        border-radius: calc(var(--su12) - var(--su2));
         background-color: transparent;
     }
 
     &::-webkit-scrollbar-thumb {
-        border-radius: calc(var(--su-static12) - var(--su-static2));
+        border-radius: calc(var(--su12) - var(--su2));
         background-color: var(--scrollbar);
     }
 
@@ -103,6 +101,6 @@ body {
     // Show focus styles on keyboard focus.
     &:focus-visible {
         outline: none;
-        box-shadow: 0 0 0 var(--su-static4) var(--focus-ring-muted);
+        box-shadow: 0 0 0 var(--su4) var(--focus-ring-muted);
     }
 }

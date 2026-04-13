@@ -5,9 +5,9 @@ description: Stacks provides a robust theming API to handle theming in various c
 tags: foundation
 ---
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Default theme stops" %}
-    <p class="stacks-copy">Stacks provides primary and secondary theme stops that can be overridden in your custom theme.</p>
+    <p class="docs-copy">Stacks provides primary and secondary theme stops that can be overridden in your custom theme.</p>
 
     {% for group in colors %}
         {% if group.name == "v2" %}
@@ -42,54 +42,54 @@ tags: foundation
     {% endfor %}
 </section>
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Theming API" %}
 
     {% header "h3", "Programmatic theme generation" %}
-    <p class="stacks-copy">Use <code class="stacks-code">.create-custom-theme-hsl-variables(@color, @tier, @modeCustom)</code> to create a custom theme.</p>
+    <p class="docs-copy">Use <code>.create-custom-theme-hsl-variables(@color, @tier, @modeCustom)</code> to create a custom theme.</p>
         
-    <p class="stacks-copy">This function generates two sets of CSS variables: 1) independent h/s/l color variables and 2) variables at each colors stop that reference the h/s/l variables. Provide this function the arguments defined below to generate theme colors which will apply across Stacks.</p>
+    <p class="docs-copy">This function generates two sets of CSS variables: 1) independent h/s/l color variables and 2) variables at each colors stop that reference the h/s/l variables. Provide this function the arguments defined below to generate theme colors which will apply across Stacks.</p>
 
     <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="wmn4 s-table s-table__bx-simple">
+        <table class="docs-table s-table s-table__bx-simple">
             <thead>
                 <tr>
-                    <th scope="col">Argument</th>
-                    <th scope="col">Type</th>
+                    <th class="s-table--cell2" scope="col">Argument</th>
+                    <th class="s-table--cell3" scope="col">Type</th>
                     <th scope="col">Default</th>
                     <th scope="col">Description</th>
                 </tr>
             </thead>
             <tbody class="fs-caption">
                 <tr>
-                    <td><code class="stacks-code ws-nowrap">@color</code></td>
+                    <td><code>@color</code></td>
                     <td>HSL, hex, or other color value</td>
                     <td></td>
                     <td>Color to use to generate theme values.</td>
                 </tr>
                 <tr>
-                    <td><code class="stacks-code ws-nowrap">@tier</code></td>
+                    <td><code>@tier</code></td>
                     <td>
-                        <code class="stacks-code ws-nowrap">primary</code> |
-                        <code class="stacks-code ws-nowrap">secondary</code>
+                        <code>primary</code> |
+                        <code>secondary</code>
                     </td>
-                    <td><code class="stacks-code ws-nowrap">primary</code></td>
+                    <td><code>primary</code></td>
                     <td>Color tier to generate.</td>
                 </tr>
                 <tr>
-                    <td><code class="stacks-code ws-nowrap">@modeCustom</code></td>
+                    <td><code>@modeCustom</code></td>
                     <td>
-                        <code class="stacks-code ws-nowrap">base</code> |
-                        <code class="stacks-code ws-nowrap">dark</code>
+                        <code>base</code> |
+                        <code>dark</code>
                     </td>
-                    <td><code class="stacks-code ws-nowrap">base</code></td>
+                    <td><code>base</code></td>
                     <td>The color mode the theme applies to.</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <div class="stacks-preview _preview-none mb24">
+    <div class="docs-preview _preview-none mb24">
         {% header "h4", "Format" %}
 {% highlight css %}
 .theme-custom.themed {
@@ -103,7 +103,7 @@ tags: foundation
 
         {% header "h4", "Example" %}
 
-    <div class="stacks-preview _preview-none mb24">
+    <div class="docs-preview _preview-none mb24">
 {% highlight css %}
 /* Input */
 .theme-custom.themed {
@@ -129,9 +129,9 @@ tags: foundation
     </div>
 
     {% header "h4", "Manual addition of theme variables" %}
-    <p class="stacks-copy">If you need to apply a theme without using the above function, you can do so by manually adding the variables above to your CSS. The most common use for this approach is when the theme needs to change client-side, such as when allowing the user to change and preview a theme dynamically.</p>
+    <p class="docs-copy">If you need to apply a theme without using the above function, you can do so by manually adding the variables above to your CSS. The most common use for this approach is when the theme needs to change client-side, such as when allowing the user to change and preview a theme dynamically.</p>
 
-    <p class="stacks-copy">With this approach, we recommend targeting new h/s/l color variables on a parent element that includes <code class="stacks-code ws-nowrap">.themed</code> class.</p>
+    <p class="docs-copy">With this approach, we recommend targeting new h/s/l color variables on a parent element that includes <code>.themed</code> class.</p>
 
     {% header "h3", "Live playground" %}
     <div class="themed js-custom-theme d-flex fd-column g24">
@@ -151,10 +151,10 @@ tags: foundation
             </div>
         </div>
 
-        <div class="stacks-preview _preview-none mb24">
-            <pre class="s-code-block js-custom-theme-variables" tabindex="0">Loading…</pre>
+        <div class="docs-preview bs-none mb24 overflow-hidden">
+            <pre class="s-code-block bs js-custom-theme-variables" tabindex="0">Loading…</pre>
         
-            <div class="bar-md overflow-hidden bs-md ba baw2 bc-white">
+            <div>
                 {% for set in colors[0].sets %}
                     {% if set.name == "theme primary" %}
                         {% for stop in set.stops %}
@@ -178,9 +178,9 @@ tags: foundation
     </div>
 
     {% header "h3", "Theme variables overrides" %}
-    <p class="stacks-copy">Stacks provides CSS variables for fine grained control of theming. These variables allow you to adjust the theming on specific components and elements, as well as body background and font color.</p>
+    <p class="docs-copy">Stacks provides CSS variables for fine grained control of theming. These variables allow you to adjust the theming on specific components and elements, as well as body background and font color.</p>
 
-    <div class="stacks-preview _preview-none mb24">
+    <div class="docs-preview _preview-none mb24">
 {% highlight css %}
 --theme-background-color
 --theme-body-font-color
@@ -220,29 +220,16 @@ tags: foundation
 --theme-tag-required-hover-background-color
 --theme-tag-required-hover-border-color
 --theme-tag-required-hover-color
---theme-topbar-accent-border
---theme-topbar-background-color
---theme-topbar-bottom-border
 --theme-topbar-height
---theme-topbar-item-background-hover
---theme-topbar-item-color
---theme-topbar-item-color-current
---theme-topbar-item-color-hover
---theme-topbar-search-background
---theme-topbar-search-border
---theme-topbar-search-color
---theme-topbar-search-placeholder
---theme-topbar-select-background
---theme-topbar-select-color
 {% endhighlight %}
     </div>
 </section>
 
 
-<section class="stacks-section">
+<section class="docs-section">
     {% header "h2", "Child theming" %}
-    <p class="stacks-copy">Stacks allows for further theming various portions of a page. You can simply pair the <code class="stacks-code">.themed</code> class with an atomic color stop, and a new theming scope. For this example, we’re using a class name of <code class="stacks-code">.theme-team-[xxx]</code> with a unique ID appended.</p>
-    <div class="stacks-preview">
+    <p class="docs-copy">Stacks allows for further theming various portions of a page. You can simply pair the <code>.themed</code> class with an atomic color stop, and a new theming scope. For this example, we’re using a class name of <code>.theme-team-[xxx]</code> with a unique ID appended.</p>
+    <div class="docs-preview">
 {% highlight html %}
 <div class="bg-theme-primary-740"></div>
 <div class="themed theme-team-001 bg-theme-primary-400"></div>
@@ -321,7 +308,7 @@ tags: foundation
                                         {% endif %}
                                     </div>
                                     <input class="s-input s-input__xs wmx1" aria-label="demo input" placeholder="email" />
-                                    <button class="s-btn s-btn__filled s-btn__sm" type="button">Subscribe</button>
+                                    <button class="s-btn s-btn__sm" type="button">Subscribe</button>
                                     <div>
                                         <div class="s-pagination">
                                             <span class="s-pagination--item is-selected">1</span>
@@ -415,3 +402,4 @@ tags: foundation
 
     customThemeCodeblock.innerText = customThemeStyles();
     customThemeContainer.style = customThemeStyles();
+</script>

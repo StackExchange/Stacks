@@ -1,6 +1,5 @@
 <script lang="ts" module>
-    import { IconWave, IconAlert } from "@stackoverflow/stacks-icons/icons";
-
+    import { IconWave } from "@stackoverflow/stacks-icons-legacy/icons";
     import Toaster, { showToast, hideToast } from "./Toast.svelte";
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import Button from "../Button/Button.svelte";
@@ -15,11 +14,8 @@
     let toastId: string | number = $state("");
 </script>
 
-<header class="s-topbar">
-    <a href="#content" class="s-topbar--skip-link">Skip to main content</a>
-    <div class="s-topbar--container">
-        <Icon src={IconWave} class="mr12" /> Sample Topbar
-    </div>
+<header class="d-flex px16 h48 bb bc-black-225 ps-sticky t0 z-nav">
+    <Icon src={IconWave} class="mr12" /> Sample Topbar
 </header>
 
 <Toaster />
@@ -35,7 +31,9 @@
 </Story>
 
 {#snippet message()}
-    I am a <strong>toast</strong> component with an <em>HTML</em> message
+    <span
+        >I am a <strong>toast</strong> component with an <em>HTML</em> message</span
+    >
 {/snippet}
 <Story name="With HTML Message" asChild>
     <div class="hmn3 d-flex flex__center">
@@ -70,19 +68,6 @@
                 showToast("I am a toast component with the success variant", {
                     variant: "success",
                 })}>Success Toast</Button
-        >
-    </div>
-</Story>
-
-<Story name="With Icon" asChild>
-    <div class="hmn3 d-flex flex__center">
-        <Button
-            onclick={() =>
-                showToast("I am a toast component with the an icon", {
-                    variant: "danger",
-                    icon: IconAlert,
-                    iconTitle: "Alert Icon",
-                })}>Toast with an Icon</Button
         >
     </div>
 </Story>

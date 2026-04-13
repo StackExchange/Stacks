@@ -1,0 +1,66 @@
+{
+  "classes": [
+    {
+      "code": ".s-navigation",
+      "description": "Base parent container for navigation."
+    },
+    {
+      "code": ".s-navigation--item",
+      "parent": ".s-navigation",
+      "description": "The individual item in a navigation"
+    },
+    {
+      "code": ".s-navigation--avatar",
+      "parent": ".s-navigation--item",
+      "description": "Applies styling to the avatar of the navigation item"
+    },
+    {
+      "code": ".s-navigation--icon",
+      "parent": ".s-navigation--item",
+      "description": "Applies styling to the icon of the navigation item"
+    },
+    {
+      "code": ".s-navigation--item-text",
+      "parent": ".s-navigation--item",
+      "description": "The element meant to contain the text of the navigation item"
+    },
+    {
+      "code": ".s-navigation__scroll",
+      "applies": ".s-navigation",
+      "description": "When the navigation items overflow the width of the component, enable horizontal scrolling. By default, navigation items will wrap. This should not be applied to vertical navigations."
+    },
+    {
+      "code": ".s-navigation__sm",
+      "applies": ".s-navigation",
+      "description": "Tightens up the overall spacing and reduces the text size"
+    },
+    {
+      "code": ".s-navigation__vertical",
+      "applies": ".s-navigation",
+      "description": "Renders the navigation vertically."
+    },
+    {
+      "code": ".s-navigation--item__dropdown",
+      "applies": ".s-navigation--item",
+      "description": "Adds a small caret that indicates a dropdown"
+    },
+    {
+      "code": ".is-selected",
+      "applies": ".s-navigation--item",
+      "description": "Applies to a navigation item that’s currently selected / active"
+    }
+  ],
+  "navigation-attributes": [
+    {
+      "title": "Preventing layout shift",
+      "description": "Horizontal layout shift may occur when changing which item is selected within the navigation component. We recommend including the <code>data-text</code> attribute on the child navigation item text element with the value duplicating the text of the item to prevent the layout shift. See below for examples.",
+      "attributes": [
+        {
+          "attribute": "data-text=\"[value]\"",
+          "applies": ".s-navigation--item-text",
+          "description": "Prevents layout shift when changing selected button. Value should be the text of the navigation item."
+        }
+      ]
+    }
+  ]
+}
