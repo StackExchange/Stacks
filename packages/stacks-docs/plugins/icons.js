@@ -1,8 +1,15 @@
-const { Icons, Spots } = require("@stackoverflow/stacks-icons");
+const { Icons: LegacyIcons, Spots: LegacySpots } = require("@stackoverflow/stacks-icons-legacy");
+const { Icons: BetaIcons, Spots: BetaSpots } = require("@stackoverflow/stacks-icons");
 const fs = require("fs/promises");
 
+const Icons = { ...LegacyIcons, ...BetaIcons };
+const Spots = { ...LegacySpots, ...BetaSpots };
+
 function modifySvg(content, type, name, classes, dimension) {
-  var defaultClasses = `svg-${type} ${type}${name}`;
+  // Legacy icons use lowercase class names (iconClear), new icons use capitalized (IconHome)
+  // Try both patterns to support both icon libraries
+  var legacyClasses = `svg-${type} ${type}${name}`;
+  var newClasses = `svg-${type} ${type.charAt(0).toUpperCase() + type.slice(1)}${name}`;
 
   if (!content) {
     return `<span class="fc-danger">Invalid ${type}: ${name}</span>`;
@@ -10,7 +17,13 @@ function modifySvg(content, type, name, classes, dimension) {
 
   // If we have classes, add them
   if (classes != null) {
-    content = content.replace(defaultClasses, defaultClasses + " " + classes);
+    // Try to replace with new class pattern first, then fall back to legacy
+    var updatedContent = content.replace(newClasses, newClasses + " " + classes);
+    if (updatedContent === content) {
+      // If new pattern didn't match, try legacy pattern
+      updatedContent = content.replace(legacyClasses, legacyClasses + " " + classes);
+    }
+    content = updatedContent;
   }
 
   // If we need to change the size, do that too
