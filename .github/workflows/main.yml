@@ -58,8 +58,6 @@ jobs:
     if: github.ref == 'refs/heads/v2' || github.ref == 'refs/heads/main'
     needs: [build-and-test]
     runs-on: ubuntu-latest
-    outputs:
-      published: ${{ steps.changesets.outputs.published }}
     steps:
       - uses: actions/checkout@v5
       - name: Setup Node.js environment
@@ -96,24 +94,6 @@ jobs:
                 This is necessary because the PR is updated by github-actions[bot].
                 This is a technical user which does not trigger actions workflows on push events.
                 See this GH issue for more details: https://github.com/changesets/action/issues/187
-
-  update-docs:
-    name: Update main site stackoverflow.design
-    if: ${{ needs.release.outputs.published == 'true' && github.ref == 'refs/heads/v2' }}
-    needs: [build-and-test, release]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - name: 🔄 Update stackoverflow.design docs
-        run: |
-            git config --global user.name 'github-actions[bot]'
-            git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-            git fetch origin
-            git checkout production
-            git merge --no-ff --allow-unrelated-histories origin/v2 -m "chore: merge v2 into production"
-            git push origin production
-        env:
-            GITHUB_TOKEN: ${{ secrets.STACKS_TOOLING_GH_RW_PAT }}
 
 # cancel the jobs if another workflow is kicked off for the same branch
 concurrency:
