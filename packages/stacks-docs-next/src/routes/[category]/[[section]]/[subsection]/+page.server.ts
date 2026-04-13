@@ -2,9 +2,6 @@ import type { PageServerLoad } from "./$types";
 import { error } from "@sveltejs/kit";
 import type { Component } from "svelte";
 import { render } from "svelte/server";
-import fs from "fs";
-import path from "path";
-
 import TurndownService from "turndown";
 const turndownService = new TurndownService({
     headingStyle: "atx",
@@ -46,11 +43,10 @@ export const load: PageServerLoad = async (event) => {
     );
 
     if (parent.active?.legacy) {
-        const legacyRoot = path.resolve(process.cwd(), "../stacks-docs/_site");
-        const fragmentPath = path.join(legacyRoot, parent.active.legacy, "fragment.html");
-        try {
-            const html = fs.readFileSync(fragmentPath, "utf8")
-                .replace(/="\/assets\//g, '="/legacy-assets/');
+        const response = await event.fetch(`/legacy/fragments/${parent.active.legacy}/fragment.html`);
+        if (response.ok) {
+            const html = (await response.text())
+                .replace(/="\/assets\//g, '="/legacy/assets/');
             return {
                 source: "legacy" as const,
                 filename: null,
@@ -58,8 +54,6 @@ export const load: PageServerLoad = async (event) => {
                 markdown: null,
                 html,
             };
-        } catch {
-            // fragment not found, fall through to 404
         }
     }
 

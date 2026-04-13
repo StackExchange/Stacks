@@ -1,8 +1,8 @@
 import { render } from "svelte/server";
 import htmlToMd from "$src/lib/htmlToMd";
 
-export async function GET() {
-    const baseUrl = "https://alpha.stackoverflow.design/";
+export async function GET(event) {
+    const baseUrl = "https://stackoverflow.design/";
     const mdFiles = import.meta.glob("$docs/public/**/**/*.md");
 
     let groupedDocs = {};
@@ -49,6 +49,19 @@ ${htmlToMd(render(page.default).body)}
 
 `.trimEnd();
         }
+    }
+
+    // Append legacy content from stacks-docs
+    const legacyResponse = await event.fetch("/legacy/llms.txt");
+    if (legacyResponse.ok) {
+        const legacyContent = await legacyResponse.text();
+        // Strip the header lines from the legacy file (lines starting with #)
+        const legacyBody = legacyContent
+            .split("\n")
+            .filter((line) => !line.startsWith("#"))
+            .join("\n")
+            .trimStart();
+        output += "\n\n" + legacyBody;
     }
 
     return new Response(output, {

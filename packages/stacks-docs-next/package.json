@@ -4,7 +4,8 @@
     "type": "module",
     "scripts": {
         "dev": "vite dev",
-        "prebuild": "npm run build -w @stackoverflow/stacks && npm run build -w @stackoverflow/stacks-svelte && npm run build -w @stackoverflow/stacks-docs",
+        "predev": "node scripts/copy-legacy.mjs",
+        "prebuild": "npm run build -w @stackoverflow/stacks && npm run build -w @stackoverflow/stacks-svelte && npm run build -w @stackoverflow/stacks-docs && node scripts/copy-legacy.mjs",
         "build": "bash netlify-setup.sh && npm run init-private-content && vite build",
         "preview": "vite preview",
         "prepare": "svelte-kit sync || echo ''",

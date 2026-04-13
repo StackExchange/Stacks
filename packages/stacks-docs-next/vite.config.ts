@@ -17,24 +17,6 @@ export default defineConfig({
                 });
             },
         },
-        {
-            name: "copy-legacy-js",
-            buildStart() {
-                const src = "../stacks-docs/assets/dist/docs.js";
-                if (fs.existsSync(src)) {
-                    fs.copyFileSync(src, "static/legacy-docs.js");
-                }
-            },
-        },
-        {
-            name: "copy-legacy-assets",
-            buildStart() {
-                const src = "../stacks-docs/_site/assets";
-                if (fs.existsSync(src)) {
-                    fs.cpSync(src, "static/legacy-assets", { recursive: true });
-                }
-            },
-        },
     ],
     define: {
         __APP_VERSION__: JSON.stringify(pkgMain.version),

@@ -33,7 +33,7 @@
   <title>{pageTitle}</title>
   <meta name="description" content={pageDescription} />
   {#if data.source === 'legacy'}
-    <script src="/legacy-docs.js"></script>
+    <script src="/legacy/docs.js"></script>
   {/if}
 </svelte:head>
 
