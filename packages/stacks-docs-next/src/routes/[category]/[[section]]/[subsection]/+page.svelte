@@ -45,7 +45,7 @@
 
 <article class="d-flex md:fd-column mx-auto pl32 md:pr32 sm:pl24 sm:pr24">
   <div class="doc flex--item9 wmn1 s-prose fs-body2 pt24">
-    <div class="d-flex gs4 ai-center mb128">
+    <div class="d-flex gs4 ai-center {data?.active?.image ? 'mb128' : 'mb24'}">
       <nav class="flex--item fs-body2 mr-auto" aria-label="breadcrumb">
         {#each data.breadcrumb as crumb, index (crumb.path)}
           <a href={resolve(crumb.path)} class="pr6 s-link">{crumb.label}</a>{#if index !== data.breadcrumb.length - 1}<span class="fc-black-300 mr6">/</span>{/if}
