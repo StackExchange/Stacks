@@ -10,6 +10,65 @@ const turndownService = new TurndownService({
 
 const mdFiles = import.meta.glob("$docs/**/*.md");
 
+type LegacyMetadata = {
+    description?: string;
+    svelte?: string;
+    figma?: string;
+};
+
+/**
+ * Extracts description and action links from the legacy fragment's page-header
+ * div (`d-flex ai-start jc-space-between`) and returns both the extracted
+ * metadata and the fragment HTML with that header div removed.
+ *
+ * Legacy fragments were built against the old docs template which rendered its
+ * own page header. The new template provides the header, so the fragment's
+ * header section would otherwise duplicate the description and action buttons.
+ */
+function extractLegacyHeader(html: string): LegacyMetadata & { strippedHtml: string } {
+    const HEADER_OPEN = '<div class="d-flex ai-start jc-space-between">';
+    const headerStart = html.indexOf(HEADER_OPEN);
+    if (headerStart === -1) return { strippedHtml: html };
+
+    // Find the matching closing </div> by tracking nesting depth.
+    let depth = 0;
+    let i = headerStart;
+    let headerEnd = -1;
+
+    while (i < html.length) {
+        if (html.slice(i, i + 4) === "<div") {
+            depth++;
+        } else if (html.slice(i, i + 6) === "</div>") {
+            depth--;
+            if (depth === 0) {
+                headerEnd = i + 6;
+                break;
+            }
+        }
+        i++;
+    }
+
+    if (headerEnd === -1) return { strippedHtml: html };
+
+    const headerHtml = html.slice(headerStart, headerEnd);
+
+    const descMatch = headerHtml.match(/<p[^>]*docs-copy[^>]*>([\s\S]*?)<\/p>/);
+    const description = descMatch ? descMatch[1].trim() : undefined;
+
+    const svelteMatch = headerHtml.match(/href="([^"]*svelte\.stackoverflow\.design[^"]*)"/i);
+    const svelte = svelteMatch ? svelteMatch[1] : undefined;
+
+    const figmaMatch = headerHtml.match(/href="([^"]*figma\.com[^"]*)"/i);
+    const figma = figmaMatch ? figmaMatch[1] : undefined;
+
+    return {
+        description,
+        svelte,
+        figma,
+        strippedHtml: html.slice(0, headerStart) + html.slice(headerEnd),
+    };
+}
+
 export const load: PageServerLoad = async (event) => {
     // SECURITY: Check auth first - don't load any content if unauthorized
     const parent = await event.parent();
@@ -45,14 +104,17 @@ export const load: PageServerLoad = async (event) => {
     if (parent.active?.legacy) {
         const response = await event.fetch(`/legacy/fragments/${parent.active.legacy}/fragment.html`);
         if (response.ok) {
-            const html = (await response.text())
+            const rawHtml = (await response.text())
                 .replace(/="\/assets\//g, '="/legacy/assets/');
+            const { description, svelte, figma, strippedHtml } = extractLegacyHeader(rawHtml);
             return {
                 source: "legacy" as const,
                 filename: null,
-                metadata: null,
+                metadata: (description || svelte || figma)
+                    ? { description, svelte, figma }
+                    : null,
                 markdown: null,
-                html,
+                html: strippedHtml,
             };
         }
     }
