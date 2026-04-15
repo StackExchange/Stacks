@@ -12,9 +12,9 @@
         { value: 's-banner__activity', label: 'Activity' },
     ] as const;
 
-    let selectedVariant = $state('s-banner__info');
-    let important = $state(false);
-    let pinned = $state(false);
+    let selectedVariant = $state('s-banner__warning');
+    let important = $state(true);
+    let pinned = $state(true);
     let visible = $state(false);
 
     const bannerClass = $derived(
