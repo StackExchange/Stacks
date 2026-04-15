@@ -48,7 +48,7 @@
           {#if index !== 0}<span class="fc-black-300">/</span>{/if}
           <a href={resolve(crumb.path)} class="s-link">{crumb.label}</a>
         {/each}
-        <Button title="Copy link to this page" link icon onclick={copyPageUrl}>
+        <Button title="Copy link to this page" link icon class="d-inline-flex" onclick={copyPageUrl}>
           {#if copied}
             <Icon src={IconCheckFillCircle} class="fc-green-400 w16 h16" />
           {:else}
