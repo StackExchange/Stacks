@@ -35,7 +35,7 @@
     </aside>
 {/if}
 
-<div class="ba bc-black-225 bar-sm p16 bg-black-100 d-flex ai-center g16 fw-wrap">
+<div class="ba bc-black-225 bar-sm p16 d-flex ai-center g16 fw-wrap">
     <label class="d-flex ai-center g8 fs-body2">
         Style
         <select class="s-select" bind:value={selectedVariant}>
