@@ -37,7 +37,7 @@
 </svelte:head>
 
 <div class="page p32 sm:p24">
-  <div class="d-flex gs4 ai-center">
+  <div class="d-flex g4 ai-center">
     <span class="s-badge fc-purple-500 bg-purple-100">v{__APP_VERSION__}</span>
     <a href="https://beta.svelte.stackoverflow.design/" class="s-badge">
       <Icon src={IconServiceSvelte} class="native" />

@@ -42,7 +42,7 @@
 
 <article class="d-flex md:fd-column mx-auto w100 pl32 md:pr32 sm:pl24 sm:pr24">
   <div class="doc fl-grow1 wmn0 wmx9 s-prose fs-body2 pt24">
-    <div class="d-flex gs4 ai-center mb128">
+    <div class="d-flex g4 ai-center mb128">
       <nav class="d-flex ai-center g6 fs-body2 mr-auto" aria-label="breadcrumb">
         {#each data.breadcrumb as crumb, index (crumb.path)}
           {#if index !== 0}<span class="fc-black-300">/</span>{/if}
@@ -93,7 +93,7 @@
       </h1>
 
       {#if data?.metadata?.description}
-        <p class="fc-dark fs-body3 mtn16 wmx5">
+        <p class="fc-dark fs-body3 mtn16">
           <!-- eslint-disable-next-line svelte/no-at-html-tags -->
           {@html data.metadata.description}
         </p>
