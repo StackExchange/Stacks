@@ -1,7 +1,7 @@
 ---
 title: Buttons
 svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-button--docs
-figma: https://svelte.stackoverflow.design/figma/buttons
+figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=610-18802"
 description: Buttons are user interface elements which allows users to take actions throughout the project. It is important that they have ample click space and help communicate the importance of their actions.
 updated: 2025-12-09
 ---
@@ -24,7 +24,33 @@ updated: 2025-12-09
   import BadgeButtonTable from './BadgeButtonTable.svelte';
   import SizeTable from './SizeTable.svelte';
   import ToggleButtonDemo from './ToggleButtonDemo.svelte';
+  import ClassTable from '$components/ClassTable.svelte';
+  import { Notice } from '@stackoverflow/stacks-svelte';
+  import type { ClassTableRow } from '$components/ClassTable.svelte';
+
+  const classes: ClassTableRow[] = [
+    { class: '.s-btn',           modifies: 'N/A',      description: 'Base button element.' },
+    { class: '.s-btn--badge',    modifies: '.s-btn',   description: 'Badge container for the button.' },
+    { class: '.s-btn__clear',    modifies: '.s-btn',   description: 'Clear button variant.' },
+    { class: '.s-btn__danger',   modifies: '.s-btn',   description: 'Danger button variant.' },
+    { class: '.s-btn__featured', modifies: '.s-btn',   description: 'Featured button variant.' },
+    { class: '.s-btn__tonal',    modifies: '.s-btn',   description: 'Tonal button variant.' },
+    { class: '.s-btn__dropdown', modifies: '.s-btn',   description: 'Dropdown button variant.' },
+    { class: '.s-btn__icon',     modifies: '.s-btn',   description: 'Icon button variant.' },
+    { class: '.s-btn__link',     modifies: '.s-btn',   description: 'Link button variant.' },
+    { class: '.s-btn__unset',    modifies: '.s-btn',   description: 'Unset button variant.' },
+    { class: '.s-btn__facebook', modifies: '.s-btn',   description: 'Facebook button variant.' },
+    { class: '.s-btn__github',   modifies: '.s-btn',   description: 'GitHub button variant.' },
+    { class: '.s-btn__google',   modifies: '.s-btn',   description: 'Google button variant.' },
+    { class: '.s-btn__xs',       modifies: '.s-btn',   description: 'Extra small button variant.' },
+    { class: '.s-btn__sm',       modifies: '.s-btn',   description: 'Small button variant.' },
+    { class: '.s-btn__lg',       modifies: '.s-btn',   description: 'Large button variant.' },
+  ];
 </script>
+
+## Classes
+
+<ClassTable {classes} expandable />
 
 ## Styles
 
@@ -129,6 +155,10 @@ Adding an `.s-btn--badge` to any button will add an appropriately-styled badge.
 ## Sizes
 
 A button's default font-size is determined by the `@body-fs` variable. To change the button's font-size, use the following classes with `.s-btn`:
+
+<Notice variant="warning" role="note">
+    <strong>Note:</strong> Avoid using icons within the extra small button size. This variant is designed for tight spaces, and standard icons are too large to fit without breaking the button's height and layout.
+</Notice>
 
 <SizeTable sizes={ButtonSizes} />
 
