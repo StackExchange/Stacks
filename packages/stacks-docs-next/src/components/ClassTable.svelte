@@ -13,11 +13,18 @@
         responsive?: boolean;
     };
 
+    const COLLAPSE_THRESHOLD = 8;
+
     interface Props {
         classes: ClassTableRow[];
     }
 
     let { classes }: Props = $props();
+
+    let showAll = $state(false);
+
+    const collapsible = $derived(classes.length > COLLAPSE_THRESHOLD);
+    const visibleClasses = $derived(collapsible && !showAll ? classes.slice(0, COLLAPSE_THRESHOLD) : classes);
 
     type ColKey = keyof Omit<ClassTableRow, 'class'>;
 
@@ -37,7 +44,7 @@
 </script>
 
 <!-- role="region" + aria-label satisfies the a11y requirement for tabindex on a non-interactive element -->
-<div class="overflow-x-auto mb32" role="region" aria-label="Class table" tabindex="0">
+<div class="overflow-x-auto" role="region" aria-label="Class table" tabindex="0">
     <table class="s-table s-table__bx-simple">
         <thead>
             <tr>
@@ -48,7 +55,7 @@
             </tr>
         </thead>
         <tbody class="fs-caption">
-            {#each classes as row}
+            {#each visibleClasses as row}
                 <tr>
                     <th scope="row"><code>{row.class}</code></th>
                     {#each activeCols as col}
@@ -65,3 +72,16 @@
         </tbody>
     </table>
 </div>
+
+{#if collapsible}
+    <button
+        type="button"
+        class="s-btn s-btn__tonal s-btn__sm w100 mt2 mb32"
+        aria-expanded={showAll}
+        onclick={() => showAll = !showAll}
+    >
+        {showAll ? 'Hide classes' : `Show all ${classes.length} classes`}
+    </button>
+{:else}
+    <div class="mb32"></div>
+{/if}
