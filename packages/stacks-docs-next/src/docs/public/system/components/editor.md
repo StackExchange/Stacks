@@ -7,6 +7,7 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
 <script lang="ts">
     import Example from '$components/Example.svelte';
     import StacksEditorDemo from '$components/StacksEditorDemo.svelte';
+    import { editorExampleContent } from './editor-example-content';
 </script>
 
 Because of its size, the Stacks editor is bundled independently of Stacks. You can install it a few ways:
@@ -90,7 +91,7 @@ There are several options you can pass to the Stacks Editor.
 
 <Example>
     <StacksEditorDemo
-        content="# Hello World\n\nThis is a *markdown* editor with **tables** enabled.\n\n| Column 1 | Column 2 |\n|---|---|\n| Cell 1 | Cell 2 |"
+        content={editorExampleContent}
         options={{ parserFeatures: { tables: true } }}
     />
 </Example>
