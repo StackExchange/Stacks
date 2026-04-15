@@ -1,13 +1,14 @@
 <script lang="ts">
-  import { IconServiceGitHub, IconServiceFigma, IconServiceSvelte, IconCheckFillCircle, IconStackCards } from '@stackoverflow/stacks-icons/icons';
+  import { IconServiceGitHub, IconServiceFigma, IconServiceSvelte, IconCheckFillCircle, IconLink } from '@stackoverflow/stacks-icons/icons';
   import { Icon, Button } from '@stackoverflow/stacks-svelte';
   import { resolve } from '$app/paths';
+  import { page } from '$app/state';
 
   import { copyToClipboard } from '$src/lib/copyToClipboard';
   import Contents from '$components/Contents.svelte';
 
   let { data } = $props();
-  let copiedMd = $state(false);
+  let copied = $state(false);
   
   const toc = $derived(data?.metadata?.toc || []);
 
@@ -21,11 +22,8 @@
   const pageDescription = $derived(data?.metadata?.description || `Documentation for ${data.active.title} in the Stack Overflow Design System`);
   
   function copySuccess() {
-    copiedMd = true
-   
-    setTimeout(() => {
-      copiedMd = false;
-    }, 2000);
+    copied = true;
+    setTimeout(() => { copied = false; }, 2000);
   }
 </script>
 
@@ -50,17 +48,14 @@
         {#each data.breadcrumb as crumb, index (crumb.path)}
           <a href={resolve(crumb.path)} class="pr6 s-link">{crumb.label}</a>{#if index !== data.breadcrumb.length - 1}<span class="fc-black-300 mr6">/</span>{/if}
         {/each}
+        <button type="button" title="Copy link to this page" class="s-btn s-btn__xs s-btn__clear s-btn__icon ml4" use:copyToClipboard={page.url.href}>
+          {#if copied}
+            <Icon src={IconCheckFillCircle} class="fc-green-400" />
+          {:else}
+            <Icon src={IconLink} />
+          {/if}
+        </button>
       </nav>
-
-      <button type="button" title="Copy to Markdown" class="s-btn s-btn__sm s-btn__clear s-btn__icon" use:copyToClipboard={data.markdown}>
-        {#if copiedMd}
-          <Icon src={IconCheckFillCircle} class="fc-green-400" />
-          <span class="sm:d-none">Copied!</span>
-        {:else}
-          <Icon src={IconStackCards} />
-          <span class="sm:d-none">Copy</span>
-        {/if}
-      </button>
 
       {#if data.filename}
         <Button title="Edit on GitHub" size="sm" weight="clear" href={`https://github.com/StackExchange/Stacks/edit/main/packages/stacks-docs-next${data.filename}`} class="flex--item">
