@@ -1,7 +1,5 @@
 <script lang="ts">
   import { SvelteMap } from 'svelte/reactivity';
-  import { Icon } from '@stackoverflow/stacks-svelte';
-  import { IconChevron16Down, IconChevron16Up } from '@stackoverflow/stacks-icons'
 
   interface TocItem {
     id: string;
@@ -17,8 +15,6 @@
   let indicatorHeight = $state(0);
   let navElement: HTMLElement | null = null;
   let linkElements: Map<string, HTMLElement> = new SvelteMap();
-  let isOpen = $state(false);
-
   // Flatten toc to get all items including children
   function flattenToc(items: TocItem[]): TocItem[] {
     const result: TocItem[] = [];
@@ -131,19 +127,11 @@
   }
 </script>
 
-<aside class="flex--item3 md:order-first ml32 md:ml0">
+<aside class="flex--item3 md:d-none ml32">
   {#if toc.length > 0}
     <div class="ps-sticky t0 py24 mt6 pr24 md:pb0 overflow-auto hmx-screen md:hmx-initial">
-      <button
-        class="d-none md:d-block s-btn s-btn__tonal s-btn__icon w100 mb12 d-flex jc-space-between"
-        onclick={() => isOpen = !isOpen}
-      >
-        <Icon src={isOpen ? IconChevron16Up : IconChevron16Down} />
-        Contents
-      </button>
-
-      <nav bind:this={navElement} class={`ps-relative d-block ${!isOpen ? 'd-block md:d-none' : ''}`}>
-        <h2 class="fs-body2 fw-bold mb12 px6 fc-black-400 d-block sm:d-none">Contents</h2>
+      <nav bind:this={navElement} class="ps-relative">
+        <h2 class="fs-body2 fw-bold mb12 px6 fc-black-400">Contents</h2>
 
         <div
           class="contents-indicator ps-absolute l0 r0 z-base pe-none"
@@ -158,7 +146,6 @@
                 use:registerLink={item.id}
                 class="s-navigation--item fs-caption bar0 ps-relative fw-bold fc-black ai-start"
                 class:is-active={activeId === item.id}
-                onclick={() => isOpen = false}
               >
                 <span class="fl-shrink0 w24 d-flex ai-center fc-orange-400">{(index + 1).toString().padStart(2, "0")}</span>
                 <span>{item.value}</span>
@@ -172,7 +159,6 @@
                         use:registerLink={child.id}
                         class="s-navigation--item fs-caption bar0 ps-relative"
                         class:is-active={activeId === child.id}
-                        onclick={() => isOpen = false}
                       >
                         {child.value}
                       </a>
