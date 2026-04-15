@@ -1,4 +1,7 @@
 <script lang="ts">
+    import { Icon } from '@stackoverflow/stacks-svelte';
+    import { IconAlert, IconCross } from '@stackoverflow/stacks-icons/icons';
+
     const variants = [
         { value: '',                   label: 'Base' },
         { value: 's-banner__info',     label: 'Info' },
@@ -22,17 +25,12 @@
 
 {#if visible}
     <aside class={bannerClass} role="alert" aria-hidden="false">
-        <div class="d-flex g8 ai-center jc-space-between">
-            <p class="m0"><strong>Example banner</strong> — this is a system banner message.</p>
-            <div class="s-banner--actions">
-                <button
-                    type="button"
-                    class="s-banner--dismiss s-btn s-btn__muted"
-                    onclick={() => visible = false}
-                >
-                    Dismiss
-                </button>
-            </div>
+        <span class="s-banner--icon"><Icon src={IconAlert} /></span>
+        <span><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</span>
+        <div class="s-banner--actions">
+            <button type="button" class="s-link s-banner--dismiss" onclick={() => visible = false}>
+                <Icon src={IconCross} />
+            </button>
         </div>
     </aside>
 {/if}
