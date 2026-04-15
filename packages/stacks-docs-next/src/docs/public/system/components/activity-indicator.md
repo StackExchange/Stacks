@@ -58,37 +58,49 @@ By default, our indicator has no positioning attached to it. Depending on your c
 </div>
 
 <div class="s-activity-indicator">
-    3
-    <div class="v-visible-sr">New activity</div>
+    …
+    <div class="v-visible-sr">…</div>
 </div>
 
-<!-- On an avatar -->
+<div class="s-activity-indicator">
+    …
+    <div class="v-visible-sr">…</div>
+</div>
+
+<div class="s-activity-indicator">
+    …
+    <div class="v-visible-sr">…</div>
+</div>
+
+<div class="s-activity-indicator">
+    …
+</div>
+
 <a href="#" class="s-link s-link__muted">
     <div class="s-avatar bg-red-400 ps-relative">
         <div class="s-avatar--indicator s-activity-indicator s-activity-indicator__sm">
-            <div class="v-visible-sr">New activity</div>
+            <div class="v-visible-sr">…</div>
         </div>
-        <div class="s-avatar--letter">G</div>
-        <!-- TODO: add badge icon once IconShieldXSm is in @stackoverflow/stacks-icons -->
+        <div class="s-avatar--letter">…</div>
+        @Svg.ShieldXSm.With("native s-avatar--badge")
     </div>
-    <span class="pl4">Grayson</span>
+    <span class="pl4">…</span>
 </a>
 
-<!-- On a notification icon -->
 <div class="ps-relative">
-    <!-- notification icon -->
+    @Svg.Notification
+
     <div class="s-activity-indicator s-activity-indicator__sm ps-absolute tn4 rn4 ba baw2 bc-white box-content">
-        <div class="v-visible-sr">New activity</div>
+        <div class="v-visible-sr">…</div>
     </div>
 </div>
 
-<!-- On a notification icon with a count -->
 <div class="ps-relative">
-    <!-- notification icon -->
+    @Svg.Notification
+
     <div class="ps-absolute ba baw2 bc-white bar-pill lh-xs tn8 rn8">
         <div class="s-activity-indicator">
-            3
-            <div class="v-visible-sr">New activity</div>
+            3 <div class="v-visible-sr">…</div>
         </div>
     </div>
 </div>
