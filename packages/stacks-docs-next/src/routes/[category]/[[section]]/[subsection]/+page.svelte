@@ -1,6 +1,6 @@
 <script lang="ts">
   import { IconServiceGitHub, IconServiceFigma, IconServiceSvelte, IconCheckFillCircle, IconLink } from '@stackoverflow/stacks-icons/icons';
-  import { Icon, Button } from '@stackoverflow/stacks-svelte';
+  import { Icon, Button, Link } from '@stackoverflow/stacks-svelte';
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
 
@@ -59,24 +59,24 @@
 
       <div class="d-flex ai-center g16 fs-caption">
         {#if data.filename}
-          <Button title="Edit on GitHub" link icon href={`https://github.com/StackExchange/Stacks/edit/main/packages/stacks-docs-next${data.filename}`}>
+          <Link title="Edit on GitHub" href={`https://github.com/StackExchange/Stacks/edit/main/packages/stacks-docs-next${data.filename}`}>
             <Icon src={IconServiceGitHub} />
             <span class="sm:d-none">Edit</span>
-          </Button>
+          </Link>
         {/if}
 
         {#if data?.metadata?.figma}
-          <Button title="Open in Figma" link icon href={data?.metadata?.figma}>
+          <Link title="Open in Figma" href={data?.metadata?.figma}>
             <Icon src={IconServiceFigma} class="native" />
             <span class="sm:d-none">Figma</span>
-          </Button>
+          </Link>
         {/if}
 
         {#if data?.metadata?.svelte}
-          <Button title="Svelte component docs" link icon href={data?.metadata?.svelte}>
+          <Link title="Svelte component docs" href={data?.metadata?.svelte}>
             <Icon src={IconServiceSvelte} class="native" />
             <span class="sm:d-none">Svelte</span>
-          </Button>
+          </Link>
         {/if}
       </div>
     </div>  
