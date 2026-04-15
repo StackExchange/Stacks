@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Icon } from '@stackoverflow/stacks-svelte';
+    import { Icon, Select, SelectItem, Checkbox } from '@stackoverflow/stacks-svelte';
     import { IconAlert, IconCross } from '@stackoverflow/stacks-icons/icons';
 
     const variants = [
@@ -36,24 +36,15 @@
 {/if}
 
 <div class="ba bc-black-225 bar-sm p16 bg-black-100 d-flex ai-center g16 fw-wrap">
-    <label class="d-flex ai-center g8 fs-body2">
-        Style
-        <select class="s-select" bind:value={selectedVariant}>
-            {#each variants as v}
-                <option value={v.value}>{v.label}</option>
-            {/each}
-        </select>
-    </label>
+    <Select id="banner-style" label="Style" bind:selected={selectedVariant} labelPlacement="left">
+        {#each variants as v}
+            <SelectItem value={v.value} text={v.label} />
+        {/each}
+    </Select>
 
-    <label class="d-flex ai-center g6 fs-body2 c-pointer">
-        <input type="checkbox" class="s-checkbox" bind:checked={important} />
-        Important?
-    </label>
+    <Checkbox id="banner-important" name="banner-important" label="Important?" bind:checked={important} />
 
-    <label class="d-flex ai-center g6 fs-body2 c-pointer">
-        <input type="checkbox" class="s-checkbox" bind:checked={pinned} />
-        Pinned?
-    </label>
+    <Checkbox id="banner-pinned" name="banner-pinned" label="Pinned?" bind:checked={pinned} />
 
     <button
         type="button"
