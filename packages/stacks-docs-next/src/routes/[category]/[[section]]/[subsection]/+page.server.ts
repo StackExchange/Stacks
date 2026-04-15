@@ -64,7 +64,9 @@ function extractLegacyHeader(html: string): LegacyMetadata & { strippedHtml: str
     while ((badgeMatch = badgeRe.exec(headerHtml)) !== null) {
         const [, url, content] = badgeMatch;
         if (/<\/svg>\s*Svelte/i.test(content)) svelte = url;
-        else if (/<\/svg>\s*Figma/i.test(content)) figma = url;
+        // Only accept proper figma.com URLs; legacy fragments have some badges
+        // using svelte.stackoverflow.design/figma/* aliases instead.
+        else if (/<\/svg>\s*Figma/i.test(content) && url.includes("figma.com")) figma = url;
     }
 
     return {
