@@ -109,6 +109,8 @@ In this case, you can add the `s-anchors` class together with one of the modifie
     </div>
 </Example>
 
+<!-- TODO: .s-anchors classes need to be fixed to apply the appropriate styles when within an .s-prose container -->
+
 One additional level of nesting is supported, but even that should be exceedingly rare. More than that is not supported.
 
 ```html
