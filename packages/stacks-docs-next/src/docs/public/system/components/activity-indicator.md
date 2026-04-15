@@ -7,7 +7,7 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
 
 <script lang="ts">
     import { ActivityIndicator, Icon } from '@stackoverflow/stacks-svelte';
-    import { IconNotification, IconShieldXSm } from '@stackoverflow/stacks-icons/icons';
+    import { IconNotification } from '@stackoverflow/stacks-icons/icons';
     import ClassTable from '$components/ClassTable.svelte';
     import type { ClassTableRow } from '$components/ClassTable.svelte';
 
@@ -103,7 +103,6 @@ By default, the indicator has no positioning applied — use [atomic positioning
         <div class="s-avatar bg-red-400 d:bg-red-200 ps-relative">
             <ActivityIndicator label="New activity" size="sm" class="s-avatar--indicator" />
             <div class="s-avatar--letter">G</div>
-            <Icon src={IconShieldXSm} class="native s-avatar--badge" />
         </div>
         <span class="pl4">Grayson</span>
     </a>
