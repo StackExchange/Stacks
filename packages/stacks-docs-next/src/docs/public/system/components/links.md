@@ -89,22 +89,22 @@ In this case, you can add the `s-anchors` class together with one of the modifie
 ```
 
 <Example>
-    <div class="s-anchors s-anchors__default docs-card mb8">
+    <div class="s-anchors s-card mb8">
         There is a <a href="#">default link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="https://stackoverflow.com">another one</a>.
     </div>
-    <div class="s-anchors s-anchors__grayscale docs-card mb8 fc-orange-500">
+    <div class="s-anchors s-anchors__grayscale s-card mb8 fc-orange-500">
         There is a <a href="#">grayscale link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="https://stackoverflow.com">another one</a>.
     </div>
-    <div class="s-anchors s-anchors__muted docs-card mb8">
+    <div class="s-anchors s-anchors__muted s-card mb8">
         There is a <a href="#">muted link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="https://stackoverflow.com">another one</a>.
     </div>
-    <div class="s-anchors s-anchors__danger docs-card mb8">
+    <div class="s-anchors s-anchors__danger s-card mb8">
         There is a <a href="#">danger link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="https://stackoverflow.com">another one</a>.
     </div>
-    <div class="s-anchors s-anchors__underlined docs-card mb8">
+    <div class="s-anchors s-anchors__underlined s-card mb8">
         There is a <a href="#">underlined link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="https://stackoverflow.com">another one</a>.
     </div>
-    <div class="s-anchors s-anchors__inherit docs-card mb8 fc-green-400">
+    <div class="s-anchors s-anchors__inherit s-card mb8 fc-green-400">
         There is a <a href="#">inherit link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="https://stackoverflow.com">another one</a>.
     </div>
 </Example>
