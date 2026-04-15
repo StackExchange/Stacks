@@ -14,10 +14,10 @@
     };
 
     interface Props {
-        rows: ClassTableRow[];
+        classes: ClassTableRow[];
     }
 
-    let { rows }: Props = $props();
+    let { classes }: Props = $props();
 
     type ColKey = keyof Omit<ClassTableRow, 'class'>;
 
@@ -32,11 +32,12 @@
     // Show columns in a fixed order, but only those with at least one value.
     const orderedCols: ColKey[] = ['modifies', 'output', 'description', 'define', 'responsive'];
     const activeCols = $derived(
-        orderedCols.filter(col => rows.some(r => r[col] !== undefined))
+        orderedCols.filter(col => classes.some(r => r[col] !== undefined))
     );
 </script>
 
-<div class="overflow-x-auto mb32" tabindex="0">
+<!-- role="region" + aria-label satisfies the a11y requirement for tabindex on a non-interactive element -->
+<div class="overflow-x-auto mb32" role="region" aria-label="Class table" tabindex="0">
     <table class="s-table s-table__bx-simple">
         <thead>
             <tr>
@@ -47,7 +48,7 @@
             </tr>
         </thead>
         <tbody class="fs-caption">
-            {#each rows as row}
+            {#each classes as row}
                 <tr>
                     <th scope="row"><code>{row.class}</code></th>
                     {#each activeCols as col}
