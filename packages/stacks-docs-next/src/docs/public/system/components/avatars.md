@@ -69,8 +69,7 @@ Including an image with the class `s-avatar--image` within `s-avatar` will apply
 ```
 
 <Example>
-    <div class="overflow-x-auto">
-        <table class="s-table s-table__b0 s-table__sm">
+    <table class="s-table s-table__b0 s-table__sm">
             <thead>
                 <tr>
                     <th scope="col">Size</th>
@@ -94,8 +93,7 @@ Including an image with the class `s-avatar--image` within `s-avatar` will apply
                     </tr>
                 {/each}
             </tbody>
-        </table>
-    </div>
+    </table>
 </Example>
 
 ### Activity
@@ -119,8 +117,7 @@ Avatars can display activity indicators to show activities or status changes. Ad
 ```
 
 <Example>
-    <div class="overflow-x-auto">
-        <table class="s-table s-table__b0 s-table__sm">
+    <table class="s-table s-table__b0 s-table__sm">
             <thead>
                 <tr>
                     <th scope="col">Size</th>
@@ -145,8 +142,7 @@ Avatars can display activity indicators to show activities or status changes. Ad
                     </tr>
                 {/each}
             </tbody>
-        </table>
-    </div>
+    </table>
 </Example>
 
 ### Stack Internal
@@ -202,8 +198,7 @@ In this example, from left to right, we have a team name of Hum with no avatar o
 ```
 
 <Example>
-    <div class="overflow-x-auto">
-        <table class="s-table s-table__b0 s-table__sm">
+    <table class="s-table s-table__b0 s-table__sm">
             <thead>
                 <tr>
                     <th scope="col">Size</th>
@@ -230,6 +225,5 @@ In this example, from left to right, we have a team name of Hum with no avatar o
                     </tr>
                 {/each}
             </tbody>
-        </table>
-    </div>
+    </table>
 </Example>
