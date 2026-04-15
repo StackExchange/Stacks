@@ -68,43 +68,40 @@
   $effect(() => {
     if (typeof window === 'undefined' || allItems.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Find the first intersecting heading
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-            if (activeId !== id) {
-              activeId = id;
-              updateIndicatorPosition(id);
-            }
-            break;
-          }
+    // The active item is the last heading that has scrolled past the
+    // top threshold — this is more accurate than IntersectionObserver
+    // which can fire too early when a heading enters the viewport.
+    const OFFSET = 120; // px from the top of the viewport
+
+    function updateActive() {
+      let found: string | null = null;
+
+      for (const item of allItems) {
+        const el = document.getElementById(item.id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= OFFSET) {
+          found = item.id;
+        } else {
+          break; // headings are in DOM order — stop once we pass the threshold
         }
-      },
-      {
-        rootMargin: '-100px 0px -66% 0px',
-        threshold: 0.5
       }
-    );
 
-    // Wait for DOM to be ready
+      const next = found ?? (allItems.length > 0 ? allItems[0].id : null);
+      if (next && next !== activeId) {
+        activeId = next;
+        updateIndicatorPosition(next);
+      }
+    }
+
+    // Wait for DOM to be ready then attach scroll listener
     const timeoutId = setTimeout(() => {
-      allItems.forEach(item => {
-        const element = document.getElementById(item.id);
-        if (element) observer.observe(element);
-      });
-
-      // Set initial active
-      if (allItems.length > 0 && !activeId) {
-        activeId = allItems[0].id;
-        updateIndicatorPosition(allItems[0].id);
-      }
+      updateActive();
+      window.addEventListener('scroll', updateActive, { passive: true });
     }, 50);
 
     return () => {
       clearTimeout(timeoutId);
-      observer.disconnect();
+      window.removeEventListener('scroll', updateActive);
     };
   });
 
