@@ -25,6 +25,7 @@ updated: 2025-12-09
   import SizeTable from './SizeTable.svelte';
   import ToggleButtonDemo from './ToggleButtonDemo.svelte';
   import ClassTable from '$components/ClassTable.svelte';
+  import Example from '$components/Example.svelte';
   import { Notice } from '@stackoverflow/stacks-svelte';
   import type { ClassTableRow } from '$components/ClassTable.svelte';
 
@@ -72,7 +73,9 @@ Base buttons can gain clear styling with the `.s-btn__clear` class.
 <button class="s-btn s-btn__clear" type="button">…</button>
 ```
 
-<ButtonTable />
+<Example>
+    <ButtonTable />
+</Example>
 
 ### Danger
 
@@ -83,7 +86,9 @@ Danger buttons are a secondary button style, used to visually communicate destru
 <button class="s-btn s-btn__danger s-btn__clear" type="button">…</button>
 ```
 
-<ButtonTable variant="danger" />
+<Example>
+    <ButtonTable variant="danger" />
+</Example>
 
 ### Featured
 
@@ -94,7 +99,9 @@ Featured buttons are a secondary button style, used to visually draw attention t
 <button class="s-btn s-btn__featured s-btn__clear" type="button">…</button>
 ```
 
-<ButtonTable variant="featured" />
+<Example>
+    <ButtonTable variant="featured" />
+</Example>
 
 ### Tonal
 
@@ -105,7 +112,9 @@ Tonal buttons are a secondary button style, a grayscale visual treatment. Used i
 <button class="s-btn s-btn__clear s-btn__tonal" type="button">…</button>
 ```
 
-<ButtonTable variant="tonal" />
+<Example>
+    <ButtonTable variant="tonal" />
+</Example>
 
 ## Anchors
 
@@ -115,7 +124,9 @@ Anchors can be rendered with the `.s-btn` to adopt a button-like visual style fo
 <a href="#" class="s-btn">Ask question</a>
 ```
 
-<AnchorButtonTable variants={ButtonVariants} weights={ButtonWeights} />
+<Example>
+    <AnchorButtonTable variants={ButtonVariants} weights={ButtonWeights} />
+</Example>
 
 ## Loading
 
@@ -125,7 +136,9 @@ Any button can have a loading state applied by adding the `.is-loading` state cl
 <button class="s-btn is-loading" type="button">…</button>
 ```
 
-<LoadingButtonTable variants={ButtonVariants} weights={ButtonWeights} />
+<Example>
+    <LoadingButtonTable variants={ButtonVariants} weights={ButtonWeights} />
+</Example>
 
 ## Dropdowns
 
@@ -135,7 +148,9 @@ Adding the class `.s-btn__dropdown` to any button style will add an appropriatel
 <button class="s-btn s-btn__dropdown" type="button">Dropdown</button>
 ```
 
-<DropdownButtonTable variants={ButtonVariants} weights={ButtonWeights} />
+<Example>
+    <DropdownButtonTable variants={ButtonVariants} weights={ButtonWeights} />
+</Example>
 
 ## Badges
 
@@ -150,7 +165,9 @@ Adding an `.s-btn--badge` to any button will add an appropriately-styled badge.
 </button>
 ```
 
-<BadgeButtonTable variants={ButtonVariants} weights={ButtonWeights} />
+<Example>
+    <BadgeButtonTable variants={ButtonVariants} weights={ButtonWeights} />
+</Example>
 
 ## Sizes
 
@@ -160,7 +177,9 @@ A button's default font-size is determined by the `@body-fs` variable. To change
     <span><strong>Note:</strong> Avoid using icons within the extra small button size. This variant is designed for tight spaces, and standard icons are too large to fit without breaking the button's height and layout.</span>
 </Notice>
 
-<SizeTable sizes={ButtonSizes} />
+<Example>
+    <SizeTable sizes={ButtonSizes} />
+</Example>
 
 ## Toggle buttons
 
