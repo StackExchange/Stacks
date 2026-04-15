@@ -57,25 +57,28 @@
         </Button>
       </nav>
 
-      {#if data.filename}
-        <Button title="Edit on GitHub" size="sm" weight="clear" href={`https://github.com/StackExchange/Stacks/edit/main/packages/stacks-docs-next${data.filename}`}>
-          <Icon src={IconServiceGitHub} />
-          <span class="sm:d-none">Edit</span>
-        </Button>
-      {/if}
+      <div class="d-flex ai-center g8">
+        {#if data.filename}
+          <Button title="Edit on GitHub" link icon href={`https://github.com/StackExchange/Stacks/edit/main/packages/stacks-docs-next${data.filename}`}>
+            <Icon src={IconServiceGitHub} />
+            <span class="sm:d-none">Edit</span>
+          </Button>
+        {/if}
 
-      {#if data?.metadata?.figma}
-        <Button title="Open in Figma" size="sm" weight="clear" icon href={data?.metadata?.figma}>
-          <Icon src={IconServiceFigma} class="native" />
-          <span class="sm:d-none">Figma</span>
-        </Button>
-      {/if}
-      {#if data?.metadata?.svelte}
-        <Button title="Svelte component docs" size="sm" weight="clear" icon href={data?.metadata?.svelte}>
-          <Icon src={IconServiceSvelte} class="native" />
-          <span class="sm:d-none">Svelte</span>
-        </Button>
-      {/if}
+        {#if data?.metadata?.figma}
+          <Button title="Open in Figma" link icon href={data?.metadata?.figma}>
+            <Icon src={IconServiceFigma} class="native" />
+            <span class="sm:d-none">Figma</span>
+          </Button>
+        {/if}
+
+        {#if data?.metadata?.svelte}
+          <Button title="Svelte component docs" link icon href={data?.metadata?.svelte}>
+            <Icon src={IconServiceSvelte} class="native" />
+            <span class="sm:d-none">Svelte</span>
+          </Button>
+        {/if}
+      </div>
     </div>  
 
     <header>
