@@ -219,13 +219,13 @@ In this example, from left to right, we have a team name of Hum with no avatar o
                         <td><code>{size}px</code></td>
                         <td><code>.s-avatar{size > 16 ? `__${size}` : ''}</code></td>
                         <td>
-                            <Avatar name="Hum" letter="H" badge {size} href="#" />
+                            <Avatar name="Hum" letter="H" badge {size} href="#" class="bg-blue-400" />
                         </td>
                         <td>
                             <Avatar name="Hum" letter="H" badge {size} href="#" class="bg-theme-primary" />
                         </td>
                         <td>
-                            <Avatar name="Hum" src="https://picsum.photos/{size * 2}" badge {size} href="#" />
+                            <Avatar name="Hum" src="/legacy/assets/img/team-avatar.png" badge {size} href="#" />
                         </td>
                     </tr>
                 {/each}
