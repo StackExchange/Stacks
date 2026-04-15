@@ -50,7 +50,7 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 
 <Example>
     <div class="d-flex fd-column g8">
-        <aside class="s-banner" role="alert" aria-hidden="false">
+        <aside class="s-banner ps-relative" role="alert" aria-hidden="false">
             <div class="d-flex gs8 gsx ai-center jc-space-between">
                 <p class="m0"><strong>System update</strong> — scheduled maintenance begins at midnight.</p>
                 <div class="s-banner--actions">
@@ -58,7 +58,7 @@ Refer to the [Classes section](#classes) for more information on how to apply th
                 </div>
             </div>
         </aside>
-        <aside class="s-banner s-banner__important" role="alert" aria-hidden="false">
+        <aside class="s-banner ps-relative s-banner__important" role="alert" aria-hidden="false">
             <div class="d-flex gs8 gsx ai-center jc-space-between">
                 <p class="m0"><strong>System update</strong> — scheduled maintenance begins at midnight.</p>
                 <div class="s-banner--actions">
@@ -78,7 +78,7 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 
 <Example>
     <div class="d-flex fd-column g8">
-        <aside class="s-banner s-banner__info" role="alert" aria-hidden="false">
+        <aside class="s-banner ps-relative s-banner__info" role="alert" aria-hidden="false">
             <div class="d-flex gs8 gsx ai-center jc-space-between">
                 <p class="m0"><strong>Heads up</strong> — a new feature is available in your settings.</p>
                 <div class="s-banner--actions">
@@ -86,7 +86,7 @@ Refer to the [Classes section](#classes) for more information on how to apply th
                 </div>
             </div>
         </aside>
-        <aside class="s-banner s-banner__info s-banner__important" role="alert" aria-hidden="false">
+        <aside class="s-banner ps-relative s-banner__info s-banner__important" role="alert" aria-hidden="false">
             <div class="d-flex gs8 gsx ai-center jc-space-between">
                 <p class="m0"><strong>Heads up</strong> — a new feature is available in your settings.</p>
                 <div class="s-banner--actions">
@@ -106,7 +106,7 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 
 <Example>
     <div class="d-flex fd-column g8">
-        <aside class="s-banner s-banner__success" role="alert" aria-hidden="false">
+        <aside class="s-banner ps-relative s-banner__success" role="alert" aria-hidden="false">
             <div class="d-flex gs8 gsx ai-center jc-space-between">
                 <p class="m0"><strong>Migration complete</strong> — all content has been moved successfully.</p>
                 <div class="s-banner--actions">
@@ -114,7 +114,7 @@ Refer to the [Classes section](#classes) for more information on how to apply th
                 </div>
             </div>
         </aside>
-        <aside class="s-banner s-banner__success s-banner__important" role="alert" aria-hidden="false">
+        <aside class="s-banner ps-relative s-banner__success s-banner__important" role="alert" aria-hidden="false">
             <div class="d-flex gs8 gsx ai-center jc-space-between">
                 <p class="m0"><strong>Migration complete</strong> — all content has been moved successfully.</p>
                 <div class="s-banner--actions">
@@ -134,7 +134,7 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 
 <Example>
     <div class="d-flex fd-column g8">
-        <aside class="s-banner s-banner__warning" role="alert" aria-hidden="false">
+        <aside class="s-banner ps-relative s-banner__warning" role="alert" aria-hidden="false">
             <div class="d-flex gs8 gsx ai-center jc-space-between">
                 <p class="m0"><strong>Subscription expiring</strong> — your plan expires in 7 days.</p>
                 <div class="s-banner--actions">
@@ -142,7 +142,7 @@ Refer to the [Classes section](#classes) for more information on how to apply th
                 </div>
             </div>
         </aside>
-        <aside class="s-banner s-banner__warning s-banner__important" role="alert" aria-hidden="false">
+        <aside class="s-banner ps-relative s-banner__warning s-banner__important" role="alert" aria-hidden="false">
             <div class="d-flex gs8 gsx ai-center jc-space-between">
                 <p class="m0"><strong>Subscription expiring</strong> — your plan expires in 7 days.</p>
                 <div class="s-banner--actions">
@@ -162,7 +162,7 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 
 <Example>
     <div class="d-flex fd-column g8">
-        <aside class="s-banner s-banner__danger" role="alert" aria-hidden="false">
+        <aside class="s-banner ps-relative s-banner__danger" role="alert" aria-hidden="false">
             <div class="d-flex gs8 gsx ai-center jc-space-between">
                 <p class="m0"><strong>Site is read-only</strong> — posting is temporarily disabled.</p>
                 <div class="s-banner--actions">
@@ -170,7 +170,7 @@ Refer to the [Classes section](#classes) for more information on how to apply th
                 </div>
             </div>
         </aside>
-        <aside class="s-banner s-banner__danger s-banner__important" role="alert" aria-hidden="false">
+        <aside class="s-banner ps-relative s-banner__danger s-banner__important" role="alert" aria-hidden="false">
             <div class="d-flex gs8 gsx ai-center jc-space-between">
                 <p class="m0"><strong>Site is read-only</strong> — posting is temporarily disabled.</p>
                 <div class="s-banner--actions">
@@ -190,7 +190,7 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 
 <Example>
     <div class="d-flex fd-column g8">
-        <aside class="s-banner s-banner__featured" role="alert" aria-hidden="false">
+        <aside class="s-banner ps-relative s-banner__featured" role="alert" aria-hidden="false">
             <div class="d-flex gs8 gsx ai-center jc-space-between">
                 <p class="m0"><strong>New feature</strong> — try our redesigned question editor.</p>
                 <div class="s-banner--actions">
@@ -198,7 +198,7 @@ Refer to the [Classes section](#classes) for more information on how to apply th
                 </div>
             </div>
         </aside>
-        <aside class="s-banner s-banner__featured s-banner__important" role="alert" aria-hidden="false">
+        <aside class="s-banner ps-relative s-banner__featured s-banner__important" role="alert" aria-hidden="false">
             <div class="d-flex gs8 gsx ai-center jc-space-between">
                 <p class="m0"><strong>New feature</strong> — try our redesigned question editor.</p>
                 <div class="s-banner--actions">
@@ -218,7 +218,7 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 
 <Example>
     <div class="d-flex fd-column g8">
-        <aside class="s-banner s-banner__activity" role="alert" aria-hidden="false">
+        <aside class="s-banner ps-relative s-banner__activity" role="alert" aria-hidden="false">
             <div class="d-flex gs8 gsx ai-center jc-space-between">
                 <p class="m0"><strong>3 new answers</strong> — on your question about flexbox.</p>
                 <div class="s-banner--actions">
@@ -226,7 +226,7 @@ Refer to the [Classes section](#classes) for more information on how to apply th
                 </div>
             </div>
         </aside>
-        <aside class="s-banner s-banner__activity s-banner__important" role="alert" aria-hidden="false">
+        <aside class="s-banner ps-relative s-banner__activity s-banner__important" role="alert" aria-hidden="false">
             <div class="d-flex gs8 gsx ai-center jc-space-between">
                 <p class="m0"><strong>3 new answers</strong> — on your question about flexbox.</p>
                 <div class="s-banner--actions">
