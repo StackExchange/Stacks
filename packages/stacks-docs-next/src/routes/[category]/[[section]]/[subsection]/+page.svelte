@@ -4,24 +4,24 @@
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
 
-  import { copyToClipboard } from '$src/lib/copyToClipboard';
   import Contents from '$components/Contents.svelte';
 
   let { data } = $props();
   let copied = $state(false);
-  
+
   const toc = $derived(data?.metadata?.toc || []);
 
-  const lastUpdated = $derived(new Date(data?.metadata?.updated).toLocaleDateString('en-US', { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
+  const lastUpdated = $derived(new Date(data?.metadata?.updated).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
   }));
 
   const pageTitle = $derived(data.active.title ? `${data.active.title} - Stack Overflow Design System` : 'Stack Overflow Design System');
   const pageDescription = $derived(data?.metadata?.description || `Documentation for ${data.active.title} in the Stack Overflow Design System`);
-  
-  function copySuccess() {
+
+  async function copyPageUrl() {
+    await navigator.clipboard.writeText(page.url.href);
     copied = true;
     setTimeout(() => { copied = false; }, 2000);
   }
@@ -35,7 +35,6 @@
   {/if}
 </svelte:head>
 
-<svelte:window on:copysuccess={copySuccess} />
 
 {#if data?.active?.image}
   <img class="w100 h-auto" width="1030" height="540" alt="" src={data.active.image} />
@@ -48,13 +47,13 @@
         {#each data.breadcrumb as crumb, index (crumb.path)}
           <a href={resolve(crumb.path)} class="pr6 s-link">{crumb.label}</a>{#if index !== data.breadcrumb.length - 1}<span class="fc-black-300 mr6">/</span>{/if}
         {/each}
-        <button type="button" title="Copy link to this page" class="s-btn s-btn__link s-btn__icon breadcrumb-copy-link ml4" use:copyToClipboard={page.url.href}>
+        <Button title="Copy link to this page" link icon class="ml4" onclick={copyPageUrl}>
           {#if copied}
-            <Icon src={IconCheckFillCircle} class="fc-green-400" />
+            <Icon src={IconCheckFillCircle} class="fc-green-400 w16 h16" />
           {:else}
-            <Icon src={IconLink} />
+            <Icon src={IconLink} class="w16 h16" />
           {/if}
-        </button>
+        </Button>
       </nav>
 
       {#if data.filename}
