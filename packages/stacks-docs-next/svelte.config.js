@@ -39,7 +39,7 @@ const config = {
                 rehypeSectionize,
                 [rehypeAutolinkHeadings, {
                     behavior: "append",
-                    properties: { className: ["heading-anchor"], ariaHidden: "true", tabIndex: -1 },
+                    properties: { className: ["docs-heading-anchor"], ariaHidden: "true", tabIndex: -1 },
                     content: {
                         type: "element",
                         tagName: "svg",
@@ -59,6 +59,7 @@ const config = {
                     },
                 }],
                 addTableClasses,
+                addDocClasses,
             ],
         }),
     ],
@@ -83,6 +84,44 @@ function exposeToc() {
             }
             file.data.fm.toc = file.data.toc;
         }
+    };
+}
+
+// Custom plugin to add individual docs-* classes to generated elements.
+// These replace the old .doc X descendant-selector pattern so each element
+// carries its own class and does not depend on a parent .doc wrapper.
+function addDocClasses() {
+    return function (tree) {
+        visit(tree, "element", (node) => {
+            node.properties = node.properties || {};
+            const existing = Array.isArray(node.properties.className)
+                ? node.properties.className
+                : node.properties.className
+                    ? [node.properties.className]
+                    : [];
+
+            const add = (...names) => {
+                node.properties.className = [...existing, ...names];
+            };
+
+            switch (node.tagName) {
+                case "h2": add("docs-heading", "docs-h2"); break;
+                case "h3": add("docs-heading", "docs-h3"); break;
+                case "h4": add("docs-heading", "docs-h4"); break;
+                case "section": add("docs-section"); break;
+                case "p":   add("docs-p");   break;
+                case "ul":  add("docs-ul");  break;
+                case "li":  add("docs-li");  break;
+                case "nav": add("docs-nav"); break;
+                case "img": add("docs-img"); break;
+                case "iframe": add("docs-iframe"); break;
+                case "a":
+                    if (!existing.includes("docs-heading-anchor")) {
+                        add("docs-link");
+                    }
+                    break;
+            }
+        });
     };
 }
 
