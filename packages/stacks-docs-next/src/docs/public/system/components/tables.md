@@ -1,0 +1,2065 @@
+---
+title: "Tables"
+description: "Tables are used to list all information from a data set. The base style establishes preferred padding, font-size, and font-weight treatments. To enhance or customize the look of the table, apply any additional classes listed below."
+---
+
+<section class="docs-section">
+    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="classes">Classes</h2><a class="s-btn s-btn__clear" href="#classes"><span class="v-visible-sr">Section titled Classes</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    
+    
+    
+
+
+    
+
+
+
+
+    
+
+
+
+    
+
+
+    
+
+
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+
+    
+
+
+<div id="docs-table" class="overflow-x-auto s-anchors s-anchors__underlined" tabindex="0">
+    <table class="docs-table s-table s-table__bx-simple">
+        <thead>
+            <tr>
+                
+                    <th scope="col" class="s-table--cell3">
+                        Class
+                    </th>
+                
+                
+                    <th scope="col" class="s-table--cell3">
+                        Parent
+                    </th>
+                
+                
+                    <th scope="col" class="s-table--cell2">
+                        Modifies
+                    </th>
+                
+                
+                    <th scope="col" class="">
+                        Description
+                    </th>
+                
+            </tr>
+        </thead>
+        <tbody class="fs-caption">
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table-container</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                <em class="fc-black-350">N/A</em>
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                <em class="fc-black-350">N/A</em>
+                            
+                        </td>
+                    
+                    
+                        <td>Container for the table.</td>
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                
+                                    <code>.s-table-container</code>
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                <em class="fc-black-350">N/A</em>
+                            
+                        </td>
+                    
+                    
+                        <td>Base table style.</td>
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table--cell:n</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                
+                                    <code>.s-table &gt; tr &gt; td</code>
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                <em class="fc-black-350">N/A</em>
+                            
+                        </td>
+                    
+                    
+                        <td>Table cell width in 12 evenly divided columns. Replace <code>:n</code> with the number of columns the cell should span.</td>
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table__b0</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                <em class="fc-black-350">N/A</em>
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                
+                                    <code>.s-table</code>
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>Removes all table cell borders.</td>
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table__bx</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                <em class="fc-black-350">N/A</em>
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                
+                                    <code>.s-table</code>
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>Shows only horizontal table cell borders. Good for tables with lots of data that can be sorted and filtered.</td>
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table__bx-simple</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                <em class="fc-black-350">N/A</em>
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                
+                                    <code>.s-table</code>
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>Removes most of the default borders and backgrounds. Good for tables without much data that don't need to be sorted or filtered.</td>
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table__sortable</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                <em class="fc-black-350">N/A</em>
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                
+                                    <code>.s-table</code>
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>Applies styling to imply the table is sortable.</td>
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table__stripes</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                <em class="fc-black-350">N/A</em>
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                
+                                    <code>.s-table</code>
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>Apply zebra striping to the table.</td>
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table__sm</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                <em class="fc-black-350">N/A</em>
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                
+                                    <code>.s-table</code>
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>Apply a condensed sizing to the table.</td>
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table__lg</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                <em class="fc-black-350">N/A</em>
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                
+                                    <code>.s-table</code>
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>Apply a large sizing to the table.</td>
+                    
+                </tr>
+            
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Reset all default values -->
+
+
+
+
+
+
+
+
+
+
+
+
+</section>
+
+<section class="docs-section">
+    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="default-style">Default style</h2><a class="s-btn s-btn__clear" href="#default-style"><span class="v-visible-sr">Section titled Default style</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">Tables should be wrapped in a container, <code>.s-table-container</code>. This provides horizontal scrolling when necessary in the smallest breakpoints. The default table style is a bordered cell layout with a stylized header row.</p>
+    <div class="docs-preview">
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table-container"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"row"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        <div class="docs-preview--example">
+            <div class="s-table-container">
+                <table class="s-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Joined</th>
+                            <th scope="col">Last seen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th><a>Aaron Shekey</a></th>
+                            <td>
+                                <span>aaronshekey</span>
+                            </td>
+                            <td>Dec 1 ’17 at 20:24</td>
+                            <td>just now</td>
+                        </tr>
+                        <tr>
+                            <th><a>Joshua Hynes</a></th>
+                            <td>
+                                <span>joshuahynes</span>
+                            </td>
+                            <td>Feb 12 at 18:47</td>
+                            <td>Aug 10 at 14:57</td>
+                        </tr>
+                        <tr>
+                            <th><a>Piper Lawson</a></th>
+                            <td>
+                                <span>piperlawson</span>
+                            </td>
+                            <td>Jul 5 at 14:32</td>
+                            <td>Aug 14 at 12:41</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="docs-section">
+    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="borders-&amp;-backgrounds">Borders &amp; backgrounds</h2><a class="s-btn s-btn__clear" href="#borders-&amp;-backgrounds"><span class="v-visible-sr">Section titled Borders &amp; backgrounds</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">By default, tables are outlined, have borders on all cells, and have a styled header. Depending on the size and complexity of a table, these can all be configured.</p>
+    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="horizontal-borders">Horizontal borders</h3><a class="s-btn s-btn__clear" href="#horizontal-borders"><span class="v-visible-sr">Section titled Horizontal borders</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">Shows only horizontal table cell borders. Good for tables with lots of data that can be sorted and filtered.</p>
+    <div class="docs-preview mb24">
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table-container"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table s-table__bx"</span>&gt;</span><br>        …<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        <div class="docs-preview--example">
+            <div class="s-table-container">
+                <table class="s-table s-table__bx">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Aaron</td>
+                            <td>S.</td>
+                            <td>@aarons</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Joshua</td>
+                            <td>H.</td>
+                            <td>@joshuah</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Paweł</td>
+                            <td>L.</td>
+                            <td>@pawełl</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Ted</td>
+                            <td>G.</td>
+                            <td>@so-ted</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="simple-borders">Simple borders</h3><a class="s-btn s-btn__clear" href="#simple-borders"><span class="v-visible-sr">Section titled Simple borders</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">Removes most of the default borders and backgrounds. Good for tables without much data that don't need to be sorted or filtered.</p>
+    <div class="docs-preview mb24">
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table-container"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table s-table__bx-simple"</span>&gt;</span><br>        …<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        <div class="docs-preview--example">
+            <div class="s-table-container">
+                <table class="s-table s-table__bx-simple">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Aaron</td>
+                            <td>S.</td>
+                            <td>@aarons</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Joshua</td>
+                            <td>H.</td>
+                            <td>@joshuah</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Paweł</td>
+                            <td>L.</td>
+                            <td>@pawełl</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Ted</td>
+                            <td>G.</td>
+                            <td>@so-ted</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="no-borders">No borders</h3><a class="s-btn s-btn__clear" href="#no-borders"><span class="v-visible-sr">Section titled No borders</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">Removes all table cell borders.</p>
+    <div class="docs-preview mb24">
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table-container"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table s-table__b0"</span>&gt;</span><br>        …<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        <div class="docs-preview--example">
+            <div class="s-table-container">
+                <table class="s-table s-table__b0">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Aaron</td>
+                            <td>S.</td>
+                            <td>@aarons</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Joshua</td>
+                            <td>H.</td>
+                            <td>@joshuah</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Paweł</td>
+                            <td>L.</td>
+                            <td>@pawełl</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Ted</td>
+                            <td>G.</td>
+                            <td>@so-ted</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="zebra-striping">Zebra striping</h3><a class="s-btn s-btn__clear" href="#zebra-striping"><span class="v-visible-sr">Section titled Zebra striping</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">When tables have a lot of information, you can help users group information and isolate data by adding zebra striping.</p>
+
+    <div class="docs-preview">
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table-container"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table s-table__stripes"</span>&gt;</span><br>        …<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        <div class="docs-preview--example">
+            <div class="s-table-container">
+                <table class="s-table s-table__stripes d:bg-white">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Aaron</td>
+                            <td>S.</td>
+                            <td>@aarons</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Joshua</td>
+                            <td>H.</td>
+                            <td>@joshuah</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Paweł</td>
+                            <td>L.</td>
+                            <td>@pawełl</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Ted</td>
+                            <td>G.</td>
+                            <td>@so-ted</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="docs-section">
+    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="spacing">Spacing</h2><a class="s-btn s-btn__clear" href="#spacing"><span class="v-visible-sr">Section titled Spacing</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">A table’s padding can be changed to be more or less condensed.</p>
+
+    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="small">Small</h3><a class="s-btn s-btn__clear" href="#small"><span class="v-visible-sr">Section titled Small</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <div class="docs-preview mb24">
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table-container"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table s-table__sm"</span>&gt;</span><br>        …<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        <div class="docs-preview--example">
+            <div class="s-table-container">
+                <table class="s-table s-table__sm">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Aaron</td>
+                            <td>S.</td>
+                            <td>@aarons</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Joshua</td>
+                            <td>H.</td>
+                            <td>@joshuah</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="default">Default</h3><a class="s-btn s-btn__clear" href="#default"><span class="v-visible-sr">Section titled Default</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <div class="docs-preview mb24">
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table-container"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table"</span>&gt;</span><br>        …<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        <div class="docs-preview--example">
+            <div class="s-table-container">
+                <table class="s-table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Paweł</td>
+                            <td>L.</td>
+                            <td>@pawełl</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Ted</td>
+                            <td>G.</td>
+                            <td>@so-ted</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="large">Large</h3><a class="s-btn s-btn__clear" href="#large"><span class="v-visible-sr">Section titled Large</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <div class="docs-preview">
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table-container"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table s-table__lg"</span>&gt;</span><br>        …<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        <div class="docs-preview--example">
+            <div class="s-table-container">
+                <table class="s-table s-table__lg">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Aaron</td>
+                            <td>S.</td>
+                            <td>@aarons</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Joshua</td>
+                            <td>H.</td>
+                            <td>@joshuah</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="docs-section">
+    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="cell-widths">Cell widths</h2><a class="s-btn s-btn__clear" href="#cell-widths"><span class="v-visible-sr">Section titled Cell widths</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">Table columns will size themselves based on their content. To set a specific width, you can use one of the following table cell classes to specify the width for any column.</p>
+    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="classes">Classes</h3><a class="s-btn s-btn__clear" href="#classes"><span class="v-visible-sr">Section titled Classes</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    
+    
+    
+    
+    
+
+
+    
+
+
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+
+
+    
+
+
+
+
+
+
+    
+
+
+<div id="docs-table" class="overflow-x-auto s-anchors s-anchors__underlined" tabindex="0">
+    <table class="docs-table s-table s-table__bx-simple">
+        <thead>
+            <tr>
+                
+                    <th scope="col" class="s-table--cell3">
+                        Class
+                    </th>
+                
+                
+                    <th scope="col" class="s-table--cell2">
+                        Width
+                    </th>
+                
+                
+                
+            </tr>
+        </thead>
+        <tbody class="fs-caption">
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table--cell1</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                    <span class="ff-mono fs-fine">8.3333333%</span>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table--cell2</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                    <span class="ff-mono fs-fine">16.6666667%</span>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table--cell3</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                    <span class="ff-mono fs-fine">25%</span>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table--cell4</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                    <span class="ff-mono fs-fine">33.3333333%</span>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table--cell5</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                    <span class="ff-mono fs-fine">41.6666667%</span>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table--cell6</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                    <span class="ff-mono fs-fine">50%</span>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table--cell7</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                    <span class="ff-mono fs-fine">58.3333333%</span>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table--cell8</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                    <span class="ff-mono fs-fine">66.6666667%</span>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table--cell9</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                    <span class="ff-mono fs-fine">75%</span>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table--cell10</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                    <span class="ff-mono fs-fine">83.3333333%</span>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table--cell11</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                    <span class="ff-mono fs-fine">91.6666667%</span>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.s-table--cell12</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                    <span class="ff-mono fs-fine">100%</span>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                    
+                </tr>
+            
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Reset all default values -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="examples">Examples</h3><a class="s-btn s-btn__clear" href="#examples"><span class="v-visible-sr">Section titled Examples</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <div class="docs-preview">
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block">// Example 1<br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table-container"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table--cell2"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>// Example 2<br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table-container"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table--cell3"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table--cell6"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>// Example 3<br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table-container"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table--cell4"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table--cell2"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        <div class="docs-preview--example ff-mono">
+            <div class="s-table-container mb16">
+                <table class="s-table ta-center">
+                    <tbody><tr>
+                        <td class="docs-box s-table--cell2"><strong>.s-table--cell2</strong></td>
+                        <td class="docs-box"><em class="fc-light">No Class</em></td>
+                    </tr>
+                </tbody></table>
+            </div>
+            <div class="s-table-container mb16">
+                <table class="s-table ta-center">
+                    <tbody><tr>
+                        <td class="docs-box s-table--cell3"><strong>.s-table--cell3</strong></td>
+                        <td class="docs-box s-table--cell6"><strong>.s-table--cell6</strong></td>
+                        <td class="docs-box"><em class="fc-light">No Class</em></td>
+                        <td class="docs-box"><em class="fc-light">No Class</em></td>
+                        <td class="docs-box"><em class="fc-light">No Class</em></td>
+                    </tr>
+                </tbody></table>
+            </div>
+            <div class="s-table-container">
+                <table class="s-table ta-center">
+                    <tbody><tr>
+                        <td class="docs-box s-table--cell4"><strong>.s-table--cell4</strong></td>
+                        <td class="docs-box"><em class="fc-light">No Class</em></td>
+                        <td class="docs-box"><em class="fc-light">No Class</em></td>
+                        <td class="docs-box"><em class="fc-light">No Class</em></td>
+                        <td class="docs-box"><em class="fc-light">No Class</em></td>
+                        <td class="docs-box s-table--cell2"><strong>.s-table--cell2</strong></td>
+                    </tr>
+                </tbody></table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="docs-section">
+    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="alignment">Alignment</h2><a class="s-btn s-btn__clear" href="#alignment"><span class="v-visible-sr">Section titled Alignment</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="vertical-alignment">Vertical alignment</h3><a class="s-btn s-btn__clear" href="#vertical-alignment"><span class="v-visible-sr">Section titled Vertical alignment</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">The default vertical alignment is <code>middle</code>. You change a table’s or a specific cell’s vertical alignment by using the <a href="/product/base/vertical-alignment#classes">Vertical Alignment atomic classes</a>.</p>
+    <div class="docs-preview">
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table-container"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"va-top"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"va-middle"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"va-bottom"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table-container"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table va-bottom"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        <div class="docs-preview--example ff-mono">
+            <div class="s-table-container">
+                <table class="s-table mb16">
+                    <tbody>
+                        <tr>
+                            <td class="docs-box va-top hs1">.va-top</td>
+                            <td class="docs-box va-middle">.va-middle</td>
+                            <td class="docs-box va-bottom">.va-bottom</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="s-table-container">
+                <table class="s-table va-bottom">
+                    <tbody>
+                        <tr>
+                            <td class="docs-box hs1">.s-table.va-bottom</td>
+                            <td class="docs-box">.s-table.va-bottom</td>
+                            <td class="docs-box">.s-table.va-bottom</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="text-alignment">Text alignment</h3><a class="s-btn s-btn__clear" href="#text-alignment"><span class="v-visible-sr">Section titled Text alignment</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">Text alignment can be changed at a table or cell level by using <a href="/product/foundation/typography#layout-classes">atomic text alignment classes</a>. Columns containing copy should be left-aligned. Columns containing numbers should be right-aligned.</p>
+    <div class="docs-preview">
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table-container"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ta-left"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ta-center"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ta-right"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table-container"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table ta-right"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        <div class="docs-preview--example ff-mono">
+            <div class="s-table-container">
+                <table class="s-table mb16">
+                    <tbody>
+                        <tr>
+                            <td class="docs-box ta-left hs1">.ta-left</td>
+                            <td class="docs-box ta-center">.ta-center</td>
+                            <td class="docs-box ta-right">.ta-right</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="s-table-container">
+                <table class="s-table ta-right">
+                    <tbody>
+                        <tr>
+                            <td class="docs-box hs1">.s-table.ta-right</td>
+                            <td class="docs-box">.s-table.ta-right</td>
+                            <td class="docs-box">.s-table.ta-right</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="docs-section">
+    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="sortable-tables">Sortable tables</h2><a class="s-btn s-btn__clear" href="#sortable-tables"><span class="v-visible-sr">Section titled Sortable tables</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">To indicate that the user can sort a table by different columns, add the <code>s-table__sortable</code> class to the table.</p>
+    <p class="docs-copy">The <code>&lt;th&gt;</code> cells should include arrows to indicate sortability or the currently applied sorting. In addition, the column that is currently sorted should be indicated with the <code>is-sorted</code> class on its <code>&lt;th&gt;</code>.</p>
+    <div class="docs-preview">
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table-container"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table s-table__sortable"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"is-sorted"</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span>&gt;</span>Listing @Svg.ArrowDownSm<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span>&gt;</span>Status @Svg.ArrowUpDownSm<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span>&gt;</span>Owner @Svg.ArrowUpDownSm<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ta-right"</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span>&gt;</span>Views @Svg.ArrowUpDownSm<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ta-right"</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span>&gt;</span>Applies @Svg.ArrowUpDownSm<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span><br>            …<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        <div class="docs-preview--example">
+            <div class="s-table-container">
+                <table class="s-table s-table__sortable">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="is-sorted">
+                                <a href="#sortable-tables">Listing <svg aria-hidden="true" class="svg-icon iconArrowDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="M3 5h8L7 9z"></path></svg></a>
+                            </th>
+                            <th scope="col">
+                                <a href="#sortable-tables">Status <svg aria-hidden="true" class="svg-icon iconArrowUpDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="m7 2 4 4H3zm0 10 4-4H3z"></path></svg></a>
+                            </th>
+                            <th scope="col">
+                                <button type="button">Owner <svg aria-hidden="true" class="svg-icon iconArrowUpDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="m7 2 4 4H3zm0 10 4-4H3z"></path></svg></button>
+                            </th>
+                            <th scope="col" class="ta-right">
+                                <button type="button">Views <svg aria-hidden="true" class="svg-icon iconArrowUpDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="m7 2 4 4H3zm0 10 4-4H3z"></path></svg></button>
+                            </th>
+                            <th scope="col" class="ta-right">
+                                <button type="button">Applies <svg aria-hidden="true" class="svg-icon iconArrowUpDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="m7 2 4 4H3zm0 10 4-4H3z"></path></svg></button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a>Site Reliability Engineer, Generalist</a><br>
+                                <span class="fs-caption">Sydney, Australia</span>
+                            </td>
+                            <td>Running</td>
+                            <td>Sansa Stark</td>
+                            <td class="ta-right">502</td>
+                            <td class="ta-right">13</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Senior Product Designer</a><br>
+                                <span class="fs-caption">New York, NY, USA</span>
+                            </td>
+                            <td>Running</td>
+                            <td>Robert Baratheon</td>
+                            <td class="ta-right">900</td>
+                            <td class="ta-right">15</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a>Product Manager, Developer Products</a><br>
+                                <span class="fs-caption">London, England</span>
+                            </td>
+                            <td>Running</td>
+                            <td>Sansa Stark</td>
+                            <td class="ta-right">3</td>
+                            <td class="ta-right">1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="javascript-sorting">JavaScript sorting</h3><a class="s-btn s-btn__clear" href="#javascript-sorting"><span class="v-visible-sr">Section titled JavaScript sorting</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">Stacks provides built-in functionality for letting the user sort a table by the values in a column through clicking the column header. This requires the complete data to already exist in the table (e.g. it is not going to work if the table is paged and requires a call to the server to update data on sorting). See the <a href="/product/develop/javascript">JavaScript introduction</a> for general information about JS in Stacks.</p>
+
+    <p class="docs-copy">To make your table user-sortable, do the following:</p>
+
+    <ol class="docs-copy">
+        <li>Style the table as sortable as explained in the section above.</li>
+        <li>Set <code>data-controller="s-table"</code> on the <code>&lt;table&gt;</code> element.</li>
+        <li>Set <code>data-s-table-target="column"</code> and <code>data-action="click-&gt;s-table#sort"</code> on each of the <code>&lt;th&gt;</code> elements that control sorting.</li>
+        <li>
+            Add the three icons for showing <i>ascending sort</i>, <i>descending sort</i>, and <i>unsorted</i> to each of these header cells, hiding the first two with a <code>d-none</code> class. Add the <code>js-sorting-indicator</code> class to each of the icons, and add <code>js-sorting-indicator-asc</code>, <code>js-sorting-indicator-desc</code>, and <code>js-sorting-indicator-none</code> to the appropriate icon.
+        </li>
+    </ol>
+
+    <div class="s-notice s-anchors s-anchors__inherit s-anchors__underlined s-notice__info mb16"><span class="s-notice--icon"><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconInfo" aria-hidden="true"><path d="M17.33 4.64a9.08 9.08 0 0 1-12.7 12.7l1.08-1.09A7.58 7.58 0 0 0 16.25 5.71zM10 .92c2.47 0 4.7.98 6.34 2.58l-1.06 1.06A7.58 7.58 0 0 0 4.56 15.28L3.5 16.34A9.08 9.08 0 0 1 10 .91"></path><path d="M10.76 15h-2V8h2zm0-8h-2V5h2z"></path></svg></span><span>
+        <strong>Note:</strong> Using <code>js-…</code> classes is not really the optimal way of doing this, and will probably replaced with something better eventually. When that happens, the <code>js-…</code> mechanism will be deprecated but continue to be supported for a while, so you have ample time to update things.
+    </span></div>
+
+    <p class="docs-copy">By default, the data is sorted by the content of the cell. If you need to use a different value, for example because your cell contains a human-readable date, add a <code>data-s-table-sort-val</code> attribute to the cell.</p>
+
+    <p class="docs-copy">If a column contains any data that is not an integer, the data will be sorted lexicographically. Otherwise it will be sorted numerically, with empty cells being considered the lowest number.</p>
+
+    <p class="docs-copy">If the table contains rows that should not be sorted, but rather always be at the top or always be at the bottom, add <code>data-s-table-sort-to="top"</code> or <code>data-s-table-sort-to="bottom"</code> to the <code>&lt;tr&gt;</code> element.</p>
+
+    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="javascript-data-attributes">JavaScript data attributes</h3><a class="s-btn s-btn__clear" href="#javascript-data-attributes"><span class="v-visible-sr">Section titled JavaScript data attributes</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    
+    
+    
+    
+
+
+    
+
+
+
+
+
+
+    
+
+
+    
+
+
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+
+    
+
+
+<div id="docs-table" class="overflow-x-auto s-anchors s-anchors__underlined" tabindex="0">
+    <table class="docs-table s-table s-table__bx-simple">
+        <thead>
+            <tr>
+                
+                    <th scope="col" class="s-table--cell5">
+                        Class
+                    </th>
+                
+                
+                    <th scope="col" class="s-table--cell2">
+                        Parent
+                    </th>
+                
+                
+                    <th scope="col" class="s-table--cell2">
+                        Modifies
+                    </th>
+                
+                
+                    <th scope="col" class="">
+                        Description
+                    </th>
+                
+            </tr>
+        </thead>
+        <tbody class="fs-caption">
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>data-controller="s-table"</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                <em class="fc-black-350">N/A</em>
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                
+                                    <code>table</code>
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>Wires up the table to the JS controller</td>
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>data-s-table-target="column"</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                <em class="fc-black-350">N/A</em>
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                
+                                    <code>th</code>
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>Marks this is a sortable column for the purpose of modifying arrow icons</td>
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>data-action="click-&gt;s-table#sort"</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                <em class="fc-black-350">N/A</em>
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                
+                                    <code>button</code>
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>Causes a click on the header cell to sort by this column</td>
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>data-s-table-sort-to="top"</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                <em class="fc-black-350">N/A</em>
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                
+                                    <code>tr</code>
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>Forces the sorting of a row to the top</td>
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>data-s-table-sort-to="bottom"</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                <em class="fc-black-350">N/A</em>
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                
+                                    <code>tr</code>
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>Forces the sorting of a row to the bottom</td>
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>data-s-table-sort-val="[x]"</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                <em class="fc-black-350">N/A</em>
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                
+                                    <code>td</code>
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>Optionally use a custom value for sorting instead of the cell’s text content</td>
+                    
+                </tr>
+            
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Reset all default values -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="javascript-example">JavaScript example</h3><a class="s-btn s-btn__clear" href="#javascript-example"><span class="v-visible-sr">Section titled JavaScript example</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <div class="docs-preview">
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table-container"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table s-table__sortable"</span> <span class="hljs-attr">data-controller</span>=<span class="hljs-string">"s-table"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span> <span class="hljs-attr">data-s-table-target</span>=<span class="hljs-string">"column"</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">data-action</span>=<span class="hljs-string">"click-&gt;s-table#sort"</span>&gt;</span><br>                        Season<br>                        @Svg.ArrowUpSm.With("js-sorting-indicator js-sorting-indicator-asc d-none")<br>                        @Svg.ArrowDownSm.With("js-sorting-indicator js-sorting-indicator-desc d-none")<br>                        @Svg.ArrowUpDownSm.With("js-sorting-indicator js-sorting-indicator-none")<br>                    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span> <span class="hljs-attr">data-s-table-target</span>=<span class="hljs-string">"column"</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">data-action</span>=<span class="hljs-string">"click-&gt;s-table#sort"</span>&gt;</span><br>                        Starts in month<br>                        …<br>                    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span> <span class="hljs-attr">data-s-table-target</span>=<span class="hljs-string">"column"</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">data-action</span>=<span class="hljs-string">"click-&gt;s-table#sort"</span>&gt;</span><br>                        Typical temperature in °C<br>                        …<br>                    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Winter<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">data-s-table-sort-val</span>=<span class="hljs-string">"12"</span>&gt;</span>December<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Spring<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">data-s-table-sort-val</span>=<span class="hljs-string">"3"</span>&gt;</span>March<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Summer<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">data-s-table-sort-val</span>=<span class="hljs-string">"6"</span>&gt;</span>June<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>25<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Fall<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">data-s-table-sort-val</span>=<span class="hljs-string">"9"</span>&gt;</span>September<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span> <span class="hljs-attr">data-s-table-sort-to</span>=<span class="hljs-string">"bottom"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fw-bold"</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"2"</span>&gt;</span>Average temperature<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        <div class="docs-preview--example">
+            <div class="s-table-container">
+                <table class="s-table s-table__sortable" data-controller="s-table">
+                    <thead>
+                        <tr>
+                            <th scope="col" data-s-table-target="column">
+                                <button data-action="click->s-table#sort">
+                                    Season
+                                    <svg aria-hidden="true" class="svg-icon iconArrowUpSm js-sorting-indicator js-sorting-indicator-asc d-none" width="14" height="14" viewBox="0 0 14 14"><path d="M3 9h8L7 5z"></path></svg>
+                                    <svg aria-hidden="true" class="svg-icon iconArrowDownSm js-sorting-indicator js-sorting-indicator-desc d-none" width="14" height="14" viewBox="0 0 14 14"><path d="M3 5h8L7 9z"></path></svg>
+                                    <svg aria-hidden="true" class="svg-icon iconArrowUpDownSm js-sorting-indicator js-sorting-indicator-none" width="14" height="14" viewBox="0 0 14 14"><path d="m7 2 4 4H3zm0 10 4-4H3z"></path></svg>
+                                </button>
+                            </th>
+                            <th scope="col" data-s-table-target="column">
+                                <button data-action="click->s-table#sort">
+                                    Starts in month
+                                    <svg aria-hidden="true" class="svg-icon iconArrowUpSm js-sorting-indicator js-sorting-indicator-asc d-none" width="14" height="14" viewBox="0 0 14 14"><path d="M3 9h8L7 5z"></path></svg>
+                                    <svg aria-hidden="true" class="svg-icon iconArrowDownSm js-sorting-indicator js-sorting-indicator-desc d-none" width="14" height="14" viewBox="0 0 14 14"><path d="M3 5h8L7 9z"></path></svg>
+                                    <svg aria-hidden="true" class="svg-icon iconArrowUpDownSm js-sorting-indicator js-sorting-indicator-none" width="14" height="14" viewBox="0 0 14 14"><path d="m7 2 4 4H3zm0 10 4-4H3z"></path></svg>
+                                </button>
+                            </th>
+                            <th scope="col" data-s-table-target="column">
+                                <button data-action="click->s-table#sort">
+                                    Typical temperature in °C
+                                    <svg aria-hidden="true" class="svg-icon iconArrowUpSm js-sorting-indicator js-sorting-indicator-asc d-none" width="14" height="14" viewBox="0 0 14 14"><path d="M3 9h8L7 5z"></path></svg>
+                                    <svg aria-hidden="true" class="svg-icon iconArrowDownSm js-sorting-indicator js-sorting-indicator-desc d-none" width="14" height="14" viewBox="0 0 14 14"><path d="M3 5h8L7 9z"></path></svg>
+                                    <svg aria-hidden="true" class="svg-icon iconArrowUpDownSm js-sorting-indicator js-sorting-indicator-none" width="14" height="14" viewBox="0 0 14 14"><path d="m7 2 4 4H3zm0 10 4-4H3z"></path></svg>
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Winter</td><td data-s-table-sort-val="12">December</td><td>2</td></tr>
+                        <tr><td>Spring</td><td data-s-table-sort-val="3">March</td><td>13</td></tr>
+                        <tr><td>Summer</td><td data-s-table-sort-val="6">June</td><td>25</td></tr>
+                        <tr><td>Fall</td><td data-s-table-sort-val="9">September</td><td>13</td></tr>
+                        <tr data-s-table-sort-to="bottom" class="fw-bold">
+                            <td colspan="2">Average temperature</td>
+                            <td>13</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="docs-section">
+    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="bulk-actions">Bulk actions</h2><a class="s-btn s-btn__clear" href="#bulk-actions"><span class="v-visible-sr">Section titled Bulk actions</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">Generally for a checkbox input that’s placed first in the table row for bulk actions.</p>
+    <div class="docs-preview">
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table-container"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table--bulk"</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"v-visible-sr"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"example-checkbox-1"</span>&gt;</span>bulk checkbox<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-checkbox"</span>&gt;</span><br>                        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example-checkbox-1"</span>&gt;</span><br>                    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table--bulk"</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"v-visible-sr"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"example-checkbox-2"</span>&gt;</span>bulk checkbox<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-checkbox"</span>&gt;</span><br>                        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example-checkbox-2"</span>&gt;</span><br>                    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        <div class="docs-preview--example">
+            <div class="s-table-container">
+                <table class="s-table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="s-table--bulk">
+                                <label class="v-visible-sr" for="bulk-checkbox-1">bulk checkbox</label>
+                                <div class="s-checkbox">
+                                    <input type="checkbox" id="bulk-checkbox-1">
+                                </div>
+                            </th>
+                            <th scope="col">Display Name</th>
+                            <th scope="col">Full Name</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="s-table--bulk">
+                                <label class="v-visible-sr" for="bulk-checkbox-2">bulk checkbox</label>
+                                <div class="s-checkbox">
+                                    <input type="checkbox" id="bulk-checkbox-2">
+                                </div>
+                            </td>
+                            <td><a>SansaStark</a>
+                            </td><td>Sansa Stark</td>
+                            <td>sstark@company.com</td>
+                        </tr>
+                        <tr>
+                            <td class="s-table--bulk">
+                                <label class="v-visible-sr" for="bulk-checkbox-3">bulk checkbox</label>
+                                <div class="s-checkbox">
+                                    <input type="checkbox" id="bulk-checkbox-3">
+                                </div>
+                            </td>
+                            <td><a>RobertBaratheon</a>
+                            </td><td>Robert Baratheon</td>
+                            <td>rbaratheon@company.com</td>
+                        </tr>
+                        <tr>
+                            <td class="s-table--bulk">
+                                <label class="v-visible-sr" for="bulk-checkbox-4">bulk checkbox</label>
+                                <div class="s-checkbox">
+                                    <input type="checkbox" id="bulk-checkbox-4">
+                                </div>
+                            </td>
+                            <td><a>Test Developer To Be Is Not A Developer Yet</a>
+                            </td><td>Test Developer To Be Is Not A Developer Yet</td>
+                            <td>testdevelopertobeisnotadevyet@team-mgmt.dev.company.com</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="docs-section">
+    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="totals-row">Totals row</h2><a class="s-btn s-btn__clear" href="#totals-row"><span class="v-visible-sr">Section titled Totals row</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">Used mainly with data tables, the totals row increases the font-size for all cells within a row.</p>
+    <div class="docs-preview">
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table-container"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table ta-right"</span>&gt;</span><br>        …<br>        <span class="hljs-tag">&lt;<span class="hljs-name">tfoot</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table--totals"</span>&gt;</span><br>            …<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">tfoot</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        <div class="docs-preview--example">
+            <div class="s-table-container">
+                <table class="s-table ta-right">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="ta-left">Listing</th>
+                            <th scope="col" class="s-table--cell2">Views</th>
+                            <th scope="col" class="s-table--cell2">Apps</th>
+                            <th scope="col" class="s-table--cell2">App CTR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="ta-left"><a>Site Reliability Engineer, Generalist</a>
+                            </td><td>6,871</td>
+                            <td>187</td>
+                            <td>5.02%</td>
+                        </tr>
+                        <tr>
+                            <td class="ta-left"><a>Senior Product Designer</a>
+                            </td><td>2,242</td>
+                            <td>196</td>
+                            <td>16.46%</td>
+                        </tr>
+                        <tr>
+                            <td class="ta-left"><a>Product Manager, Developer Products</a>
+                            </td><td>3,469</td>
+                            <td>229</td>
+                            <td>14.9%</td>
+                        </tr>
+                    </tbody>
+                    <tfoot class="s-table--totals">
+                        <tr>
+                            <th scope="row" class="ta-left">Totals</th>
+                            <td>12,582</td>
+                            <td>612</td>
+                            <td>14.65%</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="docs-section">
+    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="inactive-rows">Inactive rows</h2><a class="s-btn s-btn__clear" href="#inactive-rows"><span class="v-visible-sr">Section titled Inactive rows</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">For tables that include inactive or disabled rows, such as inactive users or teams, <code>.is-disabled</code> can be applied to any <code>&lt;tr&gt;</code>. Additionally, <code>.is-enabled</code> can be applied to any <code>&lt;th&gt;</code> or <code>&lt;td&gt;</code> that you’d like to ignoring the parent disabled styling (such as a persistent link to reactivate a disabled account).</p>
+    <div class="docs-preview">
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table-container"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-table"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"is-disabled"</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"is-enabled"</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">a</span>&gt;</span>Add<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+        <div class="docs-preview--example">
+            <div class="s-table-container">
+                <table class="s-table s-table__bx">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="ta-left">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Last seen</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th><a>Aaron Shekey</a></th>
+                            <td>emailaddress@website.com</td>
+                            <td>just now</td>
+                            <td class="ta-right"><a class="fc-red-400">Remove</a></td>
+                        </tr>
+                        <tr class="is-disabled">
+                            <th>Joshua Hynes</th>
+                            <td>emailaddress@website.com</td>
+                            <td>Sep 28 ’18</td>
+                            <td class="ta-right is-enabled"><a>Add</a></td>
+                        </tr>
+                        <tr class="is-disabled">
+                            <th>Paweł Ludwiczak</th>
+                            <td>emailaddress@website.com</td>
+                            <td>Apr 17 ’19</td>
+                            <td class="ta-right is-enabled"><a>Add</a></td>
+                        </tr>
+                        <tr>
+                            <th><a>Piper Lawson</a></th>
+                            <td>emailaddress@website.com</td>
+                            <td>Yesterday</td>
+                            <td class="ta-right"><a class="fc-red-400">Remove</a></td>
+                        </tr>
+                        <tr>
+                            <th><a>Ted Goas</a></th>
+                            <td>emailaddress@website.com</td>
+                            <td>5min ago</td>
+                            <td class="ta-right"><a class="fc-red-400">Remove</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="atomic-classes">Atomic classes</h2><a class="s-btn s-btn__clear" href="#atomic-classes"><span class="v-visible-sr">Section titled Atomic classes</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">Further control of table behavior is possible with atomic classes. For example, you can make non-table markup display as a table layout by pairing <code>.d-table</code>, <code>.d-table-cell</code> and <code>.tl-fixed</code>.</p>
+    
+    
+    
+    
+    
+    
+
+
+    
+
+
+
+
+
+    
+
+
+    
+
+
+    
+
+
+
+
+    
+
+
+
+
+
+
+    
+
+
+<div id="docs-table" class="overflow-x-auto s-anchors s-anchors__underlined" tabindex="0">
+    <table class="docs-table s-table s-table__bx-simple">
+        <thead>
+            <tr>
+                
+                    <th scope="col" class="s-table--cell2">
+                        Class
+                    </th>
+                
+                
+                    <th scope="col" class="s-table--cell2">
+                        Output
+                    </th>
+                
+                
+                
+            </tr>
+        </thead>
+        <tbody class="fs-caption">
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.tl-auto</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                    <span class="ff-mono fs-fine">table-layout: auto;</span>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                    
+                </tr>
+            
+                <tr>
+                    
+                        <td>
+                            
+                                
+                                    <code>.tl-fixed</code>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                        <td>
+                            
+                                
+                                    <span class="ff-mono fs-fine">table-layout: fixed;</span>
+                                
+                                
+                            
+                        </td>
+                    
+                    
+                    
+                </tr>
+            
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Reset all default values -->
+
+
+
+
+
+
+
+
+
+
+
+
+</section>
+
+
+            <!-- <div class="d-flex my48 pt24">
+                <div class="mr16">
+                    
+                    <form
+                        id="quick-positive-feedback-tables"
+                        class="js-feedback-form v-hidden"
+                        name="quick-positive-feedback-tables"
+                        method="POST"
+                        data-netlify="true"
+                        action="/success">
+                    </form>
+                    <form
+                        id="quick-negative-feedback-tables"
+                        class="js-feedback-form v-hidden"
+                        name="quick-negative-feedback-tables"
+                        method="POST"
+                        data-netlify="true"
+                        action="/success">
+                    </form>
+                    <div
+                        class="s-popover s-popover__tooltip"
+                        id="tooltip-feedback-positive"
+                        role="tooltip">
+                        <div class="s-popover--content">This page is useful</div>
+                    </div>
+                    <div
+                        class="s-popover s-popover__tooltip"
+                        id="tooltip-feedback-negative"
+                        role="tooltip">
+                        <div class="s-popover--content">This page needs improvement</div>
+                    </div>
+                    <div id="vote-feedback" class="s-vote">
+                        <button
+                            class="s-vote--btn"
+                            type="submit"
+                            form="quick-positive-feedback-tables"
+                            aria-describedby="tooltip-feedback-positive"
+                            aria-expanded="false"
+                            data-controller="s-tooltip"
+                            data-s-tooltip-placement="right"
+                        >
+                            <span class="s-btn-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteUp" aria-hidden="true"><path d="M10 3q.41.02.64.36l6.9 11.5a.75.75 0 1 1-1.28.78L10 5.21l-5.58 9.3h8.04v-.01h1.1l.97 1.5H3.1a.75.75 0 0 1-.65-1.13l6.9-11.5A.8.8 0 0 1 10 3"/></svg>
+                            </span>
+                            <span class="s-btn-icon-fill d-none">
+                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteUpFill" aria-hidden="true"><path d="M10 3h.1a1 1 0 0 1 .42.21l.12.15 6.9 11.5.05.09v.03l.02.04q.04.12.04.26v.03q0 .13-.07.25v.02l-.03.04a1 1 0 0 1-.2.23l-.06.05-.04.01-.04.03-.04.01a1 1 0 0 1-.27.05H3a.75.75 0 0 1-.55-1.13l6.9-11.5A.8.8 0 0 1 10 3"/></svg>
+                            </span>
+                            <span class="v-visible-sr">upvote</span>
+                        </button>
+                        <button
+                            class="s-vote--btn"
+                            type="submit"
+                            form="quick-negative-feedback-tables"
+                            aria-describedby="tooltip-feedback-negative"
+                            aria-expanded="false"
+                            data-controller="s-tooltip"
+                            data-s-tooltip-placement="right"
+                        >
+                            <span class="s-btn-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteDown" aria-hidden="true"><path d="M10 16a.8.8 0 0 1-.64-.36l-6.9-11.5a.75.75 0 1 1 1.28-.78L10 13.8l5.58-9.3H6.44L5.47 3H16.9a.75.75 0 0 1 .65 1.14l-6.9 11.5A.8.8 0 0 1 10 16"/></svg>
+                            </span>
+                            <span class="s-btn-icon-fill d-none">
+                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteDownFill" aria-hidden="true"><path d="M10 16h-.1l-.1-.02a.8.8 0 0 1-.45-.34l-6.9-11.5-.04-.08-.01-.04L2.39 4a1 1 0 0 1-.04-.26V3.7q0-.14.06-.26l.01-.02.02-.04a1 1 0 0 1 .27-.27l.03-.02.05-.02.04-.02A1 1 0 0 1 3.1 3H17a.75.75 0 0 1 .54 1.14l-6.9 11.5A.8.8 0 0 1 10 16"/></svg>
+                            </span>
+                            <span class="v-visible-sr">downvote</span>
+                        </button>
+                    </div>
+                </div>
+
+                <form
+                    class="w100 js-feedback-form"
+                    name="feedback-tables"
+                    method="POST"
+                    data-netlify="true"
+                    action="/success">
+                    <fieldset class="d-flex fd-column fl-grow1 g16">
+                        <legend class="fs-title fw-bold">How’d we do?</legend>
+                        <div class="fs-body2">Anonymously upvote, downvote, or send additional feedback below.</div>
+
+                        <textarea
+                            class="s-textarea hmn1"
+                            id="feedback-form"
+                            name="additional-feedback"
+                            placeholder="Tell us how we can improve this page…" required></textarea>
+
+                        <div class="d-flex ai-center fd-row-reverse g8 jc-space-between mln6 sm:d-grid sm:grid__1 sm:ml0">
+                            <button
+                                type="submit"
+                                class="s-btn as-start fl-shrink0">
+                                Send feedback
+                            </button>
+                            <div class="d-flex fw-wrap g8 sm:d-grid sm:grid__1">
+                                <a
+                                    href="https://github.com/StackExchange/Stacks/edit/develop/packages/stacks-docs/./product/components/tables.html"
+                                    class="s-btn s-btn__clear s-btn__icon s-btn__sm">
+                                    <svg aria-hidden="true" class="svg-icon iconPencilSm" width="14" height="14"  viewBox="0 0 14 14"><path fill="#F1B600" d="m2 10.12 6.37-6.43 1.88 1.88L3.88 12H2z"/><path fill="#E87C87" d="m11.1 1.71 1.13 1.12c.2.2.2.51 0 .71L11.1 4.7 9.21 2.86l1.17-1.15c.2-.2.51-.2.71 0"/></svg>
+                                    Edit
+                                </a>
+                                <a
+                                    href="https://github.com/StackExchange/Stacks/issues/new/choose"
+                                    class="s-btn s-btn__clear s-btn__icon s-btn__sm">
+                                    File an issue
+                                </a>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div> -->
+
+            <!-- <div class="ta-right">
+                <a href="https://www.netlify.com"><img src="https://www.netlify.com/v3/img/components/netlify-color-accent.svg" alt="Deploys by Netlify" /></a>
+            </div> -->

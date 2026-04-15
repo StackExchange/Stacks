@@ -1,0 +1,4576 @@
+---
+title: "Color palette"
+description: "To avoid specifying color values by hand, we’ve included a robust set of color variables. For maintainability, please use these instead of hardcoding color values."
+figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=651-4397&amp;t=UGqQCKW9BZQqF65O-1"
+---
+
+<section class="docs-section">
+    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="stops">Stops</h2><a class="s-btn s-btn__clear" href="#stops"><span class="v-visible-sr">Section titled Stops</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+
+    <div class="d-grid g24 mt16 mb32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+        
+            
+            
+                <div>
+                    <h3 class="mb8 fs-body2">Theme primary</h3>
+                    <div class="ba bc-theme primary-400 overflow-hidden">
+                        
+                            
+                            
+                            
+
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-theme-primary fc-theme-primary-100">
+                                theme-primary
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                    
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-theme-primary-100 fc-theme-primary-400">
+                                theme-primary-100
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                    
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-theme-primary-200 fc-theme-primary-500">
+                                theme-primary-200
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-theme-primary-300 fc-white">
+                                theme-primary-300
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-theme-primary-400 fc-white">
+                                theme-primary-400
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-theme-primary-500 fc-white">
+                                theme-primary-500
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-theme-primary-600 fc-white">
+                                theme-primary-600
+                            </div>
+                        
+                    </div>
+                </div>
+            
+        
+            
+            
+                <div>
+                    <h3 class="mb8 fs-body2">Theme secondary</h3>
+                    <div class="ba bc-theme secondary-400 overflow-hidden">
+                        
+                            
+                            
+                            
+
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-theme-secondary fc-theme-secondary-100">
+                                theme-secondary
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                    
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-theme-secondary-100 fc-theme-secondary-400">
+                                theme-secondary-100
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                    
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-theme-secondary-200 fc-theme-secondary-500">
+                                theme-secondary-200
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-theme-secondary-300 fc-white">
+                                theme-secondary-300
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-theme-secondary-400 fc-white">
+                                theme-secondary-400
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-theme-secondary-500 fc-white">
+                                theme-secondary-500
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-theme-secondary-600 fc-white">
+                                theme-secondary-600
+                            </div>
+                        
+                    </div>
+                </div>
+            
+        
+            
+            
+                <div>
+                    <h3 class="mb8 fs-body2">Orange</h3>
+                    <div class="ba bc-orange-400 overflow-hidden">
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                    
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-orange-100 fc-orange-400">
+                                orange-100
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                    
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-orange-200 fc-orange-500">
+                                orange-200
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-orange-300 fc-white">
+                                orange-300
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-orange-400 fc-white">
+                                orange-400
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-orange-500 fc-white">
+                                orange-500
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-orange-600 fc-white">
+                                orange-600
+                            </div>
+                        
+                    </div>
+                </div>
+            
+        
+            
+            
+                <div>
+                    <h3 class="mb8 fs-body2">Blue</h3>
+                    <div class="ba bc-blue-400 overflow-hidden">
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                    
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-blue-100 fc-blue-400">
+                                blue-100
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                    
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-blue-200 fc-blue-500">
+                                blue-200
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-blue-300 fc-white">
+                                blue-300
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-blue-400 fc-white">
+                                blue-400
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-blue-500 fc-white">
+                                blue-500
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-blue-600 fc-white">
+                                blue-600
+                            </div>
+                        
+                    </div>
+                </div>
+            
+        
+            
+            
+                <div>
+                    <h3 class="mb8 fs-body2">Green</h3>
+                    <div class="ba bc-green-400 overflow-hidden">
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                    
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-green-100 fc-green-400">
+                                green-100
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                    
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-green-200 fc-green-500">
+                                green-200
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-green-300 fc-white">
+                                green-300
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-green-400 fc-white">
+                                green-400
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-green-500 fc-white">
+                                green-500
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-green-600 fc-white">
+                                green-600
+                            </div>
+                        
+                    </div>
+                </div>
+            
+        
+            
+            
+                <div>
+                    <h3 class="mb8 fs-body2">Red</h3>
+                    <div class="ba bc-red-400 overflow-hidden">
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                    
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-red-100 fc-red-400">
+                                red-100
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                    
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-red-200 fc-red-500">
+                                red-200
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-red-300 fc-white">
+                                red-300
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-red-400 fc-white">
+                                red-400
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-red-500 fc-white">
+                                red-500
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-red-600 fc-white">
+                                red-600
+                            </div>
+                        
+                    </div>
+                </div>
+            
+        
+            
+            
+                <div>
+                    <h3 class="mb8 fs-body2">Yellow</h3>
+                    <div class="ba bc-yellow-400 overflow-hidden">
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                    
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-yellow-100 fc-yellow-400">
+                                yellow-100
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                    
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-yellow-200 fc-yellow-500">
+                                yellow-200
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-yellow-300 fc-white">
+                                yellow-300
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-yellow-400 fc-white">
+                                yellow-400
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-yellow-500 fc-white">
+                                yellow-500
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-yellow-600 fc-white">
+                                yellow-600
+                            </div>
+                        
+                    </div>
+                </div>
+            
+        
+            
+            
+                <div>
+                    <h3 class="mb8 fs-body2">Purple</h3>
+                    <div class="ba bc-purple-400 overflow-hidden">
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                    
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-purple-100 fc-purple-400">
+                                purple-100
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                    
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-purple-200 fc-purple-500">
+                                purple-200
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-purple-300 fc-white">
+                                purple-300
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-purple-400 fc-white">
+                                purple-400
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-purple-500 fc-white">
+                                purple-500
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-purple-600 fc-white">
+                                purple-600
+                            </div>
+                        
+                    </div>
+                </div>
+            
+        
+            
+            
+                <div>
+                    <h3 class="mb8 fs-body2">Pink</h3>
+                    <div class="ba bc-pink-400 overflow-hidden">
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                    
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-pink-100 fc-pink-400">
+                                pink-100
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                    
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-pink-200 fc-pink-500">
+                                pink-200
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-pink-300 fc-white">
+                                pink-300
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-pink-400 fc-white">
+                                pink-400
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-pink-500 fc-white">
+                                pink-500
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-pink-600 fc-white">
+                                pink-600
+                            </div>
+                        
+                    </div>
+                </div>
+            
+        
+            
+            
+                <div>
+                    <h3 class="mb8 fs-body2">Black</h3>
+                    <div class="ba bc-black-400 overflow-hidden">
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                    
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-black-050 fc-black-400">
+                                black-050
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                    
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-black-100 fc-black-400">
+                                black-100
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                    
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-black-150 fc-black-500">
+                                black-150
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                    
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-black-200 fc-black-500">
+                                black-200
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                                    
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-black-225 fc-black-600">
+                                black-225
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                                    
+                                
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-black-250 fc-black-600">
+                                black-250
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-black-300 fc-white">
+                                black-300
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-black-350 fc-white">
+                                black-350
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-black-400 fc-white">
+                                black-400
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-black-500 fc-white">
+                                black-500
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+                                
+                                
+                                
+
+                                
+                                
+                                
+                            
+
+                            
+
+                            
+                            
+                                
+                            
+
+                            <div class="p12 bg-black-600 fc-white">
+                                black-600
+                            </div>
+                        
+                            
+                            
+                            
+
+                            
+
+                            
+
+                            
+                            
+
+                            <div class="p12 bg-black fc-black-100">
+                                black
+                            </div>
+                        
+                    </div>
+                </div>
+            
+        
+            
+            
+                <div>
+                    <h3 class="mb8 fs-body2">White</h3>
+                    <div class="ba bc-white-400 overflow-hidden">
+                        
+                            
+                            
+                            
+
+                            
+
+                            
+
+                            
+                                
+                            
+                            
+
+                            <div class="p12 bg-white fc-black">
+                                white
+                            </div>
+                        
+                    </div>
+                </div>
+            
+        
+    </div>
+</section>
+
+<section class="docs-section">
+    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="brand">Brand</h2><a class="s-btn s-btn__clear" href="#brand"><span class="v-visible-sr">Section titled Brand</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+
+    <p class="docs-copy">
+        </p><div class="s-notice s-anchors s-anchors__inherit s-anchors__underlined s-notice__warning mb16"><span class="s-notice--icon"><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconAlert" aria-hidden="true"><path d="M10 2q.41.01.64.37l8.76 14.58a.75.75 0 0 1-.65 1.14H1.25a.75.75 0 0 1-.65-1.14L9.36 2.37l.05-.09A.8.8 0 0 1 10 2M2.57 16.6h14.86L10 4.2zM11 15.52H9v-2h2zm0-2.97H9v-5.5h2z"></path></svg></span><span>
+            Please see <a href="https://alpha.stackoverflow.design/brand/color">the brand guidlines for color use</a>, these should not be used without prior direction from the brand team.
+        </span></div>
+    <p></p>
+
+    <div class="d-grid g24 mt16 mb32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+        
+            
+            <div>
+                <div class="ba bc-black-400 overflow-hidden theme-light__forced">
+                    
+                        
+
+                        
+
+                        
+                        
+
+                        <div class="p12 fc-black bg-brand">
+                            brand
+                        </div>
+                    
+                        
+
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+
+                        <div class="p12 fc-white bg-brand-black">
+                            brand-black
+                        </div>
+                    
+                        
+
+                        
+                            
+                        
+
+                        
+                        
+
+                        <div class="p12 fc-black bg-brand-off-white">
+                            brand-off-white
+                        </div>
+                    
+                        
+
+                        
+                            
+                        
+
+                        
+                        
+
+                        <div class="p12 fc-black bg-brand-blue-light">
+                            brand-blue-light
+                        </div>
+                    
+                        
+
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+
+                        <div class="p12 fc-white bg-brand-blue">
+                            brand-blue
+                        </div>
+                    
+                        
+
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+
+                        <div class="p12 fc-white bg-brand-blue-dark">
+                            brand-blue-dark
+                        </div>
+                    
+                        
+
+                        
+                            
+                        
+
+                        
+                        
+
+                        <div class="p12 fc-black bg-brand-brown-light">
+                            brand-brown-light
+                        </div>
+                    
+                        
+
+                        
+                            
+                        
+
+                        
+                        
+
+                        <div class="p12 fc-black bg-brand-green">
+                            brand-green
+                        </div>
+                    
+                        
+
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+
+                        <div class="p12 fc-white bg-brand-green-dark">
+                            brand-green-dark
+                        </div>
+                    
+                        
+
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+
+                        <div class="p12 fc-white bg-brand-orange-medium">
+                            brand-orange-medium
+                        </div>
+                    
+                        
+
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+
+                        <div class="p12 fc-white bg-brand-orange-dark">
+                            brand-orange-dark
+                        </div>
+                    
+                        
+
+                        
+                            
+                        
+
+                        
+                        
+
+                        <div class="p12 fc-black bg-brand-pink">
+                            brand-pink
+                        </div>
+                    
+                        
+
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+
+                        <div class="p12 fc-white bg-brand-pink-dark">
+                            brand-pink-dark
+                        </div>
+                    
+                        
+
+                        
+                            
+                        
+
+                        
+                        
+
+                        <div class="p12 fc-black bg-brand-purple">
+                            brand-purple
+                        </div>
+                    
+                        
+
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+
+                        <div class="p12 fc-white bg-brand-purple-dark">
+                            brand-purple-dark
+                        </div>
+                    
+                        
+
+                        
+                            
+                        
+
+                        
+                        
+
+                        <div class="p12 fc-black bg-brand-yellow">
+                            brand-yellow
+                        </div>
+                    
+                        
+
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+
+                        <div class="p12 fc-white bg-brand-yellow-dark">
+                            brand-yellow-dark
+                        </div>
+                    
+                </div>
+            </div>
+        
+    </div>
+</section>
+
+<section class="stacks-section">
+    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="classes">Classes</h2><a class="s-btn s-btn__clear" href="#classes"><span class="v-visible-sr">Section titled Classes</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+
+    <p class="docs-copy">
+        Each color stop is available as an atomic text, background, and border class. Using these atomic classes means your view will respond to dark mode appropriately. These colors are available <a href="/product/develop/conditional-classes#hover">conditionally</a>.
+    </p>
+
+    
+        
+        <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="theme-primary">Theme primary</h3><a class="s-btn s-btn__clear" href="#theme-primary"><span class="v-visible-sr">Section titled Theme primary</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+        
+        
+
+        <div class="overflow-x-auto mb48" tabindex="0">
+            <table class="docs-table s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                <thead>
+                    <tr>
+                        <th scope="col">Text</th>
+                        <th scope="col">Background</th>
+                        <th scope="col">Border</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-theme-primary">
+                                <div class="fc-theme-primary d-inline-block p6 ws-nowrap bg-white">.fc-theme-primary</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-theme-primary d-inline-block fc-white p6 ws-nowrap fc-white">.bg-theme-primary</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-theme-primary ba d-inline-block p6">.bc-theme-primary</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-theme-primary-100">
+                                <div class="fc-theme-primary-100 d-inline-block p6 ws-nowrap bg-theme-primary-500">.fc-theme-primary-100</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-theme-primary-100 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-theme-primary-100</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-theme-primary-500 fc-white">
+                                    <div class="bc-theme-primary-100 ba d-inline-block p6">.bc-theme-primary-100</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-theme-primary-200">
+                                <div class="fc-theme-primary-200 d-inline-block p6 ws-nowrap bg-theme-primary-500">.fc-theme-primary-200</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-theme-primary-200 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-theme-primary-200</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-theme-primary-500 fc-white">
+                                    <div class="bc-theme-primary-200 ba d-inline-block p6">.bc-theme-primary-200</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-theme-primary-300">
+                                <div class="fc-theme-primary-300 d-inline-block p6 ws-nowrap bg-white">.fc-theme-primary-300</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-theme-primary-300 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-theme-primary-300</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-theme-primary-300 ba d-inline-block p6">.bc-theme-primary-300</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-theme-primary-400">
+                                <div class="fc-theme-primary-400 d-inline-block p6 ws-nowrap bg-white">.fc-theme-primary-400</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-theme-primary-400 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-theme-primary-400</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-theme-primary-400 ba d-inline-block p6">.bc-theme-primary-400</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-theme-primary-500">
+                                <div class="fc-theme-primary-500 d-inline-block p6 ws-nowrap bg-white">.fc-theme-primary-500</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-theme-primary-500 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-theme-primary-500</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-theme-primary-500 ba d-inline-block p6">.bc-theme-primary-500</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-theme-primary-600">
+                                <div class="fc-theme-primary-600 d-inline-block p6 ws-nowrap bg-white">.fc-theme-primary-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-theme-primary-600 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-theme-primary-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-theme-primary-600 ba d-inline-block p6">.bc-theme-primary-600</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    
+        
+        <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="theme-secondary">Theme secondary</h3><a class="s-btn s-btn__clear" href="#theme-secondary"><span class="v-visible-sr">Section titled Theme secondary</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+        
+        
+
+        <div class="overflow-x-auto mb48" tabindex="0">
+            <table class="docs-table s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                <thead>
+                    <tr>
+                        <th scope="col">Text</th>
+                        <th scope="col">Background</th>
+                        <th scope="col">Border</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-theme-secondary">
+                                <div class="fc-theme-secondary d-inline-block p6 ws-nowrap bg-white">.fc-theme-secondary</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-theme-secondary d-inline-block fc-white p6 ws-nowrap fc-white">.bg-theme-secondary</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-theme-secondary ba d-inline-block p6">.bc-theme-secondary</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-theme-secondary-100">
+                                <div class="fc-theme-secondary-100 d-inline-block p6 ws-nowrap bg-theme-secondary-500">.fc-theme-secondary-100</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-theme-secondary-100 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-theme-secondary-100</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-theme-secondary-500 fc-white">
+                                    <div class="bc-theme-secondary-100 ba d-inline-block p6">.bc-theme-secondary-100</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-theme-secondary-200">
+                                <div class="fc-theme-secondary-200 d-inline-block p6 ws-nowrap bg-theme-secondary-500">.fc-theme-secondary-200</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-theme-secondary-200 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-theme-secondary-200</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-theme-secondary-500 fc-white">
+                                    <div class="bc-theme-secondary-200 ba d-inline-block p6">.bc-theme-secondary-200</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-theme-secondary-300">
+                                <div class="fc-theme-secondary-300 d-inline-block p6 ws-nowrap bg-white">.fc-theme-secondary-300</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-theme-secondary-300 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-theme-secondary-300</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-theme-secondary-300 ba d-inline-block p6">.bc-theme-secondary-300</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-theme-secondary-400">
+                                <div class="fc-theme-secondary-400 d-inline-block p6 ws-nowrap bg-white">.fc-theme-secondary-400</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-theme-secondary-400 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-theme-secondary-400</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-theme-secondary-400 ba d-inline-block p6">.bc-theme-secondary-400</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-theme-secondary-500">
+                                <div class="fc-theme-secondary-500 d-inline-block p6 ws-nowrap bg-white">.fc-theme-secondary-500</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-theme-secondary-500 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-theme-secondary-500</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-theme-secondary-500 ba d-inline-block p6">.bc-theme-secondary-500</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-theme-secondary-600">
+                                <div class="fc-theme-secondary-600 d-inline-block p6 ws-nowrap bg-white">.fc-theme-secondary-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-theme-secondary-600 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-theme-secondary-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-theme-secondary-600 ba d-inline-block p6">.bc-theme-secondary-600</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    
+        
+        <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="orange">Orange</h3><a class="s-btn s-btn__clear" href="#orange"><span class="v-visible-sr">Section titled Orange</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+        
+        
+
+        <div class="overflow-x-auto mb48" tabindex="0">
+            <table class="docs-table s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                <thead>
+                    <tr>
+                        <th scope="col">Text</th>
+                        <th scope="col">Background</th>
+                        <th scope="col">Border</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-orange-100">
+                                <div class="fc-orange-100 d-inline-block p6 ws-nowrap bg-orange-500">.fc-orange-100</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-orange-100 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-orange-100</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-orange-500 fc-white">
+                                    <div class="bc-orange-100 ba d-inline-block p6">.bc-orange-100</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-orange-200">
+                                <div class="fc-orange-200 d-inline-block p6 ws-nowrap bg-orange-500">.fc-orange-200</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-orange-200 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-orange-200</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-orange-500 fc-white">
+                                    <div class="bc-orange-200 ba d-inline-block p6">.bc-orange-200</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-orange-300">
+                                <div class="fc-orange-300 d-inline-block p6 ws-nowrap bg-white">.fc-orange-300</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-orange-300 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-orange-300</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-orange-300 ba d-inline-block p6">.bc-orange-300</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-orange-400">
+                                <div class="fc-orange-400 d-inline-block p6 ws-nowrap bg-white">.fc-orange-400</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-orange-400 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-orange-400</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-orange-400 ba d-inline-block p6">.bc-orange-400</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-orange-500">
+                                <div class="fc-orange-500 d-inline-block p6 ws-nowrap bg-white">.fc-orange-500</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-orange-500 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-orange-500</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-orange-500 ba d-inline-block p6">.bc-orange-500</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-orange-600">
+                                <div class="fc-orange-600 d-inline-block p6 ws-nowrap bg-white">.fc-orange-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-orange-600 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-orange-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-orange-600 ba d-inline-block p6">.bc-orange-600</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    
+        
+        <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="blue">Blue</h3><a class="s-btn s-btn__clear" href="#blue"><span class="v-visible-sr">Section titled Blue</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+        
+        
+
+        <div class="overflow-x-auto mb48" tabindex="0">
+            <table class="docs-table s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                <thead>
+                    <tr>
+                        <th scope="col">Text</th>
+                        <th scope="col">Background</th>
+                        <th scope="col">Border</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-blue-100">
+                                <div class="fc-blue-100 d-inline-block p6 ws-nowrap bg-blue-500">.fc-blue-100</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-blue-100 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-blue-100</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-blue-500 fc-white">
+                                    <div class="bc-blue-100 ba d-inline-block p6">.bc-blue-100</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-blue-200">
+                                <div class="fc-blue-200 d-inline-block p6 ws-nowrap bg-blue-500">.fc-blue-200</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-blue-200 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-blue-200</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-blue-500 fc-white">
+                                    <div class="bc-blue-200 ba d-inline-block p6">.bc-blue-200</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-blue-300">
+                                <div class="fc-blue-300 d-inline-block p6 ws-nowrap bg-white">.fc-blue-300</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-blue-300 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-blue-300</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-blue-300 ba d-inline-block p6">.bc-blue-300</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-blue-400">
+                                <div class="fc-blue-400 d-inline-block p6 ws-nowrap bg-white">.fc-blue-400</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-blue-400 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-blue-400</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-blue-400 ba d-inline-block p6">.bc-blue-400</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-blue-500">
+                                <div class="fc-blue-500 d-inline-block p6 ws-nowrap bg-white">.fc-blue-500</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-blue-500 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-blue-500</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-blue-500 ba d-inline-block p6">.bc-blue-500</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-blue-600">
+                                <div class="fc-blue-600 d-inline-block p6 ws-nowrap bg-white">.fc-blue-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-blue-600 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-blue-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-blue-600 ba d-inline-block p6">.bc-blue-600</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    
+        
+        <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="green">Green</h3><a class="s-btn s-btn__clear" href="#green"><span class="v-visible-sr">Section titled Green</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+        
+        
+
+        <div class="overflow-x-auto mb48" tabindex="0">
+            <table class="docs-table s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                <thead>
+                    <tr>
+                        <th scope="col">Text</th>
+                        <th scope="col">Background</th>
+                        <th scope="col">Border</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-green-100">
+                                <div class="fc-green-100 d-inline-block p6 ws-nowrap bg-green-500">.fc-green-100</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-green-100 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-green-100</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-green-500 fc-white">
+                                    <div class="bc-green-100 ba d-inline-block p6">.bc-green-100</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-green-200">
+                                <div class="fc-green-200 d-inline-block p6 ws-nowrap bg-green-500">.fc-green-200</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-green-200 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-green-200</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-green-500 fc-white">
+                                    <div class="bc-green-200 ba d-inline-block p6">.bc-green-200</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-green-300">
+                                <div class="fc-green-300 d-inline-block p6 ws-nowrap bg-white">.fc-green-300</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-green-300 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-green-300</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-green-300 ba d-inline-block p6">.bc-green-300</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-green-400">
+                                <div class="fc-green-400 d-inline-block p6 ws-nowrap bg-white">.fc-green-400</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-green-400 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-green-400</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-green-400 ba d-inline-block p6">.bc-green-400</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-green-500">
+                                <div class="fc-green-500 d-inline-block p6 ws-nowrap bg-white">.fc-green-500</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-green-500 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-green-500</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-green-500 ba d-inline-block p6">.bc-green-500</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-green-600">
+                                <div class="fc-green-600 d-inline-block p6 ws-nowrap bg-white">.fc-green-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-green-600 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-green-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-green-600 ba d-inline-block p6">.bc-green-600</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    
+        
+        <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="red">Red</h3><a class="s-btn s-btn__clear" href="#red"><span class="v-visible-sr">Section titled Red</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+        
+        
+
+        <div class="overflow-x-auto mb48" tabindex="0">
+            <table class="docs-table s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                <thead>
+                    <tr>
+                        <th scope="col">Text</th>
+                        <th scope="col">Background</th>
+                        <th scope="col">Border</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-red-100">
+                                <div class="fc-red-100 d-inline-block p6 ws-nowrap bg-red-500">.fc-red-100</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-red-100 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-red-100</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-red-500 fc-white">
+                                    <div class="bc-red-100 ba d-inline-block p6">.bc-red-100</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-red-200">
+                                <div class="fc-red-200 d-inline-block p6 ws-nowrap bg-red-500">.fc-red-200</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-red-200 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-red-200</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-red-500 fc-white">
+                                    <div class="bc-red-200 ba d-inline-block p6">.bc-red-200</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-red-300">
+                                <div class="fc-red-300 d-inline-block p6 ws-nowrap bg-white">.fc-red-300</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-red-300 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-red-300</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-red-300 ba d-inline-block p6">.bc-red-300</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-red-400">
+                                <div class="fc-red-400 d-inline-block p6 ws-nowrap bg-white">.fc-red-400</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-red-400 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-red-400</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-red-400 ba d-inline-block p6">.bc-red-400</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-red-500">
+                                <div class="fc-red-500 d-inline-block p6 ws-nowrap bg-white">.fc-red-500</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-red-500 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-red-500</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-red-500 ba d-inline-block p6">.bc-red-500</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-red-600">
+                                <div class="fc-red-600 d-inline-block p6 ws-nowrap bg-white">.fc-red-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-red-600 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-red-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-red-600 ba d-inline-block p6">.bc-red-600</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    
+        
+        <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="yellow">Yellow</h3><a class="s-btn s-btn__clear" href="#yellow"><span class="v-visible-sr">Section titled Yellow</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+        
+        
+
+        <div class="overflow-x-auto mb48" tabindex="0">
+            <table class="docs-table s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                <thead>
+                    <tr>
+                        <th scope="col">Text</th>
+                        <th scope="col">Background</th>
+                        <th scope="col">Border</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-yellow-100">
+                                <div class="fc-yellow-100 d-inline-block p6 ws-nowrap bg-yellow-600">.fc-yellow-100</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-yellow-100 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-yellow-100</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-yellow-600 fc-white">
+                                    <div class="bc-yellow-100 ba d-inline-block p6">.bc-yellow-100</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-yellow-200">
+                                <div class="fc-yellow-200 d-inline-block p6 ws-nowrap bg-yellow-600">.fc-yellow-200</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-yellow-200 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-yellow-200</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-yellow-600 fc-white">
+                                    <div class="bc-yellow-200 ba d-inline-block p6">.bc-yellow-200</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-yellow-300">
+                                <div class="fc-yellow-300 d-inline-block p6 ws-nowrap bg-white">.fc-yellow-300</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-yellow-300 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-yellow-300</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-yellow-300 ba d-inline-block p6">.bc-yellow-300</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-yellow-400">
+                                <div class="fc-yellow-400 d-inline-block p6 ws-nowrap bg-white">.fc-yellow-400</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-yellow-400 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-yellow-400</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-yellow-400 ba d-inline-block p6">.bc-yellow-400</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-yellow-500">
+                                <div class="fc-yellow-500 d-inline-block p6 ws-nowrap bg-white">.fc-yellow-500</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-yellow-500 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-yellow-500</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-yellow-500 ba d-inline-block p6">.bc-yellow-500</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-yellow-600">
+                                <div class="fc-yellow-600 d-inline-block p6 ws-nowrap bg-white">.fc-yellow-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-yellow-600 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-yellow-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-yellow-600 ba d-inline-block p6">.bc-yellow-600</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    
+        
+        <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="purple">Purple</h3><a class="s-btn s-btn__clear" href="#purple"><span class="v-visible-sr">Section titled Purple</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+        
+        
+
+        <div class="overflow-x-auto mb48" tabindex="0">
+            <table class="docs-table s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                <thead>
+                    <tr>
+                        <th scope="col">Text</th>
+                        <th scope="col">Background</th>
+                        <th scope="col">Border</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-purple-100">
+                                <div class="fc-purple-100 d-inline-block p6 ws-nowrap bg-purple-600">.fc-purple-100</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-purple-100 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-purple-100</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-purple-600 fc-white">
+                                    <div class="bc-purple-100 ba d-inline-block p6">.bc-purple-100</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-purple-200">
+                                <div class="fc-purple-200 d-inline-block p6 ws-nowrap bg-purple-600">.fc-purple-200</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-purple-200 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-purple-200</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-purple-600 fc-white">
+                                    <div class="bc-purple-200 ba d-inline-block p6">.bc-purple-200</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-purple-300">
+                                <div class="fc-purple-300 d-inline-block p6 ws-nowrap bg-white">.fc-purple-300</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-purple-300 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-purple-300</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-purple-300 ba d-inline-block p6">.bc-purple-300</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-purple-400">
+                                <div class="fc-purple-400 d-inline-block p6 ws-nowrap bg-white">.fc-purple-400</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-purple-400 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-purple-400</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-purple-400 ba d-inline-block p6">.bc-purple-400</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-purple-500">
+                                <div class="fc-purple-500 d-inline-block p6 ws-nowrap bg-white">.fc-purple-500</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-purple-500 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-purple-500</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-purple-500 ba d-inline-block p6">.bc-purple-500</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-purple-600">
+                                <div class="fc-purple-600 d-inline-block p6 ws-nowrap bg-white">.fc-purple-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-purple-600 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-purple-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-purple-600 ba d-inline-block p6">.bc-purple-600</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    
+        
+        <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="pink">Pink</h3><a class="s-btn s-btn__clear" href="#pink"><span class="v-visible-sr">Section titled Pink</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+        
+        
+
+        <div class="overflow-x-auto mb48" tabindex="0">
+            <table class="docs-table s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                <thead>
+                    <tr>
+                        <th scope="col">Text</th>
+                        <th scope="col">Background</th>
+                        <th scope="col">Border</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-pink-100">
+                                <div class="fc-pink-100 d-inline-block p6 ws-nowrap bg-pink-600">.fc-pink-100</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-pink-100 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-pink-100</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-pink-600 fc-white">
+                                    <div class="bc-pink-100 ba d-inline-block p6">.bc-pink-100</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-pink-200">
+                                <div class="fc-pink-200 d-inline-block p6 ws-nowrap bg-pink-600">.fc-pink-200</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-pink-200 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-pink-200</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-pink-600 fc-white">
+                                    <div class="bc-pink-200 ba d-inline-block p6">.bc-pink-200</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-pink-300">
+                                <div class="fc-pink-300 d-inline-block p6 ws-nowrap bg-white">.fc-pink-300</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-pink-300 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-pink-300</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-pink-300 ba d-inline-block p6">.bc-pink-300</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-pink-400">
+                                <div class="fc-pink-400 d-inline-block p6 ws-nowrap bg-white">.fc-pink-400</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-pink-400 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-pink-400</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-pink-400 ba d-inline-block p6">.bc-pink-400</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-pink-500">
+                                <div class="fc-pink-500 d-inline-block p6 ws-nowrap bg-white">.fc-pink-500</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-pink-500 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-pink-500</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-pink-500 ba d-inline-block p6">.bc-pink-500</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-pink-600">
+                                <div class="fc-pink-600 d-inline-block p6 ws-nowrap bg-white">.fc-pink-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-pink-600 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-pink-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-pink-600 ba d-inline-block p6">.bc-pink-600</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    
+        
+        <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="black">Black</h3><a class="s-btn s-btn__clear" href="#black"><span class="v-visible-sr">Section titled Black</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+        
+        
+
+        <div class="overflow-x-auto mb48" tabindex="0">
+            <table class="docs-table s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                <thead>
+                    <tr>
+                        <th scope="col">Text</th>
+                        <th scope="col">Background</th>
+                        <th scope="col">Border</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-black-050">
+                                <div class="fc-black-050 d-inline-block p6 ws-nowrap bg-black-600">.fc-black-050</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-black-050 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-black-050</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-black-600 fc-white">
+                                    <div class="bc-black-050 ba d-inline-block p6">.bc-black-050</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-black-100">
+                                <div class="fc-black-100 d-inline-block p6 ws-nowrap bg-black-600">.fc-black-100</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-black-100 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-black-100</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-black-600 fc-white">
+                                    <div class="bc-black-100 ba d-inline-block p6">.bc-black-100</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-black-150">
+                                <div class="fc-black-150 d-inline-block p6 ws-nowrap bg-black-600">.fc-black-150</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-black-150 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-black-150</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-black-600 fc-white">
+                                    <div class="bc-black-150 ba d-inline-block p6">.bc-black-150</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-black-200">
+                                <div class="fc-black-200 d-inline-block p6 ws-nowrap bg-black-600">.fc-black-200</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-black-200 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-black-200</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-black-600 fc-white">
+                                    <div class="bc-black-200 ba d-inline-block p6">.bc-black-200</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-black-225">
+                                <div class="fc-black-225 d-inline-block p6 ws-nowrap bg-black-600">.fc-black-225</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-black-225 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-black-225</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-black-600 fc-white">
+                                    <div class="bc-black-225 ba d-inline-block p6">.bc-black-225</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-black-250">
+                                <div class="fc-black-250 d-inline-block p6 ws-nowrap bg-black-600">.fc-black-250</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-black-250 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-black-250</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-black-600 fc-white">
+                                    <div class="bc-black-250 ba d-inline-block p6">.bc-black-250</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-black-300">
+                                <div class="fc-black-300 d-inline-block p6 ws-nowrap bg-black-600">.fc-black-300</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-black-300 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-black-300</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-black-600 fc-white">
+                                    <div class="bc-black-300 ba d-inline-block p6">.bc-black-300</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-black-350">
+                                <div class="fc-black-350 d-inline-block p6 ws-nowrap bg-black-600">.fc-black-350</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-black-350 d-inline-block fc-white p6 ws-nowrap fc-black">.bg-black-350</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-black-600 fc-white">
+                                    <div class="bc-black-350 ba d-inline-block p6">.bc-black-350</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-black-400">
+                                <div class="fc-black-400 d-inline-block p6 ws-nowrap bg-white">.fc-black-400</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-black-400 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-black-400</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-black-400 ba d-inline-block p6">.bc-black-400</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-black-500">
+                                <div class="fc-black-500 d-inline-block p6 ws-nowrap bg-white">.fc-black-500</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-black-500 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-black-500</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-black-500 ba d-inline-block p6">.bc-black-500</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+                            
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-black-600">
+                                <div class="fc-black-600 d-inline-block p6 ws-nowrap bg-white">.fc-black-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-black-600 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-black-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-black-600 ba d-inline-block p6">.bc-black-600</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+                            
+                            
+                            
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-black-600">
+                                <div class="fc-black-600 d-inline-block p6 ws-nowrap bg-white">.fc-black-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-black-600 d-inline-block fc-white p6 ws-nowrap fc-white">.bg-black-600</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-white fc-black">
+                                    <div class="bc-black-600 ba d-inline-block p6">.bc-black-600</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    
+        
+        <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="white">White</h3><a class="s-btn s-btn__clear" href="#white"><span class="v-visible-sr">Section titled White</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+        
+        
+
+        <div class="overflow-x-auto mb48" tabindex="0">
+            <table class="docs-table s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                <thead>
+                    <tr>
+                        <th scope="col">Text</th>
+                        <th scope="col">Background</th>
+                        <th scope="col">Border</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        
+                        
+
+                        
+                        
+                            
+                        
+                        
+                        
+
+                        
+
+                        <tr class="ff-mono">
+                            <td class="fc-white">
+                                <div class="fc-white d-inline-block p6 ws-nowrap bg-black-600">.fc-white</div>
+                            </td>
+                            <td class="p8">
+                                <div class="bc-inherit bg-white d-inline-block fc-white p6 ws-nowrap fc-black">.bg-white</div>
+                            </td>
+                            <td class="p8">
+                                <div class="d-inline-block p6 bg-black-600 fc-white">
+                                    <div class="bc-white ba d-inline-block p6">.bc-white</div>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    
+</section>
+
+<section class="docs-section">
+    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="aliases">Aliases</h2><a class="s-btn s-btn__clear" href="#aliases"><span class="v-visible-sr">Section titled Aliases</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="body-text">Body text</h3><a class="s-btn s-btn__clear" href="#body-text"><span class="v-visible-sr">Section titled Body text</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <div class="docs-preview">
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fc-light"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fc-medium"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fc-dark"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre>
+    </div>
+    
+    <div class="overflow-x-auto mb48" tabindex="0">
+        <table class="docs-table s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell3">Text classes</th>
+                    <th scope="col" class="s-table--cell3">Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                    <tr class="ff-mono">
+                        <td class="ws-nowrap">.fc-light</td>
+                        <td class="p8 fc-light">
+                            <p>This is example light text.</p>
+                        </td>
+                    </tr>
+                
+                    <tr class="ff-mono">
+                        <td class="ws-nowrap">.fc-medium</td>
+                        <td class="p8 fc-medium">
+                            <p>This is example medium text.</p>
+                        </td>
+                    </tr>
+                
+                    <tr class="ff-mono">
+                        <td class="ws-nowrap">.fc-dark</td>
+                        <td class="p8 fc-dark">
+                            <p>This is example dark text.</p>
+                        </td>
+                    </tr>
+                
+            </tbody>
+        </table>
+    </div>
+
+    
+
+    
+    
+        
+        <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="danger">Danger</h3><a class="s-btn s-btn__clear" href="#danger"><span class="v-visible-sr">Section titled Danger</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+        <div class="overflow-x-auto mb48" tabindex="0">
+            <table class="docs-table s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                <thead>
+                    <tr>
+                        <th scope="col" class="s-table--cell3">Text classes</th>
+                        <th scope="col" class="s-table--cell3">Background classes</th>
+                        <th scope="col">Border Classes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="ff-mono">
+                        <td class="fc-danger">.fc-danger</td>
+                        <td class="p8">
+                            <div class="bg-danger d-inline-block fc-white p8 ws-nowrap">.bg-danger</div>
+                        </td>
+                        <td class="p8">
+                            <div class="bc-danger ba d-inline-block p8">.bc-danger</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+        
+        <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="error">Error</h3><a class="s-btn s-btn__clear" href="#error"><span class="v-visible-sr">Section titled Error</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+        <div class="overflow-x-auto mb48" tabindex="0">
+            <table class="docs-table s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                <thead>
+                    <tr>
+                        <th scope="col" class="s-table--cell3">Text classes</th>
+                        <th scope="col" class="s-table--cell3">Background classes</th>
+                        <th scope="col">Border Classes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="ff-mono">
+                        <td class="fc-error">.fc-error</td>
+                        <td class="p8">
+                            <div class="bg-error d-inline-block fc-white p8 ws-nowrap">.bg-error</div>
+                        </td>
+                        <td class="p8">
+                            <div class="bc-error ba d-inline-block p8">.bc-error</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+        
+        <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="warning">Warning</h3><a class="s-btn s-btn__clear" href="#warning"><span class="v-visible-sr">Section titled Warning</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+        <div class="overflow-x-auto mb48" tabindex="0">
+            <table class="docs-table s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                <thead>
+                    <tr>
+                        <th scope="col" class="s-table--cell3">Text classes</th>
+                        <th scope="col" class="s-table--cell3">Background classes</th>
+                        <th scope="col">Border Classes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="ff-mono">
+                        <td class="fc-warning">.fc-warning</td>
+                        <td class="p8">
+                            <div class="bg-warning d-inline-block fc-white p8 ws-nowrap">.bg-warning</div>
+                        </td>
+                        <td class="p8">
+                            <div class="bc-warning ba d-inline-block p8">.bc-warning</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+        
+        <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="success">Success</h3><a class="s-btn s-btn__clear" href="#success"><span class="v-visible-sr">Section titled Success</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+        <div class="overflow-x-auto mb48" tabindex="0">
+            <table class="docs-table s-table s-table__bx-simple s-table__condensed va-middle fs-caption">
+                <thead>
+                    <tr>
+                        <th scope="col" class="s-table--cell3">Text classes</th>
+                        <th scope="col" class="s-table--cell3">Background classes</th>
+                        <th scope="col">Border Classes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="ff-mono">
+                        <td class="fc-success">.fc-success</td>
+                        <td class="p8">
+                            <div class="bg-success d-inline-block fc-white p8 ws-nowrap">.bg-success</div>
+                        </td>
+                        <td class="p8">
+                            <div class="bc-success ba d-inline-block p8">.bc-success</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+</section>
+
+
+            <!-- <div class="d-flex my48 pt24">
+                <div class="mr16">
+                    
+                    <form
+                        id="quick-positive-feedback-colors"
+                        class="js-feedback-form v-hidden"
+                        name="quick-positive-feedback-colors"
+                        method="POST"
+                        data-netlify="true"
+                        action="/success">
+                    </form>
+                    <form
+                        id="quick-negative-feedback-colors"
+                        class="js-feedback-form v-hidden"
+                        name="quick-negative-feedback-colors"
+                        method="POST"
+                        data-netlify="true"
+                        action="/success">
+                    </form>
+                    <div
+                        class="s-popover s-popover__tooltip"
+                        id="tooltip-feedback-positive"
+                        role="tooltip">
+                        <div class="s-popover--content">This page is useful</div>
+                    </div>
+                    <div
+                        class="s-popover s-popover__tooltip"
+                        id="tooltip-feedback-negative"
+                        role="tooltip">
+                        <div class="s-popover--content">This page needs improvement</div>
+                    </div>
+                    <div id="vote-feedback" class="s-vote">
+                        <button
+                            class="s-vote--btn"
+                            type="submit"
+                            form="quick-positive-feedback-colors"
+                            aria-describedby="tooltip-feedback-positive"
+                            aria-expanded="false"
+                            data-controller="s-tooltip"
+                            data-s-tooltip-placement="right"
+                        >
+                            <span class="s-btn-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteUp" aria-hidden="true"><path d="M10 3q.41.02.64.36l6.9 11.5a.75.75 0 1 1-1.28.78L10 5.21l-5.58 9.3h8.04v-.01h1.1l.97 1.5H3.1a.75.75 0 0 1-.65-1.13l6.9-11.5A.8.8 0 0 1 10 3"/></svg>
+                            </span>
+                            <span class="s-btn-icon-fill d-none">
+                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteUpFill" aria-hidden="true"><path d="M10 3h.1a1 1 0 0 1 .42.21l.12.15 6.9 11.5.05.09v.03l.02.04q.04.12.04.26v.03q0 .13-.07.25v.02l-.03.04a1 1 0 0 1-.2.23l-.06.05-.04.01-.04.03-.04.01a1 1 0 0 1-.27.05H3a.75.75 0 0 1-.55-1.13l6.9-11.5A.8.8 0 0 1 10 3"/></svg>
+                            </span>
+                            <span class="v-visible-sr">upvote</span>
+                        </button>
+                        <button
+                            class="s-vote--btn"
+                            type="submit"
+                            form="quick-negative-feedback-colors"
+                            aria-describedby="tooltip-feedback-negative"
+                            aria-expanded="false"
+                            data-controller="s-tooltip"
+                            data-s-tooltip-placement="right"
+                        >
+                            <span class="s-btn-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteDown" aria-hidden="true"><path d="M10 16a.8.8 0 0 1-.64-.36l-6.9-11.5a.75.75 0 1 1 1.28-.78L10 13.8l5.58-9.3H6.44L5.47 3H16.9a.75.75 0 0 1 .65 1.14l-6.9 11.5A.8.8 0 0 1 10 16"/></svg>
+                            </span>
+                            <span class="s-btn-icon-fill d-none">
+                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteDownFill" aria-hidden="true"><path d="M10 16h-.1l-.1-.02a.8.8 0 0 1-.45-.34l-6.9-11.5-.04-.08-.01-.04L2.39 4a1 1 0 0 1-.04-.26V3.7q0-.14.06-.26l.01-.02.02-.04a1 1 0 0 1 .27-.27l.03-.02.05-.02.04-.02A1 1 0 0 1 3.1 3H17a.75.75 0 0 1 .54 1.14l-6.9 11.5A.8.8 0 0 1 10 16"/></svg>
+                            </span>
+                            <span class="v-visible-sr">downvote</span>
+                        </button>
+                    </div>
+                </div>
+
+                <form
+                    class="w100 js-feedback-form"
+                    name="feedback-colors"
+                    method="POST"
+                    data-netlify="true"
+                    action="/success">
+                    <fieldset class="d-flex fd-column fl-grow1 g16">
+                        <legend class="fs-title fw-bold">How’d we do?</legend>
+                        <div class="fs-body2">Anonymously upvote, downvote, or send additional feedback below.</div>
+
+                        <textarea
+                            class="s-textarea hmn1"
+                            id="feedback-form"
+                            name="additional-feedback"
+                            placeholder="Tell us how we can improve this page…" required></textarea>
+
+                        <div class="d-flex ai-center fd-row-reverse g8 jc-space-between mln6 sm:d-grid sm:grid__1 sm:ml0">
+                            <button
+                                type="submit"
+                                class="s-btn as-start fl-shrink0">
+                                Send feedback
+                            </button>
+                            <div class="d-flex fw-wrap g8 sm:d-grid sm:grid__1">
+                                <a
+                                    href="https://github.com/StackExchange/Stacks/edit/develop/packages/stacks-docs/./product/foundation/colors.html"
+                                    class="s-btn s-btn__clear s-btn__icon s-btn__sm">
+                                    <svg aria-hidden="true" class="svg-icon iconPencilSm" width="14" height="14"  viewBox="0 0 14 14"><path fill="#F1B600" d="m2 10.12 6.37-6.43 1.88 1.88L3.88 12H2z"/><path fill="#E87C87" d="m11.1 1.71 1.13 1.12c.2.2.2.51 0 .71L11.1 4.7 9.21 2.86l1.17-1.15c.2-.2.51-.2.71 0"/></svg>
+                                    Edit
+                                </a>
+                                <a
+                                    href="https://github.com/StackExchange/Stacks/issues/new/choose"
+                                    class="s-btn s-btn__clear s-btn__icon s-btn__sm">
+                                    File an issue
+                                </a>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div> -->
+
+            <!-- <div class="ta-right">
+                <a href="https://www.netlify.com"><img src="https://www.netlify.com/v3/img/components/netlify-color-accent.svg" alt="Deploys by Netlify" /></a>
+            </div> -->
