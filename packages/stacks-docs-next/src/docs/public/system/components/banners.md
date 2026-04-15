@@ -129,15 +129,9 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 
 ## JavaScript
 
-The `.s-banner` component includes a Stimulus controller to show and hide the banner programmatically. While it is optional, including the functionality to close the banner is recommended.
+The `.s-banner` component includes a controller to show and hide the banner programitically. While it is optional, at least including the functionality to close the banner is recommended.
 
 ### Example
-
-```javascript
-document.querySelector(".js-banner-toggle").addEventListener("click", function(e) {
-    Stacks.showBanner(document.querySelector("#example-banner"));
-});
-```
 
 ```html
 <div
@@ -150,6 +144,18 @@ document.querySelector(".js-banner-toggle").addEventListener("click", function(e
     data-s-banner-target="banner">
     Example banner
 </div>
+…
+<button
+    data-toggle="s-banner"
+    data-target="#example-banner">
+    Show banner
+</button>
+```
+
+```javascript
+document.querySelector(".js-banner-toggle").addEventListener("click", function(e) {
+    Stacks.showBanner(document.querySelector("#example-banner"));
+});
 ```
 
 ### Attributes
