@@ -153,7 +153,6 @@ Stacks also provides alternative styling for success, warning, and danger states
                 <div class="s-avatar {bg} ps-relative">
                     <ActivityIndicator label="New activity" {variant} size="sm" class="s-avatar--indicator" />
                     <div class="s-avatar--letter">G</div>
-                    <Icon src={IconShieldXSm} class="native s-avatar--badge" />
                 </div>
                 <span class="pl4">Grayson</span>
             </a>
