@@ -203,7 +203,7 @@ In this example, from left to right, we have a team name of Hum with no avatar o
                 <tr>
                     <th scope="col">Size</th>
                     <th scope="col">Class</th>
-                    <th scope="col">Default color</th>
+                    <th scope="col">Custom color</th>
                     <th scope="col">Brand color</th>
                     <th scope="col">Custom avatar</th>
                 </tr>
