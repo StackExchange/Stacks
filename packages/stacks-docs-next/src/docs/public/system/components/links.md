@@ -112,10 +112,10 @@ In this case, you can add the `s-anchors` class together with one of the modifie
 One additional level of nesting is supported, but even that should be exceedingly rare. More than that is not supported.
 
 ```html
-<div class="s-anchors s-anchors__danger docs-card">
+<div class="s-anchors s-anchors__danger">
     All <a href="#">links</a> in this <a href="#">outer box</a>
     are <a href="#">dangerous</a>.
-    <div class="s-anchors s-anchors__default docs-card w70 mt8">
+    <div class="s-anchors s-anchors__default w70 mt8">
         But all <a href="#">links</a> in this <a href="#">inner box</a>
         have the <a href="#">default</a> link color.
     </div>
@@ -134,7 +134,7 @@ One additional level of nesting is supported, but even that should be exceedingl
 An explicit `s-link` on an anchor overrides any `s-anchors` setting:
 
 ```html
-<div class="s-anchors s-anchors__danger docs-card">
+<div class="s-anchors s-anchors__danger">
     All <a href="#">links</a> in this <a href="#">box</a> are <a href="#">dangerous</a>,
     except for <a class="s-link">this one</a> which uses the default color, and
     <a class="s-link s-link__muted">this muted link</a>.
