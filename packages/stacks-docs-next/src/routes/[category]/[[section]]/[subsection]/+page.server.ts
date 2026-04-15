@@ -55,11 +55,17 @@ function extractLegacyHeader(html: string): LegacyMetadata & { strippedHtml: str
     const descMatch = headerHtml.match(/<p[^>]*docs-copy[^>]*>([\s\S]*?)<\/p>/);
     const description = descMatch ? descMatch[1].trim() : undefined;
 
-    const svelteMatch = headerHtml.match(/href="([^"]*svelte\.stackoverflow\.design[^"]*)"/i);
-    const svelte = svelteMatch ? svelteMatch[1] : undefined;
-
-    const figmaMatch = headerHtml.match(/href="([^"]*figma\.com[^"]*)"/i);
-    const figma = figmaMatch ? figmaMatch[1] : undefined;
+    // Match each badge <a> element individually to extract href and label.
+    // URL-domain matching is unreliable (some Figma links are on svelte.stackoverflow.design).
+    let svelte: string | undefined;
+    let figma: string | undefined;
+    const badgeRe = /<a\s[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
+    let badgeMatch;
+    while ((badgeMatch = badgeRe.exec(headerHtml)) !== null) {
+        const [, url, content] = badgeMatch;
+        if (/<\/svg>\s*Svelte/i.test(content)) svelte = url;
+        else if (/<\/svg>\s*Figma/i.test(content)) figma = url;
+    }
 
     return {
         description,
