@@ -38,7 +38,7 @@ If the user is able to address the situation resulting in an empty state, it is 
 ```
 
 <Example>
-    <EmptyState title="No questions match your result.">
+    <EmptyState title="No questions match your result." class="wmx4 p48">
         {#snippet description()}
             Try refining your search term or trying something more general.
         {/snippet}
@@ -61,7 +61,7 @@ If the user can't take an action to fix the situation, it's appropriate to set e
 ```
 
 <Example>
-    <EmptyState title="User trends not ready">
+    <EmptyState title="User trends not ready" class="wmx4 p48">
         {#snippet description()}
             Please check back in a few days.
         {/snippet}
@@ -80,7 +80,7 @@ If desired, both the title and call-to-action may be omitted for a minimal look.
 ```
 
 <Example>
-    <EmptyState>
+    <EmptyState class="wmx4 p48">
         {#snippet description()}
             There's no data associated with <a href="#" class="s-link s-link__underlined">this account</a>.
         {/snippet}
