@@ -57,7 +57,7 @@
         </Button>
       </nav>
 
-      <div class="d-flex ai-center g8">
+      <div class="d-flex ai-center g16 fs-caption">
         {#if data.filename}
           <Button title="Edit on GitHub" link icon href={`https://github.com/StackExchange/Stacks/edit/main/packages/stacks-docs-next${data.filename}`}>
             <Icon src={IconServiceGitHub} />
