@@ -129,7 +129,7 @@ Avatars can display activity indicators to show activities or status changes. Ad
                 </tr>
             </thead>
             <tbody>
-                {#each sizes as size}
+                {#each [16, 24] as size}
                     <tr>
                         <td><code>{size}px</code></td>
                         <td><code>.s-avatar{size > 16 ? `__${size}` : ''}</code></td>
