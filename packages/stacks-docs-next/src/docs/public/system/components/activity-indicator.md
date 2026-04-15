@@ -50,7 +50,7 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
 
 ### Default
 
-By default, the indicator has no positioning applied — use [atomic positioning classes](/system/base/position) as needed. Always include a visually-hidden label using the [`v-visible-sr`](/system/base/visibility) class so screen readers announce the indicator's purpose.
+By default, our indicator has no positioning attached to it. Depending on your context, you can modify the activity indicator's positioning using any combination of atomic classes. Since our activity indicator has no inherent semantic meaning, make sure to include [visually-hidden, screenreader-only](/system/base/visibility) text with the `v-visible-sr` class.
 
 ```html
 <div class="s-activity-indicator">
