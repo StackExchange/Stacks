@@ -124,7 +124,7 @@
     border-radius: 6px !important;
   }
   .s-navigation--item:hover {
-    background: var(--orange-400) !important;
+    background: var(--theme-primary) !important;
     color: var(--white) !important;
   }
 	.s-navigation--item.is-selected,

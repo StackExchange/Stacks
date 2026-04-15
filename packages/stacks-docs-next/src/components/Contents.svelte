@@ -124,7 +124,7 @@
   }
 </script>
 
-<aside class="fl-shrink0 w25 md:d-none ml32">
+<aside class="fl-shrink0 w25 md:d-none ml32 ff-stack-sans-headline">
   {#if toc.length > 0}
     <div class="ps-sticky t0 py24 mt6 pr24 md:pb0 overflow-auto hmx-screen md:hmx-initial">
       <nav bind:this={navElement} class="ps-relative">
@@ -144,7 +144,7 @@
                 class="s-navigation--item fs-caption bar0 ps-relative fw-bold fc-black ai-start"
                 class:is-active={activeId === item.id}
               >
-                <span class="fl-shrink0 w24 d-flex ai-center fc-orange-400">{(index + 1).toString().padStart(2, "0")}</span>
+                <span class="fl-shrink0 w24 d-flex ai-center fc-theme-primary">{(index + 1).toString().padStart(2, "0")}</span>
                 <span>{item.value}</span>
               </a>
               {#if item.children && item.children.length > 0}

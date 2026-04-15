@@ -25,9 +25,9 @@
 	<link rel="icon" href={Favicon} />
 </svelte:head>
 
-<header class="d-flex fd-column w20 sm:w100 hmx100 h-screen sm:h-auto overflow-auto ps-fixed z-nav sm:ps-static ff-stack-sans">
+<header class="d-flex fd-column w20 sm:w100 hmx100 h-screen sm:h-auto overflow-auto ps-fixed z-nav sm:ps-static ff-stack-sans-headline">
 	<div class="d-flex ai-center bg-black-100 pt16 px24 sm:pr6 sm:pb12 sm:pt12">
-		<a href={resolve('/')} title="Home" class="fc-brand-orange mr-auto">
+		<a href={resolve('/')} title="Home" class="fc-theme-primary mr-auto">
 			<Icon src={IconLogo} />
 		</a>
 
