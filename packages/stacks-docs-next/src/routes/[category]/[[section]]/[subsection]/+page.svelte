@@ -41,7 +41,7 @@
 {/if}
 
 <article class="d-flex md:fd-column mx-auto pl32 md:pr32 sm:pl24 sm:pr24">
-  <div class="doc flex--item9 wmn1 s-prose fs-body2 pt24">
+  <div class="doc flex--item9 wmn0 s-prose fs-body2 pt24">
     <div class="d-flex gs4 ai-center mb128">
       <nav class="d-flex ai-center g6 fs-body2 mr-auto" aria-label="breadcrumb">
         {#each data.breadcrumb as crumb, index (crumb.path)}
