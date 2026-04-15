@@ -8,7 +8,9 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
 <script lang="ts">
     import { ActivityIndicator, Icon } from '@stackoverflow/stacks-svelte';
     import { IconNotification } from '@stackoverflow/stacks-icons/icons';
+    // TODO: import IconShieldXSm once it is added to @stackoverflow/stacks-icons
     import ClassTable from '$components/ClassTable.svelte';
+    import Example from '$components/Example.svelte';
     import type { ClassTableRow } from '$components/ClassTable.svelte';
 
     const classes: ClassTableRow[] = [
@@ -67,7 +69,7 @@ By default, the indicator has no positioning applied — use [atomic positioning
             <div class="v-visible-sr">New activity</div>
         </div>
         <div class="s-avatar--letter">G</div>
-        <!-- badge icon -->
+        <!-- TODO: add badge icon once IconShieldXSm is in @stackoverflow/stacks-icons -->
     </div>
     <span class="pl4">Grayson</span>
 </a>
@@ -92,33 +94,36 @@ By default, the indicator has no positioning applied — use [atomic positioning
 </div>
 ```
 
-<div class="d-flex g24 ai-center fw-wrap">
-    <ActivityIndicator label="New activity" />
-    <ActivityIndicator label="New activity" content={3} />
-    <ActivityIndicator label="New activity" content={12} />
-    <ActivityIndicator label="New activity" content={370} />
-    <ActivityIndicator label="New activity" content="new" />
+<Example>
+    <div class="d-flex g24 ai-center fw-wrap">
+        <ActivityIndicator label="New activity" />
+        <ActivityIndicator label="New activity" content={3} />
+        <ActivityIndicator label="New activity" content={12} />
+        <ActivityIndicator label="New activity" content={370} />
+        <ActivityIndicator label="New activity" content="new" />
 
-    <a href="#" class="s-link s-link__muted">
-        <div class="s-avatar bg-red-400 d:bg-red-200 ps-relative">
-            <ActivityIndicator label="New activity" size="sm" class="s-avatar--indicator" />
-            <div class="s-avatar--letter">G</div>
+        <a href="#" class="s-link s-link__muted">
+            <div class="s-avatar bg-red-400 d:bg-red-200 ps-relative">
+                <ActivityIndicator label="New activity" size="sm" class="s-avatar--indicator" />
+                <div class="s-avatar--letter">G</div>
+                <!-- TODO: add <Icon src={IconShieldXSm} class="native s-avatar--badge" /> once IconShieldXSm is in @stackoverflow/stacks-icons -->
+            </div>
+            <span class="pl4">Grayson</span>
+        </a>
+
+        <div class="fc-medium ps-relative">
+            <Icon src={IconNotification} />
+            <ActivityIndicator label="New activity" size="sm" class="ps-absolute tn4 rn4 ba baw2 bc-white box-content" />
         </div>
-        <span class="pl4">Grayson</span>
-    </a>
 
-    <div class="fc-medium ps-relative">
-        <Icon src={IconNotification} />
-        <ActivityIndicator label="New activity" size="sm" class="ps-absolute tn4 rn4 ba baw2 bc-white box-content" />
-    </div>
-
-    <div class="fc-medium ps-relative">
-        <Icon src={IconNotification} />
-        <div class="ps-absolute ba baw2 bc-white bar-pill lh-xs tn8 rn8">
-            <ActivityIndicator label="New activity" content={3} />
+        <div class="fc-medium ps-relative">
+            <Icon src={IconNotification} />
+            <div class="ps-absolute ba baw2 bc-white bar-pill lh-xs tn8 rn8">
+                <ActivityIndicator label="New activity" content={3} />
+            </div>
         </div>
     </div>
-</div>
+</Example>
 
 ### Variations
 
@@ -136,38 +141,41 @@ Stacks also provides alternative styling for success, warning, and danger states
 </div>
 ```
 
-<div class="d-flex fd-column g24">
-    {#each [
-        { variant: 'success', bg: 'bg-blue-400 d:bg-blue-200' },
-        { variant: 'warning', bg: 'bg-yellow-400 d:bg-yellow-200' },
-        { variant: 'danger',  bg: 'bg-red-400 d:bg-red-200' },
-    ] as { variant, bg }}
-        <div class="d-flex g24 ai-center fw-wrap">
-            <ActivityIndicator label="New activity" {variant} />
-            <ActivityIndicator label="New activity" {variant} content={3} />
-            <ActivityIndicator label="New activity" {variant} content={12} />
-            <ActivityIndicator label="New activity" {variant} content={370} />
-            <ActivityIndicator label="New activity" {variant} content="new" />
+<Example>
+    <div class="d-flex fd-column g24">
+        {#each [
+            { variant: 'success', bg: 'bg-blue-400 d:bg-blue-200' },
+            { variant: 'warning', bg: 'bg-yellow-400 d:bg-yellow-200' },
+            { variant: 'danger',  bg: 'bg-red-400 d:bg-red-200' },
+        ] as { variant, bg }}
+            <div class="d-flex g24 ai-center fw-wrap">
+                <ActivityIndicator label="New activity" {variant} />
+                <ActivityIndicator label="New activity" {variant} content={3} />
+                <ActivityIndicator label="New activity" {variant} content={12} />
+                <ActivityIndicator label="New activity" {variant} content={370} />
+                <ActivityIndicator label="New activity" {variant} content="new" />
 
-            <a href="#" class="s-link s-link__muted">
-                <div class="s-avatar {bg} ps-relative">
-                    <ActivityIndicator label="New activity" {variant} size="sm" class="s-avatar--indicator" />
-                    <div class="s-avatar--letter">G</div>
+                <a href="#" class="s-link s-link__muted">
+                    <div class="s-avatar {bg} ps-relative">
+                        <ActivityIndicator label="New activity" {variant} size="sm" class="s-avatar--indicator" />
+                        <div class="s-avatar--letter">G</div>
+                        <!-- TODO: add <Icon src={IconShieldXSm} class="native s-avatar--badge" /> once IconShieldXSm is in @stackoverflow/stacks-icons -->
+                    </div>
+                    <span class="pl4">Grayson</span>
+                </a>
+
+                <div class="fc-medium ps-relative">
+                    <Icon src={IconNotification} />
+                    <ActivityIndicator label="New activity" {variant} size="sm" class="ps-absolute tn4 rn4 ba baw2 bc-white box-content" />
                 </div>
-                <span class="pl4">Grayson</span>
-            </a>
 
-            <div class="fc-medium ps-relative">
-                <Icon src={IconNotification} />
-                <ActivityIndicator label="New activity" {variant} size="sm" class="ps-absolute tn4 rn4 ba baw2 bc-white box-content" />
-            </div>
-
-            <div class="fc-medium ps-relative">
-                <Icon src={IconNotification} />
-                <div class="ps-absolute ba baw2 bc-white bar-pill lh-xs tn8 rn8">
-                    <ActivityIndicator label="New activity" {variant} content={3} />
+                <div class="fc-medium ps-relative">
+                    <Icon src={IconNotification} />
+                    <div class="ps-absolute ba baw2 bc-white bar-pill lh-xs tn8 rn8">
+                        <ActivityIndicator label="New activity" {variant} content={3} />
+                    </div>
                 </div>
             </div>
-        </div>
-    {/each}
-</div>
+        {/each}
+    </div>
+</Example>
