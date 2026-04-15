@@ -5,7 +5,7 @@
 
 	import { env } from '$env/dynamic/public';
 
-	import { Link, Icon } from '@stackoverflow/stacks-svelte';
+	import { Button, Icon } from '@stackoverflow/stacks-svelte';
 	import { IconSearch } from '@stackoverflow/stacks-icons';
 
 	let docSearchButton = $state();
@@ -44,6 +44,8 @@
 	}
 </script>
 
-<Link onclick={openSearch}>
-	<Icon src={IconSearch} />
-</Link>
+{#if searchEnabled}
+	<Button icon weight="clear" class="h:fc-blue-400 px0" onclick={openSearch}>
+		<Icon src={IconSearch} />
+	</Button>
+{/if}
