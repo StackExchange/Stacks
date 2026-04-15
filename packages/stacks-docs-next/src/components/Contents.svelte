@@ -127,7 +127,7 @@
   }
 </script>
 
-<aside class="flex--item3 md:d-none ml32">
+<aside class="fl-shrink0 w25 md:d-none ml32">
   {#if toc.length > 0}
     <div class="ps-sticky t0 py24 mt6 pr24 md:pb0 overflow-auto hmx-screen md:hmx-initial">
       <nav bind:this={navElement} class="ps-relative">

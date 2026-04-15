@@ -112,7 +112,7 @@
           {#each entries as entry (entry.name)}
             {@const def = getDefaultVariant(entry)}
             <button
-              class="flex--item c-pointer h:bg-black-100 s-btn s-btn__unset p12 d-flex fd-column h100 {selected?.name === entry.name ? 'bg-blue-100' : ''}"
+              class="c-pointer h:bg-black-100 s-btn s-btn__unset p12 d-flex fd-column h100 {selected?.name === entry.name ? 'bg-blue-100' : ''}"
               onclick={() => selectEntry(entry)}
             >
               <div class="d-flex ai-center jc-center my-auto h100">
@@ -160,7 +160,7 @@
           {/if}
         </button>
 
-        <Button title="Open in Figma" size="sm" weight="clear" icon href={selectedVariant.figmaUrl} class="flex--item px4">
+        <Button title="Open in Figma" size="sm" weight="clear" icon href={selectedVariant.figmaUrl} class="px4">
           <Icon src={IconServiceFigma} class="native" />
         </Button>
       </div>

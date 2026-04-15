@@ -6,7 +6,7 @@
   getContext('columnCount').update((i: number) => i + 1)
 </script>
 
-<div class={`flex--item ps-relative column ${extraClasses}`} {...rest} class:p24={padding}>
+<div class={`fl-grow1 ps-relative column ${extraClasses}`} {...rest} class:p24={padding}>
   <div class="column__inner h100">
     {@render children()}
   </div>

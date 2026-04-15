@@ -41,7 +41,7 @@
 {/if}
 
 <article class="d-flex md:fd-column mx-auto pl32 md:pr32 sm:pl24 sm:pr24">
-  <div class="doc flex--item9 wmn0 s-prose fs-body2 pt24">
+  <div class="doc fl-grow1 wmn0 s-prose fs-body2 pt24">
     <div class="d-flex gs4 ai-center mb128">
       <nav class="d-flex ai-center g6 fs-body2 mr-auto" aria-label="breadcrumb">
         {#each data.breadcrumb as crumb, index (crumb.path)}
@@ -58,20 +58,20 @@
       </nav>
 
       {#if data.filename}
-        <Button title="Edit on GitHub" size="sm" weight="clear" href={`https://github.com/StackExchange/Stacks/edit/main/packages/stacks-docs-next${data.filename}`} class="flex--item">
+        <Button title="Edit on GitHub" size="sm" weight="clear" href={`https://github.com/StackExchange/Stacks/edit/main/packages/stacks-docs-next${data.filename}`}>
           <Icon src={IconServiceGitHub} />
           <span class="sm:d-none">Edit</span>
         </Button>
       {/if}
 
       {#if data?.metadata?.figma}
-        <Button title="Open in Figma" size="sm" weight="clear" icon href={data?.metadata?.figma} class="flex--item">
+        <Button title="Open in Figma" size="sm" weight="clear" icon href={data?.metadata?.figma}>
           <Icon src={IconServiceFigma} class="native" />
           <span class="sm:d-none">Figma</span>
         </Button>
       {/if}
       {#if data?.metadata?.svelte}
-        <Button title="Svelte component docs" size="sm" weight="clear" icon href={data?.metadata?.svelte} class="flex--item">
+        <Button title="Svelte component docs" size="sm" weight="clear" icon href={data?.metadata?.svelte}>
           <Icon src={IconServiceSvelte} class="native" />
           <span class="sm:d-none">Svelte</span>
         </Button>

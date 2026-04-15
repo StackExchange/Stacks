@@ -44,13 +44,13 @@
 		/>
 
 		<div class="d-flex pt12 pb12 px12 mt-auto">
-			<div class="flex--item6 mr4 sm:mr0">
+			<div class="w50 mr4 sm:mr0">
 				<Button target="_blank" href="https://github.com/StackExchange/Stacks/" class="w100" weight="clear">
 					<Icon src={IconServiceGitHub} />
 					GitHub
 				</Button>
 			</div>
-			<div class="flex--item6 ml4 sm:ml0">
+			<div class="w50 ml4 sm:ml0">
 				<ThemeToggle />
 			</div>
 		</div>
@@ -62,13 +62,13 @@
 		This is a brand focused preview – for developer reference please see <a href="https://stackoverflow.design" class="s-link fc-white s-link__underlined">the current docs</a> or <a href="https://beta.stackoverflow.design" class="s-link fc-white s-link__underlined">the beta release</a>.
 	</div> -->
 
-	<div class="my-auto">
-		{#if data.needsAuth}
+	{#if data.needsAuth}
+		<div class="my-auto">
 			<Login returnUrl={page.url.pathname} />
-		{:else}
-			{@render children?.()}
-		{/if}
-	</div>
+		</div>
+	{:else}
+		{@render children?.()}
+	{/if}
 
 	{#if !page.data.hideFooter}
 		<footer class="d-flex sm:fd-column ai-center sm:ai-start ml32 sm:ml24 py32 fc-black-400">
