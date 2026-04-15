@@ -2,1357 +2,326 @@
 title: "Badges"
 description: "Badges are labels used for flags, earned achievements, and number totals."
 svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-badge--docs"
-figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=610-18799&amp;p=f&amp;m=dev"
+figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=610-18799&p=f&m=dev"
 ---
 
-<section class="docs-section">
-    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="classes">Classes</h2><a class="s-btn s-btn__clear" href="#classes"><span class="v-visible-sr">Section titled Classes</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    
-    
-    
-    
+<script lang="ts">
+    import { Badge } from '@stackoverflow/stacks-svelte';
+    import {
+        IconDocument, IconCompose, IconEye, IconFlag,
+        IconChallenge, IconKey, IconCheck, IconStar,
+        IconNotification, IconVoteUp,
+    } from '@stackoverflow/stacks-icons/icons';
+    import ClassTable from '$components/ClassTable.svelte';
+    import Example from '$components/Example.svelte';
+    import type { ClassTableRow } from '$components/ClassTable.svelte';
 
+    const classes: ClassTableRow[] = [
+        { class: '.s-badge',            modifies: 'N/A',      description: 'Base badge element.' },
+        { class: '.s-badge__gold',      modifies: '.s-badge', description: 'Badge indicating a gold award.' },
+        { class: '.s-badge__silver',    modifies: '.s-badge', description: 'Badge indicating a silver award.' },
+        { class: '.s-badge__bronze',    modifies: '.s-badge', description: 'Badge indicating a bronze award.' },
+        { class: '.s-badge__important', modifies: '.s-badge', description: 'Applies important styling to the badge.' },
+        { class: '.s-badge__squared',   modifies: '.s-badge', description: 'Applies a background color to the badge\'s icon.' },
+        { class: '.s-badge__info',      modifies: '.s-badge', description: 'Badge indicating an info status.' },
+        { class: '.s-badge__warning',   modifies: '.s-badge', description: 'Badge indicating a warning status.' },
+        { class: '.s-badge__danger',    modifies: '.s-badge', description: 'Badge indicating a danger status.' },
+        { class: '.s-badge__critical',  modifies: '.s-badge', description: 'Badge indicating a critical status.' },
+        { class: '.s-badge__tonal',     modifies: '.s-badge', description: 'Badge indicating a tonal status.' },
+        { class: '.s-badge__success',   modifies: '.s-badge', description: 'Badge indicating a success status.' },
+        { class: '.s-badge__featured',  modifies: '.s-badge', description: 'Badge indicating a featured status.' },
+        { class: '.s-badge__sm',        modifies: '.s-badge', description: 'Applies a small size to the badge.' },
+        { class: '.s-badge__lg',        modifies: '.s-badge', description: 'Applies a large size to the badge.' },
+    ];
 
-    
+    const states = [
+        { state: 'info',     icon: IconCompose,   label: 'Draft' },
+        { state: 'warning',  icon: IconEye,        label: 'Review' },
+        { state: 'danger',   icon: IconFlag,       label: 'Closed' },
+        { state: 'critical', icon: IconChallenge,  label: 'Deleted' },
+        { state: 'tonal',    icon: IconKey,        label: 'Pinned' },
+        { state: 'success',  icon: IconCheck,      label: 'Success' },
+        { state: 'featured', icon: IconStar,       label: 'New' },
+    ] as const;
+</script>
 
+## Classes
 
+<ClassTable {classes} />
 
+## Styles
 
-    
+### Default
 
+```html
+<span class="s-badge">
+    default
+</span>
+```
 
-    
+<Example>
+    <Badge text="default" />
+</Example>
 
+### General
 
-    
+A general-purpose badge used for functional information and system-level status updates.
 
+```html
+<span class="s-badge">
+    <span class="s-bling s-bling__filled">
+        <span class="v-visible-sr">Badge</span>
+    </span>
+    general
+</span>
+```
 
-    
+<Example>
+    <Badge text="general" type="general" label="Badge" />
+</Example>
 
+### Reputation
 
+A reputation badge to display a user's total rep count.
 
+```html
+<span class="s-badge">
+    <span class="s-bling s-bling__filled s-bling__rep">
+        <span class="v-visible-sr">Rep badge</span>
+    </span>
+    99 rep
+</span>
+```
 
-    
+<Example>
+    <Badge text="99 rep" type="reputation" label="Rep badge" />
+</Example>
 
+### Activity
 
+An activity badge to signal real-time events and draw attention.
 
-    
+```html
+<span class="s-badge">
+    <span class="s-bling s-bling__filled s-bling__activity">
+        <span class="v-visible-sr">Activity badge</span>
+    </span>
+    new message
+</span>
+```
 
+<Example>
+    <Badge text="new message" type="activity" label="Activity badge" />
+</Example>
 
-    
+### Achievement
 
+Badges that provide information about user achievements.
 
+```html
+<span class="s-badge">
+    <span class="s-bling s-bling__filled s-bling__gold">
+        <span class="v-visible-sr">Gold badge</span>
+    </span>
+    Great Question
+</span>
+<span class="s-badge">
+    <span class="s-bling s-bling__filled s-bling__silver">
+        <span class="v-visible-sr">Silver badge</span>
+    </span>
+    Favorite Question
+</span>
+<span class="s-badge">
+    <span class="s-bling s-bling__filled s-bling__bronze">
+        <span class="v-visible-sr">Bronze badge</span>
+    </span>
+    Altruist
+</span>
+```
 
-    
-
-
-<div id="docs-table" class="overflow-auto v-truncate v-truncate-fade s-anchors s-anchors__underlined" tabindex="0">
-    <table class="docs-table s-table s-table__bx-simple">
-        <thead>
-            <tr>
-                
-                    <th scope="col" class="s-table--cell3">
-                        Class
-                    </th>
-                
-                
-                
-                    <th scope="col" class="s-table--cell2">
-                        Modifies
-                    </th>
-                
-                
-                    <th scope="col" class="">
-                        Description
-                    </th>
-                
-            </tr>
-        </thead>
-        <tbody class="fs-caption">
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-badge</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                <em class="fc-black-350">N/A</em>
-                            
-                        </td>
-                    
-                    
-                        <td>Base badge element.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-badge__gold</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-badge</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>Badge indicating a gold award.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-badge__silver</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-badge</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>Badge indicating a silver award.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-badge__bronze</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-badge</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>Badge indicating a bronze award.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-badge__important</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-badge</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>Applies important styling to the badge.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-badge__squared</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-badge</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>Applies a background color to the badge's icon.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-badge__info</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-badge</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>Badge indicating an info status.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-badge__warning</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-badge</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>Badge indicating a warning status.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-badge__danger</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-badge</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>Badge indicating a danger status.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-badge__critical</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-badge</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>Badge indicating a critical status.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-badge__tonal</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-badge</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>Badge indicating a tonal status.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-badge__success</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-badge</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>Badge indicating a success status.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-badge__featured</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-badge</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>Badge indicating a featured status.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-badge__sm</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-badge</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>Applies a small size to the badge.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-badge__lg</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-badge</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>Applies a large size to the badge.</td>
-                    
-                </tr>
-            
-        </tbody>
-    </table>
-</div>
-
-    <button id="show-docs-table-button" class="js-docs-table-expand s-btn s-btn__tonal s-btn__sm w100" type="button" aria-expanded="false" aria-controls="docs-table">
-        Show all classes
-    </button>
-
-
-<!-- Reset all default values -->
-
-
-
-
-
-
-
-
-
-
-
-
-</section>
-
-<section class="docs-section">
-    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="styles">Styles</h2><a class="s-btn s-btn__clear" href="#styles"><span class="v-visible-sr">Section titled Styles</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="default">Default</h3><a class="s-btn s-btn__clear" href="#default"><span class="v-visible-sr">Section titled Default</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge"</span>&gt;</span><br>    default<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <span class="s-badge">
-                default
-            </span>
-        </div>
+<Example>
+    <div class="d-flex g8 ai-center fw-wrap">
+        <Badge text="Great Question"    type="achievement" award="gold"   label="Gold badge" />
+        <Badge text="Favorite Question" type="achievement" award="silver" label="Silver badge" />
+        <Badge text="Altruist"          type="achievement" award="bronze" label="Bronze badge" />
     </div>
+</Example>
 
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="general">General</h3><a class="s-btn s-btn__clear" href="#general"><span class="v-visible-sr">Section titled General</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">A general-purpose badge used for functional information and system-level status updates.</p>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-bling s-bling__filled"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"v-visible-sr"</span>&gt;</span>Badge<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    general<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <span class="s-badge">
-                <span class="s-bling s-bling__filled">
-                    <span class="v-visible-sr">Badge</span>
-                </span>
-                general
-            </span>
-        </div>
+### Tag
+
+Badges that display achievements a user has earned for their contributions within a specific topic/tag.
+
+```html
+<span class="s-badge s-badge__gold">
+    <span class="s-bling s-bling__gold">
+        <span class="v-visible-sr">Gold tag badge</span>
+    </span>
+    python
+</span>
+<span class="s-badge s-badge__silver">
+    <span class="s-bling s-bling__silver">
+        <span class="v-visible-sr">Silver tag badge</span>
+    </span>
+    css
+</span>
+<span class="s-badge s-badge__bronze">
+    <span class="s-bling s-bling__bronze">
+        <span class="v-visible-sr">Bronze tag badge</span>
+    </span>
+    javascript
+</span>
+```
+
+<Example>
+    <div class="d-flex g8 ai-center fw-wrap">
+        <Badge text="python"     type="tag" award="gold"   label="Gold tag badge" />
+        <Badge text="css"        type="tag" award="silver" label="Silver tag badge" />
+        <Badge text="javascript" type="tag" award="bronze" label="Bronze tag badge" />
     </div>
+</Example>
 
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="reputation">Reputation</h3><a class="s-btn s-btn__clear" href="#reputation"><span class="v-visible-sr">Section titled Reputation</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">A reputation badge to display a user’s total rep count.</p>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-bling s-bling__filled s-bling__rep"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"v-visible-sr"</span>&gt;</span>Rep badge<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    99 rep<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <span class="s-badge">
-                <span class="s-bling s-bling__filled s-bling__rep">
-                    <span class="v-visible-sr">Rep badge</span>
-                </span>
-                99 rep
-            </span>
-        </div>
+### States
+
+Use State badges to communicate semantic status or severity, such as success, warning, or danger. These variants apply specific system colors to convey meaning and can be configured with or without icons.
+
+```html
+<span class="s-badge">
+    @Svg.Document
+    Archived
+</span>
+<span class="s-badge s-badge__info">
+    @Svg.Compose
+    Draft
+</span>
+<span class="s-badge s-badge__warning">
+    @Svg.Eye
+    Review
+</span>
+<span class="s-badge s-badge__danger">
+    @Svg.Flag
+    Closed
+</span>
+<span class="s-badge s-badge__critical">
+    @Svg.Challenge
+    Deleted
+</span>
+<span class="s-badge s-badge__tonal">
+    @Svg.Key
+    Pinned
+</span>
+<span class="s-badge s-badge__success">
+    @Svg.Check
+    Success
+</span>
+<span class="s-badge s-badge__featured">
+    @Svg.Star
+    New
+</span>
+```
+
+<Example>
+    <div class="d-flex g8 ai-center fw-wrap">
+        <Badge text="Archived" type="state" icon={IconDocument} />
+        {#each states as { state, icon, label }}
+            <Badge text={label} type="state" {state} {icon} />
+        {/each}
     </div>
+</Example>
 
+### Squared
 
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="activity">Activity</h3><a class="s-btn s-btn__clear" href="#activity"><span class="v-visible-sr">Section titled Activity</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">An activity badge to signal real-time events and draw attention.</p>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-bling s-bling__filled s-bling__activity"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"v-visible-sr"</span>&gt;</span>Activity badge<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    new message<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <span class="s-badge">
-                <span class="s-bling s-bling__filled s-bling__activity">
-                    <span class="v-visible-sr">Activity badge</span>
-                </span>
-                new message
-            </span>
-        </div>
+Use the squared variant sparingly to provide additional emphasis, reserving it primarily for states related to gamification or achievements.
+
+```html
+<span class="s-badge s-badge__squared s-badge__success">
+    @Svg.Check
+    Accepted answer
+</span>
+<span class="s-badge s-badge__squared s-badge__featured">
+    @Svg.VoteUp
+    Earn badge
+</span>
+```
+
+<Example>
+    <div class="d-flex g8 ai-center fw-wrap">
+        <Badge text="Accepted answer" type="state" state="success" squared icon={IconCheck} />
+        <Badge text="Earn badge"      type="state" state="featured" squared icon={IconVoteUp} />
     </div>
+</Example>
 
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="achievement">Achievement</h3><a class="s-btn s-btn__clear" href="#achievement"><span class="v-visible-sr">Section titled Achievement</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">Badges that provides information about user achievements.</p>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-bling s-bling__filled s-bling__gold"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"v-visible-sr"</span>&gt;</span>Gold badge<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    Great Question<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-bling s-bling__filled s-bling__silver"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"v-visible-sr"</span>&gt;</span>Silver badge<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    Favorite Question<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-bling s-bling__filled s-bling__bronze"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"v-visible-sr"</span>&gt;</span>Bronze badge<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    Altruist<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div class="overflow-x-auto" tabindex="0">
-                <table class="docs-table s-table s-table__bx-simple">
-                    <thead>
-                        <tr>
-                            <th scope="col">Example</th>
-                            <th scope="col">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                            
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge">
-                                            <span class="s-bling s-bling__filled s-bling__gold">
-                                                <span class="v-visible-sr">gold badge</span>
-                                            </span>
-                                            Great Question
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">Gold badge achievement that a user earns within a community.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge">
-                                            <span class="s-bling s-bling__filled s-bling__silver">
-                                                <span class="v-visible-sr">silver badge</span>
-                                            </span>
-                                            Favorite Question
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">Silver badge achievement that a user earns within a community.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge">
-                                            <span class="s-bling s-bling__filled s-bling__bronze">
-                                                <span class="v-visible-sr">bronze badge</span>
-                                            </span>
-                                            Altruist
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">Bronze badge achievement that a user earns within a community.</td>
-                                </tr>
-                            
-                        
-                    </tbody>
-                </table>
-            </div>
-        </div>
+### Important
+
+Emboldens the above visual styles by strengthening the background saturation. This should be used for time-sensitive, pressing information that needs to be noticed by the user.
+
+```html
+<span class="s-badge s-badge__warning s-badge__squared s-badge__important">
+    @Svg.Notification
+    Needs attention
+</span>
+<span class="s-badge s-badge__danger s-badge__important">
+    @Svg.VoteUp
+    Ending soon
+</span>
+<span class="s-badge s-badge__critical s-badge__important">
+    Spam
+</span>
+<span class="s-badge s-badge__info s-badge__sm s-badge__important">
+    +100
+</span>
+```
+
+<Example>
+    <div class="d-flex g8 ai-center fw-wrap">
+        <Badge text="Needs attention" type="state" state="warning"  squared important icon={IconNotification} />
+        <Badge text="Ending soon"     type="state" state="danger"   important icon={IconVoteUp} />
+        <Badge text="Spam"            type="state" state="critical" important />
+        <Badge text="+100"            type="state" state="info"     important size="sm" />
     </div>
+</Example>
 
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="tag">Tag</h3><a class="s-btn s-btn__clear" href="#tag"><span class="v-visible-sr">Section titled Tag</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">Badges that display achievements a user has earned for their contributions within a specific topic/tag.</p>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__gold"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-bling s-bling__gold"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"v-visible-sr"</span>&gt;</span>Gold tag badge<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    python<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__silver"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-bling s-bling__silver"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"v-visible-sr"</span>&gt;</span>Silver tag badge<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    css<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__bronze"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-bling s-bling__bronze"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"v-visible-sr"</span>&gt;</span>Bronze tag badge<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    javascript<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div class="overflow-x-auto" tabindex="0">
-                <table class="docs-table s-table s-table__bx-simple">
-                    <thead>
-                        <tr>
-                            <th scope="col">Example</th>
-                            <th scope="col" class="s-table--cell4">Modifier class</th>
-                            <th scope="col">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                            
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__gold">
-                                            <span class="s-bling s-bling__gold">
-                                                <span class="v-visible-sr">gold tag badge</span>
-                                            </span>
-                                            python
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__gold</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Gold badge achievement that a user earns for a specific tag within a community.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__silver">
-                                            <span class="s-bling s-bling__silver">
-                                                <span class="v-visible-sr">silver tag badge</span>
-                                            </span>
-                                            css
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__silver</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Silver badge achievement that a user earns for a specific tag within a community.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__bronze">
-                                            <span class="s-bling s-bling__bronze">
-                                                <span class="v-visible-sr">bronze tag badge</span>
-                                            </span>
-                                            javascript
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__bronze</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Bronze badge achievement that a user earns for a specific tag within a community.</td>
-                                </tr>
-                            
-                        
-                    </tbody>
-                </table>
-            </div>
-        </div>
+### User
+
+```html
+<span class="s-badge s-badge__admin">Admin</span>
+<span class="s-badge s-badge__moderator">Moderator</span>
+<span class="s-badge s-badge__staff">Staff</span>
+<span class="s-badge s-badge__bot">Bot</span>
+<span class="s-badge s-badge__ai">AI</span>
+<span class="s-badge s-badge__new">New</span>
+```
+
+<Example>
+    <div class="d-flex g8 ai-center fw-wrap">
+        <Badge text="Admin"     type="user" userType="admin" />
+        <Badge text="Moderator" type="user" userType="moderator" />
+        <Badge text="Staff"     type="user" userType="staff" />
+        <Badge text="Bot"       type="user" userType="bot" />
+        <Badge text="AI"        type="user" userType="ai" />
+        <Badge text="New"       type="user" userType="new" />
     </div>
+</Example>
 
+### Sizes
 
+Badges come in three sizes.
 
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="states">States</h3><a class="s-btn s-btn__clear" href="#states"><span class="v-visible-sr">Section titled States</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">Use State badges to communicate semantic status or severity, such as success, warning, or danger. These variants apply specific system colors to convey meaning and can be configured with or without icons.</p>
-    <div class="s-notice s-anchors s-anchors__inherit s-anchors__underlined s-notice__info mb16"><span class="s-notice--icon"><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconInfo" aria-hidden="true"><path d="M17.33 4.64a9.08 9.08 0 0 1-12.7 12.7l1.08-1.09A7.58 7.58 0 0 0 16.25 5.71zM10 .92c2.47 0 4.7.98 6.34 2.58l-1.06 1.06A7.58 7.58 0 0 0 4.56 15.28L3.5 16.34A9.08 9.08 0 0 1 10 .91"></path><path d="M10.76 15h-2V8h2zm0-8h-2V5h2z"></path></svg></span><span>
-        <strong>Note:</strong> Avoid using icons in the small variant unless a dedicated small icon size is available.
-    </span></div>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge"</span>&gt;</span><br>    @Svg.Document<br>    Archived<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__info"</span>&gt;</span><br>    @Svg.Compose<br>    Draft<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__warning"</span>&gt;</span><br>    @Svg.Eye<br>    Review<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__danger"</span>&gt;</span><br>    @Svg.Flag<br>    Closed<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__critical"</span>&gt;</span><br>    @Svg.Challenge<br>    Deleted<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__tonal"</span>&gt;</span><br>    @Svg.Key<br>    Pinned<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__success"</span>&gt;</span><br>    @Svg.Check<br>    Success<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__featured"</span>&gt;</span><br>    @Svg.Star<br>    New<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div class="overflow-x-auto" tabindex="0">
-                <table class="docs-table s-table s-table__bx-simple">
-                    <thead>
-                        <tr>
-                            <th scope="col" class="s-table--cell4">Example</th>
-                            <th scope="col" class="s-table--cell4">Modifier class</th>
-                            <th scope="col">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                            
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge">
-                                            <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconDocument" aria-hidden="true"><path d="M16 7.1v9.23c0 .86-.66 1.58-1.5 1.66l-.17.01h-8.8v-1.5h8.8q.16-.02.17-.17V7h-3.64V3.5h-5.2q-.15.02-.16.17V16.5H4V3.67C4 2.75 4.75 2 5.67 2H11zm-2.79 7.4H7V13h6.21zm0-3H7V10h6.21zm-4-3H7V7h2.22z"></path></svg>
-                                            Archived
-                                        </span>
-                                        <span class="s-badge ml2">
-                                            Archived
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <em class="fc-black-350">N/A</em>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Neutral badge styling. Can be used to indicate an inactive state that requires minimal visual emphasis.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__info">
-                                            <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconCompose" aria-hidden="true"><path d="M6.22 5.5H3.5V16c0 .28.22.5.5.5h10.5v-2.72H16V18H4a2 2 0 0 1-2-2V4h4.22zm7.5-2.74a2.5 2.5 0 0 1 3.52 0l.17.2c.8.97.74 2.41-.17 3.32L9.5 14H6v-3.5zM7.5 11.12v1.38h1.38l5.42-5.41-1.39-1.4zm8.68-7.3a1 1 0 0 0-1.4 0l-.8.81 1.39 1.4.8-.8a1 1 0 0 0 0-1.4"></path></svg>
-                                            Draft
-                                        </span>
-                                        <span class="s-badge s-badge__info ml2">
-                                            Draft
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__info</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Info badge styling.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__warning">
-                                            <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconEye" aria-hidden="true"><path d="M10 4a9.2 9.2 0 0 1 6.63 2.85 12 12 0 0 1 2.01 2.76l.03.05v.02h.01L18 10l.68.31v.01l-.01.02-.03.05a7 7 0 0 1-.47.83c-.33.53-.84 1.23-1.54 1.93A9.2 9.2 0 0 1 10 16a9.2 9.2 0 0 1-6.63-2.85 12 12 0 0 1-2.02-2.76l-.02-.05v-.02h-.01L2 10l-.68-.31v-.03l.03-.05a7 7 0 0 1 .48-.83c.33-.53.84-1.23 1.54-1.93A9.2 9.2 0 0 1 10 4m0 1.5a7.7 7.7 0 0 0-5.57 2.4A10 10 0 0 0 2.85 10q.09.17.25.42c.29.46.73 1.07 1.33 1.68A7.7 7.7 0 0 0 10 14.5a7.7 7.7 0 0 0 5.57-2.4 10 10 0 0 0 1.58-2.1l-.25-.42c-.29-.46-.73-1.07-1.33-1.68A7.7 7.7 0 0 0 10 5.5m0 1.34a3.16 3.16 0 1 1 0 6.32 3.16 3.16 0 0 1 0-6.32m0 1.5a1.66 1.66 0 1 0 0 3.32 1.66 1.66 0 0 0 0-3.32M2 10l-.68.31a.8.8 0 0 1 0-.62zm16.68-.31q.15.31 0 .62L18 10z"></path></svg>
-                                            Review
-                                        </span>
-                                        <span class="s-badge s-badge__warning ml2">
-                                            Review
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__warning</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Warning badge styling.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__danger">
-                                            <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconFlag" aria-hidden="true"><path d="M9.25 2v1.5h6.74v8.99H9.24V11H4.52v7h-1.5V2zM4.52 9.5h4.73V11h5.24V5H9.24V3.5H4.52z"></path></svg>
-                                            Closed
-                                        </span>
-                                        <span class="s-badge s-badge__danger ml2">
-                                            Closed
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__danger</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Danger badge styling.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__critical">
-                                            <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconChallenge" aria-hidden="true"><path d="M13 4.5h-1.5v1.48l.08.13 6.26 9.74.74 1.15H1.8l.72-1.14 3.43-5.48.63.4.62.39L10 6.63V3h3zm-4.53 7.47-.64-.4-.62-.38-2.7 4.31h11.33l-4.88-7.58z"></path></svg>
-                                            Deleted
-                                        </span>
-                                        <span class="s-badge s-badge__critical ml2">
-                                            Deleted
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__critical</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Critical badge styling.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__tonal">
-                                            <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconKey" aria-hidden="true"><path d="M18.5 7.44 17.44 8.5l1.06 1.06-5.5 5.5-1.72-1.72-1.72 1.91-.23.25H8.5V17H6.75v2H1v-3.99l.22-.22L6.94 9l-2-2L11.5.44zm-16 8.19v1.87h2.75v-2H7V14h1.67l1.55-1.72L8 10.06zM7.06 7 13 12.94l4.44-4.44-5.94-5.94zm7.83.83-1.06 1.06L11 6.06 12.06 5z"></path></svg>
-                                            Pinned
-                                        </span>
-                                        <span class="s-badge s-badge__tonal ml2">
-                                            Pinned
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__tonal</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Tonal badge styling.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__success">
-                                            <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconCheck" aria-hidden="true"><path d="m18.16 5-.53.53L7.55 15.61l-.53.53-5.03-5.03 1.06-1.06 3.97 3.97 9.55-9.55.53-.53z"></path></svg>
-                                            Success
-                                        </span>
-                                        <span class="s-badge s-badge__success ml2">
-                                            Success
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__success</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Success badge styling.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__featured">
-                                            <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconStar" aria-hidden="true"><path d="M12.25 7h7.28l-5.89 4.29.68 2.08-2.07-1.5-.04-.12-.33-1.04.88-.64 2.16-1.56h-3.76l-.34-1.04L10 4.94l-.82 2.53-.34 1.04H5.08l2.16 1.56.88.64-.33 1.04-.83 2.54 2.16-1.57.87-.64 5.12 3.72.78 2.41L10 13.93l-5.9 4.28 2.26-6.92L.46 7h7.29L10 .08z"></path></svg>
-                                            New
-                                        </span>
-                                        <span class="s-badge s-badge__featured ml2">
-                                            New
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__featured</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Featured badge styling. Can be used to draw attention to the new features and changes</td>
-                                </tr>
-                            
-                        
-                    </tbody>
-                </table>
-            </div>
-        </div>
+```html
+<span class="s-badge s-badge__sm">
+    Small
+</span>
+<span class="s-badge">
+    Default
+</span>
+<span class="s-badge s-badge__lg">
+    Large
+</span>
+```
+
+<Example>
+    <div class="d-flex g8 ai-center fw-wrap">
+        <Badge text="Small"   size="sm" />
+        <Badge text="Default" />
+        <Badge text="Large"   size="lg" />
     </div>
-
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="squared">Squared</h3><a class="s-btn s-btn__clear" href="#squared"><span class="v-visible-sr">Section titled Squared</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">Use the squared variant sparingly to provide additional emphasis, reserving it primarily for states related to gamification or achievements.</p>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__squared s-badge__success"</span>&gt;</span><br>    @Svg.Check<br>    Accepted answer<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__squared s-badge__featured"</span>&gt;</span><br>    @Svg.VoteUp<br>    Earn badge<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div class="overflow-x-auto" tabindex="0">
-                <table class="docs-table s-table s-table__bx-simple">
-                    <thead>
-                        <tr>
-                            <th scope="col">Example</th>
-                            <th scope="col" class="s-table--cell4">Modifier classes</th>
-                            <th scope="col">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                            
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__squared s-badge__success">
-                                            <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconCheck" aria-hidden="true"><path d="m18.16 5-.53.53L7.55 15.61l-.53.53-5.03-5.03 1.06-1.06 3.97 3.97 9.55-9.55.53-.53z"></path></svg>
-                                            Accepted answer
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__squared</code>
-                                            
-                                            
-                                                <code>.s-badge__success</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Success badge styling in squared variant.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__squared s-badge__featured">
-                                            <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteUp" aria-hidden="true"><path d="M10 3q.41.02.64.36l6.9 11.5a.75.75 0 1 1-1.28.78L10 5.21l-5.58 9.3h8.04v-.01h1.1l.97 1.5H3.1a.75.75 0 0 1-.65-1.13l6.9-11.5A.8.8 0 0 1 10 3"></path></svg>
-                                            Earn badge
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__squared</code>
-                                            
-                                            
-                                                <code>.s-badge__featured</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Featured badge styling in squared variant.</td>
-                                </tr>
-                            
-                        
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="important">Important</h3><a class="s-btn s-btn__clear" href="#important"><span class="v-visible-sr">Section titled Important</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">Emboldens the above visual styles by strengthening the background saturation. This should be used for time-sensitive, pressing information that needs to be noticed by the user.</p>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__warning s-badge__squared s-badge__important"</span>&gt;</span><br>    @Svg.Notification<br>    Needs attention<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__danger s-badge__important"</span>&gt;</span><br>    @Svg.VoteUp<br>    Ending soon<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__critical s-badge__important"</span>&gt;</span><br>    Spam<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__info s-badge__sm s-badge__important"</span>&gt;</span><br>    +100<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div class="overflow-x-auto" tabindex="0">
-                <table class="docs-table s-table s-table__bx-simple">
-                    <thead>
-                        <tr>
-                            <th scope="col">Example</th>
-                            <th scope="col" class="s-table--cell4">Modifier classes</th>
-                            <th scope="col">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                            
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__squared s-badge__warning s-badge__important">
-                                            
-                                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconNotification" aria-hidden="true"><path d="M8.32 15a1.65 1.65 0 0 0 3.3 0h1.5a3.15 3.15 0 0 1-6.3 0zM9.97 2c1.29 0 2.52.53 3.42 1.46s1.4 2.18 1.4 3.49c0 1.87.32 3.17.67 4.05h-1.6a13 13 0 0 1-.56-4.05c0-.92-.36-1.8-.99-2.45a3.27 3.27 0 0 0-4.68 0 3.5 3.5 0 0 0-.98 2.45c0 2.56-.54 4.25-1.1 5.34l-.13.21h10.66a.75.75 0 0 1 0 1.5H3.86a.75.75 0 0 1-.52-1.29l.1-.08h-.01l.03-.02q.05-.04.17-.16.23-.23.59-.86c.44-.84.93-2.3.93-4.64 0-1.3.5-2.56 1.4-3.5A4.8 4.8 0 0 1 9.97 2"></path></svg>
-                                                Needs attention
-                                            
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                            
-                                                <code>.s-badge__squared</code>
-                                            
-                                                <code>.s-badge__warning</code>
-                                            
-                                                <code>.s-badge__important</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Warning badge styling in squared variant with important styling.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__danger s-badge__important">
-                                            
-                                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteUp" aria-hidden="true"><path d="M10 3q.41.02.64.36l6.9 11.5a.75.75 0 1 1-1.28.78L10 5.21l-5.58 9.3h8.04v-.01h1.1l.97 1.5H3.1a.75.75 0 0 1-.65-1.13l6.9-11.5A.8.8 0 0 1 10 3"></path></svg>
-                                                Ending soon
-                                            
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                            
-                                                <code>.s-badge__danger</code>
-                                            
-                                                <code>.s-badge__important</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Danger badge styling with important styling.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__critical s-badge__important">
-                                            
-                                                Spam
-                                            
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                            
-                                                <code>.s-badge__critical</code>
-                                            
-                                                <code>.s-badge__important</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Critical badge styling with important styling.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__info s-badge__important">
-                                            
-                                                +100
-                                            
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                            
-                                                <code>.s-badge__info</code>
-                                            
-                                                <code>.s-badge__important</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Info badge styling in small size with important styling.</td>
-                                </tr>
-                            
-                        
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="user">User</h3><a class="s-btn s-btn__clear" href="#user"><span class="v-visible-sr">Section titled User</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__admin"</span>&gt;</span>Admin<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__moderator"</span>&gt;</span>Moderator<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__staff"</span>&gt;</span>Staff<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__bot"</span>&gt;</span>Bot<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__ai"</span>&gt;</span>AI<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__new"</span>&gt;</span>New<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div class="overflow-x-auto" tabindex="0">
-                <table class="docs-table s-table s-table__bx-simple">
-                    <thead>
-                        <tr>
-                            <th scope="col">Examples</th>
-                            <th scope="col" class="s-table--cell4">Class</th>
-                            <th scope="col">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                            
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__admin">Admin</span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__admin</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Badge indicating user is an admin.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__moderator">Moderator</span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__moderator</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Badge indicating user is an moderator.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__staff">Staff</span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__staff</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Badge indicating user is staff.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__ai">AI</span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__ai</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Badge indicating content is AI generated.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__bot">Bot</span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__bot</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Badge indicating user is a bot.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__new">New</span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__new</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">Badge indicating new user</td>
-                                </tr>
-                            
-                        
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="sizes">Sizes</h3><a class="s-btn s-btn__clear" href="#sizes"><span class="v-visible-sr">Section titled Sizes</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">Badges come in three sizes.</p>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__sm"</span>&gt;</span><br>    Small<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge"</span>&gt;</span><br>    Default<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-badge s-badge__lg"</span>&gt;</span><br>    Large<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div class="overflow-x-auto" tabindex="0">
-                <table class="docs-table s-table s-table__bx-simple">
-                    <thead>
-                        <tr>
-                            <th scope="col">Examples</th>
-                            <th scope="col" class="s-table--cell4">Modifier class</th>
-                            <th scope="col">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                            
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__sm">
-                                            Small
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__sm</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">The badge in small size.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__">
-                                            Default
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">The badge in default size.</td>
-                                </tr>
-                            
-                                <tr>
-                                    <td class="va-middle pr8">
-                                        <span class="s-badge s-badge__lg">
-                                            Large
-                                        </span>
-                                    </td>
-                                    <td class="va-middle">
-                                        <div class="d-flex g4 fw-wrap">
-                                            
-                                                <code>.s-badge__lg</code>
-                                            
-                                        </div>
-                                    </td>
-                                    <td class="va-middle">The badge in large size.</td>
-                                </tr>
-                            
-                        
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-            <!-- <div class="d-flex my48 pt24">
-                <div class="mr16">
-                    
-                    <form
-                        id="quick-positive-feedback-badges"
-                        class="js-feedback-form v-hidden"
-                        name="quick-positive-feedback-badges"
-                        method="POST"
-                        data-netlify="true"
-                        action="/success">
-                    </form>
-                    <form
-                        id="quick-negative-feedback-badges"
-                        class="js-feedback-form v-hidden"
-                        name="quick-negative-feedback-badges"
-                        method="POST"
-                        data-netlify="true"
-                        action="/success">
-                    </form>
-                    <div
-                        class="s-popover s-popover__tooltip"
-                        id="tooltip-feedback-positive"
-                        role="tooltip">
-                        <div class="s-popover--content">This page is useful</div>
-                    </div>
-                    <div
-                        class="s-popover s-popover__tooltip"
-                        id="tooltip-feedback-negative"
-                        role="tooltip">
-                        <div class="s-popover--content">This page needs improvement</div>
-                    </div>
-                    <div id="vote-feedback" class="s-vote">
-                        <button
-                            class="s-vote--btn"
-                            type="submit"
-                            form="quick-positive-feedback-badges"
-                            aria-describedby="tooltip-feedback-positive"
-                            aria-expanded="false"
-                            data-controller="s-tooltip"
-                            data-s-tooltip-placement="right"
-                        >
-                            <span class="s-btn-icon">
-                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteUp" aria-hidden="true"><path d="M10 3q.41.02.64.36l6.9 11.5a.75.75 0 1 1-1.28.78L10 5.21l-5.58 9.3h8.04v-.01h1.1l.97 1.5H3.1a.75.75 0 0 1-.65-1.13l6.9-11.5A.8.8 0 0 1 10 3"/></svg>
-                            </span>
-                            <span class="s-btn-icon-fill d-none">
-                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteUpFill" aria-hidden="true"><path d="M10 3h.1a1 1 0 0 1 .42.21l.12.15 6.9 11.5.05.09v.03l.02.04q.04.12.04.26v.03q0 .13-.07.25v.02l-.03.04a1 1 0 0 1-.2.23l-.06.05-.04.01-.04.03-.04.01a1 1 0 0 1-.27.05H3a.75.75 0 0 1-.55-1.13l6.9-11.5A.8.8 0 0 1 10 3"/></svg>
-                            </span>
-                            <span class="v-visible-sr">upvote</span>
-                        </button>
-                        <button
-                            class="s-vote--btn"
-                            type="submit"
-                            form="quick-negative-feedback-badges"
-                            aria-describedby="tooltip-feedback-negative"
-                            aria-expanded="false"
-                            data-controller="s-tooltip"
-                            data-s-tooltip-placement="right"
-                        >
-                            <span class="s-btn-icon">
-                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteDown" aria-hidden="true"><path d="M10 16a.8.8 0 0 1-.64-.36l-6.9-11.5a.75.75 0 1 1 1.28-.78L10 13.8l5.58-9.3H6.44L5.47 3H16.9a.75.75 0 0 1 .65 1.14l-6.9 11.5A.8.8 0 0 1 10 16"/></svg>
-                            </span>
-                            <span class="s-btn-icon-fill d-none">
-                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteDownFill" aria-hidden="true"><path d="M10 16h-.1l-.1-.02a.8.8 0 0 1-.45-.34l-6.9-11.5-.04-.08-.01-.04L2.39 4a1 1 0 0 1-.04-.26V3.7q0-.14.06-.26l.01-.02.02-.04a1 1 0 0 1 .27-.27l.03-.02.05-.02.04-.02A1 1 0 0 1 3.1 3H17a.75.75 0 0 1 .54 1.14l-6.9 11.5A.8.8 0 0 1 10 16"/></svg>
-                            </span>
-                            <span class="v-visible-sr">downvote</span>
-                        </button>
-                    </div>
-                </div>
-
-                <form
-                    class="w100 js-feedback-form"
-                    name="feedback-badges"
-                    method="POST"
-                    data-netlify="true"
-                    action="/success">
-                    <fieldset class="d-flex fd-column fl-grow1 g16">
-                        <legend class="fs-title fw-bold">How’d we do?</legend>
-                        <div class="fs-body2">Anonymously upvote, downvote, or send additional feedback below.</div>
-
-                        <textarea
-                            class="s-textarea hmn1"
-                            id="feedback-form"
-                            name="additional-feedback"
-                            placeholder="Tell us how we can improve this page…" required></textarea>
-
-                        <div class="d-flex ai-center fd-row-reverse g8 jc-space-between mln6 sm:d-grid sm:grid__1 sm:ml0">
-                            <button
-                                type="submit"
-                                class="s-btn as-start fl-shrink0">
-                                Send feedback
-                            </button>
-                            <div class="d-flex fw-wrap g8 sm:d-grid sm:grid__1">
-                                <a
-                                    href="https://github.com/StackExchange/Stacks/edit/develop/packages/stacks-docs/./product/components/badges.html"
-                                    class="s-btn s-btn__clear s-btn__icon s-btn__sm">
-                                    <svg aria-hidden="true" class="svg-icon iconPencilSm" width="14" height="14"  viewBox="0 0 14 14"><path fill="#F1B600" d="m2 10.12 6.37-6.43 1.88 1.88L3.88 12H2z"/><path fill="#E87C87" d="m11.1 1.71 1.13 1.12c.2.2.2.51 0 .71L11.1 4.7 9.21 2.86l1.17-1.15c.2-.2.51-.2.71 0"/></svg>
-                                    Edit
-                                </a>
-                                <a
-                                    href="https://github.com/StackExchange/Stacks/issues/new/choose"
-                                    class="s-btn s-btn__clear s-btn__icon s-btn__sm">
-                                    File an issue
-                                </a>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div> -->
-
-            <!-- <div class="ta-right">
-                <a href="https://www.netlify.com"><img src="https://www.netlify.com/v3/img/components/netlify-color-accent.svg" alt="Deploys by Netlify" /></a>
-            </div> -->
+</Example>
