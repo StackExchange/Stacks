@@ -160,30 +160,30 @@ document.querySelector(".js-banner-toggle").addEventListener("click", function(e
 
 ### Attributes
 
-| Attribute | Applied to | Description |
+| Attribute | Applies to | Description |
 |---|---|---|
-| `data-controller="s-banner"` | Controller element | Wires the Stimulus controller to the element. |
-| `data-s-banner-target="banner"` | Banner element | Marks the banner as the controller target. |
-| `data-s-banner-remove-when-hidden="true"` | Controller element | Optional. Removes the banner from the DOM when hidden. |
+| `data-controller="s-banner"` | Controller element | Wires up the element to the banner controller. This may be a `.s-banner` element or a wrapper element. |
+| `data-s-banner-target="banner"` | `.s-banner` element | Wires up the element that is to be shown/hidden. |
+| `data-s-banner-remove-when-hidden="true"` | Controller element | (optional) Removes the banner from the DOM entirely when it is hidden. |
 
 ### Events
 
-| Event | Fired on | Description |
+| Event | Applies to | Description |
 |---|---|---|
-| `s-banner:show` | Banner element | Fired before the banner is shown. `preventDefault()` cancels the show. |
-| `s-banner:shown` | Banner element | Fired after the banner has finished showing. |
-| `s-banner:hide` | Banner element | Fired before the banner is hidden. `preventDefault()` cancels the hide. |
-| `s-banner:hidden` | Banner element | Fired after the banner has finished hiding. |
+| `s-banner:show` | Banner target | Fires immediately before showing the banner. Calling `.preventDefault()` cancels the display of the banner. |
+| `s-banner:shown` | Banner target | Fires after the banner has been visually shown. |
+| `s-banner:hide` | Banner target | Fires immediately before hiding the banner. Calling `.preventDefault()` cancels the removal of the banner. |
+| `s-banner:hidden` | Banner target | Fires after the banner has been visually hidden. |
 
 ### Event details
 
-| Detail | Type | Description |
+| event.detail | Applicable events | Description |
 |---|---|---|
-| `dispatcher` | `Element` | The element that initiated the event. |
+| `dispatcher` | N/A | Contains the `Element` that initiated the event. For instance, the button clicked to show, the element clicked outside the banner that caused it to hide, etc. |
 
 ### Helpers
 
-| Helper | Description |
-|---|---|
-| `Stacks.showBanner(element)` | Shows the target banner element. |
-| `Stacks.hideBanner(element)` | Hides the target banner element. |
+| Function | Parameters | Description |
+|---|---|---|
+| `Stacks.showBanner` | `Element`: the element the `data-controller="s-banner"` attribute is on | Helper to manually show an s-banner element via external JS. |
+| `Stacks.hideBanner` | `Element`: the element the `data-controller="s-banner"` attribute is on | Helper to manually hide an s-banner element via external JS. |
