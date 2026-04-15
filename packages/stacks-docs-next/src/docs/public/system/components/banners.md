@@ -7,6 +7,7 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
 <script lang="ts">
     import ClassTable from '$components/ClassTable.svelte';
     import Example from '$components/Example.svelte';
+    import BannerDemo from '$components/BannerDemo.svelte';
     import type { ClassTableRow } from '$components/ClassTable.svelte';
 
     const classes: ClassTableRow[] = [
@@ -23,24 +24,6 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
         { class: '.is-pinned',             modifies: '.s-banner', description: 'Pins the banner to the top of the browser window.' },
     ];
 
-    const variants = [
-        { value: '',                  label: 'Base' },
-        { value: 's-banner__info',    label: 'Info' },
-        { value: 's-banner__success', label: 'Success' },
-        { value: 's-banner__warning', label: 'Warning' },
-        { value: 's-banner__danger',  label: 'Danger' },
-        { value: 's-banner__featured',label: 'Featured' },
-        { value: 's-banner__activity',label: 'Activity' },
-    ] as const;
-
-    let selectedVariant = $state('');
-    let important = $state(false);
-    let visible = $state(true);
-
-    const demoClass = $derived(
-        ['s-banner', selectedVariant, important && 's-banner__important']
-            .filter(Boolean).join(' ')
-    );
 </script>
 
 ## Classes
@@ -279,39 +262,7 @@ document.querySelector(".js-banner-toggle").addEventListener("click", function(e
 </div>
 ```
 
-<Example>
-    <div class="d-flex g8 mb12 ai-center fw-wrap">
-        <select class="s-select" bind:value={selectedVariant}>
-            {#each variants as v}
-                <option value={v.value}>{v.label}</option>
-            {/each}
-        </select>
-        <label class="s-label d-flex ai-center g4">
-            <input type="checkbox" class="s-checkbox" bind:checked={important} />
-            Important
-        </label>
-        <button
-            type="button"
-            class="s-btn s-btn__tonal s-btn__sm"
-            onclick={() => visible = true}
-        >Show</button>
-        <button
-            type="button"
-            class="s-btn s-btn__tonal s-btn__sm"
-            onclick={() => visible = false}
-        >Remove</button>
-    </div>
-    {#if visible}
-        <aside class={demoClass} role="alert" aria-hidden="false">
-            <div class="d-flex gs8 gsx ai-center jc-space-between">
-                <p class="m0"><strong>Example banner</strong> — this is a system banner message.</p>
-                <div class="s-banner--actions">
-                    <button type="button" class="s-banner--dismiss s-btn s-btn__muted" onclick={() => visible = false}>Dismiss</button>
-                </div>
-            </div>
-        </aside>
-    {/if}
-</Example>
+<BannerDemo />
 
 ### Attributes
 
