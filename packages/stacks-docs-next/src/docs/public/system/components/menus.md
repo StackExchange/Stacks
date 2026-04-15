@@ -33,7 +33,7 @@ A menu displays a list of choices temporarily, and usually represent tasks or ac
 
 ### Basic
 
-At its most basic, a menu is a simple styled list of contextual actions. Because they're contextual, it's strongly recommended that a menu is contained within a popover or a card. When placed in various containers, you'll need to either account for the padding on the container, or use negative margins on the menu component itself.
+At its most basic, a menu is a simple styled list of contextual actions. Because they're contextual, it's strongly recommended that a menu is contained within a [popover](/system/components/popovers) or a [card](/system/components/cards). When placed in various containers, you'll need to either account for the padding on the container, or use negative margins on the menu component itself.
 
 ```html
 <div class="s-popover p8">
