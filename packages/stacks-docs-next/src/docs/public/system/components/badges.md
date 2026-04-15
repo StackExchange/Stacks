@@ -47,7 +47,7 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
 
 ## Classes
 
-<ClassTable {classes} />
+<ClassTable {classes} expandable />
 
 ## Styles
 

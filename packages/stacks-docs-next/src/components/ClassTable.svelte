@@ -41,7 +41,7 @@
 
     let {
         classes,
-        expandable = true,
+        expandable = false,
         expandButtonText = 'Show All Classes',
         showHeadings = true,
         headings = {},
