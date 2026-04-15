@@ -48,7 +48,7 @@
         {#each data.breadcrumb as crumb, index (crumb.path)}
           <a href={resolve(crumb.path)} class="pr6 s-link">{crumb.label}</a>{#if index !== data.breadcrumb.length - 1}<span class="fc-black-300 mr6">/</span>{/if}
         {/each}
-        <button type="button" title="Copy link to this page" class="s-btn s-btn__xs s-btn__clear s-btn__icon ml4" use:copyToClipboard={page.url.href}>
+        <button type="button" title="Copy link to this page" class="s-btn s-btn__link s-btn__icon breadcrumb-copy-link ml4" use:copyToClipboard={page.url.href}>
           {#if copied}
             <Icon src={IconCheckFillCircle} class="fc-green-400" />
           {:else}
