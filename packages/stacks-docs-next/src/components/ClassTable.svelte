@@ -99,9 +99,11 @@
                             {#if col === 'responsive'}
                                 {row.responsive ? '✓' : ''}
                             {:else}
-                                {@const val = (row as Record<string, unknown>)[col] ?? ''}
+                                {@const val = String((row as Record<string, unknown>)[col] ?? '')}
                                 {#if val === 'N/A'}
                                     <span class="fc-black-350">N/A</span>
+                                {:else if val.startsWith('.')}
+                                    <code>{val}</code>
                                 {:else}
                                     {val}
                                 {/if}
