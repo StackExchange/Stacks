@@ -1,6 +1,6 @@
 ---
 title: "Links"
-description: "Links are lightly styled via the `a` element by default. In addition, we provide `.s-link` and its variations. In rare situations, `.s-link` can be applied to a `button` while maintaining the look of an anchor."
+description: "Links are lightly styled via the <code>a</code> element by default. In addition, we provide <code>.s-link</code> and its variations. In rare situations, <code>.s-link</code> can be applied to a <code>button</code> while maintaining the look of an anchor."
 svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-link--docs"
 ---
 
