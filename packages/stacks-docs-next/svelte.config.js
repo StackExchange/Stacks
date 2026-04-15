@@ -48,7 +48,6 @@ const config = {
             $src: "src",
             $components: "src/components",
             $docs: "src/docs",
-            $data: "../stacks-docs/_data",
         },
     },
     extensions: [".svelte", ".md"],

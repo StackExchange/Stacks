@@ -1,0 +1,276 @@
+
+            <div class="d-flex ai-start jc-space-between">
+                <!-- <h1 class="fs-display1 mb0">Outlook conditional CSS</h1> -->
+
+                
+                    <p class="docs-copy fc-black-500 fs-title mb0">Windows Outlook 2003 and above use Microsoft Word as a rendering engine, which can lead to some weird rendering issues. Outlook conditional comments allow us to add bits of HTML that are only read by the Word-based versions of Outlook.</p>
+                
+                
+                
+            </div>
+            
+            <div class="mt32">
+<!-- TAGS -->
+<section class="docs-section">
+    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="basic-syntax">Basic syntax</h2><a class="s-btn s-btn__clear" href="#basic-syntax"><span class="v-visible-sr">Section titled Basic syntax</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">
+        We can use <strong>MSO</strong> (<strong>M</strong>icro<strong>s</strong>oft <strong>O</strong>ffice) tags to add HTML / CSS anywhere in an email template. This code will be ignored by other email clients. Here’s what it looks like:
+    </p>
+    <div class="docs-preview _preview-none mb24">
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-comment">&lt;!--[if mso]&gt;<br>    &lt;table&gt;&lt;tr&gt;&lt;td&gt;<br>        /* Outlook-specific HTML content goes here. */<br>    &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;<br>&lt;![endif]--&gt;</span></code></pre>
+    </div>
+    <p class="docs-copy mt16">
+        Only Outlook will render this table.
+        </p><p>
+    </p><p class="docs-copy">
+        MSO tags can also be used to add styles targeting Outlook (<a href="https://www.campaignmonitor.com/css/style-element/style-in-head/">Outlook supports CSS in the <code>&lt;head&gt;</code></a>):
+    </p>
+    <div class="docs-preview _preview-none mb24">
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-comment">&lt;!--[if mso]&gt;<br>    &lt;style&gt;<br>        .example-class {<br>            /* Outlook-specific CSS goes here. */<br>        }<br>    &lt;/style&gt;<br>&lt;![endif]--&gt;</span></code></pre>
+    </div>
+    <p class="docs-copy">
+        It’s the same thing we used to do to <a href="https://www.quirksmode.org/css/condcom.html">target old versions of Internet Explorer</a>, except it targets Microsoft Office.
+    </p>
+</section>
+
+<section class="docs-section">
+    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="ghost-tables">Ghost tables</h2><a class="s-btn s-btn__clear" href="#ghost-tables"><span class="v-visible-sr">Section titled Ghost tables</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">
+        The main way we use MSO tags in our emails is to create “ghost tables” so <a href="/email/base/responsiveness#hybrid-design">hybrid emails</a> don’t fall apart in Outlook. Hybrid design uses <code>inline-block</code>, <code>max-width</code>, <code>min-width</code> to stack table columns. Outlook doesn’t support these CSS properties, so we use MSO tags to create “ghost tables” that apply a fixed width just for Outlook.
+    </p>
+    <div class="docs-preview _preview-none mb24">
+<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-comment">&lt;!--[if mso]&gt;<br>&lt;table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"&gt;<br>&lt;tr&gt;<br>&lt;td width="340"&gt;<br>&lt;![endif]--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display:inline-block; width:100%; min-width:200px; max-width:340px;"</span>&gt;</span><br>        Outlook can’t render the CSS in this DIV but other email clients can,<br>        so we wrap this in a ghost table that replicates the DIV’s desktop style.<br>        In this case, a container 340px wide.<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-comment">&lt;!--[if mso]&gt;<br>&lt;/td&gt;<br>&lt;/tr&gt;<br>&lt;/table&gt;<br>&lt;![endif]--&gt;</span></code></pre>
+    </div>
+    <p class="docs-copy">
+        Without the ghost table above, Outlook would display the <code>&lt;div&gt;</code> at 100% width. <a href="/email/base/responsiveness#hybrid-design">Learn how we use ghost tables to make our emails responsive</a>.
+    </p>
+</section>
+
+<section class="docs-section">
+    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="targeting-specific-outlook-versions">Targeting specific Outlook versions</h2><a class="s-btn s-btn__clear" href="#targeting-specific-outlook-versions"><span class="v-visible-sr">Section titled Targeting specific Outlook versions</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">
+        We usually target <em>all</em> versions of Outlook using <code>&lt;!--[if mso]&gt;</code>. But sometimes when testing emails in Litmus, an email looks ok in one Outlook version but is broken in another. It’s not common but it happens, and there are a few ways to target specific versions of Outlook while omitting others.
+    </p>
+    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="outlook-versions">Outlook versions</h3><a class="s-btn s-btn__clear" href="#outlook-versions"><span class="v-visible-sr">Section titled Outlook versions</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">
+        Using Microsoft Office version numbers allows you to target a specific Outlook version.
+    </p>
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="docs-table s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th class="s-table--cell5" scope="col">Outlook version(s)</th>
+                    <th scope="col">Code</th>
+               </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div>
+                            <span class="d-inline-flex ai-center g4">
+                                All Windows Outlook
+                                <span class="s-badge s-badge__sm">Most common</span>
+                            </span>
+                        </div></td>
+                    <td class="-cell1"><code>&lt;!--[if mso]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>Outlook 2000</td>
+                    <td class="-cell1"><code>&lt;!--[if mso 9]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>Outlook 2002</td>
+                    <td class="-cell1"><code>&lt;!--[if mso 10]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>Outlook 2003</td>
+                    <td class="-cell1"><code>&lt;!--[if mso 11]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>Outlook 2007</td>
+                    <td class="-cell1"><code>&lt;!--[if mso 12]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>Outlook 2010</td>
+                    <td class="-cell1"><code>&lt;!--[if mso 14]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>Outlook 2013</td>
+                    <td class="-cell1"><code>&lt;!--[if mso 15]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>Outlook 2016</td>
+                    <td class="-cell1"><code>&lt;!--[if mso 16]&gt;  your code  &lt;![endif]--&gt;</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="docs-section">
+    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="conditional-logic">Conditional logic</h3><a class="s-btn s-btn__clear" href="#conditional-logic"><span class="v-visible-sr">Section titled Conditional logic</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    <p class="docs-copy">
+        Using operators allows you to create conditional expressions for targeting multiple Outlook versions.
+    </p>
+    <div class="s-notice s-anchors s-anchors__inherit s-anchors__underlined s-notice__info mb16"><span class="s-notice--icon"><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconInfo" aria-hidden="true"><path d="M17.33 4.64a9.08 9.08 0 0 1-12.7 12.7l1.08-1.09A7.58 7.58 0 0 0 16.25 5.71zM10 .92c2.47 0 4.7.98 6.34 2.58l-1.06 1.06A7.58 7.58 0 0 0 4.56 15.28L3.5 16.34A9.08 9.08 0 0 1 10 .91"></path><path d="M10.76 15h-2V8h2zm0-8h-2V5h2z"></path></svg></span><span>
+        <strong>Note:</strong> We tend to keep our designs simple and don’t use these very often. They’re here if you need them every once in a while, but if you find yourself reaching for these often, please <a href="https://github.com/StackExchange/Stacks/issues/new">open an issue</a> or ask us about it.
+    </span></div>
+    <div class="overflow-x-auto mb32" tabindex="0">
+        <table class="docs-table s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col" class="s-table--cell1">Code</th>
+                    <th scope="col" class="s-table--cell3">Description</th>
+                    <th scope="col">Example</th>
+               </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>gt</code></td>
+                    <td>greater than</td>
+                    <td><code>&lt;!--[if gt mso 14]&gt;  Everything above Outlook 2010  &lt;![endif]--&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>lt</code></td>
+                    <td>less than</td>
+                    <td><code>&lt;!--[if lt mso 14]&gt;  Everything below Outlook 2010  &lt;![endif]--&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>gte</code></td>
+                    <td>greater than or equal to</td>
+                    <td><code>&lt;!--[if gte mso 14]&gt;  Outlook 2010 and above  &lt;![endif]--&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>lte</code></td>
+                    <td>less than or equal to</td>
+                    <td><code>&lt;!--[if lte mso 14]&gt;  Outlook 2010 and below  &lt;![endif]--&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>|</code></td>
+                    <td>or</td>
+                    <td><code>&lt;!--[if (mso 12)|(mso 16)]&gt;  Outlook 2007 / 2016 only  &lt;![endif]--&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>!</code></td>
+                    <td>not</td>
+                    <td><code>&lt;!--[if !mso]&gt;&lt;!--&gt;  All Outlooks will ignore this  &lt;!--&lt;![endif]--&gt;</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</div>
+
+            <!-- <div class="d-flex my48 pt24">
+                <div class="mr16">
+                    
+                    <form
+                        id="quick-positive-feedback-outlook-conditional-css"
+                        class="js-feedback-form v-hidden"
+                        name="quick-positive-feedback-outlook-conditional-css"
+                        method="POST"
+                        data-netlify="true"
+                        action="/success">
+                    </form>
+                    <form
+                        id="quick-negative-feedback-outlook-conditional-css"
+                        class="js-feedback-form v-hidden"
+                        name="quick-negative-feedback-outlook-conditional-css"
+                        method="POST"
+                        data-netlify="true"
+                        action="/success">
+                    </form>
+                    <div
+                        class="s-popover s-popover__tooltip"
+                        id="tooltip-feedback-positive"
+                        role="tooltip">
+                        <div class="s-popover--content">This page is useful</div>
+                    </div>
+                    <div
+                        class="s-popover s-popover__tooltip"
+                        id="tooltip-feedback-negative"
+                        role="tooltip">
+                        <div class="s-popover--content">This page needs improvement</div>
+                    </div>
+                    <div id="vote-feedback" class="s-vote">
+                        <button
+                            class="s-vote--btn"
+                            type="submit"
+                            form="quick-positive-feedback-outlook-conditional-css"
+                            aria-describedby="tooltip-feedback-positive"
+                            aria-expanded="false"
+                            data-controller="s-tooltip"
+                            data-s-tooltip-placement="right"
+                        >
+                            <span class="s-btn-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteUp" aria-hidden="true"><path d="M10 3q.41.02.64.36l6.9 11.5a.75.75 0 1 1-1.28.78L10 5.21l-5.58 9.3h8.04v-.01h1.1l.97 1.5H3.1a.75.75 0 0 1-.65-1.13l6.9-11.5A.8.8 0 0 1 10 3"/></svg>
+                            </span>
+                            <span class="s-btn-icon-fill d-none">
+                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteUpFill" aria-hidden="true"><path d="M10 3h.1a1 1 0 0 1 .42.21l.12.15 6.9 11.5.05.09v.03l.02.04q.04.12.04.26v.03q0 .13-.07.25v.02l-.03.04a1 1 0 0 1-.2.23l-.06.05-.04.01-.04.03-.04.01a1 1 0 0 1-.27.05H3a.75.75 0 0 1-.55-1.13l6.9-11.5A.8.8 0 0 1 10 3"/></svg>
+                            </span>
+                            <span class="v-visible-sr">upvote</span>
+                        </button>
+                        <button
+                            class="s-vote--btn"
+                            type="submit"
+                            form="quick-negative-feedback-outlook-conditional-css"
+                            aria-describedby="tooltip-feedback-negative"
+                            aria-expanded="false"
+                            data-controller="s-tooltip"
+                            data-s-tooltip-placement="right"
+                        >
+                            <span class="s-btn-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteDown" aria-hidden="true"><path d="M10 16a.8.8 0 0 1-.64-.36l-6.9-11.5a.75.75 0 1 1 1.28-.78L10 13.8l5.58-9.3H6.44L5.47 3H16.9a.75.75 0 0 1 .65 1.14l-6.9 11.5A.8.8 0 0 1 10 16"/></svg>
+                            </span>
+                            <span class="s-btn-icon-fill d-none">
+                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteDownFill" aria-hidden="true"><path d="M10 16h-.1l-.1-.02a.8.8 0 0 1-.45-.34l-6.9-11.5-.04-.08-.01-.04L2.39 4a1 1 0 0 1-.04-.26V3.7q0-.14.06-.26l.01-.02.02-.04a1 1 0 0 1 .27-.27l.03-.02.05-.02.04-.02A1 1 0 0 1 3.1 3H17a.75.75 0 0 1 .54 1.14l-6.9 11.5A.8.8 0 0 1 10 16"/></svg>
+                            </span>
+                            <span class="v-visible-sr">downvote</span>
+                        </button>
+                    </div>
+                </div>
+
+                <form
+                    class="w100 js-feedback-form"
+                    name="feedback-outlook-conditional-css"
+                    method="POST"
+                    data-netlify="true"
+                    action="/success">
+                    <fieldset class="d-flex fd-column fl-grow1 g16">
+                        <legend class="fs-title fw-bold">How’d we do?</legend>
+                        <div class="fs-body2">Anonymously upvote, downvote, or send additional feedback below.</div>
+
+                        <textarea
+                            class="s-textarea hmn1"
+                            id="feedback-form"
+                            name="additional-feedback"
+                            placeholder="Tell us how we can improve this page…" required></textarea>
+
+                        <div class="d-flex ai-center fd-row-reverse g8 jc-space-between mln6 sm:d-grid sm:grid__1 sm:ml0">
+                            <button
+                                type="submit"
+                                class="s-btn as-start fl-shrink0">
+                                Send feedback
+                            </button>
+                            <div class="d-flex fw-wrap g8 sm:d-grid sm:grid__1">
+                                <a
+                                    href="https://github.com/StackExchange/Stacks/edit/develop/packages/stacks-docs/./email/base/mso.html"
+                                    class="s-btn s-btn__clear s-btn__icon s-btn__sm">
+                                    <svg aria-hidden="true" class="svg-icon iconPencilSm" width="14" height="14"  viewBox="0 0 14 14"><path fill="#F1B600" d="m2 10.12 6.37-6.43 1.88 1.88L3.88 12H2z"/><path fill="#E87C87" d="m11.1 1.71 1.13 1.12c.2.2.2.51 0 .71L11.1 4.7 9.21 2.86l1.17-1.15c.2-.2.51-.2.71 0"/></svg>
+                                    Edit
+                                </a>
+                                <a
+                                    href="https://github.com/StackExchange/Stacks/issues/new/choose"
+                                    class="s-btn s-btn__clear s-btn__icon s-btn__sm">
+                                    File an issue
+                                </a>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div> -->
+
+            <!-- <div class="ta-right">
+                <a href="https://www.netlify.com"><img src="https://www.netlify.com/v3/img/components/netlify-color-accent.svg" alt="Deploys by Netlify" /></a>
+            </div> -->
+        
