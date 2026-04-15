@@ -69,12 +69,19 @@ function extractLegacyHeader(html: string): LegacyMetadata & { strippedHtml: str
         else if (/<\/svg>\s*Figma/i.test(content) && url.includes("figma.com")) figma = url;
     }
 
-    return {
-        description,
-        svelte,
-        figma,
-        strippedHtml: html.slice(0, headerStart) + html.slice(headerEnd),
-    };
+    let strippedHtml = html.slice(0, headerStart) + html.slice(headerEnd);
+
+    // Some fragments built from the old template rendered the description twice:
+    // once inside the header div and once as a standalone paragraph immediately
+    // after it. Strip that second occurrence if present.
+    if (description) {
+        strippedHtml = strippedHtml.replace(
+            `<p class="docs-copy fc-black-500 fs-title mb0">${description}</p>`,
+            ""
+        );
+    }
+
+    return { description, svelte, figma, strippedHtml };
 }
 
 export const load: PageServerLoad = async (event) => {
