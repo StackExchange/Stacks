@@ -85,7 +85,7 @@
                 <tr>
                     <th scope="col">{label('class')}</th>
                     {#each activeCols as col}
-                        <th scope="col">{label(col)}</th>
+                        <th scope="col" class={col === 'description' || col === 'define' ? 's-table--cell5' : ''}>{label(col)}</th>
                     {/each}
                 </tr>
             </thead>
