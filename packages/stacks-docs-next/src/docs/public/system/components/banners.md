@@ -5,8 +5,7 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
 ---
 
 <script lang="ts">
-    import { Icon } from '@stackoverflow/stacks-svelte';
-    import { IconAlert, IconCross } from '@stackoverflow/stacks-icons/icons';
+    import { Notice } from '@stackoverflow/stacks-svelte';
     import ClassTable from '$components/ClassTable.svelte';
     import Example from '$components/Example.svelte';
     import BannerDemo from '$components/BannerDemo.svelte';
@@ -52,20 +51,12 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 ```
 
 <Example>
-    <aside class="s-banner is-pinned ps-relative" role="presentation" aria-hidden="false" style="z-index: 1;">
-        <span class="s-banner--icon"><Icon src={IconAlert} /></span>
-        <span><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</span>
-        <div class="s-banner--actions">
-            <button type="button" class="s-link s-banner--dismiss"><Icon src={IconCross} /></button>
-        </div>
-    </aside>
-    <aside class="s-banner is-pinned s-banner__important ps-relative mt8" role="presentation" aria-hidden="false" style="z-index: 1;">
-        <span class="s-banner--icon"><Icon src={IconAlert} /></span>
-        <span><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</span>
-        <div class="s-banner--actions">
-            <button type="button" class="s-link s-banner--dismiss"><Icon src={IconCross} /></button>
-        </div>
-    </aside>
+    <Notice class="s-banner is-pinned ps-relative" role="alert" dismissible>
+        <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
+    </Notice>
+    <Notice class="s-banner is-pinned ps-relative mt8" role="alert" important dismissible>
+        <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
+    </Notice>
 </Example>
 
 ### Info
@@ -76,20 +67,12 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 ```
 
 <Example>
-    <aside class="s-banner is-pinned s-banner__info ps-relative" role="presentation" aria-hidden="false" style="z-index: 1;">
-        <span class="s-banner--icon"><Icon src={IconAlert} /></span>
-        <span><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</span>
-        <div class="s-banner--actions">
-            <button type="button" class="s-link s-banner--dismiss"><Icon src={IconCross} /></button>
-        </div>
-    </aside>
-    <aside class="s-banner is-pinned s-banner__info s-banner__important ps-relative mt8" role="presentation" aria-hidden="false" style="z-index: 1;">
-        <span class="s-banner--icon"><Icon src={IconAlert} /></span>
-        <span><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</span>
-        <div class="s-banner--actions">
-            <button type="button" class="s-link s-banner--dismiss"><Icon src={IconCross} /></button>
-        </div>
-    </aside>
+    <Notice variant="info" class="s-banner is-pinned ps-relative" role="alert" dismissible>
+        <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
+    </Notice>
+    <Notice variant="info" class="s-banner is-pinned ps-relative mt8" role="alert" important dismissible>
+        <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
+    </Notice>
 </Example>
 
 ### Success
@@ -100,20 +83,12 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 ```
 
 <Example>
-    <aside class="s-banner is-pinned s-banner__success ps-relative" role="presentation" aria-hidden="false" style="z-index: 1;">
-        <span class="s-banner--icon"><Icon src={IconAlert} /></span>
-        <span><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</span>
-        <div class="s-banner--actions">
-            <button type="button" class="s-link s-banner--dismiss"><Icon src={IconCross} /></button>
-        </div>
-    </aside>
-    <aside class="s-banner is-pinned s-banner__success s-banner__important ps-relative mt8" role="presentation" aria-hidden="false" style="z-index: 1;">
-        <span class="s-banner--icon"><Icon src={IconAlert} /></span>
-        <span><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</span>
-        <div class="s-banner--actions">
-            <button type="button" class="s-link s-banner--dismiss"><Icon src={IconCross} /></button>
-        </div>
-    </aside>
+    <Notice variant="success" class="s-banner is-pinned ps-relative" role="alert" dismissible>
+        <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
+    </Notice>
+    <Notice variant="success" class="s-banner is-pinned ps-relative mt8" role="alert" important dismissible>
+        <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
+    </Notice>
 </Example>
 
 ### Warning
@@ -124,20 +99,12 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 ```
 
 <Example>
-    <aside class="s-banner is-pinned s-banner__warning ps-relative" role="presentation" aria-hidden="false" style="z-index: 1;">
-        <span class="s-banner--icon"><Icon src={IconAlert} /></span>
-        <span><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</span>
-        <div class="s-banner--actions">
-            <button type="button" class="s-link s-banner--dismiss"><Icon src={IconCross} /></button>
-        </div>
-    </aside>
-    <aside class="s-banner is-pinned s-banner__warning s-banner__important ps-relative mt8" role="presentation" aria-hidden="false" style="z-index: 1;">
-        <span class="s-banner--icon"><Icon src={IconAlert} /></span>
-        <span><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</span>
-        <div class="s-banner--actions">
-            <button type="button" class="s-link s-banner--dismiss"><Icon src={IconCross} /></button>
-        </div>
-    </aside>
+    <Notice variant="warning" class="s-banner is-pinned ps-relative" role="alert" dismissible>
+        <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
+    </Notice>
+    <Notice variant="warning" class="s-banner is-pinned ps-relative mt8" role="alert" important dismissible>
+        <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
+    </Notice>
 </Example>
 
 ### Danger
@@ -148,20 +115,12 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 ```
 
 <Example>
-    <aside class="s-banner is-pinned s-banner__danger ps-relative" role="presentation" aria-hidden="false" style="z-index: 1;">
-        <span class="s-banner--icon"><Icon src={IconAlert} /></span>
-        <span><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</span>
-        <div class="s-banner--actions">
-            <button type="button" class="s-link s-banner--dismiss"><Icon src={IconCross} /></button>
-        </div>
-    </aside>
-    <aside class="s-banner is-pinned s-banner__danger s-banner__important ps-relative mt8" role="presentation" aria-hidden="false" style="z-index: 1;">
-        <span class="s-banner--icon"><Icon src={IconAlert} /></span>
-        <span><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</span>
-        <div class="s-banner--actions">
-            <button type="button" class="s-link s-banner--dismiss"><Icon src={IconCross} /></button>
-        </div>
-    </aside>
+    <Notice variant="danger" class="s-banner is-pinned ps-relative" role="alert" dismissible>
+        <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
+    </Notice>
+    <Notice variant="danger" class="s-banner is-pinned ps-relative mt8" role="alert" important dismissible>
+        <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
+    </Notice>
 </Example>
 
 ### Featured
@@ -172,20 +131,12 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 ```
 
 <Example>
-    <aside class="s-banner is-pinned s-banner__featured ps-relative" role="presentation" aria-hidden="false" style="z-index: 1;">
-        <span class="s-banner--icon"><Icon src={IconAlert} /></span>
-        <span><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</span>
-        <div class="s-banner--actions">
-            <button type="button" class="s-link s-banner--dismiss"><Icon src={IconCross} /></button>
-        </div>
-    </aside>
-    <aside class="s-banner is-pinned s-banner__featured s-banner__important ps-relative mt8" role="presentation" aria-hidden="false" style="z-index: 1;">
-        <span class="s-banner--icon"><Icon src={IconAlert} /></span>
-        <span><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</span>
-        <div class="s-banner--actions">
-            <button type="button" class="s-link s-banner--dismiss"><Icon src={IconCross} /></button>
-        </div>
-    </aside>
+    <Notice variant="featured" class="s-banner is-pinned ps-relative" role="alert" dismissible>
+        <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
+    </Notice>
+    <Notice variant="featured" class="s-banner is-pinned ps-relative mt8" role="alert" important dismissible>
+        <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
+    </Notice>
 </Example>
 
 ### Activity
@@ -196,20 +147,12 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 ```
 
 <Example>
-    <aside class="s-banner is-pinned s-banner__activity ps-relative" role="presentation" aria-hidden="false" style="z-index: 1;">
-        <span class="s-banner--icon"><Icon src={IconAlert} /></span>
-        <span><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</span>
-        <div class="s-banner--actions">
-            <button type="button" class="s-link s-banner--dismiss"><Icon src={IconCross} /></button>
-        </div>
-    </aside>
-    <aside class="s-banner is-pinned s-banner__activity s-banner__important ps-relative mt8" role="presentation" aria-hidden="false" style="z-index: 1;">
-        <span class="s-banner--icon"><Icon src={IconAlert} /></span>
-        <span><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</span>
-        <div class="s-banner--actions">
-            <button type="button" class="s-link s-banner--dismiss"><Icon src={IconCross} /></button>
-        </div>
-    </aside>
+    <Notice variant="activity" class="s-banner is-pinned ps-relative" role="alert" dismissible>
+        <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
+    </Notice>
+    <Notice variant="activity" class="s-banner is-pinned ps-relative mt8" role="alert" important dismissible>
+        <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
+    </Notice>
 </Example>
 
 ## JavaScript
