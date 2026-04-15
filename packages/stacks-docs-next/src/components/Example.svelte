@@ -19,5 +19,6 @@
         --ff-sans: -apple-system, BlinkMacSystemFont,
             "Segoe UI Adjusted", "Segoe UI", "Liberation Sans", sans-serif;
         font-family: var(--ff-sans);
+        font-weight: initial;
     }
 </style>
