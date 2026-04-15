@@ -12,17 +12,17 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
     import type { ClassTableRow } from '$components/ClassTable.svelte';
 
     const classes: ClassTableRow[] = [
-        { class: '.s-avatar',           modifies: 'N/A',       description: 'The base avatar at 16px.' },
-        { class: '.s-avatar--image',    modifies: '.s-avatar', description: 'A child element for displaying a user\'s profile image.' },
-        { class: '.s-avatar--letter',   modifies: '.s-avatar', description: 'A child element for displaying an abbreviated Team name.' },
-        { class: '.s-avatar--badge',    modifies: '.s-avatar', description: 'A child element that provides positioning to the shield on Team avatars.' },
-        { class: '.s-avatar--indicator',modifies: '.s-avatar', description: 'A child element that provides positioning to the activity indicator on user\'s avatars.' },
-        { class: '.s-avatar__24',       modifies: '.s-avatar', description: 'Adds the proper border radius and scaling at 24px.' },
-        { class: '.s-avatar__32',       modifies: '.s-avatar', description: 'Adds the proper border radius and scaling at 32px.' },
-        { class: '.s-avatar__48',       modifies: '.s-avatar', description: 'Adds the proper border radius and scaling at 48px.' },
-        { class: '.s-avatar__64',       modifies: '.s-avatar', description: 'Adds the proper border radius and scaling at 64px.' },
-        { class: '.s-avatar__96',       modifies: '.s-avatar', description: 'Adds the proper border radius and scaling at 96px.' },
-        { class: '.s-avatar__128',      modifies: '.s-avatar', description: 'Adds the proper border radius and scaling at 128px.' },
+        { class: '.s-avatar',            parent: 'N/A',       modifies: 'N/A',       description: 'The base avatar at 16px.' },
+        { class: '.s-avatar--image',     parent: '.s-avatar', modifies: 'N/A',       description: 'A child element for displaying a user\'s profile image.' },
+        { class: '.s-avatar--letter',    parent: '.s-avatar', modifies: 'N/A',       description: 'A child element for displaying an abbreviated Team name.' },
+        { class: '.s-avatar--badge',     parent: '.s-avatar', modifies: 'N/A',       description: 'A child element that provides positioning to the shield on Team avatars.' },
+        { class: '.s-avatar--indicator', parent: '.s-avatar', modifies: 'N/A',       description: 'A child element that provides positioning to the activity indicator on user\'s avatars.' },
+        { class: '.s-avatar__24',        parent: 'N/A',       modifies: '.s-avatar', description: 'Adds the proper border radius and scaling at 24px.' },
+        { class: '.s-avatar__32',        parent: 'N/A',       modifies: '.s-avatar', description: 'Adds the proper border radius and scaling at 32px.' },
+        { class: '.s-avatar__48',        parent: 'N/A',       modifies: '.s-avatar', description: 'Adds the proper border radius and scaling at 48px.' },
+        { class: '.s-avatar__64',        parent: 'N/A',       modifies: '.s-avatar', description: 'Adds the proper border radius and scaling at 64px.' },
+        { class: '.s-avatar__96',        parent: 'N/A',       modifies: '.s-avatar', description: 'Adds the proper border radius and scaling at 96px.' },
+        { class: '.s-avatar__128',       parent: 'N/A',       modifies: '.s-avatar', description: 'Adds the proper border radius and scaling at 128px.' },
     ];
 
     const sizes = [16, 24, 32, 48, 64, 96, 128] as const;

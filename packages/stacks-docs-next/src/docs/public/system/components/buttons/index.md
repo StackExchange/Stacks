@@ -30,22 +30,22 @@ updated: 2025-12-09
   import type { ClassTableRow } from '$components/ClassTable.svelte';
 
   const classes: ClassTableRow[] = [
-    { class: '.s-btn',           modifies: 'N/A',      description: 'Base button element.' },
-    { class: '.s-btn--badge',    modifies: '.s-btn',   description: 'Badge container for the button.' },
-    { class: '.s-btn__clear',    modifies: '.s-btn',   description: 'Clear button variant.' },
-    { class: '.s-btn__danger',   modifies: '.s-btn',   description: 'Danger button variant.' },
-    { class: '.s-btn__featured', modifies: '.s-btn',   description: 'Featured button variant.' },
-    { class: '.s-btn__tonal',    modifies: '.s-btn',   description: 'Tonal button variant.' },
-    { class: '.s-btn__dropdown', modifies: '.s-btn',   description: 'Dropdown button variant.' },
-    { class: '.s-btn__icon',     modifies: '.s-btn',   description: 'Icon button variant.' },
-    { class: '.s-btn__link',     modifies: '.s-btn',   description: 'Link button variant.' },
-    { class: '.s-btn__unset',    modifies: '.s-btn',   description: 'Unset button variant.' },
-    { class: '.s-btn__facebook', modifies: '.s-btn',   description: 'Facebook button variant.' },
-    { class: '.s-btn__github',   modifies: '.s-btn',   description: 'GitHub button variant.' },
-    { class: '.s-btn__google',   modifies: '.s-btn',   description: 'Google button variant.' },
-    { class: '.s-btn__xs',       modifies: '.s-btn',   description: 'Extra small button variant.' },
-    { class: '.s-btn__sm',       modifies: '.s-btn',   description: 'Small button variant.' },
-    { class: '.s-btn__lg',       modifies: '.s-btn',   description: 'Large button variant.' },
+    { class: '.s-btn',           parent: 'N/A',    modifies: 'N/A',    description: 'Base button element.' },
+    { class: '.s-btn--badge',    parent: '.s-btn', modifies: 'N/A',    description: 'Badge container for the button.' },
+    { class: '.s-btn__clear',    parent: 'N/A',    modifies: '.s-btn', description: 'Clear button variant.' },
+    { class: '.s-btn__danger',   parent: 'N/A',    modifies: '.s-btn', description: 'Danger button variant.' },
+    { class: '.s-btn__featured', parent: 'N/A',    modifies: '.s-btn', description: 'Featured button variant.' },
+    { class: '.s-btn__tonal',    parent: 'N/A',    modifies: '.s-btn', description: 'Tonal button variant.' },
+    { class: '.s-btn__dropdown', parent: 'N/A',    modifies: '.s-btn', description: 'Dropdown button variant.' },
+    { class: '.s-btn__icon',     parent: 'N/A',    modifies: '.s-btn', description: 'Icon button variant.' },
+    { class: '.s-btn__link',     parent: 'N/A',    modifies: '.s-btn', description: 'Link button variant.' },
+    { class: '.s-btn__unset',    parent: 'N/A',    modifies: '.s-btn', description: 'Unset button variant.' },
+    { class: '.s-btn__facebook', parent: 'N/A',    modifies: '.s-btn', description: 'Facebook button variant.' },
+    { class: '.s-btn__github',   parent: 'N/A',    modifies: '.s-btn', description: 'GitHub button variant.' },
+    { class: '.s-btn__google',   parent: 'N/A',    modifies: '.s-btn', description: 'Google button variant.' },
+    { class: '.s-btn__xs',       parent: 'N/A',    modifies: '.s-btn', description: 'Extra small button variant.' },
+    { class: '.s-btn__sm',       parent: 'N/A',    modifies: '.s-btn', description: 'Small button variant.' },
+    { class: '.s-btn__lg',       parent: 'N/A',    modifies: '.s-btn', description: 'Large button variant.' },
   ];
 </script>
 

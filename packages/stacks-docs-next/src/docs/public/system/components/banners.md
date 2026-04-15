@@ -12,17 +12,17 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
     import type { ClassTableRow } from '$components/ClassTable.svelte';
 
     const classes: ClassTableRow[] = [
-        { class: '.s-banner',              modifies: 'N/A',       description: 'Base banner element.' },
-        { class: '.s-banner--actions',     modifies: '.s-banner', description: 'Container styling for banner actions including the dismiss button.' },
-        { class: '.s-banner--dismiss',     modifies: '.s-banner', description: 'Applies to child button element within the banner to position it appropriately.' },
-        { class: '.s-banner__important',   modifies: '.s-banner', description: 'Applies an important visual style. This should be used for time-sensitive, pressing information that needs to be noticed by the user.' },
-        { class: '.s-banner__info',        modifies: '.s-banner', description: 'Applies info (blue) visual styles.' },
-        { class: '.s-banner__success',     modifies: '.s-banner', description: 'Applies success (green) visual styles.' },
-        { class: '.s-banner__warning',     modifies: '.s-banner', description: 'Applies warning (yellow) visual styles.' },
-        { class: '.s-banner__danger',      modifies: '.s-banner', description: 'Applies danger (red) visual styles.' },
-        { class: '.s-banner__featured',    modifies: '.s-banner', description: 'Applies featured (purple) visual styles.' },
-        { class: '.s-banner__activity',    modifies: '.s-banner', description: 'Applies activity (pink) visual styles.' },
-        { class: '.is-pinned',             modifies: '.s-banner', description: 'Pins the banner to the top of the browser window.' },
+        { class: '.s-banner',              parent: 'N/A',        modifies: 'N/A',        description: 'Base banner element.' },
+        { class: '.s-banner--actions',     parent: '.s-banner',  modifies: 'N/A',        description: 'Container styling for banner actions including the dismiss button.' },
+        { class: '.s-banner--dismiss',     parent: '.s-banner',  modifies: 'N/A',        description: 'Applies to child button element within the banner to position it appropriately.' },
+        { class: '.s-banner__important',   parent: 'N/A',        modifies: '.s-banner',  description: 'Applies an important visual style. This should be used for time-sensitive, pressing information that needs to be noticed by the user.' },
+        { class: '.s-banner__info',        parent: 'N/A',        modifies: '.s-banner',  description: 'Applies info (blue) visual styles.' },
+        { class: '.s-banner__success',     parent: 'N/A',        modifies: '.s-banner',  description: 'Applies success (green) visual styles.' },
+        { class: '.s-banner__warning',     parent: 'N/A',        modifies: '.s-banner',  description: 'Applies warning (yellow) visual styles.' },
+        { class: '.s-banner__danger',      parent: 'N/A',        modifies: '.s-banner',  description: 'Applies danger (red) visual styles.' },
+        { class: '.s-banner__featured',    parent: 'N/A',        modifies: '.s-banner',  description: 'Applies featured (purple) visual styles.' },
+        { class: '.s-banner__activity',    parent: 'N/A',        modifies: '.s-banner',  description: 'Applies activity (pink) visual styles.' },
+        { class: '.is-pinned',             parent: 'N/A',        modifies: '.s-banner',  description: 'Pins the banner to the top of the browser window.' },
     ];
 </script>
 
