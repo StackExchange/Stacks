@@ -11,6 +11,12 @@
 
   const toc = $derived(data?.metadata?.toc || []);
 
+  const lastUpdated = $derived(new Date(data?.metadata?.updated).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }));
+
   const pageTitle = $derived(data.active.title ? `${data.active.title} - Stack Overflow Design System` : 'Stack Overflow Design System');
   const pageDescription = $derived(data?.metadata?.description || `Documentation for ${data.active.title} in the Stack Overflow Design System`);
 
@@ -76,6 +82,12 @@
     </div>  
 
     <header>
+      {#if data?.metadata?.updated && page.params.category !== 'system'}
+        <time datetime={data?.metadata?.updated} class="d-block mb24 fs-body1 fc-black-400">
+          Last updated: <strong>{lastUpdated}</strong>
+        </time>
+      {/if}
+
       <h1 class="fs-display2 ff-stack-sans-headline-notch mb32">
         {data.active.title}
       </h1>
