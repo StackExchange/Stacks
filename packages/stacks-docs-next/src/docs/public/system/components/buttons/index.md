@@ -318,7 +318,7 @@ Stacks provides additional classes for cases that are a bit more rare.
                     <th scope="row" class="va-middle">Google</th>
                     <td class="va-middle"><code>.s-btn__google</code></td>
                     <td class="va-middle">Styles a button consistent with Google's branding.</td>
-                    <td class="va-middle ta-center px4"><button class="s-btn s-btn__icon s-btn__google ws-nowrap" type="button"><Icon src={IconServiceGoogle} /> Google</button></td>
+                    <td class="va-middle ta-center px4"><button class="s-btn s-btn__icon s-btn__google ws-nowrap" type="button"><Icon src={IconServiceGoogle} class="native" /> Google</button></td>
                 </tr>
                 <tr>
                     <th scope="row" class="va-middle">GitHub</th>
