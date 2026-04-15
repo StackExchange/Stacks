@@ -1,41 +1,38 @@
 <script lang="ts">
-    import { Notice } from '@stackoverflow/stacks-svelte';
+    import { Icon } from '@stackoverflow/stacks-svelte';
+    import { IconAlert, IconCross } from '@stackoverflow/stacks-icons/icons';
 
-    type Variant = '' | 'info' | 'success' | 'warning' | 'danger' | 'featured' | 'activity';
+    const variants = [
+        { value: '',                   label: 'Base' },
+        { value: 's-banner__info',     label: 'Info' },
+        { value: 's-banner__success',  label: 'Success' },
+        { value: 's-banner__warning',  label: 'Warning' },
+        { value: 's-banner__danger',   label: 'Danger' },
+        { value: 's-banner__featured', label: 'Featured' },
+        { value: 's-banner__activity', label: 'Activity' },
+    ] as const;
 
-    const variants: { value: Variant; label: string }[] = [
-        { value: '', label: 'Base' },
-        { value: 'info',     label: 'Info' },
-        { value: 'success',  label: 'Success' },
-        { value: 'warning',  label: 'Warning' },
-        { value: 'danger',   label: 'Danger' },
-        { value: 'featured', label: 'Featured' },
-        { value: 'activity', label: 'Activity' },
-    ];
-
-    let selectedVariant = $state<Variant>('');
+    let selectedVariant = $state('s-banner__info');
     let important = $state(false);
     let pinned = $state(false);
     let visible = $state(false);
 
-    // ps-relative keeps the banner inline in the page; omit it when pinned
-    // so position:fixed applies and the banner shows at the top of the viewport
-    const extraClass = $derived(
-        ['s-banner is-pinned', !pinned && 'ps-relative'].filter(Boolean).join(' ')
+    const bannerClass = $derived(
+        ['s-banner', selectedVariant, important && 's-banner__important', pinned && 'is-pinned']
+            .filter(Boolean).join(' ')
     );
 </script>
 
 {#if visible}
-    <Notice
-        variant={selectedVariant}
-        {important}
-        class={extraClass}
-        role="alert"
-        dismissible
-        onDismiss={() => visible = false}
-    >
-        <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
-    </Notice>
+    <aside class={bannerClass} role="alert" aria-hidden="false">
+        <span class="s-banner--icon"><Icon src={IconAlert} /></span>
+        <span><strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.</span>
+        <div class="s-banner--actions">
+            <button type="button" class="s-link s-banner--dismiss" onclick={() => visible = false}>
+                <Icon src={IconCross} />
+            </button>
+        </div>
+    </aside>
 {/if}
 
 <div class="ba bc-black-225 bar-sm p16 bg-black-100 d-flex ai-center g16 fw-wrap">
