@@ -108,9 +108,6 @@
 /* Override Stacks defaults */
 html,
 body {
-    --ff-sans:
-        "Stack Sans Text", -apple-system, BlinkMacSystemFont,
-        "Segoe UI Adjusted", "Segoe UI", "Liberation Sans", sans-serif;
     --ff-mono:
         "IBM Plex Mono", ui-monospace, "Cascadia Mono", "Segoe UI Mono",
         "Liberation Mono", Menlo, Monaco, Consolas, monospace;
@@ -131,8 +128,11 @@ body {
     src: url("/fonts/IBMPlexMono-Regular.woff2") format("woff2");
 }
 
+/* Docs UI chrome font — apply to navigation, branded shells, and UI controls.
+   Body text and examples intentionally use the default system sans-serif. */
 .ff-stack-sans {
-    font-family: "Stack Sans Text";
+    font-family: "Stack Sans Text", -apple-system, BlinkMacSystemFont,
+        "Segoe UI Adjusted", "Segoe UI", "Liberation Sans", sans-serif;
     font-weight: 400;
 }
 .ff-stack-sans-headline,
