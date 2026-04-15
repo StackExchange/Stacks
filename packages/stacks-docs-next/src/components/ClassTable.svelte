@@ -1,6 +1,8 @@
 <script lang="ts">
     export type ClassTableRow = {
         class: string;
+        /** The parent element this class must be a child of */
+        parent?: string;
         /** What class this modifies — used on component pages */
         modifies?: string;
         /** CSS property output — used on base utility pages */
@@ -51,6 +53,7 @@
 
     const defaultLabels: Record<'class' | ColKey, string> = {
         class: 'Class',
+        parent: 'Parent',
         modifies: 'Modifies',
         output: 'Output',
         description: 'Description',
@@ -63,7 +66,7 @@
     }
 
     // Show columns in a fixed order, only those with at least one value.
-    const orderedCols: ColKey[] = ['modifies', 'output', 'description', 'define', 'responsive'];
+    const orderedCols: ColKey[] = ['parent', 'modifies', 'output', 'description', 'define', 'responsive'];
     const activeCols = $derived(
         orderedCols.filter(col => classes.some(r => r[col] !== undefined))
     );

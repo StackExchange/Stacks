@@ -13,10 +13,10 @@ svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-loader-
     import type { ExampleTableRow } from '$components/ExampleTable.svelte';
 
     const classes: ClassTableRow[] = [
-        { class: '.s-loader',          modifies: 'N/A',       description: 'Base class for the loader component.' },
-        { class: '.s-loader--sr-text', modifies: '.s-loader', description: 'Necessary to render the center loader block and renders the accessible text.' },
-        { class: '.s-loader__sm',      modifies: '.s-loader', description: 'A small variant of the loader component.' },
-        { class: '.s-loader__lg',      modifies: '.s-loader', description: 'A large variant of the loader component.' },
+        { class: '.s-loader',          parent: 'N/A',       modifies: 'N/A',       description: 'Base class for the loader component.' },
+        { class: '.s-loader--sr-text', parent: '.s-loader', modifies: 'N/A',       description: 'Necessary to render the center loader block and renders the accessible text.' },
+        { class: '.s-loader__sm',      parent: 'N/A',       modifies: '.s-loader', description: 'A small variant of the loader component.' },
+        { class: '.s-loader__lg',      parent: 'N/A',       modifies: '.s-loader', description: 'A large variant of the loader component.' },
     ];
 
     const sizes: ExampleTableRow[] = [
