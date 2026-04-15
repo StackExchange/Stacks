@@ -210,30 +210,126 @@ Stacks provides additional classes for cases that are a bit more rare.
 
 ### Disabled
 
-| Type     | Class                    | Definition                                                  | Example                                                        |
-| -------- | ------------------------ | ----------------------------------------------------------- | -------------------------------------------------------------- |
-| Disabled | `[aria-disabled="true"]` | Adds disabled styling to any element with `.s-btn` applied. | <Button href="#" weight="clear" disabled>Ask question</Button> |
+<Example>
+    <div class="overflow-x-auto">
+        <table class="wmn5 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col" class="s-table--cell4">Attribute</th>
+                    <th scope="col">Definition</th>
+                    <th scope="col" class="ta-center">Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" class="va-middle">Disabled</th>
+                    <td class="va-middle"><code>[aria-disabled="true"]</code></td>
+                    <td class="va-middle">Adds disabled styling to any element with <code>.s-btn</code> applied.</td>
+                    <td class="va-middle ta-center px4"><Button href="#" weight="clear" disabled>Ask question</Button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</Example>
 
 ### Resets
 
-| Type  | Class           | Definition                                                                                                                                                                                             | Example                                               |
-| ----- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------- |
-| Unset | `.s-btn__unset` | Removes all styling from a button and reverts focus states to browser default.                                                                                                                         | <Button unset class="ws-nowrap">Unset button</Button> |
-| Link  | `.s-btn__link`  | Styles a button element as though it were a link. Instead of transforming an `s-btn` to a link, you most likely want to style a `button` as a [link](/product/components/links/#single-link-examples). | <Button link class="ws-nowrap">Link button</Button>   |
+<Example>
+    <div class="overflow-x-auto">
+        <table class="wmn5 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col" class="s-table--cell4">Class</th>
+                    <th scope="col">Definition</th>
+                    <th scope="col" class="ta-center">Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" class="va-middle">Unset</th>
+                    <td class="va-middle"><code>.s-btn__unset</code></td>
+                    <td class="va-middle">Removes all styling from a button and reverts focus states to browser default.</td>
+                    <td class="va-middle ta-center px4"><Button unset class="ws-nowrap">Unset button</Button></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="va-middle">Link</th>
+                    <td class="va-middle"><code>.s-btn__link</code></td>
+                    <td class="va-middle">Styles a button element as though it were a link. Instead of transforming an <code>s-btn</code> to a link, you most likely want to style a <code>button</code> as a <a href="/system/components/links">link</a>.</td>
+                    <td class="va-middle ta-center px4"><Button link class="ws-nowrap">Link button</Button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</Example>
 
 ### Icons
 
-| Type | Class          | Definition                                                       | Examples                                                                                                                                                                                                                                                                                                     |
-| ---- | -------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Icon | `.s-btn__icon` | Adds some margin overrides that apply to an icon within a button | <div class="d-flex ai-center"><button class="s-btn s-btn__danger s-btn__icon ws-nowrap mr8" type="button"><Icon src={IconTrash} /> Delete</button> <button class="s-btn s-btn__icon s-btn__link" type="button" aria-label="up"><Icon src={IconArrowUp} /><span class="v-visible-sr">up</span></button></div> |
+<Example>
+    <div class="overflow-x-auto">
+        <table class="wmn5 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col" class="s-table--cell4">Class</th>
+                    <th scope="col">Definition</th>
+                    <th scope="col" class="ta-center">Examples</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" class="va-middle">Icon</th>
+                    <td class="va-middle"><code>.s-btn__icon</code></td>
+                    <td class="va-middle">Adds some margin overrides that apply to an icon within a button.</td>
+                    <td class="va-middle ta-center px4">
+                        <div class="d-flex ai-center g4">
+                            <button class="s-btn s-btn__danger s-btn__icon ws-nowrap" type="button"><Icon src={IconTrash} /> Delete</button>
+                            <button class="s-btn s-btn__icon s-btn__link" type="button" aria-label="up"><Icon src={IconArrowUp} /><span class="v-visible-sr">up</span></button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</Example>
 
 ### Social
 
-| Type     | Class              | Definition                                          | Examples                                                                                                                       |
-| -------- | ------------------ | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Facebook | `.s-btn__facebook` | Styles a button consistent with Facebook's branding | <button class="s-btn s-btn__icon s-btn__facebook ws-nowrap" type="button"><Icon src={IconServiceFacebook} /> Facebook</button> |
-| Google   | `.s-btn__google`   | Styles a button consistent with Google's branding   | <button class="s-btn s-btn__icon s-btn__google ws-nowrap" type="button"><Icon src={IconServiceGoogle} /> Google</button>       |
-| GitHub   | `.s-btn__github`   | Styles a button consistent with GitHub's branding   | <button class="s-btn s-btn__icon s-btn__github ws-nowrap" type="button"><Icon src={IconServiceGitHub} /> GitHub</button>       |
+<Example>
+    <div class="overflow-x-auto">
+        <table class="wmn5 s-table s-table__bx-simple">
+            <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col" class="s-table--cell4">Class</th>
+                    <th scope="col">Definition</th>
+                    <th scope="col" class="ta-center">Examples</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" class="va-middle">Facebook</th>
+                    <td class="va-middle"><code>.s-btn__facebook</code></td>
+                    <td class="va-middle">Styles a button consistent with Facebook's branding.</td>
+                    <td class="va-middle ta-center px4"><button class="s-btn s-btn__icon s-btn__facebook ws-nowrap" type="button"><Icon src={IconServiceFacebook} /> Facebook</button></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="va-middle">Google</th>
+                    <td class="va-middle"><code>.s-btn__google</code></td>
+                    <td class="va-middle">Styles a button consistent with Google's branding.</td>
+                    <td class="va-middle ta-center px4"><button class="s-btn s-btn__icon s-btn__google ws-nowrap" type="button"><Icon src={IconServiceGoogle} /> Google</button></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="va-middle">GitHub</th>
+                    <td class="va-middle"><code>.s-btn__github</code></td>
+                    <td class="va-middle">Styles a button consistent with GitHub's branding.</td>
+                    <td class="va-middle ta-center px4"><button class="s-btn s-btn__icon s-btn__github ws-nowrap" type="button"><Icon src={IconServiceGitHub} /> GitHub</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</Example>
 
 ## Ordering
 
@@ -248,10 +344,12 @@ Most button groups should be ordered from the most important to the least import
 <button class="s-btn s-btn__clear" type="button">Cancel</button>
 ```
 
-<div class="d-flex g4 fw-wrap">
-  <Button>Post answer</Button>
-  <Button weight="clear">Cancel</Button>
-</div>
+<Example>
+    <div class="d-flex g4 fw-wrap">
+        <Button>Post answer</Button>
+        <Button weight="clear">Cancel</Button>
+    </div>
+</Example>
 
 ### Within a column
 
@@ -264,10 +362,12 @@ Sometimes the layout dictates that buttons need to be stacked on top of each oth
 </div>
 ```
 
-<div class="d-flex g4 fd-column wmx2">
-  <Button>Post answer</Button>
-  <Button weight="clear">Cancel</Button>
-</div>
+<Example>
+    <div class="d-flex g4 fd-column wmx2">
+        <Button>Post answer</Button>
+        <Button weight="clear">Cancel</Button>
+    </div>
+</Example>
 
 ### Within a header
 
@@ -288,10 +388,12 @@ Sometimes the best place for a series of actions is in the same area as the titl
 </div>
 ```
 
-<div class="d-flex ai-center sm:fd-column sm:ai-start">
-  <h3 class="mb0 sm:mb16 mr-auto fs-title fw-normal">Write your response</h3>
-  <div class="d-flex g4 sm:fd-row-reverse sm:jc-end">
-    <Button>Cancel</Button>
-    <Button weight="clear">Post answer</Button>
-  </div>
-</div>
+<Example>
+    <div class="d-flex ai-center sm:fd-column sm:ai-start">
+        <h3 class="mb0 sm:mb16 mr-auto fs-title fw-normal">Write your response</h3>
+        <div class="d-flex g4 sm:fd-row-reverse sm:jc-end">
+            <Button>Cancel</Button>
+            <Button weight="clear">Post answer</Button>
+        </div>
+    </div>
+</Example>
