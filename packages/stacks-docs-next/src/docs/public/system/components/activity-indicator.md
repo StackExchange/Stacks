@@ -8,7 +8,7 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
 <script lang="ts">
     import { ActivityIndicator, Icon } from '@stackoverflow/stacks-svelte';
     import { IconNotification } from '@stackoverflow/stacks-icons/icons';
-    // TODO: import IconShieldXSm once it is added to @stackoverflow/stacks-icons
+    import { IconShieldXSm } from '@stackoverflow/stacks-icons-legacy/icons';
     import ClassTable from '$components/ClassTable.svelte';
     import Example from '$components/Example.svelte';
     import type { ClassTableRow } from '$components/ClassTable.svelte';
@@ -118,7 +118,7 @@ By default, our indicator has no positioning attached to it. Depending on your c
             <div class="s-avatar bg-red-400 d:bg-red-200 ps-relative">
                 <ActivityIndicator label="New activity" size="sm" class="s-avatar--indicator" />
                 <div class="s-avatar--letter">G</div>
-                <!-- TODO: add <Icon src={IconShieldXSm} class="native s-avatar--badge" /> once IconShieldXSm is in @stackoverflow/stacks-icons -->
+                <Icon src={IconShieldXSm} class="native s-avatar--badge" />
             </div>
             <span class="pl4">Grayson</span>
         </a>
@@ -171,7 +171,7 @@ Stacks also provides alternative styling for success, warning, and danger states
                     <div class="s-avatar {bg} ps-relative">
                         <ActivityIndicator label="New activity" {variant} size="sm" class="s-avatar--indicator" />
                         <div class="s-avatar--letter">G</div>
-                        <!-- TODO: add <Icon src={IconShieldXSm} class="native s-avatar--badge" /> once IconShieldXSm is in @stackoverflow/stacks-icons -->
+                        <Icon src={IconShieldXSm} class="native s-avatar--badge" />
                     </div>
                     <span class="pl4">Grayson</span>
                 </a>
