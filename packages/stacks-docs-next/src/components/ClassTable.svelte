@@ -13,22 +13,44 @@
         responsive?: boolean;
     };
 
-    const COLLAPSE_THRESHOLD = 8;
+    type ColKey = keyof Omit<ClassTableRow, 'class'>;
 
     interface Props {
         classes: ClassTableRow[];
+        /**
+         * Show an expand button when the table is tall enough to warrant it.
+         * Defaults to true.
+         */
+        expandable?: boolean;
+        /**
+         * Label for the expand button. Defaults to "Show All Classes".
+         * Override for tables used in non-class contexts.
+         */
+        expandButtonText?: string;
+        /**
+         * Whether to render the column heading row. Defaults to true.
+         * Set to false for tables embedded in contexts that provide their own headings.
+         */
+        showHeadings?: boolean;
+        /**
+         * Override individual column heading labels.
+         * e.g. { class: 'Selector', description: 'Notes' }
+         */
+        headings?: Partial<Record<'class' | ColKey, string>>;
     }
 
-    let { classes }: Props = $props();
+    let {
+        classes,
+        expandable = true,
+        expandButtonText = 'Show All Classes',
+        showHeadings = true,
+        headings = {},
+    }: Props = $props();
 
-    let showAll = $state(false);
+    let expanded = $state(false);
 
-    const collapsible = $derived(classes.length > COLLAPSE_THRESHOLD);
-    const visibleClasses = $derived(collapsible && !showAll ? classes.slice(0, COLLAPSE_THRESHOLD) : classes);
-
-    type ColKey = keyof Omit<ClassTableRow, 'class'>;
-
-    const colLabels: Record<ColKey, string> = {
+    const defaultLabels: Record<'class' | ColKey, string> = {
+        class: 'Class',
         modifies: 'Modifies',
         output: 'Output',
         description: 'Description',
@@ -36,7 +58,11 @@
         responsive: 'Responsive?',
     };
 
-    // Show columns in a fixed order, but only those with at least one value.
+    function label(col: 'class' | ColKey): string {
+        return headings[col] ?? defaultLabels[col];
+    }
+
+    // Show columns in a fixed order, only those with at least one value.
     const orderedCols: ColKey[] = ['modifies', 'output', 'description', 'define', 'responsive'];
     const activeCols = $derived(
         orderedCols.filter(col => classes.some(r => r[col] !== undefined))
@@ -44,18 +70,25 @@
 </script>
 
 <!-- role="region" + aria-label satisfies the a11y requirement for tabindex on a non-interactive element -->
-<div class="overflow-x-auto" role="region" aria-label="Class table" tabindex="0">
+<div
+    role="region"
+    aria-label={label('class') + ' table'}
+    tabindex="0"
+    class="overflow-x-auto s-anchors s-anchors__underlined {expandable && !expanded ? 'v-truncate-fade' : ''}"
+>
     <table class="s-table s-table__bx-simple">
-        <thead>
-            <tr>
-                <th scope="col">Class</th>
-                {#each activeCols as col}
-                    <th scope="col">{colLabels[col]}</th>
-                {/each}
-            </tr>
-        </thead>
+        {#if showHeadings}
+            <thead>
+                <tr>
+                    <th scope="col">{label('class')}</th>
+                    {#each activeCols as col}
+                        <th scope="col">{label(col)}</th>
+                    {/each}
+                </tr>
+            </thead>
+        {/if}
         <tbody class="fs-caption">
-            {#each visibleClasses as row}
+            {#each classes as row}
                 <tr>
                     <th scope="row"><code>{row.class}</code></th>
                     {#each activeCols as col}
@@ -73,14 +106,14 @@
     </table>
 </div>
 
-{#if collapsible}
+{#if expandable && !expanded}
     <button
         type="button"
         class="s-btn s-btn__tonal s-btn__sm w100 mt2 mb32"
-        aria-expanded={showAll}
-        onclick={() => showAll = !showAll}
+        aria-expanded="false"
+        onclick={() => expanded = true}
     >
-        {showAll ? 'Hide classes' : `Show all ${classes.length} classes`}
+        {expandButtonText}
     </button>
 {:else}
     <div class="mb32"></div>
