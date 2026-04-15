@@ -44,8 +44,6 @@
 	}
 </script>
 
-{#if searchEnabled}
-	<Button icon weight="clear" class="h:fc-blue-400 px0" onclick={openSearch}>
-		<Icon src={IconSearch} />
-	</Button>
-{/if}
+<Button icon weight="clear" class="h:fc-blue-400 px0" onclick={openSearch} disabled={!searchEnabled}>
+	<Icon src={IconSearch} />
+</Button>

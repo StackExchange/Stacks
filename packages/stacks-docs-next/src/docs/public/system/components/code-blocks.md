@@ -1,6 +1,7 @@
 ---
 title: "Code blocks"
 description: "Stacks provides styling for code blocks with syntax highlighting provided by highlight.js. Special care was taken to make sure our light and dark themes felt like Stack Overflow while maintaining near AAA color contrasts and still being distinguishable for those with a color vision deficiency."
+figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=610-18805"
 ---
 
 <script lang="ts">
@@ -21,7 +22,7 @@ description: "Stacks provides styling for code blocks with syntax highlighting p
 
 ## Language examples
 
-The following examples are a small subset of the languages that highlight.js supports.
+The following examples are a small subset of the languages that `highlight.js` supports.
 
 ### HTML
 
