@@ -29,7 +29,7 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
 
 ## Examples
 
-A menu displays a list of choices temporarily, and usually represent tasks or actions. Don't confuse menus for navigation.
+A menu displays a list of choices temporarily, and usually represent tasks or actions. Don't confuse menus for [navigation](/system/components/navigation).
 
 ### Basic
 
