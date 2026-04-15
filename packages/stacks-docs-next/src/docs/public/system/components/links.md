@@ -89,22 +89,22 @@ In this case, you can add the `s-anchors` class together with one of the modifie
 ```
 
 <Example>
-    <div class="s-anchors s-card mb8">
+    <div class="s-anchors docs-card mb8">
         There is a <a href="#">default link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="https://stackoverflow.com">another one</a>.
     </div>
-    <div class="s-anchors s-anchors__grayscale s-card mb8 fc-orange-500">
+    <div class="s-anchors s-anchors__grayscale docs-card mb8 fc-orange-500">
         There is a <a href="#">grayscale link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="https://stackoverflow.com">another one</a>.
     </div>
-    <div class="s-anchors s-anchors__muted s-card mb8">
+    <div class="s-anchors s-anchors__muted docs-card mb8">
         There is a <a href="#">muted link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="https://stackoverflow.com">another one</a>.
     </div>
-    <div class="s-anchors s-anchors__danger s-card mb8">
+    <div class="s-anchors s-anchors__danger docs-card mb8">
         There is a <a href="#">danger link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="https://stackoverflow.com">another one</a>.
     </div>
-    <div class="s-anchors s-anchors__underlined s-card mb8">
+    <div class="s-anchors s-anchors__underlined docs-card mb8">
         There is a <a href="#">underlined link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="https://stackoverflow.com">another one</a>.
     </div>
-    <div class="s-anchors s-anchors__inherit s-card mb8 fc-green-400">
+    <div class="s-anchors s-anchors__inherit docs-card mb8 fc-green-400">
         There is a <a href="#">inherit link here</a>, <button class="s-btn s-btn__link">a button</button>, and <a href="https://stackoverflow.com">another one</a>.
     </div>
 </Example>
@@ -112,10 +112,10 @@ In this case, you can add the `s-anchors` class together with one of the modifie
 One additional level of nesting is supported, but even that should be exceedingly rare. More than that is not supported.
 
 ```html
-<div class="s-anchors s-anchors__danger s-card">
+<div class="s-anchors s-anchors__danger docs-card">
     All <a href="#">links</a> in this <a href="#">outer box</a>
     are <a href="#">dangerous</a>.
-    <div class="s-anchors s-anchors__default s-card w70 mt8">
+    <div class="s-anchors s-anchors__default docs-card w70 mt8">
         But all <a href="#">links</a> in this <a href="#">inner box</a>
         have the <a href="#">default</a> link color.
     </div>
@@ -123,9 +123,9 @@ One additional level of nesting is supported, but even that should be exceedingl
 ```
 
 <Example>
-    <div class="s-anchors s-anchors__danger s-card">
+    <div class="s-anchors s-anchors__danger docs-card">
         All <a href="#">links</a> in this <a href="#">outer box</a> are <a href="#">dangerous</a>.
-        <div class="s-anchors s-anchors__default s-card w70 mt8">
+        <div class="s-anchors s-anchors__default docs-card w70 mt8">
             But all <a href="#">links</a> in this <a href="#">inner box</a> have the <a href="#">default</a> link color.
         </div>
     </div>
@@ -134,7 +134,7 @@ One additional level of nesting is supported, but even that should be exceedingl
 An explicit `s-link` on an anchor overrides any `s-anchors` setting:
 
 ```html
-<div class="s-anchors s-anchors__danger s-card">
+<div class="s-anchors s-anchors__danger docs-card">
     All <a href="#">links</a> in this <a href="#">box</a> are <a href="#">dangerous</a>,
     except for <a class="s-link">this one</a> which uses the default color, and
     <a class="s-link s-link__muted">this muted link</a>.
@@ -142,7 +142,7 @@ An explicit `s-link` on an anchor overrides any `s-anchors` setting:
 ```
 
 <Example>
-    <div class="s-anchors s-anchors__danger s-card">
+    <div class="s-anchors s-anchors__danger docs-card">
         All <a href="#">links</a> in this <a href="#">box</a> are <a href="#">dangerous</a>, except for <a class="s-link">this one</a> which uses the default color, and <a class="s-link s-link__muted">this muted link</a>.
     </div>
 </Example>
