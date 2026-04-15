@@ -8,8 +8,10 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
 <script lang="ts">
     import { Bling } from '@stackoverflow/stacks-svelte';
     import ClassTable from '$components/ClassTable.svelte';
+    import ExampleTable from '$components/ExampleTable.svelte';
     import Example from '$components/Example.svelte';
     import type { ClassTableRow } from '$components/ClassTable.svelte';
+    import type { ExampleTableRow } from '$components/ExampleTable.svelte';
 
     const classes: ClassTableRow[] = [
         { class: '.s-bling',           modifies: 'N/A',      description: 'Base bling element.' },
@@ -23,27 +25,27 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
         { class: '.s-bling__lg',       modifies: '.s-bling', description: 'Large bling element.' },
     ];
 
-    const types = [
-        { type: undefined,    classes: ['.s-bling'],                              description: 'A general bling shape used for reputation, notifications or other.' },
-        { type: 'gold',       classes: ['.s-bling', '.s-bling__gold'],            description: 'The "gold" award bling shape.' },
-        { type: 'silver',     classes: ['.s-bling', '.s-bling__silver'],          description: 'The "silver" award bling shape.' },
-        { type: 'bronze',     classes: ['.s-bling', '.s-bling__bronze'],          description: 'The "bronze" award bling shape.' },
-    ] as const;
+    const types: ExampleTableRow[] = [
+        { type: undefined, classes: ['.s-bling'],                           description: 'A general bling shape used for reputation, notifications or other.' },
+        { type: 'gold',    classes: ['.s-bling', '.s-bling__gold'],         description: 'The "gold" award bling shape.' },
+        { type: 'silver',  classes: ['.s-bling', '.s-bling__silver'],       description: 'The "silver" award bling shape.' },
+        { type: 'bronze',  classes: ['.s-bling', '.s-bling__bronze'],       description: 'The "bronze" award bling shape.' },
+    ];
 
-    const filled = [
-        { type: undefined,    classes: ['.s-bling', '.s-bling__filled'],                          description: 'A general bling used for information, status, labels or other.' },
-        { type: 'rep',        classes: ['.s-bling', '.s-bling__filled', '.s-bling__rep'],         description: 'A "rep" bling used for general reputation points.' },
-        { type: 'activity',   classes: ['.s-bling', '.s-bling__filled', '.s-bling__activity'],    description: 'An activity bling to signal real-time events and draw attention.' },
-        { type: 'gold',       classes: ['.s-bling', '.s-bling__filled', '.s-bling__gold'],        description: 'A "gold" award bling.' },
-        { type: 'silver',     classes: ['.s-bling', '.s-bling__filled', '.s-bling__silver'],      description: 'A "silver" award bling.' },
-        { type: 'bronze',     classes: ['.s-bling', '.s-bling__filled', '.s-bling__bronze'],      description: 'A "bronze" award bling.' },
-    ] as const;
+    const filled: ExampleTableRow[] = [
+        { type: undefined,  classes: ['.s-bling', '.s-bling__filled'],                       description: 'A general bling used for information, status, labels or other.' },
+        { type: 'rep',      classes: ['.s-bling', '.s-bling__filled', '.s-bling__rep'],      description: 'A "rep" bling used for general reputation points.' },
+        { type: 'activity', classes: ['.s-bling', '.s-bling__filled', '.s-bling__activity'], description: 'An activity bling to signal real-time events and draw attention.' },
+        { type: 'gold',     classes: ['.s-bling', '.s-bling__filled', '.s-bling__gold'],     description: 'A "gold" award bling.' },
+        { type: 'silver',   classes: ['.s-bling', '.s-bling__filled', '.s-bling__silver'],   description: 'A "silver" award bling.' },
+        { type: 'bronze',   classes: ['.s-bling', '.s-bling__filled', '.s-bling__bronze'],   description: 'A "bronze" award bling.' },
+    ];
 
-    const sizes = [
-        { size: 'sm',        classes: ['.s-bling', '.s-bling__filled', '.s-bling__sm'],  description: 'A "sm" bling.' },
-        { size: undefined,   classes: ['.s-bling', '.s-bling__filled'],                  description: 'A "default" bling.' },
-        { size: 'lg',        classes: ['.s-bling', '.s-bling__filled', '.s-bling__lg'],  description: 'A "lg" bling.' },
-    ] as const;
+    const sizes: ExampleTableRow[] = [
+        { size: 'sm',      classes: ['.s-bling', '.s-bling__filled', '.s-bling__sm'], description: 'A "sm" bling.' },
+        { size: undefined, classes: ['.s-bling', '.s-bling__filled'],                 description: 'A "default" bling.' },
+        { size: 'lg',      classes: ['.s-bling', '.s-bling__filled', '.s-bling__lg'], description: 'A "lg" bling.' },
+    ];
 </script>
 
 ## Classes
@@ -70,32 +72,11 @@ Use the clear bling variant only when its associated color is already present in
 ```
 
 <Example>
-    <div class="overflow-x-auto">
-        <table class="s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col">Example</th>
-                    <th scope="col" class="s-table--cell5">Class</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                {#each types as row}
-                    <tr>
-                        <td class="va-middle pr8">
-                            <Bling name="{row.type ?? 'default'} bling" type={row.type} />
-                        </td>
-                        <td class="va-middle">
-                            <div class="d-flex g4 fw-wrap">
-                                {#each row.classes as cls}<code>{cls}</code>{/each}
-                            </div>
-                        </td>
-                        <td class="va-middle">{row.description}</td>
-                    </tr>
-                {/each}
-            </tbody>
-        </table>
-    </div>
+    <ExampleTable rows={types}>
+        {#snippet example(row)}
+            <Bling name="{row.type ?? 'default'} bling" type={row.type} />
+        {/snippet}
+    </ExampleTable>
 </Example>
 
 ## Filled
@@ -112,32 +93,11 @@ Use the filled bling style to represent a specific achievement badge or to displ
 ```
 
 <Example>
-    <div class="overflow-x-auto">
-        <table class="s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col">Example</th>
-                    <th scope="col" class="s-table--cell5">Class</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                {#each filled as row}
-                    <tr>
-                        <td class="va-middle pr8">
-                            <Bling name="{row.type ?? 'default'} bling" type={row.type} filled />
-                        </td>
-                        <td class="va-middle">
-                            <div class="d-flex g4 fw-wrap">
-                                {#each row.classes as cls}<code>{cls}</code>{/each}
-                            </div>
-                        </td>
-                        <td class="va-middle">{row.description}</td>
-                    </tr>
-                {/each}
-            </tbody>
-        </table>
-    </div>
+    <ExampleTable rows={filled}>
+        {#snippet example(row)}
+            <Bling name="{row.type ?? 'default'} bling" type={row.type} filled />
+        {/snippet}
+    </ExampleTable>
 </Example>
 
 ## Sizes
@@ -151,30 +111,9 @@ A bling component has a default size. To change the bling's size, apply one of t
 ```
 
 <Example>
-    <div class="overflow-x-auto">
-        <table class="s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col">Example</th>
-                    <th scope="col" class="s-table--cell5">Class</th>
-                    <th scope="col">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                {#each sizes as row}
-                    <tr>
-                        <td class="va-middle pr8">
-                            <Bling name="{row.size ?? 'default'} bling" filled size={row.size} />
-                        </td>
-                        <td class="va-middle">
-                            <div class="d-flex g4 fw-wrap">
-                                {#each row.classes as cls}<code>{cls}</code>{/each}
-                            </div>
-                        </td>
-                        <td class="va-middle">{row.description}</td>
-                    </tr>
-                {/each}
-            </tbody>
-        </table>
-    </div>
+    <ExampleTable rows={sizes}>
+        {#snippet example(row)}
+            <Bling name="{row.size ?? 'default'} bling" filled size={row.size} />
+        {/snippet}
+    </ExampleTable>
 </Example>
