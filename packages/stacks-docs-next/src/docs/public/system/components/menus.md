@@ -5,688 +5,252 @@ svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-menu--d
 figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=610-18810"
 ---
 
-<section class="docs-section">
-    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="classes">Classes</h2><a class="s-btn s-btn__clear" href="#classes"><span class="v-visible-sr">Section titled Classes</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    
-    
-    
-    
+<script lang="ts">
+    import { Menu, MenuItem, MenuDivider, MenuTitle, MenuCheckItem } from '@stackoverflow/stacks-svelte';
+    import { IconHome, IconInbox, IconSettings } from '@stackoverflow/stacks-icons/icons';
+    import ClassTable from '$components/ClassTable.svelte';
+    import Example from '$components/Example.svelte';
+    import type { ClassTableRow } from '$components/ClassTable.svelte';
 
+    const classes: ClassTableRow[] = [
+        { class: '.s-menu',                parent: 'N/A',             modifies: 'N/A',              description: 'Base container styling for a menu.' },
+        { class: '.s-menu--divider',       parent: '.s-menu',         modifies: 'N/A',              description: 'Adds a divider line between menu sections.' },
+        { class: '.s-menu--item',          parent: '.s-menu',         modifies: 'N/A',              description: 'Applies link styling to link within a menu. Used for actionable elements.' },
+        { class: '.s-menu--title',         parent: '.s-menu',         modifies: 'N/A',              description: 'Adds appropriate styling for a title within a menu.' },
+        { class: '.s-menu--icon',          parent: '.s-menu--item',   modifies: 'N/A',              description: 'Applies styling to an icon.' },
+        { class: '.s-menu--action',        parent: '.s-menu--item',   modifies: 'N/A',              description: 'Applies link styling to link within a menu. Used for actionable elements.' },
+        { class: '.s-menu--action__danger',parent: 'N/A',             modifies: '.s-menu--action',  description: 'Applies danger styling to a menu link. Used for destructive actions.' },
+    ];
+</script>
 
-    
+## Classes
 
+<ClassTable {classes} />
 
+## Examples
 
+A menu displays a list of choices temporarily, and usually represent tasks or actions. Don't confuse menus for navigation.
 
-    
+### Basic
 
+At its most basic, a menu is a simple styled list of contextual actions. Because they're contextual, it's strongly recommended that a menu is contained within a popover or a card. When placed in various containers, you'll need to either account for the padding on the container, or use negative margins on the menu component itself.
 
-
-
-    
-
-
-
-
-    
-
-
-    
-
-
-    
-
-
-    
-
-
-
-    
-
-
-<div id="docs-table" class="overflow-x-auto s-anchors s-anchors__underlined" tabindex="0">
-    <table class="docs-table s-table s-table__bx-simple">
-        <thead>
-            <tr>
-                
-                    <th scope="col" class="s-table--cell3">
-                        Class
-                    </th>
-                
-                
-                    <th scope="col" class="s-table--cell3">
-                        Parent
-                    </th>
-                
-                
-                    <th scope="col" class="s-table--cell3">
-                        Modifies
-                    </th>
-                
-                
-                    <th scope="col" class="">
-                        Description
-                    </th>
-                
-            </tr>
-        </thead>
-        <tbody class="fs-caption">
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-menu</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                <em class="fc-black-350">N/A</em>
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                <em class="fc-black-350">N/A</em>
-                            
-                        </td>
-                    
-                    
-                        <td>Base container styling for a menu.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-menu--divider</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-menu</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                <em class="fc-black-350">N/A</em>
-                            
-                        </td>
-                    
-                    
-                        <td>Adds a divider line between menu sections.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-menu--item</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-menu</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                <em class="fc-black-350">N/A</em>
-                            
-                        </td>
-                    
-                    
-                        <td>Applies link styling to link within a menu. Used for actionable elements.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-menu--title</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-menu</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                <em class="fc-black-350">N/A</em>
-                            
-                        </td>
-                    
-                    
-                        <td>Adds appropriate styling for a title within a menu.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-menu--icon</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-menu--item</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                <em class="fc-black-350">N/A</em>
-                            
-                        </td>
-                    
-                    
-                        <td>Applies styling to an icon.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-menu--action</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-menu--item</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                <em class="fc-black-350">N/A</em>
-                            
-                        </td>
-                    
-                    
-                        <td>Applies link styling to link within a menu. Used for actionable elements.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-menu--action__danger</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                <em class="fc-black-350">N/A</em>
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-menu--action</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>Applies danger styling to a menu link. Used for destructive actions.</td>
-                    
-                </tr>
-            
-        </tbody>
-    </table>
+```html
+<div class="s-popover p8">
+    <ul class="s-menu" role="menu">
+        <li class="s-menu--item" role="menuitem">
+            <a class="s-menu--action" href="…">…</a>
+        </li>
+        <li class="s-menu--item" role="menuitem">
+            <button class="s-menu--action">…</button>
+        </li>
+    </ul>
 </div>
 
+<ul class="s-menu" role="menu">
+    <li class="s-menu--item" role="menuitem">
+        <a class="s-menu--action" href="…">…</a>
+    </li>
+</ul>
+```
 
-<!-- Reset all default values -->
+<Example>
+    <div class="d-flex g16 ai-start fw-wrap">
+        <div class="docs-card p8">
+            <Menu>
+                <MenuItem href="#">Share</MenuItem>
+                <MenuItem href="#">Edit</MenuItem>
+                <MenuItem href="#">Follow</MenuItem>
+            </Menu>
+        </div>
+        <div class="docs-card p8">
+            <Menu>
+                <MenuItem href="#">Share</MenuItem>
+                <MenuItem href="#">Edit</MenuItem>
+                <MenuItem href="#">Follow</MenuItem>
+            </Menu>
+        </div>
+        <Menu>
+            <MenuItem href="#">Share</MenuItem>
+            <MenuItem href="#">Edit</MenuItem>
+            <MenuItem href="#">Follow</MenuItem>
+        </Menu>
+    </div>
+</Example>
 
+### Titles and dividers
 
+You can split up your menu by using either titles, dividers, or some combination of the two. Titles help group similar conceptual actions—in this example, we've grouped all sharing options. We've also split our destructive actions into their own section using a divider.
 
+```html
+<div class="s-popover px0 py4">
+    <ul class="s-menu" role="menu">
+        <li class="s-menu--title" role="separator">…</li>
+        <li class="s-menu--item" role="menuitem">
+            <a class="s-menu--action" href="…">…</a>
+        </li>
+        <li class="s-menu--divider" role="separator"></li>
+        <li class="s-menu--item" role="menuitem">
+            <a class="s-menu--action s-menu--action__danger" href="…">…</a>
+        </li>
+    </ul>
+</div>
+```
 
+<Example>
+    <div class="docs-card px0 py4">
+        <Menu>
+            <MenuTitle>Share</MenuTitle>
+            <MenuItem href="#">Email</MenuItem>
+            <MenuItem href="#">Facebook</MenuItem>
+            <MenuItem href="#">Twitter</MenuItem>
+            <MenuDivider />
+            <MenuItem href="#" danger>Deactivate</MenuItem>
+            <MenuItem href="#" danger>Delete</MenuItem>
+        </Menu>
+    </div>
+</Example>
 
+### Icons
 
+Icons can be added to menu items to help visually distinguish actions. Include the `s-menu--icon` class on the icon to ensure proper spacing and alignment.
 
+```html
+<ul class="s-menu" role="menu">
+    <li class="s-menu--item" role="menuitem">
+        <a class="s-menu--action" href="#">
+            @Svg.Home.With("s-menu--icon")
+            Home
+        </a>
+    </li>
+    <li class="s-menu--item" role="menuitem">
+        <a class="s-menu--action" href="#">
+            @Svg.Inbox.With("s-menu--icon")
+            Inbox
+        </a>
+    </li>
+    <li class="s-menu--item" role="menuitem">
+        <a class="s-menu--action" href="#">
+            @Svg.Settings.With("s-menu--icon")
+            Settings
+        </a>
+    </li>
+</ul>
+```
 
+<Example>
+    <div class="docs-card p8">
+        <Menu>
+            <MenuItem href="#" icon={IconHome}>Home</MenuItem>
+            <MenuItem href="#" icon={IconInbox}>Inbox</MenuItem>
+            <MenuItem href="#" icon={IconSettings}>Settings</MenuItem>
+        </Menu>
+    </div>
+</Example>
 
+### Selected states
 
+To create selectable menu items, add `.s-checkbox.s-checkbox__checkmark` or `.s-radio.s-radio__checkmark` to the `.s-menu--action` element and include a radio or checkbox input as a child element. When the input is `:checked`, the corresponding menu item displays a checkmark.
 
+```html
+<fieldset class="s-menu s-form-group">
+    <legend class="s-menu--title">…</legend>
+    <div class="s-menu--item">
+        <label class="s-menu--action s-radio s-radio__checkmark" for="…">
+            <input type="radio" id="…" name="…" value="…">
+            …
+        </label>
+    </div>
+    …
+</fieldset>
 
-</section>
+<fieldset class="s-menu s-form-group">
+    <legend class="s-menu--title">…</legend>
+    <div class="s-menu--item">
+        <label class="s-menu--action s-checkbox s-checkbox__checkmark" for="…">
+            <input type="checkbox" id="…" name="…" value="…">
+            …
+        </label>
+    </div>
+    …
+</fieldset>
+```
 
-<section class="docs-section">
-    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="examples">Examples</h2><a class="s-btn s-btn__clear" href="#examples"><span class="v-visible-sr">Section titled Examples</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">A menu displays a list of choices temporarily, and usually represent tasks or actions. Don’t confuse menus for <a href="/product/components/navigation">navigation</a>.</p>
-
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="basic">Basic</h3><a class="s-btn s-btn__clear" href="#basic"><span class="v-visible-sr">Section titled Basic</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">At its most basic, a menu is a simple styled list of contextual actions. Because they’re contextual, it’s strongly recommended that a menu is contained within a <a href="/product/components/popovers">popover</a> or a <a href="/product/components/cards">card</a>. When placed in various containers, you’ll need to either account for the padding on the container, or use negative margins on the menu component itself.</p>
-
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-popover p8"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"menu"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--item"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"menuitem"</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--action"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"…"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--item"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"menuitem"</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--action"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"docs-card p8"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"menu"</span>&gt;</span><br>        …<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"menu"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--item"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"menuitem"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--action"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"…"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div class="d-flex g32 fw-wrap">
-                <div>
-                    <div class="ff-mono mb16">Within a popover</div>
-                    <div class="s-popover is-visible ps-relative ws2 p8">
-                        <ul class="s-menu" role="menu">
-                            <li class="s-menu--item" role="menuitem">
-                                <a class="s-menu--action" href="#">
-                                    Share
-                                </a>
-                            </li>
-                            <li class="s-menu--item" role="menuitem">
-                                <a class="s-menu--action" href="#">
-                                    Edit
-                                </a>
-                            </li>
-                            <li class="s-menu--item" role="menuitem">
-                                <button class="s-menu--action">
-                                    Follow
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div>
-                    <div class="ff-mono mb16">Within a card</div>
-                    <div class="docs-card p8">
-                        <ul class="s-menu" role="menu">
-                            <li class="s-menu--item" role="menuitem">
-                                <a class="s-menu--action" href="#">
-                                    Share
-                                </a>
-                            </li>
-                            <li class="s-menu--item" role="menuitem">
-                                <a class="s-menu--action" href="#">
-                                    Edit
-                                </a>
-                            </li>
-                            <li class="s-menu--item" role="menuitem">
-                                <button class="s-menu--action">
-                                    Follow
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div>
-                    <div class="ff-mono mb16">No container</div>
-                    <ul class="s-menu" role="menu">
-                        <li class="s-menu--item" role="menuitem">
-                            <a class="s-menu--action" href="#">
-                                Share
-                            </a>
-                        </li>
-                        <li class="s-menu--item" role="menuitem">
-                            <a class="s-menu--action" href="#">
-                                Edit
-                            </a>
-                        </li>
-                        <li class="s-menu--item" role="menuitem">
-                            <button class="s-menu--action">
-                                Follow
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+<Example>
+    <div class="d-flex g16 ai-start fw-wrap">
+        <div class="docs-card">
+            <Menu type="fieldset">
+                <MenuTitle type="legend">Select one</MenuTitle>
+                <MenuCheckItem id="radio-frequent" type="radio" name="sort-radio" label="Frequent" checked />
+                <MenuCheckItem id="radio-votes"    type="radio" name="sort-radio" label="Votes" />
+                <MenuCheckItem id="radio-unanswered" type="radio" name="sort-radio" label="Unanswered" />
+            </Menu>
+        </div>
+        <div class="docs-card">
+            <Menu type="fieldset">
+                <MenuTitle type="legend">Select multiple</MenuTitle>
+                <MenuCheckItem id="check-frequent" type="checkbox" name="sort-check" label="Frequent" checked />
+                <MenuCheckItem id="check-votes"    type="checkbox" name="sort-check" label="Votes" />
+                <MenuCheckItem id="check-unanswered" type="checkbox" name="sort-check" label="Unanswered" checked />
+            </Menu>
         </div>
     </div>
+</Example>
 
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="titles-and-dividers">Titles and Dividers</h3><a class="s-btn s-btn__clear" href="#titles-and-dividers"><span class="v-visible-sr">Section titled Titles and Dividers</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">
-        You can split up your menu by using either titles, dividers, or some combination of the two. Titles help group similar conceptual actions—in this example, we’ve grouped all sharing options. We’ve also split our destructive actions into their own section using a divider.
-    </p>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-popover px0 py4"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"menu"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--title"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"separator"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--item"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"menuitem"</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--action"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"…"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--divider"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"separator"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--item"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"menuitem"</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--action s-menu--action__danger"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"…"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div class="s-popover is-visible ps-relative ws2 p8">
-                <ul class="s-menu" role="menu">
-                    <li class="s-menu--title" role="separator">
-                        Layout
-                    </li>
-                    <li class="s-menu--item" role="menuitem">
-                        <a class="s-menu--action" href="#">
-                            Email
-                        </a>
-                    </li>
-                    <li class="s-menu--item" role="menuitem">
-                        <a class="s-menu--action" href="#">
-                            Facebook
-                        </a>
-                    </li>
-                    <li class="s-menu--item" role="menuitem">
-                        <a class="s-menu--action" href="#">
-                            Twitter
-                        </a>
-                    </li>
-                    <li class="s-menu--divider mxn8" role="separator"></li>
-                    <li class="s-menu--item" role="menuitem">
-                        <a class="s-menu--action s-menu--action__danger" href="#">
-                            Deactivate
-                        </a>
-                    </li>
-                    <li class="s-menu--item" role="menuitem">
-                        <a class="s-menu--action s-menu--action__danger" href="#">
-                            Delete
-                        </a>
-                    </li>
-                </ul>
+### Radio groups
+
+In the case of user management, it's appropriate to include radio options. In this example, we're setting a user's role. While our examples up to this point have all been simple unordered lists, the `s-menu` component works on any markup including `fieldset`.
+
+```html
+<div class="s-menu" role="menu">
+    <fieldset>
+        <legend class="s-menu--title">…</legend>
+        <label class="s-menu--item s-radio" for="…">
+            <input type="radio" name="…" id="…" role="menuitemradio" checked>
+            <div>
+                <div class="s-label">…</div>
+                <div class="s-description mt2">…</div>
             </div>
-        </div>
-    </div>
-
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="icons">Icons</h3><a class="s-btn s-btn__clear" href="#icons"><span class="v-visible-sr">Section titled Icons</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">
-        Icons can be added to menu items to help visually distinguish actions. Include the <code>s-menu--icon</code> class on the icon to ensure proper spacing and alignment.
-    </p>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"menu"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--item"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"menuitem"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--action"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span><br>            @Svg.Home.With("s-menu--icon")<br>            Home<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--item"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"menuitem"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--action"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span><br>            @Svg.Inbox.With("s-menu--icon")<br>            Inbox<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--item"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"menuitem"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--action"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span><br>            @Svg.Settings.With("s-menu--icon")<br>            Settings<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div class="s-popover is-visible ps-relative ws1 p8">
-                <ul class="s-menu" role="menu">
-                    <li class="s-menu--item" role="menuitem">
-                        <a class="s-menu--action" href="#">
-                            <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconHome s-menu--icon" aria-hidden="true"><path d="M17 7.86v8.64h-1.5V8.56L10 3.96l-5.5 4.6v7.94h3v-5h5v5h3V18H11v-5H9v5H4.5A1.5 1.5 0 0 1 3 16.5V7.86L10 2z"></path></svg>
-                            Home
-                        </a>
-                    </li>
-                    <li class="s-menu--item" role="menuitem">
-                        <a class="s-menu--action" href="#">
-                            <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconInbox s-menu--icon" aria-hidden="true"><path d="M2.55 14.9c0 .39.31.7.7.7h14.2v1.6H3.25a2.3 2.3 0 0 1-2.3-2.3V9.8l.1-.2 3.18-5.63a2.3 2.3 0 0 1 2-1.17h7.53c.83 0 1.6.45 2 1.17l3.19 5.64.1.18v5.81h-1.6V11h-3.87l-.9 1.14a2.3 2.3 0 0 1-1.8.86H9.12a2.3 2.3 0 0 1-1.8-.86L6.43 11H2.55zM6.24 4.4a.7.7 0 0 0-.61.36L3 9.4h4.17l.24.3 1.15 1.44a.7.7 0 0 0 .55.26h1.76a.7.7 0 0 0 .55-.26l1.15-1.44.24-.3h4.17l-2.62-4.64a.7.7 0 0 0-.6-.36z"></path></svg>
-                            Inbox
-                        </a>
-                    </li>
-                    <li class="s-menu--item" role="menuitem">
-                        <a class="s-menu--action" href="#">
-                            <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconSettings s-menu--icon" aria-hidden="true"><path d="m10 2.9 1.86-1.85a9 9 0 0 1 3.15 1.3l.02 2.62 2.62.02a9 9 0 0 1 1.3 3.15L17.11 10l1.84 1.86a9 9 0 0 1-1.3 3.15l-2.62.02-.02 2.61a9 9 0 0 1-3.15 1.31L10 17.11l-1.86 1.84a9 9 0 0 1-2.78-1.07L5 17.65l-.02-2.62L2.35 15a9 9 0 0 1-1.3-3.15L2.89 10 1.05 8.14a9 9 0 0 1 1.3-3.15l2.62-.02L5 2.35a9 9 0 0 1 3.15-1.3zm1.06 1.06L10 5 8.95 3.96 7.69 2.7q-.63.2-1.2.5l-.02 1.77V5H5v1.47h-.02l-1.77.01-.15.3-.15.36-.2.55 1.25 1.26L5 10l-1.04 1.06-1.24 1.25q.2.63.5 1.2l1.76.02H5V15h1.47v.02l.01 1.76a8 8 0 0 0 1.21.5l1.26-1.24L10 15l1.06 1.04 1.25 1.24q.63-.2 1.2-.5l.02-1.76V15H15v-1.47h.02l1.76-.01a8 8 0 0 0 .5-1.21l-1.24-1.25L15 10l1.04-1.05 1.24-1.26a8 8 0 0 0-.5-1.2l-1.76-.02H15V5h-1.47v-.02l-.01-1.77a8 8 0 0 0-1.21-.5zM7.2 8.86a3.02 3.02 0 1 1 5.6 2.27 3.02 3.02 0 0 1-5.6-2.26m3.37-.27a1.5 1.5 0 0 0-1.98.84l-.05.15a1.52 1.52 0 1 0 2.03-1"></path></svg>
-                            Settings
-                        </a>
-                    </li>
-                </ul>
+        </label>
+        <label class="s-menu--item s-radio" for="…">
+            <input type="radio" name="…" id="…" role="menuitemradio">
+            <div>
+                <div class="s-label">…</div>
+                <div class="s-description mt2">…</div>
             </div>
-        </div>
+        </label>
+    </fieldset>
+</div>
+```
+
+<Example>
+    <div class="docs-card">
+        <Menu>
+            <fieldset>
+                <MenuTitle type="legend">Role</MenuTitle>
+                <MenuCheckItem
+                    id="role-user"
+                    type="radio"
+                    name="user-role"
+                    label="User"
+                    description="Can view, ask, answer, and edit questions. Can also vote on and flag content."
+                    checked
+                />
+                <MenuCheckItem
+                    id="role-moderator"
+                    type="radio"
+                    name="user-role"
+                    label="Moderator"
+                    description="Everything a user can do, but can also delete and close questions."
+                />
+                <MenuCheckItem
+                    id="role-admin"
+                    type="radio"
+                    name="user-role"
+                    label="Admin"
+                    description="Everything a moderator can do and can also manage users, permissions, and site settings."
+                />
+            </fieldset>
+        </Menu>
     </div>
-
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="selected-states">Selected states</h3><a class="s-btn s-btn__clear" href="#selected-states"><span class="v-visible-sr">Section titled Selected states</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">
-        To create selectable menu items, add <code>.s-checkbox.s-checkbox__checkmark</code> or <code>.s-radio.s-radio__checkmark</code> to the <code>.s-menu--action</code> element and include a radio or checkbox input as a child element. When the input is <code>:checked</code>, the corresponding menu item displays a checkmark.
-    </p>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">fieldset</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu s-form-group"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">legend</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--title"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">legend</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--item"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--action s-radio s-radio__checkmark"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"…"</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"radio"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"…"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"…"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"…"</span>&gt;</span><br>            …<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    …<br><span class="hljs-tag">&lt;/<span class="hljs-name">fieldset</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">fieldset</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu s-form-group"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">legend</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--title"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">legend</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--item"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--action s-checkbox s-checkbox__checkmark"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"…"</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"…"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"…"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"…"</span>&gt;</span><br>            …<br>        <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    …<br><span class="hljs-tag">&lt;/<span class="hljs-name">fieldset</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div class="d-flex g32 fw-wrap">
-                <div>
-                    <div class="ff-mono mb16">With radio input</div>
-                    <div class="s-popover is-visible ps-relative ws2 p8">
-                        <fieldset class="s-menu s-form-group">
-                            <legend class="s-menu--title">Select one</legend>
-                            <div class="s-menu--item">
-                                <label class="s-menu--action s-radio s-radio__checkmark">
-                                    <input type="radio" name="menu-radio-filter" value="frequent" checked="">
-                                    Frequent
-                                </label>
-                            </div>
-                            <div class="s-menu--item">
-                                <label class="s-menu--action s-radio s-radio__checkmark">
-                                    <input type="radio" name="menu-radio-filter" value="votes">
-                                    Votes
-                                </label>
-                            </div>
-                            <div class="s-menu--item">
-                                <label class="s-menu--action s-radio s-radio__checkmark">
-                                    <input type="radio" name="menu-radio-filter" value="unanswered">
-                                    Unanswered
-                                </label>
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
-                <div>
-                    <div class="ff-mono mb16">With checkbox input</div>
-                    <div class="s-popover is-visible ps-relative ws2 p8">
-                        <fieldset class="s-menu s-form-group">
-                            <legend class="s-menu--title">Select multiple</legend>
-                            <div class="s-menu--item">
-                                <label class="s-menu--action s-checkbox s-checkbox__checkmark">
-                                    <input type="checkbox" name="menu-checkbox-filter" value="frequent" checked="">
-                                    Frequent
-                                </label>
-                            </div>
-                            <div class="s-menu--item">
-                                <label class="s-menu--action s-checkbox s-checkbox__checkmark">
-                                    <input type="checkbox" name="menu-checkbox-filter" value="votes">
-                                    Votes
-                                </label>
-                            </div>
-                            <div class="s-menu--item">
-                                <label class="s-menu--action s-checkbox s-checkbox__checkmark">
-                                    <input type="checkbox" name="menu-checkbox-filter" value="unanswered" checked="">
-                                    Unanswered
-                                </label>
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="radio-groups">Radio groups</h3><a class="s-btn s-btn__clear" href="#radio-groups"><span class="v-visible-sr">Section titled Radio groups</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">
-        In the case of user management, it’s appropriate to include radio options. In this example, we’re setting a user’s role. While our examples up to this point have all been simple unordered lists, the <code>s-menu</code> component works on any markup including <code>fieldset</code>.
-    </p>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"menu"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">fieldset</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">legend</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--title"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">legend</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--item s-radio"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"…"</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"radio"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"…"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"…"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"menuitemradio"</span> <span class="hljs-attr">checked</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-label"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-description mt2"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-menu--item s-radio"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"…"</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"radio"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"…"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"…"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"menuitemradio"</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-label"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-description mt2"</span>&gt;</span>…<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">fieldset</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div class="s-popover is-visible ps-relative ws3">
-                <div class="s-menu" role="menu">
-                    <fieldset>
-                        <legend class="s-menu--title">Role</legend>
-                        <label class="s-menu--item s-radio" for="choice-user-34">
-                            <input type="radio" name="choice-34" id="choice-user-34" role="menuitemradio" checked="">
-                            <div>
-                                <div class="s-label">User</div>
-                                <div class="s-description mt2">Can view, ask, answer, and edit questions. Can also vote on and flag content.</div>
-                            </div>
-                        </label>
-                        <label class="s-menu--item s-radio" for="choice-moderator-34">
-                            <input type="radio" name="choice-34" id="choice-moderator-34" role="menuitemradio">
-                                <div>
-                                    <div class="s-label">Moderator</div>
-                                <div class="s-description mt2">Everything a user can do, but can also delete and close questions.</div>
-                            </div>
-                        </label>
-                        <label class="s-menu--item s-radio" for="choice-admin-34">
-                            <input type="radio" name="choice-34" id="choice-admin-34" role="menuitemradio">
-                            <div>
-                                <div class="s-label">Admin</div>
-                                <div class="s-description mt2">Everything a moderator can do and can also manage users, permissions, and site settings.</div>
-                            </div>
-                        </label>
-                    </fieldset>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-            <!-- <div class="d-flex my48 pt24">
-                <div class="mr16">
-                    
-                    <form
-                        id="quick-positive-feedback-menus"
-                        class="js-feedback-form v-hidden"
-                        name="quick-positive-feedback-menus"
-                        method="POST"
-                        data-netlify="true"
-                        action="/success">
-                    </form>
-                    <form
-                        id="quick-negative-feedback-menus"
-                        class="js-feedback-form v-hidden"
-                        name="quick-negative-feedback-menus"
-                        method="POST"
-                        data-netlify="true"
-                        action="/success">
-                    </form>
-                    <div
-                        class="s-popover s-popover__tooltip"
-                        id="tooltip-feedback-positive"
-                        role="tooltip">
-                        <div class="s-popover--content">This page is useful</div>
-                    </div>
-                    <div
-                        class="s-popover s-popover__tooltip"
-                        id="tooltip-feedback-negative"
-                        role="tooltip">
-                        <div class="s-popover--content">This page needs improvement</div>
-                    </div>
-                    <div id="vote-feedback" class="s-vote">
-                        <button
-                            class="s-vote--btn"
-                            type="submit"
-                            form="quick-positive-feedback-menus"
-                            aria-describedby="tooltip-feedback-positive"
-                            aria-expanded="false"
-                            data-controller="s-tooltip"
-                            data-s-tooltip-placement="right"
-                        >
-                            <span class="s-btn-icon">
-                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteUp" aria-hidden="true"><path d="M10 3q.41.02.64.36l6.9 11.5a.75.75 0 1 1-1.28.78L10 5.21l-5.58 9.3h8.04v-.01h1.1l.97 1.5H3.1a.75.75 0 0 1-.65-1.13l6.9-11.5A.8.8 0 0 1 10 3"/></svg>
-                            </span>
-                            <span class="s-btn-icon-fill d-none">
-                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteUpFill" aria-hidden="true"><path d="M10 3h.1a1 1 0 0 1 .42.21l.12.15 6.9 11.5.05.09v.03l.02.04q.04.12.04.26v.03q0 .13-.07.25v.02l-.03.04a1 1 0 0 1-.2.23l-.06.05-.04.01-.04.03-.04.01a1 1 0 0 1-.27.05H3a.75.75 0 0 1-.55-1.13l6.9-11.5A.8.8 0 0 1 10 3"/></svg>
-                            </span>
-                            <span class="v-visible-sr">upvote</span>
-                        </button>
-                        <button
-                            class="s-vote--btn"
-                            type="submit"
-                            form="quick-negative-feedback-menus"
-                            aria-describedby="tooltip-feedback-negative"
-                            aria-expanded="false"
-                            data-controller="s-tooltip"
-                            data-s-tooltip-placement="right"
-                        >
-                            <span class="s-btn-icon">
-                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteDown" aria-hidden="true"><path d="M10 16a.8.8 0 0 1-.64-.36l-6.9-11.5a.75.75 0 1 1 1.28-.78L10 13.8l5.58-9.3H6.44L5.47 3H16.9a.75.75 0 0 1 .65 1.14l-6.9 11.5A.8.8 0 0 1 10 16"/></svg>
-                            </span>
-                            <span class="s-btn-icon-fill d-none">
-                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteDownFill" aria-hidden="true"><path d="M10 16h-.1l-.1-.02a.8.8 0 0 1-.45-.34l-6.9-11.5-.04-.08-.01-.04L2.39 4a1 1 0 0 1-.04-.26V3.7q0-.14.06-.26l.01-.02.02-.04a1 1 0 0 1 .27-.27l.03-.02.05-.02.04-.02A1 1 0 0 1 3.1 3H17a.75.75 0 0 1 .54 1.14l-6.9 11.5A.8.8 0 0 1 10 16"/></svg>
-                            </span>
-                            <span class="v-visible-sr">downvote</span>
-                        </button>
-                    </div>
-                </div>
-
-                <form
-                    class="w100 js-feedback-form"
-                    name="feedback-menus"
-                    method="POST"
-                    data-netlify="true"
-                    action="/success">
-                    <fieldset class="d-flex fd-column fl-grow1 g16">
-                        <legend class="fs-title fw-bold">How’d we do?</legend>
-                        <div class="fs-body2">Anonymously upvote, downvote, or send additional feedback below.</div>
-
-                        <textarea
-                            class="s-textarea hmn1"
-                            id="feedback-form"
-                            name="additional-feedback"
-                            placeholder="Tell us how we can improve this page…" required></textarea>
-
-                        <div class="d-flex ai-center fd-row-reverse g8 jc-space-between mln6 sm:d-grid sm:grid__1 sm:ml0">
-                            <button
-                                type="submit"
-                                class="s-btn as-start fl-shrink0">
-                                Send feedback
-                            </button>
-                            <div class="d-flex fw-wrap g8 sm:d-grid sm:grid__1">
-                                <a
-                                    href="https://github.com/StackExchange/Stacks/edit/develop/packages/stacks-docs/./product/components/menus.html"
-                                    class="s-btn s-btn__clear s-btn__icon s-btn__sm">
-                                    <svg aria-hidden="true" class="svg-icon iconPencilSm" width="14" height="14"  viewBox="0 0 14 14"><path fill="#F1B600" d="m2 10.12 6.37-6.43 1.88 1.88L3.88 12H2z"/><path fill="#E87C87" d="m11.1 1.71 1.13 1.12c.2.2.2.51 0 .71L11.1 4.7 9.21 2.86l1.17-1.15c.2-.2.51-.2.71 0"/></svg>
-                                    Edit
-                                </a>
-                                <a
-                                    href="https://github.com/StackExchange/Stacks/issues/new/choose"
-                                    class="s-btn s-btn__clear s-btn__icon s-btn__sm">
-                                    File an issue
-                                </a>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div> -->
-
-            <!-- <div class="ta-right">
-                <a href="https://www.netlify.com"><img src="https://www.netlify.com/v3/img/components/netlify-color-accent.svg" alt="Deploys by Netlify" /></a>
-            </div> -->
+</Example>
