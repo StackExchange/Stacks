@@ -99,7 +99,12 @@
                             {#if col === 'responsive'}
                                 {row.responsive ? '✓' : ''}
                             {:else}
-                                {(row as Record<string, unknown>)[col] ?? ''}
+                                {@const val = (row as Record<string, unknown>)[col] ?? ''}
+                                {#if val === 'N/A'}
+                                    <span class="fc-black-400">N/A</span>
+                                {:else}
+                                    {val}
+                                {/if}
                             {/if}
                         </td>
                     {/each}
