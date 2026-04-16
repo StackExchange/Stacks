@@ -22,11 +22,46 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
         { class: '.s-modal__full',    parent: 'N/A',               modifies: '.s-modal--dialog', description: 'Makes the container take up as much of the screen as possible.' },
     ];
 
-    let showBase        = $state(false);
-    let showDanger      = $state(false);
-    let showCelebration = $state(false);
+    const attributes: ClassTableRow[] = [
+        { class: 'data-controller="s-modal"',                parent: 'Controller element',        description: 'Wires up the element to the modal controller. This may be a `.s-modal` element or a wrapper element.' },
+        { class: 'data-s-modal-target="modal"',              parent: '.s-modal element',           description: 'Wires up the element that is to be shown/hidden.' },
+        { class: 'data-s-modal-target="initialFocus"',       parent: 'Any child focusable element',description: 'Designates which element to focus on modal show. If absent, defaults to the first focusable element within the modal.' },
+        { class: 'data-action="s-modal#toggle"',             parent: 'Any child focusable element',description: 'Wires up the element that is to be shown/hidden.' },
+        { class: 'data-action="s-modal#hide"',               parent: 'Any child focusable element',description: 'Wires up the element that is to be shown/hidden.' },
+        { class: 'data-s-modal-return-element="[selector]"', parent: 'Controller element',        description: 'Designates the element to return focus to when the modal is closed. If left unset, focus is not altered on close.' },
+        { class: 'data-s-modal-remove-when-hidden="true"',   parent: 'Controller element',        description: 'Removes the modal from the DOM entirely when it is hidden.' },
+    ];
 
-    const loremIpsum = 'Nullam ornare lectus vitae lacinia gravida. Donec pretium dui mauris, quis aliquet ipsum pharetra non. Fusce tincidunt felis dui. Morbi sit amet ipsum nisi.';
+    const events: ClassTableRow[] = [
+        { class: 's-modal:show',   parent: 'Modal target', description: 'Fires immediately before showing the modal. Calling `.preventDefault()` cancels the display of the modal.' },
+        { class: 's-modal:shown',  parent: 'Modal target', description: 'Fires after the modal has been visually shown.' },
+        { class: 's-modal:hide',   parent: 'Modal target', description: 'Fires immediately before hiding the modal. Calling `.preventDefault()` cancels the removal of the modal.' },
+        { class: 's-modal:hidden', parent: 'Modal target', description: 'Fires after the modal has been visually hidden.' },
+    ];
+
+    const eventDetails: ClassTableRow[] = [
+        { class: 'dispatcher',     parent: 'Modal target', description: 'Contains the `Element` that initiated the event. For instance, the button clicked to show, the element clicked outside the modal that caused it to hide, etc.' },
+        { class: 'returnElement',  parent: 'Modal target', description: 'Contains the `Element` to return focus to on hide. If a value is set to this property inside an event listener, it will be updated on the controller as well.' },
+    ];
+
+    const helpers: ClassTableRow[] = [
+        { class: 'Stacks.showModal', parent: 'Controller element', description: 'Helper to manually show an s-modal element via external JS.' },
+        { class: 'Stacks.hideModal', parent: 'Controller element', description: 'Helper to manually hide an s-modal element via external JS.' },
+    ];
+
+    const accessibility: ClassTableRow[] = [
+        { class: 'aria-describedby="[id]"', parent: 'Modal target', description: "Supply the modal's summary copy id. Assistive technologies use this to associate static text with a widget, element groups, headings, definitions, etc." },
+        { class: 'aria-hidden="[state]"',   parent: 'Modal target', description: 'Informs assistive technologies if they should ignore the element. This should not be confused with the HTML5 `hidden` attribute.' },
+        { class: 'aria-label="[text]"',     parent: 'Modal target', description: 'Labels the element for assistive technologies.' },
+        { class: 'aria-labelledby="[id]"',  parent: 'Modal target', description: "Supply the modal's title id here. Assistive technologies use this to catalog the document objects correctly." },
+        { class: 'role="dialog"',           parent: 'Modal target', description: 'Identifies dialog elements for assistive technologies.' },
+        { class: 'role="document"',         parent: 'Modal target', description: 'Helps assistive technologies to switch their reading mode from the larger document to a focused dialog window.' },
+    ];
+
+    let showBase   = $state(false);
+    let showDanger = $state(false);
+
+    const lorem = 'Nullam ornare lectus vitae lacinia gravida. Donec pretium dui mauris, quis aliquet ipsum pharetra non. Fusce tincidunt felis dui. Morbi sit amet ipsum nisi.';
 </script>
 
 ## Classes
@@ -37,49 +72,23 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
 
 ### Attributes
 
-| Attribute | Applies to | Description |
-|---|---|---|
-| `data-controller="s-modal"` | Controller element | Wires up the element to the modal controller. This may be a `.s-modal` element or a wrapper element. |
-| `data-s-modal-target="modal"` | `.s-modal` element | Wires up the element that is to be shown/hidden. |
-| `data-s-modal-target="initialFocus"` | Any child focusable element | Designates which element to focus on modal show. If absent, defaults to the first focusable element within the modal. |
-| `data-action="s-modal#toggle"` | Any child focusable element | Wires up the element that is to be shown/hidden. |
-| `data-action="s-modal#hide"` | Any child focusable element | Wires up the element that is to be shown/hidden. |
-| `data-s-modal-return-element="[css selector]"` | Controller element | Designates the element to return focus to when the modal is closed. If left unset, focus is not altered on close. |
-| `data-s-modal-remove-when-hidden="true"` | Controller element | Removes the modal from the DOM entirely when it is hidden. |
+<ClassTable classes={attributes} headings={{ class: 'Attribute', parent: 'Applies to' }} />
 
 ### Events
 
-| Event | Applies to | Description |
-|---|---|---|
-| `s-modal:show` | Modal target | Fires immediately before showing the modal. Calling `.preventDefault()` cancels the display of the modal. |
-| `s-modal:shown` | Modal target | Fires after the modal has been visually shown. |
-| `s-modal:hide` | Modal target | Fires immediately before hiding the modal. Calling `.preventDefault()` cancels the removal of the modal. |
-| `s-modal:hidden` | Modal target | Fires after the modal has been visually hidden. |
+<ClassTable classes={events} headings={{ class: 'Event', parent: 'Applies to' }} />
 
 ### Event details
 
-| Property | Applies to | Description |
-|---|---|---|
-| `dispatcher` | Modal target | Contains the `Element` that initiated the event. For instance, the button clicked to show, the element clicked outside the modal that caused it to hide, etc. |
-| `returnElement` | Modal target | Contains the `Element` to return focus to on hide. If a value is set to this property inside an event listener, it will be updated on the controller as well. |
+<ClassTable classes={eventDetails} headings={{ class: 'Property', parent: 'Applies to' }} />
 
 ### Helpers
 
-| Helper | Applies to | Description |
-|---|---|---|
-| `Stacks.showModal` | Controller element | Helper to manually show an s-modal element via external JS. |
-| `Stacks.hideModal` | Controller element | Helper to manually hide an s-modal element via external JS. |
+<ClassTable classes={helpers} headings={{ class: 'Helper', parent: 'Applies to' }} />
 
 ## Accessibility
 
-| Attribute | Applies to | Description |
-|---|---|---|
-| `aria-describedby="[id]"` | Modal target | Supply the modal's summary copy id. Assistive technologies use this to associate static text with a widget, element groups, headings, definitions, etc. |
-| `aria-hidden="[state]"` | Modal target | Informs assistive technologies if they should ignore the element. This should not be confused with the HTML5 `hidden` attribute. |
-| `aria-label="[text]"` | Modal target | Labels the element for assistive technologies. |
-| `aria-labelledby="[id]"` | Modal target | Supply the modal's title id here. Assistive technologies use this to catalog the document objects correctly. |
-| `role="dialog"` | Modal target | Identifies dialog elements for assistive technologies. |
-| `role="document"` | Modal target | Helps assistive technologies to switch their reading mode from the larger document to a focused dialog window. |
+<ClassTable classes={accessibility} headings={{ class: 'Attribute', parent: 'Applies to' }} />
 
 ## Examples
 
@@ -110,17 +119,7 @@ Alternatively, you can also use the built in helper to display a modal straight 
 <button class="s-btn js-modal-toggle" type="button">Show modal</button>
 <aside class="s-modal" id="modal-base" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true"
     data-controller="s-modal" data-s-modal-target="modal">
-    <div class="s-modal--dialog" role="document">
-        <h1 class="s-modal--header" id="modal-title">…</h1>
-        <p class="s-modal--body" id="modal-description">…</p>
-        <div class="d-flex gx8 s-modal--footer">
-            <button class="s-btn" type="button">…</button>
-            <button class="s-btn s-btn__clear" type="button" data-action="s-modal#hide">…</button>
-        </div>
-        <button class="s-modal--close s-btn s-btn__clear" type="button" aria-label="Close" data-action="s-modal#hide">
-            @Svg.Cross
-        </button>
-    </div>
+    …
 </aside>
 ```
 
@@ -131,24 +130,29 @@ document.querySelector(".js-modal-toggle").addEventListener("click", function(e)
 ```
 
 <Example>
-    <div class="ps-relative d-flex jc-center hs3">
-        <Button onclick={() => showBase = true}>Show modal</Button>
-        <Modal
-            id="modal-base"
-            visible={showBase}
-            class="ps-absolute bbr-md z-base mtn1 mrn1 mbn1 mln1"
-            onclose={() => showBase = false}
-            preventCloseOnClickOutside
-        >
-            {#snippet header()}Example title{/snippet}
-            {#snippet body()}{loremIpsum}{/snippet}
-            {#snippet footer()}
-                <Button>Save changes</Button>
-                <Button weight="clear" onclick={() => showBase = false}>Cancel</Button>
-            {/snippet}
-        </Modal>
+    <div class="d-flex g8 fw-wrap">
+        <Button onclick={() => showBase = true}>Launch example modal</Button>
+        <Button variant="danger" onclick={() => showDanger = true}>Launch example modal w/ danger state</Button>
     </div>
 </Example>
+
+<Modal id="modal-launch-base" visible={showBase} onclose={() => showBase = false}>
+    {#snippet header()}Example title{/snippet}
+    {#snippet body()}{lorem}{/snippet}
+    {#snippet footer()}
+        <Button>Save changes</Button>
+        <Button weight="clear" onclick={() => showBase = false}>Cancel</Button>
+    {/snippet}
+</Modal>
+
+<Modal id="modal-launch-danger" visible={showDanger} state="danger" onclose={() => showDanger = false}>
+    {#snippet header()}Example title{/snippet}
+    {#snippet body()}{lorem}{/snippet}
+    {#snippet footer()}
+        <Button variant="danger">Save changes</Button>
+        <Button weight="clear" onclick={() => showDanger = false}>Cancel</Button>
+    {/snippet}
+</Modal>
 
 ### Danger state
 
@@ -173,20 +177,13 @@ Not every modal is sunshine and rainbows. Sometimes there are potentially drasti
 
 <Example>
     <div class="ps-relative d-flex jc-center hs3">
-        <Button variant="danger" onclick={() => showDanger = true}>Show danger modal</Button>
-        <Modal
-            id="modal-danger"
-            visible={showDanger}
-            state="danger"
-            class="ps-absolute bbr-md z-base mtn1 mrn1 mbn1 mln1"
-            onclose={() => showDanger = false}
-            preventCloseOnClickOutside
-        >
+        <Modal id="modal-inline-danger" visible={true} state="danger" hideCloseButton
+            class="ps-absolute bbr-md z-base mtn1 mrn1 mbn1 mln1">
             {#snippet header()}Example title{/snippet}
-            {#snippet body()}{loremIpsum}{/snippet}
+            {#snippet body()}{lorem}{/snippet}
             {#snippet footer()}
                 <Button variant="danger">Save changes</Button>
-                <Button weight="clear" onclick={() => showDanger = false}>Cancel</Button>
+                <Button weight="clear">Cancel</Button>
             {/snippet}
         </Modal>
     </div>
@@ -203,7 +200,6 @@ Sometimes it's appropriate to confirm a user's action with some confetti. You ca
         <p class="s-modal--body" id="modal-description">…</p>
         <div class="d-flex gx8 s-modal--footer">
             <button class="s-btn" type="button">…</button>
-            <button class="s-btn s-btn__clear" type="button" data-action="s-modal#hide">…</button>
         </div>
         <button class="s-modal--close s-btn s-btn__clear" type="button" aria-label="Close" data-action="s-modal#hide">
             @Svg.Cross
@@ -214,19 +210,12 @@ Sometimes it's appropriate to confirm a user's action with some confetti. You ca
 
 <Example>
     <div class="ps-relative d-flex jc-center hs3">
-        <Button onclick={() => showCelebration = true}>Show celebratory modal</Button>
-        <Modal
-            id="modal-celebration"
-            visible={showCelebration}
-            state="celebration"
-            class="ps-absolute bbr-md z-base mtn1 mrn1 mbn1 mln1"
-            onclose={() => showCelebration = false}
-            preventCloseOnClickOutside
-        >
+        <Modal id="modal-inline-celebration" visible={true} state="celebration" hideCloseButton
+            class="ps-absolute bbr-md z-base mtn1 mrn1 mbn1 mln1">
             {#snippet header()}Congratulations!{/snippet}
-            {#snippet body()}{loremIpsum}{/snippet}
+            {#snippet body()}{lorem}{/snippet}
             {#snippet footer()}
-                <Button onclick={() => showCelebration = false}>Got it!</Button>
+                <Button>Got it!</Button>
             {/snippet}
         </Modal>
     </div>
