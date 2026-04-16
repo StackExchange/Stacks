@@ -15,7 +15,7 @@
     let { i18nNavigationLabel = "Pagination", children }: Props = $props();
 </script>
 
-<nav aria-label={i18nNavigationLabel}>
+<nav aria-label={i18nNavigationLabel} class="pl24">
     <ul class="list-reset s-pagination">
         {@render children?.()}
     </ul>
