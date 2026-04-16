@@ -182,7 +182,7 @@ Not every modal is sunshine and rainbows. Sometimes there are potentially drasti
 
 <div class="ba bc-black-225 bar-sm mb32 overflow-visible">
     <div class="ps-relative d-flex jc-center hs3">
-        <aside class="s-modal s-modal__danger ps-absolute z-base mn1" role="dialog"
+        <aside class="s-modal s-modal__danger ps-absolute z-base mn1" role="presentation"
             aria-labelledby="modal-inline-danger-title"
             aria-describedby="modal-inline-danger-description"
             aria-hidden="false">
@@ -219,7 +219,7 @@ Sometimes it's appropriate to confirm a user's action with some confetti. You ca
 
 <div class="ba bc-black-225 bar-sm mb32 overflow-visible">
     <div class="ps-relative d-flex jc-center hs3">
-        <aside class="s-modal s-modal__celebration ps-absolute z-base mn1" role="dialog"
+        <aside class="s-modal s-modal__celebration ps-absolute z-base mn1" role="presentation"
             aria-labelledby="modal-inline-celebration-title"
             aria-describedby="modal-inline-celebration-description"
             aria-hidden="false">
