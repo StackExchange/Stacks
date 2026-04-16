@@ -7,7 +7,7 @@ js: true
 ---
 
 <script lang="ts">
-    import { Popover, PopoverReference, PopoverContent, PopoverCloseButton, Button, Notice } from '@stackoverflow/stacks-svelte';
+    import { Popover, PopoverReference, PopoverContent, PopoverCloseButton, Button, Notice, EmptyState } from '@stackoverflow/stacks-svelte';
     import { Icon } from '@stackoverflow/stacks-svelte';
     import { IconInfo } from '@stackoverflow/stacks-icons/icons';
     import ClassTable from '$components/ClassTable.svelte';
@@ -116,10 +116,14 @@ Stacks provides a Stimulus controller that allows you to interactively display a
                 <Button dropdown>Show example popover</Button>
             </PopoverReference>
             <PopoverContent>
-                <div class="s-empty-state wmx2">
-                    <p>There's no data associated with your account yet. Please check back tomorrow.</p>
-                    <Button variant="tonal">Link an account</Button>
-                </div>
+                <EmptyState class="wmx2">
+                    {#snippet description()}
+                        There's no data associated with your account yet. Please check back tomorrow.
+                    {/snippet}
+                    {#snippet actions()}
+                        <Button variant="tonal">Link an account</Button>
+                    {/snippet}
+                </EmptyState>
             </PopoverContent>
         </Popover>
 
