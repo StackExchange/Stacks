@@ -56,21 +56,21 @@ At its most basic, a menu is a simple styled list of contextual actions. Because
 
 <Example>
     <div class="d-flex g16 ai-start fw-wrap">
-        <div class="docs-card p8">
+        <div class="docs-card p8 ws1">
             <Menu>
                 <MenuItem href="#">Share</MenuItem>
                 <MenuItem href="#">Edit</MenuItem>
                 <MenuItem href="#">Follow</MenuItem>
             </Menu>
         </div>
-        <div class="docs-card p8">
+        <div class="docs-card p8 ws1">
             <Menu>
                 <MenuItem href="#">Share</MenuItem>
                 <MenuItem href="#">Edit</MenuItem>
                 <MenuItem href="#">Follow</MenuItem>
             </Menu>
         </div>
-        <Menu>
+        <Menu class="ws1">
             <MenuItem href="#">Share</MenuItem>
             <MenuItem href="#">Edit</MenuItem>
             <MenuItem href="#">Follow</MenuItem>
@@ -98,7 +98,7 @@ You can split up your menu by using either titles, dividers, or some combination
 ```
 
 <Example>
-    <div class="docs-card px0 py4">
+    <div class="docs-card px0 py4 ws2">
         <Menu>
             <MenuTitle>Share</MenuTitle>
             <MenuItem href="#">Email</MenuItem>
@@ -139,7 +139,7 @@ Icons can be added to menu items to help visually distinguish actions. Include t
 ```
 
 <Example>
-    <div class="docs-card p8">
+    <div class="docs-card p8 ws2">
         <Menu>
             <MenuItem href="#" icon={IconHome}>Home</MenuItem>
             <MenuItem href="#" icon={IconInbox}>Inbox</MenuItem>
@@ -178,7 +178,7 @@ To create selectable menu items, add `.s-checkbox.s-checkbox__checkmark` or `.s-
 
 <Example>
     <div class="d-flex g16 ai-start fw-wrap">
-        <div class="docs-card">
+        <div class="docs-card ws2">
             <Menu type="fieldset">
                 <MenuTitle type="legend">Select one</MenuTitle>
                 <MenuCheckItem id="radio-frequent" type="radio" name="sort-radio" label="Frequent" checked />
@@ -186,7 +186,7 @@ To create selectable menu items, add `.s-checkbox.s-checkbox__checkmark` or `.s-
                 <MenuCheckItem id="radio-unanswered" type="radio" name="sort-radio" label="Unanswered" />
             </Menu>
         </div>
-        <div class="docs-card">
+        <div class="docs-card ws2">
             <Menu type="fieldset">
                 <MenuTitle type="legend">Select multiple</MenuTitle>
                 <MenuCheckItem id="check-frequent" type="checkbox" name="sort-check" label="Frequent" checked />
@@ -224,7 +224,7 @@ In the case of user management, it's appropriate to include radio options. In th
 ```
 
 <Example>
-    <div class="docs-card">
+    <div class="docs-card ws2">
         <Menu>
             <fieldset>
                 <MenuTitle type="legend">Role</MenuTitle>
