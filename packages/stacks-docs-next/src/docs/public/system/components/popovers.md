@@ -405,18 +405,20 @@ Hover tooltips can be used alongside interactive popovers. Tooltips will not app
 ```
 
 <Example>
-    <Popover id="popover-tooltip-combined-example" placement="bottom-start">
+    <Popover id="popover-tooltip-combined-click" placement="bottom-start">
         <PopoverReference>
-            <Button dropdown>Popover button with tooltip hover</Button>
+            <button id="combined-trigger" class="s-btn s-btn__dropdown">Popover button with tooltip hover</button>
         </PopoverReference>
         <PopoverContent>
-            <div class="tt-uppercase fs-fine fc-light">
-                Saved filters
-            </div>
+            <div class="tt-uppercase fs-fine fc-light">Saved filters</div>
             <div class="fc-black-350 fs-caption ta-center p16">
                 Save custom sorting &amp; filtering for easy access.
             </div>
         </PopoverContent>
+    </Popover>
+    <Popover id="popover-tooltip-combined-hover" tooltip placement="top-start">
+        <PopoverReference elementId="combined-trigger" />
+        <PopoverContent>View your saved filters</PopoverContent>
     </Popover>
 </Example>
 
