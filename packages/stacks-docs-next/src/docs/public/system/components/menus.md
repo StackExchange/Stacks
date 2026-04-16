@@ -58,7 +58,7 @@ At its most basic, a menu is a simple styled list of contextual actions. Because
     <div class="d-flex g16 ai-start fw-wrap">
         <div class="d-flex fd-column g8">
             <span class="fs-body2 fw-bold">Within a popover</span>
-            <div class="docs-card p8 ws2">
+            <div class="s-popover is-visible ps-relative ws2 p8">
                 <Menu>
                     <MenuItem href="#">Share</MenuItem>
                     <MenuItem href="#">Edit</MenuItem>
@@ -107,7 +107,7 @@ You can split up your menu by using either titles, dividers, or some combination
 ```
 
 <Example>
-    <div class="docs-card px0 py4 ws2">
+    <div class="s-popover is-visible ps-relative ws2 p8">
         <Menu>
             <MenuTitle>Share</MenuTitle>
             <MenuItem href="#">Email</MenuItem>
