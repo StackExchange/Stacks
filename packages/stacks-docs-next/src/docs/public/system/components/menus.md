@@ -56,25 +56,34 @@ At its most basic, a menu is a simple styled list of contextual actions. Because
 
 <Example>
     <div class="d-flex g16 ai-start fw-wrap">
-        <div class="docs-card p8 ws1">
-            <Menu>
+        <div class="d-flex fd-column g8">
+            <span class="fs-body2 fw-bold">Within a popover</span>
+            <div class="docs-card p8 ws2">
+                <Menu>
+                    <MenuItem href="#">Share</MenuItem>
+                    <MenuItem href="#">Edit</MenuItem>
+                    <MenuItem href="#">Follow</MenuItem>
+                </Menu>
+            </div>
+        </div>
+        <div class="d-flex fd-column g8">
+            <span class="fs-body2 fw-bold">Within a card</span>
+            <div class="docs-card p8 ws1">
+                <Menu>
+                    <MenuItem href="#">Share</MenuItem>
+                    <MenuItem href="#">Edit</MenuItem>
+                    <MenuItem href="#">Follow</MenuItem>
+                </Menu>
+            </div>
+        </div>
+        <div class="d-flex fd-column g8">
+            <span class="fs-body2 fw-bold">No container</span>
+            <Menu class="ws1">
                 <MenuItem href="#">Share</MenuItem>
                 <MenuItem href="#">Edit</MenuItem>
                 <MenuItem href="#">Follow</MenuItem>
             </Menu>
         </div>
-        <div class="docs-card p8 ws1">
-            <Menu>
-                <MenuItem href="#">Share</MenuItem>
-                <MenuItem href="#">Edit</MenuItem>
-                <MenuItem href="#">Follow</MenuItem>
-            </Menu>
-        </div>
-        <Menu class="ws1">
-            <MenuItem href="#">Share</MenuItem>
-            <MenuItem href="#">Edit</MenuItem>
-            <MenuItem href="#">Follow</MenuItem>
-        </Menu>
     </div>
 </Example>
 
