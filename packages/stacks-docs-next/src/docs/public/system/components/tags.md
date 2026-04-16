@@ -115,19 +115,31 @@ Tags should be focusable and navigable with the keyboard. The various tag states
 
 ## Sizes
 
-<Example>
-    <div class="d-flex ai-center g16 fw-wrap">
-        <div class="d-flex fd-column g8 ai-start">
-            <span class="ff-mono mb8">.s-tag__sm</span>
-            <Tag href="#" size="sm">css</Tag>
-        </div>
-        <div class="d-flex fd-column g8 ai-start">
-            <span class="ff-mono mb8">Default</span>
-            <Tag href="#">css</Tag>
-        </div>
-        <div class="d-flex fd-column g8 ai-start">
-            <span class="ff-mono mb8">.s-tag__lg</span>
-            <Tag href="#" size="lg">css</Tag>
-        </div>
-    </div>
-</Example>
+<div role="region" aria-label="Sizes table" tabindex="0" class="overflow-x-auto s-anchors s-anchors__underlined mb32">
+    <table class="s-table s-table__bx-simple">
+        <thead>
+            <tr>
+                <th scope="col">Class</th>
+                <th scope="col">Applied to</th>
+                <th scope="col">Example</th>
+            </tr>
+        </thead>
+        <tbody class="fs-caption">
+            <tr>
+                <th scope="row"><code>.s-tag__sm</code></th>
+                <td><code>.s-tag</code></td>
+                <td><Tag href="#" size="sm">css</Tag></td>
+            </tr>
+            <tr>
+                <th scope="row"><span class="fc-black-350">N/A</span></th>
+                <td><code>.s-tag</code></td>
+                <td><Tag href="#">css</Tag></td>
+            </tr>
+            <tr>
+                <th scope="row"><code>.s-tag__lg</code></th>
+                <td><code>.s-tag</code></td>
+                <td><Tag href="#" size="lg">css</Tag></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
