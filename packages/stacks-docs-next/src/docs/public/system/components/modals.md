@@ -59,6 +59,10 @@ js: true
         { class: 'role="document"',         parent: 'Modal target', description: 'Helps assistive technologies to switch their reading mode from the larger document to a focused dialog window.' },
     ];
 
+    const sizes: ClassTableRow[] = [
+        { class: '.s-modal__full', description: '100% - 48px' },
+    ];
+
     let showBase   = $state(false);
     let showDanger = $state(false);
 
@@ -234,6 +238,4 @@ Sometimes it's appropriate to confirm a user's action with some confetti. You ca
 
 Most modal dialogs look good by default, but may need some combination of `.ws[x]` or `.wmx[x]` classes applied to `.s-modal--dialog`. Additionally, the following class is available for modals:
 
-| Class | Value |
-|---|---|
-| `.s-modal__full` | 100% - 48px |
+<ClassTable classes={sizes} headings={{ description: 'Value' }} />
