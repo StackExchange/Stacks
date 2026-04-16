@@ -109,13 +109,13 @@ js: true
 
 <Example>
     <div class="d-flex g8 fd-column">
-        <Notice role="status" class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Default filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
-        <Notice role="status" variant="info" class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Info filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
-        <Notice role="status" variant="success" class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Success filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
-        <Notice role="status" variant="warning" class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Warning filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
-        <Notice role="status" variant="danger" class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Danger filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
-        <Notice role="status" variant="featured" class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Featured filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
-        <Notice role="status" variant="activity" class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Activity filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
+        <Notice role="presentation" class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Default filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
+        <Notice role="presentation" variant="info" class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Info filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
+        <Notice role="presentation" variant="success" class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Success filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
+        <Notice role="presentation" variant="warning" class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Warning filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
+        <Notice role="presentation" variant="danger" class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Danger filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
+        <Notice role="presentation" variant="featured" class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Featured filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
+        <Notice role="presentation" variant="activity" class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Activity filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
     </div>
 </Example>
 
@@ -156,13 +156,13 @@ Used sparingly for when an important notice needs to be noticed
 
 <Example>
     <div class="d-flex g8 fd-column">
-        <Notice role="alert" important class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Default filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
-        <Notice role="alert" variant="info" important class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Info filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
-        <Notice role="alert" variant="success" important class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Success filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
-        <Notice role="alert" variant="warning" important class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Warning filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
-        <Notice role="alert" variant="danger" important class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Danger filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
-        <Notice role="alert" variant="featured" important class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Featured filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
-        <Notice role="alert" variant="activity" important class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Activity filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
+        <Notice role="presentation" important class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Default filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
+        <Notice role="presentation" variant="info" important class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Info filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
+        <Notice role="presentation" variant="success" important class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Success filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
+        <Notice role="presentation" variant="warning" important class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Warning filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
+        <Notice role="presentation" variant="danger" important class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Danger filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
+        <Notice role="presentation" variant="featured" important class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Featured filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
+        <Notice role="presentation" variant="activity" important class="s-anchors s-anchors__inherit s-anchors__underlined"><span>Activity filled message style <code>and some code</code> notice. <a href="#">Link</a></span></Notice>
     </div>
 </Example>
 
@@ -198,7 +198,7 @@ We recommend using [descendent anchor](/product/components/links/#descendent-anc
 
 ## Toast
 
-<Notice variant="warning" role="status" class="s-anchors s-anchors__inherit s-anchors__underlined">
+<Notice variant="warning" role="presentation" class="s-anchors s-anchors__inherit s-anchors__underlined">
     <p>We are phasing out Toasts due to significant accessibility barriers. Avoid this component for new features. Instead, prioritize integrated alternatives—such as component state changes or inline messages—to provide accessible feedback directly where the user is focused.</p>
 </Notice>
 
