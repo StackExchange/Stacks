@@ -187,21 +187,27 @@ To create selectable menu items, add `.s-checkbox.s-checkbox__checkmark` or `.s-
 
 <Example>
     <div class="d-flex g16 ai-start fw-wrap">
-        <div class="s-popover is-visible ps-relative ws2 p8">
-            <Menu type="fieldset">
-                <MenuTitle type="legend">Select one</MenuTitle>
-                <MenuCheckItem id="radio-frequent" type="radio" name="sort-radio" label="Frequent" checked />
-                <MenuCheckItem id="radio-votes"    type="radio" name="sort-radio" label="Votes" />
-                <MenuCheckItem id="radio-unanswered" type="radio" name="sort-radio" label="Unanswered" />
-            </Menu>
+        <div class="d-flex fd-column g8">
+            <span class="fs-body2 fw-bold">With radio input</span>
+            <div class="s-popover is-visible ps-relative ws2 p8">
+                <Menu type="fieldset">
+                    <MenuTitle type="legend">Select one</MenuTitle>
+                    <MenuCheckItem id="radio-frequent" type="radio" name="sort-radio" label="Frequent" checked />
+                    <MenuCheckItem id="radio-votes"    type="radio" name="sort-radio" label="Votes" />
+                    <MenuCheckItem id="radio-unanswered" type="radio" name="sort-radio" label="Unanswered" />
+                </Menu>
+            </div>
         </div>
-        <div class="s-popover is-visible ps-relative ws2 p8">
-            <Menu type="fieldset">
-                <MenuTitle type="legend">Select multiple</MenuTitle>
-                <MenuCheckItem id="check-frequent" type="checkbox" name="sort-check" label="Frequent" checked />
-                <MenuCheckItem id="check-votes"    type="checkbox" name="sort-check" label="Votes" />
-                <MenuCheckItem id="check-unanswered" type="checkbox" name="sort-check" label="Unanswered" checked />
-            </Menu>
+        <div class="d-flex fd-column g8">
+            <span class="fs-body2 fw-bold">With checkbox input</span>
+            <div class="s-popover is-visible ps-relative ws2 p8">
+                <Menu type="fieldset">
+                    <MenuTitle type="legend">Select multiple</MenuTitle>
+                    <MenuCheckItem id="check-frequent" type="checkbox" name="sort-check" label="Frequent" checked />
+                    <MenuCheckItem id="check-votes"    type="checkbox" name="sort-check" label="Votes" />
+                    <MenuCheckItem id="check-unanswered" type="checkbox" name="sort-check" label="Unanswered" checked />
+                </Menu>
+            </div>
         </div>
     </div>
 </Example>
