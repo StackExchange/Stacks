@@ -72,11 +72,11 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
 
 ### Attributes
 
-<ClassTable classes={attributes} headings={{ class: 'Attribute', parent: 'Applies to' }} />
+<ClassTable classes={attributes} headings={{ class: 'Attribute', parent: 'Applies to' }} expandable expandButtonText="Show all attributes" />
 
 ### Events
 
-<ClassTable classes={events} headings={{ class: 'Event', parent: 'Applies to' }} />
+<ClassTable classes={events} headings={{ class: 'Event', parent: 'Applies to' }} expandable expandButtonText="Show all events" />
 
 ### Event details
 
