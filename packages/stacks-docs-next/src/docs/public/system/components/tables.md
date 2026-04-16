@@ -7,6 +7,7 @@ js: true
 <script lang="ts">
     import ClassTable from '$components/ClassTable.svelte';
     import Example from '$components/Example.svelte';
+    import TableSortDemo from '$components/TableSortDemo.svelte';
     import type { ClassTableRow } from '$components/ClassTable.svelte';
 
     const classes: ClassTableRow[] = [
@@ -678,48 +679,7 @@ If the table contains rows that should not be sorted, but rather always be at th
 ```
 
 <Example>
-    <div class="s-table-container">
-        <table class="s-table s-table__sortable" data-controller="s-table">
-            <thead>
-                <tr>
-                    <th scope="col" data-s-table-target="column">
-                        <button data-action="click-&gt;s-table#sort">
-                            Season
-                            <span class="js-sorting-indicator js-sorting-indicator-asc d-none"><svg aria-hidden="true" class="svg-icon iconArrowUpSm" width="14" height="14" viewBox="0 0 14 14"><path d="M3 9h8L7 5z"/></svg></span>
-                            <span class="js-sorting-indicator js-sorting-indicator-desc d-none"><svg aria-hidden="true" class="svg-icon iconArrowDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="M3 5h8L7 9z"/></svg></span>
-                            <span class="js-sorting-indicator js-sorting-indicator-none"><svg aria-hidden="true" class="svg-icon iconArrowUpDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="m7 2 4 4H3zm0 10 4-4H3z"/></svg></span>
-                        </button>
-                    </th>
-                    <th scope="col" data-s-table-target="column">
-                        <button data-action="click-&gt;s-table#sort">
-                            Starts in month
-                            <span class="js-sorting-indicator js-sorting-indicator-asc d-none"><svg aria-hidden="true" class="svg-icon iconArrowUpSm" width="14" height="14" viewBox="0 0 14 14"><path d="M3 9h8L7 5z"/></svg></span>
-                            <span class="js-sorting-indicator js-sorting-indicator-desc d-none"><svg aria-hidden="true" class="svg-icon iconArrowDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="M3 5h8L7 9z"/></svg></span>
-                            <span class="js-sorting-indicator js-sorting-indicator-none"><svg aria-hidden="true" class="svg-icon iconArrowUpDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="m7 2 4 4H3zm0 10 4-4H3z"/></svg></span>
-                        </button>
-                    </th>
-                    <th scope="col" data-s-table-target="column">
-                        <button data-action="click-&gt;s-table#sort">
-                            Typical temperature in °C
-                            <span class="js-sorting-indicator js-sorting-indicator-asc d-none"><svg aria-hidden="true" class="svg-icon iconArrowUpSm" width="14" height="14" viewBox="0 0 14 14"><path d="M3 9h8L7 5z"/></svg></span>
-                            <span class="js-sorting-indicator js-sorting-indicator-desc d-none"><svg aria-hidden="true" class="svg-icon iconArrowDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="M3 5h8L7 9z"/></svg></span>
-                            <span class="js-sorting-indicator js-sorting-indicator-none"><svg aria-hidden="true" class="svg-icon iconArrowUpDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="m7 2 4 4H3zm0 10 4-4H3z"/></svg></span>
-                        </button>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Winter</td><td data-s-table-sort-val="12">December</td><td>2</td></tr>
-                <tr><td>Spring</td><td data-s-table-sort-val="3">March</td><td>13</td></tr>
-                <tr><td>Summer</td><td data-s-table-sort-val="6">June</td><td>25</td></tr>
-                <tr><td>Fall</td><td data-s-table-sort-val="9">September</td><td>13</td></tr>
-                <tr data-s-table-sort-to="bottom" class="fw-bold">
-                    <td colspan="2">Average temperature</td>
-                    <td>13</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <TableSortDemo />
 </Example>
 
 ## Bulk actions
