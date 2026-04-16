@@ -209,7 +209,7 @@ In order for to close the popover with an explicit close button, you'll need to 
 ```
 
 <Example>
-    <Popover id="popover-dismissible-example" placement="bottom-start" trapFocus>
+    <Popover id="popover-dismissible-example" placement="bottom-start">
         <PopoverReference>
             <Button dropdown>Show dismissible popover</Button>
         </PopoverReference>
