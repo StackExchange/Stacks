@@ -148,7 +148,7 @@ Icons can be added to menu items to help visually distinguish actions. Include t
 ```
 
 <Example>
-    <div class="docs-card p8 ws2">
+    <div class="s-popover is-visible ps-relative ws2 p8">
         <Menu>
             <MenuItem href="#" icon={IconHome}>Home</MenuItem>
             <MenuItem href="#" icon={IconInbox}>Inbox</MenuItem>
@@ -187,7 +187,7 @@ To create selectable menu items, add `.s-checkbox.s-checkbox__checkmark` or `.s-
 
 <Example>
     <div class="d-flex g16 ai-start fw-wrap">
-        <div class="docs-card ws2">
+        <div class="s-popover is-visible ps-relative ws2 p8">
             <Menu type="fieldset">
                 <MenuTitle type="legend">Select one</MenuTitle>
                 <MenuCheckItem id="radio-frequent" type="radio" name="sort-radio" label="Frequent" checked />
@@ -195,7 +195,7 @@ To create selectable menu items, add `.s-checkbox.s-checkbox__checkmark` or `.s-
                 <MenuCheckItem id="radio-unanswered" type="radio" name="sort-radio" label="Unanswered" />
             </Menu>
         </div>
-        <div class="docs-card ws2">
+        <div class="s-popover is-visible ps-relative ws2 p8">
             <Menu type="fieldset">
                 <MenuTitle type="legend">Select multiple</MenuTitle>
                 <MenuCheckItem id="check-frequent" type="checkbox" name="sort-check" label="Frequent" checked />
