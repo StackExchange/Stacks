@@ -8,8 +8,16 @@ figma: "https://svelte.stackoverflow.design/figma/tags"
 <script lang="ts">
     import { Tag } from '@stackoverflow/stacks-svelte';
     import ClassTable from '$components/ClassTable.svelte';
+    import ExampleTable from '$components/ExampleTable.svelte';
     import Example from '$components/Example.svelte';
     import type { ClassTableRow } from '$components/ClassTable.svelte';
+    import type { ExampleTableRow } from '$components/ExampleTable.svelte';
+
+    const sizesRows: ExampleTableRow[] = [
+        { classes: ['.s-tag__sm'], size: 'sm',      label: 'css', description: 'Apply a small size to the tag.' },
+        { classes: ['N/A'],        size: undefined,  label: 'css', description: 'The default tag size.' },
+        { classes: ['.s-tag__lg'], size: 'lg',       label: 'css', description: 'Apply a large size to the tag.' },
+    ];
 
     const classes: ClassTableRow[] = [
         { class: '.s-tag',             parent: 'N/A',    modifies: 'N/A',    description: 'Base tag style that is used almost universally.' },
@@ -115,33 +123,16 @@ Tags should be focusable and navigable with the keyboard. The various tag states
 
 ## Sizes
 
+```html
+<a class="s-tag s-tag__sm" href="#">css</a>
+<a class="s-tag" href="#">css</a>
+<a class="s-tag s-tag__lg" href="#">css</a>
+```
+
 <Example>
-<div role="region" aria-label="Sizes table" tabindex="0" class="overflow-x-auto">
-    <table class="s-table s-table__bx-simple">
-        <thead>
-            <tr>
-                <th scope="col">Class</th>
-                <th scope="col">Applied to</th>
-                <th scope="col">Example</th>
-            </tr>
-        </thead>
-        <tbody class="fs-caption">
-            <tr>
-                <th scope="row"><code>.s-tag__sm</code></th>
-                <td><code>.s-tag</code></td>
-                <td><Tag href="#" size="sm">css</Tag></td>
-            </tr>
-            <tr>
-                <th scope="row"><span class="fc-black-350">N/A</span></th>
-                <td><code>.s-tag</code></td>
-                <td><Tag href="#">css</Tag></td>
-            </tr>
-            <tr>
-                <th scope="row"><code>.s-tag__lg</code></th>
-                <td><code>.s-tag</code></td>
-                <td><Tag href="#" size="lg">css</Tag></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <ExampleTable rows={sizesRows} columnLabel="Modifier class">
+        {#snippet example(row)}
+            <Tag href="#" size={row.size}>{row.label}</Tag>
+        {/snippet}
+    </ExampleTable>
 </Example>
