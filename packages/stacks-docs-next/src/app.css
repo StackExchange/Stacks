@@ -359,6 +359,34 @@ footer {
     padding: var(--su16);
 }
 
+/* s-prose inside example containers — reset docs-specific font overrides so
+   the prose renders with standard product fonts, not the docs custom typefaces.
+   Covers both <Example> containers and the prose page's custom expandable wrapper. */
+.example-container .s-prose,
+.docs-prose-example .s-prose {
+    --ff-sans: -apple-system, BlinkMacSystemFont,
+        "Segoe UI Adjusted", "Segoe UI", "Liberation Sans", sans-serif;
+    --ff-mono: ui-monospace, "Cascadia Mono", "Segoe UI Mono",
+        "Liberation Mono", Menlo, Monaco, Consolas, monospace;
+}
+
+/* The global h1–h5 rule applies "Stack Sans Headline" with higher specificity
+   than the container reset above, so headings need an explicit override. */
+.example-container .s-prose h1,
+.example-container .s-prose h2,
+.example-container .s-prose h3,
+.example-container .s-prose h4,
+.example-container .s-prose h5,
+.example-container .s-prose h6,
+.docs-prose-example .s-prose h1,
+.docs-prose-example .s-prose h2,
+.docs-prose-example .s-prose h3,
+.docs-prose-example .s-prose h4,
+.docs-prose-example .s-prose h5,
+.docs-prose-example .s-prose h6 {
+    font-family: var(--ff-sans);
+}
+
 /* Taller editor demo variant */
 .docs-editor-tall,
 .docs-editor-tall .s-editor-resizable {

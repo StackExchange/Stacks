@@ -30,7 +30,7 @@ description: "The prose component provides proper styling for rendered Markdown.
 
 We modified this test document from the folks at [Tailwind](https://github.com/tailwindcss/typography/blob/master/README.md) to demonstrate and explain our design choices.
 
-<div class="d-flex fd-column ba bc-black-200 bar-sm mb32">
+<div class="docs-prose-example d-flex fd-column ba bc-black-200 bar-sm mb32">
     <div class="ps-sticky bg-white z-popover py8 t0 bb bc-black-200">
         <div class="px16">
             <Button
@@ -61,7 +61,7 @@ We modified this test document from the folks at [Tailwind](https://github.com/t
 
 This example includes the full kitchen-sink collection of everything the Markdown spec includes.
 
-<div class="d-flex fd-column ba bc-black-200 bar-sm mb32">
+<div class="docs-prose-example d-flex fd-column ba bc-black-200 bar-sm mb32">
     <div class="ps-sticky bg-white z-popover py8 t0 bb bc-black-200">
         <div class="px16">
             <Button
@@ -89,7 +89,7 @@ This example includes the full kitchen-sink collection of everything the Markdow
 
 In ancillary content like comments or side-discussions, it may be appropriate to add the small variation.
 
-<div class="d-flex fd-column ba bc-black-200 bar-sm mb32">
+<div class="docs-prose-example d-flex fd-column ba bc-black-200 bar-sm mb32">
     <div class="ps-sticky bg-white z-popover py8 t0 bb bc-black-200">
         <div class="px16">
             <Button
