@@ -6,9 +6,11 @@
         content?: string;
         /** Options passed directly to StacksEditor */
         options?: Record<string, unknown>;
+        /** Additional CSS classes for the container */
+        class?: string;
     }
 
-    let { content = '', options = {} }: Props = $props();
+    let { content = '', options = {}, class: extraClass = '' }: Props = $props();
 
     let container: HTMLDivElement;
 
@@ -22,4 +24,4 @@
     });
 </script>
 
-<div bind:this={container}></div>
+<div bind:this={container} class={extraClass}></div>
