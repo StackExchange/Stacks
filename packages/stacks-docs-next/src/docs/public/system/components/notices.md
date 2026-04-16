@@ -174,17 +174,8 @@ We recommend using [descendent anchor](/product/components/links/#descendent-anc
 <div class="s-notice s-notice__info" role="presentation">
     <span>Notice with <a href="#" class="s-link">default link style</a></span>
 </div>
-<div class="s-notice s-notice__info s-anchors" role="presentation">
-    <span>Notice with <a href="#">s-anchors</a></span>
-</div>
-<div class="s-notice s-notice__info s-anchors s-anchors__inherit" role="presentation">
-    <span>Notice with <a href="#">s-anchors s-anchors__inherit</a></span>
-</div>
-<div class="s-notice s-notice__info s-anchors s-anchors__underlined" role="presentation">
-    <span>Notice with <a href="#">s-anchors s-anchors__underlined</a></span>
-</div>
-<div class="s-notice s-notice__info s-anchors s-anchors__inherit s-anchors__underlined" role="presentation">
-    <span>Notice with <a href="#">s-anchors s-anchors__inherit s-anchors__underlined</a></span>
+<div class="s-notice s-notice__info" role="presentation">
+    <span>Notice with <a href="#" class="s-anchors s-anchors__inherit s-anchors__underlined">styled link</a></span>
 </div>
 ```
 
@@ -197,27 +188,9 @@ We recommend using [descendent anchor](/product/components/links/#descendent-anc
             </Notice>
         </div>
         <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">.s-anchors</span>
-            <Notice role="presentation" variant="info" class="s-anchors">
-                <span>Notice with <a href="#">anchor link</a></span>
-            </Notice>
-        </div>
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">.s-anchors .s-anchors__inherit</span>
-            <Notice role="presentation" variant="info" class="s-anchors s-anchors__inherit">
-                <span>Notice with <a href="#">anchor link</a></span>
-            </Notice>
-        </div>
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">.s-anchors .s-anchors__underlined</span>
-            <Notice role="presentation" variant="info" class="s-anchors s-anchors__underlined">
-                <span>Notice with <a href="#">anchor link</a></span>
-            </Notice>
-        </div>
-        <div class="d-flex fd-column g8">
             <span class="ff-mono mb8">.s-anchors .s-anchors__inherit .s-anchors__underlined</span>
-            <Notice role="presentation" variant="info" class="s-anchors s-anchors__inherit s-anchors__underlined">
-                <span>Notice with <a href="#">anchor link</a></span>
+            <Notice role="presentation" variant="info">
+                <span>Notice with <a href="#" class="s-anchors s-anchors__inherit s-anchors__underlined">styled link</a></span>
             </Notice>
         </div>
     </div>
