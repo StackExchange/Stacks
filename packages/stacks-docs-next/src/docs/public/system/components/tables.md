@@ -5,10 +5,6 @@ js: true
 ---
 
 <script lang="ts">
-    import { Icon } from '@stackoverflow/stacks-svelte';
-    import {
-        IconArrowDownSm, IconArrowUpSm, IconArrowUpDownSm,
-    } from '@stackoverflow/stacks-icons-legacy/icons';
     import ClassTable from '$components/ClassTable.svelte';
     import Example from '$components/Example.svelte';
     import type { ClassTableRow } from '$components/ClassTable.svelte';
@@ -583,19 +579,19 @@ The `<th>` cells should include arrows to indicate sortability or the currently 
             <thead>
                 <tr>
                     <th scope="col" class="is-sorted">
-                        <a href="#">Listing <Icon src={IconArrowDownSm} /></a>
+                        <a href="#">Listing ↓</a>
                     </th>
                     <th scope="col">
-                        <a href="#">Status <Icon src={IconArrowUpDownSm} /></a>
+                        <a href="#">Status ↕</a>
                     </th>
                     <th scope="col">
-                        <button type="button">Owner <Icon src={IconArrowUpDownSm} /></button>
+                        <button type="button">Owner ↕</button>
                     </th>
                     <th scope="col" class="ta-right">
-                        <button type="button">Views <Icon src={IconArrowUpDownSm} /></button>
+                        <button type="button">Views ↕</button>
                     </th>
                     <th scope="col" class="ta-right">
-                        <button type="button">Applies <Icon src={IconArrowUpDownSm} /></button>
+                        <button type="button">Applies ↕</button>
                     </th>
                 </tr>
             </thead>
@@ -689,25 +685,25 @@ If the table contains rows that should not be sorted, but rather always be at th
                     <th scope="col" data-s-table-target="column">
                         <button data-action="click-&gt;s-table#sort">
                             Season
-                            <Icon src={IconArrowUpSm} class="js-sorting-indicator js-sorting-indicator-asc d-none" />
-                            <Icon src={IconArrowDownSm} class="js-sorting-indicator js-sorting-indicator-desc d-none" />
-                            <Icon src={IconArrowUpDownSm} class="js-sorting-indicator js-sorting-indicator-none" />
+                            <span class="js-sorting-indicator js-sorting-indicator-asc d-none">↑</span>
+                            <span class="js-sorting-indicator js-sorting-indicator-desc d-none">↓</span>
+                            <span class="js-sorting-indicator js-sorting-indicator-none">↕</span>
                         </button>
                     </th>
                     <th scope="col" data-s-table-target="column">
                         <button data-action="click-&gt;s-table#sort">
                             Starts in month
-                            <Icon src={IconArrowUpSm} class="js-sorting-indicator js-sorting-indicator-asc d-none" />
-                            <Icon src={IconArrowDownSm} class="js-sorting-indicator js-sorting-indicator-desc d-none" />
-                            <Icon src={IconArrowUpDownSm} class="js-sorting-indicator js-sorting-indicator-none" />
+                            <span class="js-sorting-indicator js-sorting-indicator-asc d-none">↑</span>
+                            <span class="js-sorting-indicator js-sorting-indicator-desc d-none">↓</span>
+                            <span class="js-sorting-indicator js-sorting-indicator-none">↕</span>
                         </button>
                     </th>
                     <th scope="col" data-s-table-target="column">
                         <button data-action="click-&gt;s-table#sort">
                             Typical temperature in °C
-                            <Icon src={IconArrowUpSm} class="js-sorting-indicator js-sorting-indicator-asc d-none" />
-                            <Icon src={IconArrowDownSm} class="js-sorting-indicator js-sorting-indicator-desc d-none" />
-                            <Icon src={IconArrowUpDownSm} class="js-sorting-indicator js-sorting-indicator-none" />
+                            <span class="js-sorting-indicator js-sorting-indicator-asc d-none">↑</span>
+                            <span class="js-sorting-indicator js-sorting-indicator-desc d-none">↓</span>
+                            <span class="js-sorting-indicator js-sorting-indicator-none">↕</span>
                         </button>
                     </th>
                 </tr>
