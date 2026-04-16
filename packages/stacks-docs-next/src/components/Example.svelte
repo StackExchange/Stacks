@@ -3,12 +3,13 @@
 
     interface Props {
         children: Snippet;
+        class?: string;
     }
 
-    let { children }: Props = $props();
+    let { children, class: extraClass = '' }: Props = $props();
 </script>
 
-<div class="ba bc-black-225 bar-sm p16 mb32 overflow-visible example-container">
+<div class="ba bc-black-225 bar-sm p16 mb32 overflow-visible example-container {extraClass}">
     {@render children()}
 </div>
 
