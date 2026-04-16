@@ -351,7 +351,7 @@ Table columns will size themselves based on their content. To set a specific wid
 
 ### Classes
 
-<ClassTable {widths} headings={{ output: 'Width' }} />
+<ClassTable classes={widths} headings={{ output: 'Width' }} />
 
 ### Examples
 
@@ -917,4 +917,4 @@ For tables that include inactive or disabled rows, such as inactive users or tea
 
 Further control of table behavior is possible with atomic classes. For example, you can make non-table markup display as a table layout by pairing `.d-table`, `.d-table-cell` and `.tl-fixed`.
 
-<ClassTable {atomic} headings={{ output: 'Output' }} />
+<ClassTable classes={atomic} headings={{ output: 'Output' }} />
