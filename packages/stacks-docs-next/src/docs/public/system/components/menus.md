@@ -239,7 +239,7 @@ In the case of user management, it's appropriate to include radio options. In th
 ```
 
 <Example>
-    <div class="s-popover is-visible ps-relative ws2 p8">
+    <div class="s-popover is-visible ps-relative ws3 p8">
         <div class="s-menu" role="menu">
             <fieldset>
                 <legend class="s-menu--title">Role</legend>
