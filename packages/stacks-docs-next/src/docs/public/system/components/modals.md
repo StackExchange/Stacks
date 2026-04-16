@@ -175,10 +175,10 @@ Not every modal is sunshine and rainbows. Sometimes there are potentially drasti
 </aside>
 ```
 
-<Example>
+<div class="ba bc-black-225 bar-sm mb32 overflow-visible">
     <div class="ps-relative d-flex jc-center hs3">
         <Modal id="modal-inline-danger" visible={true} state="danger" hideCloseButton
-            class="ps-absolute bbr-md z-base mtn1 mrn1 mbn1 mln1">
+            class="ps-absolute z-base mn1">
             {#snippet header()}Example title{/snippet}
             {#snippet body()}{lorem}{/snippet}
             {#snippet footer()}
@@ -187,7 +187,7 @@ Not every modal is sunshine and rainbows. Sometimes there are potentially drasti
             {/snippet}
         </Modal>
     </div>
-</Example>
+</div>
 
 ### Celebratory
 
@@ -208,10 +208,10 @@ Sometimes it's appropriate to confirm a user's action with some confetti. You ca
 </aside>
 ```
 
-<Example>
+<div class="ba bc-black-225 bar-sm mb32 overflow-visible">
     <div class="ps-relative d-flex jc-center hs3">
         <Modal id="modal-inline-celebration" visible={true} state="celebration" hideCloseButton
-            class="ps-absolute bbr-md z-base mtn1 mrn1 mbn1 mln1">
+            class="ps-absolute z-base mn1">
             {#snippet header()}Congratulations!{/snippet}
             {#snippet body()}{lorem}{/snippet}
             {#snippet footer()}
@@ -219,7 +219,7 @@ Sometimes it's appropriate to confirm a user's action with some confetti. You ca
             {/snippet}
         </Modal>
     </div>
-</Example>
+</div>
 
 ## Sizes
 
