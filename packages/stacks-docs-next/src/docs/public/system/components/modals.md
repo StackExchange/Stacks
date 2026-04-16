@@ -77,7 +77,7 @@ js: true
 
 ### Events
 
-<ClassTable classes={events} headings={{ class: 'Event', parent: 'Applies to' }} expandable expandButtonText="Show all events" />
+<ClassTable classes={events} headings={{ class: 'Event', parent: 'Applies to' }} />
 
 ### Event details
 
