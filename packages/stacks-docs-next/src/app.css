@@ -120,6 +120,7 @@ body {
 }
 
 .docs-copy strong {
+    color: var(--black-600);
     font-weight: var(--fw-bold);
 }
 
@@ -183,10 +184,6 @@ footer {
     font-size: var(--fs-fine);
     padding: 0.1875em 0.375em;
 }
-.docs-copy strong {
-    color: var(--black-600);
-}
-
 /* Document styles — individual classes applied by the addDocClasses rehype plugin */
 
 /* Links and SVGs inside headings */
@@ -234,6 +231,7 @@ footer {
 }
 .docs-h4 {
     color: var(--black-400);
+    margin-bottom: var(--su4);
     margin-top: var(--su16);
 }
 
@@ -366,6 +364,18 @@ footer {
 /* Notices in doc content get breathing room below */
 .doc .s-notice {
     margin-bottom: var(--su16);
+}
+
+/* Paragraphs inside doc notices inherit docs-copy typography */
+.doc .s-notice p {
+    color: inherit;
+    font-size: var(--fs-body2);
+    line-height: var(--lh-lg);
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.doc .s-notice p strong {
+    font-weight: var(--fw-bold);
 }
 
 /* s-prose inside example containers — reset docs-specific font overrides so

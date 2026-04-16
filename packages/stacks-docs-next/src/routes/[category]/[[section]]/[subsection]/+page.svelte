@@ -46,9 +46,9 @@
       <nav class="d-flex ai-center g6 fs-body2 mr-auto" aria-label="breadcrumb">
         {#each data.breadcrumb as crumb, index (crumb.path)}
           {#if index !== 0}<span class="fc-black-300">/</span>{/if}
-          <a href={resolve(crumb.path)} class="s-link">{crumb.label}</a>
+          <a href={resolve(crumb.path)} class="s-link fw-bold">{crumb.label}</a>
         {/each}
-        <Button title="Copy link to this page" link icon class="d-inline-flex" onclick={copyPageUrl}>
+        <Button title="Copy link to this page" link icon class="d-inline-flex fc-black-400 h:fc-black-600 ml4" onclick={copyPageUrl}>
           {#if copied}
             <Icon src={IconCheckFillCircle} class="fc-green-400 w16 h16" />
           {:else}
@@ -95,12 +95,12 @@
         </time>
       {/if}
 
-      <h1 class="fs-display2 ff-stack-sans-headline-notch fw-bold mb32">
+      <h1 class="fs-display2 ff-stack-sans-headline-notch fw-bold">
         {data.active.title}
       </h1>
 
       {#if data?.metadata?.description}
-        <p class="docs-copy fc-dark fs-body3 mtn16">
+        <p class="docs-copy fc-black-500 fs-title mtn16">
           <!-- eslint-disable-next-line svelte/no-at-html-tags -->
           {@html data.metadata.description}
         </p>
