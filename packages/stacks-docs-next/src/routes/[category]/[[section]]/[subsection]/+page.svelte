@@ -67,7 +67,7 @@
 
         {#if data?.metadata?.js}
           <Link href="#javascript">
-            <Icon src={IconCodeBox} />
+            <Icon src={IconCodeBox} class="fc-green-400" />
             <span class="sm:d-none">JavaScript</span>
           </Link>
         {/if}
