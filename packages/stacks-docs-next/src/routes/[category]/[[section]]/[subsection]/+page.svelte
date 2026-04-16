@@ -95,7 +95,7 @@
         </time>
       {/if}
 
-      <h1 class="fs-display2 ff-stack-sans-headline-notch mb32">
+      <h1 class="fs-display2 ff-stack-sans-headline-notch fw-bold mb32">
         {data.active.title}
       </h1>
 
