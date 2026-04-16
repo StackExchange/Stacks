@@ -57,7 +57,7 @@ At its most basic, a menu is a simple styled list of contextual actions. Because
 <Example>
     <div class="d-flex g16 ai-start fw-wrap">
         <div class="d-flex fd-column g8">
-            <span class="fs-body2 fw-bold">Within a popover</span>
+            <span class="ff-mono mb8">Within a popover</span>
             <div class="s-popover is-visible ps-relative ws2 p8">
                 <Menu>
                     <MenuItem href="#">Share</MenuItem>
@@ -67,7 +67,7 @@ At its most basic, a menu is a simple styled list of contextual actions. Because
             </div>
         </div>
         <div class="d-flex fd-column g8">
-            <span class="fs-body2 fw-bold">Within a card</span>
+            <span class="ff-mono mb8">Within a card</span>
             <div class="docs-card p8 ws1">
                 <Menu>
                     <MenuItem href="#">Share</MenuItem>
@@ -77,7 +77,7 @@ At its most basic, a menu is a simple styled list of contextual actions. Because
             </div>
         </div>
         <div class="d-flex fd-column g8">
-            <span class="fs-body2 fw-bold">No container</span>
+            <span class="ff-mono mb8">No container</span>
             <Menu class="ws1">
                 <MenuItem href="#">Share</MenuItem>
                 <MenuItem href="#">Edit</MenuItem>
@@ -188,7 +188,7 @@ To create selectable menu items, add `.s-checkbox.s-checkbox__checkmark` or `.s-
 <Example>
     <div class="d-flex g16 ai-start fw-wrap">
         <div class="d-flex fd-column g8">
-            <span class="fs-body2 fw-bold">With radio input</span>
+            <span class="ff-mono mb8">With radio input</span>
             <div class="s-popover is-visible ps-relative ws2 p8">
                 <Menu type="fieldset">
                     <MenuTitle type="legend">Select one</MenuTitle>
@@ -199,7 +199,7 @@ To create selectable menu items, add `.s-checkbox.s-checkbox__checkmark` or `.s-
             </div>
         </div>
         <div class="d-flex fd-column g8">
-            <span class="fs-body2 fw-bold">With checkbox input</span>
+            <span class="ff-mono mb8">With checkbox input</span>
             <div class="s-popover is-visible ps-relative ws2 p8">
                 <Menu type="fieldset">
                     <MenuTitle type="legend">Select multiple</MenuTitle>
