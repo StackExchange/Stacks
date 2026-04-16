@@ -11,6 +11,28 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
     import BannerDemo from '$components/BannerDemo.svelte';
     import type { ClassTableRow } from '$components/ClassTable.svelte';
 
+    const attributes: ClassTableRow[] = [
+        { class: 'data-controller="s-banner"',             parent: 'Controller element', description: 'Wires up the element to the banner controller. This may be a `.s-banner` element or a wrapper element.' },
+        { class: 'data-s-banner-target="banner"',          parent: '.s-banner element',  description: 'Wires up the element that is to be shown/hidden.' },
+        { class: 'data-s-banner-remove-when-hidden="true"',parent: 'Controller element', description: '(optional) Removes the banner from the DOM entirely when it is hidden.' },
+    ];
+
+    const events: ClassTableRow[] = [
+        { class: 's-banner:show',   parent: 'Banner target', description: 'Fires immediately before showing the banner. Calling `.preventDefault()` cancels the display of the banner.' },
+        { class: 's-banner:shown',  parent: 'Banner target', description: 'Fires after the banner has been visually shown.' },
+        { class: 's-banner:hide',   parent: 'Banner target', description: 'Fires immediately before hiding the banner. Calling `.preventDefault()` cancels the removal of the banner.' },
+        { class: 's-banner:hidden', parent: 'Banner target', description: 'Fires after the banner has been visually hidden.' },
+    ];
+
+    const eventDetails: ClassTableRow[] = [
+        { class: 'dispatcher', parent: 'N/A', description: 'Contains the `Element` that initiated the event. For instance, the button clicked to show, the element clicked outside the banner that caused it to hide, etc.' },
+    ];
+
+    const helpers: ClassTableRow[] = [
+        { class: 'Stacks.showBanner', parent: 'Controller element', description: 'Helper to manually show an s-banner element via external JS.' },
+        { class: 'Stacks.hideBanner', parent: 'Controller element', description: 'Helper to manually hide an s-banner element via external JS.' },
+    ];
+
     const classes: ClassTableRow[] = [
         { class: '.s-banner',              parent: 'N/A',        modifies: 'N/A',        description: 'Base banner element.' },
         { class: '.s-banner--actions',     parent: '.s-banner',  modifies: 'N/A',        description: 'Container styling for banner actions including the dismiss button.' },
@@ -160,30 +182,16 @@ document.querySelector(".js-banner-toggle").addEventListener("click", function(e
 
 ### Attributes
 
-| Attribute | Applies to | Description |
-|---|---|---|
-| `data-controller="s-banner"` | Controller element | Wires up the element to the banner controller. This may be a `.s-banner` element or a wrapper element. |
-| `data-s-banner-target="banner"` | `.s-banner` element | Wires up the element that is to be shown/hidden. |
-| `data-s-banner-remove-when-hidden="true"` | Controller element | (optional) Removes the banner from the DOM entirely when it is hidden. |
+<ClassTable classes={attributes} headings={{ class: 'Attribute', parent: 'Applies to' }} />
 
 ### Events
 
-| Event | Applies to | Description |
-|---|---|---|
-| `s-banner:show` | Banner target | Fires immediately before showing the banner. Calling `.preventDefault()` cancels the display of the banner. |
-| `s-banner:shown` | Banner target | Fires after the banner has been visually shown. |
-| `s-banner:hide` | Banner target | Fires immediately before hiding the banner. Calling `.preventDefault()` cancels the removal of the banner. |
-| `s-banner:hidden` | Banner target | Fires after the banner has been visually hidden. |
+<ClassTable classes={events} headings={{ class: 'Event', parent: 'Applies to' }} />
 
 ### Event details
 
-| event.detail | Applicable events | Description |
-|---|---|---|
-| `dispatcher` | N/A | Contains the `Element` that initiated the event. For instance, the button clicked to show, the element clicked outside the banner that caused it to hide, etc. |
+<ClassTable classes={eventDetails} headings={{ class: 'event.detail', parent: 'Applicable events' }} />
 
 ### Helpers
 
-| Function | Parameters | Description |
-|---|---|---|
-| `Stacks.showBanner` | `Element`: the element the `data-controller="s-banner"` attribute is on | Helper to manually show an s-banner element via external JS. |
-| `Stacks.hideBanner` | `Element`: the element the `data-controller="s-banner"` attribute is on | Helper to manually hide an s-banner element via external JS. |
+<ClassTable classes={helpers} headings={{ class: 'Function', parent: 'Applies to' }} />
