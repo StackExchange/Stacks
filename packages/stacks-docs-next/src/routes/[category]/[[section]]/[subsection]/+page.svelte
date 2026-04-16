@@ -100,7 +100,7 @@
       </h1>
 
       {#if data?.metadata?.description}
-        <p class="fc-dark fs-body3 mtn16">
+        <p class="docs-copy fc-dark fs-body3 mtn16">
           <!-- eslint-disable-next-line svelte/no-at-html-tags -->
           {@html data.metadata.description}
         </p>
