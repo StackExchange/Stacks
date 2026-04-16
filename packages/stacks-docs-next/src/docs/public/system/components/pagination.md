@@ -72,6 +72,7 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
             page={2}
             totalPages={122386}
             urlGenerator={(p) => '#'}
+            role="presentation"
         />
     </div>
 </Example>
