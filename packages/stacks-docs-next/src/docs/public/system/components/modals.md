@@ -177,15 +177,19 @@ Not every modal is sunshine and rainbows. Sometimes there are potentially drasti
 
 <div class="ba bc-black-225 bar-sm mb32 overflow-visible">
     <div class="ps-relative d-flex jc-center hs3">
-        <Modal id="modal-inline-danger" visible={true} state="danger" hideCloseButton
-            class="ps-absolute z-base mn1">
-            {#snippet header()}Example title{/snippet}
-            {#snippet body()}{lorem}{/snippet}
-            {#snippet footer()}
-                <Button variant="danger">Save changes</Button>
-                <Button weight="clear">Cancel</Button>
-            {/snippet}
-        </Modal>
+        <aside class="s-modal s-modal__danger ps-absolute z-base mn1" role="dialog"
+            aria-labelledby="modal-inline-danger-title"
+            aria-describedby="modal-inline-danger-description"
+            aria-hidden="false">
+            <div class="s-modal--dialog" role="document">
+                <h1 class="s-modal--header" id="modal-inline-danger-title">Example title</h1>
+                <p class="s-modal--body" id="modal-inline-danger-description">{lorem}</p>
+                <div class="d-flex g8 s-modal--footer">
+                    <button class="s-btn s-btn__danger" type="button">Save changes</button>
+                    <button class="s-btn s-btn__clear" type="button">Cancel</button>
+                </div>
+            </div>
+        </aside>
     </div>
 </div>
 
@@ -210,14 +214,18 @@ Sometimes it's appropriate to confirm a user's action with some confetti. You ca
 
 <div class="ba bc-black-225 bar-sm mb32 overflow-visible">
     <div class="ps-relative d-flex jc-center hs3">
-        <Modal id="modal-inline-celebration" visible={true} state="celebration" hideCloseButton
-            class="ps-absolute z-base mn1">
-            {#snippet header()}Congratulations!{/snippet}
-            {#snippet body()}{lorem}{/snippet}
-            {#snippet footer()}
-                <Button>Got it!</Button>
-            {/snippet}
-        </Modal>
+        <aside class="s-modal s-modal__celebration ps-absolute z-base mn1" role="dialog"
+            aria-labelledby="modal-inline-celebration-title"
+            aria-describedby="modal-inline-celebration-description"
+            aria-hidden="false">
+            <div class="s-modal--dialog" role="document">
+                <h1 class="s-modal--header" id="modal-inline-celebration-title">Congratulations!</h1>
+                <p class="s-modal--body" id="modal-inline-celebration-description">{lorem}</p>
+                <div class="d-flex g8 s-modal--footer">
+                    <button class="s-btn" type="button">Got it!</button>
+                </div>
+            </div>
+        </aside>
     </div>
 </div>
 
