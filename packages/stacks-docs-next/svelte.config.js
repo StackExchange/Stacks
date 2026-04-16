@@ -109,6 +109,7 @@ function addDocClasses() {
                 case "h3": add("docs-heading", "docs-h3"); break;
                 case "h4": add("docs-heading", "docs-h4"); break;
                 case "p":       add("docs-copy"); break;
+                case "ol":      add("docs-copy"); break;
                 case "section": add("docs-section"); break;
                 case "ul":  add("docs-ul");  break;
                 case "li":  add("docs-li");  break;
