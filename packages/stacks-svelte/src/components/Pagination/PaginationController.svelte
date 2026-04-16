@@ -46,10 +46,6 @@
          * Callback fired when a page is changed
          */
         onpagechange?: (pageNumber: number) => void;
-        /**
-         * ARIA role for the nav element. Use "presentation" in demo contexts.
-         */
-        role?: string;
     }
 
     let {
@@ -62,7 +58,6 @@
         i18nPageText = "page",
         i18nNavigationLabel = "Pagination",
         onpagechange,
-        role = undefined,
     }: Props = $props();
 
     /**
@@ -78,7 +73,7 @@
     };
 </script>
 
-<Pagination {i18nNavigationLabel} {role}>
+<Pagination {i18nNavigationLabel}>
     {#if page > 1}
         <PaginationItem
             url={urlGenerator(page - 1)}
