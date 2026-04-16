@@ -400,33 +400,39 @@ Table columns will size themselves based on their content. To set a specific wid
     <div class="ff-mono">
         <div class="s-table-container mb16">
             <table class="s-table ta-center">
-                <tr>
-                    <td class="docs-box s-table--cell2"><strong>.s-table--cell2</strong></td>
-                    <td class="docs-box"><em class="fc-light">No Class</em></td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td class="docs-box s-table--cell2"><strong>.s-table--cell2</strong></td>
+                        <td class="docs-box"><em class="fc-light">No Class</em></td>
+                    </tr>
+                </tbody>
             </table>
         </div>
         <div class="s-table-container mb16">
             <table class="s-table ta-center">
-                <tr>
-                    <td class="docs-box s-table--cell3"><strong>.s-table--cell3</strong></td>
-                    <td class="docs-box s-table--cell6"><strong>.s-table--cell6</strong></td>
-                    <td class="docs-box"><em class="fc-light">No Class</em></td>
-                    <td class="docs-box"><em class="fc-light">No Class</em></td>
-                    <td class="docs-box"><em class="fc-light">No Class</em></td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td class="docs-box s-table--cell3"><strong>.s-table--cell3</strong></td>
+                        <td class="docs-box s-table--cell6"><strong>.s-table--cell6</strong></td>
+                        <td class="docs-box"><em class="fc-light">No Class</em></td>
+                        <td class="docs-box"><em class="fc-light">No Class</em></td>
+                        <td class="docs-box"><em class="fc-light">No Class</em></td>
+                    </tr>
+                </tbody>
             </table>
         </div>
         <div class="s-table-container">
             <table class="s-table ta-center">
-                <tr>
-                    <td class="docs-box s-table--cell4"><strong>.s-table--cell4</strong></td>
-                    <td class="docs-box"><em class="fc-light">No Class</em></td>
-                    <td class="docs-box"><em class="fc-light">No Class</em></td>
-                    <td class="docs-box"><em class="fc-light">No Class</em></td>
-                    <td class="docs-box"><em class="fc-light">No Class</em></td>
-                    <td class="docs-box s-table--cell2"><strong>.s-table--cell2</strong></td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td class="docs-box s-table--cell4"><strong>.s-table--cell4</strong></td>
+                        <td class="docs-box"><em class="fc-light">No Class</em></td>
+                        <td class="docs-box"><em class="fc-light">No Class</em></td>
+                        <td class="docs-box"><em class="fc-light">No Class</em></td>
+                        <td class="docs-box"><em class="fc-light">No Class</em></td>
+                        <td class="docs-box s-table--cell2"><strong>.s-table--cell2</strong></td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
