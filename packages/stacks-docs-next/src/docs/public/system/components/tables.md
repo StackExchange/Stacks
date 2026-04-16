@@ -8,7 +8,7 @@ js: true
     import { Icon } from '@stackoverflow/stacks-svelte';
     import {
         IconArrowDownSm, IconArrowUpSm, IconArrowUpDownSm,
-    } from '@stackoverflow/stacks-icons/icons';
+    } from '@stackoverflow/stacks-icons-legacy/icons';
     import ClassTable from '$components/ClassTable.svelte';
     import Example from '$components/Example.svelte';
     import type { ClassTableRow } from '$components/ClassTable.svelte';
