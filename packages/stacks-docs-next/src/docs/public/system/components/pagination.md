@@ -67,7 +67,7 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
 ```
 
 <Example>
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto mln24">
         <PaginationController
             page={2}
             totalPages={122386}
