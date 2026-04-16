@@ -82,7 +82,7 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
 
     const sizesRows: ExampleTableRow[] = [
         { classes: ['.s-badge__sm'], size: 'sm',      label: 'Small',   description: 'The badge in small size.' },
-        { classes: [],               size: undefined, label: 'Default', description: 'The badge in default size.' },
+        { classes: ['N/A'],          size: undefined, label: 'Default', description: 'The badge in default size.' },
         { classes: ['.s-badge__lg'], size: 'lg',      label: 'Large',   description: 'The badge in large size.' },
     ];
 </script>
@@ -181,11 +181,13 @@ Badges that provide information about user achievements.
 </span>
 ```
 
-<ExampleTable rows={achievementRows} showClasses={false}>
-    {#snippet example(row)}
-        <Badge text={row.text} type="achievement" award={row.award} label="{row.award} badge" />
-    {/snippet}
-</ExampleTable>
+<Example>
+    <ExampleTable rows={achievementRows} showClasses={false}>
+        {#snippet example(row)}
+            <Badge text={row.text} type="achievement" award={row.award} label="{row.award} badge" />
+        {/snippet}
+    </ExampleTable>
+</Example>
 
 ### Tag
 
@@ -212,11 +214,13 @@ Badges that display achievements a user has earned for their contributions withi
 </span>
 ```
 
-<ExampleTable rows={tagRows} columnLabel="Modifier class">
-    {#snippet example(row)}
-        <Badge text={row.text} type="tag" award={row.award} label="{row.award} tag badge" />
-    {/snippet}
-</ExampleTable>
+<Example>
+    <ExampleTable rows={tagRows} columnLabel="Modifier class">
+        {#snippet example(row)}
+            <Badge text={row.text} type="tag" award={row.award} label="{row.award} tag badge" />
+        {/snippet}
+    </ExampleTable>
+</Example>
 
 ### States
 
@@ -257,11 +261,13 @@ Use State badges to communicate semantic status or severity, such as success, wa
 </span>
 ```
 
-<ExampleTable rows={statesRows} columnLabel="Modifier class">
-    {#snippet example(row)}
-        <Badge text={row.label} type="state" state={row.state} icon={row.icon} />
-    {/snippet}
-</ExampleTable>
+<Example>
+    <ExampleTable rows={statesRows} columnLabel="Modifier class">
+        {#snippet example(row)}
+            <Badge text={row.label} type="state" state={row.state} icon={row.icon} />
+        {/snippet}
+    </ExampleTable>
+</Example>
 
 ### Squared
 
@@ -278,11 +284,13 @@ Use the squared variant sparingly to provide additional emphasis, reserving it p
 </span>
 ```
 
-<ExampleTable rows={squaredRows} columnLabel="Modifier classes">
-    {#snippet example(row)}
-        <Badge text={row.label} type="state" state={row.state} squared icon={row.icon} />
-    {/snippet}
-</ExampleTable>
+<Example>
+    <ExampleTable rows={squaredRows} columnLabel="Modifier classes">
+        {#snippet example(row)}
+            <Badge text={row.label} type="state" state={row.state} squared icon={row.icon} />
+        {/snippet}
+    </ExampleTable>
+</Example>
 
 ### Important
 
@@ -305,12 +313,14 @@ Emboldens the above visual styles by strengthening the background saturation. Th
 </span>
 ```
 
-<ExampleTable rows={importantRows} columnLabel="Modifier classes">
-    {#snippet example(row)}
-        <Badge text={row.label} type="state" state={row.state} important
-            squared={row.squared} icon={row.icon} size={row.size} />
-    {/snippet}
-</ExampleTable>
+<Example>
+    <ExampleTable rows={importantRows} columnLabel="Modifier classes">
+        {#snippet example(row)}
+            <Badge text={row.label} type="state" state={row.state} important
+                squared={row.squared} icon={row.icon} size={row.size} />
+        {/snippet}
+    </ExampleTable>
+</Example>
 
 ### User
 
@@ -323,11 +333,13 @@ Emboldens the above visual styles by strengthening the background saturation. Th
 <span class="s-badge s-badge__new">New</span>
 ```
 
-<ExampleTable rows={userRows} columnLabel="Class">
-    {#snippet example(row)}
-        <Badge text={row.label} type="user" userType={row.userType} />
-    {/snippet}
-</ExampleTable>
+<Example>
+    <ExampleTable rows={userRows} columnLabel="Class">
+        {#snippet example(row)}
+            <Badge text={row.label} type="user" userType={row.userType} />
+        {/snippet}
+    </ExampleTable>
+</Example>
 
 ### Sizes
 
@@ -345,8 +357,10 @@ Badges come in three sizes.
 </span>
 ```
 
-<ExampleTable rows={sizesRows} columnLabel="Modifier class">
-    {#snippet example(row)}
-        <Badge text={row.label} size={row.size} />
-    {/snippet}
-</ExampleTable>
+<Example>
+    <ExampleTable rows={sizesRows} columnLabel="Modifier class">
+        {#snippet example(row)}
+            <Badge text={row.label} size={row.size} />
+        {/snippet}
+    </ExampleTable>
+</Example>
