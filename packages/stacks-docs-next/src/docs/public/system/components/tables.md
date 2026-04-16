@@ -40,7 +40,7 @@ js: true
     const dataAttributes: ClassTableRow[] = [
         { class: 'data-controller="s-table"',       parent: 'table', description: 'Wires up the table to the JS controller.' },
         { class: 'data-s-table-target="column"',    parent: 'th',    description: 'Marks this as a sortable column for the purpose of modifying arrow icons.' },
-        { class: 'data-action="click->s-table#sort"', parent: 'button', description: 'Causes a click on the header cell to sort by this column.' },
+        { class: 'data-action="click-&gt;s-table#sort"', parent: 'button', description: 'Causes a click on the header cell to sort by this column.' },
         { class: 'data-s-table-sort-to="top"',      parent: 'tr',    description: 'Forces the sorting of a row to the top.' },
         { class: 'data-s-table-sort-to="bottom"',   parent: 'tr',    description: 'Forces the sorting of a row to the bottom.' },
         { class: 'data-s-table-sort-val="[x]"',     parent: 'td',    description: 'Optionally use a custom value for sorting instead of the cell\'s text content.' },
@@ -579,19 +579,19 @@ The `<th>` cells should include arrows to indicate sortability or the currently 
             <thead>
                 <tr>
                     <th scope="col" class="is-sorted">
-                        <a href="#">Listing ↓</a>
+                        <a href="#">Listing  ↓</a>
                     </th>
                     <th scope="col">
-                        <a href="#">Status ↕</a>
+                        <a href="#">Status  ↕</a>
                     </th>
                     <th scope="col">
-                        <button type="button">Owner ↕</button>
+                        <button type="button">Owner  ↕</button>
                     </th>
                     <th scope="col" class="ta-right">
-                        <button type="button">Views ↕</button>
+                        <button type="button">Views  ↕</button>
                     </th>
                     <th scope="col" class="ta-right">
-                        <button type="button">Applies ↕</button>
+                        <button type="button">Applies  ↕</button>
                     </th>
                 </tr>
             </thead>
@@ -630,7 +630,7 @@ To make your table user-sortable, do the following:
 
 1. Style the table as sortable as explained in the section above.
 2. Set `data-controller="s-table"` on the `<table>` element.
-3. Set `data-s-table-target="column"` and `data-action="click->s-table#sort"` on each of the `<th>` elements that control sorting.
+3. Set `data-s-table-target="column"` and `data-action="click-&gt;s-table#sort"` on each of the `<th>` elements that control sorting.
 4. Add the three icons for showing _ascending sort_, _descending sort_, and _unsorted_ to each of these header cells, hiding the first two with a `d-none` class. Add the `js-sorting-indicator` class to each of the icons, and add `js-sorting-indicator-asc`, `js-sorting-indicator-desc`, and `js-sorting-indicator-none` to the appropriate icon.
 
 **Note:** Using `js-…` classes is not really the optimal way of doing this, and will probably be replaced with something better eventually. When that happens, the `js-…` mechanism will be deprecated but continue to be supported for a while, so you have ample time to update things.
