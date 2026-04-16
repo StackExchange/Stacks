@@ -579,19 +579,19 @@ The `<th>` cells should include arrows to indicate sortability or the currently 
             <thead>
                 <tr>
                     <th scope="col" class="is-sorted">
-                        <a href="#">Listing  ↓</a>
+                        <a href="#">Listing <svg aria-hidden="true" class="svg-icon iconArrowDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="M3 5h8L7 9z"/></svg></a>
                     </th>
                     <th scope="col">
-                        <a href="#">Status  ↕</a>
+                        <a href="#">Status <svg aria-hidden="true" class="svg-icon iconArrowUpDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="m7 2 4 4H3zm0 10 4-4H3z"/></svg></a>
                     </th>
                     <th scope="col">
-                        <button type="button">Owner  ↕</button>
+                        <button type="button">Owner <svg aria-hidden="true" class="svg-icon iconArrowUpDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="m7 2 4 4H3zm0 10 4-4H3z"/></svg></button>
                     </th>
                     <th scope="col" class="ta-right">
-                        <button type="button">Views  ↕</button>
+                        <button type="button">Views <svg aria-hidden="true" class="svg-icon iconArrowUpDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="m7 2 4 4H3zm0 10 4-4H3z"/></svg></button>
                     </th>
                     <th scope="col" class="ta-right">
-                        <button type="button">Applies  ↕</button>
+                        <button type="button">Applies <svg aria-hidden="true" class="svg-icon iconArrowUpDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="m7 2 4 4H3zm0 10 4-4H3z"/></svg></button>
                     </th>
                 </tr>
             </thead>
@@ -685,25 +685,25 @@ If the table contains rows that should not be sorted, but rather always be at th
                     <th scope="col" data-s-table-target="column">
                         <button data-action="click-&gt;s-table#sort">
                             Season
-                            <span class="js-sorting-indicator js-sorting-indicator-asc d-none">↑</span>
-                            <span class="js-sorting-indicator js-sorting-indicator-desc d-none">↓</span>
-                            <span class="js-sorting-indicator js-sorting-indicator-none">↕</span>
+                            <span class="js-sorting-indicator js-sorting-indicator-asc d-none"><svg aria-hidden="true" class="svg-icon iconArrowUpSm" width="14" height="14" viewBox="0 0 14 14"><path d="M3 9h8L7 5z"/></svg></span>
+                            <span class="js-sorting-indicator js-sorting-indicator-desc d-none"><svg aria-hidden="true" class="svg-icon iconArrowDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="M3 5h8L7 9z"/></svg></span>
+                            <span class="js-sorting-indicator js-sorting-indicator-none"><svg aria-hidden="true" class="svg-icon iconArrowUpDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="m7 2 4 4H3zm0 10 4-4H3z"/></svg></span>
                         </button>
                     </th>
                     <th scope="col" data-s-table-target="column">
                         <button data-action="click-&gt;s-table#sort">
                             Starts in month
-                            <span class="js-sorting-indicator js-sorting-indicator-asc d-none">↑</span>
-                            <span class="js-sorting-indicator js-sorting-indicator-desc d-none">↓</span>
-                            <span class="js-sorting-indicator js-sorting-indicator-none">↕</span>
+                            <span class="js-sorting-indicator js-sorting-indicator-asc d-none"><svg aria-hidden="true" class="svg-icon iconArrowUpSm" width="14" height="14" viewBox="0 0 14 14"><path d="M3 9h8L7 5z"/></svg></span>
+                            <span class="js-sorting-indicator js-sorting-indicator-desc d-none"><svg aria-hidden="true" class="svg-icon iconArrowDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="M3 5h8L7 9z"/></svg></span>
+                            <span class="js-sorting-indicator js-sorting-indicator-none"><svg aria-hidden="true" class="svg-icon iconArrowUpDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="m7 2 4 4H3zm0 10 4-4H3z"/></svg></span>
                         </button>
                     </th>
                     <th scope="col" data-s-table-target="column">
                         <button data-action="click-&gt;s-table#sort">
                             Typical temperature in °C
-                            <span class="js-sorting-indicator js-sorting-indicator-asc d-none">↑</span>
-                            <span class="js-sorting-indicator js-sorting-indicator-desc d-none">↓</span>
-                            <span class="js-sorting-indicator js-sorting-indicator-none">↕</span>
+                            <span class="js-sorting-indicator js-sorting-indicator-asc d-none"><svg aria-hidden="true" class="svg-icon iconArrowUpSm" width="14" height="14" viewBox="0 0 14 14"><path d="M3 9h8L7 5z"/></svg></span>
+                            <span class="js-sorting-indicator js-sorting-indicator-desc d-none"><svg aria-hidden="true" class="svg-icon iconArrowDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="M3 5h8L7 9z"/></svg></span>
+                            <span class="js-sorting-indicator js-sorting-indicator-none"><svg aria-hidden="true" class="svg-icon iconArrowUpDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="m7 2 4 4H3zm0 10 4-4H3z"/></svg></span>
                         </button>
                     </th>
                 </tr>
