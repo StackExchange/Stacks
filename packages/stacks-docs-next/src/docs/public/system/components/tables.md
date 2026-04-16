@@ -651,7 +651,7 @@ If the table contains rows that should not be sorted, but rather always be at th
         <thead>
             <tr>
                 <th scope="col" data-s-table-target="column">
-                    <button data-action="click->s-table#sort">
+                    <button data-action="click-&gt;s-table#sort">
                         Season
                         <svg class="js-sorting-indicator js-sorting-indicator-asc d-none">…</svg>
                         <svg class="js-sorting-indicator js-sorting-indicator-desc d-none">…</svg>
@@ -681,7 +681,7 @@ If the table contains rows that should not be sorted, but rather always be at th
             <thead>
                 <tr>
                     <th scope="col" data-s-table-target="column">
-                        <button data-action="click->s-table#sort">
+                        <button data-action="click-&gt;s-table#sort">
                             Season
                             <Icon src={IconArrowUpSm} class="js-sorting-indicator js-sorting-indicator-asc d-none" />
                             <Icon src={IconArrowDownSm} class="js-sorting-indicator js-sorting-indicator-desc d-none" />
@@ -689,7 +689,7 @@ If the table contains rows that should not be sorted, but rather always be at th
                         </button>
                     </th>
                     <th scope="col" data-s-table-target="column">
-                        <button data-action="click->s-table#sort">
+                        <button data-action="click-&gt;s-table#sort">
                             Starts in month
                             <Icon src={IconArrowUpSm} class="js-sorting-indicator js-sorting-indicator-asc d-none" />
                             <Icon src={IconArrowDownSm} class="js-sorting-indicator js-sorting-indicator-desc d-none" />
@@ -697,7 +697,7 @@ If the table contains rows that should not be sorted, but rather always be at th
                         </button>
                     </th>
                     <th scope="col" data-s-table-target="column">
-                        <button data-action="click->s-table#sort">
+                        <button data-action="click-&gt;s-table#sort">
                             Typical temperature in °C
                             <Icon src={IconArrowUpSm} class="js-sorting-indicator js-sorting-indicator-asc d-none" />
                             <Icon src={IconArrowDownSm} class="js-sorting-indicator js-sorting-indicator-desc d-none" />
