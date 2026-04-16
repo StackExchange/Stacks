@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { IconServiceGitHub, IconServiceFigma, IconServiceSvelte, IconCheckFillCircle, IconLink } from '@stackoverflow/stacks-icons/icons';
+  import { IconServiceGitHub, IconServiceFigma, IconServiceSvelte, IconCheckFillCircle, IconLink, IconCode } from '@stackoverflow/stacks-icons/icons';
   import { Icon, Button, Link } from '@stackoverflow/stacks-svelte';
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
@@ -65,6 +65,13 @@
           </Link>
         {/if}
 
+        {#if data?.metadata?.js}
+          <Link href="#javascript">
+            <Icon src={IconCode} />
+            <span class="sm:d-none">JavaScript</span>
+          </Link>
+        {/if}
+
         {#if data?.metadata?.figma}
           <Link title="Open in Figma" href={data?.metadata?.figma}>
             <Icon src={IconServiceFigma} class="native" />
@@ -76,12 +83,6 @@
           <Link title="Svelte component docs" href={data?.metadata?.svelte}>
             <Icon src={IconServiceSvelte} class="native" />
             <span class="sm:d-none">Svelte</span>
-          </Link>
-        {/if}
-
-        {#if data?.metadata?.js}
-          <Link href="#javascript">
-            <span class="sm:d-none">JavaScript</span>
           </Link>
         {/if}
       </div>
