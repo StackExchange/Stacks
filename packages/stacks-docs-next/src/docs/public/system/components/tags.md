@@ -115,7 +115,7 @@ Tags should be focusable and navigable with the keyboard. The various tag states
 
 ## Sizes
 
-<div role="region" aria-label="Sizes table" tabindex="0" class="overflow-x-auto s-anchors s-anchors__underlined mb32">
+<div role="region" aria-label="Sizes table" tabindex="0" class="overflow-x-auto mb32">
     <table class="s-table s-table__bx-simple">
         <thead>
             <tr>
