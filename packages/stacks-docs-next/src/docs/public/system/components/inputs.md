@@ -2,1041 +2,429 @@
 title: "Inputs"
 description: "Input elements are used to gather information from users."
 svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-textinput--docs"
-figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=713-24991&amp;p=f&amp;m=dev"
+figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=713-24991&p=f&m=dev"
 ---
 
-<section class="docs-section">
-    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="classes">Classes</h2><a class="s-btn s-btn__clear" href="#classes"><span class="v-visible-sr">Section titled Classes</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    
-    
-    
-    
-    
+<script lang="ts">
+    import { Icon, Notice } from '@stackoverflow/stacks-svelte';
+    import { IconAlert, IconAlertFill, IconCheck, IconLock, IconSearch } from '@stackoverflow/stacks-icons/icons';
+    import ClassTable from '$components/ClassTable.svelte';
+    import Example from '$components/Example.svelte';
+    import type { ClassTableRow } from '$components/ClassTable.svelte';
 
+    // Legacy icons not in current @stackoverflow/stacks-icons
+    const svgCreditCard = `<svg aria-hidden="true" class="svg-icon iconCreditCard s-input-icon s-input-icon__creditcard" width="18" height="18" viewBox="0 0 18 18"><path d="M3 3h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2m0 6v4h12V9zm0-3h12V5H3z"/></svg>`;
+    const svgClearSm = `<svg aria-hidden="true" class="svg-icon iconClearSm" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41 10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg>`;
 
-    
+    const classes: ClassTableRow[] = [
+        { class: '.s-input',             parent: 'N/A',     modifies: 'N/A',    description: 'Base input style.' },
+        { class: '.s-input__creditcard', parent: 'N/A',     modifies: '.s-input', description: 'Adds a credit card icon to the input.' },
+        { class: '.s-input__search',     parent: 'N/A',     modifies: '.s-input', description: 'Adds a search icon to the input.' },
+        { class: '.s-input__sm',         parent: 'N/A',     modifies: '.s-input', description: 'Apply a small size.' },
+        { class: '.s-input__lg',         parent: 'N/A',     modifies: '.s-input', description: 'Apply a large size.' },
+    ];
 
+    const required: ClassTableRow[] = [
+        { class: '.s-required-symbol', parent: '<abbr> element enclosing the asterisk', description: 'Used to style the asterisk indicating that a specific field is required.' },
+    ];
 
+    const validationClasses: ClassTableRow[] = [
+        { class: '.has-warning', parent: 'Parent element', description: 'Used to warn users that the value they\'ve entered has a potential problem, but it doesn\'t block them from proceeding.' },
+        { class: '.has-error',   parent: 'Parent element', description: 'Used to alert users that the value they\'ve entered is incorrect, not filled in, or has a problem which will block them from proceeding.' },
+        { class: '.has-success', parent: 'Parent element', description: 'Used to notify users that the value they\'ve entered is fine or has been submitted successfully.' },
+    ];
+</script>
 
+## Classes
 
+<ClassTable {classes} />
 
-    
+## Base style
 
+Inputs are normally paired with a label, but there are times when they can be used without a label. Placeholder text should primarily be used as a content prompt and only provided when needed.
 
-
-    
-
-
-
-
-    
-
-
-
-    
-
-
-    
-
-
-
-    
-
-
-<div id="docs-table" class="overflow-x-auto s-anchors s-anchors__underlined" tabindex="0">
-    <table class="docs-table s-table s-table__bx-simple">
-        <thead>
-            <tr>
-                
-                    <th scope="col" class="s-table--cell4">
-                        Class
-                    </th>
-                
-                
-                
-                    <th scope="col" class="s-table--cell3">
-                        Modifies
-                    </th>
-                
-                
-                    <th scope="col" class="">
-                        Description
-                    </th>
-                
-            </tr>
-        </thead>
-        <tbody class="fs-caption">
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-input</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                <em class="fc-black-350">N/A</em>
-                            
-                        </td>
-                    
-                    
-                        <td>Base input style.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-input__creditcard</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-input</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>Adds a credit card icon to the input.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-input__search</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-input</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>Adds a search icon to the input.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-input__sm</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-input</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>Apply a small size.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-input__lg</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                
-                                
-                                    <code>.s-input</code>
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>Apply a large size.</td>
-                    
-                </tr>
-            
-        </tbody>
-    </table>
+```html
+<!-- Base -->
+<div class="s-form-group">
+    <label class="s-label" for="example-item1">Full name</label>
+    <p class="s-description">This will be shown only to employers and other Team members.</p>
+    <input class="s-input" id="example-item1" type="text" placeholder="Enter your input here" />
 </div>
 
-
-<!-- Reset all default values -->
-
-
-
-
-
-
-
-
-
-
-
-
-</section>
-
-<section class="docs-section">
-    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="base-style">Base style</h2><a class="s-btn s-btn__clear" href="#base-style"><span class="v-visible-sr">Section titled Base style</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">Inputs are normally paired with a label, but there are times when they can be used without a label. Placeholder text should primarily be used as a content prompt and only provided when needed.</p>
-
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-comment">&lt;!-- Base --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-form-group"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-label"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"example-item1"</span>&gt;</span>Full name<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-description"</span>&gt;</span>This will be shown only to employers and other Team members.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-input"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example-item1"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Enter your input here"</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- Disabled --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-form-group is-disabled"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-label"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"example-item2"</span>&gt;</span>Display name<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d-flex ps-relative"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-input"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example-item2"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Enter your input here"</span> <span class="hljs-attr">disabled</span> /&gt;</span><br>        {% icon "Lock", "s-input-icon fc-black-400" %}<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- Readonly --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-form-group ps-relative is-readonly"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-label"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"example-item3"</span>&gt;</span>Legal name<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d-flex ps-relative"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-input"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example-item3"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Enter your input here"</span> <span class="hljs-attr">readonly</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Prefilled readonly input"</span> /&gt;</span><br>        {% icon "Lock", "s-input-icon" %}<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div class="d-flex gy16 fd-column">
-                <div class="s-form-group">
-                    <label class="s-label" for="example-item1">Full name</label>
-                    <p class="s-description">This will be shown only to employers and other Team members.</p>
-                    <input class="s-input" id="example-item1" type="text" placeholder="Enter your input here">
-                </div>
-                <div class="s-form-group is-disabled">
-                    <label class="s-label" for="example-item2">Display name</label>
-                    <div class="d-flex ps-relative">
-                        <input class="s-input" id="example-item2" type="text" placeholder="Enter your input here" disabled="">
-                        <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLock s-input-icon fc-black-400" aria-hidden="true"><path d="M13.5 5.92a3.5 3.5 0 0 0-7 0V9h7zM3.5 17.5h13v-7h-13zM15 9h3v10H2V9h3V5.66a5 5 0 0 1 5-4.74h.26a5 5 0 0 1 4.73 4.74l.01.26z"></path></svg>
-                    </div>
-                </div>
-                <div class="s-form-group ps-relative is-readonly">
-                    <label class="s-label" for="example-item3">Legal name</label>
-                    <div class="d-flex ps-relative">
-                        <input class="s-input" id="example-item3" type="text" placeholder="Enter your input here" readonly="" value="Prefilled readonly input">
-                        <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLock s-input-icon" aria-hidden="true"><path d="M13.5 5.92a3.5 3.5 0 0 0-7 0V9h7zM3.5 17.5h13v-7h-13zM15 9h3v10H2V9h3V5.66a5 5 0 0 1 5-4.74h.26a5 5 0 0 1 4.73 4.74l.01.26z"></path></svg>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- Disabled -->
+<div class="s-form-group is-disabled">
+    <label class="s-label" for="example-item2">Display name</label>
+    <div class="d-flex ps-relative">
+        <input class="s-input" id="example-item2" type="text" placeholder="Enter your input here" disabled />
+        <svg class="svg-icon s-input-icon fc-black-400" aria-hidden="true">…</svg>
     </div>
-</section>
-
-<section class="docs-section">
-    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="accessibility">Accessibility</h2><a class="s-btn s-btn__clear" href="#accessibility"><span class="v-visible-sr">Section titled Accessibility</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">The best accessibility is semantic HTML. Most screen readers understand how to parse inputs if they're correctly formatted. When it comes to inputs, there are a few things to keep in mind:</p>
-    <ul class="docs-copy">
-        <li>All inputs should have an <code>id</code> attribute.</li>
-        <li>Be sure to associate the input’s label by using the <code>for</code> attribute. The value here is the input’s <code>id</code>.</li>
-        <li>If you have a group of related inputs, use the <code>fieldset</code> and <code>legend</code> to group them together.</li>
-    </ul>
-    <p class="docs-copy">For more information, please read Gov.UK's article, <a href="https://accessibility.blog.gov.uk/2016/07/22/using-the-fieldset-and-legend-elements/" target="_blank"><em>"Using the fieldset and legend elements"</em></a>.</p>
-
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="required-input-fields">Required input fields</h3><a class="s-btn s-btn__clear" href="#required-input-fields"><span class="v-visible-sr">Section titled Required input fields</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">Labels or instructions must be provided when content requires user input. For any input field within a form that is required for successful data submission, provide the asterisk <code>*</code> as a symbol and a legend advising the meaning of the symbol before the first use.</p>
-    <p class="docs-copy">Stacks includes a special <code>.s-required-symbol</code> class to ensure the symbol (asterisk) is clearly visible.</p>
-
-    
-    
-    
-    
-    
-
-
-    
-
-
-
-
-    
-
-
-    
-
-
-
-    
-
-
-
-
-    
-
-
-
-
-    
-
-
-
-    
-
-
-<div id="docs-table" class="overflow-x-auto s-anchors s-anchors__underlined" tabindex="0">
-    <table class="docs-table s-table s-table__bx-simple">
-        <thead>
-            <tr>
-                
-                    <th scope="col" class="s-table--cell3">
-                        Class
-                    </th>
-                
-                
-                
-                    <th scope="col" class="s-table--cell4">
-                        Applies
-                    </th>
-                
-                
-                    <th scope="col" class="">
-                        Description
-                    </th>
-                
-            </tr>
-        </thead>
-        <tbody class="fs-caption">
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-required-symbol</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>
-                            
-                                
-                                    <span class="ff-mono fs-fine"><code>abbr</code> element enclosing the asterisk</span>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>Used to style the asterisk indicating that a specific field is required.</td>
-                    
-                </tr>
-            
-        </tbody>
-    </table>
 </div>
 
-
-<!-- Reset all default values -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">abbr</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-required-symbol"</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"required"</span>&gt;</span>*<span class="hljs-tag">&lt;/<span class="hljs-name">abbr</span>&gt;</span></code></pre>
-    <p class="docs-copy mt16">Required symbols are not necessary for areas where only a single input field is seen on the page (ex: sign up modals). For more information, see <a href="https://www.w3.org/WAI/WCAG22/Techniques/html/H90" target="_blank">WCAG Technique H90</a>.</p>
-
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="required-input-fields-example">Required input fields example</h3><a class="s-btn s-btn__clear" href="#required-input-fields-example"><span class="v-visible-sr">Section titled Required input fields example</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d-flex w100 jc-space-between ai-center"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fs-headline1 fw-normal mb16"</span>&gt;</span><br>        Ask a question<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fs-caption fc-black-400"</span>&gt;</span>Required fields<span class="hljs-tag">&lt;<span class="hljs-name">abbr</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-required-symbol"</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"required"</span>&gt;</span>*<span class="hljs-tag">&lt;/<span class="hljs-name">abbr</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d-flex fd-column gy24"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-form-group"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-label"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"example-title-required"</span>&gt;</span>Title<span class="hljs-tag">&lt;<span class="hljs-name">abbr</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-required-symbol"</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"required"</span>&gt;</span>*<span class="hljs-tag">&lt;/<span class="hljs-name">abbr</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-input"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example-title-required"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Type a title"</span> /&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-form-group"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-label"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"example-body-required"</span>&gt;</span>Body<span class="hljs-tag">&lt;<span class="hljs-name">abbr</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-required-symbol"</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"required"</span>&gt;</span>*<span class="hljs-tag">&lt;/<span class="hljs-name">abbr</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-textarea hmn1"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example-body-required"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Type a question"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-form-group"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-label"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"example-ask-members"</span>&gt;</span>Ask team members<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-input"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example-ask-members"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Type a name"</span> /&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div class="d-flex w100 jc-space-between ai-center">
-                <h1 class="fs-headline1 fw-normal mb16">
-                    Ask a question
-                </h1>
-                <p class="fs-caption fc-black-400">Required fields<abbr class="s-required-symbol" title="required">*</abbr></p>
-            </div>
-            <form class="d-flex fd-column gy24">
-                <div class="s-form-group">
-                    <label class="s-label" for="example-title-required">Title<abbr class="s-required-symbol" title="required">*</abbr></label>
-                    <input class="s-input" id="example-title-required" type="text" placeholder="Type a title">
-                </div>
-                <div class="s-form-group">
-                    <label class="s-label" for="example-body-required">Body<abbr class="s-required-symbol" title="required">*</abbr></label>
-                    <textarea class="s-textarea hmn1" id="example-body-required" placeholder="Type a question"></textarea>
-                </div>
-                <div class="s-form-group">
-                    <label class="s-label" for="example-ask-members">Ask team members</label>
-                    <input class="s-input" id="example-ask-members" type="text" placeholder="Type a name">
-                </div>
-            </form>
-        </div>
+<!-- Readonly -->
+<div class="s-form-group ps-relative is-readonly">
+    <label class="s-label" for="example-item3">Legal name</label>
+    <div class="d-flex ps-relative">
+        <input class="s-input" id="example-item3" type="text" placeholder="Enter your input here" readonly value="Prefilled readonly input" />
+        <svg class="svg-icon s-input-icon" aria-hidden="true">…</svg>
     </div>
-</section>
-
-<section class="docs-section">
-    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="validation-states">Validation states</h2><a class="s-btn s-btn__clear" href="#validation-states"><span class="v-visible-sr">Section titled Validation states</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">Validation states provides the user feedback based on their interaction (or lack of interaction) with an input. These styles are applied by applying the appropriate class to the wrapping parent container.</p>
-
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="validation-classes">Validation classes</h3><a class="s-btn s-btn__clear" href="#validation-classes"><span class="v-visible-sr">Section titled Validation classes</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    
-    
-    
-    
-
-
-    
-
-
-
-
-    
-
-
-    
-
-
-    
-
-
-    
-
-
-
-
-    
-
-
-
-
-    
-
-
-
-    
-
-
-<div id="docs-table" class="overflow-x-auto s-anchors s-anchors__underlined" tabindex="0">
-    <table class="docs-table s-table s-table__bx-simple">
-        <thead>
-            <tr>
-                
-                    <th scope="col" class="s-table--cell3">
-                        Class
-                    </th>
-                
-                
-                    <th scope="col" class="s-table--cell2">
-                        Applies to
-                    </th>
-                
-                
-                
-                    <th scope="col" class="">
-                        Description
-                    </th>
-                
-            </tr>
-        </thead>
-        <tbody class="fs-caption">
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.has-warning</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                
-                                    <span class="ff-mono fs-fine">Parent element</span>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>Used to warn users that the value they’ve entered has a potential problem, but it doesn’t block them from proceeding.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.has-error</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                
-                                    <span class="ff-mono fs-fine">Parent element</span>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>Used to alert users that the value they’ve entered is incorrect, not filled in, or has a problem which will block them from proceeding.</td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.has-success</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                
-                                    <span class="ff-mono fs-fine">Parent element</span>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                    
-                        <td>Used to notify users that the value they’ve entered is fine or has been submitted successfully.</td>
-                    
-                </tr>
-            
-        </tbody>
-    </table>
 </div>
+```
 
-
-<!-- Reset all default values -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="validation-guidance">Validation guidance</h3><a class="s-btn s-btn__clear" href="#validation-guidance"><span class="v-visible-sr">Section titled Validation guidance</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">
-        In most cases, validation states shouldn’t be shown until after the user has submitted the form. There are certain exceptions where it can be appropriate to show a validation state without form submission—after a sufficient delay. For example, validating the existence of a username can occur after the user has stopped typing, or when they’ve deselected the input.
-    </p>
-    <p class="docs-copy">
-        Once the user is presented validation states, they can be cleared as soon as the user interacts with the form field. For example, the error state for an incorrect password should be cleared as soon as the user focuses the input to re-enter their password.
-    </p>
-    <p class="docs-copy mb32">
-        Similarly to using <code>for</code> with labels, validation messages below inputs should be associated with their respective fields using the <code>aria-describedby</code> attribute for accessible behavior.
-    </p>
-
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="validation-examples">Validation examples</h3><a class="s-btn s-btn__clear" href="#validation-examples"><span class="v-visible-sr">Section titled Validation examples</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <div class="d-flex jc-space-between ai-end mb12"><h4 class="fl-grow1 mb0 lh-sm  fs-body3 fc-black-400" id="warning">Warning</h4><a class="s-btn s-btn__clear" href="#warning"><span class="v-visible-sr">Section titled Warning</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-form-group has-warning"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-label"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"example-warning"</span>&gt;</span>Username<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d-flex ps-relative"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-input"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example-warning"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">""</span> <span class="hljs-attr">aria-describedby</span>=<span class="hljs-string">"example-warning-desc"</span> /&gt;</span><br>        @Svg.Alert.With("s-input-icon")<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example-warning-desc"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-input-message"</span>&gt;</span>Caps lock is on! <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Having trouble entering your username?<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div>
-                <div class="s-form-group has-warning">
-                    <label class="s-label" for="example-warning">Username</label>
-                    <div class="d-flex ps-relative">
-                        <input class="s-input" id="example-warning" type="text" value="AA" aria-describedby="example-warning-desc">
-                        <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconAlert s-input-icon" aria-hidden="true"><path d="M10 2q.41.01.64.37l8.76 14.58a.75.75 0 0 1-.65 1.14H1.25a.75.75 0 0 1-.65-1.14L9.36 2.37l.05-.09A.8.8 0 0 1 10 2M2.57 16.6h14.86L10 4.2zM11 15.52H9v-2h2zm0-2.97H9v-5.5h2z"></path></svg>
-                    </div>
-                    <p id="example-warning-desc" class="s-input-message">Caps lock is on! <a href="#">Having trouble entering your username?</a></p>
-                </div>
+<Example>
+    <div class="d-flex gy16 fd-column">
+        <div class="s-form-group">
+            <label class="s-label" for="example-item1">Full name</label>
+            <p class="s-description">This will be shown only to employers and other Team members.</p>
+            <input class="s-input" id="example-item1" type="text" placeholder="Enter your input here" />
+        </div>
+        <div class="s-form-group is-disabled">
+            <label class="s-label" for="example-item2">Display name</label>
+            <div class="d-flex ps-relative">
+                <input class="s-input" id="example-item2" type="text" placeholder="Enter your input here" disabled />
+                <Icon src={IconLock} class="s-input-icon fc-black-400" />
+            </div>
+        </div>
+        <div class="s-form-group ps-relative is-readonly">
+            <label class="s-label" for="example-item3">Legal name</label>
+            <div class="d-flex ps-relative">
+                <input class="s-input" id="example-item3" type="text" placeholder="Enter your input here" readonly value="Prefilled readonly input" />
+                <Icon src={IconLock} class="s-input-icon" />
             </div>
         </div>
     </div>
+</Example>
 
-    <div class="d-flex jc-space-between ai-end mb12"><h4 class="fl-grow1 mb0 lh-sm  fs-body3 fc-black-400" id="error">Error</h4><a class="s-btn s-btn__clear" href="#error"><span class="v-visible-sr">Section titled Error</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <div class="s-notice s-anchors s-anchors__inherit s-anchors__underlined s-notice__warning mb16"><span class="s-notice--icon"><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconAlert" aria-hidden="true"><path d="M10 2q.41.01.64.37l8.76 14.58a.75.75 0 0 1-.65 1.14H1.25a.75.75 0 0 1-.65-1.14L9.36 2.37l.05-.09A.8.8 0 0 1 10 2M2.57 16.6h14.86L10 4.2zM11 15.52H9v-2h2zm0-2.97H9v-5.5h2z"></path></svg></span><span>
-        <p class="mb0">In addition to using the "error" state for a field, be sure to use the <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-invalid_attributev"><code>aria-invalid</code></a> attribute to indicate to assistive technology that respective fields have failed validation.</p>
-    </span></div>
+## Accessibility
 
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-form-group has-error"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-label"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"example-error"</span>&gt;</span>Username<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d-flex ps-relative"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-input"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example-error"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"e.g. johndoe111"</span> <span class="hljs-attr">aria-describedby</span>=<span class="hljs-string">"example-error-desc"</span> <span class="hljs-attr">aria-invalid</span>=<span class="hljs-string">"true"</span> /&gt;</span><br>        @Svg.AlertFill.With("s-input-icon")<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example-error-desc"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-input-message"</span>&gt;</span>You must provide a username. <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Forgot your username?<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div>
-                <div class="s-form-group has-error">
-                    <label class="s-label" for="example-error">Username</label>
-                    <div class="d-flex ps-relative">
-                        <input class="s-input" id="example-error" type="text" aria-describedby="example-error-desc">
-                        <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconAlertFill s-input-icon" aria-hidden="true"><path d="M10 2q.41.01.64.37l8.76 14.58a.75.75 0 0 1-.65 1.14H1.25a.75.75 0 0 1-.65-1.14L9.36 2.37l.05-.08A.8.8 0 0 1 10 2M9 13.53v2h2v-2zm0-6.47v5.5h2v-5.5z"></path></svg>
-                    </div>
-                    <p id="example-error-desc" class="s-input-message">You must provide a username. <a href="#">Forgot your username?</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
+The best accessibility is semantic HTML. Most screen readers understand how to parse inputs if they're correctly formatted. When it comes to inputs, there are a few things to keep in mind:
 
-    <div class="d-flex jc-space-between ai-end mb12"><h4 class="fl-grow1 mb0 lh-sm  fs-body3 fc-black-400" id="success">Success</h4><a class="s-btn s-btn__clear" href="#success"><span class="v-visible-sr">Section titled Success</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-form-group has-success"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-label"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"example-success"</span>&gt;</span>Username<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d-flex ps-relative"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-input"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example-success"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">aria-describedby</span>=<span class="hljs-string">"example-success-desc"</span> /&gt;</span><br>        @Svg.Checkmark.With("s-input-icon")<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example-success-desc"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-input-message"</span>&gt;</span>That name is available! <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Why do we require a username?<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div>
-                <div class="s-form-group has-success">
-                    <label class="s-label" for="example-success">Username</label>
-                    <div class="d-flex ps-relative">
-                        <input class="s-input" id="example-success" type="text" value="aaronshekey" aria-describedby="example-success-desc">
-                        <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconCheck s-input-icon" aria-hidden="true"><path d="m18.16 5-.53.53L7.55 15.61l-.53.53-5.03-5.03 1.06-1.06 3.97 3.97 9.55-9.55.53-.53z"></path></svg>
-                    </div>
-                    <p id="example-success-desc" class="s-input-message">That name is available! <a href="#">Why do we require a username?</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+- All inputs should have an `id` attribute.
+- Be sure to associate the input's label by using the `for` attribute. The value here is the input's `id`.
+- If you have a group of related inputs, use the `fieldset` and `legend` to group them together.
 
-<section class="docs-section">
-    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="icons">Icons</h2><a class="s-btn s-btn__clear" href="#icons"><span class="v-visible-sr">Section titled Icons</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="search">Search</h3><a class="s-btn s-btn__clear" href="#search"><span class="v-visible-sr">Section titled Search</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">Stacks provides helper classes to consistently style an input used for search. First, wrap your search input in an element with relative positioning. Then, and add <code>s-input__search</code> to the input itself. Finally, be sure to add <code>s-input-icon</code> and <code>s-input-icon__search</code> to the search icon.</p>
+For more information, please read Gov.UK's article, [*"Using the fieldset and legend elements"*](https://accessibility.blog.gov.uk/2016/07/22/using-the-fieldset-and-legend-elements/).
 
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ps-relative"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"v-visible-sr"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"example-search"</span>&gt;</span>Search<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-input s-input__search"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example-search"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Search…"</span> /&gt;</span><br>    @Svg.Search.With("s-input-icon s-input-icon__search")<br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div class="ps-relative">
-                <label class="v-visible-sr" for="example-search">Search</label>
-                <input class="s-input s-input__search" id="example-search" type="text" placeholder="Search…">
-                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconSearch s-input-icon s-input-icon__search" aria-hidden="true"><path d="M8.25 1a7.25 7.25 0 0 1 6.67 10.1l-1.17-1.17a5.75 5.75 0 1 0-.94 1.82l1.07 1.07 4.15 4.15-1.06 1.06-4.15-4.15A7.25 7.25 0 1 1 8.25 1"></path></svg>
-            </div>
-        </div>
-    </div>
+### Required input fields
 
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="credit-card">Credit Card</h3><a class="s-btn s-btn__clear" href="#credit-card"><span class="v-visible-sr">Section titled Credit Card</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ps-relative"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"v-visible-sr"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"example-creditcard"</span>&gt;</span>Credit Card<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-input s-input__creditcard"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"example-creditcard"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> /&gt;</span><br>    @Svg.CreditCard.With("s-input-icon s-input-icon__creditcard")<br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div class="ps-relative">
-                <label class="v-visible-sr" for="example-creditcard">Credit Card</label>
-                <input class="s-input s-input__creditcard" id="example-creditcard" type="text">
-                <svg aria-hidden="true" class="svg-icon iconCreditCard s-input-icon s-input-icon__creditcard" width="18" height="18" viewBox="0 0 18 18"><path d="M3 3h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2m0 6v4h12V9zm0-3h12V5H3z"></path></svg>
-            </div>
-        </div>
-    </div>
-</section>
+Labels or instructions must be provided when content requires user input. For any input field within a form that is required for successful data submission, provide the asterisk `*` as a symbol and a legend advising the meaning of the symbol before the first use.
 
-<section class="docs-section">
-    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="sizes">Sizes</h2><a class="s-btn s-btn__clear" href="#sizes"><span class="v-visible-sr">Section titled Sizes</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+Stacks includes a special `.s-required-symbol` class to ensure the symbol (asterisk) is clearly visible.
 
-    
-    
-    
-    
-    
-    
+<ClassTable classes={required} headings={{ parent: 'Applies to' }} />
 
+```html
+<abbr class="s-required-symbol" title="required">*</abbr>
+```
 
+Required symbols are not necessary for areas where only a single input field is seen on the page (ex: sign up modals). For more information, see [WCAG Technique H90](https://www.w3.org/WAI/WCAG22/Techniques/html/H90).
 
+### Required input fields example
 
-
-    
-
-
-    
-
-
-    
-
-
-    
-
-
-
-
-    
-
-
-
-
-
-
-    
-
-
-<div id="input-sizes-table" class="overflow-x-auto s-anchors s-anchors__underlined" tabindex="0">
-    <table class="docs-table s-table s-table__bx-simple">
-        <thead>
-            <tr>
-                
-                    <th scope="col" class="s-table--cell3">
-                        Class
-                    </th>
-                
-                
-                    <th scope="col" class="s-table--cell2">
-                        Name
-                    </th>
-                
-                
-                    <th scope="col" class="s-table--cell2">
-                        Size
-                    </th>
-                
-                
-                    <th scope="col" class="">
-                        Example
-                    </th>
-                
-            </tr>
-        </thead>
-        <tbody class="fs-caption">
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-input__sm</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                
-                                    <span class="ff-mono fs-fine">Small</span>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                
-                                    <span class="ff-mono fs-fine">13px</span>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                        <td><input type="text" placeholder="e.g. What is Stacks?" class="s-input s-input__sm"></td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                <em class="fc-black-350">N/A</em>
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                
-                                    <span class="ff-mono fs-fine">Default</span>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                
-                                    <span class="ff-mono fs-fine">14px</span>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                        <td><input type="text" placeholder="e.g. What is Stacks?" class="s-input"></td>
-                    
-                </tr>
-            
-                <tr>
-                    
-                        <td>
-                            
-                                
-                                    <code>.s-input__lg</code>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                
-                                    <span class="ff-mono fs-fine">Large</span>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                        <td>
-                            
-                                
-                                    <span class="ff-mono fs-fine">18px</span>
-                                
-                                
-                            
-                        </td>
-                    
-                    
-                        <td><input type="text" placeholder="e.g. What is Stacks?" class="s-input s-input__lg"></td>
-                    
-                </tr>
-            
-        </tbody>
-    </table>
+```html
+<div class="d-flex w100 jc-space-between ai-center">
+    <h1 class="fs-headline1 fw-normal mb16">
+        Ask a question
+    </h1>
+    <p class="fs-caption fc-black-400">Required fields<abbr class="s-required-symbol" title="required">*</abbr></p>
 </div>
+<form class="d-flex fd-column gy24">
+    <div class="s-form-group">
+        <label class="s-label" for="example-title-required">Title<abbr class="s-required-symbol" title="required">*</abbr></label>
+        <input class="s-input" id="example-title-required" type="text" placeholder="Type a title" />
+    </div>
+    <div class="s-form-group">
+        <label class="s-label" for="example-body-required">Body<abbr class="s-required-symbol" title="required">*</abbr></label>
+        <textarea class="s-textarea hmn1" id="example-body-required" placeholder="Type a question"></textarea>
+    </div>
+    <div class="s-form-group">
+        <label class="s-label" for="example-ask-members">Ask team members</label>
+        <input class="s-input" id="example-ask-members" type="text" placeholder="Type a name" />
+    </div>
+</form>
+```
 
+<Example>
+    <div class="d-flex w100 jc-space-between ai-center">
+        <h1 class="fs-headline1 fw-normal mb16">
+            Ask a question
+        </h1>
+        <p class="fs-caption fc-black-400">Required fields<abbr class="s-required-symbol" title="required">*</abbr></p>
+    </div>
+    <form class="d-flex fd-column gy24">
+        <div class="s-form-group">
+            <label class="s-label" for="example-title-required">Title<abbr class="s-required-symbol" title="required">*</abbr></label>
+            <input class="s-input" id="example-title-required" type="text" placeholder="Type a title" />
+        </div>
+        <div class="s-form-group">
+            <label class="s-label" for="example-body-required">Body<abbr class="s-required-symbol" title="required">*</abbr></label>
+            <textarea class="s-textarea hmn1" id="example-body-required" placeholder="Type a question"></textarea>
+        </div>
+        <div class="s-form-group">
+            <label class="s-label" for="example-ask-members">Ask team members</label>
+            <input class="s-input" id="example-ask-members" type="text" placeholder="Type a name" />
+        </div>
+    </form>
+</Example>
 
-<!-- Reset all default values -->
+## Validation states
 
+Validation states provides the user feedback based on their interaction (or lack of interaction) with an input. These styles are applied by applying the appropriate class to the wrapping parent container.
 
+### Validation classes
 
+<ClassTable classes={validationClasses} headings={{ parent: 'Applies to' }} />
 
+### Validation guidance
 
+In most cases, validation states shouldn't be shown until after the user has submitted the form. There are certain exceptions where it can be appropriate to show a validation state without form submission—after a sufficient delay. For example, validating the existence of a username can occur after the user has stopped typing, or when they've deselected the input.
 
+Once the user is presented validation states, they can be cleared as soon as the user interacts with the form field. For example, the error state for an incorrect password should be cleared as soon as the user focuses the input to re-enter their password.
 
+Similarly to using `for` with labels, validation messages below inputs should be associated with their respective fields using the `aria-describedby` attribute for accessible behavior.
 
+### Validation examples
 
+#### Warning
 
+```html
+<div class="s-form-group has-warning">
+    <label class="s-label" for="example-warning">Username</label>
+    <div class="d-flex ps-relative">
+        <input class="s-input" id="example-warning" type="text" placeholder="" aria-describedby="example-warning-desc" />
+        <svg class="svg-icon s-input-icon" aria-hidden="true">…</svg>
+    </div>
+    <p id="example-warning-desc" class="s-input-message">Caps lock is on! <a href="#">Having trouble entering your username?</a></p>
+</div>
+```
 
+<Example>
+    <div class="s-form-group has-warning">
+        <label class="s-label" for="example-warning">Username</label>
+        <div class="d-flex ps-relative">
+            <input class="s-input" id="example-warning" type="text" value="AA" aria-describedby="example-warning-desc" />
+            <Icon src={IconAlert} class="s-input-icon" />
+        </div>
+        <p id="example-warning-desc" class="s-input-message">Caps lock is on! <a href="#">Having trouble entering your username?</a></p>
+    </div>
+</Example>
 
-</section>
+#### Error
 
-<section class="docs-section">
-    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="input-fills">Input fills</h2><a class="s-btn s-btn__clear" href="#input-fills"><span class="v-visible-sr">Section titled Input fills</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">Input fills are used to visually connect input text boxes with related content.</p>
+<Notice variant="warning" role="note" class="mb16">
+    <p>In addition to using the "error" state for a field, be sure to use the <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-invalid_attributev"><code>aria-invalid</code></a> attribute to indicate to assistive technology that respective fields have failed validation.</p>
+</Notice>
 
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="prepended-inputs">Prepended inputs</h3><a class="s-btn s-btn__clear" href="#prepended-inputs"><span class="v-visible-sr">Section titled Prepended inputs</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-form-group"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-label"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"website-url"</span>&gt;</span>Website URL<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d-flex"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-input-fill order-first"</span>&gt;</span>https://<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d-flex fl-grow1 ps-relative"</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-input blr0"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"website-url"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"www.stackoverflow.com"</span> /&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div class="s-form-group">
-                <label class="s-label" for="website-url">Website URL</label>
-                <div class="d-flex">
-                    <div class="s-input-fill order-first">https://</div>
-                    <div class="d-flex fl-grow1 ps-relative">
-                        <input class="s-input blr0" type="text" id="website-url" placeholder="www.stackoverflow.com">
-                    </div>
-                </div>
+```html
+<div class="s-form-group has-error">
+    <label class="s-label" for="example-error">Username</label>
+    <div class="d-flex ps-relative">
+        <input class="s-input" id="example-error" type="text" placeholder="e.g. johndoe111" aria-describedby="example-error-desc" aria-invalid="true" />
+        <svg class="svg-icon s-input-icon" aria-hidden="true">…</svg>
+    </div>
+    <p id="example-error-desc" class="s-input-message">You must provide a username. <a href="#">Forgot your username?</a></p>
+</div>
+```
+
+<Example>
+    <div class="s-form-group has-error">
+        <label class="s-label" for="example-error">Username</label>
+        <div class="d-flex ps-relative">
+            <input class="s-input" id="example-error" type="text" aria-describedby="example-error-desc" />
+            <Icon src={IconAlertFill} class="s-input-icon" />
+        </div>
+        <p id="example-error-desc" class="s-input-message">You must provide a username. <a href="#">Forgot your username?</a></p>
+    </div>
+</Example>
+
+#### Success
+
+```html
+<div class="s-form-group has-success">
+    <label class="s-label" for="example-success">Username</label>
+    <div class="d-flex ps-relative">
+        <input class="s-input" id="example-success" type="text" aria-describedby="example-success-desc" />
+        <svg class="svg-icon s-input-icon" aria-hidden="true">…</svg>
+    </div>
+    <p id="example-success-desc" class="s-input-message">That name is available! <a href="#">Why do we require a username?</a></p>
+</div>
+```
+
+<Example>
+    <div class="s-form-group has-success">
+        <label class="s-label" for="example-success">Username</label>
+        <div class="d-flex ps-relative">
+            <input class="s-input" id="example-success" type="text" value="aaronshekey" aria-describedby="example-success-desc" />
+            <Icon src={IconCheck} class="s-input-icon" />
+        </div>
+        <p id="example-success-desc" class="s-input-message">That name is available! <a href="#">Why do we require a username?</a></p>
+    </div>
+</Example>
+
+## Icons
+
+### Search
+
+Stacks provides helper classes to consistently style an input used for search. First, wrap your search input in an element with relative positioning. Then, and add `s-input__search` to the input itself. Finally, be sure to add `s-input-icon` and `s-input-icon__search` to the search icon.
+
+```html
+<div class="ps-relative">
+    <label class="v-visible-sr" for="example-search">Search</label>
+    <input class="s-input s-input__search" id="example-search" type="text" placeholder="Search…" />
+    <svg class="svg-icon s-input-icon s-input-icon__search" aria-hidden="true">…</svg>
+</div>
+```
+
+<Example>
+    <div class="ps-relative">
+        <label class="v-visible-sr" for="example-search">Search</label>
+        <input class="s-input s-input__search" id="example-search" type="text" placeholder="Search…" />
+        <Icon src={IconSearch} class="s-input-icon s-input-icon__search" />
+    </div>
+</Example>
+
+### Credit Card
+
+```html
+<div class="ps-relative">
+    <label class="v-visible-sr" for="example-creditcard">Credit Card</label>
+    <input class="s-input s-input__creditcard" id="example-creditcard" type="text" />
+    <svg class="svg-icon s-input-icon s-input-icon__creditcard" aria-hidden="true">…</svg>
+</div>
+```
+
+<Example>
+    <div class="ps-relative">
+        <label class="v-visible-sr" for="example-creditcard">Credit Card</label>
+        <input class="s-input s-input__creditcard" id="example-creditcard" type="text" />
+        {@html svgCreditCard}
+    </div>
+</Example>
+
+## Sizes
+
+<Example>
+    <div class="d-flex ai-start fw-wrap g24">
+        <div class="d-flex fd-column g8">
+            <span class="ff-mono mb8">Small — 13px — .s-input__sm</span>
+            <input type="text" placeholder="e.g. What is Stacks?" class="s-input s-input__sm" />
+        </div>
+        <div class="d-flex fd-column g8">
+            <span class="ff-mono mb8">Default — 14px</span>
+            <input type="text" placeholder="e.g. What is Stacks?" class="s-input" />
+        </div>
+        <div class="d-flex fd-column g8">
+            <span class="ff-mono mb8">Large — 18px — .s-input__lg</span>
+            <input type="text" placeholder="e.g. What is Stacks?" class="s-input s-input__lg" />
+        </div>
+    </div>
+</Example>
+
+## Input fills
+
+Input fills are used to visually connect input text boxes with related content.
+
+### Prepended inputs
+
+```html
+<div class="s-form-group">
+    <label class="s-label" for="website-url">Website URL</label>
+    <div class="d-flex">
+        <div class="s-input-fill order-first">https://</div>
+        <div class="d-flex fl-grow1 ps-relative">
+            <input class="s-input blr0" type="text" id="website-url" placeholder="www.stackoverflow.com" />
+        </div>
+    </div>
+</div>
+```
+
+<Example>
+    <div class="s-form-group">
+        <label class="s-label" for="website-url">Website URL</label>
+        <div class="d-flex">
+            <div class="s-input-fill order-first">https://</div>
+            <div class="d-flex fl-grow1 ps-relative">
+                <input class="s-input blr0" type="text" id="website-url" placeholder="www.stackoverflow.com" />
             </div>
         </div>
     </div>
+</Example>
 
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="appended-inputs">Appended inputs</h3><a class="s-btn s-btn__clear" href="#appended-inputs"><span class="v-visible-sr">Section titled Appended inputs</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-form-group"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-label"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"min-salary"</span>&gt;</span>Minimum Salary<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d-flex"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d-flex ai-center order-last s-input-fill"</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d-flex gx4 ai-center"</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-checkbox"</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"checkbox"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"need-visa"</span> /&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-label"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"need-visa"</span>&gt;</span>Need Visa Sponsorship<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d-flex fl-grow1 ps-relative"</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-input brr0"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"number"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"min-salary"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"e.g. 125,000"</span> /&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div class="s-form-group">
-                <label class="s-label" for="min-salary">Minimum Salary</label>
-                <div class="d-flex">
-                    <div class="d-flex ai-center order-last s-input-fill">
-                        <div class="d-flex gx4 ai-center">
-                            <div class="s-checkbox">
-                                <input type="checkbox" id="need-visa">
-                                <label class="s-label" for="need-visa">Need Visa Sponsorship</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex fl-grow1 ps-relative">
-                        <input class="s-input brr0" type="number" id="min-salary" placeholder="e.g. 125,000">
-                    </div>
+### Appended inputs
+
+```html
+<div class="s-form-group">
+    <label class="s-label" for="min-salary">Minimum Salary</label>
+    <div class="d-flex">
+        <div class="d-flex ai-center order-last s-input-fill">
+            <div class="d-flex gx4 ai-center">
+                <div class="s-checkbox">
+                    <input type="checkbox" id="need-visa" />
+                    <label class="s-label" for="need-visa">Need Visa Sponsorship</label>
                 </div>
             </div>
         </div>
+        <div class="d-flex fl-grow1 ps-relative">
+            <input class="s-input brr0" type="number" id="min-salary" placeholder="e.g. 125,000" />
+        </div>
     </div>
-</section>
+</div>
+```
 
-<section class="docs-section">
-
-    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="nested-inputs">Nested inputs</h2><a class="s-btn s-btn__clear" href="#nested-inputs"><span class="v-visible-sr">Section titled Nested inputs</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">An input can be nested within a container that has the <code>.s-input</code> class applied to display styled elements as if they're within an input.</p>
-
-    <div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-form-group"</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-label"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"tag-selector"</span>&gt;</span>Tags<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-input"</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d-flex fw-wrap gx8 myn4"</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-tag"</span>&gt;</span><br>                svelte<br>                <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-tag--dismiss"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"Remove tag"</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"v-visible-sr"</span>&gt;</span>Dismiss svelte tag<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>                    @Svg.ClearSm<br>                <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"tag-selector"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"s-input"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"enter up to 5 tags"</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-        <div class="docs-preview--example d-flex fd-column">
-            <div class="s-form-group">
-                <label class="s-label" for="tag-selector">Tags</label>
-                <div class="s-input">
-                    <div class="d-flex fw-wrap gx8 myn4">
-                        <span class="s-tag">
-                            svelte
-                            <button class="s-tag--dismiss" type="button">
-                                <span class="v-visible-sr">Dismiss svelte tag</span>
-                                <svg aria-hidden="true" class="svg-icon iconClearSm" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41 10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"></path></svg>
-                            </button>
-                        </span>
+<Example>
+    <div class="s-form-group">
+        <label class="s-label" for="min-salary">Minimum Salary</label>
+        <div class="d-flex">
+            <div class="d-flex ai-center order-last s-input-fill">
+                <div class="d-flex gx4 ai-center">
+                    <div class="s-checkbox">
+                        <input type="checkbox" id="need-visa" />
+                        <label class="s-label" for="need-visa">Need Visa Sponsorship</label>
                     </div>
-                    <input id="tag-selector" class="s-input" type="text" role="presentation" placeholder="enter up to 5 tags">
                 </div>
+            </div>
+            <div class="d-flex fl-grow1 ps-relative">
+                <input class="s-input brr0" type="number" id="min-salary" placeholder="e.g. 125,000" />
             </div>
         </div>
     </div>
-</section>
+</Example>
 
+## Nested inputs
 
-            <!-- <div class="d-flex my48 pt24">
-                <div class="mr16">
-                    
-                    <form
-                        id="quick-positive-feedback-inputs"
-                        class="js-feedback-form v-hidden"
-                        name="quick-positive-feedback-inputs"
-                        method="POST"
-                        data-netlify="true"
-                        action="/success">
-                    </form>
-                    <form
-                        id="quick-negative-feedback-inputs"
-                        class="js-feedback-form v-hidden"
-                        name="quick-negative-feedback-inputs"
-                        method="POST"
-                        data-netlify="true"
-                        action="/success">
-                    </form>
-                    <div
-                        class="s-popover s-popover__tooltip"
-                        id="tooltip-feedback-positive"
-                        role="tooltip">
-                        <div class="s-popover--content">This page is useful</div>
-                    </div>
-                    <div
-                        class="s-popover s-popover__tooltip"
-                        id="tooltip-feedback-negative"
-                        role="tooltip">
-                        <div class="s-popover--content">This page needs improvement</div>
-                    </div>
-                    <div id="vote-feedback" class="s-vote">
-                        <button
-                            class="s-vote--btn"
-                            type="submit"
-                            form="quick-positive-feedback-inputs"
-                            aria-describedby="tooltip-feedback-positive"
-                            aria-expanded="false"
-                            data-controller="s-tooltip"
-                            data-s-tooltip-placement="right"
-                        >
-                            <span class="s-btn-icon">
-                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteUp" aria-hidden="true"><path d="M10 3q.41.02.64.36l6.9 11.5a.75.75 0 1 1-1.28.78L10 5.21l-5.58 9.3h8.04v-.01h1.1l.97 1.5H3.1a.75.75 0 0 1-.65-1.13l6.9-11.5A.8.8 0 0 1 10 3"/></svg>
-                            </span>
-                            <span class="s-btn-icon-fill d-none">
-                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteUpFill" aria-hidden="true"><path d="M10 3h.1a1 1 0 0 1 .42.21l.12.15 6.9 11.5.05.09v.03l.02.04q.04.12.04.26v.03q0 .13-.07.25v.02l-.03.04a1 1 0 0 1-.2.23l-.06.05-.04.01-.04.03-.04.01a1 1 0 0 1-.27.05H3a.75.75 0 0 1-.55-1.13l6.9-11.5A.8.8 0 0 1 10 3"/></svg>
-                            </span>
-                            <span class="v-visible-sr">upvote</span>
-                        </button>
-                        <button
-                            class="s-vote--btn"
-                            type="submit"
-                            form="quick-negative-feedback-inputs"
-                            aria-describedby="tooltip-feedback-negative"
-                            aria-expanded="false"
-                            data-controller="s-tooltip"
-                            data-s-tooltip-placement="right"
-                        >
-                            <span class="s-btn-icon">
-                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteDown" aria-hidden="true"><path d="M10 16a.8.8 0 0 1-.64-.36l-6.9-11.5a.75.75 0 1 1 1.28-.78L10 13.8l5.58-9.3H6.44L5.47 3H16.9a.75.75 0 0 1 .65 1.14l-6.9 11.5A.8.8 0 0 1 10 16"/></svg>
-                            </span>
-                            <span class="s-btn-icon-fill d-none">
-                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteDownFill" aria-hidden="true"><path d="M10 16h-.1l-.1-.02a.8.8 0 0 1-.45-.34l-6.9-11.5-.04-.08-.01-.04L2.39 4a1 1 0 0 1-.04-.26V3.7q0-.14.06-.26l.01-.02.02-.04a1 1 0 0 1 .27-.27l.03-.02.05-.02.04-.02A1 1 0 0 1 3.1 3H17a.75.75 0 0 1 .54 1.14l-6.9 11.5A.8.8 0 0 1 10 16"/></svg>
-                            </span>
-                            <span class="v-visible-sr">downvote</span>
-                        </button>
-                    </div>
-                </div>
+An input can be nested within a container that has the `.s-input` class applied to display styled elements as if they're within an input.
 
-                <form
-                    class="w100 js-feedback-form"
-                    name="feedback-inputs"
-                    method="POST"
-                    data-netlify="true"
-                    action="/success">
-                    <fieldset class="d-flex fd-column fl-grow1 g16">
-                        <legend class="fs-title fw-bold">How’d we do?</legend>
-                        <div class="fs-body2">Anonymously upvote, downvote, or send additional feedback below.</div>
+```html
+<div class="s-form-group">
+    <label class="s-label" for="tag-selector">Tags</label>
+    <div class="s-input">
+        <div class="d-flex fw-wrap gx8 myn4">
+            <span class="s-tag">
+                svelte
+                <button class="s-tag--dismiss" type="button" title="Remove tag">
+                    <span class="v-visible-sr">Dismiss svelte tag</span>
+                    <svg class="svg-icon iconClearSm" aria-hidden="true">…</svg>
+                </button>
+            </span>
+        </div>
+        <input id="tag-selector" class="s-input" type="text" role="presentation" placeholder="enter up to 5 tags">
+    </div>
+</div>
+```
 
-                        <textarea
-                            class="s-textarea hmn1"
-                            id="feedback-form"
-                            name="additional-feedback"
-                            placeholder="Tell us how we can improve this page…" required></textarea>
-
-                        <div class="d-flex ai-center fd-row-reverse g8 jc-space-between mln6 sm:d-grid sm:grid__1 sm:ml0">
-                            <button
-                                type="submit"
-                                class="s-btn as-start fl-shrink0">
-                                Send feedback
-                            </button>
-                            <div class="d-flex fw-wrap g8 sm:d-grid sm:grid__1">
-                                <a
-                                    href="https://github.com/StackExchange/Stacks/edit/develop/packages/stacks-docs/./product/components/inputs.html"
-                                    class="s-btn s-btn__clear s-btn__icon s-btn__sm">
-                                    <svg aria-hidden="true" class="svg-icon iconPencilSm" width="14" height="14"  viewBox="0 0 14 14"><path fill="#F1B600" d="m2 10.12 6.37-6.43 1.88 1.88L3.88 12H2z"/><path fill="#E87C87" d="m11.1 1.71 1.13 1.12c.2.2.2.51 0 .71L11.1 4.7 9.21 2.86l1.17-1.15c.2-.2.51-.2.71 0"/></svg>
-                                    Edit
-                                </a>
-                                <a
-                                    href="https://github.com/StackExchange/Stacks/issues/new/choose"
-                                    class="s-btn s-btn__clear s-btn__icon s-btn__sm">
-                                    File an issue
-                                </a>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div> -->
-
-            <!-- <div class="ta-right">
-                <a href="https://www.netlify.com"><img src="https://www.netlify.com/v3/img/components/netlify-color-accent.svg" alt="Deploys by Netlify" /></a>
-            </div> -->
+<Example>
+    <div class="s-form-group">
+        <label class="s-label" for="tag-selector">Tags</label>
+        <div class="s-input">
+            <div class="d-flex fw-wrap gx8 myn4">
+                <span class="s-tag">
+                    svelte
+                    <button class="s-tag--dismiss" type="button">
+                        <span class="v-visible-sr">Dismiss svelte tag</span>
+                        {@html svgClearSm}
+                    </button>
+                </span>
+            </div>
+            <input id="tag-selector" class="s-input" type="text" role="presentation" placeholder="enter up to 5 tags">
+        </div>
+    </div>
+</Example>
