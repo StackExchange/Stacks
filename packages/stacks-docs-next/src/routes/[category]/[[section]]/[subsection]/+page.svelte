@@ -78,6 +78,12 @@
             <span class="sm:d-none">Svelte</span>
           </Link>
         {/if}
+
+        {#if data?.metadata?.js}
+          <Link href="#javascript">
+            <span class="sm:d-none">JavaScript</span>
+          </Link>
+        {/if}
       </div>
     </div>  
 

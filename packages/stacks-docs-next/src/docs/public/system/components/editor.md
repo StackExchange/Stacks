@@ -2,6 +2,7 @@
 title: "Editor"
 description: "The Stacks editor adds \"what you see is what you get\" and Markdown capabilities to textareas. It is available as a separate <a href=\"https://github.com/StackExchange/Stacks-Editor\">Editor</a> repository, but requires Stacks' CSS for styling."
 figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=610-18806"
+js: true
 ---
 
 <script lang="ts">

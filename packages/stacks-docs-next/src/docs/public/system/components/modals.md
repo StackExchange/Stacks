@@ -3,6 +3,7 @@ title: "Modals"
 description: "Modals are dialog overlays that prevent the user from interacting with the rest of the website until an action is taken or the dialog is dismissed. Modals are purposefully disruptive and should be used thoughtfully and sparingly."
 svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-modal--docs"
 figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=610-18811&p=f&t=c9NSyJWdASb80eVC-0"
+js: true
 ---
 
 <script lang="ts">
