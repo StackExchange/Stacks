@@ -239,33 +239,32 @@ In the case of user management, it's appropriate to include radio options. In th
 ```
 
 <Example>
-    <div class="docs-card ws2">
-        <Menu>
+    <div class="s-popover is-visible ps-relative ws2 p8">
+        <div class="s-menu" role="menu">
             <fieldset>
-                <MenuTitle type="legend">Role</MenuTitle>
-                <MenuCheckItem
-                    id="role-user"
-                    type="radio"
-                    name="user-role"
-                    label="User"
-                    description="Can view, ask, answer, and edit questions. Can also vote on and flag content."
-                    checked
-                />
-                <MenuCheckItem
-                    id="role-moderator"
-                    type="radio"
-                    name="user-role"
-                    label="Moderator"
-                    description="Everything a user can do, but can also delete and close questions."
-                />
-                <MenuCheckItem
-                    id="role-admin"
-                    type="radio"
-                    name="user-role"
-                    label="Admin"
-                    description="Everything a moderator can do and can also manage users, permissions, and site settings."
-                />
+                <legend class="s-menu--title">Role</legend>
+                <label class="s-menu--item s-radio" for="role-user">
+                    <input type="radio" name="user-role" id="role-user" role="menuitemradio" checked>
+                    <div>
+                        <div class="s-label">User</div>
+                        <div class="s-description mt2">Can view, ask, answer, and edit questions. Can also vote on and flag content.</div>
+                    </div>
+                </label>
+                <label class="s-menu--item s-radio" for="role-moderator">
+                    <input type="radio" name="user-role" id="role-moderator" role="menuitemradio">
+                    <div>
+                        <div class="s-label">Moderator</div>
+                        <div class="s-description mt2">Everything a user can do, but can also delete and close questions.</div>
+                    </div>
+                </label>
+                <label class="s-menu--item s-radio" for="role-admin">
+                    <input type="radio" name="user-role" id="role-admin" role="menuitemradio">
+                    <div>
+                        <div class="s-label">Admin</div>
+                        <div class="s-description mt2">Everything a moderator can do and can also manage users, permissions, and site settings.</div>
+                    </div>
+                </label>
             </fieldset>
-        </Menu>
+        </div>
     </div>
 </Example>
