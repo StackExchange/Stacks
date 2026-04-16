@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { IconServiceGitHub, IconServiceFigma, IconServiceSvelte, IconCheckFillCircle, IconLink, IconCode } from '@stackoverflow/stacks-icons/icons';
+  import { IconServiceGitHub, IconServiceFigma, IconServiceSvelte, IconCheckFillCircle, IconLink, IconCodeBox } from '@stackoverflow/stacks-icons/icons';
   import { Icon, Button, Link } from '@stackoverflow/stacks-svelte';
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
@@ -67,7 +67,7 @@
 
         {#if data?.metadata?.js}
           <Link href="#javascript">
-            <Icon src={IconCode} />
+            <Icon src={IconCodeBox} />
             <span class="sm:d-none">JavaScript</span>
           </Link>
         {/if}
