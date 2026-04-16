@@ -175,8 +175,8 @@ Not every modal is sunshine and rainbows. Sometimes there are potentially drasti
 </aside>
 ```
 
-<Example class="p0">
-    <div class="docs-modal-inline ps-relative d-flex jc-center hs3">
+<Example>
+    <div class="ps-relative d-flex jc-center hs3">
         <Modal id="modal-inline-danger" visible={true} state="danger" hideCloseButton
             class="ps-absolute bbr-md z-base mtn1 mrn1 mbn1 mln1">
             {#snippet header()}Example title{/snippet}
@@ -208,8 +208,8 @@ Sometimes it's appropriate to confirm a user's action with some confetti. You ca
 </aside>
 ```
 
-<Example class="p0">
-    <div class="docs-modal-inline ps-relative d-flex jc-center hs3">
+<Example>
+    <div class="ps-relative d-flex jc-center hs3">
         <Modal id="modal-inline-celebration" visible={true} state="celebration" hideCloseButton
             class="ps-absolute bbr-md z-base mtn1 mrn1 mbn1 mln1">
             {#snippet header()}Congratulations!{/snippet}
