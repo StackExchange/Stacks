@@ -44,12 +44,12 @@
 
 <h2>Code should look okay by default.</h2>
 <p>Here's what a default <code>tailwind.config.js</code> file looks like at the time of writing:</p>
-<pre><code class="language-js">module.exports = {
+<pre><code class="language-js">module.exports = &#123;
   purge: [],
-  theme: { extend: {} },
-  variants: {},
+  theme: &#123; extend: &#123;&#125; &#125;,
+  variants: &#123;&#125;,
   plugins: [],
-}</code></pre>
+&#125;</code></pre>
 <p>Hopefully that looks good enough to you.</p>
 
 <h2>There are other elements we need to style</h2>
