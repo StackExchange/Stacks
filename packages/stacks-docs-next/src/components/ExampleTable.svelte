@@ -9,6 +9,10 @@
 
     interface Props {
         rows: ExampleTableRow[];
+        /** Label for the class column. Defaults to "Class". */
+        columnLabel?: string;
+        /** Whether to show the class column. Defaults to true. */
+        showClasses?: boolean;
         /**
          * Snippet that receives the row and renders the live example.
          * e.g. {#snippet example(row)}<Bling type={row.type} />{/snippet}
@@ -16,7 +20,7 @@
         example: Snippet<[ExampleTableRow]>;
     }
 
-    let { rows, example }: Props = $props();
+    let { rows, columnLabel = 'Class', showClasses = true, example }: Props = $props();
 </script>
 
 <div class="overflow-x-auto">
@@ -24,7 +28,9 @@
         <thead>
             <tr>
                 <th scope="col">Example</th>
-                <th scope="col" class="s-table--cell5">Class</th>
+                {#if showClasses}
+                    <th scope="col" class="s-table--cell5">{columnLabel}</th>
+                {/if}
                 <th scope="col">Description</th>
             </tr>
         </thead>
@@ -34,11 +40,19 @@
                     <td class="va-middle pr8">
                         {@render example(row)}
                     </td>
-                    <td class="va-middle">
-                        <div class="d-flex g4 fw-wrap">
-                            {#each row.classes as cls}<code>{cls}</code>{/each}
-                        </div>
-                    </td>
+                    {#if showClasses}
+                        <td class="va-middle">
+                            <div class="d-flex g4 fw-wrap">
+                                {#each row.classes as cls}
+                                    {#if cls === 'N/A'}
+                                        <span class="fc-black-350">N/A</span>
+                                    {:else}
+                                        <code>{cls}</code>
+                                    {/if}
+                                {/each}
+                            </div>
+                        </td>
+                    {/if}
                     <td class="va-middle">{row.description}</td>
                 </tr>
             {/each}
