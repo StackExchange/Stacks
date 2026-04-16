@@ -62,13 +62,15 @@
 		This is a brand focused preview – for developer reference please see <a href="https://stackoverflow.design" class="s-link fc-white s-link__underlined">the current docs</a> or <a href="https://beta.stackoverflow.design" class="s-link fc-white s-link__underlined">the beta release</a>.
 	</div> -->
 
-	{#if data.needsAuth}
-		<div class="my-auto">
-			<Login returnUrl={page.url.pathname} />
-		</div>
-	{:else}
-		{@render children?.()}
-	{/if}
+	<div class="fl-grow1">
+		{#if data.needsAuth}
+			<div class="my-auto">
+				<Login returnUrl={page.url.pathname} />
+			</div>
+		{:else}
+			{@render children?.()}
+		{/if}
+	</div>
 
 	{#if !page.data.hideFooter}
 		<footer class="d-flex sm:fd-column ai-center sm:ai-start ml32 sm:ml24 py32 fc-black-400">
