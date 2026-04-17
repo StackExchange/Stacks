@@ -50,13 +50,6 @@
       </nav>
 
       <div class="d-flex ai-center g16 fs-caption">
-        {#if data.filename}
-          <Link title="Edit on GitHub" href={`https://github.com/StackExchange/Stacks/edit/main/packages/stacks-docs-next${data.filename}`}>
-            <Icon src={IconServiceGitHub} />
-            <span class="sm:d-none">Edit</span>
-          </Link>
-        {/if}
-
         {#if data?.metadata?.js}
           <Link href="#javascript">
             <Icon src={IconCodeBox} class="fc-green-400" />
@@ -75,6 +68,13 @@
           <Link title="Svelte component docs" href={data?.metadata?.svelte}>
             <Icon src={IconServiceSvelte} class="native" />
             <span class="sm:d-none">Svelte</span>
+          </Link>
+        {/if}
+
+        {#if data.filename}
+          <Link title="Edit on GitHub" href={`https://github.com/StackExchange/Stacks/edit/main/packages/stacks-docs-next${data.filename}`}>
+            <Icon src={IconServiceGitHub} />
+            <span class="sm:d-none">Edit</span>
           </Link>
         {/if}
       </div>
