@@ -72,10 +72,6 @@
 
 	<div class="d-flex fl-grow1 bg-white sm:mt0" class:mt24={!page.data.active?.image}>
 		<main class="main d-flex fd-column wmn0">
-			<!-- <div class="bg-blue-400 fc-white px24 py12">
-				This is a brand focused preview – for developer reference please see <a href="https://stackoverflow.design" class="s-link fc-white s-link__underlined">the current docs</a> or <a href="https://beta.stackoverflow.design" class="s-link fc-white s-link__underlined">the beta release</a>.
-			</div> -->
-
 			<div class="d-flex fd-column fl-grow1">
 				{#if data.needsAuth}
 					<div class="my-auto">
