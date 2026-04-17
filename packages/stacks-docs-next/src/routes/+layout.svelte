@@ -7,6 +7,7 @@
 	import { IconLogo, IconGlyph24, IconServiceGitHub, IconMenu, IconCross } from '@stackoverflow/stacks-icons'
 
 	import Navigation from '$components/Navigation.svelte';
+	import Contents from '$components/Contents.svelte';
 	import Search from '$components/Search.svelte';
 	import ThemeToggle from '$components/ThemeToggle.svelte';
 	import Login from '$src/components/LoginPrompt.svelte';
@@ -15,9 +16,10 @@
 
 	let { children, data } = $props();
 
-	let mobileMenu = $state(false)
+	let mobileMenu = $state(false);
 
-	const year = new Date().getFullYear()
+	const year = new Date().getFullYear();
+	const toc = $derived(page.data?.metadata?.toc || []);
 </script>
 
 <svelte:head>
@@ -25,7 +27,8 @@
 	<link rel="icon" href={Favicon} />
 </svelte:head>
 
-<header class="d-flex fd-column w20 sm:w100 hmx100 h-screen sm:h-auto overflow-auto ps-fixed z-nav sm:ps-static ff-stack-sans-headline">
+<div class="layout-root d-flex">
+<header class="layout-nav d-flex fd-column fl-shrink0 overflow-auto ff-stack-sans-headline">
 	<div class="d-flex ai-center bg-black-100 pt32 px24 sm:pr6 sm:pb12 sm:pt12">
 		<a href={resolve('/')} title="Home" class="fc-brand mr-auto">
 			<Icon src={IconLogo} />
@@ -57,7 +60,7 @@
 	</div>
 </header>
 
-<main class="main bg-white d-flex fd-column t24 sm:t0 ps-relative">
+<main class="main bg-white d-flex fd-column fl-grow1 wmn0">
 	<!-- <div class="bg-blue-400 fc-white px24 py12">
 		This is a brand focused preview – for developer reference please see <a href="https://stackoverflow.design" class="s-link fc-white s-link__underlined">the current docs</a> or <a href="https://beta.stackoverflow.design" class="s-link fc-white s-link__underlined">the beta release</a>.
 	</div> -->
@@ -82,3 +85,6 @@
 		</footer>
 	{/if}
 </main>
+
+<Contents {toc} />
+</div>

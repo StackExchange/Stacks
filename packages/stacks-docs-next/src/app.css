@@ -148,18 +148,31 @@ h1 {
 h1 {
     font-feature-settings: "ss01" 1;
 }
-main {
-    min-height: calc(100vh - var(--su24));
+/* Three-column page layout — nav | content | toc */
+.layout-root {
+    align-items: flex-start;
+    min-height: 100vh;
 }
-main,
-footer {
-    margin-left: 20%;
+
+.layout-nav {
+    position: sticky;
+    top: 0;
+    width: 20%;
+    height: 100vh;
+    align-self: flex-start;
 }
 
 @media (max-width: 48.75rem) {
-    main,
-    footer {
-        margin-left: 0%;
+    .layout-root {
+        flex-direction: column;
+    }
+
+    .layout-nav {
+        position: static;
+        width: 100%;
+        height: auto;
+        overflow: visible;
+        align-self: auto;
     }
 }
 
