@@ -126,7 +126,7 @@
 
 {#if toc.length > 0}
 <aside class="layout-toc fl-shrink0 w30 wmn2 wmx3 md:d-none ff-stack-sans-headline">
-    <div class="ps-sticky t0 py24 mt6 px16 md:pb0 overflow-auto hmx-screen md:hmx-initial">
+    <div class="ps-sticky t0 py24 mt6 px32 md:pb0 overflow-auto hmx-screen md:hmx-initial">
       <nav bind:this={navElement} class="ps-relative">
         <h2 class="fs-body2 fw-bold mb12 px6 fc-black-400">Contents</h2>
 
