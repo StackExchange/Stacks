@@ -124,7 +124,7 @@
   }
 </script>
 
-<aside class="layout-toc fl-shrink0 w20 md:d-none ff-stack-sans-headline">
+<aside class="layout-toc fl-shrink0 w20 md:d-none bg-white ff-stack-sans-headline">
   {#if toc.length > 0}
     <div class="ps-sticky t0 py24 mt6 px16 md:pb0 overflow-auto hmx-screen md:hmx-initial">
       <nav bind:this={navElement} class="ps-relative">
