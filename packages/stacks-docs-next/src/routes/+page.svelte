@@ -32,13 +32,12 @@
       display: flex;
       flex-direction: column;
       flex-grow: 1;
-      justify-content: center;
       padding-bottom: 30px;
     }
   </style>
 </svelte:head>
 
-<div class="page p32 sm:p24 wmx12">
+<div class="page p32 sm:p24 wmx12 my-auto">
   <div class="d-flex g4 ai-center">
     <span class="s-badge fc-purple-500 bg-purple-100">v{__APP_VERSION__}</span>
     <a href="https://beta.svelte.stackoverflow.design/" class="s-badge">

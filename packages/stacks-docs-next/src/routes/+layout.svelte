@@ -71,7 +71,7 @@
 				This is a brand focused preview – for developer reference please see <a href="https://stackoverflow.design" class="s-link fc-white s-link__underlined">the current docs</a> or <a href="https://beta.stackoverflow.design" class="s-link fc-white s-link__underlined">the beta release</a>.
 			</div> -->
 
-			<div class="fl-grow1">
+			<div class="d-flex fd-column fl-grow1">
 				{#if data.needsAuth}
 					<div class="my-auto">
 						<Login returnUrl={page.url.pathname} />
