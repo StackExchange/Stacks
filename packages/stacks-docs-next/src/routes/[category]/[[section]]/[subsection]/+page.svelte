@@ -32,9 +32,9 @@
 </svelte:head>
 
 
-<article class="w100 pl32 md:pr32 sm:pl24 sm:pr24">
-  <div class="doc wmn0 wmx9 fs-body2 pt24">
-    <div class="d-flex g4 ai-center {data?.active?.image ? 'mb128' : 'mb24'}">
+<article class="w100 wmx11 pl32 md:pr32 sm:pl24 sm:pr24">
+  <div class="doc fs-body2 pt24">
+    <div class="d-flex g4 ai-center sm:mb8 {data?.active?.image ? 'mb128' : 'mb24'}">
       <nav class="d-flex ai-center g6 fs-body2 mr-auto" aria-label="breadcrumb">
         {#each data.breadcrumb as crumb, index (crumb.label)}
           {#if index !== 0}<span class="fc-black-300">/</span>{/if}

@@ -3,949 +3,325 @@ title: "Margin"
 description: "Stacks provides atomic classes to override margin."
 ---
 
-<section class="docs-section">
-    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="base">Base</h2><a class="s-btn s-btn__clear" href="#base"><span class="v-visible-sr">Section titled Base</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">Immutable margin utilities are based on our global white space scale. These can dramatically help reduce the size of large stylesheets and allow for greater flexibility and quicker iteration when designing in the browser.</p>
+<script lang="ts">
+    import ClassTable from '$components/ClassTable.svelte';
+    import Example from '$components/Example.svelte';
+    import type { ClassTableRow } from '$components/ClassTable.svelte';
 
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="abbreviations">Abbreviations</h3><a class="s-btn s-btn__clear" href="#abbreviations"><span class="v-visible-sr">Section titled Abbreviations</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell2" scope="col">Abbreviation</th>
-                    <th scope="col">Property</th>
-                    <th class="s-table--cell2 ta-center" scope="col">Responsive?</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-                    <tr>
-                        <th class="ff-mono" scope="row">m</th>
-                        <td>margin</td>
-                        <td class="ta-center">
-                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-400" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41 14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <th class="ff-mono" scope="row">mt</th>
-                        <td>margin-top</td>
-                        <td class="ta-center">
-                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-400" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41 14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <th class="ff-mono" scope="row">mr</th>
-                        <td>margin-right</td>
-                        <td class="ta-center">
-                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-400" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41 14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <th class="ff-mono" scope="row">mb</th>
-                        <td>margin-bottom</td>
-                        <td class="ta-center">
-                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-400" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41 14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <th class="ff-mono" scope="row">ml</th>
-                        <td>margin-left</td>
-                        <td class="ta-center">
-                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-400" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41 14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <th class="ff-mono" scope="row">mx</th>
-                        <td>margin x-axis</td>
-                        <td class="ta-center">
-                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-400" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41 14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <th class="ff-mono" scope="row">my</th>
-                        <td>margin y-axis</td>
-                        <td class="ta-center">
-                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-400" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41 14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
-                        </td>
-                    </tr>
-                
-            </tbody>
-        </table>
-    </div>
+    const baseAbbreviations: ClassTableRow[] = [
+        { class: 'm',  output: 'margin',          description: 'Responsive' },
+        { class: 'mt', output: 'margin-top',       description: 'Responsive' },
+        { class: 'mr', output: 'margin-right',     description: 'Responsive' },
+        { class: 'mb', output: 'margin-bottom',    description: 'Responsive' },
+        { class: 'ml', output: 'margin-left',      description: 'Responsive' },
+        { class: 'mx', output: 'margin x-axis',    description: 'Responsive' },
+        { class: 'my', output: 'margin y-axis',    description: 'Responsive' },
+    ];
 
-<div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="base-examples">Base examples</h3><a class="s-btn s-btn__clear" href="#base-examples"><span class="v-visible-sr">Section titled Base examples</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
+    const baseClasses: ClassTableRow[] = [
+        { class: '.m0',    output: 'margin: 0' },
+        { class: '.m1',    output: 'margin: 1px' },
+        { class: '.m2',    output: 'margin: 2px' },
+        { class: '.m4',    output: 'margin: 4px' },
+        { class: '.m6',    output: 'margin: 6px' },
+        { class: '.m8',    output: 'margin: 8px' },
+        { class: '.m12',   output: 'margin: 12px' },
+        { class: '.m16',   output: 'margin: 16px' },
+        { class: '.m24',   output: 'margin: 24px' },
+        { class: '.m32',   output: 'margin: 32px' },
+        { class: '.m48',   output: 'margin: 48px' },
+        { class: '.m64',   output: 'margin: 64px' },
+        { class: '.m96',   output: 'margin: 96px' },
+        { class: '.m128',  output: 'margin: 128px' },
+        { class: '.m50',   output: 'margin: 50%' },
+        { class: '.m100',  output: 'margin: 100%' },
+        { class: '.mt0',   output: 'margin-top: 0' },
+        { class: '.mt1',   output: 'margin-top: 1px' },
+        { class: '.mt2',   output: 'margin-top: 2px' },
+        { class: '.mt4',   output: 'margin-top: 4px' },
+        { class: '.mt6',   output: 'margin-top: 6px' },
+        { class: '.mt8',   output: 'margin-top: 8px' },
+        { class: '.mt12',  output: 'margin-top: 12px' },
+        { class: '.mt16',  output: 'margin-top: 16px' },
+        { class: '.mt24',  output: 'margin-top: 24px' },
+        { class: '.mt32',  output: 'margin-top: 32px' },
+        { class: '.mt48',  output: 'margin-top: 48px' },
+        { class: '.mt64',  output: 'margin-top: 64px' },
+        { class: '.mt96',  output: 'margin-top: 96px' },
+        { class: '.mt128', output: 'margin-top: 128px' },
+        { class: '.mt50',  output: 'margin-top: 50%' },
+        { class: '.mt100', output: 'margin-top: 100%' },
+        { class: '.mr0',   output: 'margin-right: 0' },
+        { class: '.mr1',   output: 'margin-right: 1px' },
+        { class: '.mr2',   output: 'margin-right: 2px' },
+        { class: '.mr4',   output: 'margin-right: 4px' },
+        { class: '.mr6',   output: 'margin-right: 6px' },
+        { class: '.mr8',   output: 'margin-right: 8px' },
+        { class: '.mr12',  output: 'margin-right: 12px' },
+        { class: '.mr16',  output: 'margin-right: 16px' },
+        { class: '.mr24',  output: 'margin-right: 24px' },
+        { class: '.mr32',  output: 'margin-right: 32px' },
+        { class: '.mr48',  output: 'margin-right: 48px' },
+        { class: '.mr64',  output: 'margin-right: 64px' },
+        { class: '.mr96',  output: 'margin-right: 96px' },
+        { class: '.mr128', output: 'margin-right: 128px' },
+        { class: '.mr50',  output: 'margin-right: 50%' },
+        { class: '.mr100', output: 'margin-right: 100%' },
+        { class: '.mb0',   output: 'margin-bottom: 0' },
+        { class: '.mb1',   output: 'margin-bottom: 1px' },
+        { class: '.mb2',   output: 'margin-bottom: 2px' },
+        { class: '.mb4',   output: 'margin-bottom: 4px' },
+        { class: '.mb6',   output: 'margin-bottom: 6px' },
+        { class: '.mb8',   output: 'margin-bottom: 8px' },
+        { class: '.mb12',  output: 'margin-bottom: 12px' },
+        { class: '.mb16',  output: 'margin-bottom: 16px' },
+        { class: '.mb24',  output: 'margin-bottom: 24px' },
+        { class: '.mb32',  output: 'margin-bottom: 32px' },
+        { class: '.mb48',  output: 'margin-bottom: 48px' },
+        { class: '.mb64',  output: 'margin-bottom: 64px' },
+        { class: '.mb96',  output: 'margin-bottom: 96px' },
+        { class: '.mb128', output: 'margin-bottom: 128px' },
+        { class: '.mb50',  output: 'margin-bottom: 50%' },
+        { class: '.mb100', output: 'margin-bottom: 100%' },
+        { class: '.ml0',   output: 'margin-left: 0' },
+        { class: '.ml1',   output: 'margin-left: 1px' },
+        { class: '.ml2',   output: 'margin-left: 2px' },
+        { class: '.ml4',   output: 'margin-left: 4px' },
+        { class: '.ml6',   output: 'margin-left: 6px' },
+        { class: '.ml8',   output: 'margin-left: 8px' },
+        { class: '.ml12',  output: 'margin-left: 12px' },
+        { class: '.ml16',  output: 'margin-left: 16px' },
+        { class: '.ml24',  output: 'margin-left: 24px' },
+        { class: '.ml32',  output: 'margin-left: 32px' },
+        { class: '.ml48',  output: 'margin-left: 48px' },
+        { class: '.ml64',  output: 'margin-left: 64px' },
+        { class: '.ml96',  output: 'margin-left: 96px' },
+        { class: '.ml128', output: 'margin-left: 128px' },
+        { class: '.ml50',  output: 'margin-left: 50%' },
+        { class: '.ml100', output: 'margin-left: 100%' },
+        { class: '.mx0',   output: 'margin-left: 0; margin-right: 0' },
+        { class: '.mx1',   output: 'margin-left: 1px; margin-right: 1px' },
+        { class: '.mx2',   output: 'margin-left: 2px; margin-right: 2px' },
+        { class: '.mx4',   output: 'margin-left: 4px; margin-right: 4px' },
+        { class: '.mx6',   output: 'margin-left: 6px; margin-right: 6px' },
+        { class: '.mx8',   output: 'margin-left: 8px; margin-right: 8px' },
+        { class: '.mx12',  output: 'margin-left: 12px; margin-right: 12px' },
+        { class: '.mx16',  output: 'margin-left: 16px; margin-right: 16px' },
+        { class: '.mx24',  output: 'margin-left: 24px; margin-right: 24px' },
+        { class: '.mx32',  output: 'margin-left: 32px; margin-right: 32px' },
+        { class: '.mx48',  output: 'margin-left: 48px; margin-right: 48px' },
+        { class: '.mx64',  output: 'margin-left: 64px; margin-right: 64px' },
+        { class: '.mx96',  output: 'margin-left: 96px; margin-right: 96px' },
+        { class: '.mx128', output: 'margin-left: 128px; margin-right: 128px' },
+        { class: '.mx50',  output: 'margin-left: 50%; margin-right: 50%' },
+        { class: '.mx100', output: 'margin-left: 100%; margin-right: 100%' },
+        { class: '.my0',   output: 'margin-top: 0; margin-bottom: 0' },
+        { class: '.my1',   output: 'margin-top: 1px; margin-bottom: 1px' },
+        { class: '.my2',   output: 'margin-top: 2px; margin-bottom: 2px' },
+        { class: '.my4',   output: 'margin-top: 4px; margin-bottom: 4px' },
+        { class: '.my6',   output: 'margin-top: 6px; margin-bottom: 6px' },
+        { class: '.my8',   output: 'margin-top: 8px; margin-bottom: 8px' },
+        { class: '.my12',  output: 'margin-top: 12px; margin-bottom: 12px' },
+        { class: '.my16',  output: 'margin-top: 16px; margin-bottom: 16px' },
+        { class: '.my24',  output: 'margin-top: 24px; margin-bottom: 24px' },
+        { class: '.my32',  output: 'margin-top: 32px; margin-bottom: 32px' },
+        { class: '.my48',  output: 'margin-top: 48px; margin-bottom: 48px' },
+        { class: '.my64',  output: 'margin-top: 64px; margin-bottom: 64px' },
+        { class: '.my96',  output: 'margin-top: 96px; margin-bottom: 96px' },
+        { class: '.my128', output: 'margin-top: 128px; margin-bottom: 128px' },
+        { class: '.my50',  output: 'margin-top: 50%; margin-bottom: 50%' },
+        { class: '.my100', output: 'margin-top: 100%; margin-bottom: 100%' },
+    ];
 
+    const negativeAbbreviations: ClassTableRow[] = [
+        { class: 'mn',  output: 'margin',          description: 'Responsive' },
+        { class: 'mtn', output: 'margin-top',       description: 'Responsive' },
+        { class: 'mrn', output: 'margin-right',     description: 'Responsive' },
+        { class: 'mbn', output: 'margin-bottom',    description: 'Responsive' },
+        { class: 'mln', output: 'margin-left',      description: 'Responsive' },
+        { class: 'mxn', output: 'margin x-axis',    description: 'Responsive' },
+        { class: 'myn', output: 'margin y-axis',    description: 'Responsive' },
+    ];
 
-<div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mt8 mr4 mb32 ml64"</span>&gt;</span><br>    …<br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div class="docs-box bg-black-100">
-                <div class="docs-box mt8 mr4 mb32 ml64">
-                    Example div with different margins applied
-                </div>
-            </div>
+    const negativeClasses: ClassTableRow[] = [
+        { class: '.mn1',    output: 'margin: -1px' },
+        { class: '.mn2',    output: 'margin: -2px' },
+        { class: '.mn4',    output: 'margin: -4px' },
+        { class: '.mn6',    output: 'margin: -6px' },
+        { class: '.mn8',    output: 'margin: -8px' },
+        { class: '.mn12',   output: 'margin: -12px' },
+        { class: '.mn16',   output: 'margin: -16px' },
+        { class: '.mn24',   output: 'margin: -24px' },
+        { class: '.mn32',   output: 'margin: -32px' },
+        { class: '.mn48',   output: 'margin: -48px' },
+        { class: '.mn64',   output: 'margin: -64px' },
+        { class: '.mn96',   output: 'margin: -96px' },
+        { class: '.mn128',  output: 'margin: -128px' },
+        { class: '.mn50',   output: 'margin: -50%' },
+        { class: '.mn100',  output: 'margin: -100%' },
+        { class: '.mtn1',   output: 'margin-top: -1px' },
+        { class: '.mtn2',   output: 'margin-top: -2px' },
+        { class: '.mtn4',   output: 'margin-top: -4px' },
+        { class: '.mtn6',   output: 'margin-top: -6px' },
+        { class: '.mtn8',   output: 'margin-top: -8px' },
+        { class: '.mtn12',  output: 'margin-top: -12px' },
+        { class: '.mtn16',  output: 'margin-top: -16px' },
+        { class: '.mtn24',  output: 'margin-top: -24px' },
+        { class: '.mtn32',  output: 'margin-top: -32px' },
+        { class: '.mtn48',  output: 'margin-top: -48px' },
+        { class: '.mtn64',  output: 'margin-top: -64px' },
+        { class: '.mtn96',  output: 'margin-top: -96px' },
+        { class: '.mtn128', output: 'margin-top: -128px' },
+        { class: '.mtn50',  output: 'margin-top: -50%' },
+        { class: '.mtn100', output: 'margin-top: -100%' },
+        { class: '.mrn1',   output: 'margin-right: -1px' },
+        { class: '.mrn2',   output: 'margin-right: -2px' },
+        { class: '.mrn4',   output: 'margin-right: -4px' },
+        { class: '.mrn6',   output: 'margin-right: -6px' },
+        { class: '.mrn8',   output: 'margin-right: -8px' },
+        { class: '.mrn12',  output: 'margin-right: -12px' },
+        { class: '.mrn16',  output: 'margin-right: -16px' },
+        { class: '.mrn24',  output: 'margin-right: -24px' },
+        { class: '.mrn32',  output: 'margin-right: -32px' },
+        { class: '.mrn48',  output: 'margin-right: -48px' },
+        { class: '.mrn64',  output: 'margin-right: -64px' },
+        { class: '.mrn96',  output: 'margin-right: -96px' },
+        { class: '.mrn128', output: 'margin-right: -128px' },
+        { class: '.mrn50',  output: 'margin-right: -50%' },
+        { class: '.mrn100', output: 'margin-right: -100%' },
+        { class: '.mbn1',   output: 'margin-bottom: -1px' },
+        { class: '.mbn2',   output: 'margin-bottom: -2px' },
+        { class: '.mbn4',   output: 'margin-bottom: -4px' },
+        { class: '.mbn6',   output: 'margin-bottom: -6px' },
+        { class: '.mbn8',   output: 'margin-bottom: -8px' },
+        { class: '.mbn12',  output: 'margin-bottom: -12px' },
+        { class: '.mbn16',  output: 'margin-bottom: -16px' },
+        { class: '.mbn24',  output: 'margin-bottom: -24px' },
+        { class: '.mbn32',  output: 'margin-bottom: -32px' },
+        { class: '.mbn48',  output: 'margin-bottom: -48px' },
+        { class: '.mbn64',  output: 'margin-bottom: -64px' },
+        { class: '.mbn96',  output: 'margin-bottom: -96px' },
+        { class: '.mbn128', output: 'margin-bottom: -128px' },
+        { class: '.mbn50',  output: 'margin-bottom: -50%' },
+        { class: '.mbn100', output: 'margin-bottom: -100%' },
+        { class: '.mln1',   output: 'margin-left: -1px' },
+        { class: '.mln2',   output: 'margin-left: -2px' },
+        { class: '.mln4',   output: 'margin-left: -4px' },
+        { class: '.mln6',   output: 'margin-left: -6px' },
+        { class: '.mln8',   output: 'margin-left: -8px' },
+        { class: '.mln12',  output: 'margin-left: -12px' },
+        { class: '.mln16',  output: 'margin-left: -16px' },
+        { class: '.mln24',  output: 'margin-left: -24px' },
+        { class: '.mln32',  output: 'margin-left: -32px' },
+        { class: '.mln48',  output: 'margin-left: -48px' },
+        { class: '.mln64',  output: 'margin-left: -64px' },
+        { class: '.mln96',  output: 'margin-left: -96px' },
+        { class: '.mln128', output: 'margin-left: -128px' },
+        { class: '.mln50',  output: 'margin-left: -50%' },
+        { class: '.mln100', output: 'margin-left: -100%' },
+        { class: '.mxn1',   output: 'margin-left: -1px; margin-right: -1px' },
+        { class: '.mxn2',   output: 'margin-left: -2px; margin-right: -2px' },
+        { class: '.mxn4',   output: 'margin-left: -4px; margin-right: -4px' },
+        { class: '.mxn6',   output: 'margin-left: -6px; margin-right: -6px' },
+        { class: '.mxn8',   output: 'margin-left: -8px; margin-right: -8px' },
+        { class: '.mxn12',  output: 'margin-left: -12px; margin-right: -12px' },
+        { class: '.mxn16',  output: 'margin-left: -16px; margin-right: -16px' },
+        { class: '.mxn24',  output: 'margin-left: -24px; margin-right: -24px' },
+        { class: '.mxn32',  output: 'margin-left: -32px; margin-right: -32px' },
+        { class: '.mxn48',  output: 'margin-left: -48px; margin-right: -48px' },
+        { class: '.mxn64',  output: 'margin-left: -64px; margin-right: -64px' },
+        { class: '.mxn96',  output: 'margin-left: -96px; margin-right: -96px' },
+        { class: '.mxn128', output: 'margin-left: -128px; margin-right: -128px' },
+        { class: '.mxn50',  output: 'margin-left: -50%; margin-right: -50%' },
+        { class: '.mxn100', output: 'margin-left: -100%; margin-right: -100%' },
+        { class: '.myn1',   output: 'margin-top: -1px; margin-bottom: -1px' },
+        { class: '.myn2',   output: 'margin-top: -2px; margin-bottom: -2px' },
+        { class: '.myn4',   output: 'margin-top: -4px; margin-bottom: -4px' },
+        { class: '.myn6',   output: 'margin-top: -6px; margin-bottom: -6px' },
+        { class: '.myn8',   output: 'margin-top: -8px; margin-bottom: -8px' },
+        { class: '.myn12',  output: 'margin-top: -12px; margin-bottom: -12px' },
+        { class: '.myn16',  output: 'margin-top: -16px; margin-bottom: -16px' },
+        { class: '.myn24',  output: 'margin-top: -24px; margin-bottom: -24px' },
+        { class: '.myn32',  output: 'margin-top: -32px; margin-bottom: -32px' },
+        { class: '.myn48',  output: 'margin-top: -48px; margin-bottom: -48px' },
+        { class: '.myn64',  output: 'margin-top: -64px; margin-bottom: -64px' },
+        { class: '.myn96',  output: 'margin-top: -96px; margin-bottom: -96px' },
+        { class: '.myn128', output: 'margin-top: -128px; margin-bottom: -128px' },
+        { class: '.myn50',  output: 'margin-top: -50%; margin-bottom: -50%' },
+        { class: '.myn100', output: 'margin-top: -100%; margin-bottom: -100%' },
+    ];
+
+    const autoClasses: ClassTableRow[] = [
+        { class: '.m-auto',  output: 'margin: auto' },
+        { class: '.mt-auto', output: 'margin-top: auto' },
+        { class: '.mr-auto', output: 'margin-right: auto' },
+        { class: '.mb-auto', output: 'margin-bottom: auto' },
+        { class: '.ml-auto', output: 'margin-left: auto' },
+        { class: '.mx-auto', output: 'margin-left: auto; margin-right: auto' },
+        { class: '.my-auto', output: 'margin-top: auto; margin-bottom: auto' },
+    ];
+</script>
+
+## Base
+
+Immutable margin utilities are based on our global white space scale. These can dramatically help reduce the size of large stylesheets and allow for greater flexibility and quicker iteration when designing in the browser.
+
+### Abbreviations
+
+<ClassTable classes={baseAbbreviations} headings={{ class: 'Abbreviation', output: 'Property', description: 'Responsive?' }} />
+
+### Base examples
+
+```html
+<div class="mt8 mr4 mb32 ml64">
+    …
+</div>
+```
+
+<Example>
+    <div class="docs-box bg-black-100">
+        <div class="docs-box mt8 mr4 mb32 ml64">
+            Example div with different margins applied
         </div>
     </div>
+</Example>
 
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="base-classes">Base classes</h3><a class="s-btn s-btn__clear" href="#base-classes"><span class="v-visible-sr">Section titled Base classes</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col"></th>
-                    
-                        <th scope="col" class="ta-center ff-mono">0</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">1px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">2px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">4px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">6px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">8px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">12px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">16px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">24px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">32px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">48px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">64px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">96px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">128px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">50%</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">100%</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-                
-                    <tr>
-                        <th scope="row">m</th>
-                        
-                            <td><code>.m0</code></td>
-                        
-                            <td><code>.m1</code></td>
-                        
-                            <td><code>.m2</code></td>
-                        
-                            <td><code>.m4</code></td>
-                        
-                            <td><code>.m6</code></td>
-                        
-                            <td><code>.m8</code></td>
-                        
-                            <td><code>.m12</code></td>
-                        
-                            <td><code>.m16</code></td>
-                        
-                            <td><code>.m24</code></td>
-                        
-                            <td><code>.m32</code></td>
-                        
-                            <td><code>.m48</code></td>
-                        
-                            <td><code>.m64</code></td>
-                        
-                            <td><code>.m96</code></td>
-                        
-                            <td><code>.m128</code></td>
-                        
-                            <td><code>.m50</code></td>
-                        
-                            <td><code>.m100</code></td>
-                        
-                    </tr>
-                
-                    <tr>
-                        <th scope="row">mt</th>
-                        
-                            <td><code>.mt0</code></td>
-                        
-                            <td><code>.mt1</code></td>
-                        
-                            <td><code>.mt2</code></td>
-                        
-                            <td><code>.mt4</code></td>
-                        
-                            <td><code>.mt6</code></td>
-                        
-                            <td><code>.mt8</code></td>
-                        
-                            <td><code>.mt12</code></td>
-                        
-                            <td><code>.mt16</code></td>
-                        
-                            <td><code>.mt24</code></td>
-                        
-                            <td><code>.mt32</code></td>
-                        
-                            <td><code>.mt48</code></td>
-                        
-                            <td><code>.mt64</code></td>
-                        
-                            <td><code>.mt96</code></td>
-                        
-                            <td><code>.mt128</code></td>
-                        
-                            <td><code>.mt50</code></td>
-                        
-                            <td><code>.mt100</code></td>
-                        
-                    </tr>
-                
-                    <tr>
-                        <th scope="row">mr</th>
-                        
-                            <td><code>.mr0</code></td>
-                        
-                            <td><code>.mr1</code></td>
-                        
-                            <td><code>.mr2</code></td>
-                        
-                            <td><code>.mr4</code></td>
-                        
-                            <td><code>.mr6</code></td>
-                        
-                            <td><code>.mr8</code></td>
-                        
-                            <td><code>.mr12</code></td>
-                        
-                            <td><code>.mr16</code></td>
-                        
-                            <td><code>.mr24</code></td>
-                        
-                            <td><code>.mr32</code></td>
-                        
-                            <td><code>.mr48</code></td>
-                        
-                            <td><code>.mr64</code></td>
-                        
-                            <td><code>.mr96</code></td>
-                        
-                            <td><code>.mr128</code></td>
-                        
-                            <td><code>.mr50</code></td>
-                        
-                            <td><code>.mr100</code></td>
-                        
-                    </tr>
-                
-                    <tr>
-                        <th scope="row">mb</th>
-                        
-                            <td><code>.mb0</code></td>
-                        
-                            <td><code>.mb1</code></td>
-                        
-                            <td><code>.mb2</code></td>
-                        
-                            <td><code>.mb4</code></td>
-                        
-                            <td><code>.mb6</code></td>
-                        
-                            <td><code>.mb8</code></td>
-                        
-                            <td><code>.mb12</code></td>
-                        
-                            <td><code>.mb16</code></td>
-                        
-                            <td><code>.mb24</code></td>
-                        
-                            <td><code>.mb32</code></td>
-                        
-                            <td><code>.mb48</code></td>
-                        
-                            <td><code>.mb64</code></td>
-                        
-                            <td><code>.mb96</code></td>
-                        
-                            <td><code>.mb128</code></td>
-                        
-                            <td><code>.mb50</code></td>
-                        
-                            <td><code>.mb100</code></td>
-                        
-                    </tr>
-                
-                    <tr>
-                        <th scope="row">ml</th>
-                        
-                            <td><code>.ml0</code></td>
-                        
-                            <td><code>.ml1</code></td>
-                        
-                            <td><code>.ml2</code></td>
-                        
-                            <td><code>.ml4</code></td>
-                        
-                            <td><code>.ml6</code></td>
-                        
-                            <td><code>.ml8</code></td>
-                        
-                            <td><code>.ml12</code></td>
-                        
-                            <td><code>.ml16</code></td>
-                        
-                            <td><code>.ml24</code></td>
-                        
-                            <td><code>.ml32</code></td>
-                        
-                            <td><code>.ml48</code></td>
-                        
-                            <td><code>.ml64</code></td>
-                        
-                            <td><code>.ml96</code></td>
-                        
-                            <td><code>.ml128</code></td>
-                        
-                            <td><code>.ml50</code></td>
-                        
-                            <td><code>.ml100</code></td>
-                        
-                    </tr>
-                
-                    <tr>
-                        <th scope="row">mx</th>
-                        
-                            <td><code>.mx0</code></td>
-                        
-                            <td><code>.mx1</code></td>
-                        
-                            <td><code>.mx2</code></td>
-                        
-                            <td><code>.mx4</code></td>
-                        
-                            <td><code>.mx6</code></td>
-                        
-                            <td><code>.mx8</code></td>
-                        
-                            <td><code>.mx12</code></td>
-                        
-                            <td><code>.mx16</code></td>
-                        
-                            <td><code>.mx24</code></td>
-                        
-                            <td><code>.mx32</code></td>
-                        
-                            <td><code>.mx48</code></td>
-                        
-                            <td><code>.mx64</code></td>
-                        
-                            <td><code>.mx96</code></td>
-                        
-                            <td><code>.mx128</code></td>
-                        
-                            <td><code>.mx50</code></td>
-                        
-                            <td><code>.mx100</code></td>
-                        
-                    </tr>
-                
-                    <tr>
-                        <th scope="row">my</th>
-                        
-                            <td><code>.my0</code></td>
-                        
-                            <td><code>.my1</code></td>
-                        
-                            <td><code>.my2</code></td>
-                        
-                            <td><code>.my4</code></td>
-                        
-                            <td><code>.my6</code></td>
-                        
-                            <td><code>.my8</code></td>
-                        
-                            <td><code>.my12</code></td>
-                        
-                            <td><code>.my16</code></td>
-                        
-                            <td><code>.my24</code></td>
-                        
-                            <td><code>.my32</code></td>
-                        
-                            <td><code>.my48</code></td>
-                        
-                            <td><code>.my64</code></td>
-                        
-                            <td><code>.my96</code></td>
-                        
-                            <td><code>.my128</code></td>
-                        
-                            <td><code>.my50</code></td>
-                        
-                            <td><code>.my100</code></td>
-                        
-                    </tr>
-                
-            </tbody>
-        </table>
-    </div>
-</section>
+### Base classes
 
-<section class="docs-section">
-    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="negative">Negative</h2><a class="s-btn s-btn__clear" href="#negative"><span class="v-visible-sr">Section titled Negative</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">Immutable margin utilities are based on our global white space scale. These can dramatically help reduce the size of large stylesheets and allow for greater flexibility and quicker iteration when designing in the browser.</p>
+<ClassTable classes={baseClasses} expandable />
 
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="abbreviations">Abbreviations</h3><a class="s-btn s-btn__clear" href="#abbreviations"><span class="v-visible-sr">Section titled Abbreviations</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th class="s-table--cell2" scope="col">Abbreviation</th>
-                    <th scope="col">Property</th>
-                    <th class="s-table--cell2 ta-center" scope="col">Responsive?</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-                    <tr>
-                        <th class="ff-mono" scope="row">mn</th>
-                        <td>margin</td>
-                        <td class="ta-center">
-                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-400" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41 14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <th class="ff-mono" scope="row">mtn</th>
-                        <td>margin-top</td>
-                        <td class="ta-center">
-                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-400" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41 14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <th class="ff-mono" scope="row">mrn</th>
-                        <td>margin-right</td>
-                        <td class="ta-center">
-                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-400" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41 14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <th class="ff-mono" scope="row">mbn</th>
-                        <td>margin-bottom</td>
-                        <td class="ta-center">
-                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-400" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41 14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <th class="ff-mono" scope="row">mln</th>
-                        <td>margin-left</td>
-                        <td class="ta-center">
-                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-400" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41 14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <th class="ff-mono" scope="row">mxn</th>
-                        <td>margin x-axis</td>
-                        <td class="ta-center">
-                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-400" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41 14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <th class="ff-mono" scope="row">myn</th>
-                        <td>margin y-axis</td>
-                        <td class="ta-center">
-                            <svg aria-hidden="true" class="svg-icon iconCheckmark fc-green-400" width="18" height="18" viewBox="0 0 18 18"><path d="M16 4.41 14.59 3 6 11.59 2.41 8 1 9.41l5 5z"></path></svg>
-                        </td>
-                    </tr>
-                
-            </tbody>
-        </table>
-    </div>
+## Negative
 
-<div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="negative-examples">Negative examples</h3><a class="s-btn s-btn__clear" href="#negative-examples"><span class="v-visible-sr">Section titled Negative examples</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-<div class="docs-preview">
-<pre class="language-html s-code-block" tabindex="0"><code class="language-html s-code-block"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mtn8 mrn4 mbn32 mln64"</span>&gt;</span><br>    …<br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-        <div class="docs-preview--example">
-            <div class="docs-box bg-black-100 p48">
-                <div class="docs-box mtn8 mrn4 mbn32 mln64">
-                    Example div with different margins applied
-                </div>
-            </div>
+Immutable margin utilities are based on our global white space scale. These can dramatically help reduce the size of large stylesheets and allow for greater flexibility and quicker iteration when designing in the browser.
+
+### Abbreviations
+
+<ClassTable classes={negativeAbbreviations} headings={{ class: 'Abbreviation', output: 'Property', description: 'Responsive?' }} />
+
+### Negative examples
+
+```html
+<div class="mtn8 mrn4 mbn32 mln64">
+    …
+</div>
+```
+
+<Example>
+    <div class="docs-box bg-black-100 p48">
+        <div class="docs-box mtn8 mrn4 mbn32 mln64">
+            Example div with different margins applied
         </div>
     </div>
+</Example>
 
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="negative-classes">Negative classes</h3><a class="s-btn s-btn__clear" href="#negative-classes"><span class="v-visible-sr">Section titled Negative classes</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    
+### Negative classes
 
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col"></th>
-                    
-                        <th scope="col" class="ta-center ff-mono">1px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">2px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">4px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">6px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">8px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">12px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">16px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">24px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">32px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">48px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">64px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">96px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">128px</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">50%</th>
-                    
-                        <th scope="col" class="ta-center ff-mono">100%</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-                
-                    <tr>
-                        <th scope="row">mn</th>
-                        
-                            <td><code>.mn1</code></td>
-                        
-                            <td><code>.mn2</code></td>
-                        
-                            <td><code>.mn4</code></td>
-                        
-                            <td><code>.mn6</code></td>
-                        
-                            <td><code>.mn8</code></td>
-                        
-                            <td><code>.mn12</code></td>
-                        
-                            <td><code>.mn16</code></td>
-                        
-                            <td><code>.mn24</code></td>
-                        
-                            <td><code>.mn32</code></td>
-                        
-                            <td><code>.mn48</code></td>
-                        
-                            <td><code>.mn64</code></td>
-                        
-                            <td><code>.mn96</code></td>
-                        
-                            <td><code>.mn128</code></td>
-                        
-                            <td><code>.mn50</code></td>
-                        
-                            <td><code>.mn100</code></td>
-                        
-                    </tr>
-                
-                    <tr>
-                        <th scope="row">mtn</th>
-                        
-                            <td><code>.mtn1</code></td>
-                        
-                            <td><code>.mtn2</code></td>
-                        
-                            <td><code>.mtn4</code></td>
-                        
-                            <td><code>.mtn6</code></td>
-                        
-                            <td><code>.mtn8</code></td>
-                        
-                            <td><code>.mtn12</code></td>
-                        
-                            <td><code>.mtn16</code></td>
-                        
-                            <td><code>.mtn24</code></td>
-                        
-                            <td><code>.mtn32</code></td>
-                        
-                            <td><code>.mtn48</code></td>
-                        
-                            <td><code>.mtn64</code></td>
-                        
-                            <td><code>.mtn96</code></td>
-                        
-                            <td><code>.mtn128</code></td>
-                        
-                            <td><code>.mtn50</code></td>
-                        
-                            <td><code>.mtn100</code></td>
-                        
-                    </tr>
-                
-                    <tr>
-                        <th scope="row">mrn</th>
-                        
-                            <td><code>.mrn1</code></td>
-                        
-                            <td><code>.mrn2</code></td>
-                        
-                            <td><code>.mrn4</code></td>
-                        
-                            <td><code>.mrn6</code></td>
-                        
-                            <td><code>.mrn8</code></td>
-                        
-                            <td><code>.mrn12</code></td>
-                        
-                            <td><code>.mrn16</code></td>
-                        
-                            <td><code>.mrn24</code></td>
-                        
-                            <td><code>.mrn32</code></td>
-                        
-                            <td><code>.mrn48</code></td>
-                        
-                            <td><code>.mrn64</code></td>
-                        
-                            <td><code>.mrn96</code></td>
-                        
-                            <td><code>.mrn128</code></td>
-                        
-                            <td><code>.mrn50</code></td>
-                        
-                            <td><code>.mrn100</code></td>
-                        
-                    </tr>
-                
-                    <tr>
-                        <th scope="row">mbn</th>
-                        
-                            <td><code>.mbn1</code></td>
-                        
-                            <td><code>.mbn2</code></td>
-                        
-                            <td><code>.mbn4</code></td>
-                        
-                            <td><code>.mbn6</code></td>
-                        
-                            <td><code>.mbn8</code></td>
-                        
-                            <td><code>.mbn12</code></td>
-                        
-                            <td><code>.mbn16</code></td>
-                        
-                            <td><code>.mbn24</code></td>
-                        
-                            <td><code>.mbn32</code></td>
-                        
-                            <td><code>.mbn48</code></td>
-                        
-                            <td><code>.mbn64</code></td>
-                        
-                            <td><code>.mbn96</code></td>
-                        
-                            <td><code>.mbn128</code></td>
-                        
-                            <td><code>.mbn50</code></td>
-                        
-                            <td><code>.mbn100</code></td>
-                        
-                    </tr>
-                
-                    <tr>
-                        <th scope="row">mln</th>
-                        
-                            <td><code>.mln1</code></td>
-                        
-                            <td><code>.mln2</code></td>
-                        
-                            <td><code>.mln4</code></td>
-                        
-                            <td><code>.mln6</code></td>
-                        
-                            <td><code>.mln8</code></td>
-                        
-                            <td><code>.mln12</code></td>
-                        
-                            <td><code>.mln16</code></td>
-                        
-                            <td><code>.mln24</code></td>
-                        
-                            <td><code>.mln32</code></td>
-                        
-                            <td><code>.mln48</code></td>
-                        
-                            <td><code>.mln64</code></td>
-                        
-                            <td><code>.mln96</code></td>
-                        
-                            <td><code>.mln128</code></td>
-                        
-                            <td><code>.mln50</code></td>
-                        
-                            <td><code>.mln100</code></td>
-                        
-                    </tr>
-                
-                    <tr>
-                        <th scope="row">mxn</th>
-                        
-                            <td><code>.mxn1</code></td>
-                        
-                            <td><code>.mxn2</code></td>
-                        
-                            <td><code>.mxn4</code></td>
-                        
-                            <td><code>.mxn6</code></td>
-                        
-                            <td><code>.mxn8</code></td>
-                        
-                            <td><code>.mxn12</code></td>
-                        
-                            <td><code>.mxn16</code></td>
-                        
-                            <td><code>.mxn24</code></td>
-                        
-                            <td><code>.mxn32</code></td>
-                        
-                            <td><code>.mxn48</code></td>
-                        
-                            <td><code>.mxn64</code></td>
-                        
-                            <td><code>.mxn96</code></td>
-                        
-                            <td><code>.mxn128</code></td>
-                        
-                            <td><code>.mxn50</code></td>
-                        
-                            <td><code>.mxn100</code></td>
-                        
-                    </tr>
-                
-                    <tr>
-                        <th scope="row">myn</th>
-                        
-                            <td><code>.myn1</code></td>
-                        
-                            <td><code>.myn2</code></td>
-                        
-                            <td><code>.myn4</code></td>
-                        
-                            <td><code>.myn6</code></td>
-                        
-                            <td><code>.myn8</code></td>
-                        
-                            <td><code>.myn12</code></td>
-                        
-                            <td><code>.myn16</code></td>
-                        
-                            <td><code>.myn24</code></td>
-                        
-                            <td><code>.myn32</code></td>
-                        
-                            <td><code>.myn48</code></td>
-                        
-                            <td><code>.myn64</code></td>
-                        
-                            <td><code>.myn96</code></td>
-                        
-                            <td><code>.myn128</code></td>
-                        
-                            <td><code>.myn50</code></td>
-                        
-                            <td><code>.myn100</code></td>
-                        
-                    </tr>
-                
-            </tbody>
-        </table>
-    </div>
-</section>
+<ClassTable classes={negativeClasses} expandable />
 
-<section class="docs-section">
-    <div class="d-flex jc-space-between ai-end mb12"><h2 class="fl-grow1 mb0 lh-sm  fs-headline1" id="auto">Auto</h2><a class="s-btn s-btn__clear" href="#auto"><span class="v-visible-sr">Section titled Auto</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <p class="docs-copy">Stacks provides additional automatic margin classes. These come in handy when positioning individual flex items within flex layouts, or horizontally centering a block-level element.</p>
-    
-    <div class="d-flex jc-space-between ai-end mb12"><h3 class="fl-grow1 mb0 lh-sm  fs-subheading fc-black-500" id="auto-classes">Auto classes</h3><a class="s-btn s-btn__clear" href="#auto-classes"><span class="v-visible-sr">Section titled Auto classes</span><svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconLink" aria-hidden="true"><path d="M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38"></path></svg></a></div>
-    <div class="overflow-x-auto mb32" tabindex="0">
-        <table class="docs-table s-table s-table__bx-simple">
-            <thead>
-                <tr>
-                    <th scope="col">Class</th>
-                    <th scope="col">Property</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-                    <tr>
-                        <td class="ff-mono">.m-auto</td>
-                        <td>margin</td>
-                    </tr>
-                
-                    <tr>
-                        <td class="ff-mono">.mt-auto</td>
-                        <td>margin-top</td>
-                    </tr>
-                
-                    <tr>
-                        <td class="ff-mono">.mr-auto</td>
-                        <td>margin-right</td>
-                    </tr>
-                
-                    <tr>
-                        <td class="ff-mono">.mb-auto</td>
-                        <td>margin-bottom</td>
-                    </tr>
-                
-                    <tr>
-                        <td class="ff-mono">.ml-auto</td>
-                        <td>margin-left</td>
-                    </tr>
-                
-                    <tr>
-                        <td class="ff-mono">.mx-auto</td>
-                        <td>margin x-axis</td>
-                    </tr>
-                
-                    <tr>
-                        <td class="ff-mono">.my-auto</td>
-                        <td>margin y-axis</td>
-                    </tr>
-                
-            </tbody>
-        </table>
-    </div>
-</section>
+## Auto
 
+Stacks provides additional automatic margin classes. These come in handy when positioning individual flex items within flex layouts, or horizontally centering a block-level element.
 
-            <!-- <div class="d-flex my48 pt24">
-                <div class="mr16">
-                    
-                    <form
-                        id="quick-positive-feedback-margin"
-                        class="js-feedback-form v-hidden"
-                        name="quick-positive-feedback-margin"
-                        method="POST"
-                        data-netlify="true"
-                        action="/success">
-                    </form>
-                    <form
-                        id="quick-negative-feedback-margin"
-                        class="js-feedback-form v-hidden"
-                        name="quick-negative-feedback-margin"
-                        method="POST"
-                        data-netlify="true"
-                        action="/success">
-                    </form>
-                    <div
-                        class="s-popover s-popover__tooltip"
-                        id="tooltip-feedback-positive"
-                        role="tooltip">
-                        <div class="s-popover--content">This page is useful</div>
-                    </div>
-                    <div
-                        class="s-popover s-popover__tooltip"
-                        id="tooltip-feedback-negative"
-                        role="tooltip">
-                        <div class="s-popover--content">This page needs improvement</div>
-                    </div>
-                    <div id="vote-feedback" class="s-vote">
-                        <button
-                            class="s-vote--btn"
-                            type="submit"
-                            form="quick-positive-feedback-margin"
-                            aria-describedby="tooltip-feedback-positive"
-                            aria-expanded="false"
-                            data-controller="s-tooltip"
-                            data-s-tooltip-placement="right"
-                        >
-                            <span class="s-btn-icon">
-                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteUp" aria-hidden="true"><path d="M10 3q.41.02.64.36l6.9 11.5a.75.75 0 1 1-1.28.78L10 5.21l-5.58 9.3h8.04v-.01h1.1l.97 1.5H3.1a.75.75 0 0 1-.65-1.13l6.9-11.5A.8.8 0 0 1 10 3"/></svg>
-                            </span>
-                            <span class="s-btn-icon-fill d-none">
-                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteUpFill" aria-hidden="true"><path d="M10 3h.1a1 1 0 0 1 .42.21l.12.15 6.9 11.5.05.09v.03l.02.04q.04.12.04.26v.03q0 .13-.07.25v.02l-.03.04a1 1 0 0 1-.2.23l-.06.05-.04.01-.04.03-.04.01a1 1 0 0 1-.27.05H3a.75.75 0 0 1-.55-1.13l6.9-11.5A.8.8 0 0 1 10 3"/></svg>
-                            </span>
-                            <span class="v-visible-sr">upvote</span>
-                        </button>
-                        <button
-                            class="s-vote--btn"
-                            type="submit"
-                            form="quick-negative-feedback-margin"
-                            aria-describedby="tooltip-feedback-negative"
-                            aria-expanded="false"
-                            data-controller="s-tooltip"
-                            data-s-tooltip-placement="right"
-                        >
-                            <span class="s-btn-icon">
-                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteDown" aria-hidden="true"><path d="M10 16a.8.8 0 0 1-.64-.36l-6.9-11.5a.75.75 0 1 1 1.28-.78L10 13.8l5.58-9.3H6.44L5.47 3H16.9a.75.75 0 0 1 .65 1.14l-6.9 11.5A.8.8 0 0 1 10 16"/></svg>
-                            </span>
-                            <span class="s-btn-icon-fill d-none">
-                                <svg width="20" height="20" viewBox="0 0 20 20" class="svg-icon IconVoteDownFill" aria-hidden="true"><path d="M10 16h-.1l-.1-.02a.8.8 0 0 1-.45-.34l-6.9-11.5-.04-.08-.01-.04L2.39 4a1 1 0 0 1-.04-.26V3.7q0-.14.06-.26l.01-.02.02-.04a1 1 0 0 1 .27-.27l.03-.02.05-.02.04-.02A1 1 0 0 1 3.1 3H17a.75.75 0 0 1 .54 1.14l-6.9 11.5A.8.8 0 0 1 10 16"/></svg>
-                            </span>
-                            <span class="v-visible-sr">downvote</span>
-                        </button>
-                    </div>
-                </div>
+### Auto classes
 
-                <form
-                    class="w100 js-feedback-form"
-                    name="feedback-margin"
-                    method="POST"
-                    data-netlify="true"
-                    action="/success">
-                    <fieldset class="d-flex fd-column fl-grow1 g16">
-                        <legend class="fs-title fw-bold">How’d we do?</legend>
-                        <div class="fs-body2">Anonymously upvote, downvote, or send additional feedback below.</div>
-
-                        <textarea
-                            class="s-textarea hmn1"
-                            id="feedback-form"
-                            name="additional-feedback"
-                            placeholder="Tell us how we can improve this page…" required></textarea>
-
-                        <div class="d-flex ai-center fd-row-reverse g8 jc-space-between mln6 sm:d-grid sm:grid__1 sm:ml0">
-                            <button
-                                type="submit"
-                                class="s-btn as-start fl-shrink0">
-                                Send feedback
-                            </button>
-                            <div class="d-flex fw-wrap g8 sm:d-grid sm:grid__1">
-                                <a
-                                    href="https://github.com/StackExchange/Stacks/edit/develop/packages/stacks-docs/./product/base/margin.html"
-                                    class="s-btn s-btn__clear s-btn__icon s-btn__sm">
-                                    <svg aria-hidden="true" class="svg-icon iconPencilSm" width="14" height="14"  viewBox="0 0 14 14"><path fill="#F1B600" d="m2 10.12 6.37-6.43 1.88 1.88L3.88 12H2z"/><path fill="#E87C87" d="m11.1 1.71 1.13 1.12c.2.2.2.51 0 .71L11.1 4.7 9.21 2.86l1.17-1.15c.2-.2.51-.2.71 0"/></svg>
-                                    Edit
-                                </a>
-                                <a
-                                    href="https://github.com/StackExchange/Stacks/issues/new/choose"
-                                    class="s-btn s-btn__clear s-btn__icon s-btn__sm">
-                                    File an issue
-                                </a>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div> -->
-
-            <!-- <div class="ta-right">
-                <a href="https://www.netlify.com"><img src="https://www.netlify.com/v3/img/components/netlify-color-accent.svg" alt="Deploys by Netlify" /></a>
-            </div> -->
+<ClassTable classes={autoClasses} />

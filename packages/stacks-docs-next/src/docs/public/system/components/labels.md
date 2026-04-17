@@ -23,7 +23,7 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
 
 Labels inform users what information is being asked of them. They should be written in sentence case.
 
-<Notice variant="info" role="note" class="mb16">
+<Notice variant="info" role="note" class="mb16 s-anchors s-anchors__inherit s-anchors__underlined">
     <p>For usability reasons, if a label is connected with an input, the <code>for="[id]"</code> attribute should be filled in. This attribute references the input's <code>id="[value]"</code> value. This makes clicking the label automatically focus the proper input.</p>
 </Notice>
 

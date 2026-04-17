@@ -18,6 +18,11 @@
 
 	let mobileMenu = $state(false);
 
+	$effect(() => {
+		document.body.style.overflow = mobileMenu ? 'hidden' : '';
+		return () => { document.body.style.overflow = ''; };
+	});
+
 	const year = new Date().getFullYear();
 	const toc = $derived(page.data?.metadata?.toc || []);
 </script>
@@ -28,8 +33,8 @@
 </svelte:head>
 
 <div class="layout-root d-flex sm:fd-column">
-<header class="d-flex fd-column fl-shrink0 overflow-auto ff-stack-sans-headline w20 wmn2 wmx3 ps-sticky t0 h-screen sm:ps-static sm:h-auto sm:w100">
-	<div class="d-flex ai-center bg-black-100 pt32 px24 sm:pr6 sm:pb12 sm:pt12">
+<header class="d-flex fd-column fl-shrink0 overflow-auto ff-stack-sans-headline w20 wmn2 wmx3 ps-sticky t0 h-screen z-nav-fixed bg-black-100 sm:h-auto sm:hmx-screen sm:overflow-hidden sm:w100 sm:wmn-initial sm:wmx-initial" class:menu-open={mobileMenu}>
+	<div class="d-flex ai-center pt32 px24 sm:pr6 sm:pb12 sm:pt12">
 		<a href={resolve('/')} title="Home" class="fc-brand mr-auto">
 			<Icon src={IconLogo} />
 		</a>
@@ -41,7 +46,7 @@
 		</Button>
 	</div>
 
-	<div class={`d-flex fd-column h100 pt16 ${mobileMenu ? '' : 'sm:d-none'}`}>
+	<div class={`d-flex fd-column h100 pt16 sm:fl-grow1 ${mobileMenu ? 'overflow-auto' : 'sm:d-none'}`}>
 		<Navigation
 			navigation={data.structure?.navigation}
 		/>
@@ -62,10 +67,10 @@
 
 <div class="d-flex fd-column fl-grow1 wmn0">
 	{#if page.data.active?.image}
-		<img class="w100 h-auto" width="1030" height="540" alt="" src={page.data.active.image} />
+		<div class="layout-hero w100 hmx6 bg-cover bg-bottom bg-no-repeat" style="background-image: url({page.data.active.image})"></div>
 	{/if}
 
-	<div class="d-flex fl-grow1 bg-white" class:mt24={!page.data.active?.image}>
+	<div class="d-flex fl-grow1 bg-white sm:mt0" class:mt24={!page.data.active?.image}>
 		<main class="main d-flex fd-column wmn0">
 			<!-- <div class="bg-blue-400 fc-white px24 py12">
 				This is a brand focused preview – for developer reference please see <a href="https://stackoverflow.design" class="s-link fc-white s-link__underlined">the current docs</a> or <a href="https://beta.stackoverflow.design" class="s-link fc-white s-link__underlined">the beta release</a>.
@@ -96,3 +101,18 @@
 	</div>
 </div>
 </div>
+
+<style>
+	@media (max-width: 48.75rem) {
+		header.menu-open {
+			position: fixed !important;
+			top: 0;
+			left: 0;
+			width: 100% !important;
+			max-width: 100% !important;
+			height: 100dvh !important;
+			max-height: 100dvh !important;
+			overflow: hidden !important;
+		}
+	}
+</style>

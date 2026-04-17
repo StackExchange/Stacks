@@ -210,7 +210,7 @@ Similarly to using `for` with labels, validation messages below inputs should be
 
 #### Error
 
-<Notice variant="warning" role="note" class="mb16">
+<Notice variant="warning" role="note" class="mb16 s-anchors s-anchors__inherit s-anchors__underlined">
     <p>In addition to using the "error" state for a field, be sure to use the <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-invalid_attributev"><code>aria-invalid</code></a> attribute to indicate to assistive technology that respective fields have failed validation.</p>
 </Notice>
 

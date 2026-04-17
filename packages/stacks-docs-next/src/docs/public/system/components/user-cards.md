@@ -59,7 +59,7 @@ svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-usercar
 
 The base style is the standard variant used to connect a user to their content, appearing most frequently in post-summary lists and on question pages. This view is flexible, allowing various metadata fields to be shown or hidden as needed.
 
-<Notice variant="info">
+<Notice variant="info" class="s-anchors s-anchors__inherit s-anchors__underlined">
     <p><strong>Note on timestamps:</strong> Hovering over the timestamp displays a popover with precise dates and a link to the post's /timeline. For authors, this shows the post creation date; for editors, it shows the last modification date.</p>
 </Notice>
 

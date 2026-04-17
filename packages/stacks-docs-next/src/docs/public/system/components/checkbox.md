@@ -341,7 +341,7 @@ Checkboxes use the same validation states as [inputs](/system/components/inputs)
 
 Checkboxes can be styled by using the `:indeterminate` pseudo class.
 
-<Notice variant="info" role="note" class="mb16">
+<Notice variant="info" role="note" class="mb16 s-anchors s-anchors__inherit s-anchors__underlined">
     <p><strong>Note:</strong> The <code>:indeterminate</code> pseudo class can only be set via JavaScript. Use the <code>HTMLInputElement</code> object's <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes"><code>indeterminate</code></a> property to set the state.</p>
 </Notice>
 

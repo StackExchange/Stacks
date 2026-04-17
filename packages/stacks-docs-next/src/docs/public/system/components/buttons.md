@@ -172,7 +172,7 @@ Adding an `.s-btn--badge` to any button will add an appropriately-styled badge.
 
 A button's default font-size is determined by the `@body-fs` variable. To change the button's font-size, use the following classes with `.s-btn`:
 
-<Notice variant="warning" role="note" class="mb16">
+<Notice variant="warning" role="note" class="mb16 s-anchors s-anchors__inherit s-anchors__underlined">
     <span><strong>Note:</strong> Avoid using icons within the extra small button size. This variant is designed for tight spaces, and standard icons are too large to fit without breaking the button's height and layout.</span>
 </Notice>
 

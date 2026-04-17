@@ -14,8 +14,14 @@
         description?: string;
         /** Human-readable definition — used on base utility pages */
         define?: string;
+        /** Whether the class can be triggered on hover */
+        hover?: boolean;
+        /** Whether the class can be triggered on focus */
+        focus?: boolean;
         /** Whether the class has a responsive variant */
         responsive?: boolean;
+        /** Whether the class applies in print context */
+        print?: boolean;
     };
 
     type ColKey = keyof Omit<ClassTableRow, 'class'>;
@@ -61,15 +67,20 @@
         output: 'Output',
         description: 'Description',
         define: 'Definition',
+        hover: 'Hover?',
+        focus: 'Focus?',
         responsive: 'Responsive?',
+        print: 'Print?',
     };
 
     function label(col: 'class' | ColKey): string {
         return headings[col] ?? defaultLabels[col];
     }
 
+    const booleanIconCols: ColKey[] = ['hover', 'focus', 'responsive', 'print'];
+
     // Show columns in a fixed order, only those with at least one value.
-    const orderedCols: ColKey[] = ['parent', 'modifies', 'output', 'description', 'define', 'responsive'];
+    const orderedCols: ColKey[] = ['output', 'description', 'define', 'parent', 'modifies', 'hover', 'focus', 'responsive', 'print'];
     const activeCols = $derived(
         orderedCols.filter(col => classes.some(r => r[col] !== undefined))
     );
@@ -88,7 +99,7 @@
                 <tr>
                     <th scope="col">{label('class')}</th>
                     {#each activeCols as col}
-                        <th scope="col" class="{col === 'description' || col === 'define' ? 's-table--cell5' : ''} {col === 'responsive' ? 'ta-center' : ''}">{label(col)}</th>
+                        <th scope="col" class="{col === 'description' || col === 'define' ? 's-table--cell5' : ''} {booleanIconCols.includes(col) ? 'ta-center' : ''}">{label(col)}</th>
                     {/each}
                 </tr>
             </thead>
@@ -98,10 +109,10 @@
                 <tr>
                     <th scope="row"><code>{row.class}</code></th>
                     {#each activeCols as col}
-                        <td class="{col === 'output' ? 'ff-mono' : ''} {col === 'responsive' ? 'ta-center' : ''}">
-                            {#if col === 'responsive'}
-                                {#if row.responsive}
-                                    <Icon src={IconCheckFillCircle} class="fc-green-400 w16 h16" aria-label="Yes" />
+                        <td class="{col === 'output' ? 'ff-mono' : ''} {booleanIconCols.includes(col) ? 'ta-center' : ''}">
+                            {#if booleanIconCols.includes(col)}
+                                {#if (row as Record<string, unknown>)[col]}
+                                    <Icon src={IconCheckFillCircle} class="fc-green-400 w16 h16" title="Yes" />
                                 {/if}
                             {:else}
                                 {@const val = String((row as Record<string, unknown>)[col] ?? '')}
@@ -120,6 +131,16 @@
         </tbody>
     </table>
 </div>
+
+<style>
+    code {
+        background-color: var(--black-200);
+        color: var(--black-600);
+        font-family: var(--ff-mono);
+        font-size: var(--fs-fine);
+        padding: var(--su2) var(--su4);
+    }
+</style>
 
 {#if expandable && !expanded}
     <button
