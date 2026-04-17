@@ -44,7 +44,7 @@
   <div class="doc fl-grow1 wmn0 wmx9 fs-body2 pt24">
     <div class="d-flex g4 ai-center {data?.active?.image ? 'mb128' : 'mb24'}">
       <nav class="d-flex ai-center g6 fs-body2 mr-auto" aria-label="breadcrumb">
-        {#each data.breadcrumb as crumb, index (crumb.path)}
+        {#each data.breadcrumb as crumb, index (crumb.label)}
           {#if index !== 0}<span class="fc-black-300">/</span>{/if}
           <a href={resolve(crumb.path)} class="s-link fw-bold">{crumb.label}</a>
         {/each}

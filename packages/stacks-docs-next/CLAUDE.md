@@ -108,6 +108,22 @@ Sub-example labels always use `class="ff-mono mb8"`.
 
 Use `s-popover is-visible ps-relative` as the example container for anything that would appear inside a popover in real use. Standard sizing is `ws2 p8` or `ws3 p8`.
 
+### Notice component
+
+**Always wrap Notice text content in a `<p>` tag.** The `Notice` Svelte component uses flexbox internally; bare text nodes and inline elements (like `<code>`, `<a>`, `<strong>`) become flex items and break the layout if not wrapped.
+
+```svelte
+<!-- Correct -->
+<Notice variant="info" role="note" class="mb16">
+    <p>Text with <code>inline code</code> and <a href="…">links</a>.</p>
+</Notice>
+
+<!-- Wrong — bare text and inline elements become flex items -->
+<Notice variant="info" role="note" class="mb16">
+    Text with <code>inline code</code> and <a href="…">links</a>.
+</Notice>
+```
+
 ### Removed-in-v3 components
 
 Pages for components removed in Stacks v3 contain only a warning notice:

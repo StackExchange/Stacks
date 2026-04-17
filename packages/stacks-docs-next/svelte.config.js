@@ -109,9 +109,9 @@ function addDocClasses() {
                 case "h3": add("docs-heading", "docs-h3"); break;
                 case "h4": add("docs-heading", "docs-h4"); break;
                 case "p":       add("docs-copy"); break;
-                case "ol":      add("docs-copy"); break;
+                case "ol":      add("docs-copy", "lh-xl"); break;
                 case "section": add("docs-section"); break;
-                case "ul":  add("docs-ul");  break;
+                case "ul":      add("docs-ul", "lh-xl");  break;
                 case "li":  add("docs-li");  break;
                 case "nav": add("docs-nav"); break;
                 case "img": add("docs-img"); break;
@@ -126,13 +126,21 @@ function addDocClasses() {
     };
 }
 
-// Custom plugin to add Stacks classes to tables
+// Custom plugin to add Stacks classes to tables.
+// Ensures s-table is present while preserving any existing classes (e.g. s-table__bx-simple).
 function addTableClasses() {
     return function (tree) {
         visit(tree, "element", (node) => {
             if (node.tagName === "table") {
                 node.properties = node.properties || {};
-                node.properties.className = ["s-table"];
+                const existing = Array.isArray(node.properties.className)
+                    ? node.properties.className
+                    : node.properties.className
+                        ? [node.properties.className]
+                        : [];
+                if (!existing.includes("s-table")) {
+                    node.properties.className = ["s-table", ...existing];
+                }
             }
         });
     };
