@@ -65,8 +65,8 @@
 		<img class="w100 h-auto" width="1030" height="540" alt="" src={page.data.active.image} />
 	{/if}
 
-	<div class="d-flex fl-grow1" class:mt24={!page.data.active?.image}>
-		<main class="main bg-white d-flex fd-column wmn0">
+	<div class="d-flex fl-grow1 bg-white" class:mt24={!page.data.active?.image}>
+		<main class="main d-flex fd-column wmn0">
 			<!-- <div class="bg-blue-400 fc-white px24 py12">
 				This is a brand focused preview – for developer reference please see <a href="https://stackoverflow.design" class="s-link fc-white s-link__underlined">the current docs</a> or <a href="https://beta.stackoverflow.design" class="s-link fc-white s-link__underlined">the beta release</a>.
 			</div> -->
