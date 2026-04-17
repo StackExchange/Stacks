@@ -1,7 +1,6 @@
 ---
 title: Truncation
 description: Stacks provides utility classes for various types of truncation.
-updated: 2025-12-17
 ---
 
 ## Classes

@@ -1,4 +1,7 @@
 <script lang="ts">
+    import { Icon } from '@stackoverflow/stacks-svelte';
+    import { IconCheckFillCircle } from '@stackoverflow/stacks-icons/icons';
+
     export type ClassTableRow = {
         class: string;
         /** The parent element this class must be a child of */
@@ -97,7 +100,9 @@
                     {#each activeCols as col}
                         <td class={col === 'output' ? 'ff-mono' : ''}>
                             {#if col === 'responsive'}
-                                {row.responsive ? '✓' : ''}
+                                {#if row.responsive}
+                                    <Icon src={IconCheckFillCircle} class="fc-green-400 w16 h16" aria-label="Yes" />
+                                {/if}
                             {:else}
                                 {@const val = String((row as Record<string, unknown>)[col] ?? '')}
                                 {#if val === 'N/A'}

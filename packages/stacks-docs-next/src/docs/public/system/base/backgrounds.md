@@ -1,7 +1,6 @@
 ---
 title: Backgrounds
 description: Atomic classes for controlling the background properties of an element.
-updated: 2025-12-05
 ---
 
 <script lang="ts">

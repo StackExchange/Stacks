@@ -1,7 +1,6 @@
 ---
 title: Opacity
 description: Atomic opacity classes allow you to change an element's opacity quickly.
-updated: 2025-12-16
 ---
 
 <script lang="ts">

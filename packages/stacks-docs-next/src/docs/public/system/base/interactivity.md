@@ -1,7 +1,6 @@
 ---
 title: Interactivity
 description: Atomic interactivity classes allow you to quickly change an element's interactivity.
-updated: 2025-12-16
 ---
 
 <script lang="ts">

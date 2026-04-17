@@ -1,7 +1,6 @@
 ---
 title: Transitions
 description: Atomic transition classes allow you to quickly apply transitions properties to an element. You can modify an element's transition duration, property, or delay.
-updated: 2025-12-17
 ---
 
 <script lang="ts">

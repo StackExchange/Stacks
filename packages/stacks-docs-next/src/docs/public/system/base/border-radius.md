@@ -1,7 +1,6 @@
 ---
 title: Border radius
 description: Stacks provides atomic classes for border radius.
-updated: 2025-12-05
 ---
 
 <script lang="ts">

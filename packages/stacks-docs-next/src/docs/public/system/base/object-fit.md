@@ -1,7 +1,6 @@
 ---
 title: Object fit
 description: Atomic classes that control the sizing of an <code class="stacks-code">img</code> or <code class="stacks-code">video</code> relative to its container.
-updated: 2025-12-16
 ---
 
 <script lang="ts">

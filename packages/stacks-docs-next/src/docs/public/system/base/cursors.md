@@ -1,7 +1,6 @@
 ---
 title: Cursors
 description: Atomic cursor classes allow you to quickly change an element's cursor behavior.
-updated: 2025-12-16
 ---
 
 <script lang="ts">

@@ -1,7 +1,6 @@
 ---
 title: Floats
 description: Float and clear atomic classes allow you to change how an element is positioned within the layout. These should be used when possible to help create consistency.
-updated: 2025-12-16
 ---
 
 <script lang="ts">

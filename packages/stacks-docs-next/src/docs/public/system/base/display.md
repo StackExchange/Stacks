@@ -1,7 +1,6 @@
 ---
 title: Display
 description: Display atomic classes allow you to change an element's display quickly.
-updated: 2025-12-16
 ---
 
 <script lang="ts">

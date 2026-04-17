@@ -1,7 +1,6 @@
 ---
 title: Vertical alignment
 description: Atomic vertical alignment classes allow you to change an element's vertical alignment quickly.
-updated: 2025-12-16
 ---
 
 <script lang="ts">

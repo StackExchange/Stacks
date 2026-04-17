@@ -1,7 +1,6 @@
 ---
 title: Flex
 description: Stacks provides extensive utility and helper classes for flex layouts. If you are new to flex layouts, check out this <a href="https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/" rel="external">interactive introduction</a> by Joshua Comeau.
-updated: 2025-12-05
 ---
 
 <script lang="ts">

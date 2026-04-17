@@ -1,7 +1,6 @@
 ---
 title: Visibility
 description: Atomic visibility classes allow you to quickly change an element's visibility.
-updated: 2025-12-16
 ---
 
 <script lang="ts">

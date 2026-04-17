@@ -1,7 +1,6 @@
 ---
 title: Box sizing
 description: Box-sizing atomic classes allow one to determine what is used to determine an element's width or height.
-updated: 2025-12-16
 ---
 
 <script lang="ts">

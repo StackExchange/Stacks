@@ -1,7 +1,6 @@
 ---
 title: Lists
 description: Stacks provides a few atomic classes to help style lists.
-updated: 2025-12-16
 ---
 
 <script lang="ts">

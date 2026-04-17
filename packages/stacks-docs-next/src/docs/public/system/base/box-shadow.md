@@ -2,7 +2,6 @@
 title: Box shadow
 figma: https://svelte.stackoverflow.design/figma/box-shadows
 description: Box shadow atomic classes allow you to change an element's box shadow quickly.
-updated: 2025-12-16
 ---
 
 <script lang="ts">

@@ -1,5 +1,4 @@
 ---
-updated: 2025-12-05
 ---
 
 <script lang="ts">

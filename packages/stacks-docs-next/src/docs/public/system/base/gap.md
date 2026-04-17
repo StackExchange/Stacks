@@ -1,7 +1,6 @@
 ---
 title: Gap
 description: Atomic CSS gap classes allow you to set spacing on the direct children of elements with flexbox and grid layouts.
-updated: 2025-12-17
 ---
 
 <script lang="ts">
