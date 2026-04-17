@@ -38,36 +38,52 @@ Use the `.s-radio` to wrap `input[type="radio"]` elements to apply radio styles.
 ```
 
 <Example>
-    <div class="d-flex ai-start fw-wrap g24">
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Unchecked</span>
-            <div class="s-radio">
-                <input type="radio" name="radio-group" id="radio-unchecked" />
-                <label class="s-label" for="radio-unchecked">Radio label</label>
-            </div>
-        </div>
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Disabled unchecked</span>
-            <div class="s-radio">
-                <input type="radio" name="radio-group" id="radio-disabled-unchecked" disabled />
-                <label class="s-label" for="radio-disabled-unchecked">Radio label</label>
-            </div>
-        </div>
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Checked</span>
-            <div class="s-radio">
-                <input type="radio" name="radio-group" id="radio-checked" checked />
-                <label class="s-label" for="radio-checked">Radio label</label>
-            </div>
-        </div>
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Disabled checked</span>
-            <div class="s-radio">
-                <input type="radio" name="radio-group-disabled-checked" id="radio-disabled-checked" disabled checked />
-                <label class="s-label" for="radio-disabled-checked">Radio label</label>
-            </div>
-        </div>
-    </div>
+    <table class="s-table s-table__bx-simple">
+        <thead>
+            <tr>
+                <th scope="col">Example</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="va-middle pr8">
+                    <div class="s-radio">
+                        <input type="radio" name="radio-group-unchecked" id="radio-unchecked" />
+                        <label class="s-label" for="radio-unchecked">Radio label</label>
+                    </div>
+                </td>
+                <td class="va-middle">The base, unchecked state.</td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <div class="s-radio">
+                        <input type="radio" name="radio-group-dis-unchecked" id="radio-disabled-unchecked" disabled />
+                        <label class="s-label" for="radio-disabled-unchecked">Radio label</label>
+                    </div>
+                </td>
+                <td class="va-middle">Disabled, unchecked state.</td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <div class="s-radio">
+                        <input type="radio" name="radio-group-checked" id="radio-checked" checked />
+                        <label class="s-label" for="radio-checked">Radio label</label>
+                    </div>
+                </td>
+                <td class="va-middle">The checked state.</td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <div class="s-radio">
+                        <input type="radio" name="radio-group-dis-checked" id="radio-disabled-checked" disabled checked />
+                        <label class="s-label" for="radio-disabled-checked">Radio label</label>
+                    </div>
+                </td>
+                <td class="va-middle">Disabled, checked state.</td>
+            </tr>
+        </tbody>
+    </table>
 </Example>
 
 ### Checkmark
@@ -82,36 +98,57 @@ The checkmark style is an alternative to the base radio style. To use the checkm
 ```
 
 <Example>
-    <div class="d-flex ai-start fw-wrap g24">
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Unchecked</span>
-            <label class="s-radio s-radio__checkmark" for="checkmark-radio-unchecked">
-                Checkmark label
-                <input type="radio" name="checkmark-radio-group" id="checkmark-radio-unchecked" />
-            </label>
-        </div>
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Disabled unchecked</span>
-            <label class="s-radio s-radio__checkmark" for="checkmark-radio-disabled-unchecked">
-                Checkmark label
-                <input type="radio" name="checkmark-radio-group" id="checkmark-radio-disabled-unchecked" disabled />
-            </label>
-        </div>
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Checked</span>
-            <label class="s-radio s-radio__checkmark" for="checkmark-radio-checked">
-                Checkmark label
-                <input type="radio" name="checkmark-radio-group" id="checkmark-radio-checked" checked />
-            </label>
-        </div>
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Disabled checked</span>
-            <label class="s-radio s-radio__checkmark" for="checkmark-radio-disabled-checked">
-                Checkmark label
-                <input type="radio" name="checkmark-radio-group-disabled-checked" id="checkmark-radio-disabled-checked" disabled checked />
-            </label>
-        </div>
-    </div>
+    <table class="s-table s-table__bx-simple">
+        <thead>
+            <tr>
+                <th scope="col">Example</th>
+                <th scope="col" class="s-table--cell5">Class</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="va-middle pr8">
+                    <label class="s-radio s-radio__checkmark" for="checkmark-radio-unchecked">
+                        Checkmark label
+                        <input type="radio" name="checkmark-radio-group-unchecked" id="checkmark-radio-unchecked" />
+                    </label>
+                </td>
+                <td class="va-middle"><code>.s-radio__checkmark</code></td>
+                <td class="va-middle">The checkmark, unchecked state.</td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <label class="s-radio s-radio__checkmark" for="checkmark-radio-dis-unchecked">
+                        Checkmark label
+                        <input type="radio" name="checkmark-radio-group-dis-unchecked" id="checkmark-radio-dis-unchecked" disabled />
+                    </label>
+                </td>
+                <td class="va-middle"><code>.s-radio__checkmark</code></td>
+                <td class="va-middle">Disabled, unchecked state.</td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <label class="s-radio s-radio__checkmark" for="checkmark-radio-checked">
+                        Checkmark label
+                        <input type="radio" name="checkmark-radio-group-checked" id="checkmark-radio-checked" checked />
+                    </label>
+                </td>
+                <td class="va-middle"><code>.s-radio__checkmark</code></td>
+                <td class="va-middle">The checkmark, checked state.</td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <label class="s-radio s-radio__checkmark" for="checkmark-radio-dis-checked">
+                        Checkmark label
+                        <input type="radio" name="checkmark-radio-group-dis-checked" id="checkmark-radio-dis-checked" disabled checked />
+                    </label>
+                </td>
+                <td class="va-middle"><code>.s-radio__checkmark</code></td>
+                <td class="va-middle">Disabled, checked state.</td>
+            </tr>
+        </tbody>
+    </table>
 </Example>
 
 ## Accessibility

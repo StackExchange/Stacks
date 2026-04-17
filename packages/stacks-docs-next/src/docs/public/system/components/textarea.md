@@ -137,19 +137,33 @@ Validation states provides the user feedback based on their interaction (or lack
 
 ## Sizes
 
-<Example>
-    <div class="d-flex ai-start fw-wrap g24">
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Small — 13px — .s-textarea__sm</span>
-            <textarea placeholder="e.g. What is Stacks?" class="s-textarea s-textarea__sm"></textarea>
-        </div>
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Default — 14px</span>
-            <textarea placeholder="e.g. What is Stacks?" class="s-textarea"></textarea>
-        </div>
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Large — 18px — .s-textarea__lg</span>
-            <textarea placeholder="e.g. What is Stacks?" class="s-textarea s-textarea__lg"></textarea>
-        </div>
-    </div>
-</Example>
+<table class="s-table s-table__bx-simple">
+    <thead>
+        <tr>
+            <th scope="col">Class</th>
+            <th scope="col">Name</th>
+            <th scope="col">Size</th>
+            <th scope="col">Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>.s-textarea__sm</code></td>
+            <td>Small</td>
+            <td>13px</td>
+            <td><textarea placeholder="e.g. What is Stacks?" class="s-textarea s-textarea__sm w100"></textarea></td>
+        </tr>
+        <tr>
+            <td class="fc-black-350 fs-italic">N/A</td>
+            <td>Default</td>
+            <td>14px</td>
+            <td><textarea placeholder="e.g. What is Stacks?" class="s-textarea w100"></textarea></td>
+        </tr>
+        <tr>
+            <td><code>.s-textarea__lg</code></td>
+            <td>Large</td>
+            <td>18px</td>
+            <td><textarea placeholder="e.g. What is Stacks?" class="s-textarea s-textarea__lg w100"></textarea></td>
+        </tr>
+    </tbody>
+</table>

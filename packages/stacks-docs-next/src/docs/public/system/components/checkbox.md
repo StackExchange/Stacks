@@ -45,36 +45,52 @@ Use the `.s-checkbox` to wrap `input[type="checkbox"]` elements to apply checkbo
 ```
 
 <Example>
-    <div class="d-flex ai-start fw-wrap g24">
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Unchecked</span>
-            <div class="s-checkbox">
-                <input type="checkbox" name="checkbox-group" id="checkbox-unchecked" />
-                <label class="s-label" for="checkbox-unchecked">Checkbox label</label>
-            </div>
-        </div>
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Disabled unchecked</span>
-            <div class="s-checkbox">
-                <input type="checkbox" name="checkbox-group" id="checkbox-disabled-unchecked" disabled />
-                <label class="s-label" for="checkbox-disabled-unchecked">Checkbox label</label>
-            </div>
-        </div>
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Checked</span>
-            <div class="s-checkbox">
-                <input type="checkbox" name="checkbox-group" id="checkbox-checked" checked />
-                <label class="s-label" for="checkbox-checked">Checkbox label</label>
-            </div>
-        </div>
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Disabled checked</span>
-            <div class="s-checkbox">
-                <input type="checkbox" name="checkbox-group" id="checkbox-disabled-checked" disabled checked />
-                <label class="s-label" for="checkbox-disabled-checked">Checkbox label</label>
-            </div>
-        </div>
-    </div>
+    <table class="s-table s-table__bx-simple">
+        <thead>
+            <tr>
+                <th scope="col">Example</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="va-middle pr8">
+                    <div class="s-checkbox">
+                        <input type="checkbox" name="checkbox-group-unchecked" id="checkbox-unchecked" />
+                        <label class="s-label" for="checkbox-unchecked">Checkbox label</label>
+                    </div>
+                </td>
+                <td class="va-middle">Unchecked checkbox.</td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <div class="s-checkbox">
+                        <input type="checkbox" name="checkbox-group-dis-unchecked" id="checkbox-disabled-unchecked" disabled />
+                        <label class="s-label" for="checkbox-disabled-unchecked">Checkbox label</label>
+                    </div>
+                </td>
+                <td class="va-middle">Disabled unchecked checkbox.</td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <div class="s-checkbox">
+                        <input type="checkbox" name="checkbox-group-checked" id="checkbox-checked" checked />
+                        <label class="s-label" for="checkbox-checked">Checkbox label</label>
+                    </div>
+                </td>
+                <td class="va-middle">Checked checkbox.</td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <div class="s-checkbox">
+                        <input type="checkbox" name="checkbox-group-dis-checked" id="checkbox-disabled-checked" disabled checked />
+                        <label class="s-label" for="checkbox-disabled-checked">Checkbox label</label>
+                    </div>
+                </td>
+                <td class="va-middle">Disabled checked checkbox.</td>
+            </tr>
+        </tbody>
+    </table>
 </Example>
 
 ### Checkmark
@@ -89,36 +105,57 @@ The checkmark style is an alternative to the base checkbox style. To use the che
 ```
 
 <Example>
-    <div class="d-flex ai-start fw-wrap g24">
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Unchecked</span>
-            <label class="s-checkbox s-checkbox__checkmark" for="checkmark-checkbox-unchecked">
-                Checkmark label
-                <input type="checkbox" name="checkmark-checkbox-group" id="checkmark-checkbox-unchecked" />
-            </label>
-        </div>
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Disabled unchecked</span>
-            <label class="s-checkbox s-checkbox__checkmark" for="checkmark-checkbox-disabled-unchecked">
-                Checkmark label
-                <input type="checkbox" name="checkmark-checkbox-group" id="checkmark-checkbox-disabled-unchecked" disabled />
-            </label>
-        </div>
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Checked</span>
-            <label class="s-checkbox s-checkbox__checkmark" for="checkmark-checkbox-checked">
-                Checkmark label
-                <input type="checkbox" name="checkmark-checkbox-group" id="checkmark-checkbox-checked" checked />
-            </label>
-        </div>
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Disabled checked</span>
-            <label class="s-checkbox s-checkbox__checkmark" for="checkmark-checkbox-disabled-checked">
-                Checkmark label
-                <input type="checkbox" name="checkmark-checkbox-group" id="checkmark-checkbox-disabled-checked" disabled checked />
-            </label>
-        </div>
-    </div>
+    <table class="s-table s-table__bx-simple">
+        <thead>
+            <tr>
+                <th scope="col">Example</th>
+                <th scope="col" class="s-table--cell5">Class</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="va-middle pr8">
+                    <label class="s-checkbox s-checkbox__checkmark" for="checkmark-checkbox-unchecked">
+                        Checkmark label
+                        <input type="checkbox" name="checkmark-checkbox-group-unchecked" id="checkmark-checkbox-unchecked" />
+                    </label>
+                </td>
+                <td class="va-middle"><code>.s-checkbox__checkmark</code></td>
+                <td class="va-middle">The checkmark, unchecked state.</td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <label class="s-checkbox s-checkbox__checkmark" for="checkmark-checkbox-dis-unchecked">
+                        Checkmark label
+                        <input type="checkbox" name="checkmark-checkbox-group-dis-unchecked" id="checkmark-checkbox-dis-unchecked" disabled />
+                    </label>
+                </td>
+                <td class="va-middle"><code>.s-checkbox__checkmark</code></td>
+                <td class="va-middle">Disabled, unchecked state.</td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <label class="s-checkbox s-checkbox__checkmark" for="checkmark-checkbox-checked">
+                        Checkmark label
+                        <input type="checkbox" name="checkmark-checkbox-group-checked" id="checkmark-checkbox-checked" checked />
+                    </label>
+                </td>
+                <td class="va-middle"><code>.s-checkbox__checkmark</code></td>
+                <td class="va-middle">The checkmark, checked state.</td>
+            </tr>
+            <tr>
+                <td class="va-middle pr8">
+                    <label class="s-checkbox s-checkbox__checkmark" for="checkmark-checkbox-dis-checked">
+                        Checkmark label
+                        <input type="checkbox" name="checkmark-checkbox-group-dis-checked" id="checkmark-checkbox-dis-checked" disabled checked />
+                    </label>
+                </td>
+                <td class="va-middle"><code>.s-checkbox__checkmark</code></td>
+                <td class="va-middle">Disabled, checked state.</td>
+            </tr>
+        </tbody>
+    </table>
 </Example>
 
 ## Accessibility
@@ -305,7 +342,7 @@ Checkboxes use the same validation states as [inputs](/system/components/inputs)
 Checkboxes can be styled by using the `:indeterminate` pseudo class.
 
 <Notice variant="info" role="note" class="mb16">
-    <strong>Note:</strong> The <code>:indeterminate</code> pseudo class can only be set via JavaScript. Use the <code>HTMLInputElement</code> object's <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes"><code>indeterminate</code></a> property to set the state.
+    <p><strong>Note:</strong> The <code>:indeterminate</code> pseudo class can only be set via JavaScript. Use the <code>HTMLInputElement</code> object's <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes"><code>indeterminate</code></a> property to set the state.</p>
 </Notice>
 
 ```html

@@ -302,22 +302,36 @@ Stacks provides helper classes to consistently style an input used for search. F
 
 ## Sizes
 
-<Example>
-    <div class="d-flex ai-start fw-wrap g24">
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Small — 13px — .s-input__sm</span>
-            <input type="text" placeholder="e.g. What is Stacks?" class="s-input s-input__sm" />
-        </div>
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Default — 14px</span>
-            <input type="text" placeholder="e.g. What is Stacks?" class="s-input" />
-        </div>
-        <div class="d-flex fd-column g8">
-            <span class="ff-mono mb8">Large — 18px — .s-input__lg</span>
-            <input type="text" placeholder="e.g. What is Stacks?" class="s-input s-input__lg" />
-        </div>
-    </div>
-</Example>
+<table class="s-table s-table__bx-simple">
+    <thead>
+        <tr>
+            <th scope="col">Class</th>
+            <th scope="col">Name</th>
+            <th scope="col">Size</th>
+            <th scope="col">Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>.s-input__sm</code></td>
+            <td>Small</td>
+            <td>13px</td>
+            <td><input type="text" placeholder="e.g. What is Stacks?" class="s-input s-input__sm" /></td>
+        </tr>
+        <tr>
+            <td class="fc-black-350 fs-italic">N/A</td>
+            <td>Default</td>
+            <td>14px</td>
+            <td><input type="text" placeholder="e.g. What is Stacks?" class="s-input" /></td>
+        </tr>
+        <tr>
+            <td><code>.s-input__lg</code></td>
+            <td>Large</td>
+            <td>18px</td>
+            <td><input type="text" placeholder="e.g. What is Stacks?" class="s-input s-input__lg" /></td>
+        </tr>
+    </tbody>
+</table>
 
 ## Input fills
 
