@@ -88,7 +88,7 @@
                 <tr>
                     <th scope="col">{label('class')}</th>
                     {#each activeCols as col}
-                        <th scope="col" class={col === 'description' || col === 'define' ? 's-table--cell5' : ''}>{label(col)}</th>
+                        <th scope="col" class="{col === 'description' || col === 'define' ? 's-table--cell5' : ''} {col === 'responsive' ? 'ta-center' : ''}">{label(col)}</th>
                     {/each}
                 </tr>
             </thead>
@@ -98,7 +98,7 @@
                 <tr>
                     <th scope="row"><code>{row.class}</code></th>
                     {#each activeCols as col}
-                        <td class={col === 'output' ? 'ff-mono' : ''}>
+                        <td class="{col === 'output' ? 'ff-mono' : ''} {col === 'responsive' ? 'ta-center' : ''}">
                             {#if col === 'responsive'}
                                 {#if row.responsive}
                                     <Icon src={IconCheckFillCircle} class="fc-green-400 w16 h16" aria-label="Yes" />
