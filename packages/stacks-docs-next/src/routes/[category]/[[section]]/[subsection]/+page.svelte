@@ -32,10 +32,6 @@
 </svelte:head>
 
 
-{#if data?.active?.image}
-  <img class="w100 h-auto" width="1030" height="540" alt="" src={data.active.image} />
-{/if}
-
 <article class="w100 pl32 md:pr32 sm:pl24 sm:pr24">
   <div class="doc wmn0 wmx9 fs-body2 pt24">
     <div class="d-flex g4 ai-center {data?.active?.image ? 'mb128' : 'mb24'}">

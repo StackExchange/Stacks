@@ -60,31 +60,39 @@
 	</div>
 </header>
 
-<main class="main bg-white d-flex fd-column fl-grow1 wmn0">
-	<!-- <div class="bg-blue-400 fc-white px24 py12">
-		This is a brand focused preview – for developer reference please see <a href="https://stackoverflow.design" class="s-link fc-white s-link__underlined">the current docs</a> or <a href="https://beta.stackoverflow.design" class="s-link fc-white s-link__underlined">the beta release</a>.
-	</div> -->
-
-	<div class="fl-grow1">
-		{#if data.needsAuth}
-			<div class="my-auto">
-				<Login returnUrl={page.url.pathname} />
-			</div>
-		{:else}
-			{@render children?.()}
-		{/if}
-	</div>
-
-	{#if !page.data.hideFooter}
-		<footer class="d-flex sm:fd-column ai-center sm:ai-start ml32 sm:ml24 py32 fc-black-400">
-			<Icon src={IconGlyph24} />
-			<div class="footer__blurb ml12 sm:ml0 sm:mt12">
-				© {year} Stack Exchange Inc.
-				All rights reserved.
-			</div>
-		</footer>
+<div class="d-flex fd-column fl-grow1 wmn0">
+	{#if page.data.active?.image}
+		<img class="w100 h-auto" width="1030" height="540" alt="" src={page.data.active.image} />
 	{/if}
-</main>
 
-<Contents {toc} />
+	<div class="d-flex fl-grow1" class:mt24={!page.data.active?.image}>
+		<main class="main bg-white d-flex fd-column fl-grow1 wmn0">
+			<!-- <div class="bg-blue-400 fc-white px24 py12">
+				This is a brand focused preview – for developer reference please see <a href="https://stackoverflow.design" class="s-link fc-white s-link__underlined">the current docs</a> or <a href="https://beta.stackoverflow.design" class="s-link fc-white s-link__underlined">the beta release</a>.
+			</div> -->
+
+			<div class="fl-grow1">
+				{#if data.needsAuth}
+					<div class="my-auto">
+						<Login returnUrl={page.url.pathname} />
+					</div>
+				{:else}
+					{@render children?.()}
+				{/if}
+			</div>
+
+			{#if !page.data.hideFooter}
+				<footer class="d-flex sm:fd-column ai-center sm:ai-start ml32 sm:ml24 py32 fc-black-400">
+					<Icon src={IconGlyph24} />
+					<div class="footer__blurb ml12 sm:ml0 sm:mt12">
+						© {year} Stack Exchange Inc.
+						All rights reserved.
+					</div>
+				</footer>
+			{/if}
+		</main>
+
+		<Contents {toc} />
+	</div>
+</div>
 </div>
