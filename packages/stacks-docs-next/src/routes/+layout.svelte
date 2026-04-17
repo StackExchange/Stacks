@@ -28,7 +28,7 @@
 </svelte:head>
 
 <div class="layout-root d-flex">
-<header class="layout-nav d-flex fd-column fl-shrink0 overflow-auto ff-stack-sans-headline">
+<header class="layout-nav d-flex fd-column fl-shrink0 overflow-auto ff-stack-sans-headline w20 wmn2 wmx3">
 	<div class="d-flex ai-center bg-black-100 pt32 px24 sm:pr6 sm:pb12 sm:pt12">
 		<a href={resolve('/')} title="Home" class="fc-brand mr-auto">
 			<Icon src={IconLogo} />
