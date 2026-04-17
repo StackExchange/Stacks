@@ -124,8 +124,8 @@
   }
 </script>
 
+{#if toc.length > 0}
 <aside class="layout-toc fl-shrink0 w20 md:d-none bg-white ff-stack-sans-headline">
-  {#if toc.length > 0}
     <div class="ps-sticky t0 py24 mt6 px16 md:pb0 overflow-auto hmx-screen md:hmx-initial">
       <nav bind:this={navElement} class="ps-relative">
         <h2 class="fs-body2 fw-bold mb12 px6 fc-black-400">Contents</h2>
@@ -168,8 +168,8 @@
         </ul>
       </nav>
     </div>
-  {/if}
 </aside>
+{/if}
 
 <style>
   .contents-indicator {
