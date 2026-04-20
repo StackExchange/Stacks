@@ -91,6 +91,7 @@
 
 <svelte:window on:copysuccess={copySuccess} />
 
+<div class="d-flex">
 <div class="fl-grow1 p24 wmn0">
   <TextInput
     id="icon-search"
@@ -131,7 +132,7 @@
   {@render section('Spots', filteredSpots)}
 </div>
 
-<aside class="ws3 ps-sticky md:ps-fixed z-nav bg-white t0 r0 overflow-y-scroll fl-shrink0 bl bc-black-200 h-screen {!(selected && selectedVariant) ? 'd-none' : ''} ">
+<aside class="ws3 ps-sticky md:ps-fixed z-nav bg-white t0 r0 overflow-y-scroll fl-shrink0 bl bc-black-200 h-screen {!(selected && selectedVariant) ? 'md:d-none' : ''} ">
   {#if selected && selectedVariant}
     <div class="d-flex fd-column bb bc-black-200 hs3">
       <div class="d-flex jc-space-between px12">
@@ -269,6 +270,7 @@
     </div>
   {/if}
 </aside>
+</div>
 
 <style>
   .icons-grid {
