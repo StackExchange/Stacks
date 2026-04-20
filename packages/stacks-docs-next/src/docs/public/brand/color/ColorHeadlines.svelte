@@ -60,7 +60,7 @@
 </script>
 
 
-<Navigation class="mbn24" label="Theme" overflow="scroll">
+<Navigation class="mb8" label="Theme" overflow="scroll">
   {#each themes as theme, index (theme.name)}
     <NavigationItem 
       onclick={() => selected = index}
