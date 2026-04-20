@@ -44,6 +44,12 @@ description: Atomic classes for controlling the background properties of an elem
     ];
 </script>
 
+<style>
+    .example-illustration {
+        background-image: url('./illustrationBgImage.svg?url');
+    }
+</style>
+
 ## Background size
 
 <ClassTable classes={backgroundSize} />
@@ -75,10 +81,7 @@ description: Atomic classes for controlling the background properties of an elem
         {#each backgroundPosition as item}
             <div class="d-flex fd-column g4 p8">
                 <code>{item.class}</code>
-                <div
-                    class="hs1 w100 bg-black-200 ba bc-black-225 bg-no-repeat {item.class.slice(1)}"
-                    style="background-image: url('/images/illustrationBgImage.svg');"
-                ></div>
+                <div class="example-illustration hs1 w100 bg-black-200 ba bc-black-225 bg-no-repeat {item.class.slice(1)}"></div>
             </div>
         {/each}
     </div>
