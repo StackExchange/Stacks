@@ -1,6 +1,6 @@
 <script lang="ts">
     import { Icon } from '@stackoverflow/stacks-svelte';
-    import { IconChevron16Up, IconChevron16Down, IconChevron16DownUp } from '@stackoverflow/stacks-icons/icons';
+    import { IconChevron16Up, IconChevron16Down, IconChevron16UpDown } from '@stackoverflow/stacks-icons/icons';
 
     const rows = [
         { season: 'Winter', month: 'December', monthSort: 12, temp: 2  },
@@ -29,7 +29,7 @@
     }
 
     function icon(c: number) {
-        if (col !== c) return IconChevron16DownUp;
+        if (col !== c) return IconChevron16UpDown;
         return dir === 'asc' ? IconChevron16Up : IconChevron16Down;
     }
 
