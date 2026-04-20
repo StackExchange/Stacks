@@ -47,34 +47,34 @@
 
       <div class="d-flex ai-center g16 fs-caption">
         {#if data?.metadata?.js}
-          <Link href="#javascript">
+          <Button weight="clear" size="sm" href="#javascript">
             <Icon src={IconCodeBox} class="fc-green-400" />
             <span class="sm:d-none">JavaScript</span>
-          </Link>
+          </Button>
         {/if}
 
         {#if data?.metadata?.figma}
-          <Link title="Open in Figma" href={data?.metadata?.figma}>
+          <Button weight="clear" size="sm" title="Open in Figma" href={data?.metadata?.figma}>
             <Icon src={IconServiceFigma} class="native" />
             <span class="sm:d-none">Figma</span>
-          </Link>
+          </Button>
         {/if}
 
         {#if data?.metadata?.svelte}
-          <Link title="Svelte component docs" href={data?.metadata?.svelte}>
+          <Button weight="clear" size="sm" title="Svelte component docs" href={data?.metadata?.svelte}>
             <Icon src={IconServiceSvelte} class="native" />
             <span class="sm:d-none">Svelte</span>
-          </Link>
+          </Button>
         {/if}
 
         {#if data.filename}
-          <Link title="Edit on GitHub" href={`https://github.com/StackExchange/Stacks/edit/main/packages/stacks-docs-next${data.filename}`}>
+          <Button weight="clear" size="sm" title="Edit on GitHub" href={`https://github.com/StackExchange/Stacks/edit/main/packages/stacks-docs-next${data.filename}`}>
             <Icon src={IconServiceGitHub} />
             <span class="sm:d-none">Edit</span>
-          </Link>
+          </Button>
         {/if}
       </div>
-    </div>  
+    </div>
 
     <header>
       {#if data?.metadata?.updated && page.params.category !== 'system'}
