@@ -190,7 +190,7 @@ The global `h1` rule sets `font-size: var(--fs-display3)` (4.5rem / 72px) — de
 Not all `bg-brand-*` utility classes exist. If a class is missing (e.g. `bg-brand-orange`), use an inline `style` with the CSS variable instead:
 
 ```svelte
-<GridColumn extraClasses="" style="background: var(--brand-color-orange)">
+<GridColumn style="background: var(--brand-color-orange)">
 ```
 
 Available brand color CSS variables are defined in `src/app.css` under `:root`.
