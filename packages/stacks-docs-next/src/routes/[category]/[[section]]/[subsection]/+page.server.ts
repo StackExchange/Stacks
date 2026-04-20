@@ -116,24 +116,6 @@ export const load: PageServerLoad = async (event) => {
         possiblePaths.includes(path)
     );
 
-    if (parent.active?.legacy) {
-        const response = await event.fetch(`/legacy/fragments/${parent.active.legacy}/fragment.html`);
-        if (response.ok) {
-            const rawHtml = (await response.text())
-                .replace(/="\/assets\//g, '="/legacy/assets/');
-            const { description, svelte, figma, strippedHtml } = extractLegacyHeader(rawHtml);
-            return {
-                source: "legacy" as const,
-                filename: null,
-                metadata: (description || svelte || figma)
-                    ? { description, svelte, figma }
-                    : null,
-                markdown: null,
-                html: strippedHtml,
-            };
-        }
-    }
-
     if (found) {
         const [filename, doc] = found;
         const loader = (await doc()) as { default: Component; metadata: Record<string, unknown> };

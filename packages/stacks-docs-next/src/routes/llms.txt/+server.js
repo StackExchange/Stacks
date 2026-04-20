@@ -51,19 +51,6 @@ ${htmlToMd(render(page.default).body)}
         }
     }
 
-    // Append legacy content from stacks-docs
-    const legacyResponse = await event.fetch("/legacy/llms.txt");
-    if (legacyResponse.ok) {
-        const legacyContent = await legacyResponse.text();
-        // Strip the header lines from the legacy file (lines starting with #)
-        const legacyBody = legacyContent
-            .split("\n")
-            .filter((line) => !line.startsWith("#"))
-            .join("\n")
-            .trimStart();
-        output += "\n\n" + legacyBody;
-    }
-
     return new Response(output, {
         headers: {
             "Content-Type": "text/plain",
