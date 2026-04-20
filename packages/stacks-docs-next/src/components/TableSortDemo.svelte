@@ -41,10 +41,11 @@
     <table class="s-table s-table__sortable">
         <thead>
             <tr>
-                {#each headers as h, c}
+                {#each headers as h, c (c)}
                     <th scope="col" class:is-sorted={col === c} data-s-table-target="column">
                         <button type="button" onclick={() => sort(c)}>
                             {h}
+                            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
                             {@html icon(c)}
                         </button>
                     </th>
@@ -52,7 +53,7 @@
             </tr>
         </thead>
         <tbody>
-            {#each sorted as r}
+            {#each sorted as r (r.season)}
                 <tr>
                     <td>{r.season}</td>
                     <td>{r.month}</td>
