@@ -71,7 +71,7 @@
 	{/if}
 
 	<div class="d-flex fl-grow1 bg-white sm:mt0" class:mt24={!page.data.active?.image}>
-		<main class="main d-flex fd-column wmn0">
+		<main class="main d-flex fd-column wmn0" class:w100={page.data.fullWidth}>
 			<div class="d-flex fd-column fl-grow1">
 				{#if data.needsAuth}
 					<div class="my-auto">
@@ -93,7 +93,7 @@
 			{/if}
 		</main>
 
-		<Contents {toc} />
+		{#if !page.data.hideToc}<Contents {toc} />{/if}
 	</div>
 </div>
 </div>
