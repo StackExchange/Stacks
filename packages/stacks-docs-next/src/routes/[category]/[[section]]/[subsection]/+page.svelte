@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { IconServiceGitHub, IconServiceFigma, IconServiceSvelte, IconCheckFillCircle, IconLink, IconCodeBox } from '@stackoverflow/stacks-icons/icons';
+  import { IconServiceGitHub, IconServiceFigma, IconServiceSvelte, IconCheck16FillCircle, IconLink, IconCodeBox } from '@stackoverflow/stacks-icons/icons';
   import { Icon, Button, Link } from '@stackoverflow/stacks-svelte';
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
@@ -38,7 +38,7 @@
         {/each}
         <Button title="Copy link to this page" link icon class="d-inline-flex fc-black-400 h:fc-black-600 ml4" onclick={copyPageUrl}>
           {#if copied}
-            <Icon src={IconCheckFillCircle} class="fc-green-400 w16 h16" />
+            <Icon src={IconCheck16FillCircle} class="fc-green-400" />
           {:else}
             <Icon src={IconLink} class="w16 h16" />
           {/if}
