@@ -1,9 +1,5 @@
 <script lang="ts">
-  import { getContext } from 'svelte';
-
   let { children, padding = true, extraClasses = "bg-black-200", ...rest } = $props();
-
-  getContext('columnCount').update((i: number) => i + 1)
 </script>
 
 <div class={`fl-grow1 ps-relative column ${extraClasses}`} {...rest} class:p24={padding}>
