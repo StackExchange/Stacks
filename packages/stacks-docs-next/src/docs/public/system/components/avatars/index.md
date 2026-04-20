@@ -10,6 +10,8 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
     import ClassTable from '$components/ClassTable.svelte';
     import Example from '$components/Example.svelte';
     import type { ClassTableRow } from '$components/ClassTable.svelte';
+    
+    import AvatarTeam from './avatar-team.svg?url'
 
     const classes: ClassTableRow[] = [
         { class: '.s-avatar',            parent: 'N/A',       modifies: 'N/A',       description: 'The base avatar at 16px.' },
@@ -220,7 +222,7 @@ In this example, from left to right, we have a team name of Hum with no avatar o
                             <Avatar name="Hum" letter="H" badge {size} href="#" class="bg-theme-primary" />
                         </td>
                         <td>
-                            <Avatar name="Hum" src="/legacy/assets/img/team-avatar.png" badge {size} href="#" />
+                            <Avatar name="Hum" src={AvatarTeam} badge {size} href="#" />
                         </td>
                     </tr>
                 {/each}
