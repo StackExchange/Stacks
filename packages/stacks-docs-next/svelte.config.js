@@ -9,6 +9,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import extractToc from "@stefanprobst/rehype-extract-toc";
 import hljs from "highlight.js";
 import { visit } from "unist-util-visit";
+import { IconLink } from "@stackoverflow/stacks-icons/icons";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
