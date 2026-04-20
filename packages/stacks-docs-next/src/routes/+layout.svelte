@@ -19,8 +19,8 @@
 	let mobileMenu = $state(false);
 
 	$effect(() => {
-		document.body.style.overflow = mobileMenu ? 'hidden' : '';
-		return () => { document.body.style.overflow = ''; };
+		document.body.classList.toggle('overflow-hidden', mobileMenu);
+		return () => { document.body.classList.remove('overflow-hidden'); };
 	});
 
 	const year = new Date().getFullYear();
