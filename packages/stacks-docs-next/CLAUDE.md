@@ -164,11 +164,14 @@ After converting a page, remove the `legacy:` key from its entry so the new `.md
 | Component | Location | Purpose |
 |---|---|---|
 | `ClassTable` | `$components/ClassTable.svelte` | CSS class / JS attribute tables |
-| `ExampleTable` | `$components/ExampleTable.svelte` | Example \| Class \| Description tables |
-| `Example` | `$components/Example.svelte` | Bordered example container |
-| `BannerExample` | `$components/BannerExample.svelte` | Full-width banner examples |
-| `BannerDemo` | `$components/BannerDemo.svelte` | Interactive banner demo |
-| `StacksEditorDemo` | `$components/StacksEditorDemo.svelte` | Stacks editor demo |
+| `Example` | `$components/Example.svelte` | Generic bordered container for any static example content |
+| `PreviewTable` | `$components/PreviewTable.svelte` | Table of component previews: Example \| Class \| Description |
+| `BannerPreview` | `$components/BannerPreview.svelte` | Static pre-built banner instance for illustration |
+| `BannerDemo` | `$components/BannerDemo.svelte` | Interactive banner playground with user controls |
+| `StacksEditorDemo` | `$components/StacksEditorDemo.svelte` | Interactive Stacks editor playground |
+| `TableSortDemo` | `$components/TableSortDemo.svelte` | Interactive sortable table playground |
+
+**Naming convention:** `Example` = generic wrapper; `*Preview` = static pre-built component instance; `*Demo` = interactive playground with user controls.
 
 ## Rehype plugins (automatic — no action needed)
 

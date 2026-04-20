@@ -1,14 +1,14 @@
 <script lang="ts">
     import type { Snippet } from 'svelte';
 
-    export type ExampleTableRow = {
+    export type PreviewTableRow = {
         classes: string[];
         description: string;
         [key: string]: unknown;
     };
 
     interface Props {
-        rows: ExampleTableRow[];
+        rows: PreviewTableRow[];
         /** Label for the class column. Defaults to "Class". */
         columnLabel?: string;
         /** Whether to show the class column. Defaults to true. */
@@ -17,7 +17,7 @@
          * Snippet that receives the row and renders the live example.
          * e.g. {#snippet example(row)}<Bling type={row.type} />{/snippet}
          */
-        example: Snippet<[ExampleTableRow]>;
+        example: Snippet<[PreviewTableRow]>;
     }
 
     let { rows, columnLabel = 'Class', showClasses = true, example }: Props = $props();

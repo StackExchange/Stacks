@@ -7,10 +7,10 @@ svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-loader-
 <script lang="ts">
     import { Loader } from '@stackoverflow/stacks-svelte';
     import ClassTable from '$components/ClassTable.svelte';
-    import ExampleTable from '$components/ExampleTable.svelte';
+    import PreviewTable from '$components/PreviewTable.svelte';
     import Example from '$components/Example.svelte';
     import type { ClassTableRow } from '$components/ClassTable.svelte';
-    import type { ExampleTableRow } from '$components/ExampleTable.svelte';
+    import type { PreviewTableRow } from '$components/PreviewTable.svelte';
 
     const classes: ClassTableRow[] = [
         { class: '.s-loader',          parent: 'N/A',       modifies: 'N/A',       description: 'Base class for the loader component.' },
@@ -19,7 +19,7 @@ svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-loader-
         { class: '.s-loader__lg',      parent: 'N/A',       modifies: '.s-loader', description: 'A large variant of the loader component.' },
     ];
 
-    const sizes: ExampleTableRow[] = [
+    const sizes: PreviewTableRow[] = [
         { size: 'sm',      classes: ['.s-loader', '.s-loader__sm'], description: 'A small variant of the loader component.' },
         { size: undefined, classes: ['.s-loader'],                  description: 'Base class for the loader component.' },
         { size: 'lg',      classes: ['.s-loader', '.s-loader__lg'], description: 'A large variant of the loader component.' },
@@ -48,8 +48,8 @@ The base loader component displays three animated squares.
 
 ### Sizes
 
-<ExampleTable rows={sizes}>
+<PreviewTable rows={sizes}>
     {#snippet example(row)}
         <Loader size={row.size} />
     {/snippet}
-</ExampleTable>
+</PreviewTable>

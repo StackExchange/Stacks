@@ -8,12 +8,12 @@ figma: "https://svelte.stackoverflow.design/figma/tags"
 <script lang="ts">
     import { Tag } from '@stackoverflow/stacks-svelte';
     import ClassTable from '$components/ClassTable.svelte';
-    import ExampleTable from '$components/ExampleTable.svelte';
+    import PreviewTable from '$components/PreviewTable.svelte';
     import Example from '$components/Example.svelte';
     import type { ClassTableRow } from '$components/ClassTable.svelte';
-    import type { ExampleTableRow } from '$components/ExampleTable.svelte';
+    import type { PreviewTableRow } from '$components/PreviewTable.svelte';
 
-    const sizesRows: ExampleTableRow[] = [
+    const sizesRows: PreviewTableRow[] = [
         { classes: ['.s-tag__sm'], size: 'sm',      label: 'css', description: 'Apply a small size to the tag.' },
         { classes: ['N/A'],        size: undefined,  label: 'css', description: 'The default tag size.' },
         { classes: ['.s-tag__lg'], size: 'lg',       label: 'css', description: 'Apply a large size to the tag.' },
@@ -130,9 +130,9 @@ Tags should be focusable and navigable with the keyboard. The various tag states
 ```
 
 <Example>
-    <ExampleTable rows={sizesRows} columnLabel="Modifier class">
+    <PreviewTable rows={sizesRows} columnLabel="Modifier class">
         {#snippet example(row)}
             <Tag href="#" size={row.size}>{row.label}</Tag>
         {/snippet}
-    </ExampleTable>
+    </PreviewTable>
 </Example>

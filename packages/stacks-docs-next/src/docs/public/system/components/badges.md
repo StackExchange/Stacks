@@ -13,10 +13,10 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
         IconNotification, IconVoteUp,
     } from '@stackoverflow/stacks-icons/icons';
     import ClassTable from '$components/ClassTable.svelte';
-    import ExampleTable from '$components/ExampleTable.svelte';
+    import PreviewTable from '$components/PreviewTable.svelte';
     import Example from '$components/Example.svelte';
     import type { ClassTableRow } from '$components/ClassTable.svelte';
-    import type { ExampleTableRow } from '$components/ExampleTable.svelte';
+    import type { PreviewTableRow } from '$components/PreviewTable.svelte';
 
     const classes: ClassTableRow[] = [
         { class: '.s-badge',            modifies: 'N/A',      description: 'Base badge element.' },
@@ -36,19 +36,19 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
         { class: '.s-badge__lg',        modifies: '.s-badge', description: 'Applies a large size to the badge.' },
     ];
 
-    const achievementRows: ExampleTableRow[] = [
+    const achievementRows: PreviewTableRow[] = [
         { classes: [], award: 'gold',   text: 'Great Question',    description: 'Gold badge achievement that a user earns within a community.' },
         { classes: [], award: 'silver', text: 'Favorite Question', description: 'Silver badge achievement that a user earns within a community.' },
         { classes: [], award: 'bronze', text: 'Altruist',          description: 'Bronze badge achievement that a user earns within a community.' },
     ];
 
-    const tagRows: ExampleTableRow[] = [
+    const tagRows: PreviewTableRow[] = [
         { classes: ['.s-badge__gold'],   award: 'gold',   text: 'python',     description: 'Gold badge achievement that a user earns for a specific tag within a community.' },
         { classes: ['.s-badge__silver'], award: 'silver', text: 'css',        description: 'Silver badge achievement that a user earns for a specific tag within a community.' },
         { classes: ['.s-badge__bronze'], award: 'bronze', text: 'javascript', description: 'Bronze badge achievement that a user earns for a specific tag within a community.' },
     ];
 
-    const statesRows: ExampleTableRow[] = [
+    const statesRows: PreviewTableRow[] = [
         { classes: ['N/A'],              state: undefined,    icon: IconDocument, label: 'Archived', description: "Neutral badge styling. Can be used to indicate an inactive state that requires minimal visual emphasis." },
         { classes: ['.s-badge__info'],    state: 'info',      icon: IconCompose,  label: 'Draft',    description: 'Info badge styling.' },
         { classes: ['.s-badge__warning'], state: 'warning',   icon: IconEye,      label: 'Review',   description: 'Warning badge styling.' },
@@ -59,19 +59,19 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
         { classes: ['.s-badge__featured'],state: 'featured',  icon: IconStar,     label: 'New',      description: 'Featured badge styling. Can be used to draw attention to the new features and changes.' },
     ];
 
-    const squaredRows: ExampleTableRow[] = [
+    const squaredRows: PreviewTableRow[] = [
         { classes: ['.s-badge__squared', '.s-badge__success'], state: 'success', icon: IconCheck,  label: 'Accepted answer', description: 'Success badge styling in squared variant.' },
         { classes: ['.s-badge__squared', '.s-badge__featured'],state: 'featured',icon: IconVoteUp, label: 'Earn badge',      description: 'Featured badge styling in squared variant.' },
     ];
 
-    const importantRows: ExampleTableRow[] = [
+    const importantRows: PreviewTableRow[] = [
         { classes: ['.s-badge__warning', '.s-badge__squared', '.s-badge__important'], state: 'warning',  squared: true,  icon: IconNotification, label: 'Needs attention', description: 'Warning badge styling in squared variant with important styling.' },
         { classes: ['.s-badge__danger',  '.s-badge__important'],                      state: 'danger',   squared: false, icon: IconVoteUp,       label: 'Ending soon',     description: 'Danger badge styling with important styling.' },
         { classes: ['.s-badge__critical','.s-badge__important'],                      state: 'critical', squared: false, icon: undefined,        label: 'Spam',            description: 'Critical badge styling with important styling.' },
         { classes: ['.s-badge__info',    '.s-badge__important'],                      state: 'info',     squared: false, icon: undefined,        label: '+100',            description: 'Info badge styling in small size with important styling.', size: 'sm' },
     ];
 
-    const userRows: ExampleTableRow[] = [
+    const userRows: PreviewTableRow[] = [
         { classes: ['.s-badge__admin'],     userType: 'admin',     label: 'Admin',     description: 'Badge indicating user is an admin.' },
         { classes: ['.s-badge__moderator'], userType: 'moderator', label: 'Moderator', description: 'Badge indicating user is an moderator.' },
         { classes: ['.s-badge__staff'],     userType: 'staff',     label: 'Staff',     description: 'Badge indicating user is staff.' },
@@ -80,7 +80,7 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
         { classes: ['.s-badge__new'],       userType: 'new',       label: 'New',       description: 'Badge indicating new user.' },
     ];
 
-    const sizesRows: ExampleTableRow[] = [
+    const sizesRows: PreviewTableRow[] = [
         { classes: ['.s-badge__sm'], size: 'sm',      label: 'Small',   description: 'The badge in small size.' },
         { classes: ['N/A'],          size: undefined, label: 'Default', description: 'The badge in default size.' },
         { classes: ['.s-badge__lg'], size: 'lg',      label: 'Large',   description: 'The badge in large size.' },
@@ -182,11 +182,11 @@ Badges that provide information about user achievements.
 ```
 
 <Example>
-    <ExampleTable rows={achievementRows} showClasses={false}>
+    <PreviewTable rows={achievementRows} showClasses={false}>
         {#snippet example(row)}
             <Badge text={row.text} type="achievement" award={row.award} label="{row.award} badge" />
         {/snippet}
-    </ExampleTable>
+    </PreviewTable>
 </Example>
 
 ### Tag
@@ -215,11 +215,11 @@ Badges that display achievements a user has earned for their contributions withi
 ```
 
 <Example>
-    <ExampleTable rows={tagRows} columnLabel="Modifier class">
+    <PreviewTable rows={tagRows} columnLabel="Modifier class">
         {#snippet example(row)}
             <Badge text={row.text} type="tag" award={row.award} label="{row.award} tag badge" />
         {/snippet}
-    </ExampleTable>
+    </PreviewTable>
 </Example>
 
 ### States
@@ -262,11 +262,11 @@ Use State badges to communicate semantic status or severity, such as success, wa
 ```
 
 <Example>
-    <ExampleTable rows={statesRows} columnLabel="Modifier class">
+    <PreviewTable rows={statesRows} columnLabel="Modifier class">
         {#snippet example(row)}
             <Badge text={row.label} type="state" state={row.state} icon={row.icon} />
         {/snippet}
-    </ExampleTable>
+    </PreviewTable>
 </Example>
 
 ### Squared
@@ -285,11 +285,11 @@ Use the squared variant sparingly to provide additional emphasis, reserving it p
 ```
 
 <Example>
-    <ExampleTable rows={squaredRows} columnLabel="Modifier classes">
+    <PreviewTable rows={squaredRows} columnLabel="Modifier classes">
         {#snippet example(row)}
             <Badge text={row.label} type="state" state={row.state} squared icon={row.icon} />
         {/snippet}
-    </ExampleTable>
+    </PreviewTable>
 </Example>
 
 ### Important
@@ -314,12 +314,12 @@ Emboldens the above visual styles by strengthening the background saturation. Th
 ```
 
 <Example>
-    <ExampleTable rows={importantRows} columnLabel="Modifier classes">
+    <PreviewTable rows={importantRows} columnLabel="Modifier classes">
         {#snippet example(row)}
             <Badge text={row.label} type="state" state={row.state} important
                 squared={row.squared} icon={row.icon} size={row.size} />
         {/snippet}
-    </ExampleTable>
+    </PreviewTable>
 </Example>
 
 ### User
@@ -334,11 +334,11 @@ Emboldens the above visual styles by strengthening the background saturation. Th
 ```
 
 <Example>
-    <ExampleTable rows={userRows} columnLabel="Class">
+    <PreviewTable rows={userRows} columnLabel="Class">
         {#snippet example(row)}
             <Badge text={row.label} type="user" userType={row.userType} />
         {/snippet}
-    </ExampleTable>
+    </PreviewTable>
 </Example>
 
 ### Sizes
@@ -358,9 +358,9 @@ Badges come in three sizes.
 ```
 
 <Example>
-    <ExampleTable rows={sizesRows} columnLabel="Modifier class">
+    <PreviewTable rows={sizesRows} columnLabel="Modifier class">
         {#snippet example(row)}
             <Badge text={row.label} size={row.size} />
         {/snippet}
-    </ExampleTable>
+    </PreviewTable>
 </Example>

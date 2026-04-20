@@ -7,7 +7,7 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
 <script lang="ts">
     import ClassTable from '$components/ClassTable.svelte';
     import Example from '$components/Example.svelte';
-    import BannerExample from '$components/BannerExample.svelte';
+    import BannerPreview from '$components/BannerPreview.svelte';
     import BannerDemo from '$components/BannerDemo.svelte';
     import type { ClassTableRow } from '$components/ClassTable.svelte';
 
@@ -73,8 +73,8 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 ```
 
 <Example>
-    <BannerExample />
-    <BannerExample important class="mt8" />
+    <BannerPreview />
+    <BannerPreview important class="mt8" />
 </Example>
 
 ### Info
@@ -85,8 +85,8 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 ```
 
 <Example>
-    <BannerExample variant="info" />
-    <BannerExample variant="info" important class="mt8" />
+    <BannerPreview variant="info" />
+    <BannerPreview variant="info" important class="mt8" />
 </Example>
 
 ### Success
@@ -97,8 +97,8 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 ```
 
 <Example>
-    <BannerExample variant="success" />
-    <BannerExample variant="success" important class="mt8" />
+    <BannerPreview variant="success" />
+    <BannerPreview variant="success" important class="mt8" />
 </Example>
 
 ### Warning
@@ -109,8 +109,8 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 ```
 
 <Example>
-    <BannerExample variant="warning" />
-    <BannerExample variant="warning" important class="mt8" />
+    <BannerPreview variant="warning" />
+    <BannerPreview variant="warning" important class="mt8" />
 </Example>
 
 ### Danger
@@ -121,8 +121,8 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 ```
 
 <Example>
-    <BannerExample variant="danger" />
-    <BannerExample variant="danger" important class="mt8" />
+    <BannerPreview variant="danger" />
+    <BannerPreview variant="danger" important class="mt8" />
 </Example>
 
 ### Featured
@@ -133,8 +133,8 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 ```
 
 <Example>
-    <BannerExample variant="featured" />
-    <BannerExample variant="featured" important class="mt8" />
+    <BannerPreview variant="featured" />
+    <BannerPreview variant="featured" important class="mt8" />
 </Example>
 
 ### Activity
@@ -145,8 +145,8 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 ```
 
 <Example>
-    <BannerExample variant="activity" />
-    <BannerExample variant="activity" important class="mt8" />
+    <BannerPreview variant="activity" />
+    <BannerPreview variant="activity" important class="mt8" />
 </Example>
 
 ## JavaScript
