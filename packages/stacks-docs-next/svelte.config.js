@@ -40,23 +40,7 @@ const config = {
                 [rehypeAutolinkHeadings, {
                     behavior: "append",
                     properties: { className: ["docs-heading-anchor"], ariaHidden: "true", tabIndex: -1 },
-                    content: {
-                        type: "element",
-                        tagName: "svg",
-                        properties: {
-                            width: "20",
-                            height: "20",
-                            viewBox: "0 0 20 20",
-                            className: ["svg-icon", "IconLink"],
-                            ariaHidden: "true",
-                        },
-                        children: [{
-                            type: "element",
-                            tagName: "path",
-                            properties: { d: "M8.93 6.81a5 5 0 0 1 3.56 1.95l-1.2.9a3.4 3.4 0 0 0-5.11-.37L3.7 11.77l-.11.12a3.4 3.4 0 0 0 4.9 4.67l1.41-1.4 1.06 1.05-1.42 1.43a4.9 4.9 0 0 1-6.92-6.92h.01l2.49-2.49a5 5 0 0 1 3.8-1.42m5.44-5.75a4.9 4.9 0 0 1 3.48 8.29l-2.5 2.5a4.9 4.9 0 0 1-7.37-.54l1.2-.9a3.4 3.4 0 0 0 5.11.37l2.48-2.47a3.4 3.4 0 0 0-4.8-4.8l-1.41 1.4-.53-.52-.53-.53 1.42-1.42h.01a5 5 0 0 1 3.44-1.38" },
-                            children: [],
-                        }],
-                    },
+                    content: { type: 'raw', value: IconLink }
                 }],
                 addTableClasses,
                 addDocClasses,
