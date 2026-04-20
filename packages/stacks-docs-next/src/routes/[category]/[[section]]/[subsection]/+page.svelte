@@ -26,11 +26,7 @@
 <svelte:head>
   <title>{pageTitle}</title>
   <meta name="description" content={pageDescription} />
-  {#if data.source === 'legacy'}
-    <script src="/legacy/docs.js"></script>
-  {/if}
 </svelte:head>
-
 
 <article class="w100 wmx11 pl32 md:pr32 sm:pl24 sm:pr24">
   <div class="doc fs-body2 pt24">
