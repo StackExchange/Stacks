@@ -108,11 +108,11 @@ function addDocClasses() {
                 case "h2": add("docs-heading", "docs-h2"); break;
                 case "h3": add("docs-heading", "docs-h3"); break;
                 case "h4": add("docs-heading", "docs-h4"); break;
-                case "p":       add("docs-copy"); break;
-                case "ol":      add("docs-copy", "lh-xl"); break;
+                case "p": add("docs-copy"); break;
+                case "ol": add("docs-copy", "lh-xl"); break;
                 case "section": add("docs-section"); break;
-                case "ul":      add("docs-ul", "lh-xl");  break;
-                case "li":  add("docs-li");  break;
+                case "ul": add("docs-ul", "lh-xl");  break;
+                case "li": add("docs-li");  break;
                 case "nav": add("docs-nav"); break;
                 case "img": add("docs-img"); break;
                 case "iframe": add("docs-iframe"); break;
