@@ -64,7 +64,7 @@
                   <a
                     class="s-navigation--item jc-space-between mb1"
                     class:is-selected={sectionSlug === subsection.slug || subsectionSlug === subsection.slug}
-                    href={resolve(subsection.externalUrl || `/${category.slug}/${subsection.slug}/${subsection?.items ? subsection?.items[0]?.slug : ''}`)}
+                    href={subsection.externalUrl ? subsection.externalUrl : resolve(`/${category.slug}/${subsection.slug}/${subsection?.items ? subsection?.items[0]?.slug : ''}`)}
                     data-sveltekit-reload={subsection.private ? true : undefined}
                   >
                     <span>{subsection.title}</span>
@@ -82,7 +82,7 @@
                         {#if subsection.externalUrl}
                           <Icon src={IconArrowUpRightBox} />
                         {/if}
-                      </span> 
+                      </span>
                     {/if}
                   </a>
 
@@ -94,7 +94,7 @@
                             <a
                               class="s-navigation--item jc-space-between mb1"
                               class:is-selected={subsectionSlug === item.slug}
-                              href={resolve(item.externalUrl || `/${category.slug}/${subsection.slug}/${item.slug}/`)}
+                              href={item.externalUrl ? item.externalUrl : resolve(`/${category.slug}/${subsection.slug}/${item.slug}/`)}
                               data-sveltekit-reload={item.private ? true : undefined}
                             >
                               <span>{item.title}</span>
