@@ -109,7 +109,7 @@ The base style is the standard variant used to connect a user to their content, 
         <div class="s-user-card">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar s-avatar__24">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-24.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-24.svg" />
                 </span>
                 <span class="s-user-card--username">SofiaAlc</span>
             </a>
@@ -120,7 +120,7 @@ The base style is the standard variant used to connect a user to their content, 
         <div class="s-user-card">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar s-avatar__24">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-24.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-24.svg" />
                 </span>
                 <span class="s-user-card--username">SofiaAlc</span>
             </a>
@@ -137,7 +137,7 @@ The base style is the standard variant used to connect a user to their content, 
         <div class="s-user-card">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar s-avatar__24">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-24.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-24.svg" />
                 </span>
                 <span class="s-user-card--username">SofiaAlc</span>
             </a>
@@ -157,7 +157,7 @@ The base style is the standard variant used to connect a user to their content, 
         <div class="s-user-card">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar s-avatar__24">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-24.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-24.svg" />
                 </span>
                 <span class="s-user-card--username">SofiaAlc</span>
             </a>
@@ -221,7 +221,7 @@ Adds the [User badge](/system/components/badges#user) indicator to the usercard.
         <div class="s-user-card">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar s-avatar__24">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-24.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-24.svg" />
                 </span>
                 <span class="s-user-card--username">Community</span>
             </a>
@@ -235,7 +235,7 @@ Adds the [User badge](/system/components/badges#user) indicator to the usercard.
         <div class="s-user-card">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar s-avatar__24">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-24.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-24.svg" />
                 </span>
                 <span class="s-user-card--username">SofiaAlc</span>
             </a>
@@ -249,7 +249,7 @@ Adds the [User badge](/system/components/badges#user) indicator to the usercard.
         <div class="s-user-card">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar s-avatar__24">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-24.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-24.svg" />
                 </span>
                 <span class="s-user-card--username">SofiaAlc</span>
             </a>
@@ -264,7 +264,7 @@ Adds the [User badge](/system/components/badges#user) indicator to the usercard.
         <div class="s-user-card">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar s-avatar__24">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-24.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-24.svg" />
                 </span>
                 <span class="s-user-card--username">SofiaAlc</span>
             </a>
@@ -287,7 +287,7 @@ Adds the [User badge](/system/components/badges#user) indicator to the usercard.
         <div class="s-user-card">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar s-avatar__24">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-24.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-24.svg" />
                 </span>
                 <span class="s-user-card--username">SofiaAlc</span>
             </a>
@@ -357,7 +357,7 @@ Use the small variant for space-constrained areas, such as post summaries, or to
         <div class="s-user-card s-user-card__sm">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-16.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-16.svg" />
                 </span>
                 <span class="s-user-card--username">SofiaAlc</span>
             </a>
@@ -368,7 +368,7 @@ Use the small variant for space-constrained areas, such as post summaries, or to
         <div class="s-user-card s-user-card__sm">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-16.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-16.svg" />
                 </span>
                 <span class="s-user-card--username">SofiaAlc</span>
             </a>
@@ -397,7 +397,7 @@ Use the small variant for space-constrained areas, such as post summaries, or to
         <div class="s-user-card s-user-card__sm">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-16.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-16.svg" />
                 </span>
                 <span class="s-user-card--username">SofiaAlc</span>
             </a>
@@ -458,7 +458,7 @@ Use the large variant when space permits and more detailed information is desire
         <div class="s-user-card s-user-card__lg wmx3">
             <div class="s-user-card--row">
                 <a class="s-avatar s-avatar__48" href="#">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-48.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-48.svg" />
                 </a>
                 <div class="s-user-card--column">
                     <div class="s-user-card--row">
@@ -502,7 +502,7 @@ Use the large variant when space permits and more detailed information is desire
         <div class="s-user-card s-user-card__lg wmx3">
             <div class="s-user-card--row">
                 <a class="s-avatar s-avatar__48" href="#">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-48.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-48.svg" />
                 </a>
                 <div class="s-user-card--column">
                     <div class="s-user-card--row">
@@ -526,7 +526,7 @@ Use the large variant when space permits and more detailed information is desire
         <div class="s-user-card s-user-card__lg wmx3">
             <div class="s-user-card--row">
                 <a class="s-avatar s-avatar__48" href="#">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-48.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-48.svg" />
                 </a>
                 <div class="s-user-card--column">
                     <div class="s-user-card--row">
@@ -584,7 +584,7 @@ This label identifies the author of the primary post (such as the Question asker
         <div class="s-user-card s-user-card__sm">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-16.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-16.svg" />
                 </span>
                 <span class="s-user-card--username s-user-card--username__op" data-s-tooltip-html-title="<a href='#' class='s-link s-link__underlined'>SofiaAlc</a> is the original poster" data-controller="s-tooltip">SofiaAlc</span>
             </a>
@@ -613,7 +613,7 @@ This label identifies the author of the primary post (such as the Question asker
         <div class="s-user-card">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar s-avatar__24">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-24.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-24.svg" />
                 </span>
                 <span class="s-user-card--username s-user-card--username__op" data-s-tooltip-html-title="<a href='#' class='s-link s-link__underlined'>SofiaAlc</a> is the original poster" data-controller="s-tooltip">SofiaAlc</span>
             </a>
@@ -642,7 +642,7 @@ This label identifies the author of the primary post (such as the Question asker
         <div class="s-user-card">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar s-avatar__24">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-24.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-24.svg" />
                 </span>
                 <span class="s-user-card--username s-user-card--username__op" data-s-tooltip-html-title="<a href='#' class='s-link s-link__underlined'>SofiaAlc</a> is the original poster" data-controller="s-tooltip">SofiaAlc</span>
             </a>
@@ -698,7 +698,7 @@ This label appears on a user's first-ever question or answer to signal that they
         <div class="s-user-card s-user-card__sm">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-16.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-16.svg" />
                 </span>
                 <span class="s-user-card--username s-user-card--new-contributor">SofiaAlc</span>
             </a>
@@ -730,7 +730,7 @@ This label appears on a user's first-ever question or answer to signal that they
         <div class="s-user-card">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar s-avatar__24">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-24.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-24.svg" />
                 </span>
                 <span class="s-user-card--username s-user-card--new-contributor">SofiaAlc</span>
             </a>
@@ -762,7 +762,7 @@ This label appears on a user's first-ever question or answer to signal that they
         <div class="s-user-card">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar s-avatar__24">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-24.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-24.svg" />
                 </span>
                 <span class="s-user-card--username s-user-card--new-contributor">SofiaAlc</span>
             </a>
@@ -815,7 +815,7 @@ When a user is deleted, we still need to show their name, but we strip the metad
     <div class="d-flex fd-column g8">
         <div class="s-user-card s-user-card__deleted s-user-card__sm">
             <div class="s-user-card--group">
-                <img alt="deleted user avatar" src="/legacy/assets/img/avatar-deleted-16.svg" />
+                <img alt="deleted user avatar" src="./avatar-deleted-16.svg" />
                 <span class="s-user-card--username">SofiaAlc</span>
             </div>
             <a class="s-user-card--time" href="#" title="Show activity on this post" data-controller="s-tooltip">
@@ -824,7 +824,7 @@ When a user is deleted, we still need to show their name, but we strip the metad
         </div>
         <div class="s-user-card s-user-card__deleted">
             <div class="s-user-card--group">
-                <img alt="deleted user avatar" src="/legacy/assets/img/avatar-deleted-24.svg" />
+                <img alt="deleted user avatar" src="./avatar-deleted-24.svg" />
                 <span class="s-user-card--username">SofiaAlc</span>
             </div>
             <a class="s-user-card--time" href="#" title="Show activity on this post" data-controller="s-tooltip">
@@ -890,7 +890,7 @@ Use to display a specialized icon alongside the username, highlighting unique ac
         <div class="s-user-card s-user-card__sm">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-16.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-16.svg" />
                 </span>
                 <span class="s-user-card--username">SofiaAlc</span>
             </a>
@@ -922,7 +922,7 @@ Use to display a specialized icon alongside the username, highlighting unique ac
         <div class="s-user-card s-user-card__sm">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-16.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-16.svg" />
                 </span>
                 <span class="s-user-card--username">SofiaAlc</span>
             </a>
@@ -958,7 +958,7 @@ Use to display a specialized icon alongside the username, highlighting unique ac
             <div class="s-user-card--column">
                 <div class="s-user-card--row">
                     <a class="s-avatar s-avatar__24" href="#">
-                        <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-24.svg" />
+                        <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-24.svg" />
                     </a>
                     <a class="s-user-card--group" href="#">
                         <span class="s-user-card--username">SofiaAlc</span>
@@ -997,7 +997,7 @@ Use to display a specialized icon alongside the username, highlighting unique ac
             <div class="s-user-card--column">
                 <div class="s-user-card--row">
                     <a class="s-avatar s-avatar__24" href="#">
-                        <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-24.svg" />
+                        <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-24.svg" />
                     </a>
                     <a class="s-user-card--group" href="#">
                         <span class="s-user-card--username">SofiaAlc</span>
@@ -1065,7 +1065,7 @@ This icon appears next to a user when they are within the top 3 positions of a C
         <div class="s-user-card s-user-card__sm">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-16.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-16.svg" />
                 </span>
                 <span class="s-user-card--username">SofiaAlc</span>
             </a>
@@ -1079,7 +1079,7 @@ This icon appears next to a user when they are within the top 3 positions of a C
         <div class="s-user-card">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar s-avatar__24">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-24.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-24.svg" />
                 </span>
                 <span class="s-user-card--username">SofiaAlc</span>
             </a>
@@ -1102,7 +1102,7 @@ This icon appears next to a user when they are within the top 3 positions of a C
         <div class="s-user-card">
             <a class="s-user-card--group" href="#">
                 <span class="s-avatar s-avatar__24">
-                    <img class="s-avatar--image" alt="demo avatar" src="/legacy/assets/img/avatar-disgusted-24.svg" />
+                    <img class="s-avatar--image" alt="demo avatar" src="./avatar-disgusted-24.svg" />
                 </span>
                 <span class="s-user-card--username">SofiaAlc</span>
             </a>
