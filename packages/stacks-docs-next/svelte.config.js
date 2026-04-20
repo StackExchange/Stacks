@@ -39,7 +39,7 @@ const config = {
                 rehypeSectionize,
                 [rehypeAutolinkHeadings, {
                     behavior: "append",
-                    properties: { className: ["docs-heading-anchor"], ariaHidden: "true", tabIndex: -1 },
+                    properties: { className: ["docs-heading-anchor", "s-btn", "s-btn__clear"], title: "Anchor link to this heading" },
                     content: {
                         type: "element",
                         tagName: "svg",
