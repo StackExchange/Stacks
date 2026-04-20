@@ -8,7 +8,8 @@ updated: 2026-02-12
   import Grid from '$components/Grid.svelte'
   import GridColumn from '$components/GridColumn.svelte'
 
-  import { Icon } from '@stackoverflow/stacks-svelte';
+  import { Icon, Notice } from '@stackoverflow/stacks-svelte';
+  import Example from '$components/Example.svelte'
   import { IconCheckFillCircle, IconCrossFillCircle } from '@stackoverflow/stacks-icons'
 </script>
 
@@ -88,13 +89,15 @@ If an image does not convey any meaning to the user, leave the alt-text blank.
 </div>
 ```
 
-<div class="d-flex fd-column gy8 wmx3 ba bc-black-225 bar-md p16 mb16">
+<Example>
+<div class="d-flex fd-column gy8 wmx3 ba bc-black-225 bar-md p16">
   <div class="flex--item">
     <svg width="48" height="49" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 49a24 24 0 1 0 0-48 24 24 0 0 0 0 48z" fill="#F4F2F7"/><path d="M12.6 30.3l-2 2 5.4 5.4 2-2-5.4-5.4z" fill="#E2D3ED"/><path d="M12.2 27.4c2-3 17.4-26.4 34.3-26.9-.4 17-23.7 32.4-26.8 34.4l-7.5-7.5z" fill="#fff"/><path d="M46 1c-.9 16-22.2 30.6-26.2 33.3l-7-7C15.6 23.4 30 2 46 1zm1-1C28.3 0 11.6 27.5 11.6 27.5l8 8S47.1 18.8 47 0z" fill="#27348B"/><path d="M40.4 3.4a5.2 5.2 0 0 0 5.7 5.4c.7-2.1 1-4.3 1-6.6-2.2 0-4.5.4-6.7 1.2z" fill="#E2D3ED"/><path d="M40.4 16.1L29.1 41.5h-6.6v-5M31 6.7L5.5 18.4v6.1h5.3M18.3 34.2l-2 2-5.4-5.3 2-2M45.2 6.7a4.8 4.8 0 0 1-4.9-4.8" stroke="#27348B" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.1 44l5.5-5.4M9.9 37.3l2.6-2.6M5.8 38.8l4-4M9.5 40.2l2.7-2.6" stroke="#27348B" stroke-miterlimit="10" stroke-linecap="round"/><path d="M46 1c-.9 16-22.2 30.6-26.2 33.3l-7-7C15.6 23.4 30 2 46 1zm1-1C28.3 0 11.6 27.5 11.6 27.5l8 8S47.1 18.8 47 0z" fill="#27348B"/><circle cx="36.5" cy="12.5" r="2.5" fill="#FFB935"/><circle cx="36.5" cy="10.5" r="2" stroke="#F48024"/><circle cx="30.5" cy="18.5" r="2.5" fill="#FFB935"/><circle cx="30.5" cy="16.5" r="2" stroke="#F48024"/><circle cx="24.5" cy="24.5" r="2.5" fill="#FFB935"/><circle cx="24.5" cy="22.5" r="2" stroke="#F48024"/></svg>
   </div>
   <h2 class="flex--item fs-body3 fw-normal fc-dark m0">Improve efficiency and ship better code</h2>
   <p class="flex--item fs-body1 fc-medium m0">There's a reason the world's largest developer teams rely on Stack Overflow Enterprise—it leads to better product and allows distributed teams to securely collaborate and share knowledge.</p>
 </div>
+</Example>
 
 The rocket here doesn't add meaningful information.
 
@@ -110,7 +113,8 @@ If an image has a label nearby, leave the alt-text blank.
 </div>
 ```
 
-<div class="d-flex gx8 ai-center wmx4 ba bc-black-225 bar-md p16 mb16">
+<Example>
+<div class="d-flex gx8 ai-center wmx4 ba bc-black-225 bar-md p16">
   <div class="flex--item">
     <svg width="44" height="43" viewBox="0 0 44.3 63.4" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="m3.8 19.9h36.9v9.5h-36.9z" fill="#f48024"/><path d="m3.8 52.6v-9.6h36.9v9.6" fill="none" stroke="#4c8dbd" stroke-miterlimit="10"/><path d="m39.6 31.9v8h-10.5v-8zm1-1h-12.5v10h12.4v-10z" fill="#4c8dbd"/><g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="m15.2 13.6h26.3m-28.6-2.2v4.6m-11.8.9h42.6m-43.2 35.5v-41.8h43.2v41.7h-43.2z" stroke="#4c8dbd"/><path d="m9.1 13.6h1.6" stroke="#f48024"/><path d="m6 13.6h1.6" stroke="#f48024"/><path d="m2.8 13.6h1.6" stroke="#f48024"/></g><path d="m3.8 30.9h22.6v9.9h-22.6z" fill="#cde8f9"/></svg>
   </div>
@@ -119,16 +123,13 @@ If an image has a label nearby, leave the alt-text blank.
     <p class="flex--item fs-body1 fc-medium m0">This ad unit is the most visible on the site.</p>
   </div>
 </div>
+</Example>
 
 The nearby text here already explains what the graphic illustrates. If there was alt-text here, screen readers would repeat information to the user.
 
-<div class="s-notice s-notice__info mb16">
-  <div class="d-flex fd-column gs8 gsy">
-    <div class="flex--item">
-      <strong>Note:</strong> In these cases, leaving the alt attribute empty (<code class="stacks-code bg-blue-300">alt=""</code>) will cause a screenreader to skip over the image. <strong>Never <em>remove</em> the alt-attribute.</strong> When a screenreader comes to an image without an alt attribute, it will dictate the filename (Eg. "SO underscore logo dot png").
-    </div>
-  </div>
-</div>
+<Notice variant="info" class="mb16">
+  <p><strong>Note:</strong> In these cases, leaving the alt attribute empty (<code>alt=""</code>) will cause a screenreader to skip over the image. <strong>Never <em>remove</em> the alt-attribute.</strong> When a screenreader comes to an image without an alt attribute, it will dictate the filename (Eg. "SO underscore logo dot png").</p>
+</Notice>
 
 ## How to add alt-text
 

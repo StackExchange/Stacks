@@ -74,7 +74,7 @@ The legal entity is **Stack Exchange Inc.** However, most of the time we refer t
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>StackOverflow</li>
       <li>Stackoverflow</li>
       <li>stackoverflow</li>
@@ -84,7 +84,7 @@ The legal entity is **Stack Exchange Inc.** However, most of the time we refer t
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Stack Overflow</li>
     </ul>
   </GridColumn>
@@ -99,7 +99,7 @@ However, when disambiguation is necessary, use these conventions:
 <Grid>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> When referring to the company</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Stack Overflow (in most contexts)</li>
       <li>“We at Stack Overflow believe…”</li>
       <li>“Stack Overflow announced today…”</li>
@@ -108,7 +108,7 @@ However, when disambiguation is necessary, use these conventions:
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> When referring to website</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Stack Overflow (in most contexts)</li>
       <li>“stackoverflow.com” (when being very specific)</li>
       <li>“Ask a question on Stack Overflow”</li>
@@ -124,7 +124,7 @@ Use contextual clues or specific phrasing when you need to make the distinction 
 <Grid>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>“Stack Overflow has 183+ public platforms, and business products”</li>
       <li>“Visit stackoverflow.com to ask questions, or try Stack Internal for your team”</li>
       <li>“Unlike the public Stack Overflow site, Stack Internal is private to your organization”</li>
@@ -146,7 +146,7 @@ Our data licensing product provides ethical access to Stack Overflow’s vast da
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Stack Overflow Knowledge Solutions</li>
       <li>SOKS</li>
       <li>OverflowAPI</li>
@@ -157,7 +157,7 @@ Our data licensing product provides ethical access to Stack Overflow’s vast da
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Stack Data Licensing</li>
     </ul>
   </GridColumn>
@@ -172,7 +172,7 @@ Our advertising platform for reaching developers and technologists.
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Stack Overflow Talent</li>
       <li>Stack Overflow Employer Branding</li>
       <li>Stack Overflow Advertising</li>
@@ -182,7 +182,7 @@ Our advertising platform for reaching developers and technologists.
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Stack Ads</li>
     </ul>
   </GridColumn>
@@ -197,7 +197,7 @@ In November 2025 we renamed **Stack Overflow for Teams** to **Stack Internal**.
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Stack Overflow for Teams</li>
       <li>SO4T</li>
       <li>SOE</li>
@@ -211,7 +211,7 @@ In November 2025 we renamed **Stack Overflow for Teams** to **Stack Internal**.
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Stack Internal</li>
     </ul>
   </GridColumn>
@@ -224,7 +224,7 @@ Both **Stack \_\_\_** and **Stack Overflow \_\_\_** are acceptable when referrin
 <Grid>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Use Stack ___</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Inside the product themselves</li>
       <li>Internal communications (presentations, emails, Slack)</li>
       <li>Official social media posts from company accounts</li>
@@ -234,7 +234,7 @@ Both **Stack \_\_\_** and **Stack Overflow \_\_\_** are acceptable when referrin
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Use Stack Overflow ___</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>External communications where context is unclear</li>
       <li>First mention of a product in outreach materials</li>
       <li>App stores, marketplaces, and review sites</li>
@@ -251,7 +251,7 @@ Stack Internal tier names are unchanged from previous naming.
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Stack Overflow Enterprise</li>
       <li>Stack Overflow for Enterprise</li>
       <li>Stack Overflow Business</li>
@@ -261,7 +261,7 @@ Stack Internal tier names are unchanged from previous naming.
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Stack Internal (Enterprise)</li>
       <li>Stack Internal (Business)</li>
       <li>Use tier name alone after first full mention (e.g., "Enterprise")</li>
@@ -276,7 +276,7 @@ When referring to Stack Internal instances and users in product contexts:
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Team (capitalized when referring to an instance)</li>
       <li>Members</li>
       <li>Users</li>
@@ -285,7 +285,7 @@ When referring to Stack Internal instances and users in product contexts:
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>team (lowercase, where "Stack Internal" is too formal)</li>
       <li>teammates (for the collective name of users)</li>
       <li>Stack Internal (when being specific e.g., …your Stack Internal…)</li>
@@ -300,7 +300,7 @@ The OverflowAI brand has been retired. When referring to AI functionality:
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>OverflowAI</li>
       <li>Overflow AI</li>
       <li>Stack AI</li>
@@ -310,7 +310,7 @@ The OverflowAI brand has been retired. When referring to AI functionality:
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Refer to specific features by name (e.g., "Enhanced Search")</li>
       <li>Use "Stack Internal's AI features" when referring collectively</li>
       <li>Avoid collective references when possible</li>
@@ -325,7 +325,7 @@ The following brands and visual identities have been retired:
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Stack Overflow Labs</li>
       <li>Collectives on Stack Overflow visual identity</li>
       <li>Old style product logos (i.e., Teams, Talent, Advertising)</li>
@@ -334,7 +334,7 @@ The following brands and visual identities have been retired:
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Refer to the <a href="https://stackoverflow.blog/releases" class="s-link__underlined">releases</a> section on the blog</li>
       <li>Refer to these products in text when contextually appropriate</li>
       <li>Link to historical content (blog posts, documentation)</li>

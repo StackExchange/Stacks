@@ -69,14 +69,14 @@ We want to help folks fix errors quickly, so error messages should be concise. S
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h4 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCrossFillCircle} /> Don't</h4>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>"Can't create 'Engineering' because a team with that name already exists. Specify a different name."</li>
       <li>"Your notification failed and needs to be re-authorized."</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h4 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheckFillCircle} /> Do</h4>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>"'Engineering' already exists. Try another team name."</li>
       <li>"Notification failed, please <a href="#">re-authorize it</a>."</li>
     </ul>
@@ -92,13 +92,13 @@ Apologize when it's the system's fault and let the user know it's not their faul
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h4 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCrossFillCircle} /> Don't</h4>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>"Your changes couldn't be saved."</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h4 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheckFillCircle} /> Do</h4>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>"We couldn't save your changes."</li>
     </ul>
   </GridColumn>
@@ -111,14 +111,14 @@ Sometimes it's the user's fault, but there are ways to tell them without soundin
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h4 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCrossFillCircle} /> Don't</h4>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>"You've missed your name."</li>
       <li>"You can't leave this blank."</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h4 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheckFillCircle} /> Do</h4>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>"Please enter your name."</li>
       <li>"Please enter a team name."</li>
     </ul>
@@ -136,13 +136,13 @@ Tone is how you say something. A message's tone should depend on how serious the
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h4 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCrossFillCircle} /> Don't</h4>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>"The password entered does not match our records. Please re-enter your password."</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h4 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheckFillCircle} /> Do</h4>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>"That password's not right. Try again."</li>
     </ul>
   </GridColumn>
@@ -153,13 +153,13 @@ At the same time, error messages are not the place to be clever or make jokes. T
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h4 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCrossFillCircle} /> Don't</h4>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>"Whoops! Looks like your card was declined. Better ask Mom for another one."</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h4 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheckFillCircle} /> Do</h4>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>"This card was declined. Try another payment method."</li>
     </ul>
   </GridColumn>
@@ -225,14 +225,14 @@ A good success message provides clear information that the performed action was 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h4 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCrossFillCircle} /> Don't</h4>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>"Successfully saved."</li>
       <li>"Upgrade complete."</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h4 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheckFillCircle} /> Do</h4>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>"Your account details have been saved."</li>
       <li>"You've upgraded to the Business tier of Teams."</li>
     </ul>
@@ -246,14 +246,14 @@ Tone is how you say something. Excitement makes sense for successfully finishing
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h4 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCrossFillCircle} /> Don't</h4>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>"Thanks for updating your email."</li>
       <li>"Account created."</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h4 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheckFillCircle} /> Do</h4>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>"Your email has been updated."</li>
       <li>"Thanks for signing up. Your account has been created."</li>
     </ul>
