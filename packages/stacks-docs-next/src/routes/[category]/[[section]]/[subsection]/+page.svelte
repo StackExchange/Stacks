@@ -78,7 +78,7 @@
     </div>  
 
     <header>
-      {#if data?.metadata?.updated && page.params.category !== 'system'}
+      {#if data?.metadata?.updated}
         <time datetime={data?.metadata?.updated} class="d-block mb24 fs-body1 fc-black-400">
           Last updated: <strong>{lastUpdated}</strong>
         </time>
