@@ -16,13 +16,13 @@ description: Buttons are user interface elements which allows users to take acti
   const ButtonVariants: Variant[] = ["", "danger", "featured", "tonal"];
   const ButtonWeights: Weight[] = ["", "clear"];
 
-  import ButtonTable from './buttons/ButtonTable.svelte';
-  import AnchorButtonTable from './buttons/AnchorButtonTable.svelte';
-  import LoadingButtonTable from './buttons/LoadingButtonTable.svelte';
-  import DropdownButtonTable from './buttons/DropdownButtonTable.svelte';
-  import BadgeButtonTable from './buttons/BadgeButtonTable.svelte';
-  import SizeTable from './buttons/SizeTable.svelte';
-  import ToggleButtonDemo from './buttons/ToggleButtonDemo.svelte';
+  import ButtonTable from './ButtonTable.svelte';
+  import AnchorButtonTable from './AnchorButtonTable.svelte';
+  import LoadingButtonTable from './LoadingButtonTable.svelte';
+  import DropdownButtonTable from './DropdownButtonTable.svelte';
+  import BadgeButtonTable from './BadgeButtonTable.svelte';
+  import SizeTable from './SizeTable.svelte';
+  import ToggleButtonDemo from './ToggleButtonDemo.svelte';
   import ClassTable from '$components/ClassTable.svelte';
   import Example from '$components/Example.svelte';
   import { Notice } from '@stackoverflow/stacks-svelte';
