@@ -1,38 +1,39 @@
 # Stacks
 
-Stacks is Stack Overflow’s design system. It includes the resources needed to create consistent, predictable interfaces and workflows that conform to Stack Overflow’s principles, design language, and best practices.
-
-Our documentation is built with Stacks itself, using its [immutable, atomic classes](http://johnpolacek.com/rethinking/) and components.
+Stacks is Stack Overflow's design system, the shared foundation of components, styles, and guidelines used across Stack Overflow's products. For usage instructions, see our [usage guidelines](https://stackoverflow.design/system/develop/using-stacks).
 
 ## Table of contents
 
-- [Using Stacks](#using-stacks)
-- [Local Development](#local-development)
-- [Stacks Docs](#stacks-docs)
-- [Stacks Classic](#stacks-classic)
-- [Stacks Svelte](#stacks-svelte)
-- [Releasing Stacks](#releasing-stacks)
-- [Bugs and feature requests](#bugs-and-feature-requests)
 - [Contributing](#contributing)
+- [Local Development](#local-development)
+  - [Stacks Docs](#stacks-docs)
+  - [Stacks Classic](#stacks-classic)
+  - [Stacks Svelte](#stacks-svelte)
+- [Releasing Stacks](#releasing-stacks)
 - [License](#license)
 
-# Using Stacks
-Using Stacks is outlined in our [usage guidelines](https://stackoverflow.design/system/develop/using-stacks).
+## Contributing
+Please read through our **[contribution guidelines](/CONTRIBUTING.md)** before getting started. The guide covers:
 
-# Local Development
+- [Before you start](/CONTRIBUTING.md#before-you-start): where to report bugs or request features
+- [Pull requests](/CONTRIBUTING.md#pull-requests): how to set up and submit your work
+- [Merge requirements](/CONTRIBUTING.md#merge-requirements): required approvals and deployment rules that apply to everyone
+- [Code guidelines](/CONTRIBUTING.md#code-guidelines): formatting and style conventions
 
-This repo follows a monolithic structure and contains multiple packages split into [npm workspaces](https://docs.npmjs.com/cli/v9/using-npm/workspaces). These can be found under the [packages/](https://github.com/StackExchange/Stacks/tree/develop/packages) folder.
+## Local Development
+
+This repo follows a monolithic structure and contains multiple packages split into [npm workspaces](https://docs.npmjs.com/cli/v9/using-npm/workspaces). These can be found under the [packages/](https://github.com/StackExchange/Stacks/tree/main/packages) folder.
 
 To get any of these Stacks workspaces working locally start out by installing all required dependencies:
 ```sh
 npm i
 ```
 
-Below are instructions on how to build and test each individual workspace. If you have trouble getting any of these steps to work, please open [an issue](https://github.com/StackExchange/Stacks/issues/new) with a `setup` label.
+Below are instructions on how to build and test each individual workspace. If you run into trouble, see [Before you start](/CONTRIBUTING.md#before-you-start) in our contributing guide for how to reach us.
 
-## Stacks Docs
+### Stacks Docs
 
-This workspace contains the Stacks documentation project that’s hosted on: https://stackoverflow.design/
+This workspace contains the Stacks documentation project that's hosted on: https://stackoverflow.design/
 
 To contribute to Stacks documentation you can build locally via:
 ```sh
@@ -40,20 +41,20 @@ npm start
 ```
 This command will pull up the local dev server at http://localhost:5173/. You can also view our [building guidelines](https://stackoverflow.design/system/develop/building).
 
-## Stacks Classic 
+### Stacks Classic
 
 [![ci status][gh-action-badge]][gh-action-url] [![npm version][npm-badge]][npm-url]
 
 This workspace contains the css and js sources that define and power the Stacks design system.
 
-### Formatting
+#### Formatting
 
 Format the source code with prettier by running:
 ```sh
 npm run format -w packages/stacks-classic
 ```
 
-### Linting
+#### Linting
 
 Run all lint suites by running:
 ```sh
@@ -72,16 +73,16 @@ Lint the source code format (prettier) via running:
 npm run lint:format -w packages/stacks-classic
 ```
 
-### Testing
+#### Testing
 
 Run all test suites by running:
 ```sh
 npm run test -w packages/stacks-classic
 ```
-#### Unit/Component Tests
+##### Unit/Component Tests
 
 Unit/Component tests are written with [DOM Testing Library](https://testing-library.com/docs/dom-testing-library/intro).
-Please follow the library’s principles and documentation to write tests.
+Please follow the library's principles and documentation to write tests.
 
 Stacks uses [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/) and [Playwright](https://modern-web.dev/docs/test-runner/browser-launchers/playwright/) to run tests in a real browser context.
 
@@ -94,9 +95,9 @@ or if you prefer watch mode run:
 npm run test:unit:watch -w packages/stacks-classic
 ```
 
-#### Visual Regression Tests
+##### Visual Regression Tests
 
-**Prerequisites:** 
+**Prerequisites:**
 - `git lfs` ([installation docs](https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage))
 - `docker` ([installation docs](https://docs.docker.com/engine/install/))
 - `pwsh` ([Installation docs](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.3))
@@ -109,14 +110,14 @@ Execute the visual regression tests suite by running:
 ```sh
 npm run test:visual -w packages/stacks-classic
 ```
-After the first run, if there are failing snapshots, they end up overriding the baseline ones in the filesystem (e.g. `/screenshots/<browser>/baseline/<name>.png`). 
+After the first run, if there are failing snapshots, they end up overriding the baseline ones in the filesystem (e.g. `/screenshots/<browser>/baseline/<name>.png`).
 We do this for easier comparison of the dif directly in vscode and to make sure only the failing snapshots get regenerated (see [this GH discussion](https://github.com/modernweb-dev/web/discussions/427#discussioncomment-3543771) that inspired the approach).
 
 We also recommend to install [this vscode extension](https://marketplace.visualstudio.com/items?itemName=RayWiis.png-image-diff) for getting better diffs.
 
-#### Less Tests
+##### Less Tests
 
-This is an experimental suite to test the generation of CSS from Less files. 
+This is an experimental suite to test the generation of CSS from Less files.
 Less tests end with this suffix `*.less.test.ts`.
 
 Execute the less tests suite by running:
@@ -129,7 +130,7 @@ Update the css snapshots via:
 npm run test:less:update -w packages/stacks-classic
 ```
 
-## Stacks Svelte
+### Stacks Svelte
 
 [![ci status][gh-action-badge]][gh-action-url] [![npm version][npm-badge-svelte]][npm-url-svelte]
 
@@ -144,19 +145,19 @@ npm run storybook -w packages/stacks-svelte
 The storybook server will reflect the changes you make to the components stories in real time.
 We use [this addon](https://storybook.js.org/addons/@storybook/addon-svelte-csf) to write stories directly in Svelte syntax. Stories need to have the `*.stories.svelte` extension to be picked up.
 
-### Formatting
+#### Formatting
 
 ```bash
 npm run format -w packages/stacks-svelte
 ```
 
-### Linting
+#### Linting
 
 ```bash
 npm run lint -w packages/stacks-svelte
 ```
 
-### Testing
+#### Testing
 
 Stacks Svelte uses [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/) and [Playwright](https://modern-web.dev/docs/test-runner/browser-launchers/playwright/) to run tests in a real browser context.
 
@@ -170,49 +171,27 @@ or to run the tests in watch mode:
 npm run test:watch -w packages/stacks-svelte
 ```
 
-# Releasing Stacks
-This repo uses [Semantic Versioning](https://semver.org/) to distribute Stacks Classic and Stacks Docs via [npm](https://www.npmjs.com/package/@stackoverflow/stacks), and publishes [release notes on Github](https://github.com/StackExchange/Stacks/releases). 
+## Releasing Stacks
+This repo uses [Semantic Versioning](https://semver.org/) to distribute Stacks Classic and Stacks Docs via [npm](https://www.npmjs.com/package/@stackoverflow/stacks), and publishes [release notes on Github](https://github.com/StackExchange/Stacks/releases).
 
 We use [changesets](https://github.com/changesets/changesets) to automatize the steps necessary to publish to NPM, create GH releases and a changelog.
 
-- Every time you do work that requires a new release to be published, [add a changesets entry](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) by running `npx changeset` and follow the instructions on screen. (changes that do not require a new release - e.g. changing a test file - don’t need a changeset).
+- Every time you do work that requires a new release to be published, [add a changesets entry](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) by running `npx changeset` and follow the instructions on screen. (changes that do not require a new release - e.g. changing a test file - don't need a changeset).
     - When opening a PR without a corresponding changeset the [changesets-bot](https://github.com/apps/changeset-bot) will remind you to do so. It generally makes sense to have one changeset for PR (if the PR changes do not require a new release to be published the bot message can be safely ignored)
-- The [release github workflow](.github/workflows/release.yml) continuosly check if there are new pending changesets in the main branch, if there are it creates a GH PR (`chore(release)` [see example](https://github.com/StackExchange/apca-check/pull/2)) and continue updating it as more changesets are potentially pushed/merged to the main branch.
-- When we are ready to cut a release we need to simply merge the `chore(release)` PR back to main and the release github workflow will take care of publishing the changes to NPM and create a GH release for us. The `chore(release)` PR also give us an opportunity to adjust the automatically generated changelog when necessary (the entry in the changelog file is also what will end up in the GH release notes).
+- The [release github workflow](.github/workflows/main.yml) continuously checks if there are new pending changesets in the `beta` branch; if there are, it creates a GH PR (`chore(release)` [see example](https://github.com/StackExchange/apca-check/pull/2)) and continues updating it as more changesets are pushed/merged to the `beta` branch.
+- When we are ready to cut a release we need to simply merge the `chore(release)` PR and the release github workflow will take care of publishing the changes to NPM and create a GH release for us. The `chore(release)` PR also give us an opportunity to adjust the automatically generated changelog when necessary (the entry in the changelog file is also what will end up in the GH release notes).
 
 _The release github workflow only run if the CI workflow (running linter, formatter and tests) is successful: CI is blocking accidental releases_.
 
 _Despite using changesets to communicate the intent of creating releases in a more explicit way, we still follow [conventional commits standards](https://www.conventionalcommits.org/en/v1.0.0/) for keeping our git history easily parseable by the human eye._
 
-Successful releases trigger automatically a new deployment to stackoverflow.design by merging the `develop` branch into the `production` branch.
-
-## Beta publishing
-We use Changesets in prerelease mode to manage publishing to the beta branch. For more information, please refer to the official [Changesets prerelease documentation](https://github.com/changesets/changesets/blob/main/docs/prereleases.md).
-
-To prepare a beta release, follow these steps:
-
-1. Create a pull request (PR) targeting the beta branch.
-
-2. Ensure your PR includes a changeset.
-
-3. Merging the PR will trigger the `release` job. This job creates or updates a chore(new-beta-release) PR.
-
-4. To cut a new beta release, merge the `chore(new-release) (beta)` PR and wait for the `Release (latest or beta)` job to complete.
-
-Consumers can install the beta package by targeting the beta tag:
-`npm install @stackoverflow/stacks@beta` or `npm install @stackoverflow/stacks-svelte@beta`
-
-## Bugs and feature requests
-Have a bug or feature request? First search existing or closed issues to make sure the issue hasn’t been noted yet. If not, review our [issue guidelines](/CONTRIBUTING.md#open-an-issue) for submitting [a bug report](/CONTRIBUTING.md#reporting-bugs) or [feature request](/CONTRIBUTING.md#feature-requests).
-
-## Contributing
-If you’d like to contribute to Stacks, please read through our [contribution guidelines](/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
+Successful releases trigger automatically a new deployment to stackoverflow.design by merging the `main` branch.
 
 ## License
-Code and documentation copyright 2017-2024 Stack Exchange, Inc and released under the [MIT License](/LICENSE.MD).
+Code and documentation copyright 2017-2026 Stack Exchange, Inc and released under the [MIT License](/LICENSE.MD).
 
 [gh-action-url]: https://github.com/StackExchange/Stacks/actions/workflows/main.yml
-[gh-action-badge]: https://github.com/StackExchange/Stacks/actions/workflows/workflow.yml/badge.svg?branch=develop
+[gh-action-badge]: https://github.com/StackExchange/Stacks/actions/workflows/main.yml/badge.svg?branch=main
 [npm-url]: https://npmjs.org/package/@stackoverflow/stacks
 [npm-badge]: https://img.shields.io/npm/v/@stackoverflow/stacks.svg
 
