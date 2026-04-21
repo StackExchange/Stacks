@@ -4,6 +4,10 @@ description: A short guide to Stacks, a robust CSS & JavaScript Pattern library 
 updated: 2025-12-05
 ---
 
+<script lang="ts">
+    import { Notice } from '@stackoverflow/stacks-svelte';
+</script>
+
 ## Goals
 
 Stacks is built with a unified goal: We should be writing _as little CSS & JavaScript as possible_. To achieve this goal, the Stacks team has created a robust set of reusable components. These include components like buttons, tables, and form elements.
@@ -20,7 +24,9 @@ You can also include a minified, compiled Stacks CSS style sheet that's delivere
 
 To use Stack's built-in JavaScript interactivity with your components, refer to the [JavaScript guidelines](/system/develop/javascript/).
 
-> **Warning**: If you're hotlinking to Stacks on the Stack Overflow CDN, **you are doing it wrong**. You are setting yourself up for breaking upstream changes. Instead, you should install via properly versioned package management like NPM. This will keep you pinned to a stable version.
+<Notice variant="warning" class="s-anchors s-anchors__inherit s-anchors__underlined">
+    <p><strong>Warning:</strong> If you're hotlinking to Stacks on the Stack Overflow CDN, <strong>you are doing it wrong</strong>. You are setting yourself up for breaking upstream changes. Instead, you should install via properly versioned package management like NPM. This will keep you pinned to a stable version.</p>
+</Notice>
 
 ## How to best use Stacks
 
