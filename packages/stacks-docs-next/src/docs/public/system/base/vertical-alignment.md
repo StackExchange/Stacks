@@ -40,15 +40,20 @@ description: Atomic vertical alignment classes allow you to change an element's 
 ```
 
 <Example>
-    <div class="ws-nowrap fs-caption ff-mono">
-        <div class="va-baseline my4 bg-black-200 p12 ba bc-black-225 d-inline">.va-baseline</div>
-        <div class="va-bottom my4 bg-black-200 p12 ba bc-black-225 d-inline">.va-bottom</div>
-        <div class="va-middle my4 bg-black-200 p12 ba bc-black-225 d-inline">.va-middle</div>
-        <div class="va-sub my4 bg-black-200 p12 ba bc-black-225 d-inline">.va-sub</div>
-        <div class="va-super my4 bg-black-200 p12 ba bc-black-225 d-inline">.va-super</div>
-        <div class="va-text-bottom my4 bg-black-200 p12 ba bc-black-225 d-inline">.va-text-bottom</div>
-        <div class="va-text-top my4 bg-black-200 p12 ba bc-black-225 d-inline">.va-text-top</div>
-        <div class="va-top my4 bg-black-200 p12 ba bc-black-225 d-inline">.va-top</div>
-        <div class="va-unset my4 bg-black-200 p12 ba bc-black-225 d-inline">.va-unset</div>
+    <div
+        class="overflow-x-scroll py8 ws-nowrap fs-caption ff-mono"
+        tabindex="0"
+        role="region"
+        aria-label="Vertical alignment example"
+    >
+        <span class="va-baseline my4 bg-black-200 p12 ba bc-black-225 d-inline-block">.va-baseline</span>
+        <span class="va-bottom my4 bg-black-200 p12 ba bc-black-225 d-inline-block">.va-bottom</span>
+        <span class="va-middle my4 bg-black-200 p12 ba bc-black-225 d-inline-block">.va-middle</span>
+        <span class="va-sub my4 bg-black-200 p12 ba bc-black-225 d-inline-block">.va-sub</span>
+        <span class="va-super my4 bg-black-200 p12 ba bc-black-225 d-inline-block">.va-super</span>
+        <span class="va-text-bottom my4 bg-black-200 p12 ba bc-black-225 d-inline-block">.va-text-bottom</span>
+        <span class="va-text-top my4 bg-black-200 p12 ba bc-black-225 d-inline-block">.va-text-top</span>
+        <span class="va-top my4 bg-black-200 p12 ba bc-black-225 d-inline-block">.va-top</span>
+        <span class="va-unset my4 bg-black-200 p12 ba bc-black-225 d-inline-block">.va-unset</span>
     </div>
 </Example>
