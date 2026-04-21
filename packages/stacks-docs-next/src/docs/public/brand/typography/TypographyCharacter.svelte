@@ -173,7 +173,7 @@
     </Navigation>
 
     <Grid>
-      <GridColumn extraClasses="" style="background: var(--brand-color-orange)">
+      <GridColumn style="background: var(--brand-color-orange)">
         {#if loading}
           <div class="ta-center p32">
             <div class="fs-headline2 fc-medium">Loading font...</div>

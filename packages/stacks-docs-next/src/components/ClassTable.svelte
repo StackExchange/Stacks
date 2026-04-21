@@ -98,17 +98,17 @@
             <thead>
                 <tr>
                     <th scope="col">{label('class')}</th>
-                    {#each activeCols as col}
+                    {#each activeCols as col (col)}
                         <th scope="col" class="{col === 'description' || col === 'define' ? 's-table--cell5' : ''} {booleanIconCols.includes(col) ? 'ta-center' : ''}">{label(col)}</th>
                     {/each}
                 </tr>
             </thead>
         {/if}
         <tbody class="fs-caption">
-            {#each classes as row}
+            {#each classes as row (row.class)}
                 <tr>
                     <th scope="row"><code>{row.class}</code></th>
-                    {#each activeCols as col}
+                    {#each activeCols as col (col)}
                         <td class="{col === 'output' ? 'ff-mono' : ''} {booleanIconCols.includes(col) ? 'ta-center' : ''}">
                             {#if booleanIconCols.includes(col)}
                                 {#if (row as Record<string, unknown>)[col]}

@@ -7,6 +7,7 @@ description: Atomic classes for controlling the background properties of an elem
     import ClassTable from '$components/ClassTable.svelte';
     import Example from '$components/Example.svelte';
     import type { ClassTableRow } from '$components/ClassTable.svelte';
+    import illustrationBgImage from './illustrationBgImage.svg';
 
     const backgroundSize: ClassTableRow[] = [
         { class: '.bg-auto',    output: 'background-size: auto;' },

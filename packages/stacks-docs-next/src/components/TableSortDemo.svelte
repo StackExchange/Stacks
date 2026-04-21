@@ -1,7 +1,6 @@
 <script lang="ts">
-    const svgUp    = `<svg aria-hidden="true" class="svg-icon iconArrowUpSm" width="14" height="14" viewBox="0 0 14 14"><path d="M3 9h8L7 5z"/></svg>`;
-    const svgDown  = `<svg aria-hidden="true" class="svg-icon iconArrowDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="M3 5h8L7 9z"/></svg>`;
-    const svgBoth  = `<svg aria-hidden="true" class="svg-icon iconArrowUpDownSm" width="14" height="14" viewBox="0 0 14 14"><path d="m7 2 4 4H3zm0 10 4-4H3z"/></svg>`;
+    import { Icon } from '@stackoverflow/stacks-svelte';
+    import { IconChevron16Up, IconChevron16Down, IconChevron16UpDown } from '@stackoverflow/stacks-icons/icons';
 
     const rows = [
         { season: 'Winter', month: 'December', monthSort: 12, temp: 2  },
@@ -30,8 +29,8 @@
     }
 
     function icon(c: number) {
-        if (col !== c) return svgBoth;
-        return dir === 'asc' ? svgUp : svgDown;
+        if (col !== c) return IconChevron16UpDown;
+        return dir === 'asc' ? IconChevron16Up : IconChevron16Down;
     }
 
     const headers = ['Season', 'Starts in month', 'Typical temperature in °C'];
@@ -41,18 +40,18 @@
     <table class="s-table s-table__sortable">
         <thead>
             <tr>
-                {#each headers as h, c}
+                {#each headers as h, c (c)}
                     <th scope="col" class:is-sorted={col === c} data-s-table-target="column">
                         <button type="button" onclick={() => sort(c)}>
                             {h}
-                            {@html icon(c)}
+                            <Icon src={icon(c)} aria-hidden="true" />
                         </button>
                     </th>
                 {/each}
             </tr>
         </thead>
         <tbody>
-            {#each sorted as r}
+            {#each sorted as r (r.season)}
                 <tr>
                     <td>{r.season}</td>
                     <td>{r.month}</td>

@@ -29,7 +29,7 @@
 </svelte:head>
 
 <article class="w100 wmx11 pl32 md:pr32 sm:pl24 sm:pr24">
-  <div class="doc fs-body2 pt24">
+  <div class="docs fs-body2 pt24">
     <div class="d-flex g4 ai-center sm:mb8 {data?.active?.image ? 'mb128' : 'mb24'}">
       <nav class="d-flex ai-center g6 fs-body2 mr-auto" aria-label="breadcrumb">
         {#each data.breadcrumb as crumb, index (crumb.label)}
@@ -77,7 +77,7 @@
     </div>
 
     <header>
-      {#if data?.metadata?.updated && page.params.category !== 'system'}
+      {#if data?.metadata?.updated}
         <time datetime={data?.metadata?.updated} class="d-block mb24 fs-body1 fc-black-400">
           Last updated: <strong>{lastUpdated}</strong>
         </time>
@@ -97,9 +97,6 @@
 
     {#if data.source === 'md'}
       <data.Content />
-    {:else if data.source === 'legacy'}
-      <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-      {@html data.html}
     {/if}
   </div>
 </article>

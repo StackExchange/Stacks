@@ -94,6 +94,6 @@ There are several options you can pass to the Stacks Editor.
     <StacksEditorDemo
         content={editorExampleContent}
         options={{ parserFeatures: { tables: true } }}
-        class="docs-editor-tall"
+        class="hmn6"
     />
 </Example>

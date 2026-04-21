@@ -19,8 +19,8 @@
 	let mobileMenu = $state(false);
 
 	$effect(() => {
-		document.body.style.overflow = mobileMenu ? 'hidden' : '';
-		return () => { document.body.style.overflow = ''; };
+		document.body.classList.toggle('overflow-hidden', mobileMenu);
+		return () => { document.body.classList.remove('overflow-hidden'); };
 	});
 
 	const year = new Date().getFullYear();
@@ -71,7 +71,7 @@
 	{/if}
 
 	<div class="d-flex fl-grow1 bg-white sm:mt0" class:mt24={!page.data.active?.image}>
-		<main class="main d-flex fd-column wmn0" class:w100={page.data.fullWidth}>
+		<main class="main d-flex fd-column wmn0 w100">
 			<div class="d-flex fd-column fl-grow1">
 				{#if data.needsAuth}
 					<div class="my-auto">

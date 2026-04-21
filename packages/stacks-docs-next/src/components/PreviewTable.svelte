@@ -35,7 +35,7 @@
             </tr>
         </thead>
         <tbody>
-            {#each rows as row}
+            {#each rows as row, i (i)}
                 <tr>
                     <td class="va-middle pr8">
                         {@render example(row)}
@@ -43,7 +43,7 @@
                     {#if showClasses}
                         <td class="va-middle">
                             <div class="d-flex g4 fw-wrap">
-                                {#each row.classes as cls}
+                                {#each row.classes as cls (cls)}
                                     {#if cls === 'N/A'}
                                         <span class="fc-black-350">N/A</span>
                                     {:else}

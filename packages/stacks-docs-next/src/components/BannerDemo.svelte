@@ -37,7 +37,7 @@
 
 <div class="ba bc-black-225 bar-sm p16 bg-black-100 d-flex ai-center g16 fw-wrap">
     <Select id="banner-style" label="Style" bind:selected={selectedVariant} labelPlacement="left">
-        {#each variants as v}
+        {#each variants as v (v.value)}
             <SelectItem value={v.value} text={v.label} />
         {/each}
     </Select>
