@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { Button, Icon } from '@stackoverflow/stacks-svelte';
+  import { IconList } from '@stackoverflow/stacks-icons'
+
   import { SvelteMap } from 'svelte/reactivity';
 
   interface TocItem {
@@ -9,6 +12,8 @@
   }
 
   let { toc = [] }: { toc: TocItem[] } = $props();
+
+  let isMobileOpen = $state(false);
 
   let activeId = $state<string | null>(null);
   let indicatorTop = $state(0);
@@ -125,10 +130,10 @@
 </script>
 
 {#if toc.length > 0}
-<aside class="layout-toc fl-shrink0 w30 wmn2 wmx3 md:d-none ff-stack-sans-headline">
-    <div class="ps-sticky t0 py24 mt6 px32 md:pb0 overflow-auto hmx-screen md:hmx-initial">
-      <nav bind:this={navElement} class="ps-relative">
-        <h2 class="fs-body2 fw-bold mb12 px6 fc-black-400">Contents</h2>
+<aside class="layout-toc fl-shrink0 w30 md:w100 md:ps-fixed b16 r16 wmn2 wmx3 ff-stack-sans-headline">
+    <div class="ps-sticky md:ps-static t0 mt6 py24 px32 md:pb0 md:p6 overflow-auto hmx-screen md:hmx-initial">
+      <nav bind:this={navElement} class={`ps-relative bg-white ${isMobileOpen ? 'contents-inner-mobile d-block' : 'md:d-none'}`}>
+        <h2 class="fs-body2 fw-bold mb12 px6 fc-black-400 md:d-none">Contents</h2>
 
         <div
           class="contents-indicator ps-absolute l0 r0 z-base pe-none"
@@ -145,7 +150,7 @@
                 class:is-active={activeId === item.id}
               >
                 <span class="fl-shrink0 w24 d-flex ai-center fc-theme-primary">{(index + 1).toString().padStart(2, "0")}</span>
-                <span>{item.value}</span>
+                <span class="truncate">{item.value}</span>
               </a>
               {#if item.children && item.children.length > 0}
                 <ul class="s-navigation s-navigation__vertical">
@@ -167,6 +172,15 @@
           {/each}
         </ul>
       </nav>
+
+      <Button
+        class="d-none md:d-block ml-auto mt12 bar-md p8"
+        size="sm"
+        onclick={() => isMobileOpen = !isMobileOpen}
+        title="Table of contents"
+      >
+        <Icon src={IconList} />
+      </Button>
     </div>
 </aside>
 {/if}
@@ -177,5 +191,14 @@
     /* background-color: rgba(255, 255, 255, 0.1); */
     backdrop-filter: invert(1);
     -webkit-backdrop-filter: invert(1);
+  }
+  @media (max-width: 71.875rem) {
+    .contents-inner-mobile {
+        max-height: calc(100vh - 200px);
+        overflow: auto;
+        padding: var(--su12);
+        box-shadow: var(--bs-md);
+        border-radius: var(--br-md);
+    }
   }
 </style>
