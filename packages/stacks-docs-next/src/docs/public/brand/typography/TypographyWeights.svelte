@@ -13,7 +13,7 @@
   let notch = $state(true);
 </script>
 
-<Navigation class="ws-nowrap" label="Font weight" overflow="scroll">
+<Navigation class="mb8" label="Font weight" overflow="scroll">
   {#each weights as weight (weight)}
     <NavigationItem
       text={weight}

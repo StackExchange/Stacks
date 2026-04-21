@@ -12,7 +12,7 @@
     <div class="my12 ta-center">Text Normal</div>
     <div class="my12 ta-center fs-caption">Text Normal</div>
   </GridColumn>
-  <GridColumn extraClasses="bg-brand-beige d-flex">
+  <GridColumn extraClasses="d-flex" style="background: var(--brand-color-beige)">
     <svg height="377" viewBox="0 0 377 377" width="377" class="d-block w100 h-auto">
       <path d="m87 22h290v328h-290z" fill="#201c1d"/>
       <path d="m99.6602 35.1046h12.8207v12.6955h-12.8207z" fill="#ff5e00"/>

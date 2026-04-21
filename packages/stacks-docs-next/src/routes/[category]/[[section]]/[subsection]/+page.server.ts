@@ -42,21 +42,6 @@ export const load: PageServerLoad = async (event) => {
         possiblePaths.includes(path)
     );
 
-    if (parent.active?.legacy) {
-        const response = await event.fetch(`/legacy/fragments/${parent.active.legacy}/fragment.html`);
-        if (response.ok) {
-            const html = (await response.text())
-                .replace(/="\/assets\//g, '="/legacy/assets/');
-            return {
-                source: "legacy" as const,
-                filename: null,
-                metadata: null,
-                markdown: null,
-                html,
-            };
-        }
-    }
-
     if (found) {
         const [filename, doc] = found;
         const loader = (await doc()) as { default: Component; metadata: Record<string, unknown> };

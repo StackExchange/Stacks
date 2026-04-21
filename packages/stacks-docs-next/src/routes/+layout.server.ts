@@ -38,6 +38,13 @@ export const load: LayoutServerLoad = async (event) => {
     const segments: [string] = event.url.pathname.split("/").filter(Boolean);
     const breadcrumb: { label: string; path: string }[] = [];
 
+    // Walk an item's children to find the first page path (an item with no children).
+    function firstPagePath(item: Record<string, unknown>, basePath: string): string {
+        if (!Array.isArray(item.items) || item.items.length === 0) return basePath;
+        const first = item.items[0] as Record<string, unknown>;
+        return firstPagePath(first, `${basePath}/${first.slug}`);
+    }
+
     let currentLevel = { items: structure.navigation };
     let currentPath = "";
 
@@ -47,9 +54,15 @@ export const load: LayoutServerLoad = async (event) => {
         if (item) {
             currentPath += `/${segment}`;
 
+            // If this item has children (it's a section, not a page), link to its
+            // first descendant page so the breadcrumb doesn't navigate to a 404.
+            const linkPath = Array.isArray(item.items) && item.items.length > 0
+                ? firstPagePath(item, currentPath)
+                : currentPath;
+
             breadcrumb.push({
                 label: item.title || segment,
-                path: currentPath,
+                path: linkPath,
             });
 
             currentLevel = item;

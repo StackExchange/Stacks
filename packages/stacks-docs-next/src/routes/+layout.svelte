@@ -7,6 +7,7 @@
 	import { IconLogo, IconGlyph24, IconServiceGitHub, IconMenu, IconCross } from '@stackoverflow/stacks-icons'
 
 	import Navigation from '$components/Navigation.svelte';
+	import Contents from '$components/Contents.svelte';
 	import Search from '$components/Search.svelte';
 	import ThemeToggle from '$components/ThemeToggle.svelte';
 	import Login from '$src/components/LoginPrompt.svelte';
@@ -15,9 +16,15 @@
 
 	let { children, data } = $props();
 
-	let mobileMenu = $state(false)
+	let mobileMenu = $state(false);
 
-	const year = new Date().getFullYear()
+	$effect(() => {
+		document.body.classList.toggle('overflow-hidden', mobileMenu);
+		return () => { document.body.classList.remove('overflow-hidden'); };
+	});
+
+	const year = new Date().getFullYear();
+	const toc = $derived(page.data?.metadata?.toc || []);
 </script>
 
 <svelte:head>
@@ -25,9 +32,10 @@
 	<link rel="icon" href={Favicon} />
 </svelte:head>
 
-<header class="d-flex fd-column w20 sm:w100 hmx100 h-screen sm:h-auto overflow-auto ps-fixed z-nav sm:ps-static">
-	<div class="d-flex ai-center bg-black-100 pt16 px24 sm:pr6 sm:pb12 sm:pt12">
-		<a href={resolve('/')} title="Home" class="fc-brand-orange mr-auto">
+<div class="layout-root d-flex sm:fd-column">
+<header class="d-flex fd-column fl-shrink0 overflow-auto ff-stack-sans-headline w20 wmn2 wmx3 ps-sticky t0 h-screen z-nav-fixed bg-black-100 sm:h-auto sm:hmx-screen sm:overflow-hidden sm:w100 sm:wmn-initial sm:wmx-initial" class:menu-open={mobileMenu}>
+	<div class="d-flex ai-center pt32 px24 sm:pr6 sm:pb12 sm:pt12">
+		<a href={resolve('/')} title="Home" class="fc-brand mr-auto">
 			<Icon src={IconLogo} />
 		</a>
 
@@ -38,45 +46,69 @@
 		</Button>
 	</div>
 
-	<div class={`d-flex fd-column h100 ${mobileMenu ? '' : 'sm:d-none'}`}>
+	<div class={`d-flex fd-column h100 pt16 sm:fl-grow1 ${mobileMenu ? 'overflow-auto' : 'sm:d-none'}`}>
 		<Navigation
 			navigation={data.structure?.navigation}
 		/>
 
 		<div class="d-flex pt12 pb12 px12 mt-auto">
-			<div class="flex--item6 mr4 sm:mr0">
+			<div class="w50 mr4 sm:mr0">
 				<Button target="_blank" href="https://github.com/StackExchange/Stacks/" class="w100" weight="clear">
 					<Icon src={IconServiceGitHub} />
 					GitHub
 				</Button>
 			</div>
-			<div class="flex--item6 ml4 sm:ml0">
+			<div class="w50 ml4 sm:ml0">
 				<ThemeToggle />
 			</div>
 		</div>
 	</div>
 </header>
 
-<main class="main bg-white d-flex fd-column t24 sm:t0 ps-relative">
-	<!-- <div class="bg-blue-400 fc-white px24 py12">
-		This is a brand focused preview – for developer reference please see <a href="https://stackoverflow.design" class="s-link fc-white s-link__underlined">the current docs</a> or <a href="https://beta.stackoverflow.design" class="s-link fc-white s-link__underlined">the beta release</a>.
-	</div> -->
-
-	<div class="my-auto">
-		{#if data.needsAuth}
-			<Login returnUrl={page.url.pathname} />
-		{:else}
-			{@render children?.()}
-		{/if}
-	</div>
-
-	{#if !page.data.hideFooter}
-		<footer class="d-flex sm:fd-column ai-center sm:ai-start ml32 sm:ml24 py32 fc-black-400">
-			<Icon src={IconGlyph24} />
-			<div class="footer__blurb ml12 sm:ml0 sm:mt12">
-				© {year} Stack Exchange Inc.
-				All rights reserved.
-			</div>
-		</footer>
+<div class="d-flex fd-column fl-grow1 wmn0">
+	{#if page.data.active?.image}
+		<div class="layout-hero mt24 w100 hmx6 bg-cover bg-bottom bg-no-repeat" style="background-image: url({page.data.active.image})"></div>
 	{/if}
-</main>
+
+	<div class="d-flex fl-grow1 bg-white sm:mt0" class:mt24={!page.data.active?.image}>
+		<main class="main d-flex fd-column wmn0 w100">
+			<div class="d-flex fd-column fl-grow1">
+				{#if data.needsAuth}
+					<div class="my-auto">
+						<Login returnUrl={page.url.pathname} />
+					</div>
+				{:else}
+					{@render children?.()}
+				{/if}
+			</div>
+
+			{#if !page.data.hideFooter}
+				<footer class="d-flex sm:fd-column ai-center sm:ai-start ml32 sm:ml24 py32 fc-black-400">
+					<Icon src={IconGlyph24} />
+					<div class="footer__blurb ml12 sm:ml0 sm:mt12">
+						© {year} Stack Exchange Inc.
+						All rights reserved.
+					</div>
+				</footer>
+			{/if}
+		</main>
+
+		{#if !page.data.hideToc}<Contents {toc} />{/if}
+	</div>
+</div>
+</div>
+
+<style>
+	@media (max-width: 48.75rem) {
+		header.menu-open {
+			position: fixed !important;
+			top: 0;
+			left: 0;
+			width: 100% !important;
+			max-width: 100% !important;
+			height: 100dvh !important;
+			max-height: 100dvh !important;
+			overflow: hidden !important;
+		}
+	}
+</style>

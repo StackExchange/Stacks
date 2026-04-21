@@ -31,15 +31,17 @@
       background-size: 55% auto;
       display: flex;
       flex-direction: column;
+      flex-grow: 1;
+      width: 100%;
       padding-bottom: 30px;
     }
   </style>
 </svelte:head>
 
-<div class="page p32 sm:p24">
-  <div class="d-flex gs4 ai-center">
-    <span class="flex--item s-badge fc-purple-500 bg-purple-100">v{__APP_VERSION__}</span>
-    <a href="https://beta.svelte.stackoverflow.design/" class="flex--item s-badge">
+<div class="page p32 sm:p24 w100 wmx12 my-auto">
+  <div class="d-flex g4 ai-center">
+    <span class="s-badge fc-purple-500 bg-purple-100">v{__APP_VERSION__}</span>
+    <a href="https://beta.svelte.stackoverflow.design/" class="s-badge">
       <Icon src={IconServiceSvelte} class="native" />
       v{__SVELTE_VERSION__}
     </a>

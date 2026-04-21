@@ -1,12 +1,20 @@
 <script lang="ts">
-  import { setContext } from 'svelte';
-  import { writable } from 'svelte/store';
-
   let { children } = $props();
-
-  const columnCount = setContext('columnCount', writable(0));
 </script>
 
-<div class={`doc__grid d-grid grid__${$columnCount} sm:grid__1 g12`}>
+<div class="doc-grid mb16">
   {@render children()}
 </div>
+
+<style>
+  .doc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+    gap: var(--su12);
+  }
+  @media (max-width: 48.75rem) {
+    .doc-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

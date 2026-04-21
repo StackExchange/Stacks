@@ -29,6 +29,7 @@ Our primary typeface is called **Stack Sans**. Crafted uniquely for Stack Overfl
 
 <TypographyWeights />
 
+<div class="mt16">
 <Grid>
   <GridColumn extraClasses="bg-brand-yellow d:fc-white lh-md">
 
@@ -49,6 +50,7 @@ Our primary typeface is called **Stack Sans**. Crafted uniquely for Stack Overfl
 
   </GridColumn>
 </Grid>
+</div>
 
 ## Glyph set
 

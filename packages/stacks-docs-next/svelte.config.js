@@ -9,6 +9,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import extractToc from "@stefanprobst/rehype-extract-toc";
 import hljs from "highlight.js";
 import { visit } from "unist-util-visit";
+import { IconLink } from "@stackoverflow/stacks-icons/icons";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -37,8 +38,13 @@ const config = {
                 extractToc,
                 exposeToc,
                 rehypeSectionize,
-                [rehypeAutolinkHeadings, { behavior: "wrap" }],
+                [rehypeAutolinkHeadings, {
+                    behavior: "append",
+                    properties: { className: ["docs-heading-anchor"], ariaHidden: "true", tabIndex: -1 },
+                    content: { type: 'raw', value: IconLink }
+                }],
                 addTableClasses,
+                addDocClasses,
             ],
         }),
     ],
@@ -48,7 +54,6 @@ const config = {
             $src: "src",
             $components: "src/components",
             $docs: "src/docs",
-            $data: "../stacks-docs/_data",
         },
     },
     extensions: [".svelte", ".md"],
@@ -67,13 +72,60 @@ function exposeToc() {
     };
 }
 
-// Custom plugin to add Stacks classes to tables
+// Custom plugin to add individual docs-* classes to generated elements.
+// These replace the old .doc X descendant-selector pattern so each element
+// carries its own class and does not depend on a parent .doc wrapper.
+function addDocClasses() {
+    return function (tree) {
+        visit(tree, "element", (node) => {
+            node.properties = node.properties || {};
+            const existing = Array.isArray(node.properties.className)
+                ? node.properties.className
+                : node.properties.className
+                    ? [node.properties.className]
+                    : [];
+
+            const add = (...names) => {
+                node.properties.className = [...existing, ...names];
+            };
+
+            switch (node.tagName) {
+                case "h2": add("docs-heading", "docs-h2"); break;
+                case "h3": add("docs-heading", "docs-h3"); break;
+                case "h4": add("docs-heading", "docs-h4"); break;
+                case "p":       add("docs-copy"); break;
+                case "ol":      add("docs-copy", "lh-xl"); break;
+                case "section": add("docs-section"); break;
+                case "ul":      add("docs-ul", "lh-xl");  break;
+                case "li":  add("docs-li");  break;
+                case "nav": add("docs-nav"); break;
+                case "img": add("docs-img"); break;
+                case "iframe": add("docs-iframe"); break;
+                case "a":
+                    if (!existing.includes("docs-heading-anchor")) {
+                        add("docs-link");
+                    }
+                    break;
+            }
+        });
+    };
+}
+
+// Custom plugin to add Stacks classes to tables.
+// Ensures s-table is present while preserving any existing classes (e.g. s-table__bx-simple).
 function addTableClasses() {
     return function (tree) {
         visit(tree, "element", (node) => {
             if (node.tagName === "table") {
                 node.properties = node.properties || {};
-                node.properties.className = ["s-table"];
+                const existing = Array.isArray(node.properties.className)
+                    ? node.properties.className
+                    : node.properties.className
+                        ? [node.properties.className]
+                        : [];
+                if (!existing.includes("s-table")) {
+                    node.properties.className = ["s-table", ...existing];
+                }
             }
         });
     };
