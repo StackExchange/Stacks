@@ -44,6 +44,25 @@ const resolveColor = (set: string, color: string): string => {
     return `${set}-${color}`;
 };
 
+const blackCombos = [
+    // Light backgrounds with dark foreground
+    { bg: "black-100", fc: "black-600" },
+    { bg: "black-100", fc: "black-500" },
+    { bg: "black-150", fc: "black-600" },
+    { bg: "black-150", fc: "black-500" },
+    { bg: "black-200", fc: "black-600" },
+    // Dark backgrounds with light foreground
+    { bg: "black-600", fc: "black-100" },
+    { bg: "black-600", fc: "black-200" },
+    { bg: "black-500", fc: "black-100" },
+    // White paired with black stops
+    { bg: "white", fc: "black-600" },
+    { bg: "white", fc: "black-500" },
+    { bg: "white", fc: "black-400" },
+    { bg: "black-600", fc: "white" },
+    { bg: "black-500", fc: "white" },
+];
+
 describe("color", () => {
     colorSets.forEach((set) => {
         describe(set, () => {
@@ -67,6 +86,23 @@ describe("color", () => {
                         ? [/./]
                         : additionalSkippedTestids,
                 });
+            });
+        });
+    });
+
+    describe("black", () => {
+        blackCombos.forEach((combo) => {
+            runA11yTests({
+                baseClass: `bg-${combo.bg}`,
+                attributes: {
+                    class: `fc-${combo.fc}`,
+                },
+                children: {
+                    default: `${combo.fc}/${combo.bg}`,
+                },
+                options: {
+                    testidSuffix: `fc-${combo.fc}`,
+                },
             });
         });
     });
