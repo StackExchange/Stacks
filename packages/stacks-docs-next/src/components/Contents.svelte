@@ -16,10 +16,9 @@
   let isMobileOpen = $state(false);
 
   let activeId = $state<string | null>(null);
-  let indicatorTop = $state(0);
-  let indicatorHeight = $state(0);
   let navElement: HTMLElement | null = null;
   let linkElements: Map<string, HTMLElement> = new SvelteMap();
+
   // Flatten toc to get all items including children
   function flattenToc(items: TocItem[]): TocItem[] {
     const result: TocItem[] = [];
@@ -34,24 +33,19 @@
 
   const allItems = $derived(flattenToc(toc));
 
-  function updateIndicatorPosition(id: string) {
+  function scrollActiveIntoView(id: string) {
     const linkElement = linkElements.get(id);
     if (linkElement && navElement) {
-      const navRect = navElement.getBoundingClientRect();
-      const linkRect = linkElement.getBoundingClientRect();
-      indicatorTop = linkRect.top - navRect.top;
-      indicatorHeight = linkRect.height;
-
       // Auto-scroll the sidebar to keep active item visible (desktop only)
       const scrollableContainer = navElement.closest('.overflow-auto') as HTMLElement;
       const isMobile = window.innerWidth < 768;
 
       if (scrollableContainer && !isMobile) {
         const containerRect = scrollableContainer.getBoundingClientRect();
+        const linkRect = linkElement.getBoundingClientRect();
         const linkRelativeTop = linkRect.top - containerRect.top;
         const linkRelativeBottom = linkRect.bottom - containerRect.top;
 
-        // Scroll if the link is outside the viewport
         if (linkRelativeTop < 0) {
           linkElement.scrollIntoView({
             behavior: 'smooth',
@@ -94,7 +88,7 @@
       const next = found ?? (allItems.length > 0 ? allItems[0].id : null);
       if (next && next !== activeId) {
         activeId = next;
-        updateIndicatorPosition(next);
+        scrollActiveIntoView(next);
       }
     }
 
@@ -115,7 +109,6 @@
 
     function handleClick() {
       activeId = id;
-      updateIndicatorPosition(id);
     }
 
     element.addEventListener('click', handleClick);
@@ -132,13 +125,8 @@
 {#if toc.length > 0}
 <aside class="layout-toc fl-shrink0 w30 md:w100 md:ps-fixed b16 r16 wmn2 wmx3 ff-stack-sans-headline">
     <div class="ps-sticky md:ps-static t0 mt6 py24 px32 md:pb0 md:p6 overflow-auto hmx-screen md:hmx-initial">
-      <nav bind:this={navElement} class={`ps-relative bg-white ${isMobileOpen ? 'contents-inner-mobile d-block' : 'md:d-none'}`}>
+      <nav bind:this={navElement} class={`bg-white ${isMobileOpen ? 'contents-inner-mobile d-block' : 'md:d-none'}`}>
         <h2 class="fs-body2 fw-bold mb12 px6 fc-black-400 md:d-none">Contents</h2>
-
-        <div
-          class="contents-indicator ps-absolute l0 r0 z-base pe-none"
-          style="top: {indicatorTop}px; height: {indicatorHeight}px; opacity: {indicatorHeight > 0 ? 1 : 0};"
-        ></div>
 
         <ul class="s-navigation s-navigation__vertical">
           {#each toc as item, index (item.id)}
@@ -146,7 +134,8 @@
               <a
                 href="#{item.id}"
                 use:registerLink={item.id}
-                class="s-navigation--item fs-caption bar0 ps-relative fw-bold fc-black ai-start"
+                class="s-navigation--item fs-caption bar0 fw-bold fc-black ai-start"
+                class:bg-black-100={activeId === item.id}
                 class:is-active={activeId === item.id}
               >
                 <span class="fl-shrink0 w24 d-flex ai-center fc-theme-primary">{(index + 1).toString().padStart(2, "0")}</span>
@@ -159,7 +148,8 @@
                       <a
                         href="#{child.id}"
                         use:registerLink={child.id}
-                        class="s-navigation--item fs-caption bar0 ps-relative"
+                        class="s-navigation--item fs-caption bar0"
+                        class:bg-black-100={activeId === child.id}
                         class:is-active={activeId === child.id}
                       >
                         {child.value}
@@ -186,12 +176,6 @@
 {/if}
 
 <style>
-  .contents-indicator {
-    background-color: var(--black-100);
-    /* background-color: rgba(255, 255, 255, 0.1); */
-    backdrop-filter: invert(1);
-    -webkit-backdrop-filter: invert(1);
-  }
   @media (max-width: 71.875rem) {
     .contents-inner-mobile {
         max-height: calc(100vh - 200px);
