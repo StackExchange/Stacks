@@ -131,19 +131,6 @@ All pull requests require at least one approval from a Stacks team member before
 
 You may not merge a pull request that you authored. This is enforced at the repo level via branch protections.
 
-### Workspace dependency map
-
-This diagram shows the main workspace relationships that are visible in this repository. It is a useful starting point for assessing impact before merge, but keep in mind that published Stacks assets are also consumed by Stack Overflow product codebases outside this repo.
-
-```mermaid
-graph LR
-    stacks[@stackoverflow/stacks] --> docs[@stackoverflow/stacks-docs]
-    stacks --> docsnext[@stackoverflow/stacks-docs-next]
-    stacks --> svelte[@stackoverflow/stacks-svelte]
-    utils[@stackoverflow/stacks-utils] --> svelte
-    svelte --> docsnext
-```
-
 ### Understand downstream impact before deploying
 
 Stacks is a dependency for many products across Stack Overflow. Before merging anything that touches the build output or public API, make sure you understand what depends on it and what could break. If you're not sure, ask the Stacks team. We're happy to help you assess the impact and coordinate a safe rollout.
