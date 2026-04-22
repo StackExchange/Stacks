@@ -1,6 +1,6 @@
 # Contributing to Stacks
 
-Stacks is Stack Overflow's design system, the shared foundation of components, styles, and guidelines used across Stack Overflow's products. We welcome contributions from both internal and external contributors, whether that's a bug fix, a new component, or a documentation improvement. This guide covers everything you need to get started.
+Stacks is Stack Overflow's design system, the shared foundation of components, styles, and guidelines used across Stack Overflow's products. It is maintained by the Stacks team at Stack Overflow. We welcome contributions from both internal and external contributors, whether that's a bug fix, a new component, or a documentation improvement. This guide covers everything you need to get started.
 
 ## Table of contents
 
@@ -116,13 +116,33 @@ The [changesets-bot](https://github.com/apps/changeset-bot) will comment on your
 
 To keep Stacks stable and trustworthy for all the products that depend on it, all contributions must follow these rules without exception, regardless of your role or team.
 
+### Review and merge flow
+
+1. Open your PR against `main` and mark it ready for review when it's ready.
+2. GitHub will automatically request review from `@StackExchange/stacks` for changes covered by `CODEOWNERS`.
+3. A Stacks team member will approve the PR or request changes.
+4. A Stacks team member will merge the PR once any downstream impact has been assessed.
+
 ### PR approvals are required
 
 All pull requests require at least one approval from a Stacks team member before merging. This applies to everyone, including Stack Overflow employees. If your PR has been open for a while without a review, reach out in [#stacks](https://stackexchange.slack.com/archives/C27RWNQN9) and we'll prioritize it.
 
 ### Do not merge your own PR
 
-You may not merge a pull request that you authored. This is enforced at the repo level via branch protections. If you believe your PR is ready and has the required approvals, ask a Stacks team member to merge it.
+You may not merge a pull request that you authored. This is enforced at the repo level via branch protections.
+
+### Workspace dependency map
+
+This diagram shows the main workspace relationships that are visible in this repository. It is a useful starting point for assessing impact before merge, but keep in mind that published Stacks assets are also consumed by Stack Overflow product codebases outside this repo.
+
+```mermaid
+graph LR
+    stacks[@stackoverflow/stacks] --> docs[@stackoverflow/stacks-docs]
+    stacks --> docsnext[@stackoverflow/stacks-docs-next]
+    stacks --> svelte[@stackoverflow/stacks-svelte]
+    utils[@stackoverflow/stacks-utils] --> svelte
+    svelte --> docsnext
+```
 
 ### Understand downstream impact before deploying
 
@@ -195,4 +215,3 @@ Use [WAI-ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) 
 ## License
 
 By contributing to Stacks, you agree to license your work under Stacks’ [MIT License](https://github.com/StackExchange/Stacks/blob/main/LICENSE.MD).
-
