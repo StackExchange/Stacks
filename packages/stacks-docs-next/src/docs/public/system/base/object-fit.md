@@ -63,12 +63,12 @@ description: Atomic classes that control the sizing of an <code>img</code> or <c
             <div class="mb8">.of-contain</div>
             <img
                 class="of-contain ba bc-black-225 hs1 ws1"
-                src="https://fakeimg.pl/400x240/e4e6e8"
+                src="/images/object-fit-wide.svg"
                 alt="placeholder for .of-contain"
             />
             <img
                 class="of-contain ba bc-black-225 hs1 ws1"
-                src="https://fakeimg.pl/90x60/e4e6e8"
+                src="/images/object-fit-small.svg"
                 alt="placeholder for .of-contain"
             />
         </div>
@@ -76,12 +76,12 @@ description: Atomic classes that control the sizing of an <code>img</code> or <c
             <div class="mb8">.of-cover</div>
             <img
                 class="of-cover ba bc-black-225 hs1 ws1"
-                src="https://fakeimg.pl/400x240/e4e6e8"
+                src="/images/object-fit-wide.svg"
                 alt="placeholder for .of-cover"
             />
             <img
                 class="of-cover ba bc-black-225 hs1 ws1"
-                src="https://fakeimg.pl/90x60/e4e6e8"
+                src="/images/object-fit-small.svg"
                 alt="placeholder for .of-cover"
             />
         </div>
@@ -89,12 +89,12 @@ description: Atomic classes that control the sizing of an <code>img</code> or <c
             <div class="mb8">.of-fill</div>
             <img
                 class="of-fill ba bc-black-225 hs1 ws1"
-                src="https://fakeimg.pl/400x240/e4e6e8"
+                src="/images/object-fit-wide.svg"
                 alt="placeholder for .of-fill"
             />
             <img
                 class="of-fill ba bc-black-225 hs1 ws1"
-                src="https://fakeimg.pl/90x60/e4e6e8"
+                src="/images/object-fit-small.svg"
                 alt="placeholder for .of-fill"
             />
         </div>
@@ -102,12 +102,12 @@ description: Atomic classes that control the sizing of an <code>img</code> or <c
             <div class="mb8">.of-none</div>
             <img
                 class="of-none ba bc-black-225 hs1 ws1"
-                src="https://fakeimg.pl/400x240/e4e6e8"
+                src="/images/object-fit-wide.svg"
                 alt="placeholder for .of-none"
             />
             <img
                 class="of-none ba bc-black-225 hs1 ws1"
-                src="https://fakeimg.pl/90x60/e4e6e8"
+                src="/images/object-fit-small.svg"
                 alt="placeholder for .of-none"
             />
         </div>
@@ -115,12 +115,12 @@ description: Atomic classes that control the sizing of an <code>img</code> or <c
             <div class="mb8">.of-scale-down</div>
             <img
                 class="of-scale-down ba bc-black-225 hs1 ws1"
-                src="https://fakeimg.pl/400x240/e4e6e8"
+                src="/images/object-fit-wide.svg"
                 alt="placeholder for .of-scale-down"
             />
             <img
                 class="of-scale-down ba bc-black-225 hs1 ws1"
-                src="https://fakeimg.pl/90x60/e4e6e8"
+                src="/images/object-fit-small.svg"
                 alt="placeholder for .of-scale-down"
             />
         </div>
@@ -128,12 +128,12 @@ description: Atomic classes that control the sizing of an <code>img</code> or <c
             <div class="mb8">.op-center.of-none</div>
             <img
                 class="op-center of-none ba bc-black-225 hs1 ws1"
-                src="https://fakeimg.pl/400x240/e4e6e8"
+                src="/images/object-fit-wide.svg"
                 alt="placeholder for .op-center.of-none"
             />
             <img
                 class="op-center of-none ba bc-black-225 hs1 ws1"
-                src="https://fakeimg.pl/90x60/e4e6e8"
+                src="/images/object-fit-small.svg"
                 alt="placeholder for .op-center.of-none"
             />
         </div>

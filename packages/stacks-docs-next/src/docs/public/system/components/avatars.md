@@ -102,14 +102,18 @@ Avatars can display activity indicators to show activities or status changes. Ad
 
 ```html
 <a href="…" class="s-avatar">
-    <div class="s-avatar--indicator s-activity-indicator s-activity-indicator__sm s-activity-indicator__success">
+    <div
+        class="s-avatar--indicator s-activity-indicator s-activity-indicator__sm s-activity-indicator__success"
+    >
         <div class="v-visible-sr">Online</div>
     </div>
     <img class="s-avatar--image" src="https://picsum.photos/32" />
 </a>
 
 <a href="…" class="s-avatar s-avatar__24">
-    <div class="s-avatar--indicator s-activity-indicator s-activity-indicator__sm s-activity-indicator__success">
+    <div
+        class="s-avatar--indicator s-activity-indicator s-activity-indicator__sm s-activity-indicator__success"
+    >
         <div class="v-visible-sr">Online</div>
     </div>
     <img class="s-avatar--image" src="https://picsum.photos/48" />
@@ -220,7 +224,7 @@ In this example, from left to right, we have a team name of Hum with no avatar o
                             <Avatar name="Hum" letter="H" badge {size} href="#" class="bg-theme-primary" />
                         </td>
                         <td>
-                            <Avatar name="Hum" src="/legacy/assets/img/team-avatar.png" badge {size} href="#" />
+                            <Avatar name="Hum" src="/images/team-avatar.png" badge {size} href="#" />
                         </td>
                     </tr>
                 {/each}
