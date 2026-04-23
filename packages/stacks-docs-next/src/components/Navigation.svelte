@@ -64,7 +64,9 @@
                   <a
                     class="s-navigation--item jc-space-between mb1"
                     class:is-selected={sectionSlug === subsection.slug || subsectionSlug === subsection.slug}
+                    <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
                     href={subsection.externalUrl ? subsection.externalUrl : resolve(`/${category.slug}/${subsection.slug}/${subsection?.items ? subsection?.items[0]?.slug : ''}`)}
+                    rel={subsection.externalUrl ? "external" : undefined}
                     data-sveltekit-reload={subsection.private ? true : undefined}
                   >
                     <span>{subsection.title}</span>
@@ -94,7 +96,9 @@
                             <a
                               class="s-navigation--item jc-space-between mb1"
                               class:is-selected={subsectionSlug === item.slug}
+                              <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
                               href={item.externalUrl ? item.externalUrl : resolve(`/${category.slug}/${subsection.slug}/${item.slug}/`)}
+                              rel={subsection.externalUrl ? "external" : undefined}
                               data-sveltekit-reload={item.private ? true : undefined}
                             >
                               <span>{item.title}</span>
