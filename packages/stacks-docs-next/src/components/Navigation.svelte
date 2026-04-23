@@ -60,8 +60,9 @@
           <div transition:slide={{ duration: 200 }}>
             <ul class="s-navigation s-navigation__vertical pl24">
               {#each category.items as subsection (subsection.slug)}
+                {@const subsectionHref = subsection.externalUrl ? subsection.externalUrl : resolve(`/${category.slug}/${subsection.slug}/${subsection?.items ? subsection?.items[0]?.slug : ''}`)}
+
                 <li>
-                  {@const subsectionHref = subsection.externalUrl ? subsection.externalUrl : resolve(`/${category.slug}/${subsection.slug}/${subsection?.items ? subsection?.items[0]?.slug : ''}`)}
                   <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
                   <a href={subsectionHref}
                     class="s-navigation--item jc-space-between mb1"
@@ -92,22 +93,23 @@
                     <div transition:slide={{ duration: 200 }}>
                       <ul class="s-navigation s-navigation__vertical ml24">
                         {#each subsection?.items as item (item.slug)}
-                          <li>
-                          {@const itemHref = item.externalUrl ? item.externalUrl : resolve(`/${category.slug}/${subsection.slug}/${item.slug}/`)}
-                          <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-                            <a href={itemHref}
-                              class="s-navigation--item jc-space-between mb1"
-                              class:is-selected={subsectionSlug === item.slug}
-                              rel={subsection.externalUrl ? "external" : undefined}
-                              data-sveltekit-reload={item.private ? true : undefined}
-                            >
-                              <span>{item.title}</span>
+                            {@const itemHref = item.externalUrl ? item.externalUrl : resolve(`/${category.slug}/${subsection.slug}/${item.slug}/`)}
 
-                              {#if item.new}
-                                <span class="s-activity-indicator s-activity-indicator__sm ba"><span class="v-visible-sr">new</span></span>
-                              {/if}
-                            </a>
-                          </li>
+                            <li>
+                                <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+                                <a href={itemHref}
+                                    class="s-navigation--item jc-space-between mb1"
+                                    class:is-selected={subsectionSlug === item.slug}
+                                    rel={subsection.externalUrl ? "external" : undefined}
+                                    data-sveltekit-reload={item.private ? true : undefined}
+                                >
+                                <span>{item.title}</span>
+
+                                {#if item.new}
+                                    <span class="s-activity-indicator s-activity-indicator__sm ba"><span class="v-visible-sr">new</span></span>
+                                {/if}
+                                </a>
+                            </li>
                         {/each}
                       </ul>
                     </div>
