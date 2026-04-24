@@ -1,86 +1,80 @@
 <script lang="ts">
-  import { IconServiceGitHub, IconServiceFigma, IconServiceSvelte, IconCheckFillCircle, IconStackCards } from '@stackoverflow/stacks-icons/icons';
-  import { Icon, Button } from '@stackoverflow/stacks-svelte';
+  import { IconServiceGitHub, IconServiceFigma, IconServiceSvelte, IconCheckFillCircle, IconLink, IconCodeBox } from '@stackoverflow/stacks-icons/icons';
+  import { Icon, Button, Link } from '@stackoverflow/stacks-svelte';
   import { resolve } from '$app/paths';
-
-  import { copyToClipboard } from '$src/lib/copyToClipboard';
-  import Contents from '$components/Contents.svelte';
+  import { page } from '$app/state';
 
   let { data } = $props();
-  let copiedMd = $state(false);
-  
-  const toc = $derived(data?.metadata?.toc || []);
+  let copied = $state(false);
 
-  const lastUpdated = $derived(new Date(data?.metadata?.updated).toLocaleDateString('en-US', { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
+  const lastUpdated = $derived(new Date(data?.metadata?.updated).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
   }));
 
   const pageTitle = $derived(data.active.title ? `${data.active.title} - Stack Overflow Design System` : 'Stack Overflow Design System');
   const pageDescription = $derived(data?.metadata?.description || `Documentation for ${data.active.title} in the Stack Overflow Design System`);
-  
-  function copySuccess() {
-    copiedMd = true
-   
-    setTimeout(() => {
-      copiedMd = false;
-    }, 2000);
+
+  async function copyPageUrl() {
+    await navigator.clipboard.writeText(page.url.href);
+    copied = true;
+    setTimeout(() => { copied = false; }, 2000);
   }
 </script>
 
 <svelte:head>
   <title>{pageTitle}</title>
   <meta name="description" content={pageDescription} />
-  {#if data.source === 'legacy'}
-    <script src="/legacy/docs.js"></script>
-  {/if}
 </svelte:head>
 
-<svelte:window on:copysuccess={copySuccess} />
 
-{#if data?.active?.image}
-  <img class="w100 h-auto" width="1030" height="540" alt="" src={data.active.image} />
-{/if}
-
-<article class="d-flex md:fd-column mx-auto pl32 md:pr32 sm:pl24 sm:pr24">
-  <div class="doc flex--item9 wmn1 s-prose fs-body2 pt24">
-    <div class="d-flex gs4 ai-center mb128">
-      <nav class="flex--item fs-body2 mr-auto" aria-label="breadcrumb">
-        {#each data.breadcrumb as crumb, index (crumb.path)}
-          <a href={resolve(crumb.path)} class="pr6 s-link">{crumb.label}</a>{#if index !== data.breadcrumb.length - 1}<span class="fc-black-300 mr6">/</span>{/if}
+<article class="w100 wmx11 pl32 md:pr32 sm:pl24 sm:pr24">
+  <div class="docs fs-body2 pt24">
+    <div class="d-flex g4 ai-center sm:mb8 {data?.active?.image ? 'mb128' : 'mb24'}">
+      <nav class="d-flex ai-center g6 fs-body2 mr-auto" aria-label="breadcrumb">
+        {#each data.breadcrumb as crumb, index (crumb.label)}
+          {#if index !== 0}<span class="fc-black-300">/</span>{/if}
+          <a href={resolve(crumb.path)} class="s-link fw-bold">{crumb.label}</a>
         {/each}
+        <Button title="Copy link to this page" link icon class="d-inline-flex fc-black-400 h:fc-black-600 ml4" onclick={copyPageUrl}>
+          {#if copied}
+            <Icon src={IconCheckFillCircle} class="fc-green-400 w16 h16" />
+          {:else}
+            <Icon src={IconLink} class="w16 h16" />
+          {/if}
+        </Button>
       </nav>
 
-      <button type="button" title="Copy to Markdown" class="s-btn s-btn__sm s-btn__clear s-btn__icon" use:copyToClipboard={data.markdown}>
-        {#if copiedMd}
-          <Icon src={IconCheckFillCircle} class="fc-green-400" />
-          <span class="sm:d-none">Copied!</span>
-        {:else}
-          <Icon src={IconStackCards} />
-          <span class="sm:d-none">Copy</span>
+      <div class="d-flex ai-center g16 fs-caption">
+        {#if data?.metadata?.js}
+          <Link href="#javascript">
+            <Icon src={IconCodeBox} class="fc-green-400" />
+            <span class="sm:d-none">JavaScript</span>
+          </Link>
         {/if}
-      </button>
 
-      {#if data.filename}
-        <Button title="Edit on GitHub" size="sm" weight="clear" href={`https://github.com/StackExchange/Stacks/edit/main/packages/stacks-docs-next${data.filename}`} class="flex--item">
-          <Icon src={IconServiceGitHub} />
-          <span class="sm:d-none">Edit</span>
-        </Button>
-      {/if}
+        {#if data?.metadata?.figma}
+          <Link title="Open in Figma" href={data?.metadata?.figma}>
+            <Icon src={IconServiceFigma} class="native" />
+            <span class="sm:d-none">Figma</span>
+          </Link>
+        {/if}
 
-      {#if data?.metadata?.figma}
-        <Button title="Open in Figma" size="sm" weight="clear" icon href={data?.metadata?.figma} class="flex--item">
-          <Icon src={IconServiceFigma} class="native" />
-          <span class="sm:d-none">Figma</span>
-        </Button>
-      {/if}
-      {#if data?.metadata?.svelte}
-        <Button title="Svelte component docs" size="sm" weight="clear" icon href={data?.metadata?.svelte} class="flex--item">
-          <Icon src={IconServiceSvelte} class="native" />
-          <span class="sm:d-none">Svelte</span>
-        </Button>
-      {/if}
+        {#if data?.metadata?.svelte}
+          <Link title="Svelte component docs" href={data?.metadata?.svelte}>
+            <Icon src={IconServiceSvelte} class="native" />
+            <span class="sm:d-none">Svelte</span>
+          </Link>
+        {/if}
+
+        {#if data.filename}
+          <Link title="Edit on GitHub" href={`https://github.com/StackExchange/Stacks/edit/main/packages/stacks-docs-next${data.filename}`}>
+            <Icon src={IconServiceGitHub} />
+            <span class="sm:d-none">Edit</span>
+          </Link>
+        {/if}
+      </div>
     </div>  
 
     <header>
@@ -90,12 +84,12 @@
         </time>
       {/if}
 
-      <h1 class="fs-display2 ff-stack-sans-headline-notch mb32">
+      <h1 class="fs-display2 ff-stack-sans-headline-notch fw-bold">
         {data.active.title}
       </h1>
 
       {#if data?.metadata?.description}
-        <p class="fc-dark fs-body3 mtn16 wmx5">
+        <p class="docs-copy fc-black-500 fs-title mtn16">
           <!-- eslint-disable-next-line svelte/no-at-html-tags -->
           {@html data.metadata.description}
         </p>
@@ -104,11 +98,6 @@
 
     {#if data.source === 'md'}
       <data.Content />
-    {:else if data.source === 'legacy'}
-      <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-      {@html data.html}
     {/if}
   </div>
-
-  <Contents {toc} />
 </article>

@@ -4,6 +4,11 @@ description: This is an introduction to the JavaScript functionality provided by
 updated: 2025-12-05
 ---
 
+<script>
+    import { Icon } from '@stackoverflow/stacks-svelte';
+    import { IconCheckFillCircle, IconCrossFillCircle } from '@stackoverflow/stacks-icons';
+</script>
+
 ## Including the Stacks JavaScript
 
 While Stacks is first and foremost a CSS library, it also provides commonly used functionality for some components via JavaScript. This functionality is optional. If you only need the styling parts of Stack, you're free to ignore the provided JavaScript. The converse is not true: The JavaScript components work under the assumption that the Stacks CSS is available.
@@ -63,7 +68,11 @@ We prefix our JavaScript target classes with `.js-` so that changing or adding a
 
 We also try to avoid IDs for _both_ visual styling and JavaScript targeting. They aren't reusable, visual styling can't be overwritten by atomic classes, and, like non-`.js-` classes, we can't tell if there is JavaScript interactivity attached at a glance.
 
-### ✓ Do
+<div class="mb32">
+    <h3 class="d-flex ai-center g8 fc-green-500 mb16">
+        <Icon src={IconCheckFillCircle} />
+        Do
+    </h3>
 
 ```html
 <div class="s-card bs-lg js-copy">…</div>
@@ -76,7 +85,13 @@ button.addEventListener('click', function() {
 });
 ```
 
-### ✗ Don’t
+</div>
+
+<div class="mb32">
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16">
+        <Icon src={IconCrossFillCircle} />
+        Don’t
+    </h3>
 
 ```html
 <div class="s-card bs-lg">…</div>
@@ -95,7 +110,13 @@ button.addEventListener('click', function() {
 }
 ```
 
-### ✗ Don’t
+</div>
+
+<div class="mb32">
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16">
+        <Icon src={IconCrossFillCircle} />
+        Don’t
+    </h3>
 
 ```html
 <div id="card">…</div>
@@ -113,3 +134,5 @@ button.addEventListener('click', function() {
     …
 }
 ```
+
+</div>

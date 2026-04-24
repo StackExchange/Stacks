@@ -8,7 +8,7 @@
   const { business = false } = $props()
 </script>
 
-<div class="colors overflow-auto">
+<div class="colors">
   {#each colors as color (color.cssVar)}
     <ColorSwatch
       {color}
@@ -23,7 +23,7 @@
 <style>
   .colors {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 10px;
     grid-auto-rows: 120px;
   }

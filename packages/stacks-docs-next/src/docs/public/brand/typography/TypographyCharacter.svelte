@@ -162,7 +162,7 @@
 
 <div>
   {#key selectedWeight.file}
-    <Navigation class="ws-nowrap" label="Font weight" overflow="scroll">
+    <Navigation class="mb8" label="Font weight" overflow="scroll">
       {#each fontWeights as weight (weight.file)}
         <NavigationItem
           text={weight.label}
@@ -173,7 +173,7 @@
     </Navigation>
 
     <Grid>
-      <GridColumn extraClasses="bg-brand-orange">
+      <GridColumn style="background: var(--brand-color-orange)">
         {#if loading}
           <div class="ta-center p32">
             <div class="fs-headline2 fc-medium">Loading font...</div>

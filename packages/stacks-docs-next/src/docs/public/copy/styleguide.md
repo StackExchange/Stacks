@@ -21,7 +21,7 @@ When Stack Overflow products appear in running text, always capitalize the full 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Sign up for stack internal today</li>
       <li>Our stack ads platform reaches millions</li>
       <li>Access stack data licensing</li>
@@ -30,7 +30,7 @@ When Stack Overflow products appear in running text, always capitalize the full 
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Sign up for Stack Internal today</li>
       <li>Our Stack Ads platform reaches millions</li>
       <li>Access Stack Data Licensing</li>
@@ -46,7 +46,7 @@ Feature names should be capitalized when referring to the specific Stack Overflo
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Use enhanced search to find answers</li>
       <li>Join a collective on Stack Overflow</li>
       <li>The Enhanced Search Feature is powered by AI</li>
@@ -54,7 +54,7 @@ Feature names should be capitalized when referring to the specific Stack Overflo
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Use Enhanced Search to find answers</li>
       <li>Join a Collective on Stack Overflow</li>
       <li>Enhanced Search is powered by AI</li>
@@ -70,14 +70,14 @@ When using product-related terms generically (not referring to the Stack Overflo
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>We offer Data Licensing to our clients (when not referring to the specific product)</li>
       <li>internal knowledge sharing tools (when specifically referring to Stack Internal)</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Many companies offer data licensing to their clients</li>
       <li>Stack Internal helps teams with internal knowledge sharing</li>
       <li>We provide advertising solutions through Stack Ads</li>
@@ -95,14 +95,14 @@ Use standard possessive rules with Stack Overflow and product names.
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Stack Overflows’ mission</li>
       <li>Stack Internals’ features</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Stack Overflow’s mission</li>
       <li>Stack Internal’s features</li>
       <li>Stack Ads’ reach (or “the reach of Stack Ads”)</li>
@@ -117,14 +117,14 @@ Avoid pluralizing product names. Use “instances”, “deployments” or simil
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Multiple Stack Internals</li>
       <li>Two Stack Ads</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Multiple Stack Internal instances</li>
       <li>Two Stack Internal deployments</li>
       <li>Several Stack Ads campaigns</li>
@@ -141,7 +141,7 @@ Never use abbreviations in external-facing materials including marketing, docume
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>SO provides data licensing</li>
       <li>Try SI for your team</li>
       <li>SOE and SIE (for tiers)</li>
@@ -150,7 +150,7 @@ Never use abbreviations in external-facing materials including marketing, docume
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Stack Overflow provides data licensing</li>
       <li>Try Stack Internal for your team</li>
       <li>Stack Internal (Enterprise)</li>
@@ -166,7 +166,7 @@ In internal Slack, emails, or presentations, abbreviations may be used for brevi
 <Grid>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Acceptable internally</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>SO (for Stack Overflow, after first mention)</li>
       <li>SI (for Stack Internal, after first mention)</li>
       <li>In code: Use descriptive variable names, abbreviations acceptable where conventional</li>
@@ -181,7 +181,7 @@ When referring to multiple products together, use "and" and maintain each produc
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Stack Internal & Ads customers</li>
       <li>SI/SA users</li>
       <li>Stack Overflow’s Internal and Ads products</li>
@@ -189,7 +189,7 @@ When referring to multiple products together, use "and" and maintain each produc
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Stack Internal and Stack Ads customers</li>
       <li>Customers using Stack Internal, Stack Ads, or Stack Data Licensing</li>
       <li>Stack Overflow Business products</li>
@@ -204,7 +204,7 @@ After the first mention of a product name, you may use shortened forms if the co
 <Grid>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>First mention: “Stack Internal provides private knowledge management”. Second mention: “Internal helps teams collaborate…”</li>
       <li>First mention: “Stack Overflow Business includes three products”. Second mention: “Business customers have access to…”</li>
       <li>Use “the product”, “the platform”, or “it” when context is unmistakable</li>
@@ -221,7 +221,7 @@ Use sentence case for all headings. This means capitalizing the first word, the 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>User Roles</li>
       <li>Performance Overview</li>
       <li>Edit Your Profile</li>
@@ -230,7 +230,7 @@ Use sentence case for all headings. This means capitalizing the first word, the 
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>User roles</li>
       <li>Performance overview</li>
       <li>Edit your profile</li>
@@ -246,7 +246,7 @@ Capitalize “Articles” when referring to the specific Stack Overflow feature 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>I’m writing an article and then I’m going to put it in our team’s articles section</li>
       <li>In articles, you can find how-to guides</li>
       <li>Create articles</li>
@@ -254,7 +254,7 @@ Capitalize “Articles” when referring to the specific Stack Overflow feature 
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>I’m writing an article and then I’m going to put it in our team’s Articles section</li>
       <li>In Articles, you can find how-to guides, blog posts, and articles</li>
       <li>Create Articles</li>
@@ -269,14 +269,14 @@ Always capitalize user roles in relation to management systems.
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>employees</li>
       <li>Recommended members</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Employees</li>
       <li>Recommended Members</li>
     </ul>
@@ -290,7 +290,7 @@ Always capitalize “Collective” or “Collectives” when used as a proper no
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>join the Google Cloud collective</li>
       <li>join an Collective</li>
       <li>A company’s Collective page will be located at the top right of the screen</li>
@@ -298,7 +298,7 @@ Always capitalize “Collective” or “Collectives” when used as a proper no
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>join the Google Cloud Collective</li>
       <li>join a collective</li>
       <li>A company’s collective page will be located at the top right of the screen</li>
@@ -313,7 +313,7 @@ Capitalize “Communities” and “Community” when referring to the Stack Int
 <Grid>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>With Communities you can help your teammates know what’s trending</li>
       <li>Subscribe to a Community and get notifications for new questions and answers</li>
     </ul>
@@ -334,7 +334,7 @@ Questions, answers, and other types of posts have **scores**. A post’s score i
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Highest voted posts</li>
       <li>Total number of votes for this answer</li>
       <li>Only top voted answers are eligible</li>
@@ -343,7 +343,7 @@ Questions, answers, and other types of posts have **scores**. A post’s score i
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Highest scored posts</li>
       <li>Total score for this answer</li>
       <li>Only top scored answers are eligible</li>
@@ -361,13 +361,13 @@ Write in the active voice, particularly if the user needs to do something.
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>You should update your profile</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Your profile needs updating.</li>
     </ul>
   </GridColumn>
@@ -378,14 +378,14 @@ While it’s generally best to avoid the passive voice, in certain situations it
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>We cancelled your order</li>
       <li>We've suspended your account</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Your order has been cancelled</li>
       <li>Your account has been suspended</li>
     </ul>
@@ -399,14 +399,14 @@ Contractions make copy sound more human. Avoid contractions that sound awkward w
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>This’ll help you get answers to your questions</li>
       <li>There must've been an error with your order</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>It’s designed to help you get answers to your questions</li>
       <li>There’s an error with your order</li>
     </ul>
@@ -420,7 +420,7 @@ Use American spelling for all public-facing content. When in doubt, check the [M
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Recognise</li>
       <li>Travelled</li>
       <li>Colour</li>
@@ -429,7 +429,7 @@ Use American spelling for all public-facing content. When in doubt, check the [M
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Recognize</li>
       <li>Traveled</li>
       <li>Color</li>
@@ -445,7 +445,7 @@ Leave off possessives when referring to users or features when possible. If you 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>My Teams</li>
       <li>My settings</li>
       <li>Change my email settings</li>
@@ -453,7 +453,7 @@ Leave off possessives when referring to users or features when possible. If you 
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Teams</li>
       <li>Settings</li>
       <li>Change your email settings</li>
@@ -468,14 +468,14 @@ Use “their” as a singular, gender-neutral pronoun when the gender of the sub
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>When a new user is added, he or she will be able to edit content</li>
       <li>We appreciate the guys and gals of Stack Overflow</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>When a new user is added, they'll be able to edit content</li>
       <li>We appreciate the Stack Overflow community</li>
     </ul>
@@ -489,7 +489,7 @@ Take extra care with “login” and “log in”. The former is a noun while th
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Login to ask a question</li>
       <li>Add a log in to your account</li>
       <li>Signup to ask a question</li>
@@ -498,7 +498,7 @@ Take extra care with “login” and “log in”. The former is a noun while th
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Log in to ask a question</li>
       <li>Add a login to your account</li>
       <li>Sign up to ask a question</li>
@@ -514,7 +514,7 @@ Use the abbreviated version “OK” (fully capitalized in every context). This 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Okay</li>
       <li>okay</li>
       <li>Ok</li>
@@ -522,7 +522,7 @@ Use the abbreviated version “OK” (fully capitalized in every context). This 
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>OK</li>
     </ul>
   </GridColumn>
@@ -537,14 +537,14 @@ Don’t use ampersands (&) unless it’s part of a branded term. Spell out the w
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Update your email address & password</li>
       <li>Stack Overflow Q and A</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Update your email address and password</li>
       <li>Stack Overflow Q&A</li>
     </ul>
@@ -558,14 +558,14 @@ Use apostrophes to represent omitted letters or numbers (can’t, you’re, ’9
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Admins role</li>
       <li>Moderators’s tasks</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Admin’s role</li>
       <li>Moderators’ tasks</li>
     </ul>
@@ -583,14 +583,14 @@ Use the oxford comma in sentences. Don’t use a comma to separate two distinct 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Our community is rooted in kindness, collaboration and mutual respect</li>
       <li>Thanks for contacting us, we'll be in touch soon</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Our community is rooted in kindness, collaboration, and mutual respect</li>
       <li>Thank you for contacting us. We'll be in touch soon</li>
     </ul>
@@ -604,14 +604,14 @@ The ellipsis (…) can be used in place of missing text. Avoid using ellipses in
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Avoid subjective questions… stick to fact-based questions</li>
       <li>Search...</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Avoid subjective questions. Stick to fact-based questions</li>
       <li>Search…</li>
     </ul>
@@ -631,14 +631,14 @@ Use an en dash with no spaces (–) for a fixed range of numbers. Avoid using em
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Start your free 14 day trial</li>
       <li>January 7 – 9</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Start your free 14-day trial</li>
       <li>January 7–9</li>
     </ul>
@@ -656,13 +656,13 @@ Avoid using question marks wherever possible. Reword into affirmative statements
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Want to learn more?</li>
     </ul>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Learn more</li>
     </ul>
   </GridColumn>
@@ -696,7 +696,7 @@ Don’t write dates numerically since differing international standards can lead
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>September 2, '19</li>
       <li>9-2-19</li>
       <li>September 2nd</li>
@@ -704,7 +704,7 @@ Don’t write dates numerically since differing international standards can lead
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>September 2, 2019</li>
       <li>Sep. 2, 2019</li>
       <li>September 2</li>
@@ -721,7 +721,7 @@ If indicating both date and time, separate them with the word “at” rather th
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>15:30</li>
       <li>September 2, 2019 @ 4:35 pm</li>
       <li>September 2, 2019, 4:35 pm</li>
@@ -729,7 +729,7 @@ If indicating both date and time, separate them with the word “at” rather th
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>3:30 pm</li>
       <li>September 2, 2019 at 4:35 pm</li>
     </ul>
@@ -749,7 +749,7 @@ Buttons and links should be clear and predictable. Button and link text should b
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>New team</li>
       <li>Settings</li>
       <li>Post Job</li>
@@ -757,7 +757,7 @@ Buttons and links should be clear and predictable. Button and link text should b
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Create new team</li>
       <li>View settings</li>
       <li>Post job</li>
@@ -789,7 +789,7 @@ A good URL can also provide a solid foundation for SEO/AEO.
 <Grid>
   <GridColumn extraClasses="bg-red-100">
     <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don't</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Avoid using branded language e.g., `/overflowapi`</li>
       <li>Avoid overly long lengths e.g., `/introducing-stack-internal-powering-the-human-intelligence-layer-of-enterprise-ai/`</li>
       <li>Use underscores e.g., `/user_settings`</li>
@@ -799,7 +799,7 @@ A good URL can also provide a solid foundation for SEO/AEO.
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Instead say what it is e.g., `/api-dashboard`</li>
       <li>Instead summarise the content e.g., `/announcing-stack-internal`</li>
       <li>Use hyphens e.g., `/user-settings`</li>
@@ -814,7 +814,7 @@ A good URL can also provide a solid foundation for SEO/AEO.
 <Grid>
   <GridColumn extraClasses="bg-green-100">
     <h4 class="fc-green-500">Use path segments for:</h4>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Core content hierarchy and navigation</li>
       <li>Specific resources: `/users/12345/ada-lovelace`</li>
       <li>Content categories: `/questions/tagged/python`</li>
@@ -823,7 +823,7 @@ A good URL can also provide a solid foundation for SEO/AEO.
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h4 class="fc-green-500">Use query parameters for:</h4>
-    <ul class="ml0 pl16">
+    <ul class="docs-copy ml0 pl16">
       <li>Filters, sorting, and temporary state</li>
       <li>Sorting options: `/questions?tab=newest&sort=votes`</li>
       <li>Search and pagination: `/search?q=javascript&page=2`</li>

@@ -1,7 +1,5 @@
 <script lang="ts">
   import { SvelteMap } from 'svelte/reactivity';
-  import { Icon } from '@stackoverflow/stacks-svelte';
-  import { IconChevron16Down, IconChevron16Up } from '@stackoverflow/stacks-icons'
 
   interface TocItem {
     id: string;
@@ -17,8 +15,6 @@
   let indicatorHeight = $state(0);
   let navElement: HTMLElement | null = null;
   let linkElements: Map<string, HTMLElement> = new SvelteMap();
-  let isOpen = $state(false);
-
   // Flatten toc to get all items including children
   function flattenToc(items: TocItem[]): TocItem[] {
     const result: TocItem[] = [];
@@ -72,43 +68,40 @@
   $effect(() => {
     if (typeof window === 'undefined' || allItems.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Find the first intersecting heading
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-            if (activeId !== id) {
-              activeId = id;
-              updateIndicatorPosition(id);
-            }
-            break;
-          }
+    // The active item is the last heading that has scrolled past the
+    // top threshold — this is more accurate than IntersectionObserver
+    // which can fire too early when a heading enters the viewport.
+    const OFFSET = 120; // px from the top of the viewport
+
+    function updateActive() {
+      let found: string | null = null;
+
+      for (const item of allItems) {
+        const el = document.getElementById(item.id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= OFFSET) {
+          found = item.id;
+        } else {
+          break; // headings are in DOM order — stop once we pass the threshold
         }
-      },
-      {
-        rootMargin: '-100px 0px -66% 0px',
-        threshold: 0.5
       }
-    );
 
-    // Wait for DOM to be ready
+      const next = found ?? (allItems.length > 0 ? allItems[0].id : null);
+      if (next && next !== activeId) {
+        activeId = next;
+        updateIndicatorPosition(next);
+      }
+    }
+
+    // Wait for DOM to be ready then attach scroll listener
     const timeoutId = setTimeout(() => {
-      allItems.forEach(item => {
-        const element = document.getElementById(item.id);
-        if (element) observer.observe(element);
-      });
-
-      // Set initial active
-      if (allItems.length > 0 && !activeId) {
-        activeId = allItems[0].id;
-        updateIndicatorPosition(allItems[0].id);
-      }
+      updateActive();
+      window.addEventListener('scroll', updateActive, { passive: true });
     }, 50);
 
     return () => {
       clearTimeout(timeoutId);
-      observer.disconnect();
+      window.removeEventListener('scroll', updateActive);
     };
   });
 
@@ -131,19 +124,11 @@
   }
 </script>
 
-<aside class="flex--item3 md:order-first ml32 md:ml0">
-  {#if toc.length > 0}
-    <div class="ps-sticky t0 py24 mt6 pr24 md:pb0 overflow-auto hmx-screen md:hmx-initial">
-      <button
-        class="d-none md:d-block s-btn s-btn__tonal s-btn__icon w100 mb12 d-flex jc-space-between"
-        onclick={() => isOpen = !isOpen}
-      >
-        <Icon src={isOpen ? IconChevron16Up : IconChevron16Down} />
-        Contents
-      </button>
-
-      <nav bind:this={navElement} class={`ps-relative d-block ${!isOpen ? 'd-block md:d-none' : ''}`}>
-        <h2 class="fs-body2 fw-bold mb12 px6 fc-black-400 d-block sm:d-none">Contents</h2>
+{#if toc.length > 0}
+<aside class="layout-toc fl-shrink0 w30 wmn2 wmx3 md:d-none ff-stack-sans-headline">
+    <div class="ps-sticky t0 py24 mt6 px32 md:pb0 overflow-auto hmx-screen md:hmx-initial">
+      <nav bind:this={navElement} class="ps-relative">
+        <h2 class="fs-body2 fw-bold mb12 px6 fc-black-400">Contents</h2>
 
         <div
           class="contents-indicator ps-absolute l0 r0 z-base pe-none"
@@ -158,9 +143,8 @@
                 use:registerLink={item.id}
                 class="s-navigation--item fs-caption bar0 ps-relative fw-bold fc-black ai-start"
                 class:is-active={activeId === item.id}
-                onclick={() => isOpen = false}
               >
-                <span class="fl-shrink0 w24 d-flex ai-center fc-orange-400">{(index + 1).toString().padStart(2, "0")}</span>
+                <span class="fl-shrink0 w24 d-flex ai-center fc-theme-primary">{(index + 1).toString().padStart(2, "0")}</span>
                 <span>{item.value}</span>
               </a>
               {#if item.children && item.children.length > 0}
@@ -172,7 +156,6 @@
                         use:registerLink={child.id}
                         class="s-navigation--item fs-caption bar0 ps-relative"
                         class:is-active={activeId === child.id}
-                        onclick={() => isOpen = false}
                       >
                         {child.value}
                       </a>
@@ -185,8 +168,8 @@
         </ul>
       </nav>
     </div>
-  {/if}
 </aside>
+{/if}
 
 <style>
   .contents-indicator {

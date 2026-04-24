@@ -1,3 +1,3 @@
 export function load() {
-  return { hideFooter: true };
+  return { hideFooter: true, fullWidth: true, hideToc: true };
 }

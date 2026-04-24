@@ -8,7 +8,7 @@ updated: 2026-02-12
   import Grid from '$components/Grid.svelte'
   import GridColumn from '$components/GridColumn.svelte'
 
-  import { Icon } from '@stackoverflow/stacks-svelte';
+  import { Icon, Checkbox, TextInput } from '@stackoverflow/stacks-svelte';
   import { IconCheckFillCircle, IconCrossFillCircle } from '@stackoverflow/stacks-icons'
 </script>
 
@@ -20,51 +20,21 @@ Preferences and settings should always be written in the affirmative—even if t
   <GridColumn extraClasses="bg-red-100">
     <h4 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCrossFillCircle} /> Don't</h4>
     <div class="d-flex fd-column g16">
-      <div class="d-flex g8 ai-center">
-        <input class="s-checkbox" type="checkbox" id="affirmative-dont-1" checked />
-        <label class="s-label fw-normal" for="affirmative-dont-1">Disable sticky header</label>
-      </div>
-      <div class="d-flex g8 ai-center">
-        <input class="s-checkbox" type="checkbox" id="affirmative-dont-2" />
-        <label class="s-label fw-normal" for="affirmative-dont-2">Disable left navigation</label>
-      </div>
-      <div class="d-flex g8 ai-center">
-        <input class="s-checkbox" type="checkbox" id="affirmative-dont-3" checked />
-        <label class="s-label fw-normal" for="affirmative-dont-3">Disable light mode</label>
-      </div>
-      <div class="d-flex g8 ai-center">
-        <input class="s-checkbox" type="checkbox" id="affirmative-dont-4" />
-        <label class="s-label fw-normal" for="affirmative-dont-4">Disallow advertising</label>
-      </div>
-      <div class="d-flex g8 ai-center">
-        <input class="s-checkbox" type="checkbox" id="affirmative-dont-5" checked />
-        <label class="s-label fw-normal" for="affirmative-dont-5">Hide your real name</label>
-      </div>
+      <Checkbox id="affirmative-dont-1" name="affirmative-dont-1" label="Disable sticky header" checked />
+      <Checkbox id="affirmative-dont-2" name="affirmative-dont-2" label="Disable left navigation" />
+      <Checkbox id="affirmative-dont-3" name="affirmative-dont-3" label="Disable light mode" checked />
+      <Checkbox id="affirmative-dont-4" name="affirmative-dont-4" label="Disallow advertising" />
+      <Checkbox id="affirmative-dont-5" name="affirmative-dont-5" label="Hide your real name" checked />
     </div>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h4 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheckFillCircle} /> Do</h4>
     <div class="d-flex fd-column g16">
-      <div class="d-flex g8 ai-center">
-        <input class="s-checkbox" type="checkbox" id="affirmative-do-1" />
-        <label class="s-label fw-normal" for="affirmative-do-1">Enable sticky header</label>
-      </div>
-      <div class="d-flex g8 ai-center">
-        <input class="s-checkbox" type="checkbox" id="affirmative-do-2" checked />
-        <label class="s-label fw-normal" for="affirmative-do-2">Enable left navigation</label>
-      </div>
-      <div class="d-flex g8 ai-center">
-        <input class="s-checkbox" type="checkbox" id="affirmative-do-3" />
-        <label class="s-label fw-normal" for="affirmative-do-3">Enable dark mode</label>
-      </div>
-      <div class="d-flex g8 ai-center">
-        <input class="s-checkbox" type="checkbox" id="affirmative-do-4" checked />
-        <label class="s-label fw-normal" for="affirmative-do-4">Allow advertising</label>
-      </div>
-      <div class="d-flex g8 ai-center">
-        <input class="s-checkbox" type="checkbox" id="affirmative-do-5" />
-        <label class="s-label fw-normal" for="affirmative-do-5">Show your real name</label>
-      </div>
+      <Checkbox id="affirmative-do-1" name="affirmative-do-1" label="Enable sticky header" />
+      <Checkbox id="affirmative-do-2" name="affirmative-do-2" label="Enable left navigation" checked />
+      <Checkbox id="affirmative-do-3" name="affirmative-do-3" label="Enable dark mode" />
+      <Checkbox id="affirmative-do-4" name="affirmative-do-4" label="Allow advertising" checked />
+      <Checkbox id="affirmative-do-5" name="affirmative-do-5" label="Show your real name" />
     </div>
   </GridColumn>
 </Grid>
@@ -83,44 +53,23 @@ Avoid using tooltips.
   <GridColumn extraClasses="bg-red-100">
     <h4 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCrossFillCircle} /> Don't</h4>
     <div class="d-flex fd-column g16">
-      <div class="d-flex gy4 fd-column">
-        <label class="d-block s-label" for="descriptions-dont-1">Site name</label>
-        <input class="s-input" id="descriptions-dont-1" type="text" />
-      </div>
-      <div class="d-flex gy4 fd-column">
-        <label class="d-block s-label" for="descriptions-dont-2">App descriptor</label>
-        <input class="s-input" id="descriptions-dont-2" type="text" />
-      </div>
-      <div class="d-flex gy4 fd-column">
-        <label class="d-block s-label" for="descriptions-dont-3">Industries</label>
-        <input class="s-input" id="descriptions-dont-3" type="text" placeholder="e.g. Advertising, Finance" />
-      </div>
+      <TextInput id="descriptions-dont-1" label="Site name" />
+      <TextInput id="descriptions-dont-2" label="App descriptor" />
+      <TextInput id="descriptions-dont-3" label="Industries" placeholder="e.g. Advertising, Finance" />
     </div>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h4 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheckFillCircle} /> Do</h4>
     <div class="d-flex fd-column g16">
-      <div class="d-flex gy4 fd-column">
-        <label class="d-block s-label" for="descriptions-do-1">
-          Site name
-          <p class="s-description mt2">Describes the site in the product, emails, integrations, and logs.</p>
-        </label>
-        <input class="s-input" id="descriptions-do-1" type="text" />
-      </div>
-      <div class="d-flex gy4 fd-column">
-        <label class="d-block s-label" for="descriptions-do-2">
-          App descriptor
-          <p class="s-description mt2">This is automatically generated. You only need to manually set this if you're reinstalling the app.</p>
-        </label>
-        <input class="s-input" id="descriptions-do-2" type="text" />
-      </div>
-      <div class="d-flex gy4 fd-column">
-        <label class="d-block s-label" for="descriptions-do-3">
-          Industries
-          <p class="s-description mt2">Add up to 4.</p>
-        </label>
-        <input class="s-input" id="descriptions-do-3" type="text" placeholder="e.g. Advertising, Finance" />
-      </div>
+      <TextInput id="descriptions-do-1" label="Site name">
+        {#snippet description()}Describes the site in the product, emails, integrations, and logs.{/snippet}
+      </TextInput>
+      <TextInput id="descriptions-do-2" label="App descriptor">
+        {#snippet description()}This is automatically generated. You only need to manually set this if you're reinstalling the app.{/snippet}
+      </TextInput>
+      <TextInput id="descriptions-do-3" label="Industries" placeholder="e.g. Advertising, Finance">
+        {#snippet description()}Add up to 4.{/snippet}
+      </TextInput>
     </div>
   </GridColumn>
 </Grid>
@@ -135,33 +84,19 @@ Placeholder text disappears once a character is typed in the input, so the user 
   <GridColumn extraClasses="bg-red-100">
     <h4 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCrossFillCircle} /> Don't</h4>
     <div class="d-flex fd-column g16">
-      <div class="d-flex gy4 fd-column">
-        <label class="d-block s-label" for="placeholder-dont-1">Single sign-on Service URL</label>
-        <input class="s-input" id="placeholder-dont-1" type="text" placeholder="Must be https" />
-      </div>
-      <div class="d-flex gy4 fd-column">
-        <label class="d-block s-label" for="placeholder-dont-2">Role</label>
-        <input class="s-input" id="placeholder-dont-2" type="text" placeholder="Add up to 2 roles" />
-      </div>
+      <TextInput id="placeholder-dont-1" label="Single sign-on Service URL" placeholder="Must be https" />
+      <TextInput id="placeholder-dont-2" label="Role" placeholder="Add up to 2 roles" />
     </div>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
     <h4 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheckFillCircle} /> Do</h4>
     <div class="d-flex fd-column g16">
-      <div class="d-flex gy4 fd-column">
-        <label class="d-block s-label" for="placeholder-do-1">
-          Single sign-on Service URL
-          <p class="s-description mt2">Must be https</p>
-        </label>
-        <input class="s-input" id="placeholder-do-1" type="text" placeholder="https://..." />
-      </div>
-      <div class="d-flex gy4 fd-column">
-        <label class="d-block s-label" for="placeholder-do-2">
-          Role
-          <p class="s-description mt2">Add up to 2 roles</p>
-        </label>
-        <input class="s-input" id="placeholder-do-2" type="text" placeholder="e.g. Full Stack, Back-end" />
-      </div>
+      <TextInput id="placeholder-do-1" label="Single sign-on Service URL" placeholder="https://...">
+        {#snippet description()}Must be https{/snippet}
+      </TextInput>
+      <TextInput id="placeholder-do-2" label="Role" placeholder="e.g. Full Stack, Back-end">
+        {#snippet description()}Add up to 2 roles{/snippet}
+      </TextInput>
     </div>
   </GridColumn>
 </Grid>

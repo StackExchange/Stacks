@@ -4,7 +4,7 @@
   let { data } = $props();
 </script>
 
-<div class="p32 hmn-screen">
+<div class="p32 wmx12 hmn-screen">
   <h1 class="mb24">{data?.active?.title}</h1>
   <p class="fs-body3 mb24">{data?.active?.description}</p>
 
