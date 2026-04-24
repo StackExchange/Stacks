@@ -64,8 +64,7 @@
 
                 <li>
                   <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-                  <a
-                    href={subsectionHref}
+                  <a href={subsectionHref}
                     class="s-navigation--item jc-space-between mb1"
                     class:is-selected={sectionSlug === subsection.slug || subsectionSlug === subsection.slug}
                     rel={subsection.externalUrl ? "external" : undefined}
@@ -98,8 +97,7 @@
 
                           <li>
                             <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-                            <a
-                              href={itemHref}
+                            <a href={itemHref}
                               class="s-navigation--item jc-space-between mb1"
                               class:is-selected={subsectionSlug === item.slug}
                               rel={item.externalUrl ? "external" : undefined}
