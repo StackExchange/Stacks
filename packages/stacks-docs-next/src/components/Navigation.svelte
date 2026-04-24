@@ -60,11 +60,14 @@
           <div transition:slide={{ duration: 200 }}>
             <ul class="s-navigation s-navigation__vertical pl24">
               {#each category.items as subsection (subsection.slug)}
+                {@const subsectionHref = subsection.externalUrl ? subsection.externalUrl : resolve(`/${category.slug}/${subsection.slug}/${subsection?.items ? subsection?.items[0]?.slug : ''}`)}
+
                 <li>
-                  <a
+                  <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+                  <a href={subsectionHref}
                     class="s-navigation--item jc-space-between mb1"
                     class:is-selected={sectionSlug === subsection.slug || subsectionSlug === subsection.slug}
-                    href={resolve(subsection.externalUrl || `/${category.slug}/${subsection.slug}/${subsection?.items ? subsection?.items[0]?.slug : ''}`)}
+                    rel={subsection.externalUrl ? "external" : undefined}
                     data-sveltekit-reload={subsection.private ? true : undefined}
                   >
                     <span>{subsection.title}</span>
@@ -82,7 +85,7 @@
                         {#if subsection.externalUrl}
                           <Icon src={IconArrowUpRightBox} />
                         {/if}
-                      </span> 
+                      </span>
                     {/if}
                   </a>
 
@@ -90,11 +93,14 @@
                     <div transition:slide={{ duration: 200 }}>
                       <ul class="s-navigation s-navigation__vertical ml24">
                         {#each subsection?.items as item (item.slug)}
+                          {@const itemHref = item.externalUrl ? item.externalUrl : resolve(`/${category.slug}/${subsection.slug}/${item.slug}/`)}
+
                           <li>
-                            <a
+                            <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+                            <a href={itemHref}
                               class="s-navigation--item jc-space-between mb1"
                               class:is-selected={subsectionSlug === item.slug}
-                              href={resolve(item.externalUrl || `/${category.slug}/${subsection.slug}/${item.slug}/`)}
+                              rel={item.externalUrl ? "external" : undefined}
                               data-sveltekit-reload={item.private ? true : undefined}
                             >
                               <span>{item.title}</span>
