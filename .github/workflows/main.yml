@@ -7,6 +7,26 @@ on:
     branches: [develop, beta, main]
 
 jobs:
+  visual-regression-changes:
+    name: Visual Regression Changes
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.filter.outputs.visual == 'true' }}
+    steps:
+      - name: ⬇️ Checkout
+        uses: actions/checkout@v5
+
+      - name: Detect visual regression changes
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            visual:
+              - 'packages/stacks-classic/**'
+              - '.github/workflows/**'
+              - 'package.json'
+              - 'package-lock.json'
+
   build-and-test:
     name: ${{ matrix.command_description }}
     uses: ./.github/workflows/test.yml
@@ -34,10 +54,6 @@ jobs:
           command: npm run test:a11y -w packages/stacks-classic -- --config web-test-runner.config.ci.mjs
           needs_lfs: false
           needs_playwright: true
-        - command_description: Visual Regression Tests
-          command: npm run test:visual:ci -w packages/stacks-classic -- --config ./visual-runner/stacks-classic-runner-config/web-test-runner.config.ci.mjs
-          needs_lfs: true
-          needs_playwright: false # we are using playwright docker image to run visual tests
         - command_description: Unit Tests (stacks-svelte)
           command: npm run test -w packages/stacks-svelte
           needs_lfs: false
@@ -53,10 +69,29 @@ jobs:
       needs_lfs: ${{ matrix.needs_lfs }}
     secrets: inherit
 
+  visual-regression-tests:
+    name: Visual Regression Tests
+    needs: visual-regression-changes
+    if: needs.visual-regression-changes.outputs.should_run == 'true'
+    uses: ./.github/workflows/test.yml
+    with:
+      command: npm run test:visual:ci -w packages/stacks-classic -- --config ./visual-runner/stacks-classic-runner-config/web-test-runner.config.ci.mjs
+      command_description: Visual Regression Tests
+      needs_playwright: false # we are using playwright docker image to run visual tests
+      needs_lfs: true
+    secrets: inherit
+
   release:
     name: Release (latest or beta)
-    if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/beta'
-    needs: [build-and-test]
+    if: >-
+      ${{
+        !cancelled() &&
+        (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/beta') &&
+        needs.build-and-test.result == 'success' &&
+        needs.visual-regression-changes.result == 'success' &&
+        (needs.visual-regression-tests.result == 'success' || needs.visual-regression-tests.result == 'skipped')
+      }}
+    needs: [build-and-test, visual-regression-changes, visual-regression-tests]
     runs-on: ubuntu-latest
     outputs:
       published: ${{ steps.changesets.outputs.published }}
