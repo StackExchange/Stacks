@@ -20,6 +20,10 @@ on:
         description: 'Whether or not to checkout with LFS'
         type: boolean
         default: false
+      changed_paths:
+        description: 'Optional paths-filter config; command runs only when these paths change'
+        type: string
+        default: ''
 
 jobs:
   build-and-test:
@@ -29,21 +33,39 @@ jobs:
       - name: ⬇️ Checkout
         uses: actions/checkout@v4
         with:
-          lfs: ${{ inputs.needs_lfs }}
+          lfs: ${{ inputs.needs_lfs && inputs.changed_paths == '' }}
+
+      - name: Detect relevant changes
+        id: changes
+        if: inputs.changed_paths != ''
+        uses: dorny/paths-filter@v3
+        with:
+          filters: ${{ inputs.changed_paths }}
+
+      - name: ⏭️ Skip ${{ inputs.command_description }}
+        if: steps.changes.outputs.run == 'false'
+        run: echo "No relevant files changed; skipping ${{ inputs.command_description }}."
+
+      - name: ⬇️ Pull LFS assets
+        if: inputs.needs_lfs == true && steps.changes.outputs.run != 'false'
+        run: git lfs pull
 
       - name: ⎔ Setup node
+        if: steps.changes.outputs.run != 'false'
         uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
 
       - name: 🏗 Install Dependencies
+        if: steps.changes.outputs.run != 'false'
         run: npm ci
 
       - name: 🏗 Install Playwright
-        if: inputs.needs_playwright == true
+        if: inputs.needs_playwright == true && steps.changes.outputs.run != 'false'
         run: npx playwright install --with-deps
 
       - name: 🔑 Setup SSH for private submodule
+        if: steps.changes.outputs.run != 'false'
         run: |
           mkdir -p ~/.ssh
           echo -e "${SUBMODULE_SSH_KEY//_/\\n}" > ~/.ssh/id_rsa
@@ -52,6 +74,7 @@ jobs:
           SUBMODULE_SSH_KEY: ${{ secrets.SUBMODULE_SSH_KEY }}
 
       - name: ▶️ ${{ inputs.command_description }}
+        if: steps.changes.outputs.run != 'false'
         run: ${{ inputs.command }}
         env:
           BETTER_AUTH_SECRET: ${{ secrets.AUTH_SECRET || 'ci-build-placeholder-secret' }}
