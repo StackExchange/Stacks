@@ -47,5 +47,6 @@
 {#if searchEnabled}
 	<Button icon weight="clear" class="h:fc-blue-400 px0" onclick={openSearch}>
 		<Icon src={IconSearch} />
+		<span class="v-visible-sr">Search</span>
 	</Button>
 {/if}
