@@ -1,0 +1,61 @@
+name: Visual Regression Tests
+run-name: Visual Regression Tests
+
+on:
+  workflow_call:
+
+jobs:
+  visual-regression-tests:
+    name: Visual Regression Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout
+        uses: actions/checkout@v4
+
+      - name: Detect relevant changes
+        id: changes
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            run:
+              - 'packages/stacks-classic/**'
+
+      - name: ⏭️ Skip Visual Regression Tests
+        if: steps.changes.outputs.run == 'false'
+        run: echo "No Stacks Classic files changed; skipping Visual Regression Tests."
+
+      - name: ⬇️ Pull LFS assets
+        if: steps.changes.outputs.run == 'true'
+        run: git lfs pull
+
+      - name: ⎔ Setup node
+        if: steps.changes.outputs.run == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+
+      - name: 🏗 Install Dependencies
+        if: steps.changes.outputs.run == 'true'
+        run: npm ci
+
+      - name: 🔑 Setup SSH for private submodule
+        if: steps.changes.outputs.run == 'true'
+        run: |
+          mkdir -p ~/.ssh
+          echo -e "${SUBMODULE_SSH_KEY//_/\\n}" > ~/.ssh/id_rsa
+          chmod og-rwx ~/.ssh/id_rsa
+        env:
+          SUBMODULE_SSH_KEY: ${{ secrets.SUBMODULE_SSH_KEY }}
+
+      - name: ▶️ Visual Regression Tests
+        if: steps.changes.outputs.run == 'true'
+        run: npm run test:visual:ci -w packages/stacks-classic -- --config ./visual-runner/stacks-classic-runner-config/web-test-runner.config.ci.mjs
+        env:
+          BETTER_AUTH_SECRET: ${{ secrets.AUTH_SECRET || 'ci-build-placeholder-secret' }}
+
+      - name: ⬆️ Upload Visual Regression Test Results
+        uses: actions/upload-artifact@v4
+        if: ${{ failure() }}
+        with:
+          name: visual-regression-test-results
+          path: packages/stacks-classic/screenshots
