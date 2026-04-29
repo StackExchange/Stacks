@@ -4,6 +4,11 @@
   let { data } = $props();
 </script>
 
+<svelte:head>
+  <title>{data?.active?.title} - Design System</title>
+  <meta name="description" content={data?.active?.description} />
+</svelte:head>
+
 <div class="p32 wmx12 hmn-screen">
   <h1 class="mb24">{data?.active?.title}</h1>
   <p class="fs-body3 mb24">{data?.active?.description}</p>
