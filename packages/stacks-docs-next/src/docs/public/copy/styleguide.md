@@ -1,5 +1,5 @@
 ---
-updated: 2025-12-11
+updated: 2026-04-29
 ---
 
 <script>
@@ -11,6 +11,14 @@ updated: 2025-12-11
 </script>
 
 This guide covers editorial and style conventions for Stack Overflow content.
+
+## Make it scannable
+
+- Use headings and bullets to make your content easier to scan.
+  - For longer posts, including a brief “TL;DR” (“Too Long; Didn’t Read”) at the top of the post can make it easier to understand.
+  - **Headings and subheadings:**
+    - All headings or subheadings should be concise, scannable, and use sentence case.
+    - Avoid periods at the end of headings. If a subheading is a full sentence, you may use a period (but if this is the case, your heading is probably too long and should be shortened).
 
 ## Capitalization rules
 
@@ -767,7 +775,7 @@ Buttons and links should be clear and predictable. Button and link text should b
 
 ### Headings and subheadings
 
-All headings or subheadings should be concise, scannable, and sentence case. Don’t use periods at the end of headings. If a subheading is a full sentence, you may use a period.
+All headings or subheadings should be concise, scannable, and sentence case. Don’t use periods at the end of headings. If a subheading is a full sentence, you may use a period (but if this is the case, your heading is probably too long and should be shortened).
 
 ### Lists
 
