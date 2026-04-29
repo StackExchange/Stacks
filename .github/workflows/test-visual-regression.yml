@@ -3,16 +3,29 @@ run-name: Visual Regression Tests
 
 on:
   workflow_call:
-    inputs:
-      should_run:
-        description: 'Whether to run visual regression tests'
-        type: boolean
-        required: true
 
 jobs:
+  changes:
+    name: Detect Changes
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.filter.outputs.run }}
+    steps:
+      - name: ⬇️ Checkout
+        uses: actions/checkout@v5
+
+      - name: Detect Stacks Classic changes
+        id: filter
+        uses: dorny/paths-filter@v4
+        with:
+          filters: |
+            run:
+              - 'packages/stacks-classic/**'
+
   visual-regression-tests:
     name: Visual Regression Tests
-    if: inputs.should_run == true
+    needs: changes
+    if: needs.changes.outputs.should_run == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout

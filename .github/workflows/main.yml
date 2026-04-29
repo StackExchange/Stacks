@@ -7,17 +7,6 @@ on:
     branches: [develop, beta, main]
 
 jobs:
-  build:
-    name: Build
-    uses: ./.github/workflows/test.yml
-    with:
-      command: npm run build
-      command_description: Build
-      needs_playwright: false
-      needs_lfs: false
-      detect_visual_regression_changes: true
-    secrets: inherit
-
   build-and-test:
     name: ${{ matrix.command_description }}
     uses: ./.github/workflows/test.yml
@@ -25,6 +14,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
+        - command_description: Build
+          command: npm run build
+          needs_lfs: false
+          needs_playwright: false
         - command_description: Lint
           command: npm run lint
           needs_lfs: false
@@ -58,10 +51,7 @@ jobs:
 
   visual-regression-tests:
     name: Visual Regression Tests
-    needs: build
     uses: ./.github/workflows/test-visual-regression.yml
-    with:
-      should_run: ${{ needs.build.outputs.visual_regression_changed == 'true' }}
     secrets: inherit
 
   release:
@@ -70,11 +60,10 @@ jobs:
       ${{
         !cancelled() &&
         (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/beta') &&
-        needs.build.result == 'success' &&
         needs.build-and-test.result == 'success' &&
         (needs.visual-regression-tests.result == 'success' || needs.visual-regression-tests.result == 'skipped')
       }}
-    needs: [build, build-and-test, visual-regression-tests]
+    needs: [build-and-test, visual-regression-tests]
     runs-on: ubuntu-latest
     outputs:
       published: ${{ steps.changesets.outputs.published }}

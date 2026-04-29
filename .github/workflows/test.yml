@@ -20,21 +20,11 @@ on:
         description: 'Whether or not to checkout with LFS'
         type: boolean
         default: false
-      detect_visual_regression_changes:
-        description: 'Whether to output if packages/stacks-classic changed'
-        type: boolean
-        default: false
-    outputs:
-      visual_regression_changed:
-        description: 'Whether packages/stacks-classic changed'
-        value: ${{ jobs.build-and-test.outputs.visual_regression_changed }}
 
 jobs:
   build-and-test:
     name: ${{ inputs.command_description }}
     runs-on: ubuntu-latest
-    outputs:
-      visual_regression_changed: ${{ steps.command.outputs.visual_regression_changed }}
     steps:
       - name: ⬇️ Checkout
         uses: actions/checkout@v5
@@ -62,33 +52,7 @@ jobs:
           SUBMODULE_SSH_KEY: ${{ secrets.SUBMODULE_SSH_KEY }}
 
       - name: ▶️ ${{ inputs.command_description }}
-        id: command
-        run: |
-          ${{ inputs.command }}
-
-          if [ "${{ inputs.detect_visual_regression_changes }}" = "true" ]; then
-            if [ "${{ github.event_name }}" = "pull_request" ]; then
-              git fetch --no-tags --prune --depth=1 origin "${{ github.base_ref }}"
-              changed_files="$(git diff --name-only "origin/${{ github.base_ref }}" HEAD)"
-            elif [ -n "${{ github.event.before }}" ] && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
-              git fetch --no-tags --prune --depth=1 origin "${{ github.event.before }}" || true
-              changed_files="$(git diff --name-only "${{ github.event.before }}" HEAD)"
-            else
-              changed_files="$(git diff --name-only HEAD^ HEAD || true)"
-            fi
-
-            visual_regression_changed=false
-            while IFS= read -r changed_file; do
-              case "$changed_file" in
-                packages/stacks-classic/*)
-                  visual_regression_changed=true
-                  break
-                  ;;
-              esac
-            done <<< "$changed_files"
-
-            echo "visual_regression_changed=$visual_regression_changed" >> "$GITHUB_OUTPUT"
-          fi
+        run: ${{ inputs.command }}
         env:
           BETTER_AUTH_SECRET: ${{ secrets.AUTH_SECRET || 'ci-build-placeholder-secret' }}
 
