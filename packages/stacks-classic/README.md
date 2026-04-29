@@ -1,7 +1,5 @@
 # Stacks
 
-<!-- Temporary no-op change to verify visual regression runs for Stacks Classic. -->
-
 [![ci status][gh-action-badge]][gh-action-url] [![npm version][npm-badge]][npm-url]
 
 Stacks is Stack Overflow’s design system. It includes the resources needed to create consistent, predictable interfaces and workflows that conform to Stack Overflow’s principles, design language, and best practices.
