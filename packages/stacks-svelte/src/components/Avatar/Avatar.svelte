@@ -48,6 +48,11 @@
          * Additional CSS classes added to the element
          */
         class?: string;
+
+        /**
+         * Localized translation for private communities icon title tag
+         */
+        i18nPrivateIconTitle?: string;
     }
 
     const {
@@ -60,6 +65,7 @@
         badge = false,
         class: className = "",
         role,
+        i18nPrivateIconTitle = "Private",
         ...restProps
     }: Props & HTMLAnchorAttributes = $props();
 
@@ -89,7 +95,14 @@
     {...restProps}
 >
     {#if src}
-        <img class="s-avatar--image" {src} alt="" role="presentation" />
+        <img
+            class="s-avatar--image"
+            {src}
+            alt=""
+            role="presentation"
+            width={size}
+            height={size}
+        />
     {:else if letter}
         <span class="s-avatar--letter" aria-hidden="true">{letter}</span>
     {/if}
@@ -103,8 +116,11 @@
         />
     {/if}
     {#if badge}
-        <!-- TODO This badge is not purely decorative, so it should include descriptive text
-        (see https://stackoverflow.atlassian.net/browse/A11Y-126) -->
-        <Icon class="s-avatar--badge" src={IconShieldXSm} native />
+        <Icon
+            class="s-avatar--badge"
+            src={IconShieldXSm}
+            native
+            title={i18nPrivateIconTitle}
+        />
     {/if}
 </svelte:element>

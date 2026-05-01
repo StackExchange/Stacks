@@ -1,5 +1,21 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.30
+
+### Minor Changes
+
+- [#2214](https://github.com/StackExchange/Stacks/pull/2214) [`97d31ab`](https://github.com/StackExchange/Stacks/commit/97d31ab9e0a66ae231fdfea534849101e447f165) Thanks [@dancormier](https://github.com/dancormier)! - Add brand color set
+
+### Patch Changes
+
+- [#2191](https://github.com/StackExchange/Stacks/pull/2191) [`2ccdfaf`](https://github.com/StackExchange/Stacks/commit/2ccdfaf1a83469347a6ad678445fa1709e28e363) Thanks [@dancormier](https://github.com/dancormier)! - Fully remove cruft from removed components
+
+## 3.0.0-beta.29
+
+### Patch Changes
+
+- [#2196](https://github.com/StackExchange/Stacks/pull/2196) [`a2365c0`](https://github.com/StackExchange/Stacks/commit/a2365c067d39a9ebf35c784993c6acb8ef0aedf3) Thanks [@giamir](https://github.com/giamir)! - fix wrapping behavior of post-summary titles
+
 ## 3.0.0-beta.28
 
 ### Minor Changes

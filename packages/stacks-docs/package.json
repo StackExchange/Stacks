@@ -1,22 +1,43 @@
 {
-    "private": true,
     "name": "@stackoverflow/stacks-docs",
-    "description": "Stacks Design website. Contains all documentation around using Stacks and its components.",
+    "private": true,
+    "type": "module",
     "scripts": {
-        "start": "concurrently -n w: npm:start:*",
-        "start:webpack": "webpack --watch",
-        "start:eleventy": "eleventy --serve",
-        "build": "webpack --mode=production && eleventy"
+        "dev": "vite dev",
+        "prebuild": "npm run build -w @stackoverflow/stacks && npm run build -w @stackoverflow/stacks-svelte",
+        "build": "bash netlify-setup.sh && npm run init-private-content && vite build",
+        "preview": "vite preview",
+        "prepare": "svelte-kit sync || echo ''",
+        "check": "npm run build -w @stackoverflow/stacks-svelte && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+        "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+        "lint": "npm run check && eslint .",
+        "format": "prettier --write .",
+        "init-private-content": "if [ -d src/docs/private/.git ]; then git -C src/docs/private pull --ff-only; elif [ -f ~/.ssh/id_rsa ]; then GIT_SSH_COMMAND=\"ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no\" git clone --depth 1 git@github.com:StackEng/StacksDocsPrivate.git src/docs/private; else echo 'Skipping private docs; no SSH key found'; fi"
+    },
+    "devDependencies": {
+        "@eslint/compat": "^2.0.4",
+        "@sveltejs/adapter-netlify": "^5.0.0",
+        "@sveltejs/kit": "^2.22.0",
+        "@sveltejs/vite-plugin-svelte": "^6.0.0",
+        "mdsvex": "^0.12.3",
+        "vite": "^7.0.4"
     },
     "dependencies": {
-        "@hotwired/stimulus": "^3.2.2",
+        "@docsearch/css": "^4.3.2",
+        "@docsearch/js": "^4.3.2",
+        "@hbsnow/rehype-sectionize": "^1.0.7",
         "@stackoverflow/stacks": "*",
-        "@stackoverflow/stacks-editor": "^1.0.0-beta.5",
-        "@stackoverflow/stacks-icons": "^7.0.0-beta.18",
-        "@stackoverflow/stacks-icons-legacy": "npm:@stackoverflow/stacks-icons@^6.9.0",
-        "cheerio": "^1.1.2",
-        "docsearch.js": "^2.6.3",
-        "jquery": "^3.7.1",
-        "list.js": "^2.3.1"
+        "@stackoverflow/stacks-editor": "*",
+        "@stackoverflow/stacks-icons": "*",
+        "@stackoverflow/stacks-icons-legacy": "*",
+        "@stackoverflow/stacks-svelte": "*",
+        "@stefanprobst/rehype-extract-toc": "^3.0.0",
+        "better-auth": "^1.4.7",
+        "highlight.js": "^11.11.1",
+        "rehype-autolink-headings": "^7.1.0",
+        "rehype-slug": "^6.0.0",
+        "turndown": "^7.2.2",
+        "unist-util-visit": "^5.0.0",
+        "yaml": "^2.8.1"
     }
 }

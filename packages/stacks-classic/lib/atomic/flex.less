@@ -301,8 +301,7 @@
 .ac-stretch { align-content: stretch !important; }
 
 // Align items
-#stacks-internals #build-classes(
-    '.ai',
+#stacks-internals #build-classes('.ai',
     {
         .template(@value) when (@value=start), (@value=end) { align-items: ~"flex-@{value}" !important; }
         .template(@value) when (default()) { align-items: @value !important; };
@@ -316,13 +315,12 @@
 //      Use this class when you want both.
 //  ----------------------------------------------------------------------------
 .flex__center {
-    .jc-center;
-    .ai-center;
+    .jc-center();
+    .ai-center();
 }
 
 // Align self
-#stacks-internals #build-classes(
-    '.as',
+#stacks-internals #build-classes('.as',
     {
         .template(@value) when (@value=start), (@value=end) { align-self: ~"flex-@{value}" !important; }
         .template(@value) when (default()) { align-self: @value !important; };

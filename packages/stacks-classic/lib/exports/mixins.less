@@ -100,8 +100,7 @@
  * @param {boolean} [negative=false] - Whether to generate negative value classes.
  */
 .generate-sizing(@prefix, @properties, @values, @type: 'px', @responsive: false, @negative: false) {
-    #stacks-internals #build-classes(
-        @prefix,
+    #stacks-internals #build-classes(@prefix,
         {
             .template(@value) {
                 each(@properties, #(@prop) {
@@ -141,8 +140,7 @@
  */
 .generate-su-sizing(@prefix, @property) {
     @su-values: 128, 256, 344, 448, 512, 640, 768, 848, 960, 1024, 1120, 1280;
-    #stacks-internals #build-classes(
-        @prefix,
+    #stacks-internals #build-classes(@prefix,
         {
             .template(@value) {
                 @su-value: extract(@su-values, @value);
