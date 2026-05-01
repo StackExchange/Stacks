@@ -81,18 +81,15 @@
         class="layout-toc fl-shrink0 w30 wmn2 wmx3 ff-stack-sans-headline md:d-none"
     >
         <div class="ps-sticky t0 mt6 py24 px32 overflow-auto hmx-screen">
-            <nav
-                id={contentsNavId}
-                aria-labelledby={contentsHeadingId}
-                class="bg-white"
-            >
+            <div id={contentsNavId} class="bg-white">
                 <ContentsList
                     {toc}
                     {activeId}
                     headingId={contentsHeadingId}
+                    label="Contents"
                     onSelect={handleLinkClick}
                 />
-            </nav>
+            </div>
         </div>
     </aside>
 
@@ -112,18 +109,18 @@
         </Button>
 
         {#if isMobileTocOpen}
-            <nav
+            <div
                 id={mobileContentsNavId}
-                aria-label="Contents"
                 class="contents-mobile-popover bg-white bar-md bs-md overflow-auto p12 w100"
             >
                 <ContentsList
                     {toc}
                     {activeId}
+                    label="Contents"
                     onSelect={handleLinkClick}
                     showHeading={false}
                 />
-            </nav>
+            </div>
         {/if}
     </div>
 {/if}
