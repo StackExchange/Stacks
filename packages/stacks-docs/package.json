@@ -8,7 +8,7 @@
         "build": "bash netlify-setup.sh && npm run init-private-content && vite build",
         "preview": "vite preview",
         "prepare": "svelte-kit sync || echo ''",
-        "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+        "check": "npm run build -w @stackoverflow/stacks-svelte && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
         "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
         "lint": "npm run check && eslint .",
         "format": "prettier --write .",
