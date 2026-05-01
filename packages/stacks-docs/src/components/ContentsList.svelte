@@ -28,7 +28,7 @@
 {/if}
 
 <Navigation {label} orientation="vertical" listClass="contents-list">
-    {#each toc as item, index (item.id)}
+    {#each toc as item (item.id)}
         <NavigationItem
             href="#{item.id}"
             text={item.value}
