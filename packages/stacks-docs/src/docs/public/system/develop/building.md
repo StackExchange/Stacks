@@ -26,8 +26,8 @@ We use a bunch of NPM dependencies to process and package up Stacks for delivery
 
 That should do it for all our dependencies. You're now able to run Stacks.
 
-1. From the top level of the Stacks repo, run our main script `npm run start -w packages/stacks-docs`
-2. Visit your local copy of Stacks at [`http://localhost:8080/`](http://localhost:8080/)
+1. From the top level of the Stacks repo, run `npm start` or `npm run dev -w packages/stacks-docs`.
+2. Visit your local copy of Stacks at [`http://localhost:5173/`](http://localhost:5173/).
 
 ## Getting help
 
