@@ -2,16 +2,33 @@ import type { LayoutServerLoad } from "./$types";
 import YAML from "yaml";
 import structureRaw from "$src/structure.yaml?raw";
 
-function findByPath({ navigation }, path) {
-    return path.reduce(
-        (acc, slug) => acc?.items?.find((item) => item.slug === slug),
-        { items: navigation }
-    );
+type NavItem = {
+    slug: string;
+    title?: string;
+    private?: boolean;
+    items?: NavItem[];
+    [key: string]: unknown;
+};
+
+type Structure = {
+    navigation?: NavItem[];
+};
+
+function findByPath({ navigation = [] }: Structure, path: string[]): NavItem | undefined {
+    let currentLevel: { items?: NavItem[] } | NavItem = { items: navigation };
+
+    for (const slug of path) {
+        const next = currentLevel.items?.find((item) => item.slug === slug);
+        if (!next) return undefined;
+        currentLevel = next;
+    }
+
+    return "slug" in currentLevel ? currentLevel : undefined;
 }
 
 export const load: LayoutServerLoad = async (event) => {
     // Load the navigation structure from the structure.yaml
-    let structure: Record<string, unknown> = {};
+    let structure: Structure = {};
 
     try {
         structure = YAML.parse(structureRaw);
@@ -35,17 +52,17 @@ export const load: LayoutServerLoad = async (event) => {
     const needsAuth = !isDev && !user && active?.private;
 
     // Build breadcrumbs with actual page titles
-    const segments: [string] = event.url.pathname.split("/").filter(Boolean);
+    const segments = event.url.pathname.split("/").filter(Boolean);
     const breadcrumb: { label: string; path: string }[] = [];
 
     // Walk an item's children to find the first page path (an item with no children).
-    function firstPagePath(item: Record<string, unknown>, basePath: string): string {
+    function firstPagePath(item: NavItem, basePath: string): string {
         if (!Array.isArray(item.items) || item.items.length === 0) return basePath;
-        const first = item.items[0] as Record<string, unknown>;
+        const first = item.items[0];
         return firstPagePath(first, `${basePath}/${first.slug}`);
     }
 
-    let currentLevel = { items: structure.navigation };
+    let currentLevel: { items?: NavItem[] } = { items: structure.navigation };
     let currentPath = "";
 
     segments.forEach((segment: string) => {
@@ -61,7 +78,7 @@ export const load: LayoutServerLoad = async (event) => {
                 : currentPath;
 
             breadcrumb.push({
-                label: item.title || segment,
+                label: item.title ?? segment,
                 path: linkPath,
             });
 

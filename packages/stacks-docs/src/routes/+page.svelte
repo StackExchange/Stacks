@@ -1,5 +1,5 @@
 <script lang="ts">
-  let { data } = $props();
+  let { data }: { data: any } = $props();
 
   import { Icon } from '@stackoverflow/stacks-svelte';
   import { IconArrowUpRightBox, IconServiceSvelte } from '@stackoverflow/stacks-icons/icons';

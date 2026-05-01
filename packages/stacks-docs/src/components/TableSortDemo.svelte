@@ -44,7 +44,7 @@
                     <th scope="col" class:is-sorted={col === c} data-s-table-target="column">
                         <button type="button" onclick={() => sort(c)}>
                             {h}
-                            <Icon src={icon(c)} aria-hidden="true" />
+                            <Icon src={icon(c)} />
                         </button>
                     </th>
                 {/each}

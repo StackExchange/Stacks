@@ -15,6 +15,7 @@
     extraClasses = '',
     onclick = null,
     disabled = false,
+    hover = true,
   } = $props();
 
   function copySuccess(event) {
@@ -35,7 +36,7 @@
   role="button"
   this={onclick ? 'button' : 'div'}
   onclick={onclick || (() => visible = true)}
-  class={`d-flex fs-body1 fd-column ps-relative c-pointer ff-sans ta-left color color--${orientation} ${extraClasses} ${disabled ? 'o50 bg-black-200 fc-black pe-none c-not-allowed' : ''}`}
+  class={`d-flex fs-body1 fd-column ps-relative c-pointer ff-sans ta-left color color--${orientation} ${hover ? '' : 'no-hover'} ${extraClasses} ${disabled ? 'o50 bg-black-200 fc-black pe-none c-not-allowed' : ''}`}
   style={`background: ${color.hex}; color: ${color.invertLabel ? '#fff' : '#000'}`}
 >
   <span class="p12 pr32 lh-xs">{color.name}</span>
@@ -96,7 +97,7 @@
     border: 1px solid rgba(0,0,0,0.2);
     font-weight: 400;
   }
-  .color:hover {
+  .color:not(.no-hover):hover {
     top: -3px;
     right: -3px;
   }

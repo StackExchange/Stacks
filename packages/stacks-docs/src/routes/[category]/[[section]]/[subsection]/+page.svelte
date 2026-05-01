@@ -4,7 +4,7 @@
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
 
-  let { data } = $props();
+  let { data }: { data: any } = $props();
   let copied = $state(false);
 
   const lastUpdated = $derived(new Date(data?.metadata?.updated).toLocaleDateString('en-US', {

@@ -1,13 +1,15 @@
 <script lang="ts">
   import { Button } from '@stackoverflow/stacks-svelte';
-  import type { Weight } from '@stackoverflow/stacks-svelte';
 
-  let { variant = "" } = $props();
+  type Variant = "" | "danger" | "featured" | "tonal";
+  type Weight = "" | "clear";
+
+  let { variant = "" }: { variant?: Variant } = $props();
 
   const titleCase = (str) => str.toLowerCase().replace(/(?:^|\s)\w/g, (match) => match.toUpperCase());
 
-  const getVariantClass = (v) => v ? `s-btn__${v}` : null;
-  const getWeightClass = (w) => w ? `s-btn__${w}` : null;
+  const getVariantClass = (v: Variant) => v ? `s-btn__${v}` : null;
+  const getWeightClass = (w: Weight) => w ? `s-btn__${w}` : null;
 
   // Base and danger support both weights, featured and tonal only support base
   const weights: Weight[] = (variant === "featured" || variant === "tonal") ? [""] : ["", "clear"];

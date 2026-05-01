@@ -18,7 +18,7 @@
   </Slide>
   <Slide>
     <div class="slide">
-      <ColorCodes business="true" />
+      <ColorCodes business />
     </div>
   </Slide>
 </Gallery>

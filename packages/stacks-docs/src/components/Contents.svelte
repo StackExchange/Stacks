@@ -1,12 +1,7 @@
 <script lang="ts">
   import { SvelteMap } from 'svelte/reactivity';
 
-  interface TocItem {
-    id: string;
-    value: string;
-    depth: number;
-    children?: TocItem[];
-  }
+  type TocItem = Record<string, any>;
 
   let { toc = [] }: { toc: TocItem[] } = $props();
 

@@ -2,7 +2,7 @@
   import { getContext } from 'svelte';
   let { children } = $props();
 
-  const gallery = getContext('gallery');
+  const gallery = getContext<{ index: number; register: () => number }>('gallery');
 
   let id = gallery.register();
 

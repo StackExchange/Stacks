@@ -14,7 +14,7 @@
 
 	import Favicon from '$lib/assets/favicon.svg';
 
-	let { children, data } = $props();
+	let { children, data }: { children?: import('svelte').Snippet; data: any } = $props();
 
 	let mobileMenu = $state(false);
 
@@ -53,10 +53,10 @@
 
 		<div class="d-flex pt12 pb12 px12 mt-auto">
 			<div class="w50 mr4 sm:mr0">
-				<Button target="_blank" href="https://github.com/StackExchange/Stacks/" class="w100" weight="clear">
+				<a target="_blank" rel="noreferrer" href="https://github.com/StackExchange/Stacks/" class="s-btn s-btn__clear w100">
 					<Icon src={IconServiceGitHub} />
 					GitHub
-				</Button>
+				</a>
 			</div>
 			<div class="w50 ml4 sm:ml0">
 				<ThemeToggle />

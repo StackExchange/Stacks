@@ -1,7 +1,7 @@
 <script lang="ts">
   import { resolve } from '$app/paths';
 
-  let { data } = $props();
+  let { data }: { data: any } = $props();
 </script>
 
 <div class="p32 wmx12 hmn-screen">
