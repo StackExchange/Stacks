@@ -141,9 +141,7 @@ Padding should never be declared outside of these utilities. This is meant to he
 ### Padding classes
 
 ```html
-<div class="pt4 pr64 pb64 pl64">
-    …
-</div>
+<div class="pt4 pr64 pb64 pl64">…</div>
 ```
 
 <Example>

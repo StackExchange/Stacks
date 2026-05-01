@@ -140,6 +140,7 @@ Stacks provides a Stimulus controller that allows you to interactively display a
             </PopoverContent>
         </Popover>
     </div>
+
 </Example>
 
 ### Default interactivity
@@ -149,21 +150,20 @@ To enable interactive popovers, you will need to add the above attributes to the
 To promote being able to tab to an open popover, it's best to place the popover immediately after the toggling button in the markup as siblings.
 
 ```html
-<button class="s-btn s-btn__dropdown" role="button"
-        aria-controls="popover-example"
-        aria-expanded="false"
-        data-controller="s-popover"
-        data-action="s-popover#toggle"
-        data-s-popover-placement="bottom-start"
-        data-s-popover-toggle-class="is-selected">
+<button
+    class="s-btn s-btn__dropdown"
+    role="button"
+    aria-controls="popover-example"
+    aria-expanded="false"
+    data-controller="s-popover"
+    data-action="s-popover#toggle"
+    data-s-popover-placement="bottom-start"
+    data-s-popover-toggle-class="is-selected"
+>
     …
 </button>
-<div class="s-popover"
-    id="popover-example"
-    role="menu">
-    <div class="s-popover--content">
-        …
-    </div>
+<div class="s-popover" id="popover-example" role="menu">
+    <div class="s-popover--content">…</div>
 </div>
 ```
 
@@ -185,25 +185,30 @@ In the case of new feature callouts, it may be appropriate to include an explici
 In order for to close the popover with an explicit close button, you'll need to add the controller to a parent as illustrated in the following example code:
 
 ```html
-<div class="…"
+<div
+    class="…"
     data-controller="s-popover"
-    data-s-popover-reference-selector="#reference-element">
-
-    <button id="reference-element" class="s-btn s-btn__dropdown"
-            aria-controls="popover-example"
-            aria-expanded="true"
-            data-action="s-popover#toggle">
+    data-s-popover-reference-selector="#reference-element"
+>
+    <button
+        id="reference-element"
+        class="s-btn s-btn__dropdown"
+        aria-controls="popover-example"
+        aria-expanded="true"
+        data-action="s-popover#toggle"
+    >
         …
     </button>
 
     <div id="popover-example" class="s-popover is-visible" role="menu">
-        <button class="s-popover--close s-btn s-btn__tonal" aria-label="Close"
-            data-action="s-popover#toggle">
+        <button
+            class="s-popover--close s-btn s-btn__tonal"
+            aria-label="Close"
+            data-action="s-popover#toggle"
+        >
             <svg aria-hidden="true">…</svg>
         </button>
-        <div class="s-popover--content">
-            …
-        </div>
+        <div class="s-popover--content">…</div>
     </div>
 </div>
 ```
@@ -225,17 +230,20 @@ In order for to close the popover with an explicit close button, you'll need to 
 There may be cases where you need to show or hide a popover via JavaScript. For example, if you need to show a popover at a specific time or if you need to hide a popover from an event outside of the controller, Stacks provides convenience methods to achieve this.
 
 ```javascript
-Stacks.application.register("section", class extends Stacks.StacksController {
-    static targets = ["help"];
+Stacks.application.register(
+    "section",
+    class extends Stacks.StacksController {
+        static targets = ["help"];
 
-    showHelp(event) {
-        Stacks.showPopover(this.helpTarget);
-        event.stopPropagation();
+        showHelp(event) {
+            Stacks.showPopover(this.helpTarget);
+            event.stopPropagation();
+        }
+        hideHelp(event) {
+            Stacks.hidePopover(this.helpTarget);
+        }
     }
-    hideHelp(event) {
-        Stacks.hidePopover(this.helpTarget);
-    }
-});
+);
 ```
 
 <Example>
@@ -306,10 +314,13 @@ If the user doesn't need to interact with the _contents_ of the popover, it may 
 In the simple case where no markup is needed in the tooltip, the popover element can be omitted and automatically generated using the `title` attribute.
 
 ```html
-<button class="s-btn" role="button"
-        title="…"
-        data-controller="s-tooltip"
-        data-s-tooltip-placement="bottom-start">
+<button
+    class="s-btn"
+    role="button"
+    title="…"
+    data-controller="s-tooltip"
+    data-s-tooltip-placement="bottom-start"
+>
     …
 </button>
 ```
@@ -330,17 +341,13 @@ In the simple case where no markup is needed in the tooltip, the popover element
 In cases where the tooltip needs to display simple text or HTML, the popover can be configured using JavaScript. Plain text tooltips will render characters like &lt;, &gt;, and &amp; as is. HTML tooltips will render the HTML as expected.
 
 ```javascript
-Stacks.setTooltipText(el,
-    "Plain text tooltip",
-    {
-        placement: "top-start"
-    });
+Stacks.setTooltipText(el, "Plain text tooltip", {
+    placement: "top-start",
+});
 
-Stacks.setTooltipHtml(el,
-    "Tooltip <i>with</i> HTML",
-    {
-        placement: "top-end"
-    });
+Stacks.setTooltipHtml(el, "Tooltip <i>with</i> HTML", {
+    placement: "top-end",
+});
 ```
 
 ### Rich tooltips
@@ -353,16 +360,12 @@ When a rich tooltip is required, a popover element can be configured in much the
     role="button"
     aria-describedby="tooltip-example"
     aria-expanded="false"
-    data-controller="s-tooltip">
+    data-controller="s-tooltip"
+>
     …
 </button>
-<div
-    class="s-popover s-popover__tooltip"
-    id="tooltip-example"
-    role="tooltip">
-    <div class="s-popover--content">
-        …
-    </div>
+<div class="s-popover s-popover__tooltip" id="tooltip-example" role="tooltip">
+    <div class="s-popover--content">…</div>
 </div>
 ```
 
@@ -384,23 +387,22 @@ When a rich tooltip is required, a popover element can be configured in much the
 Hover tooltips can be used alongside interactive popovers. Tooltips will not appear when the interactive popover is visible.
 
 ```html
-<button class="s-btn s-btn__dropdown" role="button"
-        aria-controls="popover-example"
-        aria-expanded="false"
-        data-controller="s-popover s-tooltip"
-        data-action="s-popover#toggle"
-        data-s-popover-placement="bottom-start"
-        data-s-popover-toggle-class="is-selected"
-        title="…"
-        data-s-tooltip-placement="top-start">
+<button
+    class="s-btn s-btn__dropdown"
+    role="button"
+    aria-controls="popover-example"
+    aria-expanded="false"
+    data-controller="s-popover s-tooltip"
+    data-action="s-popover#toggle"
+    data-s-popover-placement="bottom-start"
+    data-s-popover-toggle-class="is-selected"
+    title="…"
+    data-s-tooltip-placement="top-start"
+>
     …
 </button>
-<div class="s-popover"
-       id="popover-example"
-       role="menu">
-    <div class="s-popover--content">
-        …
-    </div>
+<div class="s-popover" id="popover-example" role="menu">
+    <div class="s-popover--content">…</div>
 </div>
 ```
 
@@ -436,9 +438,7 @@ By default, popovers are hidden and positioned absolutely. Adding the class `.is
 
 ```html
 <div class="s-popover">
-    <div class="s-popover--content">
-        …
-    </div>
+    <div class="s-popover--content">…</div>
 </div>
 ```
 

@@ -9,11 +9,11 @@ This is the SvelteKit documentation site for the Stacks v3 design system. Pages 
 ```yaml
 ---
 title: "Page Title"
-description: "…"        # shown in the page header and meta
-figma: "https://…"      # optional — links to Figma file
-svelte: "https://…"     # optional — links to stacks-svelte component
-js: true                # only if the page has a JavaScript section
-updated: 2026-01-15     # ISO date of last meaningful content update
+description: "…" # shown in the page header and meta
+figma: "https://…" # optional — links to Figma file
+svelte: "https://…" # optional — links to stacks-svelte component
+js: true # only if the page has a JavaScript section
+updated: 2026-01-15 # ISO date of last meaningful content update
 ---
 ```
 
@@ -47,17 +47,17 @@ Use standard markdown for prose. Svelte components can be used anywhere in the b
 
 ## Available doc components
 
-| Component | Location | Purpose |
-|---|---|---|
-| `ClassTable` | `$components/ClassTable.svelte` | CSS class / JS attribute reference tables |
-| `Example` | `$components/Example.svelte` | Bordered container for static example content |
-| `Grid` | `$components/Grid.svelte` | Equal-width responsive column grid for Do/Don't blocks |
-| `GridColumn` | `$components/GridColumn.svelte` | Column within a `Grid`; accepts `extraClasses`, `padding` prop |
-| `PreviewTable` | `$components/PreviewTable.svelte` | Table of component previews: Example \| Class \| Description |
-| `BannerPreview` | `$components/BannerPreview.svelte` | Static pre-built banner instance for illustration |
-| `BannerDemo` | `$components/BannerDemo.svelte` | Interactive banner playground with user controls |
-| `StacksEditorDemo` | `$components/StacksEditorDemo.svelte` | Interactive Stacks editor playground |
-| `TableSortDemo` | `$components/TableSortDemo.svelte` | Interactive sortable table playground |
+| Component          | Location                              | Purpose                                                        |
+| ------------------ | ------------------------------------- | -------------------------------------------------------------- |
+| `ClassTable`       | `$components/ClassTable.svelte`       | CSS class / JS attribute reference tables                      |
+| `Example`          | `$components/Example.svelte`          | Bordered container for static example content                  |
+| `Grid`             | `$components/Grid.svelte`             | Equal-width responsive column grid for Do/Don't blocks         |
+| `GridColumn`       | `$components/GridColumn.svelte`       | Column within a `Grid`; accepts `extraClasses`, `padding` prop |
+| `PreviewTable`     | `$components/PreviewTable.svelte`     | Table of component previews: Example \| Class \| Description   |
+| `BannerPreview`    | `$components/BannerPreview.svelte`    | Static pre-built banner instance for illustration              |
+| `BannerDemo`       | `$components/BannerDemo.svelte`       | Interactive banner playground with user controls               |
+| `StacksEditorDemo` | `$components/StacksEditorDemo.svelte` | Interactive Stacks editor playground                           |
+| `TableSortDemo`    | `$components/TableSortDemo.svelte`    | Interactive sortable table playground                          |
 
 **Naming convention:** `Example` = generic wrapper; `*Preview` = static pre-built component instance; `*Demo` = interactive playground with user controls.
 
@@ -74,6 +74,7 @@ Use `ClassTable` for every reference table — never raw markdown tables.
 ```
 
 **ClassTableRow fields:** `class`, `parent`, `modifies`, `output`, `description`, `define`, `responsive`.
+
 - Only populate relevant fields — `ClassTable` auto-hides columns with no data.
 - Use `'N/A'` (string) for explicitly empty `parent`/`modifies` — renders as muted text.
 - The `headings` prop renames any column: `headings={{ class: 'Selector', description: 'Notes' }}`.
@@ -111,6 +112,7 @@ Sub-example labels always use `class="ff-mono mb8"`.
 ```
 
 `GridColumn` props:
+
 - `extraClasses` — appended to the column div (default: `bg-black-200`)
 - `padding` — adds `p24` when `true` (default: `true`); set `false` if you're applying `py*` in `extraClasses` to avoid conflict
 - `...rest` — any extra attributes (e.g. `style="background: var(--brand-color-orange)"`) are spread onto the outer div
@@ -133,6 +135,7 @@ For popover/menu examples, wrap content in `s-popover is-visible ps-relative` (`
 ## Rehype plugins (automatic — no action needed)
 
 The `svelte.config.js` rehype pipeline automatically:
+
 - Adds `docs-heading docs-h2/h3/h4` to markdown headings
 - Adds `docs-copy` to `p` and `ol` elements **in markdown prose only**
 - Adds `docs-section` to `<section>` elements (via rehype-sectionize)

@@ -14,7 +14,10 @@ type Structure = {
     navigation?: NavItem[];
 };
 
-function findByPath({ navigation = [] }: Structure, path: string[]): NavItem | undefined {
+function findByPath(
+    { navigation = [] }: Structure,
+    path: string[]
+): NavItem | undefined {
     let currentLevel: { items?: NavItem[] } | NavItem = { items: navigation };
 
     for (const slug of path) {
@@ -57,7 +60,8 @@ export const load: LayoutServerLoad = async (event) => {
 
     // Walk an item's children to find the first page path (an item with no children).
     function firstPagePath(item: NavItem, basePath: string): string {
-        if (!Array.isArray(item.items) || item.items.length === 0) return basePath;
+        if (!Array.isArray(item.items) || item.items.length === 0)
+            return basePath;
         const first = item.items[0];
         return firstPagePath(first, `${basePath}/${first.slug}`);
     }
@@ -73,9 +77,10 @@ export const load: LayoutServerLoad = async (event) => {
 
             // If this item has children (it's a section, not a page), link to its
             // first descendant page so the breadcrumb doesn't navigate to a 404.
-            const linkPath = Array.isArray(item.items) && item.items.length > 0
-                ? firstPagePath(item, currentPath)
-                : currentPath;
+            const linkPath =
+                Array.isArray(item.items) && item.items.length > 0
+                    ? firstPagePath(item, currentPath)
+                    : currentPath;
 
             breadcrumb.push({
                 label: item.title ?? segment,

@@ -14,7 +14,7 @@ updated: 2026-02-12
 
 ## Write labels in the affirmative
 
-Preferences and settings should always be written in the affirmative—even if the preference is meant to disable a feature. When a user checks a feature preference, they should be *getting* that feature.
+Preferences and settings should always be written in the affirmative—even if the preference is meant to disable a feature. When a user checks a feature preference, they should be _getting_ that feature.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">

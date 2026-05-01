@@ -69,7 +69,9 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 
 ```html
 <div class="s-banner" role="alert" aria-hidden="false">…</div>
-<div class="s-banner s-banner__important" role="alert" aria-hidden="false">…</div>
+<div class="s-banner s-banner__important" role="alert" aria-hidden="false">
+    …
+</div>
 ```
 
 <Example>
@@ -81,7 +83,13 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 
 ```html
 <div class="s-banner s-banner__info" role="alert" aria-hidden="false">…</div>
-<div class="s-banner s-banner__info s-banner__important" role="alert" aria-hidden="false">…</div>
+<div
+    class="s-banner s-banner__info s-banner__important"
+    role="alert"
+    aria-hidden="false"
+>
+    …
+</div>
 ```
 
 <Example>
@@ -93,7 +101,13 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 
 ```html
 <div class="s-banner s-banner__success" role="alert" aria-hidden="false">…</div>
-<div class="s-banner s-banner__success s-banner__important" role="alert" aria-hidden="false">…</div>
+<div
+    class="s-banner s-banner__success s-banner__important"
+    role="alert"
+    aria-hidden="false"
+>
+    …
+</div>
 ```
 
 <Example>
@@ -105,7 +119,13 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 
 ```html
 <div class="s-banner s-banner__warning" role="alert" aria-hidden="false">…</div>
-<div class="s-banner s-banner__warning s-banner__important" role="alert" aria-hidden="false">…</div>
+<div
+    class="s-banner s-banner__warning s-banner__important"
+    role="alert"
+    aria-hidden="false"
+>
+    …
+</div>
 ```
 
 <Example>
@@ -117,7 +137,13 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 
 ```html
 <div class="s-banner s-banner__danger" role="alert" aria-hidden="false">…</div>
-<div class="s-banner s-banner__danger s-banner__important" role="alert" aria-hidden="false">…</div>
+<div
+    class="s-banner s-banner__danger s-banner__important"
+    role="alert"
+    aria-hidden="false"
+>
+    …
+</div>
 ```
 
 <Example>
@@ -128,8 +154,16 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 ### Featured
 
 ```html
-<div class="s-banner s-banner__featured" role="alert" aria-hidden="false">…</div>
-<div class="s-banner s-banner__featured s-banner__important" role="alert" aria-hidden="false">…</div>
+<div class="s-banner s-banner__featured" role="alert" aria-hidden="false">
+    …
+</div>
+<div
+    class="s-banner s-banner__featured s-banner__important"
+    role="alert"
+    aria-hidden="false"
+>
+    …
+</div>
 ```
 
 <Example>
@@ -140,8 +174,16 @@ Refer to the [Classes section](#classes) for more information on how to apply th
 ### Activity
 
 ```html
-<div class="s-banner s-banner__activity" role="alert" aria-hidden="false">…</div>
-<div class="s-banner s-banner__activity s-banner__important" role="alert" aria-hidden="false">…</div>
+<div class="s-banner s-banner__activity" role="alert" aria-hidden="false">
+    …
+</div>
+<div
+    class="s-banner s-banner__activity s-banner__important"
+    role="alert"
+    aria-hidden="false"
+>
+    …
+</div>
 ```
 
 <Example>
@@ -163,21 +205,22 @@ The `.s-banner` component includes a controller to show and hide the banner prog
     aria-labelledby="example-message"
     aria-hidden="true"
     data-controller="s-banner"
-    data-s-banner-target="banner">
+    data-s-banner-target="banner"
+>
     Example banner
 </div>
 …
-<button
-    data-toggle="s-banner"
-    data-target="#example-banner">
+<button data-toggle="s-banner" data-target="#example-banner">
     Show banner
 </button>
 ```
 
 ```javascript
-document.querySelector(".js-banner-toggle").addEventListener("click", function(e) {
-    Stacks.showBanner(document.querySelector("#example-banner"));
-});
+document
+    .querySelector(".js-banner-toggle")
+    .addEventListener("click", function (e) {
+        Stacks.showBanner(document.querySelector("#example-banner"));
+    });
 ```
 
 ### Attributes

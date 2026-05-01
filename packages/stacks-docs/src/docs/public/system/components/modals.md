@@ -101,16 +101,38 @@ You can wire up a modal along with the corresponding button by wrapping both in 
 
 ```html
 <div data-controller="s-modal" data-s-modal-return-element="#js-return-focus">
-    <button type="button" id="js-return-focus" data-action="s-modal#show">Show modal</button>
-    <aside class="s-modal" data-s-modal-target="modal" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true">
+    <button type="button" id="js-return-focus" data-action="s-modal#show">
+        Show modal
+    </button>
+    <aside
+        class="s-modal"
+        data-s-modal-target="modal"
+        id="modal-base"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
+        aria-hidden="true"
+    >
         <div class="s-modal--dialog" role="document">
             <h1 class="s-modal--header" id="modal-title">…</h1>
             <p class="s-modal--body" id="modal-description">…</p>
             <div class="d-flex gx8 s-modal--footer">
                 <button class="s-btn" type="button">…</button>
-                <button class="s-btn s-btn__danger" type="button" data-action="s-modal#hide">…</button>
+                <button
+                    class="s-btn s-btn__danger"
+                    type="button"
+                    data-action="s-modal#hide"
+                >
+                    …
+                </button>
             </div>
-            <button class="s-modal--close s-btn s-btn__clear" type="button" aria-label="Close" data-action="s-modal#hide">
+            <button
+                class="s-modal--close s-btn s-btn__clear"
+                type="button"
+                aria-label="Close"
+                data-action="s-modal#hide"
+            >
                 @Svg.Cross
             </button>
         </div>
@@ -122,16 +144,26 @@ Alternatively, you can also use the built in helper to display a modal straight 
 
 ```html
 <button class="s-btn js-modal-toggle" type="button">Show modal</button>
-<aside class="s-modal" id="modal-base" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true"
-    data-controller="s-modal" data-s-modal-target="modal">
+<aside
+    class="s-modal"
+    id="modal-base"
+    role="dialog"
+    aria-labelledby="modal-title"
+    aria-describedby="modal-description"
+    aria-hidden="true"
+    data-controller="s-modal"
+    data-s-modal-target="modal"
+>
     …
 </aside>
 ```
 
 ```javascript
-document.querySelector(".js-modal-toggle").addEventListener("click", function(e) {
-    Stacks.showModal(document.querySelector("#modal-base"));
-});
+document
+    .querySelector(".js-modal-toggle")
+    .addEventListener("click", function (e) {
+        Stacks.showModal(document.querySelector("#modal-base"));
+    });
 ```
 
 <Example>
@@ -142,21 +174,21 @@ document.querySelector(".js-modal-toggle").addEventListener("click", function(e)
 </Example>
 
 <Modal id="modal-launch-base" visible={showBase} onclose={() => showBase = false}>
-    {#snippet header()}Example title{/snippet}
-    {#snippet body()}{lorem}{/snippet}
-    {#snippet footer()}
-        <Button>Save changes</Button>
-        <Button weight="clear" onclick={() => showBase = false}>Cancel</Button>
-    {/snippet}
+{#snippet header()}Example title{/snippet}
+{#snippet body()}{lorem}{/snippet}
+{#snippet footer()}
+<Button>Save changes</Button>
+<Button weight="clear" onclick={() => showBase = false}>Cancel</Button>
+{/snippet}
 </Modal>
 
 <Modal id="modal-launch-danger" visible={showDanger} state="danger" onclose={() => showDanger = false}>
-    {#snippet header()}Example title{/snippet}
-    {#snippet body()}{lorem}{/snippet}
-    {#snippet footer()}
-        <Button variant="danger">Save changes</Button>
-        <Button weight="clear" onclick={() => showDanger = false}>Cancel</Button>
-    {/snippet}
+{#snippet header()}Example title{/snippet}
+{#snippet body()}{lorem}{/snippet}
+{#snippet footer()}
+<Button variant="danger">Save changes</Button>
+<Button weight="clear" onclick={() => showDanger = false}>Cancel</Button>
+{/snippet}
 </Modal>
 
 ### Danger state
@@ -164,16 +196,36 @@ document.querySelector(".js-modal-toggle").addEventListener("click", function(e)
 Not every modal is sunshine and rainbows. Sometimes there are potentially drastic things that could happen by hitting a confirm button in a modal—such as deleting an account. In moments like this, add the `.s-modal__danger` class to `.s-modal`. Additionally, you should switch the buttons to `.s-btn__danger`, since the main call to action will be destructive.
 
 ```html
-<aside class="s-modal s-modal__danger" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true"
-    data-controller="s-modal" data-s-modal-target="modal">
+<aside
+    class="s-modal s-modal__danger"
+    id="modal-base"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="modal-title"
+    aria-describedby="modal-description"
+    aria-hidden="true"
+    data-controller="s-modal"
+    data-s-modal-target="modal"
+>
     <div class="s-modal--dialog" role="document">
         <h1 class="s-modal--header" id="modal-title">…</h1>
         <p class="s-modal--body" id="modal-description">…</p>
         <div class="d-flex gx8 s-modal--footer">
             <button class="s-btn s-btn__danger" type="button">…</button>
-            <button class="s-btn s-btn__clear" type="button" data-action="s-modal#hide">…</button>
+            <button
+                class="s-btn s-btn__clear"
+                type="button"
+                data-action="s-modal#hide"
+            >
+                …
+            </button>
         </div>
-        <button class="s-modal--close s-btn s-btn__clear" type="button" aria-label="Close" data-action="s-modal#hide">
+        <button
+            class="s-modal--close s-btn s-btn__clear"
+            type="button"
+            aria-label="Close"
+            data-action="s-modal#hide"
+        >
             @Svg.Cross
         </button>
     </div>
@@ -203,14 +255,29 @@ Not every modal is sunshine and rainbows. Sometimes there are potentially drasti
 Sometimes it's appropriate to confirm a user's action with some confetti. You can combine our [confetti background utility](/system/base/backgrounds#confetti) with some extra spacing by adding the `s-modal__celebration` modifier.
 
 ```html
-<aside class="s-modal s-modal__celebration" id="modal-base" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" aria-hidden="true" data-controller="s-modal" data-s-modal-target="modal">
+<aside
+    class="s-modal s-modal__celebration"
+    id="modal-base"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="modal-title"
+    aria-describedby="modal-description"
+    aria-hidden="true"
+    data-controller="s-modal"
+    data-s-modal-target="modal"
+>
     <div class="s-modal--dialog" role="document">
         <h1 class="s-modal--header" id="modal-title">…</h1>
         <p class="s-modal--body" id="modal-description">…</p>
         <div class="d-flex gx8 s-modal--footer">
             <button class="s-btn" type="button">…</button>
         </div>
-        <button class="s-modal--close s-btn s-btn__clear" type="button" aria-label="Close" data-action="s-modal#hide">
+        <button
+            class="s-modal--close s-btn s-btn__clear"
+            type="button"
+            aria-label="Close"
+            data-action="s-modal#hide"
+        >
             @Svg.Cross
         </button>
     </div>

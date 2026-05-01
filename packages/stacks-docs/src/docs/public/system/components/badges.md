@@ -96,9 +96,7 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
 ### Default
 
 ```html
-<span class="s-badge">
-    default
-</span>
+<span class="s-badge"> default </span>
 ```
 
 <Example>
@@ -227,38 +225,14 @@ Badges that display achievements a user has earned for their contributions withi
 Use State badges to communicate semantic status or severity, such as success, warning, or danger. These variants apply specific system colors to convey meaning and can be configured with or without icons.
 
 ```html
-<span class="s-badge">
-    @Svg.Document
-    Archived
-</span>
-<span class="s-badge s-badge__info">
-    @Svg.Compose
-    Draft
-</span>
-<span class="s-badge s-badge__warning">
-    @Svg.Eye
-    Review
-</span>
-<span class="s-badge s-badge__danger">
-    @Svg.Flag
-    Closed
-</span>
-<span class="s-badge s-badge__critical">
-    @Svg.Challenge
-    Deleted
-</span>
-<span class="s-badge s-badge__tonal">
-    @Svg.Key
-    Pinned
-</span>
-<span class="s-badge s-badge__success">
-    @Svg.Check
-    Success
-</span>
-<span class="s-badge s-badge__featured">
-    @Svg.Star
-    New
-</span>
+<span class="s-badge"> @Svg.Document Archived </span>
+<span class="s-badge s-badge__info"> @Svg.Compose Draft </span>
+<span class="s-badge s-badge__warning"> @Svg.Eye Review </span>
+<span class="s-badge s-badge__danger"> @Svg.Flag Closed </span>
+<span class="s-badge s-badge__critical"> @Svg.Challenge Deleted </span>
+<span class="s-badge s-badge__tonal"> @Svg.Key Pinned </span>
+<span class="s-badge s-badge__success"> @Svg.Check Success </span>
+<span class="s-badge s-badge__featured"> @Svg.Star New </span>
 ```
 
 <Example>
@@ -275,12 +249,10 @@ Use the squared variant sparingly to provide additional emphasis, reserving it p
 
 ```html
 <span class="s-badge s-badge__squared s-badge__success">
-    @Svg.Check
-    Accepted answer
+    @Svg.Check Accepted answer
 </span>
 <span class="s-badge s-badge__squared s-badge__featured">
-    @Svg.VoteUp
-    Earn badge
+    @Svg.VoteUp Earn badge
 </span>
 ```
 
@@ -298,19 +270,13 @@ Emboldens the above visual styles by strengthening the background saturation. Th
 
 ```html
 <span class="s-badge s-badge__warning s-badge__squared s-badge__important">
-    @Svg.Notification
-    Needs attention
+    @Svg.Notification Needs attention
 </span>
 <span class="s-badge s-badge__danger s-badge__important">
-    @Svg.VoteUp
-    Ending soon
+    @Svg.VoteUp Ending soon
 </span>
-<span class="s-badge s-badge__critical s-badge__important">
-    Spam
-</span>
-<span class="s-badge s-badge__info s-badge__sm s-badge__important">
-    +100
-</span>
+<span class="s-badge s-badge__critical s-badge__important"> Spam </span>
+<span class="s-badge s-badge__info s-badge__sm s-badge__important"> +100 </span>
 ```
 
 <Example>
@@ -346,15 +312,9 @@ Emboldens the above visual styles by strengthening the background saturation. Th
 Badges come in three sizes.
 
 ```html
-<span class="s-badge s-badge__sm">
-    Small
-</span>
-<span class="s-badge">
-    Default
-</span>
-<span class="s-badge s-badge__lg">
-    Large
-</span>
+<span class="s-badge s-badge__sm"> Small </span>
+<span class="s-badge"> Default </span>
+<span class="s-badge s-badge__lg"> Large </span>
 ```
 
 <Example>

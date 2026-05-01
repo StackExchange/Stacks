@@ -25,7 +25,7 @@ Before writing anything, make sure you know the answers to these questions:
 - How can it be fixed?
 - Is it a user or system error, or both?
 
-How can we expect a user to know what's going on and how to fix something if *we* don't?
+How can we expect a user to know what's going on and how to fix something if _we_ don't?
 
 ### Set a basic structure
 

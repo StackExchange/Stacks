@@ -128,20 +128,17 @@ Icons can be added to menu items to help visually distinguish actions. Include t
 <ul class="s-menu" role="menu">
     <li class="s-menu--item" role="menuitem">
         <a class="s-menu--action" href="#">
-            @Svg.Home.With("s-menu--icon")
-            Home
+            @Svg.Home.With("s-menu--icon") Home
         </a>
     </li>
     <li class="s-menu--item" role="menuitem">
         <a class="s-menu--action" href="#">
-            @Svg.Inbox.With("s-menu--icon")
-            Inbox
+            @Svg.Inbox.With("s-menu--icon") Inbox
         </a>
     </li>
     <li class="s-menu--item" role="menuitem">
         <a class="s-menu--action" href="#">
-            @Svg.Settings.With("s-menu--icon")
-            Settings
+            @Svg.Settings.With("s-menu--icon") Settings
         </a>
     </li>
 </ul>
@@ -166,7 +163,7 @@ To create selectable menu items, add `.s-checkbox.s-checkbox__checkmark` or `.s-
     <legend class="s-menu--title">…</legend>
     <div class="s-menu--item">
         <label class="s-menu--action s-radio s-radio__checkmark" for="…">
-            <input type="radio" id="…" name="…" value="…">
+            <input type="radio" id="…" name="…" value="…" />
             …
         </label>
     </div>
@@ -177,7 +174,7 @@ To create selectable menu items, add `.s-checkbox.s-checkbox__checkmark` or `.s-
     <legend class="s-menu--title">…</legend>
     <div class="s-menu--item">
         <label class="s-menu--action s-checkbox s-checkbox__checkmark" for="…">
-            <input type="checkbox" id="…" name="…" value="…">
+            <input type="checkbox" id="…" name="…" value="…" />
             …
         </label>
     </div>
@@ -221,14 +218,14 @@ In the case of user management, it's appropriate to include radio options. In th
     <fieldset>
         <legend class="s-menu--title">…</legend>
         <label class="s-menu--item s-radio" for="…">
-            <input type="radio" name="…" id="…" role="menuitemradio" checked>
+            <input type="radio" name="…" id="…" role="menuitemradio" checked />
             <div>
                 <div class="s-label">…</div>
                 <div class="s-description mt2">…</div>
             </div>
         </label>
         <label class="s-menu--item s-radio" for="…">
-            <input type="radio" name="…" id="…" role="menuitemradio">
+            <input type="radio" name="…" id="…" role="menuitemradio" />
             <div>
                 <div class="s-label">…</div>
                 <div class="s-description mt2">…</div>

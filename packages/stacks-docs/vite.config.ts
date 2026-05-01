@@ -27,7 +27,10 @@ export default defineConfig({
             {
                 // Exact match only — subpath imports like /dist/css/stacks.css are unaffected
                 find: /^@stackoverflow\/stacks$/,
-                replacement: resolve(__dirname, "../stacks-classic/lib/esm-no-css.ts"),
+                replacement: resolve(
+                    __dirname,
+                    "../stacks-classic/lib/esm-no-css.ts"
+                ),
             },
         ],
     },

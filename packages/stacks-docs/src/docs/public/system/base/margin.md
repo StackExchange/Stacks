@@ -273,9 +273,7 @@ Immutable margin utilities are based on our global white space scale. These can 
 ### Base examples
 
 ```html
-<div class="mt8 mr4 mb32 ml64">
-    …
-</div>
+<div class="mt8 mr4 mb32 ml64">…</div>
 ```
 
 <Example>
@@ -301,9 +299,7 @@ Immutable margin utilities are based on our global white space scale. These can 
 ### Negative examples
 
 ```html
-<div class="mtn8 mrn4 mbn32 mln64">
-    …
-</div>
+<div class="mtn8 mrn4 mbn32 mln64">…</div>
 ```
 
 <Example>

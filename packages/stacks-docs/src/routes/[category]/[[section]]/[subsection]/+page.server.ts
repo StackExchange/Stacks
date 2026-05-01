@@ -51,7 +51,10 @@ export const load: PageServerLoad = async (event) => {
 
     if (found) {
         const [filename, doc] = found;
-        const loader = (await doc()) as { default: Component; metadata: Record<string, unknown> };
+        const loader = (await doc()) as {
+            default: Component;
+            metadata: Record<string, unknown>;
+        };
 
         const markdown = turndownService.turndown(render(loader.default).body);
 

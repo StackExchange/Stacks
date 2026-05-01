@@ -83,7 +83,7 @@ If an image does not convey any meaning to the user, leave the alt-text blank.
 
 ```html
 <div>
-    <img src="rocket.svg" alt="">
+    <img src="rocket.svg" alt="" />
     <h2>…</h2>
     <p>…</p>
 </div>
@@ -107,7 +107,7 @@ If an image has a label nearby, leave the alt-text blank.
 
 ```html
 <div>
-    <img src="leaderboard.svg" alt="">
+    <img src="leaderboard.svg" alt="" />
     <h2>…</h2>
     <p>…</p>
 </div>
@@ -138,8 +138,8 @@ The nearby text here already explains what the graphic illustrates. If there was
 Inside an `<img>` tag, add the alt-text inside the `alt` attribute:
 
 ```html
-<img src="image.png" alt="The alt text.">
-<img src="image.svg" alt="The alt text.">
+<img src="image.png" alt="The alt text." />
+<img src="image.svg" alt="The alt text." />
 ```
 
 ### Using inline SVG

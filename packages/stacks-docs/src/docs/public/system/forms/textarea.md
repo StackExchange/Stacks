@@ -35,7 +35,11 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
 <div class="d-flex fd-column gy4">
     <label class="s-label" for="example-item">Question body</label>
     <div class="d-flex ps-relative">
-        <textarea class="s-textarea w100" id="example-item" placeholder="…"></textarea>
+        <textarea
+            class="s-textarea w100"
+            id="example-item"
+            placeholder="…"
+        ></textarea>
     </div>
 </div>
 ```
@@ -69,10 +73,16 @@ Validation states provides the user feedback based on their interaction (or lack
 <div class="s-form-group has-warning">
     <label class="s-label" for="example-warning">Description</label>
     <div class="d-flex ps-relative">
-        <textarea class="s-textarea w100" id="example-warning" placeholder="Please describe your problem"></textarea>
+        <textarea
+            class="s-textarea w100"
+            id="example-warning"
+            placeholder="Please describe your problem"
+        ></textarea>
         <svg class="svg-icon s-input-icon" aria-hidden="true">…</svg>
     </div>
-    <p class="s-input-message">Consider entering a description to help us better help you.</p>
+    <p class="s-input-message">
+        Consider entering a description to help us better help you.
+    </p>
 </div>
 ```
 
@@ -93,7 +103,11 @@ Validation states provides the user feedback based on their interaction (or lack
 <div class="s-form-group has-error">
     <label class="s-label" for="example-error">Description</label>
     <div class="d-flex ps-relative">
-        <textarea class="s-textarea w100" id="example-error" placeholder="Please describe your problem"></textarea>
+        <textarea
+            class="s-textarea w100"
+            id="example-error"
+            placeholder="Please describe your problem"
+        ></textarea>
         <svg class="svg-icon s-input-icon" aria-hidden="true">…</svg>
     </div>
     <p class="s-input-message">A description must be provided.</p>
@@ -117,7 +131,13 @@ Validation states provides the user feedback based on their interaction (or lack
 <div class="s-form-group has-success">
     <label class="s-label" for="example-success">Description</label>
     <div class="d-flex ps-relative">
-        <textarea class="s-textarea w100" id="example-success" placeholder="Please describe your problem">…</textarea>
+        <textarea
+            class="s-textarea w100"
+            id="example-success"
+            placeholder="Please describe your problem"
+        >
+…</textarea
+        >
         <svg class="svg-icon s-input-icon" aria-hidden="true">…</svg>
     </div>
     <p class="s-input-message">Thanks for providing a description.</p>
