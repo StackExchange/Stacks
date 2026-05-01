@@ -278,7 +278,7 @@ description: "To avoid specifying color values by hand, we've included a robust 
 ## Brand
 
 <Notice variant="warning" class="s-anchors s-anchors__inherit s-anchors__underlined">
-    <p>Please see <a href="https://alpha.stackoverflow.design/brand/color">the brand guidelines for color use</a>, these should not be used without prior direction from the brand team.</p>
+    <p>Please see <a href="https://stackoverflow.design/brand/color">the brand guidelines for color use</a>, these should not be used without prior direction from the brand team.</p>
 </Notice>
 
 <div class="d-grid g24 mt16 mb32" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
