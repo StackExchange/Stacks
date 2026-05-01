@@ -98,7 +98,7 @@ Draft PRs are welcome for work in progress, but we focus our review time on PRs 
    ```
 6. Push your branch and [open a pull request](https://github.com/StackExchange/Stacks/pulls) with a clear title and description.
 
-All pull requests should target the `main` branch. Pull requests targeting `production` will be rejected.
+All pull requests should target the `main` branch unless the Stacks team specifically asks you to target a release branch.
 
 ## Changesets
 

@@ -178,14 +178,14 @@ We use [changesets](https://github.com/changesets/changesets) to automatize the 
 
 - Every time you do work that requires a new release to be published, [add a changesets entry](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) by running `npx changeset` and follow the instructions on screen. (changes that do not require a new release - e.g. changing a test file - don't need a changeset).
     - When opening a PR without a corresponding changeset the [changesets-bot](https://github.com/apps/changeset-bot) will remind you to do so. It generally makes sense to have one changeset for PR (if the PR changes do not require a new release to be published the bot message can be safely ignored)
-- The [release github workflow](.github/workflows/main.yml) continuously checks if there are new pending changesets in the `beta` branch; if there are, it creates a GH PR (`chore(release)` [see example](https://github.com/StackExchange/apca-check/pull/2)) and continues updating it as more changesets are pushed/merged to the `beta` branch.
-- When we are ready to cut a release we need to simply merge the `chore(release)` PR and the release github workflow will take care of publishing the changes to NPM and create a GH release for us. The `chore(release)` PR also give us an opportunity to adjust the automatically generated changelog when necessary (the entry in the changelog file is also what will end up in the GH release notes).
+- The [release github workflow](.github/workflows/main.yml) runs on `main` and `beta`. On `beta`, it creates and updates the `chore(release)` PR as pending changesets are merged. On `main`, it publishes the latest release to NPM and creates GitHub releases.
+- When we are ready to cut a beta release we merge the `chore(release)` PR. The release github workflow publishes the changes to NPM and gives us an opportunity to adjust the automatically generated changelog before release notes are created.
 
 _The release github workflow only run if the CI workflow (running linter, formatter and tests) is successful: CI is blocking accidental releases_.
 
 _Despite using changesets to communicate the intent of creating releases in a more explicit way, we still follow [conventional commits standards](https://www.conventionalcommits.org/en/v1.0.0/) for keeping our git history easily parseable by the human eye._
 
-Successful releases trigger automatically a new deployment to stackoverflow.design by merging the `main` branch.
+Docs are deployed directly from the current release flow; we no longer merge into a `production` branch to publish stackoverflow.design. Normal contribution PRs target `main`.
 
 ## License
 Code and documentation copyright 2017-2026 Stack Exchange, Inc and released under the [MIT License](/LICENSE.MD).
