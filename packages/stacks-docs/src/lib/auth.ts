@@ -6,7 +6,7 @@ import { env } from "$env/dynamic/private";
 import { getRequestEvent } from "$app/server";
 
 // TODO: Make dynamic once we figure out Netlify env vars at runtime
-const baseURL = "https://alpha.stackoverflow.design";
+const baseURL = "https://stackoverflow.design";
 
 export const auth = betterAuth({
     baseURL,
@@ -27,7 +27,7 @@ export const auth = betterAuth({
         // Okta OAuth via genericOAuth plugin
         genericOAuth({
             config: [
-{
+                {
                     providerId: "okta",
                     clientId: env.AUTH_OKTA_ID || "",
                     clientSecret: env.AUTH_OKTA_SECRET || "",
