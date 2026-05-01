@@ -14,7 +14,7 @@
 
 	import Favicon from '$lib/assets/favicon.svg';
 
-	let { children, data }: { children?: import('svelte').Snippet; data: any } = $props();
+	let { children, data }: { children?: import('svelte').Snippet; data: App.PageData } = $props();
 
 	let mobileMenu = $state(false);
 

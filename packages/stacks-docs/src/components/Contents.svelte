@@ -1,9 +1,7 @@
 <script lang="ts">
   import { SvelteMap } from 'svelte/reactivity';
 
-  type TocItem = Record<string, any>;
-
-  let { toc = [] }: { toc: TocItem[] } = $props();
+  let { toc = [] }: { toc: DocsTocItem[] } = $props();
 
   let activeId = $state<string | null>(null);
   let indicatorTop = $state(0);
@@ -11,8 +9,8 @@
   let navElement: HTMLElement | null = null;
   let linkElements: Map<string, HTMLElement> = new SvelteMap();
   // Flatten toc to get all items including children
-  function flattenToc(items: TocItem[]): TocItem[] {
-    const result: TocItem[] = [];
+  function flattenToc(items: DocsTocItem[]): DocsTocItem[] {
+    const result: DocsTocItem[] = [];
     for (const item of items) {
       result.push(item);
       if (item.children) {

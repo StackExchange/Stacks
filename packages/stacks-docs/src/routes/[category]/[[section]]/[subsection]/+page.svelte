@@ -4,7 +4,7 @@
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
 
-  let { data }: { data: any } = $props();
+  let { data }: { data: App.PageData } = $props();
   let copied = $state(false);
 
   const lastUpdated = $derived(new Date(data?.metadata?.updated).toLocaleDateString('en-US', {
@@ -35,7 +35,7 @@
       <nav class="d-flex ai-center g6 fs-body2 mr-auto" aria-label="breadcrumb">
         {#each data.breadcrumb as crumb, index (crumb.label)}
           {#if index !== 0}<span class="fc-black-300">/</span>{/if}
-          <a href={resolve(crumb.path)} class="s-link fw-bold">{crumb.label}</a>
+          <a href={resolve(crumb.path as `/${string}`)} class="s-link fw-bold">{crumb.label}</a>
         {/each}
         <Button title="Copy link to this page" link icon class="d-inline-flex fc-black-400 h:fc-black-600 ml4" onclick={copyPageUrl}>
           {#if copied}

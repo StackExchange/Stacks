@@ -1,5 +1,5 @@
 <script lang="ts">
-  let { data }: { data: any } = $props();
+  let { data }: { data: App.PageData } = $props();
 
   import { Icon } from '@stackoverflow/stacks-svelte';
   import { IconArrowUpRightBox, IconServiceSvelte } from '@stackoverflow/stacks-icons/icons';
@@ -12,7 +12,7 @@
   import IconResources from '$lib/assets/icons/resources.svg?raw'
   import IconEmail from '$lib/assets/icons/email.svg?raw'
 
-  const icons = {
+  const icons: Record<string, string> = {
     'Product': IconProduct,
     'Copywriting': IconCopywriting,
     'Brand': IconBrand,

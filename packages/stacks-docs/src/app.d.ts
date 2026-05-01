@@ -2,6 +2,36 @@ declare global {
     const __APP_VERSION__: string;
     const __SVELTE_VERSION__: string;
 
+    type DocsTocItem = {
+        id: string;
+        value: string;
+        depth?: number;
+        children?: DocsTocItem[];
+        [key: string]: unknown;
+    };
+
+    type DocsNavItem = {
+        slug: string;
+        title?: string;
+        description?: string;
+        image?: string;
+        externalUrl?: string;
+        private?: boolean;
+        items?: DocsNavItem[];
+        [key: string]: unknown;
+    };
+
+    type DocsMetadata = {
+        title?: string;
+        description?: string;
+        figma?: string;
+        svelte?: string;
+        js?: boolean;
+        updated?: string;
+        toc?: DocsTocItem[];
+        [key: string]: unknown;
+    };
+
     namespace App {
         interface Locals {
             session?: unknown;
@@ -9,7 +39,17 @@ declare global {
         }
 
         interface PageData {
-            [key: string]: any;
+            active?: DocsNavItem;
+            breadcrumb?: { label: string; path: string }[];
+            Content?: import("svelte").Component;
+            filename?: string | null;
+            hideFooter?: boolean;
+            markdown?: string | null;
+            metadata?: DocsMetadata | null;
+            needsAuth?: boolean;
+            source?: string | null;
+            structure?: { navigation?: DocsNavItem[] };
+            [key: string]: unknown;
         }
     }
 }
