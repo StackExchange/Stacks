@@ -58,6 +58,8 @@ jobs:
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/beta'
     needs: [build-and-test]
     runs-on: ubuntu-latest
+    env:
+      BETTER_AUTH_SECRET: ${{ secrets.AUTH_SECRET || 'ci-build-placeholder-secret' }}
     outputs:
       published: ${{ steps.changesets.outputs.published }}
     steps:
