@@ -79,6 +79,7 @@ const baseConfig = (isProd, minify) => ({
         }),
     ],
     resolve: commonResolve,
+    performance: false,
 });
 
 export { tsRule, lessRule, commonResolve };

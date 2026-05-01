@@ -1,0 +1,619 @@
+@import "@stackoverflow/stacks/dist/css/stacks.css";
+
+/* Brand color tokens — used by brand docs components.
+   The utility classes (.bg-brand-*, .fc-brand-*) are already provided by Stacks CSS. */
+:root {
+    --brand-color-orange: #ff5e00;
+    --brand-color-orange-medium: #6e1527;
+    --brand-color-orange-dark: #31070f;
+
+    --brand-color-white: #ffffff;
+    --brand-color-black: #201c1d;
+    --brand-color-off-white: #f0efee;
+
+    --brand-color-beige: #998b7a;
+
+    --brand-color-blue: #5074ef;
+    --brand-color-blue-light: #c6d1e1;
+    --brand-color-blue-dark: #00165e;
+
+    --brand-color-purple: #9e9cff;
+    --brand-color-purple-dark: #390a91;
+
+    --brand-color-pink: #f39fff;
+    --brand-color-pink-dark: #4d1855;
+
+    --brand-color-green: #85af24;
+    --brand-color-green-dark: #253702;
+
+    --brand-color-yellow: #ffcc01;
+    --brand-color-yellow-dark: #413101;
+
+    --brand-color-gray: #575757;
+    --brand-color-gray-200: #dee0e3;
+}
+
+/* Custom theme color palette — activates when body has theme-custom + themed classes.
+   Primary: teal (h:170 s:37% l:48%), Secondary: purple (h:260 s:29% l:55%).
+   Matches the custom theme defined in stacks-docs. */
+body.theme-custom.themed {
+    --theme-base-primary-color-h: 170;
+    --theme-base-primary-color-s: 37%;
+    --theme-base-primary-color-l: 48%;
+    --theme-primary-custom-100: hsl(
+        var(--theme-base-primary-color-h),
+        var(--theme-base-primary-color-s),
+        calc(
+            var(--theme-base-primary-color-l) +
+                ((100% - var(--theme-base-primary-color-l)) * 0.9)
+        )
+    );
+    --theme-primary-custom-200: hsl(
+        var(--theme-base-primary-color-h),
+        var(--theme-base-primary-color-s),
+        calc(
+            var(--theme-base-primary-color-l) +
+                ((100% - var(--theme-base-primary-color-l)) * 0.75)
+        )
+    );
+    --theme-primary-custom-300: hsl(
+        var(--theme-base-primary-color-h),
+        var(--theme-base-primary-color-s),
+        calc(
+            var(--theme-base-primary-color-l) +
+                ((100% - var(--theme-base-primary-color-l)) * 0.5)
+        )
+    );
+    --theme-primary-custom-400: hsl(
+        var(--theme-base-primary-color-h),
+        var(--theme-base-primary-color-s),
+        var(--theme-base-primary-color-l)
+    );
+    --theme-primary-custom-500: hsl(
+        var(--theme-base-primary-color-h),
+        var(--theme-base-primary-color-s),
+        calc(
+            var(--theme-base-primary-color-l) +
+                (var(--theme-base-primary-color-l) * -0.3)
+        )
+    );
+    --theme-primary-custom-600: hsl(
+        var(--theme-base-primary-color-h),
+        var(--theme-base-primary-color-s),
+        calc(
+            var(--theme-base-primary-color-l) +
+                (var(--theme-base-primary-color-l) * -0.6)
+        )
+    );
+    --theme-primary-custom: var(--theme-primary-custom-400);
+    --theme-base-secondary-color-h: 260;
+    --theme-base-secondary-color-s: 29%;
+    --theme-base-secondary-color-l: 55%;
+    --theme-secondary-custom-100: hsl(
+        var(--theme-base-secondary-color-h),
+        var(--theme-base-secondary-color-s),
+        calc(
+            var(--theme-base-secondary-color-l) +
+                ((100% - var(--theme-base-secondary-color-l)) * 0.9)
+        )
+    );
+    --theme-secondary-custom-200: hsl(
+        var(--theme-base-secondary-color-h),
+        var(--theme-base-secondary-color-s),
+        calc(
+            var(--theme-base-secondary-color-l) +
+                ((100% - var(--theme-base-secondary-color-l)) * 0.75)
+        )
+    );
+    --theme-secondary-custom-300: hsl(
+        var(--theme-base-secondary-color-h),
+        var(--theme-base-secondary-color-s),
+        calc(
+            var(--theme-base-secondary-color-l) +
+                ((100% - var(--theme-base-secondary-color-l)) * 0.5)
+        )
+    );
+    --theme-secondary-custom-400: hsl(
+        var(--theme-base-secondary-color-h),
+        var(--theme-base-secondary-color-s),
+        var(--theme-base-secondary-color-l)
+    );
+    --theme-secondary-custom-500: hsl(
+        var(--theme-base-secondary-color-h),
+        var(--theme-base-secondary-color-s),
+        calc(
+            var(--theme-base-secondary-color-l) +
+                (var(--theme-base-secondary-color-l) * -0.3)
+        )
+    );
+    --theme-secondary-custom-600: hsl(
+        var(--theme-base-secondary-color-h),
+        var(--theme-base-secondary-color-s),
+        calc(
+            var(--theme-base-secondary-color-l) +
+                (var(--theme-base-secondary-color-l) * -0.6)
+        )
+    );
+    --theme-secondary-custom: var(--theme-secondary-custom-400);
+    --theme-secondary-custom-focus-ring: hsla(
+        var(--theme-base-secondary-color-h),
+        var(--theme-base-secondary-color-s),
+        var(--theme-base-secondary-color-l),
+        0.15
+    );
+    --theme-secondary-custom-translucent: hsla(
+        var(--theme-base-secondary-color-h),
+        var(--theme-base-secondary-color-s),
+        var(--theme-base-secondary-color-l),
+        0.15
+    );
+    /* Dark mode variants */
+    --theme-dark-primary-color-h: 170;
+    --theme-dark-primary-color-s: 50%;
+    --theme-dark-primary-color-l: 60%;
+    --theme-dark-primary-custom-100: hsl(
+        var(--theme-dark-primary-color-h),
+        calc(
+            var(--theme-dark-primary-color-s) +
+                (var(--theme-dark-primary-color-s) * -0.6)
+        ),
+        calc(
+            var(--theme-dark-primary-color-l) +
+                (var(--theme-dark-primary-color-l) * -0.7)
+        )
+    );
+    --theme-dark-primary-custom-200: hsl(
+        var(--theme-dark-primary-color-h),
+        calc(
+            var(--theme-dark-primary-color-s) +
+                (var(--theme-dark-primary-color-s) * -0.4)
+        ),
+        calc(
+            var(--theme-dark-primary-color-l) +
+                (var(--theme-dark-primary-color-l) * -0.5)
+        )
+    );
+    --theme-dark-primary-custom-300: hsl(
+        var(--theme-dark-primary-color-h),
+        calc(
+            var(--theme-dark-primary-color-s) +
+                (var(--theme-dark-primary-color-s) * -0.3)
+        ),
+        calc(
+            var(--theme-dark-primary-color-l) +
+                (var(--theme-dark-primary-color-l) * -0.2)
+        )
+    );
+    --theme-dark-primary-custom-400: hsl(
+        var(--theme-dark-primary-color-h),
+        var(--theme-dark-primary-color-s),
+        var(--theme-dark-primary-color-l)
+    );
+    --theme-dark-primary-custom-500: hsl(
+        var(--theme-dark-primary-color-h),
+        var(--theme-dark-primary-color-s),
+        calc(
+            var(--theme-dark-primary-color-l) +
+                ((100% - var(--theme-dark-primary-color-l)) * 0.5)
+        )
+    );
+    --theme-dark-primary-custom-600: hsl(
+        var(--theme-dark-primary-color-h),
+        var(--theme-dark-primary-color-s),
+        calc(
+            var(--theme-dark-primary-color-l) +
+                ((100% - var(--theme-dark-primary-color-l)) * 0.8)
+        )
+    );
+    --theme-dark-primary-custom: var(--theme-dark-primary-custom-400);
+    --theme-dark-secondary-color-h: 260;
+    --theme-dark-secondary-color-s: 70%;
+    --theme-dark-secondary-color-l: 70%;
+    --theme-dark-secondary-custom-100: hsl(
+        var(--theme-dark-secondary-color-h),
+        calc(
+            var(--theme-dark-secondary-color-s) +
+                (var(--theme-dark-secondary-color-s) * -0.6)
+        ),
+        calc(
+            var(--theme-dark-secondary-color-l) +
+                (var(--theme-dark-secondary-color-l) * -0.7)
+        )
+    );
+    --theme-dark-secondary-custom-200: hsl(
+        var(--theme-dark-secondary-color-h),
+        calc(
+            var(--theme-dark-secondary-color-s) +
+                (var(--theme-dark-secondary-color-s) * -0.4)
+        ),
+        calc(
+            var(--theme-dark-secondary-color-l) +
+                (var(--theme-dark-secondary-color-l) * -0.5)
+        )
+    );
+    --theme-dark-secondary-custom-300: hsl(
+        var(--theme-dark-secondary-color-h),
+        calc(
+            var(--theme-dark-secondary-color-s) +
+                (var(--theme-dark-secondary-color-s) * -0.3)
+        ),
+        calc(
+            var(--theme-dark-secondary-color-l) +
+                (var(--theme-dark-secondary-color-l) * -0.2)
+        )
+    );
+    --theme-dark-secondary-custom-400: hsl(
+        var(--theme-dark-secondary-color-h),
+        var(--theme-dark-secondary-color-s),
+        var(--theme-dark-secondary-color-l)
+    );
+    --theme-dark-secondary-custom-500: hsl(
+        var(--theme-dark-secondary-color-h),
+        var(--theme-dark-secondary-color-s),
+        calc(
+            var(--theme-dark-secondary-color-l) +
+                ((100% - var(--theme-dark-secondary-color-l)) * 0.5)
+        )
+    );
+    --theme-dark-secondary-custom-600: hsl(
+        var(--theme-dark-secondary-color-h),
+        var(--theme-dark-secondary-color-s),
+        calc(
+            var(--theme-dark-secondary-color-l) +
+                ((100% - var(--theme-dark-secondary-color-l)) * 0.8)
+        )
+    );
+    --theme-dark-secondary-custom: var(--theme-dark-secondary-custom-400);
+    --theme-dark-secondary-custom-focus-ring: hsla(
+        var(--theme-dark-secondary-color-h),
+        var(--theme-dark-secondary-color-s),
+        var(--theme-dark-secondary-color-l),
+        0.25
+    );
+    --theme-dark-secondary-custom-translucent: hsla(
+        var(--theme-dark-secondary-color-h),
+        var(--theme-dark-secondary-color-s),
+        var(--theme-dark-secondary-color-l),
+        0.25
+    );
+}
+
+/* Override Stacks defaults */
+html,
+body {
+    --fw-bold: 700;
+    --ff-sans:
+        "Stack Sans Text", -apple-system, BlinkMacSystemFont,
+        "Segoe UI Adjusted", "Segoe UI", "Liberation Sans", sans-serif;
+    --ff-mono:
+        "IBM Plex Mono", ui-monospace, "Cascadia Mono", "Segoe UI Mono",
+        "Liberation Mono", Menlo, Monaco, Consolas, monospace;
+}
+
+@font-face {
+    font-family: "Stack Sans Headline";
+    src: url("/fonts/StackSansHeadline[wght].woff2") format("woff2-variations");
+}
+
+@font-face {
+    font-family: "Stack Sans Text";
+    src: url("/fonts/StackSansText[wght].woff2") format("woff2-variations");
+}
+
+@font-face {
+    font-family: "IBM Plex Mono";
+    src: url("/fonts/IBMPlexMono-Regular.woff2") format("woff2");
+}
+
+.ff-stack-sans-headline,
+.ff-stack-sans-headline-notch {
+    font-family: "Stack Sans Headline";
+}
+.ff-stack-sans-headline-notch {
+    font-feature-settings: "ss01" 1 !important;
+}
+
+.docs-copy strong {
+    color: var(--black-600);
+    font-weight: var(--fw-bold);
+}
+
+body {
+    background-color: var(--black-100);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: "Stack Sans Headline";
+    font-weight: 400;
+}
+h1 {
+    font-size: var(--fs-display3);
+    line-height: 106%;
+    font-weight: 500;
+    margin-top: 0;
+}
+h1 {
+    font-feature-settings: "ss01" 1;
+}
+/* Three-column page layout — nav | content | toc */
+.layout-root {
+    min-height: 100vh;
+}
+
+.layout-hero {
+    aspect-ratio: 1030 / 540;
+}
+
+/* Prose paragraph styling — applied to all p elements by the addDocClasses rehype plugin */
+.docs-copy {
+    color: var(--black-500);
+    font-size: var(--fs-body2);
+    line-height: var(--lh-lg);
+    margin-bottom: var(--su16);
+    margin-top: 0;
+}
+.docs-copy a:not([class]),
+.docs-copy .s-link {
+    text-decoration: underline;
+}
+.docs-copy .docs-link {
+    color: inherit;
+}
+.docs-copy code {
+    background-color: var(--black-200);
+    color: var(--black-600);
+    font-family: var(--ff-mono);
+    font-size: var(--fs-fine);
+    padding: var(--su2) var(--su4);
+}
+/* Document styles — individual classes applied by the addDocClasses rehype plugin */
+
+/* Links and SVGs inside headings */
+.docs-heading .docs-link,
+.docs-heading .docs-heading-anchor {
+    color: inherit !important;
+    text-decoration: none;
+}
+.docs-heading svg {
+    vertical-align: middle;
+    margin-right: var(--su4);
+}
+
+/* Heading flex layout (heading text + anchor icon side-by-side) */
+.docs-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--su8);
+    font-weight: var(--fw-bold);
+}
+
+/* Heading anchor icon appended by rehype-autolink-headings */
+.docs-heading-anchor {
+    flex-shrink: 0;
+    color: var(--black-300);
+    line-height: 1;
+    margin-bottom: var(--su2);
+}
+.docs-heading-anchor:hover {
+    color: var(--black-600);
+}
+
+/* Heading-specific overrides */
+.docs-h2 {
+    font-size: var(--fs-headline1);
+    margin-bottom: var(--su16);
+}
+.docs-h3 {
+    color: var(--black-500);
+    margin-top: var(--su48);
+}
+.docs-h2 + .docs-section > .docs-h3 {
+    margin-top: var(--su24);
+}
+.docs-h4 {
+    color: var(--black-400);
+    margin-bottom: var(--su12);
+    margin-top: var(--su16);
+}
+
+/* Images and iframes */
+.docs-img,
+.docs-iframe {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.docs-iframe {
+    aspect-ratio: 16 / 9.675;
+}
+
+/* Grid layout helper */
+.docs-grid {
+    margin: var(--su12) 0;
+}
+.docs-grid:not(.docs-grid + .docs-grid):not(:has(+ .docs-grid)) {
+    margin: var(--su32) 0;
+}
+
+/* Sections generated by rehype-sectionize */
+.docs-section {
+    border-top: 1px solid var(--black-150);
+    position: relative;
+    padding: calc(var(--su24) + var(--sun4)) 0;
+    margin: calc(var(--su24) + var(--sun4)) 0;
+}
+.docs-section[data-heading-rank] {
+    margin-top: var(--su24);
+}
+.docs-section[data-heading-rank="2"] > .docs-p {
+    color: var(--fc-medium);
+}
+.docs-section > .docs-section {
+    border-top: 0;
+    padding: 0;
+    margin: 0;
+}
+
+/* Prose elements */
+.docs-ul,
+.docs-copy ol {
+    margin-bottom: 1.1em;
+    margin-top: 0;
+}
+.docs-li {
+    max-width: var(--su848);
+}
+.docs-ul > .docs-li {
+    list-style-type: square;
+}
+.docs-nav .docs-li {
+    list-style: none;
+}
+.docs-link {
+    font-weight: 500;
+}
+
+/* Style for some columns we want a strike through */
+
+.column-strike:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    content: "";
+    pointer-events: none;
+    user-select: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 300 300'><line x1='0%' y1='100%' x2='100%' y2='0%' stroke='red' /></svg>");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size:
+        120% 120%,
+        auto;
+}
+
+/* Legacy doc utility classes (migrated from stacks-docs) */
+
+.stacks-code,
+.docs-code {
+    background-color: var(--black-150);
+    border: var(--su1) solid var(--black-200);
+    border-radius: var(--su2);
+    font-family: var(--ff-mono);
+    font-size: var(--fs-fine);
+    overflow-wrap: break-word;
+    margin: var(--sun1);
+    padding: 0.125em 0.1875em 0.0625em;
+    white-space: normal;
+}
+
+.stacks-preview--example,
+.docs-preview--example {
+    padding: var(--su16);
+    border: var(--su1) solid var(--black-225);
+    font-size: var(--fs-body1);
+    margin-bottom: var(--su48);
+}
+
+.stacks-bg-img,
+.docs-bg-img {
+    background-image: url("/assets/img/illustrationBgImage.svg");
+}
+
+.docs-box {
+    background-color: var(--black-200);
+    border: var(--su1) solid var(--black-225);
+    box-sizing: border-box;
+    color: var(--black-600);
+    font-family: var(--ff-mono);
+    font-size: var(--fs-caption);
+    padding: var(--su8);
+}
+
+.docs-box .docs-box {
+    background-color: var(--black-150);
+    border-color: var(--black-300);
+}
+
+/* Docs card — used in example containers to simulate a card-like context */
+.docs-card {
+    border: var(--su1) solid var(--black-225);
+    border-radius: var(--su4);
+    padding: var(--su16);
+}
+
+/* Notices in doc content get breathing room below */
+.docs .s-notice {
+    margin-bottom: var(--su16);
+}
+
+/* Paragraphs inside doc notices inherit docs-copy typography */
+.docs .s-notice p {
+    color: inherit;
+    font-size: var(--fs-body1);
+    line-height: var(--lh-lg);
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.docs .s-notice p strong {
+    font-weight: var(--fw-bold);
+}
+
+/* s-prose inside example containers — reset docs-specific font overrides so
+   the prose renders with standard product fonts, not the docs custom typefaces.
+   Covers both <Example> containers and the prose page's custom expandable wrapper. */
+.example-container .s-prose,
+.docs-prose-example .s-prose {
+    --ff-sans:
+        -apple-system, BlinkMacSystemFont, "Segoe UI Adjusted", "Segoe UI",
+        "Liberation Sans", sans-serif;
+    --ff-mono:
+        ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono",
+        Menlo, Monaco, Consolas, monospace;
+    font-family: var(--ff-sans);
+    font-weight: initial;
+}
+
+/* The global h1–h5 rule applies "Stack Sans Headline" with higher specificity
+   than the container reset above, so headings need an explicit override. */
+.example-container h1,
+.example-container h2,
+.example-container h3,
+.example-container h4,
+.example-container h5,
+.example-container h6,
+.example-container .s-prose h1,
+.example-container .s-prose h2,
+.example-container .s-prose h3,
+.example-container .s-prose h4,
+.example-container .s-prose h5,
+.example-container .s-prose h6,
+.docs-prose-example .s-prose h1,
+.docs-prose-example .s-prose h2,
+.docs-prose-example .s-prose h3,
+.docs-prose-example .s-prose h4,
+.docs-prose-example .s-prose h5,
+.docs-prose-example .s-prose h6 {
+    font-family: var(--ff-sans);
+}
+
+.hmn6 .s-editor-resizable {
+    min-height: var(--su640) !important;
+}
+
+/* Agolia Docsearch */
+
+.DocSearch-Container {
+    z-index: 9999 !important;
+}
+.DocSearch-Footer {
+    margin: 0;
+}

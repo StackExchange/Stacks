@@ -43,8 +43,18 @@ jobs:
         if: inputs.needs_playwright == true
         run: npx playwright install --with-deps
 
+      - name: 🔑 Setup SSH for private submodule
+        run: |
+          mkdir -p ~/.ssh
+          echo -e "${SUBMODULE_SSH_KEY//_/\\n}" > ~/.ssh/id_rsa
+          chmod og-rwx ~/.ssh/id_rsa
+        env:
+          SUBMODULE_SSH_KEY: ${{ secrets.SUBMODULE_SSH_KEY }}
+
       - name: ▶️ ${{ inputs.command_description }}
         run: ${{ inputs.command }}
+        env:
+          BETTER_AUTH_SECRET: ${{ secrets.AUTH_SECRET || 'ci-build-placeholder-secret' }}
 
       - name: ⬆️ Upload Visual Regression Test Results
         uses: actions/upload-artifact@v4

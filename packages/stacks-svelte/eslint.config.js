@@ -41,6 +41,11 @@ export default [
         },
     },
     {
+        rules: {
+            "svelte/no-navigation-without-resolve": "off",
+        },
+    },
+    {
         ignores: ["netlify/*", "storybook-static/*", "lib/*", ".svelte-kit/*"],
     },
 ];

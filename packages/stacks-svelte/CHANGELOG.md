@@ -1,5 +1,11 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.31
+
+### Patch Changes
+
+- [#2224](https://github.com/StackExchange/Stacks/pull/2224) [`051f747`](https://github.com/StackExchange/Stacks/commit/051f74771721484ae99a69375c7ff709c1d89e2a) Thanks [@dancormier](https://github.com/dancormier)! - Pre-bundle dayjs plugins with .js extension in optimizeDeps
+
 ## 1.0.0-beta.30
 
 ### Patch Changes
