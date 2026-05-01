@@ -1,5 +1,10 @@
 import { render } from "svelte/server";
-import htmlToMd from "$src/lib/htmlToMd";
+import TurndownService from "turndown";
+
+const turndownService = new TurndownService({
+    headingStyle: "atx",
+    codeBlockStyle: "fenced",
+});
 
 export async function GET() {
     const baseUrl = "https://stackoverflow.design/";
@@ -43,7 +48,7 @@ Date: ${new Date().toISOString()}
 description: ${page.metadata?.description ?? ""}
 
 Content:
-${htmlToMd(render(page.default).body)}
+${turndownService.turndown(render(page.default).body)}
 
 ---
 
