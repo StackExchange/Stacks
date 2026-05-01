@@ -114,13 +114,14 @@ Images and non-markdown files are automatically copied from `src/docs/` to `stat
 
 #### Private (`src/docs/private`)
 
-Employee-only documentation lives in a seperate repo: https://github.com/StackEng/StacksDocsPrivate
+Employee-only documentation lives in a separate repo: https://github.com/StackEng/StacksDocsPrivate
 
-This is a **git submodule** that requires Stack Overflow employee access. To set it up:
+The private repo is cloned into `src/docs/private` during deploy builds when the `SUBMODULE_SSH_KEY` secret is available. The directory is ignored and should not be committed.
+
+To work with private docs locally, clone the private repo manually:
 
 ```sh
-git submodule init
-git submodule update
+git clone git@github.com:StackEng/StacksDocsPrivate.git src/docs/private
 ```
 
 The private docs follow the same structure and conventions as public docs. Mark pages as private in `structure.yaml` with `private: true`.
