@@ -72,13 +72,13 @@ By default, our indicator has no positioning attached to it. Depending on your c
     <div class="v-visible-sr">…</div>
 </div>
 
-<div class="s-activity-indicator">
-    …
-</div>
+<div class="s-activity-indicator">…</div>
 
 <a href="#" class="s-link s-link__muted">
     <div class="s-avatar bg-red-400 ps-relative">
-        <div class="s-avatar--indicator s-activity-indicator s-activity-indicator__sm">
+        <div
+            class="s-avatar--indicator s-activity-indicator s-activity-indicator__sm"
+        >
             <div class="v-visible-sr">…</div>
         </div>
         <div class="s-avatar--letter">…</div>
@@ -90,7 +90,9 @@ By default, our indicator has no positioning attached to it. Depending on your c
 <div class="ps-relative">
     @Svg.Notification
 
-    <div class="s-activity-indicator s-activity-indicator__sm ps-absolute tn4 rn4 ba baw2 bc-white box-content">
+    <div
+        class="s-activity-indicator s-activity-indicator__sm ps-absolute tn4 rn4 ba baw2 bc-white box-content"
+    >
         <div class="v-visible-sr">…</div>
     </div>
 </div>
@@ -100,7 +102,8 @@ By default, our indicator has no positioning attached to it. Depending on your c
 
     <div class="ps-absolute ba baw2 bc-white bar-pill lh-xs tn8 rn8">
         <div class="s-activity-indicator">
-            3 <div class="v-visible-sr">…</div>
+            3
+            <div class="v-visible-sr">…</div>
         </div>
     </div>
 </div>
@@ -135,6 +138,7 @@ By default, our indicator has no positioning attached to it. Depending on your c
             </div>
         </div>
     </div>
+
 </Example>
 
 ### Variations
@@ -190,4 +194,5 @@ Stacks also provides alternative styling for success, warning, and danger states
             </div>
         {/each}
     </div>
+
 </Example>

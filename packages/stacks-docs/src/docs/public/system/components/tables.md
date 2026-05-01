@@ -561,15 +561,21 @@ The `<th>` cells should include arrows to indicate sortability or the currently 
         <thead>
             <tr>
                 <th scope="col" class="is-sorted">
-                    <button type="button">Listing <svg class="svg-icon">…</svg></button>
+                    <button type="button">
+                        Listing <svg class="svg-icon">…</svg>
+                    </button>
                 </th>
                 <th scope="col">
-                    <button type="button">Status <svg class="svg-icon">…</svg></button>
+                    <button type="button">
+                        Status <svg class="svg-icon">…</svg>
+                    </button>
                 </th>
                 …
             </tr>
         </thead>
-        <tbody>…</tbody>
+        <tbody>
+            …
+        </tbody>
     </table>
 </div>
 ```
@@ -656,19 +662,47 @@ If the table contains rows that should not be sorted, but rather always be at th
                 <th scope="col" data-s-table-target="column">
                     <button data-action="click-&gt;s-table#sort">
                         Season
-                        <svg class="js-sorting-indicator js-sorting-indicator-asc d-none">…</svg>
-                        <svg class="js-sorting-indicator js-sorting-indicator-desc d-none">…</svg>
-                        <svg class="js-sorting-indicator js-sorting-indicator-none">…</svg>
+                        <svg
+                            class="js-sorting-indicator js-sorting-indicator-asc d-none"
+                        >
+                            …
+                        </svg>
+                        <svg
+                            class="js-sorting-indicator js-sorting-indicator-desc d-none"
+                        >
+                            …
+                        </svg>
+                        <svg
+                            class="js-sorting-indicator js-sorting-indicator-none"
+                        >
+                            …
+                        </svg>
                     </button>
                 </th>
                 …
             </tr>
         </thead>
         <tbody>
-            <tr><td>Winter</td><td data-s-table-sort-val="12">December</td><td>2</td></tr>
-            <tr><td>Spring</td><td data-s-table-sort-val="3">March</td><td>13</td></tr>
-            <tr><td>Summer</td><td data-s-table-sort-val="6">June</td><td>25</td></tr>
-            <tr><td>Fall</td><td data-s-table-sort-val="9">September</td><td>13</td></tr>
+            <tr>
+                <td>Winter</td>
+                <td data-s-table-sort-val="12">December</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Spring</td>
+                <td data-s-table-sort-val="3">March</td>
+                <td>13</td>
+            </tr>
+            <tr>
+                <td>Summer</td>
+                <td data-s-table-sort-val="6">June</td>
+                <td>25</td>
+            </tr>
+            <tr>
+                <td>Fall</td>
+                <td data-s-table-sort-val="9">September</td>
+                <td>13</td>
+            </tr>
             <tr data-s-table-sort-to="bottom" class="fw-bold">
                 <td colspan="2">Average temperature</td>
                 <td>13</td>
@@ -692,8 +726,12 @@ Generally for a checkbox input that's placed first in the table row for bulk act
         <thead>
             <tr>
                 <th scope="col" class="s-table--bulk">
-                    <label class="v-visible-sr" for="example-checkbox-1">bulk checkbox</label>
-                    <div class="s-checkbox"><input type="checkbox" id="example-checkbox-1"></div>
+                    <label class="v-visible-sr" for="example-checkbox-1"
+                        >bulk checkbox</label
+                    >
+                    <div class="s-checkbox">
+                        <input type="checkbox" id="example-checkbox-1" />
+                    </div>
                 </th>
                 <th scope="col">…</th>
             </tr>
@@ -701,8 +739,12 @@ Generally for a checkbox input that's placed first in the table row for bulk act
         <tbody>
             <tr>
                 <td class="s-table--bulk">
-                    <label class="v-visible-sr" for="example-checkbox-2">bulk checkbox</label>
-                    <div class="s-checkbox"><input type="checkbox" id="example-checkbox-2"></div>
+                    <label class="v-visible-sr" for="example-checkbox-2"
+                        >bulk checkbox</label
+                    >
+                    <div class="s-checkbox">
+                        <input type="checkbox" id="example-checkbox-2" />
+                    </div>
                 </td>
                 <td>…</td>
             </tr>

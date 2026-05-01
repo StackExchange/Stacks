@@ -174,7 +174,10 @@ We recommend using [descendent anchor](/product/components/links/#descendent-anc
 <div class="s-notice s-notice__info" role="presentation">
     <span>Notice with <a href="#" class="s-link">default link style</a></span>
 </div>
-<div class="s-notice s-notice__info s-anchors s-anchors__inherit s-anchors__underlined" role="presentation">
+<div
+    class="s-notice s-notice__info s-anchors s-anchors__inherit s-anchors__underlined"
+    role="presentation"
+>
     <span>Notice with <a href="#">styled link</a></span>
 </div>
 ```
@@ -213,13 +216,20 @@ Toasts are floating notices that are aligned to the center top of the page. They
     aria-labelledby="toast-message"
     data-controller="s-toast"
     data-s-toast-target="toast"
-    data-s-toast-return-element=".js-example-toast-open[data-target='#example-toast']">
+    data-s-toast-return-element=".js-example-toast-open[data-target='#example-toast']"
+>
     <aside class="s-notice d-flex wmn4">
         <span class="s-notice--icon"><svg aria-hidden="true">…</svg></span>
         <span>Toast notice message with an undo button</span>
         <div class="s-notice--actions">
-            <button type="button" class="s-link s-link__underlined">Undo</button>
-            <button type="button" class="s-link s-notice--dismiss js-toast-close" aria-label="Dismiss">
+            <button type="button" class="s-link s-link__underlined">
+                Undo
+            </button>
+            <button
+                type="button"
+                class="s-link s-notice--dismiss js-toast-close"
+                aria-label="Dismiss"
+            >
                 <svg aria-hidden="true">…</svg>
             </button>
         </div>

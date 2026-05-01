@@ -1,6 +1,6 @@
 ---
 title: "Toggle switch"
-description: "A toggle is used to quickly switch between two or more possible states. They are most commonly used for simple \"on/off\" switches."
+description: 'A toggle is used to quickly switch between two or more possible states. They are most commonly used for simple "on/off" switches.'
 figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=1943-848"
 ---
 
@@ -33,19 +33,39 @@ Toggle switches take up less space than an "on/off" radio button group and commu
 ```html
 <div class="d-flex ai-center g8">
     <label class="s-label" for="toggle-example-default">…</label>
-    <input class="s-toggle-switch" id="toggle-example-default" type="checkbox">
+    <input
+        class="s-toggle-switch"
+        id="toggle-example-default"
+        type="checkbox"
+    />
 </div>
 <div class="d-flex ai-center g8">
     <label class="s-label" for="toggle-example-checked">…</label>
-    <input class="s-toggle-switch" id="toggle-example-checked" type="checkbox" checked>
+    <input
+        class="s-toggle-switch"
+        id="toggle-example-checked"
+        type="checkbox"
+        checked
+    />
 </div>
 <div class="d-flex ai-center g8">
     <label class="s-label" for="toggle-example-disabled">…</label>
-    <input class="s-toggle-switch" id="toggle-example-disabled" type="checkbox" disabled>
+    <input
+        class="s-toggle-switch"
+        id="toggle-example-disabled"
+        type="checkbox"
+        disabled
+    />
 </div>
 <div class="d-flex ai-center g8">
     <label class="s-label" for="toggle-example-checked-disabled">…</label>
-    <input class="s-toggle-switch" id="toggle-example-checked-disabled" type="checkbox" disabled checked>
+    <input
+        class="s-toggle-switch"
+        id="toggle-example-checked-disabled"
+        type="checkbox"
+        disabled
+        checked
+    />
 </div>
 ```
 
@@ -79,12 +99,24 @@ Toggles switches can be extended to choose between two or more states where each
     <div class="d-flex ai-center g8">
         <legend class="s-label c-default">…</legend>
         <div class="s-toggle-switch s-toggle-switch__multiple">
-            <input type="radio" name="group1" id="input-1" checked value="value1">
-            <label for="input-1" aria-label="First value" title="First value">…</label>
-            <input type="radio" name="group1" id="input-2" value="value2">
-            <label for="input-2" aria-label="Second value" title="Second value">…</label>
-            <input type="radio" name="group1" id="input-3" value="value3">
-            <label for="input-3" aria-label="Third value" title="Third value">…</label>
+            <input
+                type="radio"
+                name="group1"
+                id="input-1"
+                checked
+                value="value1"
+            />
+            <label for="input-1" aria-label="First value" title="First value"
+                >…</label
+            >
+            <input type="radio" name="group1" id="input-2" value="value2" />
+            <label for="input-2" aria-label="Second value" title="Second value"
+                >…</label
+            >
+            <input type="radio" name="group1" id="input-3" value="value3" />
+            <label for="input-3" aria-label="Third value" title="Third value"
+                >…</label
+            >
         </div>
     </div>
 </fieldset>

@@ -36,7 +36,11 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
             </a>
         </li>
         <li>
-            <a class="s-pagination--item is-selected" href="…" aria-current="page">
+            <a
+                class="s-pagination--item is-selected"
+                href="…"
+                aria-current="page"
+            >
                 <span class="v-visible-sr">page</span>
                 1
             </a>

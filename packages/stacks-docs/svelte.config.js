@@ -38,11 +38,18 @@ const config = {
                 extractToc,
                 exposeToc,
                 rehypeSectionize,
-                [rehypeAutolinkHeadings, {
-                    behavior: "append",
-                    properties: { className: ["docs-heading-anchor"], ariaHidden: "true", tabIndex: -1 },
-                    content: { type: 'raw', value: IconLink }
-                }],
+                [
+                    rehypeAutolinkHeadings,
+                    {
+                        behavior: "append",
+                        properties: {
+                            className: ["docs-heading-anchor"],
+                            ariaHidden: "true",
+                            tabIndex: -1,
+                        },
+                        content: { type: "raw", value: IconLink },
+                    },
+                ],
                 addTableClasses,
                 addDocClasses,
             ],
@@ -82,25 +89,47 @@ function addDocClasses() {
             const existing = Array.isArray(node.properties.className)
                 ? node.properties.className
                 : node.properties.className
-                    ? [node.properties.className]
-                    : [];
+                  ? [node.properties.className]
+                  : [];
 
             const add = (...names) => {
                 node.properties.className = [...existing, ...names];
             };
 
             switch (node.tagName) {
-                case "h2": add("docs-heading", "docs-h2"); break;
-                case "h3": add("docs-heading", "docs-h3"); break;
-                case "h4": add("docs-heading", "docs-h4"); break;
-                case "p":       add("docs-copy"); break;
-                case "ol":      add("docs-copy", "lh-xl"); break;
-                case "section": add("docs-section"); break;
-                case "ul":      add("docs-ul", "lh-xl");  break;
-                case "li":  add("docs-li");  break;
-                case "nav": add("docs-nav"); break;
-                case "img": add("docs-img"); break;
-                case "iframe": add("docs-iframe"); break;
+                case "h2":
+                    add("docs-heading", "docs-h2");
+                    break;
+                case "h3":
+                    add("docs-heading", "docs-h3");
+                    break;
+                case "h4":
+                    add("docs-heading", "docs-h4");
+                    break;
+                case "p":
+                    add("docs-copy");
+                    break;
+                case "ol":
+                    add("docs-copy", "lh-xl");
+                    break;
+                case "section":
+                    add("docs-section");
+                    break;
+                case "ul":
+                    add("docs-ul", "lh-xl");
+                    break;
+                case "li":
+                    add("docs-li");
+                    break;
+                case "nav":
+                    add("docs-nav");
+                    break;
+                case "img":
+                    add("docs-img");
+                    break;
+                case "iframe":
+                    add("docs-iframe");
+                    break;
                 case "a":
                     if (!existing.includes("docs-heading-anchor")) {
                         add("docs-link");
@@ -121,8 +150,8 @@ function addTableClasses() {
                 const existing = Array.isArray(node.properties.className)
                     ? node.properties.className
                     : node.properties.className
-                        ? [node.properties.className]
-                        : [];
+                      ? [node.properties.className]
+                      : [];
                 if (!existing.includes("s-table")) {
                     node.properties.className = ["s-table", ...existing];
                 }

@@ -75,7 +75,10 @@ If desired, both the title and call-to-action may be omitted for a minimal look.
 ```html
 <div class="s-empty-state wmx4 p48">
     @Svg.Spot.Empty.With("native")
-    <p>There's no data associated with <a href="#" class="s-link s-link__underlined">this account</a>.</p>
+    <p>
+        There's no data associated with
+        <a href="#" class="s-link s-link__underlined">this account</a>.
+    </p>
 </div>
 ```
 

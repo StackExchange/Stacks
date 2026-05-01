@@ -38,7 +38,10 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
 <div class="s-form-group">
     <label class="s-label" for="select-menu">
         How will you be traveling?
-        <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+        <p class="mt2 s-description">
+            Select the transportation method you will be using to come to the
+            event.
+        </p>
     </label>
     <div class="s-select">
         <select id="select-menu">
@@ -53,7 +56,9 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
 </div>
 
 <div class="s-form-group is-disabled">
-    <label class="s-label" for="select-menu-disabled">Where are you staying?</label>
+    <label class="s-label" for="select-menu-disabled"
+        >Where are you staying?</label
+    >
     <div class="s-select">
         <select id="select-menu-disabled" disabled>
             <option value="" selected>Please select one…</option>
@@ -121,7 +126,10 @@ Validation states provides the user feedback based on their interaction (or lack
 <div class="s-form-group has-warning">
     <label class="s-label" for="select-menu">
         How will you be traveling?
-        <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+        <p class="mt2 s-description">
+            Select the transportation method you will be using to come to the
+            event.
+        </p>
     </label>
     <div class="s-select">
         <select id="select-menu">
@@ -159,7 +167,10 @@ Validation states provides the user feedback based on their interaction (or lack
 <div class="s-form-group has-error">
     <label class="s-label" for="select-menu">
         How will you be traveling?
-        <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+        <p class="mt2 s-description">
+            Select the transportation method you will be using to come to the
+            event.
+        </p>
     </label>
     <div class="s-select">
         <select id="select-menu">
@@ -197,7 +208,10 @@ Validation states provides the user feedback based on their interaction (or lack
 <div class="s-form-group has-success">
     <label class="s-label" for="select-menu">
         How will you be traveling?
-        <p class="mt2 s-description">Select the transportation method you will be using to come to the event.</p>
+        <p class="mt2 s-description">
+            Select the transportation method you will be using to come to the
+            event.
+        </p>
     </label>
     <div class="s-select">
         <select id="select-menu">

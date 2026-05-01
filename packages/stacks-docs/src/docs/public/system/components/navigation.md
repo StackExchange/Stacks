@@ -110,25 +110,33 @@ Use the icon variant for a prominent, secondary horizontal navigation bar that d
         <li>
             <a href="…" class="s-navigation--item is-selected">
                 <svg class="s-navigation--icon" aria-hidden="true">…</svg>
-                <span class="s-navigation--item-text" data-text="Content">Content</span>
+                <span class="s-navigation--item-text" data-text="Content"
+                    >Content</span
+                >
             </a>
         </li>
         <li>
             <a href="…" class="s-navigation--item">
                 <svg class="s-navigation--icon" aria-hidden="true">…</svg>
-                <span class="s-navigation--item-text" data-text="Topics">Topics</span>
+                <span class="s-navigation--item-text" data-text="Topics"
+                    >Topics</span
+                >
             </a>
         </li>
         <li>
             <a href="…" class="s-navigation--item">
                 <svg class="s-navigation--icon" aria-hidden="true">…</svg>
-                <span class="s-navigation--item-text" data-text="People">People</span>
+                <span class="s-navigation--item-text" data-text="People"
+                    >People</span
+                >
             </a>
         </li>
         <li>
             <a href="…" class="s-navigation--item s-navigation--item__dropdown">
                 <svg class="s-navigation--icon" aria-hidden="true">…</svg>
-                <span class="s-navigation--item-text" data-text="Settings">Settings</span>
+                <span class="s-navigation--item-text" data-text="Settings"
+                    >Settings</span
+                >
             </a>
         </li>
     </ul>
@@ -286,29 +294,40 @@ Vertical navigation items with icons have a larger padding.
         <li>
             <a href="…" class="s-navigation--item is-selected">
                 <svg class="s-navigation--icon" aria-hidden="true">…</svg>
-                <span class="s-navigation--item-text" data-text="Home">Home</span>
+                <span class="s-navigation--item-text" data-text="Home"
+                    >Home</span
+                >
             </a>
         </li>
         <li>
             <a href="…" class="s-navigation--item d-flex jc-space-between">
                 <svg class="s-navigation--icon" aria-hidden="true">…</svg>
-                <span class="s-navigation--item-text" data-text="Jobs">Jobs</span>
-                <div class="s-badge s-badge__xs s-badge__featured ml-auto">New</div>
+                <span class="s-navigation--item-text" data-text="Jobs"
+                    >Jobs</span
+                >
+                <div class="s-badge s-badge__xs s-badge__featured ml-auto">
+                    New
+                </div>
             </a>
         </li>
         <li>
             <a href="…" class="s-navigation--item d-flex jc-space-between">
                 <svg class="s-navigation--icon" aria-hidden="true">…</svg>
-                <span class="s-navigation--item-text" data-text="Saves">Saves</span>
+                <span class="s-navigation--item-text" data-text="Saves"
+                    >Saves</span
+                >
                 <div class="s-activity-indicator ml-auto">
-                    3 <div class="v-visible-sr">new activities</div>
+                    3
+                    <div class="v-visible-sr">new activities</div>
                 </div>
             </a>
         </li>
         <li>
             <a href="…" class="s-navigation--item">
                 <svg class="s-navigation--icon" aria-hidden="true">…</svg>
-                <span class="s-navigation--item-text" data-text="Users">Users</span>
+                <span class="s-navigation--item-text" data-text="Users"
+                    >Users</span
+                >
             </a>
         </li>
     </ul>
@@ -342,7 +361,9 @@ Vertical navigation items with icons have a larger padding.
                 <div class="s-navigation--avatar s-avatar">
                     <img class="s-avatar--image" src="…" />
                 </div>
-                <span class="s-navigation--item-text" data-text="Humson">Humson</span>
+                <span class="s-navigation--item-text" data-text="Humson"
+                    >Humson</span
+                >
             </a>
         </li>
         <li>
@@ -350,7 +371,9 @@ Vertical navigation items with icons have a larger padding.
                 <div class="s-navigation--avatar s-avatar">
                     <img class="s-avatar--image" src="…" />
                 </div>
-                <span class="s-navigation--item-text" data-text="Samson">Samson</span>
+                <span class="s-navigation--item-text" data-text="Samson"
+                    >Samson</span
+                >
             </a>
         </li>
     </ul>
@@ -374,12 +397,16 @@ Vertical navigation items with icons have a larger padding.
             <ul aria-labelledby="nav-section1">
                 <li>
                     <a href="…" class="s-navigation--item is-selected">
-                        <span class="s-navigation--item-text" data-text="…">…</span>
+                        <span class="s-navigation--item-text" data-text="…"
+                            >…</span
+                        >
                     </a>
                 </li>
                 <li>
                     <a href="…" class="s-navigation--item">
-                        <span class="s-navigation--item-text" data-text="…">…</span>
+                        <span class="s-navigation--item-text" data-text="…"
+                            >…</span
+                        >
                     </a>
                 </li>
             </ul>
@@ -389,7 +416,9 @@ Vertical navigation items with icons have a larger padding.
             <ul aria-labelledby="nav-section2">
                 <li>
                     <a href="…" class="s-navigation--item">
-                        <span class="s-navigation--item-text" data-text="…">…</span>
+                        <span class="s-navigation--item-text" data-text="…"
+                            >…</span
+                        >
                     </a>
                 </li>
             </ul>

@@ -46,11 +46,21 @@ Tags should be focusable and navigable with the keyboard. The various tag states
 
 ```html
 <a class="s-tag" href="#">…</a>
-<span class="s-tag">… <button class="s-tag--dismiss"><span class="v-visible-sr">Dismiss … tag</span>…</button></span>
-<a class="s-tag" href="…"><img class="s-tag--sponsor" src="…"> … <div class="v-visible-sr">Sponsored tag</div></a>
+<span class="s-tag"
+    >…
+    <button class="s-tag--dismiss">
+        <span class="v-visible-sr">Dismiss … tag</span>…
+    </button></span
+>
+<a class="s-tag" href="…"
+    ><img class="s-tag--sponsor" src="…" /> …
+    <div class="v-visible-sr">Sponsored tag</div></a
+>
 <span class="s-tag">
     <a href="…">…</a>
-    <button class="s-tag--dismiss"><span class="v-visible-sr">Dismiss … tag</span>…</button>
+    <button class="s-tag--dismiss">
+        <span class="v-visible-sr">Dismiss … tag</span>…
+    </button>
 </span>
 ```
 
@@ -72,9 +82,19 @@ Tags should be focusable and navigable with the keyboard. The various tag states
 ### Moderator
 
 ```html
-<a class="s-tag s-tag__moderator" href="#">status-completed <div class="v-visible-sr">Moderator tag</div></a>
-<span class="s-tag s-tag__moderator">status-bydesign <div class="v-visible-sr">Moderator tag</div><button class="s-tag--dismiss">…</button></span>
-<a class="s-tag s-tag__moderator" href="#">status-planned <div class="v-visible-sr">Moderator tag</div></a>
+<a class="s-tag s-tag__moderator" href="#"
+    >status-completed
+    <div class="v-visible-sr">Moderator tag</div></a
+>
+<span class="s-tag s-tag__moderator"
+    >status-bydesign
+    <div class="v-visible-sr">Moderator tag</div>
+    <button class="s-tag--dismiss">…</button></span
+>
+<a class="s-tag s-tag__moderator" href="#"
+    >status-planned
+    <div class="v-visible-sr">Moderator tag</div></a
+>
 ```
 
 <Example>
@@ -88,9 +108,19 @@ Tags should be focusable and navigable with the keyboard. The various tag states
 ### Required
 
 ```html
-<a class="s-tag s-tag__required" href="#">discussion <div class="v-visible-sr">Required tag</div></a>
-<span class="s-tag s-tag__required">feature-request <div class="v-visible-sr">Required tag</div><button class="s-tag--dismiss">…</button></span>
-<a class="s-tag s-tag__required" href="#">bug <div class="v-visible-sr">Required tag</div></a>
+<a class="s-tag s-tag__required" href="#"
+    >discussion
+    <div class="v-visible-sr">Required tag</div></a
+>
+<span class="s-tag s-tag__required"
+    >feature-request
+    <div class="v-visible-sr">Required tag</div>
+    <button class="s-tag--dismiss">…</button></span
+>
+<a class="s-tag s-tag__required" href="#"
+    >bug
+    <div class="v-visible-sr">Required tag</div></a
+>
 ```
 
 <Example>
@@ -104,7 +134,10 @@ Tags should be focusable and navigable with the keyboard. The various tag states
 ### Watched
 
 ```html
-<a class="s-tag s-tag__watched" href="#">asp-net <div class="v-visible-sr">Watched tag</div></a>
+<a class="s-tag s-tag__watched" href="#"
+    >asp-net
+    <div class="v-visible-sr">Watched tag</div></a
+>
 ```
 
 <Example>
@@ -114,7 +147,10 @@ Tags should be focusable and navigable with the keyboard. The various tag states
 ### Ignored
 
 ```html
-<a class="s-tag s-tag__ignored" href="#">netscape <div class="v-visible-sr">Ignored tag</div></a>
+<a class="s-tag s-tag__ignored" href="#"
+    >netscape
+    <div class="v-visible-sr">Ignored tag</div></a
+>
 ```
 
 <Example>

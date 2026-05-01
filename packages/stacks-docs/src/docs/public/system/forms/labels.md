@@ -33,7 +33,12 @@ Labels inform users what information is being asked of them. They should be writ
 <form class="s-form-group">
     <label class="s-label" for="question-title">Question title</label>
     <div class="d-flex ps-relative">
-        <input class="s-input" type="text" id="question-title" placeholder="e.g. Why doesn't Stack Overflow use a custom web font?"/>
+        <input
+            class="s-input"
+            type="text"
+            id="question-title"
+            placeholder="e.g. Why doesn't Stack Overflow use a custom web font?"
+        />
     </div>
 </form>
 ```
@@ -88,12 +93,17 @@ When a label or input needs further explantation, text should be placed directly
 
 ```html
 <form class="s-form-group">
-    <label class="s-label" for="example-item">
-        Question title
-    </label>
-    <p class="s-description">Clear question titles are more likely to get answered.</p>
+    <label class="s-label" for="example-item"> Question title </label>
+    <p class="s-description">
+        Clear question titles are more likely to get answered.
+    </p>
     <div class="d-flex ps-relative">
-        <input class="s-input" id="example-item" type="text" placeholder="e.g. Why doesn't Stack Overflow use a custom web font?" />
+        <input
+            class="s-input"
+            id="example-item"
+            type="text"
+            placeholder="e.g. Why doesn't Stack Overflow use a custom web font?"
+        />
     </div>
 </form>
 ```
@@ -116,9 +126,18 @@ Use status indicators to append essential context to a label. This pattern suppo
 
 ```html
 <form class="s-form-group">
-    <label class="s-label" for="question-title-required">Question title<span class="s-badge s-badge__danger">Required</span></label>
+    <label class="s-label" for="question-title-required"
+        >Question title<span class="s-badge s-badge__danger"
+            >Required</span
+        ></label
+    >
     <div class="d-flex ps-relative">
-        <input class="s-input" type="text" id="question-title-required" placeholder="e.g. Why doesn't Stack Overflow use a custom web font?"/>
+        <input
+            class="s-input"
+            type="text"
+            id="question-title-required"
+            placeholder="e.g. Why doesn't Stack Overflow use a custom web font?"
+        />
     </div>
 </form>
 ```
@@ -134,9 +153,16 @@ Use status indicators to append essential context to a label. This pattern suppo
 
 ```html
 <form class="s-form-group">
-    <label class="s-label" for="question-tags">Question tags<span class="s-badge">Optional</span></label>
+    <label class="s-label" for="question-tags"
+        >Question tags<span class="s-badge">Optional</span></label
+    >
     <div class="d-flex ps-relative">
-        <input class="s-input" type="text" id="question-tags" placeholder="e.g. Why doesn't Stack Overflow use a custom web font?"/>
+        <input
+            class="s-input"
+            type="text"
+            id="question-tags"
+            placeholder="e.g. Why doesn't Stack Overflow use a custom web font?"
+        />
     </div>
 </form>
 ```
@@ -152,9 +178,18 @@ Use status indicators to append essential context to a label. This pattern suppo
 
 ```html
 <form class="s-form-group">
-    <label class="s-label" for="question-title-new">What is your favorite animal?<span class="s-badge s-badge__info">Saved for later</span></label>
+    <label class="s-label" for="question-title-new"
+        >What is your favorite animal?<span class="s-badge s-badge__info"
+            >Saved for later</span
+        ></label
+    >
     <div class="d-flex ps-relative">
-        <input class="s-input" type="text" id="question-title-new" placeholder="e.g. hedgehog, platypus, sugar glider"/>
+        <input
+            class="s-input"
+            type="text"
+            id="question-title-new"
+            placeholder="e.g. hedgehog, platypus, sugar glider"
+        />
     </div>
 </form>
 ```
@@ -170,9 +205,18 @@ Use status indicators to append essential context to a label. This pattern suppo
 
 ```html
 <form class="s-form-group">
-    <label class="s-label" for="question-title-beta">Notify people<span class="s-badge s-badge__featured">New feature</span></label>
+    <label class="s-label" for="question-title-beta"
+        >Notify people<span class="s-badge s-badge__featured"
+            >New feature</span
+        ></label
+    >
     <div class="d-flex ps-relative">
-        <input class="s-input" type="text" id="question-title-beta" placeholder="e.g. jdoe, bgates, sjobs"/>
+        <input
+            class="s-input"
+            type="text"
+            id="question-title-beta"
+            placeholder="e.g. jdoe, bgates, sjobs"
+        />
     </div>
 </form>
 ```

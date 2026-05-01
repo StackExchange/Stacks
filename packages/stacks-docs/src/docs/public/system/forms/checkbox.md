@@ -166,7 +166,7 @@ The best accessibility is semantic HTML. Most screen readers understand how to p
 - Be sure to associate the checkbox label by using the `for` attribute. The value here is the input's `id`.
 - If you have a group of related checkboxes, use the `fieldset` and `legend` to group them together.
 
-For more information, please read Gov.UK's article, [*"Using the fieldset and legend elements"*](https://accessibility.blog.gov.uk/2016/07/22/using-the-fieldset-and-legend-elements/).
+For more information, please read Gov.UK's article, [_"Using the fieldset and legend elements"_](https://accessibility.blog.gov.uk/2016/07/22/using-the-fieldset-and-legend-elements/).
 
 ## Checkbox group
 

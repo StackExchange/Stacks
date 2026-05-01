@@ -38,7 +38,12 @@ The following examples are a small subset of the languages that `highlight.js` s
 <form class="d-flex gy4 fd-column">
     <label class="s-label" for="question-title">Question title</label>
     <div class="d-flex ps-relative">
-        <input class="s-input" type="text" id="question-title" placeholder="e.g. Why doesn't Stack Overflow use a custom web font?"/>
+        <input
+            class="s-input"
+            type="text"
+            id="question-title"
+            placeholder="e.g. Why doesn't Stack Overflow use a custom web font?"
+        />
     </div>
 </form>
 ```
@@ -56,13 +61,13 @@ The following examples are a small subset of the languages that `highlight.js` s
 <Example>
 
 ```javascript
-import React, { Component } from 'react'
-import { IP } from '../constants/IP'
-import { withAuth0 } from '@auth0/auth0-react';
+import React, { Component } from "react";
+import { IP } from "../constants/IP";
+import { withAuth0 } from "@auth0/auth0-react";
 
 class AddATournament extends Component {
     componentDidMount() {
-        this.myNewListOfAllTournamentsWithAuth()
+        this.myNewListOfAllTournamentsWithAuth();
     }
 }
 
@@ -285,27 +290,29 @@ import Foundation
 @rhythm: 1.5em;
 
 @media screen and (min-resolution: 2dppx) {
-    body {font-size: 125%}
+    body {
+        font-size: 125%;
+    }
 }
 
 section > .foo + #bar:hover [href*="less"] {
-    margin:     @rhythm 0 0 @rhythm;
-    padding:    calc(5% + 20px);
+    margin: @rhythm 0 0 @rhythm;
+    padding: calc(5% + 20px);
     background: #f00ba7 url(http://placehold.alpha-centauri/42.png) no-repeat;
     background-image: linear-gradient(-135deg, wheat, fuchsia) !important ;
     background-blend-mode: multiply;
 }
 
 @font-face {
-    font-family: /* ? */ 'Omega';
-    src: url('../fonts/omega-webfont.woff?v=2.0.2');
+    font-family: /* ? */ "Omega";
+    src: url("../fonts/omega-webfont.woff?v=2.0.2");
 }
 
 .icon-baz::before {
-    display:     inline-block;
+    display: inline-block;
     font-family: "Omega", Alpha, sans-serif;
-    content:     "\f085";
-    color:       rgba(98, 76 /* or 54 */, 231, .75);
+    content: "\f085";
+    color: rgba(98, 76 /* or 54 */, 231, 0.75);
 }
 ```
 
@@ -323,16 +330,16 @@ section > .foo + #bar:hover [href*="less"] {
 
 ```json
 [
-  {
-    "title": "apples",
-    "count": [12000, 20000],
-    "description": {"text": "...", "sensitive": false}
-  },
-  {
-    "title": "oranges",
-    "count": [17500, null],
-    "description": {"text": "...", "sensitive": false}
-  }
+    {
+        "title": "apples",
+        "count": [12000, 20000],
+        "description": { "text": "...", "sensitive": false }
+    },
+    {
+        "title": "oranges",
+        "count": [17500, null],
+        "description": { "text": "...", "sensitive": false }
+    }
 ]
 ```
 

@@ -159,7 +159,7 @@ The best accessibility is semantic HTML. Most screen readers understand how to p
 - Be sure to associate the radio label by using the `for` attribute. The value here is the input's `id`.
 - If you have a group of related radios, use the `fieldset` and `legend` to group them together.
 
-For more information, please read Gov.UK's article, [*"Using the fieldset and legend elements"*](https://accessibility.blog.gov.uk/2016/07/22/using-the-fieldset-and-legend-elements/).
+For more information, please read Gov.UK's article, [_"Using the fieldset and legend elements"_](https://accessibility.blog.gov.uk/2016/07/22/using-the-fieldset-and-legend-elements/).
 
 ## Radio group
 
@@ -186,7 +186,10 @@ For more information, please read Gov.UK's article, [*"Using the fieldset and le
 <fieldset class="s-menu s-form-group">
     <legend class="s-menu--title">…</legend>
     <div class="s-menu--item">
-        <label class="s-menu--action s-radio s-radio__checkmark" for="vert-checkmark-1">
+        <label
+            class="s-menu--action s-radio s-radio__checkmark"
+            for="vert-checkmark-1"
+        >
             <input type="radio" name="vert-checkmark" id="vert-checkmark-1" />
             …
         </label>
@@ -295,7 +298,10 @@ For more information, please read Gov.UK's article, [*"Using the fieldset and le
 <fieldset class="s-menu s-form-group">
     <legend class="s-menu--title">…</legend>
     <div class="s-menu--item">
-        <label class="s-menu--action s-radio s-radio__checkmark" for="desc-checkmark-1">
+        <label
+            class="s-menu--action s-radio s-radio__checkmark"
+            for="desc-checkmark-1"
+        >
             <input type="radio" name="desc-checkmark" id="desc-checkmark-1" />
             <div>
                 …

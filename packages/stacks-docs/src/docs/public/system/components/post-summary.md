@@ -133,9 +133,7 @@ Use the post summary component to provide a concise summary of a question, artic
 Add the `.s-post-summary__answered` modifier class to indicate that the post has an accepted answer.
 
 ```html
-<div class="s-post-summary s-post-summary__answered">
-    …
-</div>
+<div class="s-post-summary s-post-summary__answered">…</div>
 ```
 
 <Example>
@@ -234,9 +232,7 @@ Including a watched tag will automatically apply custom watched styling to the p
 Include the `.s-post-summary__deleted` modifier class applies custom deleted styling to the post summary.
 
 ```html
-<div class="s-post-summary s-post-summary__deleted">
-    …
-</div>
+<div class="s-post-summary s-post-summary__deleted">…</div>
 ```
 
 <Example>
@@ -263,7 +259,9 @@ Include the appropriate state badge to indicate the current state of the post.
         </div>
         <div class="s-post-summary--content-meta">
             …
-            <span class="s-badge s-badge__info ml-auto s-post-summary--sm-hide">Draft</span>
+            <span class="s-badge s-badge__info ml-auto s-post-summary--sm-hide"
+                >Draft</span
+            >
         </div>
         …
     </div>
@@ -322,9 +320,9 @@ Post summaries can be shown without an excerpt or with an excerpt with one, two,
 
 #### Classes
 
-| Class | Description |
-|---|---|
-| `.v-truncate1` | Truncates the excerpt to 1 line of text. |
+| Class          | Description                               |
+| -------------- | ----------------------------------------- |
+| `.v-truncate1` | Truncates the excerpt to 1 line of text.  |
 | `.v-truncate2` | Truncates the excerpt to 2 lines of text. |
 | `.v-truncate3` | Truncates the excerpt to 3 lines of text. |
 
@@ -418,9 +416,7 @@ For accepted answers, add the `.s-post-summary--answer__accepted` modifier class
         <div class="s-post-summary--answer s-post-summary--answer__accepted">
             …
         </div>
-        <div class="s-post-summary--answer">
-            …
-        </div>
+        <div class="s-post-summary--answer">…</div>
     </div>
 </div>
 ```
