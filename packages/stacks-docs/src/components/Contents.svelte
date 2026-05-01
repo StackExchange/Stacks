@@ -1,174 +1,132 @@
 <script lang="ts">
-  import { SvelteMap } from 'svelte/reactivity';
+    import { Button, Icon } from "@stackoverflow/stacks-svelte";
+    import { IconList } from "@stackoverflow/stacks-icons";
 
-  let { toc = [] }: { toc: DocsTocItem[] } = $props();
+    import ContentsList from "./ContentsList.svelte";
 
-  let activeId = $state<string | null>(null);
-  let indicatorTop = $state(0);
-  let indicatorHeight = $state(0);
-  let navElement: HTMLElement | null = null;
-  let linkElements: Map<string, HTMLElement> = new SvelteMap();
-  // Flatten toc to get all items including children
-  function flattenToc(items: DocsTocItem[]): DocsTocItem[] {
-    const result: DocsTocItem[] = [];
-    for (const item of items) {
-      result.push(item);
-      if (item.children) {
-        result.push(...item.children);
-      }
+    let { toc = [] }: { toc: DocsTocItem[] } = $props();
+
+    let isMobileTocOpen = $state(false);
+    let activeId = $state<string | null>(null);
+
+    const activeOffset = 120;
+    const contentsNavId = "docs-contents";
+    const contentsHeadingId = `${contentsNavId}-heading`;
+    const mobileContentsNavId = "docs-contents-mobile";
+
+    function flattenToc(items: DocsTocItem[]): DocsTocItem[] {
+        return items.flatMap((item) => [
+            item,
+            ...flattenToc(item.children ?? []),
+        ]);
     }
-    return result;
-  }
 
-  const allItems = $derived(flattenToc(toc));
+    const allItems = $derived(flattenToc(toc));
 
-  function updateIndicatorPosition(id: string) {
-    const linkElement = linkElements.get(id);
-    if (linkElement && navElement) {
-      const navRect = navElement.getBoundingClientRect();
-      const linkRect = linkElement.getBoundingClientRect();
-      indicatorTop = linkRect.top - navRect.top;
-      indicatorHeight = linkRect.height;
+    function handleLinkClick(id: string) {
+        activeId = id;
+    }
 
-      // Auto-scroll the sidebar to keep active item visible (desktop only)
-      const scrollableContainer = navElement.closest('.overflow-auto') as HTMLElement;
-      const isMobile = window.innerWidth < 768;
+    $effect(() => {
+        const items = allItems;
 
-      if (scrollableContainer && !isMobile) {
-        const containerRect = scrollableContainer.getBoundingClientRect();
-        const linkRelativeTop = linkRect.top - containerRect.top;
-        const linkRelativeBottom = linkRect.bottom - containerRect.top;
+        if (typeof window === "undefined" || items.length === 0) return;
 
-        // Scroll if the link is outside the viewport
-        if (linkRelativeTop < 0) {
-          linkElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-            inline: 'nearest'
-          });
-        } else if (linkRelativeBottom > containerRect.height) {
-          linkElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'end',
-            inline: 'nearest'
-          });
+        // The active item is the last heading that has scrolled past the
+        // top threshold — this is more accurate than IntersectionObserver
+        // which can fire too early when a heading enters the viewport.
+        let frameId: number | null = null;
+
+        function updateActive() {
+            frameId = null;
+
+            let found: string | null = items[0]?.id ?? null;
+
+            for (const item of items) {
+                const el = document.getElementById(item.id);
+                if (!el) continue;
+                if (el.getBoundingClientRect().top <= activeOffset) {
+                    found = item.id;
+                } else {
+                    break; // headings are in DOM order — stop once we pass the threshold
+                }
+            }
+
+            if (found && found !== activeId) {
+                activeId = found;
+            }
         }
-      }
-    }
-  }
 
-  // Single effect to handle everything
-  $effect(() => {
-    if (typeof window === 'undefined' || allItems.length === 0) return;
-
-    // The active item is the last heading that has scrolled past the
-    // top threshold — this is more accurate than IntersectionObserver
-    // which can fire too early when a heading enters the viewport.
-    const OFFSET = 120; // px from the top of the viewport
-
-    function updateActive() {
-      let found: string | null = null;
-
-      for (const item of allItems) {
-        const el = document.getElementById(item.id);
-        if (!el) continue;
-        if (el.getBoundingClientRect().top <= OFFSET) {
-          found = item.id;
-        } else {
-          break; // headings are in DOM order — stop once we pass the threshold
+        function queueUpdate() {
+            if (frameId !== null) return;
+            frameId = window.requestAnimationFrame(updateActive);
         }
-      }
 
-      const next = found ?? (allItems.length > 0 ? allItems[0].id : null);
-      if (next && next !== activeId) {
-        activeId = next;
-        updateIndicatorPosition(next);
-      }
-    }
+        queueUpdate();
+        window.addEventListener("scroll", queueUpdate, { passive: true });
+        window.addEventListener("resize", queueUpdate);
 
-    // Wait for DOM to be ready then attach scroll listener
-    const timeoutId = setTimeout(() => {
-      updateActive();
-      window.addEventListener('scroll', updateActive, { passive: true });
-    }, 50);
-
-    return () => {
-      clearTimeout(timeoutId);
-      window.removeEventListener('scroll', updateActive);
-    };
-  });
-
-  function registerLink(element: HTMLElement, id: string) {
-    linkElements.set(id, element);
-
-    function handleClick() {
-      activeId = id;
-      updateIndicatorPosition(id);
-    }
-
-    element.addEventListener('click', handleClick);
-
-    return {
-      destroy() {
-        element.removeEventListener('click', handleClick);
-        linkElements.delete(id);
-      }
-    };
-  }
+        return () => {
+            if (frameId !== null) {
+                window.cancelAnimationFrame(frameId);
+            }
+            window.removeEventListener("scroll", queueUpdate);
+            window.removeEventListener("resize", queueUpdate);
+        };
+    });
 </script>
 
 {#if toc.length > 0}
-<aside class="layout-toc fl-shrink0 w30 wmn2 wmx3 md:d-none ff-stack-sans-headline">
-    <div class="ps-sticky t0 py24 mt6 px32 md:pb0 overflow-auto hmx-screen md:hmx-initial">
-      <nav bind:this={navElement} class="ps-relative">
-        <h2 class="fs-body2 fw-bold mb12 px6 fc-black-400">Contents</h2>
+    <aside
+        class="layout-toc fl-shrink0 w30 wmn2 wmx3 ff-stack-sans-headline md:d-none"
+    >
+        <div class="ps-sticky t0 mt6 py24 px32 overflow-auto hmx-screen">
+            <div id={contentsNavId} class="bg-white">
+                <ContentsList
+                    {toc}
+                    {activeId}
+                    headingId={contentsHeadingId}
+                    label="Contents"
+                    onSelect={handleLinkClick}
+                />
+            </div>
+        </div>
+    </aside>
 
-        <div
-          class="contents-indicator ps-absolute l0 r0 z-base pe-none"
-          style="top: {indicatorTop}px; height: {indicatorHeight}px; opacity: {indicatorHeight > 0 ? 1 : 0};"
-        ></div>
+    <div
+        class="d-none md:d-flex fd-column-reverse g8 ps-fixed b16 r16 w100 wmn2 wmx3 ff-stack-sans-headline"
+    >
+        <Button
+            class="d-block ml-auto bar-md p8"
+            selected={isMobileTocOpen}
+            onclick={() => (isMobileTocOpen = !isMobileTocOpen)}
+            aria-controls={mobileContentsNavId}
+            aria-expanded={isMobileTocOpen}
+            aria-label="Table of contents"
+            title="Table of contents"
+        >
+            <Icon src={IconList} />
+        </Button>
 
-        <ul class="s-navigation s-navigation__vertical">
-          {#each toc as item, index (item.id)}
-            <li>
-              <a
-                href="#{item.id}"
-                use:registerLink={item.id}
-                class="s-navigation--item fs-caption bar0 ps-relative fw-bold fc-black ai-start"
-                class:is-active={activeId === item.id}
-              >
-                <span class="fl-shrink0 w24 d-flex ai-center fc-theme-primary">{(index + 1).toString().padStart(2, "0")}</span>
-                <span>{item.value}</span>
-              </a>
-              {#if item.children && item.children.length > 0}
-                <ul class="s-navigation s-navigation__vertical">
-                  {#each item.children as child (child.id)}
-                    <li>
-                      <a
-                        href="#{child.id}"
-                        use:registerLink={child.id}
-                        class="s-navigation--item fs-caption bar0 ps-relative"
-                        class:is-active={activeId === child.id}
-                      >
-                        {child.value}
-                      </a>
-                    </li>
-                  {/each}
-                </ul>
-              {/if}
-            </li>
-          {/each}
-        </ul>
-      </nav>
+        {#if isMobileTocOpen}
+            <div
+                id={mobileContentsNavId}
+                class="contents-mobile-popover bg-white bar-md bs-md overflow-auto p12 w100"
+            >
+                <ContentsList
+                    {toc}
+                    {activeId}
+                    label="Contents"
+                    onSelect={handleLinkClick}
+                    showHeading={false}
+                />
+            </div>
+        {/if}
     </div>
-</aside>
 {/if}
 
 <style>
-  .contents-indicator {
-    background-color: var(--black-100);
-    /* background-color: rgba(255, 255, 255, 0.1); */
-    backdrop-filter: invert(1);
-    -webkit-backdrop-filter: invert(1);
-  }
+    .contents-mobile-popover {
+        max-height: calc(100vh - var(--su256));
+    }
 </style>
