@@ -67,7 +67,7 @@
 
 <div class="d-flex fd-column fl-grow1 wmn0">
 	{#if page.data.active?.image}
-		<div class="layout-hero mt24 w100 hmx6 bg-cover bg-bottom bg-no-repeat" style="background-image: url({page.data.active.image})"></div>
+		<div class="layout-hero mt24 sm:mt0 w100 hmx6 bg-cover bg-bottom bg-no-repeat" style="background-image: url({page.data.active.image})"></div>
 	{/if}
 
 	<div class="d-flex fl-grow1 bg-white sm:mt0" class:mt24={!page.data.active?.image}>
