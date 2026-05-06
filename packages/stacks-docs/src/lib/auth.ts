@@ -5,8 +5,10 @@ import { sveltekitCookies } from "better-auth/svelte-kit";
 import { env } from "$env/dynamic/private";
 import { getRequestEvent } from "$app/server";
 
-// TODO: Make dynamic once we figure out Netlify env vars at runtime
-const baseURL = "https://stackoverflow.design";
+// baseURL is set per deploy from Netlify's build-time env vars
+// DEPLOY_PRIME_URL tracks the current deploy context
+// Static url is the production fallback
+const baseURL = env.DEPLOY_PRIME_URL || env.URL || "https://stackoverflow.design";
 
 export const auth = betterAuth({
     baseURL,
