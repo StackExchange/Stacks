@@ -13,7 +13,11 @@ const baseURL = env.DEPLOY_PRIME_URL || env.URL || "https://stackoverflow.design
 export const auth = betterAuth({
     baseURL,
 
-    trustedOrigins: [baseURL, "https://*.stackoverflow.design"],
+    trustedOrigins: [
+        "https://stackoverflow.design",
+        "https://*.stackoverflow.design",
+        "https://*.private-preview.stackoverflow.design",
+    ],
 
     // Secret for signing cookies and tokens
     // openssl rand -base64 32
