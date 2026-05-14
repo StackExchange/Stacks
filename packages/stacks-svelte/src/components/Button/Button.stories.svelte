@@ -37,6 +37,10 @@
                 control: "select",
                 options: ButtonWeights,
             },
+            badge: {
+                control: "text",
+                description: "Numeric badge (numbers only)",
+            },
             children: {
                 control: "text",
             },
@@ -238,9 +242,6 @@
                         {#each ButtonVariants as variant (variant)}
                             {#each ButtonWeights as weight (weight)}
                                 {#if !(weight === "clear" && (variant === "featured" || variant === "tonal"))}
-                                    {#snippet badge()}
-                                        198
-                                    {/snippet}
                                     <tr>
                                         <th scope="row" class="va-middle">
                                             {titleCase(variant || "base")}
@@ -257,7 +258,7 @@
                                                     disabled={state ===
                                                         "disabled"}
                                                     {variant}
-                                                    {badge}
+                                                    badge="198"
                                                     {size}
                                                 >
                                                     Badge
