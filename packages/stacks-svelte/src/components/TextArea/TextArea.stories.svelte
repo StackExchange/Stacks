@@ -28,6 +28,9 @@
                 control: "select",
                 options: TextAreaStates,
             },
+            class: {
+                control: "text",
+            },
         },
     });
 </script>
