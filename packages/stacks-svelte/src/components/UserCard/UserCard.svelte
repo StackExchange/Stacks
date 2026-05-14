@@ -3,6 +3,8 @@
 </script>
 
 <script lang="ts">
+    import clsx from "clsx";
+    import type { ClassValue } from "svelte/elements";
     import Avatar, { type Size as AvatarSize } from "../Avatar/Avatar.svelte";
     import Icon from "../Icon/Icon.svelte";
     import { IconStarVerifiedSm } from "@stackoverflow/stacks-icons-legacy/icons";
@@ -95,7 +97,7 @@
         /**
          * Additional CSS classes added to the element
          */
-        class?: string;
+        class?: ClassValue;
     }
 
     const {
@@ -118,23 +120,18 @@
         class: className = "",
     }: Props = $props();
 
-    const getClasses = (className: string, size?: Size, deleted?: boolean) => {
+    const getClasses = (
+        className: ClassValue,
+        size?: Size,
+        deleted?: boolean
+    ) => {
         const base = "s-user-card";
-        let classes = base;
-
-        if (className) {
-            classes += ` ${className}`;
-        }
-
-        if (size) {
-            classes += ` ${base}__${size}`;
-        }
-
-        if (deleted) {
-            classes += ` ${base}__deleted`;
-        }
-
-        return classes;
+        return clsx(
+            base,
+            className,
+            size && `${base}__${size}`,
+            deleted && `${base}__deleted`
+        );
     };
 
     const getAvatarSize = (size?: Size): AvatarSize => {

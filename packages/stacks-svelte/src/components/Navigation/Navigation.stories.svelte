@@ -47,6 +47,11 @@
         component: Navigation,
         // @ts-expect-error: subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
         subcomponents: { NavigationItem, NavigationGroup },
+        argTypes: {
+            class: {
+                control: "text",
+            },
+        },
     });
 
     const horizontalItems = [

@@ -4,7 +4,8 @@
 </script>
 
 <script lang="ts">
-    import type { HTMLTextareaAttributes } from "svelte/elements";
+    import clsx from "clsx";
+    import type { ClassValue, HTMLTextareaAttributes } from "svelte/elements";
     import type { Snippet } from "svelte";
     import type { BadgeState } from "../Badge/Badge.svelte";
     import Icon from "../Icon/Icon.svelte";
@@ -15,7 +16,7 @@
         IconCheck,
     } from "@stackoverflow/stacks-icons/icons";
 
-    interface Props extends Omit<HTMLTextareaAttributes, "size"> {
+    interface Props extends Omit<HTMLTextareaAttributes, "size" | "class"> {
         /**
          * `id` attribute of the text input
          */
@@ -68,7 +69,7 @@
         /**
          * Additional CSS classes added to the underlying HTML input element
          */
-        class?: string;
+        class?: ClassValue;
         /**
          * Localized translation for the required label status text
          */
@@ -105,19 +106,12 @@
         ...rest
     }: Props = $props();
 
-    const getClasses = (className: string, size: Size) => {
+    const getClasses = (className: ClassValue, size: Size) => {
         const base = "s-textarea";
-        let classes = base;
-
-        if (className) {
-            classes += " " + className;
-        }
-
-        if (size) {
-            classes += ` ${base}__${size}`;
-        }
-
-        return classes;
+        const classes = [size]
+            .filter(Boolean)
+            .map((modifier) => `${base}__${modifier}`);
+        return clsx(base, className, classes);
     };
     let classes = $derived(getClasses(className, size));
 </script>

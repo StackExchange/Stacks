@@ -3,6 +3,8 @@
 </script>
 
 <script lang="ts">
+    import clsx from "clsx";
+    import type { ClassValue } from "svelte/elements";
     import Icon from "../Icon/Icon.svelte";
     import {
         IconVote16Up,
@@ -90,7 +92,7 @@
         /**
          * Additional CSS classes added to the element
          */
-        class?: string;
+        class?: ClassValue;
     }
 
     const {
@@ -113,25 +115,17 @@
     }: Props = $props();
 
     const getClasses = (
-        className: string,
-        expanded?: boolean,
+        className: ClassValue,
+        expanded: boolean,
         horizontal?: boolean
     ) => {
-        let classes = "s-vote";
-
-        if (className) {
-            classes += " " + className;
-        }
-
-        if (expanded) {
-            classes += " s-vote__expanded";
-        }
-
-        if (horizontal) {
-            classes += " s-vote__horizontal";
-        }
-
-        return classes;
+        const base = "s-vote";
+        return clsx(
+            base,
+            className,
+            expanded && `${base}__expanded`,
+            horizontal && `${base}__horizontal`
+        );
     };
 
     let expanded = $state(false);

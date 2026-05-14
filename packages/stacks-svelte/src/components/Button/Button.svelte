@@ -1,5 +1,6 @@
 <script module lang="ts">
-    import type { HTMLButtonAttributes } from "svelte/elements";
+    import clsx from "clsx";
+    import type { ClassValue, HTMLButtonAttributes } from "svelte/elements";
     import type { Snippet } from "svelte";
     import Loader from "../Loader/Loader.svelte";
 
@@ -83,7 +84,7 @@
         /**
          * Additional CSS classes added to the element
          */
-        class?: string;
+        class?: ClassValue;
 
         /**
          * Snippet for the button content
@@ -119,7 +120,7 @@
     }: Props = $props();
 
     const getClasses = (
-        className: string,
+        className: ClassValue,
         branding: Brand,
         size: Size,
         variant: Variant,
@@ -131,40 +132,25 @@
         selected: boolean
     ) => {
         const base = "s-btn";
-        let classes = base;
-        const suffixes = [branding, size, variant, weight];
-
-        if (className) {
-            classes += " " + className;
-        }
-
-        suffixes.forEach((suffix) => {
-            if (suffix) {
-                classes += ` ${base}__${suffix}`;
-            }
-        });
-
+        const classes = [branding, size, variant, weight]
+            .filter(Boolean)
+            .map((modifier) => `${base}__${modifier}`);
         if (dropdown) {
-            classes += ` ${base}__dropdown`;
+            classes.push(`${base}__dropdown`);
         }
-
         if (link) {
-            classes += ` ${base}__link`;
+            classes.push(`${base}__link`);
         }
-
         if (icon) {
-            classes += ` ${base}__icon`;
+            classes.push(`${base}__icon`);
         }
-
         if (unset) {
-            classes += ` ${base}__unset`;
+            classes.push(`${base}__unset`);
         }
-
         if (selected) {
-            classes += ` is-selected`;
+            classes.push("is-selected");
         }
-
-        return classes;
+        return clsx(base, className, classes);
     };
 
     const classes = $derived(

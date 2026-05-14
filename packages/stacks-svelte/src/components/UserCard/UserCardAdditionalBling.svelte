@@ -1,4 +1,6 @@
 <script lang="ts">
+    import clsx from "clsx";
+    import type { ClassValue } from "svelte/elements";
     import Icon from "../Icon/Icon.svelte";
 
     import Popover from "../Popover/Popover.svelte";
@@ -29,7 +31,7 @@
         /**
          * Additional CSS classes added to the element
          */
-        class?: string;
+        class?: ClassValue;
     }
 
     const {
@@ -40,15 +42,9 @@
         class: className = "",
     }: Props = $props();
 
-    const getClasses = (className: string) => {
+    const getClasses = (className: ClassValue) => {
         const base = "s-user-card--group";
-        let classes = base;
-
-        if (className) {
-            classes += " " + className;
-        }
-
-        return classes;
+        return clsx(base, className);
     };
 
     const classes = $derived(getClasses(className));

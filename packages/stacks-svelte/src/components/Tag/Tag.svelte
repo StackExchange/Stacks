@@ -4,10 +4,12 @@
 </script>
 
 <script lang="ts">
+    import clsx from "clsx";
     import type { Snippet } from "svelte";
     import Icon from "../Icon/Icon.svelte";
     import { IconCross16 } from "@stackoverflow/stacks-icons/icons";
     import type {
+        ClassValue,
         HTMLAnchorAttributes,
         HTMLButtonAttributes,
     } from "svelte/elements";
@@ -79,7 +81,7 @@
         /**
          * Additional CSS classes added to the element
          */
-        class?: string;
+        class?: ClassValue;
 
         /**
          * Callback function to call when the tag is dismissed
@@ -119,35 +121,23 @@
     }: Props & HTMLButtonAttributes & HTMLAnchorAttributes = $props();
 
     const getClasses = (
-        className: string,
+        className: ClassValue,
         size: Size,
         variant: Variant,
         ignored: boolean,
         watched: boolean
     ) => {
         const base = "s-tag";
-        let classes = base;
-        const suffixes = [size, variant];
-
-        if (className) {
-            classes += " " + className;
-        }
-
-        suffixes.forEach((suffix) => {
-            if (suffix) {
-                classes += ` ${base}__${suffix}`;
-            }
-        });
-
+        const classes = [size, variant]
+            .filter(Boolean)
+            .map((modifier) => `${base}__${modifier}`);
         if (ignored) {
-            classes += ` ${base}__ignored`;
+            classes.push(`${base}__ignored`);
         }
-
         if (watched) {
-            classes += ` ${base}__watched`;
+            classes.push(`${base}__watched`);
         }
-
-        return classes;
+        return clsx(base, className, classes);
     };
 
     const classes = $derived(

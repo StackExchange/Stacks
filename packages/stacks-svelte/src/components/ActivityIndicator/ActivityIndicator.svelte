@@ -1,4 +1,7 @@
 <script module lang="ts">
+    import clsx from "clsx";
+    import type { ClassValue } from "svelte/elements";
+
     export type Variant = "" | "success" | "warning" | "danger";
     export type Size = "" | "sm";
 </script>
@@ -29,7 +32,7 @@
         /**
          * Additional CSS classes added to the element
          */
-        class?: string;
+        class?: ClassValue;
     }
 
     const {
@@ -41,26 +44,15 @@
     }: Props = $props();
 
     const getClasses = (
-        className: string,
+        className: ClassValue,
         variant: Variant,
         size: Size
-    ): string => {
+    ) => {
         const base = "s-activity-indicator";
-        let classes = base;
-
-        if (variant) {
-            classes += ` ${base}__${variant}`;
-        }
-
-        if (size) {
-            classes += ` ${base}__${size}`;
-        }
-
-        if (className) {
-            classes += ` ${className}`;
-        }
-
-        return classes;
+        const classes = [variant, size]
+            .filter(Boolean)
+            .map((modifier) => `${base}__${modifier}`);
+        return clsx(base, className, classes);
     };
 
     const classes = $derived(getClasses(className, variant, size));
