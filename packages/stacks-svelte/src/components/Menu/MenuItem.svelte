@@ -3,8 +3,10 @@
 </script>
 
 <script lang="ts">
+    import clsx from "clsx";
     import type { Snippet } from "svelte";
     import type {
+        ClassValue,
         HTMLAnchorAttributes,
         HTMLButtonAttributes,
     } from "svelte/elements";
@@ -37,7 +39,7 @@
         /**
          * Additional CSS classes added to the element
          */
-        class?: string;
+        class?: ClassValue;
 
         /**
          * Snippet for the menu item content
@@ -56,31 +58,21 @@
         ...restProps
     }: Props = $props();
 
-    const getItemClasses = (className: string) => {
-        return `s-menu--item${className ? ` ${className}` : ""}`;
+    const getItemClasses = (className: ClassValue) => {
+        return clsx("s-menu--item", className);
     };
 
     const getLinkClasses = (
-        className: string,
+        className: ClassValue,
         danger: boolean,
         selected: boolean
     ) => {
-        const base = "s-menu--action";
-        let classes = base;
-
-        if (danger) {
-            classes += ` ${base}__danger`;
-        }
-
-        if (className) {
-            classes += ` ${className}`;
-        }
-
-        if (selected) {
-            classes += ` is--selected`;
-        }
-
-        return classes;
+        return clsx(
+            "s-menu--action",
+            danger && "s-menu--action__danger",
+            className,
+            selected && "is--selected"
+        );
     };
 
     const itemClasses = $derived(getItemClasses(className));

@@ -49,21 +49,18 @@
                 </div>
               </td>
               <td class="va-middle ta-center px4">
-                <Button class="ws-nowrap" {variant} {weight}>
+                <Button class="ws-nowrap" {variant} {weight} badge="198">
                   Active
-                  {#snippet badge()}198{/snippet}
                 </Button>
               </td>
               <td class="va-middle ta-center px4">
-                <Button class="ws-nowrap" {variant} {weight} selected aria-pressed="true">
+                <Button class="ws-nowrap" {variant} {weight} badge="198" selected aria-pressed="true">
                   Active
-                  {#snippet badge()}198{/snippet}
                 </Button>
               </td>
               <td class="va-middle ta-center px4">
-                <Button class="ws-nowrap" {variant} {weight} disabled>
+                <Button class="ws-nowrap" {variant} {weight} badge="198" disabled>
                   Active
-                  {#snippet badge()}198{/snippet}
                 </Button>
               </td>
             </tr>

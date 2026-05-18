@@ -3,7 +3,9 @@
 </script>
 
 <script lang="ts">
+    import clsx from "clsx";
     import Label from "../Label/Label.svelte";
+    import type { ClassValue } from "svelte/elements";
 
     export type Props = {
         /**
@@ -54,7 +56,7 @@
         /**
          * Additional CSS classes
          */
-        class?: string;
+        class?: ClassValue;
 
         /**
          * Change event handler
@@ -79,26 +81,19 @@
     }: Props = $props();
 
     const getClasses = (
-        className: string,
+        className: ClassValue,
         checkmark: boolean,
         state: State
     ) => {
         const base = "s-radio";
-        let classes = base;
-
-        if (className) {
-            classes += " " + className;
-        }
-
+        const classes: string[] = [];
         if (checkmark) {
-            classes += ` ${base}__checkmark`;
+            classes.push(`${base}__checkmark`);
         }
-
         if (state) {
-            classes += ` has-${state}`;
+            classes.push(`has-${state}`);
         }
-
-        return classes;
+        return clsx(base, className, classes);
     };
 
     const classes = $derived(getClasses(className, checkmark, state));
