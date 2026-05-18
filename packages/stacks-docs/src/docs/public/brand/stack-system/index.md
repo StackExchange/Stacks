@@ -63,7 +63,7 @@ Our 3D stacks are the most expressive part of our brand, so they’re reserved f
 
 ### Generating shapes
 
-We have a [Figma file of pre-made collages](https://www.figma.com/design/FEdyUP08JZQWfjSKwt5AOo/Base-shapes-for-3d-heros?node-id=0-1&t=v6OzktCCxojq0rI5-1), for creating new simple shapes you can use [i3D Figma plugin](https://www.figma.com/community/plugin/1387823712562916211), and more complicated shapes we have a custom build tool called [Stack Trace](https://trace.stackoverflow.design/). There is also tooling to batch create shapes from predefined shapes, perspectives and color pallets in the [GitHub repo](https://github.com/StackExchange/StackTrace).
+We have a [Figma file of pre-made collages](https://www.figma.com/design/FEdyUP08JZQWfjSKwt5AOo/Base-shapes-for-3d-heros?node-id=0-1&t=v6OzktCCxojq0rI5-1), for creating new simple shapes you can use [i3D Figma plugin](https://www.figma.com/community/plugin/1387823712562916211), and more complicated shapes we have a custom build tool called [Stack Trace](https://trace.stackoverflow.design/). There is also tooling to batch create shapes from predefined shapes, perspectives and color palettes in the [GitHub repo](https://github.com/StackExchange/StackTrace).
 
 [![](./stacks-3d-tool.png)](https://trace.stackoverflow.design/)
 
