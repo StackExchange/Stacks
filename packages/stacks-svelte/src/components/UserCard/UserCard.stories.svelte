@@ -1,5 +1,6 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
+    import { parseClassValue } from "../../storybook-utils";
     import UserCard, { type Size } from "./UserCard.svelte";
     import UserCardTime from "./UserCardTime.svelte";
     import UserCardBadge from "./UserCardBadge.svelte";
@@ -40,7 +41,7 @@
 </script>
 
 <Story name="Base" args={baseArgs}>
-    {#snippet template(args)}
+    {#snippet template({ class: classArg, ...args })}
         {#snippet time()}
             <UserCardTime
                 text="asked 2 hr ago"
@@ -54,7 +55,14 @@
             <UserCardBling name="silver bling" type="silver" text={8} />
             <UserCardBling name="bronze bling" type="bronze" text={4} />
         {/snippet}
-        <UserCard {...args} {time} {blings} />
+        <UserCard
+            {...args}
+            class={parseClassValue(
+                typeof classArg === "string" ? classArg : undefined
+            )}
+            {time}
+            {blings}
+        />
     {/snippet}
 </Story>
 

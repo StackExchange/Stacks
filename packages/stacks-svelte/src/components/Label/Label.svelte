@@ -4,7 +4,9 @@
 </script>
 
 <script lang="ts">
+    import clsx from "clsx";
     import type { Snippet } from "svelte";
+    import type { ClassValue } from "svelte/elements";
     import type { BadgeState } from "../Badge/Badge.svelte";
     import Badge from "../Badge/Badge.svelte";
 
@@ -37,7 +39,7 @@
         /**
          * Additional CSS classes added to the element
          */
-        class?: string;
+        class?: ClassValue;
 
         /**
          * Localized translation for the required text
@@ -61,19 +63,12 @@
         children,
     }: Props = $props();
 
-    const getClasses = (className: string, size: Size) => {
+    const getClasses = (className: ClassValue, size: Size) => {
         const base = "s-label";
-        let classes = base;
-
-        if (className) {
-            classes += " " + className;
-        }
-
-        if (size) {
-            classes += ` ${base}__${size}`;
-        }
-
-        return classes;
+        const classes = [size]
+            .filter(Boolean)
+            .map((modifier) => `${base}__${modifier}`);
+        return clsx(base, className, classes);
     };
 
     const classes = $derived(getClasses(className, size));

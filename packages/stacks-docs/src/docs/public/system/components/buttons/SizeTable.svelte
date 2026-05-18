@@ -1,16 +1,19 @@
 <script lang="ts">
   import { Button } from '@stackoverflow/stacks-svelte';
 
-  let { sizes } = $props();
+  type ButtonSize = '' | 'xs' | 'sm' | 'lg';
+  type SizeInfo = { name: string; fs: string; class: string };
 
-  const getSizeInfo = (size) => {
-    const sizeMap = {
+  let { sizes }: { sizes: ButtonSize[] } = $props();
+
+  const getSizeInfo = (size: ButtonSize): SizeInfo => {
+    const sizeMap: Record<ButtonSize, SizeInfo> = {
       'xs': { name: 'Extra Small', fs: '12px', class: 's-btn__xs' },
       'sm': { name: 'Small', fs: '13px', class: 's-btn__sm' },
       '': { name: 'Default', fs: '14px', class: 'N/A' },
       'lg': { name: 'Large', fs: '17px', class: 's-btn__lg' }
     };
-    return sizeMap[size] || sizeMap[''];
+    return sizeMap[size];
   };
 </script>
 

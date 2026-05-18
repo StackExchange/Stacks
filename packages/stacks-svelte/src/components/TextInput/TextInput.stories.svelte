@@ -1,5 +1,6 @@
 <script lang="ts" module>
     import { defineMeta } from "@storybook/addon-svelte-csf";
+    import { parseClassValue } from "../../storybook-utils";
     import TextInput from "./TextInput.svelte";
     import type { FillSide, Size, State, Type } from "./TextInput.svelte";
 
@@ -51,13 +52,25 @@
                 control: "select",
                 options: TextInputTypes,
             },
+            class: {
+                control: "text",
+            },
         },
     });
 
     let bindableValue = $state("Change me");
 </script>
 
-<Story name="Base" args={{ id: "base-example-input", label: "Username" }} />
+<Story name="Base" args={{ id: "base-example-input", label: "Username" }}>
+    {#snippet template({ class: classArg, ...args })}
+        <TextInput
+            {...args}
+            class={parseClassValue(
+                typeof classArg === "string" ? classArg : undefined
+            )}
+        />
+    {/snippet}
+</Story>
 
 <Story name="Input fill" asChild>
     <div class="d-grid g16">
