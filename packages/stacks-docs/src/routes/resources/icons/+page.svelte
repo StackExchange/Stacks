@@ -8,6 +8,7 @@
   import { page } from '$app/state';
   import { replaceState } from '$app/navigation';
   import { browser } from '$app/environment';
+  import { resolve } from '$app/paths';
 
   const icons = manifest.icons;
   const spots = manifest.spots;
@@ -100,16 +101,20 @@
   // inspector state can be deep-linked and restored on load.
   function updateUrl() {
     if (!browser) return;
-    const url = new URL(page.url);
-    url.search = '';
+
+    const params = [];
     if (selected) {
-      url.searchParams.set(selected.isSpot ? 's' : 'i', selected.name);
+      params.push(`${selected.isSpot ? 's' : 'i'}=${encodeURIComponent(selected.name)}`);
       // Omit the variant param when it just echoes the icon/spot name.
       if (selectedVariant?.key && selectedVariant.key !== selected.name) {
-        url.searchParams.set('v', selectedVariant.key);
+        params.push(`v=${encodeURIComponent(selectedVariant.key)}`);
       }
     }
-    replaceState(url, page.state);
+
+    const query = params.length ? `?${params.join('&')}` : '';
+    // Query-only update to the current path — there is no route to resolve().
+    // eslint-disable-next-line svelte/no-navigation-without-resolve
+    replaceState(`${page.url.pathname}${query}`, page.state);
   }
 
   // On initial load, bring a deep-linked icon/spot into view within the grid.
@@ -160,9 +165,9 @@
     <div class="fl-grow1 p24 wmn0">
         <div class="d-flex g4 ai-center mb12">
             <nav class="d-flex ai-center g6 fs-body2 mr-auto" aria-label="breadcrumb">
-                <a href="/resources" class="s-link fw-bold">Resources</a>
+                <a href={resolve('/resources')} class="s-link fw-bold">Resources</a>
                 <span class="fc-black-300">/</span>
-                <a href="/resources" class="s-link fw-bold">Icons & Spots</a>
+                <a href={resolve('/resources/icons')} class="s-link fw-bold">Icons & Spots</a>
             </nav>
 
             <div class="d-flex ai-center g16 fs-caption">
