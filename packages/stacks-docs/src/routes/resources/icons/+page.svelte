@@ -1,6 +1,5 @@
 <script>
-  import manifest from './manifest.json';
-  // import manifest from '.@stackoverflow/stacks-icons/manifest';
+  import manifest from '@stackoverflow/stacks-icons/manifest';
   import { copyToClipboard } from '$src/lib/copyToClipboard';
 
   import { IconServiceFigma, IconCheckFillCircle, IconStackCards, IconCross } from '@stackoverflow/stacks-icons/icons';
