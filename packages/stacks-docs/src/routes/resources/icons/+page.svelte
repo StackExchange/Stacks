@@ -2,9 +2,9 @@
   import manifest from '@stackoverflow/stacks-icons/manifest';
   import { copyToClipboard } from '$src/lib/copyToClipboard';
 
-  import { IconServiceFigma, IconCheckFillCircle, IconStackCards, IconCross } from '@stackoverflow/stacks-icons/icons';
-  import { SpotEmpty } from '@stackoverflow/stacks-icons/spots';
-  import { Icon, Button, Navigation, NavigationItem, TextInput, TextArea } from '@stackoverflow/stacks-svelte';
+  import { IconServiceFigma, IconServiceGitHub, IconCheckFillCircle, IconStackCards, IconCross } from '@stackoverflow/stacks-icons/icons';
+  import { SpotSearch } from '@stackoverflow/stacks-icons/spots';
+  import { Icon, Button, Link, Navigation, NavigationItem, TextInput, TextArea } from '@stackoverflow/stacks-svelte';
   import { page } from '$app/state';
   import { replaceState } from '$app/navigation';
   import { browser } from '$app/environment';
@@ -158,6 +158,26 @@
 
 <div class="d-flex">
     <div class="fl-grow1 p24 wmn0">
+        <div class="d-flex g4 ai-center mb12">
+            <nav class="d-flex ai-center g6 fs-body2 mr-auto" aria-label="breadcrumb">
+                <a href="/resources" class="s-link fw-bold">Resources</a>
+                <span class="fc-black-300">/</span>
+                <a href="/resources" class="s-link fw-bold">Icons & Spots</a>
+            </nav>
+
+            <div class="d-flex ai-center g16 fs-caption">
+                <Link title="Open in Figma" href="https://www.figma.com/design/Z5yoO4WH58QDHvmxwMWhr0">
+                    <Icon src={IconServiceFigma} class="native" />
+                    <span class="sm:d-none">Figma</span>
+                </Link>
+
+                <Link title="View on GitHub" href="https://github.com/StackExchange/Stacks-Icons">
+                    <Icon src={IconServiceGitHub} />
+                    <span class="sm:d-none">GitHub</span>
+                </Link>
+            </div>
+        </div>
+
         <TextInput
             id="icon-search"
             label="Search icons and spots"
@@ -199,12 +219,12 @@
         {@render section('Spots', filteredSpots)}
     </div>
 
-    <aside class="ws3 ps-sticky md:ps-fixed z-nav bg-white t0 r0 b0 overflow-y-scroll fl-shrink0 bl bc-black-200 h-screen {!(selected && selectedVariant) ? 'md:d-none d-flex' : ''} ">
+    <aside class="ws3 sm:w75 ps-sticky md:ps-fixed z-nav bg-white t24 sm:t64 r0 b0 overflow-y-scroll fl-shrink0 bl bc-black-200 h-screen {!(selected && selectedVariant) ? 'md:d-none d-flex' : ''} ">
         {#if selected && selectedVariant}
             <div class="d-flex fd-column bb bc-black-200 hs3">
                 <div class="d-flex jc-space-between px12">
                     <button onclick={closeInspector} type="button" title="Close inspector" class="d-none md:d-block px4 s-btn s-btn__sm s-btn__clear s-btn__icon">
-                    <Icon src={IconCross} />
+                        <Icon src={IconCross} />
                     </button>
 
                     <h3 class="fs-title fw-bold lh-sm mb0 p16 ta-center fl1 md:ta-left">{selected.name}</h3>
@@ -337,8 +357,8 @@
             </div>
         {:else}
             <div class="s-empty-state wmx4 p48 my-auto">
-                <Icon src={SpotEmpty} class="native" />
-                <h4 class="s-empty-state--title">No asset selected</h4>
+                <Icon src={SpotSearch} class="native" />
+                <h4 class="s-empty-state--title">Inspect an asset</h4>
                 <p>Pick an icon or spot from the grid to preview its variants, copy the code, and open it in Figma.</p>
             </div>
         {/if}
