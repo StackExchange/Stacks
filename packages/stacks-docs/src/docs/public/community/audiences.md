@@ -11,7 +11,7 @@ updated: 2026-04-29
     import GridColumn from '$components/GridColumn.svelte';
 </script>
 
-Meta sites are the backbone of Stack Overflow’s Public Platforms – a space where the community discusses how the site should work, raises issues, and influences decisions. For sites with their own domain you can find them at `meta.` + the domain, e.g. meta.stackoverflow.com and subdomain sites you can find them at `sitename.meta.`stackexchange.com e.g., math.meta.stackexchange.com
+[Meta sites](/community/terminology#meta--what-is-it-and-how-does-it-work) are the backbone of Stack Overflow’s Public Platforms – a space where the community discusses how the site should work, raises issues, and influences decisions. For sites with their own domain you can find them at `meta.` + the domain, e.g. meta.stackoverflow.com and subdomain sites you can find them at `sitename.meta.`stackexchange.com e.g., math.meta.stackexchange.com
 
 ## Introduction
 
