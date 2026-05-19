@@ -71,12 +71,12 @@ If you’re not sure how normal or formal you’re being, read what you’ve wri
   <GridColumn extraClasses="py64 ta-center bg-brand-yellow d:fc-white">
     <div class="ps-absolute t12 l12">Say this…</div>
     <h1>The knowledge you need to keep creating.</h1>
-    <p class="docs-copy">Stack Overflow is a place for technologists and businesses to learn and share knowledge.</p>
+    <p class="fs-body2 lh-lg">Stack Overflow is a place for technologists and businesses to learn and share knowledge.</p>
   </GridColumn>
   <GridColumn extraClasses="py64 ta-center bg-black-200 column-strike">
     <div class="ps-absolute t12 l12">Instead of this…</div>
     <h1>The knowledge required to power innovation.</h1>
-    <p class="docs-copy">Stack Overflow provides comprehensive information and data for technologists and businesses.</p>
+    <p class="fs-body2 lh-lg">Stack Overflow provides comprehensive information and data for technologists and businesses.</p>
   </GridColumn>
 </Grid>
 
@@ -90,11 +90,11 @@ You can explain context or reasoning after, if you like, but keep it concise. Th
   <GridColumn extraClasses="py64 ta-center bg-brand-yellow d:fc-white">
     <div class="ps-absolute t12 l12">Say this…</div>
     <h1>Switch (100 opinions) for one right answer</h1>
-    <p class="docs-copy">Get the knowledge you need to solve problems and craft code that works. No vague ideas or random suggestions. Just verified, definitive answers from experienced developers.</p>
+    <p class="fs-body2 lh-lg">Get the knowledge you need to solve problems and craft code that works. No vague ideas or random suggestions. Just verified, definitive answers from experienced developers.</p>
   </GridColumn>
   <GridColumn extraClasses="py64 ta-center bg-black-200 column-strike">
     <div class="ps-absolute t12 l12">Instead of this…</div>
-    <p class="docs-copy">When you encounter problems in programming, finding the right information to solve them can feel impossible. Most information is unverified, and it seems like everyone has a different opinion. That’s why at Stack Overflow you won’t find guesswork and confusion. You’ll only find verified, definitive answers from experienced developers — so you can get the knowledge you need to solve problems and craft code that works. </p>
+    <p class="fs-body2 lh-lg">When you encounter problems in programming, finding the right information to solve them can feel impossible. Most information is unverified, and it seems like everyone has a different opinion. That’s why at Stack Overflow you won’t find guesswork and confusion. You’ll only find verified, definitive answers from experienced developers — so you can get the knowledge you need to solve problems and craft code that works. </p>
   </GridColumn>
 </Grid>
 
@@ -111,11 +111,11 @@ Check out the Spirited section for more tips on making our writing a little more
 <Grid>
   <GridColumn extraClasses="py64 ta-center bg-brand-yellow d:fc-white">
     <div class="ps-absolute t12 l12">Say this…</div>
-    <p class="docs-copy">Connect Stack Internal to Slack and Microsoft Teams so your developers can find the answers they need quickly. You can also create Communities where specialists can share the most relevant knowledge.</p>
+    <p class="fs-body2 lh-lg">Connect Stack Internal to Slack and Microsoft Teams so your developers can find the answers they need quickly. You can also create Communities where specialists can share the most relevant knowledge.</p>
   </GridColumn>
   <GridColumn extraClasses="py64 ta-center bg-black-200 column-strike">
     <div class="ps-absolute t12 l12">Instead of this…</div>
-    <p class="docs-copy">Enhance efficiency by integrating with tools including Slack and Microsoft Teams. Plus, empower teams and supercharge productivity by creating Communities centered on different specialisms.</p>
+    <p class="fs-body2 lh-lg">Enhance efficiency by integrating with tools including Slack and Microsoft Teams. Plus, empower teams and supercharge productivity by creating Communities centered on different specialisms.</p>
   </GridColumn>
 </Grid>
 
@@ -133,12 +133,12 @@ Done well, this kind of writing earns trust, gives us an air of expertise and au
   <GridColumn extraClasses="py64 ta-center bg-brand-yellow d:fc-white">
     <div class="ps-absolute t12 l12">Say this…</div>
     <h1>You can’t know everything</h1>
-    <p class="docs-copy">But with Stack Internal, you can find someone who does.</p>
+    <p class="fs-body2 lh-lg">But with Stack Internal, you can find someone who does.</p>
   </GridColumn>
   <GridColumn extraClasses="py64 ta-center bg-black-200 column-strike">
     <div class="ps-absolute t12 l12">Instead of this…</div>
     <h1>Become an expert in your field</h1>
-    <p class="docs-copy">Stack Internal puts valuable knowledge at your fingertips.</p>
+    <p class="fs-body2 lh-lg">Stack Internal puts valuable knowledge at your fingertips.</p>
   </GridColumn>
 </Grid>
 
@@ -150,12 +150,12 @@ If there’s no expectation to subvert, no convention to challenge or no feather
   <GridColumn extraClasses="py64 ta-center bg-brand-yellow d:fc-white">
     <div class="ps-absolute t12 l12">Say this…</div>
     <h1>Find knowledge to upskill. Reskill. Outskill.</h1>
-    <p class="docs-copy">We can’t promise you a promotion, but we can promise you’ll learn something.</p>
+    <p class="fs-body2 lh-lg">We can’t promise you a promotion, but we can promise you’ll learn something.</p>
   </GridColumn>
   <GridColumn extraClasses="py64 ta-center bg-black-200 column-strike">
     <div class="ps-absolute t12 l12">Instead of this…</div>
     <h1>Supercharge your future</h1>
-    <p class="docs-copy">Access the knowledge you need to boost your skills and transform your career.</p>
+    <p class="fs-body2 lh-lg">Access the knowledge you need to boost your skills and transform your career.</p>
   </GridColumn>
 </Grid>
 
@@ -186,12 +186,12 @@ If we’re excited about something, we let it show. If we believe in something, 
   <GridColumn extraClasses="py64 ta-center bg-brand-yellow d:fc-white">
     <div class="ps-absolute t12 l12">Say this…</div>
     <h1>One place. A million breakthroughs.</h1>
-    <p class="docs-copy">Join a community of technologists, businesses and developers working things out, together.</p>
+    <p class="fs-body2 lh-lg">Join a community of technologists, businesses and developers working things out, together.</p>
   </GridColumn>
   <GridColumn extraClasses="py64 ta-center bg-black-200 column-strike">
     <div class="ps-absolute t12 l12">Instead of this…</div>
     <h1>The leading place for technical knowledge.</h1>
-    <p class="docs-copy">Here’s to changing the world, one question at a time.</p>
+    <p class="fs-body2 lh-lg">Here’s to changing the world, one question at a time.</p>
   </GridColumn>
 </Grid>
 
@@ -206,25 +206,25 @@ Like computers, readers have a limit on how much they can process and remember �
 <Grid>
   <GridColumn>
     <h4>Structure and scanability</h4>
-    <p class="docs-copy">Write and structure your content in a way that lets people scan and get the most important information. Headlines and subheads are your friend here, as are bullet points, if you’re throwing a lot of information at them.</p>
+    <p class="fs-body2 lh-lg">Write and structure your content in a way that lets people scan and get the most important information. Headlines and subheads are your friend here, as are bullet points, if you’re throwing a lot of information at them.</p>
   </GridColumn>
   <GridColumn>
     <h4>Density</h4>
-    <p class="docs-copy">Writing can feel dense if you’re using lots of formal language or the marketing fluff we’ve already highlighted. But also when you’re trying to cram too much into sentences and paragraphs. A good guideline is to try and develop no more than 1–2 ideas per paragraph.</p>
+    <p class="fs-body2 lh-lg">Writing can feel dense if you’re using lots of formal language or the marketing fluff we’ve already highlighted. But also when you’re trying to cram too much into sentences and paragraphs. A good guideline is to try and develop no more than 1–2 ideas per paragraph.</p>
   </GridColumn>
   <GridColumn>
     <h4>Control your sentence lengths</h4>
-    <p class="docs-copy">Try to keep your sentences to a maximum of 30 words. There’s a lot of research that tells us the moment they go over that, they instantly become harder to understand. And within that limit, try to vary your sentence length. A nice mixture of short, mid and longer sentences creates rhythm and keeps monotony at bay.</p>
+    <p class="fs-body2 lh-lg">Try to keep your sentences to a maximum of 30 words. There’s a lot of research that tells us the moment they go over that, they instantly become harder to understand. And within that limit, try to vary your sentence length. A nice mixture of short, mid and longer sentences creates rhythm and keeps monotony at bay.</p>
   </GridColumn>
 </Grid>
 
 <Grid>
   <GridColumn extraClasses="py64 ta-center bg-brand-yellow d:fc-white">
     <h1>Teaching developers. And models.</h1>
-    <p class="docs-copy">Stack Overflow has been the go-to place for technologists to learn for over fifteen years. Now you can license our vital, verified knowledge to train your AI models.</p>
+    <p class="fs-body2 lh-lg">Stack Overflow has been the go-to place for technologists to learn for over fifteen years. Now you can license our vital, verified knowledge to train your AI models.</p>
   </GridColumn>
   <GridColumn extraClasses="py64 ta-center bg-black-200 column-strike">
-    <p class="docs-copy">As the go-to place for technologists to learn, Stack Overflow is unmatched for verified technical knowledge, and now you can license that public data –  built up over fifteen years of questions and answers posted on our public forum – to train your AI models.</p>
+    <p class="fs-body2 lh-lg">As the go-to place for technologists to learn, Stack Overflow is unmatched for verified technical knowledge, and now you can license that public data –  built up over fifteen years of questions and answers posted on our public forum – to train your AI models.</p>
   </GridColumn>
 </Grid>
 
@@ -236,10 +236,10 @@ That said, in certain situations the passive voice can help soften a message. Th
 
 <Grid>
   <GridColumn extraClasses="py64 ta-center bg-brand-yellow d:fc-white">
-    <p class="docs-copy">With Stack Internal, your developers can share knowledge and resources with the whole organization, so everyone can find the right answers quickly.</p>
+    <p class="fs-body2 lh-lg">With Stack Internal, your developers can share knowledge and resources with the whole organization, so everyone can find the right answers quickly.</p>
   </GridColumn>
   <GridColumn extraClasses="py64 ta-center bg-black-200 column-strike">
-    <p class="docs-copy">With Stack Internal, knowledge and resources can be shared with the whole organization, making answers easily searchable and findable. </p>
+    <p class="fs-body2 lh-lg">With Stack Internal, knowledge and resources can be shared with the whole organization, making answers easily searchable and findable. </p>
   </GridColumn>
 </Grid>
 
@@ -254,11 +254,11 @@ Learn more about how we dial these aspects of our voice up and down in different
 <Grid>
   <GridColumn extraClasses="py64 ta-center bg-brand-yellow d:fc-white">
     <h1>Content Health.</h1>
-    <p class="docs-copy">These posts haven’t been updated for six months. You may want to review them to check if the information is still accurate.</p>
+    <p class="fs-body2 lh-lg">These posts haven’t been updated for six months. You may want to review them to check if the information is still accurate.</p>
   </GridColumn>
   <GridColumn extraClasses="py64 ta-center bg-black-200 column-strike">
     <h1>Content Health.</h1>
-    <p class="docs-copy">Things are always changing – we get it. But make sure your team has the right knowledge at hand by updating these old posts.</p>
+    <p class="fs-body2 lh-lg">Things are always changing – we get it. But make sure your team has the right knowledge at hand by updating these old posts.</p>
   </GridColumn>
 </Grid>
 
@@ -277,15 +277,15 @@ There are no hard rules around this. It’s about reading the room and thinking 
 <Grid>
   <GridColumn extraClasses="bg-brand-blue-light d:fc-white">
     <h4 class="fc-black d:fc-white">B2B</h4>
-    <p class="docs-copy">When we’re speaking to businesses, our messaging needs to feel professional. So we should focus on Simple over Spirited. The good news is that most B2B messaging is so stuffed with marketing fluff that clear, simple copy is enough to help us stand out and get our message across.</p>
+    <p class="fs-body2 lh-lg">When we’re speaking to businesses, our messaging needs to feel professional. So we should focus on Simple over Spirited. The good news is that most B2B messaging is so stuffed with marketing fluff that clear, simple copy is enough to help us stand out and get our message across.</p>
   </GridColumn>
   <GridColumn extraClasses="bg-brand-blue-light d:fc-white">
     <h4 class="fc-black d:fc-white">In product</h4>
-    <p class="docs-copy">In-product copy is there to guide, not distract. So simplicity is king. That said, there can still be moments where Spirited shines through, for example in a success message or during onboarding.</p>
+    <p class="fs-body2 lh-lg">In-product copy is there to guide, not distract. So simplicity is king. That said, there can still be moments where Spirited shines through, for example in a success message or during onboarding.</p>
   </GridColumn>
   <GridColumn extraClasses="bg-brand-blue-light d:fc-white">
     <h4 class="fc-black d:fc-white">Support</h4>
-    <p class="docs-copy">Someone reading our help center may be feeling frustrated or trying to fix an urgent problem. We should prioritize our Simple pillar to make sure the information they find is clear and easy to understand.</p>
+    <p class="fs-body2 lh-lg">Someone reading our help center may be feeling frustrated or trying to fix an urgent problem. We should prioritize our Simple pillar to make sure the information they find is clear and easy to understand.</p>
   </GridColumn>
 </Grid>
 
@@ -294,14 +294,14 @@ There are no hard rules around this. It’s about reading the room and thinking 
 <Grid>
   <GridColumn extraClasses="bg-brand-pink d:fc-white">
     <h4 class="fc-black d:fc-white">B2C</h4>
-    <p class="docs-copy">Consumers are used to brands talking to them in more relaxed and informal ways, so it’s appropriate for us to bring a little more wit and charm.</p>
+    <p class="fs-body2 lh-lg">Consumers are used to brands talking to them in more relaxed and informal ways, so it’s appropriate for us to bring a little more wit and charm.</p>
   </GridColumn>
   <GridColumn extraClasses="bg-brand-pink d:fc-white">
     <h4 class="fc-black d:fc-white">Social Media</h4>
-    <p class="docs-copy">On social media, our content needs to stand out and get noticed. Turning up the Spirited part of our voice can help.</p>
+    <p class="fs-body2 lh-lg">On social media, our content needs to stand out and get noticed. Turning up the Spirited part of our voice can help.</p>
   </GridColumn>
   <GridColumn extraClasses="bg-brand-pink d:fc-white">
     <h4 class="fc-black d:fc-white">Email Marketing</h4>
-    <p class="docs-copy">As a one-to-one channel, email marketing helps us build relationships with our customers. Leaning into our Spirited side helps keep our emails engaging, and humanizes us as a brand. </p>
+    <p class="fs-body2 lh-lg">As a one-to-one channel, email marketing helps us build relationships with our customers. Leaning into our Spirited side helps keep our emails engaging, and humanizes us as a brand. </p>
   </GridColumn>
 </Grid>
