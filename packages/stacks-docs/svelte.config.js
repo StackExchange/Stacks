@@ -8,7 +8,7 @@ import rehypeSectionize from "@hbsnow/rehype-sectionize";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import extractToc from "@stefanprobst/rehype-extract-toc";
 import hljs from "highlight.js";
-import { visit } from "unist-util-visit";
+import { visit, SKIP } from "unist-util-visit";
 import { IconLink } from "@stackoverflow/stacks-icons/icons";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -144,7 +144,7 @@ function addDocClasses() {
 // Ensures s-table is present while preserving any existing classes (e.g. s-table__bx-simple).
 function addTableClasses() {
     return function (tree) {
-        visit(tree, "element", (node) => {
+        visit(tree, "element", (node, index, parent) => {
             if (node.tagName === "table") {
                 node.properties = node.properties || {};
                 const existing = Array.isArray(node.properties.className)
@@ -154,6 +154,17 @@ function addTableClasses() {
                       : [];
                 if (!existing.includes("s-table")) {
                     node.properties.className = ["s-table", ...existing];
+                }
+
+                if (parent) {
+                    const wrapper = {
+                        type: "element",
+                        tagName: "div",
+                        properties: { className: ["s-table-container"] },
+                        children: [node],
+                    };
+                    parent.children.splice(index, 1, wrapper);
+                    return [SKIP, index + 1];
                 }
             }
         });
