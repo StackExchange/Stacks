@@ -150,6 +150,10 @@
   let exportName = $derived(selectedVariant ? selectedVariant.key : '');
 </script>
 
+<svelte:head>
+  <title>Icons & Spot illustrations - Stack Overflow Design System</title>
+</svelte:head>
+
 <svelte:window on:copysuccess={copySuccess} />
 
 <div class="d-flex">
