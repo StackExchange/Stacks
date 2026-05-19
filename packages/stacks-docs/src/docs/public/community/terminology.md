@@ -11,6 +11,14 @@ description: "Community-specific terminology used across Stack Overflow."
     <p>For product and brand naming (Stack Overflow, Stack Internal, Stack Ads, etc.), see the public <a href="/copy/naming">Naming guidelines</a>. This page covers terms specific to community and Meta contexts. Source: <a href="https://meta.stackexchange.com/questions/40353/stack-exchange-glossary-dictionary-of-commonly-used-terms">Meta Stack Exchange</a>.</p>
 </Notice>
 
+## Meta — what is it, and how does it work?
+
+The term “meta” usually refers to the subsite, `sitename.meta.stackexchange.com`, which every site has to handle technical support, feature requests, and discussions about it. [Meta Stack Exchange](https://meta.stackexchange.com) (Meta.SE, MSE) is for questions that apply to the whole network.
+
+Every site has a help center article that further explains what “meta” is and how it works — [Meta Stack Exchange article](https://meta.stackexchange.com/help/whats-meta) and [stackoverflow.com’s article](https://stackoverflow.com/help/whats-meta).
+
+The term should be capitalized if referring to a specific meta site, such as using “Meta” in clear reference to Meta Stack Exchange. It should not be capitalized when used in a more generic sense, like a directive to “post on the site’s meta if you have a question.”
+
 ## Stack Exchange
 
 In 2026 we formalised what had been theoretically [true for over a decade](https://stackoverflow.blog/2015/09/15/were-changing-our-name-back-to-stack-overflow/) by updating our use of language to reflect the fact that the Stack Exchange Network is part of Stack Overflow, rather than Stack Exchange being the parent of Stack Overflow.
@@ -64,14 +72,6 @@ A “moderator,” “diamond moderator,” or “mod” for short, is a user th
 The term “moderators” is also sometimes used to refer to users with 10k+ reputation points, who have certain moderation privileges.
 
 Regular (non-mod) users can perform a variety of actions (such as editing, approving review, closing and reopening posts, etc.) on site despite not having the moderators’ heightened powers, which can also be referred to as “moderation actions” or “curation actions.”
-
-## Meta — what is it, and how does it work?
-
-The term “meta” usually refers to the subsite, `sitename.meta.stackexchange.com`, which every site has to handle technical support, feature requests, and discussions about it. [Meta Stack Exchange](https://meta.stackexchange.com) (Meta.SE, MSE) is for questions that apply to the whole network.
-
-Every site has a help center article that further explains what “meta” is and how it works — [Meta Stack Exchange article](https://meta.stackexchange.com/help/whats-meta) and [stackoverflow.com’s article](https://stackoverflow.com/help/whats-meta).
-
-The term should be capitalized if referring to a specific meta site, such as using “Meta” in clear reference to Meta Stack Exchange. It should not be capitalized when used in a more generic sense, like a directive to “post on the site’s meta if you have a question.”
 
 ## [status-*] tags and their usage
 
