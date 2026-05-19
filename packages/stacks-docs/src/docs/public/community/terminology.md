@@ -1,6 +1,7 @@
 ---
 title: "Terminology"
 description: "Community-specific terminology used across Stack Overflow."
+updated: 2026-05-19
 ---
 
 <script lang="ts">
