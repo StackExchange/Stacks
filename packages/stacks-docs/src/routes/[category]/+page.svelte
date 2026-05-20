@@ -2,7 +2,15 @@
   import { resolve } from '$app/paths';
 
   let { data }: { data: App.PageData } = $props();
+
+  const pageTitle = $derived(data.active.title ? `${data.active.title} - Stack Overflow Design System` : 'Stack Overflow Design System');
+  const pageDescription = $derived(data?.metadata?.description || `Documentation for ${data.active.title} in the Stack Overflow Design System`);
 </script>
+
+<svelte:head>
+  <title>{pageTitle}</title>
+  <meta name="description" content={pageDescription} />
+</svelte:head>
 
 <div class="p32 wmx12 hmn-screen">
   <h1 class="mb24">{data?.active?.title}</h1>
