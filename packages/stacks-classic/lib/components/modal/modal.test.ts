@@ -5,6 +5,15 @@ import "../../index";
 
 const user = userEvent.setup();
 
+const waitForModalShown = (modal: HTMLElement) =>
+    new Promise((resolve) =>
+        modal.addEventListener("s-modal:shown", resolve, { once: true })
+    );
+
+const finishModalTransition = (modal: HTMLElement) => {
+    modal.dispatchEvent(new Event("transitionend"));
+};
+
 const createModal = ({
     hidden = true,
     initialFocusEl,
@@ -137,11 +146,13 @@ describe("modal", () => {
 
         expect(modal).not.to.be.visible;
 
+        const modalShown = waitForModalShown(modal);
         await user.click(trigger);
         expect(modal).to.be.visible;
-        await waitFor(() => expect(initialFocusEl).to.have.focus, {
-            timeout: 20000,
-        });
+        finishModalTransition(modal);
+        await modalShown;
+
+        expect(initialFocusEl).to.have.focus;
     });
 
     it("should focus on the first focusable element when modal is shown and no initialFocus is specified", async () => {
@@ -156,10 +167,13 @@ describe("modal", () => {
         expect(modal).not.to.be.visible;
         expect(focusableEl).not.to.have.focus;
 
+        const modalShown = waitForModalShown(modal);
         await user.click(trigger);
         expect(modal).to.be.visible;
+        finishModalTransition(modal);
+        await modalShown;
 
-        await waitFor(() => expect(focusableEl).to.have.focus);
+        expect(focusableEl).to.have.focus;
     });
 
     it("should not change set focus when an element within the modal is already focused", async () => {
@@ -175,16 +189,15 @@ describe("modal", () => {
         expect(modal).not.to.be.visible;
         expect(firstFocusableEl).not.to.have.focus;
 
+        const modalShown = waitForModalShown(modal);
         await user.click(trigger);
         expect(modal).to.be.visible;
 
         // manually focus on an element within the modal
         closeButton.focus();
 
-        // wait for s-modal:shown css transition to complete
-        await new Promise((resolve) =>
-            modal.addEventListener("s-modal:shown", resolve)
-        );
+        finishModalTransition(modal);
+        await modalShown;
 
         // check that focus stayed on the manually focused element and
         // has not changed to the first focusable element
@@ -214,13 +227,12 @@ describe("modal", () => {
             const trigger = await screen.findByTestId("trigger");
 
             expect(modal).not.to.be.visible;
+
+            const modalShown = waitForModalShown(modal);
             await user.click(trigger);
             expect(modal).to.be.visible;
-
-            // wait for s-modal:shown handler to complete
-            await new Promise((resolve) =>
-                modal.addEventListener("s-modal:shown", resolve)
-            );
+            finishModalTransition(modal);
+            await modalShown;
 
             // since there's nothing else to focus, the modal itself or the triggering element
             // should be focused. depends on whether the modal has a `tabindex` attribute or not.
@@ -241,8 +253,11 @@ describe("modal", () => {
         const trigger = await screen.findByTestId("trigger");
 
         expect(modal).not.to.be.visible;
+        const modalShown = waitForModalShown(modal);
         await user.click(trigger);
         expect(modal).to.be.visible;
+        finishModalTransition(modal);
+        await modalShown;
 
         // highlight some text with the cursor
         const description = await screen.findByTestId("modal-text-body");
@@ -275,13 +290,11 @@ describe("modal", () => {
         const trigger = await screen.findByTestId("trigger");
 
         expect(modal).not.to.be.visible;
+        const modalShown = waitForModalShown(modal);
         await user.click(trigger);
         expect(modal).to.be.visible;
-
-        // wait for s-modal:shown handler to complete
-        await new Promise((resolve) =>
-            modal.addEventListener("s-modal:shown", resolve)
-        );
+        finishModalTransition(modal);
+        await modalShown;
 
         const firstFocusableElement = await screen.findByTestId(
             "first-focusable-element"
