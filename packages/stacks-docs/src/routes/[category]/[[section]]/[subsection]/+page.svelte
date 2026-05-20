@@ -28,54 +28,54 @@
   <meta name="description" content={pageDescription} />
 </svelte:head>
 
+<div class="d-flex g4 ai-center sm:mb8 pt32 pl32 md:pr32 sm:pl24 sm:pr24 {data?.active?.image ? 'mb128' : 'mb24'}">
+  <nav class="d-flex ai-center g6 fs-body2 mr-auto" aria-label="breadcrumb">
+    {#each data.breadcrumb as crumb, index (crumb.label)}
+      {#if index !== 0}<span class="fc-black-300">/</span>{/if}
+      <a href={resolve(crumb.path as `/${string}`)} class="s-link fw-bold">{crumb.label}</a>
+    {/each}
+    <Button title="Copy link to this page" link icon class="d-inline-flex fc-black-400 h:fc-black-600 ml4" onclick={copyPageUrl}>
+      {#if copied}
+        <Icon src={IconCheckFillCircle} class="fc-green-400 w16 h16" />
+      {:else}
+        <Icon src={IconLink} class="w16 h16" />
+      {/if}
+    </Button>
+  </nav>
 
-<article class="w100 wmx11 pl32 md:pr32 sm:pl24 sm:pr24">
+  <div class="d-flex ai-center g16 fs-caption">
+    {#if data?.metadata?.js}
+      <Link href="#javascript">
+        <Icon src={IconCodeBox} class="fc-green-400" />
+        <span class="sm:d-none">JavaScript</span>
+      </Link>
+    {/if}
+
+    {#if data?.metadata?.figma}
+      <Link title="Open in Figma" href={data?.metadata?.figma}>
+        <Icon src={IconServiceFigma} class="native" />
+        <span class="sm:d-none">Figma</span>
+      </Link>
+    {/if}
+
+    {#if data?.metadata?.svelte}
+      <Link title="Svelte component docs" href={data?.metadata?.svelte}>
+        <Icon src={IconServiceSvelte} class="native" />
+        <span class="sm:d-none">Svelte</span>
+      </Link>
+    {/if}
+
+    {#if data.filename}
+      <Link title="Edit on GitHub" href={`https://github.com/StackExchange/Stacks/edit/main/packages/stacks-docs${data.filename}`}>
+        <Icon src={IconServiceGitHub} />
+        <span class="sm:d-none">Edit</span>
+      </Link>
+    {/if}
+  </div>
+</div>
+
+<article class="w100 mx-auto wmx11 pl32 md:pr32 sm:pl24 sm:pr24">
   <div class="docs fs-body2 pt24">
-    <div class="d-flex g4 ai-center sm:mb8 {data?.active?.image ? 'mb128' : 'mb24'}">
-      <nav class="d-flex ai-center g6 fs-body2 mr-auto" aria-label="breadcrumb">
-        {#each data.breadcrumb as crumb, index (crumb.label)}
-          {#if index !== 0}<span class="fc-black-300">/</span>{/if}
-          <a href={resolve(crumb.path as `/${string}`)} class="s-link fw-bold">{crumb.label}</a>
-        {/each}
-        <Button title="Copy link to this page" link icon class="d-inline-flex fc-black-400 h:fc-black-600 ml4" onclick={copyPageUrl}>
-          {#if copied}
-            <Icon src={IconCheckFillCircle} class="fc-green-400 w16 h16" />
-          {:else}
-            <Icon src={IconLink} class="w16 h16" />
-          {/if}
-        </Button>
-      </nav>
-
-      <div class="d-flex ai-center g16 fs-caption">
-        {#if data?.metadata?.js}
-          <Link href="#javascript">
-            <Icon src={IconCodeBox} class="fc-green-400" />
-            <span class="sm:d-none">JavaScript</span>
-          </Link>
-        {/if}
-
-        {#if data?.metadata?.figma}
-          <Link title="Open in Figma" href={data?.metadata?.figma}>
-            <Icon src={IconServiceFigma} class="native" />
-            <span class="sm:d-none">Figma</span>
-          </Link>
-        {/if}
-
-        {#if data?.metadata?.svelte}
-          <Link title="Svelte component docs" href={data?.metadata?.svelte}>
-            <Icon src={IconServiceSvelte} class="native" />
-            <span class="sm:d-none">Svelte</span>
-          </Link>
-        {/if}
-
-        {#if data.filename}
-          <Link title="Edit on GitHub" href={`https://github.com/StackExchange/Stacks/edit/main/packages/stacks-docs${data.filename}`}>
-            <Icon src={IconServiceGitHub} />
-            <span class="sm:d-none">Edit</span>
-          </Link>
-        {/if}
-      </div>
-    </div>  
 
     <header>
       {#if data?.metadata?.updated}
