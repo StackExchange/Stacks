@@ -22,23 +22,13 @@ The term should be capitalized if referring to a specific meta site, such as usi
 
 ## Stack Exchange
 
-In 2026 we formalized what had been theoretically [true for over a decade](https://stackoverflow.blog/2015/09/15/were-changing-our-name-back-to-stack-overflow/) by updating our use of language to reflect the fact that the Stack Exchange Network is part of Stack Overflow, rather than Stack Exchange being the parent of Stack Overflow.
+In 2026 we formalized what had been theoretically [true for over a decade](https://stackoverflow.blog/2015/09/15/wer-e-changing-our-name-back-to-stack-overflow/) by updating our use of language to reflect the fact that the Stack Exchange Network is part of Stack Overflow, rather than Stack Exchange being the parent of Stack Overflow.
+         
+For naming usage, see the Naming guide:
 
-The domain names **stackexchange.com** (and stand-alone URLs like **superuser.com**) remain in use, as they carry significant SEO value and are deeply embedded in the communities that use them. Migrating away from these domains would cause unnecessary disruption for no meaningful benefit.
-
-### Referring to the network of community sites
-
-"Stack Overflow" now collectively refers to the company and all of its sites. When you need to refer specifically to the broader network of community Q&A sites (formerly "the Stack Exchange network"), use **Stack Overflow Public Platforms**.
-
-- "The Stack Overflow Public Platforms cover topics from cooking to philosophy"
-- "Browse the Stack Overflow Public Platforms at [stackexchange.com/sites](https://stackexchange.com/sites)"
-
-Avoid using "Stack Exchange" as a standalone term to refer to the company or the network. The name **Stack Exchange** now appears only in two contexts:
-
-- The legal entity name: **Stack Exchange Inc.**
-- Individual site names, which follow the existing **[Topic] Stack Exchange** pattern (e.g. _Physics Stack Exchange_) and have not been rebranded.
-
-Further guidance is [available here](/copy/naming#the-website-vs-the-company).
+- [The flagship site vs the network](/copy/naming#the-flagship-site-vs-the-network): Stack Overflow vs Stack Overflow Public Platforms
+- [Shorthand for individual sites](/copy/naming#shorthand-for-individual-sites): “a site,” “the site,” “sites”
+- [Where “Stack Exchange” still applies](/copy/naming#where-stack-exchange-still-applies): legal entity, site name pattern, domains
 
 ## Community vs. communities
 

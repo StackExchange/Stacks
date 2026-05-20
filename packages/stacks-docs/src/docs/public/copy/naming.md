@@ -1,5 +1,5 @@
 ---
-updated: 2025-12-11
+updated: 2026-05-20
 ---
 
 <script>
@@ -44,7 +44,7 @@ _E.g., Reddit Ads, Mozilla VPN, Slack AI_
 
 ### Why descriptive?
 
-At the current rate of change, it's simplest to name products descriptively, to keep barriers to understanding as low as possible.
+At the current rate of change, it’s simplest to name products descriptively, to keep barriers to understanding as low as possible.
 
 We want to make it as clear as possible to our audiences what our brands, products and features are and do — and what they can expect when interacting with them.
 
@@ -112,7 +112,7 @@ However, when disambiguation is necessary, use these conventions:
       <li>Stack Overflow (in most contexts)</li>
       <li>“stackoverflow.com” (when being very specific)</li>
       <li>“Ask a question on Stack Overflow”</li>
-      <li>“Browse Stack Overflow's questions and answers”</li>
+      <li>“Browse Stack Overflow’s questions and answers”</li>
     </ul>
   </GridColumn>
 </Grid>
@@ -125,13 +125,83 @@ Use contextual clues or specific phrasing when you need to make the distinction 
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
     <ul class="docs-copy ml0 pl16">
-      <li>“Stack Overflow has 183+ public platforms, and business products”</li>
+      <li>“Stack Overflow has 180+ Public Platforms, and business products”</li>
       <li>“Visit stackoverflow.com to ask questions, or try Stack Internal for your team”</li>
       <li>“Unlike the public Stack Overflow site, Stack Internal is private to your organization”</li>
       <li>“Stack Overflow’s public Q&A platforms serves millions daily”</li>
     </ul>
   </GridColumn>
 </Grid>
+
+## The flagship site vs the network
+
+**Stack Overflow** as a brand encompasses the company and all of its sites, but in running copy it usually means the flagship Q&A site at stackoverflow.com (or the company). When you need to refer specifically to the broader network of 180+ community Q&A sites (formerly “the Stack Exchange network”), use **Stack Overflow Public Platforms**.
+
+The word **“network”** is fine as informal shorthand in running prose once the context is set (e.g., “rolls out across the network”) — just remember the proper-noun name is **Stack Overflow Public Platforms**, not “the Stack Exchange network.”
+
+<Grid>
+  <GridColumn extraClasses="bg-green-100">
+    <h3 class="d-flex ai-start g8 fc-green-500 mb16"><Icon class="mt2" src={IconCheck24FillCircle} /> Stack Overflow<br/>(the flagship site)</h3>
+    <ul class="docs-copy ml0 pl16">
+      <li>“Ask a question on Stack Overflow”</li>
+      <li>“Stack Overflow has 25 million users”</li>
+      <li>“The Stack Overflow community” (when the context is clearly stackoverflow.com)</li>
+      <li>“Browse Stack Overflow’s questions and answers”</li>
+    </ul>
+  </GridColumn>
+  <GridColumn extraClasses="bg-green-100">
+    <h3 class="d-flex ai-start g8 fc-green-500 mb16"><Icon class="mt2" src={IconCheck24FillCircle} /> Stack Overflow Public Platforms<br/>(the wider network of sites)</h3>
+    <ul class="docs-copy ml0 pl16">
+      <li>“The Stack Overflow Public Platforms cover topics from cooking to philosophy”</li>
+      <li>“This change rolls out across all Stack Overflow Public Platforms”</li>
+      <li>“Browse the Stack Overflow Public Platforms at stackexchange.com/sites”</li>
+      <li>“180+ community Q&A sites make up the Stack Overflow Public Platforms”</li>
+    </ul>
+  </GridColumn>
+</Grid>
+
+<Grid>
+  <GridColumn extraClasses="bg-red-100">
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
+    <ul class="docs-copy ml0 pl16">
+      <li>“The Stack Exchange network” (rebranded — use Stack Overflow Public Platforms)</li>
+      <li>“The Stack Exchange sites” (rebranded)</li>
+      <li>Using “Stack Overflow” when you specifically mean the network of community sites — readers will assume stackoverflow.com</li>
+    </ul>
+  </GridColumn>
+</Grid>
+
+### Shorthand for individual sites
+
+In casual reference, **“site,” “a site,” “the site,”** or **“sites”** works as shorthand for one or more of the community Q&A sites — there’s no need to say “Stack Overflow Public Platforms” every time the context makes the scope obvious.
+
+<Grid>
+  <GridColumn extraClasses="bg-green-100">
+    <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
+    <ul class="docs-copy ml0 pl16">
+      <li>“Each site has its own meta”</li>
+      <li>“Post on the site’s meta if you have a question”</li>
+      <li>“A site’s moderators decide…”</li>
+      <li>“This applies across every site in the network”</li>
+    </ul>
+  </GridColumn>
+  <GridColumn extraClasses="bg-red-100">
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
+    <ul class="docs-copy ml0 pl16">
+      <li>“Our sites” — the company doesn’t own them</li>
+      <li>“Our communities” — same reason</li>
+    </ul>
+  </GridColumn>
+</Grid>
+
+### Where “Stack Exchange” still applies
+
+The name **Stack Exchange** now appears only in two contexts:
+
+- The legal entity name: **Stack Exchange Inc.**
+- Individual site names, which follow the existing **[Topic] Stack Exchange** pattern (e.g. _Physics Stack Exchange_) and have not been rebranded.
+
+The domain names **stackexchange.com** (and stand-alone URLs like **superuser.com**) also remain in use, as they carry significant SEO value and are deeply embedded in the communities that use them.
 
 ## Stack Overflow Business
 
@@ -264,7 +334,7 @@ Stack Internal tier names are unchanged from previous naming.
     <ul class="docs-copy ml0 pl16">
       <li>Stack Internal (Enterprise)</li>
       <li>Stack Internal (Business)</li>
-      <li>Use tier name alone after first full mention (e.g., "Enterprise")</li>
+      <li>Use tier name alone after first full mention (e.g., “Enterprise”)</li>
     </ul>
   </GridColumn>
 </Grid>
@@ -286,7 +356,7 @@ When referring to Stack Internal instances and users in product contexts:
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
     <ul class="docs-copy ml0 pl16">
-      <li>team (lowercase, where "Stack Internal" is too formal)</li>
+      <li>team (lowercase, where “Stack Internal” is too formal)</li>
       <li>teammates (for the collective name of users)</li>
       <li>Stack Internal (when being specific e.g., …your Stack Internal…)</li>
     </ul>
@@ -311,8 +381,8 @@ The OverflowAI brand has been retired. When referring to AI functionality:
   <GridColumn extraClasses="bg-green-100">
     <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
     <ul class="docs-copy ml0 pl16">
-      <li>Refer to specific features by name (e.g., "Enhanced Search")</li>
-      <li>Use "Stack Internal's AI features" when referring collectively</li>
+      <li>Refer to specific features by name (e.g., “Enhanced Search”)</li>
+      <li>Use “Stack Internal’s AI features” when referring collectively</li>
       <li>Avoid collective references when possible</li>
     </ul>
   </GridColumn>
