@@ -80,7 +80,7 @@ export default {
             "process.env.NODE_ENV": JSON.stringify("production"),
             "preventAssignment": true,
         }),
-        commonjs(),
+        commonjs({ strictRequires: "auto" }),
         esbuildPlugin({ ts: true }),
         visualRegressionPlugin({
             failureThreshold: 0.5,
@@ -120,4 +120,3 @@ export default {
     testsFinishTimeout: 60 * 1000 * 5, // 5 minutes
     browserStartTimeout: 60000, // increase from default 30 seconds to reduce flakiness
 };
-
