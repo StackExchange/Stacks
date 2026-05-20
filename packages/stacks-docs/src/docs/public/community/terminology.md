@@ -22,7 +22,7 @@ The term should be capitalized if referring to a specific meta site, such as usi
 
 ## Stack Exchange
 
-In 2026 we formalized what had been theoretically [true for over a decade](https://stackoverflow.blog/2015/09/15/wer-e-changing-our-name-back-to-stack-overflow/) by updating our use of language to reflect the fact that the Stack Exchange Network is part of Stack Overflow, rather than Stack Exchange being the parent of Stack Overflow.
+In 2026 we formalized what had been theoretically [true for over a decade](https://stackoverflow.blog/2015/09/15/were-changing-our-name-back-to-stack-overflow/) by updating our use of language to reflect the fact that the Stack Exchange Network is part of Stack Overflow, rather than Stack Exchange being the parent of Stack Overflow.
          
 For naming usage, see the Naming guide:
 
