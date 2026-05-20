@@ -19,7 +19,7 @@ Language and grammar aren’t just mechanical decisions: they should structure c
 
 ## Prefer active voice over passive voice
 
-**Why:** passive voice hides responsibility and feels evasive, and is strongly associated with “bad communication” examples.
+**Why:** passive voice hides responsibility, feels evasive, and is strongly associated with “bad communication” examples.
 
 - While it’s generally best to avoid the passive voice, in certain situations it helps you sound softer without adding too many words.
 - You can also occasionally use the passive voice to avoid excessively referring to yourself or Stack Overflow — as long as you’ve primarily used active voice (to make it clear we’re taking ownership of our actions).

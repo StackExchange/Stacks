@@ -11,7 +11,7 @@ updated: 2026-04-29
     import GridColumn from '$components/GridColumn.svelte';
 </script>
 
-[Meta sites](/community/terminology#meta--what-is-it-and-how-does-it-work) are the backbone of Stack Overflow’s Public Platforms – a space where the community discusses how the site should work, raises issues, and influences decisions. For sites with their own domain you can find them at `meta.` + the domain, e.g. meta.stackoverflow.com and subdomain sites you can find them at `sitename.meta.`stackexchange.com e.g., math.meta.stackexchange.com
+[Meta sites](/community/terminology#meta--what-is-it-and-how-does-it-work) are the backbone of Stack Overflow’s Public Platforms — a space where the community discusses how the site should work, raises issues, and influences decisions. For sites with their own domain, you can find them at `meta.` + the domain (e.g., `meta.stackoverflow.com`). For subdomain sites, you can find them at `sitename.meta.stackexchange.com` (e.g., `math.meta.stackexchange.com`).
 
 ## Introduction
 
@@ -23,7 +23,7 @@ For the purposes of these guidelines, we’re roughly dividing the people you mi
 
 **Seasoned users** are perhaps slow to trust or get excited about something that is new, or a shift from “the way things have always been.” Every good public communication is an opportunity to earn their confidence and build trust, and every bad public communication risks confirming their suspicions and fueling skepticism. The goal isn’t just to inform, but to convey that the company understands their craft, respects their investment of time on the platform, and values their opinions. Empathy is key: recognize the disruption that platform changes may cause for seasoned users. When speaking to seasoned users, write as a peer seeking collaboration. Use language that minimizes the emotional distance between you and the reader. **Calls-to-action are for collaboration and feedback.**
 
-This group includes the traditional, somewhat loosely-defined roles we often refer to in product development: active/engaged user, contributor, curator, leader, moderator. When crafting communication focused on actions some of these groups perform (or that we hope they perform), it’s important to understand the role being targeted. But note that there is much overlap in those roles, and an individual user’s actions may fit into multiple roles.
+This group includes the traditional, somewhat loosely defined roles we often refer to in product development: active/engaged user, contributor, curator, leader, moderator. When crafting communication focused on actions some of these groups perform (or that we hope they perform), it’s important to understand the role being targeted. But note that there is much overlap in those roles, and an individual user’s actions may fit into multiple roles.
 
 <Grid>
     <GridColumn extraClasses="bg-red-100">

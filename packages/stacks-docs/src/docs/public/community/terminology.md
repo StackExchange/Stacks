@@ -22,9 +22,9 @@ The term should be capitalized if referring to a specific meta site, such as usi
 
 ## Stack Exchange
 
-In 2026 we formalised what had been theoretically [true for over a decade](https://stackoverflow.blog/2015/09/15/were-changing-our-name-back-to-stack-overflow/) by updating our use of language to reflect the fact that the Stack Exchange Network is part of Stack Overflow, rather than Stack Exchange being the parent of Stack Overflow.
+In 2026 we formalized what had been theoretically [true for over a decade](https://stackoverflow.blog/2015/09/15/were-changing-our-name-back-to-stack-overflow/) by updating our use of language to reflect the fact that the Stack Exchange Network is part of Stack Overflow, rather than Stack Exchange being the parent of Stack Overflow.
 
-The domain names **stackexchange.com** (and stand-alone urls like **superuser.com**) remain in use, as they carry significant SEO value and are deeply embedded in the communities that use them. Migrating away from these domains would cause unnecessary disruption for no meaningful benefit.
+The domain names **stackexchange.com** (and stand-alone URLs like **superuser.com**) remain in use, as they carry significant SEO value and are deeply embedded in the communities that use them. Migrating away from these domains would cause unnecessary disruption for no meaningful benefit.
 
 ### Referring to the network of community sites
 
@@ -38,7 +38,7 @@ Avoid using "Stack Exchange" as a standalone term to refer to the company or the
 - The legal entity name: **Stack Exchange Inc.**
 - Individual site names, which follow the existing **[Topic] Stack Exchange** pattern (e.g. _Physics Stack Exchange_) and have not been rebranded.
 
-Further guidence is [available here](/copy/naming#the-website-vs-the-company).
+Further guidance is [available here](/copy/naming#the-website-vs-the-company).
 
 ## Community vs. communities
 

@@ -119,7 +119,7 @@ The individual author’s unique voice, tone, and style can come through, but th
     </GridColumn>
     <GridColumn extraClasses="bg-green-100">
         <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-        <p class="docs-copy">“When we integrated with Z for better spam prevention last month, we failed to account for edge case X. I’ve now gone over the relevant code and did Y, to ensure edge cases like X won’t happen again. If you see the issue persist, please respond to this post.”</p>
+        <p class="docs-copy">“When we integrated with Z for better spam prevention last month, we failed to account for edge case X. I’ve now gone over the relevant code and done Y, to ensure edge cases like X won’t happen again. If you see the issue persist, please respond to this post.”</p>
     </GridColumn>
 </Grid>
 
