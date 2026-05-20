@@ -11,7 +11,7 @@ updated: 2026-04-29
     import GridColumn from '$components/GridColumn.svelte';
 </script>
 
-Language and grammar aren’t just mechanical decisions: they should structure clarity, remove ambiguity, and make messages readable for both novice and experienced users. Our grammatical guidelines should reduce confusion and improve consistency in communication from across teams.
+Language and grammar aren’t just mechanical decisions: they should create clarity, remove ambiguity, and make messages readable for both novice and experienced users. Our grammatical guidelines should reduce confusion and improve consistency in communication from across teams.
 
 <Notice variant="info" role="note" class="mb16 s-anchors s-anchors__inherit s-anchors__underlined">
     <p>The public <a href="/copy/styleguide">Style guide</a> covers brand-wide grammar and mechanics. The guidance below is specific to Meta posts.</p>
@@ -130,7 +130,7 @@ If jargon is required (API, “renderer,” “data dump,” etc.), define it si
 
 ## Do not imply certainty when something is still in progress
 
-If a product or feature is being released in phases, be specific about which phase you’re referring to (alpha, beta, etc.). If a roll-out is planned to take place for different portions of the user base at different times, be specific about the roll-out strategy. Whichever the case, it might be beneficial to define what the release plan is in the context of the particular product, feature, or project you’re communicating about.
+If a product or feature is being released in phases, be specific about which phase you’re referring to (alpha, beta, etc.). If a rollout is planned to take place for different portions of the user base at different times, be specific about the rollout strategy. Whichever the case, it might be beneficial to define what the release plan is in the context of the particular product, feature, or project you’re communicating about.
 
 **Why:** when a product or feature is presented as “done” or “released” or “available,” the community assumes that no further work will be done on it to address bug reports, user complaints, or community needs.
 
@@ -151,7 +151,7 @@ If a product or feature is being released in phases, be specific about which pha
 
 Do not hide the downsides. Avoid using spin (offering a particular interpretation or point of view intended to create a favorable impression) to soften the blow. Avoiding spin can be as simple as choosing the right words, but it’s also good to wholly avoid vague statements that are just aiming to balance out a downside. If what would follow a “but” is a solid statement, let it stand on its own as a separate sentence. If you find yourself writing “It’s possible we will…,” this means it’s just as possible that we won’t do that, and it’s not very reassuring — unless there are immediate plans to explore that thing, don’t use this kind of attempt at reassurance.
 
-**Why:** open acknowledgement of limitations increases trust. It also avoids users contacting the support channel requesting clarifications about something confusing.
+**Why:** open acknowledgment of limitations increases trust. It also avoids users contacting the support channel requesting clarifications about something confusing.
 
 <Grid>
     <GridColumn extraClasses="bg-red-100">

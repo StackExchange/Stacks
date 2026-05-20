@@ -63,7 +63,7 @@ The individual author’s unique voice, tone, and style can come through, but th
 - Validate concerns and show awareness of past pain points.
 - Respond promptly when users ask clarifying questions.
 
-**Why:** community members expect staff to not avoid difficult topics, and instead engage on these topics in a way that acknowledges the communities’ role as stakeholders.
+**Why:** community members expect staff to engage with difficult topics rather than avoid them, in a way that acknowledges the communities’ role as stakeholders.
 
 <Grid>
     <GridColumn extraClasses="bg-red-100">
