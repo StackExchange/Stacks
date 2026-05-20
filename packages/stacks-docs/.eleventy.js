@@ -19,7 +19,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(headerPlugin);
   eleventyConfig.addPlugin(tipPlugin);
   eleventyConfig.addPlugin(llmsTxtPlugin, {
-    siteUrl: 'https://stackoverflow.design',
+    siteUrl: 'https://v2.stackoverflow.design',
     collections: ['base', 'components', 'develop', 'foundation'],
     additionalMetadata: ['description'],
     normalizeWhitespace: true,
