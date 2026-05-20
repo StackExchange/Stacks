@@ -1,0 +1,11 @@
+@import (reference) "../exports/mixins.less";
+
+.outline-none { outline: 0 !important; }
+.outline-ring { .focus-styles(false, true); } 
+
+.f\:outline-ring {
+    &:focus,
+    &:focus-within {
+        .outline-ring();
+    }
+}

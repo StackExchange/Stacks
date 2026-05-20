@@ -1,0 +1,48 @@
+@headings: h1, h2, h3, h4, h5, h6;
+
+.s-sidebarwidget {
+    // CHILD ELEMENTS
+    & &--content {        
+        .s-sidebarwidget--action {
+            font-size: var(--fs-fine);
+            margin-left: var(--su16);
+            align-self: flex-start;
+        }
+
+        display: flex;
+        padding: var(--su12) 0 var(--su16) 0;
+        font-size: var(--fs-body2);
+    }
+
+    & &--header {
+        > @{headings} {
+            margin: 0;
+            padding-right: var(--su6);
+            font-size: var(--fs-body1);
+            font-weight: 500;
+        }
+
+        .s-sidebarwidget--action {
+            margin-left: auto;
+        }
+
+        align-items: center;
+        display: flex;
+        padding: var(--su4) 0;
+    }
+
+    & &--footer {
+        .s-sidebarwidget--action {
+            flex: 1;
+        }
+        
+        display: flex;
+        font-size: var(--fs-body2);
+    }
+
+    & &--action:is(a, button) {
+        white-space: nowrap;
+    }
+
+    font-size: var(--fs-body1);
+}

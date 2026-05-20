@@ -1,0 +1,22 @@
+@import (reference) "../base/internal.less";
+@import (reference) "../exports/mixins.less";
+
+// `height` properties
+.generate-sizing('.h', height, 0 1 2 4 6 8 12 16 24 32 48 64 96 128, 'px');
+.generate-su-sizing('.hs', height); // Static sizing units
+#stacks-internals #responsify('.h100', { height: 100% !important; });
+#stacks-internals #responsify('.h-auto', { height: auto !important; });
+#stacks-internals #responsify('.h-screen', { height: 100vh !important; });
+
+// `min-height` properties
+.generate-sizing('.hmn', min-height, 0, 'px', false, true);
+.generate-su-sizing('.hmn', min-height); // Static sizing units
+#stacks-internals #responsify('.hmn100', { min-height: 100% !important; });
+#stacks-internals #responsify('.hmn-initial', { min-height: initial !important; });
+#stacks-internals #responsify('.hmn-screen', { min-height: 100vh !important; });
+
+// `max-height` properties
+.generate-su-sizing('.hmx', max-height); // Static sizing units
+#stacks-internals #responsify('.hmx100', { max-height: 100% !important; });
+#stacks-internals #responsify('.hmx-initial', { max-height: initial !important; });
+#stacks-internals #responsify('.hmx-screen', { max-height: 100vh !important; });

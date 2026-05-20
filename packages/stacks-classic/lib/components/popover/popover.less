@@ -1,0 +1,59 @@
+.s-popover {
+    --_po-bg: var(--white);
+    --_po-bc: var(--bc-medium);
+    --_po-bs: var(--bs-md);
+    --_po-d: none;
+    --_po-wmn: 10.5rem;
+    --_po-w: 100%;
+    // content
+    // --_po-topbar-height assumes the topbar height based on topbar styles
+    --_po-topbar-height: var(--theme-topbar-height, calc(var(--su48) + var(--su8)));
+    --_po-content-mxh: calc(100vh - var(--_po-topbar-height) - var(--su48));
+
+    // CONTEXTUAL STYLES
+    .dark-mode({
+        --_po-bg: var(--black-100);
+    });
+
+    // MODIFIERS
+    &.is-visible {
+        --_po-d: block;
+    }
+
+    &&__tooltip {
+        --_po-wmn: unset;
+        --_po-w: auto;
+    }
+
+    // CHILD ELEMENTS
+    // Close btn
+    & &--close {
+        float: right; // Use floats for title wrapping
+        top: var(--sun8); // Compensate for s-popover's padding
+        right: var(--sun8); // Compensate for s-popover's padding
+        padding: var(--su6) !important;
+    }
+
+    & &--content {
+        max-height: var(--_po-content-mxh);
+        overflow-y: auto;
+        margin: var(--sun12);
+        padding: var(--su12);
+    }
+
+    background-color: var(--_po-bg);
+    border: var(--su1) solid var(--_po-bc);
+    box-shadow: var(--_po-bs);
+    display: var(--_po-d);
+    min-width: var(--_po-wmn);
+    width: var(--_po-w);
+
+    border-radius: var(--br-md);
+    color: var(--fc-dark);
+    font-size: var(--fs-body1);
+    max-width: 21rem;
+    padding: var(--su12);
+    position: absolute;
+    white-space: normal; // Guard against popovers being in a container with white-space: nowrap. Without this, the content pops *out* of the popover.
+    z-index: var(--zi-popovers);
+}

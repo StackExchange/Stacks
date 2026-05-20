@@ -1,0 +1,194 @@
+.s-tag {
+    // Base
+    --_ta-bc: var(--theme-tag-border-color, var(--_ta-bg));
+    --_ta-bg: var(--theme-tag-background-color, var(--black-150));
+    --_ta-fc: var(--theme-tag-color, var(--black-600));
+    // Hover
+    --_ta-bc-hover: var(--theme-tag-hover-border-color, var(--_ta-bg-hover));
+    --_ta-bg-hover: var(--theme-tag-hover-background-color, var(--black-200));
+    --_ta-fc-hover: var(--theme-tag-hover-color, var(--black-600));
+    // Other
+    --_ta-fs: var(--fs-caption);
+    --_ta-pb: calc(var(--_ta-pt) + var(--su1));
+    --_ta-pl: var(--su8);
+    --_ta-pr: var(--su8);
+    --_ta-pt: var(--su4);
+
+    // CONTEXTUAL STYLES
+    .highcontrast-mode({
+        &:is(a),
+        a[href] {
+            text-decoration: underline;
+        }
+
+        &:not(&__moderator):not(&__required) {
+            --_ta-bc: var(--theme-tag-border-color, var(--black-300));
+            --_ta-bc-hover: var(--theme-tag-hover-border-color, var(--black-300));
+
+            &.s-tag__ignored {
+                --_ta-fc: var(--black-500);
+            }
+        }
+    });
+
+    // MODIFIERS
+    // Sizes
+    &&__sm {
+        --_ta-pl: var(--su4);
+        --_ta-pr: var(--su4);
+        --_ta-pt: var(--su1);
+    }
+    &&__lg {
+        --_ta-fs: var(--fs-body1);
+        --_ta-pt: var(--su4);
+    }
+
+    // VARIANTS
+    &&__ignored,
+    &&__watched {
+        &:before {
+            // --_ta-before-icon defined per variant
+            -webkit-mask: var(--_ta-before-icon) no-repeat center;
+            mask: var(--_ta-before-icon) no-repeat center;
+
+            background-color: currentColor;
+            content: "";
+            display: block;
+            height: calc(var(--su16) - var(--su2));
+            -webkit-mask-size: contain;
+            mask-size: contain;            
+            width: calc(var(--su16) - var(--su2));
+        }
+    }
+
+    &&__deleted,
+    &&__ignored {
+        &,
+        &.s-tag__required:not(&__moderator),
+        &.s-tag__moderator {
+            --_ta-bc-hover: var(--_ta-bc);
+            --_ta-bg-hover: var(--_ta-bg);
+            --_ta-fc-hover: var(--_ta-fc);
+        }
+    }
+    
+    // TODO SHINE this is considered inaccessible. Discuss w/ design.
+    &&__deleted {
+        --_ta-fc: var(--black-500);
+
+        &.s-tag__required:not(&__moderator) {
+            --_ta-bc: var(--black-300);
+            --_ta-fc: var(--black-400);
+        }
+    }
+
+    // TODO SHINE this is considered inaccessible. Discuss w/ design.
+    &&__ignored {
+        --_ta-bg-hover: var(--_ta-bg);
+        --_ta-before-icon: url("data:image/svg+xml;,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M3.52 7.38 1.58 9.26A12.38 12.38 0 0 1 0 7s2.63-5.14 7.05-5.14c.66 0 1.28.12 1.86.32L7.44 3.6a3.48 3.48 0 0 0-3.92 3.78ZM5.3 9.99c.5.28 1.1.44 1.71.44 1.94 0 3.5-1.53 3.5-3.43 0-.62-.17-1.21-.47-1.72L8.7 6.6a1.73 1.73 0 0 1-2.08 2.07L5.29 10Zm6.23-6.19A12.7 12.7 0 0 1 14 7s-2.63 5.14-6.95 5.14A6.1 6.1 0 0 1 4 11.3L2.27 13l-1.4-1.36L11.9 1l1.23 1.2-1.6 1.6Z'/%3E%3C/svg%3E");
+        --_ta-fc: var(--black-400);
+        --_ta-fc-hover: var(--black-400);
+    }
+
+    // moderator overrides other required
+    &&__moderator {
+        --_ta-bc: var(--orange-300);
+        --_ta-bg: var(--orange-100);
+        --_ta-fc: var(--orange-500);
+        --_ta-bc-hover: var(--orange-300);
+        --_ta-bg-hover: var(--orange-200);
+        --_ta-fc-hover: var(--orange-600);
+    }
+
+    &&__required:not(&__moderator) {
+        --_ta-bc: var(--theme-tag-required-border-color, var(--theme-tag-border-color, var(--black-500)));
+        --_ta-bc-hover: var(--theme-tag-required-hover-border-color, var(--theme-tag-hover-border-color, var(--black-600)));
+    }
+
+    &&__watched {
+        --_ta-before-icon: url("data:image/svg+xml;,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='12' viewBox='0 0 14 12'%3E%3Cpath d='M7.05 1C2.63 1 0 6.5 0 6.5S2.63 12 7.05 12C11.38 12 14 6.5 14 6.5S11.37 1 7.05 1ZM7 10.17A3.59 3.59 0 0 1 3.5 6.5 3.6 3.6 0 0 1 7 2.83c1.94 0 3.5 1.65 3.5 3.67A3.57 3.57 0 0 1 7 10.17Zm0-1.84c.97 0 1.75-.81 1.75-1.83S7.97 4.67 7 4.67s-1.75.81-1.75 1.83S6.03 8.33 7 8.33Z'/%3E%3C/svg%3E");
+    }
+
+    // CHILD ELEMENTS
+    a {
+        &:focus-visible {
+            .focus-styles();
+        }
+
+        color: var(--_ta-fc) !important;
+        margin: calc(var(--_ta-pt) * -1) calc(var(--_ta-pr) * -1) calc(var(--_ta-pb) * -1) calc(var(--_ta-pl) * -1);
+        padding: var(--_ta-pt) var(--_ta-pr) var(--_ta-pb) var(--_ta-pl);
+    }
+    // Dismiss
+    &:has(> &--dismiss) {
+        --_ta-pr: var(--su2);
+    }
+    & &--dismiss {
+        &:focus-visible {
+            .focus-styles();
+        }
+
+        &:hover {
+            background-color: var(--_ta-fc);
+            color: var(--_ta-bg);
+        }
+
+        all: unset;
+        align-items: center;
+        background-color: transparent;
+        color: inherit;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        margin: calc(var(--_ta-pt) * -1) 0 calc(var(--_ta-pb) * -1);
+        padding: var(--su2);
+    }
+
+    // Sponsor
+    &:has(> &--sponsor) {
+        --_ta-pl: var(--su2);
+    }
+    & &--sponsor { // The small sponsor favicon displayed within a tag
+        img,
+        .svg-icon {
+            width: 100%;
+            height: 100%;
+        }
+
+        max-width: calc(var(--su16) + var(--su2));
+        margin: calc(var(--_ta-pt) * -1) 0 calc(var(--_ta-pb) * -1) 0;
+    }
+
+    // INTERACTION
+    &:has([href]),
+    a {
+        text-decoration: none;
+    }
+
+    a:not([class]) {
+        &:hover,
+        &:active {
+            background-color: var(--_ta-bg-hover);
+            border-color: var(--_ta-bc-hover);
+            color: var(--_ta-fc-hover);
+        }
+    }
+
+    &:focus-visible {
+        .focus-styles(false, true);
+    }
+
+    background-color: var(--_ta-bg);
+    border: var(--su1) solid var(--_ta-bc);
+    color: var(--_ta-fc);
+    font-size: var(--_ta-fs);
+    padding: var(--_ta-pt) var(--_ta-pr) var(--_ta-pb) var(--_ta-pl);
+    
+    align-items: center;
+    display: inline-flex;
+    gap: var(--su4);
+    justify-content: center;
+    line-height: var(--lh-xs);
+    text-decoration: none;
+    white-space: nowrap;
+}

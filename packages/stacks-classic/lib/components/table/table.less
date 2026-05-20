@@ -1,0 +1,335 @@
+.s-table {
+    @ta-cell-border: var(--su1) solid var(--bc-medium);
+    @ta-columns: (100% / 12);
+
+    --_ta-tbody-tbody-bc: var(--bc-medium);
+    --_ta-tbody-tbody-bw: var(--su2);
+    --_ta-tbody-tr-even-bg: unset;
+    --_ta-td-bbw: 0;
+    --_ta-td-bc: var(--bc-medium);
+    --_ta-td-fs: unset;
+    --_ta-td-fw: unset;
+    --_ta-td-p: var(--su8);
+    --_ta-td-ta: left;
+    --_ta-td-va: middle;
+    --_ta-td-w: unset;
+    --_ta-thead-th-bg: var(--black-100);
+    --_ta-th-bbw: 0;
+    --_ta-th-bc: var(--bc-medium);
+    --_ta-th-fs: unset;
+    --_ta-th-p: var(--su8);
+    --_ta-th-ta: left;
+    --_ta-th-va: middle;
+    --_ta-th-w: unset;
+
+    // CONTEXTUAL STYLES
+    .highcontrast-mode({
+        a[href] {
+            text-decoration: underline;
+        }
+    });
+
+    // VARIANTS
+    &&__stripes {
+        --_ta-tbody-tr-even-bg: var(--black-100);
+        --_ta-thead-th-bg: var(--black-150);
+    }
+
+    // MODIFIERS
+    &.ta-center {
+        --_ta-td-ta: center;
+        --_ta-th-ta: center;
+    }
+
+    &.ta-left {
+        --_ta-td-ta: left;
+        --_ta-th-ta: left;
+    }
+
+    &.ta-justify {
+        --_ta-td-ta: justify;
+        --_ta-th-ta: justify;
+    }
+
+    &.ta-right {
+        --_ta-td-ta: right;
+        --_ta-th-ta: right;
+    }
+
+    &.va-bottom {
+        --_ta-td-va: bottom;
+        --_ta-th-va: bottom;
+    }
+
+    &.va-middle {
+        --_ta-td-va: middle;
+        --_ta-th-va: middle;
+    }
+
+    &.va-top {
+        --_ta-td-va: top;
+        --_ta-th-va: top;
+    }
+
+    &&__b0 {
+        --_ta-td-bc: transparent;
+        --_ta-th-bc: transparent;
+        --_ta-tbody-tbody-bc: transparent; // [1]
+        --_ta-tbody-tbody-bw: var(--su12); // [1]
+        --_ta-thead-th-bg: transparent;
+
+        thead th {
+            font-size: inherit;
+            text-transform: initial;
+            letter-spacing: initial;
+        }
+    }
+
+    &&__bx {
+        tr {
+            > *:not(:first-child) {
+                border-left-color: transparent;
+            }
+            > *:not(:last-child) {
+                border-right-color: transparent;
+            }
+        }
+    }
+
+    &&__bx-simple {
+        --_ta-thead-th-bg: transparent;
+        --_ta-foot-td-bc: transparent;
+        --_ta-foot-th-bc: transparent;
+
+        td,
+        th {
+            border-left-color: transparent;
+            border-right-color: transparent;
+        }
+
+        tbody tr {
+            &:first-of-type th,
+            &:first-of-type td {
+                border-top-color: transparent;
+            }
+            &:last-of-type th,
+            &:last-of-type td {
+                border-bottom-color: transparent;
+            }
+        }
+
+        thead th {
+            border-top-color: transparent;
+            border-bottom-color: var(--bc-dark);
+            font-size: inherit;
+            text-transform: initial;
+            letter-spacing: initial;
+        }
+    }
+
+    &&__sortable {
+        thead th {
+            a,
+            button { //  If an anchor is used, it should appear like a normal header
+                // `!important` is used to ensure the appropriate color is on visited links. See STACKS-658.
+                // https://stackoverflow.atlassian.net/browse/STACKS-658
+                color: inherit !important;
+            }
+
+            button {
+                appearance: none;
+                background-color: transparent;
+                border: 0;
+                cursor: pointer;
+                display: flex;
+                gap: var(--su4);
+                font-weight: inherit;
+                margin: calc(var(--_ta-th-p) * -1);
+                padding: var(--_ta-th-p);
+                text-align: left;
+                width: calc(100% + calc(var(--_ta-th-p) * 2));
+            }
+
+            &.is-sorted { //  Selected state
+                color: var(--black-600);
+            }
+
+            color: var(--fc-light);
+            cursor: pointer;
+        }
+    }
+
+    // Sizes
+    &&__sm {
+        --_ta-td-p: var(--su4);
+        --_ta-th-p: var(--su4);
+    }
+
+    &&__lg {
+        --_ta-td-p: var(--su12);
+        --_ta-th-p: var(--su12);
+    }
+
+    // CHILD ELEMENTS
+    td,
+    tr {
+        a:not([class]) {
+            &:active,
+            &:hover {
+                color: var(--theme-link-color-hover, var(--blue-400));
+                text-decoration: underline;
+            }
+
+            &:visited {
+                color: var(--theme-link-color-visited, var(--black-400));
+            }
+
+            &:hover:visited {
+                color: var(--theme-link-color-hover, var(--blue-400));
+            }
+        }
+
+        color: var(--theme-link-color, var(--black-600));
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    & &--cell {
+        .generate-cell-widths-classes(@n, @i: 1) when (@i =< @n) {
+            &@{i} { // generates iterated cell classes
+                @ta-cell-w: @ta-columns * @i;
+                --_ta-td-w: @ta-cell-w;
+                --_ta-th-w: @ta-cell-w;
+            }
+            .generate-cell-widths-classes(@n, (@i + 1));
+        }
+  
+        .generate-cell-widths-classes(12);
+    }
+
+    & &--totals {
+        --_ta-td-fs: var(--fs-subheading);
+        --_ta-td-pt: var(--su12);
+        --_ta-td-fw: bold;
+        --_ta-th-fs: var(--fs-subheading);
+        --_ta-th-pt: var(--su12);
+    }
+
+    tbody {
+        + tbody { // If two table bodies are next to each other, visually separate them
+            border-top: var(--_ta-tbody-tbody-bw) solid var(--_ta-tbody-tbody-bc);
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        tr {
+            &:nth-child(2n) {
+                background-color: var(--_ta-tbody-tr-even-bg);
+            }
+        }
+    }
+
+    td {
+        &.s-table--bulk {
+            --_ta-td-w: calc(var(--su32) - var(--su2)); // 30px
+        }
+
+        &.s-table--progress {
+            --_ta-td-ta: right;
+            --_ta-td-brw: 0;
+        }
+
+        &.s-table--progress-bar {
+            --_ta-td-blw: 0;
+            --_ta-td-pl: 0;
+            --_ta-td-w: calc(var(--su12) * 10); // 120px
+        }
+
+        border: var(--su1) solid var(--_ta-td-bc);
+        border-bottom-width: var(--_ta-td-bbw, var(--su1));
+        border-left-width: var(--_ta-td-blw, var(--su1));
+        border-right-width: var(--_ta-td-brw, var(--su1));
+        border-top-width: var(--_ta-td-btw, var(--su1));
+        font-size: var(--_ta-td-fs);
+        font-weight: var(--_ta-td-fw);
+        padding: var(--_ta-td-p);
+        padding-left: var(--_ta-td-pl, var(--_ta-td-p));
+        padding-top: var(--_ta-td-pt, var(--_ta-td-p));
+        text-align: var(--_ta-td-ta);
+        vertical-align: var(--_ta-td-va);
+        width: var(--_ta-td-w);
+
+        color: var(--fc-medium);
+    }
+
+    tfoot {
+        td {
+            border-bottom-color: var(--_ta-foot-td-bc, var(--_ta-td-bc));
+        }
+
+        th {
+            border-bottom-color: var(--_ta-foot-th-bc, var(--_ta-td-bc));
+        }
+    }
+
+    th {
+        &.s-table--bulk {
+            --_ta-th-w: calc(var(--su32) - var(--su2)); // 30px
+        }
+
+        border: var(--su1) solid var(--_ta-th-bc);
+        border-width: var(--su1) var(--su1) var(--_ta-th-bbw);
+        font-size: var(--_ta-th-fs);
+        padding: var(--_ta-th-p);
+        padding-top: var(--_ta-th-pt, var(--_ta-th-p));
+        text-align: var(--_ta-th-ta);
+        vertical-align: var(--_ta-th-va);
+        width: var(--_ta-th-w);
+
+        color: var(--fc-dark);
+        font-weight: bold;
+    }
+
+    thead {
+        th {
+            background-color: var(--_ta-thead-th-bg);
+
+            line-height: var(--lh-sm);
+            vertical-align: bottom;
+            white-space: nowrap;
+        }
+    }
+
+    tr {
+        &:last-of-type {
+            --_ta-td-bbw: var(--su1);
+            --_ta-th-bbw: var(--su1);
+        }
+
+        &.is-disabled {
+            background-color: var(--black-100);
+            --_ta-tbody-tr-even-bg: var(--black-100);
+
+            th:not(.is-enabled),
+            td:not(.is-enabled) {
+                opacity: calc(var(--_o-disabled) * 0.6); // 0.5 * 0.6 = 0.3
+            }
+        }
+    }
+
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: table;
+    font-size: var(--fs-body1);
+    max-width: 100%;
+    width: 100%;
+}
+
+// TABLE LAYOUT ATOMIC CLASSES
+.tl-fixed { table-layout: fixed !important; }
+.tl-auto { table-layout: auto !important; }
+
+// [1]  This makes the border transparent, so we need to use whitespace
+//      to achieve the same effect a 2px gray border achieves.

@@ -125,7 +125,7 @@ Defining a structure for component styles using pseudo-private custom properties
 Inspiration for this approach initially came from [Lea Verou’s presentation titled “CSS Variable Secrets at CSS Day 2022](https://youtu.be/ZuZizqDF4q8)
 
 ### See also
-[Stacks components _style-template.less](https://github.com/StackExchange/Stacks/blob/develop/lib/css/components/_styles-template.less)
+[Stacks components _style-template.less](https://github.com/StackExchange/Stacks/blob/develop/packages/stacks-classic/lib/css/components/_styles-template.less)
 
 [Stacks discussion on pseudo-private custom properties on GitHub](https://github.com/StackExchange/Stacks/pull/1091#issuecomment-1274947752)
 

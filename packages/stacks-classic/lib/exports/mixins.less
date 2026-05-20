@@ -1,0 +1,152 @@
+// COLOR MODE OVERRIDES
+/**
+ * Applies styles rules when dark mode is active.
+ *
+ * Usage example:
+ * .dark-mode({ background-color: var(--black-100); });
+ */
+.dark-mode(@rules) {
+    body.theme-system & {
+        @media (prefers-color-scheme: dark) {
+            @rules();
+        }
+    }
+
+    body.theme-dark &,
+    .theme-dark__forced &,
+    body.theme-system .theme-dark__forced & {
+        @rules();
+    }
+}
+
+/**
+ * Applies styles rules when high contrast mode is active.
+ *
+ * Usage example:
+ * .highcontrast-mode({ background-color: var(--black-100); });
+ */
+.highcontrast-mode(@rules) {
+    body.theme-highcontrast & {
+        @rules();
+    }
+}
+
+/**
+ * Applies styles rules when high contrast and dark mode is active.
+ *
+ * Usage example:
+ * .highcontrast-dark-mode({ background-color: var(--black-100); });
+ */
+.highcontrast-dark-mode(@rules) {
+    body.theme-highcontrast.theme-system & {
+        @media (prefers-color-scheme: dark) {
+            @rules();
+        }
+    }
+    body.theme-highcontrast.theme-dark & {
+        @rules();
+    }
+}
+
+// FOCUS STYLES
+/**
+ * Applies focus styles for the given context.
+ *
+ * Usage example:
+ * .focus-styles(true, true);
+ *
+ * @inset: boolean - whether the focus style be placed inside the element.
+ * @border: boolean - whether the element's border color change to match the focus style.
+ */
+.focus-styles(@inset: false, @border: false) {
+    & when not (@inset) and not (@border) {
+        box-shadow: 0 0 0 var(--su2) var(--focus-neutral), 0 0 0 var(--su4) var(--focus-theme);
+    }
+
+    & when not (@inset) and (@border) {
+        border-color: var(--focus-neutral) !important;
+        box-shadow: 0 0 0 var(--su1) var(--focus-neutral), 0 0 0 var(--su3) var(--focus-theme);
+    }
+
+    & when (@inset) and not (@border) {
+        box-shadow: inset 0 0 0 var(--su2) var(--focus-theme), inset 0 0 0 var(--su4) var(--focus-neutral);
+    }
+
+    & when (@inset) and (@border) {
+        border-color: var(--focus-theme) !important;
+        box-shadow: inset 0 0 0 var(--su1) var(--focus-theme), inset 0 0 0 var(--su3) var(--focus-neutral);
+    }
+
+    // We include a 2px transparent outline to ensure Windows High Contrast Forced Color Mode
+    // includes outlines as expected See https://blogs.windows.com/msedgedev/2020/09/17/styling-for-windows-high-contrast-with-new-standards-for-forced-colors/
+    outline: var(--su2) solid transparent !important;
+}
+
+// SIZING
+/**
+ * Generate base and responsive atomic sizing classes.
+ *
+ * Usage example:
+ * .generate-sizing('.m', margin, true);
+ * .generate-sizing('.ml', margin-left, true, percent);
+ * .generate-sizing('.mx'; margin-left, margin-right; true);
+ * .generate-sizing('.pr', padding-right);
+ *
+ * @param {string} prefix - What prefix to generate (e.g. `.m`, `.pr`, etc).
+ * @param {string|list} properties - What CSS properties to generate (e.g. `margin`, `margin-right, margin-left`, etc).
+ * @param {list} values - List of values to generate classes for.
+ * @param {string} [type='px'] - What set of values to generate. Options: `px` | `percent`.
+ * @param {boolean} [responsive=false] - Whether to generate responsive variants.
+ * @param {boolean} [negative=false] - Whether to generate negative value classes.
+ */
+.generate-sizing(@prefix, @properties, @values, @type: 'px', @responsive: false, @negative: false) {
+    #stacks-internals #build-classes(@prefix,
+        {
+            .template(@value) {
+                each(@properties, #(@prop) {
+                    & when (@type = 'px') and (@negative = false) {
+                        @{prop}: var(~"--su@{value}") !important;
+                    }
+                    & when (@type = 'px') and (@negative = true) {
+                        @{prop}: var(~"--sun@{value}") !important;
+                    }
+                    & when (@type = 'percent') and (@negative = false) {
+                        @{prop}: ~"@{value}% !important";
+                    }
+                    & when (@type = 'percent') and (@negative = true) {
+                        @{prop}: ~"-@{value}% !important";
+                    }
+                });
+            }
+        },
+        @values,
+        @responsive
+    );
+}
+
+/**
+ * Generate atomic sizing classes using predefined SU (spacing unit) values.
+ *
+ * Generates 12 utility classes (numbered 1-12) that map to specific SU values:
+ * 128, 256, 344, 448, 512, 640, 768, 848, 960, 1024, 1120, 1280.
+ *
+ * Usage example:
+ * .generate-su-sizing('.ws', width);
+ * .generate-su-sizing('.hs', height);
+ * .generate-su-sizing('.wmn', min-width);
+ *
+ * @param {string} prefix - Class prefix to generate (e.g. `.ws`, `.hs`, `.wmn`).
+ * @param {string} property - CSS property to set (e.g. `width`, `height`, `min-width`).
+ */
+.generate-su-sizing(@prefix, @property) {
+    @su-values: 128, 256, 344, 448, 512, 640, 768, 848, 960, 1024, 1120, 1280;
+    #stacks-internals #build-classes(@prefix,
+        {
+            .template(@value) {
+                @su-value: extract(@su-values, @value);
+                @{property}: var(~"--su@{su-value}") !important;
+            }
+        },
+        1 2 3 4 5 6 7 8 9 10 11 12
+    );
+}

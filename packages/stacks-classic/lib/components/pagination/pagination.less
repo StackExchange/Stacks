@@ -1,0 +1,85 @@
+.s-pagination {
+    // reset list styles on ul.s-pagination and .s-pagination ul
+    ul,
+    ul& {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    & &--item {
+        --_pa-item-bg: unset;
+        --_pa-item-br: unset;
+        --_pa-item-fc: var(--black-400);
+        --_pa-item-p: var(--su4);
+
+        .highcontrast-mode({
+            &[href] {
+                text-decoration: underline;
+            }
+        });
+
+        // MODIFIERS
+        &.is-selected {
+            --_pa-item-fc: var(--black-600);
+
+            &:not(:hover):not(:focus-visible):before {
+                background-color: var(--black-600);
+                content: "";
+                height: var(--su2);
+                left: 0;
+                position: absolute;
+                right: 0;
+                top: 100%;
+            }
+        }
+        &.s-pagination--item__nav {
+            --_pa-item-bg: var(--black-150);
+            --_pa-item-br: var(--br-circle);
+            --_pa-item-fc: var(--black-600);
+            --_pa-item-p: var(--su6);
+
+            aspect-ratio: 1 / 1;
+
+            &:hover {
+                --_pa-item-bg: var(--black-200);
+            }
+        }
+
+        // INTERACTION
+        &[href]:hover:not(&__nav) {
+            --_pa-item-bg: var(--black-150);
+            --_pa-item-br: var(--br-pill);
+            --_pa-item-fc: var(--black-600);
+        }
+        &:focus-visible {
+            --_pa-item-bg: var(--black-150);
+            --_pa-item-fc: var(--black-600);
+            .focus-styles(false, true);
+        }
+        &:focus-visible:not(&__nav),
+        &.focus-inset-bordered {
+            --_pa-item-br: var(--br-md);
+        }
+
+        background-color: var(--_pa-item-bg);
+        border-radius: var(--_pa-item-br);
+        color: var(--_pa-item-fc);
+        padding: var(--_pa-item-p);
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin: var(--su1);
+        position: relative;
+        text-decoration: none;
+    }
+
+    &,
+    ul {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--su2);
+    }
+}

@@ -1,3 +1,212 @@
+# Migrating from Stacks Classic v2 to v3
+
+## Breaking changes
+
+### Atomic styles
+
+#### Border radius
+- `.bar-sm` removed
+- `.bar-lg` removed
+- `.btr-sm` removed
+- `.btr-lg` removed
+- `.brr-sm` removed
+- `.brr-lg` removed
+- `.bbr-sm` removed
+- `.bbr-lg` removed
+- `.blr-sm` removed
+- `.blr-lg` removed
+
+#### Background
+- Add `.bg-loading`
+- Skeleton component deleted
+
+#### Colors
+- `gold`, `silver`, `bronze` colors removed
+
+#### Typography
+- `.fs-category` removed
+- Atomic classes now have a predefined line-height associated to them
+
+#### Width & Height
+- Removed undocumented `.hmx0`, `.wmx0`
+- Added `.hmn-screen`, `.wmn-screen`
+
+### Components
+
+#### Anchors
+- Removed `.s-anchors__default` in favor of appling those styles as the default for `.s-anchors`
+
+#### Badge
+- `.s-badge__xs` removed
+- `.s-badge__filled` removed
+- `.s-badge__icon` removed
+- `.s-badge__bounty` removed
+- `.s-badge__answered` removed
+- `.s-badge__votes` removed
+- `.s-badge__rep-down` removed
+- `.s-badge__muted` removed
+- `.s-badge__new` renamed to `.s-badge__featured`
+- `.s-award-bling` renamed to `.s-bling` (used in some badge templates)
+
+#### Banners
+
+- Banner markup has changed. New markup and icons should be applied.
+- `.s-banner--btn` has been replaced with `.s-banner--dismiss`
+
+#### Bling (previously *Award Bling*)
+- The Award Bling component has been renamed to Bling.
+- Bling no longer accepts children elements besides those for screen readers. Please include any visually represented strings (such as counts) as siblings to the bling component.
+
+#### Block Link
+- The Block Link component has been removed.
+
+#### Buttons
+- The secondary style `outlined` has been removed i.e. `.s-btn__outlined`
+- The default button style is `filled`, use `.s-btn__clear` to use a clear style of a button
+- The featured and tonal variant no longer have a clear style
+- The variant `Muted` has been removed, `Tonal` has been added
+- `s-btn__md` has been removed, `s-btn__lg` has been added
+
+#### Checkbox & Radio
+- The `s-checkbox` and `s-radio` classes should now be applied to the container including the `input` and `label`. These classes replace `.s-check-control`
+- The `s-checkbox` and `s-radio` classes are no longer needed on the `input` element itself
+- The `s-check-group` class has been renamed to `s-form-group`
+- Added `.s-checkbox__checkmark` and `.s-radio__checkmark` modifier classes for checkmark-style variants
+
+#### Inputs
+- `s-input__md` removed
+- `s-input__xl` removed
+- **Nested inputs** html will require slight tweaking on consumers' side
+
+#### Labels
+- `s-label__md`, `s-label__xl` removed
+- `s-label--status`, `s-label--status__required`, `s-label--status__new`, `s-label--status__beta` removed. Use the new `s-badge` states instead.
+
+#### Link
+- <a> elements no longer automatically have s-link styling, `s-link` needs to be an explict class of any <a> element that needs the styling
+- `s-link__visited` Removed 
+
+#### Loader
+- `Spinner` component replaced with new `Loader` component
+- `xs` and `xl` sized have been removed, leaving only the default, `sm`, and `lg` sizes
+
+#### Menu
+
+The menu component has been updated to use new class names and structure. The following changes are breaking:
+
+- **Link classes**: Replace `.s-block-link` with `.s-menu--action` on all menu links and buttons.
+- **Danger state**: Replace `.s-block-link__danger` with `.s-menu--action__danger`.
+- **Selected state**: The selected state has changed from `.s-block-link__left.is-selected` to just `.is-selected` on the `.s-menu--action` element. The `.is-selected` class should be applied to the `<a>` or `<button>` element, not the `<li>`.
+- **Menu item class**: All menu item `<li>` elements must now include the `.s-menu--item` class.
+- **Menu label removed**: The `.s-menu--label` class has replaced with `.s-menu--title` for section titles instead.
+
+**Before:**
+```html
+<ul class="s-menu" role="menu">
+    <li role="menuitem">
+        <a href="#" class="s-block-link">Example link</a>
+    </li>
+    <li role="menuitem">
+        <a href="#" class="s-block-link s-block-link__left is-selected">Selected link</a>
+    </li>
+    <li role="menuitem" class="s-menu--label">Example label</li>
+    <li role="menuitem">
+        <a href="#" class="s-block-link s-block-link__danger">Danger link</a>
+    </li>
+</ul>
+```
+
+**After:**
+```html
+<ul class="s-menu" role="menu">
+    <li class="s-menu--item" role="menuitem">
+        <a href="#" class="s-menu--action">Example link</a>
+    </li>
+    <li class="s-menu--item" role="menuitem">
+        <a href="#" class="s-menu--action is-selected">Selected link</a>
+    </li>
+    <li class="s-menu--title" role="separator">Section Title</li>
+    <li class="s-menu--item" role="menuitem">
+        <a href="#" class="s-menu--action s-menu--action__danger">Danger link</a>
+    </li>
+</ul>
+```
+
+#### Modal
+
+- Changed close icon to the new `Cross` beta icon (including some padding adjustments)
+
+
+#### Navigation
+- Removed muted variant (`.s-navigation__muted`)
+- Selected page are now highlighted by an underscore (no pill shape background)
+- New `.s-navigation--icon` class to style icons alongside navigation items
+- New `.s-navigation--avatar` class to style avatars alongside navigation items
+
+#### Notices
+- Markup has been been updated
+- New `.s-notice--icon` class to style the new notice icons
+- New `.s-notice--dismiss` class to style the optional dismiss button
+
+#### Pagination
+- The next and previous button now uses an `ArrowRight` and `ArrowLeft` icon instead of text. To apply the new styling, use the class `.s-pagination--item__nav`. Since these buttons use icons to represent their behavior, make sure to include descriptive text for screen readers.
+
+#### Post Summary
+The Post Summary component has changed dramatically. Please refer to the docs for complete guidance.
+
+#### Popover
+- The new popovers no longer include an arrow element. The `s-popover--arrow` css class has been removed, and any markup using it (e.g. `<div class="s-popover--arrow"></div>`) should be deleted from the codebases as part of the migration.
+
+#### Prose
+- `xs` and `md` sizes removed
+
+#### Select
+- `md` and `xl` sizes removed
+
+#### Sidebar Widget
+- `s-sidebarwidget__items` renamed to `s-sidebarwidget--items` and must be nested inside `s-sidebarwidget--content` now
+- `s-sidebarwidget--item` is only supported for navigation items now
+- `s-sidebarwidget__small-bold-text` class removed
+- Table layout support removed
+- Expandable sidebar support removed
+
+#### Tags
+- `.s-tag__xs` removed
+- `.s-tag__md` removed
+
+#### Textarea
+- `s-textarea__md` removed
+- `s-textarea__xl` removed
+
+#### Toggle Switch
+
+- `s-toggle-switch--label-off` removed
+
+#### User Card
+
+Markup for the User Card has changed significantly. Please refer to the [docs](https://beta.stackoverflow.design/product/components/user-cards) for full guidance. Here are the most notable class changes:
+
+- Some component child classes have been replaced in favor of more generic wrappers. These include:
+    - `s-user-card--avatar`: The avatar should just include the appropriate `.s-avatar` classes
+    - `s-user-card--awards`: Awards should be placed within a `li` in a `ul.s-user-card--group` container
+    - `s-user-card--info`: Replaced with other layout classes as appropriate
+    - `s-user-card--link`: Previously used to style the username and now handled by `.s-user-card--username`
+    - `s-user-card--location`: Location should be placed in a `li` in a `ul.s-user-card--group.s-user-card--group__split` container
+    - `s-user-card--role`: Role should be placed in a `li` in a `ul.s-user-card--group.s-user-card--group__split` container
+    - `s-user-card--tags`: Tags are no longer included in the user card
+    - `s-user-card--type`: Replaced with `.s-user-card--recognition`
+- `s-user-card__highlighted` removed
+- `s-user-card__deleted` removed (expected to return in our next User Card iteration)
+- The size modifiers `full`, `small`, and `minimal` have been replaced with `sm` and `lg`
+
+# Migrating from Stacks Svelte v0 to v1
+
+## Breaking changes
+
+### Bling (previously *AwardBling*)
+
+The `AwardBling` component has been renamed to `Bling`.
+
 # Migrating from Stacks v1 to v2
 
 With the release of Stacks v2, we've made some breaking changes to the library. The purpose of this guide is to help you prepare your code be compatible with the changes in Stacks v2.

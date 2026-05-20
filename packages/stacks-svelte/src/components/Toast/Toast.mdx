@@ -1,0 +1,121 @@
+import {
+    Meta,
+    Canvas,
+    Title,
+    Stories,
+    PureArgsTable,
+} from "@storybook/addon-docs/blocks";
+import * as ToastStories from "./Toast.stories.svelte";
+
+<Meta title="Components/Toast" name="Docs" of={ToastStories} />
+
+<Title>Toast</Title>
+
+To show and hide toasts you need to first ensure that a `Toaster` component is rendered in your page.<br />
+Ideally only one `Toaster` component is rendered per page.
+
+### showToast(message, options)
+
+Returns a toast ID that can be used with `hideToast`.
+
+<PureArgsTable
+    rows={{
+        message: {
+            name: "message",
+            description: "Toast message as plain text or Svelte Snippet",
+            type: { name: "string | Snippet" },
+            required: true,
+        },
+        options: {
+            name: "options",
+            description: "Configuration object (see ToastOptions below)",
+            type: { name: "ToastOptions" },
+        },
+    }}
+/>
+
+### ToastOptions
+
+<PureArgsTable
+    rows={{
+        variant: {
+            name: "variant",
+            description: "Visual style of the toast",
+            type: {
+                name: "enum",
+                value: ["danger", "warning", "info", "success"],
+            },
+        },
+        important: {
+            name: "important",
+            description: "Emphasize the toast",
+            type: { name: "boolean" },
+        },
+        icon: {
+            name: "icon",
+            description:
+                "Icon source for example from the stacks-icons package",
+            type: { name: "string" },
+        },
+        iconTitle: {
+            name: "iconTitle",
+            description: "Accessible title for the icon",
+            type: { name: "string" },
+        },
+        transient: {
+            name: "transient",
+            description: "Auto-dismiss the toast after `duration`",
+            type: { name: "boolean" },
+            defaultValue: { summary: "true" },
+        },
+        dismissible: {
+            name: "dismissible",
+            description: "Render a close action to allow user dismissal",
+            type: { name: "boolean" },
+            defaultValue: { summary: "true" },
+        },
+        duration: {
+            name: "duration",
+            description: "Auto-dismiss delay in ms (when `transient` is true)",
+            type: { name: "number" },
+            defaultValue: { summary: "10000" },
+        },
+        onUserClose: {
+            name: "onUserClose",
+            description: "Fired when the user closes the toast",
+            type: { name: "() => void" },
+        },
+        onAutoClose: {
+            name: "onAutoClose",
+            description: "Fired when the toast auto-closes",
+            type: { name: "() => void" },
+        },
+        onClose: {
+            name: "onClose",
+            description: "Fired on any close (user or auto)",
+            type: { name: "() => void" },
+        },
+        actions: {
+            name: "actions",
+            description: "Custom action buttons (e.g. `<NoticeAction>`)",
+            type: { name: "Snippet" },
+        },
+    }}
+/>
+
+### hideToast(toastId)
+
+Closes a toast by ID returned from `showToast`.
+
+<PureArgsTable
+    rows={{
+        toastId: {
+            name: "toastId",
+            description: "ID returned by `showToast`",
+            type: { name: "string | number" },
+            required: true,
+        },
+    }}
+/>
+
+<Stories />

@@ -1,29 +1,6 @@
-# Compiled source #
-###################
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.so
-
-# Packages #
-############
-# it's better to unpack these files and commit the raw source
-# git has its own built in compression methods
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-
-# Logs and databases #
-######################
+# Logs #
+########
 *.log
-*.sql
-*.sqlite
 
 # OS generated files #
 ######################
@@ -37,53 +14,39 @@ Thumbs.db
 *_rsa
 *_rsa.pub
 
-# Sublime #
-######################
-*.sublime-workspace
-
-# 11ty Site #
-###############
-# This is compiled by Netlify on its servers, so no need to include it.
-_site/
-.asset-cache
-
-# Komodo Edit #
-###############
-*.komodoproject
-
 # NPM #
 ###############
-node_modules
+node_modules/
 
 # Compiled CSS/JS #
 ###############
-dist/
-/docs/assets/css/
-/docs/assets/js/stacks.*
-/docs/assets/js/controllers.js
-/docs/assets/js/controllers.js.map
-/docs/assets/js/library.*
+/packages/stacks-classic/dist/
+/packages/stacks-svelte/netlify/dist/
+/packages/stacks-utils/dist/
 /build/
+
+# Build caches #
+################
 .tscache
+*.tsbuildinfo
+.svelte-kit/
+
+# Private docs are cloned during docs builds and must not be tracked.
+/packages/stacks-docs/src/docs/private/
 
 # legacy compiled files -- these are no longer generated, but may still be lingering around
-/lib/css/*.css
-
-# Environment normalization #
-###############
-/docs/.bundle
-/docs/vendor/bundle
-/docs/_includes/svg-icons
-/docs/_includes/svg-spots
+/packages/stacks-classic/lib/css/*.css
 
 # Testing Assets #
 ###############
-/screenshots/**/failed/**
-
-# GitHub Actions #
-###############
-/.github/main.workflow
+**/screenshots/**/failed/**
 
 # Editors #
 ###########
 /.idea
+
+# Stacks-Svelte
+################
+**/storybook-static
+.eslintcache
+/packages/stacks-svelte/lib/

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        %sveltekit.head%
+    </head>
+    <body data-sveltekit-preload-data="hover">
+        <script>
+            // Theme initialization - runs immediately to prevent FOUC
+            (function () {
+                var forceDarkMode = localStorage.getItem("forceDarkModeOn");
+                var forceHighContrast = localStorage.getItem(
+                    "forceHighContrastModeOn"
+                );
+                var customTheme = localStorage.getItem("customTheme");
+                var browserPrefersDark =
+                    window.matchMedia &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches;
+                var darkModeEnabled =
+                    forceDarkMode === "true" ||
+                    (!forceDarkMode && browserPrefersDark);
+
+                if (browserPrefersDark) {
+                    document.body.classList.toggle(
+                        "theme-system",
+                        darkModeEnabled
+                    );
+                    document.body.classList.toggle("theme-dark", false);
+                } else {
+                    document.body.classList.toggle("theme-system", true);
+                    document.body.classList.toggle(
+                        "theme-dark",
+                        darkModeEnabled
+                    );
+                }
+
+                if (customTheme === "true") {
+                    document.body.classList.add("theme-custom", "themed");
+                }
+
+                if (forceHighContrast === "true") {
+                    document.body.classList.add("theme-highcontrast");
+                }
+            })();
+        </script>
+        <div style="display: contents">%sveltekit.body%</div>
+    </body>
+</html>

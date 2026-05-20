@@ -1,0 +1,72 @@
+.s-label {
+    --_la-c: unset;
+    --_la-fs: var(--fs-body2); // 16
+
+    // CONTEXTUAL STYLES
+    &[for] {
+        --_la-c: pointer;
+    }
+
+    fieldset[disabled] &,
+    .is-disabled & {
+        .s-description {
+            opacity: unset;
+        }
+
+        &,
+        &[for] {
+            --_la-c: not-allowed;
+        }
+
+        opacity: var(--_o-disabled-static);
+    }
+
+    .is-readonly & {
+        --_la-c: default;
+    }
+
+    // MODIFIERS
+    // Sizes
+    &&__sm {
+        --_la-fs: var(--fs-body1); // 14
+    }
+
+    &&__lg {
+        --_la-fs: calc(var(--su16) + var(--su6)); // 22
+    }
+
+    // CHILD ELEMENTS
+    .s-badge {
+        font-weight: 400;
+        margin-left: var(--su6);
+    }
+    &:has(.s-badge) {
+        display: flex;
+        align-items: center;
+    }
+
+    // TODO we shouldn't support descriptions and messages within labels
+    .s-description,
+    .s-input-message {
+        font-size: var(--fs-caption);
+        font-weight: normal;
+        margin-bottom: 0;
+        margin-top: var(--su4);
+        padding: 0;
+    }
+
+    cursor: var(--_la-c);
+    font-size: var(--_la-fs);
+    color: var(--black-500);
+    font-family: inherit;
+    font-weight: 600;
+    padding: 0 var(--su2); // Helps the label visually line up with inputs
+}
+
+.s-required-symbol {
+    color: var(--red-400);
+    font-size: 125%;
+    font-weight: normal;
+    line-height: 0;
+    text-decoration: none !important;
+}

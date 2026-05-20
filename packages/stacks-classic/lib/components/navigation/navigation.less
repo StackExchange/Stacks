@@ -1,0 +1,190 @@
+.s-navigation,
+.s-navigation ul {
+    --_na-fd: row;
+    --_na-fw: wrap;
+    --_na-p: var(--su2) 0;
+    --_na-gap: var(--su4);
+    --_na-item-bg: none;
+    --_na-item-fc: var(--black-400);
+    --_na-item-fs: unset;
+    --_na-item-p: calc(var(--su12) - var(--su1)) var(--su16);
+    --_na-item-ws: nowrap;
+    --_na-item-bg-hover: var(--black-100);
+    --_na-item-fc-hover: var(--_na-item-fc);
+    --_na-item-selected-bg: none;
+    --_na-item-selected-fc: var(--black-600);
+    --_na-item-selected-bg-hover: var(--_na-item-bg-hover);
+    --_na-item-selected-h: var(--su2);
+    --_na-item-text-ta: center;
+    --_na-after-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M11.35 4.35 6 9.71.65 4.35l.7-.7L6 8.29l4.65-4.64z'/%3E%3C/svg%3E");
+    --_na-after-bg-color: var(--black-400);
+
+    // CONTEXTUAL STYLES
+    .highcontrast-mode({
+        --_na-item-bg-hover: var(--black-500);
+        --_na-item-fc-hover: var(--black-225);
+
+        a[href].s-navigation--item {
+            text-decoration: underline;
+        }
+    });
+
+    // MODIFIERS
+    &&__scroll {
+        --_na-fw: nowrap;
+
+        overflow-x: auto;
+        @scrollbar-styles();
+    }
+
+    &&__sm {
+        --_na-item-fs: var(--fs-caption);
+        --_na-item-p: var(--su6) var(--su4);
+    }
+
+    &&__vertical,
+    &&__vertical ul {
+        --_na-fd: column;
+        --_na-gap: 0;
+        --_na-p: 0;
+        --_na-item-text-ta: unset;
+        --_na-item-ws: normal;
+        --_na-item-selected-h: 0;
+        --_na-item-p: var(--su6) var(--su8);
+        --_na-item-fc: var(--black-600);
+        
+        & .s-navigation--item {
+            &.is-selected {
+                --_na-item-bg: var(--black-150);
+            }
+
+            &:has(.s-navigation--icon) {
+                --_na-item-p: calc(var(--su12) - var(--su1)) var(--su8);
+            }
+            &:has(.s-navigation--avatar) {
+                --_na-item-p: var(--su12) var(--su8);
+            }
+        }
+    }
+
+    // CHILD ELEMENTS
+    & &--item {
+        &.is-selected {
+            --_na-item-bg: var(--_na-item-selected-bg);
+            --_na-item-fc: var(--_na-item-selected-fc);
+            --_na-item-fc-hover: var(--_na-item-fc);
+            --_na-item-bg-hover: var(--_na-item-selected-bg-hover);
+
+            &:before {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: var(--_na-item-selected-h);
+                background-color: var(--_na-item-selected-fc);
+            }
+
+            .highcontrast-mode({
+                --_na-item-fc-hover: var(--white);
+            });
+
+            font-weight: bold;
+        }
+
+        // TODO: include child component class (without variant) on selector
+        &__dropdown {
+            &:after {
+                mask-image: var(--_na-after-mask);
+                mask-size: contain;
+                mask-repeat: no-repeat;
+                background-color: var(--_na-after-bg-color);
+                content: "";
+                height: var(--su12);
+                width: var(--su12);
+                margin-left: var(--su8);
+            }
+        }
+
+        &:hover,
+        &:active {
+            .highcontrast-mode({
+                --_na-after-bg-color: var(--white);
+            });
+            background-color: var(--_na-item-bg-hover);
+            color: var(--_na-item-fc-hover);
+        }
+
+        &:focus-visible {
+            .focus-styles(true);
+        }
+
+        background-color: var(--_na-item-bg);
+        color: var(--_na-item-fc);
+        font: unset; // Needs to come before font-size for cascade
+        font-size: var(--_na-item-fs);
+        padding: var(--_na-item-p);
+        white-space: var(--_na-item-ws);
+
+        align-items: center;
+        border: none; // Reset some things for when the navigation item is also a button
+        border-radius: var(--br-md);
+        box-shadow: none;
+        cursor: pointer;
+        display: flex;
+        position: relative;
+        text-decoration: none;
+        user-select: auto;
+    }
+
+    & &--item-text {
+        &:before {
+            content: attr(data-text);
+            font-weight: bold;
+            height: 0;
+            pointer-events: none;
+            user-select: none;
+            visibility: hidden;
+        }
+
+        display: inline-flex;
+        flex-direction: column;
+        text-align: var(--_na-item-text-ta);
+    }
+
+    & &--title {
+        & .s-btn {
+            color: var(--black-400);
+        }
+
+        margin-bottom: 0;
+        font-size: var(--fs-fine);
+        font-weight: normal;
+        color: var(--black-400);
+        padding: calc(var(--su16) + var(--su2)) var(--su8);
+    }
+
+    //Add top margin to titles except the first one
+    & > li ~ li .s-navigation--title {
+        margin-top: var(--su24);
+    }
+
+    & &--icon {
+        color: inherit;
+        margin-right: var(--su4);
+    }
+
+    & &--avatar {
+        margin-right: var(--su8);
+        background: transparent;
+    }
+
+    flex-direction: var(--_na-fd);
+    flex-wrap: var(--_na-fw);
+    gap: var(--_na-gap);
+    padding: var(--_na-p);
+
+    display: flex;
+    list-style: none; // If the s-navigation is a list, let's reset all the properties
+    margin: 0;
+}
