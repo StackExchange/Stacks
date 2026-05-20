@@ -51,7 +51,7 @@
                 <Button href="#" class="ws-nowrap" {variant} {weight}>Ask question</Button>
               </td>
               <td class="va-middle ta-center px4">
-                <Button href="#" class="ws-nowrap" {variant} {weight} selected aria-pressed="true">Ask question</Button>
+                <Button href="#" class="ws-nowrap" {variant} {weight} selected role="button" aria-pressed="true">Ask question</Button>
               </td>
               <td class="va-middle ta-center px4">
                 <Button href="#" class="ws-nowrap" {variant} {weight} disabled>Ask question</Button>

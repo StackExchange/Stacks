@@ -61,7 +61,7 @@
       >
         <Icon src={icons[category.title]} />
         <h2 class="mt-auto fs-headline1 mb12">{category.title}</h2>
-        <p class="mb0 fs-body2 fc-black-300">{category.description}</p>
+        <p class="mb0 fs-body2 fc-black-250 d:fc-black-400">{category.description}</p>
       </a>
     {/each}
 
