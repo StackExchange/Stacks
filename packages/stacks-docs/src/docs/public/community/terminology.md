@@ -36,9 +36,9 @@ The domain names **stackexchange.com** (and stand-alone urls like **superuser.co
 Avoid using "Stack Exchange" as a standalone term to refer to the company or the network. The name **Stack Exchange** now appears only in two contexts:
 
 - The legal entity name: **Stack Exchange Inc.**
-- Individual site names, which follow the existing **[Topic] Stack Exchange** pattern (e.g. _Physics Stack Exchange_) and have not been rebranded
+- Individual site names, which follow the existing **[Topic] Stack Exchange** pattern (e.g. _Physics Stack Exchange_) and have not been rebranded.
 
-Further guidence is [avilable here](/copy/naming#the-website-vs-the-company).
+Further guidence is [available here](/copy/naming#the-website-vs-the-company).
 
 ## Community vs. communities
 
