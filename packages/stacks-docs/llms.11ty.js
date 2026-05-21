@@ -9,10 +9,22 @@ const SECTIONS = [
   { tag: "foundation", heading: "Foundation" },
 ];
 
+// Descriptions may contain inline HTML for the rendered page; strip it for
+// llms.txt. Loop until stable so unclosed/nested-looking tags can't reintroduce
+// the pattern (CodeQL js/incomplete-multi-character-sanitization).
+function stripHtml(input) {
+  let previous;
+  let output = input;
+  do {
+    previous = output;
+    output = output.replace(/<[^>]+>/g, "");
+  } while (output !== previous);
+  return output;
+}
+
 function pageLink(page, siteUrl) {
   const title = page.data.title;
-  const description = (page.data.description || "")
-    .replace(/<[^>]+>/g, "") // descriptions may contain inline HTML for the rendered page
+  const description = stripHtml(page.data.description || "")
     .replace(/\s+/g, " ")
     .trim();
   const suffix = description ? `: ${description}` : "";
