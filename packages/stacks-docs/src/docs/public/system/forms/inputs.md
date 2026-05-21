@@ -12,7 +12,6 @@ figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Prod
     import Example from '$components/Example.svelte';
     import type { ClassTableRow } from '$components/ClassTable.svelte';
 
-    // Legacy icons not in current @stackoverflow/stacks-icons
     const svgCreditCard = `<svg aria-hidden="true" class="svg-icon iconCreditCard s-input-icon s-input-icon__creditcard" width="18" height="18" viewBox="0 0 18 18"><path d="M3 3h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2m0 6v4h12V9zm0-3h12V5H3z"/></svg>`;
     const svgClearSm = `<svg aria-hidden="true" class="svg-icon iconClearSm" width="14" height="14" viewBox="0 0 14 14"><path d="M12 3.41 10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7z"/></svg>`;
 
