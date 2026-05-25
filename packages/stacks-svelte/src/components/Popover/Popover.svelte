@@ -39,7 +39,7 @@
 <script lang="ts">
     import type { Strategy } from "@floating-ui/core";
     import { setContext } from "svelte";
-    import { offset, inline, flip } from "@floating-ui/dom";
+    import { offset, inline, flip, shift } from "@floating-ui/dom";
     import { createFloatingActions } from "svelte-floating-ui";
 
     interface Props {
@@ -137,7 +137,12 @@
     const [floatingRef, floatingContent, update] = createFloatingActions({
         placement,
         strategy,
-        middleware: [offset(10), flip(), inline()],
+        middleware: [
+            offset(10),
+            flip(),
+            shift({ crossAxis: true, padding: 8 }),
+            inline(),
+        ],
         onComputed({ placement: computedPlacement }) {
             pstate.computedPlacement = computedPlacement;
         },
