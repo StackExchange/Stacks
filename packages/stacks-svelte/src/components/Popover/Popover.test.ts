@@ -590,6 +590,52 @@ describe("Popover", () => {
         );
     });
 
+    it("should shift the popover content horizontally when it would overflow the viewport", async () => {
+        await setViewport({ width: 260, height: 260 });
+
+        const waitForFloatingPosition = () =>
+            new Promise<void>((resolve) => {
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => resolve());
+                });
+            });
+
+        render(Popover, {
+            props: {
+                ...defaultProps,
+                placement: "bottom",
+                children: createSvelteComponentsSnippet([
+                    {
+                        component: PopoverReference,
+                        props: {
+                            children: createRawSnippet(() => ({
+                                render: () =>
+                                    '<button style="position: fixed; top: 80px; left: 220px;">Trigger</button>',
+                            })),
+                        },
+                    },
+                    {
+                        component: PopoverContent,
+                        props: {
+                            class: "w-auto wmn0",
+                            children: createRawSnippet(() => ({
+                                render: () =>
+                                    '<span style="box-sizing: border-box; display: block; width: 160px;">Popover Content</span>',
+                            })),
+                        },
+                    },
+                ]),
+            },
+        });
+
+        await userEvent.click(screen.getByRole("button"));
+        await waitForFloatingPosition();
+
+        const rect = screen.getByRole("dialog").getBoundingClientRect();
+
+        expect(Math.ceil(rect.right)).to.be.at.most(window.innerWidth);
+    });
+
     it("should not throw any error if the component is unmounted while the popover is open", async () => {
         const { unmount } = render(Popover, {
             props: {

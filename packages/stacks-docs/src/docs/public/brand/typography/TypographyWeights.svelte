@@ -49,6 +49,7 @@
   .sample__type {
     margin: auto;
     font-size: 150px;
+    font-size: clamp(6rem, 10vw, 15rem);
     transition: font-weight 0.3s ease;
     font-family: "Stack Sans Headline";
   }

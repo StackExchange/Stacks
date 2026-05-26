@@ -13,7 +13,7 @@
 </svelte:head>
 
 <div class="p32 wmx12 hmn-screen">
-  <h1 class="mb24">{data?.active?.title}</h1>
+  <h1 class="title mb24">{data?.active?.title}</h1>
   <p class="fs-body3 mb24">{data?.active?.description}</p>
 
   {#each data?.active?.items as subsection (subsection.slug)}
@@ -31,3 +31,9 @@
     {/if}
   {/each}
 </div>
+
+<style>
+    .title {
+        font-size: clamp(var(--fs-title), 10vw, var(--fs-display3));
+    }
+</style>

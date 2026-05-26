@@ -49,7 +49,7 @@ This should take place over 12 frames or less: 2 for the intro frame, maximum 10
 
 <Grid>
   <GridColumn extraClasses="ta-center bg-black-100">
-    <svg width="198" height="186" viewBox="0 0 198 186" fill="none">
+    <svg class="wmx100 h-auto" width="198" height="186" viewBox="0 0 198 186" fill="none">
       <rect x="2.75391" y="3.2085" width="191.853" height="179.919" stroke="var(--black)" stroke-width="1"/>
       <circle cx="2.75387" cy="183.127" r="2.75387" fill="var(--black)"/>
       <circle cx="194.609" cy="2.75387" r="2.75387" fill="var(--black)"/>
@@ -88,7 +88,7 @@ This should take place over maximum 22 frames and include 1 frame skip in the mi
 
 <Grid>
   <GridColumn extraClasses="ta-center bg-black-100">
-    <svg width="369" height="184" viewBox="0 0 369 184" fill="none">
+    <svg class="wmx100 h-auto" width="369" height="184" viewBox="0 0 369 184" fill="none">
       <path d="M2.72656 2.72949H365.721V181.043H2.72656V2.72949Z" stroke="#575757" stroke-width="1"/>
       <path d="M192.867 2.2793V180.592" stroke="#575757" stroke-width="1"/>
       <path d="M175.582 2.2793V180.592" stroke="#575757" stroke-width="1"/>
@@ -132,7 +132,7 @@ This should never be longer than 20 frames to keep the final movement as a snap 
 
 <Grid>
   <GridColumn extraClasses="ta-center bg-black-100">
-    <svg width="402" height="183" viewBox="0 0 402 183" fill="none">
+    <svg class="wmx100 h-auto" width="402" height="183" viewBox="0 0 402 183" fill="none">
       <path d="M362.496 2.25928V178.999" stroke="#575757" stroke-width="1"/>
       <path d="M380.531 2.25928V178.999" stroke="#575757" stroke-width="1"/>
       <path d="M191.168 2.25928V178.999" stroke="#575757" stroke-width="1"/>
