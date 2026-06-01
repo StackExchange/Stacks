@@ -13,8 +13,16 @@
     day: 'numeric'
   }));
 
-  const pageTitle = $derived(data.active.title ? `${data.active.title} - Stack Overflow Design System` : 'Stack Overflow Design System');
-  const pageDescription = $derived(data?.metadata?.description || `Documentation for ${data.active.title} in the Stack Overflow Design System`);
+  const activeTitle = $derived.by(() => {
+    const metadataTitle =
+      typeof data?.metadata?.title === 'string' ? data.metadata.title : undefined;
+    return data?.active?.title ?? metadataTitle ?? 'Documentation';
+  });
+  const pageTitle = $derived(`${activeTitle} - Stack Overflow Design System`);
+  const pageDescription = $derived(
+    data?.metadata?.description ||
+      `Documentation for ${activeTitle} in the Stack Overflow Design System`
+  );
 
   async function copyPageUrl() {
     await navigator.clipboard.writeText(page.url.href);
@@ -85,7 +93,7 @@
       {/if}
 
       <h1 class="fs-display2 ff-stack-sans-headline-notch fw-bold">
-        {data.active.title}
+        {activeTitle}
       </h1>
 
       {#if data?.metadata?.description}
