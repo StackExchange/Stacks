@@ -19,6 +19,16 @@ const graphic = defineEmailComponent({
             imageHeight: "auto",
             imageAlign: "center",
         },
+        strip: {
+            imageSrc: "/email/strip/600x140.png",
+            imageAlt: "Strip placeholder image",
+            imageWidth: "600px",
+            imageHeight: "140px",
+            imageAlign: "center",
+            // Full-bleed
+            imagePaddingLeft: "0px",
+            imagePaddingRight: "0px",
+        },
     },
     tokens: [],
     optionsSchema: defineOptions([

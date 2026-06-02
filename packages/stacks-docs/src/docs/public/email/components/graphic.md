@@ -1,6 +1,6 @@
 ---
 title: Graphic
-description: Image block variants for spot and hero placements.
+description: Image block variants for spot, hero, and strip placements.
 ---
 
 <script lang="ts">
@@ -12,15 +12,21 @@ description: Image block variants for spot and hero placements.
 
 ### Spot
 
-140x140 left-aligned PNG placeholder.
+140x140 left-aligned placeholder.
 
 <StacksEmailEmbed kind="component" slug="graphic" />
 
 ### Hero
 
-1200x630 full-width placeholder with left/right container padding.
+6000x315 constrained with left/right container padding.
 
 <StacksEmailEmbed kind="component" slug="graphic-hero" showTokens={false} />
+
+### Strip
+
+600x140 full-bleed banner — spans the full email width with no side padding.
+
+<StacksEmailEmbed kind="component" slug="graphic-strip" showTokens={false} />
 
 ## Options
 
