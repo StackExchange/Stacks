@@ -1,70 +1,32 @@
-import MarkdownIt from "markdown-it";
-
 import {
     defineEmailComponent,
     defineOption,
     defineOptions,
     mjmlAlignOptions,
 } from "../src/lib/schema";
+import { renderEmailBodyMarkdown } from "../src/lib/markdown";
 import { tokens } from "../src/lib/tokens";
 import type { MjmlNode } from "../src/lib/types";
 import { Section } from "../src/lib/mjml";
 
 const TEMPLATE_PROP_PATTERN = /^\{\{[A-Z0-9_]+\}\}$/;
 
-const markdown = new MarkdownIt({
-    html: false,
-    breaks: true,
-    linkify: true,
-    typographer: true,
-});
-
-markdown.renderer.rules.link_open = (tokenList, index, options, env, self) => {
-    tokenList[index].attrJoin("class", "link");
-    return self.renderToken(tokenList, index, options);
-};
-
-markdown.renderer.rules.paragraph_open = (
-    tokenList,
-    index,
-    options,
-    env,
-    self
-) => {
-    const hasAnotherParagraph = tokenList
-        .slice(index + 1)
-        .some((token) => token.type === "paragraph_open");
-
-    tokenList[index].attrSet(
-        "style",
-        `margin:${hasAnotherParagraph ? tokens.body.paragraphMargin : "0"};`
-    );
-
-    return self.renderToken(tokenList, index, options);
-};
-
-const renderMarkdown = (value: string) => markdown.render(value.trim()).trim();
-
 const looksLikeHtml = (value: string) => /<\/?[a-z][\s\S]*>/i.test(value);
 
 const renderTextContent = (value: string | undefined) => {
     const content = value?.trim() ?? "";
-    if (!content) {
-        return "";
-    }
 
-    if (TEMPLATE_PROP_PATTERN.test(content)) {
+    // A bare template placeholder or already-rendered HTML passes through as-is.
+    // Markdown rendering (html:false) would otherwise escape existing tags, and
+    // `renderEmailBodyMarkdown` already returns "" for empty input.
+    if (TEMPLATE_PROP_PATTERN.test(content) || looksLikeHtml(content)) {
         return content;
     }
 
-    if (looksLikeHtml(content)) {
-        return content;
-    }
-
-    return renderMarkdown(content);
+    return renderEmailBodyMarkdown(content);
 };
 
-const bodyContent = renderTextContent(`
+const bodyContent = `
 Dear [[FIRST_NAME]],
 
 The entire [software development lifecycle](https://stackoverflow.com) has been dramatically changed by AI, introducing a new model for team organization and leadership.
@@ -72,11 +34,11 @@ The entire [software development lifecycle](https://stackoverflow.com) has been 
 AI has accelerated coding, allowing developers to dedicate more time to complex and creative tasks. **Simultaneously**, it enables teams to clear bottlenecks of repetitive tasks [through automation](https://stackoverflow.com), allowing leaders to create more agile teams and focus on higher-level strategic problems.
 
 Ultimately, it is really AI’s ability to automate the __"work around the work"__ that is proving to be transformative for organizations.
-`);
+`;
 
-const centeredContent = renderTextContent(`
+const centeredContent = `
 A starting point for more simple transactional emails with a single, center-aligned message. It can [contain links](https://stackoverflow.com) or **rich text**.
-`);
+`;
 
 const text = defineEmailComponent({
     slug: "text",
