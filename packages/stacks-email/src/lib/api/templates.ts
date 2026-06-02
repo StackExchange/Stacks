@@ -1,7 +1,6 @@
-import { mjmlJsonToString } from "../mjml/json";
 import { templateDefinitions } from "../registry";
 import type { CompileTarget } from "../tokens";
-import type { EmailTemplateMeta } from "../types";
+import type { EmailTemplateMeta, MjmlNode } from "../types";
 import { compileMjml, type CompileMjmlOutput } from "../pipeline/compile";
 import { compileTemplateInputSchema } from "./request-schemas";
 import { expandVariantRecords } from "./records";
@@ -9,7 +8,7 @@ import { normalizeEmailOptions } from "../schema";
 
 type ExpandedTemplateRecord = {
     catalog: EmailTemplateCatalogItem;
-    renderSource: (props: Record<string, string>) => string;
+    renderDocument: (props: Record<string, string>) => MjmlNode;
     resolvePreviewText: (props: Record<string, string>) => string;
 };
 
@@ -97,13 +96,11 @@ const expandedTemplateRecords = expandVariantRecords({
 
         return {
             catalog,
-            renderSource: (inputProps) =>
-                mjmlJsonToString(
-                    definition.renderDocument({
-                        variant: variantId,
-                        props: resolveProps(inputProps),
-                    })
-                ),
+            renderDocument: (inputProps) =>
+                definition.renderDocument({
+                    variant: variantId,
+                    props: resolveProps(inputProps),
+                }),
             resolvePreviewText: (inputProps) => {
                 const props = resolveProps(inputProps);
                 const preview = definition.preview?.({
@@ -156,9 +153,8 @@ export const compileEmailTemplate = ({
     }
 
     const inputProps = parsedInput.props ?? {};
-    const source = record.renderSource(inputProps);
     const result = compileMjml({
-        mjml: source,
+        source: record.renderDocument(inputProps),
         target: parsedInput.target,
         props: {},
         previewText: record.resolvePreviewText(inputProps),

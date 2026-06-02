@@ -1,14 +1,17 @@
-import { mjmlJsonToString } from "../mjml/json";
 import { componentDefinitions } from "../registry";
 import type { CompileTarget } from "../tokens";
-import type { EmailComponentMeta, ComponentOptionReference } from "../types";
+import type {
+    EmailComponentMeta,
+    ComponentOptionReference,
+    MjmlNode,
+} from "../types";
 import { compileMjml, type CompileMjmlOutput } from "../pipeline/compile";
 import { compileComponentInputSchema } from "./request-schemas";
 import { expandVariantRecords } from "./records";
 
 type ExpandedComponentRecord = {
     catalog: EmailComponentCatalogItem;
-    source: string;
+    sourceNodes: MjmlNode[];
     htmlExtractionTag?: string;
 };
 
@@ -71,7 +74,7 @@ const expandedComponentRecords = expandVariantRecords({
                 tokens,
                 options: meta.options ?? [],
             },
-            source: mjmlJsonToString(toNodeList(rendered)),
+            sourceNodes: toNodeList(rendered),
             htmlExtractionTag: meta.htmlExtraction?.targetTag,
         };
     },
@@ -117,7 +120,7 @@ export const compileEmailComponent = ({
     }
 
     const result = compileMjml({
-        mjml: record.source,
+        source: record.sourceNodes,
         target: parsedInput.target,
         props: {},
         extractComponentName: record.catalog.slug,

@@ -13,7 +13,6 @@ import spacer from "../../../../components/spacer";
 import text from "../../../../components/text";
 import title from "../../../../components/title";
 import { Section } from "$lib/mjml";
-import { mjmlJsonToString } from "$lib/mjml/json";
 import { tokens } from "$lib/tokens";
 import type { EmailComponentMeta, MjmlNode } from "$lib/types";
 
@@ -240,9 +239,8 @@ export const POST: RequestHandler = async ({ request }) => {
 
     try {
         const document = buildTransactionalDocument(parsed.data.blocks);
-        const mjml = mjmlJsonToString(document);
         const compiled = compileMjml({
-            mjml,
+            source: document,
             target: parsed.data.target,
             props: {},
             previewText: parsed.data.previewText,

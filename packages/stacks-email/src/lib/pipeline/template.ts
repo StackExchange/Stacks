@@ -1,33 +1,10 @@
-import parseMjmlSource from "mjml-parser-xml";
-
 import { mjmlJsonToString } from "../mjml/json";
 import type { MjmlNode } from "../types";
-
-type ParsedMjmlNode = MjmlNode & {
-    attributes?: MjmlNode["attributes"];
-    children?: ParsedMjmlNode[];
-};
 
 const markerStart = (name: string) => `<!-- START ${name} -->`;
 const markerEnd = (name: string) => `<!-- END ${name} -->`;
 
-const isMjmlNode = (value: unknown): value is ParsedMjmlNode =>
-    typeof value === "object" &&
-    value !== null &&
-    "tagName" in value &&
-    typeof (value as { tagName?: unknown }).tagName === "string";
-
-const parseMjml = (source: string) => {
-    try {
-        const parsed = parseMjmlSource(source);
-
-        return isMjmlNode(parsed) ? parsed : null;
-    } catch {
-        return null;
-    }
-};
-
-const isTag = (node: ParsedMjmlNode, tagName: string) =>
+const isTag = (node: MjmlNode, tagName: string) =>
     node.tagName.toLowerCase() === tagName.toLowerCase();
 
 const rawMarkerNode = (content: string): MjmlNode => ({
@@ -35,13 +12,10 @@ const rawMarkerNode = (content: string): MjmlNode => ({
     content,
 });
 
-const serializeMjml = (source: MjmlNode | MjmlNode[]) =>
+export const serializeMjml = (source: MjmlNode | MjmlNode[]) =>
     mjmlJsonToString(source).trim();
 
-const findFirstTag = (
-    node: ParsedMjmlNode,
-    tagName: string
-): ParsedMjmlNode | null => {
+const findFirstTag = (node: MjmlNode, tagName: string): MjmlNode | null => {
     if (isTag(node, tagName)) {
         return node;
     }
@@ -57,7 +31,7 @@ const findFirstTag = (
 };
 
 const wrapFirstTagNode = (
-    node: ParsedMjmlNode,
+    node: MjmlNode,
     name: string,
     tagName: string
 ): { nodes: MjmlNode[]; found: boolean } => {
@@ -84,94 +58,60 @@ const wrapFirstTagNode = (
         return wrapped.nodes;
     });
 
-    return {
-        nodes: [
-            {
-                ...node,
-                children,
-            },
-        ],
-        found,
-    };
+    return { nodes: [{ ...node, children }], found };
 };
 
-export const hasMjmlDocument = (source: string) => {
-    const root = parseMjml(source);
-
-    return root ? isTag(root, "mjml") : false;
-};
-
-const mjmlOpenTagPattern = /<mjml\b[^>]*>/i;
-const headCloseTagPattern = /<\/mj-head\s*>/i;
+/** Wrap an entire fragment with extraction markers as sibling nodes. */
+export const wrapComponentWithMarkers = (
+    nodes: MjmlNode[],
+    name: string
+): MjmlNode[] => [
+    rawMarkerNode(markerStart(name)),
+    ...nodes,
+    rawMarkerNode(markerEnd(name)),
+];
 
 /**
- * Insert head content into an `<mjml>` document via string splicing.
+ * Wrap the first node matching `tagName` with extraction markers, preserving
+ * the surrounding structure. Falls back to wrapping the whole fragment when no
+ * matching tag is found.
  */
-export const injectHeadContent = (source: string, headContent: string) => {
-    if (!hasMjmlDocument(source)) {
-        return null;
-    }
+export const wrapTagWithMarkers = (
+    nodes: MjmlNode[],
+    name: string,
+    tagName: string
+): MjmlNode[] => {
+    let found = false;
+    const wrappedNodes = nodes.flatMap((node) => {
+        if (found) {
+            return [node];
+        }
 
-    const trimmedHead = headContent.trim();
-    if (!trimmedHead) {
-        return source;
-    }
+        const wrapped = wrapFirstTagNode(node, name, tagName);
+        found = wrapped.found;
 
-    const headClose = source.match(headCloseTagPattern);
-    if (headClose?.index !== undefined) {
-        return (
-            source.slice(0, headClose.index) +
-            `${trimmedHead}\n` +
-            source.slice(headClose.index)
-        );
-    }
+        return wrapped.nodes;
+    });
 
-    const mjmlOpen = source.match(mjmlOpenTagPattern);
-    if (mjmlOpen?.index !== undefined) {
-        const insertAt = mjmlOpen.index + mjmlOpen[0].length;
-        return (
-            source.slice(0, insertAt) +
-            `\n<mj-head>\n${trimmedHead}\n</mj-head>` +
-            source.slice(insertAt)
-        );
+    return found ? wrappedNodes : wrapComponentWithMarkers(nodes, name);
+};
+
+/** Serialize the first node matching `tagName` within a fragment. */
+export const extractTagMarkup = (
+    nodes: MjmlNode[],
+    tagName: string
+): string | null => {
+    for (const node of nodes) {
+        const match = findFirstTag(node, tagName);
+        if (match) {
+            return serializeMjml(match);
+        }
     }
 
     return null;
 };
 
-export const applyTemplateProps = (
-    source: string,
-    props: Record<string, string>
-) =>
-    Object.entries(props).reduce(
-        (next, [key, value]) =>
-            next.replaceAll(`{{${key}}}`, String(value ?? "")),
-        source
-    );
-
-export const wrapComponentWithMarkers = (mjml: string, name: string) => `
-<mj-raw>${markerStart(name)}</mj-raw>
-${mjml}
-<mj-raw>${markerEnd(name)}</mj-raw>
-`;
-
-export const wrapTagWithMarkers = (
-    mjml: string,
-    name: string,
-    tagName: string
-) => {
-    const root = parseMjml(mjml);
-    if (!root) {
-        return wrapComponentWithMarkers(mjml, name);
-    }
-
-    const wrapped = wrapFirstTagNode(root, name, tagName);
-
-    return wrapped.found
-        ? serializeMjml(wrapped.nodes)
-        : wrapComponentWithMarkers(mjml, name);
-};
-
+/** Slice the compiled HTML between a component's start/end marker comments. */
 export const extractBetweenMarkers = (source: string, name: string) => {
     const startMarker = markerStart(name);
     const endMarker = markerEnd(name);
@@ -189,13 +129,12 @@ export const extractBetweenMarkers = (source: string, name: string) => {
     return source.slice(contentStart, end).trim();
 };
 
-export const extractTagMarkup = (source: string, tagName: string) => {
-    const root = parseMjml(source);
-    if (!root) {
-        return null;
-    }
-
-    const tag = findFirstTag(root, tagName);
-
-    return tag ? serializeMjml(tag) : null;
-};
+export const applyTemplateProps = (
+    source: string,
+    props: Record<string, string>
+) =>
+    Object.entries(props).reduce(
+        (next, [key, value]) =>
+            next.replaceAll(`{{${key}}}`, String(value ?? "")),
+        source
+    );
