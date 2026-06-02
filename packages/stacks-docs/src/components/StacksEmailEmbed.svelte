@@ -1,18 +1,6 @@
-<script lang="ts">
-    import { onMount } from "svelte";
-    import hljs from "highlight.js";
-    import {
-        Button,
-        Navigation,
-        NavigationItem,
-        Select,
-        SelectItem,
-    } from "@stackoverflow/stacks-svelte";
-
+<script module lang="ts">
     type EmailRenderableKind = "component" | "template";
     type CompileTarget = "preview" | "dotnet" | "braze";
-    type PreviewViewport = "desktop" | "mobile";
-    type EmbedTabId = "preview" | "mjml" | "html" | "usage";
 
     type CatalogToken = {
         token: string;
@@ -31,6 +19,81 @@
         components: CatalogItem[];
         templates: CatalogItem[];
     };
+
+    type StaticEmailManifestRecord = {
+        kind: EmailRenderableKind;
+        slug: string;
+        target: CompileTarget;
+        meta: CatalogItem;
+        errors: { line?: number; message: string; tagName?: string }[];
+        files: {
+            documentHtml: string;
+            documentMjml: string;
+            displayHtml: string;
+            displayMjml: string;
+        };
+    };
+
+    type StaticEmailManifest = {
+        generatedAt: string;
+        basePath: string;
+        records: Record<string, StaticEmailManifestRecord>;
+        catalog: CatalogResponse;
+    };
+
+    let staticManifestPromise: Promise<StaticEmailManifest> | null = null;
+    const staticFilePromises = new Map<string, Promise<string>>();
+
+    const fetchText = (url: string) => {
+        const existing = staticFilePromises.get(url);
+        if (existing) {
+            return existing;
+        }
+
+        const promise = fetch(url).then(async (response) => {
+            if (!response.ok) {
+                throw new Error(`Unable to load static email artifact: ${url}`);
+            }
+
+            return response.text();
+        });
+        staticFilePromises.set(url, promise);
+        return promise;
+    };
+
+    const loadStaticManifest = async (): Promise<StaticEmailManifest> => {
+        if (!staticManifestPromise) {
+            staticManifestPromise = fetch("/email/compiled/manifest.json").then(
+                async (response) => {
+                    if (!response.ok) {
+                        throw new Error("Unable to load static email manifest.");
+                    }
+
+                    return (await response.json()) as StaticEmailManifest;
+                },
+            );
+        }
+
+        return staticManifestPromise;
+    };
+
+    const loadCatalog = async (): Promise<CatalogResponse> =>
+        (await loadStaticManifest()).catalog;
+</script>
+
+<script lang="ts">
+    import { onMount } from "svelte";
+    import hljs from "highlight.js";
+    import {
+        Button,
+        Navigation,
+        NavigationItem,
+        Select,
+        SelectItem,
+    } from "@stackoverflow/stacks-svelte";
+
+    type PreviewViewport = "desktop" | "mobile";
+    type EmbedTabId = "preview" | "mjml" | "html" | "usage";
 
     type CompileResponse = {
         kind: EmailRenderableKind;
@@ -89,21 +152,6 @@
     let frameHeight = $state(0);
     let frame = $state<HTMLIFrameElement | null>(null);
 
-    let catalogPromise: Promise<CatalogResponse> | null = null;
-
-    const loadCatalog = async (): Promise<CatalogResponse> => {
-        if (!catalogPromise) {
-            catalogPromise = fetch("/api/email/catalog").then(async (response) => {
-                if (!response.ok) {
-                    throw new Error("Unable to load email catalog.");
-                }
-                return (await response.json()) as CatalogResponse;
-            });
-        }
-
-        return catalogPromise;
-    };
-
     const resizeFrame = () => {
         if (!frame?.contentDocument) {
             return;
@@ -124,6 +172,33 @@
         window.setTimeout(resizeFrame, 120);
     };
 
+    const loadStaticCompile = async (): Promise<CompileResponse> => {
+        const manifest = await loadStaticManifest();
+        const record = manifest.records[`${kind}:${slug}:${activeTarget}`];
+
+        if (!record) {
+            throw new Error(
+                `No static email artifact found for ${kind} "${slug}" targeting "${activeTarget}".`
+            );
+        }
+
+        const [html, displayHtml, displayMjml] = await Promise.all([
+            fetchText(record.files.documentHtml),
+            fetchText(record.files.displayHtml),
+            fetchText(record.files.displayMjml),
+        ]);
+
+        return {
+            kind: record.kind,
+            html,
+            componentHtml: record.kind === "component" ? displayHtml : null,
+            componentMjml: record.kind === "component" ? displayMjml : null,
+            renderedMjml: displayMjml,
+            errors: record.errors,
+            meta: record.meta,
+        };
+    };
+
     const compile = async () => {
         if (!catalogItem) {
             return;
@@ -133,35 +208,13 @@
         errorMessage = "";
 
         try {
-            const response = await fetch("/api/email/compile", {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json",
-                },
-                body: JSON.stringify({
-                    kind,
-                    slug,
-                    target: activeTarget,
-                }),
-            });
-
-            const payload = (await response.json()) as
-                | CompileResponse
-                | { error: string };
-
-            if (!response.ok) {
-                throw new Error(
-                    "error" in payload ? payload.error : "Compile failed.",
-                );
-            }
-
-            compiled = payload as CompileResponse;
+            compiled = await loadStaticCompile();
             syncFrame();
         } catch (error) {
             errorMessage =
                 error instanceof Error
                     ? error.message
-                    : "Failed to compile email preview.";
+                    : "Failed to load email preview.";
             compiled = null;
         } finally {
             loading = false;

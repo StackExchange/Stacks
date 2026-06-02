@@ -5,7 +5,7 @@
         argument: string;
         type: string;
         defaultValue?: string;
-        defaultValueCode?: boolean;
+        renderDefaultValueAsCode?: boolean;
         description: string;
     };
 
@@ -15,8 +15,10 @@
     };
 
     type EmailCatalogResponse = {
-        components: EmailCatalogComponent[];
-        templates: { slug: string }[];
+        catalog: {
+            components: EmailCatalogComponent[];
+            templates: { slug: string }[];
+        };
     };
 
     let {
@@ -43,13 +45,13 @@
             return;
         }
 
-        const response = await fetch("/api/email/catalog");
+        const response = await fetch("/email/compiled/manifest.json");
         if (!response.ok) {
             return;
         }
 
-        const catalog = (await response.json()) as EmailCatalogResponse;
-        const match = catalog.components.find(
+        const manifest = (await response.json()) as EmailCatalogResponse;
+        const match = manifest.catalog.components.find(
             (component) => component.slug === componentSlug
         );
         resolvedRows = match?.options ?? [];
@@ -73,7 +75,7 @@
                     <td><code>{row.type}</code></td>
                     <td>
                         {#if hasDefaultValue(row.defaultValue)}
-                            {#if row.defaultValueCode === false}
+                            {#if row.renderDefaultValueAsCode === false}
                                 {row.defaultValue}
                             {:else}
                                 <code>{row.defaultValue}</code>
