@@ -36,7 +36,7 @@ export const textNode = (
 ): MjmlNode => ({
     tagName: "mj-text",
     attributes,
-    content,
+    content: renderTextContent(content),
 });
 
 const bodyContent = `
@@ -60,9 +60,6 @@ const text = defineEmailComponent({
         centered: {
             textAlign: "center",
             textContent: centeredContent,
-        },
-        contained: {
-            sectionClass: "bg-light-blue",
         },
     },
     tokens: [
@@ -107,7 +104,7 @@ const text = defineEmailComponent({
     render: ({ options }): MjmlNode =>
         Section(
             [
-                textNode(renderTextContent(options.textContent), {
+                textNode(options.textContent, {
                     "mj-class": options.textClass,
                     "align": options.textAlign,
                     "padding-top": tokens.layout.containerYPadding,

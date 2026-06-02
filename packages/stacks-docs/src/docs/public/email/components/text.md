@@ -19,10 +19,6 @@ updated: 2026-05-31
 
 <StacksEmailEmbed kind="component" slug="text-centered" showTokens={false} />
 
-### Contained
-
-<StacksEmailEmbed kind="component" slug="text-contained" showTokens={false} />
-
 ## Options
 
 <EmailOptionsTable componentSlug="text" />

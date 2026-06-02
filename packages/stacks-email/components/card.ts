@@ -89,8 +89,8 @@ const card = defineEmailComponent({
         defineOption({
             name: "textContent",
             type: "string",
-            initialValue: "Card body copy.",
-            description: "Body copy.",
+            initialValue: "Card body copy **goes here**.",
+            description: "Body copy. Accepts Markdown.",
         }),
         defineOption({
             name: "ctaText",
