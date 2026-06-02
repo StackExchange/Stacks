@@ -9,17 +9,10 @@ import type { MjmlNode } from "../src/lib/types";
 
 const button = defineEmailComponent({
     slug: "button",
-    defaultVariant: "primary",
     htmlExtraction: {
         targetTag: "mj-button",
     },
     variants: {
-        primary: {
-            className: "button",
-            cssClass: "button-hover",
-            text: "Filled button",
-            align: "left",
-        },
         secondary: {
             className: "button button__tonal",
             cssClass: "button-hover",
