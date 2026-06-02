@@ -95,57 +95,48 @@ const wrapFirstTagNode = (
     };
 };
 
-const parseHeadChildren = (source: string) => {
-    const head = parseMjml(`<mj-head>${source}</mj-head>`);
-
-    return head?.children ?? [];
-};
-
 export const hasMjmlDocument = (source: string) => {
     const root = parseMjml(source);
 
     return root ? isTag(root, "mjml") : false;
 };
 
+const mjmlOpenTagPattern = /<mjml\b[^>]*>/i;
+const headCloseTagPattern = /<\/mj-head\s*>/i;
+
+/**
+ * Insert head content into an `<mjml>` document via string splicing.
+ */
 export const injectHeadContent = (source: string, headContent: string) => {
-    const root = parseMjml(source);
-    if (!root || !isTag(root, "mjml")) {
+    if (!hasMjmlDocument(source)) {
         return null;
     }
 
-    const headChildren = parseHeadChildren(headContent);
-    if (headChildren.length === 0) {
-        return serializeMjml(root);
+    const trimmedHead = headContent.trim();
+    if (!trimmedHead) {
+        return source;
     }
 
-    const children = root.children ?? [];
-    const headIndex = children.findIndex((child) => isTag(child, "mj-head"));
-    const nextChildren =
-        headIndex === -1
-            ? [
-                  {
-                      tagName: "mj-head",
-                      attributes: {},
-                      children: headChildren,
-                  },
-                  ...children,
-              ]
-            : children.map((child, index) =>
-                  index === headIndex
-                      ? {
-                            ...child,
-                            children: [
-                                ...(child.children ?? []),
-                                ...headChildren,
-                            ],
-                        }
-                      : child
-              );
+    const headClose = source.match(headCloseTagPattern);
+    if (headClose?.index !== undefined) {
+        return (
+            source.slice(0, headClose.index) +
+            `${trimmedHead}\n` +
+            source.slice(headClose.index)
+        );
+    }
 
-    return serializeMjml({
-        ...root,
-        children: nextChildren,
-    });
+    const mjmlOpen = source.match(mjmlOpenTagPattern);
+    if (mjmlOpen?.index !== undefined) {
+        const insertAt = mjmlOpen.index + mjmlOpen[0].length;
+        return (
+            source.slice(0, insertAt) +
+            `\n<mj-head>\n${trimmedHead}\n</mj-head>` +
+            source.slice(insertAt)
+        );
+    }
+
+    return null;
 };
 
 export const applyTemplateProps = (
