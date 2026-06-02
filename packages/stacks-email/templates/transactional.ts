@@ -1,35 +1,25 @@
 import { Button } from "../components/button";
 import { Footer } from "../components/footer";
+import { Graphic } from "../components/graphic";
 import { Headline } from "../components/headline";
 import { Header } from "../components/header";
-import { Section } from "../components/section";
 import { Spacer } from "../components/spacer";
 import { Text } from "../components/text";
-import { Graphic } from "../components/graphic";
 
-import { tokens } from "../tokens";
+import { Section } from "../src/lib/mjml";
+import { renderEmailBodyMarkdown } from "../src/lib/markdown";
+import {
+    defineEmailTemplate,
+    defineOption,
+    defineOptions,
+} from "../src/lib/schema";
+import { tokens } from "../src/lib/tokens";
 
-import type { EmailTemplateMeta, EmailTemplateModule, MjmlNode } from "../types";
-
-export const meta: EmailTemplateMeta = {
-    slug: "transactional",
-    defaultVariant: "short",
-    variants: [
-        {
-            id: "short",
-            props: {
-                HEADLINE_TEXT: "Reset your password",
-                BODY_DEFAULT_MARKDOWN: `
+const shortBodyMarkdown = `
 **Hi [[FIRST_NAME]]**. We received a request to reset your password. Use the button below to choose a new password.
-                `,
-                CTA_TEXT: "Reset password",
-            },
-        },
-        {
-            id: "long",
-            props: {
-                HEADLINE_TEXT: "Privacy Policy Update",
-                BODY_DEFAULT_MARKDOWN: `
+            `;
+
+const longBodyMarkdown = `
 We're writing to let you know that we've updated our Privacy Policy, effective **1 January 1970**.
 
 As part of our ongoing commitment to transparency and data protection, we've made several changes to how we collect, use, and store your personal information. Here's a summary of what's changed:
@@ -42,12 +32,61 @@ As part of our ongoing commitment to transparency and data protection, we've mad
 These changes do not affect how we use your data for core service delivery. Your continued use of Stack Overflow after **1 January 1970** constitutes acceptance of the updated policy.
 
 You can review the full Privacy Policy at any time here:
-                `,
-                CTA_TEXT: "View privacy policy",
-                GRAPHIC_PATH: "/email/spots/SpotLock.png",
-            },
+            `;
+
+const transactional = defineEmailTemplate({
+    slug: "transactional",
+    defaultVariant: "short",
+    variants: {
+        long: {
+            headlineText: "Privacy Policy Update",
+            bodyMarkdown: longBodyMarkdown,
+            ctaText: "View privacy policy",
+            graphicPath: "/email/spots/SpotLock.png",
+            previewText: "Privacy Policy Update",
         },
-    ],
+    },
+    propsSchema: defineOptions([
+        defineOption({
+            name: "headlineText",
+            type: "string",
+            initialValue: "Reset your password",
+            description: "Headline copy rendered near the top of the email.",
+        }),
+        defineOption({
+            name: "bodyMarkdown",
+            type: "string",
+            initialValue: shortBodyMarkdown,
+            description:
+                "Markdown body copy rendered into the main text block.",
+        }),
+        defineOption({
+            name: "bodyContent",
+            type: "string",
+            optional: true,
+            description:
+                "Pre-rendered body HTML. When omitted, bodyMarkdown is rendered.",
+        }),
+        defineOption({
+            name: "ctaText",
+            type: "string",
+            initialValue: "Reset password",
+            description: "Primary call-to-action button label.",
+        }),
+        defineOption({
+            name: "graphicPath",
+            type: "string",
+            initialValue: "",
+            description:
+                "Optional spot graphic path. Leave empty to hide the graphic.",
+        }),
+        defineOption({
+            name: "previewText",
+            type: "string",
+            initialValue: "Reset your password",
+            description: "Inbox preheader text inserted into `<mj-preview>`.",
+        }),
+    ]),
     tokens: [
         {
             token: "FIRST_NAME",
@@ -62,77 +101,54 @@ You can review the full Privacy Policy at any time here:
             token: "UNSUBSCRIBE_URL",
             description: "Recipient-specific unsubscribe URL.",
         },
-        {
-            token: "GRAPHIC_PATH",
-            description:
-                "Optional spot graphic path for the long variant. Leave empty to hide the graphic.",
-        },
     ],
-};
+    preview: ({ props }) => ({
+        previewText: props.previewText || props.headlineText,
+    }),
+    renderDocument: ({ variant, props }) => {
+        const graphicPath = props.graphicPath.trim();
+        const bodyContent =
+            props.bodyContent ?? renderEmailBodyMarkdown(props.bodyMarkdown);
 
-export const document = (variant = meta.variants[0]): MjmlNode => {
-    const isLongVariant = variant.id === "long";
-    const headlineVariant = isLongVariant ? "default" : "highlight";
-
-    const graphicPath = variant.props.GRAPHIC_PATH?.trim();
-    const graphicBlock = isLongVariant
-        ? graphicPath
-            ? [
-                  Graphic("spot", {
-                      imageSrc: graphicPath,
-                  }),
-              ]
-            : []
-        : [];
-
-    return {
-        tagName: "mjml",
-        children: [
-            {
-                tagName: "mj-body",
-                attributes: {
-                    "background-color": tokens.color.bodyBackground,
+        return {
+            tagName: "mjml",
+            children: [
+                {
+                    tagName: "mj-body",
+                    attributes: {
+                        "background-color": tokens.color.bodyBackground,
+                    },
+                    children: [
+                        Spacer("large", { sectionClass: "bg-page" }),
+                        Header("transactional"),
+                        Headline(
+                            variant === "long" ? "default" : "highlight",
+                            { textContent: props.headlineText }
+                        ),
+                        ...(graphicPath.length > 0
+                            ? [Graphic("spot", { imageSrc: graphicPath })]
+                            : []),
+                        Text("body", { textContent: bodyContent }),
+                        Section(
+                            [
+                                Button("primary", {
+                                    href: "[[CTA_URL]]",
+                                    align: "left",
+                                    text: props.ctaText,
+                                }),
+                            ],
+                            { sectionClass: "bg-block" }
+                        ),
+                        Spacer("large"),
+                        Footer("default", {
+                            unsubscribeUrl: "[[UNSUBSCRIBE_URL]]",
+                        }),
+                        Spacer("large", { sectionClass: "bg-page" }),
+                    ],
                 },
-                children: [
-                    Spacer("large", {
-                        sectionClass: "bg-page",
-                    }),
-                    Header("transactional"),
-                    Headline(headlineVariant, {
-                        textContent: "{{HEADLINE_TEXT}}",
-                    }),
-                    ...graphicBlock,
-                    Text("body", {
-                        textContent: "{{BODY_CONTENT}}",
-                    }),
-                    Section(
-                        [
-                            Button("primary", {
-                                href: "[[CTA_URL]]",
-                                align: "left",
-                                text: "{{CTA_TEXT}}",
-                            }),
-                        ],
-                        {
-                            sectionClass: "bg-block",
-                        }
-                    ),
-                    Spacer("large"),
-                    Footer("default", {
-                        unsubscribeUrl: "[[UNSUBSCRIBE_URL]]",
-                    }),
-                    Spacer("large", {
-                        sectionClass: "bg-page",
-                    }),
-                ],
-            },
-        ],
-    };
-};
+            ],
+        };
+    },
+});
 
-const template: EmailTemplateModule = {
-    meta,
-    document,
-};
-
-export default template;
+export default transactional;

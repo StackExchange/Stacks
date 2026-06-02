@@ -1,7 +1,7 @@
 <script lang="ts">
     import { Navigation, NavigationItem } from "@stackoverflow/stacks-svelte";
 
-    import type { EmailTemplateCatalogItem } from "$lib/public/templates";
+    import type { EmailTemplateCatalogItem } from "$lib/api/templates";
 
     type TemplateCategory = EmailTemplateCatalogItem["category"];
 

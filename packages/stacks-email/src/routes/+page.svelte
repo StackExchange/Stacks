@@ -2,7 +2,7 @@
     import { Icon } from "@stackoverflow/stacks-svelte";
     import { SpotPuzzle } from "@stackoverflow/stacks-icons";
 
-    import TemplateSidebar from "../components/TemplateSidebar.svelte";
+    import TemplateSidebar from "../ui/TemplateSidebar.svelte";
 
     let { data }: { data: import("./$types").PageData } = $props();
 </script>

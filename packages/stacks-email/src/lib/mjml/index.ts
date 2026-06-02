@@ -1,5 +1,6 @@
-import type { MjmlNode } from "../types";
 import { z } from "zod/v4";
+
+import type { MjmlNode } from "../types";
 
 const mjmlAttributeSchema = z.union([z.string(), z.number(), z.boolean()]);
 
@@ -17,7 +18,9 @@ export const Section = (
     options: SectionOptions = {}
 ): MjmlNode => {
     const parsedOptions = sectionOptionsSchema.safeParse(options);
-    const normalizedOptions = parsedOptions.success ? parsedOptions.data : options;
+    const normalizedOptions = parsedOptions.success
+        ? parsedOptions.data
+        : options;
 
     const sectionAttributes: NonNullable<MjmlNode["attributes"]> = {
         ...(normalizedOptions.sectionClass

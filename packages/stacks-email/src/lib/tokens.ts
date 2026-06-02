@@ -40,19 +40,13 @@ const fontClasses = [
 ] as const;
 
 /**
- * Typography tokens for all email copy scales and weights.
+ * Body content rhythm tokens for generated HTML copy.
  */
-const font = {
-    family: "Arial, Helvetica, sans-serif",
-    sizeBase: "16px",
-    sizeSm: "14px",
-    sizeLg: "20px",
-    sizeXl: "24px",
-    sizeXxl: "32px",
-    weightNormal: "400",
-    weightBold: "700",
-    lineHeightBase: "1.5",
-    lineHeightTight: "1.25",
+const body = {
+    paragraphMargin: "0 0 16px",
+    listMargin: "0 0 16px 24px",
+    listPadding: "0",
+    listItemMargin: "0 0 8px",
 } as const;
 
 /**
@@ -91,16 +85,33 @@ const border = {
     sectionDivider: `1px solid ${color.border}`,
 } as const;
 
+/**
+ * Canonical Stack Overflow destinations used by shared email components.
+ */
+const links = {
+    emailSettings: "https://stackoverflow.com/users/email/settings/current",
+    contact: "https://stackoverflow.com/company/contact",
+    privacy: "https://stackoverflow.com/legal/privacy-policy",
+    social: {
+        linkedin: "https://linkedin.com/company/stack-overflow/",
+        x: "https://x.com/stackoverflow/",
+        threads: "https://www.threads.net/@thestackoverflow",
+        instagram: "https://www.instagram.com/thestackoverflow/",
+        youtube: "https://www.youtube.com/c/StackOverflowOfficial",
+    },
+} as const;
+
 export const tokens = {
     color: {
         ...color,
         backgroundClasses,
         fontClasses,
     },
-    font,
+    body,
     spacing,
     layout,
     border,
+    links,
 } as const;
 
 export type Tokens = typeof tokens;

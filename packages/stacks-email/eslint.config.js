@@ -5,6 +5,9 @@ import tseslint from "typescript-eslint";
 import prettier from "eslint-config-prettier";
 
 export default tseslint.config(
+    {
+        ignores: [".svelte-kit/**"],
+    },
     js.configs.recommended,
     ...tseslint.configs.recommended,
     ...svelte.configs["flat/recommended"],
@@ -16,6 +19,10 @@ export default tseslint.config(
                 ...globals.browser,
                 ...globals.node,
             },
+            parserOptions: {
+                tsconfigRootDir: import.meta.dirname,
+                project: "./tsconfig.eslint.json",
+            },
         },
     },
     {
@@ -23,6 +30,9 @@ export default tseslint.config(
         languageOptions: {
             parserOptions: {
                 parser: tseslint.parser,
+                tsconfigRootDir: import.meta.dirname,
+                project: "./tsconfig.eslint.json",
+                extraFileExtensions: [".svelte"],
             },
         },
     }

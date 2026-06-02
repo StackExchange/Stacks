@@ -8,8 +8,8 @@ import {
     getEmailTemplateMeta,
     type CompileTemplateOutput,
 } from "./templates";
-import type { CompileTarget } from "../../../tokens";
-import { compileEmailRenderableInputSchema } from "./validation";
+import type { CompileTarget } from "../tokens";
+import { compileEmailRenderableInputSchema } from "./request-schemas";
 
 export type EmailRenderableKind = "component" | "template";
 

@@ -2,14 +2,16 @@ import mjml2html from "mjml";
 
 import {
     applyTemplateProps,
-    extractComponentHtml,
+    extractBetweenMarkers,
     extractTagMarkup,
+    hasMjmlDocument,
+    injectHeadContent,
     wrapComponentWithMarkers,
     wrapTagWithMarkers,
 } from "./template";
 
-import { targets, tokens, type CompileTarget } from "../../../tokens";
-import { mjmlConfig } from "../../../mjml-config";
+import { mjmlConfig } from "../mjml/config";
+import { targets, tokens, type CompileTarget } from "../tokens";
 import { transformTokens } from "./transform";
 
 type MjmlCompileResult = {
@@ -30,11 +32,6 @@ const mjml2htmlSync = mjml2html as unknown as (
     }
 ) => MjmlCompileResult;
 
-const mjmlTagPattern = /<mjml[\s>]/i;
-const mjHeadOpenPattern = /<mj-head>/i;
-const mjHeadClosePattern = /<\/mj-head>/i;
-const mjmlOpenTagPattern = /<mjml[^>]*>/i;
-
 const escapePreviewText = (value: string) =>
     value
         .replaceAll("&", "&amp;")
@@ -50,7 +47,10 @@ const buildPreviewHeadNode = (previewText: string | undefined) => {
     return `<mj-preview>${escapePreviewText(normalizedPreviewText)}</mj-preview>\n`;
 };
 
-const wrapInDocument = (mjmlSource: string, previewText: string | undefined) => `
+const wrapInDocument = (
+    mjmlSource: string,
+    previewText: string | undefined
+) => `
 <mjml>
     <mj-head>
         ${buildPreviewHeadNode(previewText)}${mjmlConfig}
@@ -67,24 +67,12 @@ const injectConfigIntoDocument = (
     documentSource: string,
     previewText: string | undefined
 ) => {
-    const previewHeadNode = buildPreviewHeadNode(previewText);
+    const headContent = `${buildPreviewHeadNode(previewText)}${mjmlConfig}`;
 
-    if (mjHeadOpenPattern.test(documentSource)) {
-        return documentSource.replace(
-            mjHeadClosePattern,
-            `${previewHeadNode}${mjmlConfig}\n</mj-head>`
-        );
-    }
-
-    if (mjmlOpenTagPattern.test(documentSource)) {
-        return documentSource.replace(
-            mjmlOpenTagPattern,
-            (openTag) =>
-                `${openTag}\n<mj-head>${previewHeadNode}${mjmlConfig}</mj-head>`
-        );
-    }
-
-    return wrapInDocument(documentSource, previewText);
+    return (
+        injectHeadContent(documentSource, headContent) ??
+        wrapInDocument(documentSource, previewText)
+    );
 };
 
 export type CompileMjmlInput = {
@@ -128,7 +116,7 @@ export const compileMjml = ({
             : wrapComponentWithMarkers(renderedMjml, extractComponentName)
         : renderedMjml;
 
-    const fullMjml = mjmlTagPattern.test(mjmlForCompile)
+    const fullMjml = hasMjmlDocument(mjmlForCompile)
         ? injectConfigIntoDocument(mjmlForCompile, previewText)
         : wrapInDocument(mjmlForCompile, previewText);
 
@@ -147,7 +135,7 @@ export const compileMjml = ({
             : targetRenderedMjml.trim()
         : null;
     const componentHtml = extractComponentName
-        ? extractComponentHtml(html, extractComponentName)
+        ? extractBetweenMarkers(html, extractComponentName)
         : null;
 
     return {

@@ -4,96 +4,143 @@ import { z } from "zod/v4";
 import { env } from "$env/dynamic/private";
 
 import { compileMjml } from "$lib/pipeline/compile";
-import { compileTargetSchema } from "$lib/public/validation";
-import { Button } from "../../../../components/button";
-import { Footer } from "../../../../components/footer";
-import { Headline } from "../../../../components/headline";
-import { Header } from "../../../../components/header";
-import { Text } from "../../../../components/text";
-import { Title } from "../../../../components/title";
-import { Section } from "../../../../components/section";
-import { Spacer } from "../../../../components/spacer";
-import { mjmlJsonToString } from "../../../../mjml-json";
-import { tokens } from "../../../../tokens";
-import type { MjmlNode } from "../../../../types";
+import { compileTargetSchema } from "$lib/api/request-schemas";
+import button from "../../../../components/button";
+import footer from "../../../../components/footer";
+import headline from "../../../../components/headline";
+import header from "../../../../components/header";
+import spacer from "../../../../components/spacer";
+import text from "../../../../components/text";
+import title from "../../../../components/title";
+import { Section } from "$lib/mjml";
+import { mjmlJsonToString } from "$lib/mjml/json";
+import { tokens } from "$lib/tokens";
+import type { EmailComponentMeta, MjmlNode } from "$lib/types";
 
-const headlineBlockSchema = z.object({
-    type: z.literal("headline"),
-    variant: z.enum(["default", "highlight"]).optional().default("default"),
-    props: z
-        .object({
-            sectionClass: z.string().optional(),
-            textClass: z.string().optional(),
-            textAlign: z.string().optional(),
-            textContent: z.string().optional(),
-            textHighlight: z.union([z.boolean(), z.string()]).optional(),
-        })
-        .optional(),
-});
+const getVariantIds = (meta: EmailComponentMeta) =>
+    meta.variants.map((variant) => variant.id) as [string, ...string[]];
 
-const textBlockSchema = z.object({
-    type: z.literal("text"),
-    variant: z.enum(["body", "centered"]).optional().default("body"),
-    props: z
-        .object({
-            columnClass: z.string().optional(),
-            sectionClass: z.string().optional(),
-            textAlign: z.string().optional(),
-            textClass: z.string().optional(),
-            textContent: z.string().optional(),
-        })
-        .optional(),
-});
-
-const buttonBlockSchema = z.object({
-    type: z.literal("button"),
-    variant: z
-        .enum(["primary", "secondary", "inverted"])
+const componentVariantSchema = (meta: EmailComponentMeta) =>
+    z
+        .enum(getVariantIds(meta))
         .optional()
-        .default("primary"),
-    props: z
-        .object({
-            sectionClass: z.string().optional(),
-            align: z.string().optional(),
-            className: z.string().optional(),
-            cssClass: z.string().optional(),
-            href: z.string().optional(),
-            text: z.string().optional(),
-        })
-        .optional(),
-});
+        .default(meta.defaultVariant ?? meta.variants[0].id);
 
-const titleBlockSchema = z.object({
-    type: z.literal("title"),
-    variant: z.enum(["default", "invert"]).optional().default("default"),
-    props: z
-        .object({
-            sectionClass: z.string().optional(),
-            textClass: z.string().optional(),
-            textAlign: z.string().optional(),
-            textContent: z.string().optional(),
-        })
-        .optional(),
-});
+type RenderableBlock = {
+    variant?: string;
+    size?: string;
+    props?: unknown;
+};
 
-const spacerBlockSchema = z.object({
-    type: z.literal("spacer"),
-    size: z.enum(["medium", "large"]).optional().default("medium"),
-    props: z
-        .object({
-            sectionClass: z.string().optional(),
-            height: z.string().optional(),
-        })
-        .optional(),
-});
+type BlockDefinition = {
+    type: string;
+    schema: z.ZodObject;
+    render: (block: RenderableBlock) => MjmlNode;
+};
 
-const composeBlockSchema = z.discriminatedUnion("type", [
-    headlineBlockSchema,
-    textBlockSchema,
-    buttonBlockSchema,
-    titleBlockSchema,
-    spacerBlockSchema,
-]);
+const blockDefinitions = {
+    headline: {
+        type: "headline",
+        schema: z.object({
+            type: z.literal("headline"),
+            variant: componentVariantSchema(headline.meta),
+            props: headline.optionsSchema.optional(),
+        }),
+        render: (block) =>
+            headline.component(
+                block.variant as keyof typeof headline.variants & string,
+                (block.props ?? {}) as z.output<typeof headline.optionsSchema>
+            ) as MjmlNode,
+    },
+    text: {
+        type: "text",
+        schema: z.object({
+            type: z.literal("text"),
+            variant: componentVariantSchema(text.meta),
+            props: text.optionsSchema.optional(),
+        }),
+        render: (block) =>
+            text.component(
+                block.variant as keyof typeof text.variants & string,
+                (block.props ?? {}) as z.output<typeof text.optionsSchema>
+            ) as MjmlNode,
+    },
+    button: {
+        type: "button",
+        schema: z.object({
+            type: z.literal("button"),
+            variant: componentVariantSchema(button.meta),
+            props: button.optionsSchema
+                .extend({
+                    sectionClass: z.string().optional(),
+                })
+                .optional(),
+        }),
+        render: (block) => {
+            const props = (block.props ?? {}) as z.output<
+                typeof button.optionsSchema
+            > & {
+                sectionClass?: string;
+            };
+            const sectionClass = props.sectionClass ?? "bg-block";
+            const buttonProps: z.output<typeof button.optionsSchema> = {
+                align: props.align,
+                className: props.className,
+                cssClass: props.cssClass,
+                href: props.href,
+                text: props.text,
+            };
+            return Section(
+                [
+                    button.component(
+                        block.variant as keyof typeof button.variants & string,
+                        buttonProps
+                    ) as MjmlNode,
+                ],
+                {
+                    sectionClass,
+                }
+            );
+        },
+    },
+    title: {
+        type: "title",
+        schema: z.object({
+            type: z.literal("title"),
+            variant: componentVariantSchema(title.meta),
+            props: title.optionsSchema.optional(),
+        }),
+        render: (block) =>
+            title.component(
+                block.variant as keyof typeof title.variants & string,
+                (block.props ?? {}) as z.output<typeof title.optionsSchema>
+            ) as MjmlNode,
+    },
+    spacer: {
+        type: "spacer",
+        schema: z.object({
+            type: z.literal("spacer"),
+            size: z.enum(["medium", "large"]).optional().default("medium"),
+            props: spacer.optionsSchema.optional(),
+        }),
+        render: (block) =>
+            spacer.component(
+                block.size as keyof typeof spacer.variants & string,
+                (block.props ?? {}) as z.output<typeof spacer.optionsSchema>
+            ) as MjmlNode,
+    },
+} satisfies Record<string, BlockDefinition>;
+
+const blockDefinitionList = Object.values(blockDefinitions);
+
+const composeBlockSchema = z.discriminatedUnion(
+    "type",
+    blockDefinitionList.map((definition) => definition.schema) as [
+        (typeof blockDefinitionList)[number]["schema"],
+        (typeof blockDefinitionList)[number]["schema"],
+        ...(typeof blockDefinitionList)[number]["schema"][],
+    ]
+);
 
 const composeRequestSchema = z.object({
     template: z.literal("transactional"),
@@ -105,6 +152,16 @@ const composeRequestSchema = z.object({
 });
 
 type ComposeBlock = z.infer<typeof composeBlockSchema>;
+type ComposeBlockType = ComposeBlock["type"];
+
+const blockRenderers = Object.fromEntries(
+    blockDefinitionList.map((definition) => [
+        definition.type as ComposeBlockType,
+        definition.render,
+    ])
+) as {
+    [Type in ComposeBlockType]: (block: RenderableBlock) => MjmlNode;
+};
 
 const hasValidBearerToken = (request: Request): boolean => {
     const expectedToken = env.STACKS_EMAIL_AUTH_TOKEN?.trim();
@@ -122,29 +179,7 @@ const hasValidBearerToken = (request: Request): boolean => {
 };
 
 const renderTransactionalBlock = (block: ComposeBlock): MjmlNode => {
-    switch (block.type) {
-        case "headline":
-            return Headline(block.variant, block.props ?? {});
-        case "text":
-            return Text(block.variant, block.props ?? {});
-        case "button": {
-            const sectionClass = block.props?.sectionClass ?? "bg-block";
-            const buttonProps = {
-                align: block.props?.align,
-                className: block.props?.className,
-                cssClass: block.props?.cssClass,
-                href: block.props?.href,
-                text: block.props?.text,
-            };
-            return Section([Button(block.variant, buttonProps)], {
-                sectionClass,
-            });
-        }
-        case "title":
-            return Title(block.variant, block.props ?? {});
-        case "spacer":
-            return Spacer(block.size, block.props ?? {});
-    }
+    return blockRenderers[block.type](block);
 };
 
 const buildTransactionalDocument = (blocks: ComposeBlock[]): MjmlNode => ({
@@ -156,20 +191,20 @@ const buildTransactionalDocument = (blocks: ComposeBlock[]): MjmlNode => ({
                 "background-color": tokens.color.bodyBackground,
             },
             children: [
-                Spacer("large", {
+                spacer.component("large", {
                     sectionClass: "bg-page",
-                }),
-                Header("transactional"),
+                }) as MjmlNode,
+                header.component("transactional") as MjmlNode,
                 ...blocks.map((block) => renderTransactionalBlock(block)),
-                Spacer("medium", {
+                spacer.component("medium", {
                     sectionClass: "bg-block",
-                }),
-                Footer("default", {
+                }) as MjmlNode,
+                footer.component("default", {
                     unsubscribeUrl: "[[UNSUBSCRIBE_URL]]",
-                }),
-                Spacer("large", {
+                }) as MjmlNode,
+                spacer.component("large", {
                     sectionClass: "bg-page",
-                }),
+                }) as MjmlNode,
             ],
         },
     ],
@@ -195,7 +230,9 @@ export const POST: RequestHandler = async ({ request }) => {
     if (!parsed.success) {
         return json(
             {
-                error: parsed.error.issues.map((issue) => issue.message).join(" "),
+                error: parsed.error.issues
+                    .map((issue) => issue.message)
+                    .join(" "),
             },
             { status: 400 }
         );

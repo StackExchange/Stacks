@@ -1,5 +1,6 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
+    import { resolve } from "$app/paths";
     import {
         Button,
         Navigation,
@@ -9,8 +10,8 @@
         SelectItem,
     } from "@stackoverflow/stacks-svelte";
 
-    import type { CompileTarget } from "../../../../tokens";
-    import TemplateSidebar from "../../../components/TemplateSidebar.svelte";
+    import type { CompileTarget } from "$lib/tokens";
+    import TemplateSidebar from "../../../ui/TemplateSidebar.svelte";
 
     let { data }: { data: import("./$types").PageData } = $props();
 
@@ -68,13 +69,18 @@
         event: Event & { currentTarget: EventTarget & HTMLSelectElement },
     ) => {
         activeTarget = event.currentTarget.value as CompileTarget;
-        const search = new URLSearchParams();
-        search.set("target", activeTarget);
-        void goto(`/emails/${data.template.slug}?${search.toString()}`, {
-            keepFocus: true,
-            noScroll: true,
-            replaceState: true,
-        });
+        const query = `?target=${encodeURIComponent(activeTarget)}`;
+        // Query-only update after resolving the route path.
+        /* eslint-disable svelte/no-navigation-without-resolve */
+        void goto(
+            `${resolve("/emails/[slug]", { slug: data.template.slug })}${query}`,
+            {
+                keepFocus: true,
+                noScroll: true,
+                replaceState: true,
+            },
+        );
+        /* eslint-enable svelte/no-navigation-without-resolve */
     };
 
     const copyActiveCode = async () => {
@@ -87,9 +93,10 @@
     };
 
     $effect(() => {
-        activeTab;
-        previewHtml;
-        syncFrame();
+        const frameSyncKey = `${activeTab}:${previewHtml.length}`;
+        if (frameSyncKey) {
+            syncFrame();
+        }
     });
 </script>
 
@@ -144,8 +151,9 @@
                 {#if activeTab !== "preview"}
                     <article
                         class="s-card p0 overflow-auto flex--item h100"
-                        style={"flex:0 0 33.333%;max-width:33.333%"}
+                        style="flex:0 0 33.333%;max-width:33.333%"
                     >
+                        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
                         {@html highlightedCode}
                     </article>
                 {/if}

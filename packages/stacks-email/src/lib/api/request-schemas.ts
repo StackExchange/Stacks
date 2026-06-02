@@ -1,8 +1,9 @@
 import { z } from "zod/v4";
 
-import type { CompileTarget } from "../../../tokens";
+import { targetNames, type CompileTarget } from "../tokens";
 
-const compileTargetValues = ["preview", "dotnet", "braze"] as const satisfies readonly CompileTarget[];
+const compileTargetValues = targetNames as [CompileTarget, ...CompileTarget[]];
+const compileTargetList = compileTargetValues.map((target) => `\`${target}\``);
 
 const slugSchema = z
     .string({ error: "`slug` must be a non-empty string." })
@@ -10,7 +11,7 @@ const slugSchema = z
     .min(1, { error: "`slug` must be a non-empty string." });
 
 export const compileTargetSchema = z.enum(compileTargetValues, {
-    error: "`target` must be one of `preview`, `dotnet`, or `braze`.",
+    error: `\`target\` must be one of ${compileTargetList.join(", ")}.`,
 });
 
 export const emailRenderableKindSchema = z.enum(["component", "template"], {
