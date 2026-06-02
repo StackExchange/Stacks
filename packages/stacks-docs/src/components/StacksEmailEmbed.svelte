@@ -1,4 +1,6 @@
 <script module lang="ts">
+    import { Loader } from "@stackoverflow/stacks-svelte";
+
     type EmailRenderableKind = "component" | "template";
     type CompileTarget = "preview" | "dotnet" | "braze";
 
@@ -398,10 +400,16 @@ console.log(compiled.html);`
         {/if}
     </div>
 
+
     {#if loading}
-        <p class="m0 fs-caption fc-black-500">Compiling…</p>
+        <div class="m0 fs-caption fc-black-500 bg-black-100 p32 d-flex jc-center ai-center">
+            <Loader label="Loading…" />
+            <span class="ml8">Loading…</span>
+        </div>
     {:else if errorMessage}
-        <p class="m0 fs-caption fc-red-500">{errorMessage}</p>
+        <div class="m0 fs-caption fc-black-500 bg-black-100 p32 d-flex jc-center ai-center">
+            {errorMessage}
+        </div>
     {:else if compiled}
         {#if activeTab === "preview"}
             <div
