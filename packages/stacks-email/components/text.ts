@@ -26,6 +26,19 @@ const renderTextContent = (value: string | undefined) => {
     return renderEmailBodyMarkdown(content);
 };
 
+// The bare mj-text leaf. `Text` wraps it in a Section for standalone use; other
+// components (e.g. Card) compose it directly inside their own column. Content is
+// passed already-processed — callers run `renderTextContent` if they want
+// markdown handling.
+export const textNode = (
+    content: string,
+    attributes: NonNullable<MjmlNode["attributes"]>
+): MjmlNode => ({
+    tagName: "mj-text",
+    attributes,
+    content,
+});
+
 const bodyContent = `
 Dear [[FIRST_NAME]],
 
@@ -47,6 +60,9 @@ const text = defineEmailComponent({
         centered: {
             textAlign: "center",
             textContent: centeredContent,
+        },
+        contained: {
+            sectionClass: "bg-light-blue",
         },
     },
     tokens: [
@@ -91,18 +107,14 @@ const text = defineEmailComponent({
     render: ({ options }): MjmlNode =>
         Section(
             [
-                {
-                    tagName: "mj-text",
-                    attributes: {
-                        "mj-class": options.textClass,
-                        "align": options.textAlign,
-                        "padding-top": tokens.layout.containerYPadding,
-                        "padding-bottom": tokens.layout.containerYPadding,
-                        "padding-left": tokens.layout.containerXPadding,
-                        "padding-right": tokens.layout.containerXPadding,
-                    },
-                    content: renderTextContent(options.textContent),
-                },
+                textNode(renderTextContent(options.textContent), {
+                    "mj-class": options.textClass,
+                    "align": options.textAlign,
+                    "padding-top": tokens.layout.containerYPadding,
+                    "padding-bottom": tokens.layout.containerYPadding,
+                    "padding-left": tokens.layout.containerXPadding,
+                    "padding-right": tokens.layout.containerXPadding,
+                }),
             ],
             {
                 sectionClass: options.sectionClass,

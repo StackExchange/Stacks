@@ -1,4 +1,5 @@
 import button from "../../components/button";
+import card from "../../components/card";
 import footer from "../../components/footer";
 import graphic from "../../components/graphic";
 import headline from "../../components/headline";
@@ -11,6 +12,7 @@ import transactional from "../../templates/transactional";
 
 export const componentDefinitions = [
     button,
+    card,
     footer,
     graphic,
     headline,
@@ -24,6 +26,7 @@ export const templateDefinitions = [transactional] as const;
 
 export {
     button,
+    card,
     footer,
     graphic,
     headline,

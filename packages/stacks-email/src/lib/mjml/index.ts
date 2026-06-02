@@ -52,3 +52,46 @@ export const Section = (
         ],
     };
 };
+
+/**
+ * Two-column layout sugar. Like `Section`, but renders exactly two `mj-column`s
+ * side by side inside one `mj-section`. `columnClass`/`columnAttributes` apply to
+ * both columns.
+ */
+export const Columns = (
+    columns: [MjmlNode[], MjmlNode[]],
+    options: SectionOptions = {}
+): MjmlNode => {
+    const parsedOptions = sectionOptionsSchema.safeParse(options);
+    const normalizedOptions = parsedOptions.success
+        ? parsedOptions.data
+        : options;
+
+    const sectionAttributes: NonNullable<MjmlNode["attributes"]> = {
+        ...(normalizedOptions.sectionClass
+            ? { "mj-class": normalizedOptions.sectionClass }
+            : {}),
+        ...(normalizedOptions.sectionAttributes ?? {}),
+    };
+
+    const columnAttributes: NonNullable<MjmlNode["attributes"]> = {
+        ...(normalizedOptions.columnClass
+            ? { "mj-class": normalizedOptions.columnClass }
+            : {}),
+        ...(normalizedOptions.columnAttributes ?? {}),
+    };
+
+    return {
+        tagName: "mj-section",
+        attributes: Object.keys(sectionAttributes).length
+            ? sectionAttributes
+            : undefined,
+        children: columns.map((children) => ({
+            tagName: "mj-column",
+            attributes: Object.keys(columnAttributes).length
+                ? columnAttributes
+                : undefined,
+            children,
+        })),
+    };
+};

@@ -11,11 +11,13 @@ const color = {
     brandDark: "#201C1D",
     brandOffWhite: "#eeeeee",
     text: "#211d1e",
-    textMuted: "#6B6B6B",
+    textMuted: "#636261",
     textInvert: "#ffffff",
     textFooter: "#cdc8c2",
     link: "#0000ef",
     linkHover: "#5074ef",
+    lightBlue: "#d8e1ed",
+    cardOffWhite: "#f0efee",
 } as const;
 
 /**
@@ -27,6 +29,8 @@ const backgroundClasses = [
     { name: "accent", value: color.accent },
     { name: "block", value: color.blockBackground },
     { name: "page", value: color.bodyBackground },
+    { name: "card", value: color.cardOffWhite },
+    { name: "light-blue", value: color.lightBlue },
 ] as const;
 
 /**
@@ -47,6 +51,7 @@ const font = {
     weightNormal: "400",
     weightSemibold: "600",
     weightBold: "700",
+    eyebrowSize: "14px",
 } as const;
 
 /**
@@ -140,6 +145,7 @@ export const targets = {
             PREVIEW_TEXT: "You have a new update from Stack Overflow.",
             CARD_ONE_URL: "https://example.com/story-one",
             CARD_TWO_URL: "https://example.com/story-two",
+            CARD_URL: "https://example.com/card",
             FOOTER_REASON: "you subscribed to Stack Overflow updates.",
             UNSUBSCRIBE_URL: "https://example.com/unsubscribe",
             COMPANY_NAME: "Acme Corp",
@@ -154,6 +160,7 @@ export const targets = {
             PREVIEW_TEXT: "@Model.PreviewText",
             CARD_ONE_URL: "@Model.CardOneUrl",
             CARD_TWO_URL: "@Model.CardTwoUrl",
+            CARD_URL: "@Model.CardUrl",
             FOOTER_REASON: "@Model.FooterReason",
             UNSUBSCRIBE_URL: "@Model.UnsubscribeUrl",
             COMPANY_NAME: "@Model.CompanyName",
@@ -168,6 +175,7 @@ export const targets = {
             PREVIEW_TEXT: "{{custom_attribute.${preview_text}}}",
             CARD_ONE_URL: "{{custom_attribute.${card_one_url}}}",
             CARD_TWO_URL: "{{custom_attribute.${card_two_url}}}",
+            CARD_URL: "{{custom_attribute.${card_url}}}",
             FOOTER_REASON: "{{custom_attribute.${footer_reason}}}",
             UNSUBSCRIBE_URL: "{{${unsubscribe_url}}}",
             COMPANY_NAME: "{{custom_attribute.${company_name}}}",
