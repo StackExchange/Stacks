@@ -1,5 +1,6 @@
 <script module lang="ts">
     import { Loader } from "@stackoverflow/stacks-svelte";
+    import { SvelteMap } from "svelte/reactivity";
 
     type EmailRenderableKind = "component" | "template";
     type CompileTarget = "preview" | "dotnet" | "braze";
@@ -44,7 +45,7 @@
     };
 
     let staticManifestPromise: Promise<StaticEmailManifest> | null = null;
-    const staticFilePromises = new Map<string, Promise<string>>();
+    const staticFilePromises = new SvelteMap<string, Promise<string>>();
 
     const fetchText = (url: string) => {
         const existing = staticFilePromises.get(url);
@@ -110,7 +111,6 @@
     interface Props {
         kind: EmailRenderableKind;
         slug: string;
-        title?: string;
         defaultTarget?: CompileTarget;
         showTokens?: boolean;
     }
@@ -118,7 +118,6 @@
     let {
         kind,
         slug,
-        title = "",
         defaultTarget = "preview",
         showTokens = true,
     }: Props = $props();
@@ -349,9 +348,7 @@ console.log(compiled.html);`
     });
 
     $effect(() => {
-        previewViewport;
-
-        if (activeTab === "preview" && compiled) {
+        if (activeTab === "preview" && compiled && previewViewport) {
             syncFrame();
         }
     });
@@ -433,6 +430,8 @@ console.log(compiled.html);`
                 ></iframe>
             </div>
         {:else}
+            <!-- Highlight.js escapes source code before adding token markup. -->
+            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
             {@html highlightedCodeBlock}
         {/if}
 
