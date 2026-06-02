@@ -1,5 +1,5 @@
 ---
-title: Spacers
+title: Spacer
 description: Vertical spacing primitive built from `mj-spacer` wrapped in a section.
 ---
 
@@ -12,12 +12,12 @@ description: Vertical spacing primitive built from `mj-spacer` wrapped in a sect
 
 ### Medium
 
-<StacksEmailEmbed kind="component" slug="spacers" />
+<StacksEmailEmbed kind="component" slug="spacer" />
 
 ### Large
 
-<StacksEmailEmbed kind="component" slug="spacers-large" />
+<StacksEmailEmbed kind="component" slug="spacer-large" />
 
 ## Options
 
-<EmailOptionsTable componentSlug="spacers" />
+<EmailOptionsTable componentSlug="spacer" />

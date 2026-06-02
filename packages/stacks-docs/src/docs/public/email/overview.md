@@ -169,9 +169,9 @@ Subtle and strong horizontal separators.
     </GridColumn>
     <GridColumn padding={false} extraClasses="docs-index-card">
 
-[![Spacers component preview](./components/component-spacers.svg)](./components/spacers)
+[![Spacer component preview](./components/component-spacer.svg)](./components/spacer)
 
-### [Spacers](./components/spacers)
+### [Spacer](./components/spacer)
 
 Preset vertical rhythm utilities.
 
@@ -200,34 +200,33 @@ If you are running the `@stackoverflow/stacks-email` package, you can compose an
 
 ```json
 {
-  "template": "transactional",
-  "target": "preview",
-  "previewText": "Reset your password in one click.",
-  "blocks": [
-    {
-      "type": "headline",
-      "variant": "highlight",
-      "props": {
-        "textContent": "Reset your password",
-        "textHighlight": true
-      }
-    },
-    {
-      "type": "text",
-      "variant": "body",
-      "props": {
-        "textContent": "Hi [[FIRST_NAME]], click below to continue."
-      }
-    },
-    {
-      "type": "button",
-      "variant": "primary",
-      "props": {
-        "href": "[[CTA_URL]]",
-        "text": "Reset password"
-      }
-    }
-  ]
+    "template": "transactional",
+    "target": "preview",
+    "previewText": "Reset your password in one click.",
+    "blocks": [
+        {
+            "type": "headline",
+            "variant": "highlight",
+            "props": {
+                "textContent": "Reset your password"
+            }
+        },
+        {
+            "type": "text",
+            "variant": "body",
+            "props": {
+                "textContent": "Hi [[FIRST_NAME]], click below to continue."
+            }
+        },
+        {
+            "type": "button",
+            "variant": "primary",
+            "props": {
+                "href": "[[CTA_URL]]",
+                "text": "Reset password"
+            }
+        }
+    ]
 }
 ```
 

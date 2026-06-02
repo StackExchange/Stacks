@@ -11,7 +11,7 @@ description: Divider block documentation is in progress.
             argument: "variant",
             type: "N/A",
             defaultValue: "N/A",
-            defaultValueCode: false,
+            renderDefaultValueAsCode: false,
             description: "Coming soon.",
         },
     ];

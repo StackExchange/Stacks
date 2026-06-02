@@ -7,7 +7,7 @@ Stack Overflow’s [MJML](https://mjml.io/) powered email compile engine with a 
 
 ## Component schema definitions
 
-New components should use the schema helpers in `src/lib/schema.ts` so rendering,
+New components should use the schema helpers in `src/lib/schema` so rendering,
 defaults, validation, and generated docs stay in one place.
 
 ```ts
@@ -67,44 +67,61 @@ const headline = defineEmailComponent({
 - `defineOptions([...])` builds the underlying Zod schema, so API validation and
   render typing are derived from the option declarations.
 
-## Template schema definitions
-
-Templates should also export a single definition. The public template catalog,
-preview text, and compiled MJML are derived from that default export.
+Each component file also exports a PascalCase callable alongside the default
+export, so templates can compose components directly:
 
 ```ts
-import { z } from "zod/v4";
+const headline = defineEmailComponent({ /* ... */ });
 
-import { defineEmailTemplate, emailOption } from "../src/lib/schema";
+export const Headline = headline.component;
+export default headline;
+```
 
-const transactionalPropsSchema = z.object({
-    headlineText: emailOption(z.string(), {
-        type: "string",
-        defaultValue: "From selected variant",
-        renderDefaultValueAsCode: false,
-        description: "Headline copy rendered near the top of the email.",
-    }),
-});
+The default export feeds the registry and docs catalog; the named export is the
+ergonomic call site for templates (`Headline("highlight", { ... })`).
+
+## Template schema definitions
+
+Templates use the same `defineOption` / `defineOptions` helpers as components,
+so defaults, types, and generated docs come from a single schema. Variants are
+plain prop overrides — the same shape used for component variants. The default
+variant's values live in the schema's `initialValue`s; named variants list only
+what they change.
+
+```ts
+import {
+    defineEmailTemplate,
+    defineOption,
+    defineOptions,
+} from "../src/lib/schema";
+import { Headline } from "../components/headline";
 
 const transactional = defineEmailTemplate({
     slug: "transactional",
     defaultVariant: "short",
     variants: {
-        short: {
-            name: "Short",
-            defaults: {
-                headlineText: "Reset your password",
-            },
+        long: {
+            headlineText: "Privacy Policy Update",
         },
     },
-    propsSchema: transactionalPropsSchema,
+    propsSchema: defineOptions([
+        defineOption({
+            name: "headlineText",
+            type: "string",
+            initialValue: "Reset your password",
+            description: "Headline copy rendered near the top of the email.",
+        }),
+    ]),
     preview: ({ props }) => ({
         previewText: props.headlineText,
     }),
-    renderDocument: ({ props }) => ({
+    renderDocument: ({ variant, props }) => ({
         tagName: "mjml",
         children: [
-            // MJML document tree
+            // Compose components via their named PascalCase exports.
+            Headline(variant === "long" ? "default" : "highlight", {
+                textContent: props.headlineText,
+            }),
         ],
     }),
 });
@@ -113,8 +130,6 @@ export default transactional;
 ```
 
 - Do not export separate `meta` or `document` values from template files.
-- Template variants keep the richer `{ name, description, defaults }` shape
-  because template variants need display metadata as well as prop defaults.
 - `renderDocument` returns the full MJML document tree; the compile pipeline
   handles MJML serialization, shared config injection, token transformation, and
   HTML output.
