@@ -47,10 +47,14 @@ const headline = defineEmailComponent({
         }),
     ]),
     render: ({ options }) => {
+        // Return a MJML JSON object
+        // https://documentation.mjml.io/#using-mjml-in-json
         // options.textClass is string
         // options.highlight is boolean
     },
 });
+
+export const Headline = headline.component;
 ```
 
 - `defineOption` is the Sanity-style field declaration for component options.
@@ -66,19 +70,7 @@ const headline = defineEmailComponent({
   values are plain option overrides.
 - `defineOptions([...])` builds the underlying Zod schema, so API validation and
   render typing are derived from the option declarations.
-
-Each component file also exports a PascalCase callable alongside the default
-export, so templates can compose components directly:
-
-```ts
-const headline = defineEmailComponent({ /* ... */ });
-
-export const Headline = headline.component;
-export default headline;
-```
-
-The default export feeds the registry and docs catalog; the named export is the
-ergonomic call site for templates (`Headline("highlight", { ... })`).
+- Export the `.component` as a PascalCase callable alongside the default export, so templates can compose components directly e.g., `Headline("highlight", { ... })`
 
 ## Template schema definitions
 
@@ -129,10 +121,9 @@ const transactional = defineEmailTemplate({
 export default transactional;
 ```
 
-- Do not export separate `meta` or `document` values from template files.
-- `renderDocument` returns the full MJML document tree; the compile pipeline
-  handles MJML serialization, shared config injection, token transformation, and
-  HTML output.
+`renderDocument` returns the full MJML document tree; the compile pipeline
+handles MJML serialization, shared config injection, token transformation, and
+HTML output.
 
 ## Run local sandbox
 
