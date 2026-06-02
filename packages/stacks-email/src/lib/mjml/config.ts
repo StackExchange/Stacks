@@ -2,14 +2,7 @@ import { mjmlJsonToString } from "./json";
 import { tokens } from "../tokens";
 import type { MjmlNode } from "../types";
 
-const { color, layout, border } = tokens;
-
-const font = {
-    family: "Arial, Helvetica, sans-serif",
-    weightNormal: "400",
-    weightSemibold: "600",
-    weightBold: "700",
-} as const;
+const { color, font, layout, border } = tokens;
 
 const attributesChildren: MjmlNode[] = [
     {

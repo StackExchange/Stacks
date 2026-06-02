@@ -40,6 +40,16 @@ const fontClasses = [
 ] as const;
 
 /**
+ * Shared typography tokens used by the MJML config and generated classes.
+ */
+const font = {
+    family: "Arial, Helvetica, sans-serif",
+    weightNormal: "400",
+    weightSemibold: "600",
+    weightBold: "700",
+} as const;
+
+/**
  * Body content rhythm tokens for generated HTML copy.
  */
 const body = {
@@ -107,6 +117,7 @@ export const tokens = {
         backgroundClasses,
         fontClasses,
     },
+    font,
     body,
     spacing,
     layout,
