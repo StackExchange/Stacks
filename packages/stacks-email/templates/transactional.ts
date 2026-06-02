@@ -121,10 +121,9 @@ const transactional = defineEmailTemplate({
                     children: [
                         Spacer("large", { sectionClass: "bg-page" }),
                         Header("transactional"),
-                        Headline(
-                            variant === "long" ? "default" : "highlight",
-                            { textContent: props.headlineText }
-                        ),
+                        Headline(variant === "long" ? "default" : "highlight", {
+                            textContent: props.headlineText,
+                        }),
                         ...(graphicPath.length > 0
                             ? [Graphic("spot", { imageSrc: graphicPath })]
                             : []),

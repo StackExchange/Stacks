@@ -10,15 +10,12 @@ type PrimitiveValue<T extends PrimitiveType> = T extends "boolean"
     ? boolean
     : string;
 
-type OptionOutput<
-    TType extends PrimitiveType,
-    TOptional,
-    TInitialValue,
-> = TInitialValue extends PrimitiveValue<TType>
-    ? PrimitiveValue<TType>
-    : TOptional extends true
-      ? PrimitiveValue<TType> | undefined
-      : PrimitiveValue<TType>;
+type OptionOutput<TType extends PrimitiveType, TOptional, TInitialValue> =
+    TInitialValue extends PrimitiveValue<TType>
+        ? PrimitiveValue<TType>
+        : TOptional extends true
+          ? PrimitiveValue<TType> | undefined
+          : PrimitiveValue<TType>;
 
 type EnumOutput<
     TValues extends EnumValues,
