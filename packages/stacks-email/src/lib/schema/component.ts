@@ -6,17 +6,8 @@ import type {
     MjmlNode,
 } from "../types";
 import { getSchemaOptionRows } from "./metadata";
-import {
-    getDefinedEntries,
-    getSchemaDefaults,
-    normalizeEmailOptions,
-    stringifyVariantProps,
-} from "./normalize";
-
-type ComponentVariantMap<TOptions extends Record<string, unknown>> = Record<
-    string,
-    Partial<TOptions>
->;
+import { normalizeEmailOptions } from "./normalize";
+import { resolveVariantScaffold, type VariantMap } from "./variants";
 
 export type EmailComponentDefinition<
     TOptions extends Record<string, unknown> = Record<string, unknown>,
@@ -27,7 +18,7 @@ export type EmailComponentDefinition<
     description?: string;
     category?: string;
     defaultVariant: string;
-    variants: ComponentVariantMap<TOptions>;
+    variants: VariantMap<TOptions>;
     variantOption?: { description: string };
     tokens?: EmailTokenReference[];
     htmlExtraction?: EmailComponentMeta["htmlExtraction"];
@@ -39,7 +30,7 @@ export type EmailComponentDefinition<
 
 export const defineEmailComponent = <
     TOptionsSchema extends z.ZodObject,
-    TVariants extends ComponentVariantMap<
+    TVariants extends VariantMap<
         z.output<TOptionsSchema> & Record<string, unknown>
     >,
     TReturn extends MjmlNode | MjmlNode[],
@@ -64,27 +55,11 @@ export const defineEmailComponent = <
 > => {
     type TOptions = z.output<TOptionsSchema> & Record<string, unknown>;
     const { optionsSchema } = definition;
-    const schemaDefaults = getSchemaDefaults<TOptions>(optionsSchema);
-    const defaultVariant = definition.defaultVariant ?? "default";
-    const variants: ComponentVariantMap<TOptions> = {
-        [defaultVariant]: {},
-        ...(definition.variants ?? {}),
-    };
-
-    const getVariantDefaults = (variant: Partial<TOptions>): TOptions =>
-        ({ ...schemaDefaults, ...getDefinedEntries(variant) }) as TOptions;
+    const { defaultVariant, variants, getVariantDefaults, baseMeta } =
+        resolveVariantScaffold<TOptions>(optionsSchema, definition);
 
     const meta: EmailComponentMeta = {
-        slug: definition.slug,
-        name: definition.name,
-        description: definition.description,
-        category: definition.category,
-        defaultVariant,
-        variants: Object.entries(variants).map(([id, defaults]) => ({
-            id,
-            props: stringifyVariantProps(getVariantDefaults(defaults)),
-        })),
-        tokens: definition.tokens,
+        ...baseMeta,
         options: [
             {
                 argument: "variant",

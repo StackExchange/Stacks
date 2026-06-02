@@ -5,16 +5,7 @@ import type {
     EmailTokenReference,
     MjmlNode,
 } from "../types";
-import {
-    getDefinedEntries,
-    getSchemaDefaults,
-    stringifyVariantProps,
-} from "./normalize";
-
-type TemplateVariantMap<TProps extends Record<string, unknown>> = Record<
-    string,
-    Partial<TProps>
->;
+import { resolveVariantScaffold, type VariantMap } from "./variants";
 
 export type EmailTemplateDefinition<
     TProps extends Record<string, unknown> = Record<string, unknown>,
@@ -24,7 +15,7 @@ export type EmailTemplateDefinition<
     description?: string;
     category?: string;
     defaultVariant: string;
-    variants: TemplateVariantMap<TProps>;
+    variants: VariantMap<TProps>;
     propsSchema: z.ZodObject;
     tokens?: EmailTokenReference[];
     preview?: (input: { variant: string; props: TProps }) => {
@@ -38,7 +29,7 @@ export type EmailTemplateDefinition<
 
 export const defineEmailTemplate = <
     TPropsSchema extends z.ZodObject,
-    TVariants extends TemplateVariantMap<
+    TVariants extends VariantMap<
         z.output<TPropsSchema> & Record<string, unknown>
     >,
 >(definition: {
@@ -67,28 +58,10 @@ export const defineEmailTemplate = <
 > => {
     type TProps = z.output<TPropsSchema> & Record<string, unknown>;
     const { propsSchema } = definition;
-    const schemaDefaults = getSchemaDefaults<TProps>(propsSchema);
-    const defaultVariant = definition.defaultVariant ?? "default";
-    const variants: TemplateVariantMap<TProps> = {
-        [defaultVariant]: {},
-        ...(definition.variants ?? {}),
-    };
+    const { defaultVariant, variants, baseMeta } =
+        resolveVariantScaffold<TProps>(propsSchema, definition);
 
-    const getVariantDefaults = (variant: Partial<TProps>): TProps =>
-        ({ ...schemaDefaults, ...getDefinedEntries(variant) }) as TProps;
-
-    const meta: EmailTemplateMeta = {
-        slug: definition.slug,
-        name: definition.name,
-        description: definition.description,
-        category: definition.category,
-        defaultVariant,
-        variants: Object.entries(variants).map(([id, defaults]) => ({
-            id,
-            props: stringifyVariantProps(getVariantDefaults(defaults)),
-        })),
-        tokens: definition.tokens,
-    };
+    const meta: EmailTemplateMeta = baseMeta;
 
     return {
         ...definition,
