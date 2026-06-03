@@ -6,6 +6,7 @@ import graphic from "../../components/graphic";
 import headline from "../../components/headline";
 import header from "../../components/header";
 import spacer from "../../components/spacer";
+import subtitle from "../../components/subtitle";
 import text from "../../components/text";
 import title from "../../components/title";
 
@@ -20,6 +21,7 @@ export const componentDefinitions = [
     headline,
     header,
     spacer,
+    subtitle,
     text,
     title,
 ] as const;
@@ -35,6 +37,7 @@ export {
     headline,
     header,
     spacer,
+    subtitle,
     text,
     title,
     transactional,

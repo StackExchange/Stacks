@@ -10,6 +10,7 @@ const color = {
     brand: "#FF5E00",
     brandDark: "#201C1D",
     brandOffWhite: "#eeeeee",
+    brandYellow: "#ffcc01",
     text: "#211d1e",
     textMuted: "#636261",
     textInvert: "#ffffff",
@@ -17,8 +18,7 @@ const color = {
     link: "#0000ef",
     linkHover: "#5074ef",
     lightBlue: "#d8e1ed",
-    cardOffWhite: "#f0efee",
-    // Inner surface for inverted (off-black) cards.
+    surface: "#f0efee",
     invertSurface: "#4a4a4a",
 } as const;
 
@@ -31,7 +31,7 @@ const backgroundClasses = [
     { name: "accent", value: color.accent },
     { name: "block", value: color.blockBackground },
     { name: "page", value: color.bodyBackground },
-    { name: "card", value: color.cardOffWhite },
+    { name: "card", value: color.surface },
     { name: "light-blue", value: color.lightBlue },
 ] as const;
 

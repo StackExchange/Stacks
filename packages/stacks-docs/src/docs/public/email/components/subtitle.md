@@ -1,26 +1,27 @@
 ---
 title: Subtitle
-description: Subtitle component documentation is in progress.
+description: A small heading level with a colored square marker, in medium and small weights.
 ---
 
 <script lang="ts">
+    import StacksEmailEmbed from "$components/StacksEmailEmbed.svelte";
     import EmailOptionsTable from "$components/EmailOptionsTable.svelte";
-
-    const unavailableRows = [
-        {
-            argument: "variant",
-            type: "N/A",
-            defaultValue: "N/A",
-            renderDefaultValueAsCode: false,
-            description: "Coming soon.",
-        },
-    ];
 </script>
 
 ## Variants
 
-Coming soon.
+### Medium
+
+The default — 16px, bold.
+
+<StacksEmailEmbed kind="component" slug="subtitle" showTokens={false} />
+
+### Small
+
+14px, normal weight.
+
+<StacksEmailEmbed kind="component" slug="subtitle-small" showTokens={false} />
 
 ## Options
 
-<EmailOptionsTable rows={unavailableRows} />
+<EmailOptionsTable componentSlug="subtitle" />

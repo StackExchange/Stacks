@@ -1,16 +1,12 @@
 ---
 title: Callout
-description: A padded callout box with an off-white surface and an optional 40x40 icon.
+description: A padded callout box with an optional icon.
 ---
 
 <script lang="ts">
     import StacksEmailEmbed from "$components/StacksEmailEmbed.svelte";
     import EmailOptionsTable from "$components/EmailOptionsTable.svelte";
 </script>
-
-Body copy in a padded box on an off-white surface — the same styling as
-[Text](text), with container padding and an `inner-background-color`. It can
-optionally show an icon in a left column.
 
 ## Variants
 

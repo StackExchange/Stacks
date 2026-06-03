@@ -15,8 +15,7 @@ const iconNode = (src: string, alt: string): MjmlNode => ({
     attributes: {
         src: src,
         alt: alt,
-        width: "32px",
-        height: "32px",
+        width: "40px",
         align: "left",
         padding: "0px",
     },
@@ -61,12 +60,12 @@ const callout = defineEmailComponent({
             type: "string",
             initialValue: "",
             description:
-                "Optional 32x32 icon shown in a left column. Empty hides it.",
+                "Optional 40x40 icon shown in a left column. Empty hides it.",
         }),
         defineOption({
             name: "iconAlt",
             type: "string",
-            initialValue: "",
+            initialValue: "Information",
             description: "Accessible icon alt text.",
         }),
     ]),
@@ -77,8 +76,8 @@ const callout = defineEmailComponent({
         // padding is reduced to a gap from the icon column.
         const body = textNode(options.textContent, {
             "mj-class": options.textClass,
-            "padding-top": containerYPadding,
-            "padding-bottom": containerYPadding,
+            "padding-top": "16px",
+            "padding-bottom": "16px",
             "padding-left": hasIcon ? tokens.spacing.md : containerXPadding,
             "padding-right": containerXPadding,
         });
@@ -127,7 +126,7 @@ const callout = defineEmailComponent({
                             tagName: "mj-column",
                             attributes: {
                                 // Widths sum to 100% so the columns fill the group.
-                                "width": "10%",
+                                "width": "12%",
                                 "vertical-align": "top",
                                 "padding-top": "12px",
                                 "padding-bottom": "12px",
@@ -140,7 +139,7 @@ const callout = defineEmailComponent({
                         {
                             tagName: "mj-column",
                             attributes: {
-                                "width": "90%",
+                                "width": "88%",
                                 "vertical-align": "top",
                             },
                             children: [body],
