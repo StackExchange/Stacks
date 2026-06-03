@@ -1,4 +1,5 @@
 import button from "../../components/button";
+import callout from "../../components/callout";
 import card from "../../components/card";
 import footer from "../../components/footer";
 import graphic from "../../components/graphic";
@@ -12,6 +13,7 @@ import transactional from "../../templates/transactional";
 
 export const componentDefinitions = [
     button,
+    callout,
     card,
     footer,
     graphic,
@@ -26,6 +28,7 @@ export const templateDefinitions = [transactional] as const;
 
 export {
     button,
+    callout,
     card,
     footer,
     graphic,

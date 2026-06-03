@@ -31,6 +31,13 @@ title is 18px (not bold) and the CTA uses the off-black arrow square.
 
 <StacksEmailEmbed kind="component" slug="card-link" showTokens={false} />
 
+### Link (inverted)
+
+The link row on an off-black surface: a dark-grey inner background, white title,
+and an off-white arrow square.
+
+<StacksEmailEmbed kind="component" slug="card-link-inverted" showTokens={false} />
+
 ## Options
 
 <EmailOptionsTable componentSlug="card" />

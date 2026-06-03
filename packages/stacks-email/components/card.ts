@@ -24,14 +24,19 @@ const imageNode = (
     },
 });
 
-// Off-black 40x40 square, no label, with a right-arrow glyph.
-const arrowNode = (href: string, padding: string): MjmlNode => ({
+// 40x40 square, no label, with a right-arrow glyph.
+const arrowNode = (
+    href: string,
+    background: string,
+    color: string,
+    cssClass: string
+): MjmlNode => ({
     tagName: "mj-button",
     attributes: {
-        "css-class": "button-hover",
+        "css-class": cssClass,
         "href": href,
-        "background-color": tokens.color.brandDark,
-        "color": tokens.color.textInvert,
+        "background-color": background,
+        "color": color,
         "width": "40px",
         "height": "40px",
         "inner-padding": "0px",
@@ -65,6 +70,21 @@ const card = defineEmailComponent({
             titleSize: "18px",
             titleWeight: "400",
         },
+        // Inverted link row: off-black surface, dark-grey inner, white title,
+        // off-white arrow square.
+        "link-inverted": {
+            imageSrc: "",
+            textContent: "",
+            ctaStyle: "arrow",
+            titleSize: "18px",
+            titleWeight: "400",
+            background: "bg-invert",
+            innerBackground: tokens.color.invertSurface,
+            titleColor: tokens.color.textInvert,
+            arrowBackground: tokens.color.brandOffWhite,
+            arrowColor: tokens.color.brandDark,
+            arrowCssClass: "button-hover-inverted",
+        },
     },
     tokens: [
         {
@@ -76,9 +96,15 @@ const card = defineEmailComponent({
         defineOption({
             name: "background",
             type: "enum",
-            values: ["bg-card", "bg-block", "bg-light-blue"],
-            initialValue: "bg-card",
-            description: "Card surface color.",
+            values: ["bg-card", "bg-block", "bg-light-blue", "bg-invert"],
+            initialValue: "bg-block",
+            description: "Card surface (section) color.",
+        }),
+        defineOption({
+            name: "innerBackground",
+            type: "string",
+            initialValue: tokens.color.cardOffWhite,
+            description: "Inner column background color.",
         }),
         defineOption({
             name: "layout",
@@ -126,6 +152,12 @@ const card = defineEmailComponent({
             description: "Title font-weight.",
         }),
         defineOption({
+            name: "titleColor",
+            type: "string",
+            initialValue: "",
+            description: "Optional title color override.",
+        }),
+        defineOption({
             name: "textContent",
             type: "string",
             initialValue: "Card body copy **goes here**.",
@@ -143,7 +175,25 @@ const card = defineEmailComponent({
             values: ["plain", "button", "arrow", "none"],
             initialValue: "plain",
             description:
-                "Call-to-action style: `plain` text link (default), `button`, `arrow` (off-black icon square), or `none`.",
+                "Call-to-action style: `plain` text link (default), `button`, `arrow` (icon square), or `none`.",
+        }),
+        defineOption({
+            name: "arrowBackground",
+            type: "string",
+            initialValue: tokens.color.brandDark,
+            description: "Background color of the arrow CTA square.",
+        }),
+        defineOption({
+            name: "arrowColor",
+            type: "string",
+            initialValue: tokens.color.textInvert,
+            description: "Glyph color of the arrow CTA square.",
+        }),
+        defineOption({
+            name: "arrowCssClass",
+            type: "string",
+            initialValue: "button-hover",
+            description: "Hover CSS class for the arrow CTA square.",
         }),
     ]),
     render: ({ options }): MjmlNode => {
@@ -154,7 +204,11 @@ const card = defineEmailComponent({
             ? imageNode(options.imageSrc, options.imageAlt, options.href)
             : null;
 
-        const items = [];
+        type ContentItem = {
+            kind: "title" | "body" | "cta";
+            build: (padding: string) => MjmlNode;
+        };
+        const items: ContentItem[] = [];
 
         if (options.titleContent.trim() !== "") {
             items.push({
@@ -163,6 +217,9 @@ const card = defineEmailComponent({
                     textNode(options.titleContent, {
                         ...(options.titleSize
                             ? { "font-size": options.titleSize }
+                            : {}),
+                        ...(options.titleColor
+                            ? { color: options.titleColor }
                             : {}),
                         "font-weight": options.titleWeight,
                         "padding": p,
@@ -197,7 +254,12 @@ const card = defineEmailComponent({
                               align: "left",
                           })
                         : options.ctaStyle === "arrow"
-                          ? arrowNode(options.href)
+                          ? arrowNode(
+                                options.href,
+                                options.arrowBackground,
+                                options.arrowColor,
+                                options.arrowCssClass
+                            )
                           : textNode(
                                 `<a href="${options.href}" class="link" style="text-decoration:none"><b>${options.ctaText}</b></a>`,
                                 {
@@ -251,17 +313,14 @@ const card = defineEmailComponent({
         return {
             tagName: "mj-section",
             attributes: {
-                "mj-class": "bg-block",
+                "mj-class": options.background,
             },
             children: [
                 {
                     tagName: "mj-column",
                     attributes: {
-                        "inner-background-color": tokens.color.cardOffWhite,
-                        padding:
-                            options.layout === "vertical"
-                                ? `0px ${tokens.layout.containerXPadding} ${tokens.layout.containerYPadding}`
-                                : "0px",
+                        "inner-background-color": options.innerBackground,
+                        "padding": `0px ${tokens.layout.containerXPadding} ${tokens.layout.containerYPadding}`,
                     },
                     children: [...(image ? [image] : []), ...content],
                 },

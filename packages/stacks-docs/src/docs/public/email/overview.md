@@ -160,11 +160,11 @@ Standalone illustration placeholder block.
     </GridColumn>
     <GridColumn padding={false} extraClasses="docs-index-card">
 
-[![Dividers component preview](./components/component-dividers.svg)](./components/dividers)
+[![Callout component preview](./components/component-callout.svg)](./components/callout)
 
-### [Dividers](./components/dividers)
+### [Callout](./components/callout)
 
-Subtle and strong horizontal separators.
+Indented and visually distinct box for alerts or important information.
 
     </GridColumn>
     <GridColumn padding={false} extraClasses="docs-index-card">

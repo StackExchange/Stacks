@@ -18,6 +18,8 @@ const color = {
     linkHover: "#5074ef",
     lightBlue: "#d8e1ed",
     cardOffWhite: "#f0efee",
+    // Inner surface for inverted (off-black) cards.
+    invertSurface: "#4a4a4a",
 } as const;
 
 /**
