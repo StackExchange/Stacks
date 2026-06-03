@@ -40,7 +40,7 @@ const callout = defineEmailComponent({
         defineOption({
             name: "innerBackground",
             type: "string",
-            initialValue: tokens.color.cardOffWhite,
+            initialValue: tokens.color.surface,
             description: "Callout background color.",
         }),
         defineOption({

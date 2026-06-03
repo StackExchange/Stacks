@@ -103,7 +103,7 @@ const card = defineEmailComponent({
         defineOption({
             name: "innerBackground",
             type: "string",
-            initialValue: tokens.color.cardOffWhite,
+            initialValue: tokens.color.surface,
             description: "Inner column background color.",
         }),
         defineOption({
