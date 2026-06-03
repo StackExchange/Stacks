@@ -24,17 +24,12 @@ square (1:1) image.
 
 <StacksEmailEmbed kind="component" slug="card-horizontal-left" showTokens={false} />
 
-## Backgrounds
+### Link
 
-The `background` option selects the card surface. `light-blue` is the default;
-`off-white`, `white`, and `off-black` are also available. On `off-black` the body
-copy is rendered in the inverted (light) text color.
+A compact link row — title and an arrow CTA only, with no image or body. The
+title is 18px (not bold) and the CTA uses the off-black arrow square.
 
-## Image
-
-`imageSrc` is optional — leave it empty to render a text-only card. `imageAspect`
-documents the source asset's ratio (`16:9` or `1:1`); MJML can't crop, so the
-ratio is determined by the asset itself, and horizontal layouts expect `1:1`.
+<StacksEmailEmbed kind="component" slug="card-link" showTokens={false} />
 
 ## Options
 

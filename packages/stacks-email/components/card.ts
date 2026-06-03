@@ -17,11 +17,30 @@ const imageNode = (
 ): MjmlNode => ({
     tagName: "mj-image",
     attributes: {
-        src: imageSrc,
-        alt: imageAlt,
+        "src": imageSrc,
+        "alt": imageAlt,
         "fluid-on-mobile": true,
         ...(href.trim() !== "" ? { href } : {}),
     },
+});
+
+// Off-black 40x40 square, no label, with a right-arrow glyph.
+const arrowNode = (href: string, padding: string): MjmlNode => ({
+    tagName: "mj-button",
+    attributes: {
+        "css-class": "button-hover",
+        "href": href,
+        "background-color": tokens.color.brandDark,
+        "color": tokens.color.textInvert,
+        "width": "40px",
+        "height": "40px",
+        "inner-padding": "0px",
+        "border-radius": "0px",
+        "align": "right",
+        "font-size": "18px",
+        "line-height": "40px",
+    },
+    content: "&rarr;",
 });
 
 const card = defineEmailComponent({
@@ -38,6 +57,14 @@ const card = defineEmailComponent({
             imageSrc: "/email/hero/200x200.png",
             background: "bg-light-blue",
         },
+        // Compact link row: title + arrow only, no image or body.
+        "link": {
+            imageSrc: "",
+            textContent: "",
+            ctaStyle: "arrow",
+            titleSize: "18px",
+            titleWeight: "400",
+        },
     },
     tokens: [
         {
@@ -50,7 +77,7 @@ const card = defineEmailComponent({
             name: "background",
             type: "enum",
             values: ["bg-card", "bg-block", "bg-light-blue"],
-            initialValue: "bg-block",
+            initialValue: "bg-card",
             description: "Card surface color.",
         }),
         defineOption({
@@ -87,6 +114,18 @@ const card = defineEmailComponent({
                 "Optional heading rendered above the body. Empty hides it.",
         }),
         defineOption({
+            name: "titleSize",
+            type: "string",
+            initialValue: "",
+            description: 'Optional title font-size override, e.g. "18px".',
+        }),
+        defineOption({
+            name: "titleWeight",
+            type: "string",
+            initialValue: "600",
+            description: "Title font-weight.",
+        }),
+        defineOption({
             name: "textContent",
             type: "string",
             initialValue: "Card body copy **goes here**.",
@@ -101,57 +140,55 @@ const card = defineEmailComponent({
         defineOption({
             name: "ctaStyle",
             type: "enum",
-            values: ["plain", "button", "none"],
+            values: ["plain", "button", "arrow", "none"],
             initialValue: "plain",
             description:
-                "Call-to-action style: `plain` text link (default), `button`, or `none`.",
+                "Call-to-action style: `plain` text link (default), `button`, `arrow` (off-black icon square), or `none`.",
         }),
     ]),
     render: ({ options }): MjmlNode => {
         const hasImage = options.imageSrc.trim() !== "";
         const horizontal = options.layout !== "vertical";
 
-        const sectionAttributes: NonNullable<MjmlNode["attributes"]> = {
-            "mj-class": options.background,
-        };
-
         const image = hasImage
             ? imageNode(options.imageSrc, options.imageAlt, options.href)
             : null;
 
-        // Ordered content; each node's padding is assigned by position so the
-        // block is inset by `lg` with a consistent vertical rhythm.
-        type ContentItem = {
-            kind: "title" | "body" | "cta";
-            build: (padding: string) => MjmlNode;
-        };
-        const items: ContentItem[] = [];
+        const items = [];
+
         if (options.titleContent.trim() !== "") {
             items.push({
                 kind: "title",
                 build: (p) =>
                     textNode(options.titleContent, {
-                        "font-weight": "600",
+                        ...(options.titleSize
+                            ? { "font-size": options.titleSize }
+                            : {}),
+                        "font-weight": options.titleWeight,
                         "padding": p,
                     }),
             });
         }
-        items.push({
-            kind: "body",
-            build: (p) =>
-                textNode(options.textContent, {
-                    "mj-class": "s-email-text-body",
-                    "color": options.layout === "vertical"
-                        ? tokens.color.textMuted
-                        : null,
-                    "padding": p,
-                }),
-        });
-        if (options.ctaStyle !== "none" && options.ctaText.trim() !== "") {
+        if (options.textContent.trim() !== "") {
+            items.push({
+                kind: "body",
+                build: (p) =>
+                    textNode(options.textContent, {
+                        "mj-class": "s-email-text-body",
+                        ...(options.layout === "vertical"
+                            ? { color: tokens.color.textMuted }
+                            : {}),
+                        "padding": p,
+                    }),
+            });
+        }
+        const showCta =
+            options.ctaStyle !== "none" &&
+            (options.ctaStyle === "arrow" || options.ctaText.trim() !== "");
+
+        if (showCta) {
             items.push({
                 kind: "cta",
-                // `button` reuses the Button leaf (keeps its own padding);
-                // `plain` is a classic text link rendered through the Text leaf.
                 build: (p) =>
                     options.ctaStyle === "button"
                         ? Button("default", {
@@ -159,10 +196,15 @@ const card = defineEmailComponent({
                               href: options.href,
                               align: "left",
                           })
-                        : textNode(
-                              `<a href="${options.href}" class="link" style="text-decoration:none"><b>${options.ctaText}</b></a>`,
-                              { "mj-class": "s-email-text-body", "padding": p }
-                          ),
+                        : options.ctaStyle === "arrow"
+                          ? arrowNode(options.href)
+                          : textNode(
+                                `<a href="${options.href}" class="link" style="text-decoration:none"><b>${options.ctaText}</b></a>`,
+                                {
+                                    "mj-class": "s-email-text-body",
+                                    "padding": p,
+                                }
+                            ),
             });
         }
 
@@ -195,7 +237,9 @@ const card = defineEmailComponent({
 
             return {
                 tagName: "mj-section",
-                attributes: sectionAttributes,
+                attributes: {
+                    "mj-class": options.background,
+                },
                 children:
                     options.layout === "horizontal-right"
                         ? [contentColumn, imageColumn]
@@ -206,14 +250,17 @@ const card = defineEmailComponent({
         // Vertical (default): full-bleed image stacked above the padded content.
         return {
             tagName: "mj-section",
-            attributes: sectionAttributes,
+            attributes: {
+                "mj-class": "bg-block",
+            },
             children: [
                 {
                     tagName: "mj-column",
                     attributes: {
+                        "inner-background-color": tokens.color.cardOffWhite,
                         padding:
                             options.layout === "vertical"
-                                ? `0px 0px ${tokens.layout.containerYPadding} 0px`
+                                ? `0px ${tokens.layout.containerXPadding} ${tokens.layout.containerYPadding}`
                                 : "0px",
                     },
                     children: [...(image ? [image] : []), ...content],
