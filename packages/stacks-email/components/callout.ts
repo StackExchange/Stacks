@@ -8,7 +8,7 @@ import type { MjmlNode } from "../src/lib/types";
 import { Section } from "../src/lib/mjml";
 import { textNode } from "./text";
 
-const { containerXPadding, containerYPadding } = tokens.layout;
+const { containerXPadding } = tokens.layout;
 
 const iconNode = (src: string, alt: string): MjmlNode => ({
     tagName: "mj-image",
