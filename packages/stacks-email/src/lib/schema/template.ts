@@ -5,6 +5,7 @@ import type {
     EmailTokenReference,
     MjmlNode,
 } from "../types";
+import { getSchemaOptionRows } from "./metadata";
 import { resolveVariantScaffold, type VariantMap } from "./variants";
 
 export type EmailTemplateDefinition<
@@ -61,7 +62,12 @@ export const defineEmailTemplate = <
     const { defaultVariant, variants, baseMeta } =
         resolveVariantScaffold<TProps>(propsSchema, definition);
 
-    const meta: EmailTemplateMeta = baseMeta;
+    // Surface each template prop (the `props` passed to `compileEmailTemplate`)
+    // as an option row so docs can render an auto-generated options table.
+    const meta: EmailTemplateMeta = {
+        ...baseMeta,
+        options: getSchemaOptionRows(propsSchema, "props"),
+    };
 
     return {
         ...definition,

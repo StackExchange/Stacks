@@ -18,6 +18,7 @@ export type EmailTemplateCatalogItem = {
     description: string;
     category: string;
     tokens: NonNullable<EmailTemplateMeta["tokens"]>;
+    options: NonNullable<EmailTemplateMeta["options"]>;
 };
 
 export type CompileTemplateInput = {
@@ -64,6 +65,7 @@ const expandedTemplateRecords = expandVariantRecords({
         hasMultipleVariants ? variantName : baseName,
     createRecord: ({
         definition,
+        meta,
         variant,
         slug,
         name,
@@ -80,6 +82,7 @@ const expandedTemplateRecords = expandVariantRecords({
             // every template under one default category.
             category: baseName,
             tokens: withSharedTemplateTokens(tokens),
+            options: meta.options ?? [],
         };
         // Each template has its own props shape, so `definition` is a union
         // across the registered templates. Treat it as the base definition

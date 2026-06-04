@@ -17,16 +17,18 @@
     type EmailCatalogResponse = {
         catalog: {
             components: EmailCatalogComponent[];
-            templates: { slug: string }[];
+            templates: EmailCatalogComponent[];
         };
     };
 
     let {
         rows = [],
         componentSlug,
+        templateSlug,
     }: {
         rows?: ComponentOptionReference[];
         componentSlug?: string;
+        templateSlug?: string;
     } = $props();
 
     let resolvedRows = $state<ComponentOptionReference[]>([]);
@@ -41,7 +43,7 @@
     });
 
     onMount(async () => {
-        if (!componentSlug || resolvedRows.length > 0) {
+        if ((!componentSlug && !templateSlug) || resolvedRows.length > 0) {
             return;
         }
 
@@ -51,9 +53,11 @@
         }
 
         const manifest = (await response.json()) as EmailCatalogResponse;
-        const match = manifest.catalog.components.find(
-            (component) => component.slug === componentSlug
-        );
+        const collection = componentSlug
+            ? manifest.catalog.components
+            : manifest.catalog.templates;
+        const slug = componentSlug ?? templateSlug;
+        const match = collection.find((item) => item.slug === slug);
         resolvedRows = match?.options ?? [];
     });
 </script>

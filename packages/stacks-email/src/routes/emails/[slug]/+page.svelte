@@ -102,12 +102,12 @@
 
 <svelte:window onresize={syncFrame} />
 
-<main class="d-flex sm:fd-column h-screen">
+<main class="d-flex sm:fd-column h-screen bg-black-100">
     <TemplateSidebar templates={data.templates} activeSlug={data.template.slug} />
 
-    <section class="fl-grow1 overflow-y-auto pt48">
+    <section class="fl-grow1 overflow-y-auto">
         <div
-            class="ps-fixed t0 r0 z-base bg-white bb bc-black-200 px16 py8 d-flex ai-center g8 fw-wrap"
+            class="ps-fixed t0 r0 z-base bg-transparent px16 py8 d-flex ai-center g8 fw-wrap"
             style="left:var(--su256)"
         >
             <Navigation class="mb0" label="Template tabs" size="sm">
@@ -150,8 +150,8 @@
             <div class={activeTab === "preview" ? "d-block" : "d-flex md:fd-column"}>
                 {#if activeTab !== "preview"}
                     <article
-                        class="s-card p0 overflow-auto flex--item h100"
-                        style="flex:0 0 33.333%;max-width:33.333%"
+                        class="s-card py32 bg-black-100 h-screen overflow-auto flex--item h100"
+                        style="flex:0 0 33.333%; max-width:33.333%"
                     >
                         <!-- eslint-disable-next-line svelte/no-at-html-tags -->
                         {@html highlightedCode}

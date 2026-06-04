@@ -21,7 +21,8 @@ const getOptionMetadata = (
         ?.emailOption;
 
 export const getSchemaOptionRows = (
-    schema: z.ZodObject
+    schema: z.ZodObject,
+    argumentPrefix = "options"
 ): ComponentOptionReference[] =>
     Object.entries(schema.shape as Record<string, z.ZodType>).flatMap(
         ([key, fieldSchema]) => {
@@ -29,7 +30,7 @@ export const getSchemaOptionRows = (
             if (!metadata) return [];
             return [
                 {
-                    argument: `options.${key}`,
+                    argument: `${argumentPrefix}.${key}`,
                     type: metadata.type,
                     defaultValue: metadata.defaultValue,
                     renderDefaultValueAsCode: metadata.renderDefaultValueAsCode,

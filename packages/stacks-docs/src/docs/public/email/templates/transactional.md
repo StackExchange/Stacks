@@ -8,6 +8,7 @@ updated: 2026-06-01
     import { Icon } from "@stackoverflow/stacks-svelte";
     import { IconCheckFillCircle } from "@stackoverflow/stacks-icons/icons";
     import StacksEmailEmbed from "$components/StacksEmailEmbed.svelte";
+    import EmailOptionsTable from "$components/EmailOptionsTable.svelte";
 </script>
 
 ## Requirements
@@ -93,3 +94,9 @@ See the overview below outlining the required components, their variations, and 
 ## Long
 
 <StacksEmailEmbed kind="template" slug="transactional-long" showTokens={false} />
+
+## Options
+
+Props accepted when compiling the template, for example `compileEmailTemplate({ slug: "transactional", props })`.
+
+<EmailOptionsTable templateSlug="transactional" />

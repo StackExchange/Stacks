@@ -51,4 +51,5 @@ export type EmailTemplateMeta = {
     variants: EmailVariant[];
     defaultVariant?: string;
     tokens?: EmailTokenReference[];
+    options?: ComponentOptionReference[];
 };
