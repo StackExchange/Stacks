@@ -5,6 +5,7 @@ import { Header } from "../components/header";
 import { Title } from "../components/title";
 import { Headline } from "../components/headline";
 import { Text } from "../components/text";
+import { Spacer } from "../components/spacer";
 
 import {
     defineEmailTemplate,
@@ -14,16 +15,7 @@ import {
 import { tokens } from "../src/lib/tokens";
 import type { MjmlNode } from "../src/lib/types";
 
-// `Card()` returns a full `mj-section`, which can't nest inside an `mj-column`.
-// To place two cards side by side we lift each card's inner `mj-column` out and
-// recompose them into one section. (A dedicated `cardColumn` export on the card
-// component would be the cleaner long-term fix.)
 const twoColumnCards = (left: MjmlNode, right: MjmlNode): MjmlNode => {
-    // Symmetric horizontal padding on each column (it sits outside the column's
-    // `inner-background-color`, so the section shows through as a gutter). Keeping
-    // both sides equal means the cards stay aligned when they stack to full width
-    // on mobile — asymmetric padding would zig-zag. Section X padding + the column
-    // padding sums to a single card's outer gutter (16 + 8 = 24).
     const column = (card: MjmlNode): MjmlNode => {
         const col = (card.children ?? [])[0] ?? {
             tagName: "mj-column",
@@ -80,6 +72,7 @@ const newsletter = defineEmailTemplate({
                     "background-color": tokens.color.bodyBackground,
                 },
                 children: [
+                    Spacer("large", { sectionClass: "bg-page" }),
                     Header("brand"),
                     Headline("default", {
                         sectionClass: "bg-card",
@@ -125,6 +118,7 @@ const newsletter = defineEmailTemplate({
                         ctaStyle: "button",
                     }),
                     Footer("social"),
+                    Spacer("large", { sectionClass: "bg-page" }),
                 ],
             },
         ],

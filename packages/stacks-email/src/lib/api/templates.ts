@@ -68,14 +68,17 @@ const expandedTemplateRecords = expandVariantRecords({
         slug,
         name,
         description,
-        category,
+        baseName,
         tokens,
     }): ExpandedTemplateRecord => {
         const catalog = {
             slug,
             name,
             description,
-            category,
+            // Group by the base template (e.g. "Transactional", "Newsletter")
+            // so each template's variants nest under it, rather than lumping
+            // every template under one default category.
+            category: baseName,
             tokens: withSharedTemplateTokens(tokens),
         };
         // Each template has its own props shape, so `definition` is a union

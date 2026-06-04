@@ -16,16 +16,13 @@ const graphic = defineEmailComponent({
             imageSrc: "/email/hero/1200x630.png",
             imageAlt: "Hero placeholder image",
             imageWidth: "1200px",
-            imageHeight: "auto",
             imageAlign: "center",
         },
         strip: {
             imageSrc: "/email/strip/600x140.png",
             imageAlt: "Strip placeholder image",
             imageWidth: "600px",
-            imageHeight: "140px",
             imageAlign: "center",
-            // Full-bleed
             imagePaddingLeft: "0px",
             imagePaddingRight: "0px",
         },
@@ -59,7 +56,7 @@ const graphic = defineEmailComponent({
         defineOption({
             name: "imageHeight",
             type: "string",
-            initialValue: "140px",
+            initialValue: "auto",
             description: 'Rendered height, for example "630px".',
         }),
         defineOption({

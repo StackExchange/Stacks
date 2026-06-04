@@ -293,13 +293,13 @@ const card = defineEmailComponent({
             // 1:1 image beside the content as two columns.
             const imageColumn: MjmlNode = {
                 tagName: "mj-column",
-                attributes: { width: "40%" },
+                attributes: { width: "33%" },
                 children: image ? [image] : [],
             };
             const contentColumn: MjmlNode = {
                 tagName: "mj-column",
                 attributes: {
-                    width: hasImage ? "60%" : "100%",
+                    width: hasImage ? "66%" : "100%",
                     padding: "0px",
                 },
                 children: content,
