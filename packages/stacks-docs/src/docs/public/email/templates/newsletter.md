@@ -7,6 +7,7 @@ updated: 2026-06-01
 <script lang="ts">
     import { Icon } from "@stackoverflow/stacks-svelte";
     import { IconCheckFillCircle } from "@stackoverflow/stacks-icons/icons";
+    import StacksEmailEmbed from "$components/StacksEmailEmbed.svelte";
 </script>
 
 ## Requirements
@@ -125,4 +126,6 @@ See the overview below outlining the required components, their variations, and 
     </table>
 </div>
 
-**Coming soon**
+## Preview
+
+<StacksEmailEmbed kind="template" slug="newsletter" showTokens={false} />

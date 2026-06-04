@@ -77,7 +77,7 @@ const headline = defineEmailComponent({
         defineOption({
             name: "eyebrowClass",
             type: "string",
-            initialValue: "s-email-text-subtitle",
+            initialValue: "s-email-text-subtitle fc-text-muted",
             description: "Text styling class for the eyebrow node.",
         }),
         defineOption({
@@ -100,8 +100,9 @@ const headline = defineEmailComponent({
                 "mj-class": options.eyebrowClass,
                 "align": options.textAlign,
                 "font-size": tokens.font.eyebrowSize,
+                "font-weight": "normal",
                 "padding-top": tokens.layout.containerYPadding,
-                "padding-bottom": "0px",
+                "padding-bottom": "5px",
                 "padding-left": tokens.layout.containerXPadding,
                 "padding-right": tokens.layout.containerXPadding,
             },

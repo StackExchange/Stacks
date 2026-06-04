@@ -4,7 +4,7 @@ import type { EmailTemplateMeta, MjmlNode } from "../types";
 import { compileMjml, type CompileMjmlOutput } from "../pipeline/compile";
 import { compileTemplateInputSchema } from "./request-schemas";
 import { expandVariantRecords } from "./records";
-import { normalizeEmailOptions } from "../schema";
+import { normalizeEmailOptions, type EmailTemplateDefinition } from "../schema";
 
 type ExpandedTemplateRecord = {
     catalog: EmailTemplateCatalogItem;
@@ -78,18 +78,19 @@ const expandedTemplateRecords = expandVariantRecords({
             category,
             tokens: withSharedTemplateTokens(tokens),
         };
-        const variantId = variant.id as keyof typeof definition.variants &
-            string;
+        // Each template has its own props shape, so `definition` is a union
+        // across the registered templates. Treat it as the base definition
+        // (props = Record<string, unknown>) for this generic machinery.
+        const def = definition as EmailTemplateDefinition;
+        const variantId = variant.id as keyof typeof def.variants & string;
         type DefinitionProps = Parameters<
-            typeof definition.renderDocument
+            typeof def.renderDocument
         >[0]["props"];
         const defaults =
-            definition.variants[variantId] ??
-            definition.variants[definition.defaultVariant] ??
-            {};
+            def.variants[variantId] ?? def.variants[def.defaultVariant] ?? {};
         const resolveProps = (inputProps: Record<string, string>) =>
             normalizeEmailOptions<DefinitionProps>(
-                definition.propsSchema,
+                def.propsSchema,
                 defaults as Partial<DefinitionProps>,
                 inputProps as Partial<DefinitionProps>
             );
@@ -97,13 +98,13 @@ const expandedTemplateRecords = expandVariantRecords({
         return {
             catalog,
             renderDocument: (inputProps) =>
-                definition.renderDocument({
+                def.renderDocument({
                     variant: variantId,
                     props: resolveProps(inputProps),
                 }),
             resolvePreviewText: (inputProps) => {
                 const props = resolveProps(inputProps);
-                const preview = definition.preview?.({
+                const preview = def.preview?.({
                     variant: variantId,
                     props,
                 });

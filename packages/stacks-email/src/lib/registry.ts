@@ -10,6 +10,7 @@ import subtitle from "../../components/subtitle";
 import text from "../../components/text";
 import title from "../../components/title";
 
+import newsletter from "../../templates/newsletter";
 import transactional from "../../templates/transactional";
 
 export const componentDefinitions = [
@@ -26,7 +27,7 @@ export const componentDefinitions = [
     title,
 ] as const;
 
-export const templateDefinitions = [transactional] as const;
+export const templateDefinitions = [newsletter, transactional] as const;
 
 export {
     button,
@@ -40,5 +41,6 @@ export {
     subtitle,
     text,
     title,
+    newsletter,
     transactional,
 };

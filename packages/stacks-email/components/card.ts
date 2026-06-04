@@ -172,10 +172,10 @@ const card = defineEmailComponent({
         defineOption({
             name: "ctaStyle",
             type: "enum",
-            values: ["plain", "button", "arrow", "none"],
+            values: ["plain", "button", "arrow", "title", "none"],
             initialValue: "plain",
             description:
-                "Call-to-action style: `plain` text link (default), `button`, `arrow` (icon square), or `none`.",
+                "Call-to-action style: `plain` text link (default), `button`, `arrow` (icon square), `title` (links the title instead of a separate CTA), or `none`.",
         }),
         defineOption({
             name: "arrowBackground",
@@ -214,16 +214,23 @@ const card = defineEmailComponent({
             items.push({
                 kind: "title",
                 build: (p) =>
-                    textNode(options.titleContent, {
-                        ...(options.titleSize
-                            ? { "font-size": options.titleSize }
-                            : {}),
-                        ...(options.titleColor
-                            ? { color: options.titleColor }
-                            : {}),
-                        "font-weight": options.titleWeight,
-                        "padding": p,
-                    }),
+                    textNode(
+                        // `title` CTA style links the title itself instead of a
+                        // separate CTA below.
+                        options.ctaStyle === "title"
+                            ? `<a href="${options.href}" style="text-decoration:none" class="link"><b>${options.titleContent}</b></a>`
+                            : options.titleContent,
+                        {
+                            ...(options.titleSize
+                                ? { "font-size": options.titleSize }
+                                : {}),
+                            ...(options.titleColor
+                                ? { color: options.titleColor }
+                                : {}),
+                            "font-weight": options.titleWeight,
+                            "padding": p,
+                        }
+                    ),
             });
         }
         if (options.textContent.trim() !== "") {
@@ -241,6 +248,7 @@ const card = defineEmailComponent({
         }
         const showCta =
             options.ctaStyle !== "none" &&
+            options.ctaStyle !== "title" &&
             (options.ctaStyle === "arrow" || options.ctaText.trim() !== "");
 
         if (showCta) {
@@ -314,13 +322,13 @@ const card = defineEmailComponent({
             tagName: "mj-section",
             attributes: {
                 "mj-class": options.background,
+                "padding": `0px ${tokens.layout.containerXPadding} ${tokens.layout.containerYPadding}`,
             },
             children: [
                 {
                     tagName: "mj-column",
                     attributes: {
                         "inner-background-color": options.innerBackground,
-                        "padding": `0px ${tokens.layout.containerXPadding} ${tokens.layout.containerYPadding}`,
                     },
                     children: [...(image ? [image] : []), ...content],
                 },

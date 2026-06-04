@@ -109,9 +109,8 @@ const attributesChildren: MjmlNode[] = [
         tagName: "mj-class",
         attributes: {
             "name": "s-email-text-subtitle",
-            "color": color.text,
+            "color": color.textMuted,
             "font-size": "14px",
-            "font-weight": font.weightBold,
             "line-height": "120%",
             "padding": "0",
         },

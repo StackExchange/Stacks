@@ -2,7 +2,7 @@
  * Color tokens used for all email component palettes, state surfaces, and links.
  */
 const color = {
-    bodyBackground: "#eee",
+    bodyBackground: "#f9f8f8",
     background: "#fff",
     blockBackground: "#fff",
     accent: "#ffcc01",
@@ -15,10 +15,10 @@ const color = {
     textMuted: "#636261",
     textInvert: "#ffffff",
     textFooter: "#cdc8c2",
-    link: "#0000ef",
+    link: "#2445b4",
     linkHover: "#5074ef",
     lightBlue: "#d8e1ed",
-    surface: "#f0efee",
+    surface: "#eee",
     invertSurface: "#4a4a4a",
 } as const;
 

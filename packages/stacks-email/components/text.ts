@@ -16,9 +16,6 @@ const looksLikeHtml = (value: string) => /<\/?[a-z][\s\S]*>/i.test(value);
 const renderTextContent = (value: string | undefined) => {
     const content = value?.trim() ?? "";
 
-    // A bare template placeholder or already-rendered HTML passes through as-is.
-    // Markdown rendering (html:false) would otherwise escape existing tags, and
-    // `renderEmailBodyMarkdown` already returns "" for empty input.
     if (TEMPLATE_PROP_PATTERN.test(content) || looksLikeHtml(content)) {
         return content;
     }
@@ -26,10 +23,6 @@ const renderTextContent = (value: string | undefined) => {
     return renderEmailBodyMarkdown(content);
 };
 
-// The bare mj-text leaf. `Text` wraps it in a Section for standalone use; other
-// components (e.g. Card) compose it directly inside their own column. Content is
-// passed already-processed — callers run `renderTextContent` if they want
-// markdown handling.
 export const textNode = (
     content: string,
     attributes: NonNullable<MjmlNode["attributes"]>
