@@ -13,6 +13,7 @@ import title from "../../components/title";
 import newsletter from "../../templates/newsletter";
 import promotional from "../../templates/promotional";
 import transactional from "../../templates/transactional";
+import devsurvey26 from "../../templates/devsurvey26";
 
 export const componentDefinitions = [
     button,
@@ -32,6 +33,7 @@ export const templateDefinitions = [
     newsletter,
     promotional,
     transactional,
+    devsurvey26,
 ] as const;
 
 export {
@@ -49,4 +51,5 @@ export {
     newsletter,
     promotional,
     transactional,
+    devsurvey26,
 };

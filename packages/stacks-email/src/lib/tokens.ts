@@ -11,6 +11,7 @@ const color = {
     brandDark: "#201C1D",
     brandOffWhite: "#eeeeee",
     brandYellow: "#ffcc01",
+    brandPink: "#f39fff",
     text: "#211d1e",
     textMuted: "#636261",
     textInvert: "#ffffff",
@@ -33,6 +34,7 @@ const backgroundClasses = [
     { name: "page", value: color.bodyBackground },
     { name: "card", value: color.surface },
     { name: "light-blue", value: color.lightBlue },
+    { name: "highlight", value: color.brandPink },
 ] as const;
 
 /**
