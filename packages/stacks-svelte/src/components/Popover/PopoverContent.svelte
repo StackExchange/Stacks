@@ -66,6 +66,11 @@
     let computedRole = $derived(
         role || (pstate.tooltip ? "tooltip" : "dialog")
     );
+
+    const onFocusOut = (e: FocusEvent) => {
+        pstate.closeTooltip();
+        pstate.onFocusOut(e);
+    };
 </script>
 
 <!-- data-popper-placement is needed for compatibility with stacks classic popover styles -->
@@ -82,7 +87,7 @@
     onmouseenter={pstate.openTooltip}
     onmouseleave={pstate.closeTooltip}
     onfocusin={pstate.openTooltip}
-    onfocusout={pstate.closeTooltip}
+    onfocusout={onFocusOut}
     data-popper-placement={pstate.computedPlacement}
 >
     <div class={contentClasses}>
