@@ -71,6 +71,10 @@
         pstate.closeTooltip();
         pstate.onFocusOut(e);
     };
+
+    $effect(() => {
+        pstate.closeOnFocusLeave = !pstate.tooltip && computedRole === "menu";
+    });
 </script>
 
 <!-- data-popper-placement is needed for compatibility with stacks classic popover styles -->

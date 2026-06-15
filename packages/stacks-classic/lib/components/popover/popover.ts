@@ -86,6 +86,13 @@ export abstract class BasePopoverController extends Stacks.StacksController {
     }
 
     /**
+     * Only menu popovers dismiss when focus leaves the reference/popover pair.
+     */
+    protected get shouldHideOnFocusLeave() {
+        return this.popoverElement?.getAttribute("role") === "menu";
+    }
+
+    /**
      * Initializes and validates controller variables
      */
     connect() {
@@ -426,6 +433,10 @@ export class PopoverController extends BasePopoverController {
      * @param {FocusEvent} e - The focusout event from the reference or popover element
      */
     private hideOnFocusOut(e: FocusEvent) {
+        if (!this.shouldHideOnFocusLeave) {
+            return;
+        }
+
         const relatedTarget = e.relatedTarget;
 
         if (

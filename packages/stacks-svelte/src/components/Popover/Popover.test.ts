@@ -696,6 +696,27 @@ describe("Popover", () => {
             },
         };
 
+        const focusableMenuContent = {
+            component: PopoverContent,
+            props: {
+                role: "menu",
+                children: createRawSnippet(() => ({
+                    render: () =>
+                        '<button type="button" role="menuitem">Popover action</button>',
+                })),
+            },
+        };
+
+        const menuContent = {
+            component: PopoverContent,
+            props: {
+                role: "menu",
+                children: createRawSnippet(() => ({
+                    render: () => "<span>Popover Content</span>",
+                })),
+            },
+        };
+
         const addOutsideButton = () => {
             const outsideButton = document.createElement("button");
             outsideButton.type = "button";
@@ -781,7 +802,7 @@ describe("Popover", () => {
                     ...defaultProps,
                     children: createSvelteComponentsSnippet([
                         defaultChildren.reference,
-                        focusableContent,
+                        focusableMenuContent,
                     ]),
                 },
             });
@@ -789,13 +810,13 @@ describe("Popover", () => {
             const reference = screen.getByRole("button", { name: "Trigger" });
 
             await userEvent.click(reference);
-            expect(screen.getByRole("dialog")).to.exist;
+            expect(screen.getByRole("menu")).to.exist;
 
             await userEvent.tab();
 
-            expect(screen.getByRole("button", { name: "Popover action" })).to
+            expect(screen.getByRole("menuitem", { name: "Popover action" })).to
                 .have.focus;
-            expect(screen.getByRole("dialog")).to.exist;
+            expect(screen.getByRole("menu")).to.exist;
             expect(reference).to.have.attribute("aria-expanded", "true");
         });
 
@@ -805,7 +826,7 @@ describe("Popover", () => {
                     ...defaultProps,
                     children: createSvelteComponentsSnippet([
                         defaultChildren.reference,
-                        focusableContent,
+                        focusableMenuContent,
                     ]),
                 },
             });
@@ -813,16 +834,16 @@ describe("Popover", () => {
             const reference = screen.getByRole("button", { name: "Trigger" });
 
             await userEvent.click(reference);
-            expect(screen.getByRole("dialog")).to.exist;
+            expect(screen.getByRole("menu")).to.exist;
 
             await userEvent.tab();
-            expect(screen.getByRole("button", { name: "Popover action" })).to
+            expect(screen.getByRole("menuitem", { name: "Popover action" })).to
                 .have.focus;
 
             await userEvent.tab({ shift: true });
 
             expect(reference).to.have.focus;
-            expect(screen.getByRole("dialog")).to.exist;
+            expect(screen.getByRole("menu")).to.exist;
             expect(reference).to.have.attribute("aria-expanded", "true");
         });
 
@@ -832,6 +853,34 @@ describe("Popover", () => {
                     ...defaultProps,
                     children: createSvelteComponentsSnippet([
                         defaultChildren.reference,
+                        focusableMenuContent,
+                    ]),
+                },
+            });
+            const outsideButton = addOutsideButton();
+
+            const reference = screen.getByRole("button", { name: "Trigger" });
+
+            await userEvent.click(reference);
+            expect(screen.getByRole("menu")).to.exist;
+
+            await userEvent.tab();
+            await userEvent.tab();
+
+            expect(outsideButton).to.have.focus;
+            await waitFor(
+                () => expect(screen.queryByRole("menu")).not.to.exist
+            );
+            expect(reference).to.have.attribute("aria-expanded", "false");
+            expect(reference).not.to.have.focus;
+        });
+
+        it("should stay open when focus moves outside a non-menu popover", async () => {
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
                         focusableContent,
                     ]),
                 },
@@ -847,10 +896,8 @@ describe("Popover", () => {
             await userEvent.tab();
 
             expect(outsideButton).to.have.focus;
-            await waitFor(
-                () => expect(screen.queryByRole("dialog")).not.to.exist
-            );
-            expect(reference).to.have.attribute("aria-expanded", "false");
+            expect(screen.getByRole("dialog")).to.exist;
+            expect(reference).to.have.attribute("aria-expanded", "true");
             expect(reference).not.to.have.focus;
         });
 
@@ -860,7 +907,7 @@ describe("Popover", () => {
                     ...defaultProps,
                     children: createSvelteComponentsSnippet([
                         defaultChildren.reference,
-                        defaultChildren.content,
+                        menuContent,
                     ]),
                 },
             });
@@ -869,13 +916,13 @@ describe("Popover", () => {
             const reference = screen.getByRole("button", { name: "Trigger" });
 
             await userEvent.click(reference);
-            expect(screen.getByRole("dialog")).to.exist;
+            expect(screen.getByRole("menu")).to.exist;
 
             await userEvent.tab();
 
             expect(outsideButton).to.have.focus;
             await waitFor(
-                () => expect(screen.queryByRole("dialog")).not.to.exist
+                () => expect(screen.queryByRole("menu")).not.to.exist
             );
             expect(reference).to.have.attribute("aria-expanded", "false");
             expect(reference).not.to.have.focus;
@@ -887,7 +934,7 @@ describe("Popover", () => {
                     ...defaultProps,
                     children: createSvelteComponentsSnippet([
                         defaultChildren.reference,
-                        defaultChildren.content,
+                        menuContent,
                     ]),
                 },
             });
@@ -895,7 +942,7 @@ describe("Popover", () => {
             const reference = screen.getByRole("button", { name: "Trigger" });
 
             await userEvent.click(reference);
-            expect(screen.getByRole("dialog")).to.exist;
+            expect(screen.getByRole("menu")).to.exist;
 
             reference.dispatchEvent(
                 new FocusEvent("focusout", {
@@ -905,7 +952,7 @@ describe("Popover", () => {
             );
 
             await waitFor(
-                () => expect(screen.queryByRole("dialog")).not.to.exist
+                () => expect(screen.queryByRole("menu")).not.to.exist
             );
             expect(reference).to.have.attribute("aria-expanded", "false");
         });
@@ -919,7 +966,7 @@ describe("Popover", () => {
                     onclose: onCloseSpy,
                     children: createSvelteComponentsSnippet([
                         defaultChildren.reference,
-                        focusableContent,
+                        focusableMenuContent,
                     ]),
                 },
             });
@@ -931,18 +978,18 @@ describe("Popover", () => {
             expect(reference).to.have.focus;
 
             await userEvent.tab();
-            expect(screen.getByRole("button", { name: "Popover action" })).to
+            expect(screen.getByRole("menuitem", { name: "Popover action" })).to
                 .have.focus;
             expect(onCloseSpy).not.to.have.been.called;
 
             await userEvent.tab();
             expect(outsideButton).to.have.focus;
             expect(onCloseSpy).to.have.been.calledOnce;
-            expect(screen.getByRole("dialog")).to.exist;
+            expect(screen.getByRole("menu")).to.exist;
 
             rerender({ visible: false });
             await tick();
-            expect(screen.queryByRole("dialog")).not.to.exist;
+            expect(screen.queryByRole("menu")).not.to.exist;
         });
 
         it("should not show/hide the tooltip content when the user hovers on the reference", async () => {

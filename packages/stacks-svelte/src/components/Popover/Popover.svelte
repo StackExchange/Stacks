@@ -14,6 +14,7 @@
         visible: boolean | undefined;
         dismissible: boolean;
         trapFocus: boolean;
+        closeOnFocusLeave: boolean;
         computedPlacement: Placement;
         tooltip: boolean;
         floatingRef: (element: HTMLElement) => void;
@@ -209,7 +210,7 @@
     };
 
     const onFocusOut = (e: FocusEvent) => {
-        if (tooltip || !pstate.visible) {
+        if (tooltip || !pstate.visible || !pstate.closeOnFocusLeave) {
             return;
         }
 
@@ -245,6 +246,7 @@
         visible: autoshow,
         dismissible,
         trapFocus,
+        closeOnFocusLeave: false,
         computedPlacement: placement,
         tooltip,
         floatingRef: (element) => {
