@@ -180,7 +180,41 @@ To promote being able to tab to an open popover, it's best to place the popover 
 
 ### Menu popovers
 
-Menu popovers are dismissed when keyboard focus leaves the reference and popover. To enable this behavior in the Svelte component, set `role="menu"` on `PopoverContent`. In classic markup, the behavior applies when either the `.s-popover` root or a contained menu has `role="menu"`.
+Menu popovers are dismissed when keyboard focus leaves the reference and popover. Apply `role="menu"` to the contained menu, or to the `.s-popover` root, to enable this behavior. Generic popovers that keep the default `role="dialog"` stay open when focus moves outside.
+
+```html
+<button
+    class="s-btn s-btn__dropdown"
+    aria-controls="menu-popover-example"
+    aria-expanded="false"
+    data-controller="s-popover"
+    data-action="s-popover#toggle"
+    data-s-popover-placement="bottom-start"
+>
+    Actions
+</button>
+<div class="s-popover" id="menu-popover-example">
+    <div class="s-popover--content p0">
+        <ul class="s-menu" role="menu">
+            <li class="s-menu--item" role="none">
+                <button class="s-menu--action" type="button" role="menuitem">
+                    Share
+                </button>
+            </li>
+            <li class="s-menu--item" role="none">
+                <button class="s-menu--action" type="button" role="menuitem">
+                    Edit
+                </button>
+            </li>
+            <li class="s-menu--item" role="none">
+                <button class="s-menu--action" type="button" role="menuitem">
+                    Follow
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>
+```
 
 <Example>
     <div class="d-flex ai-start g16 fw-wrap">
