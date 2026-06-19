@@ -901,6 +901,33 @@ describe("Popover", () => {
             expect(reference).not.to.have.focus;
         });
 
+        it("should stay open when focus leaves a menu popover that is not dismissible", async () => {
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    dismissible: false,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        focusableMenuContent,
+                    ]),
+                },
+            });
+            const outsideButton = addOutsideButton();
+
+            const reference = screen.getByRole("button", { name: "Trigger" });
+
+            await userEvent.click(reference);
+            expect(screen.getByRole("menu")).to.exist;
+
+            await userEvent.tab();
+            await userEvent.tab();
+
+            expect(outsideButton).to.have.focus;
+            expect(screen.getByRole("menu")).to.exist;
+            expect(reference).to.have.attribute("aria-expanded", "true");
+            expect(reference).not.to.have.focus;
+        });
+
         it("should close the popover when focus moves from the reference directly outside", async () => {
             render(Popover, {
                 props: {

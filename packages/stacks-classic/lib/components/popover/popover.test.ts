@@ -7,10 +7,12 @@ const user = userEvent.setup();
 
 const createPopover = ({
     content = html`<a href="#" data-testid="popover-link">View more</a>`,
+    hideOnOutsideClick = "always",
     renderOutsideButton = true,
     role = "menu",
 }: {
     content?: ReturnType<typeof html>;
+    hideOnOutsideClick?: string;
     renderOutsideButton?: boolean;
     role?: string;
 } = {}) => html`
@@ -19,6 +21,7 @@ const createPopover = ({
         aria-controls="popover-example"
         data-controller="s-popover"
         data-action="s-popover#toggle"
+        data-s-popover-hide-on-outside-click="${hideOnOutsideClick}"
         data-testid="popover-trigger"
     >
         Toggle popover
@@ -113,8 +116,60 @@ describe("popover", () => {
         expect(trigger).to.have.attribute("aria-expanded", "false");
     });
 
+    it("should hide when focus leaves a popover containing a menu", async () => {
+        await fixture(
+            createPopover({
+                content: html`
+                    <ul class="s-menu" role="menu">
+                        <li class="s-menu--item" role="menuitem">
+                            <button
+                                class="s-menu--action"
+                                data-testid="popover-link"
+                            >
+                                View more
+                            </button>
+                        </li>
+                    </ul>
+                `,
+                role: "dialog",
+            })
+        );
+
+        const trigger = screen.getByTestId("popover-trigger");
+        const popover = screen.getByTestId("popover");
+        const outsideButton = screen.getByTestId("outside-button");
+
+        await user.click(trigger);
+        await waitFor(() => expect(popover).to.have.class("is-visible"));
+
+        await user.tab();
+        await user.tab();
+
+        expect(outsideButton).to.have.focus;
+        await waitFor(() => expect(popover).not.to.have.class("is-visible"));
+        expect(trigger).to.have.attribute("aria-expanded", "false");
+    });
+
     it("should stay open when focus moves outside a non-menu popover", async () => {
         await fixture(createPopover({ role: "dialog" }));
+
+        const trigger = screen.getByTestId("popover-trigger");
+        const popover = screen.getByTestId("popover");
+        const outsideButton = screen.getByTestId("outside-button");
+
+        await user.click(trigger);
+        await waitFor(() => expect(popover).to.have.class("is-visible"));
+
+        await user.tab();
+        await user.tab();
+
+        expect(outsideButton).to.have.focus;
+        expect(popover).to.have.class("is-visible");
+        expect(trigger).to.have.attribute("aria-expanded", "true");
+    });
+
+    it("should stay open when focus leaves a menu popover that disables auto-dismissal", async () => {
+        await fixture(createPopover({ hideOnOutsideClick: "never" }));
 
         const trigger = screen.getByTestId("popover-trigger");
         const popover = screen.getByTestId("popover");

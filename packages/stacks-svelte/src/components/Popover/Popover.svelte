@@ -210,7 +210,12 @@
     };
 
     const onFocusOut = (e: FocusEvent) => {
-        if (tooltip || !pstate.visible || !pstate.closeOnFocusLeave) {
+        if (
+            tooltip ||
+            !pstate.visible ||
+            !pstate.closeOnFocusLeave ||
+            !dismissible
+        ) {
             return;
         }
 

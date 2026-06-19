@@ -178,6 +178,45 @@ To promote being able to tab to an open popover, it's best to place the popover 
     </Popover>
 </Example>
 
+### Menu popovers
+
+Menu popovers are dismissed when keyboard focus leaves the reference and popover. To enable this behavior in the Svelte component, set `role="menu"` on `PopoverContent`. In classic markup, the behavior applies when either the `.s-popover` root or a contained menu has `role="menu"`.
+
+<Example>
+    <div class="d-flex ai-start g16 fw-wrap">
+        <Popover id="popover-default-focus-example" placement="bottom-start">
+            <PopoverReference>
+                <Button dropdown>Default popover</Button>
+            </PopoverReference>
+            <PopoverContent>
+                <button class="s-btn s-btn__sm" type="button">Default action</button>
+            </PopoverContent>
+        </Popover>
+
+        <Popover id="popover-menu-focus-example" placement="bottom-start">
+            <PopoverReference>
+                <Button dropdown>Menu popover</Button>
+            </PopoverReference>
+            <PopoverContent role="menu" contentClass="p0">
+                <div class="s-menu">
+                    <div class="s-menu--item" role="none">
+                        <button class="s-menu--action" type="button" role="menuitem">Share</button>
+                    </div>
+                    <div class="s-menu--item" role="none">
+                        <button class="s-menu--action" type="button" role="menuitem">Edit</button>
+                    </div>
+                    <div class="s-menu--item" role="none">
+                        <button class="s-menu--action" type="button" role="menuitem">Follow</button>
+                    </div>
+                </div>
+            </PopoverContent>
+        </Popover>
+
+        <Button variant="tonal">Outside focus target</Button>
+    </div>
+
+</Example>
+
 ### Dismissible
 
 In the case of new feature callouts, it may be appropriate to include an explicit dismiss button. You can add one using the styling provided by `.s-popover--close`.
