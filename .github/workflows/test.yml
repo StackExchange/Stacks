@@ -35,11 +35,8 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
-          # Pinned exactly: Node 24.16.0 regressed Playwright 1.55.1 archive
-          # extraction (`playwright install` hangs); 24.15.0 is the last
-          # known-good runtime (green run 26400975259, 2026-05-25). The exact
-          # pin avoids lts/* / '24' drifting back onto 24.16.0. Revisit and
-          # float again once Playwright is upgraded. See STACKS-901.
+          # Pin exactly: Node 24.16.0 hangs `playwright install` while
+          # extracting browsers; 24.15.0 is the last good version.
           node-version: '24.15.0'
 
       - name: 🏗 Install Dependencies
@@ -47,10 +44,8 @@ jobs:
 
       - name: 🏗 Install Playwright
         if: inputs.needs_playwright == true
-        timeout-minutes: 12
-        # The browser install can stall indefinitely on the runner; without a per-attempt
-        # timeout the step hangs until the 6h job ceiling. Cap each attempt and retry so a
-        # stall fails fast and recovers if transient.
+        # Cap each attempt and retry so a stalled install fails fast
+        # instead of hanging to the job timeout.
         run: |
           for attempt in 1 2 3; do
             echo "::group::playwright install (attempt $attempt)"
