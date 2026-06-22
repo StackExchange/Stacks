@@ -35,9 +35,9 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
-          # Pin to Node 22: Node 24 (current lts/*) hangs `playwright install`
-          # while extracting the browser archive. See STACKS-901.
-          node-version: '22'
+          # Pin to an explicit major rather than lts/* so the runtime can't
+          # silently drift onto an untested Node version (see STACKS-901).
+          node-version: '24'
 
       - name: 🏗 Install Dependencies
         run: npm ci
