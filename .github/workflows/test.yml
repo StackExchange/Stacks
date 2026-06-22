@@ -35,9 +35,10 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
-          # Pin to an explicit major rather than lts/* so the runtime can't
-          # silently drift onto an untested Node version (see STACKS-901).
-          node-version: '24'
+          # Pin to Node 22 (explicit, not lts/*): Node 24 hangs `playwright
+          # install` while extracting the browser archive. Pinning an explicit
+          # major also stops the runtime silently drifting. See STACKS-901.
+          node-version: '22'
 
       - name: 🏗 Install Dependencies
         run: npm ci
