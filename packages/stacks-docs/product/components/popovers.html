@@ -301,6 +301,80 @@ tags: components
         </div>
     </div>
 
+    {% header "h4", "Menu popovers" %}
+    <p class="stacks-copy">Menu popovers are dismissed when keyboard focus leaves the reference and popover. Apply <code class="stacks-code">role="menu"</code> to the contained menu, or to the <code class="stacks-code">.s-popover</code> root, to enable this behavior. Generic popovers that keep the default <code class="stacks-code">role="dialog"</code> stay open when focus moves outside.</p>
+
+    <div class="stacks-preview">
+{% highlight html %}
+<button class="s-btn s-btn__dropdown"
+        aria-controls="menu-popover-example"
+        aria-expanded="false"
+        data-controller="s-popover"
+        data-action="s-popover#toggle"
+        data-s-popover-placement="bottom-start">
+    Actions
+</button>
+<div class="s-popover" id="menu-popover-example">
+    <div class="s-popover--content p0">
+        <ul class="s-menu" role="menu">
+            <li class="s-menu--item" role="none">
+                <button class="s-menu--action" type="button" role="menuitem">Share</button>
+            </li>
+            <li class="s-menu--item" role="none">
+                <button class="s-menu--action" type="button" role="menuitem">Edit</button>
+            </li>
+            <li class="s-menu--item" role="none">
+                <button class="s-menu--action" type="button" role="menuitem">Follow</button>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endhighlight %}
+        <div class="stacks-preview--example d-flex ai-start g16 fw-wrap">
+            <button class="s-btn s-btn__filled s-btn__dropdown"
+                    aria-controls="popover-menu-focus-example"
+                    aria-expanded="false"
+                    data-controller="s-popover"
+                    data-action="s-popover#toggle"
+                    data-s-popover-placement="bottom-start">
+                Menu popover
+            </button>
+            <div class="s-popover wmn-initial w-auto" id="popover-menu-focus-example">
+                <div class="s-popover--arrow"></div>
+                <div class="s-popover--content p0">
+                    <ul class="s-menu" role="menu">
+                        <li class="s-menu--item" role="none">
+                            <button class="s-menu--action" type="button" role="menuitem">Share</button>
+                        </li>
+                        <li class="s-menu--item" role="none">
+                            <button class="s-menu--action" type="button" role="menuitem">Edit</button>
+                        </li>
+                        <li class="s-menu--item" role="none">
+                            <button class="s-menu--action" type="button" role="menuitem">Follow</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <button class="s-btn s-btn__filled s-btn__dropdown"
+                    aria-controls="popover-default-focus-example"
+                    aria-expanded="false"
+                    data-controller="s-popover"
+                    data-action="s-popover#toggle"
+                    data-s-popover-placement="bottom-start">
+                Default popover
+            </button>
+            <div class="s-popover wmn-initial w-auto" id="popover-default-focus-example" role="dialog">
+                <div class="s-popover--arrow"></div>
+                <div class="s-popover--content">
+                    <button class="s-btn s-btn__sm" type="button">Default action</button>
+                </div>
+            </div>
+
+            <button class="s-btn s-btn__muted">Outside focus target</button>
+        </div>
+    </div>
+
     {% header "h4", "Dismissible" %}
     <p class="stacks-copy">In the case of new feature callouts, it may be appropriate to include an explicit dismiss button. You can add one using the styling provided by <code class="stacks-code">.s-popover--close</code>.</p>
     <p class="stacks-copy">In order for to close the popover with an explicit close button, you’ll need to add the controller to a parent as illustrated in the following example code:</p>
