@@ -45,12 +45,9 @@ jobs:
       - name: 🏗 Install Playwright
         if: inputs.needs_playwright == true
         timeout-minutes: 12
-        env:
-          # Surface where the install wedges if it stalls again (e.g. after a browser download).
-          DEBUG: pw:install
-        # The browser download can stall indefinitely on the runner; without a per-attempt
+        # The browser install can stall indefinitely on the runner; without a per-attempt
         # timeout the step hangs until the 6h job ceiling. Cap each attempt and retry so a
-        # stalled download fails fast and recovers if transient.
+        # stall fails fast and recovers if transient.
         run: |
           for attempt in 1 2 3; do
             echo "::group::playwright install (attempt $attempt)"
