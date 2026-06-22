@@ -7,7 +7,7 @@ js: true
 ---
 
 <script lang="ts">
-    import { Popover, PopoverReference, PopoverContent, PopoverCloseButton, Button, Notice, EmptyState } from '@stackoverflow/stacks-svelte';
+    import { Popover, PopoverReference, PopoverContent, PopoverCloseButton, Button, Notice, EmptyState, Menu, MenuItem } from '@stackoverflow/stacks-svelte';
     import { Icon } from '@stackoverflow/stacks-svelte';
     import { IconInfo } from '@stackoverflow/stacks-icons/icons';
     import ClassTable from '$components/ClassTable.svelte';
@@ -176,6 +176,73 @@ To promote being able to tab to an open popover, it's best to place the popover 
             Example popover content
         </PopoverContent>
     </Popover>
+</Example>
+
+### Menu popovers
+
+Menu popovers are dismissed when keyboard focus leaves the reference and popover. Apply `role="menu"` to the contained menu, or to the `.s-popover` root, to enable this behavior. Generic popovers that keep the default `role="dialog"` stay open when focus moves outside.
+
+```html
+<button
+    class="s-btn s-btn__dropdown"
+    aria-controls="menu-popover-example"
+    aria-expanded="false"
+    data-controller="s-popover"
+    data-action="s-popover#toggle"
+    data-s-popover-placement="bottom-start"
+>
+    Actions
+</button>
+<div class="s-popover" id="menu-popover-example">
+    <div class="s-popover--content p0">
+        <ul class="s-menu" role="menu">
+            <li class="s-menu--item" role="none">
+                <button class="s-menu--action" type="button" role="menuitem">
+                    Share
+                </button>
+            </li>
+            <li class="s-menu--item" role="none">
+                <button class="s-menu--action" type="button" role="menuitem">
+                    Edit
+                </button>
+            </li>
+            <li class="s-menu--item" role="none">
+                <button class="s-menu--action" type="button" role="menuitem">
+                    Follow
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>
+```
+
+<Example>
+    <div class="d-flex ai-start g16 fw-wrap">
+        <Popover id="popover-default-focus-example" placement="bottom-start">
+            <PopoverReference>
+                <Button dropdown>Default popover</Button>
+            </PopoverReference>
+            <PopoverContent>
+                <button class="s-btn s-btn__sm" type="button">Default action</button>
+            </PopoverContent>
+        </Popover>
+
+        <Popover id="popover-menu-focus-example" placement="bottom-start">
+            <PopoverReference>
+                <Button dropdown>Menu popover</Button>
+            </PopoverReference>
+            <PopoverContent contentClass="p0">
+                <Menu>
+                    <MenuItem>Share</MenuItem>
+                    <MenuItem>Edit</MenuItem>
+                    <MenuItem>Follow</MenuItem>
+                </Menu>
+            </PopoverContent>
+        </Popover>
+
+        <Button variant="tonal">Outside focus target</Button>
+    </div>
+
 </Example>
 
 ### Dismissible
