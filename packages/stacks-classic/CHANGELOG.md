@@ -1,5 +1,11 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.31
+
+### Minor Changes
+
+- [#2298](https://github.com/StackExchange/Stacks/pull/2298) [`f17e8e8`](https://github.com/StackExchange/Stacks/commit/f17e8e84cd8a2cd5bc9337086c6a84929a403094) Thanks [@alexwarren](https://github.com/alexwarren)! - Fix popover focus-leave dismissal
+
 ## 3.0.0-beta.30
 
 ### Minor Changes
