@@ -3,20 +3,27 @@
     import type { Placement } from "@floating-ui/core";
     import { getContext } from "svelte";
 
+    export interface CloseOptions {
+        delay?: number;
+        restoreFocus?: boolean;
+    }
+
     export interface PopoverState {
         id: string;
         controlled: boolean;
         visible: boolean | undefined;
         dismissible: boolean;
         trapFocus: boolean;
+        closeOnFocusLeave: boolean;
         computedPlacement: Placement;
         tooltip: boolean;
         floatingRef: (element: HTMLElement) => void;
         floatingContent: (element: HTMLElement) => void;
         onOutclick: (e: CustomEvent<HTMLElement>) => void;
+        onFocusOut: (e: FocusEvent) => void;
         open: () => void;
         openTooltip: () => void;
-        close: () => void;
+        close: (options?: CloseOptions) => void;
         closeTooltip: () => void;
         toggle: () => void;
     }
@@ -127,6 +134,7 @@
     const TOOLTIP_CLOSE_DELAY = 100;
 
     let reference: HTMLElement;
+    let content: HTMLElement;
     let activeTimeout: number;
 
     // if the visible prop is passed, the component is controlled
@@ -167,16 +175,19 @@
 
     const closeTooltip = () => {
         if (!tooltip) return;
-        close(TOOLTIP_CLOSE_DELAY);
+        close({ delay: TOOLTIP_CLOSE_DELAY });
     };
 
-    const close = (delay: number = 0) => {
+    const close = ({
+        delay = 0,
+        restoreFocus = !tooltip,
+    }: CloseOptions = {}) => {
         window.clearTimeout(activeTimeout);
         if (controlled) return;
         if (pstate.visible) {
             activeTimeout = window.setTimeout(() => {
                 pstate.visible = false;
-                if (!tooltip) {
+                if (restoreFocus) {
                     reference.focus();
                 }
                 // Fires when the popover is closed
@@ -198,6 +209,33 @@
         close();
     };
 
+    const onFocusOut = (e: FocusEvent) => {
+        if (
+            tooltip ||
+            !pstate.visible ||
+            !pstate.closeOnFocusLeave ||
+            !dismissible
+        ) {
+            return;
+        }
+
+        const relatedTarget = e.relatedTarget;
+        if (
+            relatedTarget instanceof Node &&
+            (reference?.contains(relatedTarget) ||
+                content?.contains(relatedTarget))
+        ) {
+            return;
+        }
+
+        if (controlled) {
+            onclose?.();
+            return;
+        }
+
+        close({ restoreFocus: false });
+    };
+
     const onKeypress = (e: KeyboardEvent) => {
         if (e.key === "Escape" && dismissible) {
             close();
@@ -213,14 +251,19 @@
         visible: autoshow,
         dismissible,
         trapFocus,
+        closeOnFocusLeave: false,
         computedPlacement: placement,
         tooltip,
         floatingRef: (element) => {
             reference = element;
             floatingRef(element);
         },
-        floatingContent,
+        floatingContent: (element) => {
+            content = element;
+            floatingContent(element);
+        },
         onOutclick,
+        onFocusOut,
         open,
         openTooltip,
         close,
