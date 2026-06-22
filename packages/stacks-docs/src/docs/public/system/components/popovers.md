@@ -7,7 +7,7 @@ js: true
 ---
 
 <script lang="ts">
-    import { Popover, PopoverReference, PopoverContent, PopoverCloseButton, Button, Notice, EmptyState } from '@stackoverflow/stacks-svelte';
+    import { Popover, PopoverReference, PopoverContent, PopoverCloseButton, Button, Notice, EmptyState, Menu, MenuItem } from '@stackoverflow/stacks-svelte';
     import { Icon } from '@stackoverflow/stacks-svelte';
     import { IconInfo } from '@stackoverflow/stacks-icons/icons';
     import ClassTable from '$components/ClassTable.svelte';
@@ -231,18 +231,12 @@ Menu popovers are dismissed when keyboard focus leaves the reference and popover
             <PopoverReference>
                 <Button dropdown>Menu popover</Button>
             </PopoverReference>
-            <PopoverContent role="menu" contentClass="p0">
-                <div class="s-menu">
-                    <div class="s-menu--item" role="none">
-                        <button class="s-menu--action" type="button" role="menuitem">Share</button>
-                    </div>
-                    <div class="s-menu--item" role="none">
-                        <button class="s-menu--action" type="button" role="menuitem">Edit</button>
-                    </div>
-                    <div class="s-menu--item" role="none">
-                        <button class="s-menu--action" type="button" role="menuitem">Follow</button>
-                    </div>
-                </div>
+            <PopoverContent contentClass="p0">
+                <Menu>
+                    <MenuItem>Share</MenuItem>
+                    <MenuItem>Edit</MenuItem>
+                    <MenuItem>Follow</MenuItem>
+                </Menu>
             </PopoverContent>
         </Popover>
 

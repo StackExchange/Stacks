@@ -43,6 +43,7 @@
     }: Props = $props();
 
     let pstate = usePopoverContext("PopoverContent");
+    let contentElement: HTMLElement | undefined;
 
     let popoverClasses = $derived.by(() => {
         const base = "s-popover";
@@ -73,7 +74,10 @@
     };
 
     $effect(() => {
-        pstate.closeOnFocusLeave = !pstate.tooltip && computedRole === "menu";
+        pstate.closeOnFocusLeave =
+            !pstate.tooltip &&
+            (computedRole === "menu" ||
+                !!contentElement?.querySelector('[role="menu"]'));
     });
 </script>
 
@@ -93,6 +97,7 @@
     onfocusin={pstate.openTooltip}
     onfocusout={onFocusOut}
     data-popper-placement={pstate.computedPlacement}
+    bind:this={contentElement}
 >
     <div class={contentClasses}>
         <div class="ps-relative">

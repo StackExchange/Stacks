@@ -707,6 +707,21 @@ describe("Popover", () => {
             },
         };
 
+        const focusableNestedMenuContent = {
+            component: PopoverContent,
+            props: {
+                children: createRawSnippet(() => ({
+                    render: () => `
+                        <ul class="s-menu" role="menu">
+                            <li class="s-menu--item" role="none">
+                                <button type="button" role="menuitem">Popover action</button>
+                            </li>
+                        </ul>
+                    `,
+                })),
+            },
+        };
+
         const menuContent = {
             component: PopoverContent,
             props: {
@@ -854,6 +869,34 @@ describe("Popover", () => {
                     children: createSvelteComponentsSnippet([
                         defaultChildren.reference,
                         focusableMenuContent,
+                    ]),
+                },
+            });
+            const outsideButton = addOutsideButton();
+
+            const reference = screen.getByRole("button", { name: "Trigger" });
+
+            await userEvent.click(reference);
+            expect(screen.getByRole("menu")).to.exist;
+
+            await userEvent.tab();
+            await userEvent.tab();
+
+            expect(outsideButton).to.have.focus;
+            await waitFor(
+                () => expect(screen.queryByRole("menu")).not.to.exist
+            );
+            expect(reference).to.have.attribute("aria-expanded", "false");
+            expect(reference).not.to.have.focus;
+        });
+
+        it("should close the popover when focus leaves a popover containing a menu", async () => {
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        focusableNestedMenuContent,
                     ]),
                 },
             });
