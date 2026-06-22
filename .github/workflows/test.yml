@@ -35,9 +35,9 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
-          # Pin exactly: Node 24.16.0 hangs `playwright install` while
-          # extracting browsers; 24.15.0 is the last good version.
-          node-version: '24.15.0'
+          # Track Node 24 patches, but pin the major so the runtime can't
+          # silently jump to the next LTS major (the drift that caused STACKS-901).
+          node-version: '24'
 
       - name: 🏗 Install Dependencies
         run: npm ci
