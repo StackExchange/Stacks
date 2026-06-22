@@ -25,6 +25,7 @@ jobs:
   build-and-test:
     name: ${{ inputs.command_description }}
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: ⬇️ Checkout
         uses: actions/checkout@v4
@@ -41,7 +42,25 @@ jobs:
 
       - name: 🏗 Install Playwright
         if: inputs.needs_playwright == true
-        run: npx playwright install --with-deps
+        timeout-minutes: 12
+        env:
+          # Surface where the install wedges if it stalls again (e.g. after a browser download).
+          DEBUG: pw:install
+        # The browser download can stall indefinitely on the runner; without a per-attempt
+        # timeout the step hangs until the 6h job ceiling. Cap each attempt and retry so a
+        # stalled download fails fast and recovers if transient.
+        run: |
+          for attempt in 1 2 3; do
+            echo "::group::playwright install (attempt $attempt)"
+            if timeout --kill-after=30s 4m npx playwright install --with-deps; then
+              echo "::endgroup::"
+              exit 0
+            fi
+            echo "::endgroup::"
+            echo "::warning::playwright install attempt $attempt timed out or failed; retrying"
+          done
+          echo "::error::playwright install failed after 3 attempts"
+          exit 1
 
       - name: 🔑 Setup SSH for private submodule
         run: |
