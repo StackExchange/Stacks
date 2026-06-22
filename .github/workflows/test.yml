@@ -44,20 +44,7 @@ jobs:
 
       - name: 🏗 Install Playwright
         if: inputs.needs_playwright == true
-        # Cap each attempt and retry so a stalled install fails fast
-        # instead of hanging to the job timeout.
-        run: |
-          for attempt in 1 2 3; do
-            echo "::group::playwright install (attempt $attempt)"
-            if timeout --kill-after=30s 4m npx playwright install --with-deps; then
-              echo "::endgroup::"
-              exit 0
-            fi
-            echo "::endgroup::"
-            echo "::warning::playwright install attempt $attempt timed out or failed; retrying"
-          done
-          echo "::error::playwright install failed after 3 attempts"
-          exit 1
+        run: npx playwright install --with-deps
 
       - name: 🔑 Setup SSH for private submodule
         run: |
