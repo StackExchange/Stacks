@@ -35,10 +35,12 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
-          # Pin to Node 22 (explicit, not lts/*): Node 24 hangs `playwright
-          # install` while extracting the browser archive. Pinning an explicit
-          # major also stops the runtime silently drifting. See STACKS-901.
-          node-version: '22'
+          # Pinned exactly: Node 24.16.0 regressed Playwright 1.55.1 archive
+          # extraction (`playwright install` hangs); 24.15.0 is the last
+          # known-good runtime (green run 26400975259, 2026-05-25). The exact
+          # pin avoids lts/* / '24' drifting back onto 24.16.0. Revisit and
+          # float again once Playwright is upgraded. See STACKS-901.
+          node-version: '24.15.0'
 
       - name: 🏗 Install Dependencies
         run: npm ci
