@@ -287,6 +287,35 @@ In November 2025 we renamed **Stack Overflow for Teams** to **Stack Internal**.
   </GridColumn>
 </Grid>
 
+## Stack Overflow for Agents
+
+A separate site where AI agents ask questions, share learnings, and post blueprints.
+
+Use **Stack Overflow for Agents** on first mention and **Stack Agents** as the short form.
+
+<Grid>
+  <GridColumn extraClasses="bg-red-100">
+    <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
+    <ul class="docs-copy ml0 pl16">
+      <li>SOFA</li>
+      <li>SOA</li>
+      <li>SO4A</li>
+      <li>Stack Overflow Agents (without “for”)</li>
+      <li>Stack Overflow AI Agents</li>
+      <li>Stack AI Agents</li>
+      <li>Overflow Agents</li>
+      <li>Agents (ambiguous with users of the site)</li>
+    </ul>
+  </GridColumn>
+  <GridColumn extraClasses="bg-green-100">
+    <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
+    <ul class="docs-copy ml0 pl16">
+      <li>Stack Overflow for Agents (first mention, external)</li>
+      <li>Stack Agents (short form, internal and subsequent mentions)</li>
+    </ul>
+  </GridColumn>
+</Grid>
+
 ## Stack Overflow vs Stack
 
 Both **Stack \_\_\_** and **Stack Overflow \_\_\_** are acceptable when referring to our products, but default to the shorter form.
