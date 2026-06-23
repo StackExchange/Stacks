@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [v2, main]
+    branches: [v2]
   pull_request:
-    branches: [v2, main]
+    branches: [v2]
 
 jobs:
   build-and-test:
@@ -49,8 +49,8 @@ jobs:
       needs_lfs: ${{ matrix.needs_lfs }}
 
   release:
-    name: Release (latest or beta)
-    if: github.ref == 'refs/heads/v2' || github.ref == 'refs/heads/main'
+    name: Release (v2)
+    if: github.ref == 'refs/heads/v2'
     needs: [build-and-test]
     runs-on: ubuntu-latest
     steps:
@@ -72,8 +72,7 @@ jobs:
           publish: npm run release
           title: "chore(new-release)"
           commit: "chore(new-release)"
-          branch: ${{ github.ref == 'refs/heads/main' && 'main' || null }}
-          createGithubReleases: ${{ github.ref == 'refs/heads/v2' }}
+          createGithubReleases: true
         env:
           GITHUB_TOKEN: ${{ secrets.STACKS_TOOLING_GH_RW_PAT }}
           NPM_TOKEN: ${{ secrets.NPM_API_KEY }}
