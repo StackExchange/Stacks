@@ -1,7 +1,7 @@
 ---
 title: "Audiences"
 description: "The three groups you’ll be writing for on Meta — and how to tailor calls-to-action for each."
-updated: 2026-04-29
+updated: 2026-06-23
 ---
 
 <script lang="ts">
@@ -11,11 +11,11 @@ updated: 2026-04-29
     import GridColumn from '$components/GridColumn.svelte';
 </script>
 
-[Meta sites](/community/terminology#meta--what-is-it-and-how-does-it-work) are the backbone of Stack Overflow’s Public Platforms — a space where the community discusses how the site should work, raises issues, and influences decisions. For sites with their own domain, you can find them at `meta.` + the domain (e.g., `meta.stackoverflow.com`). For subdomain sites, you can find them at `sitename.meta.stackexchange.com` (e.g., `math.meta.stackexchange.com`).
+[Meta sites](/community/terminology#meta--what-is-it-and-how-does-it-work) are the backbone of Stack Overflow’s Public Platforms — spaces where the communities discuss how their sites should work, raise issues, and influence decisions. For sites with their own domain, you can find the respective Meta sites at `meta.` + the domain (e.g., `meta.stackoverflow.com`); for subdomain sites, you can find them at `sitename.meta.stackexchange.com` (e.g., `math.meta.stackexchange.com`).
 
 ## Introduction
 
-Writing on Meta sites involves addressing a few different audiences, sometimes in a single post. At this time in the company’s history, one task before us is rebuilding trust with a technical, opinionated, and change-averse user base. At the same time, we must inform and entice new or less-seasoned users who are looking to possibly do more. We must also re-engage users who have shifted from being contributors to more passive readers over time. We need to speak to all groups. Communications authors may choose to make any of these groups their primary audience, but we must remain conscious of all groups when writing to have maximum effectiveness.
+Writing on Meta sites involves addressing a few different audiences, sometimes in a single post. When addressing the communities that use the Stack Exchange sites, one task before us is rebuilding trust with a technical, opinioned, and change-averse user base. At the same time, we must inform and entice new or less-seasoned users who are looking to possibly do more. We must also re-engage users who have shifted from being contributors to more passive readers over time. We need to speak to all groups. Communications authors may choose to make any of these groups their primary audience, but we must remain conscious of all groups when writing to have maximum effectiveness.
 
 For the purposes of these guidelines, we’re roughly dividing the people you might need to communicate with into three somewhat arbitrary groups, whose boundaries might be somewhat fuzzy on occasion.
 
@@ -23,7 +23,7 @@ For the purposes of these guidelines, we’re roughly dividing the people you mi
 
 **Seasoned users** are perhaps slow to trust or get excited about something that is new, or a shift from “the way things have always been.” Every good public communication is an opportunity to earn their confidence and build trust, and every bad public communication risks confirming their suspicions and fueling skepticism. The goal isn’t just to inform, but to convey that the company understands their craft, respects their investment of time on the platform, and values their opinions. Empathy is key: recognize the disruption that platform changes may cause for seasoned users. When speaking to seasoned users, write as a peer seeking collaboration. Use language that minimizes the emotional distance between you and the reader. **Calls-to-action are for collaboration and feedback.**
 
-This group includes the traditional, somewhat loosely defined roles we often refer to in product development: active/engaged user, contributor, curator, leader, moderator. When crafting communication focused on actions some of these groups perform (or that we hope they perform), it’s important to understand the role being targeted. But note that there is much overlap in those roles, and an individual user’s actions may fit into multiple roles.
+This group includes the traditional, somewhat loosely-defined roles we often refer to in product development: active/engaged user, contributor, curator, leader, moderator. When crafting communication focused on actions some of these groups perform (or that we hope they perform), it’s important to understand the role being targeted. But note that there is much overlap in those roles, and an individual user’s actions may fit into multiple roles.
 
 <Grid>
     <GridColumn extraClasses="bg-red-100">
@@ -62,6 +62,6 @@ This group includes the traditional, somewhat loosely defined roles we often ref
     </GridColumn>
     <GridColumn extraClasses="bg-green-100">
         <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
-        <p class="docs-copy">“We’re excited to get your feedback on this new and improved version of X, which we hope addresses many of the longstanding concerns raised in prior posts over the years.”</p>
+        <p class="docs-copy">“We’re excited to get your feedback on this new and improved version of X, which we hope addresses many of the longstanding concerns raised in prior posts over the years [potentially link to relevant posts that indicate community discontentment with a feature, etc.].”</p>
     </GridColumn>
 </Grid>
