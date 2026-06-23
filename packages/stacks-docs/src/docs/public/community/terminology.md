@@ -1,7 +1,7 @@
 ---
 title: "Terminology"
 description: "Community-specific terminology used across Stack Overflow."
-updated: 2026-05-19
+updated: 2026-06-23
 ---
 
 <script lang="ts">
@@ -42,7 +42,7 @@ The terms “account” and “profile” are sometimes used interchangeably, bu
 
 ## Site suspensions, chat suspensions, and post bans (question/answer blocks)
 
-The term “suspension” or “site suspension” usually refers to suspensions manually applied by site moderators when they determine that a user’s actions are detrimental to the site. During this time “in the penalty box,” the user will not be able to post questions or answers or perform any other action on the site, and their reputation will be locked at 1 until the suspension expires. Any rep they gained over the ban time is gained when the suspension ends, at which point a reputation recount takes place.
+The term “suspension” or “site suspension” usually refers to suspensions manually applied by site moderators when they determine that a user’s actions are detrimental to the particular site they moderate. During this time “in the penalty box,” the user will not be able to post questions or answers or perform any other action on that particular site, and their reputation will be locked at 1 until the suspension expires. Any rep they gained over the ban time is gained when the suspension ends, at which point a reputation recount takes place.
 
 The term “ban” can refer to the automatic question bans and answer bans, automated or manual editing and reviewing bans, which prevent users from doing those activities only (on a specific site).
 
@@ -60,10 +60,10 @@ Having one’s posts voted on affects their reputation, which is a rough measure
 
 A “moderator,” “diamond moderator,” or “mod” for short, is a user that has been elected (or appointed) and has additional powers to oversee a site. They can merge questions, do mass-re-tagging, and have other abilities regular site users don’t. They’re distinguishable by the ♦ after their names on all posts, comments, and chat messages, and on their profile. Some Stack Overflow employees also have the ♦ and moderator powers across [all sites](https://stackexchange.com/sites), along with a “staff” marker.
 
-The term “moderators” is also sometimes used to refer to users with 10k+ reputation points, who have certain moderation privileges.
+The term “moderators” is also sometimes colloquially used to refer to users with 10k+ reputation points, who have certain moderation privileges, and do perform some moderation or curation tasks.
 
 Regular (non-mod) users can perform a variety of actions (such as editing, approving review, closing and reopening posts, etc.) on site despite not having the moderators’ heightened powers, which can also be referred to as “moderation actions” or “curation actions.”
 
 ## [status-*] tags and their usage
 
-Certain tags on Meta, denoted by their red color, can only be added to a question by a moderator or staff member. These tags are reserved for the purpose of giving a feature request or bug an official status from the team. The current relevant tags and their usage were introduced in [this Meta post](https://meta.stackexchange.com/questions/402121/bringing-clarity-to-status-tag-usage-on-meta-sites).
+Certain tags on Meta, denoted by their red color, can only be added to a question by a moderator or staff member. Of these tags, the subset of tags that start with `[status-*]` are reserved for the purpose of giving a feature request or bug an official status from staff. The current relevant tags and their usage were introduced in [this Meta post](https://meta.stackexchange.com/questions/402121/bringing-clarity-to-status-tag-usage-on-meta-sites).
