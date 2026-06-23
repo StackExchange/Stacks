@@ -1,7 +1,7 @@
 ---
 title: "Language & grammar"
 description: "Grammatical guidelines for Meta posts that reduce confusion and improve consistency across teams."
-updated: 2026-04-29
+updated: 2026-06-23
 ---
 
 <script lang="ts">
@@ -45,14 +45,12 @@ Passive voice can be acceptable to soften an announcement, or to avoid excessive
         <h3>Active (strong / direct)</h3>
         <ul class="docs-copy ml0 pl16">
             <li>“We are delaying the release.”</li>
-            <li>“We decided not to move forward with further development.”</li>
         </ul>
     </GridColumn>
     <GridColumn>
         <h3>Passive (softened when needed)</h3>
         <ul class="docs-copy ml0 pl16">
             <li>“The release is being delayed.”</li>
-            <li>“A decision has been reached and development will not be moving forward.”</li>
         </ul>
     </GridColumn>
 </Grid>
@@ -142,7 +140,7 @@ If a product or feature is being released in phases, be specific about which pha
     <GridColumn extraClasses="bg-green-100">
         <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
         <p class="docs-copy mb16">“Starting next week, an alpha version of the tag synonyms page we’ve been working on will be made available for testing for users who’ve signed up for it. The current plan is to follow up with a beta version on DATE, which will be made available to all logged-in users.”</p>
-        <p class="docs-copy mb16">“Starting next week, the new version of the tag synonyms page we’ve been working on will be made available to 10% of users. The page will be made available to the rest of the user base in 10% daily increments over the following weeks, assuming we don’t see a significant number of reports about the page’s usage.”</p>
+        <p class="docs-copy mb16">“Starting next week, the new version of the tag synonyms page we’ve been working on will be made available to 10% of users. The page will be made available to the rest of the user base in 10% daily increments over the following weeks, assuming we don’t see a significant number of reports about the pages' usage.”</p>
         <p class="docs-copy">“Starting next week, we’ll be rolling out an experiment on the tag synonyms page. For two weeks we’ll monitor performance against the control group (which will be using the current version of the page). We’ll evaluate whether to graduate the feature depending on what we see in the data.”</p>
     </GridColumn>
 </Grid>
