@@ -66,7 +66,11 @@
         ref.setAttribute("aria-controls", `${pstate.id}-popover`);
         const toggle = pstate.dismissible ? pstate.toggle : pstate.open;
         ref.addEventListener("click", toggle);
-        return () => ref.removeEventListener("click", toggle);
+        ref.addEventListener("focusout", pstate.onFocusOut);
+        return () => {
+            ref.removeEventListener("click", toggle);
+            ref.removeEventListener("focusout", pstate.onFocusOut);
+        };
     };
 
     const setupTooltip = (ref: HTMLElement, pstate: PopoverState) => {
@@ -83,13 +87,20 @@
         };
     };
 
+    const setupControlledPopover = (ref: HTMLElement, pstate: PopoverState) => {
+        if (!pstate.tooltip) {
+            ref.addEventListener("focusout", pstate.onFocusOut);
+        }
+        return () => ref.removeEventListener("focusout", pstate.onFocusOut);
+    };
+
     onMount(() => {
         reference = setupRef(elementId, referenceWrapper, pstate);
 
         // if the popover is controlled, we delegate all the behavior to the consumer
-        if (pstate.controlled) return;
+        if (pstate.controlled) return setupControlledPopover(reference, pstate);
 
-        pstate.tooltip
+        return pstate.tooltip
             ? setupTooltip(reference, pstate)
             : setupPopover(reference, pstate);
     });

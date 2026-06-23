@@ -2,7 +2,7 @@ import { mount, unmount, tick, createRawSnippet } from "svelte";
 import type { Strategy } from "@floating-ui/core";
 import sinon from "sinon";
 import { expect } from "@open-wc/testing";
-import { render, screen } from "@testing-library/svelte";
+import { render, screen, waitFor } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import { setViewport } from "@web/test-runner-commands";
 import { createSvelteComponentsSnippet } from "../../../test-utils";
@@ -42,6 +42,12 @@ const defaultChildren = {
         },
     },
 };
+
+afterEach(() => {
+    document
+        .querySelectorAll("[data-testid='popover-outside-button']")
+        .forEach((el) => el.remove());
+});
 
 describe("Popover", () => {
     it("should show/hide the popover content when the user click on the reference", async () => {
@@ -680,6 +686,61 @@ describe("Popover", () => {
     });
 
     describe("when not in tooltip mode", () => {
+        const focusableContent = {
+            component: PopoverContent,
+            props: {
+                children: createRawSnippet(() => ({
+                    render: () =>
+                        '<button type="button">Popover action</button>',
+                })),
+            },
+        };
+
+        const focusableMenuContent = {
+            component: PopoverContent,
+            props: {
+                role: "menu",
+                children: createRawSnippet(() => ({
+                    render: () =>
+                        '<button type="button" role="menuitem">Popover action</button>',
+                })),
+            },
+        };
+
+        const focusableNestedMenuContent = {
+            component: PopoverContent,
+            props: {
+                children: createRawSnippet(() => ({
+                    render: () => `
+                        <ul class="s-menu" role="menu">
+                            <li class="s-menu--item" role="none">
+                                <button type="button" role="menuitem">Popover action</button>
+                            </li>
+                        </ul>
+                    `,
+                })),
+            },
+        };
+
+        const menuContent = {
+            component: PopoverContent,
+            props: {
+                role: "menu",
+                children: createRawSnippet(() => ({
+                    render: () => "<span>Popover Content</span>",
+                })),
+            },
+        };
+
+        const addOutsideButton = () => {
+            const outsideButton = document.createElement("button");
+            outsideButton.type = "button";
+            outsideButton.textContent = "Outside action";
+            outsideButton.dataset.testid = "popover-outside-button";
+            document.body.append(outsideButton);
+            return outsideButton;
+        };
+
         it("should throw an error if the reference element provided does not have any children of role button", () => {
             expect(() =>
                 render(Popover, {
@@ -748,6 +809,257 @@ describe("Popover", () => {
 
             await userEvent.click(reference);
             expect(reference).to.have.attribute("aria-expanded", "false");
+        });
+
+        it("should keep the popover open when focus moves from the reference into the content", async () => {
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        focusableMenuContent,
+                    ]),
+                },
+            });
+
+            const reference = screen.getByRole("button", { name: "Trigger" });
+
+            await userEvent.click(reference);
+            expect(screen.getByRole("menu")).to.exist;
+
+            await userEvent.tab();
+
+            expect(screen.getByRole("menuitem", { name: "Popover action" })).to
+                .have.focus;
+            expect(screen.getByRole("menu")).to.exist;
+            expect(reference).to.have.attribute("aria-expanded", "true");
+        });
+
+        it("should keep the popover open when focus moves from the content back to the reference", async () => {
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        focusableMenuContent,
+                    ]),
+                },
+            });
+
+            const reference = screen.getByRole("button", { name: "Trigger" });
+
+            await userEvent.click(reference);
+            expect(screen.getByRole("menu")).to.exist;
+
+            await userEvent.tab();
+            expect(screen.getByRole("menuitem", { name: "Popover action" })).to
+                .have.focus;
+
+            await userEvent.tab({ shift: true });
+
+            expect(reference).to.have.focus;
+            expect(screen.getByRole("menu")).to.exist;
+            expect(reference).to.have.attribute("aria-expanded", "true");
+        });
+
+        it("should close the popover without restoring focus when focus moves outside", async () => {
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        focusableMenuContent,
+                    ]),
+                },
+            });
+            const outsideButton = addOutsideButton();
+
+            const reference = screen.getByRole("button", { name: "Trigger" });
+
+            await userEvent.click(reference);
+            expect(screen.getByRole("menu")).to.exist;
+
+            await userEvent.tab();
+            await userEvent.tab();
+
+            expect(outsideButton).to.have.focus;
+            await waitFor(
+                () => expect(screen.queryByRole("menu")).not.to.exist
+            );
+            expect(reference).to.have.attribute("aria-expanded", "false");
+            expect(reference).not.to.have.focus;
+        });
+
+        it("should close the popover when focus leaves a popover containing a menu", async () => {
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        focusableNestedMenuContent,
+                    ]),
+                },
+            });
+            const outsideButton = addOutsideButton();
+
+            const reference = screen.getByRole("button", { name: "Trigger" });
+
+            await userEvent.click(reference);
+            expect(screen.getByRole("menu")).to.exist;
+
+            await userEvent.tab();
+            await userEvent.tab();
+
+            expect(outsideButton).to.have.focus;
+            await waitFor(
+                () => expect(screen.queryByRole("menu")).not.to.exist
+            );
+            expect(reference).to.have.attribute("aria-expanded", "false");
+            expect(reference).not.to.have.focus;
+        });
+
+        it("should stay open when focus moves outside a non-menu popover", async () => {
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        focusableContent,
+                    ]),
+                },
+            });
+            const outsideButton = addOutsideButton();
+
+            const reference = screen.getByRole("button", { name: "Trigger" });
+
+            await userEvent.click(reference);
+            expect(screen.getByRole("dialog")).to.exist;
+
+            await userEvent.tab();
+            await userEvent.tab();
+
+            expect(outsideButton).to.have.focus;
+            expect(screen.getByRole("dialog")).to.exist;
+            expect(reference).to.have.attribute("aria-expanded", "true");
+            expect(reference).not.to.have.focus;
+        });
+
+        it("should stay open when focus leaves a menu popover that is not dismissible", async () => {
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    dismissible: false,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        focusableMenuContent,
+                    ]),
+                },
+            });
+            const outsideButton = addOutsideButton();
+
+            const reference = screen.getByRole("button", { name: "Trigger" });
+
+            await userEvent.click(reference);
+            expect(screen.getByRole("menu")).to.exist;
+
+            await userEvent.tab();
+            await userEvent.tab();
+
+            expect(outsideButton).to.have.focus;
+            expect(screen.getByRole("menu")).to.exist;
+            expect(reference).to.have.attribute("aria-expanded", "true");
+            expect(reference).not.to.have.focus;
+        });
+
+        it("should close the popover when focus moves from the reference directly outside", async () => {
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        menuContent,
+                    ]),
+                },
+            });
+            const outsideButton = addOutsideButton();
+
+            const reference = screen.getByRole("button", { name: "Trigger" });
+
+            await userEvent.click(reference);
+            expect(screen.getByRole("menu")).to.exist;
+
+            await userEvent.tab();
+
+            expect(outsideButton).to.have.focus;
+            await waitFor(
+                () => expect(screen.queryByRole("menu")).not.to.exist
+            );
+            expect(reference).to.have.attribute("aria-expanded", "false");
+            expect(reference).not.to.have.focus;
+        });
+
+        it("should close the popover when focus leaves with no related target", async () => {
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        menuContent,
+                    ]),
+                },
+            });
+
+            const reference = screen.getByRole("button", { name: "Trigger" });
+
+            await userEvent.click(reference);
+            expect(screen.getByRole("menu")).to.exist;
+
+            reference.dispatchEvent(
+                new FocusEvent("focusout", {
+                    bubbles: true,
+                    relatedTarget: null,
+                })
+            );
+
+            await waitFor(
+                () => expect(screen.queryByRole("menu")).not.to.exist
+            );
+            expect(reference).to.have.attribute("aria-expanded", "false");
+        });
+
+        it("should request close without mutating visibility when a controlled popover loses focus", async () => {
+            const onCloseSpy = sinon.spy();
+            const { rerender } = render(Popover, {
+                props: {
+                    ...defaultProps,
+                    visible: true,
+                    onclose: onCloseSpy,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        focusableMenuContent,
+                    ]),
+                },
+            });
+            const outsideButton = addOutsideButton();
+
+            const reference = screen.getByRole("button", { name: "Trigger" });
+
+            await userEvent.tab();
+            expect(reference).to.have.focus;
+
+            await userEvent.tab();
+            expect(screen.getByRole("menuitem", { name: "Popover action" })).to
+                .have.focus;
+            expect(onCloseSpy).not.to.have.been.called;
+
+            await userEvent.tab();
+            expect(outsideButton).to.have.focus;
+            expect(onCloseSpy).to.have.been.calledOnce;
+            expect(screen.getByRole("menu")).to.exist;
+
+            rerender({ visible: false });
+            await tick();
+            expect(screen.queryByRole("menu")).not.to.exist;
         });
 
         it("should not show/hide the tooltip content when the user hovers on the reference", async () => {
