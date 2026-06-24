@@ -1,5 +1,16 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0
+
+### Minor Changes
+
+- [#2304](https://github.com/StackExchange/Stacks/pull/2304) [`3bf24b4`](https://github.com/StackExchange/Stacks/commit/3bf24b45c0a024214b97ba418f31cdadb98038b2) Thanks [@alexwarren](https://github.com/alexwarren)! - Fix popover focus-leave dismissal
+
+### Patch Changes
+
+- Updated dependencies [[`3bf24b4`](https://github.com/StackExchange/Stacks/commit/3bf24b45c0a024214b97ba418f31cdadb98038b2)]:
+    - @stackoverflow/stacks@2.9.0
+
 ## 0.6.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @stackoverflow/stacks
 
+## 2.9.0
+
+### Minor Changes
+
+- [#2304](https://github.com/StackExchange/Stacks/pull/2304) [`3bf24b4`](https://github.com/StackExchange/Stacks/commit/3bf24b45c0a024214b97ba418f31cdadb98038b2) Thanks [@alexwarren](https://github.com/alexwarren)! - Fix popover focus-leave dismissal
+
 ## 2.8.6
 
 ### Patch Changes
