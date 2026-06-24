@@ -86,6 +86,17 @@ export abstract class BasePopoverController extends Stacks.StacksController {
     }
 
     /**
+     * Only menu popovers dismiss when focus leaves the reference/popover pair.
+     */
+    protected get shouldHideOnFocusLeave() {
+        return (
+            this.shouldHideOnOutsideClick &&
+            (this.popoverElement?.getAttribute("role") === "menu" ||
+                !!this.popoverElement?.querySelector('[role="menu"]'))
+        );
+    }
+
+    /**
      * Initializes and validates controller variables
      */
     connect() {
@@ -322,6 +333,7 @@ export class PopoverController extends BasePopoverController {
 
     private boundHideOnOutsideClick!: (event: MouseEvent) => void;
     private boundHideOnEscapePress!: (event: KeyboardEvent) => void;
+    private boundHideOnFocusOut!: (event: FocusEvent) => void;
 
     /**
      * Toggles optional classes and accessibility attributes in addition to BasePopoverController.shown
@@ -358,9 +370,19 @@ export class PopoverController extends BasePopoverController {
             this.boundHideOnOutsideClick || this.hideOnOutsideClick.bind(this);
         this.boundHideOnEscapePress =
             this.boundHideOnEscapePress || this.hideOnEscapePress.bind(this);
+        this.boundHideOnFocusOut =
+            this.boundHideOnFocusOut || this.hideOnFocusOut.bind(this);
 
         document.addEventListener("mousedown", this.boundHideOnOutsideClick);
         document.addEventListener("keyup", this.boundHideOnEscapePress);
+        this.referenceElement.addEventListener(
+            "focusout",
+            this.boundHideOnFocusOut
+        );
+        this.popoverElement.addEventListener(
+            "focusout",
+            this.boundHideOnFocusOut
+        );
     }
 
     /**
@@ -369,6 +391,14 @@ export class PopoverController extends BasePopoverController {
     protected unbindDocumentEvents() {
         document.removeEventListener("mousedown", this.boundHideOnOutsideClick);
         document.removeEventListener("keyup", this.boundHideOnEscapePress);
+        this.referenceElement.removeEventListener(
+            "focusout",
+            this.boundHideOnFocusOut
+        );
+        this.popoverElement.removeEventListener(
+            "focusout",
+            this.boundHideOnFocusOut
+        );
     }
 
     /**
@@ -403,6 +433,28 @@ export class PopoverController extends BasePopoverController {
         // note: .contains also returns true if the node itself matches the target element
         if (this.popoverElement.contains(<Node>e.target)) {
             this.referenceElement.focus();
+        }
+
+        this.hide(e);
+    }
+
+    /**
+     * Forces the popover to hide if keyboard focus leaves both the reference element and the popover.
+     * @param {FocusEvent} e - The focusout event from the reference or popover element
+     */
+    private hideOnFocusOut(e: FocusEvent) {
+        if (!this.shouldHideOnFocusLeave) {
+            return;
+        }
+
+        const relatedTarget = e.relatedTarget;
+
+        if (
+            relatedTarget instanceof Node &&
+            (this.referenceElement.contains(relatedTarget) ||
+                this.popoverElement.contains(relatedTarget))
+        ) {
+            return;
         }
 
         this.hide(e);
