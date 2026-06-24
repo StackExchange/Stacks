@@ -1,5 +1,11 @@
 # @stackoverflow/stacks-svelte
 
+## 0.7.0
+
+### Minor Changes
+
+- [`81ae815`](https://github.com/StackExchange/Stacks/commit/81ae81561711af926dc615dfe1fbd3e547c719cf) Thanks [@asblanco](https://github.com/asblanco)! - Fix popover focus-leave dismissal
+
 ## 0.6.1
 
 ### Patch Changes
