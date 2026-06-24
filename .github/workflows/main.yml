@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main, v2]
+    branches: [main]
   pull_request:
-    branches: [main, v2]
+    branches: [main]
 
 jobs:
   build-and-test:
@@ -54,8 +54,8 @@ jobs:
     secrets: inherit
 
   release:
-    name: Release (latest or beta)
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/v2'
+    name: "Release (main)"
+    if: github.ref == 'refs/heads/main'
     needs: [build-and-test]
     runs-on: ubuntu-latest
     env:
@@ -81,8 +81,8 @@ jobs:
           publish: npm run release
           title: "chore(new-release)"
           commit: "chore(new-release)"
-          branch: ${{ github.ref == 'refs/heads/main' && 'main' || null }}
-          createGithubReleases: ${{ github.ref == 'refs/heads/v2' }}
+          branch: main
+          createGithubReleases: true
         env:
           GITHUB_TOKEN: ${{ secrets.STACKS_TOOLING_GH_RW_PAT }}
           NPM_TOKEN: ${{ secrets.NPM_API_KEY }}
@@ -91,13 +91,13 @@ jobs:
         if: steps.changesets.outputs.pullRequestNumber
         uses: thollander/actions-comment-pull-request@v3
         with:
-            comment-tag: "pr-release-docs"
-            pr-number: ${{ steps.changesets.outputs.pullRequestNumber }}
-            message: |
-                To trigger the build for this PR, **close and re-open it**.
-                This is necessary because the PR is updated by github-actions[bot].
-                This is a technical user which does not trigger actions workflows on push events.
-                See this GH issue for more details: https://github.com/changesets/action/issues/187
+          comment-tag: "pr-release-docs"
+          pr-number: ${{ steps.changesets.outputs.pullRequestNumber }}
+          message: |
+            To trigger the build for this PR, **close and re-open it**.
+            This is necessary because the PR is updated by github-actions[bot].
+            This is a technical user which does not trigger actions workflows on push events.
+            See this GH issue for more details: https://github.com/changesets/action/issues/187
 
 # cancel the jobs if another workflow is kicked off for the same branch
 concurrency:
