@@ -122,6 +122,21 @@
     </div>
 </Story>
 
+<Story name="Horizontal Shift" asChild>
+    <div class="hmn3 d-flex jc-end ai-center pr8">
+        <Popover id="horizontal-shift" placement="bottom" autoshow>
+            <PopoverReference>
+                <Button>Trigger</Button>
+            </PopoverReference>
+            <PopoverContent class="w-auto wmn0">
+                <span style="display: block; width: 220px;">
+                    Shifted content
+                </span>
+            </PopoverContent>
+        </Popover>
+    </div>
+</Story>
+
 <Story name="Strategies" asChild>
     <div class="d-grid grid__2 w100 ji-center py128">
         {#each PopoverStrategies as strategy (strategy)}

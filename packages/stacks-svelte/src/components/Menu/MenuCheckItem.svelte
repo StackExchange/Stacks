@@ -3,6 +3,8 @@
 </script>
 
 <script lang="ts">
+    import clsx from "clsx";
+    import type { ClassValue } from "svelte/elements";
     import Checkbox from "../Checkbox/Checkbox.svelte";
     import Radio from "../RadioGroup/Radio.svelte";
     import Icon from "../Icon/Icon.svelte";
@@ -56,7 +58,7 @@
         /**
          * Additional CSS classes added to the check control container
          */
-        class?: string;
+        class?: ClassValue;
     }
 
     const {
@@ -72,8 +74,8 @@
         class: className = "",
     }: Props = $props();
 
-    const getItemClasses = (className: string) => {
-        return `s-menu--item${className ? ` ${className}` : ""}`;
+    const getItemClasses = (className: ClassValue) => {
+        return clsx("s-menu--item", className);
     };
 
     const itemClasses = $derived(getItemClasses(className));

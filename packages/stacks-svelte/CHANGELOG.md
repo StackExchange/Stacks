@@ -1,5 +1,27 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.33
+
+### Minor Changes
+
+- [#2298](https://github.com/StackExchange/Stacks/pull/2298) [`f17e8e8`](https://github.com/StackExchange/Stacks/commit/f17e8e84cd8a2cd5bc9337086c6a84929a403094) Thanks [@alexwarren](https://github.com/alexwarren)! - Fix popover focus-leave dismissal
+
+## 1.0.0-beta.32
+
+### Patch Changes
+
+- [#2262](https://github.com/StackExchange/Stacks/pull/2262) [`0179d9b`](https://github.com/StackExchange/Stacks/commit/0179d9be7772126479d7ca89195ca337f30ae6e5) Thanks [@dancormier](https://github.com/dancormier)! - Allow class prop to be array or object
+
+- [#2288](https://github.com/StackExchange/Stacks/pull/2288) [`a84dd91`](https://github.com/StackExchange/Stacks/commit/a84dd915185946ee1b8ed8178dd4b2d3418cb644) Thanks [@giamir](https://github.com/giamir)! - Shift Popover content horizontally when it would overflow the viewport.
+
+- [#2261](https://github.com/StackExchange/Stacks/pull/2261) [`2c9bd95`](https://github.com/StackExchange/Stacks/commit/2c9bd958bf2e405271ba5e1f5a32e4db7ead5a67) Thanks [@dancormier](https://github.com/dancormier)! - Updated Button component to use string for badges
+
+    BREAKING CHANGES:
+    - `badge` prop in Button component now uses string (numbers only) instead of a Snippet
+
+- [#2206](https://github.com/StackExchange/Stacks/pull/2206) [`a9d6edf`](https://github.com/StackExchange/Stacks/commit/a9d6edf80a51869139b67e2047c56b057a3bad38) Thanks [@abovedave](https://github.com/abovedave)! - \* `<Avatar>` nested `<img>` dimensions.
+    - Screen reader text for the private badge variant.
+
 ## 1.0.0-beta.31
 
 ### Patch Changes

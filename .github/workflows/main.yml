@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [v2, main]
+    branches: [main, v2]
   pull_request:
-    branches: [v2, main]
+    branches: [main, v2]
 
 jobs:
   build-and-test:
@@ -55,9 +55,13 @@ jobs:
 
   release:
     name: Release (latest or beta)
-    if: github.ref == 'refs/heads/v2' || github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/v2'
     needs: [build-and-test]
     runs-on: ubuntu-latest
+    env:
+      BETTER_AUTH_SECRET: ${{ secrets.AUTH_SECRET || 'ci-build-placeholder-secret' }}
+    outputs:
+      published: ${{ steps.changesets.outputs.published }}
     steps:
       - uses: actions/checkout@v5
       - name: Setup Node.js environment
