@@ -1,8 +1,6 @@
 import { Footer } from "../components/footer";
-import { Graphic } from "../components/graphic";
 import { Header } from "../components/header";
 import { Button } from "../components/button";
-import { Headline } from "../components/headline";
 import { Text } from "../components/text";
 import { Spacer } from "../components/spacer";
 import { Subtitle } from "../components/subtitle";
@@ -41,7 +39,7 @@ const devsurvey26 = defineEmailTemplate({
     ]),
     tokens: [],
     preview: ({ props }) => ({ previewText: props.previewText }),
-    renderDocument: ({ props }): MjmlNode => ({
+    renderDocument: (): MjmlNode => ({
         tagName: "mjml",
         children: [
             {
