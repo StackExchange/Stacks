@@ -38,6 +38,7 @@
 </script>
 
 <svelte:head>
+  <title>Stack Overflow Design System (aka “Stacks”)</title>
   <style>
     main {
       background-image: url(/images/heros/home.svg);
