@@ -5,6 +5,7 @@ import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vite";
 
 import pkgMain from "../stacks-classic/package.json";
+import pkgEmail from "../stacks-email/package.json";
 import pkgSvelte from "../stacks-svelte/package.json";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -36,6 +37,7 @@ export default defineConfig({
     },
     define: {
         __APP_VERSION__: JSON.stringify(pkgMain.version),
+        __EMAIL_VERSION__: JSON.stringify(pkgEmail.version),
         __SVELTE_VERSION__: JSON.stringify(pkgSvelte.version),
     },
 });

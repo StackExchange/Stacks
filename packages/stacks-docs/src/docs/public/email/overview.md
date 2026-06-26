@@ -12,6 +12,10 @@ updated: 2026-06-01
     import GridColumn from '$components/GridColumn.svelte';
 </script>
 
+<div class="d-flex g4 ai-center mb24">
+    <span class="s-badge fc-purple-500 bg-purple-100">@stackoverflow/stacks-email v{__EMAIL_VERSION__}</span>
+</div>
+
 ## Introduction
 
 Emails are a great opportunity to showcase the brand’s personality to loyal users or perspective customers who may otherwise only interact with the product itself.
