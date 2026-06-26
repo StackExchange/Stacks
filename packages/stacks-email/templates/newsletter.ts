@@ -85,7 +85,7 @@ const newsletter = defineEmailTemplate({
                         textContent: "01 January 1970",
                     }),
                     Graphic("strip", {
-                        imageSrc: "/email/strip/strip-overflow.png"
+                        imageSrc: "/email/strip/strip-overflow.png",
                     }),
                     Text("body", { textContent: bodyPlaceholder }),
                     Title("default", { textContent: "Featured" }),
@@ -93,12 +93,15 @@ const newsletter = defineEmailTemplate({
                         Card("vertical", {
                             ctaStyle: "title",
                             titleContent: "Vibe coding without code knowledge",
-                            textContent: "With AI, being able to code has never been easier. But is it any good? Here is what vibe coding is like for someone without technical skills."
+                            textContent:
+                                "With AI, being able to code has never been easier. But is it any good? Here is what vibe coding is like for someone without technical skills.",
                         }),
                         Card("vertical", {
                             ctaStyle: "title",
-                            titleContent: "What is cloud computing and why use it?",
-                            textContent: "In this No Dumb Questions, we’re joined by tech lead for the infrastructure team, to learn about the cloud, compute, and data centers."
+                            titleContent:
+                                "What is cloud computing and why use it?",
+                            textContent:
+                                "In this No Dumb Questions, we’re joined by tech lead for the infrastructure team, to learn about the cloud, compute, and data centers.",
                         })
                     ),
                     Title("default", {
@@ -107,7 +110,7 @@ const newsletter = defineEmailTemplate({
                     Card("vertical", { imageSrc: "", ctaStyle: "title" }),
                     Card("vertical", { imageSrc: "", ctaStyle: "title" }),
                     Graphic("strip", {
-                        imageSrc: "/email/strip/strip-divider.png"
+                        imageSrc: "/email/strip/strip-divider.png",
                     }),
                     Title("default", {
                         textContent: "Links from around the web",

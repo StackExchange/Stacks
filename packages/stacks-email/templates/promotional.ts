@@ -28,7 +28,8 @@ const promotional = defineEmailTemplate({
             name: "sectionClass",
             type: "string",
             initialValue: "bg-light-blue",
-            description: "The class applied to all sections - promo is color drenched by default.",
+            description:
+                "The class applied to all sections - promo is color drenched by default.",
         }),
     ]),
     tokens: [],
@@ -57,13 +58,16 @@ const promotional = defineEmailTemplate({
                             "A starting point for more simple transactional emails with a single message. It can [contain links](#) or **rich text**. Read this if text is written in markdown.",
                         textAlign: "center",
                     }),
-                    Section([
-                        Button("primary", {
-                            align: "center",
-                        })
-                    ], {
-                        sectionClass: props.sectionClass,
-                    }),
+                    Section(
+                        [
+                            Button("primary", {
+                                align: "center",
+                            }),
+                        ],
+                        {
+                            sectionClass: props.sectionClass,
+                        }
+                    ),
                     Spacer("large", {
                         sectionClass: props.sectionClass,
                     }),

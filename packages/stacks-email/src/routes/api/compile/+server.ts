@@ -244,9 +244,7 @@ export const POST: RequestHandler = async ({ request }) => {
     }
 
     const isBlockComposeRequest =
-        typeof body === "object" &&
-        body !== null &&
-        "blocks" in body;
+        typeof body === "object" && body !== null && "blocks" in body;
 
     if (!isBlockComposeRequest) {
         const parsed = templateRequestSchema.safeParse(body);

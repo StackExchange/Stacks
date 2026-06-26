@@ -16,8 +16,11 @@ import {
 import { tokens } from "../src/lib/tokens";
 import type { MjmlNode } from "../src/lib/types";
 
-const headerHighlight = (line = "", { bg = "#201c1d", txt = "#ffffff", padding = "8px 12px" } = {}) =>
-    `<span style="display:inline-block;white-space:nowrap;background-color:${bg};color:${txt};padding:${padding};line-height:1;">${line}</span>`
+const headerHighlight = (
+    line = "",
+    { bg = "#201c1d", txt = "#ffffff", padding = "8px 12px" } = {}
+) =>
+    `<span style="display:inline-block;white-space:nowrap;background-color:${bg};color:${txt};padding:${padding};line-height:1;">${line}</span>`;
 
 const devsurvey26 = defineEmailTemplate({
     slug: "devsurvey26",
@@ -32,7 +35,8 @@ const devsurvey26 = defineEmailTemplate({
             name: "sectionClass",
             type: "string",
             initialValue: "bg-light-blue",
-            description: "The class applied to all sections - promo is color drenched by default.",
+            description:
+                "The class applied to all sections - promo is color drenched by default.",
         }),
     ]),
     tokens: [],
@@ -56,41 +60,54 @@ const devsurvey26 = defineEmailTemplate({
                             {
                                 tagName: "mj-column",
                                 attributes: {
-                                    "width": "55%",
+                                    width: "55%",
                                 },
                                 children: [
                                     {
                                         tagName: "mj-text",
                                         attributes: {
                                             "mj-class": "bg-page",
-                                            "padding-top": tokens.layout.containerYPadding,
-                                            "padding-bottom": tokens.layout.containerYPadding,
-                                            "padding-left": tokens.layout.containerXPadding,
-                                            "padding-right": tokens.layout.containerXPadding,
-                                            "font-family": "Stack Sans Notch, Arial, Helvetica, sans-serif",
+                                            "padding-top":
+                                                tokens.layout.containerYPadding,
+                                            "padding-bottom":
+                                                tokens.layout.containerYPadding,
+                                            "padding-left":
+                                                tokens.layout.containerXPadding,
+                                            "padding-right":
+                                                tokens.layout.containerXPadding,
+                                            "font-family":
+                                                "Stack Sans Notch, Arial, Helvetica, sans-serif",
                                             "font-size": "50px",
                                             "line-height": "100%",
                                         },
                                         content: [
-                                            headerHighlight('Developer'),
-                                            headerHighlight('Survey', { padding: '0 12px 12px' }),
-                                            headerHighlight('2026', { bg: '#fff', txt: tokens.color.text }),
-                                        ].join('<br/>'),
+                                            headerHighlight("Developer"),
+                                            headerHighlight("Survey", {
+                                                padding: "0 12px 12px",
+                                            }),
+                                            headerHighlight("2026", {
+                                                bg: "#fff",
+                                                txt: tokens.color.text,
+                                            }),
+                                        ].join("<br/>"),
                                     },
                                     {
                                         tagName: "mj-text",
                                         attributes: {
-                                            "padding-left": tokens.layout.containerXPadding,
-                                            "padding-right": tokens.layout.containerXPadding,
+                                            "padding-left":
+                                                tokens.layout.containerXPadding,
+                                            "padding-right":
+                                                tokens.layout.containerXPadding,
                                         },
-                                        content: "The definitive report on the state of software development."
-                                    }
+                                        content:
+                                            "The definitive report on the state of software development.",
+                                    },
                                 ],
                             },
                             {
                                 tagName: "mj-column",
                                 attributes: {
-                                    "width": "45%",
+                                    width: "45%",
                                 },
                                 children: [
                                     {
@@ -98,48 +115,62 @@ const devsurvey26 = defineEmailTemplate({
                                         attributes: {
                                             "src": "/email/special/graph.png",
                                             "padding-left": "0px",
-                                            "padding-right": tokens.layout.containerXPadding,
-                                        }
+                                            "padding-right":
+                                                tokens.layout.containerXPadding,
+                                        },
                                     },
                                 ],
                             },
-                        ]
+                        ],
                     },
 
                     Spacer("medium"),
                     Subtitle("medium", {
-                        textContent: "Innovation takes time. This survey takes minutes.",
+                        textContent:
+                            "Innovation takes time. This survey takes minutes.",
                     }),
                     Text("body", {
-                        textContent: "The 2026 Developer Survey is now live. Spend a few minutes responding with the tools you rely on, your current workflow preferences, and what you are actually doing with AI agents. We are bypassing the industry speculation to build a definitive, human-validated snapshot of the modern technical workforce—and sharing the results with the world.",
+                        textContent:
+                            "The 2026 Developer Survey is now live. Spend a few minutes responding with the tools you rely on, your current workflow preferences, and what you are actually doing with AI agents. We are bypassing the industry speculation to build a definitive, human-validated snapshot of the modern technical workforce—and sharing the results with the world.",
                     }),
-                    Section([
-                        Button("primary", {
-                            text: "Take the survey",
-                            href: "https://take.survey.stackoverflow.co/",
-                        }),
-                    ], {
-                        sectionClass: "bg-block",
-                    }),
-                    Spacer("medium"),
-                    Section([
+                    Section(
+                        [
+                            Button("primary", {
+                                text: "Take the survey",
+                                href: "https://take.survey.stackoverflow.co/",
+                            }),
+                        ],
                         {
-                            tagName: "mj-text",
-                            attributes: {
-                                "padding-top": tokens.layout.containerYPadding,
-                                "padding-left": tokens.layout.containerXPadding,
-                                "padding-right": tokens.layout.containerXPadding,
-                                "font-family": "Stack Sans Notch, Arial, Helvetica, sans-serif",
-                                "font-size": "24px",
-                                "line-height": "100%",
+                            sectionClass: "bg-block",
+                        }
+                    ),
+                    Spacer("medium"),
+                    Section(
+                        [
+                            {
+                                tagName: "mj-text",
+                                attributes: {
+                                    "padding-top":
+                                        tokens.layout.containerYPadding,
+                                    "padding-left":
+                                        tokens.layout.containerXPadding,
+                                    "padding-right":
+                                        tokens.layout.containerXPadding,
+                                    "font-family":
+                                        "Stack Sans Notch, Arial, Helvetica, sans-serif",
+                                    "font-size": "24px",
+                                    "line-height": "100%",
+                                },
+                                content: headerHighlight("More than 1s and 0s"),
                             },
-                            content: headerHighlight('More than 1s and 0s'),
-                        },
-                    ], {
-                        sectionClass: "bg-highlight",
-                    }),
+                        ],
+                        {
+                            sectionClass: "bg-highlight",
+                        }
+                    ),
                     Text("body", {
-                        textContent: "Technology is not confined to the engineering department. If you spend your day in an IDE, navigating databases, or leveraging advanced AI tools to manage workflows, you belong in this survey’s story.",
+                        textContent:
+                            "Technology is not confined to the engineering department. If you spend your day in an IDE, navigating databases, or leveraging advanced AI tools to manage workflows, you belong in this survey’s story.",
                         columnClass: "bg-highlight",
                     }),
                     {
@@ -171,12 +202,13 @@ const devsurvey26 = defineEmailTemplate({
                                             "padding-left": "0px",
                                             "align": "right",
                                             "width": "200px",
-                                            "padding-right": tokens.layout.containerXPadding,
-                                        }
-                                    }
+                                            "padding-right":
+                                                tokens.layout.containerXPadding,
+                                        },
+                                    },
                                 ],
                             },
-                        ]
+                        ],
                     },
                     Spacer("medium", { sectionClass: "bg-highlight" }),
                     Footer("social"),
