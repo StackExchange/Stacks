@@ -16,6 +16,10 @@ updated: 2026-06-01
     <span class="s-badge fc-purple-500 bg-purple-100">@stackoverflow/stacks-email v{__EMAIL_VERSION__}</span>
 </div>
 
+<Notice variant="warning" class="s-anchors s-anchors__inherit s-anchors__underlined">
+    <p><strong>Warning:</strong> The email design system is currently experimental and may change.
+</Notice>
+
 ## Introduction
 
 Emails are a great opportunity to showcase the brand’s personality to loyal users or perspective customers who may otherwise only interact with the product itself.
@@ -184,10 +188,6 @@ Preset vertical rhythm utilities.
 </Grid>
 
 ## Usage
-
-<Notice variant="warning" class="s-anchors s-anchors__inherit s-anchors__underlined">
-    <p><strong>Warning:</strong> This functionality is experimental and may change.
-</Notice>
 
 If you are running the `@stackoverflow/stacks-email` package, you can compose and render email markup by POSTing a JSON block list to the compile API.
 
