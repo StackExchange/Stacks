@@ -189,18 +189,31 @@ Preset vertical rhythm utilities.
 
 ## Usage
 
-If you are running the `@stackoverflow/stacks-email` package, you can compose and render email markup by POSTing a JSON block list to the compile API.
+If you are running the `@stackoverflow/stacks-email` package, you can render a registered template or compose a transactional email by POSTing JSON to the compile API.
 
 ### POST /api/compile
 
-**Paramaters**
+**Parameters**
 
-- `template`: currently supports `"transactional"`.
+- `template`: registered template slug, for example `"transactional"`, `"newsletter"`, or `"promotional"`.
 - `target`: one of `"preview"`, `"dotnet"`, or `"braze"`.
-- `blocks`: ordered array of block definitions.
-- `previewText`: optional template preheader/inbox snippet text.
+- `props`: optional template props for registered template compilation.
+- `blocks`: optional ordered array of block definitions for transactional block composition.
+- `previewText`: optional template preheader/inbox snippet text for transactional block composition.
 
-**Example request:**
+**Registered template example:**
+
+```json
+{
+    "template": "newsletter",
+    "target": "preview",
+    "props": {
+        "previewText": "The Stack Overflow Newsletter"
+    }
+}
+```
+
+**Transactional block composition example:**
 
 ```json
 {
@@ -226,7 +239,7 @@ If you are running the `@stackoverflow/stacks-email` package, you can compose an
             "type": "button",
             "variant": "primary",
             "props": {
-                "href": "[[CTA_URL]]",
+                "href": "[[BUTTON_URL]]",
                 "text": "Reset password"
             }
         }
@@ -238,7 +251,7 @@ If you are running the `@stackoverflow/stacks-email` package, you can compose an
 
 **Response**
 
-Successful responses include compiled `html`, final `mjml`, `renderedMjml`, compile `errors`, and metadata such as `template`, `target`, and `blockCount`.
+Successful responses include compiled `html`, final `mjml`, `renderedMjml`, compile `errors`, and metadata such as `template` and `target`. Transactional block composition responses also include `blockCount`.
 
 <br/>
 

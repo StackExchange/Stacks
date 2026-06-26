@@ -5,6 +5,7 @@ import { env } from "$env/dynamic/private";
 
 import { compileMjml } from "$lib/pipeline/compile";
 import { compileTargetSchema } from "$lib/api/request-schemas";
+import { compileEmailTemplate } from "$lib/api/templates";
 import button from "../../../../components/button";
 import footer from "../../../../components/footer";
 import headline from "../../../../components/headline";
@@ -150,6 +151,15 @@ const composeRequestSchema = z.object({
         .min(1, { error: "`blocks` must contain at least one block." }),
 });
 
+const templateRequestSchema = z.object({
+    template: z
+        .string({ error: "`template` must be a non-empty string." })
+        .trim()
+        .min(1, { error: "`template` must be a non-empty string." }),
+    target: compileTargetSchema,
+    props: z.record(z.string(), z.string()).optional(),
+});
+
 type ComposeBlock = z.infer<typeof composeBlockSchema>;
 type ComposeBlockType = ComposeBlock["type"];
 
@@ -209,6 +219,14 @@ const buildTransactionalDocument = (blocks: ComposeBlock[]): MjmlNode => ({
     ],
 });
 
+const invalidRequest = (error: z.ZodError) =>
+    json(
+        {
+            error: error.issues.map((issue) => issue.message).join(" "),
+        },
+        { status: 400 }
+    );
+
 export const POST: RequestHandler = async ({ request }) => {
     if (!hasValidBearerToken(request)) {
         return json({ error: "Unauthorized." }, { status: 401 });
@@ -225,16 +243,45 @@ export const POST: RequestHandler = async ({ request }) => {
         );
     }
 
+    const isBlockComposeRequest =
+        typeof body === "object" &&
+        body !== null &&
+        "blocks" in body;
+
+    if (!isBlockComposeRequest) {
+        const parsed = templateRequestSchema.safeParse(body);
+        if (!parsed.success) {
+            return invalidRequest(parsed.error);
+        }
+
+        try {
+            const compiled = compileEmailTemplate({
+                slug: parsed.data.template,
+                target: parsed.data.target,
+                props: parsed.data.props,
+            });
+
+            return json({
+                ...compiled,
+                template: parsed.data.template,
+                target: parsed.data.target,
+            });
+        } catch (error) {
+            return json(
+                {
+                    error:
+                        error instanceof Error
+                            ? error.message
+                            : "Failed to compile email template.",
+                },
+                { status: 500 }
+            );
+        }
+    }
+
     const parsed = composeRequestSchema.safeParse(body);
     if (!parsed.success) {
-        return json(
-            {
-                error: parsed.error.issues
-                    .map((issue) => issue.message)
-                    .join(" "),
-            },
-            { status: 400 }
-        );
+        return invalidRequest(parsed.error);
     }
 
     try {

@@ -155,10 +155,26 @@ The package is a SvelteKit app, so `npm run build` produces a deployable server
 backend in another language or another service needs compiled email HTML without
 embedding the engine itself.
 
-The endpoint composes a transactional email from an ordered list of `blocks`.
-Each block names a component `type` (`headline`, `text`, `button`, `title`,
-`spacer`), an optional `variant`/`size`, and optional `props`. The header,
-footer, and surrounding spacing are added automatically.
+The endpoint supports two request shapes:
+
+- Compile any registered template by passing `template`, `target`, and optional
+  `props`.
+- Compose a transactional email from an ordered list of `blocks`. Each block
+  names a component `type` (`headline`, `text`, `button`, `title`, `spacer`), an
+  optional `variant`/`size`, and optional `props`. The header, footer, and
+  surrounding spacing are added automatically.
+
+```bash
+curl -X POST https://email.stackoverflow.design/api/compile \
+  -H "Content-Type: application/json" \
+  --data '{
+    "template": "newsletter",
+    "target": "braze",
+    "props": {
+      "previewText": "The Stack Overflow Newsletter"
+    }
+  }'
+```
 
 ```bash
 curl -X POST https://email.stackoverflow.design/api/compile \
@@ -175,9 +191,11 @@ curl -X POST https://email.stackoverflow.design/api/compile \
   }'
 ```
 
-The response is JSON: `{ html, mjml, renderedMjml, errors, template, target, blockCount }`.
-Invalid bodies return `400` with a human-readable `error` describing the failed
-field; compile failures return `500`.
+The response is JSON and includes compiled `html`, final `mjml`,
+`renderedMjml`, compile `errors`, and metadata such as `template` and `target`.
+Block composition responses also include `blockCount`. Invalid bodies return
+`400` with a human-readable `error` describing the failed field; compile
+failures return `500`.
 
 #### Auth (optional)
 
