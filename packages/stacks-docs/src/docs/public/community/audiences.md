@@ -15,7 +15,7 @@ updated: 2026-06-23
 
 ## Introduction
 
-Writing on Meta sites involves addressing a few different audiences, sometimes in a single post. When addressing the communities that use the Stack Exchange sites, one task before us is rebuilding trust with a technical, opinioned, and change-averse user base. At the same time, we must inform and entice new or less-seasoned users who are looking to possibly do more. We must also re-engage users who have shifted from being contributors to more passive readers over time. We need to speak to all groups. Communications authors may choose to make any of these groups their primary audience, but we must remain conscious of all groups when writing to have maximum effectiveness.
+Writing on Meta sites involves addressing a few different audiences, sometimes in a single post. When addressing the communities, one task before us is rebuilding trust with a technical, opinioned, and change-averse user base. At the same time, we must inform and entice new or less-seasoned users who are looking to possibly do more. We must also re-engage users who have shifted from being contributors to more passive readers over time. We need to speak to all groups. Communications authors may choose to make any of these groups their primary audience, but we must remain conscious of all groups when writing to have maximum effectiveness.
 
 For the purposes of these guidelines, we’re roughly dividing the people you might need to communicate with into three somewhat arbitrary groups, whose boundaries might be somewhat fuzzy on occasion.
 
