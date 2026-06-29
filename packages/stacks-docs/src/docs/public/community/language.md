@@ -1,7 +1,7 @@
 ---
 title: "Language & grammar"
 description: "Grammatical guidelines for Meta posts that reduce confusion and improve consistency across teams."
-updated: 2026-06-23
+updated: 2026-06-29
 ---
 
 <script lang="ts">
@@ -214,3 +214,58 @@ When they exist, make sure you refer to our public products by the names we mark
         </ul>
     </GridColumn>
 </Grid>
+
+## Be consistent with verb tenses
+
+Be consistent in your usage of verb tenses within a paragraph. If you’ve been writing in one tense and are switching to a new tense, consider breaking your text into a new paragraph to make it less confusing to read.
+
+**Why:** unannounced tense shifts mid-paragraph force the reader to re-parse what happened when, and are a common source of confusion in longer announcements.
+
+## Use blockquotes for longer quoted text
+
+Use blockquote formatting for larger or longer pieces of quoted text, as appropriate. For shorter, inline quotes, follow the quotation-mark mechanics in the public <a href="/copy/styleguide#quotation-marks">Style guide</a>.
+
+**Why:** blockquotes set longer quoted passages apart visually, so readers can tell at a glance what is quoted and what is your own writing.
+
+## Images
+
+When a post includes images, write meaningful alt-text for each one so readers using assistive technologies don’t miss anything. As a rule, avoid purely decorative images in Meta posts and announcements.
+
+If you do include a purely decorative image, exclude its alt-text by deleting the placeholder text in the editor so the `alt` field is left empty — don’t remove it entirely, or screen readers will read out the image’s URL and leave readers unsure whether the image is relevant.
+
+<Notice variant="info" role="note" class="mb16 s-anchors s-anchors__inherit s-anchors__underlined">
+    <p>See <a href="/system/accessibility/alt">Alt-text</a> for how to write good alt-text, when to leave it blank, and how to add it.</p>
+</Notice>
+
+## Dates and times
+
+<Notice variant="info" role="note" class="mb16 s-anchors s-anchors__inherit s-anchors__underlined">
+    <p>The public <a href="/copy/styleguide#date-and-time">Style guide</a> covers date and time formatting for product UI and copy, where times follow the user’s local time zone. The guidance below is specific to Meta posts and intentionally differs.</p>
+</Notice>
+
+The Stack Exchange network uses UTC time wherever exact dates and times are used. If you specify a time in your text, you should generally list that time in UTC. It’s okay to list it in another time zone in addition to UTC, or to link to a website that automatically converts that time to the user’s local time.
+
+In general, avoid relative temporal references (such as “next month”) in a post’s title. It’s fine to mention those in the body of the post, but it’s even better to specify the exact date where possible, since the user may be reading the post long after it was originally published.
+
+<Grid>
+    <GridColumn extraClasses="bg-red-100">
+        <h3 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCross24FillCircle} /> Don’t</h3>
+        <ul class="docs-copy ml0 pl16">
+            <li>“The maintenance window starts at 3:30 pm.” (no time zone)</li>
+            <li>Title: “Voting changes rolling out next month”</li>
+        </ul>
+    </GridColumn>
+    <GridColumn extraClasses="bg-green-100">
+        <h3 class="d-flex ai-center g8 fc-green-500 mb16"><Icon src={IconCheck24FillCircle} /> Do</h3>
+        <ul class="docs-copy ml0 pl16">
+            <li>“The maintenance window starts at 19:30 UTC.”</li>
+            <li>Title: “Voting changes rolling out on July 14, 2026”</li>
+        </ul>
+    </GridColumn>
+</Grid>
+
+## Abbreviations
+
+<Notice variant="info" role="note" class="mb16 s-anchors s-anchors__inherit s-anchors__underlined">
+    <p>The <a href="/copy/styleguide#abbreviations">Internal communications</a> abbreviation guidance in the public Style guide also applies when writing on Meta sites. Although Meta is a public channel, the same rule holds: abbreviations may be used for brevity only once the full name has been established in context (with the abbreviation in parentheses), and defaulting to full names is still preferred.</p>
+</Notice>
