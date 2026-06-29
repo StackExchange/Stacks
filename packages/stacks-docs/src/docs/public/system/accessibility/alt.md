@@ -15,7 +15,7 @@ updated: 2026-06-29
 
 ## How to write alt-text
 
-For a helpful decision tree on how and when to write alt-text, check out the W3C's [alt-text decision tree](https://www.w3.org/WAI/tutorials/images/decision-tree/).
+For a helpful decision tree on how and when to write alt-text, check out the W3C’s [alt-text decision tree](https://www.w3.org/WAI/tutorials/images/decision-tree/).
 
 An alt-text is text that describes an image, or that should otherwise be displayed in place of an element that can’t be rendered for any reason. Alt-texts help people with little or no vision who use assistive technologies, people who have turned off images, and search engines. Good alt-text is an important element of accessibility: it lets visually impaired users experience and value our content as much as anyone with normal sight can.
 
@@ -31,10 +31,10 @@ Your alt-text can be more succinct if the body text around the image already exp
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h4 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCrossFillCircle} /> Don't</h4>
+    <h4 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCrossFillCircle} /> Don’t</h4>
     <ul class="ml0 pl16">
       <li>"People using computers."</li>
-      <li>"Man in a purple shirt and woman in blue pants are typing on laptops and there's a plant on the floor nearby."</li>
+      <li>"Man in a purple shirt and woman in blue pants are typing on laptops and there’s a plant on the floor nearby."</li>
       <li>"Man and woman using computers, illustrated by Jane Doe © 2019."</li>
     </ul>
   </GridColumn>
@@ -46,15 +46,15 @@ Your alt-text can be more succinct if the body text around the image already exp
   </GridColumn>
 </Grid>
 
-Take context into account. For instance, if the image above is part of a blog post about standing tables, then it's safer to skip the part about standing tables.
+Take context into account. For instance, if the image above is part of a blog post about standing tables, then it’s safer to skip the part about standing tables.
 
-### Don't say it's an image
+### Don’t say it’s an image
 
-Don't start alt-texts with things like "Image of" or "Photo of.". Screen readers add that by default. If it's a special type of image (like an icon), you can note that at the end.
+Don’t start alt-texts with things like "Image of" or "Photo of.". Screen readers add that by default. If it’s a special type of image (like an icon), you can note that at the end.
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
-    <h4 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCrossFillCircle} /> Don't</h4>
+    <h4 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCrossFillCircle} /> Don’t</h4>
     <ul class="ml0 pl16">
       <li>"Image of a rocket."</li>
       <li>"Illustration of a rocket."</li>
@@ -97,11 +97,11 @@ If an image does not convey any meaning to the user, leave the alt-text blank.
     <svg width="48" height="49" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 49a24 24 0 1 0 0-48 24 24 0 0 0 0 48z" fill="#F4F2F7"/><path d="M12.6 30.3l-2 2 5.4 5.4 2-2-5.4-5.4z" fill="#E2D3ED"/><path d="M12.2 27.4c2-3 17.4-26.4 34.3-26.9-.4 17-23.7 32.4-26.8 34.4l-7.5-7.5z" fill="#fff"/><path d="M46 1c-.9 16-22.2 30.6-26.2 33.3l-7-7C15.6 23.4 30 2 46 1zm1-1C28.3 0 11.6 27.5 11.6 27.5l8 8S47.1 18.8 47 0z" fill="#27348B"/><path d="M40.4 3.4a5.2 5.2 0 0 0 5.7 5.4c.7-2.1 1-4.3 1-6.6-2.2 0-4.5.4-6.7 1.2z" fill="#E2D3ED"/><path d="M40.4 16.1L29.1 41.5h-6.6v-5M31 6.7L5.5 18.4v6.1h5.3M18.3 34.2l-2 2-5.4-5.3 2-2M45.2 6.7a4.8 4.8 0 0 1-4.9-4.8" stroke="#27348B" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.1 44l5.5-5.4M9.9 37.3l2.6-2.6M5.8 38.8l4-4M9.5 40.2l2.7-2.6" stroke="#27348B" stroke-miterlimit="10" stroke-linecap="round"/><path d="M46 1c-.9 16-22.2 30.6-26.2 33.3l-7-7C15.6 23.4 30 2 46 1zm1-1C28.3 0 11.6 27.5 11.6 27.5l8 8S47.1 18.8 47 0z" fill="#27348B"/><circle cx="36.5" cy="12.5" r="2.5" fill="#FFB935"/><circle cx="36.5" cy="10.5" r="2" stroke="#F48024"/><circle cx="30.5" cy="18.5" r="2.5" fill="#FFB935"/><circle cx="30.5" cy="16.5" r="2" stroke="#F48024"/><circle cx="24.5" cy="24.5" r="2.5" fill="#FFB935"/><circle cx="24.5" cy="22.5" r="2" stroke="#F48024"/></svg>
   </div>
   <h2 class="flex--item fs-body3 fw-normal fc-dark m0">Improve efficiency and ship better code</h2>
-  <p class="flex--item fs-body1 fc-medium m0">There's a reason the world's largest developer teams rely on Stack Overflow Enterprise—it leads to better product and allows distributed teams to securely collaborate and share knowledge.</p>
+  <p class="flex--item fs-body1 fc-medium m0">There’s a reason the world’s largest developer teams rely on Stack Overflow Enterprise—it leads to better product and allows distributed teams to securely collaborate and share knowledge.</p>
 </div>
 </Example>
 
-The rocket here doesn't add meaningful information.
+The rocket here doesn’t add meaningful information.
 
 ### Images accompanied by text
 
@@ -146,7 +146,7 @@ Inside an `<img>` tag, add the alt-text inside the `alt` attribute:
 
 ### Using inline SVG
 
-Inline SVG doesn't support the `alt` attribute, so instead add two wai-aria attributes: `role="img"` and `aria-label="The alt-text."`:
+Inline SVG doesn’t support the `alt` attribute, so instead add two wai-aria attributes: `role="img"` and `aria-label="The alt-text."`:
 
 ```html
 <svg role="img" aria-label="the alt-text" viewBox="…">…</svg>
