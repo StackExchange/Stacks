@@ -221,9 +221,9 @@ Be consistent in your usage of verb tenses within a paragraph. If you’ve been 
 
 **Why:** unannounced tense shifts mid-paragraph force the reader to re-parse what happened when, and are a common source of confusion in longer announcements.
 
-## Use blockquotes for longer quoted text
+## Quoting text
 
-Use blockquote formatting for larger or longer pieces of quoted text, as appropriate. For shorter, inline quotes, follow the quotation-mark mechanics in the public <a href="/copy/styleguide#quotation-marks">Style guide</a>.
+Use quotation marks around short pieces of quoted text. Use blockquote formatting for larger or longer pieces of quoted text, as appropriate. For the quotation-mark mechanics themselves (curly quotes, punctuation placement), follow the public <a href="/copy/styleguide#quotation-marks">Style guide</a>.
 
 **Why:** blockquotes set longer quoted passages apart visually, so readers can tell at a glance what is quoted and what is your own writing.
 
