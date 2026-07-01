@@ -39,16 +39,14 @@
 #stacks-internals #responsify('.gy48', { --_gap-y: var(--su48); });
 #stacks-internals #responsify('.gy64', { --_gap-y: var(--su64); });
 
-@gap-values: 0, 1, 2, 4, 6, 8, 12, 16, 24, 32, 48, 64;
-
-.generate-gap-classes(@prefix, @property, @property-value) {
-    each(@gap-values, {
-        .@{prefix}@{value} {
-            @{property}: @property-value !important;
-        }
-    });
+.g0, .g1, .g2, .g4, .g6, .g8, .g12, .g16, .g24, .g32, .g48, .g64 {
+    gap: var(--_gap-y, 0) var(--_gap-x, 0) !important;
 }
 
-.generate-gap-classes(g, gap, ~"var(--_gap-y, 0) var(--_gap-x, 0)");
-.generate-gap-classes(gx, row-gap, ~"var(--_gap-x)");
-.generate-gap-classes(gy, column-gap, ~"var(--_gap-y, 0)");
+.gx0, .gx1, .gx2, .gx4, .gx6, .gx8, .gx12, .gx16, .gx24, .gx32, .gx48, .gx64 {
+    row-gap: var(--_gap-x) !important;
+}
+
+.gy0, .gy1, .gy2, .gy4, .gy6, .gy8, .gy12, .gy16, .gy24, .gy32, .gy48, .gy64 {
+    column-gap: var(--_gap-y, 0) !important;
+}
