@@ -15,7 +15,7 @@ updated: 2026-06-29
 
 ## How to write alt-text
 
-For a helpful decision tree on how and when to write alt-text, check out the W3C’s [alt-text decision tree](https://www.w3.org/WAI/tutorials/images/decision-tree/).
+For a helpful decision tree on how and when to write alt-text, check out the W3C’s [alt-text decision tree](https://www.w3.org/WAI/tutorials/images/decision-tree/), or the [advice from Meta](https://meta.stackexchange.com/questions/332006/how-can-i-write-good-alt-text) which helped inform this guide.
 
 An alt-text is text that describes an image, or that should otherwise be displayed in place of an element that can’t be rendered for any reason. Alt-texts help people with little or no vision who use assistive technologies, people who have turned off images, and search engines. Good alt-text is an important element of accessibility: it lets visually impaired users experience and value our content as much as anyone with normal sight can.
 
