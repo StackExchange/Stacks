@@ -1,7 +1,7 @@
 ---
 title: "Language & grammar"
 description: "Grammatical guidelines for Meta posts that reduce confusion and improve consistency across teams."
-updated: 2026-06-29
+updated: 2026-07-07
 ---
 
 <script lang="ts">
@@ -243,7 +243,7 @@ If you do include a purely decorative image, exclude its alt-text by deleting th
     <p>The public <a href="/copy/styleguide#date-and-time">Style guide</a> covers date and time formatting for product UI and copy, where times follow the user’s local time zone. The guidance below is specific to Meta posts and intentionally differs.</p>
 </Notice>
 
-The Stack Exchange network uses UTC time wherever exact dates and times are used. If you specify a time in your text, you should generally list that time in UTC. It’s okay to list it in another time zone in addition to UTC, or to link to a website that automatically converts that time to the user’s local time.
+Stack Overflow uses UTC time wherever exact dates and times are used. If you specify a time in your text, you should generally list that time in UTC. It’s okay to list it in another time zone in addition to UTC, or to link to a website that automatically converts that time to the user’s local time.
 
 In general, avoid relative temporal references (such as “next month”) in a post’s title. It’s fine to mention those in the body of the post, but it’s even better to specify the exact date where possible, since the user may be reading the post long after it was originally published.
 
