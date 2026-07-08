@@ -187,7 +187,7 @@ _Despite using changesets to communicate the intent of creating releases in a mo
 
 Docs are deployed directly from the current release flow; we no longer merge into a `production` branch to publish stackoverflow.design. Normal contribution PRs target `main`.
 
-When `changesets/action` publishes a new version from `main`, the release workflow triggers the Netlify build hook stored in `NETLIFY_DOCS_BUILD_HOOK_URL`. The docs site also has a Netlify ignore rule so ordinary `main` commits are skipped unless the deployed commit changes one of the released package version files. To deploy the latest `main` docs without publishing packages, manually run the CI workflow from the `main` branch.
+When `changesets/action` publishes a new version from `main`, the release workflow triggers the Netlify build hook stored in `NETLIFY_DOCS_BUILD_HOOK_URL`. The docs site also has a Netlify ignore rule so ordinary `main` commits are skipped unless the deployed commit changes one of the released package version files. To deploy the latest `main` docs without publishing packages, manually run the Deploy docs workflow from the `main` branch.
 
 ## License
 Code and documentation copyright 2017-2026 Stack Exchange, Inc and released under the [MIT License](/LICENSE.MD).

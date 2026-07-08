@@ -13,6 +13,11 @@ if [[ "${INCOMING_HOOK_BODY:-}" == *"forceDocsDeploy"* ]]; then
     exit 1
 fi
 
+if [[ "${CONTEXT:-}" == "deploy-preview" || "${CONTEXT:-}" == "branch-deploy" ]]; then
+    echo "Building docs deploy: ${CONTEXT} context."
+    exit 1
+fi
+
 if ! git rev-parse --verify "$base_ref" >/dev/null 2>&1; then
     echo "Building docs deploy: no previous commit is available."
     exit 1

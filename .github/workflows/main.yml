@@ -5,12 +5,10 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-  workflow_dispatch:
 
 jobs:
   build-and-test:
     name: ${{ matrix.command_description }}
-    if: github.event_name != 'workflow_dispatch'
     uses: ./.github/workflows/test.yml
     strategy:
       fail-fast: false
@@ -102,21 +100,10 @@ jobs:
             See this GH issue for more details: https://github.com/changesets/action/issues/187
       - name: Deploy docs site
         if: steps.changesets.outputs.published == 'true'
-        run: curl --fail --silent --show-error --request POST "$NETLIFY_DOCS_BUILD_HOOK_URL"
-        env:
-          NETLIFY_DOCS_BUILD_HOOK_URL: ${{ secrets.NETLIFY_DOCS_BUILD_HOOK_URL }}
-
-  deploy-docs:
-    name: "Deploy docs (manual)"
-    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy docs site
         run: |
           curl --fail --silent --show-error \
             --request POST \
-            --data '{"forceDocsDeploy":true,"source":"workflow_dispatch"}' \
-            "$NETLIFY_DOCS_BUILD_HOOK_URL?trigger_branch=main&trigger_title=Manual+docs+deploy"
+            "$NETLIFY_DOCS_BUILD_HOOK_URL?trigger_branch=main&trigger_title=Release+docs+deploy"
         env:
           NETLIFY_DOCS_BUILD_HOOK_URL: ${{ secrets.NETLIFY_DOCS_BUILD_HOOK_URL }}
 
