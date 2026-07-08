@@ -22,6 +22,7 @@
     let { role = null, class: className = "", children }: Props = $props();
 
     let pstate = usePopoverContext("PopoverContent");
+    let contentElement: HTMLElement | undefined;
 
     const arrowEl = pstate.arrowEl;
 
@@ -43,6 +44,18 @@
     let computedRole = $derived(
         role || (pstate.tooltip ? "tooltip" : "dialog")
     );
+
+    const onFocusOut = (e: FocusEvent) => {
+        pstate.closeTooltip();
+        pstate.onFocusOut(e);
+    };
+
+    $effect(() => {
+        pstate.closeOnFocusLeave =
+            !pstate.tooltip &&
+            (computedRole === "menu" ||
+                !!contentElement?.querySelector('[role="menu"]'));
+    });
 </script>
 
 <!-- data-popper-placement is needed for compatibility with stacks classic popover styles -->
@@ -57,8 +70,9 @@
     onmouseenter={pstate.openTooltip}
     onmouseleave={pstate.closeTooltip}
     onfocusin={pstate.openTooltip}
-    onfocusout={pstate.closeTooltip}
+    onfocusout={onFocusOut}
     data-popper-placement={pstate.computedPlacement}
+    bind:this={contentElement}
 >
     <div class="s-popover--arrow" bind:this={$arrowEl}></div>
     <div class="s-popover--content p12 mn12">
