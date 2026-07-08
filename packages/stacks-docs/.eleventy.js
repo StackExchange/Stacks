@@ -18,8 +18,12 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(iconPlugin);
   eleventyConfig.addPlugin(headerPlugin);
   eleventyConfig.addPlugin(tipPlugin);
+  // Produces /llms-full.txt — a content dump for tools that want the full
+  // markdown of every page in one file. The spec-compliant index lives at
+  // /llms.txt and is rendered by llms.11ty.js.
   eleventyConfig.addPlugin(llmsTxtPlugin, {
     siteUrl: 'https://v2.stackoverflow.design',
+    outputPath: 'llms-full.txt',
     collections: ['base', 'components', 'develop', 'foundation'],
     additionalMetadata: ['description'],
     normalizeWhitespace: true,
