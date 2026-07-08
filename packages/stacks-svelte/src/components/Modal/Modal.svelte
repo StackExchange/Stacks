@@ -88,7 +88,6 @@
 
     const keyPress = (event: KeyboardEvent) => {
         if (event.key === "Escape" && visible) {
-            event.preventDefault();
             event.stopImmediatePropagation();
 
             close();
