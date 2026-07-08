@@ -1,5 +1,11 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.0-beta.34
+
+### Patch Changes
+
+- [`d76dfe9`](https://github.com/StackExchange/Stacks/commit/d76dfe9da394ecde5d3d9370d1bd7ea9d86aaaea) Thanks [@asblanco](https://github.com/asblanco)! - fix(modal): stop Escape propagation by default (#2319)
+
 ## 1.0.0-beta.33
 
 ### Minor Changes
