@@ -8,6 +8,11 @@ cd "$repo_root"
 head_ref="${COMMIT_REF:-HEAD}"
 base_ref="$head_ref^"
 
+if [[ "${INCOMING_HOOK_BODY:-}" == *"forceDocsDeploy"* ]]; then
+    echo "Building docs deploy: manual deploy requested."
+    exit 1
+fi
+
 if ! git rev-parse --verify "$base_ref" >/dev/null 2>&1; then
     echo "Building docs deploy: no previous commit is available."
     exit 1
