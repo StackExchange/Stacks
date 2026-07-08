@@ -1,6 +1,16 @@
 import type { LayoutServerLoad } from "./$types";
+import type { Component } from "svelte";
+import { render } from "svelte/server";
+import TurndownService from "turndown";
 import YAML from "yaml";
 import structureRaw from "$src/structure.yaml?raw";
+
+const mdFiles = import.meta.glob("$docs/public/**/*.md");
+
+const turndownService = new TurndownService({
+    headingStyle: "atx",
+    codeBlockStyle: "fenced",
+});
 
 type NavItem = {
     slug: string;
@@ -27,6 +37,32 @@ function findByPath(
     }
 
     return "slug" in currentLevel ? currentLevel : undefined;
+}
+
+function getSearchPath(filePath: string): string {
+    return filePath
+        .replace("/src/docs/public/", "/")
+        .replace(/\/index\.md$/, "/")
+        .replace(/\.md$/, "");
+}
+
+async function getSearchDocuments(): Promise<DocsSearchDocument[]> {
+    return Promise.all(
+        Object.entries(mdFiles).map(async ([path, doc]) => {
+            const page = (await doc()) as {
+                default: Component;
+                metadata: DocsMetadata;
+            };
+
+            return {
+                id: path,
+                title: page.metadata?.title ?? getSearchPath(path),
+                description: page.metadata?.description ?? "",
+                path: getSearchPath(path),
+                text: turndownService.turndown(render(page.default).body),
+            };
+        })
+    );
 }
 
 export const load: LayoutServerLoad = async (event) => {
@@ -96,5 +132,6 @@ export const load: LayoutServerLoad = async (event) => {
         active,
         breadcrumb,
         needsAuth,
+        searchDocuments: await getSearchDocuments(),
     };
 };
