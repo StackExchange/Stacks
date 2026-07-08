@@ -43,6 +43,10 @@
          */
         hideCloseButton?: boolean;
         /**
+         * Boolean controlling whether Escape key presses handled by the modal should stop propagation.
+         */
+        stopEscapePropagation?: boolean;
+        /**
          * Callback fired when the modal is closed
          */
         onclose?: () => void;
@@ -68,6 +72,7 @@
         i18nCloseButtonLabel = "Close",
         preventCloseOnClickOutside = false,
         hideCloseButton = false,
+        stopEscapePropagation = true,
         onclose,
         header,
         body,
@@ -86,8 +91,14 @@
         }
     };
 
-    const keyPress = (e: KeyboardEvent) => {
-        if (e.key === "Escape") {
+    const keyPress = (event: KeyboardEvent) => {
+        if (event.key === "Escape" && visible) {
+            event.preventDefault();
+
+            if (stopEscapePropagation) {
+                event.stopImmediatePropagation();
+            }
+
             close();
         }
     };
