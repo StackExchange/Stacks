@@ -1,5 +1,11 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.32
+
+### Patch Changes
+
+- [#2314](https://github.com/StackExchange/Stacks/pull/2314) [`667ed7a`](https://github.com/StackExchange/Stacks/commit/667ed7aaa456c52121c6131541d514ae1ba88940) Thanks [@dancormier](https://github.com/dancormier)! - Restore transition atomic utilities to the static CSS bundle.
+
 ## 3.0.0-beta.31
 
 ### Minor Changes
