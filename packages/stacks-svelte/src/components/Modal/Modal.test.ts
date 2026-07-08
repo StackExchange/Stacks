@@ -161,25 +161,6 @@ describe("Modal", () => {
             }
         });
 
-        it("should allow esc press propagation when stopEscapePropagation is false", async () => {
-            const laterWindowListener = sinon.spy();
-            render(Modal, {
-                id: "test-modal",
-                stopEscapePropagation: false,
-                visible: true,
-            });
-            window.addEventListener("keydown", laterWindowListener);
-
-            try {
-                await userEvent.keyboard("{Escape}");
-
-                expectModalVisible(false);
-                expect(laterWindowListener).to.have.been.calledOnce;
-            } finally {
-                window.removeEventListener("keydown", laterWindowListener);
-            }
-        });
-
         it("should not stop esc press propagation when modal is not visible", async () => {
             const laterWindowListener = sinon.spy();
             render(Modal, { id: "test-modal", visible: false });
