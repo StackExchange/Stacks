@@ -86,8 +86,10 @@
         }
     };
 
-    const keyPress = (e: KeyboardEvent) => {
-        if (e.key === "Escape") {
+    const keyPress = (event: KeyboardEvent) => {
+        if (event.key === "Escape" && visible) {
+            event.stopImmediatePropagation();
+
             close();
         }
     };
