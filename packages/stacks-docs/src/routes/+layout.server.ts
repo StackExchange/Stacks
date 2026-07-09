@@ -15,6 +15,8 @@ const turndownService = new TurndownService({
 type NavItem = {
     slug: string;
     title?: string;
+    description?: string;
+    externalUrl?: string;
     private?: boolean;
     items?: NavItem[];
     [key: string]: unknown;
@@ -23,6 +25,17 @@ type NavItem = {
 type Structure = {
     navigation?: NavItem[];
 };
+
+function parseStructure(): Structure {
+    try {
+        return YAML.parse(structureRaw);
+    } catch (err) {
+        console.error("Failed to parse structure.yaml:", err);
+        return {};
+    }
+}
+
+const structure = parseStructure();
 
 function findByPath(
     { navigation = [] }: Structure,
@@ -39,6 +52,24 @@ function findByPath(
     return "slug" in currentLevel ? currentLevel : undefined;
 }
 
+function getNavTrail(
+    { navigation = [] }: Structure,
+    path: string[]
+): NavItem[] {
+    const trail: NavItem[] = [];
+    let currentLevel: { items?: NavItem[] } | NavItem = { items: navigation };
+
+    for (const slug of path) {
+        const next = currentLevel.items?.find((item) => item.slug === slug);
+        if (!next) return trail;
+
+        trail.push(next);
+        currentLevel = next;
+    }
+
+    return trail;
+}
+
 function getSearchPath(filePath: string): string {
     return filePath
         .replace("/src/docs/public/", "/")
@@ -46,37 +77,73 @@ function getSearchPath(filePath: string): string {
         .replace(/\.md$/, "");
 }
 
-async function getSearchDocuments(): Promise<DocsSearchDocument[]> {
-    return Promise.all(
+function getSearchTitle(
+    metadata: DocsMetadata,
+    structure: Structure,
+    path: string
+): string {
+    if (metadata?.title) return metadata.title;
+
+    const trail = getNavTrail(structure, path.split("/").filter(Boolean));
+    if (trail.length) {
+        return trail.map((item) => item.title ?? item.slug).join(" > ");
+    }
+
+    return path;
+}
+
+function getSearchDescription(
+    metadata: DocsMetadata,
+    structure: Structure,
+    path: string
+): string {
+    if (metadata?.description) return metadata.description;
+
+    const trail = getNavTrail(structure, path.split("/").filter(Boolean));
+    return trail.at(-1)?.description ?? "";
+}
+
+async function getSearchDocuments(
+    structure: Structure
+): Promise<DocsSearchDocument[]> {
+    const markdownDocuments = await Promise.all(
         Object.entries(mdFiles).map(async ([path, doc]) => {
             const page = (await doc()) as {
                 default: Component;
                 metadata: DocsMetadata;
             };
+            const searchPath = getSearchPath(path);
 
             return {
                 id: path,
-                title: page.metadata?.title ?? getSearchPath(path),
-                description: page.metadata?.description ?? "",
-                path: getSearchPath(path),
+                title: getSearchTitle(page.metadata, structure, searchPath),
+                description: getSearchDescription(
+                    page.metadata,
+                    structure,
+                    searchPath
+                ),
+                path: searchPath,
                 text: turndownService.turndown(render(page.default).body),
             };
         })
     );
+
+    return [
+        ...markdownDocuments,
+        {
+            id: "route:/resources/icons",
+            title: "Resources > Icons & Spots",
+            description:
+                "Search and browse Stack Overflow icons and spot illustrations.",
+            path: "/resources/icons",
+            text: "icons icon spots spot illustrations illustration figma github svg svelte",
+        },
+    ];
 }
 
-const searchDocumentsPromise = getSearchDocuments();
+const searchDocumentsPromise = getSearchDocuments(structure);
 
 export const load: LayoutServerLoad = async (event) => {
-    // Load the navigation structure from the structure.yaml
-    let structure: Structure = {};
-
-    try {
-        structure = YAML.parse(structureRaw);
-    } catch (err) {
-        console.error("Failed to parse structure.yaml:", err);
-    }
-
     // Grab the current section from the structure
     const path = [
         event.params.category,
