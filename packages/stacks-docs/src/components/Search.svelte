@@ -6,8 +6,6 @@
         Button,
         EmptyState,
         Icon,
-        Menu,
-        MenuItem,
         Modal,
     } from "@stackoverflow/stacks-svelte";
     import { IconSearch } from "@stackoverflow/stacks-icons";
@@ -71,47 +69,6 @@
         }
     }
 
-    async function handleSearchInputKeydown(event: KeyboardEvent) {
-        if (event.key !== "ArrowDown" || !results.length) return;
-
-        event.preventDefault();
-        await tick();
-
-        getResultActions()[0]?.focus();
-    }
-
-    function handleResultKeydown(event: KeyboardEvent, index: number) {
-        if (event.key === "ArrowDown") {
-            event.preventDefault();
-            focusResult(index + 1);
-            return;
-        }
-
-        if (event.key !== "ArrowUp") return;
-
-        event.preventDefault();
-
-        if (index === 0) {
-            searchInput?.focus();
-            return;
-        }
-
-        focusResult(index - 1);
-    }
-
-    function focusResult(index: number) {
-        const result = getResultActions()[index];
-        result?.focus();
-        result?.scrollIntoView({ block: "nearest" });
-    }
-
-    function getResultActions() {
-        return Array.from(
-            document.querySelectorAll<HTMLElement>(
-                "#docs-search-description .s-menu--action"
-            )
-        );
-    }
 </script>
 
 <svelte:window onkeydown={handleWindowKeydown} />
@@ -133,38 +90,39 @@
     {/snippet}
 
     {#snippet body()}
-        <div class="d-flex ai-center bb bc-black-200 mxn4 px4 pt4 pb16">
+        <div class="d-flex ai-center bb bc-black-200 pb12">
             <input
                 bind:this={searchInput}
                 bind:value={query}
                 class="s-input"
                 placeholder="Search documentation..."
                 aria-label="Search documentation"
-                onkeydown={handleSearchInputKeydown}
             />
         </div>
 
         <div class="search-results fl-shrink1 overflow-auto h5 hmx100 py8">
             {#if results.length}
-                <Menu class="m0">
-                    {#each results as result, index (result.id)}
-                        <MenuItem
-                            href={result.path}
-                            onclick={closeSearch}
-                            onkeydown={(event) => handleResultKeydown(event, index)}
-                        >
-                            <span class="d-block fw-bold mb2">{result.title}</span>
-                            {#if result.description}
-                                <span class="d-block fs-caption truncate fc-black-500 lh-md"
-                                    >{result.description}</span
-                                >
-                            {/if}
-                            <span class="d-block fs-fine fc-black-400 mt4"
-                                >{result.path}</span
+                <ul class="list-reset m0">
+                    {#each results as result (result.id)}
+                        <li>
+                            <a
+                                class="search-result d-block p12 bar-sm fc-black-600 h:bg-black-100 h:fc-black-600"
+                                href={result.path}
+                                onclick={closeSearch}
                             >
-                        </MenuItem>
+                                <span class="d-block fw-bold mb2">{result.title}</span>
+                                {#if result.description}
+                                    <span class="d-block fs-caption truncate fc-black-500 lh-md"
+                                        >{result.description}</span
+                                    >
+                                {/if}
+                                <span class="d-block fs-fine fc-black-400 mt4"
+                                    >{result.path}</span
+                                >
+                            </a>
+                        </li>
                     {/each}
-                </Menu>
+                </ul>
             {:else if hasQuery}
                 <EmptyState title="No results found" class="p24">
                     {#snippet description()}
@@ -186,14 +144,14 @@
         flex-direction: column;
         margin-bottom: 0;
         min-height: 0;
-        overflow: visible;
+        overflow: hidden;
     }
 
     .search-results {
         min-height: 0;
     }
 
-    .search-results :global(.s-menu--action) {
-        display: block;
+    .search-result {
+        text-decoration: none;
     }
 </style>

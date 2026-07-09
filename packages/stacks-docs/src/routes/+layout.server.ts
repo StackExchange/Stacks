@@ -65,6 +65,8 @@ async function getSearchDocuments(): Promise<DocsSearchDocument[]> {
     );
 }
 
+const searchDocumentsPromise = getSearchDocuments();
+
 export const load: LayoutServerLoad = async (event) => {
     // Load the navigation structure from the structure.yaml
     let structure: Structure = {};
@@ -132,6 +134,6 @@ export const load: LayoutServerLoad = async (event) => {
         active,
         breadcrumb,
         needsAuth,
-        searchDocuments: await getSearchDocuments(),
+        searchDocuments: await searchDocumentsPromise,
     };
 };
