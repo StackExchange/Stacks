@@ -46,6 +46,10 @@ jobs:
 
       - name: 🔑 Setup SSH for private submodule
         run: |
+          if [ -z "$SUBMODULE_SSH_KEY" ]; then
+            echo "Skipping SSH setup; SUBMODULE_SSH_KEY is not available"
+            exit 0
+          fi
           mkdir -p ~/.ssh
           echo -e "${SUBMODULE_SSH_KEY//_/\\n}" > ~/.ssh/id_rsa
           chmod og-rwx ~/.ssh/id_rsa
