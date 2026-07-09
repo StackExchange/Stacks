@@ -186,7 +186,7 @@
         flex-direction: column;
         margin-bottom: 0;
         min-height: 0;
-        overflow: hidden;
+        overflow: visible;
     }
 
     .search-results {
