@@ -100,7 +100,7 @@
             />
         </div>
 
-        <div class="search-results fl-shrink1 overflow-auto h5 hmx100 py8">
+        <div class="search-results fl-shrink1 overflow-auto h5 hmx100 px4 mxn4 py8">
             {#if results.length}
                 <ul class="list-reset m0">
                     {#each results as result (result.id)}
@@ -144,7 +144,7 @@
         flex-direction: column;
         margin-bottom: 0;
         min-height: 0;
-        overflow: hidden;
+        overflow: visible;
     }
 
     .search-results {
