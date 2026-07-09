@@ -5,6 +5,7 @@ import TurndownService from "turndown";
 import YAML from "yaml";
 import structureRaw from "$src/structure.yaml?raw";
 
+// Only public docs are indexed because layout data is sent to every visitor.
 const mdFiles = import.meta.glob("$docs/public/**/*.md");
 
 const turndownService = new TurndownService({
@@ -109,51 +110,69 @@ function getPlainText(html: string): string {
 
 function normalizeText(text: string): string {
     return text
-        .replace(/<[^>]+>/g, "")
+        .replace(/<[^>]+>/g, " ")
         .replace(/\s+/g, " ")
         .trim();
 }
+
+const routeSearchDocuments: DocsSearchDocument[] = [
+    // Non-markdown docs routes are not included in the glob above.
+    {
+        id: "route:/resources/icons",
+        title: "Resources > Icons & Spots",
+        description:
+            "Search and browse Stack Overflow icons and spot illustrations.",
+        path: "/resources/icons",
+        text: "icons icon spots spot illustrations illustration figma github svg svelte",
+    },
+];
 
 async function getSearchDocuments(
     structure: Structure
 ): Promise<DocsSearchDocument[]> {
     const markdownDocuments = await Promise.all(
         Object.entries(mdFiles).map(async ([path, doc]) => {
-            const page = (await doc()) as {
-                default: Component;
-                metadata: DocsMetadata;
-            };
-            const searchPath = getSearchPath(path);
-            const text = getPlainText(render(page.default).body);
+            try {
+                const page = (await doc()) as {
+                    default: Component;
+                    metadata: DocsMetadata;
+                };
+                const searchPath = getSearchPath(path);
+                const text = getPlainText(render(page.default).body);
 
-            return {
-                id: path,
-                title: getSearchTitle(page.metadata, structure, searchPath),
-                description: getSearchDescription(
-                    page.metadata,
-                    structure,
-                    searchPath
-                ),
-                path: searchPath,
-                text,
-            };
+                return {
+                    id: path,
+                    title: getSearchTitle(page.metadata, structure, searchPath),
+                    description: getSearchDescription(
+                        page.metadata,
+                        structure,
+                        searchPath
+                    ),
+                    path: searchPath,
+                    text,
+                };
+            } catch (err) {
+                console.error(
+                    `Failed to build search document for ${path}:`,
+                    err
+                );
+                return null;
+            }
         })
     );
 
     return [
-        ...markdownDocuments,
-        {
-            id: "route:/resources/icons",
-            title: "Resources > Icons & Spots",
-            description:
-                "Search and browse Stack Overflow icons and spot illustrations.",
-            path: "/resources/icons",
-            text: "icons icon spots spot illustrations illustration figma github svg svelte",
-        },
+        ...markdownDocuments.filter(
+            (document): document is DocsSearchDocument => document !== null
+        ),
+        ...routeSearchDocuments,
     ];
 }
 
-const searchDocumentsPromise = getSearchDocuments(structure);
+const searchDocumentsPromise = getSearchDocuments(structure).catch((err) => {
+    console.error("Failed to build search documents:", err);
+    return routeSearchDocuments;
+});
 
 export const load: LayoutServerLoad = async (event) => {
     // Grab the current section from the structure
