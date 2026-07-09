@@ -116,13 +116,13 @@
 
         <p class="v-visible-sr" aria-live="polite">{resultStatus}</p>
 
-        <div class="search-results fl-shrink1 overflow-auto h5 hmx100 px24 py8">
+        <div class="search-results fl-shrink1 overflow-auto h5 hmx100 hmn0 px24 py8">
             {#if results.length}
                 <ul class="list-reset m0" aria-label="Search results">
                     {#each results as result (result.id)}
                         <li>
                             <a
-                                class="search-result d-block p12 bar-sm fc-black-600 h:bg-black-100 h:fc-black-600"
+                                class="d-block p12 bar-sm fc-black-600 h:bg-black-100 h:fc-black-600 td-none"
                                 href={resolve(result.path as `/${string}`)}
                                 onclick={closeSearch}
                             >
@@ -171,11 +171,4 @@
         overflow: visible;
     }
 
-    .search-results {
-        min-height: 0;
-    }
-
-    .search-result {
-        text-decoration: none;
-    }
 </style>
