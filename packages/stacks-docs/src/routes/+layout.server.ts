@@ -103,6 +103,14 @@ function getSearchDescription(
     return trail.at(-1)?.description ?? "";
 }
 
+function getPlainText(html: string): string {
+    return turndownService
+        .turndown(html)
+        .replace(/<[^>]+>/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+}
+
 async function getSearchDocuments(
     structure: Structure
 ): Promise<DocsSearchDocument[]> {
@@ -113,6 +121,7 @@ async function getSearchDocuments(
                 metadata: DocsMetadata;
             };
             const searchPath = getSearchPath(path);
+            const text = getPlainText(render(page.default).body);
 
             return {
                 id: path,
@@ -123,7 +132,7 @@ async function getSearchDocuments(
                     searchPath
                 ),
                 path: searchPath,
-                text: turndownService.turndown(render(page.default).body),
+                text,
             };
         })
     );
