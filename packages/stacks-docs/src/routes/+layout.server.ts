@@ -82,7 +82,7 @@ function getSearchTitle(
     structure: Structure,
     path: string
 ): string {
-    if (metadata?.title) return metadata.title;
+    if (metadata?.title) return normalizeText(metadata.title);
 
     const trail = getNavTrail(structure, path.split("/").filter(Boolean));
     if (trail.length) {
@@ -97,15 +97,18 @@ function getSearchDescription(
     structure: Structure,
     path: string
 ): string {
-    if (metadata?.description) return metadata.description;
+    if (metadata?.description) return normalizeText(metadata.description);
 
     const trail = getNavTrail(structure, path.split("/").filter(Boolean));
-    return trail.at(-1)?.description ?? "";
+    return normalizeText(trail.at(-1)?.description ?? "");
 }
 
 function getPlainText(html: string): string {
-    return turndownService
-        .turndown(html)
+    return normalizeText(turndownService.turndown(html));
+}
+
+function normalizeText(text: string): string {
+    return text
         .replace(/<[^>]+>/g, "")
         .replace(/\s+/g, " ")
         .trim();
