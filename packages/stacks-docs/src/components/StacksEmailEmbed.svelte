@@ -368,7 +368,8 @@ console.log(compiled.html);`
 
         <Select
             id={`email-target-${kind}-${slug}`}
-            label={null}
+            label="Email tool target"
+            hideLabel={true}
             selected={activeTarget}
             size="sm"
             onchange={onTargetChange}
