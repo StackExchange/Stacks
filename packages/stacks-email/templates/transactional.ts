@@ -93,7 +93,7 @@ const transactional = defineEmailTemplate({
             description: "Recipient first name used in the short greeting.",
         },
         {
-            token: "CTA_URL",
+            token: "BUTTON_URL",
             description:
                 "Primary call-to-action URL (password reset for short; policy link for long).",
         },
@@ -131,7 +131,7 @@ const transactional = defineEmailTemplate({
                         Section(
                             [
                                 Button("primary", {
-                                    href: "[[CTA_URL]]",
+                                    href: "[[BUTTON_URL]]",
                                     align: "left",
                                     text: props.ctaText,
                                 }),
