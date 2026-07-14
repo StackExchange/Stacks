@@ -125,7 +125,24 @@ export type CompileMjmlInput = {
     previewText?: string;
     extractComponentName?: string;
     extractComponentTag?: string;
+    assetBaseUrl?: string;
 };
+
+// Root-relative image assets are authored as `/email/...`. When an absolute
+// asset host is supplied, prefix those `src`/`url(...)` references so the
+// compiled HTML is sendable off the preview host. Anchored to a quote or `(`
+// boundary so absolute links that merely contain `/email/` (e.g. the account
+// settings URL) are left untouched.
+const assetPathPattern = /(["'(])\/email\//g;
+
+// Fallback asset host when neither an explicit arg nor the env var is set. Pass
+// `assetBaseUrl: ""` to opt back into root-relative output.
+const DEFAULT_ASSET_BASE_URL = "https://email.stackoverflow.design";
+
+const resolveAssetUrls = (markup: string, assetBaseUrl: string): string =>
+    assetBaseUrl
+        ? markup.replace(assetPathPattern, `$1${assetBaseUrl}/email/`)
+        : markup;
 
 export type CompileMjmlOutput = {
     html: string;
@@ -147,8 +164,17 @@ export const compileMjml = ({
     previewText,
     extractComponentName,
     extractComponentTag,
+    assetBaseUrl,
 }: CompileMjmlInput): CompileMjmlOutput => {
     const sourceNodes = Array.isArray(source) ? source : [source];
+
+    // Explicit arg wins; otherwise the env var; otherwise the canonical host.
+    // `??` (not `||`) so an explicit "" still forces root-relative output.
+    const resolvedAssetBaseUrl = (
+        assetBaseUrl ??
+        process.env.STACKS_EMAIL_ASSET_BASE_URL ??
+        DEFAULT_ASSET_BASE_URL
+    ).replace(/\/$/, "");
 
     // Component compiles insert extraction markers around the renderable so the
     // compiled component HTML can be sliced back out (always a fragment, never a
@@ -179,11 +205,17 @@ export const compileMjml = ({
     });
 
     const replacements = targets[target].tokens;
-    const renderedMjml = transformTokens(
-        applyTemplateProps(serializeMjml(sourceNodes), props),
-        replacements
+    const renderedMjml = resolveAssetUrls(
+        transformTokens(
+            applyTemplateProps(serializeMjml(sourceNodes), props),
+            replacements
+        ),
+        resolvedAssetBaseUrl
     );
-    const html = transformTokens(compileResult.html, replacements);
+    const html = resolveAssetUrls(
+        transformTokens(compileResult.html, replacements),
+        resolvedAssetBaseUrl
+    );
 
     const componentMjml = extractComponentName
         ? extractComponentTag
@@ -191,7 +223,8 @@ export const compileMjml = ({
                   sourceNodes,
                   extractComponentTag,
                   props,
-                  replacements
+                  replacements,
+                  resolvedAssetBaseUrl
               )
             : renderedMjml.trim()
         : null;
@@ -217,12 +250,16 @@ const extractComponentTagMjml = (
     sourceNodes: MjmlNode[],
     tagName: string,
     props: Record<string, string>,
-    replacements: Record<string, string>
+    replacements: Record<string, string>,
+    assetBaseUrl: string
 ): string | null => {
     const markup = extractTagMarkup(sourceNodes, tagName);
     if (markup === null) {
         return null;
     }
 
-    return transformTokens(applyTemplateProps(markup, props), replacements);
+    return resolveAssetUrls(
+        transformTokens(applyTemplateProps(markup, props), replacements),
+        assetBaseUrl
+    );
 };

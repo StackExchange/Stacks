@@ -25,6 +25,7 @@ export type CompileTemplateInput = {
     slug: string;
     target: CompileTarget;
     props?: Record<string, string>;
+    assetBaseUrl?: string;
 };
 
 export type CompileTemplateOutput = CompileMjmlOutput & {
@@ -147,11 +148,13 @@ export const compileEmailTemplate = ({
     slug,
     target,
     props = {},
+    assetBaseUrl,
 }: CompileTemplateInput): CompileTemplateOutput => {
     const parsedInput = compileTemplateInputSchema.parse({
         slug,
         target,
         props,
+        assetBaseUrl,
     });
     const record = templateBySlug.get(parsedInput.slug);
 
@@ -165,6 +168,7 @@ export const compileEmailTemplate = ({
         target: parsedInput.target,
         props: {},
         previewText: record.resolvePreviewText(inputProps),
+        assetBaseUrl: parsedInput.assetBaseUrl,
     });
 
     return {

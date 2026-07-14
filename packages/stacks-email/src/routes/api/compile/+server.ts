@@ -4,7 +4,7 @@ import { z } from "zod/v4";
 import { env } from "$env/dynamic/private";
 
 import { compileMjml } from "$lib/pipeline/compile";
-import { compileTargetSchema } from "$lib/api/request-schemas";
+import { assetBaseUrlSchema, compileTargetSchema } from "$lib/api/request-schemas";
 import { compileEmailTemplate } from "$lib/api/templates";
 import button from "../../../../components/button";
 import footer from "../../../../components/footer";
@@ -146,6 +146,7 @@ const composeRequestSchema = z.object({
     template: z.literal("transactional"),
     target: compileTargetSchema,
     previewText: z.string().optional(),
+    assetBaseUrl: assetBaseUrlSchema,
     blocks: z
         .array(composeBlockSchema)
         .min(1, { error: "`blocks` must contain at least one block." }),
@@ -158,6 +159,7 @@ const templateRequestSchema = z.object({
         .min(1, { error: "`template` must be a non-empty string." }),
     target: compileTargetSchema,
     props: z.record(z.string(), z.string()).optional(),
+    assetBaseUrl: assetBaseUrlSchema,
 });
 
 type ComposeBlock = z.infer<typeof composeBlockSchema>;
@@ -257,6 +259,7 @@ export const POST: RequestHandler = async ({ request }) => {
                 slug: parsed.data.template,
                 target: parsed.data.target,
                 props: parsed.data.props,
+                assetBaseUrl: parsed.data.assetBaseUrl,
             });
 
             return json({
@@ -289,6 +292,7 @@ export const POST: RequestHandler = async ({ request }) => {
             target: parsed.data.target,
             props: {},
             previewText: parsed.data.previewText,
+            assetBaseUrl: parsed.data.assetBaseUrl,
         });
 
         return json({

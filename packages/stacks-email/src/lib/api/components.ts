@@ -27,6 +27,7 @@ export type EmailComponentCatalogItem = {
 export type CompileComponentInput = {
     slug: string;
     target: CompileTarget;
+    assetBaseUrl?: string;
 };
 
 export type CompileComponentOutput = Omit<
@@ -111,8 +112,13 @@ export const getEmailComponentOptions = (
 export const compileEmailComponent = ({
     slug,
     target,
+    assetBaseUrl,
 }: CompileComponentInput): CompileComponentOutput => {
-    const parsedInput = compileComponentInputSchema.parse({ slug, target });
+    const parsedInput = compileComponentInputSchema.parse({
+        slug,
+        target,
+        assetBaseUrl,
+    });
     const record = componentBySlug.get(parsedInput.slug);
 
     if (!record) {
@@ -125,6 +131,7 @@ export const compileEmailComponent = ({
         props: {},
         extractComponentName: record.catalog.slug,
         extractComponentTag: record.htmlExtractionTag,
+        assetBaseUrl: parsedInput.assetBaseUrl,
     });
 
     return {

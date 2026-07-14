@@ -18,9 +18,17 @@ export const emailRenderableKindSchema = z.enum(["component", "template"], {
     error: "`kind` must be `component` or `template`.",
 });
 
+export const assetBaseUrlSchema = z
+    .string()
+    .refine((value) => value === "" || /^https?:\/\//.test(value), {
+        error: "`assetBaseUrl` must be an absolute http(s) URL.",
+    })
+    .optional();
+
 export const compileComponentInputSchema = z.object({
     slug: slugSchema,
     target: compileTargetSchema,
+    assetBaseUrl: assetBaseUrlSchema,
 });
 
 const compilePropsSchema = z.record(z.string(), z.string()).optional();
@@ -29,6 +37,7 @@ export const compileTemplateInputSchema = z.object({
     slug: slugSchema,
     target: compileTargetSchema,
     props: compilePropsSchema,
+    assetBaseUrl: assetBaseUrlSchema,
 });
 
 export const compileEmailRenderableInputSchema = z.object({
@@ -36,4 +45,5 @@ export const compileEmailRenderableInputSchema = z.object({
     slug: slugSchema,
     target: compileTargetSchema,
     props: compilePropsSchema,
+    assetBaseUrl: assetBaseUrlSchema,
 });

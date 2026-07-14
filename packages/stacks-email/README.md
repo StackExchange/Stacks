@@ -260,3 +260,24 @@ callers that already have their own MJML source.
 A second export, `@stackoverflow/stacks-email/sveltekit`, provides ready-made
 route handlers for serving the pre-compiled static email artifacts (used by
 `@stackoverflow/stacks-docs`).
+
+### Image assets
+
+Image `src` values are prefixed with an absolute host so the compiled HTML is
+sendable. The host is resolved as: `assetBaseUrl` argument →
+`STACKS_EMAIL_ASSET_BASE_URL` environment variable → `https://email.stackoverflow.design`
+(default). Pass `assetBaseUrl` to any compile call (`compileEmailTemplate`,
+`compileEmailComponent`, `compileEmailRenderable`, or the `POST /api/compile` body)
+to override it:
+
+```ts
+const email = compileEmailTemplate({
+    slug: "transactional",
+    target: "braze",
+    // → <img src="https://cdn.example.com/email/...">
+    assetBaseUrl: "https://cdn.example.com",
+});
+```
+
+Pass `assetBaseUrl: ""` to force root-relative `/email/...` output. When provided,
+a non-empty value must be an absolute `http(s)` URL.

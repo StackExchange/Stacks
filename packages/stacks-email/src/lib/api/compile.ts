@@ -18,6 +18,7 @@ export type CompileEmailRenderableInput = {
     slug: string;
     target: CompileTarget;
     props?: Record<string, string>;
+    assetBaseUrl?: string;
 };
 
 export type CompileEmailRenderableOutput =
@@ -29,18 +30,21 @@ export const compileEmailRenderable = ({
     slug,
     target,
     props = {},
+    assetBaseUrl,
 }: CompileEmailRenderableInput): CompileEmailRenderableOutput => {
     const parsedInput = compileEmailRenderableInputSchema.parse({
         kind,
         slug,
         target,
         props,
+        assetBaseUrl,
     });
 
     if (parsedInput.kind === "component") {
         return compileEmailComponent({
             slug: parsedInput.slug,
             target: parsedInput.target,
+            assetBaseUrl: parsedInput.assetBaseUrl,
         });
     }
 
@@ -48,6 +52,7 @@ export const compileEmailRenderable = ({
         slug: parsedInput.slug,
         target: parsedInput.target,
         props: parsedInput.props,
+        assetBaseUrl: parsedInput.assetBaseUrl,
     });
 };
 

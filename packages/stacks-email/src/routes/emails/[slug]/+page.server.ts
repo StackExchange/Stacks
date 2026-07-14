@@ -1,4 +1,5 @@
 import { error } from "@sveltejs/kit";
+import { dev } from "$app/environment";
 import type { PageServerLoad } from "./$types";
 
 import { highlightCode } from "$lib/highlight";
@@ -16,6 +17,10 @@ export const load: PageServerLoad = async ({ params, url }) => {
         throw error(404, "Template not found");
     }
 
+    // Locally, keep image srcs root-relative so they load from the dev server
+    // rather than production. In prod, fall through to the default asset host.
+    const assetBaseUrl = dev ? "" : undefined;
+
     const requestedTarget = url.searchParams.get("target");
     const target = (
         requestedTarget &&
@@ -29,6 +34,7 @@ export const load: PageServerLoad = async ({ params, url }) => {
             const compiled = compileEmailTemplate({
                 slug: params.slug,
                 target: compileTarget,
+                assetBaseUrl,
             });
 
             const highlightedHtml = await highlightCode(compiled.html, "html");
@@ -47,6 +53,7 @@ export const load: PageServerLoad = async ({ params, url }) => {
     const renderedMjml = compileEmailTemplate({
         slug: params.slug,
         target: "preview",
+        assetBaseUrl,
     }).renderedMjml;
 
     const highlightedMjml = await highlightCode(renderedMjml, "xml");
