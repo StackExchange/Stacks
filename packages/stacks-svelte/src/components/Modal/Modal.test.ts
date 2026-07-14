@@ -146,6 +146,36 @@ describe("Modal", () => {
             expectModalVisible(false);
         });
 
+        it("should stop esc press propagation when closing a visible modal", async () => {
+            const laterWindowListener = sinon.spy();
+            render(Modal, { id: "test-modal", visible: true });
+            window.addEventListener("keydown", laterWindowListener);
+
+            try {
+                await userEvent.keyboard("{Escape}");
+
+                expectModalVisible(false);
+                expect(laterWindowListener).not.to.have.been.called;
+            } finally {
+                window.removeEventListener("keydown", laterWindowListener);
+            }
+        });
+
+        it("should not stop esc press propagation when modal is not visible", async () => {
+            const laterWindowListener = sinon.spy();
+            render(Modal, { id: "test-modal", visible: false });
+            window.addEventListener("keydown", laterWindowListener);
+
+            try {
+                await userEvent.keyboard("{Escape}");
+
+                expectModalVisible(false);
+                expect(laterWindowListener).to.have.been.calledOnce;
+            } finally {
+                window.removeEventListener("keydown", laterWindowListener);
+            }
+        });
+
         it("should emit close event on close when modal is visible", async () => {
             const onClose = sinon.spy();
             render(Modal, {
