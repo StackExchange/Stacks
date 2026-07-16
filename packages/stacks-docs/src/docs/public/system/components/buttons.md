@@ -201,7 +201,9 @@ Each button class has a selected state which can be visually activated by applyi
 </script>
 ```
 
-<ToggleButtonDemo />
+<Example>
+    <ToggleButtonDemo />
+</Example>
 
 ## Additional styles
 
