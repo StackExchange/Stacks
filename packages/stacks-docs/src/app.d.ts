@@ -32,6 +32,14 @@ declare global {
         [key: string]: unknown;
     };
 
+    type DocsSearchDocument = {
+        id: string;
+        title: string;
+        description: string;
+        path: string;
+        text: string;
+    };
+
     namespace App {
         interface Locals {
             session?: unknown;
@@ -47,6 +55,7 @@ declare global {
             markdown?: string | null;
             metadata?: DocsMetadata | null;
             needsAuth?: boolean;
+            searchDocuments?: DocsSearchDocument[];
             source?: string | null;
             structure?: { navigation?: DocsNavItem[] };
             [key: string]: unknown;
