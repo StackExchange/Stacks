@@ -1,0 +1,25 @@
+name: Deploy docs
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  deploy-docs:
+    name: "Deploy docs (manual)"
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy docs site
+        run: |
+          curl --fail --silent --show-error \
+            --request POST \
+            --data '{"forceDocsDeploy":true,"source":"workflow_dispatch"}' \
+            "$NETLIFY_DOCS_BUILD_HOOK_URL?trigger_branch=main&trigger_title=Manual+docs+deploy"
+        env:
+          NETLIFY_DOCS_BUILD_HOOK_URL: ${{ secrets.NETLIFY_DOCS_BUILD_HOOK_URL }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
