@@ -1,5 +1,11 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.33
+
+### Patch Changes
+
+- [#2315](https://github.com/StackExchange/Stacks/pull/2315) [`e35b99c`](https://github.com/StackExchange/Stacks/commit/e35b99c989c83fffc5a076a86a73d515b966bbe7) Thanks [@dancormier](https://github.com/dancormier)! - Fix atomic gap utilities so axis-specific classes emit targeted gap properties.
+
 ## 3.0.0-beta.32
 
 ### Patch Changes
