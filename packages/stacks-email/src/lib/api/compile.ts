@@ -13,13 +13,21 @@ import { compileEmailRenderableInputSchema } from "./request-schemas";
 
 export type EmailRenderableKind = "component" | "template";
 
-export type CompileEmailRenderableInput = {
-    kind: EmailRenderableKind;
-    slug: string;
-    target: CompileTarget;
-    props?: Record<string, string>;
-    assetBaseUrl?: string;
-};
+export type CompileEmailRenderableInput =
+    | {
+          kind: "component";
+          slug: string;
+          target: CompileTarget;
+          props?: Record<string, string | boolean>;
+          assetBaseUrl?: string;
+      }
+    | {
+          kind: "template";
+          slug: string;
+          target: CompileTarget;
+          props?: Record<string, string>;
+          assetBaseUrl?: string;
+      };
 
 export type CompileEmailRenderableOutput =
     | CompileComponentOutput
@@ -44,6 +52,7 @@ export const compileEmailRenderable = ({
         return compileEmailComponent({
             slug: parsedInput.slug,
             target: parsedInput.target,
+            props: parsedInput.props,
             assetBaseUrl: parsedInput.assetBaseUrl,
         });
     }

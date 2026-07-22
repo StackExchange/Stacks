@@ -13,6 +13,7 @@ import { mjmlConfigNodes } from "../mjml/config";
 import { targets, tokens, type CompileTarget } from "../tokens";
 import { transformTokens } from "./transform";
 import type { MjmlNode } from "../types";
+import { normalizeAssetBaseUrl, resolveAssetUrls } from "../assets";
 
 type MjmlCompileResult = {
     html: string;
@@ -59,6 +60,53 @@ const buildHeadChildren = (previewText: string | undefined): MjmlNode[] => {
 const isDocumentRoot = (nodes: MjmlNode[]) =>
     nodes.length === 1 && nodes[0].tagName.toLowerCase() === "mjml";
 
+const bodyChildTags = new Set(["mj-hero", "mj-raw", "mj-section", "mj-wrapper"]);
+const sectionChildTags = new Set(["mj-column", "mj-group", "mj-raw"]);
+
+const wrapFragmentForBody = (fragment: MjmlNode[]): MjmlNode[] => {
+    if (fragment.every((node) => bodyChildTags.has(node.tagName.toLowerCase()))) {
+        return fragment;
+    }
+
+    if (
+        fragment.every((node) =>
+            sectionChildTags.has(node.tagName.toLowerCase())
+        )
+    ) {
+        return [{ tagName: "mj-section", children: fragment }];
+    }
+
+    return [
+        {
+            tagName: "mj-section",
+            children: [{ tagName: "mj-column", children: fragment }],
+        },
+    ];
+};
+
+const wrapFragmentWithPreviewPadding = (fragment: MjmlNode[]): MjmlNode[] => {
+    const bodyChildren = wrapFragmentForBody(fragment);
+
+    if (
+        bodyChildren.some(
+            (node) => node.tagName.toLowerCase() === "mj-wrapper"
+        )
+    ) {
+        return bodyChildren;
+    }
+
+    return [
+        {
+            tagName: "mj-wrapper",
+            attributes: {
+                "padding-top": "20px",
+                "padding-bottom": "20px",
+            },
+            children: bodyChildren,
+        },
+    ];
+};
+
 const wrapInDocument = (
     fragment: MjmlNode[],
     previewText: string | undefined
@@ -71,16 +119,7 @@ const wrapInDocument = (
             attributes: {
                 "background-color": tokens.color.bodyBackground,
             },
-            children: [
-                {
-                    tagName: "mj-wrapper",
-                    attributes: {
-                        "padding-top": "20px",
-                        "padding-bottom": "20px",
-                    },
-                    children: fragment,
-                },
-            ],
+            children: wrapFragmentWithPreviewPadding(fragment),
         },
     ],
 });
@@ -128,21 +167,9 @@ export type CompileMjmlInput = {
     assetBaseUrl?: string;
 };
 
-// Root-relative image assets are authored as `/email/...`. When an absolute
-// asset host is supplied, prefix those `src`/`url(...)` references so the
-// compiled HTML is sendable off the preview host. Anchored to a quote or `(`
-// boundary so absolute links that merely contain `/email/` (e.g. the account
-// settings URL) are left untouched.
-const assetPathPattern = /(["'(])\/email\//g;
-
 // Fallback asset host when neither an explicit arg nor the env var is set. Pass
 // `assetBaseUrl: ""` to opt back into root-relative output.
 const DEFAULT_ASSET_BASE_URL = "https://email.stackoverflow.design";
-
-const resolveAssetUrls = (markup: string, assetBaseUrl: string): string =>
-    assetBaseUrl
-        ? markup.replace(assetPathPattern, `$1${assetBaseUrl}/email/`)
-        : markup;
 
 export type CompileMjmlOutput = {
     html: string;
@@ -170,11 +197,11 @@ export const compileMjml = ({
 
     // Explicit arg wins; otherwise the env var; otherwise the canonical host.
     // `??` (not `||`) so an explicit "" still forces root-relative output.
-    const resolvedAssetBaseUrl = (
+    const resolvedAssetBaseUrl = normalizeAssetBaseUrl(
         assetBaseUrl ??
-        process.env.STACKS_EMAIL_ASSET_BASE_URL ??
-        DEFAULT_ASSET_BASE_URL
-    ).replace(/\/$/, "");
+            process.env.STACKS_EMAIL_ASSET_BASE_URL ??
+            DEFAULT_ASSET_BASE_URL
+    );
 
     // Component compiles insert extraction markers around the renderable so the
     // compiled component HTML can be sliced back out (always a fragment, never a

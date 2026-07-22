@@ -11,7 +11,7 @@ import { expandVariantRecords } from "./records";
 
 type ExpandedComponentRecord = {
     catalog: EmailComponentCatalogItem;
-    sourceNodes: MjmlNode[];
+    render: (props?: Record<string, string | boolean>) => MjmlNode[];
     htmlExtractionTag?: string;
 };
 
@@ -27,6 +27,7 @@ export type EmailComponentCatalogItem = {
 export type CompileComponentInput = {
     slug: string;
     target: CompileTarget;
+    props?: Record<string, string | boolean>;
     assetBaseUrl?: string;
 };
 
@@ -62,10 +63,6 @@ const expandedComponentRecords = expandVariantRecords({
         category,
         tokens,
     }): ExpandedComponentRecord => {
-        const rendered = definition.component(
-            variant.id as keyof typeof definition.variants & string
-        );
-
         return {
             catalog: {
                 slug,
@@ -75,7 +72,13 @@ const expandedComponentRecords = expandVariantRecords({
                 tokens,
                 options: meta.options ?? [],
             },
-            sourceNodes: toNodeList(rendered),
+            render: (props = {}) =>
+                toNodeList(
+                    definition.component(
+                        variant.id as keyof typeof definition.variants & string,
+                        props
+                    )
+                ),
             htmlExtractionTag: meta.htmlExtraction?.targetTag,
         };
     },
@@ -112,11 +115,13 @@ export const getEmailComponentOptions = (
 export const compileEmailComponent = ({
     slug,
     target,
+    props = {},
     assetBaseUrl,
 }: CompileComponentInput): CompileComponentOutput => {
     const parsedInput = compileComponentInputSchema.parse({
         slug,
         target,
+        props,
         assetBaseUrl,
     });
     const record = componentBySlug.get(parsedInput.slug);
@@ -126,7 +131,7 @@ export const compileEmailComponent = ({
     }
 
     const result = compileMjml({
-        source: record.sourceNodes,
+        source: record.render(parsedInput.props),
         target: parsedInput.target,
         props: {},
         extractComponentName: record.catalog.slug,
