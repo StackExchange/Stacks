@@ -14,7 +14,7 @@ updated: 2026-06-23
 
 ## Meta — what is it, and how does it work?
 
-The term “meta” usually refers to the subsite, `sitename.meta.stackexchange.com`, which every site has to handle technical support, feature requests, and discussions about it. [Meta Stack Exchange](https://meta.stackexchange.com) (Meta.SE, MSE) is for questions that apply to the whole network.
+The term “meta” usually refers to the subsite that every site has to handle technical support, feature requests, and discussions about it. For sites with their own domain, Meta is at `meta.` plus the domain (for example, `meta.stackoverflow.com`). For subdomain sites, Meta is at `sitename.meta.stackexchange.com` (for example, `math.meta.stackexchange.com`). [Meta Stack Exchange](https://meta.stackexchange.com) (Meta.SE, MSE) is for questions that apply to the whole network.
 
 Every site has a help center article that further explains what “meta” is and how it works — [Meta Stack Exchange article](https://meta.stackexchange.com/help/whats-meta) and [stackoverflow.com’s article](https://stackoverflow.com/help/whats-meta).
 
@@ -23,7 +23,7 @@ The term should be capitalized if referring to a specific meta site, such as usi
 ## Stack Exchange
 
 In 2026 we formalized what had been theoretically [true for over a decade](https://stackoverflow.blog/2015/09/15/were-changing-our-name-back-to-stack-overflow/) by updating our use of language to reflect the fact that the Stack Exchange Network is part of Stack Overflow, rather than Stack Exchange being the parent of Stack Overflow.
-         
+
 For naming usage, see the Naming guide:
 
 - [The flagship site vs the network](/copy/naming#the-flagship-site-vs-the-network): Stack Overflow vs Stack Overflow Public Platforms
