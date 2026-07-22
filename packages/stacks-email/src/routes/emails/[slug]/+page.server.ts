@@ -38,37 +38,35 @@ export const load: PageServerLoad = async ({ params, url }) => {
             });
 
             const highlightedHtml = await highlightCode(compiled.html, "html");
+            const highlightedMjml = await highlightCode(
+                compiled.renderedMjml,
+                "xml"
+            );
 
             return [
                 compileTarget,
                 {
                     html: compiled.html,
                     highlightedHtml,
+                    renderedMjml: compiled.renderedMjml,
+                    highlightedMjml,
                     errors: compiled.errors,
                 },
             ] as const;
         })
     );
 
-    const renderedMjml = compileEmailTemplate({
-        slug: params.slug,
-        target: "preview",
-        assetBaseUrl,
-    }).renderedMjml;
-
-    const highlightedMjml = await highlightCode(renderedMjml, "xml");
-
     return {
         templates: listEmailTemplates(),
         template,
         target,
-        renderedMjml,
-        highlightedMjml,
         compiledByTarget: Object.fromEntries(compiledByTargetEntries) as Record<
             CompileTarget,
             {
                 html: string;
                 highlightedHtml: string;
+                renderedMjml: string;
+                highlightedMjml: string;
                 errors: {
                     line: number | undefined;
                     message: string;

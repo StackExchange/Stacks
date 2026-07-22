@@ -41,11 +41,11 @@
     const activeCompiled = $derived(data.compiledByTarget[activeTarget]);
     const previewHtml = $derived(data.compiledByTarget.preview.html);
     const activeCode = $derived(
-        activeTab === "mjml" ? data.renderedMjml : activeCompiled.html,
+        activeTab === "mjml" ? activeCompiled.renderedMjml : activeCompiled.html,
     );
     const highlightedCode = $derived(
         activeTab === "mjml"
-            ? data.highlightedMjml
+            ? activeCompiled.highlightedMjml
             : activeCompiled.highlightedHtml,
     );
 
