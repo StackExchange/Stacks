@@ -5,7 +5,7 @@
   import { IconPen, IconStackLayers, IconGlyph, IconBook, IconUserStack, IconMap, IconServiceSvelte } from '@stackoverflow/stacks-icons/icons';
   import { resolve } from '$app/paths';
 
-  const theme = {
+  const theme: Record<string, { icon: string; iconClasses: string }> = {
     'Product': {
         icon: IconStackLayers,
         iconClasses: 'bg-brand-pink fc-black',
@@ -66,11 +66,12 @@
 
   <div class="d-grid grid__12 g16">
     {#each data.structure?.navigation as category (category.slug)}
+      {@const categoryTheme = theme[category.title ?? ''] ?? theme.Product}
       <a
         class="td-none grid--col4 md:grid--col6 sm:grid--col12 d-flex fd-column p24 hmn2 bg-black-600 h:bc-black h:bg-black-500 d:bg-black-100 fc-white d:fc-black "
         href={resolve(`/${category.slug}`)}
       >
-        <div class="p6 as-start {theme[category.title].iconClasses}"><Icon class="h24 w24" src={theme[category.title].icon} /></div>
+        <div class="p6 as-start {categoryTheme.iconClasses}"><Icon class="h24 w24" src={categoryTheme.icon} /></div>
         <h2 class="mt-auto fs-headline1 mb8">{category.title}</h2>
         <p class="mb0 fs-body2 fc-black-300">{category.description}</p>
       </a>
