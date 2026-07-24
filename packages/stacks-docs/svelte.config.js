@@ -4,7 +4,6 @@ import adapter from "@sveltejs/adapter-netlify";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 import rehypeSlug from "rehype-slug";
-import rehypeSectionize from "@hbsnow/rehype-sectionize";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import extractToc from "@stefanprobst/rehype-extract-toc";
 import hljs from "highlight.js";
@@ -37,11 +36,14 @@ const config = {
                 rehypeSlug,
                 extractToc,
                 exposeToc,
-                rehypeSectionize,
+                markHeadingsInsideGrid,
+                sectionizeTopLevelHeadings,
                 [
                     rehypeAutolinkHeadings,
                     {
                         behavior: "append",
+                        test: (node) =>
+                            node?.data?.disableHeadingAnchor !== true,
                         properties: {
                             className: ["docs-heading-anchor"],
                             ariaHidden: "true",
@@ -76,6 +78,134 @@ function exposeToc() {
             }
             file.data.fm.toc = file.data.toc;
         }
+    };
+}
+
+const VOID_TAGS = new Set([
+    "area",
+    "base",
+    "br",
+    "col",
+    "embed",
+    "hr",
+    "img",
+    "input",
+    "link",
+    "meta",
+    "param",
+    "source",
+    "track",
+    "wbr",
+]);
+
+const RAW_TAG_PATTERN =
+    /<\/?([A-Za-z][A-Za-z0-9:._-]*)(?:(?:\s[^<>]*)?)\/?\s*>/g;
+
+function headingRank(node) {
+    if (node?.type !== "element" || !/^h[1-6]$/.test(node.tagName)) {
+        return null;
+    }
+    return Number.parseInt(node.tagName.slice(1), 10);
+}
+
+function updateRawTagStack(raw, stack) {
+    RAW_TAG_PATTERN.lastIndex = 0;
+
+    for (const match of raw.matchAll(RAW_TAG_PATTERN)) {
+        const fullMatch = match[0];
+        const tagName = match[1];
+        const isClosing = fullMatch.startsWith("</");
+        const isSelfClosing = fullMatch.endsWith("/>");
+        const isVoid = VOID_TAGS.has(tagName.toLowerCase());
+
+        if (isClosing) {
+            const lastIndex = stack.lastIndexOf(tagName);
+            if (lastIndex !== -1) {
+                stack.splice(lastIndex, 1);
+            }
+            continue;
+        }
+
+        if (!isSelfClosing && !isVoid) {
+            stack.push(tagName);
+        }
+    }
+}
+
+function isInsideTag(rawTagStack, tagName) {
+    const target = tagName.toLowerCase();
+    return rawTagStack.some((openTag) => openTag.toLowerCase() === target);
+}
+
+// Mark headings inside <Grid> blocks so autolink anchors can skip them.
+function markHeadingsInsideGrid() {
+    return function (tree) {
+        const rawTagStack = [];
+
+        for (const node of tree.children) {
+            if (node.type === "raw") {
+                updateRawTagStack(node.value, rawTagStack);
+            }
+
+            const rank = headingRank(node);
+            if (rank !== null && isInsideTag(rawTagStack, "grid")) {
+                node.data = { ...node.data, disableHeadingAnchor: true };
+            }
+        }
+    };
+}
+
+// Sectionize top-level markdown headings, but skip headings rendered inside raw
+// blocks/components (e.g. markdown inside <GridColumn> slots).
+function sectionizeTopLevelHeadings() {
+    const createSection = (rank, headingNode = null) => {
+        const headingId = headingNode?.properties?.id;
+
+        return {
+            type: "element",
+            tagName: "section",
+            properties: {
+                className: ["heading"],
+                dataHeadingRank: rank,
+                ...(typeof headingId === "string"
+                    ? { ariaLabelledby: headingId }
+                    : {}),
+            },
+            children: headingNode ? [headingNode] : [],
+        };
+    };
+
+    return function (tree) {
+        const rootWrapper = createSection(0);
+        const wrapperStack = [rootWrapper];
+        const rawTagStack = [];
+
+        const currentWrapper = () => wrapperStack[wrapperStack.length - 1];
+        const currentRank = () => currentWrapper().properties.dataHeadingRank;
+
+        for (const node of tree.children) {
+            if (node.type === "raw") {
+                updateRawTagStack(node.value, rawTagStack);
+            }
+
+            const rank = headingRank(node);
+            const shouldSectionize = rank !== null && rawTagStack.length === 0;
+
+            if (!shouldSectionize) {
+                currentWrapper().children.push(node);
+                continue;
+            }
+
+            while (rank <= currentRank()) {
+                wrapperStack.pop();
+            }
+
+            const section = createSection(rank, node);
+            currentWrapper().children.push(section);
+            wrapperStack.push(section);
+        }
+
+        tree.children = rootWrapper.children;
     };
 }
 
