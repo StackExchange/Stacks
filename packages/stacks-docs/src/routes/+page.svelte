@@ -10,7 +10,7 @@
   const sizeClasses: Record<CardSize, string> = {
     sm: 'grid--col4 grid--row1 md:grid--col3 sm:grid--col6',
     md: 'grid--col4 grid--row1 md:grid--col6 sm:grid--col6',
-    lg: 'grid--col4 grid--row2 md:grid--col6 md:grid--col12',
+    lg: 'grid--col4 grid--row2 md:grid--col6 sm:grid--col12',
   };
 
   const theme: Record<string, { icon: string; iconClasses: string; size?: CardSize }> = {
