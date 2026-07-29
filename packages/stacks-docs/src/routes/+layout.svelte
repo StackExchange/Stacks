@@ -39,7 +39,7 @@
 			<Icon src={IconLogo} />
 		</a>
 
-		<Search searchDocuments={data.searchDocuments ?? []} />
+		<Search />
 
 		<Button class="d-none sm:d-block" onclick={() => mobileMenu = !mobileMenu} weight="clear" icon>
 			<Icon src={mobileMenu ? IconCross : IconMenu} class="fc-black" />

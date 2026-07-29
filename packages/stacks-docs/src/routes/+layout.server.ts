@@ -1,7 +1,6 @@
 import type { LayoutServerLoad } from "./$types";
 import YAML from "yaml";
 import structureRaw from "$src/structure.yaml?raw";
-import { getSearchDocumentsPromise } from "$lib/searchDocuments";
 
 type NavItem = {
     slug: string;
@@ -27,7 +26,6 @@ function parseStructure(): Structure {
 }
 
 const structure = parseStructure();
-const searchDocumentsPromise = getSearchDocumentsPromise(structure);
 
 function findByPath(
     { navigation = [] }: Structure,
@@ -102,6 +100,5 @@ export const load: LayoutServerLoad = async (event) => {
         active,
         breadcrumb,
         needsAuth,
-        searchDocuments: await searchDocumentsPromise,
     };
 };

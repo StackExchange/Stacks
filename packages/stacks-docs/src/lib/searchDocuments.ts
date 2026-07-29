@@ -1,14 +1,9 @@
 import type { Component } from "svelte";
 import { render } from "svelte/server";
-import TurndownService from "turndown";
+import { getSearchText } from "$lib/searchText";
 
-// Only public docs are indexed because layout data is sent to every visitor.
+// The generated index is public, so private docs must never match this glob.
 const mdFiles = import.meta.glob("$docs/public/**/*.md");
-
-const turndownService = new TurndownService({
-    headingStyle: "atx",
-    codeBlockStyle: "fenced",
-});
 
 type NavItem = {
     slug: string;
@@ -54,11 +49,13 @@ function getSearchTitle(
     structure: Structure,
     path: string
 ): string {
-    if (metadata?.title) return normalizeText(metadata.title);
+    if (metadata?.title) return getSearchText(metadata.title);
 
     const trail = getNavTrail(structure, path.split("/").filter(Boolean));
     if (trail.length) {
-        return trail.map((item) => item.title ?? item.slug).join(" > ");
+        return getSearchText(
+            trail.map((item) => item.title ?? item.slug).join(" > ")
+        );
     }
 
     return path;
@@ -69,21 +66,10 @@ function getSearchDescription(
     structure: Structure,
     path: string
 ): string {
-    if (metadata?.description) return normalizeText(metadata.description);
+    if (metadata?.description) return getSearchText(metadata.description);
 
     const trail = getNavTrail(structure, path.split("/").filter(Boolean));
-    return normalizeText(trail.at(-1)?.description ?? "");
-}
-
-function getPlainText(html: string): string {
-    return normalizeText(turndownService.turndown(html));
-}
-
-function normalizeText(text: string): string {
-    return text
-        .replace(/<[^>]+>/g, " ")
-        .replace(/\s+/g, " ")
-        .trim();
+    return getSearchText(trail.at(-1)?.description ?? "");
 }
 
 const routeSearchDocuments: DocsSearchDocument[] = [
@@ -109,7 +95,7 @@ async function getSearchDocuments(
                     metadata: DocsMetadata;
                 };
                 const searchPath = getSearchPath(path);
-                const text = getPlainText(render(page.default).body);
+                const text = getSearchText(render(page.default).body);
 
                 return {
                     id: path,

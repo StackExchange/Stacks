@@ -2,6 +2,7 @@
     import { resolve } from "$app/paths";
     import { tick } from "svelte";
     import MiniSearch, { type SearchResult } from "minisearch";
+    import { limitSearchResults } from "$lib/searchResults";
 
     import {
         Button,
@@ -11,12 +12,14 @@
     } from "@stackoverflow/stacks-svelte";
     import { IconSearch } from "@stackoverflow/stacks-icons";
 
-    let { searchDocuments = [] }: { searchDocuments?: DocsSearchDocument[] } =
-        $props();
-
     let searchInput = $state<HTMLInputElement>();
     let isOpen = $state(false);
     let query = $state("");
+    let searchDocuments = $state<DocsSearchDocument[]>([]);
+    let isLoading = $state(false);
+    let hasLoaded = $state(false);
+    let loadError = $state(false);
+    let searchDocumentsRequest: Promise<void> | undefined;
 
     const miniSearch = $derived.by(() => {
         const search = new MiniSearch<DocsSearchDocument>({
@@ -33,21 +36,26 @@
         return search;
     });
 
-    const results = $derived.by(() => {
+    const resultSet = $derived.by(() => {
         const trimmedQuery = query.trim();
-        if (!trimmedQuery) return [];
+        if (!trimmedQuery) return limitSearchResults([]);
 
-        return miniSearch.search(trimmedQuery).slice(0, 8) as Array<
+        const matches = miniSearch.search(trimmedQuery) as Array<
             SearchResult &
                 Pick<DocsSearchDocument, "title" | "description" | "path">
         >;
+
+        return limitSearchResults(matches);
     });
+    const results = $derived(resultSet.results);
 
     const hasQuery = $derived(query.trim().length > 0);
     const resultStatus = $derived.by(() => {
+        if (isLoading) return "Loading search.";
+        if (loadError) return "Search is currently unavailable.";
         if (!hasQuery) return "";
 
-        return `${results.length} search ${results.length === 1 ? "result" : "results"} found.`;
+        return `${resultSet.total} search ${resultSet.total === 1 ? "result" : "results"} found.`;
     });
 
     $effect(() => {
@@ -58,15 +66,43 @@
 
     function toggleSearch() {
         isOpen = !isOpen;
+        if (isOpen) void loadSearchDocuments();
     }
 
     function openSearch() {
         isOpen = true;
+        void loadSearchDocuments();
     }
 
     function closeSearch() {
         isOpen = false;
         query = "";
+    }
+
+    function loadSearchDocuments() {
+        if (hasLoaded) return Promise.resolve();
+        if (searchDocumentsRequest) return searchDocumentsRequest;
+
+        isLoading = true;
+        loadError = false;
+        searchDocumentsRequest = fetch(resolve("/search.json"))
+            .then((response) => {
+                if (!response.ok) throw new Error("Failed to load search data");
+                return response.json() as Promise<DocsSearchDocument[]>;
+            })
+            .then((documents) => {
+                searchDocuments = documents;
+                hasLoaded = true;
+            })
+            .catch(() => {
+                loadError = true;
+                searchDocumentsRequest = undefined;
+            })
+            .finally(() => {
+                isLoading = false;
+            });
+
+        return searchDocumentsRequest;
     }
 
     function handleWindowKeydown(event: KeyboardEvent) {
@@ -116,8 +152,22 @@
 
         <p class="v-visible-sr" aria-live="polite">{resultStatus}</p>
 
-        <div class="search-results fl-shrink1 overflow-auto h5 hmx100 hmn0 px24 py8">
-            {#if results.length}
+        <div
+            class="search-results fl-shrink1 overflow-auto h5 hmx100 hmn0 px24 py8"
+        >
+            {#if isLoading}
+                <EmptyState title="Loading search" class="p24">
+                    {#snippet description()}
+                        Preparing the documentation index.
+                    {/snippet}
+                </EmptyState>
+            {:else if loadError}
+                <EmptyState title="Search unavailable" class="p24">
+                    {#snippet description()}
+                        Close and reopen search to try again.
+                    {/snippet}
+                </EmptyState>
+            {:else if results.length}
                 <ul class="list-reset m0" aria-label="Search results">
                     {#each results as result (result.id)}
                         <li>
@@ -170,5 +220,4 @@
         min-height: 0;
         overflow: visible;
     }
-
 </style>

@@ -1,5 +1,6 @@
 declare global {
     const __APP_VERSION__: string;
+    const __EMAIL_VERSION__: string;
     const __SVELTE_VERSION__: string;
 
     type DocsTocItem = {
@@ -55,7 +56,6 @@ declare global {
             markdown?: string | null;
             metadata?: DocsMetadata | null;
             needsAuth?: boolean;
-            searchDocuments?: DocsSearchDocument[];
             source?: string | null;
             structure?: { navigation?: DocsNavItem[] };
             [key: string]: unknown;
