@@ -46,6 +46,10 @@ jobs:
           command: npm run test -w packages/stacks-utils
           needs_lfs: false
           needs_playwright: false
+        - command_description: Unit Tests (stacks-docs)
+          command: npm run test -w packages/stacks-docs
+          needs_lfs: false
+          needs_playwright: false
     with:
       command: ${{ matrix.command }}
       command_description: ${{ matrix.command_description }}
@@ -110,4 +114,4 @@ jobs:
 # cancel the jobs if another workflow is kicked off for the same branch
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}

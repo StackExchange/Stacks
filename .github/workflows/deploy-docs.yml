@@ -15,7 +15,6 @@ jobs:
         run: |
           curl --fail --silent --show-error \
             --request POST \
-            --data '{"forceDocsDeploy":true,"source":"workflow_dispatch"}' \
             "$NETLIFY_DOCS_BUILD_HOOK_URL?trigger_branch=main&trigger_title=Manual+docs+deploy"
         env:
           NETLIFY_DOCS_BUILD_HOOK_URL: ${{ secrets.NETLIFY_DOCS_BUILD_HOOK_URL }}
