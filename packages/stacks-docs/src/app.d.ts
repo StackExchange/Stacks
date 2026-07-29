@@ -1,5 +1,6 @@
 declare global {
     const __APP_VERSION__: string;
+    const __EMAIL_VERSION__: string;
     const __SVELTE_VERSION__: string;
 
     type DocsTocItem = {
