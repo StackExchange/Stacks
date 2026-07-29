@@ -109,7 +109,7 @@ jobs:
       - name: Deploy docs site
         if: steps.changesets.outputs.published == 'true'
         run: |
-          curl --fail --silent --show-error \
+          curl --fail --silent --show-error --retry 3 --retry-all-errors \
             --request POST \
             "$NETLIFY_DOCS_BUILD_HOOK_URL?trigger_branch=main&trigger_title=Release+docs+deploy"
         env:
