@@ -114,7 +114,7 @@ jobs:
 
   release:
     name: "Release (main)"
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: ${{ always() && github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.build-and-test.result == 'success' && (needs.visual-regression-tests.result == 'success' || needs.visual-regression-tests.result == 'skipped') }}
     needs: [build-and-test, visual-regression-tests]
     runs-on: ubuntu-latest
     timeout-minutes: 20
