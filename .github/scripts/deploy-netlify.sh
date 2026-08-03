@@ -26,7 +26,7 @@ fi
 
 printf 'Netlify build %s created for deploy %s.\n' "$build_id" "$deploy_id"
 
-timeout_seconds="${NETLIFY_DEPLOY_TIMEOUT_SECONDS:-1800}"
+timeout_seconds="${NETLIFY_DEPLOY_TIMEOUT_SECONDS:-900}"
 poll_interval_seconds="${NETLIFY_DEPLOY_POLL_INTERVAL_SECONDS:-15}"
 deadline=$((SECONDS + timeout_seconds))
 
