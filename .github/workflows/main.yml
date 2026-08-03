@@ -66,6 +66,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: [build-and-test]
     runs-on: ubuntu-latest
+    timeout-minutes: 35
     env:
       BETTER_AUTH_SECRET: ${{ secrets.AUTH_SECRET || 'ci-build-placeholder-secret' }}
     outputs:
@@ -108,12 +109,12 @@ jobs:
             See this GH issue for more details: https://github.com/changesets/action/issues/187
       - name: Deploy docs site
         if: steps.changesets.outputs.published == 'true'
-        run: |
-          curl --fail --silent --show-error --retry 3 --retry-all-errors \
-            --request POST \
-            "$NETLIFY_DOCS_BUILD_HOOK_URL?trigger_branch=main&trigger_title=Release+docs+deploy"
+        run: bash .github/scripts/deploy-netlify.sh
         env:
-          NETLIFY_DOCS_BUILD_HOOK_URL: ${{ secrets.NETLIFY_DOCS_BUILD_HOOK_URL }}
+          NETLIFY_API_TOKEN: ${{ secrets.NETLIFY_API_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_BRANCH: main
+          NETLIFY_DEPLOY_TITLE: Release docs deploy
 
 # cancel the jobs if another workflow is kicked off for the same branch
 concurrency:
