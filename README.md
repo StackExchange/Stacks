@@ -106,6 +106,8 @@ npm run test:unit:watch -w packages/stacks-classic
 This [Web Test Runner plugin](https://www.npmjs.com/package/@web/test-runner-visual-regression) is used to run visual regression tests.
 Visual regression tests end with this suffix `*.visual.test.ts`.
 
+In CI, the visual regression suite runs only when a pull request or commit changes Stacks Classic styles, runtime code, visual tests or fixtures, baselines, direct dependency manifests, or visual test infrastructure. The required check still completes successfully without executing the suite for unrelated changes.
+
 Execute the visual regression tests suite by running:
 ```sh
 npm run test:visual -w packages/stacks-classic
