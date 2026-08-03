@@ -10,14 +10,16 @@ jobs:
     name: "Deploy docs (manual)"
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
+      - uses: actions/checkout@v5
       - name: Deploy docs site
-        run: |
-          curl --fail --silent --show-error --retry 3 --retry-all-errors \
-            --request POST \
-            "$NETLIFY_DOCS_BUILD_HOOK_URL?trigger_branch=main&trigger_title=Manual+docs+deploy"
+        run: bash .github/scripts/deploy-netlify.sh
         env:
-          NETLIFY_DOCS_BUILD_HOOK_URL: ${{ secrets.NETLIFY_DOCS_BUILD_HOOK_URL }}
+          NETLIFY_API_TOKEN: ${{ secrets.NETLIFY_API_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_BRANCH: main
+          NETLIFY_DEPLOY_TITLE: Manual docs deploy
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
