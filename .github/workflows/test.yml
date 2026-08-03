@@ -20,6 +20,10 @@ on:
         description: 'Whether or not to checkout with LFS'
         type: boolean
         default: false
+      should_run:
+        description: 'Whether or not to execute the command'
+        type: boolean
+        default: true
 
 jobs:
   build-and-test:
@@ -27,24 +31,32 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
+      - name: ⏭️ Skip ${{ inputs.command_description }}
+        if: inputs.should_run == false
+        run: echo "No relevant changes detected; skipping ${{ inputs.command_description }}."
+
       - name: ⬇️ Checkout
+        if: inputs.should_run
         uses: actions/checkout@v4
         with:
           lfs: ${{ inputs.needs_lfs }}
 
       - name: ⎔ Setup node
+        if: inputs.should_run
         uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
 
       - name: 🏗 Install Dependencies
+        if: inputs.should_run
         run: npm ci
 
       - name: 🏗 Install Playwright
-        if: inputs.needs_playwright == true
+        if: inputs.should_run && inputs.needs_playwright == true
         run: npx playwright install --with-deps
 
       - name: 🔑 Setup SSH for private submodule
+        if: inputs.should_run
         run: |
           if [ -z "$SUBMODULE_SSH_KEY" ]; then
             echo "Skipping SSH setup; SUBMODULE_SSH_KEY is not available"
@@ -57,13 +69,14 @@ jobs:
           SUBMODULE_SSH_KEY: ${{ secrets.SUBMODULE_SSH_KEY }}
 
       - name: ▶️ ${{ inputs.command_description }}
+        if: inputs.should_run
         run: ${{ inputs.command }}
         env:
           BETTER_AUTH_SECRET: ${{ secrets.AUTH_SECRET || 'ci-build-placeholder-secret' }}
 
       - name: ⬆️ Upload Visual Regression Test Results
         uses: actions/upload-artifact@v4
-        if: ${{ failure() && inputs.command_description == 'Visual Regression Tests' }}
+        if: ${{ failure() && inputs.should_run && inputs.command_description == 'Visual Regression Tests' }}
         with:
           name: visual-regression-test-results
           path: packages/stacks-classic/screenshots
