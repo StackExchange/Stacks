@@ -46,6 +46,10 @@ jobs:
           command: npm run test -w packages/stacks-utils
           needs_lfs: false
           needs_playwright: false
+        - command_description: Unit Tests (stacks-docs)
+          command: npm run test -w packages/stacks-docs
+          needs_lfs: false
+          needs_playwright: false
         - command_description: Unit Tests (stacks-email)
           command: npm run test -w packages/stacks-email
           needs_lfs: false
@@ -59,7 +63,7 @@ jobs:
 
   release:
     name: "Release (main)"
-    if: github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: [build-and-test]
     runs-on: ubuntu-latest
     env:
@@ -102,8 +106,16 @@ jobs:
             This is necessary because the PR is updated by github-actions[bot].
             This is a technical user which does not trigger actions workflows on push events.
             See this GH issue for more details: https://github.com/changesets/action/issues/187
+      - name: Deploy docs site
+        if: steps.changesets.outputs.published == 'true'
+        run: |
+          curl --fail --silent --show-error --retry 3 --retry-all-errors \
+            --request POST \
+            "$NETLIFY_DOCS_BUILD_HOOK_URL?trigger_branch=main&trigger_title=Release+docs+deploy"
+        env:
+          NETLIFY_DOCS_BUILD_HOOK_URL: ${{ secrets.NETLIFY_DOCS_BUILD_HOOK_URL }}
 
 # cancel the jobs if another workflow is kicked off for the same branch
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
