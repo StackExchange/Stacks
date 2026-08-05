@@ -106,12 +106,14 @@ npm run test:unit:watch -w packages/stacks-classic
 This [Web Test Runner plugin](https://www.npmjs.com/package/@web/test-runner-visual-regression) is used to run visual regression tests.
 Visual regression tests end with this suffix `*.visual.test.ts`.
 
+In CI, the visual regression suite runs only when a pull request or commit changes Stacks Classic styles, runtime code, visual tests or fixtures, baselines, direct dependency manifests, or visual test infrastructure. The required check still completes successfully without executing the suite for unrelated changes.
+
 Execute the visual regression tests suite by running:
 ```sh
 npm run test:visual -w packages/stacks-classic
 ```
 After the first run, if there are failing snapshots, they end up overriding the baseline ones in the filesystem (e.g. `/screenshots/<browser>/baseline/<name>.png`).
-We do this for easier comparison of the dif directly in vscode and to make sure only the failing snapshots get regenerated (see [this GH discussion](https://github.com/modernweb-dev/web/discussions/427#discussioncomment-3543771) that inspired the approach).
+We do this for easier comparison of the diff directly in vscode and to make sure only the failing snapshots get regenerated (see [this GH discussion](https://github.com/modernweb-dev/web/discussions/427#discussioncomment-3543771) that inspired the approach).
 
 We also recommend to install [this vscode extension](https://marketplace.visualstudio.com/items?itemName=RayWiis.png-image-diff) for getting better diffs.
 
@@ -186,6 +188,8 @@ _The release github workflow only run if the CI workflow (running linter, format
 _Despite using changesets to communicate the intent of creating releases in a more explicit way, we still follow [conventional commits standards](https://www.conventionalcommits.org/en/v1.0.0/) for keeping our git history easily parseable by the human eye._
 
 Docs are deployed directly from the current release flow; we no longer merge into a `production` branch to publish stackoverflow.design. Normal contribution PRs target `main`.
+
+When `changesets/action` publishes a new version from `main`, the release workflow triggers the Netlify build hook stored in `NETLIFY_DOCS_BUILD_HOOK_URL`. The docs site's Netlify ignore rule skips automatic production builds from ordinary `main` commits while preserving deploy previews and branch deploys. To deploy the latest `main` docs without publishing packages, manually run the Deploy docs workflow from the `main` branch.
 
 ## License
 Code and documentation copyright 2017-2026 Stack Exchange, Inc and released under the [MIT License](/LICENSE.MD).

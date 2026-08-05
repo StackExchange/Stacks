@@ -161,3 +161,10 @@ The private docs follow the same structure and conventions as public docs. Mark 
 3. **Add any images or assets** to the same directory as your markdown file
 
 4. **Reference assets** using relative paths (e.g., `./image.svg`) in your markdown
+
+## Email compile API auth (optional)
+
+`POST /api/email/compile` supports an optional shared Bearer token.
+
+- If `STACKS_EMAIL_AUTH_TOKEN` is not set: auth is disabled.
+- If `STACKS_EMAIL_AUTH_TOKEN` is set: the request must include `Authorization: Bearer <token>`.

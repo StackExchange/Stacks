@@ -1,9 +1,6 @@
 <script module lang="ts">
     export type ContentTypeName =
-        | "announcement"
-        | "how-to-guide"
-        | "knowledge-article"
-        | "policy";
+        "announcement" | "how-to-guide" | "knowledge-article" | "policy";
     export type ContentType =
         | {
               name: ContentTypeName;

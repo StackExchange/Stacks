@@ -18,12 +18,7 @@
         | "featured";
     export type Award = "gold" | "silver" | "bronze";
     export type UserType =
-        | "admin"
-        | "moderator"
-        | "staff"
-        | "ai"
-        | "bot"
-        | "new";
+        "admin" | "moderator" | "staff" | "ai" | "bot" | "new";
 </script>
 
 <script lang="ts">

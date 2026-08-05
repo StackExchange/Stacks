@@ -5,6 +5,8 @@ import structureRaw from "$src/structure.yaml?raw";
 type NavItem = {
     slug: string;
     title?: string;
+    description?: string;
+    externalUrl?: string;
     private?: boolean;
     items?: NavItem[];
     [key: string]: unknown;
@@ -13,6 +15,17 @@ type NavItem = {
 type Structure = {
     navigation?: NavItem[];
 };
+
+function parseStructure(): Structure {
+    try {
+        return YAML.parse(structureRaw);
+    } catch (err) {
+        console.error("Failed to parse structure.yaml:", err);
+        return {};
+    }
+}
+
+const structure = parseStructure();
 
 function findByPath(
     { navigation = [] }: Structure,
@@ -30,15 +43,6 @@ function findByPath(
 }
 
 export const load: LayoutServerLoad = async (event) => {
-    // Load the navigation structure from the structure.yaml
-    let structure: Structure = {};
-
-    try {
-        structure = YAML.parse(structureRaw);
-    } catch (err) {
-        console.error("Failed to parse structure.yaml:", err);
-    }
-
     // Grab the current section from the structure
     const path = [
         event.params.category,
