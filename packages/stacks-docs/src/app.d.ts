@@ -33,6 +33,14 @@ declare global {
         [key: string]: unknown;
     };
 
+    type DocsSearchDocument = {
+        id: string;
+        title: string;
+        description: string;
+        path: string;
+        text: string;
+    };
+
     namespace App {
         interface Locals {
             session?: unknown;
