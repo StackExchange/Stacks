@@ -255,7 +255,7 @@ export const POST: RequestHandler = async ({ request }) => {
         }
 
         try {
-            const compiled = compileEmailTemplate({
+            const compiled = await compileEmailTemplate({
                 slug: parsed.data.template,
                 target: parsed.data.target,
                 props: parsed.data.props,
@@ -287,7 +287,7 @@ export const POST: RequestHandler = async ({ request }) => {
 
     try {
         const document = buildTransactionalDocument(parsed.data.blocks);
-        const compiled = compileMjml({
+        const compiled = await compileMjml({
             source: document,
             target: parsed.data.target,
             props: {},

@@ -14,17 +14,17 @@ type StaticEmailArtifactRouteEvent = {
     };
 };
 
-export const staticEmailCompiledManifestGET = () =>
-    json(getStaticEmailManifest());
+export const staticEmailCompiledManifestGET = async () =>
+    json(await getStaticEmailManifest());
 
 export const staticEmailCompiledArtifactEntries = () =>
     getStaticEmailArtifactEntries();
 
-export const staticEmailCompiledArtifactGET = ({
+export const staticEmailCompiledArtifactGET = async ({
     params,
 }: StaticEmailArtifactRouteEvent) => {
     try {
-        const artifact = getStaticEmailArtifact(
+        const artifact = await getStaticEmailArtifact(
             params.kind,
             params.slug,
             params.file
