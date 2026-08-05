@@ -39,7 +39,7 @@
         refWrapper: HTMLElement,
         state: PopoverState
     ) => {
-        let ref: HTMLElement | null = null;
+        let ref: HTMLElement | null;
         if (elId) {
             ref = document.getElementById(elId) as HTMLElement;
         } else {

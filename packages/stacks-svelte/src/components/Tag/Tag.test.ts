@@ -31,7 +31,10 @@ describe("Tag", () => {
     });
 
     it("should render the all variant class", () => {
-        let rendered = render(Tag, { variant: "moderator", children: snippet });
+        const rendered = render(Tag, {
+            variant: "moderator",
+            children: snippet,
+        });
         expect(screen.getByText("test snippet").parentElement).to.have.class(
             "s-tag__moderator"
         );
@@ -40,7 +43,7 @@ describe("Tag", () => {
         );
 
         rendered.unmount();
-        rendered = render(Tag, { variant: "required", children: snippet });
+        render(Tag, { variant: "required", children: snippet });
         expect(screen.getByText("test snippet").parentElement).to.have.class(
             "s-tag__required"
         );
@@ -246,7 +249,7 @@ describe("Tag", () => {
         );
 
         rendered.unmount();
-        rendered = render(Tag, {
+        render(Tag, {
             i18nRequiredTagText: "Requisite tago",
             children: snippet,
             variant: "required",
