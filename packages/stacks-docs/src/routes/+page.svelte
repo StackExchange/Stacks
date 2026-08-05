@@ -77,7 +77,7 @@
       >
         <div class="p6 as-start {theme[category.title].iconClasses}"><Icon class="h24 w24" src={theme[category.title].icon} /></div>
         <h2 class="mt-auto fs-headline1 mb8">{category.title}</h2>
-        <p class="mb0 fs-body2 fc-black-300">{category.description}</p>
+        <p class="mb0 fs-body2 fc-black-250 d:fc-black-400">{category.description}</p>
       </a>
     {/each}
   </div>

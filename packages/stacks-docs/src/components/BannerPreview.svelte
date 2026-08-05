@@ -24,6 +24,6 @@
         <strong>Stacks is currently frozen in read-only mode.</strong> Contact the team to restore access.
     </span>
     <div class="s-banner--actions">
-        <button type="button" class="s-link s-banner--dismiss"><Icon src={IconCross} /></button>
+        <button type="button" class="s-link s-banner--dismiss" aria-label="Dismiss banner"><Icon src={IconCross} /></button>
     </div>
 </aside>
