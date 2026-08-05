@@ -276,7 +276,7 @@
     const usageCode = $derived.by(
         () => `import { compileEmailRenderable } from "@stackoverflow/stacks-email";
 
-const compiled = compileEmailRenderable({
+const compiled = await compileEmailRenderable({
     kind: "${kind}",
     slug: "${slug}",
     target: "${activeTarget}",

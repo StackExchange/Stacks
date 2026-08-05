@@ -13,7 +13,7 @@ export type StaticEmailManifestRecord = {
     slug: string;
     target: CompileTarget;
     meta: EmailCatalog[`${EmailRenderableKind}s`][number];
-    errors: ReturnType<typeof compileEmailRenderable>["errors"];
+    errors: Awaited<ReturnType<typeof compileEmailRenderable>>["errors"];
     files: {
         documentHtml: string;
         documentMjml: string;
@@ -122,12 +122,12 @@ const parseEmailArtifactFile = (
     };
 };
 
-const getCompiledRecord = (
+const getCompiledRecord = async (
     kind: EmailRenderableKind,
     slug: string,
     target: CompileTarget
 ) => {
-    const compiled = compileEmailRenderable({ kind, slug, target });
+    const compiled = await compileEmailRenderable({ kind, slug, target });
     const documentMjml = transformTokens(compiled.mjml, targets[target].tokens);
 
     return {
@@ -144,13 +144,13 @@ const getCompiledRecord = (
     };
 };
 
-const createManifestRecord = (
+const createManifestRecord = async (
     basePath: string,
     kind: EmailRenderableKind,
     slug: string,
     target: CompileTarget
-): StaticEmailManifestRecord => {
-    const { compiled } = getCompiledRecord(kind, slug, target);
+): Promise<StaticEmailManifestRecord> => {
+    const { compiled } = await getCompiledRecord(kind, slug, target);
     const documentHtmlFile = `${target}.html`;
     const documentMjmlFile = `${target}.full.mjml`;
     const displayHtmlFile =
@@ -172,9 +172,9 @@ const createManifestRecord = (
     };
 };
 
-export const getStaticEmailManifest = (
+export const getStaticEmailManifest = async (
     options: StaticEmailArtifactsOptions = {}
-): StaticEmailManifest => {
+): Promise<StaticEmailManifest> => {
     const basePath = normalizeBasePath(options.basePath);
     const cachedManifest = manifestCacheByBasePath.get(basePath);
 
@@ -189,7 +189,12 @@ export const getStaticEmailManifest = (
         for (const item of getCatalogItems(catalog, kind)) {
             for (const target of targetNames) {
                 records[toRecordKey(kind, item.slug, target)] =
-                    createManifestRecord(basePath, kind, item.slug, target);
+                    await createManifestRecord(
+                        basePath,
+                        kind,
+                        item.slug,
+                        target
+                    );
             }
         }
     }
@@ -234,7 +239,7 @@ export const getStaticEmailArtifactEntries =
         return entries;
     };
 
-export const getStaticEmailArtifact = (
+export const getStaticEmailArtifact = async (
     kind: string,
     slug: string,
     file: string
@@ -249,7 +254,7 @@ export const getStaticEmailArtifact = (
     }
 
     const { compiled, displayHtml, displayMjml, documentMjml } =
-        getCompiledRecord(kind, slug, parsedFile.target);
+        await getCompiledRecord(kind, slug, parsedFile.target);
 
     let artifactKind: EmailArtifactKind;
     if (parsedFile.extension === "html") {

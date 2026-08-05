@@ -112,12 +112,12 @@ export const getEmailComponentOptions = (
     return record.catalog.options;
 };
 
-export const compileEmailComponent = ({
+export const compileEmailComponent = async ({
     slug,
     target,
     props = {},
     assetBaseUrl,
-}: CompileComponentInput): CompileComponentOutput => {
+}: CompileComponentInput): Promise<CompileComponentOutput> => {
     const parsedInput = compileComponentInputSchema.parse({
         slug,
         target,
@@ -130,7 +130,7 @@ export const compileEmailComponent = ({
         throw new Error(`Unknown email component slug: ${parsedInput.slug}`);
     }
 
-    const result = compileMjml({
+    const result = await compileMjml({
         source: record.render(parsedInput.props),
         target: parsedInput.target,
         props: {},

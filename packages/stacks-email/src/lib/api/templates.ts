@@ -144,12 +144,12 @@ export const getEmailTemplateMeta = (slug: string) => {
     return record.catalog;
 };
 
-export const compileEmailTemplate = ({
+export const compileEmailTemplate = async ({
     slug,
     target,
     props = {},
     assetBaseUrl,
-}: CompileTemplateInput): CompileTemplateOutput => {
+}: CompileTemplateInput): Promise<CompileTemplateOutput> => {
     const parsedInput = compileTemplateInputSchema.parse({
         slug,
         target,
@@ -163,7 +163,7 @@ export const compileEmailTemplate = ({
     }
 
     const inputProps = parsedInput.props ?? {};
-    const result = compileMjml({
+    const result = await compileMjml({
         source: record.renderDocument(inputProps),
         target: parsedInput.target,
         props: {},

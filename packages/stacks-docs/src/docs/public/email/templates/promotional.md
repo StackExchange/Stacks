@@ -133,6 +133,6 @@ See the overview below outlining the required components, their variations, and 
 
 ## Options
 
-Props accepted when compiling the template, for example `compileEmailTemplate({ slug: "promotional", props })`.
+Props accepted when compiling the template, for example `await compileEmailTemplate({ slug: "promotional", props })`.
 
 <EmailOptionsTable templateSlug="promotional" />

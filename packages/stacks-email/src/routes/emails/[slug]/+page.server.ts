@@ -31,7 +31,7 @@ export const load: PageServerLoad = async ({ params, url }) => {
 
     const compiledByTargetEntries = await Promise.all(
         targetNames.map(async (compileTarget) => {
-            const compiled = compileEmailTemplate({
+            const compiled = await compileEmailTemplate({
                 slug: params.slug,
                 target: compileTarget,
                 assetBaseUrl,
