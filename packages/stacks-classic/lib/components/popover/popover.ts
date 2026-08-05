@@ -3,10 +3,7 @@ import type * as Popper from "@popperjs/core";
 import * as Stacks from "../../stacks";
 
 type OutsideClickBehavior =
-    | "always"
-    | "never"
-    | "if-in-viewport"
-    | "after-dismissal";
+    "always" | "never" | "if-in-viewport" | "after-dismissal";
 
 export abstract class BasePopoverController extends Stacks.StacksController {
     private popper!: Popper.Instance;

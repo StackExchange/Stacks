@@ -256,11 +256,9 @@ const fullBaseOptions = {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const template = ({ component, testid }: any) => html`
     <div
-        class="d-flex ai-center jc-center p8 ws6 ${(testid as string).includes(
-            "small-container"
-        )
-            ? "wmx3"
-            : ""}"
+        class="d-flex ai-center jc-center p8 ws6 ${
+            (testid as string).includes("small-container") ? "wmx3" : ""
+        }"
         data-testid="${testid}"
     >
         ${component}
