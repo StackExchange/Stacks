@@ -7,6 +7,48 @@ on:
     branches: [main]
 
 jobs:
+  detect-visual-changes:
+    name: Detect visual changes
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      should_run: ${{ steps.filter.outputs.styles == 'true' || steps.filter.outputs.runtime == 'true' || steps.filter.outputs.tests == 'true' || steps.filter.outputs.infrastructure == 'true' }}
+    steps:
+      - name: ⬇️ Checkout
+        uses: actions/checkout@v4
+
+      - name: 🔎 Detect visual changes
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            styles:
+              - 'packages/stacks-classic/lib/**/*.less'
+            runtime:
+              - 'packages/stacks-classic/lib/index.ts'
+              - 'packages/stacks-classic/lib/esm-no-css.ts'
+              - 'packages/stacks-classic/lib/controllers.ts'
+              - 'packages/stacks-classic/lib/stacks.ts'
+              - 'packages/stacks-classic/lib/components/**/!(*.test|*.test.setup|*.fixtures).ts'
+            tests:
+              - 'packages/stacks-classic/lib/**/*.visual.test.ts'
+              - 'packages/stacks-classic/lib/**/*.test.setup.ts'
+              - 'packages/stacks-classic/lib/**/*.fixtures.ts'
+              - 'packages/stacks-classic/lib/test/test-utils.ts'
+              - 'packages/stacks-classic/lib/test/visual-test-utils.ts'
+            infrastructure:
+              - '.gitattributes'
+              - '.github/workflows/main.yml'
+              - '.github/workflows/test.yml'
+              - 'package.json'
+              - 'packages/stacks-classic/package.json'
+              - 'packages/stacks-classic/run-test-visual.ps1'
+              - 'packages/stacks-classic/screenshots/**'
+              - 'packages/stacks-classic/web-test-runner.config.mjs'
+              - 'packages/stacks-classic/web-test-runner.config.ci.mjs'
+
   build-and-test:
     name: ${{ matrix.command_description }}
     uses: ./.github/workflows/test.yml
@@ -34,16 +76,16 @@ jobs:
           command: npm run test:a11y -w packages/stacks-classic -- --config web-test-runner.config.ci.mjs
           needs_lfs: false
           needs_playwright: true
-        - command_description: Visual Regression Tests
-          command: npm run test:visual:ci -w packages/stacks-classic -- --config ./visual-runner/stacks-classic-runner-config/web-test-runner.config.ci.mjs
-          needs_lfs: true
-          needs_playwright: false # we are using playwright docker image to run visual tests
         - command_description: Unit Tests (stacks-svelte)
           command: npm run test -w packages/stacks-svelte
           needs_lfs: false
           needs_playwright: true
         - command_description: Unit Tests (stacks-utils)
           command: npm run test -w packages/stacks-utils
+          needs_lfs: false
+          needs_playwright: false
+        - command_description: Unit Tests (stacks-docs)
+          command: npm run test -w packages/stacks-docs
           needs_lfs: false
           needs_playwright: false
         - command_description: Unit Tests (stacks-email)
@@ -57,11 +99,25 @@ jobs:
       needs_lfs: ${{ matrix.needs_lfs }}
     secrets: inherit
 
+  visual-regression-tests:
+    name: Visual Regression Tests
+    needs: detect-visual-changes
+    if: ${{ always() }}
+    uses: ./.github/workflows/test.yml
+    with:
+      command: npm run test:visual:ci -w packages/stacks-classic -- --config ./visual-runner/stacks-classic-runner-config/web-test-runner.config.ci.mjs
+      command_description: Visual Regression Tests
+      needs_lfs: true
+      needs_playwright: false # we are using playwright docker image to run visual tests
+      should_run: ${{ needs.detect-visual-changes.result != 'success' || needs.detect-visual-changes.outputs.should_run == 'true' }}
+    secrets: inherit
+
   release:
     name: "Release (main)"
-    if: github.ref == 'refs/heads/main'
-    needs: [build-and-test]
+    if: ${{ always() && github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.build-and-test.result == 'success' && (needs.visual-regression-tests.result == 'success' || needs.visual-regression-tests.result == 'skipped') }}
+    needs: [build-and-test, visual-regression-tests]
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     env:
       BETTER_AUTH_SECRET: ${{ secrets.AUTH_SECRET || 'ci-build-placeholder-secret' }}
     outputs:
@@ -102,8 +158,16 @@ jobs:
             This is necessary because the PR is updated by github-actions[bot].
             This is a technical user which does not trigger actions workflows on push events.
             See this GH issue for more details: https://github.com/changesets/action/issues/187
+      - name: Deploy docs site
+        if: steps.changesets.outputs.published == 'true'
+        run: bash .github/scripts/deploy-netlify.sh
+        env:
+          NETLIFY_API_TOKEN: ${{ secrets.NETLIFY_API_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_BRANCH: main
+          NETLIFY_DEPLOY_TITLE: Release docs deploy
 
 # cancel the jobs if another workflow is kicked off for the same branch
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
