@@ -67,8 +67,9 @@ describe("input-icon", () => {
             template: ({ component, testid }) => html`
                 <div
                     data-testid="${testid}"
-                    class="d-flex fd-column g4 fc-black ps-relative wmx2 p8 ${parentClasses ??
-                    ""}"
+                    class="d-flex fd-column g4 fc-black ps-relative wmx2 p8 ${
+                        parentClasses ?? ""
+                    }"
                 >
                     <label class="s-label v-visible-sr" for="ex-input"
                         >Input</label
