@@ -23,7 +23,6 @@ const scheduleVisualTest = ({
         }
 
         let retryAttempts = 3;
-        let lastError: Error | null = null;
 
         do {
             await fixture(element);
@@ -38,22 +37,19 @@ const scheduleVisualTest = ({
                 return;
             } catch (error) {
                 const e = error as Error;
-                lastError = e;
                 // if the error is a visual diff failure, fail immediately
                 if (e.message.includes("Visual diff failed.")) {
                     throw e;
                 }
                 // otherwise retry (to prevent flaky tests due to snapshot capturing)
                 retryAttempts--;
+                if (retryAttempts === 0) {
+                    throw e;
+                }
             } finally {
                 el.remove();
             }
         } while (retryAttempts > 0);
-
-        // If we exhausted all retries without success, throw the last error
-        if (lastError) {
-            throw lastError;
-        }
     });
 };
 
