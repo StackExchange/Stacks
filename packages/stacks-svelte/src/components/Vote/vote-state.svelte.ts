@@ -54,9 +54,7 @@ export interface VoteStateOptions {
      * - Throw an error to rollback to previous state
      */
     onUpvote?: () =>
-        | Promise<VoteServerResponse | void>
-        | VoteServerResponse
-        | void;
+        Promise<VoteServerResponse | void> | VoteServerResponse | void;
 
     /**
      * Hook called when user downvotes.
@@ -65,9 +63,7 @@ export interface VoteStateOptions {
      * - Throw an error to rollback to previous state
      */
     onDownvote?: () =>
-        | Promise<VoteServerResponse | void>
-        | VoteServerResponse
-        | void;
+        Promise<VoteServerResponse | void> | VoteServerResponse | void;
 }
 
 /**

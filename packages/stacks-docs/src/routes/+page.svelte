@@ -92,8 +92,8 @@
         href={resolve(`/${category.slug}`)}
       >
         <div class="p6 as-start mb32 {categoryTheme.iconClasses}"><Icon class="h24 w24" src={categoryTheme.icon} /></div>
-        <h2 class="mt-auto fs-headline1 mb2">{category.title}</h2>
-        <p class="mb0 fs-body2 fc-black-300">{category.description}</p>
+        <h2 class="mt-auto fs-headline1 mb8">{category.title}</h2>
+        <p class="mb0 fs-body2 fc-black-250 d:fc-black-400">{category.description}</p>
       </a>
     {/each}
   </div>

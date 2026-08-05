@@ -3,10 +3,7 @@ import type * as Popper from "@popperjs/core";
 import * as Stacks from "../../stacks";
 
 type OutsideClickBehavior =
-    | "always"
-    | "never"
-    | "if-in-viewport"
-    | "after-dismissal";
+    "always" | "never" | "if-in-viewport" | "after-dismissal";
 
 export abstract class BasePopoverController extends Stacks.StacksController {
     private popper!: Popper.Instance;
@@ -272,7 +269,7 @@ export abstract class BasePopoverController extends Stacks.StacksController {
             this.popoverSelectorAttribute
         );
 
-        let popoverElement: HTMLElement | null = null;
+        let popoverElement: HTMLElement | null;
 
         // if the popover is named, attempt to fetch it (and throw an error if it doesn't exist)
         if (popoverId) {

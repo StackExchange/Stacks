@@ -7,8 +7,8 @@ import { getEmailCatalog } from "./catalog";
 import { targetNames } from "../tokens";
 
 describe("email compilation", () => {
-    it("applies component props", () => {
-        const result = compileEmailComponent({
+    it("applies component props", async () => {
+        const result = await compileEmailComponent({
             slug: "button",
             target: "preview",
             props: {
@@ -21,8 +21,8 @@ describe("email compilation", () => {
         expect(result.componentHtml).toContain("https://example.com/delete");
     });
 
-    it("forwards component props through the renderable API", () => {
-        const result = compileEmailRenderable({
+    it("forwards component props through the renderable API", async () => {
+        const result = await compileEmailRenderable({
             kind: "component",
             slug: "button",
             target: "preview",
@@ -33,16 +33,16 @@ describe("email compilation", () => {
         expect(result.componentHtml).not.toContain("Learn more");
     });
 
-    it("compiles target-specific MJML", () => {
-        const preview = compileEmailTemplate({
+    it("compiles target-specific MJML", async () => {
+        const preview = await compileEmailTemplate({
             slug: "transactional",
             target: "preview",
         });
-        const dotnet = compileEmailTemplate({
+        const dotnet = await compileEmailTemplate({
             slug: "transactional",
             target: "dotnet",
         });
-        const braze = compileEmailTemplate({
+        const braze = await compileEmailTemplate({
             slug: "transactional",
             target: "braze",
         });
@@ -54,8 +54,8 @@ describe("email compilation", () => {
         expect(braze.renderedMjml).not.toBe(preview.renderedMjml);
     });
 
-    it("uses a normalized custom asset host", () => {
-        const result = compileEmailTemplate({
+    it("uses a normalized custom asset host", async () => {
+        const result = await compileEmailTemplate({
             slug: "transactional-long",
             target: "preview",
             assetBaseUrl: "https://cdn.example.com/assets/",
@@ -67,12 +67,12 @@ describe("email compilation", () => {
         expect(result.html).not.toContain('src="/email/');
     });
 
-    it("compiles the entire catalog for every target without MJML errors", () => {
+    it("compiles the entire catalog for every target without MJML errors", async () => {
         const catalog = getEmailCatalog();
 
         for (const target of targetNames) {
             for (const component of catalog.components) {
-                const result = compileEmailComponent({
+                const result = await compileEmailComponent({
                     slug: component.slug,
                     target,
                 });
@@ -84,7 +84,7 @@ describe("email compilation", () => {
             }
 
             for (const template of catalog.templates) {
-                const result = compileEmailTemplate({
+                const result = await compileEmailTemplate({
                     slug: template.slug,
                     target,
                 });

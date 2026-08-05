@@ -33,13 +33,13 @@ export type CompileEmailRenderableOutput =
     | CompileComponentOutput
     | CompileTemplateOutput;
 
-export const compileEmailRenderable = ({
+export const compileEmailRenderable = async ({
     kind,
     slug,
     target,
     props = {},
     assetBaseUrl,
-}: CompileEmailRenderableInput): CompileEmailRenderableOutput => {
+}: CompileEmailRenderableInput): Promise<CompileEmailRenderableOutput> => {
     const parsedInput = compileEmailRenderableInputSchema.parse({
         kind,
         slug,

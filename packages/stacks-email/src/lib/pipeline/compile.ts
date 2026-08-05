@@ -24,14 +24,14 @@ type MjmlCompileResult = {
     }[];
 };
 
-const mjml2htmlSync = mjml2html as unknown as (
+const mjml2htmlAsync = mjml2html as unknown as (
     mjml: string,
     options?: {
         validationLevel?: "strict" | "soft" | "skip";
         keepComments?: boolean;
         minify?: boolean;
     }
-) => MjmlCompileResult;
+) => Promise<MjmlCompileResult>;
 
 const escapePreviewText = (value: string) =>
     value
@@ -184,7 +184,7 @@ export type CompileMjmlOutput = {
     }[];
 };
 
-export const compileMjml = ({
+export const compileMjml = async ({
     source,
     target,
     props = {},
@@ -192,7 +192,7 @@ export const compileMjml = ({
     extractComponentName,
     extractComponentTag,
     assetBaseUrl,
-}: CompileMjmlInput): CompileMjmlOutput => {
+}: CompileMjmlInput): Promise<CompileMjmlOutput> => {
     const sourceNodes = Array.isArray(source) ? source : [source];
 
     // Explicit arg wins; otherwise the env var; otherwise the canonical host.
@@ -225,7 +225,7 @@ export const compileMjml = ({
     // preserved verbatim instead of being collapsed by mjml-parser-xml.
     const fullMjml = applyTemplateProps(serializeMjml(documentNode), props);
 
-    const compileResult = mjml2htmlSync(fullMjml, {
+    const compileResult = await mjml2htmlAsync(fullMjml, {
         validationLevel: "soft",
         keepComments: true,
         minify: false,

@@ -230,7 +230,7 @@ import {
 const { components, templates } = getEmailCatalog();
 
 // Compile a full template for the Braze target.
-const email = compileEmailTemplate({
+const email = await compileEmailTemplate({
     slug: "transactional",
     target: "braze",
     props: { headlineText: "Reset your password" },
@@ -239,12 +239,15 @@ const email = compileEmailTemplate({
 console.log(email.html); // ready-to-send HTML
 
 // Compile a single component (e.g. to render docs or a preview tile).
-const button = compileEmailComponent({ slug: "button", target: "preview" });
+const button = await compileEmailComponent({
+    slug: "button",
+    target: "preview",
+});
 
 console.log(button.componentHtml); // just the component’s markup
 
 // Or dispatch by kind when the slug is dynamic.
-const result = compileEmailRenderable({
+const result = await compileEmailRenderable({
     kind: "template",
     slug: "transactional",
     target: "dotnet",
@@ -271,7 +274,7 @@ sendable. The host is resolved as: `assetBaseUrl` argument →
 to override it:
 
 ```ts
-const email = compileEmailTemplate({
+const email = await compileEmailTemplate({
     slug: "transactional",
     target: "braze",
     // → <img src="https://cdn.example.com/email/...">
