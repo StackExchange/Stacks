@@ -34,9 +34,11 @@ const createPopover = ({
     >
         <div class="s-popover--content">${content}</div>
     </div>
-    ${renderOutsideButton
-        ? html`<button data-testid="outside-button">Outside button</button>`
-        : null}
+    ${
+        renderOutsideButton
+            ? html`<button data-testid="outside-button">Outside button</button>`
+            : null
+    }
 `;
 
 describe("popover", () => {

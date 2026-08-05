@@ -86,9 +86,7 @@
                             {#snippet badges()}
                                 <UserCardBadge
                                     type={badge as
-                                        | "admin"
-                                        | "moderator"
-                                        | "staff"}
+                                        "admin" | "moderator" | "staff"}
                                 />
                             {/snippet}
                             <UserCard {...baseArgs} {badges} />

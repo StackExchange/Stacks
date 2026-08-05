@@ -32,8 +32,7 @@
 
     export function usePopoverContext(component: string): PopoverState {
         let context = getContext(POPOVER_CONTEXT_NAME) as
-            | PopoverState
-            | undefined;
+            PopoverState | undefined;
         if (context === undefined) {
             throw new Error(
                 `<${component} /> is missing a parent <Popover /> component.`
