@@ -20,12 +20,12 @@
     {#if subsection.externalUrl}
       <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
       <a class="ff-stack-sans-headline s-link d-flex bb bc-black-200 fs-title ai-center py16" href={subsection.externalUrl}>
-        <img width="255" height="134" class="w20 h-auto mr16 bg-black-150" src={subsection.image} alt="Thumbnail" />
+        <img width="255" height="134" class="w20 h-auto mr16 bg-black-150" src={subsection.image} alt="" />
         {subsection?.title}
       </a>
     {:else}
       <a class="ff-stack-sans-headline s-link d-flex bb bc-black-200 fs-title ai-center py16" href={resolve(`/${data?.active?.slug}/${subsection.slug}/${subsection?.items ? subsection?.items[0]?.slug : ''}` as `/${string}`)}>
-        <img width="255" height="134" class="w20 h-auto mr16 bg-black-150" src={subsection.image} alt="Thumbnail" />
+        <img width="255" height="134" class="w20 h-auto mr16 bg-black-150" src={subsection.image} alt="" />
         {subsection?.title}
       </a>
     {/if}
