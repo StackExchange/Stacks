@@ -1,5 +1,13 @@
 # @stackoverflow/stacks
 
+## 3.0.0-beta.33
+
+### Patch Changes
+
+- [#2315](https://github.com/StackExchange/Stacks/pull/2315) [`e35b99c`](https://github.com/StackExchange/Stacks/commit/e35b99c989c83fffc5a076a86a73d515b966bbe7) Thanks [@dancormier](https://github.com/dancormier)! - Fix atomic gap utilities so axis-specific classes emit targeted gap properties.
+
+- [#2322](https://github.com/StackExchange/Stacks/pull/2322) [`4fb27bb`](https://github.com/StackExchange/Stacks/commit/4fb27bbd0b5570fc193e7e356574a8e7875f6dda) Thanks [@dancormier](https://github.com/dancormier)! - Update default form input border colors to black-350.
+
 ## 3.0.0-beta.32
 
 ### Patch Changes
