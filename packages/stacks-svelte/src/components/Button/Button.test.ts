@@ -21,6 +21,13 @@ describe("Button", () => {
         expect(screen.getByRole("link")).to.have.text("test btn");
     });
 
+    it("should preserve link semantics when selected", () => {
+        render(Button, { href: "#", selected: true, children });
+
+        expect(screen.getByRole("link")).not.to.have.attribute("aria-pressed");
+        expect(screen.queryByRole("button")).not.to.exist;
+    });
+
     it("should render the badge within the button", () => {
         render(Button, {
             children,

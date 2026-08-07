@@ -82,7 +82,7 @@ description: Atomic overflow classes allow you to change an element's overflow p
 ```
 
 <Example>
-    <div class="overflow-x-auto d-grid grid__3 sm:grid__2 md:grid__3 lg:grid__2 g16 fs-caption ff-mono pb64" tabindex="0">
+    <div class="overflow-x-auto d-grid grid__3 sm:grid__2 md:grid__3 lg:grid__2 g16 fs-caption ff-mono pb64" tabindex="0" role="region" aria-label="Overflow examples">
         <div>
             <div class="mb4">.overflow-auto</div>
             <div class="ba bc-black-225 pt32 hs2 overflow-auto">

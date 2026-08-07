@@ -18,20 +18,13 @@
 
     $: classes = getClasses(lines, truncate);
 
-    const getClasses = (lines: ExcerptLines, truncate: boolean) => {
-        const base = "s-post-summary--excerpt";
-        let classes = base;
-
+    function getClasses(lines: ExcerptLines, truncate: boolean) {
         if (lines === 0) {
-            classes = "d-none";
-        } else {
-            if (truncate) {
-                classes += ` v-truncate${lines}`;
-            }
+            return "d-none";
         }
 
-        return classes;
-    };
+        return `s-post-summary--excerpt${truncate ? ` v-truncate${lines}` : ""}`;
+    }
 </script>
 
 <p class={classes}>{excerpt}</p>

@@ -477,7 +477,9 @@ h1 {
 .docs-nav .docs-li {
     list-style: none;
 }
+.docs-copy .docs-link,
 .docs-link {
+    color: var(--theme-link-color, var(--black-600));
     font-weight: 500;
 }
 
@@ -550,6 +552,18 @@ h1 {
     padding: var(--su16);
 }
 
+/* Docs section card – used with a thumbnail to link to other areas in the docs i.e, for index pages */
+
+.docs-index-card {
+    border: var(--su1) solid var(--black-225);
+}
+.docs-index-card .docs-heading {
+    margin: 0 var(--su16) var(--su4);
+}
+.docs-index-card .docs-heading + p.docs-copy {
+    margin: 0 var(--su16) var(--su16);
+}
+
 /* Notices in doc content get breathing room below */
 .docs .s-notice {
     margin-bottom: var(--su16);
@@ -607,13 +621,4 @@ h1 {
 
 .hmn6 .s-editor-resizable {
     min-height: var(--su640) !important;
-}
-
-/* Agolia Docsearch */
-
-.DocSearch-Container {
-    z-index: 9999 !important;
-}
-.DocSearch-Footer {
-    margin: 0;
 }

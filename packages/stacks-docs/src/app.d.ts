@@ -1,5 +1,6 @@
 declare global {
     const __APP_VERSION__: string;
+    const __EMAIL_VERSION__: string;
     const __SVELTE_VERSION__: string;
 
     type DocsTocItem = {
@@ -30,6 +31,14 @@ declare global {
         updated?: string;
         toc?: DocsTocItem[];
         [key: string]: unknown;
+    };
+
+    type DocsSearchDocument = {
+        id: string;
+        title: string;
+        description: string;
+        path: string;
+        text: string;
     };
 
     namespace App {

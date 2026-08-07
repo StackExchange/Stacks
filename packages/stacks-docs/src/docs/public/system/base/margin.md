@@ -9,13 +9,13 @@ description: "Stacks provides atomic classes to override margin."
     import type { ClassTableRow } from '$components/ClassTable.svelte';
 
     const baseAbbreviations: ClassTableRow[] = [
-        { class: 'm',  output: 'margin',          description: 'Responsive' },
-        { class: 'mt', output: 'margin-top',       description: 'Responsive' },
-        { class: 'mr', output: 'margin-right',     description: 'Responsive' },
-        { class: 'mb', output: 'margin-bottom',    description: 'Responsive' },
-        { class: 'ml', output: 'margin-left',      description: 'Responsive' },
-        { class: 'mx', output: 'margin x-axis',    description: 'Responsive' },
-        { class: 'my', output: 'margin y-axis',    description: 'Responsive' },
+        { class: 'm',  output: 'margin',          responsive: true },
+        { class: 'mt', output: 'margin-top',       responsive: true },
+        { class: 'mr', output: 'margin-right',     responsive: true },
+        { class: 'mb', output: 'margin-bottom',    responsive: true },
+        { class: 'ml', output: 'margin-left',      responsive: true },
+        { class: 'mx', output: 'margin x-axis',    responsive: true },
+        { class: 'my', output: 'margin y-axis',    responsive: true },
     ];
 
     const baseClasses: ClassTableRow[] = [
@@ -134,13 +134,13 @@ description: "Stacks provides atomic classes to override margin."
     ];
 
     const negativeAbbreviations: ClassTableRow[] = [
-        { class: 'mn',  output: 'margin',          description: 'Responsive' },
-        { class: 'mtn', output: 'margin-top',       description: 'Responsive' },
-        { class: 'mrn', output: 'margin-right',     description: 'Responsive' },
-        { class: 'mbn', output: 'margin-bottom',    description: 'Responsive' },
-        { class: 'mln', output: 'margin-left',      description: 'Responsive' },
-        { class: 'mxn', output: 'margin x-axis',    description: 'Responsive' },
-        { class: 'myn', output: 'margin y-axis',    description: 'Responsive' },
+        { class: 'mn',  output: 'margin',          responsive: true },
+        { class: 'mtn', output: 'margin-top',       responsive: true },
+        { class: 'mrn', output: 'margin-right',     responsive: true },
+        { class: 'mbn', output: 'margin-bottom',    responsive: true },
+        { class: 'mln', output: 'margin-left',      responsive: true },
+        { class: 'mxn', output: 'margin x-axis',    responsive: true },
+        { class: 'myn', output: 'margin y-axis',    responsive: true },
     ];
 
     const negativeClasses: ClassTableRow[] = [
@@ -268,7 +268,7 @@ Immutable margin utilities are based on our global white space scale. These can 
 
 ### Abbreviations
 
-<ClassTable classes={baseAbbreviations} headings={{ class: 'Abbreviation', output: 'Property', description: 'Responsive?' }} />
+<ClassTable classes={baseAbbreviations} headings={{ class: 'Abbreviation', output: 'Property', responsive: 'Responsive?' }} />
 
 ### Base examples
 
@@ -294,7 +294,7 @@ Immutable margin utilities are based on our global white space scale. These can 
 
 ### Abbreviations
 
-<ClassTable classes={negativeAbbreviations} headings={{ class: 'Abbreviation', output: 'Property', description: 'Responsive?' }} />
+<ClassTable classes={negativeAbbreviations} headings={{ class: 'Abbreviation', output: 'Property', responsive: 'Responsive?' }} />
 
 ### Negative examples
 

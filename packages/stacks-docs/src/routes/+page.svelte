@@ -1,28 +1,59 @@
 <script lang="ts">
   let { data }: { data: App.PageData } = $props();
 
-  import { Icon } from '@stackoverflow/stacks-svelte';
-  import { IconArrowUpRightBox, IconServiceSvelte } from '@stackoverflow/stacks-icons/icons';
+  import { Icon, Notice } from '@stackoverflow/stacks-svelte';
+  import { IconPen, IconStackLayers, IconGlyph, IconBook, IconUserStack, IconMap, IconMail, IconServiceSvelte } from '@stackoverflow/stacks-icons/icons';
   import { resolve } from '$app/paths';
 
-  import IconProduct from '$lib/assets/icons/product.svg?raw'
-  import IconCopywriting from '$lib/assets/icons/copywriting.svg?raw'
-  import IconBrand from '$lib/assets/icons/brand.svg?raw'
-  import IconHandook from '$lib/assets/icons/handbook.svg?raw'
-  import IconResources from '$lib/assets/icons/resources.svg?raw'
-  import IconEmail from '$lib/assets/icons/email.svg?raw'
+  type CardSize = 'sm' | 'md' | 'lg';
 
-  const icons: Record<string, string> = {
-    'Product': IconProduct,
-    'Copywriting': IconCopywriting,
-    'Brand': IconBrand,
-    'Handbook': IconHandook,
-    'Resources': IconResources,
-    'Email': IconEmail,
+  const sizeClasses: Record<CardSize, string> = {
+    sm: 'grid--col4 grid--row1 md:grid--col3 sm:grid--col6',
+    md: 'grid--col4 grid--row1 md:grid--col6 sm:grid--col6',
+    lg: 'grid--col4 grid--row2 md:grid--col6 sm:grid--col12',
+  };
+
+  const theme: Record<string, { icon: string; iconClasses: string; size?: CardSize }> = {
+    'Product': {
+        icon: IconStackLayers,
+        iconClasses: 'bg-brand-pink fc-black',
+        size: 'lg',
+    },
+    'Copywriting': {
+        icon: IconPen,
+        iconClasses: 'bg-brand-blue fc-white',
+        size: 'md',
+    },
+    'Community': {
+        icon: IconUserStack,
+        iconClasses: 'bg-brand-yellow fc-black',
+        size: 'md',
+    },
+    'Brand': {
+        icon: IconGlyph,
+        iconClasses: 'bg-brand fc-black',
+        size: 'lg',
+    },
+    'Handbook': {
+        icon: IconBook,
+        iconClasses: 'bg-brand-green fc-brand-green-dark',
+        size: 'sm',
+    },
+    'Resources': {
+        icon: IconMap,
+        iconClasses: 'bg-brand-brown-light fc-black',
+        size: 'sm',
+    },
+    'Email': {
+        icon: IconMail,
+        iconClasses: 'bg-brand-purple fc-black',
+        size: 'md',
+    },
   }
 </script>
 
 <svelte:head>
+  <title>Stack Overflow Design System (aka “Stacks”)</title>
   <style>
     main {
       background-image: url(/images/heros/home.svg);
@@ -38,8 +69,8 @@
   </style>
 </svelte:head>
 
-<div class="page p32 sm:p24 w100 wmx12 my-auto">
-  <div class="d-flex g4 ai-center">
+<div class="page p32 sm:p24 w100 wmx12">
+  <div class="d-flex g4 ai-center mb-auto">
     <span class="s-badge fc-purple-500 bg-purple-100">v{__APP_VERSION__}</span>
     <a href="https://beta.svelte.stackoverflow.design/" class="s-badge">
       <Icon src={IconServiceSvelte} class="native" />
@@ -49,29 +80,25 @@
 
   <h1 class="mt24 mb12">Stacks</h1>
 
-  <p class="fs-body3 w50 sm:w100 sm:pr32 mb32 wmx5">
+  <p class="fs-body3 w50 sm:w100 sm:pr32 mb48 wmx5">
     The Stack Overflow Design System – resources for product designers, developers, marketers and everyone who works with Stack Overflow.
   </p>
 
   <div class="d-grid grid__12 g16">
     {#each data.structure?.navigation as category (category.slug)}
+      {@const categoryTheme = theme[category.title ?? ''] ?? theme.Product}
       <a
-        class="td-none h:bg-black-600 grid--col4 md:grid--col6 sm:grid--col12 d-flex fd-column p24 bg-black fc-white d:bg-black-100 d:fc-black hmn2"
+        class="td-none {sizeClasses[categoryTheme.size ?? 'md']} d-flex fd-column p24 bg-black-600 h:bc-black h:bg-black-500 d:bg-black-100 fc-white d:fc-black "
         href={resolve(`/${category.slug}`)}
       >
-        <Icon src={icons[category.title]} />
-        <h2 class="mt-auto fs-headline1 mb12">{category.title}</h2>
-        <p class="mb0 fs-body2 fc-black-300">{category.description}</p>
+        <div class="p6 as-start mb32 {categoryTheme.iconClasses}"><Icon class="h24 w24" src={categoryTheme.icon} /></div>
+        <h2 class="mt-auto fs-headline1 mb8">{category.title}</h2>
+        <p class="mb0 fs-body2 fc-black-250 d:fc-black-400">{category.description}</p>
       </a>
     {/each}
-
-    <a
-      class="td-none h:bg-white h:fc-black grid--col4 md:grid--col6 sm:grid--col12 d-flex fd-column p24 bg-yellow-100 fc-black d:fc-black hmn2"
-      href="https://v2.stackoverflow.design/"
-    >
-      <Icon src={IconArrowUpRightBox} />
-      <h2 class="mt-auto fs-headline1 lh-sm mb12">Looking for the previous version of Stacks?</h2>
-      <p class="mb0 fs-body2 fc-black-400">If you are working on a classic experience you can visit the v2 documentation.</p>
-    </a>
   </div>
+
+  <Notice variant="info" class="s-anchors s-anchors__inherit s-anchors__underlined mt32">
+      <p class="mb0">Looking for the previous version of Stacks? <a href="https://v2.stackoverflow.design/product/develop/using-stacks/">Go to the classic v2 documentation</a>.</p>
+  </Notice>
 </div>

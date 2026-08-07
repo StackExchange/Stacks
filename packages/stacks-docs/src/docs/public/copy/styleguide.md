@@ -1,5 +1,5 @@
 ---
-updated: 2025-12-11
+updated: 2026-06-23
 ---
 
 <script>
@@ -11,6 +11,12 @@ updated: 2025-12-11
 </script>
 
 This guide covers editorial and style conventions for Stack Overflow content.
+
+## Make it scannable
+
+Use headings, bullets, and short paragraphs to break content into chunks readers can scan rather than read end-to-end. For longer posts, include a brief **TL;DR** (“Too Long; Didn’t Read”) at the top so readers can grasp the gist before committing.
+
+For specifics, see [Headings and subheadings](#headings-and-subheadings) and [Lists](#lists).
 
 ## Capitalization rules
 
@@ -161,7 +167,7 @@ Never use abbreviations in external-facing materials including marketing, docume
 
 ### Internal communications
 
-In internal Slack, emails, or presentations, abbreviations may be used for brevity once the full name has been established in context. However, defaulting to full names is still preferred.
+In internal Slack, emails, or presentations, abbreviations may be used for brevity once the full name has been established in context, alongside the abbreviation you will be using in parentheses. However, defaulting to full names is still preferred.
 
 <Grid>
   <GridColumn extraClasses="bg-green-100">
@@ -463,7 +469,7 @@ Leave off possessives when referring to users or features when possible. If you 
 
 When referring to Stack Overflow, use “we”. However, try to avoid inserting Stack Overflow into the content as much as possible.
 
-Use “their” as a singular, gender-neutral pronoun when the gender of the subject is unknown or unimportant. Avoid using gendered terms.
+Use “their” as a singular, gender-neutral pronoun when the gender of the subject is unknown or unimportant. Avoid using gendered terms (unless you’re certain someone wants to be addressed with them).
 
 <Grid>
   <GridColumn extraClasses="bg-red-100">
@@ -767,7 +773,7 @@ Buttons and links should be clear and predictable. Button and link text should b
 
 ### Headings and subheadings
 
-All headings or subheadings should be concise, scannable, and sentence case. Don’t use periods at the end of headings. If a subheading is a full sentence, you may use a period.
+All headings or subheadings should be concise, scannable, and sentence case. Don’t use periods at the end of headings. If a subheading is a full sentence, you may use a period (but if this is the case, your heading is probably too long and should be shortened).
 
 ### Lists
 

@@ -4,12 +4,7 @@
     import { createRawSnippet, type Snippet } from "svelte";
 
     export type Variant =
-        | ""
-        | "danger"
-        | "info"
-        | "success"
-        | "warning"
-        | undefined;
+        "" | "danger" | "info" | "success" | "warning" | undefined;
 
     export type ToastOptions = {
         variant?: Variant;

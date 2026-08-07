@@ -156,8 +156,7 @@
             {placeholder}
             {readonly}
             {required}
-            {...rest}
-        ></textarea>
+            {...rest}></textarea>
 
         {#if state}
             <div class="s-input-icon">
