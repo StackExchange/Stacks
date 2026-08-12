@@ -1,5 +1,27 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime.js";
 import { DateTimeFormatter, formatTime } from "./DateTimeFormatter";
+
+dayjs.extend(relativeTime);
+
+function formatAbsoluteTime(time: string, includeYear = false): string {
+    const options: Intl.DateTimeFormatOptions = {
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+    };
+
+    if (includeYear) {
+        options.year = "numeric";
+    }
+
+    return new Intl.DateTimeFormat("en-US", options)
+        .format(new Date(time))
+        .replace(/,([^,]*)$/, " at$1");
+}
 
 describe("DateTimeFormatter.formatTime", () => {
     beforeEach(() => {
@@ -36,13 +58,27 @@ describe("DateTimeFormatter.formatTime", () => {
             const result = DateTimeFormatter.formatTime(minutesAgo);
             expect(result).toBe("30 minutes ago");
         });
+
+        it("should use relative time at exactly the two-day boundary", () => {
+            const twoDaysAgo = new Date("2026-01-13T12:00:00Z").toISOString();
+            const result = DateTimeFormatter.formatTime(twoDaysAgo);
+            expect(result).toBe("2 days ago");
+        });
     });
 
     describe("same year format (beyond 2 days)", () => {
         it("should format date with time for same year", () => {
             const threeDaysAgo = new Date("2026-01-12T15:45:00Z").toISOString();
             const result = DateTimeFormatter.formatTime(threeDaysAgo);
-            expect(result).toMatch(/Jan 12 at \d{2}:\d{2}/);
+            expect(result).toBe(formatAbsoluteTime(threeDaysAgo));
+        });
+
+        it("should use an absolute date beyond the two-day boundary", () => {
+            const beyondTwoDays = new Date(
+                "2026-01-13T11:59:59Z"
+            ).toISOString();
+            const result = DateTimeFormatter.formatTime(beyondTwoDays);
+            expect(result).toBe(formatAbsoluteTime(beyondTwoDays));
         });
     });
 
@@ -50,7 +86,7 @@ describe("DateTimeFormatter.formatTime", () => {
         it("should format date with year for different year", () => {
             const lastYear = new Date("2025-12-15T15:45:00Z").toISOString();
             const result = DateTimeFormatter.formatTime(lastYear);
-            expect(result).toMatch(/Dec 15, 2025 at \d{2}:\d{2}/);
+            expect(result).toBe(formatAbsoluteTime(lastYear, true));
         });
     });
 
@@ -67,5 +103,9 @@ describe("DateTimeFormatter.formatTime", () => {
             const result2 = DateTimeFormatter.formatTime(testTime);
             expect(result1).toBe(result2);
         });
+    });
+
+    it("should not modify the consumer's default Day.js locale", () => {
+        expect(dayjs().subtract(1, "hour").fromNow()).toBe("an hour ago");
     });
 });

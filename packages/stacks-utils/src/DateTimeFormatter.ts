@@ -1,36 +1,28 @@
 ﻿import dayjs from "dayjs";
+import en from "dayjs/locale/en.js";
 import relativeTime from "dayjs/plugin/relativeTime.js";
-import updateLocale from "dayjs/plugin/updateLocale.js";
 
 dayjs.extend(relativeTime);
-dayjs.extend(updateLocale);
-const config = {
-    // strict thresholds
-    thresholds: [
-        { l: "s", r: 1 },
-        { l: "m", r: 1 },
-        { l: "mm", r: 59, d: "minute" },
-        { l: "h", r: 1 },
-        { l: "hh", r: 23, d: "hour" },
-        { l: "d", r: 1 },
-        { l: "dd", r: 29, d: "day" },
-    ],
-    relativeTime: {
-        future: "in %s",
-        past: "%s ago",
-        s: "%d seconds ago",
-        ss: "%d seconds ago",
-        m: "1 minute ago",
-        mm: "%d minutes ago",
-        h: "1 hour ago",
-        hh: "%d hours ago",
-        d: "yesterday",
-        dd: "%d days ago",
+const localeName = "stacks-utils";
+dayjs.locale(
+    {
+        ...en,
+        name: localeName,
+        relativeTime: {
+            future: "in %s",
+            past: "%s ago",
+            s: "%d seconds ago",
+            m: "1 minute ago",
+            mm: "%d minutes ago",
+            h: "1 hour ago",
+            hh: "%d hours ago",
+            d: "yesterday",
+            dd: "%d days ago",
+        },
     },
-    rounding: Math.floor,
-};
-
-dayjs.updateLocale("en", config);
+    undefined,
+    true
+);
 
 /**
  * Utility class for formatting date and time values into various formats.
@@ -68,7 +60,7 @@ export class DateTimeFormatter {
             {
                 condition: (diff: number) => diff <= 2 * secondsInDay,
                 format: (theTime: Date) => {
-                    return dayjs(theTime).fromNow(true);
+                    return dayjs(theTime).locale(localeName).fromNow(true);
                 },
             },
             {

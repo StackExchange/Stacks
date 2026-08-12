@@ -60,6 +60,13 @@ describe("NumberFormatter.formatCount", () => {
         });
     });
 
+    describe("custom compact threshold", () => {
+        it("should switch formats at the provided threshold", () => {
+            expect(NumberFormatter.formatCount(999, 1000)).toBe("999");
+            expect(NumberFormatter.formatCount(1000, 1000)).toBe("1k");
+        });
+    });
+
     describe("convenience function export", () => {
         it("should work with the exported formatCount function", () => {
             expect(formatCount(1234)).toBe("1,234");
