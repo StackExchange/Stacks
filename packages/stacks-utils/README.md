@@ -2,6 +2,8 @@
 
 Stack Overflow utility functions for formatting and data manipulation.
 
+This package is ESM-only and formats values using the `en-US` locale.
+
 ## Installation
 
 ```bash
@@ -44,6 +46,8 @@ NumberFormatter.formatCount(42); // "42"
 ### formatTime
 
 Formats UTC time strings into human-readable relative or absolute time formats.
+Inputs should be valid ISO 8601 UTC timestamps representing past dates.
+Absolute dates and times are displayed in the consumer's local timezone.
 
 ```typescript
 import { formatTime } from "@stackoverflow/stacks-utils";
