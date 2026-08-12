@@ -1,5 +1,30 @@
 # Migrating from Stacks Classic v2 to v3
 
+## Installation and supported entry points
+
+Install Stacks Classic V3 from npm once the stable release is available:
+
+```bash
+npm install @stackoverflow/stacks@^3.0.0
+```
+
+Stacks Classic publishes the following supported entry points:
+
+| Asset | Package entry point |
+| --- | --- |
+| CSS | `@stackoverflow/stacks/dist/css/stacks.css` |
+| Minified CSS | `@stackoverflow/stacks/dist/css/stacks.min.css` |
+| JavaScript (UMD) | `@stackoverflow/stacks/dist/js/stacks.js` |
+| Minified JavaScript (UMD) | `@stackoverflow/stacks/dist/js/stacks.min.js` |
+| Less | `@stackoverflow/stacks/lib/stacks.less` |
+| TypeScript declarations | Resolved automatically from `@stackoverflow/stacks` |
+
+The JavaScript bundle initializes Stacks controllers and requires a browser DOM.
+Stacks Classic does not currently publish a supported ESM JavaScript entry point.
+Use the entry points above rather than relying on other internal package paths.
+
+Projects remaining on Stacks Classic V2 should install `@stackoverflow/stacks@^2.9.0` and refer to the [V2 documentation](https://v2.stackoverflow.design/).
+
 ## Breaking changes
 
 ### Atomic styles
