@@ -180,8 +180,9 @@ We use [changesets](https://github.com/changesets/changesets) to automatize the 
 
 - Every time you do work that requires a new release to be published, [add a changesets entry](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) by running `npx changeset` and follow the instructions on screen. (changes that do not require a new release - e.g. changing a test file - don't need a changeset).
     - When opening a PR without a corresponding changeset the [changesets-bot](https://github.com/apps/changeset-bot) will remind you to do so. It generally makes sense to have one changeset for PR (if the PR changes do not require a new release to be published the bot message can be safely ignored)
-- The [release github workflow](.github/workflows/main.yml) runs on `main` and `beta`. On `beta`, it creates and updates the `chore(release)` PR as pending changesets are merged. On `main`, it publishes the latest release to NPM and creates GitHub releases.
-- When we are ready to cut a beta release we merge the `chore(release)` PR. The release github workflow publishes the changes to NPM and gives us an opportunity to adjust the automatically generated changelog before release notes are created.
+- After CI succeeds on `main`, the [release GitHub workflow](.github/workflows/main.yml) creates or updates the `chore(new-release)` PR as pending changesets are merged.
+- Prerelease mode and its npm tag are controlled by [`.changeset/pre.json`](.changeset/pre.json), not by a separate release branch.
+- When the `chore(new-release)` PR is merged, the workflow publishes the prepared package versions to npm and creates GitHub releases. Review the generated versions and changelogs before merging it.
 
 _The release github workflow only run if the CI workflow (running linter, formatter and tests) is successful: CI is blocking accidental releases_.
 

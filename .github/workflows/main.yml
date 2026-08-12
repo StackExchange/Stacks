@@ -76,6 +76,10 @@ jobs:
           command: npm run test:a11y -w packages/stacks-classic -- --config web-test-runner.config.ci.mjs
           needs_lfs: false
           needs_playwright: true
+        - command_description: Package Tests (stacks-classic)
+          command: npm run test:package -w packages/stacks-classic
+          needs_lfs: false
+          needs_playwright: true
         - command_description: Unit Tests (stacks-svelte)
           command: npm run test -w packages/stacks-svelte
           needs_lfs: false
