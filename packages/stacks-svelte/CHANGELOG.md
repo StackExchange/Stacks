@@ -4,7 +4,7 @@
 
 ### Major Changes
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Badges: update to the new SHINE visuals
+- [#2082](https://github.com/StackExchange/Stacks/pull/2082) [`8ed0cea`](https://github.com/StackExchange/Stacks/commit/8ed0cea0dda875049713263a00aa4be5e986ea7c) Thanks [@giamir](https://github.com/giamir)! - Badges: update to the new SHINE visuals
 
     BREAKING CHANGES:
     - `.s-badge__icon` removed
@@ -15,17 +15,17 @@
     - `.s-badge__muted` removed
     - `.s-badge__new` renamed to `.s-badge__featured`
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - enter prerelease mode for project shine
+- [#1994](https://github.com/StackExchange/Stacks/pull/1994) [`83db25a`](https://github.com/StackExchange/Stacks/commit/83db25abba127a1ff8ce1e239c644992266b2d44) Thanks [@dancormier](https://github.com/dancormier)! - enter prerelease mode for project shine
 
 ### Minor Changes
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - feat(textarea): new SHINE styles and Svelte component
+- [#2077](https://github.com/StackExchange/Stacks/pull/2077) [`78d6a22`](https://github.com/StackExchange/Stacks/commit/78d6a22fd01442de1a325d3530d429b55aa5a8c4) Thanks [@mukunku](https://github.com/mukunku)! - feat(textarea): new SHINE styles and Svelte component
 
     BREAKING CHANGES:
     - `s-input__md` removed
     - `s-input__xl` removed
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update button to new Shine styles
+- [#2008](https://github.com/StackExchange/Stacks/pull/2008) [`4610d3a`](https://github.com/StackExchange/Stacks/commit/4610d3a6f8183a3e57208b6b8780cfa9aba393c4) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update button to new Shine styles
 
     BREAKING CHANGES:
 
@@ -33,44 +33,44 @@
     - The variant `Muted` has been removed
     - `s-btn__md` has been removed
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update User card to new SHINE design (part 1)
+- [#2092](https://github.com/StackExchange/Stacks/pull/2092) [`c1443ec`](https://github.com/StackExchange/Stacks/commit/c1443ecfc69784be393fa26edefb63cca24a80f2) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update User card to new SHINE design (part 1)
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - feat(tags): updates tag component designs for project SHINE
+- [#2038](https://github.com/StackExchange/Stacks/pull/2038) [`e0da077`](https://github.com/StackExchange/Stacks/commit/e0da0777c7bf2b3aca8e82e0a8542820c361291b) Thanks [@mukunku](https://github.com/mukunku)! - feat(tags): updates tag component designs for project SHINE
 
     BREAKING CHANGES
 
     Tag sizes `xs` and `md` have been removed.
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update User Card to new SHINE design (part 2)
+- [#2123](https://github.com/StackExchange/Stacks/pull/2123) [`dcac9bf`](https://github.com/StackExchange/Stacks/commit/dcac9bf76c55203c39495ac29d1724365d83c115) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update User Card to new SHINE design (part 2)
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update link component to new SHINE designs
+- [#2164](https://github.com/StackExchange/Stacks/pull/2164) [`a710c69`](https://github.com/StackExchange/Stacks/commit/a710c69a5214b7deee41f181ad3a8b2762f6822a) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update link component to new SHINE designs
 
     BREAKING CHANGES:
 
     - <a> elements no longer automatically have s-link styling, `s-link` needs to be an explict class of any <a> element that needs the styling
     - `block-link` component deleted
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Add Vote component
+- [#2062](https://github.com/StackExchange/Stacks/pull/2062) [`83d21b8`](https://github.com/StackExchange/Stacks/commit/83d21b8cc89fdc8ad2fe4e43ad39fd07a1eca8a0) Thanks [@dancormier](https://github.com/dancormier)! - Add Vote component
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update Select component in classic and svelte to new SHINE styles
+- [#2069](https://github.com/StackExchange/Stacks/pull/2069) [`bb1284b`](https://github.com/StackExchange/Stacks/commit/bb1284be4f168e5513a5377b077ddc274c27c7e4) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update Select component in classic and svelte to new SHINE styles
 
     BREAKING CHANGES:
 
     - `md` and `xl` sizes removed
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update Bling component to match SHINE styles
+- [#2013](https://github.com/StackExchange/Stacks/pull/2013) [`35fe29b`](https://github.com/StackExchange/Stacks/commit/35fe29b0af58cafe4858e11f1c4061409d1c120b) Thanks [@dancormier](https://github.com/dancormier)! - Update Bling component to match SHINE styles
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Made TextInputs value prop bindable
+- [#2107](https://github.com/StackExchange/Stacks/pull/2107) [`c130895`](https://github.com/StackExchange/Stacks/commit/c1308950616e7950c3fb5dc0257fa6572e0f6c66) Thanks [@chris-doucette-stack](https://github.com/chris-doucette-stack)! - Made TextInputs value prop bindable
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - feat(notice): update styles for SHINE
+- [#2109](https://github.com/StackExchange/Stacks/pull/2109) [`96224f0`](https://github.com/StackExchange/Stacks/commit/96224f0bdf3c9208489c4053d34af86df9ffe25b) Thanks [@mukunku](https://github.com/mukunku)! - feat(notice): update styles for SHINE
   feat(toast): update styles for SHINE
 
     BREAKING CHANGES
     - Markup for notices has been updated
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update Menu to SHINE styles; add Svelte component
+- [#2046](https://github.com/StackExchange/Stacks/pull/2046) [`5e49f0b`](https://github.com/StackExchange/Stacks/commit/5e49f0b6b2361058bc941f81ee90fb9a5158e961) Thanks [@dancormier](https://github.com/dancormier)! - Update Menu to SHINE styles; add Svelte component
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - feat(input): update input styles for SHINE
+- [#2070](https://github.com/StackExchange/Stacks/pull/2070) [`55f3a17`](https://github.com/StackExchange/Stacks/commit/55f3a179621375ca95fc93d219f8ab3edb526514) Thanks [@mukunku](https://github.com/mukunku)! - feat(input): update input styles for SHINE
 
     BREAKING CHANGES:
     - `s-input__md` removed
@@ -78,108 +78,108 @@
     - Nested input styles slightly updated
     - `optional` and `i18nOptionalText` attributes removed from TextInput Svelte component
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Updated checkbox and radio styling in Stacks Classic and documentation for SHINE
+- [#2060](https://github.com/StackExchange/Stacks/pull/2060) [`d53cdd1`](https://github.com/StackExchange/Stacks/commit/d53cdd189e6b831ea2db442068b26ab7c281f3b8) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Updated checkbox and radio styling in Stacks Classic and documentation for SHINE
   `.s-check-control` has been removed
   Renamed `.s-check-group` to `.s-form-group`
   `.s-checkbox` and `.s-radio` are now expected to be on the container where `.s-check-control` would previously be applied. They are no longer needed on the input itself
   Added `.s-checkbox__checkmark` and `.s-radio__checkmark` to Stacks Classic
   Added `Checkbox`, `CheckboxGroup`, `Radio`, `RadioGroup` components to Stacks Svelte
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - feat(empty-state): new SHINE styles and Svelte Component
+- [#2100](https://github.com/StackExchange/Stacks/pull/2100) [`1407fb5`](https://github.com/StackExchange/Stacks/commit/1407fb512458203d5f9d4dbf40efb0d2b0426062) Thanks [@mukunku](https://github.com/mukunku)! - feat(empty-state): new SHINE styles and Svelte Component
   fix(expanding-input): expands correctly now after textarea update
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update Loader (formerly known as Spinner) component to SHINE designs
+- [#2142](https://github.com/StackExchange/Stacks/pull/2142) [`041f1dd`](https://github.com/StackExchange/Stacks/commit/041f1dd06c2ceec0c8fb45fb99040c87b53de0e0) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update Loader (formerly known as Spinner) component to SHINE designs
 
     BREAKING CHANGES:
 
     - Spinner component has been replace with the Loader component
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Add .bg-loading delete skeleton
+- [#2136](https://github.com/StackExchange/Stacks/pull/2136) [`d75d9d4`](https://github.com/StackExchange/Stacks/commit/d75d9d475b596f96442b6badeb9ff5a390796267) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Add .bg-loading delete skeleton
 
     BREAKING CHANGES:
 
     Skeleton component deleted
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Added new Navigation Component
+- [#2043](https://github.com/StackExchange/Stacks/pull/2043) [`6f6d576`](https://github.com/StackExchange/Stacks/commit/6f6d576b65cd0db5d9ed2747d8cba474d4633680) Thanks [@giamir](https://github.com/giamir)! - Added new Navigation Component
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - update label component to new SHINE specs
+- [#2163](https://github.com/StackExchange/Stacks/pull/2163) [`9000f2e`](https://github.com/StackExchange/Stacks/commit/9000f2eb6b2ca40b0e8a4dd4ffd95a6c9748f5c5) Thanks [@giamir](https://github.com/giamir)! - update label component to new SHINE specs
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update pagination component to match new SHINE design system
+- [#2035](https://github.com/StackExchange/Stacks/pull/2035) [`0b1841d`](https://github.com/StackExchange/Stacks/commit/0b1841d147ff8e9dc369c4bb758b3a11d1fafc73) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Update pagination component to match new SHINE design system
 
     BREAKING CHANGES
     The next button now uses an ArrowRight and ArrowLeft icon instead of text. To apply the new styling, add the `item__nav` class to pagination items that represent the "Next" button.
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - **Activity Indicator Updates:**
+- [#2027](https://github.com/StackExchange/Stacks/pull/2027) [`4bd5612`](https://github.com/StackExchange/Stacks/commit/4bd561230e43bb411a58f1cf975c0a5f62a205fe) Thanks [@giamir](https://github.com/giamir)! - **Activity Indicator Updates:**
 
     - **Stacks Classic**: Updated activity indicator component to the new visual language (default 16x16). Introduced `.s-activity-indicator__sm` variant (10x10).
 
     - **Stacks Svelte**: Added new `ActivityIndicator` component.
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - feat(badges): first batch of design updates for the badge component as part of SHINE
+- [#2051](https://github.com/StackExchange/Stacks/pull/2051) [`f3f078c`](https://github.com/StackExchange/Stacks/commit/f3f078c682ec2df4dc338f6766792de2c158b4c2) Thanks [@mukunku](https://github.com/mukunku)! - feat(badges): first batch of design updates for the badge component as part of SHINE
 
     BREAKING CHANGES:
     - `.s-badge__xs` removed
     - `.s-award-bling` renamed to `.s-bling` (used in some badge templates)
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Added aria-label and aria-labelledby props to PopoverContent
+- [#2113](https://github.com/StackExchange/Stacks/pull/2113) [`0b92e2c`](https://github.com/StackExchange/Stacks/commit/0b92e2cc63ce005f75724f6983898b7548c34d7e) Thanks [@chris-doucette-stack](https://github.com/chris-doucette-stack)! - Added aria-label and aria-labelledby props to PopoverContent
 
 - [#2298](https://github.com/StackExchange/Stacks/pull/2298) [`f17e8e8`](https://github.com/StackExchange/Stacks/commit/f17e8e84cd8a2cd5bc9337086c6a84929a403094) Thanks [@alexwarren](https://github.com/alexwarren)! - Fix popover focus-leave dismissal
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update Post Summary to SHINE styles
+- [#2137](https://github.com/StackExchange/Stacks/pull/2137) [`83464cd`](https://github.com/StackExchange/Stacks/commit/83464cd33e9c52393010ed44cae423583d21e5a1) Thanks [@dancormier](https://github.com/dancormier)! - Update Post Summary to SHINE styles
 
 ### Patch Changes
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Navigation: Address an issue where in highcontrast mode anchor navigation items with activity indicator or badges were not correctly underlined
+- [#2065](https://github.com/StackExchange/Stacks/pull/2065) [`a89da8b`](https://github.com/StackExchange/Stacks/commit/a89da8b1bec2fccca1c8a1a016461c6fd1c6e1a0) Thanks [@giamir](https://github.com/giamir)! - Navigation: Address an issue where in highcontrast mode anchor navigation items with activity indicator or badges were not correctly underlined
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - ensure correct module resolution in nodejs
+- [#2177](https://github.com/StackExchange/Stacks/pull/2177) [`a035461`](https://github.com/StackExchange/Stacks/commit/a035461505a1199bde96063e26ed7da97edc5934) Thanks [@giamir](https://github.com/giamir)! - ensure correct module resolution in nodejs
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Adjust stacks svelte peer deps
+- [#2128](https://github.com/StackExchange/Stacks/pull/2128) [`d60aa26`](https://github.com/StackExchange/Stacks/commit/d60aa261b6bfa53ad4fc5761921c02d1cec2aecd) Thanks [@giamir](https://github.com/giamir)! - Adjust stacks svelte peer deps
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Remove nested <a> tag in UserCard to fix node_invalid_placement_ssr warning
+- [#2146](https://github.com/StackExchange/Stacks/pull/2146) [`d3ddae4`](https://github.com/StackExchange/Stacks/commit/d3ddae4b8146803defa5e3bb8bafd38669069175) Thanks [@ttaylor-stack](https://github.com/ttaylor-stack)! - Remove nested <a> tag in UserCard to fix node_invalid_placement_ssr warning
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - chore(textinput/textarea): upgrade to Svelte 5 syntax
+- [#2085](https://github.com/StackExchange/Stacks/pull/2085) [`4310a45`](https://github.com/StackExchange/Stacks/commit/4310a45c72f058d59f4ad97deeade3d7243d22dc) Thanks [@mukunku](https://github.com/mukunku)! - chore(textinput/textarea): upgrade to Svelte 5 syntax
 
     BREAKING CHANGES:
     - The message, description, and fill slots have been replaced with snippets.
 
 - [`d76dfe9`](https://github.com/StackExchange/Stacks/commit/d76dfe9da394ecde5d3d9370d1bd7ea9d86aaaea) Thanks [@asblanco](https://github.com/asblanco)! - fix(modal): stop Escape propagation by default (#2319)
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Navigation: Add animate prop to NavigationItem
+- [#2074](https://github.com/StackExchange/Stacks/pull/2074) [`1e98516`](https://github.com/StackExchange/Stacks/commit/1e9851617653b2233cb8ed62b5c0248379f528fb) Thanks [@dancormier](https://github.com/dancormier)! - Navigation: Add animate prop to NavigationItem
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Modal: changed close icon to the new `Cross` beta icon (including some padding adjustments)
+- [#2068](https://github.com/StackExchange/Stacks/pull/2068) [`6de581f`](https://github.com/StackExchange/Stacks/commit/6de581f165a319ca0cfb9d4db0e2096bc6fb8a75) Thanks [@giamir](https://github.com/giamir)! - Modal: changed close icon to the new `Cross` beta icon (including some padding adjustments)
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - add support for a tag having both a dismiss button and linked tag text simultaneously
+- [#2144](https://github.com/StackExchange/Stacks/pull/2144) [`04b0c7e`](https://github.com/StackExchange/Stacks/commit/04b0c7eec416cb54c7478dbfb8df2fccbddfa46a) Thanks [@dancormier](https://github.com/dancormier)! - add support for a tag having both a dismiss button and linked tag text simultaneously
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Export user card child components
+- [#2138](https://github.com/StackExchange/Stacks/pull/2138) [`fcd06fb`](https://github.com/StackExchange/Stacks/commit/fcd06fbf72597029e500dfeb08ecdc7080fb5f70) Thanks [@dancormier](https://github.com/dancormier)! - Export user card child components
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Popover: add the ability to add classes to the s-popover--content element
+- [#2061](https://github.com/StackExchange/Stacks/pull/2061) [`da4276a`](https://github.com/StackExchange/Stacks/commit/da4276adac3562f9d31ea2775e707cab6d5df816) Thanks [@chris-doucette-stack](https://github.com/chris-doucette-stack)! - Popover: add the ability to add classes to the s-popover--content element
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - **Avatar Updates:**
+- [#2019](https://github.com/StackExchange/Stacks/pull/2019) [`e9b8885`](https://github.com/StackExchange/Stacks/commit/e9b888585e2d145e4216ea413904bba83a4faa80) Thanks [@giamir](https://github.com/giamir)! - **Avatar Updates:**
 
     - **Stacks Classic**: Made avatar border squared. Introduced `.s-avatar--indicator` class for positioning an activity indicator element in relation to the avatar.
 
     - **Stacks Svelte**: Introduced a new `status` prop. When set to `online` it will show an activity indicator on the avatar.
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Navigation: ensure dropdown items can be rendered in a semantically correct way
+- [`1f53476`](https://github.com/StackExchange/Stacks/commit/1f534769e7375b5a77434b8c7ee542f0dfd1729f) Thanks [@giamir](https://github.com/giamir)! - Navigation: ensure dropdown items can be rendered in a semantically correct way
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Incorporate v0.6.0 changes in the beta release tag
+- Incorporate v0.6.0 changes in the beta release tag
   https://github.com/StackExchange/Stacks/releases/tag/%40stackoverflow%2Fstacks-svelte%400.6.0
 
 - [#2262](https://github.com/StackExchange/Stacks/pull/2262) [`0179d9b`](https://github.com/StackExchange/Stacks/commit/0179d9be7772126479d7ca89195ca337f30ae6e5) Thanks [@dancormier](https://github.com/dancormier)! - Allow class prop to be array or object
 
 - [#2288](https://github.com/StackExchange/Stacks/pull/2288) [`a84dd91`](https://github.com/StackExchange/Stacks/commit/a84dd915185946ee1b8ed8178dd4b2d3418cb644) Thanks [@giamir](https://github.com/giamir)! - Shift Popover content horizontally when it would overflow the viewport.
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - fix(navigation): make vertical navigation more accessible
+- [#2181](https://github.com/StackExchange/Stacks/pull/2181) [`dc4fa17`](https://github.com/StackExchange/Stacks/commit/dc4fa1713110dfd914f8a204a6671c854e59f383) Thanks [@mukunku](https://github.com/mukunku)! - fix(navigation): make vertical navigation more accessible
 
     BREAKING CHANGES:
     - Navigation markup has been updated
     - Svelte NavigationTitle component has been renamed to NavigationGroup
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Support both @stackoverflow/stacks v2 and v3 as peer dependencies
+- [`b5d8e90`](https://github.com/StackExchange/Stacks/commit/b5d8e901e31b121b32931f16d9605451a0effbfb) Thanks [@giamir](https://github.com/giamir)! - Support both @stackoverflow/stacks v2 and v3 as peer dependencies
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - accessibility(tags): add screen reader improvements
+- [#2045](https://github.com/StackExchange/Stacks/pull/2045) [`10e108a`](https://github.com/StackExchange/Stacks/commit/10e108a476801015237f7937e7dcd79e268a52a2) Thanks [@mukunku](https://github.com/mukunku)! - accessibility(tags): add screen reader improvements
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - extract the vote state logic in an opt in svelte module
+- [#2152](https://github.com/StackExchange/Stacks/pull/2152) [`cd866c7`](https://github.com/StackExchange/Stacks/commit/cd866c7dcfdc13df3f83e49992d561a47527f60a) Thanks [@giamir](https://github.com/giamir)! - extract the vote state logic in an opt in svelte module
 
 - [#2261](https://github.com/StackExchange/Stacks/pull/2261) [`2c9bd95`](https://github.com/StackExchange/Stacks/commit/2c9bd958bf2e405271ba5e1f5a32e4db7ead5a67) Thanks [@dancormier](https://github.com/dancormier)! - Updated Button component to use string for badges
 
@@ -187,22 +187,22 @@
 
     - `badge` prop in Button component now uses string (numbers only) instead of a Snippet
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - dependencies upgrade
+- [#2130](https://github.com/StackExchange/Stacks/pull/2130) [`e2dea15`](https://github.com/StackExchange/Stacks/commit/e2dea15216568555cd1562dc65e5ff7477372a47) Thanks [@giamir](https://github.com/giamir)! - dependencies upgrade
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Replace all static size variables (`--su-static*`) with dynamic ones (`--su*`)
+- [#2172](https://github.com/StackExchange/Stacks/pull/2172) [`92cd983`](https://github.com/StackExchange/Stacks/commit/92cd98363e36ffc1133bae2b67e276dc1d057444) Thanks [@dancormier](https://github.com/dancormier)! - Replace all static size variables (`--su-static*`) with dynamic ones (`--su*`)
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Change popover close icon to Cross
+- [#2057](https://github.com/StackExchange/Stacks/pull/2057) [`ec61da3`](https://github.com/StackExchange/Stacks/commit/ec61da30c742ea7be21de11e932381d34e36bdba) Thanks [@dancormier](https://github.com/dancormier)! - Change popover close icon to Cross
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Add `onoutclick` to Popover component
+- [#2063](https://github.com/StackExchange/Stacks/pull/2063) [`efed5b2`](https://github.com/StackExchange/Stacks/commit/efed5b2d01892fad814778bd9a7ba6407a4979f0) Thanks [@dancormier](https://github.com/dancormier)! - Add `onoutclick` to Popover component
 
 - [#2206](https://github.com/StackExchange/Stacks/pull/2206) [`a9d6edf`](https://github.com/StackExchange/Stacks/commit/a9d6edf80a51869139b67e2047c56b057a3bad38) Thanks [@abovedave](https://github.com/abovedave)! - * `<Avatar>` nested `<img>` dimensions.
     - Screen reader text for the private badge variant.
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Pre-bundle dayjs plugins with .js extension in optimizeDeps
+- [#2224](https://github.com/StackExchange/Stacks/pull/2224) [`051f747`](https://github.com/StackExchange/Stacks/commit/051f74771721484ae99a69375c7ff709c1d89e2a) Thanks [@dancormier](https://github.com/dancormier)! - Pre-bundle dayjs plugins with .js extension in optimizeDeps
 
-- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - vote component: allow downvoting for horizontal layout
+- [#2148](https://github.com/StackExchange/Stacks/pull/2148) [`fc1517b`](https://github.com/StackExchange/Stacks/commit/fc1517b4a2a91ffbe1dec376b5488f6f46f75844) Thanks [@giamir](https://github.com/giamir)! - vote component: allow downvoting for horizontal layout
 
-- Updated dependencies [[`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3), [`4b94e3d`](https://github.com/StackExchange/Stacks/commit/4b94e3d80a55db21272e2924404d3e658c910571), [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3), [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3), [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3)]:
+- Updated dependencies [[`65938dd`](https://github.com/StackExchange/Stacks/commit/65938dd760fdc6d2e4cff71ac5c67d3582e02cd4), [`4b94e3d`](https://github.com/StackExchange/Stacks/commit/4b94e3d80a55db21272e2924404d3e658c910571), [`a035461`](https://github.com/StackExchange/Stacks/commit/a035461505a1199bde96063e26ed7da97edc5934), [`e2dea15`](https://github.com/StackExchange/Stacks/commit/e2dea15216568555cd1562dc65e5ff7477372a47), [`f59b762`](https://github.com/StackExchange/Stacks/commit/f59b762834d6891a1885459354d0ccc06739fb6d)]:
     - @stackoverflow/stacks-utils@1.0.0
 
 ## 1.0.0-beta.34
