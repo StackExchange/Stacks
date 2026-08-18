@@ -1,5 +1,21 @@
 # @stackoverflow/stacks-utils
 
+## 1.0.0
+
+### Major Changes
+
+- [#2124](https://github.com/StackExchange/Stacks/pull/2124) [`65938dd`](https://github.com/StackExchange/Stacks/commit/65938dd760fdc6d2e4cff71ac5c67d3582e02cd4) Thanks [@mukunku](https://github.com/mukunku)! - feat(stacks-utils): new @stackoverflow/stacks-utils package
+
+### Patch Changes
+
+- [#2177](https://github.com/StackExchange/Stacks/pull/2177) [`a035461`](https://github.com/StackExchange/Stacks/commit/a035461505a1199bde96063e26ed7da97edc5934) Thanks [@giamir](https://github.com/giamir)! - ensure correct module resolution in nodejs
+
+- [#2365](https://github.com/StackExchange/Stacks/pull/2365) [`4b94e3d`](https://github.com/StackExchange/Stacks/commit/4b94e3d80a55db21272e2924404d3e658c910571) Thanks [@dancormier](https://github.com/dancormier)! - Fix TypeScript declaration resolution for NodeNext consumers and avoid changing the consumer's default Day.js locale.
+
+- [#2130](https://github.com/StackExchange/Stacks/pull/2130) [`e2dea15`](https://github.com/StackExchange/Stacks/commit/e2dea15216568555cd1562dc65e5ff7477372a47) Thanks [@giamir](https://github.com/giamir)! - dependencies upgrade
+
+- [#2153](https://github.com/StackExchange/Stacks/pull/2153) [`f59b762`](https://github.com/StackExchange/Stacks/commit/f59b762834d6891a1885459354d0ccc06739fb6d) Thanks [@giamir](https://github.com/giamir)! - formatCount support for negative values
+
 ## 1.0.0-beta.3
 
 ### Patch Changes
