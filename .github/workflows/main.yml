@@ -69,9 +69,10 @@ jobs:
         uses: changesets/action@v1
         with:
           version: npm run version
-          publish: npm run release
+          publish: npm run release:v2
           title: "chore(new-release)"
           commit: "chore(new-release)"
+          branch: v2
           createGithubReleases: true
         env:
           GITHUB_TOKEN: ${{ secrets.STACKS_TOOLING_GH_RW_PAT }}
