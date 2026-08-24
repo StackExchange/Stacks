@@ -1,5 +1,254 @@
 # @stackoverflow/stacks
 
+## 3.0.0
+
+### Major Changes
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - enter prerelease mode for project shine
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Badges: update to the new SHINE visuals
+
+    BREAKING CHANGES:
+    - `.s-badge__icon` removed
+    - `.s-badge__bounty` removed
+    - `.s-badge__answered` removed
+    - `.s-badge__votes` removed
+    - `.s-badge__rep-down` removed
+    - `.s-badge__muted` removed
+    - `.s-badge__new` renamed to `.s-badge__featured`
+
+### Minor Changes
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - feat(textarea): new SHINE styles and Svelte component
+
+    BREAKING CHANGES:
+    - `s-input__md` removed
+    - `s-input__xl` removed
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update button to new Shine styles
+
+    BREAKING CHANGES:
+
+    - The secondary style `outlined` has been removed i.e. `.s-btn__outlined`
+    - The variant `Muted` has been removed
+    - `s-btn__md` has been removed
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update User card to new SHINE design (part 1)
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - feat(tags): updates tag component designs for project SHINE
+
+    BREAKING CHANGES
+
+    Tag sizes `xs` and `md` have been removed.
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update User Card to new SHINE design (part 2)
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Updated colors for SHINE
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update link component to new SHINE designs
+
+    BREAKING CHANGES:
+
+    - <a> elements no longer automatically have s-link styling, `s-link` needs to be an explict class of any <a> element that needs the styling
+    - `block-link` component deleted
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update border radius for new SHINE design system
+
+    BREAKING CHANGE:
+    - bar-sm and bar-lg are deprecated use bar-md instead
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Add Vote component
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update Select component in classic and svelte to new SHINE styles
+
+    BREAKING CHANGES:
+
+    - `md` and `xl` sizes removed
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update typography for new SHINE design system
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update Bling component to match SHINE styles
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Remove deprecated components (breadcrumbs, button groups, cards, expandable, link previews, page titles, progress bars, topbar, uploader)
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Add brand color set
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - feat(notice): update styles for SHINE
+  feat(toast): update styles for SHINE
+
+    BREAKING CHANGES
+    - Markup for notices has been updated
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update Menu to SHINE styles; add Svelte component
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - feat(input): update input styles for SHINE
+
+    BREAKING CHANGES:
+    - `s-input__md` removed
+    - `s-input__xl` removed
+    - Nested input styles slightly updated
+    - `optional` and `i18nOptionalText` attributes removed from TextInput Svelte component
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Updated checkbox and radio styling in Stacks Classic and documentation for SHINE
+  `.s-check-control` has been removed
+  Renamed `.s-check-group` to `.s-form-group`
+  `.s-checkbox` and `.s-radio` are now expected to be on the container where `.s-check-control` would previously be applied. They are no longer needed on the input itself
+  Added `.s-checkbox__checkmark` and `.s-radio__checkmark` to Stacks Classic
+  Added `Checkbox`, `CheckboxGroup`, `Radio`, `RadioGroup` components to Stacks Svelte
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - adjust breakpoints to the new SHINE spec
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update Loader (formerly known as Spinner) component to SHINE designs
+
+    BREAKING CHANGES:
+
+    - Spinner component has been replace with the Loader component
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Add .bg-loading delete skeleton
+
+    BREAKING CHANGES:
+
+    Skeleton component deleted
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update prose component to SHINE styles
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Navigation updates:
+    - Deprecated muted variant (`.s-navigation__muted`)
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - update label component to new SHINE specs
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update pagination component to match new SHINE design system
+
+    BREAKING CHANGES
+    The next button now uses an ArrowRight and ArrowLeft icon instead of text. To apply the new styling, add the `item__nav` class to pagination items that represent the "Next" button.
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update popover component to match SHINE styles
+
+    BREAKING CHANGES:
+    - `s-popover--arrow` css class has been removed
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - feat(badges): first batch of design updates for the badge component as part of SHINE
+
+    BREAKING CHANGES:
+    - `.s-badge__xs` removed
+    - `.s-award-bling` renamed to `.s-bling` (used in some badge templates)
+
+- [#2298](https://github.com/StackExchange/Stacks/pull/2298) [`f17e8e8`](https://github.com/StackExchange/Stacks/commit/f17e8e84cd8a2cd5bc9337086c6a84929a403094) Thanks [@alexwarren](https://github.com/alexwarren)! - Fix popover focus-leave dismissal
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Update Post Summary to SHINE styles
+
+### Patch Changes
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - feat(banner): update styles for SHINE
+
+    BREAKING CHANGES:
+    - Banner markup has changed. New markup and icons should be applied.
+    - `.s-banner--btn` has been replaced with `.s-banner--dismiss`
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - adjust button disabled state styles in HC modes
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Improve badge layout
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Make avatar background in navigation components transparent
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Nudge light high contrast mode black 400, 500 for improved contrast
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - feat(sidebar-widget): initial SHINE design changes
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - button: adjust selected variant styles
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Modal: changed close icon to the new `Cross` beta icon (including some padding adjustments)
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Fix rem font size values
+
+- [#2315](https://github.com/StackExchange/Stacks/pull/2315) [`e35b99c`](https://github.com/StackExchange/Stacks/commit/e35b99c989c83fffc5a076a86a73d515b966bbe7) Thanks [@dancormier](https://github.com/dancormier)! - Fix atomic gap utilities so axis-specific classes emit targeted gap properties.
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - add support for a tag having both a dismiss button and linked tag text simultaneously
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Navigation: accessibility tweaks for highcontrast mode
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Simplify tag styles, tweak docs
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - chore(bling): adjust HC colors
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Fully remove cruft from removed components
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - patch(badges): Add star icon for new user badges
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - patch(avatars): Use black background in dark mode for avatars
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Wrap long post-summary titles
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Updated size scale plus many under-the-hood improvements
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - feat(empty-state): new SHINE styles and Svelte Component
+  fix(expanding-input): expands correctly now after textarea update
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - **Avatar Updates:**
+
+    - **Stacks Classic**: Made avatar border squared. Introduced `.s-avatar--indicator` class for positioning an activity indicator element in relation to the avatar.
+
+    - **Stacks Svelte**: Introduced a new `status` prop. When set to `online` it will show an activity indicator on the avatar.
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - patch(toggle-switch): update to SHINE styles
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - patch(buttons) - Add notice for xs size
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - fix(navigation): make vertical navigation more accessible
+
+    BREAKING CHANGES:
+    - Navigation markup has been updated
+    - Svelte NavigationTitle component has been renamed to NavigationGroup
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - button: adjust badge variant
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Remove activity indicator HC mode color overrides
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - dependencies upgrade
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Add legacy sm, lg border radius custom properties
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - chore(inputs): adjust alert icon
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Fix the following bugs:
+
+    - Selected buttons no longer change colors when hovered
+    - Swap selected state gradient colors in dark mode
+    - Update contrast for selected state. 25% to 20% in light mode and 13% in dark mode
+    - Add border to color to danger clear button variant in HC mode
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Fix dark mode orange color
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Replace all static size variables (`--su-static*`) with dynamic ones (`--su*`)
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Change popover close icon to Cross
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - **Activity Indicator Updates:**
+
+    - **Stacks Classic**: Updated activity indicator component to the new visual language (default 16x16). Introduced `.s-activity-indicator__sm` variant (10x10).
+
+    - **Stacks Svelte**: Added new `ActivityIndicator` component.
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - chore(input): fix non text input styles
+
+- [#2322](https://github.com/StackExchange/Stacks/pull/2322) [`4fb27bb`](https://github.com/StackExchange/Stacks/commit/4fb27bbd0b5570fc193e7e356574a8e7875f6dda) Thanks [@dancormier](https://github.com/dancormier)! - Update default form input border colors to black-350.
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - chore(tags): tweak padding for new tag styles
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - patch(navigation): Update vertical nav text color
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - fix wrapping behavior of post-summary titles
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - chore(colors): tweak colors to match latest values for SHINE
+
+- [#2314](https://github.com/StackExchange/Stacks/pull/2314) [`667ed7a`](https://github.com/StackExchange/Stacks/commit/667ed7aaa456c52121c6131541d514ae1ba88940) Thanks [@dancormier](https://github.com/dancormier)! - Restore transition atomic utilities to the static CSS bundle.
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Add predefined line-height to font size atomic classes (.fs-fine, .fs-caption, etc...)
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - chore(colors): Update Dark Mode HC Colors for 300/400 Stops
+
+- [#2231](https://github.com/StackExchange/Stacks/pull/2231) [`399780e`](https://github.com/StackExchange/Stacks/commit/399780ea5ade69f52309db0e260c99341d729ae3) Thanks [@abovedave](https://github.com/abovedave)! - Navigation: adjust margin top of navigation title
+
 ## 3.0.0-beta.33
 
 ### Patch Changes
