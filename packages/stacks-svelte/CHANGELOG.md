@@ -1,5 +1,11 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.1
+
+### Patch Changes
+
+- [#2379](https://github.com/StackExchange/Stacks/pull/2379) [`6411877`](https://github.com/StackExchange/Stacks/commit/641187746e1f9f7aa09dc4eecd2e1bb00147dc18) Thanks [@dancormier](https://github.com/dancormier)! - Publish 1.0.1 as the first available stable Svelte release. Version 1.0.0 cannot be reused because it was previously published and unpublished by the V2 release workflow.
+
 ## 1.0.0
 
 ### Major Changes
