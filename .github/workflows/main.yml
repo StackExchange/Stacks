@@ -100,6 +100,10 @@ jobs:
           command: npm run test -w packages/stacks-email
           needs_lfs: false
           needs_playwright: false
+        - command_description: Release Configuration Tests
+          command: npm run test:release
+          needs_lfs: false
+          needs_playwright: false
     with:
       command: ${{ matrix.command }}
       command_description: ${{ matrix.command_description }}
@@ -141,6 +145,8 @@ jobs:
         run: |
           npm ci
           npm run build
+      - name: Prepare ignored-only changesets
+        run: node .github/scripts/prepare-ignored-changesets.mjs "$RUNNER_TEMP"
       - name: 🚀 Create/Update Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
