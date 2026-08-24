@@ -1,6 +1,7 @@
 <script lang="ts">
     import clsx from "clsx";
     import type { Snippet } from "svelte";
+    import { onMount } from "svelte";
     import type { ClassValue } from "svelte/elements";
     import { usePopoverContext } from "./Popover.svelte";
     import { clickOutside, focusTrap } from "../../actions";
@@ -44,6 +45,20 @@
 
     let pstate = usePopoverContext("PopoverContent");
     let contentElement: HTMLElement | undefined;
+    let supportsHover = $state(false);
+
+    onMount(() => {
+        const hoverMedia = window.matchMedia("(hover: hover)");
+        const updateSupportsHover = ({ matches }: { matches: boolean }) => {
+            supportsHover = matches;
+        };
+
+        updateSupportsHover(hoverMedia);
+        hoverMedia.addEventListener("change", updateSupportsHover);
+        return () => {
+            hoverMedia.removeEventListener("change", updateSupportsHover);
+        };
+    });
 
     let popoverClasses = $derived.by(() => {
         const base = "s-popover";
@@ -92,8 +107,8 @@
     use:focusTrap={{ active: pstate.trapFocus && !!pstate.visible }}
     use:clickOutside
     onoutclick={pstate.onOutclick}
-    onmouseenter={pstate.openTooltip}
-    onmouseleave={pstate.closeTooltip}
+    onmouseenter={supportsHover ? pstate.openTooltip : undefined}
+    onmouseleave={supportsHover ? pstate.closeTooltip : undefined}
     onfocusin={pstate.openTooltip}
     onfocusout={onFocusOut}
     data-popper-placement={pstate.computedPlacement}

@@ -374,7 +374,11 @@ When a popover is intended only for display as an on-hover tooltip and contains 
 
 ## Tooltip examples
 
-If the user doesn't need to interact with the _contents_ of the popover, it may be appropriate to only show it on hover. This will make popovers feel like a tooltip. To do so, we provide an alternative controller, `s-tooltip`, that shows the tooltip only on hover.
+If the user doesn't need to interact with the _contents_ of the popover, it may be appropriate to present it as a tooltip. The `s-tooltip` controller and the Svelte `Popover` component's `tooltip` mode show the tooltip when its reference is hovered with a hover-capable pointing device or receives keyboard focus.
+
+In the Svelte component's tooltip mode, tapping the reference toggles the tooltip so its content remains available on touch and hybrid devices. A mouse click does not trigger the tooltip. Keyboard focus opens it on every device.
+
+Tooltips do not change the reference element's cursor. The cursor should communicate the reference element's primary action; use a pointer cursor only when clicking the reference performs an action independent of showing the tooltip. Tooltips close when hover or focus leaves both the reference and tooltip, when the user presses <kbd>Escape</kbd>, when the user clicks outside the tooltip, or when the touch reference is tapped again.
 
 ### Title attribute
 
