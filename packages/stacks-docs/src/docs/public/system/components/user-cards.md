@@ -1,7 +1,7 @@
 ---
 title: "User cards"
 description: "User cards are a combination of a user and metadata about the user or post"
-svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-usercard--docs"
+svelte: "https://svelte.stackoverflow.design/?path=/docs/components-usercard--docs"
 ---
 
 <script lang="ts">

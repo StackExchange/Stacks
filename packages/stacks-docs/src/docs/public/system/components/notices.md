@@ -1,7 +1,7 @@
 ---
 title: "Notices"
 description: "Notices deliver <strong>System</strong> and <strong>Engagement</strong> messaging, informing the user about product or account statuses and related actions."
-svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-notice--docs"
+svelte: "https://svelte.stackoverflow.design/?path=/docs/components-notice--docs"
 figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=612-18813&p=f&m=dev"
 js: true
 ---

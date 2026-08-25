@@ -1,6 +1,6 @@
 ---
 title: Buttons
-svelte: https://beta.svelte.stackoverflow.design/?path=/docs/components-button--docs
+svelte: https://svelte.stackoverflow.design/?path=/docs/components-button--docs
 figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=610-18802"
 description: Buttons are user interface elements which allows users to take actions throughout the project. It is important that they have ample click space and help communicate the importance of their actions.
 ---

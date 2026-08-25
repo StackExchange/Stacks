@@ -25,13 +25,10 @@ function getCurrentBranch() {
 }
 
 const currentBranch = getCurrentBranch();
-const isBeta = currentBranch === "beta";
 
 const CONFIG = {
     distPath: "../netlify/dist",
-    summaryBaseUrl: isBeta
-        ? "https://beta.svelte.stackoverflow.design"
-        : "https://svelte.stackoverflow.design",
+    summaryBaseUrl: "https://svelte.stackoverflow.design",
     summaryTitle: "Stacks Svelte",
     summaryDescription: "Stacks Svelte Components Documentation",
 };

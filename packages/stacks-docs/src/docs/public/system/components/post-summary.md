@@ -1,7 +1,7 @@
 ---
 title: "Post summary"
 description: "The post summary component summarizes various content and associated meta data into a highly configurable component."
-svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-postsummary--docs"
+svelte: "https://svelte.stackoverflow.design/?path=/docs/components-postsummary--docs"
 ---
 
 <script lang="ts">
