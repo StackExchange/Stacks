@@ -183,6 +183,7 @@ We use [changesets](https://github.com/changesets/changesets) to automatize the 
 - After CI succeeds on `main`, the [release GitHub workflow](.github/workflows/main.yml) creates or updates the `chore(new-release)` PR as pending changesets are merged.
 - Prerelease mode and its npm tag are controlled by [`.changeset/pre.json`](.changeset/pre.json), not by a separate release branch.
 - When the `chore(new-release)` PR is merged, the workflow publishes the prepared package versions to npm and creates GitHub releases. Review the generated versions and changelogs before merging it.
+- A changeset for a package listed in Changesets' `ignore` configuration remains tracked until that package is ready. When every pending changeset targets an ignored package, the release workflow temporarily excludes those files in its runner so `changesets/action` can publish any already-prepared package versions. If any actionable changeset exists, all files remain in place for normal release-PR generation.
 
 _The release github workflow only run if the CI workflow (running linter, formatter and tests) is successful: CI is blocking accidental releases_.
 
