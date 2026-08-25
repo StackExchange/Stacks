@@ -1,7 +1,7 @@
 ---
 title: "Empty states"
 description: "Empty states are used when there is no data to show. Ideally they orient the user by providing feedback based on the the user's last interaction or communicate the benefits of a feature. When appropriate, they should explain the next steps the user should take and provide guidance with a clear call-to-action."
-svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-emptystate--docs"
+svelte: "https://svelte.stackoverflow.design/?path=/docs/components-emptystate--docs"
 figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=610-18807&p=f&m=dev"
 ---
 

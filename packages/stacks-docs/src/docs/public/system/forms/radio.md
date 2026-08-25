@@ -1,7 +1,7 @@
 ---
 title: "Radio"
 description: "Checkable inputs that visually allow for single selection from multiple options."
-svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-radiogroup--docs"
+svelte: "https://svelte.stackoverflow.design/?path=/docs/components-radiogroup--docs"
 figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=720-2910&p=f&m=dev"
 ---
 

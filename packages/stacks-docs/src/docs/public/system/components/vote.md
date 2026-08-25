@@ -1,7 +1,7 @@
 ---
 title: "Vote"
 description: "The vote component allows users to vote on the quality of content by casting an upvote or downvote."
-svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-vote--docs"
+svelte: "https://svelte.stackoverflow.design/?path=/docs/components-vote--docs"
 figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=617-18830&p=f&t=u4su1MPgebbjmcfI-0"
 ---
 

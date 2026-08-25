@@ -1,8 +1,7 @@
 ---
 title: "Tags"
 description: "Tags are an interactive, community-generated keyword that allow communities to label, organize, and discover related content. Tags are maintained by their respective communities."
-svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-tag--docs"
-figma: "https://svelte.stackoverflow.design/figma/tags"
+svelte: "https://svelte.stackoverflow.design/?path=/docs/components-tag--docs"
 ---
 
 <script lang="ts">

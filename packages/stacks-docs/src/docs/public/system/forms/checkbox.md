@@ -1,7 +1,7 @@
 ---
 title: "Checkbox"
 description: "Checkable inputs that visually allow for multiple options or true/false values."
-svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-checkbox--docs"
+svelte: "https://svelte.stackoverflow.design/?path=/docs/components-checkbox--docs"
 figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=720-2910&p=f&m=dev"
 ---
 

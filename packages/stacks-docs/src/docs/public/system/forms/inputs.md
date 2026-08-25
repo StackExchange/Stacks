@@ -1,7 +1,7 @@
 ---
 title: "Inputs"
 description: "Input elements are used to gather information from users."
-svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-textinput--docs"
+svelte: "https://svelte.stackoverflow.design/?path=/docs/components-textinput--docs"
 figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=713-24991&p=f&m=dev"
 ---
 

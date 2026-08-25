@@ -72,7 +72,7 @@
 <div class="page p32 sm:p24 w100 wmx12">
   <div class="d-flex g4 ai-center mb-auto">
     <span class="s-badge fc-purple-500 bg-purple-100">v{__APP_VERSION__}</span>
-    <a href="https://beta.svelte.stackoverflow.design/" class="s-badge">
+    <a href="https://svelte.stackoverflow.design/" class="s-badge">
       <Icon src={IconServiceSvelte} class="native" />
       v{__SVELTE_VERSION__}
     </a>
