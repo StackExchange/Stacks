@@ -1,7 +1,7 @@
 ---
 title: "Pagination"
 description: "Pagination splits content into pages, as seen on questions, tags, users, and jobs listings."
-svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-paginationcontroller--docs"
+svelte: "https://svelte.stackoverflow.design/?path=/docs/components-paginationcontroller--docs"
 figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=1189-2035&t=JFrmhokx3ZOeRP9b-0"
 ---
 

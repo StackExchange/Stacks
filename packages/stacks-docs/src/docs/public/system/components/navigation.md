@@ -1,7 +1,7 @@
 ---
 title: "Navigation"
 description: "Our navigation component is a collection of buttons that respond gracefully to various window sizes and parent containers."
-svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-navigation--docs"
+svelte: "https://svelte.stackoverflow.design/?path=/docs/components-navigation--docs"
 figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=610-18812&t=5ggsDIb9OENEwDl0-1"
 js: true
 ---

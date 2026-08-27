@@ -1,7 +1,7 @@
 ---
 title: "Popovers"
 description: "Popovers are small content containers that provide a contextual overlay. They can be used as in-context feature explanations, dropdowns, or tooltips."
-svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-popover--docs"
+svelte: "https://svelte.stackoverflow.design/?path=/docs/components-popover--docs"
 figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=1617-27089&t=W4QmlFOpYoEpInDB-0"
 js: true
 ---

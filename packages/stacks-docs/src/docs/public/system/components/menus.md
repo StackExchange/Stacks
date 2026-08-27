@@ -1,7 +1,7 @@
 ---
 title: "Menus"
 description: "A menu offers a contextual list of actions or functions."
-svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-menu--docs"
+svelte: "https://svelte.stackoverflow.design/?path=/docs/components-menu--docs"
 figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=610-18810"
 ---
 

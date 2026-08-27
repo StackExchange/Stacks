@@ -1,7 +1,7 @@
 ---
 title: "Loader"
 description: "The loader component indicates an active wait state for a page, section, or interactive element."
-svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-loader--docs"
+svelte: "https://svelte.stackoverflow.design/?path=/docs/components-loader--docs"
 ---
 
 <script lang="ts">

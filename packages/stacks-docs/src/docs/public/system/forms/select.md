@@ -1,7 +1,7 @@
 ---
 title: "Select"
 description: "A selectable menu list from which a user can make a single selection. Typically they are used when there are more than four possible options. The custom select menu styling is achieved by wrapping the <code>select</code> tag within the <code>.s-select</code> class."
-svelte: "https://beta.svelte.stackoverflow.design/?path=/docs/components-select--docs"
+svelte: "https://svelte.stackoverflow.design/?path=/docs/components-select--docs"
 figma: "https://www.figma.com/design/do4Ug0Yws8xCfRjHe9cJfZ/Project-SHINE---Product-UI?node-id=4537-50988"
 ---
 
