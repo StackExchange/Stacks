@@ -1302,6 +1302,16 @@ describe("Popover", () => {
             await tick();
             expect(screen.getByRole("tooltip")).to.exist;
 
+            tap(document.body);
+            await clock.runAllAsync();
+            await tick();
+            expect(screen.queryByRole("tooltip")).not.to.exist;
+
+            tap(button);
+            await clock.runAllAsync();
+            await tick();
+            expect(screen.getByRole("tooltip")).to.exist;
+
             tap(button);
             await clock.runAllAsync();
             await tick();
@@ -1334,6 +1344,42 @@ describe("Popover", () => {
             expect(hoverTooltip).to.exist;
 
             hoverSupport.setMatches(false);
+            await clock.runAllAsync();
+            await tick();
+            expect(screen.queryByRole("tooltip")).not.to.exist;
+            clock.restore();
+        });
+
+        it("should ignore a keyboard click after an aborted touch", async () => {
+            const clock = sinon.useFakeTimers({
+                shouldAdvanceTime: true,
+                shouldClearNativeTimers: true,
+            });
+            stubHoverSupport(false);
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    tooltip: true,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        defaultChildren.content,
+                    ]),
+                },
+            });
+
+            const button = screen.getByRole("button");
+            button.dispatchEvent(
+                new PointerEvent("pointerdown", {
+                    bubbles: true,
+                    pointerType: "touch",
+                })
+            );
+            window.dispatchEvent(
+                new PointerEvent("pointerup", { pointerType: "touch" })
+            );
+            await clock.runAllAsync();
+
+            button.click();
             await clock.runAllAsync();
             await tick();
             expect(screen.queryByRole("tooltip")).not.to.exist;

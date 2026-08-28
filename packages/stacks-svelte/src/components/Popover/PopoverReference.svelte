@@ -77,14 +77,20 @@
         const hoverMedia = window.matchMedia("(hover: hover)");
         let pointerDown = false;
         let pointerType = "";
+        let pointerTypeReset: number;
         const onPointerDown = (event: PointerEvent) => {
+            window.clearTimeout(pointerTypeReset);
             pointerDown = true;
             pointerType = event.pointerType;
         };
         const onPointerUp = () => {
             pointerDown = false;
+            pointerTypeReset = window.setTimeout(() => {
+                pointerType = "";
+            });
         };
         const onPointerCancel = () => {
+            window.clearTimeout(pointerTypeReset);
             pointerDown = false;
             pointerType = "";
         };
@@ -128,6 +134,7 @@
         ref.addEventListener("focusout", pstate.closeTooltip);
         ref.setAttribute("aria-describedby", `${pstate.id}-popover`);
         return () => {
+            window.clearTimeout(pointerTypeReset);
             hoverMedia.removeEventListener("change", onHoverSupportChange);
             ref.removeEventListener("mouseenter", pstate.openTooltip);
             ref.removeEventListener("mouseleave", pstate.closeTooltip);

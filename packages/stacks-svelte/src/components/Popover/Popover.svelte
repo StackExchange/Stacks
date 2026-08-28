@@ -82,7 +82,9 @@
          */
         dismissible?: boolean;
         /**
-         * Whether or not the popover should be an on-hover tooltip
+         * Enables tooltip interactions. Tooltips open on hover for hover-capable devices or keyboard focus,
+         * toggle on touch, and ignore mouse clicks. They close when hover or focus leaves, when touch repeats,
+         * or—when dismissible—on outside interaction or Escape.
          */
         tooltip?: boolean;
         /**
