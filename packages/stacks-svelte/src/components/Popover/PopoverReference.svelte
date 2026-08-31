@@ -74,15 +74,75 @@
     };
 
     const setupTooltip = (ref: HTMLElement, pstate: PopoverState) => {
-        ref.addEventListener("mouseenter", pstate.openTooltip);
-        ref.addEventListener("mouseleave", pstate.closeTooltip);
-        ref.addEventListener("focusin", pstate.openTooltip);
+        const hoverMedia = window.matchMedia("(hover: hover)");
+        let pointerDown = false;
+        let pointerType = "";
+        let pointerTypeReset: number;
+        const onPointerDown = (event: PointerEvent) => {
+            window.clearTimeout(pointerTypeReset);
+            pointerDown = true;
+            pointerType = event.pointerType;
+        };
+        const onPointerUp = () => {
+            pointerDown = false;
+            pointerTypeReset = window.setTimeout(() => {
+                pointerType = "";
+            });
+        };
+        const onPointerCancel = () => {
+            window.clearTimeout(pointerTypeReset);
+            pointerDown = false;
+            pointerType = "";
+        };
+        const onClick = () => {
+            const activatedByTouch = pointerType && pointerType !== "mouse";
+            pointerType = "";
+            if (activatedByTouch) {
+                pstate.toggle();
+            }
+        };
+        const openTooltipOnKeyboardFocus = () => {
+            if (!pointerDown) {
+                pstate.openTooltip();
+            }
+        };
+        const setHoverListeners = (matches: boolean) => {
+            const action = matches ? "addEventListener" : "removeEventListener";
+            ref[action]("mouseenter", pstate.openTooltip);
+            ref[action]("mouseleave", pstate.closeTooltip);
+        };
+        const onHoverSupportChange = ({ matches }: MediaQueryListEvent) => {
+            setHoverListeners(matches);
+            const activeElement = document.activeElement;
+            const content = document.getElementById(`${pstate.id}-popover`);
+            const focusWithinTooltip =
+                activeElement &&
+                (ref.contains(activeElement) ||
+                    content?.contains(activeElement));
+            if (!matches && !focusWithinTooltip) {
+                pstate.closeTooltip();
+            }
+        };
+
+        setHoverListeners(hoverMedia.matches);
+        hoverMedia.addEventListener("change", onHoverSupportChange);
+        ref.addEventListener("pointerdown", onPointerDown);
+        window.addEventListener("pointerup", onPointerUp, true);
+        window.addEventListener("pointercancel", onPointerCancel, true);
+        ref.addEventListener("click", onClick);
+        ref.addEventListener("focusin", openTooltipOnKeyboardFocus);
         ref.addEventListener("focusout", pstate.closeTooltip);
         ref.setAttribute("aria-describedby", `${pstate.id}-popover`);
         return () => {
+            window.clearTimeout(pointerTypeReset);
+            hoverMedia.removeEventListener("change", onHoverSupportChange);
             ref.removeEventListener("mouseenter", pstate.openTooltip);
             ref.removeEventListener("mouseleave", pstate.closeTooltip);
-            ref.removeEventListener("focusin", pstate.openTooltip);
+            ref.removeEventListener("pointerdown", onPointerDown);
+            window.removeEventListener("pointerup", onPointerUp, true);
+            window.removeEventListener("pointercancel", onPointerCancel, true);
+            ref.removeEventListener("click", onClick);
+            ref.removeEventListener("focusin", openTooltipOnKeyboardFocus);
             ref.removeEventListener("focusout", pstate.closeTooltip);
         };
     };

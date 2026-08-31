@@ -18,6 +18,49 @@ const defaultProps = {
     id: "test",
 };
 
+const stubHoverSupport = (initialMatches: boolean) => {
+    let matches = initialMatches;
+    const listeners = new Set<(event: MediaQueryListEvent) => void>();
+    const mediaQueryList = {
+        get matches() {
+            return matches;
+        },
+        media: "(hover: hover)",
+        addEventListener: (
+            _type: string,
+            listener: (event: MediaQueryListEvent) => void
+        ) => listeners.add(listener),
+        removeEventListener: (
+            _type: string,
+            listener: (event: MediaQueryListEvent) => void
+        ) => listeners.delete(listener),
+    } as unknown as MediaQueryList;
+
+    sinon.stub(window, "matchMedia").returns(mediaQueryList);
+
+    return {
+        setMatches(nextMatches: boolean) {
+            matches = nextMatches;
+            const event = { matches } as MediaQueryListEvent;
+            listeners.forEach((listener) => listener(event));
+        },
+    };
+};
+
+const tap = (element: HTMLElement) => {
+    element.dispatchEvent(
+        new PointerEvent("pointerdown", {
+            bubbles: true,
+            pointerType: "touch",
+        })
+    );
+    element.focus();
+    window.dispatchEvent(
+        new PointerEvent("pointerup", { pointerType: "touch" })
+    );
+    element.click();
+};
+
 const defaultChildren = {
     reference: {
         component: PopoverReference,
@@ -44,6 +87,7 @@ const defaultChildren = {
 };
 
 afterEach(() => {
+    sinon.restore();
     document
         .querySelectorAll("[data-testid='popover-outside-button']")
         .forEach((el) => el.remove());
@@ -1219,6 +1263,153 @@ describe("Popover", () => {
             expect(screen.getByRole("button")).to.have.focus;
             expect(screen.getByRole("tooltip")).to.exist;
             await userEvent.tab();
+            await clock.runAllAsync();
+            await tick();
+            expect(screen.queryByRole("tooltip")).not.to.exist;
+            clock.restore();
+        });
+
+        it("should ignore mouse events on devices that do not support hover", async () => {
+            const clock = sinon.useFakeTimers({
+                shouldAdvanceTime: true,
+                shouldClearNativeTimers: true,
+            });
+            const hoverSupport = stubHoverSupport(false);
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    tooltip: true,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        defaultChildren.content,
+                    ]),
+                },
+            });
+
+            const button = screen.getByRole("button");
+            await userEvent.hover(button);
+            await clock.runAllAsync();
+            await tick();
+            expect(screen.queryByRole("tooltip")).not.to.exist;
+
+            await userEvent.click(button);
+            await clock.runAllAsync();
+            await tick();
+            expect(screen.queryByRole("tooltip")).not.to.exist;
+
+            tap(button);
+            await clock.runAllAsync();
+            await tick();
+            expect(screen.getByRole("tooltip")).to.exist;
+
+            tap(document.body);
+            await clock.runAllAsync();
+            await tick();
+            expect(screen.queryByRole("tooltip")).not.to.exist;
+
+            tap(button);
+            await clock.runAllAsync();
+            await tick();
+            expect(screen.getByRole("tooltip")).to.exist;
+
+            tap(button);
+            await clock.runAllAsync();
+            await tick();
+            expect(screen.queryByRole("tooltip")).not.to.exist;
+
+            button.blur();
+            await userEvent.tab();
+            await clock.runAllAsync();
+            await tick();
+            expect(button).to.have.focus;
+            const tooltip = screen.getByRole("tooltip");
+            expect(tooltip).to.exist;
+
+            tooltip.dispatchEvent(new MouseEvent("mouseleave"));
+            await clock.runAllAsync();
+            await tick();
+            expect(screen.getByRole("tooltip")).to.exist;
+
+            button.blur();
+            await clock.runAllAsync();
+            await tick();
+            expect(screen.queryByRole("tooltip")).not.to.exist;
+
+            await userEvent.unhover(button);
+            hoverSupport.setMatches(true);
+            await userEvent.hover(button);
+            await clock.runAllAsync();
+            await tick();
+            const hoverTooltip = screen.getByRole("tooltip");
+            expect(hoverTooltip).to.exist;
+
+            hoverSupport.setMatches(false);
+            await clock.runAllAsync();
+            await tick();
+            expect(screen.queryByRole("tooltip")).not.to.exist;
+            clock.restore();
+        });
+
+        it("should ignore a keyboard click after an aborted touch", async () => {
+            const clock = sinon.useFakeTimers({
+                shouldAdvanceTime: true,
+                shouldClearNativeTimers: true,
+            });
+            stubHoverSupport(false);
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    tooltip: true,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        defaultChildren.content,
+                    ]),
+                },
+            });
+
+            const button = screen.getByRole("button");
+            button.dispatchEvent(
+                new PointerEvent("pointerdown", {
+                    bubbles: true,
+                    pointerType: "touch",
+                })
+            );
+            window.dispatchEvent(
+                new PointerEvent("pointerup", { pointerType: "touch" })
+            );
+            await clock.runAllAsync();
+
+            button.click();
+            await clock.runAllAsync();
+            await tick();
+            expect(screen.queryByRole("tooltip")).not.to.exist;
+            clock.restore();
+        });
+
+        it("should toggle on touch when the device also supports hover", async () => {
+            const clock = sinon.useFakeTimers({
+                shouldAdvanceTime: true,
+                shouldClearNativeTimers: true,
+            });
+            stubHoverSupport(true);
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    tooltip: true,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        defaultChildren.content,
+                    ]),
+                },
+            });
+
+            const button = screen.getByRole("button");
+            tap(button);
+            await clock.runAllAsync();
+            await tick();
+            expect(screen.getByRole("tooltip")).to.exist;
+
+            tap(button);
             await clock.runAllAsync();
             await tick();
             expect(screen.queryByRole("tooltip")).not.to.exist;

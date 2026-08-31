@@ -20,6 +20,7 @@ export default defineConfig({
             "@stackoverflow/stacks-icons/spots",
             "@stackoverflow/stacks-icons-legacy/icons",
             "dayjs",
+            "dayjs/locale/en.js",
             "dayjs/plugin/relativeTime",
             "dayjs/plugin/relativeTime.js",
             "dayjs/plugin/updateLocale",
