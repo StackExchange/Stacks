@@ -1,5 +1,11 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.2
+
+### Patch Changes
+
+- [#2377](https://github.com/StackExchange/Stacks/pull/2377) [`35ec3ce`](https://github.com/StackExchange/Stacks/commit/35ec3cec97c2c683e156a643d195e493712c649e) Thanks [@dancormier](https://github.com/dancormier)! - Support touch-triggered tooltips while preventing compatibility mouse events from leaving them visible.
+
 ## 1.0.1
 
 ### Patch Changes
