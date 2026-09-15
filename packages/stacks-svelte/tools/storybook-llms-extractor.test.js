@@ -7,10 +7,38 @@ import {
     extractPropsFromInterface,
     extractPropsFromExports,
     extractStoryExamples,
+    generateDocs,
     parseArgsTable,
+    summaryBaseUrl,
 } from "./storybook-llms-extractor.js";
 
 describe("Storybook LLM Extractor", () => {
+    test("uses the V2 documentation hostname", () => {
+        assert.strictEqual(
+            summaryBaseUrl,
+            "https://v2.svelte.stackoverflow.design"
+        );
+    });
+
+    test("generates V2 documentation and story links", () => {
+        const result = generateDocs([
+            {
+                title: "Components/Button",
+                docs: { id: "components-button--docs" },
+                stories: [{ id: "components-button--base", name: "Base" }],
+            },
+        ]);
+
+        assert.match(
+            result,
+            /https:\/\/v2\.svelte\.stackoverflow\.design\/\?path=\/docs\/components-button--docs/
+        );
+        assert.match(
+            result,
+            /https:\/\/v2\.svelte\.stackoverflow\.design\/\?path=\/story\/components-button--base/
+        );
+    });
+
     describe("cleanJSDoc", () => {
         test("should remove JSDoc asterisks and trim whitespace", () => {
             const input = `

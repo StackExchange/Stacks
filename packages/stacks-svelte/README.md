@@ -2,14 +2,18 @@
 
 This package is an implementation of the [Stacks Design System](https://stackoverflow.design/), using Svelte Components.
 
-[Documentation](https://svelte.stackoverflow.design)
+[Documentation](https://v2.svelte.stackoverflow.design)
+
+This branch contains the maintained V2 release. Its documentation is built
+from `v2` and hosted separately from the current release at
+`v2.svelte.stackoverflow.design`.
 
 ## Installation
 
 Stacks Svelte can be installed via npm:
 
 ```
-npm install @stackoverflow/stacks-svelte
+npm install @stackoverflow/stacks-svelte@legacy-v2 @stackoverflow/stacks@legacy-v2
 ```
 
 `@stackoverflow/stacks-svelte` relies on `@stackoverflow/stacks` styles.

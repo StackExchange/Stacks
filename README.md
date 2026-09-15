@@ -137,7 +137,7 @@ npm run test:less:update -w packages/stacks-classic
 
 [![ci status][gh-action-badge]][gh-action-url] [![npm version][npm-badge-svelte]][npm-url-svelte]
 
-This workspace contains a Svelte implementation of the Stacks Classic design system. Unlike the Stacks-Classic workspace which has its documentation defined in the separate Stacks-Docs workspace, this one defines its documentation site directly within its own workspace which can be reached via https://svelte.stackoverflow.design
+This workspace contains a Svelte implementation of the Stacks Classic design system. Unlike the Stacks-Classic workspace which has its documentation defined in the separate Stacks-Docs workspace, this one defines its documentation site directly within its own workspace which can be reached via https://v2.svelte.stackoverflow.design
 
 We use [storybook](https://storybook.js.org/) for local development. To start the storybook server run:
 
