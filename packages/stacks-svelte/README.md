@@ -4,6 +4,11 @@ This package is an implementation of the [Stacks Design System](https://stackove
 
 [Documentation](https://svelte.stackoverflow.design)
 
+The documentation hosting contract uses `main` for
+`svelte.stackoverflow.design` and `v2` for
+`v2.svelte.stackoverflow.design`. The former beta domain redirects to the
+current documentation.
+
 ## Installation
 
 Stacks Svelte can be installed via npm:
