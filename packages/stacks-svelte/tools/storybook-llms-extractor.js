@@ -21,7 +21,10 @@ import process from "node:process";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 function getCurrentBranch() {
-    return execSync("git branch --show-current", { encoding: "utf-8" }).trim();
+    return (
+        process.env.BRANCH ??
+        execSync("git branch --show-current", { encoding: "utf-8" }).trim()
+    );
 }
 
 const currentBranch = getCurrentBranch();
@@ -33,6 +36,8 @@ const CONFIG = {
     summaryDescription: "Stacks Svelte Components Documentation",
 };
 const { distPath, summaryBaseUrl, summaryTitle, summaryDescription } = CONFIG;
+
+export { summaryBaseUrl };
 
 export function parseStorybookIndex(distPath) {
     const content = readFileSync(join(distPath, "index.json"), "utf-8");
@@ -366,7 +371,7 @@ function findSubcomponents(componentPath) {
         }));
 }
 
-function generateDocs(groups) {
+export function generateDocs(groups) {
     let md = `# ${summaryTitle}\n\n${summaryDescription}\n\n`;
     md += `> Generated Storybook documentation optimized for LLM consumption.\n\n---\n\n## Table of Contents\n\n`;
 
