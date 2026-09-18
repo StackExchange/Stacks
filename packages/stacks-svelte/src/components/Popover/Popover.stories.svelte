@@ -6,6 +6,7 @@
     import PopoverReference from "./PopoverReference.svelte";
     import PopoverContent from "./PopoverContent.svelte";
     import Button from "../Button/Button.svelte";
+    import Badge from "../Badge/Badge.svelte";
     import TextInput from "../TextInput/TextInput.svelte";
     import Icon from "../Icon/Icon.svelte";
     import { IconAccessibility } from "@stackoverflow/stacks-icons-legacy/icons";
@@ -86,6 +87,40 @@
                 <Button>Some action</Button>
             </PopoverContent>
         </Popover>
+    </div>
+</Story>
+
+<Story name="Nested tooltip references" asChild>
+    <div class="d-flex fw-wrap g16 ai-center py128">
+        <Popover id="tooltip-nested-badge" tooltip>
+            <PopoverReference>
+                <Button
+                    class="s-btn__unset"
+                    aria-label="Trust signal: Corroborated by 3 sources"
+                >
+                    <Badge
+                        type="state"
+                        state="success"
+                        text="Corroborated by 3 sources"
+                    />
+                </Button>
+            </PopoverReference>
+            <PopoverContent>Corroborated by multiple sources.</PopoverContent>
+        </Popover>
+
+        <Popover id="tooltip-nested-icon" tooltip>
+            <PopoverReference>
+                <Button icon aria-label="Accessibility">
+                    <Icon src={IconAccessibility} />
+                </Button>
+            </PopoverReference>
+            <PopoverContent>Accessibility</PopoverContent>
+        </Popover>
+
+        <p class="wmx3">
+            On touch devices, tap either trigger once to open its tooltip, tap
+            again to close it, or tap outside to dismiss it.
+        </p>
     </div>
 </Story>
 
