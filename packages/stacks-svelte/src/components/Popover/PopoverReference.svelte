@@ -77,27 +77,36 @@
         const hoverMedia = window.matchMedia("(hover: hover)");
         let pointerDown = false;
         let pointerType = "";
-        let pointerTypeReset: number;
         const onPointerDown = (event: PointerEvent) => {
-            window.clearTimeout(pointerTypeReset);
             pointerDown = true;
             pointerType = event.pointerType;
         };
-        const onPointerUp = () => {
-            pointerDown = false;
-            pointerTypeReset = window.setTimeout(() => {
+        const clearOutsidePointer = (event: MouseEvent) => {
+            if (
+                !(event.target instanceof Node) ||
+                !ref.contains(event.target)
+            ) {
                 pointerType = "";
-            });
+            }
+        };
+        const onPointerUp = (event: PointerEvent) => {
+            pointerDown = false;
+            clearOutsidePointer(event);
         };
         const onPointerCancel = () => {
-            window.clearTimeout(pointerTypeReset);
             pointerDown = false;
             pointerType = "";
         };
-        const onClick = () => {
-            const activatedByTouch = pointerType && pointerType !== "mouse";
+        const onClick = (event: PointerEvent) => {
+            // Keep the gesture type until click: it can arrive in a later task
+            // and WebKit may label a touch compatibility click as mouse input.
+            // Zero-detail keyboard/programmatic clicks must not reuse a gesture.
+            const clickPointerType =
+                event.detail > 0
+                    ? pointerType || event.pointerType
+                    : event.pointerType;
             pointerType = "";
-            if (activatedByTouch) {
+            if (clickPointerType === "touch" || clickPointerType === "pen") {
                 pstate.toggle();
             }
         };
@@ -129,18 +138,19 @@
         ref.addEventListener("pointerdown", onPointerDown);
         window.addEventListener("pointerup", onPointerUp, true);
         window.addEventListener("pointercancel", onPointerCancel, true);
+        window.addEventListener("click", clearOutsidePointer, true);
         ref.addEventListener("click", onClick);
         ref.addEventListener("focusin", openTooltipOnKeyboardFocus);
         ref.addEventListener("focusout", pstate.closeTooltip);
         ref.setAttribute("aria-describedby", `${pstate.id}-popover`);
         return () => {
-            window.clearTimeout(pointerTypeReset);
             hoverMedia.removeEventListener("change", onHoverSupportChange);
             ref.removeEventListener("mouseenter", pstate.openTooltip);
             ref.removeEventListener("mouseleave", pstate.closeTooltip);
             ref.removeEventListener("pointerdown", onPointerDown);
             window.removeEventListener("pointerup", onPointerUp, true);
             window.removeEventListener("pointercancel", onPointerCancel, true);
+            window.removeEventListener("click", clearOutsidePointer, true);
             ref.removeEventListener("click", onClick);
             ref.removeEventListener("focusin", openTooltipOnKeyboardFocus);
             ref.removeEventListener("focusout", pstate.closeTooltip);
