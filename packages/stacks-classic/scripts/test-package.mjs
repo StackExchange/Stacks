@@ -47,7 +47,7 @@ try {
         "dist/css/stacks.min.css",
         "dist/js/stacks.js",
         "dist/js/stacks.min.js",
-        "dist/index.d.ts",
+        "dist/esm-no-css.d.ts",
         "lib/stacks.less",
         "package.json",
         "README.md",
@@ -93,7 +93,7 @@ try {
     );
     const publicEntries = {
         main: "./dist/js/stacks.js",
-        types: "./dist/index.d.ts",
+        types: "./dist/esm-no-css.d.ts",
         style: "./dist/css/stacks.css",
         less: "./lib/stacks.less",
         unpkg: "dist/css/stacks.min.css",

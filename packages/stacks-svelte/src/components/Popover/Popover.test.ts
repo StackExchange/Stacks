@@ -47,18 +47,30 @@ const stubHoverSupport = (initialMatches: boolean) => {
     };
 };
 
-const tap = (element: HTMLElement) => {
+const pointerClick = (
+    element: Element,
+    pointerType: "touch" | "pen",
+    focusBeforePointerup = false
+) => {
     element.dispatchEvent(
         new PointerEvent("pointerdown", {
             bubbles: true,
-            pointerType: "touch",
+            pointerType,
         })
     );
-    element.focus();
-    window.dispatchEvent(
-        new PointerEvent("pointerup", { pointerType: "touch" })
+    if (focusBeforePointerup && element instanceof HTMLElement) {
+        element.focus();
+    }
+    element.dispatchEvent(
+        new PointerEvent("pointerup", { bubbles: true, pointerType })
     );
-    element.click();
+    element.dispatchEvent(
+        new PointerEvent("click", { bubbles: true, pointerType, detail: 1 })
+    );
+};
+
+const tap = (element: HTMLElement) => {
+    pointerClick(element, "touch", true);
 };
 
 const defaultChildren = {
@@ -1350,7 +1362,399 @@ describe("Popover", () => {
             clock.restore();
         });
 
-        it("should ignore a keyboard click after an aborted touch", async () => {
+        it("should use the click pointer type for immediate touch and pen toggles", async () => {
+            const clock = sinon.useFakeTimers({
+                shouldAdvanceTime: true,
+                shouldClearNativeTimers: true,
+            });
+            stubHoverSupport(false);
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    tooltip: true,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        defaultChildren.content,
+                    ]),
+                },
+            });
+
+            const button = screen.getByRole("button");
+
+            pointerClick(button, "touch");
+            await clock.runAllAsync();
+            expect(screen.getByRole("tooltip")).to.exist;
+
+            pointerClick(button, "touch");
+            await clock.runAllAsync();
+            expect(screen.queryByRole("tooltip")).not.to.exist;
+
+            pointerClick(button, "pen");
+            await clock.runAllAsync();
+            expect(screen.getByRole("tooltip")).to.exist;
+
+            pointerClick(button, "pen");
+            await clock.runAllAsync();
+            expect(screen.queryByRole("tooltip")).not.to.exist;
+            clock.restore();
+        });
+
+        it("should toggle on touch and pen clicks dispatched after the pointerup task", async () => {
+            const clock = sinon.useFakeTimers({
+                shouldAdvanceTime: true,
+                shouldClearNativeTimers: true,
+            });
+            stubHoverSupport(false);
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    tooltip: true,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        defaultChildren.content,
+                    ]),
+                },
+            });
+
+            const button = screen.getByRole("button");
+            button.dispatchEvent(
+                new PointerEvent("pointerdown", {
+                    bubbles: true,
+                    pointerType: "touch",
+                })
+            );
+            button.focus();
+            window.dispatchEvent(
+                new PointerEvent("pointerup", { pointerType: "touch" })
+            );
+            await clock.tickAsync(0);
+            expect(screen.queryByRole("tooltip")).not.to.exist;
+
+            button.dispatchEvent(
+                new PointerEvent("click", {
+                    bubbles: true,
+                    pointerType: "touch",
+                })
+            );
+            await clock.runAllAsync();
+            expect(screen.getByRole("tooltip")).to.exist;
+
+            button.dispatchEvent(
+                new PointerEvent("pointerdown", {
+                    bubbles: true,
+                    pointerType: "pen",
+                })
+            );
+            window.dispatchEvent(
+                new PointerEvent("pointerup", { pointerType: "pen" })
+            );
+            await clock.tickAsync(0);
+            button.dispatchEvent(
+                new PointerEvent("click", {
+                    bubbles: true,
+                    pointerType: "pen",
+                })
+            );
+            await clock.runAllAsync();
+            expect(screen.queryByRole("tooltip")).not.to.exist;
+            clock.restore();
+        });
+
+        it("should ignore focus during a pointerdown but open on focus after pointerup", async () => {
+            const clock = sinon.useFakeTimers({
+                shouldAdvanceTime: true,
+                shouldClearNativeTimers: true,
+            });
+            stubHoverSupport(false);
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    tooltip: true,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        defaultChildren.content,
+                    ]),
+                },
+            });
+
+            const button = screen.getByRole("button");
+            button.dispatchEvent(
+                new PointerEvent("pointerdown", {
+                    bubbles: true,
+                    pointerType: "touch",
+                })
+            );
+            button.focus();
+            await clock.runAllAsync();
+            expect(screen.queryByRole("tooltip")).not.to.exist;
+
+            window.dispatchEvent(
+                new PointerEvent("pointerup", { pointerType: "touch" })
+            );
+            button.blur();
+            button.focus();
+            await clock.runAllAsync();
+            expect(screen.getByRole("tooltip")).to.exist;
+            clock.restore();
+        });
+
+        it("should recognize a delayed compatibility mouse click from a touch gesture", async () => {
+            const clock = sinon.useFakeTimers({
+                shouldAdvanceTime: true,
+                shouldClearNativeTimers: true,
+            });
+            stubHoverSupport(false);
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    tooltip: true,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        defaultChildren.content,
+                    ]),
+                },
+            });
+            const button = screen.getByRole("button");
+            const tapWithCompatibilityClick = async () => {
+                button.dispatchEvent(
+                    new PointerEvent("pointerdown", {
+                        bubbles: true,
+                        pointerType: "touch",
+                    })
+                );
+                button.focus();
+                button.dispatchEvent(
+                    new PointerEvent("pointerup", {
+                        bubbles: true,
+                        pointerType: "touch",
+                    })
+                );
+                await clock.tickAsync(1);
+                // WebKit's emulated native touch emits this compatibility click.
+                button.dispatchEvent(
+                    new PointerEvent("click", {
+                        bubbles: true,
+                        pointerType: "mouse",
+                        detail: 1,
+                    })
+                );
+                await clock.runAllAsync();
+            };
+
+            await tapWithCompatibilityClick();
+            expect(screen.getByRole("tooltip")).to.exist;
+            await tapWithCompatibilityClick();
+            expect(screen.queryByRole("tooltip")).not.to.exist;
+            clock.restore();
+        });
+
+        it("should not dismiss when a mouse click targets descendants of the reference", async () => {
+            const clock = sinon.useFakeTimers({
+                shouldAdvanceTime: true,
+                shouldClearNativeTimers: true,
+            });
+            stubHoverSupport(false);
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    autoshow: true,
+                    tooltip: true,
+                    children: createSvelteComponentsSnippet([
+                        {
+                            component: PopoverReference,
+                            props: {
+                                children: createRawSnippet(() => ({
+                                    render: () =>
+                                        '<button><span>Label</span><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M0 0h20v20z" /></svg></button>',
+                                })),
+                            },
+                        },
+                        defaultChildren.content,
+                    ]),
+                },
+            });
+
+            const button = screen.getByRole("button");
+            const label = button.querySelector("span");
+            const path = button.querySelector("path");
+            expect(label).to.exist;
+            expect(path).to.exist;
+            expect(screen.getByRole("tooltip")).to.exist;
+
+            label?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+            await clock.runAllAsync();
+            expect(screen.getByRole("tooltip")).to.exist;
+
+            path?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+            await clock.runAllAsync();
+            expect(screen.getByRole("tooltip")).to.exist;
+            clock.restore();
+        });
+
+        it("should toggle delayed touches on nested badge and SVG targets", async () => {
+            stubHoverSupport(false);
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    tooltip: true,
+                    children: createSvelteComponentsSnippet([
+                        {
+                            component: PopoverReference,
+                            props: {
+                                children: createRawSnippet(() => ({
+                                    render: () =>
+                                        '<button><span>Label</span><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M0 0h20v20z" /></svg></button>',
+                                })),
+                            },
+                        },
+                        defaultChildren.content,
+                    ]),
+                },
+            });
+
+            const button = screen.getByRole("button", { name: "Label" });
+            const tapDescendant = async (target: Element) => {
+                target.dispatchEvent(
+                    new PointerEvent("pointerdown", {
+                        bubbles: true,
+                        pointerType: "touch",
+                    })
+                );
+                target.dispatchEvent(
+                    new PointerEvent("pointerup", {
+                        bubbles: true,
+                        pointerType: "touch",
+                    })
+                );
+                await new Promise((resolve) => setTimeout(resolve, 0));
+                // Compatibility focus can happen after pointerup, before click.
+                button.focus();
+                target.dispatchEvent(
+                    new PointerEvent("click", {
+                        bubbles: true,
+                        pointerType: "touch",
+                    })
+                );
+            };
+
+            const targets = button.querySelectorAll("span, path");
+            expect(targets).to.have.length(2);
+            for (const target of targets) {
+                await tapDescendant(target);
+                await waitFor(
+                    () => expect(screen.getByRole("tooltip")).to.exist
+                );
+                await tapDescendant(target);
+                await waitFor(
+                    () => expect(screen.queryByRole("tooltip")).not.to.exist
+                );
+                await tapDescendant(target);
+                await waitFor(
+                    () => expect(screen.getByRole("tooltip")).to.exist
+                );
+                tap(document.body);
+                await waitFor(
+                    () => expect(screen.queryByRole("tooltip")).not.to.exist
+                );
+                button.blur();
+            }
+        });
+
+        it("should ignore a keyboard click after a touch without a click", async () => {
+            const clock = sinon.useFakeTimers({
+                shouldAdvanceTime: true,
+                shouldClearNativeTimers: true,
+            });
+            stubHoverSupport(false);
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    tooltip: true,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        defaultChildren.content,
+                    ]),
+                },
+            });
+
+            const button = screen.getByRole("button");
+            button.dispatchEvent(
+                new PointerEvent("pointerdown", {
+                    bubbles: true,
+                    pointerType: "touch",
+                })
+            );
+            button.dispatchEvent(
+                new PointerEvent("pointerup", {
+                    pointerType: "touch",
+                    bubbles: true,
+                })
+            );
+            await clock.runAllAsync();
+
+            button.click();
+            await clock.runAllAsync();
+            await tick();
+            expect(screen.queryByRole("tooltip")).not.to.exist;
+            clock.restore();
+        });
+
+        it("should discard a pending touch on outside release, outside click, or cancellation", async () => {
+            const clock = sinon.useFakeTimers({
+                shouldAdvanceTime: true,
+                shouldClearNativeTimers: true,
+            });
+            stubHoverSupport(false);
+            render(Popover, {
+                props: {
+                    ...defaultProps,
+                    tooltip: true,
+                    children: createSvelteComponentsSnippet([
+                        defaultChildren.reference,
+                        defaultChildren.content,
+                    ]),
+                },
+            });
+
+            const button = screen.getByRole("button");
+            for (const endEvent of [
+                new PointerEvent("pointerup", {
+                    bubbles: true,
+                    pointerType: "touch",
+                }),
+                new MouseEvent("click", { bubbles: true, detail: 1 }),
+                new PointerEvent("pointercancel", {
+                    bubbles: true,
+                    pointerType: "touch",
+                }),
+            ]) {
+                button.dispatchEvent(
+                    new PointerEvent("pointerdown", {
+                        bubbles: true,
+                        pointerType: "touch",
+                    })
+                );
+                button.dispatchEvent(
+                    new PointerEvent("pointerup", {
+                        bubbles: true,
+                        pointerType: "touch",
+                    })
+                );
+                document.body.dispatchEvent(endEvent);
+                button.dispatchEvent(
+                    new PointerEvent("click", {
+                        bubbles: true,
+                        pointerType: "mouse",
+                        detail: 1,
+                    })
+                );
+                await clock.runAllAsync();
+                expect(screen.queryByRole("tooltip")).not.to.exist;
+            }
+            clock.restore();
+        });
+
+        it("should restore keyboard focus handling after pointer cancellation", async () => {
             const clock = sinon.useFakeTimers({
                 shouldAdvanceTime: true,
                 shouldClearNativeTimers: true,
@@ -1375,13 +1779,19 @@ describe("Popover", () => {
                 })
             );
             window.dispatchEvent(
-                new PointerEvent("pointerup", { pointerType: "touch" })
+                new PointerEvent("pointercancel", { pointerType: "touch" })
             );
-            await clock.runAllAsync();
-
             button.click();
             await clock.runAllAsync();
-            await tick();
+            expect(screen.queryByRole("tooltip")).not.to.exist;
+
+            button.focus();
+            await clock.runAllAsync();
+            expect(screen.getByRole("tooltip")).to.exist;
+            button.dispatchEvent(
+                new KeyboardEvent("keydown", { key: "Escape", bubbles: true })
+            );
+            await clock.runAllAsync();
             expect(screen.queryByRole("tooltip")).not.to.exist;
             clock.restore();
         });

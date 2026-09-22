@@ -1,5 +1,11 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.3
+
+### Patch Changes
+
+- [#2408](https://github.com/StackExchange/Stacks/pull/2408) [`9911646`](https://github.com/StackExchange/Stacks/commit/99116461351b104ea60aeb69b360f23377fb5d84) Thanks [@dancormier](https://github.com/dancormier)! - Fix tooltip touch interactions by reliably activating asynchronous touch clicks and keeping tooltips open when clicking trigger descendants.
+
 ## 1.0.2
 
 ### Patch Changes

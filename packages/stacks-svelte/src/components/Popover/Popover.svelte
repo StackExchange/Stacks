@@ -202,7 +202,10 @@
     };
 
     const onOutclick = (e: CustomEvent<HTMLElement>) => {
-        if (!dismissible || e.detail === reference) {
+        if (
+            !dismissible ||
+            (e.detail instanceof Node && reference?.contains(e.detail))
+        ) {
             return;
         }
 
