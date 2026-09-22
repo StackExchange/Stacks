@@ -12,13 +12,21 @@ jobs:
     steps:
       - name: Dependabot metadata
         id: metadata
-        uses: dependabot/fetch-metadata@v1
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Approve eligible Dependabot PRs
+        if: steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch'
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          # stacks-tooling approves only. Rotate both Actions and Dependabot copies.
+          GH_TOKEN: ${{secrets.STACKS_TOOLING_GH_RW_PAT}}
       - name: Enable auto-merge for Dependabot PRs
         if: steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch'
         run: gh pr merge --auto --squash --subject "$PR_TITLE" "$PR_URL"
         env:
           PR_TITLE: ${{github.event.pull_request.title}}
           PR_URL: ${{github.event.pull_request.html_url}}
+          # Keep auto-merge on GITHUB_TOKEN so required checks remain enforced.
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
