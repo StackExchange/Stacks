@@ -104,6 +104,10 @@ jobs:
           command: npm run test:release
           needs_lfs: false
           needs_playwright: false
+        - command_description: Dependabot Auto-Merge Tests
+          command: node --test .github/scripts/dependabot-auto-merge.test.mjs
+          needs_lfs: false
+          needs_playwright: false
     with:
       command: ${{ matrix.command }}
       command_description: ${{ matrix.command_description }}

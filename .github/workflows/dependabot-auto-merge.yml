@@ -17,15 +17,84 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Approve eligible Dependabot PRs
         if: steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch'
-        run: gh pr review --approve "$PR_URL"
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          pr_endpoint="repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER"
+          snapshot() {
+            gh api "$pr_endpoint" --jq '{state, draft, author: .user.login, head: .head.sha, head_repo: .head.repo.full_name, base: .base.ref, base_sha: .base.sha, commits, changed_files}'
+          }
+
+          pr=$(snapshot)
+          # These endpoints cap results at 250 commits and 3,000 files. Refuse
+          # larger PRs and require complete results instead of trusting a subset.
+          jq -e --arg sha "$HEAD_SHA" --arg repo "$GITHUB_REPOSITORY" '
+            .state == "open" and .draft == false and
+            .author == "dependabot[bot]" and .head_repo == $repo and
+            .base == "main" and .head == $sha and
+            .commits > 0 and .commits <= 250 and
+            .changed_files > 0 and .changed_files <= 3000
+          ' <<< "$pr" > /dev/null
+
+          commits=$(gh api --paginate --slurp "$pr_endpoint/commits?per_page=100")
+          jq -e --arg sha "$HEAD_SHA" --argjson pr "$pr" '
+            flatten | length == $pr.commits and
+            (map(.sha) | unique | length) == $pr.commits and
+            .[-1].sha == $sha and
+            all(.[];
+              .author.login == "dependabot[bot]" and
+              .commit.verification.verified == true and
+              .commit.verification.reason == "valid")
+          ' <<< "$commits" > /dev/null
+
+          files=$(gh api --paginate --slurp "$pr_endpoint/files?per_page=100")
+          # Keep this allowlist aligned with the stacks-tooling CODEOWNERS entries.
+          jq -e --argjson pr "$pr" '
+            flatten | length == $pr.changed_files and
+            (map(.filename) | unique | length) == $pr.changed_files and
+            all(.[];
+              .status == "modified" and .previous_filename == null and
+              (.filename == "package.json" or .filename == "package-lock.json" or
+               (.filename | test("\\Apackages/[^/\\r\\n]+/package\\.json\\z"))))
+          ' <<< "$files" > /dev/null
+
+          # A valid signature alone can belong to a human who supplied the bot's
+          # author identity. Require GitHub's signing provenance for every SHA.
+          while IFS= read -r sha; do
+            signature=$(gh api graphql \
+              -f owner="${GITHUB_REPOSITORY%/*}" -f name="${GITHUB_REPOSITORY#*/}" \
+              -f sha="$sha" -f query='
+                query($owner: String!, $name: String!, $sha: String!) {
+                  repository(owner: $owner, name: $name) {
+                    object(expression: $sha) {
+                      ... on Commit { signature { isValid wasSignedByGitHub signer { login } } }
+                    }
+                  }
+                }')
+            jq -e '.data.repository.object.signature |
+              .isValid == true and .wasSignedByGitHub == true and
+              .signer.login == "web-flow"
+            ' <<< "$signature" > /dev/null
+          done < <(jq -r 'flatten | .[].sha' <<< "$commits")
+
+          # Recheck after pagination. Binding the review to HEAD_SHA also protects
+          # against a push between this final read and the approval request.
+          current_pr=$(snapshot)
+          jq -e --argjson expected "$pr" '. == $expected' <<< "$current_pr" > /dev/null
+          GH_TOKEN="$APPROVAL_TOKEN" gh api --method POST "$pr_endpoint/reviews" \
+            -f event=APPROVE -f commit_id="$HEAD_SHA" --silent
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
+          PR_NUMBER: ${{github.event.pull_request.number}}
+          HEAD_SHA: ${{github.event.pull_request.head.sha}}
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
           # stacks-tooling approves only. Rotate both Actions and Dependabot copies.
-          GH_TOKEN: ${{secrets.STACKS_TOOLING_GH_RW_PAT}}
+          APPROVAL_TOKEN: ${{secrets.STACKS_TOOLING_GH_RW_PAT}}
       - name: Enable auto-merge for Dependabot PRs
         if: steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch'
-        run: gh pr merge --auto --squash --subject "$PR_TITLE" "$PR_URL"
+        run: gh pr merge --auto --squash --match-head-commit "$HEAD_SHA" --subject "$PR_TITLE" "$PR_URL"
         env:
+          HEAD_SHA: ${{github.event.pull_request.head.sha}}
           PR_TITLE: ${{github.event.pull_request.title}}
           PR_URL: ${{github.event.pull_request.html_url}}
           # Keep auto-merge on GITHUB_TOKEN so required checks remain enforced.

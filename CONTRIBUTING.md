@@ -114,7 +114,7 @@ The [changesets-bot](https://github.com/apps/changeset-bot) will comment on your
 
 ## Merge requirements
 
-To keep Stacks stable and trustworthy for all the products that depend on it, all contributions must follow these rules without exception, regardless of your role or team.
+To keep Stacks stable and trustworthy for all the products that depend on it, contributions must follow these rules regardless of your role or team. Eligible Dependabot updates follow the automated review exception described below.
 
 ### Review and merge flow
 
@@ -125,7 +125,19 @@ To keep Stacks stable and trustworthy for all the products that depend on it, al
 
 ### PR approvals are required
 
-All pull requests require at least one approval from a Stacks team member before merging. This applies to everyone, including Stack Overflow employees. If your PR has been open for a while without a review, reach out in [#stacks](https://stackexchange.slack.com/archives/C27RWNQN9) and we'll prioritize it.
+Pull requests require at least one approval from a Stacks team member before merging, except for the eligible Dependabot updates described below. This applies to everyone, including Stack Overflow employees. If your PR has been open for a while without a review, reach out in [#stacks](https://stackexchange.slack.com/archives/C27RWNQN9) and we'll prioritize it.
+
+### Automated Dependabot approvals
+
+Dependabot patch and minor updates may be approved by `@stacks-tooling` and automatically merged without a Stacks team member's approval or manual merge. This exception applies only to non-draft PRs from this repository targeting `main` that modify existing files at these paths:
+
+- `/package.json`
+- `/package-lock.json`
+- `/packages/*/package.json` (one workspace directory level)
+
+Before approval, the workflow verifies that every commit is authored by Dependabot with a valid GitHub-generated signature, all changed files are allowed, and the current head matches the evaluated commit. Approval and the auto-merge request are bound to that commit. Required checks and branch protections still apply, including dismissal of stale approvals when new commits are pushed.
+
+Major updates and PRs that do not pass these checks require the normal Stacks-team review and merge flow.
 
 ### Do not merge your own PR
 
