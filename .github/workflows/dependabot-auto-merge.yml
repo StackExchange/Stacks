@@ -19,13 +19,20 @@ jobs:
         if: steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch'
         shell: bash
         run: |
+          # A failed API request or jq check stops approval and the merge step.
           set -euo pipefail
 
           pr_endpoint="repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER"
           snapshot() {
-            gh api "$pr_endpoint" --jq '{state, draft, author: .user.login, head: .head.sha, head_repo: .head.repo.full_name, base: .base.ref, base_sha: .base.sha, commits, changed_files}'
+            gh api "$pr_endpoint" --jq '{
+              state, draft, author: .user.login,
+              head: .head.sha, head_repo: .head.repo.full_name,
+              base: .base.ref, base_sha: .base.sha,
+              commits, changed_files
+            }'
           }
 
+          # 1. Confirm this PR is eligible and still has the event's head SHA.
           pr=$(snapshot)
           # These endpoints cap results at 250 commits and 3,000 files. Refuse
           # larger PRs and require complete results instead of trusting a subset.
@@ -37,6 +44,8 @@ jobs:
             .changed_files > 0 and .changed_files <= 3000
           ' <<< "$pr" > /dev/null
 
+          # 2. Check every commit, including later API pages. --slurp collects
+          # those pages into one JSON array; flatten combines their contents.
           commits=$(gh api --paginate --slurp "$pr_endpoint/commits?per_page=100")
           jq -e --arg sha "$HEAD_SHA" --argjson pr "$pr" '
             flatten | length == $pr.commits and
@@ -48,6 +57,7 @@ jobs:
               .commit.verification.reason == "valid")
           ' <<< "$commits" > /dev/null
 
+          # 3. Allow only modifications to existing dependency files.
           files=$(gh api --paginate --slurp "$pr_endpoint/files?per_page=100")
           # Keep this allowlist aligned with the stacks-tooling CODEOWNERS entries.
           jq -e --argjson pr "$pr" '
@@ -59,8 +69,8 @@ jobs:
                (.filename | test("\\Apackages/[^/\\r\\n]+/package\\.json\\z"))))
           ' <<< "$files" > /dev/null
 
-          # A valid signature alone can belong to a human who supplied the bot's
-          # author identity. Require GitHub's signing provenance for every SHA.
+          # 4. REST tells us the signature is valid. GraphQL also confirms who
+          # signed it: GitHub (web-flow), not a human using the bot's author name.
           while IFS= read -r sha; do
             signature=$(gh api graphql \
               -f owner="${GITHUB_REPOSITORY%/*}" -f name="${GITHUB_REPOSITORY#*/}" \
@@ -68,7 +78,9 @@ jobs:
                 query($owner: String!, $name: String!, $sha: String!) {
                   repository(owner: $owner, name: $name) {
                     object(expression: $sha) {
-                      ... on Commit { signature { isValid wasSignedByGitHub signer { login } } }
+                      ... on Commit {
+                        signature { isValid wasSignedByGitHub signer { login } }
+                      }
                     }
                   }
                 }')
@@ -78,10 +90,11 @@ jobs:
             ' <<< "$signature" > /dev/null
           done < <(jq -r 'flatten | .[].sha' <<< "$commits")
 
-          # Recheck after pagination. Binding the review to HEAD_SHA also protects
-          # against a push between this final read and the approval request.
+          # 5. Stop if the PR changed during validation. commit_id protects the
+          # approval even if another push arrives after this final check.
           current_pr=$(snapshot)
           jq -e --argjson expected "$pr" '. == $expected' <<< "$current_pr" > /dev/null
+          # Use the tooling account's token for this approval command only.
           GH_TOKEN="$APPROVAL_TOKEN" gh api --method POST "$pr_endpoint/reviews" \
             -f event=APPROVE -f commit_id="$HEAD_SHA" --silent
         env:
