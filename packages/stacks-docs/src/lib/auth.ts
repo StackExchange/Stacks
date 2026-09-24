@@ -15,7 +15,7 @@ export const auth = betterAuth({
 
     // Secret for signing cookies and tokens
     // openssl rand -base64 32
-    secret: env.AUTH_SECRET || "",
+    secret: env.AUTH_SECRET || env.BETTER_AUTH_SECRET,
 
     // Cookie configuration
     advanced: {
