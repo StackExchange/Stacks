@@ -4,6 +4,7 @@ import { render, screen } from "@testing-library/svelte";
 import { createSvelteComponentsSnippet } from "../../../test-utils";
 import sinon from "sinon";
 import userEvent from "@testing-library/user-event";
+import { IconInfo } from "@stackoverflow/stacks-icons/icons";
 
 import Notice from "./Notice.svelte";
 import NoticeAction from "./NoticeAction.svelte";
@@ -20,13 +21,58 @@ describe("Notice", () => {
         expect(screen.getByRole("status")).to.exist;
     });
 
-    it("should render the icon", () => {
+    it("should render the default icon and title", () => {
+        render(Notice, { children });
+        const icon = screen.getByRole("status").querySelector("svg")!;
+        expect(icon).to.have.class("IconHelp");
+        expect(icon.querySelector("title")).to.have.text("Help");
+        expect(icon).not.to.have.attribute("aria-hidden");
+        expect(icon.parentElement).not.to.have.attribute("aria-hidden");
+    });
+
+    it("renders a neutral notice with an information icon", async () => {
+        render(Notice, { icon: IconInfo, children });
+        const notice = screen.getByRole("status");
+        const icon = notice.querySelector(".s-notice--icon svg")!;
+
+        expect(notice).to.have.attribute("class", "s-notice");
+        expect(icon).to.have.class("IconInfo");
+        expect(icon.querySelector("title")).not.to.exist;
+        expect(icon.parentElement).to.have.attribute("aria-hidden", "true");
+        await expect(notice).to.be.accessible();
+    });
+
+    it("exposes a custom icon with its explicit title", () => {
         render(Notice, {
+            icon: `<svg role="img"></svg>`,
+            iconTitle: "Custom status",
             children,
         });
-        const icon = document.querySelector("svg.svg-icon");
-        expect(icon).to.exist;
-        expect(screen.getByRole("status")).to.exist;
+        expect(screen.getByRole("img", { name: "Custom status" })).to.exist;
+    });
+
+    it("restores the variant icon and title when the override is removed", async () => {
+        const component = render(Notice, {
+            variant: "danger",
+            icon: `<svg class="CustomIcon"></svg>`,
+            children,
+        });
+        const notice = screen.getByRole("status");
+        expect(notice).to.have.class("s-notice__danger");
+        expect(notice.querySelector(".CustomIcon")).to.exist;
+        expect(notice.querySelector(".IconAlertFill")).not.to.exist;
+        expect(notice.querySelector(".s-notice--icon")).to.have.attribute(
+            "aria-hidden",
+            "true"
+        );
+        expect(notice.querySelector("title")).not.to.exist;
+
+        await component.rerender({ icon: undefined });
+        const icon = notice.querySelector(".s-notice--icon svg")!;
+        expect(icon).to.have.class("IconAlertFill");
+        expect(icon.querySelector("title")).to.have.text("Danger");
+        expect(icon.parentElement).not.to.have.attribute("aria-hidden");
+        expect(notice).to.have.class("s-notice__danger");
     });
 
     it("should render variant notice", () => {
@@ -59,6 +105,7 @@ describe("Notice", () => {
                 render: () => `<span>Dismiss Me</span>`,
             })),
             dismissible: true,
+            icon: `<svg class="CustomIcon"></svg>`,
             onDismiss: onDismissMock,
             i18nDismissButtonLabel: "Chiudi",
         });
@@ -68,7 +115,7 @@ describe("Notice", () => {
         expect(closeButton).to.exist;
 
         // Assert that the IconCross is rendered inside the button
-        const closeIcon = closeButton.querySelector("svg.iconCross");
+        const closeIcon = closeButton.querySelector("svg.IconCross");
         expect(closeIcon).to.exist;
 
         // Assert that the button has the s-notice--dismiss class
@@ -78,17 +125,20 @@ describe("Notice", () => {
         expect(screen.getByText("Dismiss Me")).to.be.visible;
 
         // Check dismiss is clicked correctly
-        await userEvent.click(closeButton);
-        expect(onDismissMock).to.have.been.called;
+        closeButton.focus();
+        await userEvent.keyboard("{Enter}");
+        expect(onDismissMock).to.have.been.calledOnce;
 
         // Confirm the notice was hidden
-        expect(screen.queryByText(text)).to.not.exist;
+        expect(screen.queryByText("Dismiss Me")).to.not.exist;
+        expect(screen.queryByRole("status")).to.not.exist;
     });
 
     it("should render the notice with a user provided notice action", async () => {
         const onclickMock = sinon.spy();
         render(Notice, {
             children,
+            icon: `<svg class="CustomIcon"></svg>`,
             actions: createSvelteComponentsSnippet([
                 {
                     component: NoticeAction,

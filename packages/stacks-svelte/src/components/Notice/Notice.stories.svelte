@@ -3,6 +3,7 @@
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import { parseClassValue } from "../../storybook-utils";
     import NoticeAction from "./NoticeAction.svelte";
+    import { IconInfo } from "@stackoverflow/stacks-icons/icons";
 
     const NoticeVariants: Variant[] = [
         "",
@@ -38,6 +39,16 @@
             },
             class: {
                 control: "text",
+            },
+            icon: {
+                control: "text",
+                description:
+                    "Trusted SVG string to use instead of the variant icon. Untitled icons are decorative.",
+            },
+            iconTitle: {
+                control: "text",
+                description:
+                    "Accessible icon title. Default icons use the variant title; custom icons are decorative when this is omitted or empty.",
             },
         },
     });
@@ -112,6 +123,19 @@
                 </tbody>
             </table>
         {/each}
+    </div>
+</Story>
+
+<Story name="Custom icon" asChild>
+    <div class="d-flex fd-column g8">
+        <Notice icon={IconInfo}>
+            <span>A neutral notice with a custom info icon</span>
+        </Notice>
+        <p>
+            Custom icons replace only the icon source. Keep the established icon
+            pairings for semantic variants, and provide <code>iconTitle</code>
+            when a custom icon conveys meaning; otherwise it is decorative.
+        </p>
     </div>
 </Story>
 
