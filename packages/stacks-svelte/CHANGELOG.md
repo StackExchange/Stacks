@@ -1,5 +1,11 @@
 # @stackoverflow/stacks-svelte
 
+## 1.0.4
+
+### Patch Changes
+
+- [#2416](https://github.com/StackExchange/Stacks/pull/2416) [`d20507b`](https://github.com/StackExchange/Stacks/commit/d20507b29f88d2fb2f1e682178db735e03d5b21b) Thanks [@giamir](https://github.com/giamir)! - Scope SVG IDs and their references to each Icon instance so icons with gradients, masks, or clipping render correctly when repeated. Require Svelte 5.20 for SSR-safe instance IDs.
+
 ## 1.0.3
 
 ### Patch Changes
