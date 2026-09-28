@@ -1,6 +1,7 @@
 import { tick } from "svelte";
 import { expect } from "@open-wc/testing";
 import { render, screen } from "@testing-library/svelte";
+import { IconServiceMicrosoftTeams } from "@stackoverflow/stacks-icons/icons";
 
 import Icon from "./Icon.svelte";
 
@@ -54,5 +55,67 @@ describe("Icon", () => {
             "additional-class"
         );
         expect(screen.getByTestId("icon")).to.have.class("updated-class");
+    });
+
+    it("should keep SVG references within each icon instance", () => {
+        const src = `<svg data-testid="icon" class="svg-icon" aria-labelledby="icon-title">
+            <defs>
+                <linearGradient id="paint"><stop stop-color="red" /></linearGradient>
+                <clipPath id="shape"><rect width="20" height="20" /></clipPath>
+            </defs>
+            <title id="icon-title">Sample icon</title>
+            <path fill="url(#paint)" clip-path="url(#shape)" />
+            <use href="#shape" />
+        </svg>`;
+
+        render(Icon, { src });
+        render(Icon, { src });
+
+        const icons = screen.getAllByTestId("icon");
+        const gradientIds = icons.map(
+            (icon) => icon.querySelector("linearGradient")!.id
+        );
+        expect(new Set(gradientIds).size).to.equal(icons.length);
+
+        for (const icon of icons) {
+            const gradientId = icon.querySelector("linearGradient")!.id;
+            const clipPathId = icon.querySelector("clipPath")!.id;
+            const path = icon.querySelector("path")!;
+
+            expect(path.getAttribute("fill")).to.equal(`url(#${gradientId})`);
+            expect(path.getAttribute("clip-path")).to.equal(
+                `url(#${clipPathId})`
+            );
+            expect(icon.querySelector("use")?.getAttribute("href")).to.equal(
+                `#${clipPathId}`
+            );
+            expect(icon.getAttribute("aria-labelledby")).to.equal(
+                icon.querySelector("title")!.id
+            );
+        }
+    });
+
+    it("should render repeated native-color icons with their own gradients", () => {
+        const hidden = render(Icon, {
+            src: IconServiceMicrosoftTeams,
+            native: true,
+        });
+        hidden.container.style.display = "none";
+        render(Icon, { src: IconServiceMicrosoftTeams, native: true });
+
+        const icons = document.querySelectorAll(".IconServiceMicrosoftTeams");
+        const gradientIds = [...icons].map(
+            (icon) => icon.querySelector("linearGradient")!.id
+        );
+
+        expect(icons.length).to.equal(2);
+        expect(new Set(gradientIds).size).to.equal(icons.length);
+
+        for (const icon of icons) {
+            const gradientId = icon.querySelector("linearGradient")!.id;
+            expect(
+                icon.querySelector('[fill^="url("]')?.getAttribute("fill")
+            ).to.equal(`url(#${gradientId})`);
+        }
     });
 });

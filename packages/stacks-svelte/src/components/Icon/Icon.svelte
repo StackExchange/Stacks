@@ -31,13 +31,47 @@
         class: className = "",
     }: Props = $props();
 
+    const instanceId = $props.id();
+
+    const scopeSvgIds = (svg: string) => {
+        const ids = new Map(
+            [...svg.matchAll(/\sid="([^"]+)"/g)].map(([, id]) => [
+                id,
+                `${instanceId}-${id}`,
+            ])
+        );
+
+        if (ids.size === 0) return svg;
+
+        return svg
+            .replace(/(\s)id="([^"]+)"/g, (match, space, id) =>
+                ids.has(id) ? `${space}id="${ids.get(id)}"` : match
+            )
+            .replace(/url\(#([^)]+)\)/g, (match, id) =>
+                ids.has(id) ? `url(#${ids.get(id)})` : match
+            )
+            .replace(
+                /(\s(?:href|xlink:href))="#([^"]+)"/g,
+                (match, name, id) =>
+                    ids.has(id) ? `${name}="#${ids.get(id)}"` : match
+            )
+            .replace(
+                /(\saria-(?:labelledby|describedby))="([^"]+)"/g,
+                (match, name, references) =>
+                    `${name}="${references
+                        .split(/\s+/)
+                        .map((id: string) => ids.get(id) ?? id)
+                        .join(" ")}"`
+            );
+    };
+
     const getSvg = (
         src: string,
         title: string,
         native: boolean,
         className: ClassValue
     ) => {
-        let svg = src;
+        let svg = scopeSvgIds(src);
 
         // include "title" and remove aria-hidden
         if (title) {
