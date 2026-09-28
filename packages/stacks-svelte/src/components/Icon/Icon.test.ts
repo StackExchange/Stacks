@@ -104,18 +104,32 @@ describe("Icon", () => {
         render(Icon, { src: IconServiceMicrosoftTeams, native: true });
 
         const icons = document.querySelectorAll(".IconServiceMicrosoftTeams");
-        const gradientIds = [...icons].map(
-            (icon) => icon.querySelector("linearGradient")!.id
+        const resourceIds = [...icons].flatMap((icon) =>
+            [...icon.querySelectorAll("defs [id]")].map(
+                (resource) => resource.id
+            )
         );
 
         expect(icons.length).to.equal(2);
-        expect(new Set(gradientIds).size).to.equal(icons.length);
+        expect(resourceIds.length).to.be.greaterThan(0);
+        expect(new Set(resourceIds).size).to.equal(resourceIds.length);
 
         for (const icon of icons) {
-            const gradientId = icon.querySelector("linearGradient")!.id;
-            expect(
-                icon.querySelector('[fill^="url("]')?.getAttribute("fill")
-            ).to.equal(`url(#${gradientId})`);
+            const localIds = new Set(
+                [...icon.querySelectorAll("defs [id]")].map(
+                    (resource) => resource.id
+                )
+            );
+
+            const paintedPaths = icon.querySelectorAll('[fill^="url("]');
+            expect(paintedPaths.length).to.be.greaterThan(0);
+            for (const path of paintedPaths) {
+                const reference = path
+                    .getAttribute("fill")
+                    ?.match(/^url\(#([^)]+)\)$/);
+                expect(reference).not.to.be.null;
+                expect(localIds.has(reference![1])).to.be.true;
+            }
         }
     });
 });
