@@ -34,34 +34,52 @@
     const instanceId = $props.id();
 
     const scopeSvgIds = (svg: string) => {
-        const ids = new Map(
-            [...svg.matchAll(/\sid="([^"]+)"/g)].map(([, id]) => [
+        const idAttributePattern = /(\s)id=(["'])(.*?)\2/g;
+        const urlReferencePattern =
+            /url\(\s*(?:(["'])#(.*?)\1|#([^\s)]+))\s*\)/g;
+        const fragmentReferencePattern =
+            /(\s(?:href|xlink:href))=(["'])#(.*?)\2/g;
+        const ariaReferencePattern =
+            /(\saria-(?:labelledby|describedby))=(["'])(.*?)\2/g;
+
+        const scopedIds = new Map(
+            [...svg.matchAll(idAttributePattern)].map(([, , , id]) => [
                 id,
                 `${instanceId}-${id}`,
             ])
         );
 
-        if (ids.size === 0) return svg;
+        if (scopedIds.size === 0) return svg;
 
         return svg
-            .replace(/(\s)id="([^"]+)"/g, (match, space, id) =>
-                ids.has(id) ? `${space}id="${ids.get(id)}"` : match
-            )
-            .replace(/url\(#([^)]+)\)/g, (match, id) =>
-                ids.has(id) ? `url(#${ids.get(id)})` : match
+            .replace(
+                idAttributePattern,
+                (match, space, quote, id) =>
+                    `${space}id=${quote}${scopedIds.get(id)}${quote}`
             )
             .replace(
-                /(\s(?:href|xlink:href))="#([^"]+)"/g,
-                (match, name, id) =>
-                    ids.has(id) ? `${name}="#${ids.get(id)}"` : match
+                urlReferencePattern,
+                (match, quote = "", quotedId, unquotedId) => {
+                    const id = quotedId ?? unquotedId;
+                    const scopedId = scopedIds.get(id);
+                    return scopedId
+                        ? `url(${quote}#${scopedId}${quote})`
+                        : match;
+                }
             )
+            .replace(fragmentReferencePattern, (match, name, quote, id) => {
+                const scopedId = scopedIds.get(id);
+                return scopedId
+                    ? `${name}=${quote}#${scopedId}${quote}`
+                    : match;
+            })
             .replace(
-                /(\saria-(?:labelledby|describedby))="([^"]+)"/g,
-                (match, name, references) =>
-                    `${name}="${references
+                ariaReferencePattern,
+                (match, name, quote, references) =>
+                    `${name}=${quote}${references
                         .split(/\s+/)
-                        .map((id: string) => ids.get(id) ?? id)
-                        .join(" ")}"`
+                        .map((id: string) => scopedIds.get(id) ?? id)
+                        .join(" ")}${quote}`
             );
     };
 
