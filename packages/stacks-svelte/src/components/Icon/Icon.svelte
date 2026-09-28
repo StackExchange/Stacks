@@ -31,13 +31,65 @@
         class: className = "",
     }: Props = $props();
 
+    const instanceId = $props.id();
+
+    const scopeSvgIds = (svg: string) => {
+        const idAttributePattern = /(\s)id=(["'])(.*?)\2/g;
+        const urlReferencePattern =
+            /url\(\s*(?:(["'])#(.*?)\1|#([^\s)]+))\s*\)/g;
+        const fragmentReferencePattern =
+            /(\s(?:href|xlink:href))=(["'])#(.*?)\2/g;
+        const ariaReferencePattern =
+            /(\saria-(?:labelledby|describedby))=(["'])(.*?)\2/g;
+
+        const scopedIds = new Map(
+            [...svg.matchAll(idAttributePattern)].map(([, , , id]) => [
+                id,
+                `${instanceId}-${id}`,
+            ])
+        );
+
+        if (scopedIds.size === 0) return svg;
+
+        return svg
+            .replace(
+                idAttributePattern,
+                (match, space, quote, id) =>
+                    `${space}id=${quote}${scopedIds.get(id)}${quote}`
+            )
+            .replace(
+                urlReferencePattern,
+                (match, quote = "", quotedId, unquotedId) => {
+                    const id = quotedId ?? unquotedId;
+                    const scopedId = scopedIds.get(id);
+                    return scopedId
+                        ? `url(${quote}#${scopedId}${quote})`
+                        : match;
+                }
+            )
+            .replace(fragmentReferencePattern, (match, name, quote, id) => {
+                const scopedId = scopedIds.get(id);
+                return scopedId
+                    ? `${name}=${quote}#${scopedId}${quote}`
+                    : match;
+            })
+            .replace(
+                ariaReferencePattern,
+                (match, name, quote, references) =>
+                    `${name}=${quote}${references
+                        .split(/\s+/)
+                        .map((id: string) => scopedIds.get(id) ?? id)
+                        .join(" ")}${quote}`
+            );
+    };
+
     const getSvg = (
         src: string,
         title: string,
         native: boolean,
         className: ClassValue
     ) => {
-        let svg = src;
+        let svg = scopeSvgIds(src);
 
         // include "title" and remove aria-hidden
         if (title) {

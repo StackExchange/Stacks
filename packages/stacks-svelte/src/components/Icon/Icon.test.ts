@@ -1,6 +1,7 @@
 import { tick } from "svelte";
 import { expect } from "@open-wc/testing";
 import { render, screen } from "@testing-library/svelte";
+import { IconServiceMicrosoftTeams } from "@stackoverflow/stacks-icons/icons";
 
 import Icon from "./Icon.svelte";
 
@@ -54,5 +55,102 @@ describe("Icon", () => {
             "additional-class"
         );
         expect(screen.getByTestId("icon")).to.have.class("updated-class");
+    });
+
+    for (const { quoteStyle, src, expectedGradientReference } of [
+        {
+            quoteStyle: "double quotes",
+            src: `<svg data-testid="icon" class="svg-icon" aria-labelledby="icon-title">
+                <defs>
+                    <linearGradient id="paint"><stop stop-color="red" /></linearGradient>
+                    <clipPath id="shape"><rect width="20" height="20" /></clipPath>
+                </defs>
+                <title id="icon-title">Sample icon</title>
+                <path fill="url(#paint)" clip-path="url(#shape)" />
+                <use href="#shape" />
+            </svg>`,
+            expectedGradientReference: (id: string) => `url(#${id})`,
+        },
+        {
+            quoteStyle: "alternate quote styles",
+            src: `<svg data-testid="icon" class="svg-icon" aria-labelledby='icon-title'>
+                <defs>
+                    <linearGradient id='paint'><stop stop-color="red" /></linearGradient>
+                    <clipPath id="shape"><rect width="20" height="20" /></clipPath>
+                </defs>
+                <title id='icon-title'>Sample icon</title>
+                <path fill="url('#paint')" clip-path="url(#shape)" />
+                <use href='#shape' />
+            </svg>`,
+            expectedGradientReference: (id: string) => `url('#${id}')`,
+        },
+    ]) {
+        it(`should keep SVG references within each icon instance using ${quoteStyle}`, () => {
+            render(Icon, { src });
+            render(Icon, { src });
+
+            const icons = screen.getAllByTestId("icon");
+            const gradientIds = icons.map(
+                (icon) => icon.querySelector("linearGradient")!.id
+            );
+            expect(new Set(gradientIds).size).to.equal(icons.length);
+
+            for (const icon of icons) {
+                const gradientId = icon.querySelector("linearGradient")!.id;
+                const clipPathId = icon.querySelector("clipPath")!.id;
+                const path = icon.querySelector("path")!;
+
+                expect(path.getAttribute("fill")).to.equal(
+                    expectedGradientReference(gradientId)
+                );
+                expect(path.getAttribute("clip-path")).to.equal(
+                    `url(#${clipPathId})`
+                );
+                expect(
+                    icon.querySelector("use")?.getAttribute("href")
+                ).to.equal(`#${clipPathId}`);
+                expect(icon.getAttribute("aria-labelledby")).to.equal(
+                    icon.querySelector("title")!.id
+                );
+            }
+        });
+    }
+
+    it("should render repeated native-color icons with their own gradients", () => {
+        const hidden = render(Icon, {
+            src: IconServiceMicrosoftTeams,
+            native: true,
+        });
+        hidden.container.style.display = "none";
+        render(Icon, { src: IconServiceMicrosoftTeams, native: true });
+
+        const icons = document.querySelectorAll(".IconServiceMicrosoftTeams");
+        const resourceIds = [...icons].flatMap((icon) =>
+            [...icon.querySelectorAll("defs [id]")].map(
+                (resource) => resource.id
+            )
+        );
+
+        expect(icons.length).to.equal(2);
+        expect(resourceIds.length).to.be.greaterThan(0);
+        expect(new Set(resourceIds).size).to.equal(resourceIds.length);
+
+        for (const icon of icons) {
+            const localIds = new Set(
+                [...icon.querySelectorAll("defs [id]")].map(
+                    (resource) => resource.id
+                )
+            );
+
+            const paintedPaths = icon.querySelectorAll('[fill^="url("]');
+            expect(paintedPaths.length).to.be.greaterThan(0);
+            for (const path of paintedPaths) {
+                const reference = path
+                    .getAttribute("fill")
+                    ?.match(/^url\(#([^)]+)\)$/);
+                expect(reference).not.to.be.null;
+                expect(localIds.has(reference![1])).to.be.true;
+            }
+        }
     });
 });
