@@ -62,9 +62,12 @@
     I am a dismissible notice
 {/snippet}
 
+{#snippet customIconContent()}
+    A neutral notice with a custom icon
+{/snippet}
+
 <Story name="Base">
-    <!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
-    {#snippet template({ class: classArg, children: _storyChildren, ...args })}
+    {#snippet template({ class: classArg, ...args })}
         <Notice
             {...args}
             class={parseClassValue(
@@ -76,8 +79,7 @@
 </Story>
 
 <Story name="Dismissible">
-    <!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
-    {#snippet template({ class: classArg, children: _storyChildren, ...args })}
+    {#snippet template({ class: classArg, ...args })}
         <Notice
             {...args}
             class={parseClassValue(
@@ -127,11 +129,9 @@
 </Story>
 
 <Story name="Custom icon" args={{ icon: IconInfo }}>
-    {#snippet template({ children: _storyChildren, ...args })}
+    {#snippet template(args)}
         <div class="d-flex fd-column g8">
-            <Notice {...args}>
-                <span>A neutral notice with a custom info icon</span>
-            </Notice>
+            <Notice {...args} children={customIconContent} />
             <p>
                 Custom icons replace only the icon source. Keep the established
                 icon pairings for semantic variants, and provide <code
