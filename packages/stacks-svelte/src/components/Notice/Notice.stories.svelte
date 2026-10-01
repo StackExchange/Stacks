@@ -126,17 +126,20 @@
     </div>
 </Story>
 
-<Story name="Custom icon" asChild>
-    <div class="d-flex fd-column g8">
-        <Notice icon={IconInfo}>
-            <span>A neutral notice with a custom info icon</span>
-        </Notice>
-        <p>
-            Custom icons replace only the icon source. Keep the established icon
-            pairings for semantic variants, and provide <code>iconTitle</code>
-            when a custom icon conveys meaning; otherwise it is decorative.
-        </p>
-    </div>
+<Story name="Custom icon" args={{ icon: IconInfo }}>
+    {#snippet template({ children: _storyChildren, ...args })}
+        <div class="d-flex fd-column g8">
+            <Notice {...args}>
+                <span>A neutral notice with a custom info icon</span>
+            </Notice>
+            <p>
+                Custom icons replace only the icon source. Keep the established
+                icon pairings for semantic variants, and provide <code
+                    >iconTitle</code
+                > when a custom icon conveys meaning; otherwise it is decorative.
+            </p>
+        </div>
+    {/snippet}
 </Story>
 
 <Story name="Actions" asChild>
