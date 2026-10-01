@@ -45,9 +45,16 @@
         role?: AriaRole | undefined | null;
 
         /**
-         * The title attribute for the icon
+         * Accessible icon title. Uses the variant's title for default icons.
+         * Custom icons are decorative when this is omitted or empty.
          */
         iconTitle?: string | undefined;
+
+        /**
+         * The SVG icon to display in place of the variant's default icon.
+         * The SVG string must be trusted because it is rendered as HTML.
+         */
+        icon?: string | undefined;
 
         /**
          * Additional CSS classes added to the element
@@ -85,6 +92,7 @@
         important = false,
         role = "status",
         iconTitle,
+        icon,
         class: className = "",
         dismissible = false,
         onDismiss = () => {},
@@ -115,7 +123,14 @@
         return clsx(base, className, classes);
     };
 
-    const getIcon = (variant?: Variant) => {
+    const getIcon = (variant?: Variant, customIcon?: string) => {
+        if (customIcon !== undefined) {
+            return {
+                icon: customIcon,
+                title: iconTitle,
+            };
+        }
+
         if (variant == "danger") {
             return {
                 icon: IconAlertFill,
@@ -155,12 +170,15 @@
     };
 
     const classes = $derived(getClasses(className, variant, important));
-    const iconInfo = $derived(getIcon(variant));
+    const iconInfo = $derived(getIcon(variant, icon));
 </script>
 
 {#if visible}
     <div class={classes} {role}>
-        <span class="s-notice--icon">
+        <span
+            class="s-notice--icon"
+            aria-hidden={icon !== undefined && !iconTitle ? "true" : undefined}
+        >
             <Icon src={iconInfo.icon} title={iconInfo.title} />
         </span>
         {@render children()}

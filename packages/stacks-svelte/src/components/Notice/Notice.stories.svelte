@@ -3,6 +3,7 @@
     import { defineMeta } from "@storybook/addon-svelte-csf";
     import { parseClassValue } from "../../storybook-utils";
     import NoticeAction from "./NoticeAction.svelte";
+    import { IconInfo } from "@stackoverflow/stacks-icons/icons";
 
     const NoticeVariants: Variant[] = [
         "",
@@ -39,6 +40,16 @@
             class: {
                 control: "text",
             },
+            icon: {
+                control: "text",
+                description:
+                    "Trusted SVG string to use instead of the variant icon. Untitled icons are decorative.",
+            },
+            iconTitle: {
+                control: "text",
+                description:
+                    "Accessible icon title. Default icons use the variant title; custom icons are decorative when this is omitted or empty.",
+            },
         },
     });
 </script>
@@ -51,9 +62,12 @@
     I am a dismissible notice
 {/snippet}
 
+{#snippet customIconContent()}
+    A neutral notice with a custom icon
+{/snippet}
+
 <Story name="Base">
-    <!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
-    {#snippet template({ class: classArg, children: _storyChildren, ...args })}
+    {#snippet template({ class: classArg, ...args })}
         <Notice
             {...args}
             class={parseClassValue(
@@ -65,8 +79,7 @@
 </Story>
 
 <Story name="Dismissible">
-    <!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
-    {#snippet template({ class: classArg, children: _storyChildren, ...args })}
+    {#snippet template({ class: classArg, ...args })}
         <Notice
             {...args}
             class={parseClassValue(
@@ -113,6 +126,20 @@
             </table>
         {/each}
     </div>
+</Story>
+
+<Story name="Custom icon" args={{ icon: IconInfo }}>
+    {#snippet template(args)}
+        <div class="d-flex fd-column g8">
+            <Notice {...args} children={customIconContent} />
+            <p>
+                Custom icons replace only the icon source. Keep the established
+                icon pairings for semantic variants, and provide <code
+                    >iconTitle</code
+                > when a custom icon conveys meaning; otherwise it is decorative.
+            </p>
+        </div>
+    {/snippet}
 </Story>
 
 <Story name="Actions" asChild>
