@@ -17,11 +17,11 @@ jobs:
       should_run: ${{ steps.filter.outputs.styles == 'true' || steps.filter.outputs.runtime == 'true' || steps.filter.outputs.tests == 'true' || steps.filter.outputs.infrastructure == 'true' }}
     steps:
       - name: ⬇️ Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 🔎 Detect visual changes
         id: filter
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@v4
         with:
           filters: |
             styles:
@@ -141,7 +141,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Setup Node.js environment
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: lts/*
           cache: "npm"
@@ -167,15 +167,35 @@ jobs:
       - name: Docs on Release Pull Request
         # run only if there is a release pull request open
         if: steps.changesets.outputs.pullRequestNumber
-        uses: thollander/actions-comment-pull-request@v3
+        uses: actions/github-script@v8
+        env:
+          RELEASE_PR_NUMBER: ${{ steps.changesets.outputs.pullRequestNumber }}
         with:
-          comment-tag: "pr-release-docs"
-          pr-number: ${{ steps.changesets.outputs.pullRequestNumber }}
-          message: |
-            To trigger the build for this PR, **close and re-open it**.
+          script: |
+            const issue_number = Number(process.env.RELEASE_PR_NUMBER);
+            // Reuse the marker from the previous action to update existing comments.
+            const marker = '<!-- thollander/actions-comment-pull-request "pr-release-docs" -->';
+            const body = `To trigger the build for this PR, **close and re-open it**.
             This is necessary because the PR is updated by github-actions[bot].
             This is a technical user which does not trigger actions workflows on push events.
             See this GH issue for more details: https://github.com/changesets/action/issues/187
+            ${marker}`;
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              ...context.repo,
+              issue_number,
+            });
+            const previous = comments.find((comment) =>
+              comment.user?.login === 'github-actions[bot]' && comment.body?.includes(marker)
+            );
+            if (previous) {
+              await github.rest.issues.updateComment({
+                ...context.repo,
+                comment_id: previous.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({ ...context.repo, issue_number, body });
+            }
       - name: Deploy docs site
         if: steps.changesets.outputs.published == 'true'
         run: bash .github/scripts/deploy-netlify.sh
