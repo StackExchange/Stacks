@@ -1,5 +1,11 @@
 # @stackoverflow/stacks-svelte
 
+## 1.1.0
+
+### Minor Changes
+
+- [#2419](https://github.com/StackExchange/Stacks/pull/2419) [`416a16a`](https://github.com/StackExchange/Stacks/commit/416a16a13262d9f760995fbebd0e64281179a136) Thanks [@dancormier](https://github.com/dancormier)! - Add an optional custom SVG icon to the Notice component.
+
 ## 1.0.4
 
 ### Patch Changes
