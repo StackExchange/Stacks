@@ -19,7 +19,7 @@ export default defineConfig({
             formats: ["es"],
             fileName: (_format, entryName) => `${entryName}.js`,
         },
-        rollupOptions: {
+        rolldownOptions: {
             external: (id) =>
                 externalPackages.some(
                     (dependency) =>

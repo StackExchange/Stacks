@@ -15,7 +15,6 @@
         title: "Components/Select",
         component: Select,
         subcomponents: {
-            // @ts-expect-error: subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
             SelectItem,
         },
         argTypes: {
