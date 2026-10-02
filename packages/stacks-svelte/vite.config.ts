@@ -7,9 +7,10 @@ import path from "path";
 export default defineConfig({
     plugins: [svelte(svelteConfig), svelteTesting(), svelteInlineComponent()],
     optimizeDeps: {
+        // Keep the test runner's root-relative virtual WebSocket import intact.
+        exclude: ["@web/test-runner-commands"],
         //without the following explicit includes, test runs fail on the first run because these dependencies don't get pre-optimized properly
         include: [
-            "@web/test-runner-commands",
             "@floating-ui/dom",
             "svelte-floating-ui",
             "sinon",

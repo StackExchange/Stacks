@@ -31,7 +31,6 @@
     const { Story } = defineMeta({
         title: "Components/Popover",
         component: Popover,
-        // @ts-expect-error: subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
         subcomponents: { PopoverReference, PopoverContent, PopoverCloseButton },
         argTypes: {
             placement: {

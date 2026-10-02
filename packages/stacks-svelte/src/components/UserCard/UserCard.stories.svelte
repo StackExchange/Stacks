@@ -22,13 +22,9 @@
         title: "Components/UserCard",
         component: UserCard,
         subcomponents: {
-            // @ts-expect-error: subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
             UserCardTime,
-            // @ts-expect-error: subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
             UserCardBadge,
-            // @ts-expect-error: subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
             UserCardBling,
-            // @ts-expect-error: subcomponents is not typed correctly - see related issue https://github.com/storybookjs/storybook/issues/23170
             UserCardAdditionalBling,
         },
         argTypes: {

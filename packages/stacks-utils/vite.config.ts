@@ -10,7 +10,7 @@ export default defineConfig({
             formats: ["es"],
         },
         minify: false,
-        rollupOptions: {
+        rolldownOptions: {
             external: (id) =>
                 external.some((dep) => id === dep || id.startsWith(`${dep}/`)),
             output: {

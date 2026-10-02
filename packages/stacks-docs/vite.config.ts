@@ -4,9 +4,9 @@ import { dirname, resolve } from "path";
 import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vite";
 
-import pkgMain from "../stacks-classic/package.json";
-import pkgEmail from "../stacks-email/package.json";
-import pkgSvelte from "../stacks-svelte/package.json";
+import pkgMain from "../stacks-classic/package.json" with { type: "json" };
+import pkgEmail from "../stacks-email/package.json" with { type: "json" };
+import pkgSvelte from "../stacks-svelte/package.json" with { type: "json" };
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
