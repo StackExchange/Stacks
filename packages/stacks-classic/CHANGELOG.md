@@ -1,5 +1,11 @@
 # @stackoverflow/stacks
 
+## 3.0.1
+
+### Patch Changes
+
+- [#2426](https://github.com/StackExchange/Stacks/pull/2426) [`385831d`](https://github.com/StackExchange/Stacks/commit/385831d832db02b44dbe5cdd3833387f9590f060) Thanks [@dependabot](https://github.com/apps/dependabot)! - Fix checkbox and radio label selectors so the published CSS can be minified with Lightning CSS.
+
 ## 3.0.0
 
 ### Major Changes
