@@ -17,3 +17,19 @@
   to = "https://svelte.stackoverflow.design/:splat"
   status = 301
   force = true
+
+# Add v0 as a production domain alias only after these rules are deployed.
+# Upgrade explicitly: Netlify's automatic HTTPS redirect may not apply to proxies.
+[[redirects]]
+  from = "http://v0.svelte.stackoverflow.design/*"
+  to = "https://v0.svelte.stackoverflow.design/:splat"
+  status = 301
+  force = true
+
+# Keep the v2 branch deploy enabled: it remains the legacy content source.
+# Use its Netlify hostname, not a custom domain that may redirect back to v0.
+[[redirects]]
+  from = "https://v0.svelte.stackoverflow.design/*"
+  to = "https://v2--stacks-svelte.netlify.app/:splat"
+  status = 200
+  force = true
