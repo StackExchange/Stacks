@@ -15,4 +15,39 @@ describe("button", () => {
             </div>
         `,
     });
+
+    runVisualTests({
+        baseClass: "s-btn-selected",
+        template: ({ testid }) => html`
+            <div class="bg-white p16 d-flex fw-wrap g8" data-testid="${testid}">
+                ${[
+                    "",
+                    "s-btn__danger",
+                    "s-btn__featured",
+                    "s-btn__tonal",
+                    "s-btn__clear",
+                    "s-btn__danger s-btn__clear",
+                ].map(
+                    (variant) => html`
+                        <button
+                            class="s-btn is-selected ${variant}"
+                            type="button"
+                            aria-pressed="true"
+                        >
+                            Selected
+                        </button>
+                    `
+                )}
+                <input
+                    class="s-btn--radio"
+                    id="selected-visual-radio"
+                    type="radio"
+                    checked
+                />
+                <label class="s-btn" for="selected-visual-radio"
+                    >Selected radio</label
+                >
+            </div>
+        `,
+    });
 });
