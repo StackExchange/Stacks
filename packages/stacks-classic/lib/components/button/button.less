@@ -359,6 +359,12 @@
     }
 
     &:not(.is-selected):hover {
+        background: var(--_bu-bg-hover, var(--_bu-bg));
+        color: var(--_bu-fc-hover, var(--_bu-fc));
+    }
+
+    // Preserve checked radio hover gradients, without increasing specificity over disabled states.
+    .s-btn--radio:checked + &:where(:not(.is-selected):hover) {
         background:
             linear-gradient(0deg,
                 var(--_bu-bg-selected-overlay, var(--_bu-bg-hover, var(--_bu-bg))) 50%,
@@ -368,7 +374,6 @@
                 var(--_bu-bg-selected-overlay, var(--_bu-bg-hover, var(--_bu-bg))) 50%,
                 var(--_bu-bg-hover, var(--_bu-bg-selected, var(--_bu-bg))) 50%
             ) border-box;
-        color: var(--_bu-fc-hover, var(--_bu-fc));
     }
 
     fieldset[disabled] &,
@@ -392,15 +397,8 @@
         cursor: auto;
     }
 
-    background:
-        linear-gradient(0deg,
-            var(--_bu-bg-selected-overlay, var(--_bu-bg)) 50%,
-            var(--_bu-bg) 50%
-        ) padding-box,
-        linear-gradient(0deg,
-            var(--_bu-bg-selected-overlay, var(--_bu-bg)) 50%,
-            var(--_bu-bg) 50%
-        ) border-box;
+    // Only selected states need a gradient; solid backgrounds let axe measure contrast.
+    background: var(--_bu-bg);
     border: var(--_bu-baw) solid var(--_bu-bc, transparent);
     color: var(--_bu-fc);
     font-size: var(--_bu-fs);

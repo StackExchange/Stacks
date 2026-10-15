@@ -12250,7 +12250,7 @@ body.theme-highcontrast.theme-dark .s-bling.s-bling__filled.s-bling__bronze {
   --_bu-badge-px: var(--su6);
   --_bu-badge-py: var(--su2);
   --_bu-dropdown-bw: var(--su4);
-  background: linear-gradient(0deg, var(--_bu-bg-selected-overlay, var(--_bu-bg)) 50%, var(--_bu-bg) 50%) padding-box, linear-gradient(0deg, var(--_bu-bg-selected-overlay, var(--_bu-bg)) 50%, var(--_bu-bg) 50%) border-box;
+  background: var(--_bu-bg);
   border: var(--_bu-baw) solid var(--_bu-bc, transparent);
   color: var(--_bu-fc);
   font-size: var(--_bu-fs);
@@ -12697,8 +12697,11 @@ body.theme-system .theme-dark__forced .s-btn--radio:checked + .s-btn {
   outline: var(--su2) solid transparent !important;
 }
 .s-btn:not(.is-selected):hover {
-  background: linear-gradient(0deg, var(--_bu-bg-selected-overlay, var(--_bu-bg-hover, var(--_bu-bg))) 50%, var(--_bu-bg-hover, var(--_bu-bg-selected, var(--_bu-bg))) 50%) padding-box, linear-gradient(0deg, var(--_bu-bg-selected-overlay, var(--_bu-bg-hover, var(--_bu-bg))) 50%, var(--_bu-bg-hover, var(--_bu-bg-selected, var(--_bu-bg))) 50%) border-box;
+  background: var(--_bu-bg-hover, var(--_bu-bg));
   color: var(--_bu-fc-hover, var(--_bu-fc));
+}
+.s-btn--radio:checked + .s-btn:where(:not(.is-selected):hover) {
+  background: linear-gradient(0deg, var(--_bu-bg-selected-overlay, var(--_bu-bg-hover, var(--_bu-bg))) 50%, var(--_bu-bg-hover, var(--_bu-bg-selected, var(--_bu-bg))) 50%) padding-box, linear-gradient(0deg, var(--_bu-bg-selected-overlay, var(--_bu-bg-hover, var(--_bu-bg))) 50%, var(--_bu-bg-hover, var(--_bu-bg-selected, var(--_bu-bg))) 50%) border-box;
 }
 fieldset[disabled] .s-btn,
 .s-btn[disabled],
