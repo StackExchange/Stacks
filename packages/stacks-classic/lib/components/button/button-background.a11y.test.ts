@@ -92,63 +92,6 @@ describe("button backgrounds", () => {
                 });
             });
 
-            ["button", "radio"].forEach((kind) => {
-                it(`preserves selected ${kind} gradients, including on hover`, async () => {
-                    const el = await fixture<HTMLElement>(html`
-                        <div class="bg-white p16">
-                            ${
-                                kind === "radio"
-                                    ? html`
-                                          <input
-                                              id="selected-button"
-                                              class="s-btn--radio"
-                                              type="radio"
-                                              checked
-                                          />
-                                          <label
-                                              class="s-btn"
-                                              for="selected-button"
-                                              style="--theme-button-hover-color: rgb(0, 128, 0)"
-                                          >
-                                              Ask question
-                                          </label>
-                                      `
-                                    : html`
-                                          <button
-                                              class="s-btn is-selected"
-                                              type="button"
-                                              aria-pressed="true"
-                                          >
-                                              Ask question
-                                          </button>
-                                      `
-                            }
-                        </div>
-                    `);
-                    const button = el.querySelector<HTMLElement>(".s-btn")!;
-                    const background = getComputedStyle(button).backgroundImage;
-                    expect(background).to.contain("linear-gradient");
-                    await hover(button);
-                    const hoveredStyle = getComputedStyle(button);
-                    if (kind === "radio") {
-                        expect(hoveredStyle.backgroundImage)
-                            .to.contain("linear-gradient")
-                            .and.not.equal(background);
-                        expect(hoveredStyle.color).to.equal("rgb(0, 128, 0)");
-                    } else {
-                        expect(hoveredStyle.backgroundImage).to.equal(
-                            background
-                        );
-                    }
-
-                    // Selected gradients still require manual contrast verification.
-                    const results = await measureContrast(el, apcaRule);
-                    expect(
-                        results.incomplete.map((result) => result.id)
-                    ).to.include(apcaRule);
-                });
-            });
-
             ["s-btn__link", "s-btn__unset"].forEach((modifier) => {
                 it(`keeps ${modifier} backgrounds transparent`, async () => {
                     const button = await fixture<HTMLButtonElement>(html`

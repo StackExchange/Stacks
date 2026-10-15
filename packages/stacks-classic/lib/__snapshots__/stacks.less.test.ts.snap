@@ -12611,8 +12611,9 @@ p .s-btn.s-btn__link {
   --_bu-bg-selected-overlay: color-mix(in srgb, var(--_bu-bg-selected, var(--_bu-bg)), var(--white) var(--_bu-bg-selected-overlay-o));
   --_bu-bg-gradient-top: var(--_bu-bg-selected-overlay, var(--_bu-bg));
   --_bu-bg-gradient-bottom: var(--_bu-bg-selected, var(--_bu-bg));
-  background: linear-gradient(0deg, var(--_bu-bg-gradient-top) 50%, var(--_bu-bg-gradient-bottom) 50%) padding-box, linear-gradient(0deg, var(--_bu-bg-gradient-top) 50%, var(--_bu-bg-gradient-bottom) 50%) border-box;
+  background: var(--_bu-bg-selected, var(--_bu-bg));
   color: var(--_bu-fc-selected, var(--_bu-fc));
+  isolation: isolate;
 }
 @media (prefers-color-scheme: dark) {
   body.theme-system .s-btn.is-selected,
@@ -12639,6 +12640,23 @@ body.theme-system .theme-dark__forced .s-btn--radio:checked + .s-btn {
 .s-btn.is-selected .s-btn--badge .s-btn--number,
 .s-btn--radio:checked + .s-btn .s-btn--badge .s-btn--number {
   color: var(--_bu-badge-fc, var(--_bu-fc));
+}
+.s-btn.is-selected:before,
+.s-btn--radio:checked + .s-btn:before {
+  background: linear-gradient(0deg, var(--_bu-bg-gradient-top) 50%, var(--_bu-bg-gradient-bottom) 50%) padding-box, linear-gradient(0deg, var(--_bu-bg-gradient-top) 50%, var(--_bu-bg-gradient-bottom) 50%) border-box;
+  border: 0;
+  border-radius: inherit;
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+}
+@media (forced-colors: active) {
+  .s-btn.is-selected:before,
+  .s-btn--radio:checked + .s-btn:before {
+    display: none;
+  }
 }
 .s-btn .s-btn--badge {
   background-color: var(--_bu-badge-bg);
@@ -12701,6 +12719,9 @@ body.theme-system .theme-dark__forced .s-btn--radio:checked + .s-btn {
   color: var(--_bu-fc-hover, var(--_bu-fc));
 }
 .s-btn--radio:checked + .s-btn:where(:not(.is-selected):hover) {
+  background: var(--_bu-bg-hover, var(--_bu-bg-selected, var(--_bu-bg)));
+}
+.s-btn--radio:checked + .s-btn:where(:not(.is-selected):hover):before {
   background: linear-gradient(0deg, var(--_bu-bg-selected-overlay, var(--_bu-bg-hover, var(--_bu-bg))) 50%, var(--_bu-bg-hover, var(--_bu-bg-selected, var(--_bu-bg))) 50%) padding-box, linear-gradient(0deg, var(--_bu-bg-selected-overlay, var(--_bu-bg-hover, var(--_bu-bg))) 50%, var(--_bu-bg-hover, var(--_bu-bg-selected, var(--_bu-bg))) 50%) border-box;
 }
 fieldset[disabled] .s-btn,
@@ -12717,6 +12738,14 @@ fieldset[disabled] .s-btn:hover,
   background: var(--_bu-bg-disabled, var(--theme-secondary-400));
   border-color: var(--_bu-bc-disabled, var(--_bu-bc, transparent));
   color: var(--_bu-fc-disabled, var(--_bu-fc));
+}
+fieldset[disabled] .s-btn:before,
+.s-btn[disabled]:before,
+.s-btn[aria-disabled="true"]:before,
+fieldset[disabled] .s-btn:hover:before,
+.s-btn[disabled]:hover:before,
+.s-btn[aria-disabled="true"]:hover:before {
+  content: none;
 }
 fieldset[disabled] .s-btn .s-btn--badge,
 .s-btn[disabled] .s-btn--badge,
