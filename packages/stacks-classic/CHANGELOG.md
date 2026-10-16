@@ -1,5 +1,11 @@
 # @stackoverflow/stacks
 
+## 3.0.2
+
+### Patch Changes
+
+- [#2452](https://github.com/StackExchange/Stacks/pull/2452) [`8e61cd8`](https://github.com/StackExchange/Stacks/commit/8e61cd8667f2845b3d46fdde7045dcc6071b4bae) Thanks [@dancormier](https://github.com/dancormier)! - Use solid backgrounds for buttons so APCA checks can measure their base color contrast. Render the two-tone selected styling on an inner decorative layer for buttons and checked radio labels, with separate regression tests for contrast against both visible colors. Transparent borders now show a thin solid-color rim around that layer. Axe's built-in WCAG contrast rules still report selected pseudo-element backgrounds as incomplete.
+
 ## 3.0.1
 
 ### Patch Changes
