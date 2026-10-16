@@ -284,15 +284,33 @@
             background-color: var(--_bu-badge-bg);
         }
 
-        background: linear-gradient(0deg,
-                var(--_bu-bg-gradient-top) 50%,
-                var(--_bu-bg-gradient-bottom) 50%
-            ) padding-box,
-            linear-gradient(0deg,
-                var(--_bu-bg-gradient-top) 50%,
-                var(--_bu-bg-gradient-bottom) 50%
-            ) border-box;
+        &:before {
+            // Keep decoration inside the actual border, including border-width utility overrides.
+            background: linear-gradient(0deg,
+                    var(--_bu-bg-gradient-top) 50%,
+                    var(--_bu-bg-gradient-bottom) 50%
+                ) padding-box,
+                linear-gradient(0deg,
+                    var(--_bu-bg-gradient-top) 50%,
+                    var(--_bu-bg-gradient-bottom) 50%
+                ) border-box;
+            border: 0;
+            border-radius: inherit;
+            content: "";
+            inset: 0;
+            pointer-events: none;
+            position: absolute;
+            z-index: -1;
+
+            @media (forced-colors: active) {
+                display: none;
+            }
+        }
+
+        // The solid base is measurable by axe; tests check both decorative colors separately.
+        background: var(--_bu-bg-selected, var(--_bu-bg));
         color: var(--_bu-fc-selected, var(--_bu-fc));
+        isolation: isolate;
     }
 
     // CHILD ELEMENTS
@@ -359,16 +377,25 @@
     }
 
     &:not(.is-selected):hover {
-        background:
-            linear-gradient(0deg,
-                var(--_bu-bg-selected-overlay, var(--_bu-bg-hover, var(--_bu-bg))) 50%,
-                var(--_bu-bg-hover, var(--_bu-bg-selected, var(--_bu-bg))) 50%
-            ) padding-box,
-            linear-gradient(0deg,
-                var(--_bu-bg-selected-overlay, var(--_bu-bg-hover, var(--_bu-bg))) 50%,
-                var(--_bu-bg-hover, var(--_bu-bg-selected, var(--_bu-bg))) 50%
-            ) border-box;
+        background: var(--_bu-bg-hover, var(--_bu-bg));
         color: var(--_bu-fc-hover, var(--_bu-fc));
+    }
+
+    // Preserve checked radio hover colors, without increasing specificity over disabled states.
+    .s-btn--radio:checked + &:where(:not(.is-selected):hover) {
+        &:before {
+            background:
+                linear-gradient(0deg,
+                    var(--_bu-bg-selected-overlay, var(--_bu-bg-hover, var(--_bu-bg))) 50%,
+                    var(--_bu-bg-hover, var(--_bu-bg-selected, var(--_bu-bg))) 50%
+                ) padding-box,
+                linear-gradient(0deg,
+                    var(--_bu-bg-selected-overlay, var(--_bu-bg-hover, var(--_bu-bg))) 50%,
+                    var(--_bu-bg-hover, var(--_bu-bg-selected, var(--_bu-bg))) 50%
+                ) border-box;
+        }
+
+        background: var(--_bu-bg-hover, var(--_bu-bg-selected, var(--_bu-bg)));
     }
 
     fieldset[disabled] &,
@@ -376,6 +403,10 @@
     &[aria-disabled="true"] {
         &,
         &:hover {
+            &:before {
+                content: none;
+            }
+
             .s-btn--badge {
                 .s-btn--number {
                     color: var(--_bu-badge-fc-disabled);
@@ -392,15 +423,8 @@
         cursor: auto;
     }
 
-    background:
-        linear-gradient(0deg,
-            var(--_bu-bg-selected-overlay, var(--_bu-bg)) 50%,
-            var(--_bu-bg) 50%
-        ) padding-box,
-        linear-gradient(0deg,
-            var(--_bu-bg-selected-overlay, var(--_bu-bg)) 50%,
-            var(--_bu-bg) 50%
-        ) border-box;
+    // Selected gradients are decorative layers; the button itself always has a solid background.
+    background: var(--_bu-bg);
     border: var(--_bu-baw) solid var(--_bu-bc, transparent);
     color: var(--_bu-fc);
     font-size: var(--_bu-fs);
