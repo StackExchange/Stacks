@@ -29,7 +29,7 @@ import "@stackoverflow/stacks-editor/styles.css";
 new StacksEditor(
     document.querySelector("#editor-container"),
     "*Hello* World!",
-    {}
+    { elementAttributes: { "aria-label": "Editor content" } }
 );
 ```
 
@@ -51,7 +51,7 @@ new StacksEditor(
     new window.stacksEditor.StacksEditor(
         document.querySelector("#editor-container"),
         "*Hello* World!",
-        {}
+        { elementAttributes: { "aria-label": "Editor content" } }
     );
 </script>
 ```
@@ -70,13 +70,13 @@ There are several options you can pass to the Stacks Editor.
     new window.stacksEditor.StacksEditor(
         document.querySelector("#editor-example-1"),
         "",
-        {}
+        { elementAttributes: { "aria-label": "Empty editor example" } }
     );
 </script>
 ```
 
 <Example>
-    <StacksEditorDemo />
+    <StacksEditorDemo options={{ elementAttributes: { "aria-label": "Empty editor example" } }} />
 </Example>
 
 ### Textarea content with tables enabled
@@ -88,7 +88,10 @@ There are several options you can pass to the Stacks Editor.
     new window.stacksEditor.StacksEditor(
         document.querySelector("#editor-example-2"),
         document.querySelector("#editor-content-2").value,
-        { parserFeatures: { tables: true } }
+        {
+            parserFeatures: { tables: true },
+            elementAttributes: { "aria-label": "Editor example with tables" }
+        }
     );
 </script>
 ```
@@ -96,7 +99,7 @@ There are several options you can pass to the Stacks Editor.
 <Example>
     <StacksEditorDemo
         content={editorExampleContent}
-        options={{ parserFeatures: { tables: true } }}
+        options={{ parserFeatures: { tables: true }, elementAttributes: { "aria-label": "Editor example with tables" } }}
         class="hmn6"
     />
 </Example>

@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
   import { SvelteSet } from 'svelte/reactivity';
+  import { getCharacterLabel } from '$lib/characterLabel';
 
   import Grid from '$components/Grid.svelte';
   import GridColumn from '$components/GridColumn.svelte';
@@ -24,6 +25,7 @@
   let loading = $state(true);
   let switching = $state(false);
   let selectedGlyph = $state(null);
+  let selectedCode = $state(null);
   let showPoints = $state(false);
   let showMetrics = $state(true);
 
@@ -120,7 +122,7 @@
     if (!glyph) return;
 
     selectedGlyph = glyph;
-    _glyphIndex = glyph.index;
+    selectedCode = char.codePointAt(0);
   }
 
   function formatUnicode(unicode) {
@@ -255,7 +257,9 @@
           {#each availableChars as { char, code } (code)}
             <button
               class="char-cell h:bg-black-200 fc-black"
-              class:is-selected={selectedGlyph?.unicode === code}
+              class:is-selected={selectedCode === code}
+              aria-label={getCharacterLabel(char, code)}
+              aria-pressed={selectedCode === code}
               onclick={() => selectGlyphByChar(char)}
               style="font-family: 'Stack Sans Headline', sans-serif; font-weight: {selectedWeight.weight};"
             >

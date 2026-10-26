@@ -53,27 +53,27 @@ We have two approaches to sub-brand lockups. The approach you use should be dete
 
 Use the diagram below to determine how sub-brand lockups, used at a large scale, should be created.
 
-![](./sub-brand-large.svg)
+![Diagram showing how to construct a large-scale sub-brand lockup](./sub-brand-large.svg)
 
 ### Sub-brand small usage
 
 Use the diagram below to determine how sub-brand lockups, used at a large scale, should be created.
 
-![](./sub-brand-small.svg)
+![Diagram showing how to construct a small-scale sub-brand lockup](./sub-brand-small.svg)
 
 ### External partnership lockups
 
 External partnerships use a simpler lockup, where the height of both logos should always align.
 
-![](./external-partnership-lockup.svg)
+![External partnership lockup with both logos aligned to the same height](./external-partnership-lockup.svg)
 
 ### Things to avoid
 
-![](./things-to-avoid.svg)
+![Examples of incorrect Stack Overflow logo use to avoid](./things-to-avoid.svg)
 
 ## Symbol
 
-![](./symbol.svg)
+![Stack Overflow symbol](./symbol.svg)
 
 ### Symbol lockup
 

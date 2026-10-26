@@ -48,8 +48,10 @@ Contrast is the difference in luminance or color between any two elements. All v
     <h4 class="d-flex ai-center g8 fc-red-500 mb16"><Icon src={IconCrossFillCircle} /> Don't</h4>
     <p class="mb16">Use low luminance contrast that fails our standards.</p>
     <div class="d-flex ai-center g8 fw-wrap">
-      <button class="s-btn s-btn__filled bg-theme-secondary-200">Button</button>
-      <div class="bar-pill ta-center px8 py2 bg-green-400 fc-green-300">Robotics</div>
+      <!-- These two elements intentionally fail contrast to demonstrate what not to do.
+           The automated scanner skips only contrast checks on the marked elements. -->
+      <button data-a11y-intentional-contrast="true" class="s-btn s-btn__filled bg-theme-secondary-200">Button</button>
+      <div data-a11y-intentional-contrast="true" class="bar-pill ta-center px8 py2 bg-green-400 fc-green-300">Robotics</div>
     </div>
   </GridColumn>
   <GridColumn extraClasses="bg-green-100">
@@ -176,17 +178,17 @@ When the padding amount is not sufficient enough to support a double ring on the
     </div>
   </div>
   <div class="ta-center">
-    <input class="s-toggle-switch" type="checkbox" role="presentation" />
+    <input class="s-toggle-switch" type="checkbox" aria-labelledby="toggle-default-caption" />
     <div class="ps-relative mt16">
       <div class="ps-absolute bc-black-200 bs1 bt bbw2 h0 l50 ml-neg4 w8"></div>
-      <p class="fs-caption fc-black-500 mt16 mx-auto">Toggle default</p>
+      <p id="toggle-default-caption" class="fs-caption fc-black-500 mt16 mx-auto">Toggle default</p>
     </div>
   </div>
   <div class="ta-center">
-    <input class="s-toggle-switch focus" type="checkbox" role="presentation" />
+    <input class="s-toggle-switch focus" type="checkbox" aria-labelledby="toggle-focused-caption" />
     <div class="ps-relative mt16">
       <div class="ps-absolute bc-black-200 bs1 bt bbw2 h0 l50 ml-neg4 w8"></div>
-      <p class="fs-caption fc-black-500 mt16 mx-auto">Toggle focused</p>
+      <p id="toggle-focused-caption" class="fs-caption fc-black-500 mt16 mx-auto">Toggle focused</p>
     </div>
   </div>
 </div>
