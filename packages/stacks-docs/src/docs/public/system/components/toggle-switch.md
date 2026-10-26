@@ -106,16 +106,16 @@ Toggles switches can be extended to choose between two or more states where each
                 checked
                 value="value1"
             />
-            <label for="input-1" aria-label="First value" title="First value"
-                >…</label
+            <label for="input-1" title="First value"
+                ><span class="v-visible-sr">First value</span>…</label
             >
             <input type="radio" name="group1" id="input-2" value="value2" />
-            <label for="input-2" aria-label="Second value" title="Second value"
-                >…</label
+            <label for="input-2" title="Second value"
+                ><span class="v-visible-sr">Second value</span>…</label
             >
             <input type="radio" name="group1" id="input-3" value="value3" />
-            <label for="input-3" aria-label="Third value" title="Third value"
-                >…</label
+            <label for="input-3" title="Third value"
+                ><span class="v-visible-sr">Third value</span>…</label
             >
         </div>
     </div>
@@ -129,9 +129,9 @@ Toggles switches can be extended to choose between two or more states where each
                 <legend class="c-default s-label">Search Style</legend>
                 <div class="s-toggle-switch s-toggle-switch__multiple">
                     <input type="radio" name="example1" id="toggle-assistant" checked value="ai" />
-                    <label for="toggle-assistant" aria-label="AI Search" title="AI Search"><Icon src={IconAssistant} /></label>
+                    <label for="toggle-assistant" title="AI Search"><span class="v-visible-sr">AI Search</span><Icon src={IconAssistant} /></label>
                     <input type="radio" name="example1" id="toggle-search" value="lexical" />
-                    <label for="toggle-search" aria-label="Lexical Search" title="Lexical Search"><Icon src={IconSearch} /></label>
+                    <label for="toggle-search" title="Lexical Search"><span class="v-visible-sr">Lexical Search</span><Icon src={IconSearch} /></label>
                 </div>
             </div>
         </fieldset>
@@ -140,11 +140,11 @@ Toggles switches can be extended to choose between two or more states where each
                 <legend class="c-default s-label">Export Type</legend>
                 <div class="s-toggle-switch s-toggle-switch__multiple">
                     <input type="radio" name="example2" id="toggle-xml" value="xml" />
-                    <label for="toggle-xml" aria-label="XML" title="XML"><Icon src={IconCodeDocument} /></label>
+                    <label for="toggle-xml" title="XML"><span class="v-visible-sr">XML</span><Icon src={IconCodeDocument} /></label>
                     <input type="radio" name="example2" id="toggle-pdf" checked value="pdf" />
-                    <label for="toggle-pdf" aria-label="PDF" title="PDF"><Icon src={IconDocument} /></label>
+                    <label for="toggle-pdf" title="PDF"><span class="v-visible-sr">PDF</span><Icon src={IconDocument} /></label>
                     <input type="radio" name="example2" id="toggle-json" value="json" />
-                    <label for="toggle-json" aria-label="JSON" title="JSON"><Icon src={IconComposeDocument} /></label>
+                    <label for="toggle-json" title="JSON"><span class="v-visible-sr">JSON</span><Icon src={IconComposeDocument} /></label>
                 </div>
             </div>
         </fieldset>

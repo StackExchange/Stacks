@@ -261,7 +261,7 @@ Validation states provides the user feedback based on their interaction (or lack
             <td>13px</td>
             <td>
                 <div class="s-select s-select__sm">
-                    <select>
+                    <select aria-label="Small select example">
                         <option>1 Example</option>
                         <option>2 Options</option>
                     </select>
@@ -274,7 +274,7 @@ Validation states provides the user feedback based on their interaction (or lack
             <td>14px</td>
             <td>
                 <div class="s-select">
-                    <select>
+                    <select aria-label="Default select example">
                         <option>1 Example</option>
                         <option>2 Options</option>
                     </select>
@@ -287,7 +287,7 @@ Validation states provides the user feedback based on their interaction (or lack
             <td>18px</td>
             <td>
                 <div class="s-select s-select__lg">
-                    <select>
+                    <select aria-label="Large select example">
                         <option>1 Example</option>
                         <option>2 Options</option>
                     </select>
