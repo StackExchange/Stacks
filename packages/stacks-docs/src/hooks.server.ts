@@ -1,4 +1,4 @@
-import { auth } from "#lib/auth.js";
+import { auth } from "#lib/auth";
 import { svelteKitHandler } from "better-auth/svelte-kit";
 import { building } from "$app/env";
 

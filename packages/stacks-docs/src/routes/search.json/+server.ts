@@ -2,7 +2,7 @@ import { json } from "@sveltejs/kit";
 import YAML from "yaml";
 
 import structureRaw from "$src/structure.yaml?raw";
-import { getSearchDocumentsPromise } from "#lib/searchDocuments.js";
+import { getSearchDocumentsPromise } from "#lib/searchDocuments";
 
 export const prerender = true;
 

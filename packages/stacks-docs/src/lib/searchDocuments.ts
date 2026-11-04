@@ -1,6 +1,6 @@
 import type { Component } from "svelte";
 import { render } from "svelte/server";
-import { getSearchText } from "#lib/searchText.js";
+import { getSearchText } from "#lib/searchText";
 
 // The generated index is public, so private docs must never match this glob.
 const mdFiles = import.meta.glob("$docs/public/**/*.md");

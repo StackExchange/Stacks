@@ -2,13 +2,13 @@ import { error } from "@sveltejs/kit";
 import { dev } from "$app/env";
 import type { PageServerLoad } from "./$types";
 
-import { highlightCode } from "#lib/highlight.js";
-import { targetNames, type CompileTarget } from "#lib/tokens.js";
+import { highlightCode } from "#lib/highlight";
+import { targetNames, type CompileTarget } from "#lib/tokens";
 import {
     compileEmailTemplate,
     getEmailTemplateMeta,
     listEmailTemplates,
-} from "#lib/api/templates.js";
+} from "#lib/api/templates";
 
 export const load: PageServerLoad = async ({ params, url }) => {
     const template = getEmailTemplateMeta(params.slug);

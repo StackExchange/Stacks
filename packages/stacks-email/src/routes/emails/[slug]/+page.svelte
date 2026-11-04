@@ -10,7 +10,7 @@
         SelectItem,
     } from "@stackoverflow/stacks-svelte";
 
-    import type { CompileTarget } from "#lib/tokens.js";
+    import type { CompileTarget } from "#lib/tokens";
     import TemplateSidebar from "../../../ui/TemplateSidebar.svelte";
 
     let { data }: { data: import("./$types").PageData } = $props();

@@ -2,7 +2,7 @@
     import { resolve } from "$app/paths";
     import { tick } from "svelte";
     import MiniSearch, { type SearchResult } from "minisearch";
-    import { limitSearchResults } from "#lib/searchResults.js";
+    import { limitSearchResults } from "#lib/searchResults";
 
     import {
         Button,
