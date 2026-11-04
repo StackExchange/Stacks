@@ -89,7 +89,7 @@
       {@const categoryTheme = theme[category.title ?? ''] ?? theme.Product}
       <a
         class="td-none {sizeClasses[categoryTheme.size ?? 'md']} d-flex fd-column p24 bg-black-600 h:bc-black h:bg-black-500 d:bg-black-100 fc-white d:fc-black "
-        href={resolve(`/${category.slug}`)}
+        href={resolve(`${category.slug}`)}
       >
         <div class="p6 as-start mb32 {categoryTheme.iconClasses}"><Icon class="h24 w24" src={categoryTheme.icon} /></div>
         <h2 class="mt-auto fs-headline1 mb8">{category.title}</h2>

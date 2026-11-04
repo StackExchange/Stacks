@@ -7,7 +7,7 @@
   import { Icon, Button, Link, Navigation, NavigationItem, TextInput, TextArea } from '@stackoverflow/stacks-svelte';
   import { page } from '$app/state';
   import { replaceState } from '$app/navigation';
-  import { browser } from '$app/environment';
+  import { browser } from '$app/env';
   import { resolve } from '$app/paths';
 
   const icons = manifest.icons;

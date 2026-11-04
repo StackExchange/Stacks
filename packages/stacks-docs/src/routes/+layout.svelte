@@ -12,7 +12,7 @@
 	import ThemeToggle from '$components/ThemeToggle.svelte';
 	import Login from '$src/components/LoginPrompt.svelte';
 
-	import Favicon from '$lib/assets/favicon.svg';
+	import Favicon from '#lib/assets/favicon.svg';
 
 	let { children, data }: { children?: import('svelte').Snippet; data: App.PageData } = $props();
 

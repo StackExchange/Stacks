@@ -11,20 +11,24 @@ hljs.registerLanguage("html", hljsXml);
 hljs.registerLanguage("typescript", hljsTypeScript);
 hljs.registerLanguage("xml", hljsXml);
 
+/** @type {Record<string, string>} */
 const languageAliases = {
     sh: "bash",
     ts: "typescript",
 };
 
+/** @param {string | null | undefined} lang */
 const resolveLanguage = (lang) => {
+    if (!lang) return undefined;
     const language = languageAliases[lang] ?? lang;
     return hljs.getLanguage(language) ? language : undefined;
 };
 
+/** @param {string} code */
 const escapeHtml = (code) =>
     code.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-/** @type {import('@sveltejs/kit').Config} */
+/** @type {import('@sveltejs/kit/vite').Config} */
 const config = {
     preprocess: [
         vitePreprocess(),
@@ -46,9 +50,7 @@ const config = {
             },
         }),
     ],
-    kit: {
-        adapter: adapter(),
-    },
+    adapter: adapter(),
     extensions: [".svelte", ".md"],
 };
 

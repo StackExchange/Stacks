@@ -2,7 +2,7 @@
     import { resolve } from "$app/paths";
     import { tick } from "svelte";
     import MiniSearch, { type SearchResult } from "minisearch";
-    import { limitSearchResults } from "$lib/searchResults";
+    import { limitSearchResults } from "#lib/searchResults.js";
 
     import {
         Button,
@@ -173,7 +173,7 @@
                         <li>
                             <a
                                 class="d-block p12 bar-sm fc-black-600 h:bg-black-100 h:fc-black-600 td-none"
-                                href={resolve(result.path as `/${string}`)}
+                                href={resolve(result.path.replace(/^\//, ""))}
                                 onclick={closeSearch}
                             >
                                 <span class="d-block fw-bold mb2"

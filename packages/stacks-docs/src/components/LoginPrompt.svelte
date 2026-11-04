@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { authClient } from "$lib/auth-client";
+	import { authClient } from "#lib/auth-client.js";
 
 	import { Button, Icon } from "@stackoverflow/stacks-svelte";
 	import { SpotLock } from "@stackoverflow/stacks-icons/spots";

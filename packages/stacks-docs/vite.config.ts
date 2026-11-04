@@ -3,6 +3,7 @@ import { fileURLToPath } from "url";
 import { dirname, resolve } from "path";
 import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vite";
+import svelteOptions from "./svelte-options.js";
 
 import pkgMain from "../stacks-classic/package.json" with { type: "json" };
 import pkgEmail from "../stacks-email/package.json" with { type: "json" };
@@ -12,7 +13,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
     plugins: [
-        sveltekit(),
+        sveltekit(svelteOptions),
         {
             name: "copy-doc-images",
             buildStart() {

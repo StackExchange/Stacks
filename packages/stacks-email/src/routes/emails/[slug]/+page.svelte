@@ -10,7 +10,7 @@
         SelectItem,
     } from "@stackoverflow/stacks-svelte";
 
-    import type { CompileTarget } from "$lib/tokens";
+    import type { CompileTarget } from "#lib/tokens.js";
     import TemplateSidebar from "../../../ui/TemplateSidebar.svelte";
 
     let { data }: { data: import("./$types").PageData } = $props();
@@ -71,16 +71,13 @@
         activeTarget = event.currentTarget.value as CompileTarget;
         const query = `?target=${encodeURIComponent(activeTarget)}`;
         // Query-only update after resolving the route path.
-        /* eslint-disable svelte/no-navigation-without-resolve */
         void goto(
             `${resolve("/emails/[slug]", { slug: data.template.slug })}${query}`,
             {
-                keepFocus: true,
-                noScroll: true,
-                replaceState: true,
+                reset: false,
+                replace: true,
             },
         );
-        /* eslint-enable svelte/no-navigation-without-resolve */
     };
 
     const copyActiveCode = async () => {
