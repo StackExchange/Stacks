@@ -47,7 +47,7 @@
         <a
           class="s-navigation--item jc-space-between mb1"
           class:is-selected={isSelected}
-          href={resolve(`/${category.slug}/`)}
+          href={resolve(`${category.slug}/`)}
           data-sveltekit-reload={category.private ? true : undefined}
         >
           <span>{category.title}</span>
@@ -60,7 +60,7 @@
           <div transition:slide={{ duration: 200 }}>
             <ul class="s-navigation s-navigation__vertical pl24">
               {#each category.items as subsection (subsection.slug)}
-                {@const subsectionHref = subsection.externalUrl ? subsection.externalUrl : resolve(`/${category.slug}/${subsection.slug}/${subsection?.items ? subsection?.items[0]?.slug : ''}`)}
+                {@const subsectionHref = subsection.externalUrl ? subsection.externalUrl : resolve(`${category.slug}/${subsection.slug}/${subsection?.items ? subsection?.items[0]?.slug : ''}`)}
 
                 <li>
                   <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
@@ -93,7 +93,7 @@
                     <div transition:slide={{ duration: 200 }}>
                       <ul class="s-navigation s-navigation__vertical ml24">
                         {#each subsection?.items as item (item.slug)}
-                          {@const itemHref = item.externalUrl ? item.externalUrl : resolve(`/${category.slug}/${subsection.slug}/${item.slug}/`)}
+                          {@const itemHref = item.externalUrl ? item.externalUrl : resolve(`${category.slug}/${subsection.slug}/${item.slug}/`)}
 
                           <li>
                             <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->

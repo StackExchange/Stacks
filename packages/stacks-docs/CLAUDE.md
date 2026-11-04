@@ -134,7 +134,7 @@ For popover/menu examples, wrap content in `s-popover is-visible ps-relative` (`
 
 ## Rehype plugins (automatic — no action needed)
 
-The `svelte.config.js` rehype pipeline automatically:
+The `svelte-options.js` rehype pipeline automatically:
 
 - Adds `docs-heading docs-h2/h3/h4` to markdown headings
 - Adds `docs-copy` to `p` and `ol` elements **in markdown prose only**

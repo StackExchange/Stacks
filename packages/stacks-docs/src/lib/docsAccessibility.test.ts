@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { parse, preprocess } from "svelte/compiler";
 import { describe, expect, it } from "vitest";
-import config from "../../svelte.config.js";
+import config from "../../svelte-options.js";
 
 type Element = {
     type: string;

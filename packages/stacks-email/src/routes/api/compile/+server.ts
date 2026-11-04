@@ -1,11 +1,14 @@
 import { json } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
 import { z } from "zod/v4";
-import { env } from "$env/dynamic/private";
+import * as env from "$app/env/private";
 
-import { compileMjml } from "$lib/pipeline/compile";
-import { assetBaseUrlSchema, compileTargetSchema } from "$lib/api/request-schemas";
-import { compileEmailTemplate } from "$lib/api/templates";
+import { compileMjml } from "#lib/pipeline/compile";
+import {
+    assetBaseUrlSchema,
+    compileTargetSchema,
+} from "#lib/api/request-schemas";
+import { compileEmailTemplate } from "#lib/api/templates";
 import button from "../../../../components/button";
 import footer from "../../../../components/footer";
 import headline from "../../../../components/headline";
@@ -13,9 +16,9 @@ import header from "../../../../components/header";
 import spacer from "../../../../components/spacer";
 import text from "../../../../components/text";
 import title from "../../../../components/title";
-import { Section } from "$lib/mjml";
-import { tokens } from "$lib/tokens";
-import type { EmailComponentMeta, MjmlNode } from "$lib/types";
+import { Section } from "#lib/mjml/index";
+import { tokens } from "#lib/tokens";
+import type { EmailComponentMeta, MjmlNode } from "#lib/types";
 
 const getVariantIds = (meta: EmailComponentMeta) =>
     meta.variants.map((variant) => variant.id) as [string, ...string[]];

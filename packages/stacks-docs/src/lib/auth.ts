@@ -2,7 +2,7 @@ import { betterAuth } from "better-auth";
 import { genericOAuth } from "better-auth/plugins";
 import { sveltekitCookies } from "better-auth/svelte-kit";
 
-import { env } from "$env/dynamic/private";
+import * as env from "$app/env/private";
 import { getRequestEvent } from "$app/server";
 
 // TODO: Make dynamic once we figure out Netlify env vars at runtime

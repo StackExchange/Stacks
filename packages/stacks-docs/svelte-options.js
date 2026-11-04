@@ -10,7 +10,7 @@ import hljs from "highlight.js";
 import { visit, SKIP } from "unist-util-visit";
 import { IconLink } from "@stackoverflow/stacks-icons/icons";
 
-/** @type {import('@sveltejs/kit').Config} */
+/** @type {import('@sveltejs/kit/vite').Config} */
 const config = {
     preprocess: [
         vitePreprocess(),
@@ -57,13 +57,13 @@ const config = {
             ],
         }),
     ],
-    kit: {
-        adapter: adapter(),
-        alias: {
-            $src: "src",
-            $components: "src/components",
-            $docs: "src/docs",
-        },
+    adapter: adapter(),
+    // Email artifacts have explicit entries; their template links are not site routes.
+    prerender: { crawl: false },
+    alias: {
+        $src: "src",
+        $components: "src/components",
+        $docs: "src/docs",
     },
     extensions: [".svelte", ".md"],
 };

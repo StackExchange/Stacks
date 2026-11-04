@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
   import { SvelteSet } from 'svelte/reactivity';
-  import { getCharacterLabel } from '$lib/characterLabel';
+  import { getCharacterLabel } from '#lib/characterLabel';
 
   import Grid from '$components/Grid.svelte';
   import GridColumn from '$components/GridColumn.svelte';

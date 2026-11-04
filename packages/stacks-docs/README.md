@@ -82,7 +82,7 @@ You can import and use Svelte components directly in your markdown:
 <ColorSwatch />
 ```
 
-See `svelte.config.js` for the complete mdsvex configuration.
+See `svelte-options.js` for the complete mdsvex configuration.
 
 ### Content
 
