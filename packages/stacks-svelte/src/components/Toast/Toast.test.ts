@@ -2,12 +2,29 @@ import { expect } from "@open-wc/testing";
 import { render, screen, waitFor } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import sinon from "sinon";
+import { toast } from "svelte-sonner";
 import { createRawSnippet, mount, unmount } from "svelte";
 import NoticeAction from "../Notice/NoticeAction.svelte";
 
 import Toaster, { showToast, hideToast } from "./Toast.svelte";
 
+async function dismissToasts() {
+    try {
+        // Dismiss while the Toaster is mounted, before automatic DOM cleanup.
+        toast.dismiss();
+        await waitFor(
+            () =>
+                expect(document.querySelector("[data-sonner-toast]")).to.not
+                    .exist
+        );
+    } finally {
+        sinon.restore();
+    }
+}
+
 describe("showToast", () => {
+    afterEach(dismissToasts);
+
     it("should render a default toast component", async () => {
         render(Toaster);
         showToast("Test Toast");
@@ -65,7 +82,6 @@ describe("showToast", () => {
         await waitFor(
             () => expect(screen.queryByText("Test Toast")).to.not.exist
         );
-        clock.restore();
     });
 
     it("should never close automatically when transient is false", async () => {
@@ -78,7 +94,6 @@ describe("showToast", () => {
         await waitFor(() => expect(screen.getByText("Test Toast")).to.exist);
         await clock.tickAsync(15000);
         expect(screen.getByText("Test Toast")).to.exist;
-        clock.restore();
     });
 
     it("should close the toast based on the duration option when provided", async () => {
@@ -93,7 +108,6 @@ describe("showToast", () => {
         await waitFor(
             () => expect(screen.queryByText("Test Toast")).to.not.exist
         );
-        clock.restore();
     });
 
     it("should render other actions in the toast when provided", async () => {
@@ -148,7 +162,6 @@ describe("showToast", () => {
         expect(onCloseSpy).to.have.been.called;
         expect(onAutoCloseSpy).to.have.been.called;
         expect(onUserCloseSpy).to.not.have.been.called;
-        clock.restore();
     });
 
     it("should call onClose and onUserClose callbacks when the toast is closed by the user", async () => {
@@ -192,6 +205,8 @@ describe("showToast", () => {
 });
 
 describe("hideToast", () => {
+    afterEach(dismissToasts);
+
     it("should close a toast programmatically", async () => {
         render(Toaster);
         const toastId = showToast("Test Toast", { transient: false });
